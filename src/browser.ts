@@ -1,18 +1,20 @@
 // This file is entrypoint of browser builds and executes when loaded in a browser
-import { rest, realtime } from './modules'
+import { createApp } from './modules/app'
+import { Netzo, NetzoOptions } from './types'
 
-// instead of casting window to any, you can extend the Window interface
-// see https://stackoverflow.com/a/43513740/5433572
-declare global {
-  interface Window {
-    Wot: { Core: unknown; Http: unknown; WebSocket: unknown }
-    Netzo: unknown
-  }
+const Netzo = (options: NetzoOptions): Netzo => {
+  const app = createApp(options)
+
+  return app
 }
 
-export const Netzo = (options: NetzoOptions): Netzo => ({
-  ...rest(options.rest),
-  ...realtime(options?.realtime)
-})
+export default Netzo
+
+// extends Window instead of casting to any
+declare global {
+  interface Window {
+    Netzo: (NetzoOptions) => Netzo
+  }
+}
 
 window.Netzo = Netzo

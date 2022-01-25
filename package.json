@@ -35,13 +35,16 @@
     "docs": "typedoc --entryPoints src/main.ts",
     "build": "npm run clean && npm run build:tsc && npm run esbuild-browser",
     "build:tsc": "tsc -p tsconfig.json",
-    "esbuild-browser": "esbuild src/browser.ts --bundle --minify --sourcemap=external --outfile=dist/esbuild/browser.js --external:@node-wot/core --external:@node-wot/binding-http --external:@node-wot/binding-websockets --external:openapi-client-axios",
+    "esbuild-browser": "esbuild src/browser.ts --bundle --minify --sourcemap=external --outfile=dist/esbuild/browser.js",
     "esbuild-browser:dev": "esbuild src/browser.ts --bundle --outfile=dist/esbuild/browser.js",
     "esbuild-browser:watch": "esbuild src/browser.ts --bundle --watch --outfile=dist/esbuild/browser.js",
     "publish": "npm publish"
   },
   "dependencies": {
-    "node-fetch": "^3.2.0"
+    "@feathersjs/authentication-client": "^5.0.0-pre.14",
+    "@feathersjs/feathers": "^5.0.0-pre.14",
+    "@feathersjs/socketio-client": "^5.0.0-pre.14",
+    "socket.io-client": "^4.4.1"
   },
   "devDependencies": {
     "@types/node": "^15.0.1",
@@ -50,6 +53,7 @@
     "@vitest/ui": "^0.1.16",
     "c8": "^7.11.0",
     "esbuild": "^0.11.23",
+    "jsdom": "^19.0.0",
     "typedoc": "^0.20.35",
     "typescript": "^4.2.3",
     "vite": "^2.7.12",

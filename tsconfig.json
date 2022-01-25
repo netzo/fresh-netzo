@@ -19,7 +19,7 @@
     "experimentalDecorators": true,
     "sourceMap": true,
     "outDir": "./dist/tsc/",
-    "types": ["node", "vitest", "wot-typescript-definitions"],
+    "types": ["node", "vitest"],
     "lib": ["ES6", "DOM"]
   },
   "include": ["src/**/*.ts"],

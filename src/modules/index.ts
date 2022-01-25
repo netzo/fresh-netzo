@@ -1,3 +1,2 @@
-export { rest } from './rest'
-export { realtime } from './realtime'
+export { createApp } from './app'
 export * as utils from './utils'
