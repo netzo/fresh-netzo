@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://netzo.io" rel="noopener" target="_blank">
-    <img width="150" src="https://netzo.io/img/netzo-symbol-light.svg" alt="Netzo logo" />
+    <img width="150" src="https://netzo.io/images/netzo-symbol-light.svg" alt="Netzo logo" />
   </a>
 </p>
 
