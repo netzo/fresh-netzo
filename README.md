@@ -28,7 +28,7 @@ npm install @netzoio/sdk
 
 ## Documentation
 
-Refer to the [Netzo SDK documentation](https://docs.netzo.io) for more details.
+Refer to the [Netzo SDK documentation](https://netzo.io/docs) for more details.
 
 ## License
 
