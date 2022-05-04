@@ -1,17 +1,27 @@
-import { Application } from "@feathersjs/feathers"
+import { Callers, ValidationLevel } from "./client/types.ts";
 
-export interface Netzo extends Application {
-  [k: string]: unknown // allow extensions
+export interface IServiceOptions {
+  id?: string;
+  doc?: any;
+  // createClient:
+  callers?: Callers;
+  origin?: string | null;
+  validationLevel?: ValidationLevel;
 }
 
-export interface NetzoOptions {
-  app?: Application
-  key: string
-  url: string
+export interface IService {
+  getUrl: () => string;
+  getDoc: () => any;
+  [k: string]: any;
 }
 
-// utils:
+export interface INetzoOptions {
+  apiKey: string;
+  apiUrl?: string;
+}
 
-export type getApiUrl = () => string
-
-export type getToken = () => string | null
+export interface INetzo {
+  createClient: (options: IServiceOptions) => Promise<IService>;
+  // utils:
+  getApiKey: () => string;
+}
