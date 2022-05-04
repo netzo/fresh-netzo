@@ -1009,24 +1009,15 @@ Deno.test("create sample client (by id)", async (): Promise<void> => {
 });
 
 Deno.test("get() for sample client (by id)", async (): Promise<void> => {
-
-
-
   const netzo = Netzo({ apiKey });
   const client = await netzo.createClient({ id });
   const data = await client["/properties/allAvailableResources"].get();
-  console.log({ data })
   assertEquals<boolean>(!!data, true);
-
-
-
-
-
 });
 
 Deno.test("get() for sample client with params (by id)", async (): Promise<void> => {
   const netzo = Netzo({ apiKey });
-  const client = await netzo.createClientById({ id });
+  const client = await netzo.createClient({ id });
   const params = { pathParams: {}, queryParams: { q: "milk + water" } };
   const data = await client["/properties/allAvailableResources"].get(params);
   assertEquals<boolean>(!!data, true);
