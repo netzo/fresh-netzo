@@ -1,6 +1,6 @@
 import { Callers, ValidationLevel } from "./client/types.ts";
 
-export interface IServiceOptions {
+export interface IClientOptions {
   id?: string;
   doc?: any;
   // createClient:
@@ -9,7 +9,7 @@ export interface IServiceOptions {
   validationLevel?: ValidationLevel;
 }
 
-export interface IService {
+export interface IClient {
   getUrl: () => string;
   getDoc: () => any;
   [k: string]: any;
@@ -21,7 +21,7 @@ export interface INetzoOptions {
 }
 
 export interface INetzo {
-  createClient: (options: IServiceOptions) => Promise<IService>;
+  createClient: (options: IClientOptions) => Promise<IClient>;
   // utils:
   getApiKey: () => string;
 }

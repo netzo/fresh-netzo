@@ -1,8 +1,8 @@
 import type {
   INetzo,
   INetzoOptions,
-  IService,
-  IServiceOptions,
+  IClient,
+  IClientOptions,
 } from "./types.ts";
 import { createClient as createClientOpenapi } from "./client/mod.ts";
 import { Callers, ValidationLevel } from "./client/types.ts";
@@ -53,7 +53,7 @@ export const Netzo = (options: INetzoOptions): INetzo => {
     },
     origin = null,
     validationLevel = "error",
-  }: IServiceOptions): Promise<IService> => {
+  }: IClientOptions): Promise<IClient> => {
     if (!id && !doc) throw new Error("Either 'id' or 'doc' is required");
 
     const getUrl = () => `${apiUrl}/web/${id}`;
