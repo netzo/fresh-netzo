@@ -3,24 +3,26 @@ import { Callers, ValidationLevel } from "./client/types.ts";
 export interface IClientOptions {
   id?: string;
   doc?: any;
-  // createClient:
   callers?: Callers;
   origin?: string | null;
   validationLevel?: ValidationLevel;
 }
 
 export interface IClient {
-  getUrl: () => string;
+  getId: () => string;
   getDoc: () => any;
+  dereference: (doc: any) => Promise<any>;
   [k: string]: any;
 }
 
 export interface INetzoOptions {
   apiKey: string;
-  apiUrl?: string;
+  base?: string;
 }
 
 export interface INetzo {
+  base: string;
+  getDocUrlById: (id: string) => string;
   createClient: (options: IClientOptions) => Promise<IClient>;
   // utils:
   getApiKey: () => string;

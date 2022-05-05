@@ -5,7 +5,8 @@ import type {
   IClientOptions,
 } from "./types.ts";
 import { createClient as createClientOpenapi } from "./client/mod.ts";
-import { Callers, ValidationLevel } from "./client/types.ts";
+import { Resolver } from 'https://cdn.skypack.dev/@stoplight/json-ref-resolver';
+const jsonRefResolver = new Resolver()
 
 /**
  * Constructor function for the Netzo SDK.
@@ -24,7 +25,9 @@ import { Callers, ValidationLevel } from "./client/types.ts";
  * @returns {Netzo} - A new instance of the Netzo SDK
  */
 export const Netzo = (options: INetzoOptions): INetzo => {
-  const { apiKey, apiUrl = "https://api.netzo.io" } = options;
+  const { apiKey, base = "https://api.netzo.io" } = options;
+
+  const getDocUrlById = (id: string): string => new URL(`/web/${id}`, base).href;
 
   const createClient = async ({
     id,
@@ -56,23 +59,31 @@ export const Netzo = (options: INetzoOptions): INetzo => {
   }: IClientOptions): Promise<IClient> => {
     if (!id && !doc) throw new Error("Either 'id' or 'doc' is required");
 
-    const getUrl = () => `${apiUrl}/web/${id}`;
-
     if (id && !doc) {
       const headers = { accept: "application/json", "x-api-key": apiKey };
-      const response = await fetch(getUrl(), { headers });
+      const response = await fetch(getDocUrlById(id), { headers });
       doc = await response.json();
     }
 
+    // TODO: dereference doc in case it still has $refs
+    const dereference = async (doc: any): Promise<any> => {
+      const { result } = await jsonRefResolver.resolve(doc)
+      return result // 'result' object is frozen (disallows mutations)
+    }
+    doc = await dereference(doc)
+
     return {
-      ...createClientOpenapi(doc, callers, { origin, validationLevel }),
-      getUrl,
+      getId: () => id,
       getDoc: () => doc,
-    };
+      dereference,
+      ...createClientOpenapi(doc, callers, { origin, validationLevel }),
+    }; // client
   };
 
   return {
+    base,
+    getDocUrlById,
     createClient,
     getApiKey: () => apiKey,
-  };
+  }; // netzo
 };
