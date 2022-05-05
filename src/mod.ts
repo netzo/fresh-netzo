@@ -9,12 +9,10 @@ import { Resolver } from 'https://cdn.skypack.dev/@stoplight/json-ref-resolver';
 const jsonRefResolver = new Resolver()
 
 /**
- * Constructor function for the Netzo SDK.
+ * Constructor function for the Netzo Web SDK.
  *
- * This is the main entry point for the Netzo SDK. It is used to create
+ * This is the main entry point for the Netzo Web SDK. It is used to create
  * a new instance of the SDK. It handles authentication internaly.
- *
- * follow https://deno.land/manual/contributing/style_guide
  *
  * @example const netzo = new Netzo(API_KEY)
  *
@@ -22,13 +20,29 @@ const jsonRefResolver = new Resolver()
  * @param {string} options.apiKey - The API key to use for authentication.
  * @param {string} options.url - The URL to use for the API.
  *
- * @returns {Netzo} - A new instance of the Netzo SDK
+ * @returns {INetzo} - A new instance of the Netzo Web SDK
  */
 export const Netzo = (options: INetzoOptions): INetzo => {
   const { apiKey, base = "https://api.netzo.io" } = options;
 
   const getDocUrlById = (id: string): string => new URL(`/web/${id}`, base).href;
 
+
+  /**
+   * Constructor function for a Netzo Web SDK client.
+   *
+   * This is used to create a new client instance of the SDK.
+   *
+   * @example const netzo = new Netzo(API_KEY)
+   *
+   * @param {string} id = The ID of the Service to create a client for.
+   * @param {Object} doc - The OpenApi document of the Service to create a client for.
+   * @param {Callers} callers - Generic functions that handle requests at the HTTP level.
+   * @param {string} origin - Defaults to specs.servers[0].url of the OpenAPI document. Optional if it's defined, else required.
+   * @param {"off" | "warn" | "error"} validationLevel - Validation level (for pathParams, queryParams, and body) against the schema present in the OpenApi document.
+   *
+   * @returns {IClient} - A new instance of the Netzo Web SDK
+   */
   const createClient = async ({
     id,
     doc,
