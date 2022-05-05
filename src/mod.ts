@@ -33,7 +33,9 @@ export const Netzo = (options: INetzoOptions): INetzo => {
    *
    * This is used to create a new client instance of the SDK.
    *
-   * @example const netzo = new Netzo(API_KEY)
+   * @example
+   * const netzo = new Netzo(API_KEY)
+   * const client = await netzo.createClient({ doc })
    *
    * @param {string} id = The ID of the Service to create a client for.
    * @param {Object} doc - The OpenApi document of the Service to create a client for.
