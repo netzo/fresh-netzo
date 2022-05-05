@@ -1002,20 +1002,20 @@ Deno.test("main entry point", (): void => {
   assertEquals<boolean>(!!netzo, true);
 });
 
-Deno.test("create sample client (by id)", async (): Promise<void> => {
+Deno.test("create client (by id)", async (): Promise<void> => {
   const netzo = Netzo({ apiKey });
   const client = await netzo.createClient({ id });
   assertEquals<boolean>(!!client, true);
 });
 
-Deno.test("get() for sample client (by id)", async (): Promise<void> => {
+Deno.test("client.get() (by id)", async (): Promise<void> => {
   const netzo = Netzo({ apiKey });
   const client = await netzo.createClient({ id });
   const data = await client["/properties/allAvailableResources"].get();
   assertEquals<boolean>(!!data, true);
 });
 
-Deno.test("get() for sample client with params (by id)", async (): Promise<void> => {
+Deno.test("client.get(params) (by id)", async (): Promise<void> => {
   const netzo = Netzo({ apiKey });
   const client = await netzo.createClient({ id });
   const params = { pathParams: {}, queryParams: { q: "milk + water" } };
@@ -1023,26 +1023,20 @@ Deno.test("get() for sample client with params (by id)", async (): Promise<void>
   assertEquals<boolean>(!!data, true);
 });
 
-Deno.test("create sample client (by doc)", (): void => {
+Deno.test("create client (by doc)", (): void => {
   const netzo = Netzo({ apiKey });
   const client = netzo.createClient({ doc });
   assertEquals<boolean>(!!client, true);
 });
 
-Deno.test("get() for sample client (by doc)", async (): Promise<void> => {
-
-
-
+Deno.test("client.get() (by doc)", async (): Promise<void> => {
   const netzo = Netzo({ apiKey });
   const client = await netzo.createClient({ doc });
   const data = await client["/properties/allAvailableResources"].get();
   assertEquals<boolean>(!!data, true);
-
-
-
 });
 
-Deno.test("get() for sample client with params (by doc)", async (): Promise<void> => {
+Deno.test("client.get(params) (by doc)", async (): Promise<void> => {
   const netzo = Netzo({ apiKey });
   const client = await netzo.createClient({ doc });
   const params = { pathParams: {}, queryParams: { q: "milk + water" } };
