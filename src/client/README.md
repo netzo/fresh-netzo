@@ -1,6 +1,7 @@
 # client
 
-> A modified fork of the lightweight [oa-client](https://github.com/ninofiliu/oa-client) ported to Deno.
+> A modified fork of the lightweight
+> [oa-client](https://github.com/ninofiliu/oa-client) ported to Deno.
 
 Harness all the power of your backend's OpenAPI v3 spec files by generating a
 client object in a few lines

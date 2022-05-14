@@ -1,12 +1,12 @@
 import type {
-  INetzo,
-  INetzoOptions,
   IClient,
   IClientOptions,
+  INetzo,
+  INetzoOptions,
 } from "./types.ts";
 import { createClient as createClientOpenapi } from "./client/mod.ts";
-import { Resolver } from 'https://cdn.skypack.dev/@stoplight/json-ref-resolver';
-const jsonRefResolver = new Resolver()
+import { Resolver } from "https://cdn.skypack.dev/@stoplight/json-ref-resolver";
+const jsonRefResolver = new Resolver();
 
 /**
  * Constructor function for the Netzo Web SDK.
@@ -25,8 +25,8 @@ const jsonRefResolver = new Resolver()
 export const Netzo = (options: INetzoOptions): INetzo => {
   const { apiKey, base = "https://api.netzo.io" } = options;
 
-  const getDocUrlById = (id: string): string => new URL(`/web/${id}`, base).href;
-
+  const getDocUrlById = (id: string): string =>
+    new URL(`/web/${id}`, base).href;
 
   /**
    * Constructor function for a Netzo Web SDK client.
@@ -83,10 +83,10 @@ export const Netzo = (options: INetzoOptions): INetzo => {
 
     // TODO: dereference doc in case it still has $refs
     const dereference = async (doc: any): Promise<any> => {
-      const { result } = await jsonRefResolver.resolve(doc)
-      return result // 'result' object is frozen (disallows mutations)
-    }
-    doc = await dereference(doc)
+      const { result } = await jsonRefResolver.resolve(doc);
+      return result; // 'result' object is frozen (disallows mutations)
+    };
+    doc = await dereference(doc);
 
     return {
       getId: () => id,

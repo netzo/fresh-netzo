@@ -1,0 +1,5 @@
+{
+  "tasks": {
+    "dev": "deno run --allow-net --watch src/mod.test.ts"
+  }
+}

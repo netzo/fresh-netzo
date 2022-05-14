@@ -22,7 +22,9 @@
 
 ## Documentation
 
-Refer to the [Netzo Web SDK documentation](https://netzo.io/reference/web-sdk/overview) for more details.
+Refer to the
+[Netzo Web SDK documentation](https://netzo.io/reference/web-sdk/overview) for
+more details.
 
 ## Project Structure
 

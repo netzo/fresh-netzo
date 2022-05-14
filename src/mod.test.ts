@@ -2,7 +2,8 @@ import { assertEquals } from "https://deno.land/std@0.97.0/testing/asserts.ts";
 import { Netzo } from "./mod.ts";
 // TRYME: import { Netzo } from 'https://deno.land/x/netzo@v0.1.0/mod.ts'
 
-const apiKey = "e6f2271907f1c46d48f4d0af1929df56c91dd18eb445465cf6042a63e1930669";
+const apiKey =
+  "e6f2271907f1c46d48f4d0af1929df56c91dd18eb445465cf6042a63e1930669";
 const id = "61ec965dfe5f8df0e8e50bcd";
 const doc = {
   "openapi": "3.0.3",
