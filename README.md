@@ -99,6 +99,6 @@ repository.
 
 ## License
 
-Copyright (c) 2022 [Asterisc GmbH](https://netzo.io)
+Copyright (c) 2022 [ROKAWARE SL](https://netzo.io)
 
 Licensed under the [MIT license](LICENSE)
