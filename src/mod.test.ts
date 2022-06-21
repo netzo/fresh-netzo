@@ -988,7 +988,7 @@ const doc = {
       "ApiKeyAuthQuery": {
         "type": "apiKey",
         "in": "query",
-        "name": "apikey",
+        "name": "apiKey",
       },
       "BearerAuth": {
         "type": "http",
