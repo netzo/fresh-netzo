@@ -41,8 +41,8 @@ repository.
 │   └─ extensions.json
 │   └─ settings.json
 ├── src/
-│   ├── client/
-│   ├── web/
+│   ├── http/
+│   ├── openapi/
 │   ├── mod.ts
 │   ├── mod.test.ts
 │   ├── types.ts

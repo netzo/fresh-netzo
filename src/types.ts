@@ -1,29 +1,20 @@
-import { Callers, ValidationLevel } from "./client/types.ts";
+import { IClientOptionsHTTP, IClientHTTP } from "./http/types.ts";
+import { IClientOptionsOpenapi, IClientOpenapi } from "./openapi/types.ts";
 
-export interface IClientOptions {
-  id?: string;
-  doc?: any;
-  callers?: Callers;
-  origin?: string | null;
-  validationLevel?: ValidationLevel;
-}
+export type IClientOptions = IClientOptionsHTTP | IClientOptionsOpenapi;
 
-export interface IClient {
-  getId: () => string;
-  getDoc: () => any;
-  dereference: (doc: any) => Promise<any>;
-  [k: string]: any;
-}
+export type IClient = IClientHTTP | IClientOpenapi;
 
 export interface INetzoOptions {
   apiKey: string;
-  base?: string;
+  baseURL?: string;
 }
 
 export interface INetzo {
-  base: string;
-  getDocUrlById: (id: string) => string;
-  createClient: (options: IClientOptions) => Promise<IClient>;
+  baseURL: string;
+  http: (options: IClientOptionsHTTP) => Promise<IClientHTTP>;
+  openapi: (options: IClientOptionsOpenapi) => Promise<IClientOpenapi>;
+  createClient: (options: IClientOptions) => IClient;
   // utils:
   getApiKey: () => string;
 }
