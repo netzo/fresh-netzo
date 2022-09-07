@@ -1,9 +1,9 @@
 import { assertEquals } from "https://deno.land/std@0.97.0/testing/asserts.ts";
 import type { Callers } from "./types.ts";
-import { createClient } from "./mod.ts";
+import { createClientOpenAPI } from "./mod.ts";
 
 Deno.test("client module", (): void => {
-  assertEquals(!!createClient, true);
+  assertEquals(!!createClientOpenAPI, true);
 });
 
 const doc = {
@@ -979,7 +979,7 @@ const callers: Callers = {
   },
 };
 
-const client = createClient(doc, callers);
+const client = createClientOpenAPI(doc, callers);
 
 Deno.test("client function", async (): Promise<void> => {
   const data = await client["/todos/{id}"].get({ pathParams: { id: 1 } });

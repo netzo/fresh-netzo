@@ -1,12 +1,10 @@
 import type { INetzoOptions } from "../types.ts";
 import type { IClientOptionsHTTP, IClientHTTP } from "./types.ts";
 import { createClient } from "./create-client.ts";
-import { getItemUrlById } from "../utils.ts";
+
 
 /**
  * Constructor function for the HTTP client of the Netzo Web SDK client.
- *
- * This is used to create a new HTTP client instance of the SDK.
  *
  * @example
  * const netzo = new Netzo(API_KEY)

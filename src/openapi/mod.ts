@@ -7,8 +7,6 @@ import { getItemUrlById } from "../utils.ts";
 /**
  * Constructor function for the OpenAPI client of the Netzo Web SDK client.
  *
- * This is used to create a new OpenAPI client instance of the SDK.
- *
  * @example
  * const netzo = new Netzo(API_KEY)
  * const client = await netzo.openapi({ doc })

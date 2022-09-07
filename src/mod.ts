@@ -6,6 +6,7 @@ import type {
 } from "./types.ts";
 import { createClientHTTP } from "./http/mod.ts";
 import { createClientOpenAPI } from "./openapi/mod.ts";
+import { getItemUrlById } from "./utils.ts";
 
 /**
  * Constructor function for the Netzo Web SDK.
@@ -15,32 +16,39 @@ import { createClientOpenAPI } from "./openapi/mod.ts";
  *
  * @example const netzo = new Netzo(API_KEY)
  *
- * @param {Object} options - The options to use for the SDK.
  * @param {string} options.apiKey - The API key to use for authentication.
  * @param {string} options.url - The URL to use for the API.
  *
  * @returns {INetzo} - A new instance of the Netzo Web SDK
  */
-export const Netzo = async (options: INetzoOptions): Promise<INetzo> => {
+export const Netzo = (options: INetzoOptions): INetzo => {
   const { apiKey, baseURL = "https://api.netzo.io" } = options;
 
-  const http = await createClientHTTP({ apiKey, baseURL });
-
-  const openapi = await createClientOpenAPI({ apiKey, baseURL });
-
   // TODO: add createClient facade to create clients by Id based on type
-  const createClient = (
+  const createClientById = async (
     options: IClientOptions
   ): IClient => {
-    switch ("openapi") {
-      case "http": return http;
-      case "openapi": return openapi;
+    const { apiKey, baseURL = "https://api.netzo.io" } = options;
+
+    if (!id && !baseURL) throw new Error("No 'id' provided to as argument.");
+
+    if (id && !baseURL) {
+      const headers = { accept: "application/json", "x-api-key": apiKey };
+      const response = await fetch(getItemUrlById(id), { headers });
+      const item = await response.json();
+
+      switch (item.type) {
+        case "http":
+          return createClientHTTP({ id, apiKey, baseURL });
+        case "openapi":
+          return createClientOpenAPI({ id, apiKey, baseURL });
+      }
     }
   }
 
   return {
     baseURL,
-    createClient,
+    createClientById,
     getApiKey: () => apiKey,
   }; // netzo
 };
