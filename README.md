@@ -95,4 +95,4 @@ more details.
 
 Copyright (c) 2022 [ROKAWARE SL](https://netzo.io)
 
-Licensed under the [MIT license](LICENSE)
+Licensed under the [MIT license](LICENSE).
