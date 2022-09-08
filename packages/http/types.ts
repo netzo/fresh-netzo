@@ -28,8 +28,7 @@ export type ClientBuilder = {
 // external:
 
 export interface IClientOptionsHTTP {
-  id?: string;
-  baseURL?: string;
+  baseURL: string;
 }
 
 export interface IClientHTTP {

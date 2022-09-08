@@ -29,9 +29,6 @@ more details.
 
 ## Project Structure
 
-Note the module source code is hosted under the `src/` subdirectory of this
-repository.
-
 ```
 .
 ├─ .github/
@@ -40,18 +37,16 @@ repository.
 ├─ .vscode/
 │   └─ extensions.json
 │   └─ settings.json
-├── src/
+├── clients/
 │   ├── http/
 │   ├── openapi/
-│   ├── mod.ts
-│   ├── mod.test.ts
-│   ├── types.ts
 ├─ .gitattributes
 ├─ .gitignore
 ├─ CHANGELOG.md
 ├─ LICENSE
-├─ mod.test.ts
 ├─ mod.ts
+├─ mod.test.ts
+├─ types.ts
 └─ README.md
 ```
 
@@ -60,16 +55,15 @@ repository.
 2. **`.vscode`**: workspace settings for VSCode (apply when the workspace is
    opened)
 
-3. **`src/client`**: directory for the `client` module
+3. **`clients/http`**: directory for the `http` client module
 
-4. **`src/web`**: directory for the `web` module
+4. **`clients/openapi`**: directory for the `openapi` client module
 
-5. **`src/mod.ts`**: entry point for the main module
+5. **`mod.ts`**: entry point for the main module
 
-6. **`src/mod.test.ts`**: simple test for the main module entry point
-   `src/mod.ts`
+6. **`mod.test.ts`**: simple test for the main module entry point `mod.ts`
 
-7. **`src/types.ts`**: entry point for TypeScript types under `src/`
+7. **`types.ts`**: entry point for TypeScript types
 
 8. **`.gitattributes`**: a simple text file that gives `attributes` to pathnames
 
