@@ -1,5 +1,5 @@
 import type { INetzoClient, INetzoClientOptions, INetzo, INetzoOptions, IItemClient } from "./types.ts";
-import { createClient } from "./lib/http/mod.ts";
+import { createClient } from "./lib/_utils/http/mod.ts";
 
 export const getItemUrlById = (
   _type: string,

@@ -1,82 +1,29 @@
-import { createClient } from '../http/mod.ts';
+import type { INetzoOptions } from "../../types.ts";
+import type { ClientBuilder } from '../../_utils/http/mod.ts';
+import { createClient } from '../../_utils/http/mod.ts';
 // FIXME: pass in type like so .get<Post[]>() and .get<Post>(), breaking tests
 import type { Album, Comment, Photo, Post, User, Todo } from './types.ts';
 
-const baseURL = 'https://jsonplaceholder.typicode.com'
+export const jsonplaceholder = (_options: INetzoOptions) => {
+  const baseURL = 'https://jsonplaceholder.typicode.com'
+  const client = createClient({ baseURL })
 
-export const jsonplaceholder = createClient({ baseURL })
+  const createClientResource = <T>(client: ClientBuilder, resource: string) => {
+    return {
+      find: (): Promise<T[]> => client[resource].get(),
+      get: (_id: number): Promise<T> => client[resource][_id].get(),
+      post: (data: T): Promise<T[]> => client[resource].post(data,),
+      put: (_id: number, data: T): Promise<T> => client[resource][_id].put(data,),
+      patch: (_id: number, data: Partial<T>): Promise<T> => client[resource][_id].patch(data,),
+    }
+  }
 
-export const getAlbums = async (): Promise<Album[]> => {
-  const api = createClient({ baseURL })
-  return await api.albums.get()
-}
-
-export const getAlbum = async (id: number): Promise<Album> => {
-  const api = createClient({ baseURL })
-  return await api.albums[id].get()
-}
-
-export const getComments = async (): Promise<Comment[]> => {
-  const api = createClient({ baseURL })
-  return await api.comments.get()
-}
-
-export const getComment = async (id: number): Promise<Comment> => {
-  const api = createClient({ baseURL })
-  return await api.comments[id].get()
-}
-
-export const getPhotos = async (): Promise<Photo[]> => {
-  const api = createClient({ baseURL })
-  return await api.photos.get()
-}
-
-export const getPhoto = async (id: number): Promise<Photo> => {
-  const api = createClient({ baseURL })
-  return await api.photos[id].get()
-}
-
-export const getPosts = async (): Promise<Post[]> => {
-  const api = createClient({ baseURL })
-  return await api.posts.get()
-}
-
-export const getPost = async (id: number): Promise<Post> => {
-  const api = createClient({ baseURL })
-  return await api.posts[id].get()
-}
-
-export const getTodos = async (): Promise<Todo[]> => {
-  const api = createClient({ baseURL })
-  return await api.todos.get()
-}
-
-export const getTodo = async (id: number): Promise<Todo> => {
-  const api = createClient({ baseURL })
-  return await api.todos[id].get()
-}
-
-export const getUsers = async (): Promise<User[]> => {
-  const api = createClient({ baseURL })
-  return await api.users.get()
-}
-
-export const getUser = async (id: number): Promise<User> => {
-  const api = createClient({ baseURL })
-  return await api.users[id].get()
-}
-
-export default {
-  getAlbums,
-  getAlbum,
-  getComments,
-  getComment,
-  getPhotos,
-  getPhoto,
-  getPosts,
-  getPost,
-  getTodos,
-  getTodo,
-  getUsers,
-  getUser
+  return {
+    albums: createClientResource<Album>(client, 'albums'),
+    comments: createClientResource<Comment>(client, 'comments'),
+    photos: createClientResource<Photo>(client, 'photos'),
+    posts: createClientResource<Post>(client, 'posts'),
+    todos: createClientResource<Todo>(client, 'todos'),
+    users: createClientResource<User>(client, 'users')
+  } as const
 }

@@ -1,6 +1,5 @@
 import type { INetzo, INetzoOptions, } from "./types.ts";
-import { createClientRequestFactory } from "./utils.ts";
-import * as lib from "./lib/mod.ts";
+import { createLib } from "./lib/mod.ts";
 
 /**
  * Constructor function for the Netzo Web SDK.
@@ -15,13 +14,12 @@ import * as lib from "./lib/mod.ts";
  *
  * @returns {INetzo} - A new instance of the Netzo Web SDK
  */
-export const Netzo = (options: INetzoOptions): INetzo => {
+export const Netzo = (options: INetzoOptions) => {
   const { apiKey, baseURL = "https://api.netzo.io" } = options;
 
   return {
     baseURL,
-    createClientRequest: createClientRequestFactory(options),
     getApiKey: () => apiKey,
-    ...lib,
+    ...createLib(options),
   };
 };

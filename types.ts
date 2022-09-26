@@ -1,3 +1,5 @@
+import * as lib from "./lib/mod.ts";
+
 export interface INetzoOptions {
   apiKey: string;
   baseURL?: string;
