@@ -37,9 +37,9 @@ more details.
 ├─ .vscode/
 │   └─ extensions.json
 │   └─ settings.json
-├── clients/
+├── lib/
 │   ├── http/
-│   ├── openapi/
+│   ├── ...
 ├─ .gitattributes
 ├─ .gitignore
 ├─ CHANGELOG.md
@@ -55,29 +55,27 @@ more details.
 2. **`.vscode`**: workspace settings for VSCode (apply when the workspace is
    opened)
 
-3. **`clients/http`**: directory for the `http` client module
+3. **`lib/`**: main directory where source code is located
 
-4. **`clients/openapi`**: directory for the `openapi` client module
+4. **`mod.ts`**: entry point for the main module
 
-5. **`mod.ts`**: entry point for the main module
+5. **`mod.test.ts`**: simple test for the main module entry point `mod.ts`
 
-6. **`mod.test.ts`**: simple test for the main module entry point `mod.ts`
+6. **`types.ts`**: entry point for TypeScript types
 
-7. **`types.ts`**: entry point for TypeScript types
+7. **`.gitattributes`**: a simple text file that gives `attributes` to pathnames
 
-8. **`.gitattributes`**: a simple text file that gives `attributes` to pathnames
-
-9. **`.gitignore`**: specifies which files git should not track (not maintain a
+8. **`.gitignore`**: specifies which files git should not track (not maintain a
    version history for)
 
-10. **`CHANGELOG.md`**: a curated, chronologically ordered list of notable
+9.  **`CHANGELOG.md`**: a curated, chronologically ordered list of notable
     changes for each version of a project (format based on
     [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), this project
     adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html))
 
-11. **`LICENSE`**: license for the project
+10. **`LICENSE`**: license for the project
 
-12. **`README.md`**: text file containing useful reference information about the
+11. **`README.md`**: text file containing useful reference information about the
     project
 
 <br>
