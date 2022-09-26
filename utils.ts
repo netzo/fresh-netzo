@@ -1,6 +1,6 @@
 import type { IClient, IClientOptions, INetzo, INetzoOptions, IItemClient } from "./types.ts";
-import { IClientHTTP, IClientOptionsHTTP } from "./http/types.ts";
-import { createClient } from "./http/mod.ts";
+import { IClientHTTP, IClientOptionsHTTP } from "./packages/http/types.ts";
+import { createClient } from "./packages/http/mod.ts";
 
 export const getItemUrlById = (
   id: string, baseURL = 'https://api.netzo.io'
