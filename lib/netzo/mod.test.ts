@@ -2,7 +2,7 @@ import { config } from "https://deno.land/x/dotenv/mod.ts";
 import { assertEquals } from "https://deno.land/std@0.97.0/testing/asserts.ts";
 import { Netzo } from '../../mod.ts'
 
-const netzo = Netzo({ apiKey: config().API_KEY })
+const netzo = Netzo({ apiKey: config().API_KEY_NETZO })
 
 Deno.test('netzo.services', async () => {
   const [services, service] = await Promise.all([

@@ -1,5 +1,5 @@
 import type { INetzo, INetzoOptions, } from "./types.ts";
-import { createLib } from "./lib/mod.ts";
+import { lib } from "./lib/mod.ts";
 
 /**
  * Constructor function for the Netzo Web SDK.
@@ -7,7 +7,7 @@ import { createLib } from "./lib/mod.ts";
  * This is the main entry point for the Netzo Web SDK. It is used to create
  * a new instance of the SDK. It handles authentication internaly.
  *
- * @example const netzo = new Netzo(API_KEY)
+ * @example const netzo = new Netzo({ apiKey: Deno.env.get('API_KEY) })
  *
  * @param {string} options.apiKey - The API key to use for authentication.
  * @param {string} options.url - The URL to use for the API.
@@ -20,6 +20,6 @@ export const Netzo = (options: INetzoOptions) => {
   return {
     baseURL,
     getApiKey: () => apiKey,
-    ...createLib(options),
+    ...lib(options),
   };
 };

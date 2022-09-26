@@ -15,9 +15,9 @@ export const netzo = (options: INetzoOptions) => {
     return {
       find: (): Promise<Paginated<T[]>> => client[resource].get(),
       get: (_id: string): Promise<T> => client[resource][_id].get(),
-      post: (data: T): Promise<T[]> => client[resource].post(data,),
-      put: (_id: string, data: T): Promise<T> => client[resource][_id].put(data,),
-      patch: (_id: string, data: Partial<T>): Promise<T> => client[resource][_id].patch(data,),
+      post: (data: T): Promise<T> => client[resource].post(data),
+      put: (_id: string, data: T): Promise<T> => client[resource][_id].put(data),
+      patch: (_id: string, data: Partial<T>): Promise<T> => client[resource][_id].patch(data),
     }
   }
 

@@ -12,9 +12,9 @@ export const jsonplaceholder = (_options: INetzoOptions) => {
     return {
       find: (): Promise<T[]> => client[resource].get(),
       get: (_id: number): Promise<T> => client[resource][_id].get(),
-      post: (data: T): Promise<T[]> => client[resource].post(data,),
-      put: (_id: number, data: T): Promise<T> => client[resource][_id].put(data,),
-      patch: (_id: number, data: Partial<T>): Promise<T> => client[resource][_id].patch(data,),
+      post: (data: T): Promise<T> => client[resource].post(data),
+      put: (_id: number, data: T): Promise<T> => client[resource][_id].put(data),
+      patch: (_id: number, data: Partial<T>): Promise<T> => client[resource][_id].patch(data),
     }
   }
 

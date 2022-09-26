@@ -1,5 +1,9 @@
 {
   "tasks": {
-    "test": "deno test --allow-all"
+    "test": "deno test --allow-all",
+    "gen:types": "deno types > deno-runtime-types.ts"
+  },
+  "compilerOptions": {
+    "declaration": true
   }
 }
