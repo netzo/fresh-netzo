@@ -24,7 +24,7 @@
 ## Documentation
 
 Refer to the
-[Netzo Web SDK documentation](https://netzo.io/reference/web-sdk/overview) for
+[Netzo documentation](https://netzo.io/docs/getting-started/introduction) for
 more details.
 
 ## Project Structure
@@ -68,7 +68,7 @@ more details.
 8. **`.gitignore`**: specifies which files git should not track (not maintain a
    version history for)
 
-9.  **`CHANGELOG.md`**: a curated, chronologically ordered list of notable
+9. **`CHANGELOG.md`**: a curated, chronologically ordered list of notable
     changes for each version of a project (format based on
     [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), this project
     adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html))

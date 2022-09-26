@@ -1,4 +1,3 @@
-export * from './http/mod.ts'
-export * from './http/types.ts'
-export * from './jsonplaceholder/mod.ts'
-export * from './jsonplaceholder/types.ts'
+export { createClient as http } from "./http/mod.ts";
+export { default as jsonplaceholder } from './jsonplaceholder/mod.ts'
+export { default as netzo } from './netzo/mod.ts'

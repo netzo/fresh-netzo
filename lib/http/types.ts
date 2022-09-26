@@ -24,14 +24,3 @@ export type ClientBuilder = {
   delete: ClientMethodHandler
   patch: ClientMethodHandler
 }
-
-// external:
-
-export interface IClientOptionsHTTP {
-  baseURL: string;
-}
-
-export interface IClientHTTP {
-  getId: () => string;
-  [k: string]: any;
-}

@@ -1,16 +1,18 @@
-import type { IClient, IClientOptions, INetzo, INetzoOptions, IItemClient } from "./types.ts";
-import { IClientHTTP, IClientOptionsHTTP } from "./lib/http/types.ts";
+import type { INetzoClient, INetzoClientOptions, INetzo, INetzoOptions, IItemClient } from "./types.ts";
 import { createClient } from "./lib/http/mod.ts";
 
 export const getItemUrlById = (
-  id: string, baseURL = 'https://api.netzo.io'
-): string => new URL(`/web/${id}`, baseURL).href;
+  _type: string,
+  _id: string,
+  baseURL = 'https://api.netzo.io'
+): string => new URL(`/${_type}s/${_id}`, baseURL).href;
 
 export const getItemById = async (
-  id: string,
+  _type: string,
+  _id: string,
   apiKey: string,
-): Promise<IClient> => {
-  const url = getItemUrlById(id);
+): Promise<INetzoClient> => {
+  const url = getItemUrlById(_type, _id);
   const headers = { accept: "application/json", "x-api-key": apiKey };
   const response = await fetch(url, { headers });
   return response.json();
@@ -19,10 +21,11 @@ export const getItemById = async (
 export const createClientRequestFactory = (options: INetzoOptions) => {
   const { apiKey, baseURL = "https://api.netzo.io" } = options;
 
-  return async ({ id }: IClientOptions): Promise<IClient> => {
-    if (!id) throw new Error("No 'id' provided to as argument.");
+  return async ({ _type, _id }: INetzoClientOptions): Promise<INetzoClient> => {
+    if (!_type) throw new Error("No '_type' provided as argument.");
+    if (!_id) throw new Error("No '_id' provided as argument.");
 
-    const item = await getItemById(id, apiKey);
+    const item = await getItemById(_type, _id, apiKey);
     const { url: baseURL, method, headers, body } = item.client as IItemClient;
 
     if (['GET', 'HEAD', 'OPTIONS'].includes(method)) {
