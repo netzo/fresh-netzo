@@ -1,3 +1,4 @@
+/// <reference types="https://raw.githubusercontent.com/netzoio/sdk/main/types.ts" />
 import type { INetzoOptions } from "../types.ts";
 import { jsonplaceholder } from './jsonplaceholder/mod.ts'
 import { netzo } from './netzo/mod.ts'
