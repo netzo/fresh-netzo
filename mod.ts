@@ -1,5 +1,5 @@
 import type { INetzo, INetzoOptions, } from "./types.ts";
-import { lib } from "./src/lib/mod.ts";
+import { services } from "./src/services/mod.ts";
 
 /**
  * Constructor function for the Netzo Web SDK.
@@ -20,6 +20,6 @@ export const Netzo = (options: INetzoOptions) => {
   return {
     baseURL,
     getApiKey: () => apiKey,
-    lib: lib(options),
+    services: services(options),
   };
 };

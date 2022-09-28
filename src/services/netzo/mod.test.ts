@@ -6,11 +6,11 @@ const { API_KEY } = config()
 
 const _netzo = Netzo({ apiKey: API_KEY })
 
-const netzo = _netzo.lib.netzo()
+const netzo = _netzo.services.netzo()
 
 Deno.test('netzo', () => {
   assertExists(_netzo)
-  assertExists(netzo.lib.netzo)
+  assertExists(netzo.services.netzo)
   assertExists(netzo)
 })
 

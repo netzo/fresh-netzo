@@ -38,7 +38,7 @@ more details.
 │   └─ extensions.json
 │   └─ settings.json
 ├── src/
-│   ├── lib/
+│   ├── services/
 │   ├── utils/
 ├─ .gitattributes
 ├─ .gitignore

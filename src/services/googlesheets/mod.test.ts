@@ -6,10 +6,10 @@ const { API_KEY, API_KEY_SENDINBLUE } = config()
 
 const netzo = Netzo({ apiKey: API_KEY })
 
-const sendinblue = netzo.lib.sendinblue({ apiKey: API_KEY_SENDINBLUE })
+const sendinblue = netzo.services.sendinblue({ apiKey: API_KEY_SENDINBLUE })
 
 Deno.test('sendinblue', () => {
   assertExists(netzo)
-  assertExists(netzo.lib.sendinblue)
+  assertExists(netzo.services.sendinblue)
   assertExists(sendinblue)
 })

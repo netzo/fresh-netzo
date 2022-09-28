@@ -4,7 +4,7 @@ import { jsonplaceholder } from './jsonplaceholder/mod.ts'
 import { netzo } from './netzo/mod.ts'
 import { sendinblue } from './sendinblue/mod.ts'
 
-export const lib = (options: INetzoOptions) => ({
+export const services = (options: INetzoOptions) => ({
   jsonplaceholder: jsonplaceholder(options),
   netzo: netzo(options),
   sendinblue: sendinblue(options)

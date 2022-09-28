@@ -6,11 +6,11 @@ const { API_KEY } = config()
 
 const netzo = Netzo({ apiKey: API_KEY })
 
-const jsonplaceholder = netzo.lib.jsonplaceholder()
+const jsonplaceholder = netzo.services.jsonplaceholder()
 
 Deno.test('jsonplaceholder', () => {
   assertExists(netzo)
-  assertExists(netzo.lib.jsonplaceholder)
+  assertExists(netzo.services.jsonplaceholder)
   assertExists(jsonplaceholder)
 })
 
