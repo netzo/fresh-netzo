@@ -4,7 +4,7 @@
   </a>
 </p>
 
-<h1 align="center">Netzo Web SDK</h1>
+<h1 align="center">Netzo SDK</h1>
 
 <p align="center">
   Software development kit (SDK) for <a href="https://app.netzo.io" target="_blank">Netzo</a>, the open Web platform to unify IoT devices, applications and services.
@@ -38,8 +38,6 @@ more details.
 │   └─ extensions.json
 │   └─ settings.json
 ├── src/
-│   ├── services/
-│   ├── utils/
 ├─ .gitattributes
 ├─ .gitignore
 ├─ CHANGELOG.md

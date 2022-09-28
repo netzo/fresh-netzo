@@ -1,4 +1,9 @@
-import type { FetchOptions } from "https://esm.sh/v94/ohmyfetch@0.4.18/dist/index";
+import {
+  ClientHTTP,
+  ClientOptionsHTTP,
+  // TODO: ClientSSE, ClientOptionsSSE,
+  // TODO: ClientWebSocket, ClientOptionsWebSocket
+} from "./src/mod.ts";
 
 export type Netzo = (options: INetzoOptions) => INetzo
 
@@ -9,8 +14,9 @@ export interface INetzoOptions {
 
 export interface INetzo {
   baseURL: string
-  // utils:
   getApiKey: () => string
 }
 
-export interface IClientOptions extends Omit<FetchOptions<"json">, "method"> { }
+export type IClient = ClientHTTP /* | ClientSSE | ClientWebSocket */
+
+export type IClientOptions = ClientOptionsHTTP /* | ClientOptionsSSE | ClientOptionsWebSocket */
