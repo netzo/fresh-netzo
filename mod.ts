@@ -1,6 +1,6 @@
 import type { INetzoOptions, } from "./types.ts";
 import {
-  _services,
+  services,
   http,
   // sse,
   // websocket
@@ -35,7 +35,7 @@ export const Netzo = (options: INetzoOptions) => {
     api,
     baseURL,
     getApiKey: () => apiKey,
-    services: _services(api),
     http,
-  };
+    services: services(api)
+  }
 };

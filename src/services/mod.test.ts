@@ -6,88 +6,57 @@ const { API_KEY } = config()
 
 const netzo = Netzo({ apiKey: API_KEY })
 
-Deno.test('netzo', () => {
-  assertExists(netzo)
-  assertExists(netzo.services)
+const SERVICE_ID_JSONPLACEHOLDER = '632d6d71a7220871852debb3'
+
+// const service = await (netzo.services as any)[SERVICE_ID_JSONPLACEHOLDER as any]
+const service = await netzo.services(SERVICE_ID_JSONPLACEHOLDER)
+
+// const service = netzo.http({
+//   baseURL: 'https://jsonplaceholder.typicode.com',
+//   headers: {
+//     'accept': 'application/json',
+//     'content-type': 'application/json'
+//   }
+// })
+
+Deno.test("service", () => {
+  assertExists(service)
 })
 
-Deno.test('netzo.services(serviceOptions)', async () => {
-  const service = netzo.services({
-    baseURL: 'https://jsonplaceholder.typicode.com',
-    headers: {
-      'accept': 'application/json',
-      'content-type': 'application/json'
-    }
-  })
-  assertExists(service)
+Deno.test("service.save", () => {
+  assertExists(service.save)
+})
 
+Deno.test("service.todos", () => {
+  assertExists(service.todos)
+})
+
+Deno.test("service.todos.get()", async () => {
+  const todos = await service.todos.get()
+  assertEquals(todos?.length, 200)
+})
+
+Deno.test("service.todos[1].get()", async () => {
   const todo = await service.todos[1].get()
   assertEquals(todo?.id, 1)
 })
 
-// Deno.test('netzo.services[SERVICE_ID] - Select existing Service by ID', async () => {
-  // // instantiate service
-  // // TODO: const promise = netzo.services[SERVICE_ID]
-  // const service = netzo.services({
-  //   baseURL: 'https://jsonplaceholder.typicode.com',
-  //   headers: {
-  //     'accept': 'application/json',
-  //     'content-type': 'application/json'
-  //   }
-  // })
-//   // use service instance
-//   const [
-//     findResult,
-//     getResult,
-//     postResult,
-//     putResult,
-//     patchResult,
-//     deleteResult
-//   ] = await Promise.all([
-//     service.todos.get(),
-//     service.todos[1].get(),
-//     service.todos.post({ userId: 1, title: "lorem ipsum", completed: true }),
-//     service.todos[1].put({ userId: 1, id: 1, title: "lorem ipsum", completed: true }),
-//     service.todos[1].patch({ completed: true }),
-//     service.todos[1].delete()
-//   ])
-//   assertEquals(findResult?.length, 200)
-//   assertEquals(getResult?.id, 1)
-//   assertExists(postResult)
-//   assertExists(putResult)
-//   assertExists(patchResult)
-//   assertExists(deleteResult)
-// })
+Deno.test("service.todos.post()", async () => {
+  const todo = await service.todos.post({ userId: 1, title: "lorem ipsum", completed: true })
+  assertExists(todo)
+})
 
-// Deno.test('netzo.services(serviceOptions) - Create new custom Service', async () => {
-//   // instantiate service
-//   const service = netzo.services({
-//     baseURL: 'https://jsonplaceholder.typicode.com',
-//     headers: {
-//       'accept': 'application/json',
-//       'content-type': 'application/json'
-//     }
-//   })
-//   // use service instance
-//   const [
-//     findResult,
-//     getResult,
-//     postResult,
-//     putResult,
-//     patchResult,
-//     deleteResult
-//   ] = await Promise.all([
-//     service.todos.get(),
-//     service.todos[1].get(),
-//     service.todos.post({ userId: 1, title: "lorem ipsum", completed: true }),
-//     service.todos[1].put({ userId: 1, id: 1, title: "lorem ipsum", completed: true }),
-//     service.todos[1].patch({ completed: true }),
-//     service.todos[1].delete()
-//   ])
-//   assertEquals(findResult?.length, 200)
-//   assertEquals(getResult?.id, 1)
-//   assertExists(postResult)
-//   assertExists(putResult)
-//   assertExists(patchResult)
-//   assertExists(deleteResult)
-// })
+Deno.test("service.todos[1].put()", async () => {
+  const todo = await service.todos[1].put({ userId: 1, id: 1, title: "lorem ipsum", completed: true })
+  assertExists(todo)
+})
+
+Deno.test("service.todos[1].patch()", async () => {
+  const todo = await service.todos[1].patch({ completed: true })
+  assertExists(todo)
+})
+
+Deno.test("service.todos[1].delete()", async () => {
+  const todo = await service.todos[1].delete()
+  assertExists(todo)
+})

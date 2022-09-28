@@ -6,7 +6,7 @@ const { API_KEY } = config();
 
 const netzo = Netzo({ apiKey: API_KEY })
 
-Deno.test("main entry point", (): void => {
+Deno.test("netzo", () => {
   assertExists(netzo);
   assertExists(netzo.api);
   assertExists(netzo.baseURL);

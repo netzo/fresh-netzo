@@ -1,6 +1,6 @@
 import type { FetchOptions } from 'https://esm.sh/ohmyfetch'
 
-interface ResponseMap {
+export interface ResponseMap {
   blob: Blob
   text: string
   arrayBuffer: ArrayBuffer
