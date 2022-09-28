@@ -1,6 +1,6 @@
 import { deepMerge } from "https://deno.land/std/collections/deep_merge.ts";
 import type { INetzoOptions, IClientOptions } from "../../../types.ts";
-import { createClient as createClientHTTP } from '../../_utils/http/mod.ts';
+import { createClient as createClientHTTP } from '../../utils/http/mod.ts';
 
 interface IServiceOptions {
   apiKey?: string
