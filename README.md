@@ -37,9 +37,9 @@ more details.
 ├─ .vscode/
 │   └─ extensions.json
 │   └─ settings.json
-├── lib/
-│   ├── http/
-│   ├── ...
+├── src/
+│   ├── lib/
+│   ├── utils/
 ├─ .gitattributes
 ├─ .gitignore
 ├─ CHANGELOG.md
@@ -55,7 +55,7 @@ more details.
 2. **`.vscode`**: workspace settings for VSCode (apply when the workspace is
    opened)
 
-3. **`lib/`**: main directory where source code is located
+3. **`src/`**: main directory where source code is located
 
 4. **`mod.ts`**: entry point for the main module
 
