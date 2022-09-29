@@ -8,14 +8,6 @@ const netzo = Netzo({ apiKey: API_KEY })
 
 const SERVICE_ID_JSONPLACEHOLDER = "63358aa658e6b95844732847"
 
-// const service = netzo.http({
-//   baseURL: 'https://jsonplaceholder.typicode.com',
-//   headers: {
-//     'accept': 'application/json',
-//     'content-type': 'application/json'
-//   }
-// })
-
 Deno.test("service", async () => {
   const service = await netzo.services(SERVICE_ID_JSONPLACEHOLDER)
   assertExists(service)
