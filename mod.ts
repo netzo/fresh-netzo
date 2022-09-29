@@ -4,6 +4,7 @@ import {
   http,
   // sse,
   // websocket,
+  // kv,
 } from "./src/mod.ts";
 
 /**
@@ -37,5 +38,6 @@ export const Netzo = (options: NetzoOptions) => {
     getApiKey: () => apiKey,
     services: createServices(api),
     http,
+    // kv,
   }
 };
