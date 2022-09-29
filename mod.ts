@@ -1,9 +1,9 @@
 import type { NetzoOptions, } from "./types.ts";
 import {
-  services,
+  createServices,
   http,
   // sse,
-  // websocket
+  // websocket,
 } from "./src/mod.ts";
 
 /**
@@ -27,7 +27,7 @@ export const Netzo = (options: NetzoOptions) => {
     headers: {
       'accept': 'application/json',
       'content-type': 'application/json',
-      'x-api-key': options.apiKey
+      'x-api-key': apiKey
     }
   })
 
@@ -35,11 +35,7 @@ export const Netzo = (options: NetzoOptions) => {
     api,
     baseURL,
     getApiKey: () => apiKey,
+    services: createServices(api),
     http,
-    // services: services(api)
-    services: async (_id: string) => {
-      const $item = await api.services[String(_id)].get()
-      return http($item.client)
-    }
   }
 };
