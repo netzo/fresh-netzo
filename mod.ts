@@ -1,4 +1,4 @@
-import type { INetzoOptions, } from "./types.ts";
+import type { NetzoOptions, } from "./types.ts";
 import {
   services,
   http,
@@ -17,9 +17,9 @@ import {
  * @param {string} options.apiKey - the API key to use for authentication.
  * @param {string} options.baseURL - (optional) the base URL to use for the API.
  *
- * @returns {INetzo} - a new instance of the Netzo SDK
+ * @returns {Netzo} - a new instance of the Netzo SDK
  */
-export const Netzo = (options: INetzoOptions) => {
+export const Netzo = (options: NetzoOptions) => {
   const { apiKey, baseURL = "https://api.netzo.io" } = options;
 
   const api = http({
@@ -36,6 +36,15 @@ export const Netzo = (options: INetzoOptions) => {
     baseURL,
     getApiKey: () => apiKey,
     http,
-    services: services(api)
+    // services: services(api)
+    services: async (_id: string) => {
+      const $item = await api.services[String(_id)].get()
+      const client = http($item.client)
+      // IMPORTANT: cannot spread a Proxy (...client) so use Object.assign
+      return Object.assign(client, {
+        $save: (data: any) => api.services[_id].patch<any>(data),
+        $item
+      })
+    }
   }
 };

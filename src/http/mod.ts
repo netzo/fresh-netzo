@@ -3,8 +3,6 @@ import { resolveURL, withQuery, QueryObject } from 'https://esm.sh/ufo'
 import type { ClientBuilder, ClientMethodHandler, ResponseType } from './types.ts'
 import { headersToObject } from './utils.ts'
 
-export type { ClientBuilder }
-
 const payloadMethods: ReadonlyArray<string> = [
   'POST',
   'PUT',
@@ -15,7 +13,7 @@ const payloadMethods: ReadonlyArray<string> = [
 /**
  * Minimal, type-safe REST client using JS proxies
  */
-export function createClient<R extends ResponseType = 'json'>(
+function createClient<R extends ResponseType = 'json'>(
   defaultOptions: Omit<FetchOptions<R>, 'method'> = {},
 ): ClientBuilder {
   // Callable internal target required to use `apply` on it
@@ -63,6 +61,8 @@ export function createClient<R extends ResponseType = 'json'>(
 
   return p(defaultOptions.baseURL || '/')
 }
+
+// exports:
 
 export type ClientOptionsHTTP = Omit<FetchOptions<"json">, "method">
 

@@ -8,11 +8,12 @@ interface Data {
 
 export const services = (api: ClientHTTP) => {
   return async (_id: string) => {
-    const item = await api.services[String(_id)].get()
-    const client = http(item.client)
-    // cannot spread client since it's a Proxy so use Object.assign
+    const $item = await api.services[String(_id)].get()
+    const client = http($item.client)
+    // IMPORTANT: cannot spread a Proxy (...client) so use Object.assign
     return Object.assign(client, {
-      save: (data: Data) => api.services[_id].patch<Data>(data)
+      $save: (data: Data) => api.services[_id].patch<Data>(data),
+      $item
     })
   }
 }
