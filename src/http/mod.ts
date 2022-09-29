@@ -10,10 +10,14 @@ const payloadMethods: ReadonlyArray<string> = [
   'PATCH',
 ]
 
+export type ClientOptionsHTTP = Omit<FetchOptions<"json">, "method">
+
+export type ClientHTTP = ClientBuilder
+
 /**
  * Minimal, type-safe REST client using JS proxies
  */
-function createClient<R extends ResponseType = 'json'>(
+export function http<R extends ResponseType = 'json'>(
   defaultOptions: Omit<FetchOptions<R>, 'method'> = {},
 ): ClientBuilder {
   // Callable internal target required to use `apply` on it
@@ -22,7 +26,7 @@ function createClient<R extends ResponseType = 'json'>(
   function p(url: string): ClientBuilder {
     return new Proxy(internalTarget, {
       get(_target, key: string) {
-        const method = key.toUpperCase()
+        const method = String(key).toUpperCase()
 
         if (!['GET', ...payloadMethods].includes(method))
           return p(resolveURL(url, key))
@@ -61,11 +65,3 @@ function createClient<R extends ResponseType = 'json'>(
 
   return p(defaultOptions.baseURL || '/')
 }
-
-// exports:
-
-export type ClientOptionsHTTP = Omit<FetchOptions<"json">, "method">
-
-export type ClientHTTP = ClientBuilder
-
-export const http = createClient
