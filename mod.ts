@@ -39,12 +39,7 @@ export const Netzo = (options: NetzoOptions) => {
     // services: services(api)
     services: async (_id: string) => {
       const $item = await api.services[String(_id)].get()
-      const client = http($item.client)
-      // IMPORTANT: cannot spread a Proxy (...client) so use Object.assign
-      return Object.assign(client, {
-        $save: (data: any) => api.services[_id].patch<any>(data),
-        $item
-      })
+      return http($item.client)
     }
   }
 };
