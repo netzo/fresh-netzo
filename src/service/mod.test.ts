@@ -8,7 +8,7 @@ const netzo = Netzo({ apiKey: API_KEY })
 
 const SERVICE_ID_JSONPLACEHOLDER = "63358aa658e6b95844732847"
 
-const service = await netzo.services(SERVICE_ID_JSONPLACEHOLDER)
+const service = await netzo.service(SERVICE_ID_JSONPLACEHOLDER)
 
 Deno.test("service", () => {
   assertExists(service)

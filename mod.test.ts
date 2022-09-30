@@ -11,6 +11,6 @@ Deno.test("netzo", () => {
   assertExists(netzo.api);
   assertExists(netzo.baseURL);
   assertExists(netzo.getApiKey);
-  assertExists(netzo.services);
+  assertExists(netzo.service);
   assertExists(netzo.http);
 });

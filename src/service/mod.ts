@@ -51,7 +51,7 @@ const createServiceRequests = ({ api, _id, item }: any) => {
   }
 }
 
-export const createServices = (api: ClientBuilder) => {
+export const createService = (api: ClientBuilder) => {
   return async (_id: string) => {
     const item = await api.services[_id].get()
     const client = getClient(item)
