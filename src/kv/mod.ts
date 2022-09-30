@@ -28,7 +28,7 @@ const providerHandler: ProxyHandler<any> = {
   get: async (_target, _name) => {
     console.log('load someting from remote...')
     return await new Promise((res, rej) => {
-      setTimeout(() => res(42), 4200)
+      setTimeout(() => res("Hello world"), 1000)
     })
   },
   set: (_obj, _prop, _value) => {

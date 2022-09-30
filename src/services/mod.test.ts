@@ -15,7 +15,6 @@ Deno.test("service", () => {
   assertExists(service.client)
   assertExists(service.requests)
   assertExists(service.item)
-  assertExists(service.save)
 })
 
 Deno.test("service.client.todos.get()", async () => {

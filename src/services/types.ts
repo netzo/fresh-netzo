@@ -4,13 +4,11 @@ export interface Service {
   client: Client;
   requests: ServiceRequest[];
   item: ItemService;
-  save: (data: ItemService) => Promise<ItemService>;
 }
 
 export interface ServiceRequest {
   invoke: () => Promise<any>;
   item: ItemServiceRequest;
-  save: (data: ItemServiceRequest) => Promise<ItemServiceRequest>;
 }
 
 export interface ItemService {
