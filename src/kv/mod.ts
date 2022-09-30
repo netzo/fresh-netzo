@@ -8,7 +8,7 @@
  * @see see https://gist.github.com/miguelrk/f616153f4395905c2f831b6df522fcc7/edit
  */
 
-const receiverHandler = {
+const receiverHandler: ProxyHandler<any> = {
   get: async (target, name) => {
     if (target.prop instanceof Promise) {
       const res = await target.prop
@@ -18,27 +18,28 @@ const receiverHandler = {
       return target[name]
     }
   },
-  set: function (obj, prop, value) {
+  set: (obj, prop, value) => {
     obj[prop] = value
+    return true
   }
 }
 
-const providerHandler = {
-  get: async (target, name) => {
+const providerHandler: ProxyHandler<any> = {
+  get: async (_target, _name) => {
     console.log('load someting from remote...')
     return await new Promise((res, rej) => {
       setTimeout(() => res(42), 4200)
     })
   },
-  set: function (obj, prop, value) {
+  set: (_obj, _prop, _value) => {
     return new Promise((res, rej) => {
       console.log('save someting remotely...')
       setTimeout(() => res(true), 1000)
-    })
+    }) as unknown as boolean
   }
 }
 
-export const kv = (remoteGet, remoteSet) => ({
+export const kv = (remoteGet: Function, remoteSet: Function) => ({
   remote: new Proxy({}, providerHandler),
   local: new Proxy({}, receiverHandler),
 })
