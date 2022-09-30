@@ -26,11 +26,11 @@ Deno.test("netzo.kv", () => {
 Deno.test("kv", async () => {
   assertExists(kv)
 
-  kv.local.prop = await kv.remote.prop   // await it here
-  console.log(await kv.local.prop)
+  kv.receiver.prop = await kv.provider.prop   // await it here
+  console.log(await kv.receiver.prop)
 
-  kv.local.another = kv.remote.another   // direct assign here, no await
-  console.log(await kv.local.another)
+  kv.receiver.another = kv.provider.another   // direct assign here, no await
+  console.log(await kv.receiver.another)
 
-  kv.remote.foo = "bar" // store someting remotely. up to you to decide await or not
+  kv.provider.foo = "bar" // store someting providerly. up to you to decide await or not
 })
