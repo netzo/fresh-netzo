@@ -7,7 +7,7 @@ export interface Service {
 }
 
 export interface ServiceRequest {
-  invoke: () => Promise<any>;
+  invoke: ((item: ItemServiceRequest) => () => Promise<any>) | any
   item: ItemServiceRequest;
 }
 
@@ -23,7 +23,7 @@ export interface ItemService {
   display: { imageUrl: string };
   type: 'http' | 'sse' | 'websocket';
   client: Record<string, unknown>;
-  requests: ItemServiceRequest;
+  requests: ItemServiceRequest[];
   options: Record<string, unknown>;
   createdAt: string;
   updatedAt: string;
