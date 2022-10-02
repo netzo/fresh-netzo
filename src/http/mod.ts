@@ -35,8 +35,11 @@ export function http<R extends ResponseType = 'json'>(
           data?: RequestInit['body'] | Record<string, any>,
           opts: FetchOptions<R> = {},
         ) => {
-          if (method === 'GET' && data)
-            url = withQuery(url, data as QueryObject)
+          if (method === 'GET') {
+            if (data) url = withQuery(url, data as QueryObject)
+            // GET disallows body so remove it
+            defaultOptions.body = opts.body = undefined
+          }
           else if (payloadMethods.includes(method))
             opts.body = data
 

@@ -1,14 +1,23 @@
 import { Client } from "../../types.ts";
+import { ClientMethodHandler as InvokeFnHTTP } from '../http/types.ts'
 
 export interface Service {
   client: Client;
-  requests: ServiceRequest[];
+  requests: ServiceRequests;
   item: ItemService;
 }
 
+type InvokeFn = InvokeFnHTTP
+
 export interface ServiceRequest {
-  invoke: ((item: ItemServiceRequest) => () => Promise<any>) | any
-  item: ItemServiceRequest;
+  invoke: InvokeFn | any;
+  item: ItemServiceRequest | any;
+}
+
+export type ServiceRequests = {
+  [index: number]: ServiceRequest
+} & {
+  [name: string]: InvokeFn
 }
 
 export interface ItemService {
@@ -22,7 +31,17 @@ export interface ItemService {
   stars: number;
   display: { imageUrl: string };
   type: 'http' | 'sse' | 'websocket';
-  client: Record<string, unknown>;
+  client: {
+    baseURL: string;
+    headers: Record<string, string>;
+    authorization: { type: 'none' | 'basic' | 'bearer' | string };
+    variables: Record<string, any>;
+    hooks: {
+      beforeFetch: string;
+      afterFetch: string;
+      onFetchError: string;
+    };
+  };
   requests: ItemServiceRequest[];
   options: Record<string, unknown>;
   createdAt: string;
@@ -37,9 +56,11 @@ export interface ItemServiceRequest {
   description: string;
   method: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
   url: string;
+  baseURL: string;
   authorization: { type: 'none' | 'basic' | 'bearer' | string };
   headers: Record<string, string>;
   body: string
+  variables: Record<string, any>;
   hooks: {
     beforeFetch: string;
     afterFetch: string;
