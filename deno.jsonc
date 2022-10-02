@@ -2,11 +2,13 @@
   "tasks": {
     "test": "deno test --allow-all",
     "gen:types": "deno types > deno-runtime-types.ts",
-    "check": "deno fmt --check && deno lint"
+    "check": "deno fmt --check && deno lint",
+    "npm:publish": "deno run -A scripts/build_npm.ts & cd npm & npm publish"
   }
   // generate hooks in .git/hooks by running (or specify hookPath)
   // "deno run -A -r https://deno.land/x/githooks/githooks.ts"
   // "githooks": {
   //   "pre-commit": "check"
+  //   "pre-commit": "npm:publish"
   // },
 }
