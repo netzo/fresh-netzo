@@ -28,6 +28,7 @@ const createServiceRequest = (item: ItemServiceRequest): ServiceRequest => {
   // or at least $fetch/useFetch/unfetch client which supports
   // entire service request options (for example hooks, etc.)
   const invoke = async () => {
+    // [variables] adds support for templated options via {{•}} syntax
     const { variables = {} } = item
     const { url, baseURL, method, headers, body } = replace(item, variables)
     const href = new URL(url, baseURL).href // ensures url is absolute and valid
@@ -48,7 +49,7 @@ export const createService = (api: ClientBuilder) => {
     const client = getClient(item)
 
     const requests = item.requests.reduce((previousValue, currentValue, index) => {
-      // NOTE: merges service.client (of service) with client (of service request)
+      // [inheritance] merges service.client (of service) with client (of service request)
       const serviceRequest = createServiceRequest(merge(item.client, currentValue))
       return {
         ...previousValue,
