@@ -4,7 +4,7 @@ import { Netzo } from "./mod.ts";
 
 const { API_KEY } = config();
 
-const netzo = Netzo({ apiKey: API_KEY })
+const netzo = Netzo({ apiKey: API_KEY });
 
 Deno.test("netzo", () => {
   assertExists(netzo);

@@ -1,5 +1,5 @@
 import { Client } from "../../types.ts";
-import { ClientMethodHandler as InvokeFnHTTP } from '../http/types.ts'
+import { ClientMethodHandler as InvokeFnHTTP } from "../http/types.ts";
 
 export interface Service {
   client: Client;
@@ -7,7 +7,7 @@ export interface Service {
   item: ItemService;
 }
 
-type InvokeFn = InvokeFnHTTP
+type InvokeFn = InvokeFnHTTP;
 
 export interface ServiceRequest {
   invoke: InvokeFn | any;
@@ -15,26 +15,26 @@ export interface ServiceRequest {
 }
 
 export type ServiceRequests = {
-  [index: number]: ServiceRequest
+  [index: number]: ServiceRequest;
 } & {
-  [name: string]: InvokeFn
-}
+  [name: string]: InvokeFn;
+};
 
 export interface ItemService {
   _id: string;
-  _type: 'service';
+  _type: "service";
   workspaceId: string;
-  access: { level: 'private' | 'public' };
+  access: { level: "private" | "public" };
   name: string;
   description: string;
   labels: string[];
   stars: number;
   display: { imageUrl: string };
-  type: 'http' | 'sse' | 'websocket';
+  type: "http" | "sse" | "websocket";
   client: {
     baseURL: string;
     headers: Record<string, string>;
-    authorization: { type: 'none' | 'basic' | 'bearer' | string };
+    authorization: { type: "none" | "basic" | "bearer" | string };
     variables: Record<string, any>;
     hooks: {
       beforeFetch: string;
@@ -51,15 +51,15 @@ export interface ItemService {
 
 export interface ItemServiceRequest {
   _id: string;
-  _type: "request",
+  _type: "request";
   name: string;
   description: string;
-  method: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
+  method: "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
   url: string;
   baseURL: string;
-  authorization: { type: 'none' | 'basic' | 'bearer' | string };
+  authorization: { type: "none" | "basic" | "bearer" | string };
   headers: Record<string, string>;
-  body: string
+  body: string;
   variables: Record<string, any>;
   hooks: {
     beforeFetch: string;
@@ -71,12 +71,12 @@ export interface ItemServiceRequest {
     successHandler: string;
     errorMessage: string;
     errorHandler: string;
-  },
+  };
   settings: {
     requestRefreshTime: number;
     runOnPageLoad: boolean;
     timeout: number;
     cache: boolean;
-  }
+  };
   [k: string]: unknown;
 }

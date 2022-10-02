@@ -3,15 +3,10 @@
     "test": "deno test --allow-all",
     "gen:types": "deno types > deno-runtime-types.ts",
     "check": "deno fmt --check && deno lint"
-  },
+  }
   // generate hooks in .git/hooks by running (or specify hookPath)
   // "deno run -A -r https://deno.land/x/githooks/githooks.ts"
   // "githooks": {
   //   "pre-commit": "check"
   // },
-  "fmt": {
-    "options": {
-      "singleQuote": true
-    }
-  }
 }

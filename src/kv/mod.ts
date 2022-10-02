@@ -11,35 +11,35 @@
 const receiverHandler: ProxyHandler<any> = {
   get: async (target, name) => {
     if (target.prop instanceof Promise) {
-      const res = await target.prop
-      target[name] = res
-      return res
+      const res = await target.prop;
+      target[name] = res;
+      return res;
     } else {
-      return target[name]
+      return target[name];
     }
   },
   set: (obj, prop, value) => {
-    obj[prop] = value
-    return true
-  }
-}
+    obj[prop] = value;
+    return true;
+  },
+};
 
 const providerHandler: ProxyHandler<any> = {
   get: async (_target, _name) => {
-    console.log('load someting from provider...')
+    console.log("load someting from provider...");
     return await new Promise((res, rej) => {
-      setTimeout(() => res("Hello world"), 1000)
-    })
+      setTimeout(() => res("Hello world"), 1000);
+    });
   },
   set: (_obj, _prop, _value) => {
     return new Promise((res, rej) => {
-      console.log('save someting providerly...')
-      setTimeout(() => res(true), 1000)
-    }) as unknown as boolean
-  }
-}
+      console.log("save someting providerly...");
+      setTimeout(() => res(true), 1000);
+    }) as unknown as boolean;
+  },
+};
 
 export const kv = (providerGet: Function, providerSet: Function) => ({
   provider: new Proxy({}, providerHandler),
   receiver: new Proxy({}, receiverHandler),
-})
+});

@@ -1,4 +1,4 @@
-import type { NetzoOptions, } from "./types.ts";
+import type { NetzoOptions } from "./types.ts";
 import {
   createService,
   http,
@@ -26,11 +26,11 @@ export const Netzo = (options: NetzoOptions) => {
   const api = http({
     baseURL,
     headers: {
-      'accept': 'application/json',
-      'content-type': 'application/json',
-      'x-api-key': apiKey
-    }
-  })
+      "accept": "application/json",
+      "content-type": "application/json",
+      "x-api-key": apiKey,
+    },
+  });
 
   return {
     api,
@@ -39,5 +39,5 @@ export const Netzo = (options: NetzoOptions) => {
     service: createService(api),
     http,
     kv,
-  }
+  };
 };

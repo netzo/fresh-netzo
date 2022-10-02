@@ -67,9 +67,9 @@ more details.
    version history for)
 
 9. **`CHANGELOG.md`**: a curated, chronologically ordered list of notable
-    changes for each version of a project (format based on
-    [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), this project
-    adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html))
+   changes for each version of a project (format based on
+   [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), this project
+   adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html))
 
 10. **`LICENSE`**: license for the project
 
