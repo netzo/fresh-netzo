@@ -21,15 +21,14 @@ import {
  * @returns {Netzo} - a new instance of the Netzo SDK
  */
 export const Netzo = (options: NetzoOptions) => {
-  const { apiKey, envVarApiKey, baseURL = "https://api.netzo.io" } = options;
+  const { apiKey, baseURL = "https://api.netzo.io" } = options;
 
   const api = http({
     baseURL,
     headers: {
       "accept": "application/json",
       "content-type": "application/json",
-      ...(apiKey && { "x-api-key": apiKey }),
-      ...(envVarApiKey && { "x-env-var-api-key": envVarApiKey }),
+      "x-api-key": apiKey,
     },
   });
 
