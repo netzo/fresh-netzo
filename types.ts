@@ -9,6 +9,7 @@ export type Netzo = (options: NetzoOptions) => INetzo;
 
 export interface NetzoOptions {
   apiKey: string;
+  envVarApiKey?: string; // for development/testing
   baseURL?: string;
 }
 
