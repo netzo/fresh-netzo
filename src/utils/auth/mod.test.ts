@@ -15,7 +15,7 @@ const clientOptionsAuth: ClientOptionsAuth = {
   },
 };
 
-Deno.test("netzo.auth", { ignore: false }, async (t) => {
+Deno.test("netzo.auth", { ignore: true }, async (t) => {
   const client = await auth(clientOptionsAuth);
 
   await t.step("auth", () => {
