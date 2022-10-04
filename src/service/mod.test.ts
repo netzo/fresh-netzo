@@ -9,7 +9,7 @@ const { API_KEY } = config();
 
 const SERVICE_ID_JSONPLACEHOLDER = "63358aa658e6b95844732847";
 
-Deno.test("netzo.service", async (t) => {
+Deno.test("netzo.service", { ignore: !API_KEY }, async (t) => {
   const netzo = Netzo({ apiKey: API_KEY });
   const service = await netzo.service(SERVICE_ID_JSONPLACEHOLDER);
 

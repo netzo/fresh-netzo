@@ -15,7 +15,7 @@ const asyncSetter = async (key: string, value: unknown) => {
   obj[key] = await value;
 };
 
-Deno.test("netzo.kv", async (t) => {
+Deno.test("netzo.kv", { ignore: !API_KEY }, async (t) => {
   const netzo = Netzo({ apiKey: API_KEY });
   const kv = netzo.kv(asyncGetter, asyncSetter);
 
