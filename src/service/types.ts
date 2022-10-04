@@ -10,8 +10,8 @@ export interface Service {
 type InvokeFn = InvokeFnHTTP;
 
 export interface ServiceRequest {
-  invoke: InvokeFn | any;
-  item: ItemServiceRequest | any;
+  invoke: InvokeFn | unknown;
+  item: ItemServiceRequest | unknown;
 }
 
 export type ServiceRequests = {
@@ -35,7 +35,7 @@ export interface ItemService {
     baseURL: string;
     headers: Record<string, string>;
     authorization: { type: "none" | "basic" | "bearer" | string };
-    variables: Record<string, any>;
+    variables: Record<string, unknown>;
     hooks: {
       beforeFetch: string;
       afterFetch: string;
@@ -60,7 +60,7 @@ export interface ItemServiceRequest {
   authorization: { type: "none" | "basic" | "bearer" | string };
   headers: Record<string, string>;
   body: string;
-  variables: Record<string, any>;
+  variables: Record<string, unknown>;
   hooks: {
     beforeFetch: string;
     afterFetch: string;
