@@ -13,7 +13,7 @@ import {
   ServiceRequests,
 } from "./types.ts";
 import replace from "https://esm.sh/object-replace-mustache@1.0.2";
-import { deepMerge } from "https://deno.land/std@0.157.0/collections/mod.ts";
+import { deepMerge } from "https://deno.land/std@0.157.0/collections/deep_merge.ts";
 
 const getClient = (item: ItemService): Client => {
   switch (item.type) {
