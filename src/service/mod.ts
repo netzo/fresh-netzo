@@ -13,7 +13,7 @@ import {
   ServiceRequests,
 } from "./types.ts";
 import replace from "https://esm.sh/object-replace-mustache@1.0.2";
-import { merge } from "https://deno.land/x/lodash@4.17.15-es/lodash.js";
+import { deepMerge } from "https://deno.land/std@0.157.0/collections/mod.ts";
 
 const getClient = (item: ItemService): Client => {
   switch (item.type) {
@@ -29,14 +29,15 @@ const getClient = (item: ItemService): Client => {
 };
 
 const createServiceRequest = (item: ItemServiceRequest): ServiceRequest => {
+  // [variables] adds support for templated options via {{•}} syntax
+  const { variables = {} } = item;
+  const { url, baseURL, method, headers, body } = replace(item, variables);
+  const href = new URL(url, baseURL).href; // ensures url is absolute and valid
+
   // TODO: reuse existing client (of service) if possible
   // or at least $fetch/useFetch/unfetch client which supports
   // entire service request options (for example hooks, etc.)
   const invoke = async () => {
-    // [variables] adds support for templated options via {{•}} syntax
-    const { variables = {} } = item;
-    const { url, baseURL, method, headers, body } = replace(item, variables);
-    const href = new URL(url, baseURL).href; // ensures url is absolute and valid
     const response = await fetch(href, {
       method: method.toUpperCase(),
       headers,
@@ -55,10 +56,9 @@ export const createService = (api: ClientBuilder) => {
 
     const requests = item.requests.reduce(
       (previousValue, currentValue, index) => {
-        // [inheritance] merges service.client (of service) with client (of service request)
-        const serviceRequest = createServiceRequest(
-          merge(item.client, currentValue),
-        );
+        // [inheritance] deep-merges service.client with service.requests[index].client
+        const itemServiceRequest = deepMerge(item.client, currentValue) as ItemServiceRequest;
+        const serviceRequest = createServiceRequest(itemServiceRequest);
         return {
           ...previousValue,
           [index]: serviceRequest, // access entire service request by index
