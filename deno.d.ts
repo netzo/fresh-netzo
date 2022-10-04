@@ -94,43 +94,43 @@ declare namespace Deno {
    */
   export namespace errors {
     /** @category Errors */
-    export class NotFound extends Error { }
+    export class NotFound extends Error {}
     /** @category Errors */
-    export class PermissionDenied extends Error { }
+    export class PermissionDenied extends Error {}
     /** @category Errors */
-    export class ConnectionRefused extends Error { }
+    export class ConnectionRefused extends Error {}
     /** @category Errors */
-    export class ConnectionReset extends Error { }
+    export class ConnectionReset extends Error {}
     /** @category Errors */
-    export class ConnectionAborted extends Error { }
+    export class ConnectionAborted extends Error {}
     /** @category Errors */
-    export class NotConnected extends Error { }
+    export class NotConnected extends Error {}
     /** @category Errors */
-    export class AddrInUse extends Error { }
+    export class AddrInUse extends Error {}
     /** @category Errors */
-    export class AddrNotAvailable extends Error { }
+    export class AddrNotAvailable extends Error {}
     /** @category Errors */
-    export class BrokenPipe extends Error { }
+    export class BrokenPipe extends Error {}
     /** @category Errors */
-    export class AlreadyExists extends Error { }
+    export class AlreadyExists extends Error {}
     /** @category Errors */
-    export class InvalidData extends Error { }
+    export class InvalidData extends Error {}
     /** @category Errors */
-    export class TimedOut extends Error { }
+    export class TimedOut extends Error {}
     /** @category Errors */
-    export class Interrupted extends Error { }
+    export class Interrupted extends Error {}
     /** @category Errors */
-    export class WriteZero extends Error { }
+    export class WriteZero extends Error {}
     /** @category Errors */
-    export class UnexpectedEof extends Error { }
+    export class UnexpectedEof extends Error {}
     /** @category Errors */
-    export class BadResource extends Error { }
+    export class BadResource extends Error {}
     /** @category Errors */
-    export class Http extends Error { }
+    export class Http extends Error {}
     /** @category Errors */
-    export class Busy extends Error { }
+    export class Busy extends Error {}
     /** @category Errors */
-    export class NotSupported extends Error { }
+    export class NotSupported extends Error {}
   }
 
   /** The current process id of the runtime.
@@ -1265,13 +1265,13 @@ declare namespace Deno {
    */
   export class FsFile
     implements
-    Reader,
-    ReaderSync,
-    Writer,
-    WriterSync,
-    Seeker,
-    SeekerSync,
-    Closer {
+      Reader,
+      ReaderSync,
+      Writer,
+      WriterSync,
+      Seeker,
+      SeekerSync,
+      Closer {
     readonly rid: number;
     constructor(rid: number);
     write(p: Uint8Array): Promise<number>;
@@ -1298,13 +1298,13 @@ declare namespace Deno {
    */
   export class File
     implements
-    Reader,
-    ReaderSync,
-    Writer,
-    WriterSync,
-    Seeker,
-    SeekerSync,
-    Closer {
+      Reader,
+      ReaderSync,
+      Writer,
+      WriterSync,
+      Seeker,
+      SeekerSync,
+      Closer {
     readonly rid: number;
     constructor(rid: number);
     write(p: Uint8Array): Promise<number>;
@@ -2630,16 +2630,16 @@ declare namespace Deno {
     readonly rid: number;
     readonly pid: number;
     readonly stdin: T["stdin"] extends "piped" ? Writer & Closer & {
-      writable: WritableStream<Uint8Array>;
-    }
+        writable: WritableStream<Uint8Array>;
+      }
       : (Writer & Closer & { writable: WritableStream<Uint8Array> }) | null;
     readonly stdout: T["stdout"] extends "piped" ? Reader & Closer & {
-      readable: ReadableStream<Uint8Array>;
-    }
+        readable: ReadableStream<Uint8Array>;
+      }
       : (Reader & Closer & { readable: ReadableStream<Uint8Array> }) | null;
     readonly stderr: T["stderr"] extends "piped" ? Reader & Closer & {
-      readable: ReadableStream<Uint8Array>;
-    }
+        readable: ReadableStream<Uint8Array>;
+      }
       : (Reader & Closer & { readable: ReadableStream<Uint8Array> }) | null;
     /** Wait for the process to exit and return its exit status.
      *
@@ -4143,7 +4143,7 @@ interface TextDecoder {
 /** @category Encoding API */
 declare var TextDecoder: {
   prototype: TextDecoder;
-  new(label?: string, options?: TextDecoderOptions): TextDecoder;
+  new (label?: string, options?: TextDecoderOptions): TextDecoder;
 };
 
 /** @category Encoding API */
@@ -4164,7 +4164,7 @@ interface TextEncoder {
 /** @category Encoding API */
 declare var TextEncoder: {
   prototype: TextEncoder;
-  new(): TextEncoder;
+  new (): TextEncoder;
 };
 
 /** @category Encoding API */
@@ -4183,7 +4183,7 @@ interface TextDecoderStream {
 /** @category Encoding API */
 declare var TextDecoderStream: {
   prototype: TextDecoderStream;
-  new(label?: string, options?: TextDecoderOptions): TextDecoderStream;
+  new (label?: string, options?: TextDecoderOptions): TextDecoderStream;
 };
 
 /** @category Encoding API */
@@ -4198,7 +4198,7 @@ interface TextEncoderStream {
 /** @category Encoding API */
 declare var TextEncoderStream: {
   prototype: TextEncoderStream;
-  new(): TextEncoderStream;
+  new (): TextEncoderStream;
 };
 
 /** A controller object that allows you to abort one or more DOM requests as and
@@ -4259,7 +4259,7 @@ interface AbortSignal extends EventTarget {
 /** @category Web APIs */
 declare var AbortSignal: {
   prototype: AbortSignal;
-  new(): AbortSignal;
+  new (): AbortSignal;
   abort(reason?: any): AbortSignal;
   timeout(milliseconds: number): AbortSignal;
 };
@@ -4287,8 +4287,8 @@ interface FileReader extends EventTarget {
   onload: ((this: FileReader, ev: ProgressEvent<FileReader>) => any) | null;
   onloadend: ((this: FileReader, ev: ProgressEvent<FileReader>) => any) | null;
   onloadstart:
-  | ((this: FileReader, ev: ProgressEvent<FileReader>) => any)
-  | null;
+    | ((this: FileReader, ev: ProgressEvent<FileReader>) => any)
+    | null;
   onprogress: ((this: FileReader, ev: ProgressEvent<FileReader>) => any) | null;
   readonly readyState: number;
   readonly result: string | ArrayBuffer | null;
@@ -4325,7 +4325,7 @@ interface FileReader extends EventTarget {
 /** @category Web File API */
 declare var FileReader: {
   prototype: FileReader;
-  new(): FileReader;
+  new (): FileReader;
   readonly DONE: number;
   readonly EMPTY: number;
   readonly LOADING: number;
@@ -4454,7 +4454,7 @@ interface ReadableStreamReader<R = any> {
 /** @category Streams API */
 declare var ReadableStreamReader: {
   prototype: ReadableStreamReader;
-  new(): ReadableStreamReader;
+  new (): ReadableStreamReader;
 };
 
 /** @category Streams API */
@@ -4509,7 +4509,7 @@ interface ReadableStreamDefaultController<R = any> {
 /** @category Streams API */
 declare var ReadableStreamDefaultController: {
   prototype: ReadableStreamDefaultController;
-  new(): ReadableStreamDefaultController;
+  new (): ReadableStreamDefaultController;
 };
 
 /** @category Streams API */
@@ -4524,7 +4524,7 @@ interface ReadableByteStreamController {
 /** @category Streams API */
 declare var ReadableByteStreamController: {
   prototype: ReadableByteStreamController;
-  new(): ReadableByteStreamController;
+  new (): ReadableByteStreamController;
 };
 
 /** @category Streams API */
@@ -4559,7 +4559,7 @@ interface CountQueuingStrategy extends QueuingStrategy {
 /** @category Streams API */
 declare var CountQueuingStrategy: {
   prototype: CountQueuingStrategy;
-  new(options: { highWaterMark: number }): CountQueuingStrategy;
+  new (options: { highWaterMark: number }): CountQueuingStrategy;
 };
 
 /** @category Streams API */
@@ -4571,7 +4571,7 @@ interface ByteLengthQueuingStrategy extends QueuingStrategy<ArrayBufferView> {
 /** @category Streams API */
 declare var ByteLengthQueuingStrategy: {
   prototype: ByteLengthQueuingStrategy;
-  new(options: { highWaterMark: number }): ByteLengthQueuingStrategy;
+  new (options: { highWaterMark: number }): ByteLengthQueuingStrategy;
 };
 
 /** This Streams API interface represents a readable stream of byte data. The
@@ -4602,7 +4602,7 @@ interface ReadableStream<R = any> {
 /** @category Streams API */
 declare var ReadableStream: {
   prototype: ReadableStream;
-  new(
+  new (
     underlyingSource: UnderlyingByteSource,
     strategy?: { highWaterMark?: number; size?: undefined },
   ): ReadableStream<Uint8Array>;
@@ -4693,7 +4693,7 @@ interface WritableStreamDefaultWriter<W = any> {
 /** @category Streams API */
 declare var WritableStreamDefaultWriter: {
   prototype: WritableStreamDefaultWriter;
-  new(): WritableStreamDefaultWriter;
+  new (): WritableStreamDefaultWriter;
 };
 
 /** @category Streams API */
@@ -5010,7 +5010,7 @@ interface FormData {
 /** @category Fetch API */
 declare var FormData: {
   prototype: FormData;
-  new(): FormData;
+  new (): FormData;
 };
 
 /** @category Fetch API */
@@ -6256,7 +6256,7 @@ declare class GPUCommandBuffer implements GPUObjectBase {
 }
 
 /** @category WebGPU */
-declare interface GPUCommandBufferDescriptor extends GPUObjectDescriptorBase { }
+declare interface GPUCommandBufferDescriptor extends GPUObjectDescriptorBase {}
 
 /** @category WebGPU */
 declare class GPUCommandEncoder implements GPUObjectBase {
@@ -6317,7 +6317,7 @@ declare class GPUCommandEncoder implements GPUObjectBase {
 }
 
 /** @category WebGPU */
-declare interface GPUCommandEncoderDescriptor extends GPUObjectDescriptorBase { }
+declare interface GPUCommandEncoderDescriptor extends GPUObjectDescriptorBase {}
 
 /** @category WebGPU */
 declare interface GPUImageDataLayout {
@@ -6398,7 +6398,7 @@ declare class GPUComputePassEncoder
 }
 
 /** @category WebGPU */
-declare interface GPUComputePassDescriptor extends GPUObjectDescriptorBase { }
+declare interface GPUComputePassDescriptor extends GPUObjectDescriptorBase {}
 
 /** @category WebGPU */
 interface GPURenderEncoderBase {
@@ -6567,7 +6567,7 @@ declare class GPURenderBundle implements GPUObjectBase {
 }
 
 /** @category WebGPU */
-declare interface GPURenderBundleDescriptor extends GPUObjectDescriptorBase { }
+declare interface GPURenderBundleDescriptor extends GPUObjectDescriptorBase {}
 
 /** @category WebGPU */
 declare class GPURenderBundleEncoder
@@ -6929,7 +6929,7 @@ interface Storage {
 /** @category Web Storage API */
 declare var Storage: {
   prototype: Storage;
-  new(): Storage;
+  new (): Storage;
 };
 
 // Copyright 2018-2022 the Deno authors. All rights reserved. MIT license.
@@ -7145,7 +7145,7 @@ interface CryptoKey {
 /** @category Web Crypto API */
 declare var CryptoKey: {
   prototype: CryptoKey;
-  new(): CryptoKey;
+  new (): CryptoKey;
 };
 
 /** The CryptoKeyPair dictionary of the Web Crypto API represents a key pair for
@@ -7161,7 +7161,7 @@ interface CryptoKeyPair {
 /** @category Web Crypto API */
 declare var CryptoKeyPair: {
   prototype: CryptoKeyPair;
-  new(): CryptoKeyPair;
+  new (): CryptoKeyPair;
 };
 
 /** This Web Crypto API interface provides a number of low-level cryptographic
@@ -7307,15 +7307,15 @@ declare interface Crypto {
   readonly subtle: SubtleCrypto;
   getRandomValues<
     T extends
-    | Int8Array
-    | Int16Array
-    | Int32Array
-    | Uint8Array
-    | Uint16Array
-    | Uint32Array
-    | Uint8ClampedArray
-    | BigInt64Array
-    | BigUint64Array,
+      | Int8Array
+      | Int16Array
+      | Int32Array
+      | Uint8Array
+      | Uint16Array
+      | Uint32Array
+      | Uint8ClampedArray
+      | BigInt64Array
+      | BigUint64Array,
   >(
     array: T,
   ): T;
@@ -7325,7 +7325,7 @@ declare interface Crypto {
 /** @category Web Crypto API */
 declare var SubtleCrypto: {
   prototype: SubtleCrypto;
-  new(): SubtleCrypto;
+  new (): SubtleCrypto;
 };
 
 // Copyright 2018-2022 the Deno authors. All rights reserved. MIT license.
@@ -7384,7 +7384,7 @@ interface BroadcastChannel extends EventTarget {
 /** @category Broadcast Channel */
 declare var BroadcastChannel: {
   prototype: BroadcastChannel;
-  new(name: string): BroadcastChannel;
+  new (name: string): BroadcastChannel;
 };
 
 // Copyright 2018-2022 the Deno authors. All rights reserved. MIT license.
@@ -7456,7 +7456,7 @@ declare namespace Deno {
 
   /** @category Network */
   // deno-lint-ignore no-empty-interface
-  export interface TlsHandshakeInfo { }
+  export interface TlsHandshakeInfo {}
 
   /** @category Network */
   export interface TlsConn extends Conn {
@@ -7581,7 +7581,7 @@ declare namespace Deno {
 
   /** @category Network */
   // deno-lint-ignore no-empty-interface
-  export interface UnixConn extends Conn { }
+  export interface UnixConn extends Conn {}
 
   /** @category Network */
   export interface ConnectTlsOptions {
