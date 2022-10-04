@@ -1,10 +1,11 @@
 import type { NetzoOptions } from "./types.ts";
 import {
+  // auth,
   createService,
   http,
   // sse,
   // websocket,
-  kv,
+  // kv,
 } from "./src/mod.ts";
 
 /**
@@ -34,10 +35,13 @@ export const Netzo = (options: NetzoOptions) => {
 
   return {
     api,
+    // auth,
     baseURL,
     getApiKey: () => apiKey,
     service: createService(api),
     http,
-    kv,
+    // sse,
+    // websocket,
+    // kv,
   };
 };
