@@ -34,7 +34,7 @@ export interface ItemService {
   client: {
     baseURL: string;
     headers: Record<string, string>;
-    authorization: { type: "none" | "basic" | "bearer" | string };
+    authorization: Authorization;
     variables: Record<string, unknown>;
     hooks: {
       beforeFetch: string;
@@ -57,7 +57,7 @@ export interface ItemServiceRequest {
   method: "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
   url: string;
   baseURL: string;
-  authorization: { type: "none" | "basic" | "bearer" | string };
+  authorization: Authorization;
   headers: Record<string, string>;
   body: string;
   variables: Record<string, unknown>;
@@ -80,3 +80,42 @@ export interface ItemServiceRequest {
   };
   [k: string]: unknown;
 }
+
+interface AuthorizationNone {
+  type: "none";
+}
+
+interface AuthorizationBasic {
+  type: "basic";
+  username: string;
+  password: string;
+}
+
+interface AuthorizationBearer {
+  type: "bearer";
+  token: string;
+}
+
+interface AuthorizationApiKey {
+  type: "apiKey";
+  in: "query" | "header"; // | "cookie";
+  key: string;
+  value: string;
+}
+
+interface AuthorizationOAuth2 {
+  type: "oauth2";
+  clientId: string;
+  clientSecret: string;
+  authorizationUri: string;
+  accessTokenUri: string;
+  redirectUri: string;
+  scopes: string[];
+}
+
+export type Authorization =
+  | AuthorizationNone
+  | AuthorizationBasic
+  | AuthorizationBearer
+  | AuthorizationApiKey
+  | AuthorizationOAuth2;
