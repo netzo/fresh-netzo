@@ -16,8 +16,17 @@ export interface ClientAuth {
 /**
  * Minimal, type-safe auth0 client
  */
-export async function auth(defaultOptions: ClientOptionsAuth): Promise<ClientAuth> {
-  const { clientId, clientSecret, authorizationEndpointUri, tokenUri, redirectUri, defaults } = defaultOptions;
+export async function auth(
+  defaultOptions: ClientOptionsAuth,
+): Promise<ClientAuth> {
+  const {
+    clientId,
+    clientSecret,
+    authorizationEndpointUri,
+    tokenUri,
+    redirectUri,
+    defaults,
+  } = defaultOptions;
   const oauth2Client = new OAuth2Client({
     clientId,
     clientSecret,
@@ -29,7 +38,7 @@ export async function auth(defaultOptions: ClientOptionsAuth): Promise<ClientAut
 
   const authorizationUri = oauth2Client.code.getAuthorizationUri();
 
-  console.log({ authorizationUri })
+  console.log({ authorizationUri });
 
   // Exchange the authorization code for an access token
   const tokens = await oauth2Client.code.getToken(authorizationUri);
