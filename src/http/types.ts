@@ -10,7 +10,10 @@ export type ResponseType = keyof ResponseMap | "json";
 export type MappedType<R extends ResponseType, JsonType = unknown> = R extends
   keyof ResponseMap ? ResponseMap[R] : JsonType;
 
-export type ClientMethodHandler = <T = unknown, R extends ResponseType = "json">(
+export type ClientMethodHandler = <
+  T = unknown,
+  R extends ResponseType = "json",
+>(
   data?: RequestInit["body"] | Record<string, unknown>,
   opts?: Omit<FetchOptions<R>, "baseURL" | "method">,
 ) => Promise<MappedType<R, T>>;
