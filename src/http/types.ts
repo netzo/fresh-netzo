@@ -1,3 +1,4 @@
+// deno-lint-ignore-file no-explicit-any
 import type { FetchOptions } from "https://esm.sh/ohmyfetch";
 
 export interface ResponseMap {
