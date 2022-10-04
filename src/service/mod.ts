@@ -54,7 +54,7 @@ export const createService = (api: ClientBuilder) => {
     const item = await api.services[_id].get<ItemService>();
     const client = getClient(item);
 
-    const requests = item.requests.reduce(
+    const requests: ServiceRequests = item.requests.reduce(
       (previousValue, currentValue, index) => {
         // [inheritance] deep-merges service.client with service.requests[index].client
         const itemServiceRequest = deepMerge(
@@ -68,7 +68,7 @@ export const createService = (api: ClientBuilder) => {
           [currentValue.name]: serviceRequest.invoke, // alias to invoke by name
         };
       },
-      {} as ServiceRequests,
+      {},
     );
 
     return { client, requests, item }; // see NOTE bellow

@@ -10,8 +10,8 @@ export interface Service {
 type InvokeFn = InvokeFnHTTP;
 
 export interface ServiceRequest {
-  invoke: InvokeFn | unknown;
-  item: ItemServiceRequest | unknown;
+  invoke: InvokeFn;
+  item: ItemServiceRequest;
 }
 
 export type ServiceRequests = {
