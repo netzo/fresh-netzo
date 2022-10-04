@@ -1,0 +1,12 @@
+{
+  "tasks": {
+    "test": "deno test -A",
+    "gen:types": "deno types > deno-runtime-types.ts",
+    "check": "deno fmt --check && deno lint",
+    "npm:publish": "deno run -A scripts/build_npm.ts & cd npm & npm publish",
+    "githooks:generate": "deno run -A -r https://deno.land/x/githooks/githooks.ts"
+  },
+  "githooks": {
+    "pre-commit": "check"
+  }
+}
