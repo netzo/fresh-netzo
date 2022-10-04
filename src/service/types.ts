@@ -30,7 +30,7 @@ export interface ItemService {
   labels: string[];
   stars: number;
   display: { imageUrl: string };
-  type: "http" | "sse" | "websocket";
+  type: "http";
   client: {
     baseURL: string;
     headers: Record<string, string>;

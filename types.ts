@@ -1,9 +1,4 @@
-import {
-  ClientHTTP,
-  ClientOptionsHTTP,
-  // TODO: ClientSSE, ClientOptionsSSE,
-  // TODO: ClientWebSocket, ClientOptionsWebSocket
-} from "./src/mod.ts";
+import { ClientHTTP, ClientOptionsHTTP, } from "./src/mod.ts";
 
 export type Netzo = (options: NetzoOptions) => INetzo;
 
@@ -17,7 +12,6 @@ export interface INetzo {
   getApiKey: () => string;
 }
 
-export type ClientOptions =
-  ClientOptionsHTTP; /* | ClientOptionsSSE | ClientOptionsWebSocket */
+export type ClientOptions = ClientOptionsHTTP;
 
-export type Client = ClientHTTP; /* | ClientSSE | ClientWebSocket */
+export type Client = ClientHTTP;

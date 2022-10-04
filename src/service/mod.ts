@@ -1,9 +1,5 @@
 import { Client } from "../../types.ts";
-import {
-  http,
-  // see,
-  // websocket
-} from "../http/mod.ts";
+import { http } from "../http/mod.ts";
 import { ClientBuilder } from "../http/types.ts";
 import {
   ItemService,
@@ -19,10 +15,6 @@ const getClient = (item: ItemService): Client => {
   switch (item.type) {
     case "http":
       return http(item.client);
-    // case 'sse':
-    //   return sse(item.client)
-    // case 'websocket':
-    //   return websocket(item.client)
     default:
       throw new Error(`Unknown service type: ${item.type}`);
   }
