@@ -1,4 +1,4 @@
-import { ClientHTTP, ClientOptionsHTTP, } from "./src/mod.ts";
+import { ClientHTTP, ClientOptionsHTTP } from "./src/mod.ts";
 
 export type Netzo = (options: NetzoOptions) => INetzo;
 
