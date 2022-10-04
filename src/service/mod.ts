@@ -57,7 +57,10 @@ export const createService = (api: ClientBuilder) => {
     const requests = item.requests.reduce(
       (previousValue, currentValue, index) => {
         // [inheritance] deep-merges service.client with service.requests[index].client
-        const itemServiceRequest = deepMerge(item.client, currentValue) as ItemServiceRequest;
+        const itemServiceRequest = deepMerge(
+          item.client,
+          currentValue,
+        ) as ItemServiceRequest;
         const serviceRequest = createServiceRequest(itemServiceRequest);
         return {
           ...previousValue,

@@ -41,7 +41,7 @@ const providerHandler: ProxyHandler<Record<string | symbol, unknown>> = {
 
 export const kv = (
   _providerGet: (key: string) => Promise<unknown>,
-  _providerSet: (key: string, value: unknown) => Promise<unknown>
+  _providerSet: (key: string, value: unknown) => Promise<unknown>,
 ) => ({
   provider: new Proxy({}, providerHandler),
   receiver: new Proxy({}, receiverHandler),

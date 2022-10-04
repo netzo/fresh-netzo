@@ -60,6 +60,4 @@ Deno.test("netzo.http", async (t) => {
     const todo = await client.todos[1].delete();
     assertExists(todo);
   });
-
 });
-

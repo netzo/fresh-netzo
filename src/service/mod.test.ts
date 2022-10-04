@@ -71,14 +71,14 @@ Deno.test("netzo.service", async (t) => {
   });
 
   await t.step("service.requests[0].invoke()", async () => {
-    const todos = await service.requests[0].invoke()
-    assertEquals(todos?.length, 200)
-  })
+    const todos = await service.requests[0].invoke();
+    assertEquals(todos?.length, 200);
+  });
 
   await t.step("service.requests.getAllTodos()", async () => {
-    const todos = await service.requests.getAllTodos()
-    assertEquals(todos?.length, 200)
-  })
+    const todos = await service.requests.getAllTodos();
+    assertEquals(todos?.length, 200);
+  });
 
   await t.step("service.requests[1].invoke()", async () => {
     const todo = await service.requests[1].invoke();
