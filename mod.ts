@@ -1,6 +1,5 @@
 import type { NetzoOptions } from "./types.ts";
 import {
-  // auth,
   createService,
   http,
   // sse,
@@ -28,7 +27,6 @@ export const Netzo = (options: NetzoOptions) => {
 
   return {
     api,
-    // auth,
     baseURL,
     getApiKey: () => apiKey,
     service: createService(api),
