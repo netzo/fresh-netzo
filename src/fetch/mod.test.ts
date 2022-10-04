@@ -3,10 +3,12 @@ import {
   assertEquals,
   assertExists,
 } from "https://deno.land/std@0.97.0/testing/asserts.ts";
-import { http } from "./mod.ts";
+import { createFetch } from "./mod.ts";
 
-Deno.test("netzo.http", async (t) => {
-  const client = http({ baseURL: "https://jsonplaceholder.typicode.com" });
+Deno.test("netzo.fetch", async (t) => {
+  const client = createFetch({
+    baseURL: "https://jsonplaceholder.typicode.com",
+  });
 
   await t.step("client", () => {
     assertExists(client);

@@ -1,7 +1,7 @@
 import type { NetzoOptions } from "./types.ts";
 import {
+  createFetch,
   createService,
-  http,
   // kv,
 } from "./src/mod.ts";
 
@@ -21,14 +21,14 @@ import {
 export const Netzo = (options: NetzoOptions) => {
   const { apiKey, baseURL = "https://api.netzo.io" } = options;
 
-  const api = http({ baseURL, headers: { "x-api-key": apiKey } });
+  const api = createFetch({ baseURL, headers: { "x-api-key": apiKey } });
 
   return {
     api,
     baseURL,
     getApiKey: () => apiKey,
     service: createService(api),
-    http,
+    createFetch,
     // kv,
   };
 };

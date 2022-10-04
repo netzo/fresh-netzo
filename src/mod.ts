@@ -1,3 +1,3 @@
 export * from "./service/mod.ts";
-export * from "./http/mod.ts";
+export * from "./fetch/mod.ts";
 // TODO: export * from "./kv/mod.ts";

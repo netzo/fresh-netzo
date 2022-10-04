@@ -21,7 +21,7 @@ export type ClientHTTP = ClientBuilder;
 /**
  * Minimal, type-safe REST client using JS proxies
  */
-export function http<R extends ResponseType = "json">(
+export function createFetch<R extends ResponseType = "json">(
   defaultOptions: Omit<FetchOptions<R>, "method"> = {},
 ): ClientBuilder {
   // Callable internal target required to use `apply` on it

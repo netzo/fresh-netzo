@@ -1,6 +1,6 @@
 import { Client } from "../../types.ts";
-import { http } from "../http/mod.ts";
-import { ClientBuilder } from "../http/types.ts";
+import { createFetch } from "../fetch/mod.ts";
+import { ClientBuilder } from "../fetch/types.ts";
 import {
   ItemService,
   ItemServiceRequest,
@@ -14,7 +14,10 @@ import { deepMerge } from "https://deno.land/std@0.157.0/collections/deep_merge.
 const getClient = (item: ItemService): Client => {
   switch (item.type) {
     case "http":
-      return http(item.client);
+    case "graphql":
+    case "worker":
+    case "openapi":
+      return createFetch(item.client); // all types use fetch client
     default:
       throw new Error(`Unknown service type: ${item.type}`);
   }

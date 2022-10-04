@@ -1,5 +1,5 @@
 import { Client } from "../../types.ts";
-import { ClientMethodHandler as InvokeFnHTTP } from "../http/types.ts";
+import { ClientMethodHandler as InvokeFnHTTP } from "../fetch/types.ts";
 
 export interface Service {
   client: Client;
@@ -30,7 +30,7 @@ export interface ItemService {
   labels: string[];
   stars: number;
   display: { imageUrl: string };
-  type: "http";
+  type: "http" | "graphql" | "worker" | "openapi";
   client: {
     baseURL: string;
     headers: Record<string, string>;
