@@ -1,4 +1,4 @@
-import { config } from "https://deno.land/x/dotenv/mod.ts";
+import { config } from "https://deno.land/x/dotenv@v3.2.0/mod.ts";
 import { assertExists } from "https://deno.land/std@0.97.0/testing/asserts.ts";
 import { Netzo } from "./mod.ts";
 

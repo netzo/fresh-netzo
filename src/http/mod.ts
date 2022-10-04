@@ -1,5 +1,5 @@
-import { $fetch, FetchOptions } from "https://esm.sh/ohmyfetch";
-import { QueryObject, resolveURL, withQuery } from "https://esm.sh/ufo";
+import { $fetch, FetchOptions } from "https://esm.sh/ohmyfetch@0.4.18";
+import { QueryObject, resolveURL, withQuery } from "https://esm.sh/ufo@0.8.5";
 import type {
   ClientBuilder,
   ClientMethodHandler,
@@ -25,7 +25,7 @@ export function http<R extends ResponseType = "json">(
   defaultOptions: Omit<FetchOptions<R>, "method"> = {},
 ): ClientBuilder {
   // Callable internal target required to use `apply` on it
-  const internalTarget = (() => {}) as ClientBuilder;
+  const internalTarget = (() => { }) as ClientBuilder;
 
   function p(url: string): ClientBuilder {
     return new Proxy(internalTarget, {
@@ -37,10 +37,10 @@ export function http<R extends ResponseType = "json">(
         }
 
         const handler: ClientMethodHandler = <
-          T = any,
+          T = unknown,
           R extends ResponseType = "json",
         >(
-          data?: RequestInit["body"] | Record<string, any>,
+          data?: RequestInit["body"] | Record<string, unknown>,
           opts: FetchOptions<R> = {},
         ) => {
           if (method === "GET") {

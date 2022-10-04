@@ -1,4 +1,4 @@
-import { build, emptyDir } from "https://deno.land/x/dnt/mod.ts";
+import { build, emptyDir } from "https://deno.land/x/dnt@0.31.0/mod.ts";
 
 await emptyDir("./npm"); // NOTE: added npm/ to .gitignore (optional)
 

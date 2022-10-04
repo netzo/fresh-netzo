@@ -8,7 +8,7 @@
  * @see see https://gist.github.com/miguelrk/f616153f4395905c2f831b6df522fcc7/edit
  */
 
-const receiverHandler: ProxyHandler<any> = {
+const receiverHandler: ProxyHandler<Record<string | symbol, unknown>> = {
   get: async (target, name) => {
     if (target.prop instanceof Promise) {
       const res = await target.prop;
@@ -24,22 +24,25 @@ const receiverHandler: ProxyHandler<any> = {
   },
 };
 
-const providerHandler: ProxyHandler<any> = {
+const providerHandler: ProxyHandler<Record<string | symbol, unknown>> = {
   get: async (_target, _name) => {
     console.log("load someting from provider...");
-    return await new Promise((res, rej) => {
+    return await new Promise((res, _rej) => {
       setTimeout(() => res("Hello world"), 1000);
     });
   },
   set: (_obj, _prop, _value) => {
-    return new Promise((res, rej) => {
+    return new Promise((res, _rej) => {
       console.log("save someting providerly...");
       setTimeout(() => res(true), 1000);
     }) as unknown as boolean;
   },
 };
 
-export const kv = (providerGet: Function, providerSet: Function) => ({
+export const kv = (
+  _providerGet: (key: string) => Promise<unknown>,
+  _providerSet: (key: string, value: unknown) => Promise<unknown>
+) => ({
   provider: new Proxy({}, providerHandler),
   receiver: new Proxy({}, receiverHandler),
 });
