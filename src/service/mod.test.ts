@@ -89,4 +89,9 @@ Deno.test("netzo.service", { ignore: !API_KEY }, async (t) => {
     const todo = await service.requests.getFirstTodo();
     assertEquals(todo?.id, 1);
   });
+
+  await t.step("service.requests[2].invoke() with variables", async () => {
+    const todo = await service.requests[2].invoke();
+    assertEquals(todo?.length, 200);
+  });
 });
