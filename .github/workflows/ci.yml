@@ -22,7 +22,7 @@ jobs:
         run: deno lint
 
       - name: Tests
-        run: deno test
+        run: deno test -A
 
       - name: Release
         uses: softprops/action-gh-release@v1
