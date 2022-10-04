@@ -1,4 +1,3 @@
-import { Client } from "../../types.ts";
 import { createFetch } from "../fetch/mod.ts";
 import { ClientBuilder } from "../fetch/types.ts";
 import {
@@ -11,7 +10,7 @@ import {
 import replace from "https://esm.sh/object-replace-mustache@1.0.2";
 import { deepMerge } from "https://deno.land/std@0.157.0/collections/deep_merge.ts";
 
-const getClient = (item: ItemService): Client => {
+const getClient = (item: ItemService): ClientBuilder => {
   switch (item.type) {
     case "http":
     case "graphql":

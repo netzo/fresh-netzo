@@ -14,10 +14,6 @@ const payloadMethods: ReadonlyArray<string> = [
   "PATCH",
 ];
 
-export type ClientOptionsHTTP = Omit<FetchOptions<"json">, "method">;
-
-export type ClientHTTP = ClientBuilder;
-
 /**
  * Minimal, type-safe REST client using JS proxies
  */

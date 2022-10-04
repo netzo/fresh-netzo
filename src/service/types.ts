@@ -1,13 +1,13 @@
-import { Client } from "../../types.ts";
-import { ClientMethodHandler as InvokeFnHTTP } from "../fetch/types.ts";
+import {
+  ClientBuilder,
+  ClientMethodHandler as InvokeFn,
+} from "../fetch/types.ts";
 
 export interface Service {
-  client: Client;
+  client: ClientBuilder;
   requests: ServiceRequests;
   item: ItemService;
 }
-
-type InvokeFn = InvokeFnHTTP;
 
 export interface ServiceRequest {
   invoke: InvokeFn;
