@@ -5,7 +5,11 @@
  * TODO: accept an async providerGet and providerSet functions (e.g. user can decide
  * where to persist data, e.g. receiverStorage, IndexedDB, MongoDB, RESTDB etc.)
  *
- * @see see https://gist.github.com/miguelrk/f616153f4395905c2f831b6df522fcc7/edit
+ * @see https://gist.github.com/miguelrk/f616153f4395905c2f831b6df522fcc7/edit
+ *
+ * Alternatively, an approach like unstorage
+ *
+ * @see https://github.com/unjs/unstorage
  */
 
 const receiverHandler: ProxyHandler<Record<string | symbol, unknown>> = {

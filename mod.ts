@@ -24,14 +24,7 @@ import {
 export const Netzo = (options: NetzoOptions) => {
   const { apiKey, baseURL = "https://api.netzo.io" } = options;
 
-  const api = http({
-    baseURL,
-    headers: {
-      "accept": "application/json",
-      "content-type": "application/json",
-      "x-api-key": apiKey,
-    },
-  });
+  const api = http({ baseURL, headers: { "x-api-key": apiKey } });
 
   return {
     api,

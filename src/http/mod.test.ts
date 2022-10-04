@@ -6,13 +6,7 @@ import {
 import { http } from "./mod.ts";
 
 Deno.test("netzo.http", async (t) => {
-  const client = http({
-    baseURL: "https://jsonplaceholder.typicode.com",
-    headers: {
-      "accept": "application/json",
-      "content-type": "application/json",
-    },
-  });
+  const client = http({ baseURL: "https://jsonplaceholder.typicode.com" });
 
   await t.step("client", () => {
     assertExists(client);
