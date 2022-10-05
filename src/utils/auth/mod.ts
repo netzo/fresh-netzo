@@ -1,3 +1,3 @@
 import { Authorization } from "./types.ts";
 
-export const auth = (_defaultOptions: Authorization): void => {};
+export const auth = (_options: Authorization): void => {};
