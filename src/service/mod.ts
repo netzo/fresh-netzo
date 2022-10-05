@@ -1,49 +1,53 @@
 import { createFetch } from "../fetch/mod.ts";
 import { ClientBuilder } from "../fetch/types.ts";
 import {
-  ItemService,
-  ItemServiceRequest,
-  Service,
-  ServiceRequest,
-  ServiceRequestMap,
+  ServiceClient,
+  ServiceItem,
+  ServiceRequestClient,
+  ServiceRequestItem,
 } from "./types.ts";
 import replace from "https://esm.sh/object-replace-mustache@1.0.2";
 import { deepMerge } from "https://deno.land/std@0.157.0/collections/deep_merge.ts";
 
-const createServiceRequest = (item: ItemServiceRequest): ServiceRequest => {
+const createServiceRequest = (
+  item: ServiceRequestItem,
+): ServiceRequestClient => {
   // [variables] adds support for templated options via {{•}} syntax
   const { variables = {} } = item;
   const { url, baseURL, method, headers, body } = replace(item, variables);
   const href = new URL(url, baseURL).href; // ensures url is absolute and valid
 
+  const request = new Request(href, {
+    method: method.toUpperCase(),
+    headers,
+    // IMPORTANT: Request with GET/HEAD method cannot have body
+    ...(body && !["GET", "HEAD"].includes(method.toUpperCase()) && { body }),
+  });
+
   // TODO: reuse existing client (of service) if possible
   // or at least $fetch/useFetch/unfetch client which supports
   // entire service request options (for example hooks, etc.)
   const invoke = async () => {
-    const response = await fetch(href, {
-      method: method.toUpperCase(),
-      headers,
-      // IMPORTANT: Request with GET/HEAD method cannot have body
-      ...(body && !["GET", "HEAD"].includes(method.toUpperCase()) && { body }),
-    });
+    const response = await fetch(request);
     return response.json();
   };
-  return { invoke, item };
+
+  return { request, invoke, item };
 };
 
 export const createService = (api: ClientBuilder) => {
-  return async (_id: string): Promise<Service> => {
-    const item = await api.services[_id].get<ItemService>();
+  return async (_id: string): Promise<ServiceClient> => {
+    const item = await api.services[_id].get<ServiceItem>();
     const client = createFetch(item.client); // all 'item.type's use fetch client
 
-    const requests: ServiceRequestMap = item.requests.reduce(
+    const requests: ServiceClient["requests"] = item.requests.reduce(
       (previousValue, currentValue, index) => {
         // [inheritance] deep-merges service.client with service.requests[index].client
-        const itemServiceRequest = deepMerge(
+        const serviceRequestItem = deepMerge<ServiceRequestItem>(
           item.client,
           currentValue,
-        ) as ItemServiceRequest;
-        const serviceRequest = createServiceRequest(itemServiceRequest);
+        );
+        const serviceRequest = createServiceRequest(serviceRequestItem);
         return {
           ...previousValue,
           [index]: serviceRequest, // access entire service request by index

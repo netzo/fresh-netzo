@@ -4,7 +4,9 @@ import {
 } from "../fetch/types.ts";
 import { Authorization } from "../utils/auth/types.ts";
 
-export interface ItemService {
+// items:
+
+export interface ServiceItem {
   _id: string;
   _type: "service";
   workspaceId: string;
@@ -15,59 +17,57 @@ export interface ItemService {
   stars: number;
   display: { imageUrl: string };
   type: "http" | "graphql" | "worker" | "openapi";
-  client: {
-    baseURL: string;
-    headers: Record<string, string>;
-    authorization: Authorization;
-    variables: Record<string, unknown>;
-    hooks: {
-      beforeFetch: string;
-      afterFetch: string;
-      onFetchError: string;
-    };
-  };
-  requests: ItemServiceRequest[];
+  client: ServiceClientInit;
+  requests: ServiceRequestItem[];
   options: Record<string, unknown>;
   createdAt: string;
   updatedAt: string;
   [k: string]: unknown;
 }
 
-export interface ItemServiceRequest {
+export interface ServiceRequestItem extends ServiceRequestClientInit {
   _type: "request";
   type: "http" | "graphql" | "worker" | "openapi";
   name: string;
-  description: string;
-  method: "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
-  url: string;
+  [k: string | symbol]: unknown;
+}
+
+// client-inits:
+
+export interface ServiceClientInit {
   baseURL: string;
   authorization: Authorization;
   headers: Record<string, string>;
-  body: string;
   variables: Record<string, unknown>;
   hooks: {
     beforeFetch: string;
     afterFetch: string;
     onFetchError: string;
   };
-  [k: string]: unknown;
+  description: string;
+  [k: string | symbol]: unknown;
+}
+
+export interface ServiceRequestClientInit extends ServiceClientInit {
+  method: "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
+  url: string;
+  body?: string;
 }
 
 // clients:
 
-export interface Service {
+export interface ServiceClient {
   client: ClientBuilder;
-  requests: ServiceRequestMap;
-  item: ItemService;
+  requests: {
+    [index: number]: ServiceRequestClient;
+  } & {
+    [name: string]: InvokeFn;
+  };
+  item: ServiceItem;
 }
 
-export interface ServiceRequest {
+export interface ServiceRequestClient {
+  request: Request;
   invoke: InvokeFn;
-  item: ItemServiceRequest;
+  item: ServiceRequestItem;
 }
-
-export type ServiceRequestMap = {
-  [index: number]: ServiceRequest;
-} & {
-  [name: string]: InvokeFn;
-};
