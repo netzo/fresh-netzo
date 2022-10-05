@@ -24,7 +24,7 @@ await build({
     name: "@netzoio/sdk",
     version: Deno.args[0]?.replace(/^v/, ""), // remove leading v
     description:
-      "Software development kit (SDK) for Netzo, the open Web platform to unify IoT devices, applications and services.",
+      "Software development kit (SDK) for Netzo, the open Web platform to integrate APIs, code automations and build internal apps faster.",
     license: "MIT",
     repository: {
       type: "git",
