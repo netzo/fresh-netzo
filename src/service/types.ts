@@ -2,23 +2,7 @@ import {
   ClientBuilder,
   ClientMethodHandler as InvokeFn,
 } from "../fetch/types.ts";
-
-export interface Service {
-  client: ClientBuilder;
-  requests: ServiceRequests;
-  item: ItemService;
-}
-
-export interface ServiceRequest {
-  invoke: InvokeFn;
-  item: ItemServiceRequest;
-}
-
-export type ServiceRequests = {
-  [index: number]: ServiceRequest;
-} & {
-  [name: string]: InvokeFn;
-};
+import { Authorization } from "../utils/auth/types.ts";
 
 export interface ItemService {
   _id: string;
@@ -50,8 +34,8 @@ export interface ItemService {
 }
 
 export interface ItemServiceRequest {
-  _id: string;
   _type: "request";
+  type: "http" | "graphql" | "worker" | "openapi";
   name: string;
   description: string;
   method: "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
@@ -66,56 +50,24 @@ export interface ItemServiceRequest {
     afterFetch: string;
     onFetchError: string;
   };
-  eventHandlers: {
-    successMessage: string;
-    successHandler: string;
-    errorMessage: string;
-    errorHandler: string;
-  };
-  settings: {
-    requestRefreshTime: number;
-    runOnPageLoad: boolean;
-    timeout: number;
-    cache: boolean;
-  };
   [k: string]: unknown;
 }
 
-interface AuthorizationNone {
-  type: "none";
+// clients:
+
+export interface Service {
+  client: ClientBuilder;
+  requests: ServiceRequestMap;
+  item: ItemService;
 }
 
-interface AuthorizationBasic {
-  type: "basic";
-  username: string;
-  password: string;
+export interface ServiceRequest {
+  invoke: InvokeFn;
+  item: ItemServiceRequest;
 }
 
-interface AuthorizationBearer {
-  type: "bearer";
-  token: string;
-}
-
-interface AuthorizationApiKey {
-  type: "apiKey";
-  in: "query" | "header"; // | "cookie";
-  key: string;
-  value: string;
-}
-
-interface AuthorizationOAuth2 {
-  type: "oauth2";
-  clientId: string;
-  clientSecret: string;
-  authorizationUri: string;
-  accessTokenUri: string;
-  redirectUri: string;
-  scopes: string[];
-}
-
-export type Authorization =
-  | AuthorizationNone
-  | AuthorizationBasic
-  | AuthorizationBearer
-  | AuthorizationApiKey
-  | AuthorizationOAuth2;
+export type ServiceRequestMap = {
+  [index: number]: ServiceRequest;
+} & {
+  [name: string]: InvokeFn;
+};

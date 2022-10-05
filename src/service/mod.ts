@@ -5,22 +5,10 @@ import {
   ItemServiceRequest,
   Service,
   ServiceRequest,
-  ServiceRequests,
+  ServiceRequestMap,
 } from "./types.ts";
 import replace from "https://esm.sh/object-replace-mustache@1.0.2";
 import { deepMerge } from "https://deno.land/std@0.157.0/collections/deep_merge.ts";
-
-const getClient = (item: ItemService): ClientBuilder => {
-  switch (item.type) {
-    case "http":
-    case "graphql":
-    case "worker":
-    case "openapi":
-      return createFetch(item.client); // all types use fetch client
-    default:
-      throw new Error(`Unknown service type: ${item.type}`);
-  }
-};
 
 const createServiceRequest = (item: ItemServiceRequest): ServiceRequest => {
   // [variables] adds support for templated options via {{•}} syntax
@@ -46,9 +34,9 @@ const createServiceRequest = (item: ItemServiceRequest): ServiceRequest => {
 export const createService = (api: ClientBuilder) => {
   return async (_id: string): Promise<Service> => {
     const item = await api.services[_id].get<ItemService>();
-    const client = getClient(item);
+    const client = createFetch(item.client); // all 'item.type's use fetch client
 
-    const requests: ServiceRequests = item.requests.reduce(
+    const requests: ServiceRequestMap = item.requests.reduce(
       (previousValue, currentValue, index) => {
         // [inheritance] deep-merges service.client with service.requests[index].client
         const itemServiceRequest = deepMerge(
