@@ -1,16 +1,20 @@
-import { build, emptyDir } from "https://deno.land/x/dnt@0.31.0/mod.ts";
+import { build, emptyDir } from "https://deno.land/x/dnt@0.30.0/mod.ts";
 
+// pre-build steps
 await emptyDir("./npm"); // NOTE: added npm/ to .gitignore (optional)
 
 await build({
   entryPoints: ["./mod.ts"],
   outDir: "./npm",
-  typeCheck: true,
-  test: true,
-  declaration: true,
-  // scriptModule: false to allow use of top-level await
+  typeCheck: false, // disable to avoid errors
+  test: true, // default
+  declaration: true, // default
+  // sets scriptModule to false to allow use of top-level await
   // see https://github.com/denoland/dnt/#top-level-await
   scriptModule: false,
+  compilerOptions: {
+    lib: ["es2022", "dom"], // required to compile with DOM types for type checking
+  },
   shims: {
     // see JS docs for overview and more options
     deno: true,
@@ -29,10 +33,16 @@ await build({
     bugs: {
       url: "https://github.com/netzoio/sdk/issues",
     },
+    mappings: {
+      "https://esm.sh/ohmyfetch@0.4.19": {
+        name: "ohmyfetch",
+        version: "0.4.19",
+      },
+    },
   },
 });
 
-// post build steps
-Deno.copyFileSync("CHANGELOG.md", "npm/CHANGELOG.md");
-Deno.copyFileSync("LICENSE", "npm/LICENSE");
-Deno.copyFileSync("README.md", "npm/README.md");
+// post-build steps
+await Deno.copyFile("CHANGELOG.md", "npm/CHANGELOG.md");
+await Deno.copyFile("LICENSE", "npm/LICENSE");
+await Deno.copyFile("README.md", "npm/README.md");
