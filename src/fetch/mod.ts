@@ -1,4 +1,4 @@
-import { $fetch, FetchOptions } from "https://esm.sh/ohmyfetch@0.4.18";
+import { $fetch, FetchOptions } from "https://esm.sh/ohmyfetch@0.4.19";
 import { QueryObject, resolveURL, withQuery } from "https://esm.sh/ufo@0.8.5";
 import type {
   ClientBuilder,

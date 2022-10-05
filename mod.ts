@@ -1,9 +1,5 @@
 import type { NetzoOptions } from "./types.ts";
-import {
-  createFetch,
-  createService,
-  // kv,
-} from "./src/mod.ts";
+import { createFetch, createService } from "./src/mod.ts";
 
 /**
  * Constructor function for the Netzo SDK.
@@ -29,6 +25,5 @@ export const Netzo = (options: NetzoOptions) => {
     getApiKey: () => apiKey,
     service: createService(api),
     createFetch,
-    // kv,
   };
 };
