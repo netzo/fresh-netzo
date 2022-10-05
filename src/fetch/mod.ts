@@ -37,26 +37,26 @@ export function createFetch<R extends ResponseType = "json">(
           R extends ResponseType = "json",
         >(
           data?: RequestInit["body"] | Record<string, unknown>,
-          opts: FetchOptions<R> = {},
+          options: FetchOptions<R> = {},
         ) => {
           if (method === "GET") {
             if (data) url = withQuery(url, data as QueryObject);
             // GET disallows body so remove it
-            defaultOptions.body = opts.body = undefined;
+            defaultOptions.body = options.body = undefined;
           } else if (payloadMethods.includes(method)) {
-            opts.body = data;
+            options.body = data;
           }
 
-          opts.method = method;
+          options.method = method;
 
           return $fetch<T, R>(
             url,
             {
               ...defaultOptions,
-              ...opts,
+              ...options,
               headers: {
                 ...headersToObject(defaultOptions.headers || {}),
-                ...headersToObject(opts.headers || {}),
+                ...headersToObject(options.headers || {}),
               },
             } as FetchOptions<R>,
           );
