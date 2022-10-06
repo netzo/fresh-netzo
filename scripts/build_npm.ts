@@ -45,7 +45,7 @@ await build({
     mappings: {
       "https://esm.sh/ohmyfetch@0.4.19": {
         name: "ohmyfetch",
-        version: "0.4.19",
+        version: "^0.4.19",
       },
     },
   },
