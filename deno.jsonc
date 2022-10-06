@@ -5,10 +5,6 @@
     // pass version as argument e.g. "deno task npm:generate vX.X.X"
     "npm:generate": "deno run -A scripts/build_npm.ts",
     "npm:publish": "cd npm && npm publish",
-    "types:generate": "deno types > deno-runtime-types.ts",
-    "githooks:generate": "deno run -A -r https://deno.land/x/githooks/githooks.ts"
-  },
-  "githooks": {
-    "pre-commit": "check"
+    "types:generate": "deno types > deno-runtime-types.ts"
   }
 }
