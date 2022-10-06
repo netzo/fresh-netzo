@@ -13,7 +13,10 @@ await build({
   // see https://github.com/denoland/dnt/#top-level-await
   scriptModule: false,
   compilerOptions: {
-    lib: ["es2022", "dom"], // required to compile with DOM types for type checking
+    // use ES2021 to ensure node.js 16+ compatibility
+    // see https://github.com/microsoft/TypeScript/wiki/Node-Target-Mapping
+    lib: ["es2021", "dom"], // required to compile with DOM types for type checking
+    target: "ES2021", // ensures emitted package is compatible with node v14 or later
   },
   shims: {
     // see JS docs for overview and more options
@@ -32,6 +35,12 @@ await build({
     },
     bugs: {
       url: "https://github.com/netzoio/sdk/issues",
+    },
+    // sets the minimum engine to node v16.0.0 and npm v7.10.0
+    // see https://nodejs.org/en/download/releases/
+    engines: {
+      "node": ">=16.0.0",
+      "npm": ">=7.10.0",
     },
     mappings: {
       "https://esm.sh/ohmyfetch@0.4.19": {
