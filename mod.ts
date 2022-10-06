@@ -1,29 +1,8 @@
-import type { NetzoOptions } from "./types.ts";
-import { createFetch, createService } from "./src/mod.ts";
-
-/**
- * Constructor function for the Netzo SDK.
- *
- * This is the main entry point for the Netzo SDK. It is used to create
- * a new instance of the SDK. It handles authentication internaly.
- *
- * @example const netzo = new Netzo({ apiKey: Deno.env.get('API_KEY) })
- *
- * @param {string} options.apiKey - the API key to use for authentication.
- * @param {string} options.baseURL - (optional) the base URL to use for the API.
- *
- * @returns {Netzo} - a new instance of the Netzo SDK
- */
-export const Netzo = (options: NetzoOptions) => {
-  const { apiKey, baseURL = "https://api.netzo.io" } = options;
-
-  const api = createFetch({ baseURL, headers: { "x-api-key": apiKey } });
-
-  return {
-    api,
-    baseURL,
-    getApiKey: () => apiKey,
-    service: createService(api),
-    createFetch,
-  };
-};
+export * from "./src/mod.ts";
+export * from "./src/types.ts";
+export * from "./src/fetch/mod.ts";
+export * from "./src/fetch/types.ts";
+export * from "./src/service/mod.ts";
+export * from "./src/service/types.ts";
+export * from "./src/utils/auth/mod.ts";
+export * from "./src/utils/auth/types.ts";
