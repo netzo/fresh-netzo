@@ -1,6 +1,6 @@
 {
   "tasks": {
-    "test": "deno test --allow-env --allow-net --allow-read",
+    "test": "deno test --allow-env --allow-net --allow-read src",
     "check": "deno fmt --check && deno lint",
     // pass version as argument e.g. "deno task npm:generate x.x.x"
     "npm:build": "deno run -A scripts/build_npm.ts",

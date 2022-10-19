@@ -7,7 +7,7 @@ import { Netzo } from "../../mod.ts";
 
 const { API_KEY } = config();
 
-const SERVICE_ID_JSONPLACEHOLDER = "63358aa658e6b95844732847";
+const SERVICE_ID_JSONPLACEHOLDER = "63506fed3e8a3e74cd1d2242";
 
 Deno.test("netzo.service", { ignore: !API_KEY }, async (t) => {
   const netzo = Netzo({ apiKey: API_KEY });
@@ -88,10 +88,5 @@ Deno.test("netzo.service", { ignore: !API_KEY }, async (t) => {
   await t.step("service.requests.getFirstTodo()", async () => {
     const todo = await service.requests.getFirstTodo();
     assertEquals(todo?.id, 1);
-  });
-
-  await t.step("service.requests[2].invoke() with variables", async () => {
-    const todo = await service.requests[2].invoke();
-    assertEquals(todo?.length, 200);
   });
 });

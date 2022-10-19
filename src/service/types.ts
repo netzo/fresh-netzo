@@ -17,7 +17,7 @@ export interface ServiceItem {
   stars: number;
   display: { imageUrl: string };
   type: "http" | "graphql" | "worker" | "openapi";
-  client: ServiceClientInit;
+  init: ServiceClientInit;
   requests: ServiceRequestItem[];
   options: Record<string, unknown>;
   createdAt: string;

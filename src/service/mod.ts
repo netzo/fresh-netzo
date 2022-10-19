@@ -38,13 +38,13 @@ const createServiceRequest = (
 export const createService = (api: ClientBuilder) => {
   return async (_id: string): Promise<ServiceClient> => {
     const item = await api.services[_id].get<ServiceItem>();
-    const client = createFetch(item.client); // all 'item.type's use fetch client
+    const client = createFetch(item.init); // all 'item.type's use fetch client
 
     const requests: ServiceClient["requests"] = item.requests.reduce(
       (previousValue, currentValue, index) => {
-        // [inheritance] deep-merges service.client with service.requests[index].client
+        // [inheritance] deep-merges service.init with service.requests[index].init
         const serviceRequestItem = deepMerge<ServiceRequestItem>(
-          item.client,
+          item.init,
           currentValue,
         );
         const serviceRequest = createServiceRequest(serviceRequestItem);
