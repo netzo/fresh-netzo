@@ -40,17 +40,15 @@ export interface IRequest {
     afterFetch: string;
     onFetchError: string;
   };
-  item: {
+  ref: {
     _id?: string;
-    _type?: "service" | "worker";
+    _type?: "service" | "worker" | "workflow";
     base?: IRequestBase; // populated at runtime
   };
   [key: string | symbol]: unknown; // required by deepMerge
 }
 
 export interface IRequestBase {
-  name?: string;
-  description?: string;
   baseURL?: string; // ignored if undefined or if url is absolute
   authorization?: Authorization;
   headers?: Record<string, string>;
@@ -67,11 +65,11 @@ export interface ServiceClient {
   } & {
     [name: string]: InvokeFn;
   };
-  item: IService;
+  ref: IService;
 }
 
 export interface ServiceRequestClient {
   request: Request;
   invoke: InvokeFn;
-  item: IRequest;
+  ref: IRequest;
 }

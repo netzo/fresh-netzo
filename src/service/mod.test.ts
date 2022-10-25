@@ -17,8 +17,8 @@ Deno.test("netzo.service", { ignore: !API_KEY }, async (t) => {
     assertExists(service);
     assertExists(service.client);
     assertExists(service.requests);
-    assertExists(service.item);
-    assertEquals(service.item._id, SERVICE_ID_JSONPLACEHOLDER);
+    assertExists(service.ref);
+    assertEquals(service.ref._id, SERVICE_ID_JSONPLACEHOLDER);
   });
 
   await t.step("service.client.todos.get()", async () => {

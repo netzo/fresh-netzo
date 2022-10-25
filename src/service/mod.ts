@@ -10,14 +10,13 @@ import replace from "https://esm.sh/object-replace-mustache@1.0.2";
 import { deepMerge } from "https://deno.land/std@0.157.0/collections/deep_merge.ts";
 
 const createServiceRequest = (
-  _request: IRequest,
+  ref: IRequest,
 ): ServiceRequestClient => {
   // [variables] adds support for templated options via {{•}} syntax
-  const { variables = {} } = _request;
-  const { url, item, method, headers, body } = replace(_request, variables);
-  console.log(item.base?.baseURL, url);
-  const href = item.base?.baseURL
-    ? new URL(url, item.base.baseURL).href
+  const { variables = {} } = ref;
+  const { url, ref: { base }, method, headers, body } = replace(ref, variables);
+  const href = base?.baseURL
+    ? new URL(url, base.baseURL).href
     : new URL(url).href;
 
   const request = new Request(href, {
@@ -35,24 +34,24 @@ const createServiceRequest = (
     return response.json();
   };
 
-  return { request, invoke, item: _request };
+  return { request, invoke, ref };
 };
 
 export const createService = (api: ClientBuilder) => {
   return async (_id: string): Promise<ServiceClient> => {
-    const item = await api.services[_id].get<IService>();
-    const client = createFetch(item.base);
+    const ref = await api.services[_id].get<IService>();
+    const client = createFetch(ref.base);
 
-    const requests: ServiceClient["requests"] = item.requests
-      // [associate] injects inherited properties into item property
-      .map((request) => deepMerge<IRequest>(request, { item }))
-      // [inheritance] deep-merges item.base to request itselft
+    const requests: ServiceClient["requests"] = ref.requests
+      // [associate] injects inherited properties into 'ref' property
+      .map((request) => deepMerge<IRequest>(request, { ref }))
+      // [inheritance] deep-merges ref.base to request itself
       .reduce((previousValue, request, index) => {
-        const inheritedRequest = deepMerge<IRequest>(
-          request.item.base as Partial<IRequest>,
+        const mergedRequest = deepMerge<IRequest>(
+          request.ref.base as Partial<IRequest>,
           request,
         );
-        const serviceRequest = createServiceRequest(inheritedRequest);
+        const serviceRequest = createServiceRequest(mergedRequest);
         return {
           ...previousValue,
           [index]: serviceRequest, // access entire service request by index
@@ -60,7 +59,7 @@ export const createService = (api: ClientBuilder) => {
         };
       }, {});
 
-    return { client, requests, item }; // see NOTE bellow
+    return { client, requests, ref }; // see NOTE bellow
   };
 };
 
