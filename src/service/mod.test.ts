@@ -7,7 +7,7 @@ import { Netzo } from "../../mod.ts";
 
 const { API_KEY } = config();
 
-const SERVICE_ID_JSONPLACEHOLDER = "63506fed3e8a3e74cd1d2242";
+const SERVICE_ID_JSONPLACEHOLDER = "63571293107553ff0dd7c7e1";
 
 Deno.test("netzo.service", { ignore: !API_KEY }, async (t) => {
   const netzo = Netzo({ apiKey: API_KEY });

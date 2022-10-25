@@ -6,7 +6,7 @@ import { Authorization } from "../utils/auth/types.ts";
 
 // items:
 
-export interface ServiceItem {
+export interface IService {
   _id: string;
   _type: "service";
   workspaceId: string;
@@ -16,39 +16,46 @@ export interface ServiceItem {
   labels: string[];
   stars: number;
   display: { imageUrl: string };
-  init: ServiceClientInit;
-  requests: ServiceRequestItem[];
-  createdAt: string;
-  updatedAt: string;
-  [k: string]: unknown;
+  base: IRequestBase;
+  requests: IRequest[];
+  [key: string | symbol]: unknown; // required by deepMerge
 }
 
-export interface ServiceRequestItem extends ServiceRequestClientInit {
+export interface IRequest {
+  _id: string;
   _type: "request";
+  workspaceId: string;
+  access: { level: "private" | "public" };
   name: string;
-  [k: string | symbol]: unknown;
-}
-
-// client-inits:
-
-export interface ServiceClientInit {
-  baseURL: string;
+  description: string;
+  method: "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
+  url: string;
+  params?: Record<string, string>;
   authorization: Authorization;
-  headers: Record<string, string>;
-  variables: Record<string, unknown>;
+  headers?: Record<string, string>;
+  body?: string;
+  variables?: Record<string, string>;
   hooks: {
     beforeFetch: string;
     afterFetch: string;
     onFetchError: string;
   };
-  description: string;
-  [k: string | symbol]: unknown;
+  item: {
+    _id?: string;
+    _type?: "service" | "worker";
+    base?: IRequestBase; // populated at runtime
+  };
+  [key: string | symbol]: unknown; // required by deepMerge
 }
 
-export interface ServiceRequestClientInit extends ServiceClientInit {
-  method: "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
-  url: string;
-  body?: string;
+export interface IRequestBase {
+  name?: string;
+  description?: string;
+  baseURL?: string; // ignored if undefined or if url is absolute
+  authorization?: Authorization;
+  headers?: Record<string, string>;
+  variables?: Record<string, unknown>;
+  [key: string | symbol]: unknown; // required by deepMerge
 }
 
 // clients:
@@ -60,11 +67,11 @@ export interface ServiceClient {
   } & {
     [name: string]: InvokeFn;
   };
-  item: ServiceItem;
+  item: IService;
 }
 
 export interface ServiceRequestClient {
   request: Request;
   invoke: InvokeFn;
-  item: ServiceRequestItem;
+  item: IRequest;
 }
