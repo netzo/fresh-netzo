@@ -6,15 +6,20 @@ import {
   ServiceClient,
   ServiceRequestClient,
 } from "./types.ts";
+import { $fetch } from "https://esm.sh/ohmyfetch@0.4.18";
 import replace from "https://esm.sh/object-replace-mustache@1.0.2";
 import { deepMerge } from "https://deno.land/std@0.157.0/collections/deep_merge.ts";
+import { esImportStringByName } from "./utils.ts";
 
 const createServiceRequest = (
   ref: IRequest,
 ): ServiceRequestClient => {
   // [variables] adds support for templated options via {{•}} syntax
   const { variables = {} } = ref;
-  const { url, ref: { base }, method, headers, body } = replace(ref, variables);
+  const { url, ref: { base }, method, headers, body, hooks } = replace(
+    ref,
+    variables,
+  );
   const href = base?.baseURL
     ? new URL(url, base.baseURL).href
     : new URL(url).href;
@@ -22,16 +27,32 @@ const createServiceRequest = (
   const request = new Request(href, {
     method: method.toUpperCase(),
     headers,
-    // IMPORTANT: Request with GET/HEAD method cannot have body
-    ...(body && !["GET", "HEAD"].includes(method.toUpperCase()) && { body }),
+    body: ["GET", "HEAD"].includes(method) ? undefined : body,
   });
 
-  // TODO: reuse existing client (of service) if possible
-  // or at least $fetch/useFetch/unfetch client which supports
-  // entire service request options (for example hooks, etc.)
   const invoke = async () => {
-    const response = await fetch(request);
-    return response.json();
+    const response = await $fetch.raw(request, {
+      method,
+      headers,
+      body: ["GET", "HEAD"].includes(method) ? undefined : body,
+      async onRequest(ctx) {
+        await (await esImportStringByName(hooks?.onRequest))?.(ctx);
+        await (await esImportStringByName(base?.hooks?.onRequest))?.(ctx);
+      },
+      async onRequestError(ctx) {
+        await (await esImportStringByName(hooks?.onRequestError))?.(ctx);
+        await (await esImportStringByName(base?.hooks?.onRequestError))?.(ctx);
+      },
+      async onResponse(ctx) {
+        await (await esImportStringByName(hooks?.onResponse))?.(ctx);
+        await (await esImportStringByName(base?.hooks?.onResponse))?.(ctx);
+      },
+      async onResponseError(ctx) {
+        await (await esImportStringByName(hooks?.onResponseError))?.(ctx);
+        await (await esImportStringByName(base?.hooks?.onResponseError))?.(ctx);
+      },
+    });
+    return response._data;
   };
 
   return { request, invoke, ref };

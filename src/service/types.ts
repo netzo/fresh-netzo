@@ -35,10 +35,11 @@ export interface IRequest {
   headers?: Record<string, string>;
   body?: string;
   variables?: Record<string, string>;
-  hooks: {
-    beforeFetch: string;
-    afterFetch: string;
-    onFetchError: string;
+  hooks?: {
+    onRequest?: string;
+    onRequestError?: string;
+    onResponse?: string;
+    onResponseError?: string;
   };
   ref: {
     _id?: string;
@@ -53,6 +54,12 @@ export interface IRequestBase {
   authorization?: Authorization;
   headers?: Record<string, string>;
   variables?: Record<string, unknown>;
+  hooks?: {
+    onRequest?: string;
+    onRequestError?: string;
+    onResponse?: string;
+    onResponseError?: string;
+  };
   [key: string | symbol]: unknown; // required by deepMerge
 }
 
