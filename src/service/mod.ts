@@ -36,20 +36,20 @@ const createServiceRequest = (
       headers,
       body: ["GET", "HEAD"].includes(method) ? undefined : body,
       async onRequest(ctx) {
-        await (await esImportStringByName(hooks?.onRequest))?.(ctx);
         await (await esImportStringByName(base?.hooks?.onRequest))?.(ctx);
+        await (await esImportStringByName(hooks?.onRequest))?.(ctx);
       },
       async onRequestError(ctx) {
-        await (await esImportStringByName(hooks?.onRequestError))?.(ctx);
         await (await esImportStringByName(base?.hooks?.onRequestError))?.(ctx);
+        await (await esImportStringByName(hooks?.onRequestError))?.(ctx);
       },
       async onResponse(ctx) {
-        await (await esImportStringByName(hooks?.onResponse))?.(ctx);
         await (await esImportStringByName(base?.hooks?.onResponse))?.(ctx);
+        await (await esImportStringByName(hooks?.onResponse))?.(ctx);
       },
       async onResponseError(ctx) {
-        await (await esImportStringByName(hooks?.onResponseError))?.(ctx);
         await (await esImportStringByName(base?.hooks?.onResponseError))?.(ctx);
+        await (await esImportStringByName(hooks?.onResponseError))?.(ctx);
       },
     });
     return response._data;
