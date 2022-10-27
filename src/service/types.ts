@@ -43,7 +43,7 @@ export interface IRequest {
   };
   ref: {
     _id?: string;
-    _type?: "service" | "worker" | "workflow";
+    _type?: "service" | "script" | "workflow";
     base?: IRequestBase; // populated at runtime
   };
   [key: string | symbol]: unknown; // required by deepMerge
