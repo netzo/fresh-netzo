@@ -12,6 +12,6 @@ export interface NetzoSDKInstance {
   api: ClientBuilder;
   baseURL: string;
   getApiKey: () => string;
-  service: (service: string | IService) => Promise<ServiceClient>;
+  service: (ref: string | IService) => Promise<ServiceClient>;
   createFetch: (options: NetzoOptions) => ClientBuilder;
 }

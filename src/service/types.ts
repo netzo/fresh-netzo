@@ -62,11 +62,11 @@ export interface ServiceClient {
   } & {
     [name: string]: InvokeFn;
   };
-  ref: IService;
+  item: IService;
 }
 
 export interface ServiceRequestClient {
   request: Request;
   invoke: InvokeFn;
-  ref: IRequest;
+  item: IRequest;
 }
