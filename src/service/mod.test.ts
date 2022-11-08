@@ -4,12 +4,13 @@ import {
   assertExists,
 } from "https://deno.land/std@0.97.0/testing/asserts.ts";
 import { Netzo } from "../../mod.ts";
+import { IService } from "./types.ts";
 
 const { API_KEY } = config();
 
 const SERVICE_ID_JSONPLACEHOLDER = "63691099f51b1100ea1148d6";
 
-const SERVICE = {
+const SERVICE: IService = {
   "_id": "63691099f51b1100ea1148d6",
   "_type": "service",
   "workspaceId": "62b451dcebcf605330f2f98a",

@@ -1,5 +1,5 @@
 import { ClientBuilder } from "./fetch/types.ts";
-import { ServiceClient } from "./service/types.ts";
+import { IService, ServiceClient } from "./service/types.ts";
 
 export type NetzoSDK = (options: NetzoOptions) => NetzoSDKInstance;
 
@@ -12,6 +12,6 @@ export interface NetzoSDKInstance {
   api: ClientBuilder;
   baseURL: string;
   getApiKey: () => string;
-  service: (_id: string) => Promise<ServiceClient>;
+  service: (service: string | IService) => Promise<ServiceClient>;
   createFetch: (options: NetzoOptions) => ClientBuilder;
 }
