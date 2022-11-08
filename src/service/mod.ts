@@ -6,7 +6,7 @@ import {
   ServiceClient,
   ServiceRequestClient,
 } from "./types.ts";
-import { $fetch } from "https://esm.sh/ohmyfetch@0.4.18";
+import { $fetch } from "https://esm.sh/ohmyfetch@0.4.19";
 import replace from "https://esm.sh/object-replace-mustache@1.0.2";
 import { deepMerge } from "https://deno.land/std@0.157.0/collections/deep_merge.ts";
 import { importFromStringByName } from "./utils.ts";
