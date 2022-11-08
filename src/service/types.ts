@@ -29,9 +29,9 @@ export interface IRequest {
   name: string;
   description: string;
   ref?: {
-    _id: string
-    _type: 'service'
-  }
+    _id: string;
+    _type: "service";
+  };
   base?: IRequestBase;
   method: "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
   url: string;

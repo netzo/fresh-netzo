@@ -29,8 +29,8 @@ const createServiceRequest = (item: IRequest): ServiceRequestClient => {
   });
 
   const invoke = async () => {
-    const baseHooks = await importFromStringByName(base?.hooks)
-    const requestHooks = await importFromStringByName(hooks)
+    const baseHooks = await importFromStringByName(base?.hooks);
+    const requestHooks = await importFromStringByName(hooks);
 
     const response = await $fetch.raw(request, {
       method,
@@ -61,7 +61,7 @@ const createServiceRequest = (item: IRequest): ServiceRequestClient => {
 
 export const createService = (api: ClientBuilder) => {
   return async (ref: string | IService): Promise<ServiceClient> => {
-    const item: IService = typeof ref === 'string'
+    const item: IService = typeof ref === "string"
       ? await api.services[ref].get<IService>()
       : ref;
     const client = createFetch(item.base);
