@@ -28,6 +28,11 @@ export interface IRequest {
   access: { level: "private" | "public" };
   name: string;
   description: string;
+  ref?: {
+    _id: string
+    _type: 'service'
+  }
+  base?: IRequestBase;
   method: "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
   url: string;
   params?: Record<string, string>;
@@ -35,17 +40,7 @@ export interface IRequest {
   headers?: Record<string, string>;
   body?: string;
   variables?: Record<string, string>;
-  hooks?: {
-    onRequest?: string;
-    onRequestError?: string;
-    onResponse?: string;
-    onResponseError?: string;
-  };
-  ref: {
-    _id?: string;
-    _type?: "service" | "project";
-    base?: IRequestBase; // populated at runtime
-  };
+  hooks?: string;
   [key: string | symbol]: unknown; // required by deepMerge
 }
 
@@ -54,12 +49,7 @@ export interface IRequestBase {
   authorization?: Authorization;
   headers?: Record<string, string>;
   variables?: Record<string, unknown>;
-  hooks?: {
-    onRequest?: string;
-    onRequestError?: string;
-    onResponse?: string;
-    onResponseError?: string;
-  };
+  hooks?: string;
   [key: string | symbol]: unknown; // required by deepMerge
 }
 
