@@ -7,7 +7,7 @@
 <h1 align="center">Netzo SDK</h1>
 
 <p align="center">
-  Software development kit (SDK) for <a href="https://app.netzo.io" target="_blank">Netzo</a>, the open Web platform to unify IoT devices, applications and services.
+  Software development kit (SDK) for <a href="https://app.netzo.io" target="_blank">Netzo</a>, the open platform to instantly deploy JavaScript and TypeScript to URL endpoints, connect essential APIs, automate business processes and build internal tools faster, without managing servers.
 </p>
 
 <div align="center">
