@@ -9,7 +9,7 @@ import {
 import { $fetch } from "https://esm.sh/ohmyfetch@0.4.19";
 import replace from "https://esm.sh/object-replace-mustache@1.0.2";
 import { deepMerge } from "https://deno.land/std@0.157.0/collections/deep_merge.ts";
-import { importFromStringByName } from "./utils.ts";
+import { importFromStringByName, resolveURL } from "./utils.ts";
 
 const createServiceRequest = (item: IRequest): ServiceRequestClient => {
   // [variables] adds support for templated options via {{•}} syntax
@@ -18,9 +18,7 @@ const createServiceRequest = (item: IRequest): ServiceRequestClient => {
     item,
     variables,
   );
-  const href = base?.baseURL
-    ? new URL(url, base.baseURL).href
-    : new URL(url).href;
+  const href = resolveURL(url, base?.baseURL).href; // preserves pathname of baseURL
 
   const request = new Request(href, {
     method: method.toUpperCase(),
