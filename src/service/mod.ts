@@ -8,17 +8,20 @@ import {
 } from "./types.ts";
 import { $fetch } from "https://esm.sh/ohmyfetch@0.4.19";
 import replace from "https://esm.sh/object-replace-mustache@1.0.2";
+import { render } from "https://deno.land/x/mustache_ts@v0.4.1.1/mustache.ts";
 import { deepMerge } from "https://deno.land/std@0.157.0/collections/deep_merge.ts";
 import { importFromStringByName, resolveURL } from "./utils.ts";
 
 const createServiceRequest = (item: IRequest): ServiceRequestClient => {
   // [variables] adds support for templated options via {{•}} syntax
   const { variables = {} } = item;
-  const { base, url, method, headers, body, hooks } = replace(
-    item,
-    variables,
-  );
-  const href = resolveURL(url, base?.baseURL).href; // preserves pathname of baseURL
+  const { base, method, headers, body, hooks } = replace(item, variables);
+  // object-replace-mustache does not render templated
+  // strings with prefix or suffix e.g. 'https://...{{•}}...'
+  // so we need to render strings individually with mustache
+  const url = render(item.url, variables);
+  const baseURL = base?.baseURL ? render(base.baseURL, variables) : undefined;
+  const href = resolveURL(url, baseURL).href; // preserves pathname of baseURL
 
   const request = new Request(href, {
     method: method.toUpperCase(),
