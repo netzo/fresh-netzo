@@ -6,24 +6,29 @@ export interface IService {
   _type: "service";
   workspaceId: string;
   access: { level: "private" | "public" };
+  item: {
+    uid: string;
+    version: string;
+    _type: "item";
+  };
   name: string;
   description: string;
   labels: string[];
   stars: number;
   display: { imageUrl: string };
   base: IRequestBase;
-  [key: string | symbol]: unknown; // required by deepMerge
+  updatedAt: string;
+  createdAt: string;
 }
 
 export interface IRequestBase {
   baseURL?: string; // ignored if undefined or if url is absolute
-  params?: Record<string, string>;
   authorization?: Authorization;
+  query?: Record<string, string>;
   headers?: Record<string, string>;
   body?: string;
   variables?: Record<string, string>;
   hooks?: string;
-  [key: string | symbol]: unknown; // required by deepMerge
 }
 
 export interface ServiceClient {

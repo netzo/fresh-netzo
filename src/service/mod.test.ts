@@ -16,8 +16,9 @@ const SERVICE: IService = {
     "level": "private",
   },
   "item": {
-    "_type": "item",
+    "uid": "service-http-jsonplaceholder",
     "version": "1.0.0",
+    "_type": "item",
   },
   "name": "TESTING",
   "description": "",
@@ -33,7 +34,6 @@ const SERVICE: IService = {
     },
     "hooks":
       "export default {\n  onRequest: async ({ request, options }) => {},\n  onRequestError: async ({ request, options, error }) => {},\n  onResponse: async ({ request, options, response }) => {},\n  onResponseError: async ({ request, options, response }) => {},\n}",
-    "_id": "63691099f51b1100ea1148d5",
   },
   "updatedAt": "2022-11-07T23:05:16.831Z",
   "createdAt": "2022-11-07T14:05:13.501Z",

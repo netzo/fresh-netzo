@@ -27,6 +27,50 @@ Refer to the
 [Netzo documentation](https://netzo.io/docs/getting-started/introduction) for
 more details.
 
+## Installation
+
+### Deno
+
+```ts
+import { Netzo } from "https://deno.land/x/netzo/mod.ts";
+```
+
+### Node
+
+```bash
+npm install @netzoio/sdk
+```
+
+### Browser
+
+```html
+<script type="module">
+  import * as NetzoSDK from 'https://esm.sh/@netzoio/sdk?bundle'
+  window.NetzoSDK = NetzoSDK
+</script>
+```
+
+## Usage
+
+```ts
+const netzo = Netzo({ apiKey: NETZO_API_KEY });
+
+// api:
+const services = await netzo.api.services.get();
+
+// request:
+const request = netzo.request({ url: "https://jsonplaceholder.typicode.com/todos" });
+const todos = request.invoke();
+
+// service:
+const service = await netzo.service(SERVICE_ID);
+const users = service.users.get();
+
+// createClient:
+const client = netzo.createClient({ baseURL: "https://jsonplaceholder.typicode.com" });
+const todos = await client.todos.get();
+```
+
 ## Project Structure
 
 ```

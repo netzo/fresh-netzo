@@ -1,12 +1,13 @@
 import type { NetzoSDK } from "./types.ts";
 import { createClient } from "./client/mod.ts";
+import { createRequest } from "./request/mod.ts";
 import { createService } from "./service/mod.ts";
 
 /**
  * Constructor function for the Netzo SDK.
  *
  * This is the main entry point for the Netzo SDK. It is used to create
- * a new instance of the SDK. It handles authentication internaly.
+ * a new instance of the SDK. It handles authentication internally.
  *
  * @example const netzo = new Netzo({ apiKey: Deno.env.get('API_KEY) })
  *
@@ -24,6 +25,7 @@ export const Netzo: NetzoSDK = (options) => {
     api,
     baseURL,
     getApiKey: () => apiKey,
+    request: createRequest(api),
     service: createService(api),
     createClient,
   };
