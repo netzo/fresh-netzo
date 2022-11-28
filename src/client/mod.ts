@@ -1,4 +1,4 @@
-import { $fetch, FetchOptions } from "https://esm.sh/ofetch@1.0.0";
+import { ofetch, FetchOptions } from "https://esm.sh/ofetch@1.0.0";
 import { QueryObject, resolveURL, withQuery } from "https://esm.sh/ufo@0.8.5";
 import type {
   ClientBuilder,
@@ -17,7 +17,7 @@ const payloadMethods: ReadonlyArray<string> = [
 /**
  * Minimal, type-safe REST client using JS proxies
  */
-export function createFetch<R extends ResponseType = "json">(
+export function createClient<R extends ResponseType = "json">(
   defaultOptions: Omit<FetchOptions<R>, "method"> = {},
 ): ClientBuilder {
   // Callable internal target required to use `apply` on it
@@ -49,7 +49,7 @@ export function createFetch<R extends ResponseType = "json">(
 
           options.method = method;
 
-          return $fetch<T, R>(
+          return ofetch<T, R>(
             url,
             {
               ...defaultOptions,

@@ -1,4 +1,4 @@
-import { ClientBuilder } from "../fetch/types.ts";
+import { ClientBuilder } from "../client/types.ts";
 import { Authorization } from "../utils/auth/types.ts";
 
 export interface IService {

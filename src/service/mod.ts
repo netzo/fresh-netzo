@@ -1,5 +1,5 @@
-import { createFetch } from "../fetch/mod.ts";
-import { ClientBuilder } from "../fetch/types.ts";
+import { createClient } from "../client/mod.ts";
+import { ClientBuilder } from "../client/types.ts";
 import { IService, ServiceClient } from "./types.ts";
 import { type FetchOptions } from "https://esm.sh/ofetch@1.0.0";
 import replace from "https://esm.sh/object-replace-mustache@1.0.2";
@@ -23,7 +23,7 @@ export const createService = (api: ClientBuilder) => {
     const hooks = await importFromStringByName(base?.hooks);
     // TODO: [authorization] inject handlers for base.authorization in hooks
 
-    const client = createFetch({
+    const client = createClient({
       baseURL,
       headers,
       body,

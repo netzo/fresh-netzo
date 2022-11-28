@@ -1,5 +1,5 @@
 import type { NetzoSDK } from "./types.ts";
-import { createFetch } from "./fetch/mod.ts";
+import { createClient } from "./client/mod.ts";
 import { createService } from "./service/mod.ts";
 
 /**
@@ -18,13 +18,13 @@ import { createService } from "./service/mod.ts";
 export const Netzo: NetzoSDK = (options) => {
   const { apiKey, baseURL = "https://api.netzo.io" } = options;
 
-  const api = createFetch({ baseURL, headers: { "x-api-key": apiKey } });
+  const api = createClient({ baseURL, headers: { "x-api-key": apiKey } });
 
   return {
     api,
     baseURL,
     getApiKey: () => apiKey,
     service: createService(api),
-    createFetch,
+    createClient,
   };
 };
