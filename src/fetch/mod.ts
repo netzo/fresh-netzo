@@ -1,4 +1,4 @@
-import { $fetch, FetchOptions } from "https://esm.sh/ohmyfetch@0.4.19";
+import { $fetch, FetchOptions } from "https://esm.sh/ofetch@1.0.0";
 import { QueryObject, resolveURL, withQuery } from "https://esm.sh/ufo@0.8.5";
 import type {
   ClientBuilder,
@@ -21,7 +21,7 @@ export function createFetch<R extends ResponseType = "json">(
   defaultOptions: Omit<FetchOptions<R>, "method"> = {},
 ): ClientBuilder {
   // Callable internal target required to use `apply` on it
-  const internalTarget = (() => {}) as ClientBuilder;
+  const internalTarget = (() => { }) as ClientBuilder;
 
   function p(url: string): ClientBuilder {
     return new Proxy(internalTarget, {

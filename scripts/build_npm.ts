@@ -43,9 +43,9 @@ await build({
       "npm": ">=7.10.0",
     },
     mappings: {
-      "https://esm.sh/ohmyfetch@0.4.19": {
-        name: "ohmyfetch",
-        version: "^0.4.19",
+      "https://esm.sh/ofetch@1.0.0": {
+        name: "ofetch",
+        version: "^1.0.0",
       },
     },
   },
