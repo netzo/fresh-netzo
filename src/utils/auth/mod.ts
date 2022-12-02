@@ -1,10 +1,19 @@
 import { FetchContext } from "https://esm.sh/ofetch@1.0.0";
 import { Authorization } from "./types.ts";
+import { getToken } from "./oauth2/mod.ts";
 
-export const auth = (
+/**
+ * Auth hook to mutate context based on authorization.type
+ *
+ * @see https://gomakethings.com/using-oauth-with-fetch-in-vanilla-js/
+ *
+ * @param authorization {Authorization} - the authorization object containing the type its corresponding options
+ * @param context {FetchContext} - the context object to mutate ({ request, options })
+ */
+export const auth = async (
   authorization: Authorization = { type: "none" },
-  context: FetchContext,
-): Promise<void> | void => {
+  { request, options }: FetchContext,
+) => {
   const query = {} as Record<string, string>;
   const headers = {} as Record<string, string>;
 
@@ -20,12 +29,11 @@ export const auth = (
     if (In === "query") query[key] = value;
     if (In === "header") headers[key] = value;
   } else if (authorization.type === "oauth2") {
-    const { clientId, clientSecret, authorizationUri, accessTokenUri, redirectUri, scopes } = authorization;
-    // set headers from oauth2
-    const token = btoa(`${clientId}:${clientSecret}`); // TODO: get token from oauth2
-    headers.Authorization = `Bearer ${token}`;
+    const { headerPrefix = "Bearer" } = authorization;
+    const { token_type, access_token } = await getToken(authorization);
+    headers.Authorization = `${token_type || headerPrefix} ${access_token}`;
   }
 
-  context.options.query = { ...context.options.query, ...query };
-  context.options.headers = { ...context.options.headers, ...headers };
+  options.query = { ...options.query, ...query };
+  options.headers = { ...options.headers, ...headers };
 };

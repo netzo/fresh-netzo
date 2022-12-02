@@ -3,7 +3,6 @@ import { ClientBuilder } from "../client/types.ts";
 import { IService, ServiceClient } from "./types.ts";
 import replace from "https://esm.sh/object-replace-mustache@1.0.2";
 import { render } from "https://deno.land/x/mustache_ts@v0.4.1.1/mustache.ts";
-import { importFromStringByName } from "../utils/mod.ts";
 import { auth } from "../utils/auth/mod.ts";
 
 export const createService = (api: ClientBuilder) => {
@@ -13,16 +12,11 @@ export const createService = (api: ClientBuilder) => {
       : ref;
 
     // [variables] adds support for templated options via {{•}} syntax
-    let { baseURL, body, hooks, variables = {}, ...base } = item.base;
+    let { baseURL, body, variables = {}, ...base } = item.base;
     const { authorization, query, headers } = replace(base, variables);
 
     // [baseURL] render templated string e.g. 'https://...{{•}}...'
     baseURL = baseURL ? render(baseURL, variables) : undefined;
-
-    // [hooks] import hooks from string
-    const baseHooks = await importFromStringByName(hooks);
-
-    // TODO: [authorization] inject handlers for base.authorization in hooks
 
     const client = createClient({
       baseURL,
@@ -33,17 +27,10 @@ export const createService = (api: ClientBuilder) => {
       async onRequest(ctx) {
         // [authorization] inject handlers for base.authorization in hooks
         await auth(authorization, ctx);
-        await baseHooks?.onRequest?.(ctx);
       },
-      async onRequestError(ctx) {
-        await baseHooks?.onRequestError?.(ctx);
-      },
-      async onResponse(ctx) {
-        await baseHooks?.onResponse?.(ctx);
-      },
-      async onResponseError(ctx) {
-        await baseHooks?.onResponseError?.(ctx);
-      },
+      // async onRequestError(ctx) {},
+      // async onResponse(ctx) {},
+      // async onResponseError(ctx) {},
     });
 
     // NOTE: cannot return client directly like "return client"

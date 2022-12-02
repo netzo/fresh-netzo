@@ -28,7 +28,6 @@ export interface IRequestBase {
   headers?: Record<string, string>;
   body?: string;
   variables?: Record<string, string>;
-  hooks?: string;
 }
 
 export interface ServiceClient {

@@ -6,7 +6,7 @@ import {
 import { Netzo } from "../../mod.ts";
 import { IRequest } from "./types.ts";
 
-// const { API_KEY } = config();
+const { API_KEY } = config();
 
 const REQUEST: IRequest = {
   "method": "GET",
@@ -32,11 +32,31 @@ const REQUEST_WITH_BASE: IRequest = {
   "variables": {},
   base: {
     "baseURL": "https://jsonplaceholder.typicode.com",
-  }
+  },
+};
+
+const REQUEST_WITH_OAUTH2: IRequest = {
+  "method": "GET",
+  "url": "https://api.petfinder.com/v2/animals",
+  "authorization": {
+    "type": "oauth2",
+    "grantType": "client_credentials",
+    headerPrefix: "Bearer",
+    "authorizationUri": "https://api.petfinder.com/v2/oauth2/token",
+    "clientId": "tKtsbutxQg0h0ExqpVqlCcXc0effHX93uM53XhzlTaP37pdKbX",
+    "clientSecret": "CQC9xZ9nxelVSw7JCUeeGltviuNhyVhkzZ49tTHb",
+    "scope": "",
+  },
+  "query": {
+    "organization": "RI77",
+  },
+  "headers": {},
+  "body": "",
+  "variables": {},
 };
 
 Deno.test("netzo.request", async (t) => {
-  const netzo = Netzo({ apiKey: '' });
+  const netzo = Netzo({ apiKey: "" });
   const request = netzo.request(REQUEST);
 
   await t.step("request", () => {
@@ -56,11 +76,6 @@ Deno.test("netzo.request", async (t) => {
     assertEquals(todos?.length, 200);
   });
 
-  await t.step("request.invoke({ userId: 1 })", async () => {
-    const todosQuery = await request.invoke({ userId: 1 });
-    assertEquals(todosQuery?.length, 20);
-  });
-
   await t.step("request.invoke({ completed: false })", async () => {
     const todosQuery = await request.invoke({ completed: false });
     assertEquals(todosQuery?.length, 110);
@@ -68,33 +83,34 @@ Deno.test("netzo.request", async (t) => {
 });
 
 Deno.test("netzo.requestWithBase", async (t) => {
-  const netzo = Netzo({ apiKey: '' });
-  const requestWithBase = netzo.request(REQUEST);
-
-  await t.step("requestWithBase", () => {
-    assertExists(requestWithBase);
-    assertExists(requestWithBase.method);
-    assertExists(requestWithBase.url);
-    assertExists(requestWithBase.authorization);
-    assertExists(requestWithBase.query);
-    assertExists(requestWithBase.headers);
-    assertExists(requestWithBase.body);
-    assertExists(requestWithBase.variables);
-    assertExists(requestWithBase.invoke);
-  });
+  const netzo = Netzo({ apiKey: "" });
+  const requestWithBase = netzo.request(REQUEST_WITH_BASE);
 
   await t.step("requestWithBase.invoke()", async () => {
     const todos = await requestWithBase.invoke();
     assertEquals(todos?.length, 200);
   });
 
-  await t.step("requestWithBase.invoke({ userId: 1 })", async () => {
-    const todosQuery = await requestWithBase.invoke({ userId: 1 });
-    assertEquals(todosQuery?.length, 20);
-  });
-
   await t.step("requestWithBase.invoke({ completed: false })", async () => {
     const todosQuery = await requestWithBase.invoke({ completed: false });
     assertEquals(todosQuery?.length, 110);
   });
+});
+
+Deno.test("netzo.requestWithOauth2", async (t) => {
+  const netzo = Netzo({ apiKey: "" });
+  const requestWithOauth2 = netzo.request(REQUEST_WITH_OAUTH2);
+
+  await t.step("requestWithOauth2.invoke()", async () => {
+    const results = await requestWithOauth2.invoke();
+    assertExists(results.animals);
+  });
+
+  await t.step(
+    "requestWithOauth2.invoke({ status: 'adoptable' })",
+    async () => {
+      const results = await requestWithOauth2.invoke({ status: "adoptable" });
+      assertExists(results.animals);
+    },
+  );
 });

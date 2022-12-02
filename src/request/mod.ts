@@ -4,14 +4,14 @@ import replace from "https://esm.sh/object-replace-mustache@1.0.2";
 import { render } from "https://deno.land/x/mustache_ts@v0.4.1.1/mustache.ts";
 import { deepMerge } from "https://deno.land/std@0.157.0/collections/deep_merge.ts";
 import { $fetch } from "https://esm.sh/v99/ofetch@1.0.0/dist/index";
-import { importFromStringByName, resolveURL } from "../utils/mod.ts";
+import { resolveURL } from "../utils/mod.ts";
 import { auth } from "../utils/auth/mod.ts";
 
 export const createRequest = (_api: ClientBuilder) => {
   return (request: IRequest): RequestClient => {
     const invoke: InvokeFn = async (data, options = {}) => {
       // [variables] adds support for templated options via {{•}} syntax
-      let { method, url, body, hooks, variables = {}, ...rest } = deepMerge(
+      let { method, url, body, variables = {}, ...rest } = deepMerge(
         request,
         options,
       ) as IRequest;
@@ -28,10 +28,6 @@ export const createRequest = (_api: ClientBuilder) => {
       method = method.toUpperCase() as IRequest["method"];
       if (method === "GET") query = data as Record<string, string>;
 
-      // [hooks] import hooks from string
-      const baseHooks = await importFromStringByName(base?.hooks);
-      const requestHooks = await importFromStringByName(hooks);
-
       const response = await $fetch.raw(href, {
         method,
         query,
@@ -40,21 +36,10 @@ export const createRequest = (_api: ClientBuilder) => {
         async onRequest(ctx) {
           // [authorization] inject handlers for base.authorization in hooks
           await auth(authorization, ctx);
-          await baseHooks?.onRequest?.(ctx);
-          await requestHooks?.onRequest?.(ctx);
         },
-        async onRequestError(ctx) {
-          await baseHooks?.onRequestError?.(ctx);
-          await requestHooks?.onRequestError?.(ctx);
-        },
-        async onResponse(ctx) {
-          await baseHooks?.onResponse?.(ctx);
-          await requestHooks?.onResponse?.(ctx);
-        },
-        async onResponseError(ctx) {
-          await baseHooks?.onResponseError?.(ctx);
-          await requestHooks?.onResponseError?.(ctx);
-        },
+        // async onRequestError(ctx) {},
+        // async onResponse(ctx) {},
+        // async onResponseError(ctx) {},
       });
       return response._data;
     };

@@ -11,7 +11,6 @@ export interface IRequest {
   headers?: Record<string, string>;
   body?: string;
   variables?: Record<string, string>;
-  hooks?: string;
   [key: string | symbol]: unknown; // required for `deepMerge` to work
 }
 

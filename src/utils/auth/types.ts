@@ -20,15 +20,58 @@ export interface AuthorizationApiKey {
   value: string;
 }
 
-export interface AuthorizationOAuth2 {
+export interface AuthorizationOAuth2ClientCredentials {
   type: "oauth2";
+  grantType: "client_credentials";
+  headerPrefix: "Bearer" | string;
+  authorizationUri: string;
   clientId: string;
   clientSecret: string;
+  scope?: string;
+}
+
+export interface AuthorizationOAuth2PasswordCredentials {
+  type: "oauth2";
+  grantType: "password_credentials";
+  headerPrefix: "Bearer" | string;
+  accessTokenUri: string;
+  clientId: string;
+  clientSecret: string;
+  username: string;
+  password: string;
+  scope?: string;
+}
+
+export interface AuthorizationOAuth2Implicit {
+  type: "oauth2";
+  grantType: "implicit";
+  headerPrefix: "Bearer" | string;
+  callbackUri: string;
+  authorizationUri: string;
+  clientId: string;
+  clientSecret: string;
+  scope?: string;
+  state: string;
+}
+
+export interface AuthorizationOAuth2AuthorizationCode {
+  type: "oauth2";
+  grantType: "authorization_code";
+  headerPrefix: "Bearer" | string;
+  callbackUri: string;
   authorizationUri: string;
   accessTokenUri: string;
-  redirectUri: string;
-  scopes: string[];
+  clientId: string;
+  clientSecret: string;
+  scope?: string;
+  state: string;
 }
+
+export type AuthorizationOAuth2 =
+  | AuthorizationOAuth2ClientCredentials
+  | AuthorizationOAuth2PasswordCredentials
+  | AuthorizationOAuth2Implicit
+  | AuthorizationOAuth2AuthorizationCode;
 
 export type Authorization =
   | AuthorizationNone

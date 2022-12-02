@@ -32,8 +32,6 @@ const SERVICE: IService = {
     "authorization": {
       "type": "none",
     },
-    "hooks":
-      "export default {\n  onRequest: async ({ request, options }) => {},\n  onRequestError: async ({ request, options, error }) => {},\n  onResponse: async ({ request, options, response }) => {},\n  onResponseError: async ({ request, options, response }) => {},\n}",
   },
   "updatedAt": "2022-11-07T23:05:16.831Z",
   "createdAt": "2022-11-07T14:05:13.501Z",

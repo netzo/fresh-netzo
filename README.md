@@ -59,7 +59,9 @@ const netzo = Netzo({ apiKey: NETZO_API_KEY });
 const services = await netzo.api.services.get();
 
 // request:
-const request = netzo.request({ url: "https://jsonplaceholder.typicode.com/todos" });
+const request = netzo.request({
+  url: "https://jsonplaceholder.typicode.com/todos",
+});
 const todos = request.invoke();
 
 // service:
@@ -67,7 +69,9 @@ const service = await netzo.service(SERVICE_ID);
 const users = service.users.get();
 
 // createClient:
-const client = netzo.createClient({ baseURL: "https://jsonplaceholder.typicode.com" });
+const client = netzo.createClient({
+  baseURL: "https://jsonplaceholder.typicode.com",
+});
 const todos = await client.todos.get();
 ```
 
