@@ -11,21 +11,21 @@ export const createRequest = (_api: ClientBuilder) => {
   return (request: IRequest): RequestClient => {
     const invoke: InvokeFn = async (data, options = {}) => {
       // [variables] adds support for templated options via {{•}} syntax
-      let { method, url, body, variables = {}, ...rest } = deepMerge(
+      const { method = "GET", body, variables = {}, ...rest } = deepMerge(
         request,
         options,
       ) as IRequest;
-      let { base, authorization, query, headers } = replace(rest, variables);
+      let { baseURL, url, authorization, query, headers } = replace(
+        rest,
+        variables,
+      );
 
-      // [url] render templated string e.g. 'https://...{{•}}...'
-      url = render(url, variables);
-      const baseURL = base?.baseURL
-        ? render(base.baseURL, variables)
-        : undefined;
-      const href = resolveURL(url, baseURL).href; // preserves pathname of baseURL
+      // [url] render templated string e.g. 'https://...{{•}}...' preserving baseURL pathname
+      const { href } = baseURL
+        ? resolveURL(render(url!, variables), render(baseURL, variables))
+        : resolveURL(render(url!, variables));
 
       // [method] ensure validity of HTTP method
-      method = method.toUpperCase() as IRequest["method"];
       if (method === "GET") query = data as Record<string, string>;
 
       const response = await $fetch.raw(href, {

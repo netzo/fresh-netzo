@@ -1,4 +1,4 @@
-import { config } from "https://deno.land/x/dotenv@v3.2.0/mod.ts";
+// import { config } from "https://deno.land/x/dotenv@v3.2.0/mod.ts";
 import {
   assertEquals,
   assertExists,
@@ -6,7 +6,7 @@ import {
 import { Netzo } from "../../mod.ts";
 import { IRequest } from "./types.ts";
 
-const { API_KEY } = config();
+// const { API_KEY } = config();
 
 const REQUEST: IRequest = {
   "method": "GET",
@@ -20,8 +20,9 @@ const REQUEST: IRequest = {
   "variables": {},
 };
 
-const REQUEST_WITH_BASE: IRequest = {
+const REQUEST_WITH_BASEURL: IRequest = {
   "method": "GET",
+  "baseURL": "https://jsonplaceholder.typicode.com",
   "url": "/todos",
   "authorization": {
     "type": "none",
@@ -30,9 +31,6 @@ const REQUEST_WITH_BASE: IRequest = {
   "headers": {},
   "body": "",
   "variables": {},
-  base: {
-    "baseURL": "https://jsonplaceholder.typicode.com",
-  },
 };
 
 const REQUEST_WITH_OAUTH2: IRequest = {
@@ -84,7 +82,7 @@ Deno.test("netzo.request", async (t) => {
 
 Deno.test("netzo.requestWithBase", async (t) => {
   const netzo = Netzo({ apiKey: "" });
-  const requestWithBase = netzo.request(REQUEST_WITH_BASE);
+  const requestWithBase = netzo.request(REQUEST_WITH_BASEURL);
 
   await t.step("requestWithBase.invoke()", async () => {
     const todos = await requestWithBase.invoke();

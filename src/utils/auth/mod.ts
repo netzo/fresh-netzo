@@ -12,7 +12,7 @@ import { getToken } from "./oauth2/mod.ts";
  */
 export const auth = async (
   authorization: Authorization = { type: "none" },
-  { request, options }: FetchContext,
+  { request: _, options }: FetchContext,
 ) => {
   const query = {} as Record<string, string>;
   const headers = {} as Record<string, string>;

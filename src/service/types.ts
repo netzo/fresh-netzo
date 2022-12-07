@@ -1,5 +1,5 @@
 import { ClientBuilder } from "../client/types.ts";
-import { Authorization } from "../utils/auth/types.ts";
+import { IRequest } from "../request/types.ts";
 
 export interface IService {
   _id: string;
@@ -16,18 +16,9 @@ export interface IService {
   labels: string[];
   stars: number;
   display: { imageUrl: string };
-  base: IRequestBase;
+  base: IRequest;
   updatedAt: string;
   createdAt: string;
-}
-
-export interface IRequestBase {
-  baseURL?: string; // ignored if undefined or if url is absolute
-  authorization?: Authorization;
-  query?: Record<string, string>;
-  headers?: Record<string, string>;
-  body?: string;
-  variables?: Record<string, string>;
 }
 
 export interface ServiceClient {
