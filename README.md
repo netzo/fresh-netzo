@@ -59,14 +59,14 @@ const netzo = Netzo({ apiKey: NETZO_API_KEY });
 const services = await netzo.api.services.get();
 
 // service: create client by ID (recommended):
-const service = await netzo.service(SERVICE_ID);
-const users = await service.users.get();
+const { client } = await netzo.service(SERVICE_ID);
+const users = await client.users.get();
 
 // service: create client from scratch:
-const service = netzo.service({
+const { client } = netzo.service({
   baseURL: "https://jsonplaceholder.typicode.com",
 });
-const users = await service.users.get();
+const users = await client.users.get();
 ```
 
 ## Project Structure
