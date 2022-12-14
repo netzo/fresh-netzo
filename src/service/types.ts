@@ -34,4 +34,8 @@ export interface IService {
   createdAt: string;
 }
 
-export type { ClientBuilder as ServiceClient };
+// export type { ClientBuilder as ServiceClient };
+export interface ServiceClient {
+  client: ClientBuilder;
+  item: IService;
+}

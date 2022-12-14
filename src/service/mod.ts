@@ -21,11 +21,7 @@ export const createService = (api: ClientBuilder) => {
     switch (item.type) {
       case "http":
       default: {
-        // NOTE: cannot return client directly like "return client"
-        // nor use spread operator like "return { ...client, {...})" nor
-        // "return Object.assign(client, {...})" somehow since client is
-        // a Proxy object so we return Proxy alone without additional properties
-        return createClient({
+        const client = createClient({
           baseURL,
           query,
           headers,
@@ -39,6 +35,12 @@ export const createService = (api: ClientBuilder) => {
           // async onResponse(ctx) {},
           // async onResponseError(ctx) {},
         });
+        // NOTE: cannot return client directly like "return client"
+        // nor use spread operator like "return { ...client, {...})" nor
+        // "return Object.assign(client, {...})" somehow since client is
+        // a Proxy object so we return an object wrapper which also allows
+        // returning additional properties/methods in ServiceClient interface
+        return { client, item };
       }
     }
   };

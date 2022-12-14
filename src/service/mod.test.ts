@@ -40,7 +40,11 @@ const SERVICE: IService = {
 
 Deno.test("netzo.service", { ignore: !API_KEY }, async (t) => {
   const netzo = Netzo({ apiKey: API_KEY });
-  const client = await netzo.service(SERVICE);
+  const { client, item } = await netzo.service(SERVICE);
+
+  await t.step("item", () => {
+    assertExists(item);
+  });
 
   await t.step("client", () => {
     assertExists(client);
