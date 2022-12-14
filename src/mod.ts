@@ -1,6 +1,5 @@
 import type { NetzoSDK } from "./types.ts";
-import { createClient } from "./client/mod.ts";
-import { createRequest } from "./request/mod.ts";
+import { createClient } from "./clients/http/mod.ts";
 import { createService } from "./service/mod.ts";
 
 /**
@@ -25,8 +24,9 @@ export const Netzo: NetzoSDK = (options) => {
     api,
     baseURL,
     getApiKey: () => apiKey,
-    request: createRequest(api),
     service: createService(api),
-    createClient,
+    clients: {
+      http: { createClient },
+    },
   };
 };

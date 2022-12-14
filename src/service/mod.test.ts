@@ -15,6 +15,7 @@ const SERVICE: IService = {
   "access": {
     "level": "private",
   },
+  "type": "http",
   "item": {
     "uid": "service-http-jsonplaceholder",
     "version": "1.0.0",
@@ -39,37 +40,34 @@ const SERVICE: IService = {
 
 Deno.test("netzo.service", { ignore: !API_KEY }, async (t) => {
   const netzo = Netzo({ apiKey: API_KEY });
-  const service = await netzo.service(SERVICE);
+  const client = await netzo.service(SERVICE);
 
-  await t.step("service", () => {
-    assertExists(service);
-    assertExists(service.client);
-    assertExists(service.item);
-    assertEquals(service.item._id, "63691099f51b1100ea1148d6");
+  await t.step("client", () => {
+    assertExists(client);
   });
 
-  await t.step("service.client.todos.get()", async () => {
-    const todos = await service.client.todos.get();
+  await t.step("client.todos.get()", async () => {
+    const todos = await client.todos.get();
     assertEquals(todos?.length, 200);
   });
 
-  await t.step("service.client.todos.get({ userId: 1 })", async () => {
-    const todosQuery = await service.client.todos.get({ userId: 1 });
+  await t.step("client.todos.get({ userId: 1 })", async () => {
+    const todosQuery = await client.todos.get({ userId: 1 });
     assertEquals(todosQuery?.length, 20);
   });
 
-  await t.step("service.client.todos[1].get()", async () => {
-    const todo = await service.client.todos[1].get();
+  await t.step("client.todos[1].get()", async () => {
+    const todo = await client.todos[1].get();
     assertEquals(todo?.id, 1);
   });
 
-  await t.step("service.client.todos[1].get({ userId: 1 })", async () => {
-    const todoQuery = await service.client.todos[1].get({ userId: 1 });
+  await t.step("client.todos[1].get({ userId: 1 })", async () => {
+    const todoQuery = await client.todos[1].get({ userId: 1 });
     assertEquals(todoQuery?.id, 1);
   });
 
-  await t.step("service.client.todos.post()", async () => {
-    const todo = await service.client.todos.post({
+  await t.step("client.todos.post()", async () => {
+    const todo = await client.todos.post({
       userId: 1,
       title: "lorem ipsum",
       completed: true,
@@ -77,8 +75,8 @@ Deno.test("netzo.service", { ignore: !API_KEY }, async (t) => {
     assertExists(todo);
   });
 
-  await t.step("service.client.todos[1].put()", async () => {
-    const todo = await service.client.todos[1].put({
+  await t.step("client.todos[1].put()", async () => {
+    const todo = await client.todos[1].put({
       userId: 1,
       id: 1,
       title: "lorem ipsum",
@@ -87,13 +85,13 @@ Deno.test("netzo.service", { ignore: !API_KEY }, async (t) => {
     assertExists(todo);
   });
 
-  await t.step("service.client.todos[1].patch()", async () => {
-    const todo = await service.client.todos[1].patch({ completed: true });
+  await t.step("client.todos[1].patch()", async () => {
+    const todo = await client.todos[1].patch({ completed: true });
     assertExists(todo);
   });
 
-  await t.step("service.client.todos[1].delete()", async () => {
-    const todo = await service.client.todos[1].delete();
+  await t.step("client.todos[1].delete()", async () => {
+    const todo = await client.todos[1].delete();
     assertExists(todo);
   });
 });

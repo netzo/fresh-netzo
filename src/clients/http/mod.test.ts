@@ -5,7 +5,7 @@ import {
 } from "https://deno.land/std@0.97.0/testing/asserts.ts";
 import { createClient } from "./mod.ts";
 
-Deno.test("netzo.client", async (t) => {
+Deno.test("createClient", async (t) => {
   const client = createClient({
     baseURL: "https://jsonplaceholder.typicode.com",
   });

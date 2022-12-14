@@ -1,5 +1,5 @@
-import { createClient } from "../client/mod.ts";
-import { ClientBuilder } from "../client/types.ts";
+import { createClient } from "../clients/http/mod.ts";
+import { ClientBuilder } from "../clients/http/types.ts";
 import { IService, ServiceClient } from "./types.ts";
 import replace from "https://esm.sh/object-replace-mustache@1.0.2";
 import { render } from "https://deno.land/x/mustache_ts@v0.4.1.1/mustache.ts";
@@ -18,26 +18,28 @@ export const createService = (api: ClientBuilder) => {
     // [baseURL] render templated string e.g. 'https://...{{•}}...'
     baseURL = baseURL ? render(baseURL, variables) : undefined;
 
-    const client = createClient({
-      baseURL,
-      query,
-      headers,
-      body,
-      // query,
-      async onRequest(ctx) {
-        // [authorization] inject handlers for base.authorization in hooks
-        await auth(authorization, ctx);
-      },
-      // async onRequestError(ctx) {},
-      // async onResponse(ctx) {},
-      // async onResponseError(ctx) {},
-    });
-
-    // NOTE: cannot return client directly like "return client"
-    // nor use spread operator like "return { ...client, {...})" nor
-    // "return Object.assign(client, {...})" somehow since client is
-    // a Proxy object so we return a new object, which also extension
-    // and prevents naming conflicts between other props and methods
-    return { client, item };
+    switch (item.type) {
+      case "http":
+      default: {
+        // NOTE: cannot return client directly like "return client"
+        // nor use spread operator like "return { ...client, {...})" nor
+        // "return Object.assign(client, {...})" somehow since client is
+        // a Proxy object so we return Proxy alone without additional properties
+        return createClient({
+          baseURL,
+          query,
+          headers,
+          body,
+          // query,
+          async onRequest(ctx) {
+            // [authorization] inject handlers for base.authorization in hooks
+            await auth(authorization, ctx);
+          },
+          // async onRequestError(ctx) {},
+          // async onResponse(ctx) {},
+          // async onResponseError(ctx) {},
+        });
+      }
+    }
   };
 };
