@@ -1,6 +1,6 @@
 import type { NetzoSDK } from "./types.ts";
 import { createClient } from "./clients/http/mod.ts";
-import { createService } from "./service/mod.ts";
+import { createResource } from "./resource/mod.ts";
 
 /**
  * Constructor function for the Netzo SDK.
@@ -24,7 +24,7 @@ export const Netzo: NetzoSDK = (options) => {
     api,
     baseURL,
     getApiKey: () => apiKey,
-    service: createService(api),
+    resource: createResource(api),
     clients: {
       http: { createClient },
     },

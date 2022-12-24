@@ -13,9 +13,9 @@ export interface IRequest {
   [key: string | symbol]: unknown; // required for `deepMerge` to work
 }
 
-export interface IService {
+export interface IResource {
   _id: string;
-  _type: "service";
+  _type: "resource";
   workspaceId: string;
   access: { level: "private" | "public" };
   type: "http";
@@ -34,8 +34,8 @@ export interface IService {
   createdAt: string;
 }
 
-// export type { ClientBuilder as ServiceClient };
-export interface ServiceClient {
+// export type { ClientBuilder as ResourceClient };
+export interface ResourceClient {
   client: ClientBuilder;
-  item: IService;
+  item: IResource;
 }

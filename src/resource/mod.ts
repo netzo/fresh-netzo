@@ -1,14 +1,14 @@
 import { createClient } from "../clients/http/mod.ts";
 import { ClientBuilder } from "../clients/http/types.ts";
-import { IService, ServiceClient } from "./types.ts";
+import { IResource, ResourceClient } from "./types.ts";
 import replace from "https://esm.sh/object-replace-mustache@1.0.2";
 import { render } from "https://deno.land/x/mustache_ts@v0.4.1.1/mustache.ts";
 import { auth } from "../utils/auth/mod.ts";
 
-export const createService = (api: ClientBuilder) => {
-  return async (ref: string | IService): Promise<ServiceClient> => {
-    const item: IService = typeof ref === "string"
-      ? await api.services[ref].get<IService>()
+export const createResource = (api: ClientBuilder) => {
+  return async (ref: string | IResource): Promise<ResourceClient> => {
+    const item: IResource = typeof ref === "string"
+      ? await api.resources[ref].get<IResource>()
       : ref;
 
     // [variables] adds support for templated options via {{•}} syntax
@@ -39,7 +39,7 @@ export const createService = (api: ClientBuilder) => {
         // nor use spread operator like "return { ...client, {...})" nor
         // "return Object.assign(client, {...})" somehow since client is
         // a Proxy object so we return an object wrapper which also allows
-        // returning additional properties/methods in ServiceClient interface
+        // returning additional properties/methods in ResourceClient interface
         return { client, item };
       }
     }

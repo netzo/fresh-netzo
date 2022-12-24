@@ -4,20 +4,21 @@ import {
   assertExists,
 } from "https://deno.land/std@0.97.0/testing/asserts.ts";
 import { Netzo } from "../../mod.ts";
-import { IService } from "./types.ts";
+import { IResource } from "./types.ts";
+import { get } from "https://deno.land/x/lodash_es@v0.0.2/mod.ts";
 
 const { API_KEY } = config();
 
-const SERVICE: IService = {
+const RESOURCE: IResource = {
   "_id": "63691099f51b1100ea1148d6",
-  "_type": "service",
+  "_type": "resource",
   "workspaceId": "62b451dcebcf605330f2f98a",
   "access": {
     "level": "private",
   },
   "type": "http",
   "item": {
-    "uid": "service-http-jsonplaceholder",
+    "uid": "resource-http-jsonplaceholder",
     "version": "1.0.0",
     "_type": "item",
   },
@@ -38,9 +39,9 @@ const SERVICE: IService = {
   "createdAt": "2022-11-07T14:05:13.501Z",
 };
 
-Deno.test("netzo.service", { ignore: !API_KEY }, async (t) => {
+Deno.test("netzo.resource", { ignore: !API_KEY }, async (t) => {
   const netzo = Netzo({ apiKey: API_KEY });
-  const { client, item } = await netzo.service(SERVICE);
+  const { client, item } = await netzo.resource(RESOURCE);
 
   await t.step("item", () => {
     assertExists(item);
@@ -96,6 +97,18 @@ Deno.test("netzo.service", { ignore: !API_KEY }, async (t) => {
 
   await t.step("client.todos[1].delete()", async () => {
     const todo = await client.todos[1].delete();
+    assertExists(todo);
+  });
+
+  await t.step("lodash.get(client, 'todos').get()", async () => {
+    const endpoint = get(client, 'todos');
+    const todo = await endpoint.get();
+    assertExists(todo);
+  });
+
+  await t.step("lodash.get(client, 'todos.get')()", async () => {
+    const endpointFn = get(client, 'todos.get');
+    const todo = await endpointFn();
     assertExists(todo);
   });
 });

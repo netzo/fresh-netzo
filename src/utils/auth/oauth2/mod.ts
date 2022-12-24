@@ -15,7 +15,7 @@ import {
  * authenticates the user, and returns a token. This happens
  * without any user intervention.
  *
- * Relevant for: M2M apps (daemons, back-end services, and CLIs)
+ * Relevant for: M2M apps (daemons, back-end resources, and CLIs)
  *
  * @see https://frontegg.com/blog/oauth-flows
  * @see https://darutk.medium.com/diagrams-and-movies-of-all-the-oauth-2-0-flows-194f3c3ade85

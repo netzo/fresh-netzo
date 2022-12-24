@@ -56,14 +56,14 @@ npm install @netzoio/sdk
 const netzo = Netzo({ apiKey: NETZO_API_KEY });
 
 // api:
-const services = await netzo.api.services.get();
+const resources = await netzo.api.resources.get();
 
-// service: create client by ID (recommended):
-const { client } = await netzo.service(SERVICE_ID);
+// resource: create client by ID (recommended):
+const { client } = await netzo.resource(RESOURCE_ID);
 const users = await client.users.get();
 
-// service: create client from scratch:
-const { client } = netzo.service({
+// resource: create client from scratch:
+const { client } = netzo.resource({
   baseURL: "https://jsonplaceholder.typicode.com",
 });
 const users = await client.users.get();
