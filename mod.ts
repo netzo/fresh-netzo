@@ -1,3 +1,5 @@
+export * from "https://esm.sh/preact@10.10.6?target=deno";
+export * from "https://deno.land/x/sift@0.6.0/mod.ts";
 export * from "./src/mod.ts";
 export * from "./src/types.ts";
 export * from "./src/clients/http/mod.ts";
