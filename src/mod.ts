@@ -2,6 +2,10 @@ import type { NetzoSDK } from "./types.ts";
 import { createClient } from "./clients/http/mod.ts";
 import { createResource } from "./resource/mod.ts";
 
+export * from "https://esm.sh/preact@10.10.6?target=deno";
+export * from "https://deno.land/x/sift@0.6.0/mod.ts";
+export { serveFunction } from "./utils/serve-function/mod.tsx";
+
 /**
  * Constructor function for the Netzo SDK.
  *
