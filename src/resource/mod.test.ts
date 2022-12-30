@@ -101,13 +101,13 @@ Deno.test("netzo.resource", { ignore: !API_KEY }, async (t) => {
   });
 
   await t.step("lodash.get(client, 'todos').get()", async () => {
-    const endpoint = get(client, 'todos');
+    const endpoint = get(client, "todos");
     const todo = await endpoint.get();
     assertExists(todo);
   });
 
   await t.step("lodash.get(client, 'todos.get')()", async () => {
-    const endpointFn = get(client, 'todos.get');
+    const endpointFn = get(client, "todos.get");
     const todo = await endpointFn();
     assertExists(todo);
   });
