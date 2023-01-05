@@ -38,7 +38,7 @@ jobs:
         with:
           draft: true
 
-      # Publish @netzoio/sdk to npm on tag:
+      # Publish @netzo/sdk to npm on tag:
       # Note that the build script always runs even when not publishing.
       # This is to ensure your build and tests pass on each commit.
       # see https://github.com/denoland/dnt#github-actions---npm-publish-on-tag

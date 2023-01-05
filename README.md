@@ -12,7 +12,7 @@
 
 <div align="center">
 
-[![MIT Licensed](https://img.shields.io/github/license/netzoio/plugins)](https://github.com/netzoio/netzo/tree/main/LICENSE)
+[![MIT Licensed](https://img.shields.io/github/license/netzo/plugins)](https://github.com/netzo/netzo/tree/main/LICENSE)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
 [![Discord](https://discord.com/api/guilds/790465167523577887/widget.png)](https://discord.gg/6wQRmrcPXp)
 [![Follow on Twitter](https://img.shields.io/twitter/follow/netzoio.svg?label=follow+netzoio)](https://twitter.com/netzoio)
@@ -38,14 +38,14 @@ import { Netzo } from "https://deno.land/x/netzo/mod.ts";
 ### Node
 
 ```bash
-npm install @netzoio/sdk
+npm install @netzo/sdk
 ```
 
 ### Browser
 
 ```html
 <script type="module">
-  import * as NetzoSDK from 'https://esm.sh/@netzoio/sdk?bundle'
+  import * as NetzoSDK from 'https://esm.sh/@netzo/sdk?bundle'
   window.NetzoSDK = NetzoSDK
 </script>
 ```

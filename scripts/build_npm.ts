@@ -24,17 +24,17 @@ await build({
   },
   package: {
     // package.json properties
-    name: "@netzoio/sdk",
+    name: "@netzo/sdk",
     version: Deno.args[0]?.replace(/^v/, ""), // remove leading v
     description:
       "Software development kit (SDK) for Netzo, the open Web platform to integrate APIs, code automations and build internal apps faster.",
     license: "MIT",
     repository: {
       type: "git",
-      url: "git+https://github.com/netzoio/sdk.git",
+      url: "git+https://github.com/netzo/sdk.git",
     },
     bugs: {
-      url: "https://github.com/netzoio/sdk/issues",
+      url: "https://github.com/netzo/sdk/issues",
     },
     // sets the minimum engine to node v16.0.0 and npm v7.10.0
     // see https://nodejs.org/en/download/releases/

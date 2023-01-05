@@ -30,8 +30,13 @@ export const auth = async (
     if (In === "header") headers[key] = value;
   } else if (authorization.type === "oauth2") {
     const { headerPrefix = "Bearer" } = authorization;
-    const { token_type, access_token } = await getToken(authorization);
-    headers.Authorization = `${token_type || headerPrefix} ${access_token}`;
+    const { token_type = headerPrefix, access_token } = await getToken(
+      authorization,
+    );
+    console.log({ token_type, access_token });
+    headers.Authorization = token_type
+      ? `${token_type} ${access_token}`
+      : access_token;
   }
 
   options.query = { ...options.query, ...query };

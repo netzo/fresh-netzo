@@ -20,19 +20,36 @@ import {
  * @see https://frontegg.com/blog/oauth-flows
  * @see https://darutk.medium.com/diagrams-and-movies-of-all-the-oauth-2-0-flows-194f3c3ade85
  */
+const DEFAULTS = {
+  clientId:
+    "333607581312-m8un366ektgv0agc3q897ld1ep3dmr84.apps.googleusercontent.com",
+  clientSecret: "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",
+  authorizationUri: "https://accounts.google.com/o/oauth2/auth",
+  scope: "https://www.googleapis.com/auth/drive",
+};
 export const getTokenClientCredentialsFlow = async (
-  authorization: AuthorizationOAuth2ClientCredentials,
+  authorization: AuthorizationOAuth2ClientCredentials = DEFAULTS,
 ) => {
   const { clientId, clientSecret, authorizationUri, scope } = authorization;
   const response = await fetch(authorizationUri, {
+    // method: "POST",
+    // headers: {
+    //   "Content-Type": "application/x-www-form-urlencoded",
+    // },
+    // body: new URLSearchParams({
+    //   grant_type: "client_credentials",
+    //   client_id: clientId,
+    //   client_secret: clientSecret,
+    //   ...(scope && { scope }),
+    //   response_type: "code",
+    // }),
     method: "POST",
-    headers: {
+    headers: new Headers({
       "Content-Type": "application/x-www-form-urlencoded",
-    },
+      Authorization: `Basic ${btoa(`${clientId}:${clientSecret}`)}`,
+    }),
     body: new URLSearchParams({
-      grant_type: "client_credentials",
-      client_id: clientId,
-      client_secret: clientSecret,
+      "grant_type": "client_credentials",
       ...(scope && { scope }),
     }),
   });
@@ -105,6 +122,27 @@ export const getTokenAuthorizationCodeFlow = async (
 ) => {
   const { clientId, clientSecret, accessTokenUri, callbackUri, scope } =
     authorization;
+
+  const getAuthorizationCode = async () => {
+    const response = await fetch(accessTokenUri, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: new URLSearchParams({
+        grant_type: "authorization_code",
+        client_id: clientId,
+        client_secret: clientSecret,
+        redirect_uri: callbackUri,
+        response_type: "code",
+        ...(scope && { scope }),
+      }),
+    });
+    const code = response.json();
+    console.log(code);
+    return code;
+  };
+
   const response = await fetch(accessTokenUri, {
     method: "POST",
     headers: {
@@ -116,6 +154,7 @@ export const getTokenAuthorizationCodeFlow = async (
       client_secret: clientSecret,
       redirect_uri: callbackUri,
       ...(scope && { scope }),
+      code: await getAuthorizationCode(),
     }),
   });
   return response.json();
