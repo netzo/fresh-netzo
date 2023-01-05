@@ -20,7 +20,10 @@ import {
  * @see https://frontegg.com/blog/oauth-flows
  * @see https://darutk.medium.com/diagrams-and-movies-of-all-the-oauth-2-0-flows-194f3c3ade85
  */
-const DEFAULTS = {
+const DEFAULTS: AuthorizationOAuth2ClientCredentials = {
+  type: "oauth2",
+  grantType: "client_credentials",
+  headerPrefix: "Bearer",
   clientId:
     "333607581312-m8un366ektgv0agc3q897ld1ep3dmr84.apps.googleusercontent.com",
   clientSecret: "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",
