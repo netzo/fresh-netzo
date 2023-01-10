@@ -29,22 +29,22 @@ export const serveFunction = (fn: Function) => {
 
 // curl --location --request POST 'http://localhost:8000?name=miguel' --header 'Content-Type: application/json' --data-raw '{"age": 12, "male": true}'
 
-function main(
-  boolean: boolean,
-  string: string,
-  number: number,
-  object: object,
-  array: Array<any>,
-  nullValue: null,
-  undefinedValue: undefined,
-): string {
-  return `boolean: ${boolean}
-string: ${string}
-number: ${number}
-object: ${JSON.stringify(object)}
-array: ${JSON.stringify(array)}
-nullValue: ${nullValue}
-undefinedValue: ${undefinedValue}`;
+if (import.meta.main) {
+  serveFunction((
+    boolean: boolean,
+    string: string,
+    number: number,
+    object: object,
+    array: Array<any>,
+    nullValue: null,
+    undefinedValue: undefined,
+  ): string => {
+    return `boolean: ${boolean}
+  string: ${string}
+  number: ${number}
+  object: ${JSON.stringify(object)}
+  array: ${JSON.stringify(array)}
+  nullValue: ${nullValue}
+  undefinedValue: ${undefinedValue}`;
+  });
 }
-
-if (import.meta.main) serveFunction(main);
