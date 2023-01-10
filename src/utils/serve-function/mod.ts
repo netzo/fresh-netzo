@@ -3,18 +3,19 @@ import { handlerGET } from "./get.handler.tsx";
 import { handlerPOST } from "./post.handler.ts";
 
 // simple heuristic to resolve the entrypoint URL depending on the environment
-// FIXME: this is not a good solution and it only works for Netzo when the entrypoint is in the root
+// FIXME: this is not a good solution and it only works for Netzo (when env variable
+// NETZO_PROJECT_ENTRYPOINT_URL is set) and it Deno Deploy (when 'main.ts' is default)
 const getEntrypointURL = (): string => {
   const entrypointURL = Deno.env.get("NETZO_PROJECT_ENTRYPOINT_URL")?.split("/").pop() // in Netzo
-  return entrypointURL ?? 'main.ts'
+  return entrypointURL ?? 'main.ts' // in Deno Deploy
 };
 
 const createHandler = (main: Function) => {
-  const url = getEntrypointURL();
+  const entrypointURL = getEntrypointURL();
   return async (request: Request): Promise<Response> => {
     switch (request.method) {
       case "GET":
-        return await handlerGET(request, url);
+        return await handlerGET(request, entrypointURL);
       case "POST":
         return await handlerPOST(request, main);
       default:
