@@ -3,13 +3,10 @@ import { handlerGET } from "./get.handler.tsx";
 import { handlerPOST } from "./post.handler.ts";
 
 // simple heuristic to resolve the entrypoint URL depending on the environment
+// FIXME: this is not a good solution and it only works for Netzo when the entrypoint is in the root
 const getEntrypointURL = (): string => {
   const entrypointURL = Deno.env.get("NETZO_PROJECT_ENTRYPOINT_URL")?.split("/").pop() // in Netzo
-  const importMetaURL = import.meta.url
-    .replace("file:///src/", "") // in Deno Deploy
-    .replace("file://", "") // locally (e.g. for testing)
-  console.log({ entrypointURL, importMetaURL })
-  return entrypointURL ?? importMetaURL ?? 'main.ts'
+  return entrypointURL ?? 'main.ts'
 };
 
 const createHandler = (main: Function) => {
