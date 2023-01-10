@@ -1,18 +1,24 @@
+const getBodyParams = async (request: Request): Promise<any> => {
+  "application/x-www-form-urlencoded";
+  switch (request.headers.get("content-type")) {
+    case "application/x-www-form-urlencoded": {
+      const formData = await request.formData();
+      return Object.fromEntries(formData.entries());
+    }
+    case "application/json": {
+      return request.json();
+    }
+    default: {
+      return request.text();
+    }
+  }
+};
+
 export const getParams = async (
   request: Request,
 ): Promise<Record<string, any>> => {
-  switch (request.method) {
-    case "GET": {
-      const searchParams = new URLSearchParams(new URL(request.url).search);
-      return Object.fromEntries(searchParams.entries());
-    }
-    case "POST": {
-      const isFormData = request.headers.get("content-type") ===
-        "application/x-www-form-urlencoded";
-      return isFormData ? await request.formData() : await request.json();
-    }
-    default: {
-      throw new Error(`Method ${request.method} not allowed`);
-    }
-  }
+  const url = new URL(request.url);
+  const searchParams = Object.fromEntries(url.searchParams.entries());
+  const bodyParams = await getBodyParams(request);
+  return { ...searchParams, ...bodyParams };
 };

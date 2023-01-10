@@ -1,70 +1,75 @@
 /** @jsx h */
 import { h } from "https://esm.sh/preact@10.5.15";
 import { renderToString } from "https://esm.sh/preact-render-to-string@5.1.19?deps=preact@10.5.15";
-import { TypescriptParser } from "https://esm.sh/typescript-parser@2.6.1";
+import {
+  CallableDeclaration,
+  Declaration,
+  File,
+  TypescriptParser,
+} from "https://esm.sh/typescript-parser@2.6.1";
 import { getParams } from "./utils.ts";
-import { Options } from "./mod.tsx";
 
-const getMainDeclaration = async (
-  parsed: Record<string, any>,
-): Promise<Record<string, any> | undefined> => {
-  return parsed.declarations.find((d) => d.name === "main");
+const getMainDeclaration = (parsed: File): CallableDeclaration | undefined => {
+  return parsed.declarations.find(
+    (d: Declaration) => d.name === "main",
+  ) as CallableDeclaration | undefined;
 };
 
-/* see https://docs.windmill.dev/docs/reference#script-parameters-to-json-schema
-In Deno:
+const getProps = (
+  name: string,
+  type: string,
+  props: Record<string, any>,
+): Record<string, any> => {
+  switch (type) {
+    case "boolean":
+      return { name, placeholder: name, checked: props[name] === "true" };
+    case "string":
+    case "bigint":
+    case "number":
+    default:
+      return { name, placeholder: name, value: props[name] };
+  }
+};
 
-Deno	JSON Schema
-string	string
-object	object
-boolean	boolean
-bigint	int
-number	number
-string[]	string[]
-wmill.Base64	string, encodingFormat: base64
-wmill.Email	string, format: email
-wmill.Sql	string, format: sql
-wmill.Resource<'resource_type'>	object, format: resource-{resource_type}
-*/
+// see https://docs.windmill.dev/docs/reference#script-parameters-to-json-schema
 export const handlerGET = async (
-  { request, code, fn }: Options,
+  request: Request,
+  url: string,
 ): Promise<Response> => {
   const params = await getParams(request);
-  const ctx = { request, env: Deno.env.toObject(), params }; // encapsulate in single ctx object
-  const body = await fn([...Object.values(params), ctx]);
-
+  const code = await Deno.readTextFile(url);
   const parser = new TypescriptParser();
-  const parsed = await parser.parseSource(code);
-  const declaration = getMainDeclaration(parsed);
+  const file = await parser.parseSource(code);
+  const declaration = getMainDeclaration(file);
 
-  const page = (
-    <div>
-      <form
-        method="POST"
-        action="/"
-        style="display: grid; grid-gap: 12px; max-width: fit-content;"
-      >
-        {declaration?.parameters.map((parameter) => {
-          const { name, type, start, end } = parameter;
-          switch (type) {
-            case "string":
-              return <input type="text" name={name} placeholder={name} />;
-            case "bigint":
-            case "number":
-              return <input type="number" name={name} placeholder={name} />;
-            case "boolean":
-              return <input type="checkbox" name={name} placeholder={name} />;
-            default:
-              return <textarea name={name} placeholder={name} />;
-          }
-        })}
-        <button type="submit">Submit</button>
-      </form>
-      <pre>{JSON.stringify(parsed, null, 2)}</pre>
-    </div>
+  const form = (
+    <form
+      method="post"
+      action="/"
+      style="display: grid; grid-gap: 12px; max-width: fit-content;"
+    >
+      {declaration?.parameters?.map((parameter: any) => {
+        const { name, type, start, end } = parameter;
+        const props = getProps(name, type, params);
+        switch (type) {
+          case "boolean":
+            return <input type="checkbox" {...props} />;
+          case "string":
+            return <input type="text" {...props} />;
+          case "bigint":
+          case "number":
+            return <input type="number" {...props} />;
+          case "array":
+          case "object":
+          default:
+            return <textarea {...props} />;
+        }
+      })}
+      <button type="submit">Submit</button>
+    </form>
   );
 
-  const html = renderToString(page);
+  const html = renderToString(form);
   return new Response(html, {
     headers: { "content-type": "text/html" },
   });

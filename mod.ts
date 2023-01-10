@@ -7,3 +7,4 @@ export * from "./src/resource/mod.ts";
 export * from "./src/resource/types.ts";
 export * from "./src/utils/auth/mod.ts";
 export * from "./src/utils/auth/types.ts";
+export * from "./src/utils/serve-function/mod.ts";
