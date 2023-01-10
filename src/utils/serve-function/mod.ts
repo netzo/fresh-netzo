@@ -2,15 +2,18 @@ import { serve } from "https://deno.land/std@0.155.0/http/server.ts";
 import { handlerGET } from "./get.handler.tsx";
 import { handlerPOST } from "./post.handler.ts";
 
+// simple heuristic to resolve the entrypoint URL depending on the environment
+const getEntrypointURL = (): string => {
+  const entrypointURL = Deno.env.get("NETZO_PROJECT_ENTRYPOINT_URL")?.split("/").pop() // in Netzo
+  const importMetaURL = import.meta.url
+    .replace("file:///src/", "") // in Deno Deploy
+    .replace("file://", "") // in the CLI
+    .replace(/https:\/\/api.netzo.io\/projects\/.*\//, ""); // in the Browser
+  return entrypointURL ?? importMetaURL
+};
+
 const createHandler = (main: Function) => {
-  // import.meta.url resolves to "file://src/main.ts", however, we MUST at least
-  // remove the "file://"" prefix, here we also remove the "/src/" prefix (if any)
-  console.log('import.meta.url', import.meta.url)
-  const url = import.meta.url
-    .replace(/https:\/\/api.netzo.io\/projects\/.*\//, "")
-    .replace("file:///src/", "") // if in deno deploy
-    .replace("file://", ""); // else
-  console.log('url', url)
+  const url = getEntrypointURL();
   return async (request: Request): Promise<Response> => {
     switch (request.method) {
       case "GET":
