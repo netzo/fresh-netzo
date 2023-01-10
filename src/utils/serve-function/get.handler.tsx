@@ -38,6 +38,7 @@ export const handlerGET = async (
 ): Promise<Response> => {
   const params = await getParams(request);
   const code = await Deno.readTextFile(url);
+  console.log({ url, code });
   const parser = new TypescriptParser();
   const file = await parser.parseSource(code);
   const declaration = getMainDeclaration(file);

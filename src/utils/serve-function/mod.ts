@@ -7,9 +7,9 @@ const getEntrypointURL = (): string => {
   const entrypointURL = Deno.env.get("NETZO_PROJECT_ENTRYPOINT_URL")?.split("/").pop() // in Netzo
   const importMetaURL = import.meta.url
     .replace("file:///src/", "") // in Deno Deploy
-    .replace("file://", "") // in the CLI
-    .replace(/https:\/\/api.netzo.io\/projects\/.*\//, ""); // in the Browser
-  return entrypointURL ?? importMetaURL
+    .replace("file://", "") // locally (e.g. for testing)
+  console.log({ entrypointURL, importMetaURL })
+  return entrypointURL ?? importMetaURL ?? 'main.ts'
 };
 
 const createHandler = (main: Function) => {
@@ -34,22 +34,24 @@ export const serveFunction = (fn: Function) => {
 
 // curl --location --request POST 'http://localhost:8000?name=miguel' --header 'Content-Type: application/json' --data-raw '{"age": 12, "male": true}'
 
+function main(
+  boolean: boolean,
+  string: string,
+  number: number,
+  object: object,
+  array: Array<any>,
+  nullValue: null,
+  undefinedValue: undefined,
+): string {
+  return `boolean: ${boolean}
+string: ${string}
+number: ${number}
+object: ${JSON.stringify(object)}
+array: ${JSON.stringify(array)}
+nullValue: ${nullValue}
+undefinedValue: ${undefinedValue}`;
+}
+
 if (import.meta.main) {
-  serveFunction((
-    boolean: boolean,
-    string: string,
-    number: number,
-    object: object,
-    array: Array<any>,
-    nullValue: null,
-    undefinedValue: undefined,
-  ): string => {
-    return `boolean: ${boolean}
-  string: ${string}
-  number: ${number}
-  object: ${JSON.stringify(object)}
-  array: ${JSON.stringify(array)}
-  nullValue: ${nullValue}
-  undefinedValue: ${undefinedValue}`;
-  });
+  serveFunction(main);
 }
