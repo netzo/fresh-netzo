@@ -8,7 +8,7 @@ import { handlerPOST } from "./post.handler.ts";
 const getEntrypointURL = (): string => {
   const netzoEntrypointURL = Deno.env.get("NETZO_PROJECT_ENTRYPOINT_URL")?.split("/").pop(); // in Netzo
   const denoDeployEntrypointURL = Deno.env.get("DENO_DEPLOYMENT_ID")?.split("/").pop(); // in Deno Deploy
-  return netzoEntrypointURL ?? denoDeployEntrypointURL ?? "main.ts"; // default
+  return netzoEntrypointURL ?? denoDeployEntrypointURL ?? "mod.ts"; // mod.ts is this file (used for testing)
 };
 
 const createHandler = (main: Function) => {
