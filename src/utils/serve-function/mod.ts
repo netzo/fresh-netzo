@@ -7,7 +7,7 @@ import { handlerPOST } from "./post.handler.ts";
 // NETZO_PROJECT_ENTRYPOINT_URL is set) and it Deno Deploy (when 'main.ts' is default)
 const getEntrypointURL = (): string => {
   const netzoEntrypointURL = Deno.env.get("NETZO_PROJECT_ENTRYPOINT_URL")?.split("/").pop(); // in Netzo
-  const denoDeployEntrypointURL = Deno.env.get("DENO_DEPLOYMENT_ID")?.split("/").pop(); // in Deno Deploy
+  const denoDeployEntrypointURL = Deno.env.get("DENO_DEPLOYMENT_ID") ? "main.ts" : undefined  // in Deno Deploy
   return netzoEntrypointURL ?? denoDeployEntrypointURL ?? "mod.ts"; // mod.ts is this file (used for testing)
 };
 
