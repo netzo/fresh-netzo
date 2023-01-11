@@ -6,8 +6,9 @@ import { handlerPOST } from "./post.handler.ts";
 // FIXME: this is not a good solution and it only works for Netzo (when env variable
 // NETZO_PROJECT_ENTRYPOINT_URL is set) and it Deno Deploy (when 'main.ts' is default)
 const getEntrypointURL = (): string => {
-  const entrypointURL = Deno.env.get("NETZO_PROJECT_ENTRYPOINT_URL")?.split("/").pop() // in Netzo
-  return entrypointURL ?? 'main.ts' // in Deno Deploy
+  const netzoEntrypointURL = Deno.env.get("NETZO_PROJECT_ENTRYPOINT_URL")?.split("/").pop(); // in Netzo
+  const denoDeployEntrypointURL = Deno.env.get("DENO_DEPLOYMENT_ID")?.split("/").pop(); // in Deno Deploy
+  return netzoEntrypointURL ?? denoDeployEntrypointURL ?? "main.ts"; // default
 };
 
 const createHandler = (main: Function) => {
