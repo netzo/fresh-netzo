@@ -42,7 +42,7 @@ export const handlerGET = async (
   const file = await parser.parseSource(code);
   const declaration = getMainDeclaration(file);
 
-  const form = (
+  const Form = () => (
     <form
       method="post"
       action="/"
@@ -69,7 +69,22 @@ export const handlerGET = async (
     </form>
   );
 
-  const html = renderToString(form);
+  const page = (
+    <html>
+      <head>
+        <meta
+          name="viewport"
+          content="width=device-width, height=device-height"
+        />
+        <title>Serve Function | Netzo</title>
+      </head>
+      <body>
+        <Form />
+      </body>
+    </html>
+  );
+
+  const html = renderToString(page);
   return new Response(html, {
     headers: { "content-type": "text/html" },
   });
