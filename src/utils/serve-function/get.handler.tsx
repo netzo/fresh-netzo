@@ -6,7 +6,7 @@ import {
   Declaration,
   File,
   TypescriptParser,
-} from "https://esm.sh/typescript-parser@2.6.1";
+} from "https://esm.sh/typescript-parser@2.6.1?target=deno";
 import { getParams } from "./utils.ts";
 
 const getMainDeclaration = (parsed: File): CallableDeclaration | undefined => {
@@ -38,7 +38,6 @@ export const handlerGET = async (
 ): Promise<Response> => {
   const params = await getParams(request);
   const code = await Deno.readTextFile(url);
-  console.log({ url, code });
   const parser = new TypescriptParser();
   const file = await parser.parseSource(code);
   const declaration = getMainDeclaration(file);

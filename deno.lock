@@ -1002,6 +1002,7 @@
     "https://esm.sh/stable/preact@10.5.15/deno/preact.js": "8a82731dd59043bad7ac581f317b73222aeba6244c56fc0999e2ea11fadb15cc",
     "https://esm.sh/strip-shebang@2.0.0?bundle&dev&sourcemap&pin=v99": "3f67abcb8c8f9b2a73af45ae2a7d67a1502d6ca0ed596572936bda752dd3b3af",
     "https://esm.sh/typescript-parser@2.6.1": "1051887f81835e563189254334fcdc7c641f70a9575c9b396cfc45c9ee6d003f",
+    "https://esm.sh/typescript-parser@2.6.1?target=deno": "1051887f81835e563189254334fcdc7c641f70a9575c9b396cfc45c9ee6d003f",
     "https://esm.sh/ufo@0.8.5": "f3c34af5052d85c637a67ba65620defc9e83db603f82e2da2d9ee1b55b882d07",
     "https://esm.sh/v102/@types/node@16.18.10/path.d.ts": "1b029076a14d9ddab3558221102ca0880852ee20d71c83b9a746d7c714e60d3f",
     "https://esm.sh/v102/buffer-from@1.1.2/deno/buffer-from.js": "d546db492580691fa25f00a4f5300b200136f4abdd101a221ba6930eb541361a",
