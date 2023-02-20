@@ -18,8 +18,8 @@ const getMainDeclaration = (parsed: File): CallableDeclaration | undefined => {
 const getProps = (
   name: string,
   type: string,
-  props: Record<string, any>,
-): Record<string, any> => {
+  props: Record<string, unknown>,
+): Record<string, unknown> => {
   switch (type) {
     case "boolean":
       return { name, placeholder: name, checked: props[name] === "true" };
@@ -48,7 +48,7 @@ export const handlerGET = async (
       action="/"
       style="display: grid; grid-gap: 12px; max-width: fit-content;"
     >
-      {declaration?.parameters?.map((parameter: any) => {
+      {declaration?.parameters?.map((parameter: Record<string, any>) => {
         const { name, type, start, end } = parameter;
         const props = getProps(name, type, params);
         switch (type) {

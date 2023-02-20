@@ -6,9 +6,15 @@ import { handlerPOST } from "./post.handler.ts";
 // FIXME: this is not a good solution and it only works for Netzo (when env variable
 // NETZO_PROJECT_ENTRYPOINT_URL is set) and it Deno Deploy (when 'main.ts' is default)
 const getEntrypointURL = (): string => {
-  const netzoEntrypointURL = Deno.env.get("NETZO_PROJECT_ENTRYPOINT_URL")?.split("/").pop(); // in Netzo
-  const denoDeployEntrypointURL = Deno.env.get("DENO_DEPLOYMENT_ID") ? "main.ts" : undefined  // in Deno Deploy
-  const localEntrypointURL = new URL("mod.ts", import.meta.url).href.replace("file://", ""); // local (for testing)
+  const netzoEntrypointURL = Deno.env.get("NETZO_PROJECT_ENTRYPOINT_URL")
+    ?.split("/").pop(); // in Netzo
+  const denoDeployEntrypointURL = Deno.env.get("DENO_DEPLOYMENT_ID")
+    ? "main.ts"
+    : undefined; // in Deno Deploy
+  const localEntrypointURL = new URL("mod.ts", import.meta.url).href.replace(
+    "file://",
+    "",
+  ); // local (for testing)
   return netzoEntrypointURL ?? denoDeployEntrypointURL ?? localEntrypointURL;
 };
 
@@ -38,8 +44,8 @@ function main(
   boolean: boolean,
   string: string,
   number: number,
-  object: object,
-  array: Array<any>,
+  object: Record<string, unknown>,
+  array: Array<unknown>,
   nullValue: null,
   undefinedValue: undefined,
 ): string {

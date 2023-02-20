@@ -1,8 +1,6 @@
 import { createClient } from "../clients/http/mod.ts";
 import { ClientBuilder } from "../clients/http/types.ts";
 import { IResource, ResourceClient } from "./types.ts";
-import replace from "https://esm.sh/object-replace-mustache@1.0.2";
-import { render } from "https://deno.land/x/mustache_ts@v0.4.1.1/mustache.ts";
 import { auth } from "../utils/auth/mod.ts";
 
 export const createResource = (api: ClientBuilder) => {
@@ -11,12 +9,7 @@ export const createResource = (api: ClientBuilder) => {
       ? await api.resources[ref].get<IResource>()
       : ref;
 
-    // [variables] adds support for templated options via {{•}} syntax
-    let { baseURL, body, variables = {}, ...base } = item.base;
-    const { authorization, query, headers } = replace(base, variables);
-
-    // [baseURL] render templated string e.g. 'https://...{{•}}...'
-    baseURL = baseURL ? render(baseURL, variables) : undefined;
+    const { baseURL, body, authorization, query, headers } = item.base;
 
     switch (item.type) {
       case "http":

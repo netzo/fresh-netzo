@@ -16,7 +16,7 @@ const getBodyParams = async (request: Request): Promise<any> => {
 
 export const getParams = async (
   request: Request,
-): Promise<Record<string, any>> => {
+): Promise<Record<string, unknown>> => {
   const url = new URL(request.url);
   const searchParams = Object.fromEntries(url.searchParams.entries());
   const bodyParams = await getBodyParams(request);
