@@ -161,7 +161,7 @@ other items for further reference.
     "framework"
   ],
   "display": {
-    "imageUrl": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-netzo/icon.png"
+    "imageUrl": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-netzo/icon.webp"
   },
   "links": [
     {

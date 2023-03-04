@@ -12,7 +12,7 @@
     "api"
   ],
   "display": {
-    "imageUrl": "https://api.iconify.design/mdi:package-variant-closed.svg?color=%23806c51"
+    "imageUrl": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-framework-alephjs-api/icon.webp"
   },
   "links": [
     {
