@@ -1,0 +1,44 @@
+{
+  "uid": "resource-http-ergastf1",
+  "type": "resource",
+  "version": "1.0.0",
+  "status": "alpha",
+  "name": "Ergast F1",
+  "description": "Resource for the Ergast F1 API",
+  "categories": [],
+  "labels": [
+    "mock"
+  ],
+  "display": {
+    "imageUrl": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-ergastf1/icon.webp"
+  },
+  "links": [
+    {
+      "rel": "author",
+      "href": "https://netzo.io",
+      "title": "Netzo"
+    },
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/packages/resources/resource-http-ergastf1"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-ergastf1/src/readme.md"
+    }
+  ],
+  "schema": [],
+  "item": {
+    "_type": "resource",
+    "type": "http",
+    "base": {
+      "baseURL": "https://ergast.com/api",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "authorization": {
+        "type": "none"
+      }
+    }
+  }
+}

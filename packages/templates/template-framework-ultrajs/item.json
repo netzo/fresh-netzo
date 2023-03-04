@@ -1,0 +1,55 @@
+{
+  "uid": "template-framework-ultrajs",
+  "type": "template",
+  "version": "1.0.0",
+  "status": "alpha",
+  "name": "UltraJS",
+  "description": "A basic starter template using the UltraJS library",
+  "categories": [],
+  "labels": [
+    "framework"
+  ],
+  "display": {
+    "imageUrl": "https://api.iconify.design/mdi:package-variant-closed.svg?color=%23806c51"
+  },
+  "links": [
+    {
+      "rel": "author",
+      "href": "https://netzo.io",
+      "title": "Netzo"
+    },
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/packages/templates/template-framework-ultrajs"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-framework-ultrajs/src/readme.md"
+    }
+  ],
+  "schema": [],
+  "item": {
+    "_type": "project",
+    "fs": {
+      "readme.md": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-framework-ultrajs/src/readme.md"
+      },
+      "deno.jsonc": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-framework-ultrajs/src/deno.jsonc"
+      },
+      "app.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-framework-ultrajs/src/app.tss"
+      },
+      "server.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-framework-ultrajs/src/server.tsx"
+      }
+    },
+    "configuration": {
+      "entrypoint": "server.tsx",
+      "envs": {},
+      "permissions": {
+        "net": true
+      }
+    }
+  }
+}

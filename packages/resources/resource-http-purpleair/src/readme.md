@@ -1,0 +1,23 @@
+# resource-http-purpleair
+
+An open-source source resource for the PurpleAir API.
+
+## Configuration
+
+You will require a PurpleAir `readApiKey`. Check out the PurpleAir documentation
+for more information.
+
+## API Reference
+
+> For more information refer to the official [documentation](#links)
+
+The following operations are supported by the API.
+
+## Links
+
+- [Marketplace](https://app.netzo.io/resources/resource-http-purpleair)
+- [API Reference](https://api.purpleair.com/#api-welcome)
+
+<div align="center">
+  <h4>© Netzo</h4>
+</div>

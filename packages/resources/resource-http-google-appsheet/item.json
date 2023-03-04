@@ -1,0 +1,64 @@
+{
+  "uid": "resource-http-google-appsheet",
+  "type": "resource",
+  "version": "1.0.0",
+  "status": "alpha",
+  "name": "AppSheet",
+  "description": "Resource for the AppSheet API",
+  "categories": [],
+  "labels": [
+    "productivity",
+    "low-code"
+  ],
+  "display": {
+    "imageUrl": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-google-appsheet/icon.webp"
+  },
+  "links": [
+    {
+      "rel": "author",
+      "href": "https://netzo.io",
+      "title": "Netzo"
+    },
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/packages/resources/resource-http-google-appsheet"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-google-appsheet/src/readme.md"
+    }
+  ],
+  "schema": [
+    {
+      "component": "v-text-field",
+      "name": "appId",
+      "label": "App Id"
+    },
+    {
+      "component": "v-text-field",
+      "name": "apiKey",
+      "label": "ApplicationAccessKey"
+    },
+    {
+      "component": "v-text-field",
+      "name": "tableName",
+      "label": "Table Name"
+    }
+  ],
+  "item": {
+    "_type": "resource",
+    "type": "http",
+    "base": {
+      "baseURL": "https://api.appsheet.com/api/v2/apps/{{appId}}/tables",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "authorization": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "ApplicationAccessKey",
+        "value": "{{applicationAccessKey}}"
+      }
+    }
+  }
+}

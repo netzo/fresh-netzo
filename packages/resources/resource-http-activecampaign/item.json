@@ -1,0 +1,61 @@
+{
+  "uid": "resource-http-activecampaign",
+  "type": "resource",
+  "version": "1.0.0",
+  "status": "alpha",
+  "name": "ActiveCampaign",
+  "description": "Resource for the ActiveCampaign API",
+  "categories": [],
+  "labels": [
+    "crm",
+    "marketing"
+  ],
+  "display": {
+    "imageUrl": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-activecampaign/icon.webp"
+  },
+  "links": [
+    {
+      "rel": "author",
+      "href": "https://netzo.io",
+      "title": "Netzo"
+    },
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/packages/resources/resource-http-activecampaign"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-activecampaign/src/readme.md"
+    }
+  ],
+  "schema": [
+    {
+      "component": "v-text-field",
+      "name": "baseURL",
+      "label": "Base URL",
+      "hint": "Replace {{accountName}} with corresponding value",
+      "default": "https://{{accountName}}.api-us1.com/api/3"
+    },
+    {
+      "component": "v-text-field",
+      "name": "apiKey",
+      "label": "API Key"
+    }
+  ],
+  "item": {
+    "_type": "resource",
+    "type": "http",
+    "base": {
+      "baseURL": "{{baseURL}}",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "authorization": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Api-Token",
+        "value": "{{apiKey}}"
+      }
+    }
+  }
+}

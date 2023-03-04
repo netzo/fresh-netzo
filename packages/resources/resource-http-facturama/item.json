@@ -1,0 +1,55 @@
+{
+  "uid": "resource-http-facturama",
+  "type": "resource",
+  "version": "1.0.0",
+  "status": "alpha",
+  "name": "Facturama",
+  "description": "Resource for the Facturama API",
+  "categories": [],
+  "labels": [
+    "billing"
+  ],
+  "display": {
+    "imageUrl": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-facturama/icon.webp"
+  },
+  "links": [
+    {
+      "rel": "author",
+      "href": "https://netzo.io",
+      "title": "Netzo"
+    },
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/packages/resources/resource-http-facturama"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-facturama/src/readme.md"
+    }
+  ],
+  "schema": [
+    {
+      "component": "v-text-field",
+      "name": "username",
+      "label": "Username"
+    },
+    {
+      "component": "v-text-field",
+      "name": "password",
+      "label": "Password"
+    }
+  ],
+  "item": {
+    "_type": "resource",
+    "type": "http",
+    "base": {
+      "baseURL": "https://api.facturama.mx",
+      "headers": {},
+      "basic": {
+        "type": "basic",
+        "username": "{{username}}",
+        "password": "{{password}}"
+      }
+    }
+  }
+}

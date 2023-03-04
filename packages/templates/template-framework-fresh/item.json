@@ -1,0 +1,67 @@
+{
+  "uid": "template-framework-fresh",
+  "type": "template",
+  "version": "1.0.0",
+  "status": "alpha",
+  "name": "Fresh",
+  "description": "A basic starting template using the Frash framework",
+  "categories": [],
+  "labels": [
+    "framework"
+  ],
+  "display": {
+    "imageUrl": "https://api.iconify.design/logos:fresh.svg"
+  },
+  "links": [
+    {
+      "rel": "author",
+      "href": "https://netzo.io",
+      "title": "Netzo"
+    },
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/packages/templates/template-framework-fresh"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-framework-fresh/src/readme.md"
+    }
+  ],
+  "schema": [],
+  "item": {
+    "_type": "project",
+    "fs": {
+      "readme.md": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-framework-framework-fresh/src/readme.md"
+      },
+      "deno.jsonc": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-framework-fresh/src/deno.jsonc"
+      },
+      "main.ts": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-framework-fresh/src/main.ts"
+      },
+      "deno.json": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-framework-fresh/src/deno.json"
+      },
+      "fresh.gen.ts": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-framework-fresh/src/fresh.gen.ts"
+      },
+      "import_map.json": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-framework-fresh/src/import_map.json"
+      },
+      "islands/Counter.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-framework-fresh/src/islands/Counter.tsx"
+      },
+      "routes/index.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-framework-fresh/src/routes/index.tsx"
+      }
+    },
+    "configuration": {
+      "entrypoint": "main.ts",
+      "envs": {},
+      "permissions": {
+        "net": true
+      }
+    }
+  }
+}

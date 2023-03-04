@@ -1,0 +1,66 @@
+{
+  "uid": "template-framework-alephjs-api",
+  "type": "template",
+  "version": "1.0.0",
+  "status": "alpha",
+  "name": "Aleph API",
+  "description": "A mock HTTP API built with the Aleph framework",
+  "categories": [],
+  "labels": [
+    "framework",
+    "alephjs",
+    "api"
+  ],
+  "display": {
+    "imageUrl": "https://api.iconify.design/mdi:package-variant-closed.svg?color=%23806c51"
+  },
+  "links": [
+    {
+      "rel": "author",
+      "href": "https://netzo.io",
+      "title": "Netzo"
+    },
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/packages/templates/template-framework-alephjs-api"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-framework-alephjs-api/src/readme.md"
+    }
+  ],
+  "schema": [],
+  "item": {
+    "_type": "project",
+    "fs": {
+      "readme.md": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-framework-alephjs-api/src/readme.md"
+      },
+      "deno.jsonc": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-framework-alephjs-api/src/deno.jsonc"
+      },
+      "server.ts": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-framework-alephjs-api/src/server.ts"
+      },
+      "routes/_export.ts": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-framework-alephjs-api/src/routes/_export.ts"
+      },
+      "routes/index.ts": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-framework-alephjs-api/src/routes/index.ts"
+      },
+      "routes/users/$uid.ts": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-framework-alephjs-api/src/routes/users/$uid.ts"
+      },
+      "routes/users/index.ts": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-framework-alephjs-api/src/routes/users/index.ts"
+      }
+    },
+    "configuration": {
+      "entrypoint": "server.ts",
+      "envs": {},
+      "permissions": {
+        "net": true
+      }
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "uid": "template-css-daisyui",
+  "type": "template",
+  "version": "1.0.0",
+  "status": "beta",
+  "name": "DaisyUI",
+  "description": "A CSS only basic starter template using the DaisyUI library",
+  "categories": [],
+  "labels": [
+    "css",
+    "daisyui"
+  ],
+  "display": {
+    "imageUrl": "https://api.iconify.design/mdi:language-css3.svg?color=%232965f1"
+  },
+  "links": [
+    {
+      "rel": "author",
+      "href": "https://netzo.io",
+      "title": "Netzo"
+    },
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/packages/templates/template-css-daisyui"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-css-daisyui/src/readme.md"
+    }
+  ],
+  "schema": [],
+  "item": {
+    "_type": "project",
+    "fs": {
+      "readme.md": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-css-daisyui/src/readme.md"
+      },
+      "deno.jsonc": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-css-daisyui/src/deno.jsonc"
+      },
+      "main.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-css-daisyui/src/main.tsx"
+      }
+    },
+    "configuration": {
+      "entrypoint": "main.tsx",
+      "envs": {},
+      "permissions": {
+        "net": true
+      }
+    }
+  }
+}

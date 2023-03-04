@@ -23,14 +23,3 @@ jobs:
 
       - name: Tests
         run: deno test --allow-env --allow-net --allow-read
-
-      - name: Release
-        uses: softprops/action-gh-release@v1
-        if: |
-          matrix.os == 'ubuntu-latest' &&
-          startsWith(github.repository, 'justjavac') &&
-          startsWith(github.ref, 'refs/tags/')
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          draft: true

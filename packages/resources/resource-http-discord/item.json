@@ -1,0 +1,56 @@
+{
+  "uid": "resource-http-discord",
+  "type": "resource",
+  "version": "1.0.0",
+  "status": "alpha",
+  "name": "Discord",
+  "description": "Resource for the Discord API",
+  "categories": [],
+  "labels": [
+    "social",
+    "communications"
+  ],
+  "display": {
+    "imageUrl": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-discord/icon.webp"
+  },
+  "links": [
+    {
+      "rel": "author",
+      "href": "https://netzo.io",
+      "title": "Netzo"
+    },
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/packages/resources/resource-http-discord"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-discord/src/readme.md"
+    }
+  ],
+  "schema": [
+    {
+      "component": "v-text-field",
+      "name": "apiTokenWithPrefix",
+      "label": "API Token (with prefix)",
+      "default": "{{tokenType}} {{apiToken}}",
+      "hint": "Replace {{tokenType}} with Bearer or Bot and {{apiToken}} with corresponding value."
+    }
+  ],
+  "item": {
+    "_type": "resource",
+    "type": "http",
+    "base": {
+      "baseURL": "https://discord.com/api/v10",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "authorization": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Authorization",
+        "value": "{{apiTokenWithPrefix}}"
+      }
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "uid": "resource-http-sendgrid",
+  "type": "resource",
+  "version": "1.0.0",
+  "status": "alpha",
+  "name": "Sendgrid",
+  "description": "Resource for the Sendgrid API",
+  "categories": [],
+  "labels": [
+    "transactional",
+    "communications"
+  ],
+  "display": {
+    "imageUrl": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-sendgrid/icon.webp"
+  },
+  "links": [
+    {
+      "rel": "author",
+      "href": "https://netzo.io",
+      "title": "Netzo"
+    },
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/packages/resources/resource-http-sendgrid"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-sendgrid/src/readme.md"
+    }
+  ],
+  "schema": [
+    {
+      "component": "v-text-field",
+      "name": "apiToken",
+      "label": "API Token"
+    }
+  ],
+  "item": {
+    "_type": "resource",
+    "type": "http",
+    "base": {
+      "baseURL": "https://api.sendgrid.com/v3",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "authorization": {
+        "type": "bearer",
+        "token": "{{apiToken}}"
+      }
+    }
+  }
+}

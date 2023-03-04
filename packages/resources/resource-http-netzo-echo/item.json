@@ -1,0 +1,41 @@
+{
+  "uid": "resource-http-netzo-echo",
+  "type": "resource",
+  "version": "1.0.0",
+  "status": "stable",
+  "name": "Netzo Echo",
+  "description": "Resource for the Netzo Echo API (echoes back requests)",
+  "categories": [],
+  "labels": [
+    "mock",
+    "utility"
+  ],
+  "display": {
+    "imageUrl": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-netzo-echo/icon.webp"
+  },
+  "links": [
+    {
+      "rel": "author",
+      "href": "https://netzo.io",
+      "title": "Netzo"
+    },
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/packages/resources/resource-http-netzo-echo"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-netzo-echo/src/readme.md"
+    }
+  ],
+  "schema": [],
+  "item": {
+    "_type": "resource",
+    "type": "http",
+    "base": {
+      "baseURL": "https://echo.netzo.io",
+      "headers": {},
+      "authorization": {}
+    }
+  }
+}

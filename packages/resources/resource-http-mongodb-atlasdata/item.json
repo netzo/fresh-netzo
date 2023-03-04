@@ -1,0 +1,60 @@
+{
+  "uid": "resource-http-mongodb-atlasdata",
+  "type": "resource",
+  "version": "1.0.0",
+  "status": "alpha",
+  "name": "MongoDB Atlas Data",
+  "description": "Resource for the MongoDB Atlas Data API",
+  "categories": [],
+  "labels": [
+    "database"
+  ],
+  "display": {
+    "imageUrl": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-mongodb-atlasdata/icon.webp"
+  },
+  "links": [
+    {
+      "rel": "author",
+      "href": "https://netzo.io",
+      "title": "Netzo"
+    },
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/packages/resources/resource-http-mongodb-atlasdata"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-mongodb-atlasdata/src/readme.md"
+    }
+  ],
+  "schema": [
+    {
+      "component": "v-text-field",
+      "name": "baseURL",
+      "label": "Base URL",
+      "hint": "Replace {{dataApiAppId}} with corresponding value",
+      "default": "https://data.mongodb-api.com/app/{{dataApiAppId}}/endpoint/data/v1"
+    },
+    {
+      "component": "v-text-field",
+      "name": "apiKey",
+      "label": "API Key"
+    }
+  ],
+  "item": {
+    "_type": "resource",
+    "type": "http",
+    "base": {
+      "baseURL": "{{baseURL}}",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "authorization": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "api-key",
+        "value": "{{apiKey}}"
+      }
+    }
+  }
+}

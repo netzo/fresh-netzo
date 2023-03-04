@@ -1,0 +1,51 @@
+{
+  "uid": "resource-http-cloudflare",
+  "type": "resource",
+  "version": "1.0.0",
+  "status": "alpha",
+  "name": "Cloudflare",
+  "description": "Resource for the Cloudflare API",
+  "categories": [],
+  "labels": [
+    "infrastructure"
+  ],
+  "display": {
+    "imageUrl": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-cloudflare/icon.webp"
+  },
+  "links": [
+    {
+      "rel": "author",
+      "href": "https://netzo.io",
+      "title": "Netzo"
+    },
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/packages/resources/resource-http-cloudflare"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-cloudflare/src/readme.md"
+    }
+  ],
+  "schema": [
+    {
+      "component": "v-text-field",
+      "name": "apiToken",
+      "label": "API Token"
+    }
+  ],
+  "item": {
+    "_type": "resource",
+    "type": "http",
+    "base": {
+      "baseURL": "https://api.cloudflare.com/client/v4",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "authorization": {
+        "type": "bearer",
+        "token": "{{apiToken}}"
+      }
+    }
+  }
+}

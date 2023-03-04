@@ -1,0 +1,52 @@
+{
+  "uid": "resource-http-spacexland",
+  "type": "resource",
+  "version": "1.0.0",
+  "status": "alpha",
+  "name": "SpaceX Land",
+  "description": "Resource for the SpaceX Land GraphQL API",
+  "categories": [],
+  "labels": [
+    "mock",
+    "space"
+  ],
+  "display": {
+    "imageUrl": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-spacexland/icon.webp"
+  },
+  "links": [
+    {
+      "rel": "author",
+      "href": "https://netzo.io",
+      "title": "Netzo"
+    },
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/packages/resources/resource-http-spacexland"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-spacexland/src/readme.md"
+    }
+  ],
+  "schema": [
+    {
+      "component": "v-text-field",
+      "name": "apiKey",
+      "label": "API Key"
+    }
+  ],
+  "item": {
+    "_type": "resource",
+    "type": "http",
+    "base": {
+      "baseURL": "https://api.spacexland.com/v2",
+      "headers": {},
+      "authorization": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Authorization",
+        "value": "{{apiKey}}"
+      }
+    }
+  }
+}

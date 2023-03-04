@@ -1,0 +1,91 @@
+{
+  "uid": "resource-http-google-sheets",
+  "type": "resource",
+  "version": "1.0.0",
+  "status": "requested",
+  "name": "Google Sheets",
+  "description": "Resource for the Google Sheets API",
+  "categories": [],
+  "labels": [
+    "productivity",
+    "google"
+  ],
+  "display": {
+    "imageUrl": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-google-sheets/icon.webp"
+  },
+  "links": [
+    {
+      "rel": "author",
+      "href": "https://netzo.io",
+      "title": "Netzo"
+    },
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/packages/resources/resource-http-google-sheets"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-google-sheets/src/readme.md"
+    }
+  ],
+  "schema": [
+    {
+      "component": "v-text-field",
+      "name": "baseURL",
+      "label": "Base URL",
+      "hint": "Replace {{spreadsheetId}} with corresponding value",
+      "default": "https://sheets.googleapis.com/v4/spreadsheets/{{spreadsheetId}}"
+    },
+    {
+      "component": "v-text-field",
+      "name": "clientId",
+      "label": "Client ID"
+    },
+    {
+      "component": "v-text-field",
+      "name": "clientSecret",
+      "label": "Client Secret"
+    },
+    {
+      "component": "v-text-field",
+      "name": "authorizationURL",
+      "label": "Authorization URL"
+    },
+    {
+      "component": "v-text-field",
+      "name": "accessTokenURL",
+      "label": "Access Token URL"
+    },
+    {
+      "component": "v-text-field",
+      "name": "redirectURL",
+      "label": "Redirect URL"
+    },
+    {
+      "component": "v-combobox",
+      "name": "scopes",
+      "label": "Scopes",
+      "chips": true,
+      "multiple": true
+    }
+  ],
+  "item": {
+    "_type": "resource",
+    "type": "http",
+    "base": {
+      "baseURL": "{{baseURL}}",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "authorization": {
+        "type": "oauth2",
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}",
+        "authorizationURL": "{{authorizationURL}}",
+        "accessTokenURL": "{{accessTokenURL}}",
+        "redirectURL": "{{redirectURL}}",
+        "scopes": "{{scopes}}"
+      }
+    }
+  }
+}

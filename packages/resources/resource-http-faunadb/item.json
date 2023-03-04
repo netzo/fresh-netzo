@@ -1,0 +1,62 @@
+{
+  "uid": "resource-http-faunadb",
+  "type": "resource",
+  "version": "1.0.0",
+  "status": "alpha",
+  "name": "FaunaDB",
+  "description": "Resource for the FaunaDB GraphQL API",
+  "categories": [],
+  "labels": [
+    "database"
+  ],
+  "display": {
+    "imageUrl": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-faunadb/icon.webp"
+  },
+  "links": [
+    {
+      "rel": "author",
+      "href": "https://netzo.io",
+      "title": "Netzo"
+    },
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/packages/resources/resource-http-faunadb"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-faunadb/src/readme.md"
+    }
+  ],
+  "schema": [
+    {
+      "component": "v-text-field",
+      "name": "baseURL",
+      "label": "Base URL",
+      "hint": "Replace {{regionGroupHostname}} with corresponding value",
+      "default": "https://{{regionGroupHostname}}/graphql"
+    },
+    {
+      "component": "v-text-field",
+      "name": "username",
+      "label": "Username"
+    },
+    {
+      "component": "v-text-field",
+      "name": "password",
+      "label": "Password"
+    }
+  ],
+  "item": {
+    "_type": "resource",
+    "type": "http",
+    "base": {
+      "baseURL": "{{baseURL}}",
+      "headers": {},
+      "basic": {
+        "type": "basic",
+        "username": "{{username}}",
+        "password": "{{password}}"
+      }
+    }
+  }
+}

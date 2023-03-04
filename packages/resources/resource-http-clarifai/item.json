@@ -1,0 +1,61 @@
+{
+  "uid": "resource-http-clarifai",
+  "type": "resource",
+  "version": "1.0.0",
+  "status": "alpha",
+  "name": "Clarifai",
+  "description": "Resource for the Clarifai API",
+  "categories": [],
+  "labels": [
+    "artificial-intelligence",
+    "machine-learning"
+  ],
+  "display": {
+    "imageUrl": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-clarifai/icon.webp"
+  },
+  "links": [
+    {
+      "rel": "author",
+      "href": "https://netzo.io",
+      "title": "Netzo"
+    },
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/packages/resources/resource-http-clarifai"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-clarifai/src/readme.md"
+    }
+  ],
+  "schema": [
+    {
+      "component": "v-text-field",
+      "name": "baseURL",
+      "label": "Base URL",
+      "hint": "Replace {{datasetId}} with corresponding value",
+      "default": "https://api.clarifai.com/v2/users/datasets/{{datasetId}}"
+    },
+    {
+      "component": "v-text-field",
+      "name": "apiKey",
+      "label": "API Key"
+    }
+  ],
+  "item": {
+    "_type": "resource",
+    "type": "http",
+    "base": {
+      "baseURL": "{{baseURL}}",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "authorization": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-Clarifai-REST-API-Key",
+        "value": "{{apiKey}}"
+      }
+    }
+  }
+}

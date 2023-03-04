@@ -1,0 +1,52 @@
+{
+  "uid": "template-framework-nanossr",
+  "type": "template",
+  "version": "1.0.0",
+  "status": "stable",
+  "name": "NanoSSR",
+  "description": "",
+  "categories": [],
+  "labels": [
+    "framework"
+  ],
+  "display": {
+    "imageUrl": "https://api.iconify.design/mdi:package-variant-closed.svg?color=%23806c51"
+  },
+  "links": [
+    {
+      "rel": "author",
+      "href": "https://netzo.io",
+      "title": "Netzo"
+    },
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/packages/templates/template-framework-nanossr"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-framework-nanossr/src/readme.md"
+    }
+  ],
+  "schema": [],
+  "item": {
+    "_type": "project",
+    "fs": {
+      "readme.md": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-framework-nanossr/src/readme.md"
+      },
+      "deno.jsonc": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-framework-nanossr/src/deno.jsonc"
+      },
+      "main.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-framework-nanossr/src/main.tsx"
+      }
+    },
+    "configuration": {
+      "entrypoint": "main.tsx",
+      "envs": {},
+      "permissions": {
+        "net": true
+      }
+    }
+  }
+}

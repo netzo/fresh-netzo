@@ -1,0 +1,54 @@
+{
+  "uid": "resource-http-purpleair",
+  "type": "resource",
+  "version": "1.0.0",
+  "status": "alpha",
+  "name": "PurpleAir",
+  "description": "Resource for the PurpleAir API",
+  "categories": [],
+  "labels": [
+    "iot",
+    "environmental"
+  ],
+  "display": {
+    "imageUrl": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-purpleair/icon.webp"
+  },
+  "links": [
+    {
+      "rel": "author",
+      "href": "https://netzo.io",
+      "title": "Netzo"
+    },
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/packages/resources/resource-http-purpleair"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-purpleair/src/readme.md"
+    }
+  ],
+  "schema": [
+    {
+      "component": "v-text-field",
+      "name": "apiKey",
+      "label": "API Key"
+    }
+  ],
+  "item": {
+    "_type": "resource",
+    "type": "http",
+    "base": {
+      "baseURL": "https://api.purpleair.com/v1",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "authorization": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-API-Key",
+        "value": "{{apiKey}}"
+      }
+    }
+  }
+}

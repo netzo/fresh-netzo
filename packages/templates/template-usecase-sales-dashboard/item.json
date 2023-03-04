@@ -1,0 +1,62 @@
+{
+  "uid": "template-usecase-sales-dashboard",
+  "type": "template",
+  "version": "1.0.0",
+  "status": "stable",
+  "name": "Sales Dashboard",
+  "description": "An HTTP server that serves a sales dashboard to track performance of sales teams in real-time, and provides a variety of metrics to help make informed decisions.",
+  "categories": [],
+  "labels": [
+    "usecase",
+    "dashboard"
+  ],
+  "display": {
+    "imageUrl": "https://api.iconify.design/mdi:shape-outline.svg?color=%23ff3b7c"
+  },
+  "links": [
+    {
+      "rel": "author",
+      "href": "https://netzo.io",
+      "title": "Netzo"
+    },
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/packages/templates/template-usecase-sales-dashboard"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-usecase-sales-dashboard/src/readme.md"
+    }
+  ],
+  "schema": [],
+  "item": {
+    "_type": "project",
+    "fs": {
+      "readme.md": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-usecase-sales-dashboard/src/readme.md"
+      },
+      "deno.jsonc": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-usecase-sales-dashboard/src/deno.jsonc"
+      },
+      "main.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-usecase-sales-dashboard/src/main.tsx"
+      },
+      "components/kpi-card.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-usecase-sales-dashboard/src/components/kpi-card.tsx"
+      },
+      "components/sales-table.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-usecase-sales-dashboard/src/components/sales-table.tsx"
+      },
+      "data/mod.ts": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-usecase-sales-dashboard/src/data/mod.ts"
+      }
+    },
+    "configuration": {
+      "entrypoint": "main.tsx",
+      "envs": {},
+      "permissions": {
+        "net": true
+      }
+    }
+  }
+}

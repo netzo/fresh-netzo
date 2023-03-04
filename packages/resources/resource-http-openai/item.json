@@ -1,0 +1,52 @@
+{
+  "uid": "resource-http-openai",
+  "type": "resource",
+  "version": "1.0.0",
+  "status": "alpha",
+  "name": "OpenAI",
+  "description": "Resource for the OpenAI API for models ChatGPT-3, Codex and DALL-E 2",
+  "categories": [],
+  "labels": [
+    "artificial-intelligence",
+    "productivity"
+  ],
+  "display": {
+    "imageUrl": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-openai/icon.webp"
+  },
+  "links": [
+    {
+      "rel": "author",
+      "href": "https://netzo.io",
+      "title": "Netzo"
+    },
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/packages/resources/resource-http-openai"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-openai/src/readme.md"
+    }
+  ],
+  "schema": [
+    {
+      "component": "v-text-field",
+      "name": "apiKey",
+      "label": "API Key"
+    }
+  ],
+  "item": {
+    "_type": "resource",
+    "type": "http",
+    "base": {
+      "baseURL": "https://api.openai.com/v1",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "authorization": {
+        "type": "bearer",
+        "token": "{{apiKey}}"
+      }
+    }
+  }
+}

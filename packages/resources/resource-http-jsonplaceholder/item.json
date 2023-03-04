@@ -1,0 +1,44 @@
+{
+  "uid": "resource-http-jsonplaceholder",
+  "type": "resource",
+  "version": "1.0.0",
+  "status": "alpha",
+  "name": "JSONPlaceholder",
+  "description": "Resource for the JSONPlaceholder mock API",
+  "categories": [],
+  "labels": [
+    "mock"
+  ],
+  "display": {
+    "imageUrl": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-jsonplaceholder/icon.webp"
+  },
+  "links": [
+    {
+      "rel": "author",
+      "href": "https://netzo.io",
+      "title": "Netzo"
+    },
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/packages/resources/resource-http-jsonplaceholder"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-jsonplaceholder/src/readme.md"
+    }
+  ],
+  "schema": [],
+  "item": {
+    "_type": "resource",
+    "type": "http",
+    "base": {
+      "baseURL": "https://jsonplaceholder.typicode.com",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "authorization": {
+        "type": "none"
+      }
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "uid": "resource-http-fathomanalytics",
+  "type": "resource",
+  "version": "1.0.0",
+  "status": "alpha",
+  "name": "Fathom Analytics",
+  "description": "Resource for the Fathom Analytics API",
+  "categories": [],
+  "labels": [
+    "analytics"
+  ],
+  "display": {
+    "imageUrl": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-fathomanalytics/icon.webp"
+  },
+  "links": [
+    {
+      "rel": "author",
+      "href": "https://netzo.io",
+      "title": "Netzo"
+    },
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/packages/resources/resource-http-fathomanalytics"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-fathomanalytics/src/readme.md"
+    }
+  ],
+  "schema": [
+    {
+      "component": "v-text-field",
+      "name": "apiToken",
+      "label": "API Token"
+    }
+  ],
+  "item": {
+    "_type": "resource",
+    "type": "http",
+    "base": {
+      "baseURL": "https://api.openai.com/v1",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "authorization": {
+        "type": "Bearer",
+        "token": "{{apiToken}}"
+      }
+    }
+  }
+}

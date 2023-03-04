@@ -1,0 +1,52 @@
+{
+  "uid": "template-framework-rutt",
+  "type": "template",
+  "version": "1.0.0",
+  "status": "stable",
+  "name": "Rutt",
+  "description": "",
+  "categories": [],
+  "labels": [
+    "framework"
+  ],
+  "display": {
+    "imageUrl": "https://api.iconify.design/noto:motorway.svg"
+  },
+  "links": [
+    {
+      "rel": "author",
+      "href": "https://netzo.io",
+      "title": "Netzo"
+    },
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/packages/templates/template-framework-rutt"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-framework-rutt/src/readme.md"
+    }
+  ],
+  "schema": [],
+  "item": {
+    "_type": "project",
+    "fs": {
+      "readme.md": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-framework-rutt/src/readme.md"
+      },
+      "deno.jsonc": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-framework-rutt/src/deno.jsonc"
+      },
+      "main.ts": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-framework-rutt/src/main.ts"
+      }
+    },
+    "configuration": {
+      "entrypoint": "main.ts",
+      "envs": {},
+      "permissions": {
+        "net": true
+      }
+    }
+  }
+}

@@ -1,0 +1,111 @@
+:root {
+  --primary-color: #0080ff;
+  --text-secondary: #4f4f4f;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  margin: 0px;
+  height: 100vh;
+  overflow: auto;
+  accent-color: var(--primary-color);
+}
+
+header p {
+  color: var(--text-secondary);
+}
+
+section {
+  height: 100%;
+  padding: 12px 0px;
+}
+
+form {
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+}
+
+.filepond--root {
+  height: 100%;
+}
+
+.filepond,
+input[type="file"] {
+  cursor: pointer;
+}
+
+input[type="file"] ~ .filepond--panel {
+  border: 3px dashed var(--primary-color);
+}
+
+.filepond--browser {
+  height: 100%;
+}
+
+.filepond--credits {
+  opacity: 0.5;
+}
+
+button[type="submit"] {
+  margin-top: 8px;
+  display: block;
+  width: 100%;
+  color: #ffffff;
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 6px;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 16px;
+  align-items: center;
+}
+
+button[type="submit"]:disabled {
+  color: #aaaaaa;
+  background-color: #dddddd;
+  cursor: default;
+}
+
+button[type="submit"]:hover:not(:disabled) {
+  opacity: 0.90;
+  cursor: pointer;
+}
+
+/* loading (see https://dev.to/dcodeyt/create-a-button-with-a-loading-spinner-in-html-css-1c0h)  */
+
+button[type="submit"] {
+  position: relative;
+}
+
+.button--loading .button__text {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.button--loading::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  border: 4px solid transparent;
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: button-loading-spinner 1s ease infinite;
+}
+
+@keyframes button-loading-spinner {
+  from {
+    transform: rotate(0turn);
+  }
+
+  to {
+    transform: rotate(1turn);
+  }
+}

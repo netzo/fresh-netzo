@@ -1,0 +1,56 @@
+{
+  "uid": "template-css-twind",
+  "type": "template",
+  "version": "1.0.0",
+  "status": "beta",
+  "name": "Twind",
+  "description": "A basic starter template using the Twind library",
+  "categories": [],
+  "labels": [
+    "css",
+    "twind"
+  ],
+  "display": {
+    "imageUrl": "https://api.iconify.design/mdi:language-css3.svg?color=%232965f1"
+  },
+  "links": [
+    {
+      "rel": "author",
+      "href": "https://netzo.io",
+      "title": "Netzo"
+    },
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/packages/templates/template-css-twind"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-css-twind/src/readme.md"
+    }
+  ],
+  "schema": [],
+  "item": {
+    "_type": "project",
+    "fs": {
+      "readme.md": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-css-twind/src/readme.md"
+      },
+      "deno.jsonc": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-css-twind/src/deno.jsonc"
+      },
+      "main.ts": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-css-twind/src/main.ts"
+      },
+      "twind.ts": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-css-twind/src/twind.ts"
+      }
+    },
+    "configuration": {
+      "entrypoint": "main.ts",
+      "envs": {},
+      "permissions": {
+        "net": true
+      }
+    }
+  }
+}

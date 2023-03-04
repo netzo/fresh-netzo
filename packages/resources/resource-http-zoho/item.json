@@ -1,0 +1,58 @@
+{
+  "uid": "resource-http-zoho",
+  "type": "resource",
+  "version": "1.0.0",
+  "status": "requested",
+  "name": "Zoho",
+  "description": "Resource for the Zoho API",
+  "categories": [],
+  "labels": [
+    "crm"
+  ],
+  "display": {
+    "imageUrl": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-zoho/icon.webp"
+  },
+  "links": [
+    {
+      "rel": "author",
+      "href": "https://netzo.io",
+      "title": "Netzo"
+    },
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/packages/resources/resource-http-zoho"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-zoho/src/readme.md"
+    }
+  ],
+  "schema": [
+    {
+      "component": "v-text-field",
+      "name": "baseURL",
+      "label": "Base URL",
+      "hint": "Replace {{siteURL}} and {{versionNumber}} with corresponding values",
+      "default": "https://{{siteURL}}/rest/v{{versionNumber}}"
+    }
+  ],
+  "item": {
+    "_type": "resource",
+    "type": "http",
+    "base": {
+      "baseURL": "{{baseURL}}",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "authorization": {
+        "type": "oauth2",
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}",
+        "authorizationURL": "{{authorizationURL}}",
+        "accessTokenURL": "{{accessTokenURL}}",
+        "redirectURL": "{{redirectURL}}",
+        "scopes": "{{scopes}}"
+      }
+    }
+  }
+}

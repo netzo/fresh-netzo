@@ -1,0 +1,51 @@
+{
+  "uid": "resource-http-monday",
+  "type": "resource",
+  "version": "1.0.0",
+  "status": "alpha",
+  "name": "Monday",
+  "description": "Resource for the Monday GraphQL API",
+  "categories": [],
+  "labels": [
+    "productivity"
+  ],
+  "display": {
+    "imageUrl": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-monday/icon.webp"
+  },
+  "links": [
+    {
+      "rel": "author",
+      "href": "https://netzo.io",
+      "title": "Netzo"
+    },
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/packages/resources/resource-http-monday"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-monday/src/readme.md"
+    }
+  ],
+  "schema": [
+    {
+      "component": "v-text-field",
+      "name": "apiKey",
+      "label": "API Key"
+    }
+  ],
+  "item": {
+    "_type": "resource",
+    "type": "http",
+    "base": {
+      "baseURL": "https://api.monday.com/v2",
+      "headers": {},
+      "authorization": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Authorization",
+        "value": "{{apiKey}}"
+      }
+    }
+  }
+}

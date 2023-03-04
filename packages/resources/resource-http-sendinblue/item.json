@@ -1,0 +1,55 @@
+{
+  "uid": "resource-http-sendinblue",
+  "type": "resource",
+  "version": "1.0.0",
+  "status": "alpha",
+  "name": "Sendinblue",
+  "description": "Resource for the Sendinblue API",
+  "categories": [],
+  "labels": [
+    "marketing",
+    "crm",
+    "transactional"
+  ],
+  "display": {
+    "imageUrl": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-sendinblue/icon.webp"
+  },
+  "links": [
+    {
+      "rel": "author",
+      "href": "https://netzo.io",
+      "title": "Netzo"
+    },
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/packages/resources/resource-http-sendinblue"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-sendinblue/src/readme.md"
+    }
+  ],
+  "schema": [
+    {
+      "component": "v-text-field",
+      "name": "apiKey",
+      "label": "API Key"
+    }
+  ],
+  "item": {
+    "_type": "resource",
+    "type": "http",
+    "base": {
+      "baseURL": "https://api.sendinblue.com/v3",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "authorization": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "api-key",
+        "value": "{{apiKey}}"
+      }
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "uid": "resource-http-github",
+  "type": "resource",
+  "version": "1.0.0",
+  "status": "alpha",
+  "name": "GitHub",
+  "description": "Resource for the GitHub API",
+  "categories": [],
+  "labels": [
+    "infrastructure"
+  ],
+  "display": {
+    "imageUrl": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-github/icon.webp"
+  },
+  "links": [
+    {
+      "rel": "author",
+      "href": "https://netzo.io",
+      "title": "Netzo"
+    },
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/packages/resources/resource-http-github"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-github/src/readme.md"
+    }
+  ],
+  "schema": [
+    {
+      "component": "v-text-field",
+      "name": "personalAccessToken",
+      "label": "Personal Access Token"
+    }
+  ],
+  "item": {
+    "_type": "resource",
+    "type": "http",
+    "base": {
+      "baseURL": "https://api.github.com",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "authorization": {
+        "type": "bearer",
+        "token": "{{personalAccessToken}}"
+      }
+    }
+  }
+}
