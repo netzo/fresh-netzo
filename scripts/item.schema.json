@@ -20,11 +20,8 @@
     "status": {
       "type": "string",
       "enum": [
-        "alpha",
-        "beta",
-        "stable",
-        "requested",
-        "deprecated"
+        "published",
+        "requested"
       ]
     },
     "name": {

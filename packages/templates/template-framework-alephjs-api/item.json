@@ -2,7 +2,7 @@
   "uid": "template-framework-alephjs-api",
   "type": "template",
   "version": "1.0.0",
-  "status": "alpha",
+  "status": "published",
   "name": "Aleph API",
   "description": "A mock HTTP API built with the Aleph framework",
   "labels": [

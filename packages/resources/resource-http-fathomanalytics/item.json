@@ -2,7 +2,7 @@
   "uid": "resource-http-fathomanalytics",
   "type": "resource",
   "version": "1.0.0",
-  "status": "alpha",
+  "status": "published",
   "name": "Fathom Analytics",
   "description": "Resource for the Fathom Analytics API",
   "labels": [

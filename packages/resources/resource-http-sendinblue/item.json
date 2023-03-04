@@ -2,7 +2,7 @@
   "uid": "resource-http-sendinblue",
   "type": "resource",
   "version": "1.0.0",
-  "status": "alpha",
+  "status": "published",
   "name": "Sendinblue",
   "description": "Resource for the Sendinblue API",
   "labels": [

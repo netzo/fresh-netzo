@@ -2,7 +2,7 @@
   "uid": "resource-http-netzo",
   "type": "resource",
   "version": "1.0.0",
-  "status": "stable",
+  "status": "published",
   "name": "Netzo",
   "description": "Resource for the Netzo API",
   "labels": [

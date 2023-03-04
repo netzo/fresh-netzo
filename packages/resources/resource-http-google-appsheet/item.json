@@ -2,7 +2,7 @@
   "uid": "resource-http-google-appsheet",
   "type": "resource",
   "version": "1.0.0",
-  "status": "alpha",
+  "status": "published",
   "name": "AppSheet",
   "description": "Resource for the AppSheet API",
   "labels": [

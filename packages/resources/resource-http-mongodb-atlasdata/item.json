@@ -2,7 +2,7 @@
   "uid": "resource-http-mongodb-atlasdata",
   "type": "resource",
   "version": "1.0.0",
-  "status": "alpha",
+  "status": "published",
   "name": "MongoDB Atlas Data",
   "description": "Resource for the MongoDB Atlas Data API",
   "labels": [

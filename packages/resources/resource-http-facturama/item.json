@@ -2,7 +2,7 @@
   "uid": "resource-http-facturama",
   "type": "resource",
   "version": "1.0.0",
-  "status": "alpha",
+  "status": "published",
   "name": "Facturama",
   "description": "Resource for the Facturama API",
   "labels": [

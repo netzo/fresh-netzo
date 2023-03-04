@@ -66,7 +66,7 @@ The following table summarizes the fields in a `item.json` file.
 | `uid`         | `string`                                                                          | `true`   | unique ID (kebab-case) prefixed by the item type (e.g. `resource-` or `template-`)                                 |
 | `type`        | `'resource'` \| `'template'`                                                      | `true`   | type of item                                                                                                       |
 | `version`     | `string`                                                                          | `true`   | current version of item in [semantic version](https://semver.org/)                                                 |
-| `status`      | `alpha` \| `beta` \| `stable` \| `requested` \| `deprecated`                      | `true`   | current development status of item.                                                                                |
+| `status`      | `published` \| `requested`                                                        | `true`   | if item is published or in requested status for upvotes.                                                                                |
 | `name`        | `string`                                                                          | `true`   | human-friendly display name for the item                                                                           |
 | `description` | `string`                                                                          | `true`   | brief description of item                                                                                          |
 | `labels`      | `string[]` (see [Label](#label))                                                  | `false`  | relevant keywords (tags) (kebab-case)                                                                              |
@@ -151,7 +151,7 @@ other items for further reference.
   "uid": "resource-http-netzo",
   "type": "resource",
   "version": "1.0.0",
-  "status": "stable",
+  "status": "published",
   "name": "Netzo",
   "description": "Resource for the Netzo API",
   "labels": [

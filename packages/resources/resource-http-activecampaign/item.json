@@ -2,7 +2,7 @@
   "uid": "resource-http-activecampaign",
   "type": "resource",
   "version": "1.0.0",
-  "status": "alpha",
+  "status": "published",
   "name": "ActiveCampaign",
   "description": "Resource for the ActiveCampaign API",
   "labels": [

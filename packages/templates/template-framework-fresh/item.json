@@ -2,7 +2,7 @@
   "uid": "template-framework-fresh",
   "type": "template",
   "version": "1.0.0",
-  "status": "alpha",
+  "status": "published",
   "name": "Fresh",
   "description": "A basic starting template using the Frash framework",
   "labels": [

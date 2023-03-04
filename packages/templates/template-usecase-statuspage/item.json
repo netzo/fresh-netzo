@@ -2,7 +2,7 @@
   "uid": "template-usecase-statuspage",
   "type": "template",
   "version": "1.0.0",
-  "status": "stable",
+  "status": "published",
   "name": "Statuspage",
   "description": "An HTTP server that serves an a statuspage to track the 'up', 'down' and 'maintenance' status of (multiple) services over time.",
   "labels": [
