@@ -5,7 +5,6 @@
   "status": "requested",
   "name": "Google Sheets",
   "description": "Resource for the Google Sheets API",
-  "categories": [],
   "labels": [
     "productivity",
     "google"

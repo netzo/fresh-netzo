@@ -5,7 +5,6 @@
   "status": "requested",
   "name": "Twitter",
   "description": "Resource for the Twitter API",
-  "categories": [],
   "labels": [
     "social"
   ],

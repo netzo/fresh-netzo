@@ -5,7 +5,6 @@
   "status": "alpha",
   "name": "SpaceX Land",
   "description": "Resource for the SpaceX Land GraphQL API",
-  "categories": [],
   "labels": [
     "mock",
     "space"

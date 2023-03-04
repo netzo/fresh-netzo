@@ -5,7 +5,6 @@
   "status": "alpha",
   "name": "Aleph API",
   "description": "A mock HTTP API built with the Aleph framework",
-  "categories": [],
   "labels": [
     "framework",
     "alephjs",

@@ -5,7 +5,6 @@
   "status": "alpha",
   "name": "AppSheet",
   "description": "Resource for the AppSheet API",
-  "categories": [],
   "labels": [
     "productivity",
     "low-code"

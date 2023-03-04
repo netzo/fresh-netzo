@@ -5,7 +5,6 @@
   "status": "alpha",
   "name": "Facturama",
   "description": "Resource for the Facturama API",
-  "categories": [],
   "labels": [
     "billing"
   ],

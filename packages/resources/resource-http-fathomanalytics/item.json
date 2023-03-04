@@ -5,7 +5,6 @@
   "status": "alpha",
   "name": "Fathom Analytics",
   "description": "Resource for the Fathom Analytics API",
-  "categories": [],
   "labels": [
     "analytics"
   ],

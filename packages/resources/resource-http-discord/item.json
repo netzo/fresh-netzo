@@ -5,7 +5,6 @@
   "status": "alpha",
   "name": "Discord",
   "description": "Resource for the Discord API",
-  "categories": [],
   "labels": [
     "social",
     "communications"

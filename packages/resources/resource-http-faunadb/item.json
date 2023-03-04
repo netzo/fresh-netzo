@@ -5,7 +5,6 @@
   "status": "alpha",
   "name": "FaunaDB",
   "description": "Resource for the FaunaDB GraphQL API",
-  "categories": [],
   "labels": [
     "database"
   ],

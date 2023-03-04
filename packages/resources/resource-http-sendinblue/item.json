@@ -5,7 +5,6 @@
   "status": "alpha",
   "name": "Sendinblue",
   "description": "Resource for the Sendinblue API",
-  "categories": [],
   "labels": [
     "marketing",
     "crm",

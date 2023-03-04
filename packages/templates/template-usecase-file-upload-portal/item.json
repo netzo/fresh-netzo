@@ -5,7 +5,6 @@
   "status": "stable",
   "name": "File Upload Portal",
   "description": "An HTTP server that serves a file upload portal to ease data processing and syncing from files.",
-  "categories": [],
   "labels": [
     "usecase",
     "form",

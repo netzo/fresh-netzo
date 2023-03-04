@@ -5,7 +5,6 @@
   "status": "requested",
   "name": "Zoho",
   "description": "Resource for the Zoho API",
-  "categories": [],
   "labels": [
     "crm"
   ],

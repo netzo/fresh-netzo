@@ -5,7 +5,6 @@
   "status": "requested",
   "name": "SugarCRM",
   "description": "Resource for the SugarCRM API",
-  "categories": [],
   "labels": [
     "crm"
   ],

@@ -5,7 +5,6 @@
   "status": "requested",
   "name": "Hashnode",
   "description": "Resource for the Hashnode API",
-  "categories": [],
   "labels": [
     "social",
     "blog"

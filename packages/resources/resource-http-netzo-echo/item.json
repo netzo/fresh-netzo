@@ -5,7 +5,6 @@
   "status": "stable",
   "name": "Netzo Echo",
   "description": "Resource for the Netzo Echo API (echoes back requests)",
-  "categories": [],
   "labels": [
     "mock",
     "utility"

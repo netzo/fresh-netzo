@@ -5,7 +5,6 @@
   "status": "requested",
   "name": "Bigin",
   "description": "Resource for the Bigin API",
-  "categories": [],
   "labels": [
     "crm"
   ],

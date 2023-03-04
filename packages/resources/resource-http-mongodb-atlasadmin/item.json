@@ -5,7 +5,6 @@
   "status": "requested",
   "name": "MongoDB Atlas Admin",
   "description": "Resource for the MongoDB Atlas Admin API",
-  "categories": [],
   "labels": [
     "database",
     "infrastructure"

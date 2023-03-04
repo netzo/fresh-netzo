@@ -5,7 +5,6 @@
   "status": "requested",
   "name": "Enode",
   "description": "Resource for the Enode API",
-  "categories": [],
   "labels": [
     "iot",
     "energy",

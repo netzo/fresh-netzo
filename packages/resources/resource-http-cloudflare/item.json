@@ -5,7 +5,6 @@
   "status": "alpha",
   "name": "Cloudflare",
   "description": "Resource for the Cloudflare API",
-  "categories": [],
   "labels": [
     "infrastructure"
   ],

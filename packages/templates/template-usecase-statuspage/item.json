@@ -5,7 +5,6 @@
   "status": "stable",
   "name": "Statuspage",
   "description": "An HTTP server that serves an a statuspage to track the 'up', 'down' and 'maintenance' status of (multiple) services over time.",
-  "categories": [],
   "labels": [
     "usecase",
     "jsx"

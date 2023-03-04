@@ -5,7 +5,6 @@
   "status": "alpha",
   "name": "RestDB",
   "description": "Resource for the RestDB API",
-  "categories": [],
   "labels": [
     "database"
   ],

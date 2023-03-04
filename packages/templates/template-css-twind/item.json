@@ -5,7 +5,6 @@
   "status": "beta",
   "name": "Twind",
   "description": "A basic starter template using the Twind library",
-  "categories": [],
   "labels": [
     "css",
     "twind"

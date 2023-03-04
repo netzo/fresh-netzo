@@ -34,14 +34,6 @@
       "type": "string",
       "maxLength": 250
     },
-    "categories": {
-      "type": "array",
-      "items": [
-        {
-          "type": "string"
-        }
-      ]
-    },
     "labels": {
       "type": "array",
       "items": [

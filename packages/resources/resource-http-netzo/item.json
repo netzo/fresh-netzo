@@ -5,7 +5,6 @@
   "status": "stable",
   "name": "Netzo",
   "description": "Resource for the Netzo API",
-  "categories": [],
   "labels": [
     "infrastructure",
     "integrations",

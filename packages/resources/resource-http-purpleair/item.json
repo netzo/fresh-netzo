@@ -5,7 +5,6 @@
   "status": "alpha",
   "name": "PurpleAir",
   "description": "Resource for the PurpleAir API",
-  "categories": [],
   "labels": [
     "iot",
     "environmental"

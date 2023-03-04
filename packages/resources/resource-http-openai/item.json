@@ -5,7 +5,6 @@
   "status": "alpha",
   "name": "OpenAI",
   "description": "Resource for the OpenAI API for models ChatGPT-3, Codex and DALL-E 2",
-  "categories": [],
   "labels": [
     "artificial-intelligence",
     "productivity"

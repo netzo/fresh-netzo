@@ -5,7 +5,6 @@
   "status": "alpha",
   "name": "Ergast F1",
   "description": "Resource for the Ergast F1 API",
-  "categories": [],
   "labels": [
     "mock"
   ],

@@ -5,7 +5,6 @@
   "status": "requested",
   "name": "Enphase",
   "description": "Resource for the Enphase API",
-  "categories": [],
   "labels": [
     "iot",
     "energy",

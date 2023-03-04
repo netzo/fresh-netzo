@@ -5,7 +5,6 @@
   "status": "alpha",
   "name": "WhatsApp Business Cloud",
   "description": "Resource for the WhatsApp Business Cloud API",
-  "categories": [],
   "labels": [
     "social",
     "communications"

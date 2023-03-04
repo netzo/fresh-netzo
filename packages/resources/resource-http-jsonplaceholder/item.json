@@ -5,7 +5,6 @@
   "status": "alpha",
   "name": "JSONPlaceholder",
   "description": "Resource for the JSONPlaceholder mock API",
-  "categories": [],
   "labels": [
     "mock"
   ],

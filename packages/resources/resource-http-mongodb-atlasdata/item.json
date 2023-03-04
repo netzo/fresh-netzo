@@ -5,7 +5,6 @@
   "status": "alpha",
   "name": "MongoDB Atlas Data",
   "description": "Resource for the MongoDB Atlas Data API",
-  "categories": [],
   "labels": [
     "database"
   ],

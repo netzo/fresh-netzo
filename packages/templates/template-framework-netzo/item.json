@@ -5,7 +5,6 @@
   "status": "stable",
   "name": "Netzo",
   "description": "An HTTP server using netzo that responds with different payload types based on route. Netzo includes a routing and utility library for Deno Deploy. Its route handler signature is simple and easy to understand. Handlers accept a Request and return a Response.",
-  "categories": [],
   "labels": [
     "framework"
   ],

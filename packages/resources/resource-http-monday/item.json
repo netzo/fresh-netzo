@@ -5,7 +5,6 @@
   "status": "alpha",
   "name": "Monday",
   "description": "Resource for the Monday GraphQL API",
-  "categories": [],
   "labels": [
     "productivity"
   ],

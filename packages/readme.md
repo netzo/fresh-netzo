@@ -154,9 +154,6 @@ other items for further reference.
   "status": "stable",
   "name": "Netzo",
   "description": "Resource for the Netzo API",
-  "categories": [
-    "framework"
-  ],
   "labels": [
     "framework"
   ],

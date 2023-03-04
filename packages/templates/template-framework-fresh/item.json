@@ -5,7 +5,6 @@
   "status": "alpha",
   "name": "Fresh",
   "description": "A basic starting template using the Frash framework",
-  "categories": [],
   "labels": [
     "framework"
   ],
