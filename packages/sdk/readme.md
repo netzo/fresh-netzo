@@ -1,24 +1,34 @@
-<div align="center" style="padding-top: 12px;">
-  <a href="https://netzo.io" target="_blank">
-    <img style="background: transparent; height: 96px;" src="https://netzo.io/images/netzo-symbol-light.svg" alt="Netzo logo" />
-  </a>
-</div>
+# Netzo SDK
 
-<h3 align="center">Netzo</h3>
+A JavaScript/TypeScript SDK for interacting with resources in [Netzo](https://app.netzo.io) and with the [Netzo API](https://netzo.io/docs/api/introduction).
 
-<p align="center">
-  Code. Deploy. Repeat.
-</p>
+## Documentation
 
-<p align="center">
-  <a href="https://netzo.io"><strong>Website</strong></a> ·
-  <a href="https://netzo.io/docs/getting-started/introduction"><strong>Documentation</strong></a> ·
-  <a href="https://app.netzo.io/templates"><strong>Templates</strong></a>
-</p>
+Refer to the [Netzo documentation](https://netzo.io/docs/getting-started/introduction) for more details.
 
-<div align="center" style="margin-top: 24px;">
+## Usage
 
-[![Discord](https://discord.com/api/guilds/1069584352415068251/widget.png)](https://discord.gg/tbDUpRQCTk)
-[![Follow on Twitter](https://img.shields.io/twitter/follow/netzoio.svg?label=follow+netzoio)](https://twitter.com/netzoio)
+```ts
+import { Netzo } from "https://deno.land/x/netzo/mod.ts";
 
-</div>
+const netzo = Netzo({ apiKey: NETZO_API_KEY });
+
+// create client for existing resource:
+const { client } = await netzo.resource(RESOURCE_ID);
+const users = await client.users.get();
+
+// create client for a custom HTTP resource:
+const { client } = netzo.resource({
+  baseURL: "https://jsonplaceholder.typicode.com",
+});
+const users = await client.users.get();
+
+// api: an authenticated client for the Netzo API
+const projects = await netzo.api.projects.get();
+```
+
+## License
+
+Copyright (c) 2023 [Netzo](https://netzo.io)
+
+Licensed under the [MIT license](../../license).
