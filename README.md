@@ -1,24 +1,25 @@
-<p align="center">
-  <a href="https://netzo.io" rel="noopener" target="_blank">
-    <img width="150" src="https://netzo.io/images/netzo-symbol-light.svg" alt="Netzo logo" />
+<div align="center" style="padding-top: 12px;">
+  <a href="https://netzo.io" target="_blank">
+    <img style="background: transparent; height: 96px;" src="https://netzo.io/images/netzo-symbol-light.svg" alt="Netzo logo" />
   </a>
-</p>
+</div>
 
-<h1 align="center">Netzo SDK</h1>
+<h3 align="center">Netzo</h3>
 
 <p align="center">
-  Software development kit (SDK) for <a href="https://app.netzo.io" target="_blank">Netzo</a>, the open platform to instantly deploy JavaScript and TypeScript to URL endpoints, connect essential APIs, automate business processes and build internal tools faster, without managing servers.
+  Code. Deploy. Repeat.
 </p>
 
-<div align="center">
+<p align="center">
+  <a href="https://netzo.io"><strong>Website</strong></a> ·
+  <a href="https://netzo.io/docs/getting-started/introduction"><strong>Documentation</strong></a> ·
+  <a href="https://app.netzo.io/templates"><strong>Templates</strong></a>
+</p>
 
-[![MIT Licensed](https://img.shields.io/github/license/netzo/plugins)](https://github.com/netzo/netzo/tree/main/LICENSE)
-[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
-[![Discord](https://discord.com/api/guilds/1069584352415068251/widget.png)](https://discord.gg/tbDUpRQCTk)
-[![Follow on Twitter](https://img.shields.io/twitter/follow/netzoio.svg?label=follow+netzoio)](https://twitter.com/netzoio)
-[![Hashnode Blog](https://img.shields.io/badge/hashnode-blog-blue)](https://blog.netzo.io)
-[![Visit our Channel](https://img.shields.io/youtube/channel/views/UCHFSTwM7-ZjeJRI0RwtlFmg)](https://www.youtube.com/channel/UCHFSTwM7-ZjeJRI0RwtlFmg)
-
+<div align="center" style="margin-top: 24px;">
+  
+  [![Discord](https://discord.com/api/guilds/1069584352415068251/widget.png)](https://discord.gg/tbDUpRQCTk)
+  [![Follow on Twitter](https://img.shields.io/twitter/follow/netzoio.svg?label=follow+netzoio)](https://twitter.com/netzoio)
 </div>
 
 ## Documentation
