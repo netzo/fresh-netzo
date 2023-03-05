@@ -20,7 +20,6 @@
       "href": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-jsonplaceholder/src/readme.md"
     }
   ],
-  "schema": [],
   "item": {
     "_type": "resource",
     "type": "http",
