@@ -3,7 +3,7 @@
   "type": "resource",
   "status": "published",
   "name": "Sendgrid",
-  "description": "Resource for the Sendgrid API",
+  "description": "Sendgrid is a cloud-based email service that allows you to send emails to your customers.",
   "labels": [
     "transactional",
     "communications"

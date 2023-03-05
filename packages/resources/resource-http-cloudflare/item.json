@@ -3,7 +3,7 @@
   "type": "resource",
   "status": "published",
   "name": "Cloudflare",
-  "description": "Resource for the Cloudflare API",
+  "description": "Cloudflare is a web infrastructure and website security company, providing content delivery network services, DDoS mitigation, Internet security, and distributed domain name server services.",
   "labels": [
     "infrastructure"
   ],

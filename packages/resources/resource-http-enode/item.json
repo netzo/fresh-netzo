@@ -3,7 +3,7 @@
   "type": "resource",
   "status": "requested",
   "name": "Enode",
-  "description": "Resource for the Enode API",
+  "description": "Enode is a cloud based IoT API platform that allows you to connect, manage and analyze your IoT data. Enode provides a REST API that allows you to access your data and devices.",
   "labels": [
     "iot",
     "energy",

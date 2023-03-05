@@ -3,7 +3,7 @@
   "type": "resource",
   "status": "published",
   "name": "Ergast F1",
-  "description": "Resource for the Ergast F1 API",
+  "description": "Ergast F1 is a REST API for F1 data. It provides a simple interface to the wealth of data available on the official Formula 1 website.",
   "labels": [
     "mock"
   ],

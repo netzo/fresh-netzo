@@ -3,7 +3,7 @@
   "type": "resource",
   "status": "published",
   "name": "WhatsApp Business Cloud",
-  "description": "Resource for the WhatsApp Business Cloud API",
+  "description": "The WhatsApp Business Cloud API is a RESTful API that allows you to programmatically send and receive messages, create and manage WhatsApp Business profiles, and more.",
   "labels": [
     "social",
     "communications"

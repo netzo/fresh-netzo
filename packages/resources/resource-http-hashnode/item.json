@@ -3,7 +3,7 @@
   "type": "resource",
   "status": "requested",
   "name": "Hashnode",
-  "description": "Resource for the Hashnode API",
+  "description": "Hashnode is a blogging platform for developers. It is a community of 1,00,000+ developers who write about software development, tech, and more.",
   "labels": [
     "social",
     "blog"

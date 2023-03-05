@@ -3,7 +3,7 @@
   "type": "resource",
   "status": "requested",
   "name": "Twitter",
-  "description": "Resource for the Twitter API",
+  "description": "The Twitter API is a platform for building applications and services that use Twitter data. The API allows read and write access to most of the data available on Twitter",
   "labels": [
     "social"
   ],

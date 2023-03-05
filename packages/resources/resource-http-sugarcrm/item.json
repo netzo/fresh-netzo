@@ -3,7 +3,7 @@
   "type": "resource",
   "status": "requested",
   "name": "SugarCRM",
-  "description": "Resource for the SugarCRM API",
+  "description": "SugarCRM is a customer relationship management (CRM) software designed for businesses of all sizes.",
   "labels": [
     "crm"
   ],

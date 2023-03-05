@@ -3,7 +3,7 @@
   "type": "resource",
   "status": "published",
   "name": "Netzo Echo",
-  "description": "Resource for the Netzo Echo API (echoes back requests)",
+  "description": "The Netzo Echo API is a simple API that allows you to test your HTTP client library. It will echo back any request you send to it.",
   "labels": [
     "mock",
     "utility"

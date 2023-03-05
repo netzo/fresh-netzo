@@ -3,7 +3,7 @@
   "type": "resource",
   "status": "published",
   "name": "Netzo",
-  "description": "Resource for the Netzo API",
+  "description": "Netzo is a cloud-based internal tool and DevOps platform that helps you code and deploy projects faster and provides a single place to manage your projects, teams, and infrastructure.",
   "labels": [
     "infrastructure",
     "integrations",

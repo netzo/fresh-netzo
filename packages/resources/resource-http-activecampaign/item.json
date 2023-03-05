@@ -3,7 +3,7 @@
   "type": "resource",
   "status": "published",
   "name": "ActiveCampaign",
-  "description": "Resource for the ActiveCampaign API",
+  "description": "ActiveCampaign is a marketing automation platform that helps you create personalized experiences for your customers across every channel.",
   "labels": [
     "crm",
     "marketing"

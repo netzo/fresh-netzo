@@ -3,7 +3,7 @@
   "type": "resource",
   "status": "published",
   "name": "Clarifai",
-  "description": "Resource for the Clarifai API",
+  "description": "Clarifai is a machine learning platform powering applications to see, understand and interact with the world through computer vision and machine learning.",
   "labels": [
     "artificial-intelligence",
     "machine-learning"

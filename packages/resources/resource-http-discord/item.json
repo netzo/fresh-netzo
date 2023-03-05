@@ -3,7 +3,7 @@
   "type": "resource",
   "status": "published",
   "name": "Discord",
-  "description": "Resource for the Discord API",
+  "description": "Discord is a digital distribution platform designed for video gaming communities, that specializes in text, image, video and audio communication between users in a chat channel.",
   "labels": [
     "social",
     "communications"

@@ -3,7 +3,7 @@
   "type": "resource",
   "status": "published",
   "name": "RestDB",
-  "description": "Resource for the RestDB API",
+  "description": "RestDB is a cloud-based NoSQL database service. It is a RESTful API that allows you to store and retrieve data in JSON format.",
   "labels": [
     "database"
   ],

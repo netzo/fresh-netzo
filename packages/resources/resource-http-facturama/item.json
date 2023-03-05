@@ -3,7 +3,7 @@
   "type": "resource",
   "status": "published",
   "name": "Facturama",
-  "description": "Resource for the Facturama API",
+  "description": "Facturama provides a cloud-based platform for the management of electronic invoices, electronic receipts, and electronic payment receipts.",
   "labels": [
     "billing"
   ],

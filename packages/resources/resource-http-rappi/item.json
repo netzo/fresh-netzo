@@ -3,7 +3,7 @@
   "type": "resource",
   "status": "requested",
   "name": "Rappi",
-  "description": "Resource for the Rappi API",
+  "description": "Rappi is an application for ordering food and other products from local stores.",
   "labels": [
     "delivery"
   ],

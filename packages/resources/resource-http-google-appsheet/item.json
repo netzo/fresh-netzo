@@ -3,7 +3,7 @@
   "type": "resource",
   "status": "published",
   "name": "AppSheet",
-  "description": "Resource for the AppSheet API",
+  "description": "AppSheet is a low-code platform for building and deploying quick apps that connects to multiple data sources.",
   "labels": [
     "productivity",
     "low-code"

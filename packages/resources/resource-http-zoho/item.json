@@ -3,7 +3,7 @@
   "type": "resource",
   "status": "requested",
   "name": "Zoho",
-  "description": "Resource for the Zoho API",
+  "description": "Zoho is a cloud-based software suite that offers a wide range of services including CRM, HR, finance, marketing, sales, and more.",
   "labels": [
     "crm"
   ],

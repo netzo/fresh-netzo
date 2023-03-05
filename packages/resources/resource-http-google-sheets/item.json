@@ -3,7 +3,7 @@
   "type": "resource",
   "status": "requested",
   "name": "Google Sheets",
-  "description": "Resource for the Google Sheets API",
+  "description": "Google Sheets is an Excel alternative that allows you to create, edit, and share spreadsheets.",
   "labels": [
     "productivity",
     "google"

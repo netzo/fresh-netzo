@@ -3,7 +3,7 @@
   "type": "resource",
   "status": "requested",
   "name": "Bigin",
-  "description": "Resource for the Bigin API",
+  "description": "Bigin is a cloud-based CRM solution for small and medium-sized businesses. It offers a wide range of features, including sales automation, marketing automation, customer service, and more.",
   "labels": [
     "crm"
   ],

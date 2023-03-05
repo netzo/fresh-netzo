@@ -3,7 +3,7 @@
   "type": "resource",
   "status": "requested",
   "name": "MongoDB Atlas Admin",
-  "description": "Resource for the MongoDB Atlas Admin API",
+  "description": "The MongoDB Atlas Admin API is a RESTful API that allows you to programmatically manage your MongoDB Atlas clusters and other resources.",
   "labels": [
     "database",
     "infrastructure"

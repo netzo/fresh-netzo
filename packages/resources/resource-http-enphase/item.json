@@ -3,7 +3,7 @@
   "type": "resource",
   "status": "requested",
   "name": "Enphase",
-  "description": "Resource for the Enphase API",
+  "description": "Enphase is a solar energy platform that provides an API to access data from solar panels and inverters.",
   "labels": [
     "iot",
     "energy",

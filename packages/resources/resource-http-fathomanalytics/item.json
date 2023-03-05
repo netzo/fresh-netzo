@@ -3,7 +3,7 @@
   "type": "resource",
   "status": "published",
   "name": "Fathom Analytics",
-  "description": "Resource for the Fathom Analytics API",
+  "description": "Fathom Analytics is a privacy-first analytics tool that helps you understand your website visitors. It's a simple, lightweight alternative to Google Analytics.",
   "labels": [
     "analytics"
   ],

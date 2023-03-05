@@ -3,7 +3,7 @@
   "type": "resource",
   "status": "published",
   "name": "Sendinblue",
-  "description": "Resource for the Sendinblue API",
+  "description": "Sendinblue is a transactional email service that allows you to send emails to your customers. It also provides a CRM to manage your contacts and a marketing automation tool to send automated emails to your contacts.",
   "labels": [
     "marketing",
     "crm",

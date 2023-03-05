@@ -3,7 +3,7 @@
   "type": "resource",
   "status": "published",
   "name": "OpenAI",
-  "description": "Resource for the OpenAI API for models ChatGPT-3, Codex and DALL-E 2",
+  "description": "The OpenAI API enables you to access the full power of OpenAI's GPT-3, DALL-E, and Codex models.",
   "labels": [
     "artificial-intelligence",
     "productivity"

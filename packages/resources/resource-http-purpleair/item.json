@@ -3,7 +3,7 @@
   "type": "resource",
   "status": "published",
   "name": "PurpleAir",
-  "description": "Resource for the PurpleAir API",
+  "description": "PurpleAir is an IoT sensor network that provides real-time air quality data for more than 100,000 locations distributed mainly across North America.",
   "labels": [
     "iot",
     "environmental"

@@ -3,7 +3,7 @@
   "type": "resource",
   "status": "published",
   "name": "SpaceX Land",
-  "description": "Resource for the SpaceX Land GraphQL API",
+  "description": "The SpaceX Land API is a RESTful API that provides information about SpaceX's Starlink satellites and their coverage of the Earth.",
   "labels": [
     "mock",
     "space"

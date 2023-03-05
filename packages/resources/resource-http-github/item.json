@@ -3,7 +3,7 @@
   "type": "resource",
   "status": "published",
   "name": "GitHub",
-  "description": "Resource for the GitHub API",
+  "description": "GitHub is a web-based hosting service for version control using Git.",
   "labels": [
     "infrastructure"
   ],

@@ -3,7 +3,7 @@
   "type": "resource",
   "status": "published",
   "name": "PandaDoc",
-  "description": "Resource for the PandaDoc API",
+  "description": "PandaDoc is a cloud-based document automation platform that helps businesses create, send, track, and e-sign documents.",
   "labels": [
     "productivity"
   ],

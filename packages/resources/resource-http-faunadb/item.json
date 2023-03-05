@@ -3,7 +3,7 @@
   "type": "resource",
   "status": "published",
   "name": "FaunaDB",
-  "description": "Resource for the FaunaDB GraphQL API",
+  "description": "FaunaDB is a serverless cloud database that gives you ubiquitous, low-latency access to app data, without sacrificing data correctness.",
   "labels": [
     "database"
   ],
