@@ -20,13 +20,6 @@
       "href": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-github/src/readme.md"
     }
   ],
-  "schema": [
-    {
-      "component": "v-text-field",
-      "name": "personalAccessToken",
-      "label": "Personal Access Token"
-    }
-  ],
   "item": {
     "_type": "resource",
     "type": "http",

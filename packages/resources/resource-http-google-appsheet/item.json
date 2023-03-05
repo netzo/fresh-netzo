@@ -21,23 +21,6 @@
       "href": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-google-appsheet/src/readme.md"
     }
   ],
-  "schema": [
-    {
-      "component": "v-text-field",
-      "name": "appId",
-      "label": "App Id"
-    },
-    {
-      "component": "v-text-field",
-      "name": "apiKey",
-      "label": "ApplicationAccessKey"
-    },
-    {
-      "component": "v-text-field",
-      "name": "tableName",
-      "label": "Table Name"
-    }
-  ],
   "item": {
     "_type": "resource",
     "type": "http",

@@ -21,25 +21,11 @@
       "href": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-activecampaign/src/readme.md"
     }
   ],
-  "schema": [
-    {
-      "component": "v-text-field",
-      "name": "baseURL",
-      "label": "Base URL",
-      "hint": "Replace {{accountName}} with corresponding value",
-      "default": "https://{{accountName}}.api-us1.com/api/3"
-    },
-    {
-      "component": "v-text-field",
-      "name": "apiKey",
-      "label": "API Key"
-    }
-  ],
   "item": {
     "_type": "resource",
     "type": "http",
     "base": {
-      "baseURL": "{{baseURL}}",
+      "baseURL": "https://{{accountName}}.api-us1.com/api/3",
       "headers": {
         "Content-Type": "application/json"
       },

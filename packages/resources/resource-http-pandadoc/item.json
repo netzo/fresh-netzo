@@ -20,15 +20,6 @@
       "href": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-pandadoc/src/readme.md"
     }
   ],
-  "schema": [
-    {
-      "component": "v-text-field",
-      "name": "apiKeyWithPrefix",
-      "label": "API Key (with prefix)",
-      "default": "API-Key {{apiKey}}",
-      "hint": "Replace {{apiKey}} with corresponding value."
-    }
-  ],
   "item": {
     "_type": "resource",
     "type": "http",
@@ -41,7 +32,7 @@
         "type": "apiKey",
         "in": "header",
         "name": "Authorization",
-        "value": "{{apiKeyWithPrefix}}"
+        "value": "API-Key {{apiKey}}"
       }
     }
   }

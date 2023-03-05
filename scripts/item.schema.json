@@ -78,10 +78,6 @@
         }
       ]
     },
-    "schema": {
-      "type": "array",
-      "items": {}
-    },
     "item": {
       "type": "object",
       "properties": {}

@@ -21,13 +21,6 @@
       "href": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-sendgrid/src/readme.md"
     }
   ],
-  "schema": [
-    {
-      "component": "v-text-field",
-      "name": "apiToken",
-      "label": "API Token"
-    }
-  ],
   "item": {
     "_type": "resource",
     "type": "http",
@@ -37,8 +30,10 @@
         "Content-Type": "application/json"
       },
       "authorization": {
-        "type": "bearer",
-        "token": "{{apiToken}}"
+        "type": "apiKey",
+        "in": "header",
+        "name": "Authorization",
+        "value": "Bearer {{apiKey}}"
       }
     }
   }

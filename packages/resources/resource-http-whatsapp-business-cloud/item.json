@@ -21,18 +21,6 @@
       "href": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-whatsapp-business-cloud/src/readme.md"
     }
   ],
-  "schema": [
-    {
-      "component": "v-text-field",
-      "name": "businessAccountId",
-      "label": "Business Account ID"
-    },
-    {
-      "component": "v-text-field",
-      "name": "permanentToken",
-      "label": "Permanent Token"
-    }
-  ],
   "item": {
     "_type": "resource",
     "type": "http",
@@ -43,7 +31,7 @@
       },
       "authorization": {
         "type": "bearer",
-        "token": "Bearer {{permanentToken}}"
+        "token": "{{permanentToken}}"
       }
     }
   }

@@ -71,7 +71,6 @@ The following table summarizes the fields in a `item.json` file.
 | `labels`      | `string[]` (see [Label](#label))                                                  | `false`  | relevant keywords (tags) (kebab-case)                                                                              |
 | `display`     | [Display](#display)                                                               | `true`   | relevant details for rendering the item in the UI                                                                  |
 | `links`       | [Link](#link)[]                                                                | `false`  | [link relations](https://www.w3.org/TR/image-resource/#sizes-member) to related web resources                      |
-| `schema`      | [Schema](https://json-schema.org/understanding-json-schema/reference/object.html) | `false`  | JSON schema of object describing placeholder variables to prompt user with a configuration form when forking items |
 | `item`*       | [ResourceItem](#resourceitem) \| [TemplateItem](#templateitem)                    | `true`   | Additional properties specific to each item based on the value of its `item._type` field.                          |
 
 _\*_ Values for common fields like `name`, `description`, `labels` and `display`
@@ -114,7 +113,6 @@ The following table provides some examples of labels grouped by category.
 | Property  | Type     | Required | Description                                                                                 |
 | --------- | -------- | -------- | ------------------------------------------------------------------------------------------- |
 | `model`   | `string` | `false`  | link relation (see possible values [here](https://www.iana.org/assignments/link-relations)) |
-| `schema`  | `string` | `false`  | human-friendly display name                                                                 |
 | `options` | `string` | `true`   | URL to the link resource in the internet                                                    |
 
 ### ResourceItem
@@ -166,13 +164,6 @@ other items for further reference.
     {
       "rel": "readme",
       "href": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-netzo/src/readme.md"
-    }
-  ],
-  "schema": [
-    {
-      "component": "v-text-field",
-      "name": "apiKey",
-      "label": "API Key"
     }
   ],
   "item": {

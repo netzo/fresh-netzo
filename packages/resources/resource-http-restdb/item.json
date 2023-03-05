@@ -20,18 +20,6 @@
       "href": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-restdb/src/readme.md"
     }
   ],
-  "schema": [
-    {
-      "component": "v-text-field",
-      "name": "databaseURL",
-      "label": "Database URL"
-    },
-    {
-      "component": "v-text-field",
-      "name": "apiKey",
-      "label": "API Key"
-    }
-  ],
   "item": {
     "_type": "resource",
     "type": "http",
