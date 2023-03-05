@@ -21,15 +21,6 @@
       "href": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-discord/src/readme.md"
     }
   ],
-  "schema": [
-    {
-      "component": "v-text-field",
-      "name": "apiTokenWithPrefix",
-      "label": "API Token (with prefix)",
-      "default": "{{tokenType}} {{apiToken}}",
-      "hint": "Replace {{tokenType}} with Bearer or Bot and {{apiToken}} with corresponding value."
-    }
-  ],
   "item": {
     "_type": "resource",
     "type": "http",
@@ -42,7 +33,7 @@
         "type": "apiKey",
         "in": "header",
         "name": "Authorization",
-        "value": "{{apiTokenWithPrefix}}"
+        "value": "{{tokenType}} {{token}}"
       }
     }
   }

@@ -20,30 +20,11 @@
       "href": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-faunadb/src/readme.md"
     }
   ],
-  "schema": [
-    {
-      "component": "v-text-field",
-      "name": "baseURL",
-      "label": "Base URL",
-      "hint": "Replace {{regionGroupHostname}} with corresponding value",
-      "default": "https://{{regionGroupHostname}}/graphql"
-    },
-    {
-      "component": "v-text-field",
-      "name": "username",
-      "label": "Username"
-    },
-    {
-      "component": "v-text-field",
-      "name": "password",
-      "label": "Password"
-    }
-  ],
   "item": {
     "_type": "resource",
     "type": "http",
     "base": {
-      "baseURL": "{{baseURL}}",
+      "baseURL": "https://{{regionGroupHostname}}/graphql",
       "headers": {},
       "basic": {
         "type": "basic",

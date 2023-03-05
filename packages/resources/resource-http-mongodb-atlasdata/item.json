@@ -20,25 +20,11 @@
       "href": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-mongodb-atlasdata/src/readme.md"
     }
   ],
-  "schema": [
-    {
-      "component": "v-text-field",
-      "name": "baseURL",
-      "label": "Base URL",
-      "hint": "Replace {{dataApiAppId}} with corresponding value",
-      "default": "https://data.mongodb-api.com/app/{{dataApiAppId}}/endpoint/data/v1"
-    },
-    {
-      "component": "v-text-field",
-      "name": "apiKey",
-      "label": "API Key"
-    }
-  ],
   "item": {
     "_type": "resource",
     "type": "http",
     "base": {
-      "baseURL": "{{baseURL}}",
+      "baseURL": "https://data.mongodb-api.com/app/{{dataApiAppId}}/endpoint/data/v1",
       "headers": {
         "Content-Type": "application/json"
       },

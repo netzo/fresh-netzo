@@ -21,52 +21,11 @@
       "href": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-google-sheets/src/readme.md"
     }
   ],
-  "schema": [
-    {
-      "component": "v-text-field",
-      "name": "baseURL",
-      "label": "Base URL",
-      "hint": "Replace {{spreadsheetId}} with corresponding value",
-      "default": "https://sheets.googleapis.com/v4/spreadsheets/{{spreadsheetId}}"
-    },
-    {
-      "component": "v-text-field",
-      "name": "clientId",
-      "label": "Client ID"
-    },
-    {
-      "component": "v-text-field",
-      "name": "clientSecret",
-      "label": "Client Secret"
-    },
-    {
-      "component": "v-text-field",
-      "name": "authorizationURL",
-      "label": "Authorization URL"
-    },
-    {
-      "component": "v-text-field",
-      "name": "accessTokenURL",
-      "label": "Access Token URL"
-    },
-    {
-      "component": "v-text-field",
-      "name": "redirectURL",
-      "label": "Redirect URL"
-    },
-    {
-      "component": "v-combobox",
-      "name": "scopes",
-      "label": "Scopes",
-      "chips": true,
-      "multiple": true
-    }
-  ],
   "item": {
     "_type": "resource",
     "type": "http",
     "base": {
-      "baseURL": "{{baseURL}}",
+      "baseURL": "https://sheets.googleapis.com/v4/spreadsheets/{{spreadsheetId}}",
       "headers": {
         "Content-Type": "application/json"
       },
