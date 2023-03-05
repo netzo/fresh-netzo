@@ -1,7 +1,6 @@
 {
   "uid": "resource-http-pandadoc",
   "type": "resource",
-  "version": "1.0.0",
   "status": "published",
   "name": "PandaDoc",
   "description": "Resource for the PandaDoc API",

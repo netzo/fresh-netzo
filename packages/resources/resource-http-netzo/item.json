@@ -1,7 +1,6 @@
 {
   "uid": "resource-http-netzo",
   "type": "resource",
-  "version": "1.0.0",
   "status": "published",
   "name": "Netzo",
   "description": "Resource for the Netzo API",

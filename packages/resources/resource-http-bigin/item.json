@@ -1,7 +1,6 @@
 {
   "uid": "resource-http-bigin",
   "type": "resource",
-  "version": "1.0.0",
   "status": "requested",
   "name": "Bigin",
   "description": "Resource for the Bigin API",

@@ -1,7 +1,6 @@
 {
   "uid": "resource-http-clarifai",
   "type": "resource",
-  "version": "1.0.0",
   "status": "published",
   "name": "Clarifai",
   "description": "Resource for the Clarifai API",

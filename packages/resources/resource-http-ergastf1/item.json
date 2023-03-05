@@ -1,7 +1,6 @@
 {
   "uid": "resource-http-ergastf1",
   "type": "resource",
-  "version": "1.0.0",
   "status": "published",
   "name": "Ergast F1",
   "description": "Resource for the Ergast F1 API",

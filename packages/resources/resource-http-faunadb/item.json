@@ -1,7 +1,6 @@
 {
   "uid": "resource-http-faunadb",
   "type": "resource",
-  "version": "1.0.0",
   "status": "published",
   "name": "FaunaDB",
   "description": "Resource for the FaunaDB GraphQL API",

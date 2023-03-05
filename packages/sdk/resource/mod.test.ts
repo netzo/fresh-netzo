@@ -19,7 +19,6 @@ const RESOURCE: IResource = {
   'type': 'http',
   'item': {
     'uid': 'resource-http-jsonplaceholder',
-    'version': '1.0.0',
     '_type': 'item',
   },
   'name': 'TESTING',

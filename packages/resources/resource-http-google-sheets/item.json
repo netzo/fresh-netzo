@@ -1,7 +1,6 @@
 {
   "uid": "resource-http-google-sheets",
   "type": "resource",
-  "version": "1.0.0",
   "status": "requested",
   "name": "Google Sheets",
   "description": "Resource for the Google Sheets API",

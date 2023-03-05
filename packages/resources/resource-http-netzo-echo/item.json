@@ -1,7 +1,6 @@
 {
   "uid": "resource-http-netzo-echo",
   "type": "resource",
-  "version": "1.0.0",
   "status": "published",
   "name": "Netzo Echo",
   "description": "Resource for the Netzo Echo API (echoes back requests)",

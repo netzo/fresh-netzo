@@ -65,13 +65,12 @@ The following table summarizes the fields in a `item.json` file.
 | ------------- | --------------------------------------------------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------ |
 | `uid`         | `string`                                                                          | `true`   | unique ID (kebab-case) prefixed by the item type (e.g. `resource-` or `template-`)                                 |
 | `type`        | `'resource'` \| `'template'`                                                      | `true`   | type of item                                                                                                       |
-| `version`     | `string`                                                                          | `true`   | current version of item in [semantic version](https://semver.org/)                                                 |
 | `status`      | `published` \| `requested`                                                        | `true`   | if item is published or in requested status for upvotes.                                                                                |
 | `name`        | `string`                                                                          | `true`   | human-friendly display name for the item                                                                           |
 | `description` | `string`                                                                          | `true`   | brief description of item                                                                                          |
 | `labels`      | `string[]` (see [Label](#label))                                                  | `false`  | relevant keywords (tags) (kebab-case)                                                                              |
 | `display`     | [Display](#display)                                                               | `true`   | relevant details for rendering the item in the UI                                                                  |
-| `links`       | [Link](#display)[]                                                                | `false`  | [link relations](https://www.w3.org/TR/image-resource/#sizes-member) to related web resources                      |
+| `links`       | [Link](#link)[]                                                                | `false`  | [link relations](https://www.w3.org/TR/image-resource/#sizes-member) to related web resources                      |
 | `schema`      | [Schema](https://json-schema.org/understanding-json-schema/reference/object.html) | `false`  | JSON schema of object describing placeholder variables to prompt user with a configuration form when forking items |
 | `item`*       | [ResourceItem](#resourceitem) \| [TemplateItem](#templateitem)                    | `true`   | Additional properties specific to each item based on the value of its `item._type` field.                          |
 
@@ -150,7 +149,6 @@ other items for further reference.
 {
   "uid": "resource-http-netzo",
   "type": "resource",
-  "version": "1.0.0",
   "status": "published",
   "name": "Netzo",
   "description": "Resource for the Netzo API",

@@ -1,7 +1,6 @@
 {
   "uid": "template-usecase-file-upload-portal",
   "type": "template",
-  "version": "1.0.0",
   "status": "published",
   "name": "File Upload Portal",
   "description": "An HTTP server that serves a file upload portal to ease data processing and syncing from files.",

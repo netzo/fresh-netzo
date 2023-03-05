@@ -1,7 +1,6 @@
 {
   "uid": "resource-http-github",
   "type": "resource",
-  "version": "1.0.0",
   "status": "published",
   "name": "GitHub",
   "description": "Resource for the GitHub API",

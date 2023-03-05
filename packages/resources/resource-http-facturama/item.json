@@ -1,7 +1,6 @@
 {
   "uid": "resource-http-facturama",
   "type": "resource",
-  "version": "1.0.0",
   "status": "published",
   "name": "Facturama",
   "description": "Resource for the Facturama API",

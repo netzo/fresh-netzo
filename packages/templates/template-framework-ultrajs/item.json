@@ -1,7 +1,6 @@
 {
   "uid": "template-framework-ultrajs",
   "type": "template",
-  "version": "1.0.0",
   "status": "published",
   "name": "UltraJS",
   "description": "A basic starter template using the UltraJS library",

@@ -1,7 +1,6 @@
 {
   "uid": "resource-http-whatsapp-business-cloud",
   "type": "resource",
-  "version": "1.0.0",
   "status": "published",
   "name": "WhatsApp Business Cloud",
   "description": "Resource for the WhatsApp Business Cloud API",

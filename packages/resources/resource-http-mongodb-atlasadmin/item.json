@@ -1,7 +1,6 @@
 {
   "uid": "resource-http-mongodb-atlasadmin",
   "type": "resource",
-  "version": "1.0.0",
   "status": "requested",
   "name": "MongoDB Atlas Admin",
   "description": "Resource for the MongoDB Atlas Admin API",

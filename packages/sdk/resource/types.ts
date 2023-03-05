@@ -20,7 +20,6 @@ export interface IResource {
   type: 'http'
   item: {
     uid: string
-    version: string
     _type: 'item'
   }
   name: string

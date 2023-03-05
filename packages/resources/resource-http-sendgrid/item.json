@@ -1,7 +1,6 @@
 {
   "uid": "resource-http-sendgrid",
   "type": "resource",
-  "version": "1.0.0",
   "status": "published",
   "name": "Sendgrid",
   "description": "Resource for the Sendgrid API",

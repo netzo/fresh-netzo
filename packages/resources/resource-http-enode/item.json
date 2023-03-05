@@ -1,7 +1,6 @@
 {
   "uid": "resource-http-enode",
   "type": "resource",
-  "version": "1.0.0",
   "status": "requested",
   "name": "Enode",
   "description": "Resource for the Enode API",

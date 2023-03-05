@@ -1,7 +1,6 @@
 {
   "uid": "resource-http-purpleair",
   "type": "resource",
-  "version": "1.0.0",
   "status": "published",
   "name": "PurpleAir",
   "description": "Resource for the PurpleAir API",

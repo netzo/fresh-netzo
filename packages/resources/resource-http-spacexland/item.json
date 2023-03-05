@@ -1,7 +1,6 @@
 {
   "uid": "resource-http-spacexland",
   "type": "resource",
-  "version": "1.0.0",
   "status": "published",
   "name": "SpaceX Land",
   "description": "Resource for the SpaceX Land GraphQL API",

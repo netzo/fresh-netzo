@@ -1,7 +1,6 @@
 {
   "uid": "resource-http-jsonplaceholder",
   "type": "resource",
-  "version": "1.0.0",
   "status": "published",
   "name": "JSONPlaceholder",
   "description": "Resource for the JSONPlaceholder mock API",

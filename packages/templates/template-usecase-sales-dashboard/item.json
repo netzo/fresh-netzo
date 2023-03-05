@@ -1,7 +1,6 @@
 {
   "uid": "template-usecase-sales-dashboard",
   "type": "template",
-  "version": "1.0.0",
   "status": "published",
   "name": "Sales Dashboard",
   "description": "An HTTP server that serves a sales dashboard to track performance of sales teams in real-time, and provides a variety of metrics to help make informed decisions.",

@@ -1,7 +1,6 @@
 {
   "uid": "template-css-twind",
   "type": "template",
-  "version": "1.0.0",
   "status": "published",
   "name": "Twind",
   "description": "A basic starter template using the Twind library",

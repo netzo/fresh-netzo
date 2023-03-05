@@ -1,7 +1,6 @@
 {
   "uid": "resource-http-monday",
   "type": "resource",
-  "version": "1.0.0",
   "status": "published",
   "name": "Monday",
   "description": "Resource for the Monday GraphQL API",

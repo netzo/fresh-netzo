@@ -1,7 +1,6 @@
 {
   "uid": "resource-http-discord",
   "type": "resource",
-  "version": "1.0.0",
   "status": "published",
   "name": "Discord",
   "description": "Resource for the Discord API",

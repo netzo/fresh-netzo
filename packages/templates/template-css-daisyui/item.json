@@ -1,7 +1,6 @@
 {
   "uid": "template-css-daisyui",
   "type": "template",
-  "version": "1.0.0",
   "status": "published",
   "name": "DaisyUI",
   "description": "A CSS only basic starter template using the DaisyUI library",
