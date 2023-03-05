@@ -15,11 +15,6 @@
   },
   "links": [
     {
-      "rel": "author",
-      "href": "https://netzo.io",
-      "title": "Netzo"
-    },
-    {
       "rel": "repository",
       "href": "https://github.com/netzo/netzo/tree/main/packages/templates/template-usecase-file-upload-portal"
     },

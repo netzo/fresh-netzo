@@ -162,11 +162,6 @@ other items for further reference.
   },
   "links": [
     {
-      "rel": "author",
-      "href": "https://netzo.io",
-      "title": "Netzo"
-    },
-    {
       "rel": "repository",
       "href": "https://github.com/netzo/netzo/tree/main/packages/resources/resource-http-netzo"
     },
