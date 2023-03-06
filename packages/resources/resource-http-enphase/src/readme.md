@@ -1,7 +1,3 @@
-# resource-http-enphase
-
-An open-source source resource for the Enphase API v4. The Enphase Energy API
-enables access to the data produced by solar inverters.
 
 ## Configuration
 

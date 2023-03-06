@@ -1,7 +1,3 @@
-# resource-http-purpleair
-
-An open-source source resource for the PurpleAir API.
-
 ## Configuration
 
 You will require a PurpleAir `readApiKey`. Check out the PurpleAir documentation

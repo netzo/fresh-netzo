@@ -1,8 +1,3 @@
-# resource-http-whatsapp-business-cloud
-
-An open-source source resource for the WhatsApp API v4. The WhatsApp Energy API
-enables access to the data produced by solar inverters.
-
 ## Configuration
 
 You will require OAuth2 client credentials to set up this API. Please refer to

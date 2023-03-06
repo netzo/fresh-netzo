@@ -1,7 +1,3 @@
-# resource-http-restdb
-
-An open-source source resource for the RestDB API.
-
 ## Configuration
 
 You will require a RestDB API key. Check out the RestDB documentation for more

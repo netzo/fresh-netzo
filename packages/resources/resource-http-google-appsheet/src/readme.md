@@ -1,7 +1,3 @@
-# resource-http-google-appsheet
-
-An open-source source resource for the Google AppSheet API.
-
 ## Configuration
 
 You will require a Google AppSheet `tableName`, your `appId` and

@@ -1,7 +1,3 @@
-# resource-http-github
-
-An open-source source resource for the GitHub API.
-
 ## Configuration
 
 This Resource authenticates through the GitHub `personalAccessToken` strategy,

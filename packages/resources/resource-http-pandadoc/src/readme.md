@@ -1,7 +1,3 @@
-# resource-http-pandadoc
-
-An open-source source resource for the PandaDoc API.
-
 ## Configuration
 
 This Resource supports an HTTP API key authentication process.

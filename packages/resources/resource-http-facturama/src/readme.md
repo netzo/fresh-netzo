@@ -1,7 +1,3 @@
-# resource-http-facturama
-
-An open-source source resource for the Facturama API.
-
 ## Configuration
 
 The supported auth mechanism is HTTP Basic. You will require your Facturama

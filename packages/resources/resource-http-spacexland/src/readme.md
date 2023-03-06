@@ -1,7 +1,3 @@
-# resource-http-spacexland
-
-An open-source source resource for the SpaceX Land GraphQL API.
-
 ## Configuration
 
 You don't require any further configuration to use the SpaceX Land API.

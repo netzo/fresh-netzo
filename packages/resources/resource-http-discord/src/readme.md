@@ -1,7 +1,3 @@
-# resource-http-discord
-
-An open-source source resource for the Discord API.
-
 ## Configuration
 
 This resource does not require additional configuration.

@@ -1,7 +1,3 @@
-# resource-http-mongodb-atlasdata
-
-An open-source source resource for the MongoDB Atlas Data API.
-
 ## Configuration
 
 You will require a MongoDB Atlas Data `apiKey`, obtainable in the MongoDB Atlas

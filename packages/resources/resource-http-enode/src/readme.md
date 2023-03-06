@@ -1,9 +1,3 @@
-# resource-http-enphase
-
-An open-source source resource for the Enode API. Enode is an all-in-one API
-currently supporting major hardware brands for electric vehicles, smart
-chargers, solar inverters, home batteries, heating and cooling.
-
 ## Configuration
 
 You will require OAuth2 client credentials to set up this API. Please refer to

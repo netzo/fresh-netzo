@@ -1,7 +1,3 @@
-# resource-http-activecampaign
-
-An open-source source resource for the ActiveCampaign API.
-
 ## Configuration
 
 This resource does not require additional configuration.

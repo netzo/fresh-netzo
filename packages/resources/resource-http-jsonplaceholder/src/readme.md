@@ -1,7 +1,3 @@
-# resource-http-jsonplaceholder
-
-An open-source source resource for the JSONPlaceholder API.
-
 ## Configuration
 
 This resource does not require additional configuration.

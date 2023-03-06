@@ -1,7 +1,3 @@
-# resource-http-sendgrid
-
-An open-source source resource for the Sendgrid API.
-
 ## Configuration
 
 You will require a Sendgrid `apiKey`, obtainable

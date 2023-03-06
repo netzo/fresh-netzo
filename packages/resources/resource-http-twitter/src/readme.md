@@ -1,7 +1,3 @@
-# resource-http-twitter
-
-An open-source source resource for the Twitter API.
-
 ## Configuration
 
 You will require OAuth2 client credentials to set up this API. Please refer to
