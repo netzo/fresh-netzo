@@ -1,7 +1,3 @@
-# resource-http-hashnode
-
-An open-source source resource for the Hashnode GraphQL API.
-
 ## Configuration
 
 This resource does not require additional configuration.

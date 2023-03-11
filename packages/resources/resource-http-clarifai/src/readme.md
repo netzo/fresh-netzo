@@ -1,7 +1,3 @@
-# resource-http-purpleair
-
-An open-source source resource for the Clarifai API.
-
 ## Configuration
 
 You will require a Clarifai `personalAccessToken` obtainable

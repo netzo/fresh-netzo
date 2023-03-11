@@ -1,7 +1,3 @@
-# resource-http-netzo-echo
-
-An open-source source resource for the Netzo Echo API (echoes back requests).
-
 ## Configuration
 
 This resource does not require additional configuration.

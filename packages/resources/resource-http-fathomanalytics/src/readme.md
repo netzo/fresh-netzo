@@ -1,7 +1,3 @@
-# resource-http-fathomanalytics
-
-An open-source source resource for the Fathom Analytics API.
-
 ## Configuration
 
 The currently supported auth mechanism is HTTP Bearer.

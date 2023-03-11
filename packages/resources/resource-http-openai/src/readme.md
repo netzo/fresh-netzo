@@ -1,6 +1,4 @@
-# resource-https-openai
-
-An open-source source resource for the OpenAI API for access to ChatGPT-3, which
+The OpenAI API for access to ChatGPT-3, which
 performs a variety of natural language tasks, Codex, which translates natural
 language to code, and DALL·E, which creates and edits original images. The
 models are hosted under different endpoints of the same API, for example.

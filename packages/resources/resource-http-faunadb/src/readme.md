@@ -1,7 +1,3 @@
-# resource-http-faunadb
-
-An open-source source resource for the FaunaDB GraphQL API.
-
 ## Configuration
 
 The currently supported auth mechanism is HTTP Basic.

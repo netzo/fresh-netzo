@@ -1,7 +1,3 @@
-# resource-http-monday
-
-An open-source source resource for the Monday GraphQL API.
-
 ## Configuration
 
 You will require your Monday `apiKey`. Admin and Developer users in Monday.com

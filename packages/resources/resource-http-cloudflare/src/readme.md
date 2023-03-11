@@ -1,7 +1,3 @@
-# resource-http-cloudflare
-
-An open-source source resource for the Cloudflare API.
-
 ## Configuration
 
 This Resource authenticates through the Cloudflare `API token` strategy,

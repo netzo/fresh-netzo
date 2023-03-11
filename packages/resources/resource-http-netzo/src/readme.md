@@ -1,8 +1,3 @@
-# resource-http-netzo
-
-An open-source source resource for the Netzo API. The RESTful API provides
-access to nearly every feature available through the Netzo application frontend.
-
 ## Configuration
 
 You will require an `apiKey`, obtainable by navigating to

@@ -1,7 +1,3 @@
-# resource-http-ergastf1
-
-An open-source source resource for the Ergast F1 API.
-
 ## Configuration
 
 This resource does not require additional configuration.

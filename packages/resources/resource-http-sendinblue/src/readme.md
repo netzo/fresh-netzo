@@ -1,7 +1,3 @@
-# resource-http-sendinblue
-
-An open-source source resource for the Sendinblue API.
-
 ## Configuration
 
 You will require a Sendinblue `apiKey`, obtainable in the Sendinblue admin

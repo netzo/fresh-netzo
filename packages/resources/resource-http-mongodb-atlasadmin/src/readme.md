@@ -1,7 +1,3 @@
-# resource-http-mongodb-atlasadmin
-
-An open-source source resource for the MongoDB Atlas Admin API.
-
 ## Configuration
 
 You will require a MongoDB Atlas Admin API key. Check out the MongoDB Atlas
