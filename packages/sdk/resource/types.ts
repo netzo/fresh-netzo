@@ -26,7 +26,7 @@ export interface IResource {
   description: string
   labels: string[]
   stars: number
-  display: { imageUrl: string }
+  display: { avatar: string }
   base: IRequest
   updatedAt: string
   createdAt: string

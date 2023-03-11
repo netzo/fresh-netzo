@@ -38,7 +38,7 @@
     "display": {
       "type": "object",
       "properties": {
-        "imageUrl": {
+        "avatar": {
           "type": "string",
           "format": "uri"
         },
@@ -48,7 +48,7 @@
         }
       },
       "required": [
-        "imageUrl"
+        "avatar"
       ]
     },
     "links": {

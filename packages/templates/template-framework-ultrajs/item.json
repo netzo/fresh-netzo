@@ -8,7 +8,7 @@
     "framework"
   ],
   "display": {
-    "imageUrl": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-framework-ultrajs/icon.svg"
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-framework-ultrajs/icon.svg"
   },
   "links": [
     {

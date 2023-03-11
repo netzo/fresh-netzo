@@ -98,7 +98,7 @@ The following table provides some examples of labels grouped by category.
 
 | Property   | Type     | Required | Description                                    |
 | ---------- | -------- | -------- | ---------------------------------------------- |
-| `imageUrl` | `string` | `true`   | URL to the item's display image (used as logo) |
+| `avatar` | `string` | `true`   | URL of an image or an icon to use as an avatar |
 
 ### Link
 
@@ -154,7 +154,7 @@ other items for further reference.
     "framework"
   ],
   "display": {
-    "imageUrl": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-netzo/icon.webp"
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-netzo/icon.webp"
   },
   "links": [
     {

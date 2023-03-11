@@ -26,7 +26,7 @@ const RESOURCE: IResource = {
   'labels': [],
   'stars': 0,
   'display': {
-    'imageUrl': '',
+    'avatar': '',
   },
   'base': {
     'baseURL': 'https://jsonplaceholder.typicode.com',
