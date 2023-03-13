@@ -11,7 +11,8 @@ An example POST body for a `query` could look as follows:
 {
   "query":"query getWorkspace($workspaceId: ID!) { workspace(workspaceId: $workspaceId) { id name publicName } }",
   "variables":{"workspaceId":"$PLAIN_WORKSPACE_ID"},
-  "operationName":"getWorkspace"}
+  "operationName":"getWorkspace"
+}
 ```
 
 > Hint: Build your GraphQL queries through the
