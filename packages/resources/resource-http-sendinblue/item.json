@@ -10,7 +10,7 @@
     "transactional"
   ],
   "display": {
-    "imageUrl": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-sendinblue/icon.webp"
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-sendinblue/icon.webp"
   },
   "links": [
     {
