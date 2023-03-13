@@ -61,17 +61,17 @@ root level.
 
 The following table summarizes the fields in a `item.json` file.
 
-| Property      | Type                                                                              | Required | Description                                                                                                        |
-| ------------- | --------------------------------------------------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------ |
-| `uid`         | `string`                                                                          | `true`   | unique ID (kebab-case) prefixed by the item type (e.g. `resource-` or `template-`)                                 |
-| `type`        | `'resource'` \| `'template'`                                                      | `true`   | type of item                                                                                                       |
-| `status`      | `published` \| `requested`                                                        | `true`   | if item is published or in requested status for upvotes.                                                                                |
-| `name`        | `string`                                                                          | `true`   | human-friendly display name for the item                                                                           |
-| `description` | `string`                                                                          | `true`   | brief description of item                                                                                          |
-| `labels`      | `string[]` (see [Label](#label))                                                  | `false`  | relevant keywords (tags) (kebab-case)                                                                              |
-| `display`     | [Display](#display)                                                               | `true`   | relevant details for rendering the item in the UI                                                                  |
-| `links`       | [Link](#link)[]                                                                | `false`  | [link relations](https://www.w3.org/TR/image-resource/#sizes-member) to related web resources                      |
-| `item`*       | [ResourceItem](#resourceitem) \| [TemplateItem](#templateitem)                    | `true`   | Additional properties specific to each item based on the value of its `item._type` field.                          |
+| Property      | Type                                                           | Required | Description                                                                                   |
+| ------------- | -------------------------------------------------------------- | -------- | --------------------------------------------------------------------------------------------- |
+| `uid`         | `string`                                                       | `true`   | unique ID (kebab-case) prefixed by the item type (e.g. `resource-` or `template-`)            |
+| `type`        | `'resource'` \| `'template'`                                   | `true`   | type of item                                                                                  |
+| `status`      | `published` \| `requested`                                     | `true`   | if item is published or in requested status for upvotes.                                      |
+| `name`        | `string`                                                       | `true`   | human-friendly display name for the item                                                      |
+| `description` | `string`                                                       | `true`   | brief description of item                                                                     |
+| `labels`      | `string[]` (see [Label](#label))                               | `false`  | relevant keywords (tags) (kebab-case)                                                         |
+| `display`     | [Display](#display)                                            | `true`   | relevant details for rendering the item in the UI                                             |
+| `links`       | [Link](#link)[]                                                | `false`  | [link relations](https://www.w3.org/TR/image-resource/#sizes-member) to related web resources |
+| `item`*       | [ResourceItem](#resourceitem) \| [TemplateItem](#templateitem) | `true`   | Additional properties specific to each item based on the value of its `item._type` field.     |
 
 _\*_ Values for common fields like `name`, `description`, `labels` and `display`
 can be specified only once at the root. Any field specified under `item` will
@@ -96,8 +96,8 @@ The following table provides some examples of labels grouped by category.
 
 ### Display
 
-| Property   | Type     | Required | Description                                    |
-| ---------- | -------- | -------- | ---------------------------------------------- |
+| Property | Type     | Required | Description                                    |
+| -------- | -------- | -------- | ---------------------------------------------- |
 | `avatar` | `string` | `true`   | URL of an image or an icon to use as an avatar |
 
 ### Link

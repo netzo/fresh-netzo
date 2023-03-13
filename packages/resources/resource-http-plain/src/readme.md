@@ -1,21 +1,31 @@
 ## Configuration
 
+<<<<<<< HEAD
 This resource connects to Plain's GraphQL API and sets the Authorization header with the provided `PLAIN_API_KEY` while using the Netzo SDK.
 You can generate a new `PLAIN_API_KEY` by navigating to your Plain Account > Developer Settings > Machine Users. Additionally, you will require your `PLAIN_WORKSPACE_ID` which you can find in Plain Account > General.
 
 GraphQL queries and mutations can be executed using the `query` and `mutation` methods respectively and be sent in the `body` of the request.
+=======
+This resource connects to Plain's GraphQL API and sets the Authorization header
+with the provided API key while using the Netzo SDK. Queries and mutations can
+be executed using the `query` and `mutation` methods respectively and be sent in
+the `body` of the request.
+
+You will require a valid `PLAIN_WORKSPACE_ID` to call the respective `queries`
+and `mutations`.
+>>>>>>> 722c1859c3ba585aa68415a85216e56acad66cee
 
 An example POST body for a `query` could look as follows:
 
 ```json
 {
-  "query":"query getWorkspace($workspaceId: ID!) { workspace(workspaceId: $workspaceId) { id name publicName } }",
-  "variables":{"workspaceId":"$PLAIN_WORKSPACE_ID"},
-  "operationName":"getWorkspace"}
+  "query": "query getWorkspace($workspaceId: ID!) { workspace(workspaceId: $workspaceId) { id name publicName } }",
+  "variables": { "workspaceId": "$PLAIN_WORKSPACE_ID" },
+  "operationName": "getWorkspace"
+}
 ```
 
-> Hint: Build your GraphQL queries through the
-> [API explorer](#Links)
+> Hint: Build your GraphQL queries through the [API explorer](#Links)
 
 Check out the documentation for more information.
 
