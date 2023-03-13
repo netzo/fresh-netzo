@@ -1,11 +1,11 @@
 ## Configuration
 
-This resource connects to Plain's GraphQL API and sets the Authorization header with the provided API key while using the Netzo SDK.
-Queries and mutations can be executed using the `query` and `mutation` methods respectively and be sent in the `body` of the request.
+This resource connects to Plain's GraphQL API and sets the Authorization header with the provided `PLAIN_API_KEY` while using the Netzo SDK.
+You can generate a new `PLAIN_API_KEY` by navigating to your Plain Account > Developer Settings > Machine Users. Additionally, you will require your `PLAIN_WORKSPACE_ID` which you can find in Plain Account > General.
 
-You will require a valid `PLAIN_WORKSPACE_ID` to call the respective `queries` and `mutations`.
+GraphQL queries and mutations can be executed using the `query` and `mutation` methods respectively and be sent in the `body` of the request.
 
-An example POST body for a `query` could look like:
+An example POST body for a `query` could look as follows:
 
 ```json
 {
