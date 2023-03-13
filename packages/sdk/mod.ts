@@ -2,15 +2,15 @@ import type { NetzoSDK } from './types.ts'
 import { createClient } from './clients/http/mod.ts'
 import { createResource } from './resource/mod.ts'
 
-export * from "https://deno.land/x/sift@0.6.0/mod.ts";
-export * from "./types.ts";
-export * from "./clients/http/mod.ts";
-export * from "./clients/http/types.ts";
-export * from "./resource/mod.ts";
-export * from "./resource/types.ts";
-export * from "./utils/auth/mod.ts";
-export * from "./utils/auth/types.ts";
-export * from "./utils/serve-function/mod.ts";
+export * from 'https://deno.land/x/sift@0.6.0/mod.ts'
+export * from './types.ts'
+export * from './clients/http/mod.ts'
+export * from './clients/http/types.ts'
+export * from './resource/mod.ts'
+export * from './resource/types.ts'
+export * from './utils/auth/mod.ts'
+export * from './utils/auth/types.ts'
+export * from './utils/serve-function/mod.ts'
 
 /**
  * Constructor function for the Netzo SDK.
