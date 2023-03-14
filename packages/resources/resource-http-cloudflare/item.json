@@ -3,9 +3,11 @@
   "type": "resource",
   "status": "published",
   "name": "Cloudflare",
-  "description": "Cloudflare is a web infrastructure and website security company, providing content delivery network services, DDoS mitigation, Internet security, and distributed domain name server services.",
+  "description": "Cloudflare is a web infrastructure and website security company, providing content delivery network services, DDoS mitigation, internet security, and distributed domain name server services.",
   "labels": [
-    "infrastructure"
+    "devops",
+    "engineering",
+    "security"
   ],
   "display": {
     "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-cloudflare/icon.webp"

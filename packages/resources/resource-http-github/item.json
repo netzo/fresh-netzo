@@ -5,7 +5,11 @@
   "name": "GitHub",
   "description": "GitHub is a web-based hosting service for version control using Git.",
   "labels": [
-    "infrastructure"
+    "product",
+    "engineering",
+    "devops",
+    "content/cms",
+    "dev-tool"
   ],
   "display": {
     "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-github/icon.webp"

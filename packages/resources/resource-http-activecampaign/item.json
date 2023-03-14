@@ -5,8 +5,10 @@
   "name": "ActiveCampaign",
   "description": "ActiveCampaign is a marketing automation platform that helps you create personalized experiences for your customers across every channel.",
   "labels": [
-    "crm",
-    "marketing"
+    "sales",
+    "marketing",
+    "communications/email",
+    "customer-service"
   ],
   "display": {
     "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-activecampaign/icon.webp"

@@ -5,7 +5,9 @@
   "name": "Zoho",
   "description": "Zoho is a cloud-based software suite that offers a wide range of services including CRM, HR, finance, marketing, sales, and more.",
   "labels": [
-    "crm"
+    "sales",
+    "customer-service",
+    "communications/email"
   ],
   "display": {
     "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-zoho/icon.webp"

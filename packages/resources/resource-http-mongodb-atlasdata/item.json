@@ -5,6 +5,8 @@
   "name": "MongoDB Atlas Data",
   "description": "Resource for the MongoDB Atlas Data API",
   "labels": [
+    "engineering",
+    "devops",
     "database"
   ],
   "display": {

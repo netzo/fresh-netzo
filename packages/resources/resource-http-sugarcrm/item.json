@@ -5,7 +5,9 @@
   "name": "SugarCRM",
   "description": "SugarCRM is a customer relationship management (CRM) software designed for businesses of all sizes.",
   "labels": [
-    "crm"
+    "sales",
+    "customer-service",
+    "communications/email"
   ],
   "display": {
     "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-sugarcrm/icon.webp"

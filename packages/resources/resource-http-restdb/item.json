@@ -5,6 +5,8 @@
   "name": "RestDB",
   "description": "RestDB is a cloud-based NoSQL database service. It is a RESTful API that allows you to store and retrieve data in JSON format.",
   "labels": [
+    "product",
+    "engineering",
     "database"
   ],
   "display": {

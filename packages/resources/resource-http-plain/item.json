@@ -5,8 +5,10 @@
   "name": "Plain",
   "description": "Plain is a customer support platform for developer tools that helps you build better relationships with your customers. It's a simple, all-in-one solution that combines live chat, help desk, and email into one easy-to-use integreated communications platform.",
   "labels": [
-    "customer-support",
-    "customer-success"
+    "customer-service",
+    "operations",
+    "communications/email",
+    "productivity"
   ],
   "display": {
     "imageUrl": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-plain/icon.webp"

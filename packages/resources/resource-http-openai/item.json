@@ -5,7 +5,9 @@
   "name": "OpenAI",
   "description": "The OpenAI API enables you to access the full power of OpenAI's GPT-3, DALL-E, and Codex models.",
   "labels": [
-    "artificial-intelligence",
+    "engineering",
+    "operations",
+    "ai",
     "productivity"
   ],
   "display": {

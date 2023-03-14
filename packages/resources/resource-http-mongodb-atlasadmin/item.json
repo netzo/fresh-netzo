@@ -5,8 +5,9 @@
   "name": "MongoDB Atlas Admin",
   "description": "The MongoDB Atlas Admin API is a RESTful API that allows you to programmatically manage your MongoDB Atlas clusters and other resources.",
   "labels": [
-    "database",
-    "infrastructure"
+    "engineering",
+    "devops",
+    "database"
   ],
   "display": {
     "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-mongodb-atlasadmin/icon.webp"

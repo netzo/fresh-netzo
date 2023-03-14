@@ -5,8 +5,9 @@
   "name": "Discord",
   "description": "Discord is a digital distribution platform designed for video gaming communities, that specializes in text, image, video and audio communication between users in a chat channel.",
   "labels": [
-    "social",
-    "communications"
+    "customer-service",
+    "communications/email",
+    "social-media"
   ],
   "display": {
     "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-discord/icon.webp"

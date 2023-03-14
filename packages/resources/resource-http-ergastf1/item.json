@@ -5,7 +5,9 @@
   "name": "Ergast F1",
   "description": "Ergast F1 is a REST API for F1 data. It provides a simple interface to the wealth of data available on the official Formula 1 website.",
   "labels": [
-    "mock"
+    "data/analytics",
+    "mock",
+    "utility"
   ],
   "display": {
     "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-ergastf1/icon.webp"

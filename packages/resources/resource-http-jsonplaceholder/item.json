@@ -5,7 +5,9 @@
   "name": "JSONPlaceholder",
   "description": "JSONPlaceholder is a free online REST API that you can use whenever you need some fake data.",
   "labels": [
-    "mock"
+    "engineering",
+    "mock",
+    "utility"
   ],
   "display": {
     "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-jsonplaceholder/icon.webp"

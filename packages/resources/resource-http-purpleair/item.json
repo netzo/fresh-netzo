@@ -5,8 +5,8 @@
   "name": "PurpleAir",
   "description": "PurpleAir is an IoT sensor network that provides real-time air quality data for more than 100,000 locations distributed mainly across North America.",
   "labels": [
-    "iot",
-    "environmental"
+    "engineering",
+    "iot"
   ],
   "display": {
     "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-purpleair/icon.webp"

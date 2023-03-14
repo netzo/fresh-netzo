@@ -5,7 +5,7 @@
   "name": "Facturama",
   "description": "Facturama provides a cloud-based platform for the management of electronic invoices, electronic receipts, and electronic payment receipts.",
   "labels": [
-    "billing"
+    "accounting/finance"
   ],
   "display": {
     "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-facturama/icon.webp"

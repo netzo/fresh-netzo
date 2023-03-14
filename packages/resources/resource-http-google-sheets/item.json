@@ -5,8 +5,9 @@
   "name": "Google Sheets",
   "description": "Google Sheets is an Excel alternative that allows you to create, edit, and share spreadsheets.",
   "labels": [
+    "data/analytics",
     "productivity",
-    "google"
+    "operations"
   ],
   "display": {
     "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-google-sheets/icon.webp"

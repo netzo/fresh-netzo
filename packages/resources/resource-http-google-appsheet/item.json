@@ -6,6 +6,7 @@
   "description": "AppSheet is a low-code platform for building and deploying quick apps that connects to multiple data sources.",
   "labels": [
     "productivity",
+    "app-builder",
     "low-code"
   ],
   "display": {

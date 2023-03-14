@@ -5,8 +5,11 @@
   "name": "Sendgrid",
   "description": "Sendgrid is a cloud-based email service that allows you to send emails to your customers.",
   "labels": [
-    "transactional",
-    "communications"
+    "customer-service",
+    "marketing",
+    "sales",
+    "operations",
+    "communications/email"
   ],
   "display": {
     "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-sendgrid/icon.webp"

@@ -5,7 +5,10 @@
   "name": "Twitter",
   "description": "The Twitter API is a platform for building applications and services that use Twitter data. The API allows read and write access to most of the data available on Twitter",
   "labels": [
-    "social"
+    "customer-service",
+    "data-analytics",
+    "marketing",
+    "social-media"
   ],
   "display": {
     "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-twitter/icon.webp"

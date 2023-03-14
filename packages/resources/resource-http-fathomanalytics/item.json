@@ -5,7 +5,8 @@
   "name": "Fathom Analytics",
   "description": "Fathom Analytics is a privacy-first analytics tool that helps you understand your website visitors. It's a simple, lightweight alternative to Google Analytics.",
   "labels": [
-    "analytics"
+    "data/analytics",
+    "marketing"
   ],
   "display": {
     "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-fathomanalytics/icon.webp"

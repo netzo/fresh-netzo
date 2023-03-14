@@ -5,7 +5,10 @@
   "name": "Bigin",
   "description": "Bigin is a cloud-based CRM solution for small and medium-sized businesses. It offers a wide range of features, including sales automation, marketing automation, customer service, and more.",
   "labels": [
-    "crm"
+    "sales",
+    "marketing",
+    "communications/email",
+    "customer-service"
   ],
   "display": {
     "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-bigin/icon.webp"

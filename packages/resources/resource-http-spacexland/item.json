@@ -5,8 +5,10 @@
   "name": "SpaceX Land",
   "description": "The SpaceX Land API is a RESTful API that provides information about SpaceX's Starlink satellites and their coverage of the Earth.",
   "labels": [
+    "product",
+    "engineering",
     "mock",
-    "space"
+    "utility"
   ],
   "display": {
     "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-spacexland/icon.webp"
