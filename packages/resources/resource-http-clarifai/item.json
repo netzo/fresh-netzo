@@ -6,7 +6,7 @@
   "description": "Clarifai is a machine learning platform powering applications to see, understand and interact with the world through computer vision and machine learning.",
   "labels": [
     "engineering",
-    "ai"
+    "ai/ml"
   ],
   "display": {
     "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-clarifai/icon.webp"

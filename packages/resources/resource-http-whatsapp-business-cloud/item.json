@@ -8,7 +8,7 @@
     "sales",
     "marketing",
     "customer-service",
-    "communications/email"
+    "communication/email"
   ],
   "display": {
     "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-whatsapp-business-cloud/icon.webp"

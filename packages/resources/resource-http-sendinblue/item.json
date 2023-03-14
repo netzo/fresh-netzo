@@ -9,7 +9,7 @@
     "marketing",
     "sales",
     "chat",
-    "communications/email"
+    "communication/email"
   ],
   "display": {
     "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/packages/resources/resource-http-sendinblue/icon.webp"
