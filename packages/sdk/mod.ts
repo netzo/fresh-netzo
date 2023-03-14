@@ -10,7 +10,6 @@ export * from './resource/mod.ts'
 export * from './resource/types.ts'
 export * from './utils/auth/mod.ts'
 export * from './utils/auth/types.ts'
-export * from './utils/serve-function/mod.ts'
 
 /**
  * Constructor function for the Netzo SDK.
