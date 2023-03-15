@@ -43,7 +43,7 @@ const result = await appsheet.{{tableName}}.Action.post({
 
 ## API Reference
 
-> For more information refer to the official [documentation](#links)
+> For more information refer to the official documentation
 
 You can use the API to make the following changes to your app.
 

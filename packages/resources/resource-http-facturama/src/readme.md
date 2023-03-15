@@ -5,13 +5,10 @@ The supported auth mechanism is HTTP Basic. You will require your Facturama
 
 ## API Reference
 
-> For more information refer to the official [documentation](#links)
+> For more information refer to the official documentation
 
 A sandbox environment is available under `baseUrl` :
 `https://apisandbox.facturama.mx`
-
-The following operations are supported by the API:
-
 ## Links
 
 - [Marketplace](https://app.netzo.io/resources/resource-http-facturama)

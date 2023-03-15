@@ -38,7 +38,7 @@ const result = await openai.completions.post({
 
 ## API Reference
 
-> For more information refer to the official [documentation](#links)
+> For more information refer to the official documentation
 
 ## Links
 

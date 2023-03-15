@@ -19,13 +19,13 @@ An example POST body for a `query` could look as follows:
 }
 ```
 
-> Hint: Build your GraphQL queries through the [API explorer](#Links)
+> Hint: Build your GraphQL queries through the [API explorer](https://app.plain.com/developer/api-explorer/)
 
 Check out the documentation for more information.
 
 ## API Reference
 
-> For more information refer to the official [documentation](#links)
+> For more information refer to the official documentation
 
 ## Links
 

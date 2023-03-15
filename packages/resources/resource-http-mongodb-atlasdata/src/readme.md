@@ -7,9 +7,7 @@ the MongoDB Atlas Data API documentation for more information.
 
 ## API Reference
 
-> For more information refer to the official [documentation](#links)
-
-The following operations are supported by the API:
+> For more information refer to the official documentation
 
 ## Links
 

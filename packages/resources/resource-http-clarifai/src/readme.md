@@ -10,7 +10,7 @@ Check out the Clarifai documentation for more information.
 
 ## API Reference
 
-> For more information refer to the official [documentation](#links)
+> For more information refer to the official documentation
 
 The following operations are supported by the API.
 
