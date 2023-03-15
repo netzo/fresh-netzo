@@ -4,6 +4,17 @@ A JavaScript/TypeScript SDK for interacting with resources in
 [Netzo](https://app.netzo.io) and with the
 [Netzo API](https://netzo.io/docs/api/introduction).
 
+## Features
+
+- 🚀 Productive: flexible and easy to use
+- 🪽 Lightweight (~36 loc)
+- 🦾 Strongly typed
+- 📚 Intuitive: chain/bracket syntax and methods
+  - `api.users(1).get()`
+  - `api.users["1"].post({...})`
+
+The SDK uses [`ofetch`](https://github.com/unjs/ofetch) for data fetching under the hood. Thus, every option available for ofetch is usable as well. This SDK extends [`uncreate`](https://github.com/johannschopplich/uncreate) for Netzo.
+
 ## Documentation
 
 Refer to the
