@@ -1,15 +1,8 @@
 /** @jsx h */
-import { serve } from 'https://deno.land/std@0.168.0/http/server.ts'
-import { h } from 'https://esm.sh/preact@10.11.3'
-import { renderToString } from 'https://esm.sh/preact-render-to-string@5.1.19?deps=preact@10.11.3'
-import {
-  Block,
-  Card,
-  ColGrid,
-  Flex,
-  Text,
-  Title,
-} from 'https://esm.sh/@tremor/react?alias=react:preact/compat,react-dom:preact/compat&deps=preact@10.11.3'
+import { serve } from 'http/server.ts'
+import { h } from 'preact'
+import { renderToString } from 'preact-render-to-string'
+import { Card, ColGrid, Flex, Text, Title } from 'tremor'
 import { KpiCard } from './components/kpi-card.tsx'
 import { SalesTable } from './components/sales-table.tsx'
 import { getDataKpis, getDataSales } from './data/mod.ts'
@@ -35,7 +28,7 @@ function handler(_req: Request): Promise<Response> {
       <body>
         <main style='padding: 24px;'>
           <Flex justifyContent='justify-between' spaceX='space-x-2'>
-            <Flex>
+            <Flex justifyContent='justify-start'>
               <svg
                 style='margin-right: 24px;'
                 width='64'
@@ -48,10 +41,10 @@ function handler(_req: Request): Promise<Response> {
                 >
                 </path>
               </svg>
-              <Block>
+              <div>
                 <Title>{title}</Title>
                 <Text marginTop='mt-2'>{description}</Text>
-              </Block>
+              </div>
             </Flex>
             <a href='https://netzo.io' target='_blank'>
               <img
@@ -65,11 +58,11 @@ function handler(_req: Request): Promise<Response> {
             {kpis.map((item) => <KpiCard item={item} />)}
           </ColGrid>
 
-          <Block marginTop='mt-6'>
+          <div style='margin-top: 24px;'>
             <Card>
               <SalesTable items={sales} />
             </Card>
-          </Block>
+          </div>
         </main>
       </body>
     </html>

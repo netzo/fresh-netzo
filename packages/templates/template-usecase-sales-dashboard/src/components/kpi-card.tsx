@@ -1,14 +1,6 @@
 /** @jsx h */
-import { h } from 'https://esm.sh/preact@10.11.3'
-import {
-  BadgeDelta,
-  Block,
-  Card,
-  Flex,
-  Metric,
-  ProgressBar,
-  Text,
-} from 'https://esm.sh/@tremor/react?alias=react:preact/compat,react-dom:preact/compat&deps=preact@10.11.3'
+import { h } from 'preact'
+import { BadgeDelta, Card, Flex, Metric, ProgressBar, Text } from 'tremor'
 
 // interface Kpi {
 //   title: string
@@ -23,10 +15,10 @@ export function KpiCard({ item }) {
   return (
     <Card>
       <Flex alignItems='items-start'>
-        <Block truncate={true}>
+        <div truncate={true}>
           <Text>{item.title}</Text>
           <Metric truncate={true}>{item.metric}</Metric>
-        </Block>
+        </div>
         <BadgeDelta deltaType={item.deltaType} text={item.delta} />
       </Flex>
       <Flex marginTop='mt-4' spaceX='space-x-2'>

@@ -1,7 +1,7 @@
 {
   "importMap": "./import_map.json",
   "tasks": {
-    "dev": "deno run --watch main.tsx"
+    "dev": "deno run --watch -A main.tsx"
   },
   "netzo": {
     "entrypoint": "main.tsx",

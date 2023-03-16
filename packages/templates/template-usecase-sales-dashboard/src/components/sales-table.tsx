@@ -1,5 +1,5 @@
 /** @jsx h */
-import { h } from 'https://esm.sh/preact@10.11.3'
+import { h } from 'preact'
 import {
   BadgeDelta,
   Table,
@@ -8,7 +8,7 @@ import {
   TableHead,
   TableHeaderCell,
   TableRow,
-} from 'https://esm.sh/@tremor/react?alias=react:preact/compat,react-dom:preact/compat&deps=preact@10.11.3'
+} from 'tremor'
 
 // interface SalesPerson {
 //   name: string
