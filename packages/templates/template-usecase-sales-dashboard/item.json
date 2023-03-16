@@ -30,6 +30,9 @@
       "deno.jsonc": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-usecase-sales-dashboard/src/deno.jsonc"
       },
+      "import_map.json": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-usecase-sales-dashboard/src/import_map.json"
+      },
       "main.tsx": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-usecase-sales-dashboard/src/main.tsx"
       },
