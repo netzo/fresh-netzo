@@ -1,0 +1,33 @@
+{
+  "version": "2",
+  "remote": {
+    "https://deno.land/std@0.168.0/async/abortable.ts": "80b2ac399f142cc528f95a037a7d0e653296352d95c681e284533765961de409",
+    "https://deno.land/std@0.168.0/async/deadline.ts": "2c2deb53c7c28ca1dda7a3ad81e70508b1ebc25db52559de6b8636c9278fd41f",
+    "https://deno.land/std@0.168.0/async/debounce.ts": "60301ffb37e730cd2d6f9dadfd0ecb2a38857681bd7aaf6b0a106b06e5210a98",
+    "https://deno.land/std@0.168.0/async/deferred.ts": "77d3f84255c3627f1cc88699d8472b664d7635990d5358c4351623e098e917d6",
+    "https://deno.land/std@0.168.0/async/delay.ts": "5a9bfba8de38840308a7a33786a0155a7f6c1f7a859558ddcec5fe06e16daf57",
+    "https://deno.land/std@0.168.0/async/mod.ts": "7809ad4bb223e40f5fdc043e5c7ca04e0e25eed35c32c3c32e28697c553fa6d9",
+    "https://deno.land/std@0.168.0/async/mux_async_iterator.ts": "770a0ff26c59f8bbbda6b703a2235f04e379f73238e8d66a087edc68c2a2c35f",
+    "https://deno.land/std@0.168.0/async/pool.ts": "6854d8cd675a74c73391c82005cbbe4cc58183bddcd1fbbd7c2bcda42b61cf69",
+    "https://deno.land/std@0.168.0/async/retry.ts": "e8e5173623915bbc0ddc537698fa418cf875456c347eda1ed453528645b42e67",
+    "https://deno.land/std@0.168.0/async/tee.ts": "3a47cc4e9a940904fd4341f0224907e199121c80b831faa5ec2b054c6d2eff5e",
+    "https://deno.land/std@0.168.0/http/server.ts": "e99c1bee8a3f6571ee4cdeb2966efad465b8f6fe62bec1bdb59c1f007cc4d155",
+    "https://esm.sh/@tremor/react@1.2.3?alias=react:preact/compat,react-dom:preact/compat&deps=preact@10.11.3": "4f861d26a9b298949f5c198312d130cf05a6d14b0720bc9286048486e01a9898",
+    "https://esm.sh/preact-render-to-string@5.1.19?deps=preact@10.11.3": "2a6974836aeecd3f091ea577101f420e58d1b028002bc020f19d0b53433c05cc",
+    "https://esm.sh/preact@10.11.3": "bb13c4579a68025fbfe7304c0c4dba6ec286c89bce5db830e56507851b208b80",
+    "https://esm.sh/stable/preact@10.11.3/deno/compat.js": "f663da68f169494c8375a0dddd013065ca781f67e06bec33465ca58576ab2ff3",
+    "https://esm.sh/stable/preact@10.11.3/deno/hooks.js": "535e2fd07e4273ba7db7955102733412c10975a0c1f57e5e18966f612a022b69",
+    "https://esm.sh/stable/preact@10.11.3/deno/preact.js": "d17d6b3217ccb0352f68bbd47930aa25d260c1a544f45bcbcf4cd1ded9d630bb",
+    "https://esm.sh/v99/@tremor/react@1.2.3/X-YS9yZWFjdC1kb206cHJlYWN0L2NvbXBhdCxyZWFjdDpwcmVhY3QvY29tcGF0CmQvcHJlYWN0QDEwLjExLjM/deno/react.js": "38abf18aac12f463ee0d1ac654d2d850151ee119cb052835450b2ff151e1d9a7",
+    "https://esm.sh/v99/@tremor/react@1.2.3/X-YS9yZWFjdC1kb206cHJlYWN0L2NvbXBhdCxyZWFjdDpwcmVhY3QvY29tcGF0CmQvcHJlYWN0QDEwLjExLjM/dist/index.d.ts": "6dd8f53f8dcd1f6cfdf1fe3e50626fe4da19e85fd230ed77c4d9b2994d3f0ee6",
+    "https://esm.sh/v99/@types/prop-types@15.7.5/X-YS9yZWFjdC1kb206cHJlYWN0L2NvbXBhdCxyZWFjdDpwcmVhY3QvY29tcGF0CmQvcHJlYWN0QDEwLjExLjM/index.d.ts": "6a386ff939f180ae8ef064699d8b7b6e62bc2731a62d7fbf5e02589383838dea",
+    "https://esm.sh/v99/@types/react@18.0.25/X-YS9yZWFjdC1kb206cHJlYWN0L2NvbXBhdCxyZWFjdDpwcmVhY3QvY29tcGF0CmQvcHJlYWN0QDEwLjExLjM/global.d.ts": "bbdf156fea2fabed31a569445835aeedcc33643d404fcbaa54541f06c109df3f",
+    "https://esm.sh/v99/@types/react@18.0.25/X-YS9yZWFjdC1kb206cHJlYWN0L2NvbXBhdCxyZWFjdDpwcmVhY3QvY29tcGF0CmQvcHJlYWN0QDEwLjExLjM/index.d.ts": "743667c325609eb94ef83901d562725a506ed777890998c3de92fe89d7750718",
+    "https://esm.sh/v99/@types/scheduler@0.16.2/X-YS9yZWFjdC1kb206cHJlYWN0L2NvbXBhdCxyZWFjdDpwcmVhY3QvY29tcGF0CmQvcHJlYWN0QDEwLjExLjM/tracing.d.ts": "f5a8b384f182b3851cec3596ccc96cb7464f8d3469f48c74bf2befb782a19de5",
+    "https://esm.sh/v99/csstype@3.1.1/X-YS9yZWFjdC1kb206cHJlYWN0L2NvbXBhdCxyZWFjdDpwcmVhY3QvY29tcGF0CmQvcHJlYWN0QDEwLjExLjM/index.d.ts": "1c29793071152b207c01ea1954e343be9a44d85234447b2b236acae9e709a383",
+    "https://esm.sh/v99/preact-render-to-string@5.1.19/X-ZC9wcmVhY3RAMTAuMTEuMw/deno/preact-render-to-string.js": "0cbcbccdb3e25f165e7a9b02de6594d9cadc49f32f8f8ba378c8f61a152222e6",
+    "https://esm.sh/v99/preact-render-to-string@5.1.19/X-ZC9wcmVhY3RAMTAuMTEuMw/src/index.d.ts": "e3d48a2d7e2c2603af8f5ac8fe8e608a3d8204b751b9d73205b265542af4071b",
+    "https://esm.sh/v99/preact@10.11.3/src/index.d.ts": "76842a9d103548261ee001f2aee5fa5cacc8b1b4b4032af537ed84603c8f4a31",
+    "https://esm.sh/v99/preact@10.11.3/src/jsx.d.ts": "77ce5bd7324455c9f6dc85bfc3c94b733acb92cc98fdf82e4b1059c8bca7866d"
+  }
+}

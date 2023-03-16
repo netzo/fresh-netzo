@@ -1,0 +1,8 @@
+{
+  "imports": {
+    "netzo/": "https://deno.land/x/netzo@v0.1.58/",
+    "preact": "https://esm.sh/preact@10.11.3",
+    "preact-render-to-string": "https://esm.sh/preact-render-to-string@5.1.19?deps=preact@10.11.3",
+    "tremor": "https://esm.sh/@tremor/react?alias=react:preact/compat,react-dom:preact/compat&deps=preact@10.11.3"
+  }
+}

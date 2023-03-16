@@ -3,5 +3,17 @@
   "compilerOptions": {
     "jsx": "react-jsx",
     "jsxImportSource": "preact"
+  },
+  "tasks": {
+    "dev": "deno run --watch main.ts"
+  },
+  "netzo": {
+    "entrypoint": "main.ts",
+    "importMap": "import_map.json",
+    "envs": {},
+    "devEnvs": {},
+    "permissions": {
+      "net": true
+    }
   }
 }

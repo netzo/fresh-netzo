@@ -1,13 +1,11 @@
 {
-  "imports": {
-    "netzo/": "https://deno.land/x/netzo@v0.1.52/"
-  },
+  "importMap": "./import_map.json",
   "tasks": {
     "dev": "deno run --watch server.tsx"
   },
   "netzo": {
     "entrypoint": "server.tsx",
-    "import_map_url": "import-map.json",
+    "importMap": "import_map.json",
     "envs": {},
     "devEnvs": {},
     "permissions": {
