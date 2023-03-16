@@ -27,8 +27,8 @@
       "readme.md": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-usecase-statuspage/src/readme.md"
       },
-      "deno.jsonc": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-usecase-statuspage/src/deno.jsonc"
+      "deno.json": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-usecase-statuspage/src/deno.json"
       },
       "main.tsx": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-usecase-statuspage/src/main.tsx"

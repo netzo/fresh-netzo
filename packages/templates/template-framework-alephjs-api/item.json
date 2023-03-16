@@ -28,8 +28,8 @@
       "readme.md": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-framework-alephjs-api/src/readme.md"
       },
-      "deno.jsonc": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-framework-alephjs-api/src/deno.jsonc"
+      "deno.json": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-framework-alephjs-api/src/deno.json"
       },
       "server.ts": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-framework-alephjs-api/src/server.ts"
