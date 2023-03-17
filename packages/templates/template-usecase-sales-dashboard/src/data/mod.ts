@@ -1,21 +1,3 @@
-// To overwrite the hardcoded data in this script, fetch the desired information from your systems using the Netzo SDK and replace the data in the exported functions.
-// For example, you can retrieve sales data from the ERP system using the following code:
-
-// import { Netzo } from 'https://deno.land/x/netzo@v0.1.44/mod.ts'
-
-// const RESOURCE_ID_ERP = "1234567890987654321"
-// const netzo = Netzo({ apiKey: Deno.env.get("NETZO_API_KEY") })
-
-// const { client: erp } = await netzo.resource(RESOURCE_ID_ERP)
-
-// async function getSalesDataFromERP() {
-//     const salesData = await erp.sales.get({
-//     startTimestamp: getStartTimestamp(),
-//     endTimestamp: getEndTimestamp()
-//   });
-//   return JSON.parse(salesData);
-// }
-
 interface Kpi {
   title: string
   metric: string
@@ -23,11 +5,11 @@ interface Kpi {
   target: string
   delta: string
   deltaType:
-    | 'increase'
-    | 'moderateIncrease'
-    | 'moderateDecrease'
-    | 'decrease'
-    | 'unchanged'
+  | 'increase'
+  | 'moderateIncrease'
+  | 'moderateDecrease'
+  | 'decrease'
+  | 'unchanged'
 }
 
 interface Sale {
@@ -39,11 +21,11 @@ interface Sale {
   region: string
   status: 'overperforming' | 'underperforming' | 'average'
   deltaType:
-    | 'increase'
-    | 'moderateIncrease'
-    | 'unchanged'
-    | 'moderateDecrease'
-    | 'decrease'
+  | 'increase'
+  | 'moderateIncrease'
+  | 'unchanged'
+  | 'moderateDecrease'
+  | 'decrease'
 }
 
 export const getDataKpis = (): Kpi[] => {
