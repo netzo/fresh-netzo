@@ -26,9 +26,6 @@
       "readme.md": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-framework-oak/src/readme.md"
       },
-      "deno.json": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-framework-oak/src/deno.json"
-      },
       "main.ts": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-framework-oak/src/main.ts"
       }

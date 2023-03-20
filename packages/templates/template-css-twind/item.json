@@ -27,9 +27,6 @@
       "readme.md": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-css-twind/src/readme.md"
       },
-      "deno.json": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-css-twind/src/deno.json"
-      },
       "main.ts": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-css-twind/src/main.ts"
       },

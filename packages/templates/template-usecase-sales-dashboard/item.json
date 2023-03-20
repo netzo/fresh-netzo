@@ -27,9 +27,6 @@
       "readme.md": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-usecase-sales-dashboard/src/readme.md"
       },
-      "deno.json": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-usecase-sales-dashboard/src/deno.json"
-      },
       "import_map.json": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-usecase-sales-dashboard/src/import_map.json"
       },

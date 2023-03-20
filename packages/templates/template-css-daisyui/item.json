@@ -27,9 +27,6 @@
       "readme.md": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-css-daisyui/src/readme.md"
       },
-      "deno.json": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-css-daisyui/src/deno.json"
-      },
       "main.tsx": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-css-daisyui/src/main.tsx"
       }

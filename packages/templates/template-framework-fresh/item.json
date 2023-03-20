@@ -1,7 +1,7 @@
 {
   "uid": "template-framework-fresh",
   "type": "template",
-  "status": "published",
+  "status": "requested",
   "name": "Fresh",
   "description": "A basic starting template using the Frash framework",
   "labels": [
@@ -26,14 +26,8 @@
       "readme.md": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-framework-framework-fresh/src/readme.md"
       },
-      "deno.json": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-framework-fresh/src/deno.json"
-      },
       "main.ts": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-framework-fresh/src/main.ts"
-      },
-      "deno.json": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-framework-fresh/src/deno.json"
       },
       "fresh.gen.ts": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-framework-fresh/src/fresh.gen.ts"

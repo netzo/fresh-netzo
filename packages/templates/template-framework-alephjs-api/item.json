@@ -1,7 +1,7 @@
 {
   "uid": "template-framework-alephjs-api",
   "type": "template",
-  "status": "published",
+  "status": "requested",
   "name": "Aleph API",
   "description": "A mock HTTP API built with the Aleph framework",
   "labels": [
@@ -30,9 +30,6 @@
       },
       "import_map.json": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-framework-alephjs-api/src/import_map.json"
-      },
-      "deno.json": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-framework-alephjs-api/src/deno.json"
       },
       "server.ts": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-framework-alephjs-api/src/server.ts"

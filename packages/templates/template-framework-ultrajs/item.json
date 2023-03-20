@@ -1,7 +1,7 @@
 {
   "uid": "template-framework-ultrajs",
   "type": "template",
-  "status": "published",
+  "status": "requested",
   "name": "UltraJS",
   "description": "A basic starter template using the UltraJS library",
   "labels": [
@@ -25,9 +25,6 @@
     "fs": {
       "readme.md": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-framework-ultrajs/src/readme.md"
-      },
-      "deno.json": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-framework-ultrajs/src/deno.json"
       },
       "app.tsx": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-framework-ultrajs/src/app.tss"
