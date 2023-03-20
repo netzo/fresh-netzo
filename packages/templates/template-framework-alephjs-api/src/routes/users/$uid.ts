@@ -1,4 +1,4 @@
-import { users } from './index.js'
+import { users } from './index.ts'
 
 export const GET = (_req: Request, ctx: Context) => {
   const user = users.find((u) => String(u.uid) === ctx.params.uid)

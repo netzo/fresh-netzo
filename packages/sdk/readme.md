@@ -13,7 +13,9 @@ A JavaScript/TypeScript SDK for interacting with resources in
   - `api.users(1).get()`
   - `api.users["1"].post({...})`
 
-The SDK uses [`ofetch`](https://github.com/unjs/ofetch) for data fetching under the hood. Thus, every option available for ofetch is usable as well. This SDK extends [`uncreate`](https://github.com/johannschopplich/uncreate) for Netzo.
+The SDK uses [`ofetch`](https://github.com/unjs/ofetch) for data fetching under
+the hood. Thus, every option available for ofetch is usable as well. This SDK
+extends [`uncreate`](https://github.com/johannschopplich/uncreate) for Netzo.
 
 ## Documentation
 

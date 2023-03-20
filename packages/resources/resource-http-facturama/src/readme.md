@@ -9,6 +9,7 @@ The supported auth mechanism is HTTP Basic. You will require your Facturama
 
 A sandbox environment is available under `baseUrl` :
 `https://apisandbox.facturama.mx`
+
 ## Links
 
 - [Marketplace](https://app.netzo.io/resources/resource-http-facturama)

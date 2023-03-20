@@ -28,6 +28,9 @@
       "readme.md": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-framework-alephjs-api/src/readme.md"
       },
+      "import_map.json": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-framework-alephjs-api/src/import_map.json"
+      },
       "deno.json": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-framework-alephjs-api/src/deno.json"
       },

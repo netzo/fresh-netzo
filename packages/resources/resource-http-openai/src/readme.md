@@ -25,9 +25,9 @@ import { Netzo } from 'https://deno.land/x/netzo@v0.1.44/mod.ts'
 const netzo = Netzo({ apiKey: Deno.env.get('NETZO_API_KEY') })
 const RESOURCE_ID_OPENAI = 'YOUR_RESOURCE_ID'
 
-const { client: openai } = await netzo.resource(RESOURCE_ID_OPENAI)
+const client = await netzo.resource(RESOURCE_ID_OPENAI)
 
-const result = await openai.completions.post({
+const result = await client.completions.post({
   model: 'text-davinci-003',
   prompt:
     `Create a random tweet with a maximum of 280 characters that talks about cars and targets Formula1 enthsiasts`,

@@ -29,9 +29,9 @@ import { Netzo } from "https://deno.land/x/netzo@v0.1.44/mod.ts";
 const netzo = Netzo({ apiKey: Deno.env.get("NETZO_API_KEY") })
 const RESOURCE_ID_APPSHEET = "YOUR_RESOURCE_ID"
 
-const { client: appsheet } = await netzo.resource(RESOURCE_ID_APPSHEET)
+const client = await netzo.resource(RESOURCE_ID_APPSHEET)
 
-const result = await appsheet.{{tableName}}.Action.post({
+const result = await client.{{tableName}}.Action.post({
       Action: "Find",
       Properties: {
         Locale: "en-US",

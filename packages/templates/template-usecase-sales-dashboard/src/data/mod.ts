@@ -5,11 +5,11 @@ interface Kpi {
   target: string
   delta: string
   deltaType:
-  | 'increase'
-  | 'moderateIncrease'
-  | 'moderateDecrease'
-  | 'decrease'
-  | 'unchanged'
+    | 'increase'
+    | 'moderateIncrease'
+    | 'moderateDecrease'
+    | 'decrease'
+    | 'unchanged'
 }
 
 interface Sale {
@@ -21,11 +21,11 @@ interface Sale {
   region: string
   status: 'overperforming' | 'underperforming' | 'average'
   deltaType:
-  | 'increase'
-  | 'moderateIncrease'
-  | 'unchanged'
-  | 'moderateDecrease'
-  | 'decrease'
+    | 'increase'
+    | 'moderateIncrease'
+    | 'unchanged'
+    | 'moderateDecrease'
+    | 'decrease'
 }
 
 export const getDataKpis = (): Kpi[] => {
