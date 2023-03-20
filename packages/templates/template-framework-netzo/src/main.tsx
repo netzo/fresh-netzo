@@ -1,5 +1,5 @@
 /** @jsx h */
-import { h, json, jsx, serve } from 'https://deno.land/x/netzo@v0.1.52/mod.ts'
+import { h, json, jsx, serve } from 'https://deno.land/x/netzo@v0.1.58/mod.ts'
 
 const App = () => (
   <div>

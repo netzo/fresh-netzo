@@ -27,6 +27,9 @@
       "readme.md": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-usecase-statuspage/src/readme.md"
       },
+      "import_map.json": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-usecase-statuspage/src/import_map.json"
+      },
       "main.tsx": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-usecase-statuspage/src/main.tsx"
       },

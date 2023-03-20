@@ -1,7 +1,7 @@
 /** @jsx h */
-import { serve } from 'https://deno.land/std@0.168.0/http/server.ts'
-import { h } from 'https://esm.sh/preact@10.11.3'
-import render from 'https://esm.sh/preact-render-to-string@5.1.19?deps=preact@10.11.3'
+import { serve } from 'http/server.ts'
+import { h } from 'preact'
+import { renderToString } from 'preact-render-to-string'
 import {
   Badge,
   Block,
@@ -12,7 +12,7 @@ import {
   Title,
   Tracking,
   TrackingBlock,
-} from 'https://esm.sh/@tremor/react?alias=react:preact/compat,react-dom:preact/compat&deps=preact@10.11.3'
+} from 'tremor'
 import data from './data.json' assert { type: 'json' }
 
 interface Item {
@@ -149,7 +149,7 @@ function handler(req: Request): Promise<Response> {
     </html>
   )
 
-  const html = render(page)
+  const html = renderToString(page)
 
   return new Response(html, {
     headers: { 'content-type': 'text/html' },

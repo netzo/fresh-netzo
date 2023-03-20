@@ -5,7 +5,7 @@ import App from './app.tsx'
 import React from 'https://esm.sh/react@18.2.0'
 
 const server = await createServer({
-  importMapPath: import.meta.resolve('./importMap.json'),
+  importMapPath: import.meta.resolve('./import_map.json'),
   browserEntrypoint: import.meta.resolve('./app.tsx'),
 })
 
