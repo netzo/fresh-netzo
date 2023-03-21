@@ -1,5 +1,5 @@
 /** @jsx h */
-import { h } from 'https://deno.land/x/netzo@v0.1.44/mod.ts'
+import { h } from 'https://deno.land/x/netzo@v0.1.59/mod.ts'
 import { Header } from './header.tsx'
 import { Footer } from './footer.tsx'
 

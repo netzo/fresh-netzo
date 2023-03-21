@@ -26,7 +26,7 @@ more details.
 ## Usage
 
 ```ts
-import { Netzo } from 'https://deno.land/x/netzo/mod.ts'
+import { Netzo } from 'https://deno.land/x/netzo@v0.1.59/mod.ts'
 
 const netzo = Netzo(Deno.env.get('NETZO_API_KEY'))
 

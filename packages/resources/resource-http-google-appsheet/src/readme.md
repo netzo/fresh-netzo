@@ -24,7 +24,7 @@ Here you will find your:
 > `/{{tableName}}/Action`. An example of SDK usage is found below:
 
 ```ts
-import { Netzo } from 'https://deno.land/x/netzo@v0.1.44/mod.ts';
+import { Netzo } from 'https://deno.land/x/netzo@v0.1.59/mod.ts';
 
 const netzo = Netzo(Deno.env.get('NETZO_API_KEY'))
 const RESOURCE_ID_APPSHEET = 'YOUR_RESOURCE_ID'
