@@ -1,16 +1,13 @@
-import { ClientBuilder } from './clients/http/types.ts'
-import { IResource, ResourceClient } from './resource/types.ts'
+import { ClientBuilder } from './resource/http/types.ts'
+import { ResourceClient } from './resource/types.ts'
 
-export type NetzoSDK = (options: NetzoOptions) => NetzoSDKInstance
+export * from './resource/types.ts'
+export * from './resource/http/types.ts'
 
-export interface NetzoOptions {
-  apiKey: string
-  baseURL?: string
-}
+export type NetzoSDK = (apiKey: string) => NetzoSDKInstance
 
 export interface NetzoSDKInstance {
   api: ClientBuilder
-  baseURL: string
   getApiKey: () => string
-  resource: (ref: string | IResource) => Promise<ResourceClient>
+  getResource: (id: string) => Promise<ResourceClient>
 }

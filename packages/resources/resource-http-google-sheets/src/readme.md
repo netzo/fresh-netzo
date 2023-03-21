@@ -15,32 +15,32 @@ The following operations are supported by the API:
 
 - **batchUpdate**: Applies one or more updates to the spreadsheet.
   - `GET /spreadsheets/{spreadsheetId}:batchUpdate`
-  - `netzo.resource("RESOURCE_ID").spreadhseets.batchUpdate()`
+  - `netzo.getResource("RESOURCE_ID").spreadhseets.batchUpdate()`
 - **create**: Creates a spreadsheet, returning the newly created spreadsheet.
   - `POST /spreadsheets`
-  - `netzo.resource("RESOURCE_ID").spreadhseets.create()`
+  - `netzo.getResource("RESOURCE_ID").spreadhseets.create()`
 - **get**: Returns the spreadsheet at the given ID.
   - `GET /spreadsheets/{spreadsheetId}`
-  - `netzo.resource("RESOURCE_ID").spreadhseets[spreadsheetId].get()`
+  - `netzo.getResource("RESOURCE_ID").spreadhseets[spreadsheetId].get()`
 - **getByDataFilter**: Returns the spreadsheet at the given ID. The caller must
   specify the spreadsheet ID.
   - `GET /spreadsheets/{spreadsheetId}:getByDataFilter`
-  - `netzo.resource("RESOURCE_ID").spreadhseets[spreadsheetId].get()`
+  - `netzo.getResource("RESOURCE_ID").spreadhseets[spreadsheetId].get()`
 
 #### developerMetadata
 
 - **get**: Returns the developer metadata with the specified ID.
   - `GET /spreadsheets/{spreadsheetId}/developerMetadata/{metadataId}`
-  - `netzo.resource("RESOURCE_ID").developermetadata[metadataId].get()`
+  - `netzo.getResource("RESOURCE_ID").developermetadata[metadataId].get()`
 - **search**: Returns all developer metadata matching the specified DataFilter.
   - `GET /spreadsheets/{spreadsheetId}/developerMetadata:search`
-  - `netzo.resource("RESOURCE_ID").developermetadata.search()`
+  - `netzo.getResource("RESOURCE_ID").developermetadata.search()`
 
 #### sheets
 
 - **copyTo**: Copies a single sheet from a spreadsheet to another spreadsheet.
   - `POST /spreadsheets/{spreadsheetId}/sheets/{sheetId}:copyTo`
-  - `netzo.resource("RESOURCE_ID").sheets[sheetId].copyTo()`
+  - `netzo.getResource("RESOURCE_ID").sheets[sheetId].copyTo()`
 
 #### values
 
@@ -49,47 +49,47 @@ The following operations are supported by the API:
   appended to the next row of the table, starting with the first column of the
   table.
   - `POST /spreadsheets/{spreadsheetId}/values/{range}:append`
-  - `netzo.resource("RESOURCE_ID").values[range].append()`
+  - `netzo.getResource("RESOURCE_ID").values[range].append()`
 - **batchClear**: Clears one or more ranges of values from a spreadsheet.
   - `POST /spreadsheets/{spreadsheetId}/values:batchClear`
-  - `netzo.resource("RESOURCE_ID").values.batchClear()`
+  - `netzo.getResource("RESOURCE_ID").values.batchClear()`
 - **batchClearByDataFilter**: Clears one or more ranges of values from a
   spreadsheet. The caller must specify the spreadsheet ID and one or more
   DataFilters. Ranges matching any of the specified data filters will be
   cleared.
   - `POST /spreadsheets/{spreadsheetId}/values:batchClearByDataFilter`
-  - `netzo.resource("RESOURCE_ID").values.batchClearByDataFilter()`
+  - `netzo.getResource("RESOURCE_ID").values.batchClearByDataFilter()`
 - **batchGet**: Returns one or more ranges of values from a spreadsheet. The
   caller must specify the spreadsheet ID and one or more ranges.
   - `GET /spreadsheets/{spreadsheetId}/values:batchGet`
-  - `netzo.resource("RESOURCE_ID").values.batchGet()`
+  - `netzo.getResource("RESOURCE_ID").values.batchGet()`
 - **batchGetByDataFilter**: Returns one or more ranges of values that match the
   specified data filters. The caller must specify the spreadsheet ID and one or
   more DataFilters. Ranges that match any of the data filters in the request
   will be returned.
   - `GET /spreadsheets/{spreadsheetId}/values:batchGetByDataFilter`
-  - `netzo.resource("RESOURCE_ID").values.batchGetByDataFilter()`
+  - `netzo.getResource("RESOURCE_ID").values.batchGetByDataFilter()`
 - **batchUpdate**: Sets values in one or more ranges of a spreadsheet. The
   caller must specify the spreadsheet ID, a valueInputOption, and one or more
   ValueRanges.
   - `POST /spreadsheets/{spreadsheetId}/values:batchUpdate`
-  - `netzo.resource("RESOURCE_ID").values.batchUpdate()`
+  - `netzo.getResource("RESOURCE_ID").values.batchUpdate()`
 - **batchUpdateByDataFilter**: Sets values in one or more ranges of a
   spreadsheet. The caller must specify the spreadsheet ID, a valueInputOption,
   and one or more DataFilterValueRanges.
   - `POST /spreadsheets/{spreadsheetId}/values:batchUpdateByDataFilter`
-  - `netzo.resource("RESOURCE_ID").values.batchUpdateByDataFilter()`
+  - `netzo.getResource("RESOURCE_ID").values.batchUpdateByDataFilter()`
 - **clear**: Clears values from a spreadsheet.
   - `POST /spreadsheets/{spreadsheetId}/values/{range}:clear`
-  - `netzo.resource("RESOURCE_ID").values[range].clear()`
+  - `netzo.getResource("RESOURCE_ID").values[range].clear()`
 - **get**: Returns a range of values from a spreadsheet. The caller must specify
   the spreadsheet ID and a range.
   - `GET /spreadsheets/{spreadsheetId}/values/{range}`
-  - `netzo.resource("RESOURCE_ID").values[range].get()`
+  - `netzo.getResource("RESOURCE_ID").values[range].get()`
 - **update**: Updates values in a range of a spreadsheet. The caller must
   specify the spreadsheet ID, range, and a valueInputOption.
   - `PUT /spreadsheets/{spreadsheetId}/values/{range}`
-  - `netzo.resource("RESOURCE_ID").values[range].update()`
+  - `netzo.getResource("RESOURCE_ID").values[range].update()`
 
 ## Links
 

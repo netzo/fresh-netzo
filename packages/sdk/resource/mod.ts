@@ -1,20 +1,18 @@
-import { createClient } from '../clients/http/mod.ts'
-import { ClientBuilder } from '../clients/http/types.ts'
+import { createResourceHTTP } from './http/mod.ts'
+import { ClientBuilder } from './http/types.ts'
 import { IResource, ResourceClient } from './types.ts'
 import { auth } from '../utils/auth/mod.ts'
 
-export const createResource = (api: ClientBuilder) => {
-  return async (ref: string | IResource): Promise<ResourceClient> => {
-    const item: IResource = typeof ref === 'string'
-      ? await api.resources[ref].get<IResource>()
-      : ref
+export const createGetResource = (api: ClientBuilder) => {
+  return async (id: string): Promise<ResourceClient> => {
+    const item: IResource = await api.resources[id].get<IResource>()
 
     const { baseURL, body, authorization, query, headers } = item.base
 
     switch (item.type) {
       case 'http':
       default: {
-        const client = createClient({
+        const client = createResourceHTTP({
           baseURL,
           query,
           headers,

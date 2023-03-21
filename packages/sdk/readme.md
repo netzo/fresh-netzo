@@ -28,14 +28,14 @@ more details.
 ```ts
 import { Netzo } from 'https://deno.land/x/netzo/mod.ts'
 
-const netzo = Netzo({ apiKey: NETZO_API_KEY })
+const netzo = Netzo(Deno.env.get('NETZO_API_KEY'))
 
 // create client for existing resource:
-const { client } = await netzo.resource(RESOURCE_ID)
+const { client } = await netzo.getResource(RESOURCE_ID)
 const users = await client.users.get()
 
 // create client for a custom HTTP resource:
-const { client } = netzo.resource({
+const { client } = netzo.getResource({
   baseURL: 'https://jsonplaceholder.typicode.com',
 })
 const users = await client.users.get()

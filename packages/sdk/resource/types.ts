@@ -1,4 +1,4 @@
-import { ClientBuilder } from '../clients/http/types.ts'
+import { ClientBuilder } from './http/types.ts'
 import { Authorization } from '../utils/auth/types.ts'
 
 export interface IRequest {

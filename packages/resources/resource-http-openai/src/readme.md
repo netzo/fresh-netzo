@@ -22,10 +22,10 @@ You will require your OpenAI `apiKey`, obtainable
 ```js
 import { Netzo } from 'https://deno.land/x/netzo@v0.1.44/mod.ts'
 
-const netzo = Netzo({ apiKey: Deno.env.get('NETZO_API_KEY') })
+const netzo = Netzo(Deno.env.get('NETZO_API_KEY'))
 const RESOURCE_ID_OPENAI = 'YOUR_RESOURCE_ID'
 
-const client = await netzo.resource(RESOURCE_ID_OPENAI)
+const client = await netzo.getResource(RESOURCE_ID_OPENAI)
 
 const result = await client.completions.post({
   model: 'text-davinci-003',

@@ -24,17 +24,17 @@ Here you will find your:
 > `/{{tableName}}/Action`. An example of SDK usage is found below:
 
 ```ts
-import { Netzo } from "https://deno.land/x/netzo@v0.1.44/mod.ts";
+import { Netzo } from 'https://deno.land/x/netzo@v0.1.44/mod.ts';
 
-const netzo = Netzo({ apiKey: Deno.env.get("NETZO_API_KEY") })
-const RESOURCE_ID_APPSHEET = "YOUR_RESOURCE_ID"
+const netzo = Netzo(Deno.env.get('NETZO_API_KEY'))
+const RESOURCE_ID_APPSHEET = 'YOUR_RESOURCE_ID'
 
-const client = await netzo.resource(RESOURCE_ID_APPSHEET)
+const client = await netzo.getResource(RESOURCE_ID_APPSHEET)
 
 const result = await client.{{tableName}}.Action.post({
-      Action: "Find",
+      Action: 'Find',
       Properties: {
-        Locale: "en-US",
+        Locale: 'en-US',
         Selector: `Select(contacts[_id], [email] = ${event.email}, TRUE)`
       },
       Rows: []
