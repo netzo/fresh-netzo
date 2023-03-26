@@ -22,7 +22,7 @@ form.addEventListener('submit', async (e) => {
   button.classList.add('button--loading')
   try {
     const formData = new FormData(form)
-    const url = 'https://echo.netzo.io'
+    const url = 'https://postman-echo.com/post'
     // sets content-type header + boundary automatically, don't overwrite
     const response = await fetch(url, { method: 'POST', body: formData })
     const data = await response.json()
