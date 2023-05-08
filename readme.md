@@ -12,7 +12,7 @@
 
 <p align="center">
   <a href="https://netzo.io"><strong>Website</strong></a> ·
-  <a href="https://netzo.io/docs/introduction/why-netzo"><strong>Docs</strong></a> ·
+  <a href="https://netzo.io/docs/introduction/getting-started"><strong>Docs</strong></a> ·
   <a href="https://app.netzo.io/discover/templates"><strong>Templates</strong></a>
 </p>
 
