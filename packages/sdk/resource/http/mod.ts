@@ -17,11 +17,11 @@ const payloadMethods: ReadonlyArray<string> = [
 /**
  * Minimal, type-safe REST client using JS proxies
  */
-export function createResourceHTTP<R extends ResponseType = 'json'>(
+export function createClientHttp<R extends ResponseType = 'json'>(
   defaultOptions: Omit<FetchOptions<R>, 'method'> = {},
 ): ClientBuilder {
   // Callable internal target required to use `apply` on it
-  const internalTarget = (() => {}) as ClientBuilder
+  const internalTarget = (() => { }) as ClientBuilder
 
   function p(url: string): ClientBuilder {
     return new Proxy(internalTarget, {

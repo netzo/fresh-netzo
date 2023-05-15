@@ -4,7 +4,7 @@ import {
   assertEquals,
   assertExists,
 } from 'https://deno.land/std@0.97.0/testing/asserts.ts'
-import { createResourceHTTP, Netzo } from './mod.ts'
+import { createClientHttp, Netzo } from './mod.ts'
 import { IResource } from './resource/types.ts'
 
 const { NETZO_API_KEY } = config()
@@ -25,8 +25,8 @@ Deno.test('netzo', () => {
   assertExists(netzo.getResource)
 })
 
-Deno.test('createResourceHTTP', async (t) => {
-  const client = createResourceHTTP(RESOURCE)
+Deno.test('createClientHttp', async (t) => {
+  const client = createClientHttp(RESOURCE)
 
   await t.step('client', () => {
     assertExists(client)

@@ -1,10 +1,10 @@
 import type { NetzoSDK } from './types.ts'
 import { createGetResource } from './resource/mod.ts'
-import { createResourceHTTP } from './resource/http/mod.ts'
+import { createClientHttp } from './resource/http/mod.ts'
 
 export * from 'https://deno.land/x/sift@0.6.0/mod.ts'
 export * from './types.ts'
-export { createResourceHTTP }
+export { createClientHttp }
 
 /**
  * Constructor function for the Netzo SDK.
@@ -19,7 +19,7 @@ export { createResourceHTTP }
  * @returns {Netzo} - a new instance of the Netzo SDK
  */
 export const Netzo: NetzoSDK = (apiKey: string) => {
-  const api = createResourceHTTP({
+  const api = createClientHttp({
     baseURL: 'https://api.netzo.io',
     headers: { 'x-api-key': apiKey ?? Deno.env.get('NETZO_API_KEY') },
   })

@@ -8,20 +8,20 @@ import {
   toFileUrl,
   typeByExtension,
   walk,
-} from 'https://deno.land/x/fresh@1.1.4/src/server/deps.ts'
+} from '$fresh/src/server/deps.ts'
 import { h } from 'preact'
 import { Manifest } from './mod.ts'
 import {
   Bundler,
   JSXConfig,
-} from 'https://deno.land/x/fresh@1.1.4/src/server/bundle.ts'
+} from '$fresh/src/server/bundle.ts'
 import {
   ALIVE_URL,
   BUILD_ID,
   JS_PREFIX,
   REFRESH_JS_URL,
-} from 'https://deno.land/x/fresh@1.1.4/src/server/constants.ts'
-import DefaultErrorHandler from 'https://deno.land/x/fresh@1.1.4/src/server/default_error_page.ts'
+} from '$fresh/src/server/constants.ts'
+import DefaultErrorHandler from '$fresh/src/server/default_error_page.ts'
 import {
   AppModule,
   ErrorPage,
@@ -38,16 +38,16 @@ import {
   RouteModule,
   UnknownPage,
   UnknownPageModule,
-} from 'https://deno.land/x/fresh@1.1.4/src/server/types.ts'
-import { render as internalRender } from 'https://deno.land/x/fresh@1.1.4/src/server/render.ts'
+} from '$fresh/src/server/types.ts'
+import { render as internalRender } from '$fresh/src/server/render.ts'
 import {
   ContentSecurityPolicyDirectives,
   SELF,
-} from 'https://deno.land/x/fresh@1.1.4/src/runtime/csp.ts'
+} from '$fresh/src/runtime/csp.ts'
 import {
   ASSET_CACHE_BUST_KEY,
   INTERNAL_PREFIX,
-} from 'https://deno.land/x/fresh@1.1.4/src/runtime/utils.ts'
+} from '$fresh/src/runtime/utils.ts'
 interface RouterState {
   state: Record<string, unknown>
 }
@@ -161,7 +161,7 @@ export class ServerContext {
       const path = url.substring(baseUrl.length).substring('routes'.length)
       const baseRoute = path.substring(1, path.length - extname(path).length)
       const name = baseRoute.replace('/', '-')
-      console.log({ url, path, baseRoute, name })
+      console.debug({ url, path, baseRoute, name })
       const isMiddleware = path.endsWith('/_middleware.tsx') ||
         path.endsWith('/_middleware.ts') || path.endsWith('/_middleware.jsx') ||
         path.endsWith('/_middleware.js')
@@ -305,6 +305,19 @@ export class ServerContext {
       }
     }
 
+    console.debug({
+      routes,
+      islands,
+      staticFiles,
+      opts,
+      middlewares,
+      app,
+      notFound,
+      error,
+      importMapURL,
+      jsxConfig,
+    })
+
     return new ServerContext(
       routes,
       islands,
@@ -328,6 +341,7 @@ export class ServerContext {
     const inner = rutt.router<RouterState>(...this.#handlers())
     const withMiddlewares = this.#composeMiddlewares(this.#middlewares)
     return async function handler(req: Request, connInfo: ConnInfo) {
+      console.debug(req.method, req.url)
       // Redirect requests that end with a trailing slash
       // to their non-trailing slash counterpart.
       // Ex: /about/ -> /about

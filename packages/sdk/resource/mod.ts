@@ -1,4 +1,4 @@
-import { createResourceHTTP } from './http/mod.ts'
+import { createClientHttp } from './http/mod.ts'
 import { ClientBuilder } from './http/types.ts'
 import { IResource, ResourceClient } from './types.ts'
 import { auth } from '../utils/auth/mod.ts'
@@ -12,7 +12,7 @@ export const createGetResource = (api: ClientBuilder) => {
     switch (item.type) {
       case 'http':
       default: {
-        const client = createResourceHTTP({
+        const client = createClientHttp({
           baseURL,
           query,
           headers,

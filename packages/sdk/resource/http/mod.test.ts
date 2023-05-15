@@ -3,10 +3,10 @@ import {
   assertEquals,
   assertExists,
 } from 'https://deno.land/std@0.97.0/testing/asserts.ts'
-import { createResourceHTTP } from './mod.ts'
+import { createClientHttp } from './mod.ts'
 
-Deno.test('createResourceHTTP', async (t) => {
-  const client = createResourceHTTP({
+Deno.test('createClientHttp', async (t) => {
+  const client = createClientHttp({
     baseURL: 'https://jsonplaceholder.typicode.com',
   })
 
