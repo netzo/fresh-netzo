@@ -13,7 +13,7 @@ The following operations are supported by the API.
 
 ## Links
 
-- [Marketplace](https://app.netzo.io/resources/resource-http-sugarcrm)
+- [Homepage](https://app.netzo.io/resources/resource-http-sugarcrm)
 - [Documentation](https://developer.sugarcrm.com/en/docs/sugarcrm-api)
 - [API Reference](https://support.sugarcrm.com/Documentation/Sugar_Developer/Sugar_Developer_Guide_11.0/Integration/Web_Services/REST_API/Endpoints/)
 

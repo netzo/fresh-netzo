@@ -93,7 +93,7 @@ The following operations are supported by the API:
 
 ## Links
 
-- [Marketplace](https://app.netzo.io/resources/resource-http-google-sheets)
+- [Homepage](https://app.netzo.io/resources/resource-http-google-sheets)
 - [Documentation](https://developers.google.com/sheets/api)
 - [API Reference](https://developers.google.com/sheets/api/reference/rest)
 

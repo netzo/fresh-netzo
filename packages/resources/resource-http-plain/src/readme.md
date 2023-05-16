@@ -30,7 +30,7 @@ Check out the documentation for more information.
 
 ## Links
 
-- [Marketplace](https://app.netzo.io/resources/resource-http-plain)
+- [Homepage](https://app.netzo.io/resources/resource-http-plain)
 - [Documentation](https://docs.plain.com/)
 - [API Explorer](https://app.plain.com/developer/api-explorer/)
 

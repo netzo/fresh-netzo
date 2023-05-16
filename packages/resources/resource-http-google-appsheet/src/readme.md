@@ -56,7 +56,7 @@ You can use the API to make the following changes to your app.
 
 ## Links
 
-- [Marketplace](https://app.netzo.io/resources/resource-http-google-appsheet)
+- [Homepage](https://app.netzo.io/resources/resource-http-google-appsheet)
 - [API Reference](https://support.google.com/appsheet/answer/10105768?hl=en)
 
 <div align="center">

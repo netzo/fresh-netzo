@@ -9,7 +9,7 @@ This project does not require additional configuration.
 ## Links
 
 - [Documentation](https://ultrajs.dev/)
-- [Marketplace](https://app.netzo.io/templates/template-ultrajs)
+- [Homepage](https://app.netzo.io/templates/template-ultrajs)
 
 <div align="center">
   <h4>© Netzo</h4>

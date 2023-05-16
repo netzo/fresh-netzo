@@ -8,7 +8,7 @@ This project does not require additional configuration.
 
 ## Links
 
-- [Marketplace](https://app.netzo.io/templates/template-fresh)
+- [Homepage](https://app.netzo.io/templates/template-fresh)
 
 <div align="center">
   <h4>© Netzo</h4>

@@ -8,7 +8,7 @@ This resource does not require additional configuration.
 
 ## Links
 
-- [Marketplace](https://app.netzo.io/resources/resource-http-discord)
+- [Homepage](https://app.netzo.io/resources/resource-http-discord)
 - [Documentation](https://discord.com/developers/docs/intro)
 - [API Reference](https://discord.com/developers/docs/reference)
 

@@ -9,7 +9,7 @@ You will require a Sendgrid `apiKey`, obtainable
 
 ## Links
 
-- [Marketplace](https://app.netzo.io/resources/resource-http-sendgrid)
+- [Homepage](https://app.netzo.io/resources/resource-http-sendgrid)
 - [Documentation](https://docs.sendgrid.com/for-developers/sending-email/api-getting-started#prerequisites-for-sending-your-first-email-with-the-sendgrid-api)
 - [API Reference](https://docs.sendgrid.com/api-reference/how-to-use-the-sendgrid-v3-api/authentication)
 

@@ -8,7 +8,7 @@ This resource does not require additional configuration.
 
 ## Links
 
-- [Marketplace](https://app.netzo.io/resources/resource-http-activecampaign)
+- [Homepage](https://app.netzo.io/resources/resource-http-activecampaign)
 - [Documentation](https://developers.activecampaign.com)
 - [API Reference](https://developers.activecampaign.com/reference/overview)
 

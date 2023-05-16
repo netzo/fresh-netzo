@@ -42,7 +42,7 @@ const result = await client.completions.post({
 
 ## Links
 
-- [Marketplace](https://app.netzo.io/resources/resource-https-openai)
+- [Homepage](https://app.netzo.io/resources/resource-https-openai)
 - [API Reference](https://beta.openai.com/docs/api-reference/introduction)
 
 <div align="center">

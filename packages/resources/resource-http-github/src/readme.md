@@ -15,7 +15,7 @@ The following operations are supported by the API.
 
 ## Links
 
-- [Marketplace](https://app.netzo.io/resources/resource-http-github)
+- [Homepage](https://app.netzo.io/resources/resource-http-github)
 - [Documentation](https://api.github.com/#getting-started-endpoints)
 
 <div align="center">

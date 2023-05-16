@@ -11,7 +11,7 @@ the MongoDB Atlas Data API documentation for more information.
 
 ## Links
 
-- [Marketplace](https://app.netzo.io/resources/resource-http-mongodb-atlasdata)
+- [Homepage](https://app.netzo.io/resources/resource-http-mongodb-atlasdata)
 - [Documentation](https://www.mongodb.com/docs/)
 - [API Reference](https://www.mongodb.com/docs/atlas/api/data-api-resources/)
 

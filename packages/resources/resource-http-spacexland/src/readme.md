@@ -15,7 +15,7 @@ The following operations are supported by the API.
 
 ## Links
 
-- [Marketplace](https://app.netzo.io/resources/resource-http-spacexland)
+- [Homepage](https://app.netzo.io/resources/resource-http-spacexland)
 - [API Playground](https://studio.apollographql.com/public/SpaceX-pxxbxen/explorer)
 
 <div align="center">

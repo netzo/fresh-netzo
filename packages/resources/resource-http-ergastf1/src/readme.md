@@ -8,7 +8,7 @@ This resource does not require additional configuration.
 
 ## Links
 
-- [Marketplace](https://app.netzo.io/resources/resource-http-ergastf1)
+- [Homepage](https://app.netzo.io/resources/resource-http-ergastf1)
 - [Documentation](https://ergast.com/mrd/)
 
 <div align="center">

@@ -13,7 +13,7 @@ The following operations are supported by the API.
 
 ## Links
 
-- [Marketplace](https://app.netzo.io/resources/resource-http-bigin)
+- [Homepage](https://app.netzo.io/resources/resource-http-bigin)
 - [Documentation](https://www.bigin.com/developer/docs/apis/)
 
 <div align="center">

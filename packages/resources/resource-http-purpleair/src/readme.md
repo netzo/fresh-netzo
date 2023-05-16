@@ -11,7 +11,7 @@ The following operations are supported by the API.
 
 ## Links
 
-- [Marketplace](https://app.netzo.io/resources/resource-http-purpleair)
+- [Homepage](https://app.netzo.io/resources/resource-http-purpleair)
 - [API Reference](https://api.purpleair.com/#api-welcome)
 
 <div align="center">

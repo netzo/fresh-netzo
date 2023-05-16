@@ -13,7 +13,7 @@ The following operations are supported by the API.
 
 ## Links
 
-- [Marketplace](https://app.netzo.io/resources/resource-http-twitter)
+- [Homepage](https://app.netzo.io/resources/resource-http-twitter)
 - [Documentation](https://developer.twitter.com/en/docs/twitter-api)
 - [API Reference](https://developer.twitter.com/en/docs/api-reference-index)
 

@@ -16,7 +16,7 @@ The following operations are supported by the API.
 
 ## Links
 
-- [Marketplace](https://app.netzo.io/resources/resource-http-purpleair)
+- [Homepage](https://app.netzo.io/resources/resource-http-purpleair)
 - [Documentation](https://docs.clarifai.com/clarifai-basics/start-here-5-mins-or-less)
 - [API Reference](https://docs.clarifai.com/api-guide/api-overview/)
 

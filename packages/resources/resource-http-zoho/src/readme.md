@@ -13,7 +13,7 @@ The following operations are supported by the API.
 
 ## Links
 
-- [Marketplace](https://app.netzo.io/resources/resource-http-zoho)
+- [Homepage](https://app.netzo.io/resources/resource-http-zoho)
 - [Documentation](https://www.zoho.com/crm/developer/docs/api/v3/)
 
 <div align="center">

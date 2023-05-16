@@ -9,7 +9,7 @@ This project does not require additional configuration.
 ## Links
 
 - [Documentation](https://daisyui.com/)
-- [Marketplace](https://app.netzo.io/templates/template-daisyui)
+- [Homepage](https://app.netzo.io/templates/template-daisyui)
 
 <div align="center">
   <h4>© Netzo</h4>

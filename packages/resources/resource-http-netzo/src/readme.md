@@ -9,7 +9,7 @@ You will require an `apiKey`, obtainable by navigating to
 
 ## Links
 
-- [Marketplace](https://app.netzo.io/resources/resource-http-netzo)
+- [Homepage](https://app.netzo.io/resources/resource-http-netzo)
 - [Documentation](https://netzo.io/docs/netzo-api/overview)
 - [API Reference](https://api.netzo.io/docs/)
 

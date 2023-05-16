@@ -16,7 +16,7 @@ The following operations are supported by the API.
 
 ## Links
 
-- [Marketplace](https://app.netzo.io/resources/resource-http-monday)
+- [Homepage](https://app.netzo.io/resources/resource-http-monday)
 - [API Reference](https://developer.monday.com/api-reference/docs/basics)
 - [API Playground](https://monday.com/developers/v2/try-it-yourself)
 

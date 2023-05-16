@@ -11,7 +11,7 @@ You will require your Fathom Analytics `apiToken`, obtainable
 
 ## Links
 
-- [Marketplace](https://app.netzo.io/resources/resource-http-fathomanalytics)
+- [Homepage](https://app.netzo.io/resources/resource-http-fathomanalytics)
 - [API Reference](https://usefathom.com/api#introduction)
 
 <div align="center">

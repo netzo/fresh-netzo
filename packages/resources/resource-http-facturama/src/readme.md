@@ -12,7 +12,7 @@ A sandbox environment is available under `baseUrl` :
 
 ## Links
 
-- [Marketplace](https://app.netzo.io/resources/resource-http-facturama)
+- [Homepage](https://app.netzo.io/resources/resource-http-facturama)
 - [Documentation](https://apisandbox.facturama.mx/)
 - [API Reference](https://apisandbox.facturama.mx/Docs)
 

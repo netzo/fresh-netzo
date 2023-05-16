@@ -9,7 +9,7 @@ Admin API documentation for more information.
 
 ## Links
 
-- [Marketplace](https://app.netzo.io/resources/resource-http-mongodb-atlasadmin)
+- [Homepage](https://app.netzo.io/resources/resource-http-mongodb-atlasadmin)
 - [Documentation](https://www.mongodb.com/docs/atlas/api/atlas-admin-api/)
 - [API Reference](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/)
 

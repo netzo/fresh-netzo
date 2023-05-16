@@ -11,7 +11,7 @@ The following operations are supported by the API.
 
 ## Links
 
-- [Marketplace](https://app.netzo.io/resources/resource-http-restdb)
+- [Homepage](https://app.netzo.io/resources/resource-http-restdb)
 - [Documentation](https://restdb.io/docs/quick-start#restdb)
 
 <div align="center">

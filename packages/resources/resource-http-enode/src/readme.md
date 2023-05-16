@@ -13,7 +13,7 @@ The following operations are supported by the API.
 
 ## Links
 
-- [Marketplace](https://app.netzo.io/resources/resource-http-enphase)
+- [Homepage](https://app.netzo.io/resources/resource-http-enphase)
 - [Documentation](https://developers.enode.io/docs/getting-started/make-your-first-api-call)
 - [API Reference](https://developers.enode.io/api/reference)
 

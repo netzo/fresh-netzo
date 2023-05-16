@@ -4,10 +4,10 @@
   </a>
 </p>
 
-<h1 align="center">Netzo Marketplace Repository</h1>
+<h1 align="center">Netzo Repository</h1>
 
 <p align="center">
-  Open source Marketplace items for the <a href="https://app.netzo.io" target="_blank">Netzo</a>, the scripting platform for developers.
+  Open source repository for the <a href="https://app.netzo.io" target="_blank">Netzo</a>, the scripting platform for developers.
 </p>
 
 <div align="center">
@@ -26,7 +26,7 @@
 ## Quick Start
 
 This repository lists all officially supported items listed on the
-[Netzo Marketplace](https://app.netzo.io/templates) and used by the
+[Netzo Templates](https://app.netzo.io/templates) and used by the
 [Netzo Web Platform](https://app.netzo.io).
 
 We review all items before they are published. This means that it may take some
@@ -55,7 +55,7 @@ To be valid, `item.json` file must validate against the
 testing your `item.json` files.
 
 Note that fields at the root level will be merged (to the first level) with
-those under the `item` field when forking items from the Marketplace. In this
+those under the `item` field when forking items. In this
 way, the fields under the `item` field may override the default values at the
 root level.
 

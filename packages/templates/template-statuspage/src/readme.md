@@ -8,7 +8,7 @@ This project does not require additional configuration.
 
 ## Links
 
-- [Marketplace](https://app.netzo.io/templates/template-statuspage)
+- [Homepage](https://app.netzo.io/templates/template-statuspage)
 
 <div align="center">
   <h4>© Netzo</h4>

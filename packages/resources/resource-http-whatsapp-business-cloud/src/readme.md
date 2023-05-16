@@ -13,7 +13,7 @@ The following operations are supported by the API.
 
 ## Links
 
-- [Marketplace](https://app.netzo.io/resources/resource-http-whatsapp-business-cloud)
+- [Homepage](https://app.netzo.io/resources/resource-http-whatsapp-business-cloud)
 - [Documentation](https://developers.facebook.com/docs/whatsapp)
 
 <div align="center">

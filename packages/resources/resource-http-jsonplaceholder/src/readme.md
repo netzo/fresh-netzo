@@ -8,7 +8,7 @@ This resource does not require additional configuration.
 
 ## Links
 
-- [Marketplace](https://app.netzo.io/resources/resource-http-jsonplaceholder)
+- [Homepage](https://app.netzo.io/resources/resource-http-jsonplaceholder)
 - [API Reference](https://jsonplaceholder.typicode.com)
 
 <div align="center">

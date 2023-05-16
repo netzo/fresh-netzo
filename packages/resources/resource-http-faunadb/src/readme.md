@@ -17,7 +17,7 @@ The following operations are supported by the API.
 
 ## Links
 
-- [Marketplace](https://app.netzo.io/resources/resource-http-faunadb)
+- [Homepage](https://app.netzo.io/resources/resource-http-faunadb)
 - [Documentation](https://docs.fauna.com/fauna/current/api/graphql/endpoints#bearer-token)
 
 <div align="center">

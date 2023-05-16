@@ -11,7 +11,7 @@ The following operations are supported by the API.
 
 ## Links
 
-- [Marketplace](https://app.netzo.io/resources/resource-http-sendinblue)
+- [Homepage](https://app.netzo.io/resources/resource-http-sendinblue)
 - [Documentation](https://developers.sendinblue.com/)
 - [API Reference](https://developers.sendinblue.com/reference)
 

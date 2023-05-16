@@ -15,7 +15,7 @@ The following operations are supported by the API.
 
 ## Links
 
-- [Marketplace](https://app.netzo.io/resources/resource-http-pandadoc)
+- [Homepage](https://app.netzo.io/resources/resource-http-pandadoc)
 - [Documentation](https://developers.pandadoc.com/)
 - [API Reference](https://developers.pandadoc.com/reference)
 
