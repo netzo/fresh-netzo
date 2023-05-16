@@ -62,8 +62,7 @@ The following table summarizes the fields in a `item.json` file.
 
 | Property      | Type                             | Required | Description                                                                                   |
 | ------------- | -------------------------------- | -------- | --------------------------------------------------------------------------------------------- |
-| `uid`         | `string`                         | `true`   | unique ID (kebab-case) prefixed by the item type (e.g. `template-`)                           |
-| `type`        | `'template'`                     | `true`   | type of item                                                                                  |
+| `uid`         | `string`                         | `true`   | unique ID (kebab-case) prefixed by the item type (e.g. `sales-dashboard`)                     |
 | `status`      | `published` \| `requested`       | `true`   | if item is published or in requested status for upvotes.                                      |
 | `name`        | `string`                         | `true`   | human-friendly display name for the item                                                      |
 | `description` | `string`                         | `true`   | brief description of item                                                                     |
@@ -101,11 +100,11 @@ The following table provides some examples of labels grouped by category.
 
 ### Link
 
-| Property | Type     | Required | Description                                                                                 |
-| -------- | -------- | -------- | ------------------------------------------------------------------------------------------- |
-| `rel`    | `string` | `false`  | link relation (see possible values [here](https://www.iana.org/assignments/link-relations)) |
-| `name`   | `string` | `false`  | human-friendly display name                                                                 |
-| `href`   | `string` | `true`   | URL to the link resource in the internet                                                    |
+| Property | Type      | Required | Description                                                                                 |
+| -------- | --------- | -------- | ------------------------------------------------------------------------------------------- |
+| `rel`    | `string`  | `false`  | link relation (see possible values [here](https://www.iana.org/assignments/link-relations)) |
+| `href`   | `string`  | `true`   | URL to the link resource in the internet                                                    |
+| `title`   | `string` | `false`  | human-friendly title                                                                        |
 
 ### ItemProject
 
@@ -113,7 +112,6 @@ The following table provides some examples of labels grouped by category.
 | --------------- | ------------------- | -------- | ------------------------------------------------- |
 | `_type_`*       | `'project'`         | `true`   | constant (forking template will create a project) |
 | `uid`*          | `string`            | `true`   | initial uid (unique suffix appended when forking) |
-| `type`*         | `string`            | `false`  | type of template (e.g. `framework`, `ui`, `api`)  |
 | `name`*         | `string`            | `false`  | human-friendly display name for the item          |
 | `description`*  | `string`            | `false`  | brief description of item                         |
 | `labels`*       | `string[]`          | `false`  | relevant keywords (tags) (kebab-case)             |
@@ -129,8 +127,7 @@ other items for further reference.
 
 ```json
 {
-  "uid": "template-netzo",
-  "type": "template",
+  "uid": "netzo",
   "status": "published",
   "name": "Netzo",
   "description": "An HTTP server using netzo that responds with different payload types based on route. Netzo includes a routing and utility library for Deno Deploy. Its route handler signature is simple and easy to understand. Handlers accept a Request and return a Response.",
@@ -143,22 +140,22 @@ other items for further reference.
   "links": [
     {
       "rel": "repository",
-      "href": "https://github.com/netzo/netzo/tree/main/templates/template-netzo"
+      "href": "https://github.com/netzo/netzo/tree/main/templates/netzo"
     },
     {
       "rel": "readme",
-      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-netzo/src/readme.md"
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/netzo/src/readme.md"
     }
   ],
   "item": {
     "_type": "project",
-    "uid": "template-netzo",
+    "uid": "netzo",
     "fs": {
       "readme.md": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-netzo/src/readme.md"
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/netzo/src/readme.md"
       },
       "main.tsx": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-netzo/src/main.tsx"
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/netzo/src/main.tsx"
       }
     },
     "configuration": {

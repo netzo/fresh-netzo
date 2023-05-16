@@ -1,6 +1,5 @@
 {
-  "uid": "template-oak",
-  "type": "template",
+  "uid": "oak",
   "status": "published",
   "name": "Oak",
   "description": "An HTTP server using router to handle POST and GET requests separately. Router by denosaurs is a tiny router framework for Deno Deploy. It can route based on method, route, and has customizable handlers for cases such as no match, errors, or unknown methods.",
@@ -8,27 +7,27 @@
     "framework"
   ],
   "display": {
-    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-oak/icon.webp"
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/oak/icon.webp"
   },
   "links": [
     {
       "rel": "repository",
-      "href": "https://github.com/netzo/netzo/tree/main/templates/template-oak"
+      "href": "https://github.com/netzo/netzo/tree/main/templates/oak"
     },
     {
       "rel": "readme",
-      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-oak/src/readme.md"
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/oak/src/readme.md"
     }
   ],
   "item": {
     "_type": "project",
-    "uid": "template-oak",
+    "uid": "oak",
     "fs": {
       "readme.md": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-oak/src/readme.md"
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/oak/src/readme.md"
       },
       "main.ts": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-oak/src/main.ts"
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/oak/src/main.ts"
       }
     },
     "configuration": {

@@ -1,4 +1,4 @@
-# template-twind
+# twind
 
 An open-source source template for 'Twind'.
 
@@ -9,7 +9,7 @@ This project does not require additional configuration.
 ## Links
 
 - [Documentation](https://twind.dev/)
-- [Homepage](https://app.netzo.io/templates/template-twind)
+- [Homepage](https://app.netzo.io/templates/twind)
 
 <div align="center">
   <h4>© Netzo</h4>

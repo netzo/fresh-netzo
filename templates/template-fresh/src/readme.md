@@ -1,4 +1,4 @@
-# template-fresh
+# fresh
 
 An open-source source template for 'Fresh Counter'.
 
@@ -8,7 +8,7 @@ This project does not require additional configuration.
 
 ## Links
 
-- [Homepage](https://app.netzo.io/templates/template-fresh)
+- [Homepage](https://app.netzo.io/templates/fresh)
 
 <div align="center">
   <h4>© Netzo</h4>

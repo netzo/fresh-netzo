@@ -1,6 +1,5 @@
 {
-  "uid": "template-gql",
-  "type": "template",
+  "uid": "gql",
   "status": "published",
   "name": "GQL",
   "description": "A GraphQL server using gql.",
@@ -9,27 +8,27 @@
     "graphql"
   ],
   "display": {
-    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-gql/icon.webp"
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/gql/icon.webp"
   },
   "links": [
     {
       "rel": "repository",
-      "href": "https://github.com/netzo/netzo/tree/main/templates/template-gql"
+      "href": "https://github.com/netzo/netzo/tree/main/templates/gql"
     },
     {
       "rel": "readme",
-      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-gql/src/readme.md"
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/gql/src/readme.md"
     }
   ],
   "item": {
     "_type": "project",
-    "uid": "template-gql",
+    "uid": "gql",
     "fs": {
       "readme.md": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-gql/src/readme.md"
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/gql/src/readme.md"
       },
       "main.tsx": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-gql/src/main.tsx"
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/gql/src/main.tsx"
       }
     },
     "configuration": {

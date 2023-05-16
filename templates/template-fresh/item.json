@@ -1,6 +1,5 @@
 {
-  "uid": "template-fresh",
-  "type": "template",
+  "uid": "fresh",
   "status": "requested",
   "name": "Fresh",
   "description": "A basic starting template using the Frash framework",
@@ -13,34 +12,34 @@
   "links": [
     {
       "rel": "repository",
-      "href": "https://github.com/netzo/netzo/tree/main/templates/template-fresh"
+      "href": "https://github.com/netzo/netzo/tree/main/templates/fresh"
     },
     {
       "rel": "readme",
-      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-fresh/src/readme.md"
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/fresh/src/readme.md"
     }
   ],
   "item": {
     "_type": "project",
-    "uid": "template-fresh",
+    "uid": "fresh",
     "fs": {
       "readme.md": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-fresh/src/readme.md"
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/fresh/src/readme.md"
       },
       "main.ts": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-fresh/src/main.ts"
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/fresh/src/main.ts"
       },
       "fresh.gen.ts": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-fresh/src/fresh.gen.ts"
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/fresh/src/fresh.gen.ts"
       },
       "import_map.json": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-fresh/src/import_map.json"
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/fresh/src/import_map.json"
       },
       "islands/Counter.tsx": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-fresh/src/islands/Counter.tsx"
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/fresh/src/islands/Counter.tsx"
       },
       "routes/index.tsx": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-fresh/src/routes/index.tsx"
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/fresh/src/routes/index.tsx"
       }
     },
     "configuration": {

@@ -1,4 +1,4 @@
-# template-file-upload-portal
+# file-upload-portal
 
 An open-source source template for 'File Upload Portal'.
 
@@ -8,7 +8,7 @@ This project does not require additional configuration.
 
 ## Links
 
-- [Homepage](https://app.netzo.io/templates/template-file-upload-portal)
+- [Homepage](https://app.netzo.io/templates/file-upload-portal)
 
 <div align="center">
   <h4>© Netzo</h4>

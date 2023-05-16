@@ -1,4 +1,4 @@
-# template-ultrajs
+# ultrajs
 
 An open-source source template for 'UltraJS'.
 
@@ -9,7 +9,7 @@ This project does not require additional configuration.
 ## Links
 
 - [Documentation](https://ultrajs.dev/)
-- [Homepage](https://app.netzo.io/templates/template-ultrajs)
+- [Homepage](https://app.netzo.io/templates/ultrajs)
 
 <div align="center">
   <h4>© Netzo</h4>

@@ -1,4 +1,4 @@
-# template-nanossr
+# nanossr
 
 An open-source source template for 'NanoSSR'.
 
@@ -8,7 +8,7 @@ This project does not require additional configuration.
 
 ## Links
 
-- [Homepage](https://app.netzo.io/templates/template-nanossr)
+- [Homepage](https://app.netzo.io/templates/nanossr)
 
 <div align="center">
   <h4>© Netzo</h4>

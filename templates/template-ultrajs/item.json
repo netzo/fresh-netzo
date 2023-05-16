@@ -1,6 +1,5 @@
 {
-  "uid": "template-ultrajs",
-  "type": "template",
+  "uid": "ultrajs",
   "status": "requested",
   "name": "UltraJS",
   "description": "A basic starter template using the UltraJS library",
@@ -8,30 +7,30 @@
     "framework"
   ],
   "display": {
-    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-ultrajs/icon.svg"
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/ultrajs/icon.svg"
   },
   "links": [
     {
       "rel": "repository",
-      "href": "https://github.com/netzo/netzo/tree/main/templates/template-ultrajs"
+      "href": "https://github.com/netzo/netzo/tree/main/templates/ultrajs"
     },
     {
       "rel": "readme",
-      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-ultrajs/src/readme.md"
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/ultrajs/src/readme.md"
     }
   ],
   "item": {
     "_type": "project",
-    "uid": "template-ultrajs",
+    "uid": "ultrajs",
     "fs": {
       "readme.md": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-ultrajs/src/readme.md"
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/ultrajs/src/readme.md"
       },
       "app.tsx": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-ultrajs/src/app.tss"
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/ultrajs/src/app.tss"
       },
       "server.tsx": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-ultrajs/src/server.tsx"
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/ultrajs/src/server.tsx"
       }
     },
     "configuration": {

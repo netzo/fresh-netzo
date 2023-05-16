@@ -1,4 +1,4 @@
-# template-daisyui
+# daisyui
 
 An open-source source template for 'DaisyUI'.
 
@@ -9,7 +9,7 @@ This project does not require additional configuration.
 ## Links
 
 - [Documentation](https://daisyui.com/)
-- [Homepage](https://app.netzo.io/templates/template-daisyui)
+- [Homepage](https://app.netzo.io/templates/daisyui)
 
 <div align="center">
   <h4>© Netzo</h4>

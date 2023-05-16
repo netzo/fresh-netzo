@@ -1,6 +1,5 @@
 {
-  "uid": "template-rutt",
-  "type": "template",
+  "uid": "rutt",
   "status": "published",
   "name": "Rutt",
   "description": "",
@@ -13,22 +12,22 @@
   "links": [
     {
       "rel": "repository",
-      "href": "https://github.com/netzo/netzo/tree/main/templates/template-rutt"
+      "href": "https://github.com/netzo/netzo/tree/main/templates/rutt"
     },
     {
       "rel": "readme",
-      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-rutt/src/readme.md"
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/rutt/src/readme.md"
     }
   ],
   "item": {
     "_type": "project",
-    "uid": "template-rutt",
+    "uid": "rutt",
     "fs": {
       "readme.md": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-rutt/src/readme.md"
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/rutt/src/readme.md"
       },
       "main.ts": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-rutt/src/main.ts"
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/rutt/src/main.ts"
       }
     },
     "configuration": {

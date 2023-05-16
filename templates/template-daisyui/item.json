@@ -1,6 +1,5 @@
 {
-  "uid": "template-daisyui",
-  "type": "template",
+  "uid": "daisyui",
   "status": "published",
   "name": "DaisyUI",
   "description": "A CSS only basic starter template using the DaisyUI library",
@@ -14,22 +13,22 @@
   "links": [
     {
       "rel": "repository",
-      "href": "https://github.com/netzo/netzo/tree/main/templates/template-daisyui"
+      "href": "https://github.com/netzo/netzo/tree/main/templates/daisyui"
     },
     {
       "rel": "readme",
-      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-daisyui/src/readme.md"
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/daisyui/src/readme.md"
     }
   ],
   "item": {
     "_type": "project",
-    "uid": "template-daisyui",
+    "uid": "daisyui",
     "fs": {
       "readme.md": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-daisyui/src/readme.md"
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/daisyui/src/readme.md"
       },
       "main.tsx": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-daisyui/src/main.tsx"
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/daisyui/src/main.tsx"
       }
     },
     "configuration": {

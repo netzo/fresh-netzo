@@ -1,4 +1,4 @@
-# template-sales-dashboard
+# sales-dashboard
 
 An open-source source template for 'Sales Dashboard'.
 
@@ -8,7 +8,7 @@ This project does not require additional configuration.
 
 ## Links
 
-- [Homepage](https://app.netzo.io/templates/template-sales-dashboard)
+- [Homepage](https://app.netzo.io/templates/sales-dashboard)
 
 <div align="center">
   <h4>© Netzo</h4>

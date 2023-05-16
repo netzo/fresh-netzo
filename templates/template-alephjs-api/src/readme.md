@@ -1,4 +1,4 @@
-# template-alephjs-api
+# alephjs-api
 
 An open-source source template for 'Aleph API'.
 
@@ -9,7 +9,7 @@ This project does not require additional configuration.
 ## Links
 
 - [Documentation](https://alephjs.org/)
-- [Homepage](https://app.netzo.io/templates/template-alephjs-api)
+- [Homepage](https://app.netzo.io/templates/alephjs-api)
 
 <div align="center">
   <h4>© Netzo</h4>

@@ -1,4 +1,4 @@
-# template-netzo
+# netzo
 
 An open-source source template for 'GQL'.
 
@@ -8,7 +8,7 @@ This project does not require additional configuration.
 
 ## Links
 
-- [Homepage](https://app.netzo.io/templates/template-gql)
+- [Homepage](https://app.netzo.io/templates/gql)
 
 <div align="center">
   <h4>© Netzo</h4>

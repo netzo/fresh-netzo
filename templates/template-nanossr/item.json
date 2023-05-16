@@ -1,6 +1,5 @@
 {
-  "uid": "template-nanossr",
-  "type": "template",
+  "uid": "nanossr",
   "status": "published",
   "name": "NanoSSR",
   "description": "",
@@ -8,27 +7,27 @@
     "framework"
   ],
   "display": {
-    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-nanossr/icon.webp"
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/nanossr/icon.webp"
   },
   "links": [
     {
       "rel": "repository",
-      "href": "https://github.com/netzo/netzo/tree/main/templates/template-nanossr"
+      "href": "https://github.com/netzo/netzo/tree/main/templates/nanossr"
     },
     {
       "rel": "readme",
-      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-nanossr/src/readme.md"
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/nanossr/src/readme.md"
     }
   ],
   "item": {
     "_type": "project",
-    "uid": "template-nanossr",
+    "uid": "nanossr",
     "fs": {
       "readme.md": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-nanossr/src/readme.md"
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/nanossr/src/readme.md"
       },
       "main.tsx": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-nanossr/src/main.tsx"
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/nanossr/src/main.tsx"
       }
     },
     "configuration": {

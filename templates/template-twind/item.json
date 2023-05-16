@@ -1,6 +1,5 @@
 {
-  "uid": "template-twind",
-  "type": "template",
+  "uid": "twind",
   "status": "published",
   "name": "Twind",
   "description": "A basic starter template using the Twind library",
@@ -14,25 +13,25 @@
   "links": [
     {
       "rel": "repository",
-      "href": "https://github.com/netzo/netzo/tree/main/templates/template-twind"
+      "href": "https://github.com/netzo/netzo/tree/main/templates/twind"
     },
     {
       "rel": "readme",
-      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-twind/src/readme.md"
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/twind/src/readme.md"
     }
   ],
   "item": {
     "_type": "project",
-    "uid": "template-tailwind",
+    "uid": "tailwind",
     "fs": {
       "readme.md": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-twind/src/readme.md"
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/twind/src/readme.md"
       },
       "main.ts": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-twind/src/main.ts"
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/twind/src/main.ts"
       },
       "twind.ts": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-twind/src/twind.ts"
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/twind/src/twind.ts"
       }
     },
     "configuration": {

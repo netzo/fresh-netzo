@@ -1,6 +1,5 @@
 {
-  "uid": "template-file-upload-portal",
-  "type": "template",
+  "uid": "file-upload-portal",
   "status": "published",
   "name": "File Upload Portal",
   "description": "An HTTP server that serves a file upload portal to ease data processing and syncing from files.",
@@ -15,37 +14,37 @@
   "links": [
     {
       "rel": "repository",
-      "href": "https://github.com/netzo/netzo/tree/main/templates/template-file-upload-portal"
+      "href": "https://github.com/netzo/netzo/tree/main/templates/file-upload-portal"
     },
     {
       "rel": "readme",
-      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-file-upload-portal/src/readme.md"
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/file-upload-portal/src/readme.md"
     }
   ],
   "item": {
     "_type": "project",
-    "uid": "template-file-upload-portal",
+    "uid": "file-upload-portal",
     "fs": {
       "readme.md": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-file-upload-portal/src/readme.md"
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/file-upload-portal/src/readme.md"
       },
       "main.ts": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-file-upload-portal/src/main.ts"
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/file-upload-portal/src/main.ts"
       },
       "components/app.tsx": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-file-upload-portal/src/components/app.tsx"
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/file-upload-portal/src/components/app.tsx"
       },
       "components/footer.tsx": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-file-upload-portal/src/components/footer.tsx"
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/file-upload-portal/src/components/footer.tsx"
       },
       "components/header.tsx": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-file-upload-portal/src/components/header.tsx"
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/file-upload-portal/src/components/header.tsx"
       },
       "components/filepond/filepond.css": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-file-upload-portal/src/components/filepond/filepond.css"
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/file-upload-portal/src/components/filepond/filepond.css"
       },
       "components/filepond/filepond.js": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-file-upload-portal/src/components/filepond/filepond.js"
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/file-upload-portal/src/components/filepond/filepond.js"
       }
     },
     "configuration": {
