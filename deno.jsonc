@@ -8,7 +8,7 @@
   "tasks": {
     "test": "deno test --allow-env --allow-net --allow-read",
     "check": "deno fmt --check && deno lint",
-    "deploy": "deno run --allow-env --allow-net --allow-read scripts/deploy-items.ts",
+    "deploy": "deno run --allow-env --allow-net --allow-read scripts/deploy-templates.ts",
     "types:generate": "deno types > deno-runtime-types.ts"
   }
 }
