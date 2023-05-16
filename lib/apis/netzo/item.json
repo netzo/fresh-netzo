@@ -1,0 +1,46 @@
+{
+  "uid": "resource-http-netzo",
+  "type": "resource",
+  "status": "published",
+  "name": "Netzo",
+  "description": "Netzo is a cloud-based internal tool and DevOps platform that helps you code and deploy projects faster and provides a single place to manage your projects, teams, and infrastructure.",
+  "labels": [
+    "operations",
+    "devops",
+    "engineering",
+    "product",
+    "data/analytics",
+    "productivity",
+    "security",
+    "workflow"
+  ],
+  "display": {
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/lib/apis/netzo/icon.webp"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/lib/apis/netzo"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/lib/apis/netzo/src/readme.md"
+    }
+  ],
+  "item": {
+    "_type": "resource",
+    "type": "http",
+    "base": {
+      "baseURL": "https://api.netzo.io",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "authorization": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "x-api-key",
+        "value": "{{apiKey}}"
+      }
+    }
+  }
+}

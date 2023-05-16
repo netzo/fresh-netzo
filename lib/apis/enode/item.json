@@ -1,0 +1,43 @@
+{
+  "uid": "resource-http-enode",
+  "type": "resource",
+  "status": "requested",
+  "name": "Enode",
+  "description": "Enode is a cloud based IoT API platform that allows you to connect, manage and analyze your IoT data. Enode provides a REST API that allows you to access your data and devices.",
+  "labels": [
+    "engineering",
+    "iot"
+  ],
+  "display": {
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/lib/apis/enode/icon.webp"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/lib/apis/enode"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/lib/apis/enode/src/readme.md"
+    }
+  ],
+  "item": {
+    "_type": "resource",
+    "type": "http",
+    "base": {
+      "baseURL": "https://enode-api.production.enode.io",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "authorization": {
+        "type": "oauth2",
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}",
+        "authorizationURL": "{{authorizationURL}}",
+        "accessTokenURL": "{{accessTokenURL}}",
+        "redirectURL": "{{redirectURL}}",
+        "scopes": "{{scopes}}"
+      }
+    }
+  }
+}

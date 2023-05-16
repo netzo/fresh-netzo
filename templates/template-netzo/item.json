@@ -1,0 +1,42 @@
+{
+  "uid": "template-netzo",
+  "type": "template",
+  "status": "published",
+  "name": "Netzo",
+  "description": "An HTTP server using netzo that responds with different payload types based on route. Netzo includes a routing and utility library for Deno Deploy. Its route handler signature is simple and easy to understand. Handlers accept a Request and return a Response.",
+  "labels": [
+    "framework"
+  ],
+  "display": {
+    "avatar": "https://netzo.io/images/netzo-symbol-light.svg"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/templates/template-netzo"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-netzo/src/readme.md"
+    }
+  ],
+  "item": {
+    "_type": "project",
+    "uid": "template-netzo",
+    "fs": {
+      "readme.md": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-netzo/src/readme.md"
+      },
+      "main.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-netzo/src/main.tsx"
+      }
+    },
+    "configuration": {
+      "entrypoint": "main.tsx",
+      "envs": {},
+      "permissions": {
+        "net": true
+      }
+    }
+  }
+}

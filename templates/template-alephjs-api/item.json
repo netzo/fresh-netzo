@@ -1,0 +1,59 @@
+{
+  "uid": "template-alephjs-api",
+  "type": "template",
+  "status": "requested",
+  "name": "Aleph API",
+  "description": "A mock HTTP API built with the Aleph framework",
+  "labels": [
+    "framework",
+    "alephjs",
+    "api"
+  ],
+  "display": {
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-alephjs-api/icon.webp"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/templates/template-alephjs-api"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-alephjs-api/src/readme.md"
+    }
+  ],
+  "item": {
+    "_type": "project",
+    "uid": "template-alephjs-api",
+    "fs": {
+      "readme.md": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-alephjs-api/src/readme.md"
+      },
+      "import_map.json": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-alephjs-api/src/import_map.json"
+      },
+      "server.ts": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-alephjs-api/src/server.ts"
+      },
+      "routes/_export.ts": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-alephjs-api/src/routes/_export.ts"
+      },
+      "routes/index.ts": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-alephjs-api/src/routes/index.ts"
+      },
+      "routes/users/$uid.ts": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-alephjs-api/src/routes/users/$uid.ts"
+      },
+      "routes/users/index.ts": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-alephjs-api/src/routes/users/index.ts"
+      }
+    },
+    "configuration": {
+      "entrypoint": "server.ts",
+      "envs": {},
+      "permissions": {
+        "net": true
+      }
+    }
+  }
+}

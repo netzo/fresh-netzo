@@ -1,0 +1,40 @@
+{
+  "uid": "resource-http-purpleair",
+  "type": "resource",
+  "status": "published",
+  "name": "PurpleAir",
+  "description": "PurpleAir is an IoT sensor network that provides real-time air quality data for more than 100,000 locations distributed mainly across North America.",
+  "labels": [
+    "engineering",
+    "iot"
+  ],
+  "display": {
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/lib/apis/purpleair/icon.webp"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/lib/apis/purpleair"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/lib/apis/purpleair/src/readme.md"
+    }
+  ],
+  "item": {
+    "_type": "resource",
+    "type": "http",
+    "base": {
+      "baseURL": "https://api.purpleair.com/v1",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "authorization": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-API-Key",
+        "value": "{{apiKey}}"
+      }
+    }
+  }
+}

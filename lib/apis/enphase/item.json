@@ -1,0 +1,43 @@
+{
+  "uid": "resource-http-enphase",
+  "type": "resource",
+  "status": "requested",
+  "name": "Enphase",
+  "description": "Enphase is a solar energy platform that provides an API to access data from solar panels and inverters.",
+  "labels": [
+    "engineering",
+    "iot"
+  ],
+  "display": {
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/lib/apis/enphase/icon.webp"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/lib/apis/enphase"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/lib/apis/enphase/src/readme.md"
+    }
+  ],
+  "item": {
+    "_type": "resource",
+    "type": "http",
+    "base": {
+      "baseURL": "https://api.enphaseenergy.com/api/v4",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "authorization": {
+        "type": "oauth2",
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}",
+        "authorizationURL": "{{authorizationURL}}",
+        "accessTokenURL": "{{accessTokenURL}}",
+        "redirectURL": "{{redirectURL}}",
+        "scopes": "{{scopes}}"
+      }
+    }
+  }
+}

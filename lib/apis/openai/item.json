@@ -1,0 +1,42 @@
+{
+  "uid": "resource-http-openai",
+  "type": "resource",
+  "status": "published",
+  "name": "OpenAI",
+  "description": "The OpenAI API enables you to access the full power of OpenAI's GPT-3, DALL-E, and Codex models.",
+  "labels": [
+    "engineering",
+    "operations",
+    "ai/ml",
+    "productivity"
+  ],
+  "display": {
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/lib/apis/openai/icon.webp"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/lib/apis/openai"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/lib/apis/openai/src/readme.md"
+    }
+  ],
+  "item": {
+    "_type": "resource",
+    "type": "http",
+    "base": {
+      "baseURL": "https://api.openai.com/v1",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "authorization": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Authorization",
+        "value": "Bearer {{apiKey}}"
+      }
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "uid": "resource-http-twitter",
+  "type": "resource",
+  "status": "requested",
+  "name": "Twitter",
+  "description": "The Twitter API is a platform for building applications and services that use Twitter data. The API allows read and write access to most of the data available on Twitter",
+  "labels": [
+    "customer-service",
+    "data-analytics",
+    "marketing",
+    "social-media"
+  ],
+  "display": {
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/lib/apis/twitter/icon.webp"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/lib/apis/twitter"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/lib/apis/twitter/src/readme.md"
+    }
+  ],
+  "item": {
+    "_type": "resource",
+    "type": "http",
+    "base": {
+      "baseURL": "https://api.twitter.com/2",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "authorization": {
+        "type": "oauth2",
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}",
+        "authorizationURL": "{{authorizationURL}}",
+        "accessTokenURL": "{{accessTokenURL}}",
+        "redirectURL": "{{redirectURL}}",
+        "scopes": "{{scopes}}"
+      }
+    }
+  }
+}

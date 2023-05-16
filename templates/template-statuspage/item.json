@@ -1,0 +1,49 @@
+{
+  "uid": "template-statuspage",
+  "type": "template",
+  "status": "published",
+  "name": "Statuspage",
+  "description": "An HTTP server that serves an a statuspage to track the 'up', 'down' and 'maintenance' status of (multiple) services over time.",
+  "labels": [
+    "usecase",
+    "jsx"
+  ],
+  "display": {
+    "avatar": "https://api.iconify.design/mdi:shape-outline.svg?color=%23ff3b7c"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/templates/template-statuspage"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-statuspage/src/readme.md"
+    }
+  ],
+  "item": {
+    "_type": "project",
+    "uid": "template-statuspage",
+    "fs": {
+      "readme.md": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-statuspage/src/readme.md"
+      },
+      "import_map.json": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-statuspage/src/import_map.json"
+      },
+      "main.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-statuspage/src/main.tsx"
+      },
+      "data.json": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-statuspage/src/data.json"
+      }
+    },
+    "configuration": {
+      "entrypoint": "main.tsx",
+      "envs": {},
+      "permissions": {
+        "net": true
+      }
+    }
+  }
+}

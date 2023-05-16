@@ -1,0 +1,44 @@
+{
+  "uid": "resource-http-google-sheets",
+  "type": "resource",
+  "status": "requested",
+  "name": "Google Sheets",
+  "description": "Google Sheets is an Excel alternative that allows you to create, edit, and share spreadsheets.",
+  "labels": [
+    "data/analytics",
+    "productivity",
+    "operations"
+  ],
+  "display": {
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/lib/apis/google-sheets/icon.webp"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/lib/apis/google-sheets"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/lib/apis/google-sheets/src/readme.md"
+    }
+  ],
+  "item": {
+    "_type": "resource",
+    "type": "http",
+    "base": {
+      "baseURL": "https://sheets.googleapis.com/v4/spreadsheets/{{spreadsheetId}}",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "authorization": {
+        "type": "oauth2",
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}",
+        "authorizationURL": "{{authorizationURL}}",
+        "accessTokenURL": "{{accessTokenURL}}",
+        "redirectURL": "{{redirectURL}}",
+        "scopes": "{{scopes}}"
+      }
+    }
+  }
+}

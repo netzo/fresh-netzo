@@ -1,0 +1,36 @@
+{
+  "uid": "resource-http-facturama",
+  "type": "resource",
+  "status": "published",
+  "name": "Facturama",
+  "description": "Facturama provides a cloud-based platform for the management of electronic invoices, electronic receipts, and electronic payment receipts.",
+  "labels": [
+    "accounting/finance"
+  ],
+  "display": {
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/lib/apis/facturama/icon.webp"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/lib/apis/facturama"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/lib/apis/facturama/src/readme.md"
+    }
+  ],
+  "item": {
+    "_type": "resource",
+    "type": "http",
+    "base": {
+      "baseURL": "https://api.facturama.mx",
+      "headers": {},
+      "basic": {
+        "type": "basic",
+        "username": "{{username}}",
+        "password": "{{password}}"
+      }
+    }
+  }
+}

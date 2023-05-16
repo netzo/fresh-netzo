@@ -1,0 +1,45 @@
+{
+  "uid": "resource-http-bigin",
+  "type": "resource",
+  "status": "requested",
+  "name": "Bigin",
+  "description": "Bigin is a cloud-based CRM solution for small and medium-sized businesses. It offers a wide range of features, including sales automation, marketing automation, customer service, and more.",
+  "labels": [
+    "sales",
+    "marketing",
+    "communication/email",
+    "customer-service"
+  ],
+  "display": {
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/lib/apis/bigin/icon.webp"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/lib/apis/bigin"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/lib/apis/bigin/src/readme.md"
+    }
+  ],
+  "item": {
+    "_type": "resource",
+    "type": "http",
+    "base": {
+      "baseURL": "https://{{siteURL}}/rest/v1",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "authorization": {
+        "type": "oauth2",
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}",
+        "authorizationURL": "{{authorizationURL}}",
+        "accessTokenURL": "{{accessTokenURL}}",
+        "redirectURL": "{{redirectURL}}",
+        "scopes": "{{scopes}}"
+      }
+    }
+  }
+}

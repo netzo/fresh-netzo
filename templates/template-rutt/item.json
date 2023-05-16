@@ -1,0 +1,42 @@
+{
+  "uid": "template-rutt",
+  "type": "template",
+  "status": "published",
+  "name": "Rutt",
+  "description": "",
+  "labels": [
+    "framework"
+  ],
+  "display": {
+    "avatar": "https://api.iconify.design/noto:motorway.svg"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/templates/template-rutt"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-rutt/src/readme.md"
+    }
+  ],
+  "item": {
+    "_type": "project",
+    "uid": "template-rutt",
+    "fs": {
+      "readme.md": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-rutt/src/readme.md"
+      },
+      "main.ts": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-rutt/src/main.ts"
+      }
+    },
+    "configuration": {
+      "entrypoint": "main.ts",
+      "envs": {},
+      "permissions": {
+        "net": true
+      }
+    }
+  }
+}

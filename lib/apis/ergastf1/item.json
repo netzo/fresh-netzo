@@ -1,0 +1,38 @@
+{
+  "uid": "resource-http-ergastf1",
+  "type": "resource",
+  "status": "published",
+  "name": "Ergast F1",
+  "description": "Ergast F1 is a REST API for F1 data. It provides a simple interface to the wealth of data available on the official Formula 1 website.",
+  "labels": [
+    "data/analytics",
+    "mock",
+    "utility"
+  ],
+  "display": {
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/lib/apis/ergastf1/icon.webp"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/lib/apis/ergastf1"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/lib/apis/ergastf1/src/readme.md"
+    }
+  ],
+  "item": {
+    "_type": "resource",
+    "type": "http",
+    "base": {
+      "baseURL": "https://ergast.com/api",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "authorization": {
+        "type": "none"
+      }
+    }
+  }
+}

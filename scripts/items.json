@@ -1,15 +1,15 @@
 [
-  "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-alephjs-api/item.json",
-  "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-daisyui/item.json",
-  "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-file-upload-portal/item.json",
-  "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-fresh/item.json",
-  "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-gql/item.json",
-  "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-nanossr/item.json",
-  "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-netzo/item.json",
-  "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-oak/item.json",
-  "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-rutt/item.json",
-  "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-sales-dashboard/item.json",
-  "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-statuspage/item.json",
-  "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-twind/item.json",
-  "https://raw.githubusercontent.com/netzo/netzo/main/packages/templates/template-ultrajs/item.json"
+  "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-alephjs-api/item.json",
+  "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-daisyui/item.json",
+  "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-file-upload-portal/item.json",
+  "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-fresh/item.json",
+  "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-gql/item.json",
+  "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-nanossr/item.json",
+  "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-netzo/item.json",
+  "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-oak/item.json",
+  "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-rutt/item.json",
+  "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-sales-dashboard/item.json",
+  "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-statuspage/item.json",
+  "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-twind/item.json",
+  "https://raw.githubusercontent.com/netzo/netzo/main/templates/template-ultrajs/item.json"
 ]
