@@ -21,7 +21,7 @@ export function createApi<R extends ResponseType = 'json'>(
   defaultOptions: Omit<FetchOptions<R>, 'method'> = {},
 ): ClientBuilder {
   // Callable internal target required to use `apply` on it
-  const internalTarget = (() => { }) as ClientBuilder
+  const internalTarget = (() => {}) as ClientBuilder
 
   function p(url: string): ClientBuilder {
     return new Proxy(internalTarget, {

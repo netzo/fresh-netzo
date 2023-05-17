@@ -4,17 +4,15 @@ import {
   assertEquals,
   assertExists,
 } from 'https://deno.land/std@0.97.0/testing/asserts.ts'
-import { createApi } from './mod.ts'
+import { jsonplaceholder } from './mod.ts'
 
 // const { NETZO_API_KEY } = config()
 
 Deno.test('createApi', async (t) => {
-  const client = createApi({
-    'baseUrl': 'https://jsonplaceholder.typicode.com',
-  })
+  const client = jsonplaceholder()
 
-  await t.step('createApi', () => {
-    assertExists(createApi)
+  await t.step('jsonplaceholder', () => {
+    assertExists(jsonplaceholder)
   })
 
   await t.step('client', () => {
