@@ -11,7 +11,7 @@ export const spacexland = ({
   apiKey = Deno.env.get('SPACEXLAND_API_KEY') ?? '',
 }) => {
   const api = createApi({
-    baseUrl: 'https://api.spacexland.com/v2',
+    baseURL: 'https://api.spacexland.com/v2',
     headers: {
       'content-type': 'application/json',
     },

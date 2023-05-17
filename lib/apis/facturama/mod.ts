@@ -13,7 +13,7 @@ export const facturama = ({
   password = Deno.env.get('FACTURAMA_PASSWORD') ?? '',
 }) => {
   const api = createApi({
-    baseUrl: 'https://api.facturama.mx',
+    baseURL: 'https://api.facturama.mx',
     headers: {
       'content-type': 'application/json',
     },

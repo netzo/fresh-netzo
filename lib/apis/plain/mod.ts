@@ -11,7 +11,7 @@ export const plain = ({
   apiKey = Deno.env.get('PLAIN_API_KEY') ?? '',
 }) => {
   const api = createApi({
-    baseUrl: 'https://core-api.uk.plain.com/graphql/v1',
+    baseURL: 'https://core-api.uk.plain.com/graphql/v1',
     headers: {
       'content-type': 'application/json',
     },

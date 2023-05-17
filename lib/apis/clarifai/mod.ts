@@ -13,7 +13,7 @@ export const clarifai = ({
   apiKey = Deno.env.get('CLARIFAI_API_KEY') ?? '',
 }) => {
   const api = createApi({
-    baseUrl: `https://api.clarifai.com/v2/users/datasets/${datasetId}`,
+    baseURL: `https://api.clarifai.com/v2/users/datasets/${datasetId}`,
     headers: {
       'content-type': 'application/json',
     },

@@ -8,7 +8,7 @@ import { auth } from '../create-api/auth/mod.ts'
  */
 export const jsonplaceholder = () => {
   const api = createApi({
-    baseUrl: 'https://jsonplaceholder.typicode.com',
+    baseURL: 'https://jsonplaceholder.typicode.com',
     headers: {
       'content-type': 'application/json',
     },

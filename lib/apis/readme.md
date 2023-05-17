@@ -39,7 +39,7 @@ const users = await api.users.get()
 ```ts
 import { createApi } from 'https://deno.land/x/netzo/mod.ts'
 
-const { api } = createApi({ baseUrl: 'https://jsonplaceholder.typicode.com' })
+const { api } = createApi({ baseURL: 'https://jsonplaceholder.typicode.com' })
 const users = await client.users.get()
 ```
 

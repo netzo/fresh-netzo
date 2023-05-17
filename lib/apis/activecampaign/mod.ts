@@ -13,7 +13,7 @@ export const activecampaign = ({
   apiKey = Deno.env.get('ACTIVECAMPAIGN_API_KEY') ?? '',
 }) => {
   const api = createApi({
-    baseUrl: `https://${accountName}.api-us1.com/api/3`,
+    baseURL: `https://${accountName}.api-us1.com/api/3`,
     headers: {
       'content-type': 'application/json',
     },

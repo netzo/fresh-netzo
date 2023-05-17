@@ -11,7 +11,7 @@ export const openai = ({
   apiKey = Deno.env.get('OPENAI_API_KEY') ?? '',
 }) => {
   const api = createApi({
-    baseUrl: 'https://api.openai.com/v1',
+    baseURL: 'https://api.openai.com/v1',
     headers: {
       'content-type': 'application/json',
     },

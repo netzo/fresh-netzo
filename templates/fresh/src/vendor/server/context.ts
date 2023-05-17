@@ -115,13 +115,13 @@ export class ServerContext {
     opts: FreshOptions,
   ): Promise<ServerContext> {
     // Get the manifest' base URL.
-    const baseUrl = new URL('./', manifest.baseUrl).href
+    const baseURL = new URL('./', manifest.baseURL).href
 
     const config = manifest.config || { importMap: './import_map.json' }
     if (typeof config.importMap !== 'string') {
       throw new Error('deno.json must contain an \'importMap\' property.')
     }
-    const importMapURL = new URL(config.importMap, manifest.baseUrl)
+    const importMapURL = new URL(config.importMap, manifest.baseURL)
 
     config.compilerOptions ??= {}
 
@@ -151,11 +151,11 @@ export class ServerContext {
     let notFound: UnknownPage = DEFAULT_NOT_FOUND
     let error: ErrorPage = DEFAULT_ERROR
     for (const [self, module] of Object.entries(manifest.routes)) {
-      const url = new URL(self, baseUrl).href
-      if (!url.startsWith(baseUrl + 'routes')) {
+      const url = new URL(self, baseURL).href
+      if (!url.startsWith(baseURL + 'routes')) {
         throw new TypeError('Page is not a child of the basepath.')
       }
-      const path = url.substring(baseUrl.length).substring('routes'.length)
+      const path = url.substring(baseURL.length).substring('routes'.length)
       const baseRoute = path.substring(1, path.length - extname(path).length)
       const name = baseRoute.replace('/', '-')
       console.debug({ url, path, baseRoute, name })
@@ -238,11 +238,11 @@ export class ServerContext {
     sortRoutes(middlewares)
 
     for (const [self, module] of Object.entries(manifest.islands)) {
-      const url = new URL(self, baseUrl).href
-      if (!url.startsWith(baseUrl)) {
+      const url = new URL(self, baseURL).href
+      if (!url.startsWith(baseURL)) {
         throw new TypeError('Island is not a child of the basepath.')
       }
-      const path = url.substring(baseUrl.length).substring('islands'.length)
+      const path = url.substring(baseURL.length).substring('islands'.length)
       const baseRoute = path.substring(1, path.length - extname(path).length)
       const name = sanitizeIslandName(baseRoute)
       const id = name.toLowerCase()
@@ -258,7 +258,7 @@ export class ServerContext {
     try {
       const staticFolder = new URL(
         opts.staticDir ?? './static',
-        manifest.baseUrl,
+        manifest.baseURL,
       )
       // TODO(lucacasonato): remove the extranious Deno.readDir when
       // https://github.com/denoland/deno_std/issues/1310 is fixed.

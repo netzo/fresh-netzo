@@ -8,11 +8,11 @@ import { auth } from '../create-api/auth/mod.ts'
  * @returns {object} - an object of multiple utilities for the API
  */
 export const restdb = ({
-  databaseUrl = Deno.env.get('RESTDB_DATABASE_URL') ?? '',
+  databaseURL = Deno.env.get('RESTDB_DATABASE_URL') ?? '',
   apiKey = Deno.env.get('RESTDB_API_KEY') ?? '',
 }) => {
   const api = createApi({
-    baseUrl: `https://${databaseUrl}.restdb.io/rest`,
+    baseURL: `https://${databaseURL}.restdb.io/rest`,
     headers: {
       'content-type': 'application/json',
     },

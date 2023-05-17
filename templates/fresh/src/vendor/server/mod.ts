@@ -52,7 +52,7 @@ export interface Manifest {
     | UnknownPageModule
   >
   islands: Record<string, IslandModule>
-  baseUrl: string
+  baseURL: string
   config?: DenoConfig
 }
 

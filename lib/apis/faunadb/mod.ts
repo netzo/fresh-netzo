@@ -13,7 +13,7 @@ export const faunadb = ({
   password = Deno.env.get('FAUNADB_PASSWORD') ?? '',
 }) => {
   const api = createApi({
-    baseUrl: `"https://${regionGroupHostname}/graphql`,
+    baseURL: `"https://${regionGroupHostname}/graphql`,
     headers: {
       'content-type': 'application/json',
     },

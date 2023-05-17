@@ -13,7 +13,7 @@ export type MappedType<R extends ResponseType, JsonType = any> = R extends
 
 export type ClientMethodHandler = <T = any, R extends ResponseType = 'json'>(
   data?: RequestInit['body'] | Record<string, any>,
-  options?: Omit<FetchOptions<R>, 'baseUrl' | 'method'>,
+  options?: Omit<FetchOptions<R>, 'baseURL' | 'method'>,
 ) => Promise<MappedType<R, T>>
 
 export type ClientBuilder = {

@@ -11,7 +11,7 @@ export const monday = ({
   apiKey = Deno.env.get('MONDAY_API_KEY') ?? '',
 }) => {
   const api = createApi({
-    baseUrl: 'https://api.monday.com/v2',
+    baseURL: 'https://api.monday.com/v2',
     headers: {
       'content-type': 'application/json',
     },

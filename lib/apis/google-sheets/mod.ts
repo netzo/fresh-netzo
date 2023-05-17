@@ -15,7 +15,7 @@ export const googlesheets = ({
   clientSecret = Deno.env.get('GOOGLESHEETS_CLIENT_SECRET') ?? '',
 }) => {
   const api = createApi({
-    baseUrl: `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}`,
+    baseURL: `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}`,
     headers: {
       'content-type': 'application/json',
     },

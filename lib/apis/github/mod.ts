@@ -11,7 +11,7 @@ export const github = ({
   personalAccessToken = Deno.env.get('GITHUB_PERSONAL_ACCESS_TOKEN') ?? '',
 }) => {
   const api = createApi({
-    baseUrl: 'https://api.github.com',
+    baseURL: 'https://api.github.com',
     headers: {
       'content-type': 'application/json',
     },
