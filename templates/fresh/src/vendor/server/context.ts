@@ -659,7 +659,7 @@ export class ServerContext {
 
         const contentType = typeByExtension(extname(path))
         if (contentType) {
-          headers.set('Content-Type', contentType)
+          headers.set('content-type', contentType)
         }
 
         res = new Response(file, {

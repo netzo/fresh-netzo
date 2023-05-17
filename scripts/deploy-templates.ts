@@ -6,7 +6,7 @@ const { AUTH_ENV_VAR_API_KEY_EDIT: xEnvVarApiKey } = config()
 const repoBaseUrl = 'https://raw.githubusercontent.com/netzo/netzo/main'
 const apiBaseUrls = ['http://localhost:4321', 'https://api.netzo.io']
 const defaultHeaders = {
-  'Content-Type': 'application/json',
+  'content-type': 'application/json',
   Accept: 'application/json',
   'Cache-Control': 'no-cache',
 }

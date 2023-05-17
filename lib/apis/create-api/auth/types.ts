@@ -24,7 +24,7 @@ export interface AuthorizationOAuth2ClientCredentials {
   type: 'oauth2'
   grantType: 'client_credentials'
   headerPrefix: 'Bearer' | string
-  authorizationUri: string
+  authorizationUrl: string
   clientId: string
   clientSecret: string
   scope?: string
@@ -34,7 +34,7 @@ export interface AuthorizationOAuth2PasswordCredentials {
   type: 'oauth2'
   grantType: 'password_credentials'
   headerPrefix: 'Bearer' | string
-  accessTokenUri: string
+  accessTokenUrl: string
   clientId: string
   clientSecret: string
   username: string
@@ -46,25 +46,25 @@ export interface AuthorizationOAuth2Implicit {
   type: 'oauth2'
   grantType: 'implicit'
   headerPrefix: 'Bearer' | string
-  callbackUri: string
-  authorizationUri: string
+  redirectUrl: string
+  authorizationUrl: string
   clientId: string
   clientSecret: string
   scope?: string
-  state: string
+  state?: string
 }
 
 export interface AuthorizationOAuth2AuthorizationCode {
   type: 'oauth2'
   grantType: 'authorization_code'
   headerPrefix: 'Bearer' | string
-  callbackUri: string
-  authorizationUri: string
-  accessTokenUri: string
+  redirectUrl: string
+  authorizationUrl: string
+  accessTokenUrl: string
   clientId: string
   clientSecret: string
   scope?: string
-  state: string
+  state?: string
 }
 
 export type AuthorizationOAuth2 =

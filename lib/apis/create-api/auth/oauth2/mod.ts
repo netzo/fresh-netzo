@@ -27,17 +27,17 @@ const DEFAULTS: AuthorizationOAuth2ClientCredentials = {
   clientId:
     '333607581312-m8un366ektgv0agc3q897ld1ep3dmr84.apps.googleusercontent.com',
   clientSecret: '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',
-  authorizationUri: 'https://accounts.google.com/o/oauth2/auth',
+  authorizationUrl: 'https://accounts.google.com/o/oauth2/auth',
   scope: 'https://www.googleapis.com/auth/drive',
 }
 export const getTokenClientCredentialsFlow = async (
   authorization: AuthorizationOAuth2ClientCredentials = DEFAULTS,
 ) => {
-  const { clientId, clientSecret, authorizationUri, scope } = authorization
-  const response = await fetch(authorizationUri, {
+  const { clientId, clientSecret, authorizationUrl, scope } = authorization
+  const response = await fetch(authorizationUrl, {
     // method: "POST",
     // headers: {
-    //   "Content-Type": "application/x-www-form-urlencoded",
+    //   "content-type": "application/x-www-form-urlencoded",
     // },
     // body: new URLSearchParams({
     //   grant_type: "client_credentials",
@@ -48,7 +48,7 @@ export const getTokenClientCredentialsFlow = async (
     // }),
     method: 'POST',
     headers: new Headers({
-      'Content-Type': 'application/x-www-form-urlencoded',
+      'content-type': 'application/x-www-form-urlencoded',
       Authorization: `Basic ${btoa(`${clientId}:${clientSecret}`)}`,
     }),
     body: new URLSearchParams({
@@ -65,12 +65,12 @@ export const getTokenClientCredentialsFlow = async (
 export const getTokenPasswordCredentialsFlow = async (
   authorization: AuthorizationOAuth2PasswordCredentials,
 ) => {
-  const { clientId, clientSecret, accessTokenUri, username, password, scope } =
+  const { clientId, clientSecret, accessTokenUrl, username, password, scope } =
     authorization
-  const response = await fetch(accessTokenUri, {
+  const response = await fetch(accessTokenUrl, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
+      'content-type': 'application/x-www-form-urlencoded',
     },
     body: new URLSearchParams({
       grant_type: 'password_credentials',
@@ -90,16 +90,16 @@ export const getTokenPasswordCredentialsFlow = async (
 export const getTokenImplicitFlow = async (
   authorization: AuthorizationOAuth2Implicit,
 ) => {
-  const { clientId, authorizationUri, callbackUri, scope } = authorization
-  const response = await fetch(authorizationUri, {
+  const { clientId, authorizationUrl, redirectUrl, scope } = authorization
+  const response = await fetch(authorizationUrl, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
+      'content-type': 'application/x-www-form-urlencoded',
     },
     body: new URLSearchParams({
       grant_type: 'implicit',
       client_id: clientId,
-      redirect_uri: callbackUri,
+      redirect_uri: redirectUrl,
       ...(scope && { scope }),
     }),
   })
@@ -123,20 +123,20 @@ export const getTokenImplicitFlow = async (
 export const getTokenAuthorizationCodeFlow = async (
   authorization: AuthorizationOAuth2AuthorizationCode,
 ) => {
-  const { clientId, clientSecret, accessTokenUri, callbackUri, scope } =
+  const { clientId, clientSecret, accessTokenUrl, redirectUrl, scope } =
     authorization
 
   const getAuthorizationCode = async () => {
-    const response = await fetch(accessTokenUri, {
+    const response = await fetch(accessTokenUrl, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
+        'content-type': 'application/x-www-form-urlencoded',
       },
       body: new URLSearchParams({
         grant_type: 'authorization_code',
         client_id: clientId,
         client_secret: clientSecret,
-        redirect_uri: callbackUri,
+        redirect_uri: redirectUrl,
         response_type: 'code',
         ...(scope && { scope }),
       }),
@@ -146,16 +146,16 @@ export const getTokenAuthorizationCodeFlow = async (
     return code
   }
 
-  const response = await fetch(accessTokenUri, {
+  const response = await fetch(accessTokenUrl, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
+      'content-type': 'application/x-www-form-urlencoded',
     },
     body: new URLSearchParams({
       grant_type: 'authorization_code',
       client_id: clientId,
       client_secret: clientSecret,
-      redirect_uri: callbackUri,
+      redirect_uri: redirectUrl,
       ...(scope && { scope }),
       code: await getAuthorizationCode(),
     }),
