@@ -11,7 +11,7 @@ export const purpleair = ({
   apiKey = Deno.env.get('PURPLEAIR_API_KEY') ?? '',
 }) => {
   const api = createApi({
-    baseURL: 'https://api.purpleair.com/v1',
+    baseUrl: 'https://api.purpleair.com/v1',
     headers: {
       'content-type': 'application/json',
     },

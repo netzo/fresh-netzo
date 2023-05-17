@@ -10,7 +10,7 @@ import { createApi } from './mod.ts'
 
 Deno.test('createApi', async (t) => {
   const client = createApi({
-    'baseURL': 'https://jsonplaceholder.typicode.com',
+    'baseUrl': 'https://jsonplaceholder.typicode.com',
   })
 
   await t.step('createApi', () => {

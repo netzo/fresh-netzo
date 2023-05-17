@@ -11,7 +11,7 @@ export const cloudflare = ({
   apiKey = Deno.env.get('CLOUDFLARE_API_KEY') ?? '',
 }) => {
   const api = createApi({
-    baseURL: 'https://api.cloudflare.com/client/v4',
+    baseUrl: 'https://api.cloudflare.com/client/v4',
     headers: {
       'content-type': 'application/json',
     },

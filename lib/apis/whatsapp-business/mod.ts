@@ -9,11 +9,11 @@ import { auth } from '../create-api/auth/mod.ts'
  */
 export const whatsappbusiness = ({
   businessAccountId = Deno.env.get('WHATSAPPBUSINESS_BUSINESS_ACCOUNT_ID') ||
-    '',
+  '',
   permanentToken = Deno.env.get('WHATSAPPBUSINESS_PERMANENT_TOKEN') ?? '',
 }) => {
   const api = createApi({
-    baseURL: `https://graph.facebook.com/v15.0/${businessAccountId}`,
+    baseUrl: `https://graph.facebook.com/v15.0/${businessAccountId}`,
     headers: {
       'content-type': 'application/json',
     },

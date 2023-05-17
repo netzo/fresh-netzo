@@ -11,7 +11,7 @@ export const fathomanalytics = ({
   apiKey = Deno.env.get('FATHOMANALYTICS_API_KEY') ?? '',
 }) => {
   const api = createApi({
-    baseURL: 'https://api.usefathom.com/v1',
+    baseUrl: 'https://api.usefathom.com/v1',
     headers: {
       'content-type': 'application/json',
     },

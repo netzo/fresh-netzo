@@ -11,7 +11,7 @@ export const sendgrid = ({
   apiKey = Deno.env.get('SENDGRID_API_KEY') ?? '',
 }) => {
   const api = createApi({
-    baseURL: 'https://api.sendgrid.com/v3',
+    baseUrl: 'https://api.sendgrid.com/v3',
     headers: {
       'content-type': 'application/json',
     },

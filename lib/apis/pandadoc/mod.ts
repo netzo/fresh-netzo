@@ -11,7 +11,7 @@ export const pandadoc = ({
   apiKey = Deno.env.get('PANDADOC_API_KEY') ?? '',
 }) => {
   const api = createApi({
-    baseURL: 'https://api.pandadoc.com/public/v1',
+    baseUrl: 'https://api.pandadoc.com/public/v1',
     headers: {
       'content-type': 'application/json',
     },

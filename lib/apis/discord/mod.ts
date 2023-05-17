@@ -13,7 +13,7 @@ export const discord = ({
   token = Deno.env.get('DISCORD_TOKEN') ?? '',
 }) => {
   const api = createApi({
-    baseURL: 'https://discord.com/api/v10',
+    baseUrl: 'https://discord.com/api/v10',
     headers: {
       'content-type': 'application/json',
     },

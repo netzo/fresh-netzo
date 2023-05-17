@@ -11,7 +11,7 @@ export const brevo = ({
   apiKey = Deno.env.get('BREVO_API_KEY') ?? '',
 }) => {
   const api = createApi({
-    baseURL: 'https://api.brevo.com/v3',
+    baseUrl: 'https://api.brevo.com/v3',
     headers: {
       'content-type': 'application/json',
     },

@@ -8,7 +8,7 @@ import { auth } from '../create-api/auth/mod.ts'
  */
 export const ergastf1 = () => {
   const api = createApi({
-    baseURL: 'https://ergast.com/api',
+    baseUrl: 'https://ergast.com/api',
     headers: {
       'content-type': 'application/json',
     },

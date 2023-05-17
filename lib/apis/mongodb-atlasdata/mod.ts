@@ -12,7 +12,7 @@ export const mongodbatlasdata = ({
   apiKey = Deno.env.get('MONGODBATLASDATA_API_KEY') ?? '',
 }) => {
   const api = createApi({
-    baseURL:
+    baseUrl:
       `https://data.mongodb-api.com/app/${dataApiAppId}/endpoint/data/v1`,
     headers: {
       'content-type': 'application/json',
