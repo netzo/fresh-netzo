@@ -7,7 +7,7 @@ A JavaScript/TypeScript SDK for interacting with resources in
 ## Features
 
 - 🚀 Productive: flexible and easy to use
-- 🪽 Lightweight (~36 loc)
+- 🪽 Lightweight (~36 LOC for client implementation)
 - 🦾 Strongly typed
 - 📚 Intuitive: chain/bracket syntax and methods
   - `api.users(1).get()`
@@ -25,23 +25,22 @@ more details.
 
 ## Usage
 
+### Use existing API (e.g. Netzo API)
+
 ```ts
-import { Netzo } from 'https://deno.land/x/netzo@v0.1.59/mod.ts'
+import * as apis from 'https://deno.land/x/netzo/mod.ts'
 
-const netzo = Netzo(Deno.env.get('NETZO_API_KEY'))
+const { api } = apis.netzo({ apiKey: Deno.env.get('NETZO_API_KEY') })
+const users = await api.users.get()
+```
 
-// create client for existing resource:
-const { client } = await netzo.getResource(RESOURCE_ID)
+### Create a custom HTTP API
+
+```ts
+import { createApi } from 'https://deno.land/x/netzo/mod.ts'
+
+const { api } = createApi({ baseURL: 'https://jsonplaceholder.typicode.com' })
 const users = await client.users.get()
-
-// create client for a custom HTTP resource:
-const { client } = netzo.getResource({
-  baseURL: 'https://jsonplaceholder.typicode.com',
-})
-const users = await client.users.get()
-
-// api: an authenticated client for the Netzo API
-const projects = await netzo.api.projects.get()
 ```
 
 ## License
