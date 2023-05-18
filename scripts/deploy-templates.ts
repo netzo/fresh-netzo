@@ -85,7 +85,7 @@ export async function deployTemplates() {
                   body: JSON.stringify(template),
                 })
                 console.debug('[deploy-templates] patched', template.uid)
-                  ; ++patchedCount
+                ;++patchedCount
                 return template
               } catch ({ message: cause }) {
                 console.error(
@@ -103,7 +103,7 @@ export async function deployTemplates() {
                   body: JSON.stringify(template),
                 })
                 console.debug('[deploy-templates] created', template.uid)
-                  ; ++createdCount
+                ;++createdCount
                 return template
               } catch ({ message: cause }) {
                 console.error(

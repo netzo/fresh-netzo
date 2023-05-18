@@ -1,8 +1,8 @@
 # `netzo` GitHub Action
 
-The Netzo GitHub Action allows for easy deployment to Netzo from a
-GitHub Actions workflow. This allows a simple way to have a build step before
-deploying to Netzo.
+The Netzo GitHub Action allows for easy deployment to Netzo from a GitHub
+Actions workflow. This allows a simple way to have a build step before deploying
+to Netzo.
 
 > ⚠ If your project does not require a build step, we recommend you use the
 > ["Automatic" deployment mode][automatic-mode] of our GitHub integration. It is
@@ -10,8 +10,8 @@ deploying to Netzo.
 
 ## Usage
 
-To deploy you just need to include the Netzo GitHub Action as a step in
-your workflow.
+To deploy you just need to include the Netzo GitHub Action as a step in your
+workflow.
 
 You do **not** need to set up any secrets for this to work. You **do** need to
 link your GitHub repository to your Netzo project and choose the "GitHub

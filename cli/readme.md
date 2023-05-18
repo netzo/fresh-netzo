@@ -1,7 +1,7 @@
 # `netzo` CLI
 
-`netzo` is the command line tool for Netzo. This repository also
-contains the `netzo/github-action` GitHub Action.
+`netzo` is the command line tool for Netzo. This repository also contains the
+`netzo/github-action` GitHub Action.
 
 ## Install
 
@@ -12,8 +12,8 @@ deno install --allow-read --allow-write --allow-env --allow-net --allow-run --no
 ## Usage
 
 Before being able to deploy, you need to get an API key from the
-[Workspace > Settings > API keys](https://netzo.io/docs/platform/workspaces#api-keys) page.
-Store this token in a `NETZO_API_KEY` environment variable, or pass it to
+[Workspace > Settings > API keys](https://netzo.io/docs/platform/workspaces#api-keys)
+page. Store this token in a `NETZO_API_KEY` environment variable, or pass it to
 `netzo` with the `--api-key` flag.
 
 ```shell
