@@ -1,5 +1,5 @@
 import { join } from '../../deps.ts'
-import { ManifestEntry } from './api_types.ts'
+import { ManifestEntry } from './api.types.ts'
 
 /** Calculate git object hash, like `git hash-object` does. */
 export async function calculateGitSha1(bytes: Uint8Array) {

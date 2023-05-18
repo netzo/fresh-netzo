@@ -9,7 +9,7 @@ import {
   ManifestEntry,
   Project,
   PushDeploymentRequest,
-} from './api_types.ts'
+} from './api.types.ts'
 
 export interface RequestOptions {
   method?: string
