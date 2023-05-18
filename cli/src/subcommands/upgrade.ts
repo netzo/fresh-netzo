@@ -4,19 +4,19 @@ import { error } from '../error.ts'
 import { semverGreaterThanOrEquals, semverValid } from '../../deps.ts'
 import { VERSION } from '../version.ts'
 
-const help = `netzoctl upgrade
-Upgrade netzoctl to the given version (defaults to latest).
+const help = `netzo upgrade
+Upgrade netzo to the given version (defaults to latest).
 
 To upgrade to latest version:
-netzoctl upgrade
+netzo upgrade
 
 To upgrade to specific version:
-netzoctl upgrade 1.2.3
+netzo upgrade 1.2.3
 
-The version is downloaded from https://deno.land/x/netzo/cli/netzoctl.ts
+The version is downloaded from https://deno.land/x/netzo/cli/netzo.ts
 
 USAGE:
-    netzoctl upgrade [OPTIONS] [<version>]
+    netzo upgrade [OPTIONS] [<version>]
 
 OPTIONS:
     -h, --help        Prints help information
@@ -70,7 +70,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
         '--allow-run',
         '--no-check',
         '-f',
-        `https://deno.land/x/deploy@${version ? version : latest}/netzoctl.ts`,
+        `https://deno.land/x/netzo@${version ? version : latest}/cli/netzo.ts`,
       ],
     }).spawn()
     await process.status

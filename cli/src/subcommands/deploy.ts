@@ -7,23 +7,23 @@ import { ManifestEntry } from '../utils/api_types.ts'
 import { parseEntrypoint } from '../utils/entrypoint.ts'
 import { walk } from '../utils/walk.ts'
 
-const help = `netzoctl deploy
+const help = `netzo deploy
 Deploy a script with static files to Netzo.
 
 To deploy a local script:
-  netzoctl deploy --project=helloworld main.ts
+  netzo deploy --project=helloworld main.ts
 
 To deploy a remote script:
-  netzoctl deploy --project=helloworld https://deno.com/examples/hello.js
+  netzo deploy --project=helloworld https://deno.com/examples/hello.js
 
 To deploy a remote script without static files:
-  netzoctl deploy --project=helloworld --no-static https://deno.com/examples/hello.js
+  netzo deploy --project=helloworld --no-static https://deno.com/examples/hello.js
 
 To ignore the node_modules directory while deploying:
-  netzoctl deploy --project=helloworld --exclude=node_modules main.tsx
+  netzo deploy --project=helloworld --exclude=node_modules main.tsx
 
 USAGE:
-    netzoctl deploy [OPTIONS] <ENTRYPOINT>
+    netzo deploy [OPTIONS] <ENTRYPOINT>
 
 OPTIONS:
         --exclude=<PATTERNS>  Exclude files that match this pattern

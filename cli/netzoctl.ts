@@ -10,18 +10,18 @@ import logsSubcommand from './src/subcommands/logs.ts'
 import { MINIMUM_DENO_VERSION, VERSION } from './src/version.ts'
 import { fetchReleases, getConfigPaths } from './src/utils/info.ts'
 
-const help = `netzoctl ${VERSION}
+const help = `netzo ${VERSION}
 Command line tool for Netzo.
 
 To deploy a local script:
-  netzoctl deploy --project=helloworld ./main.ts
+  netzo deploy --project=helloworld ./main.ts
 
 To deploy a remote script:
-  netzoctl deploy --project=helloworld https://deno.land/x/deploy/examples/hello.js
+  netzo deploy --project=helloworld https://deno.land/x/deploy/examples/hello.js
 
 SUBCOMMANDS:
     deploy    Deploy a script with static files to Netzo
-    upgrade   Upgrade netzoctl to the given version (defaults to latest)
+    upgrade   Upgrade netzo to the given version (defaults to latest)
     logs      Stream logs for the given project
 `
 
@@ -91,8 +91,8 @@ if (Deno.isatty(Deno.stdin.rid)) {
   ) {
     console.log(
       [
-        `A new release of netzoctl is available: ${VERSION} -> ${latestVersion}`,
-        'To upgrade, run `netzoctl upgrade`',
+        `A new release of netzo CLI is available: ${VERSION} -> ${latestVersion}`,
+        'To upgrade, run `netzo upgrade`',
         `https://github.com/netzo/github-action/releases/tag/${latestVersion}\n`,
       ].join('\n'),
     )
@@ -112,7 +112,7 @@ switch (subcommand) {
     break
   default:
     if (args.version) {
-      console.log(`netzoctl ${VERSION}`)
+      console.log(`netzo ${VERSION}`)
       Deno.exit(0)
     }
     if (args.help) {

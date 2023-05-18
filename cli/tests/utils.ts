@@ -6,7 +6,7 @@ export interface Permissions {
   run: boolean
 }
 
-export function netzoctl(
+export function netzo(
   args: string[],
   permissions: Permissions = {
     net: true,
@@ -28,7 +28,7 @@ export function netzoctl(
   if (permissions?.env) deno.push('--allow-env')
   if (permissions?.run) deno.push('--allow-run')
 
-  deno.push(new URL('../netzoctl.ts', import.meta.url).toString())
+  deno.push(new URL('../netzo.ts', import.meta.url).toString())
 
   const cmd = Deno.build.os == 'linux'
     ? ['bash', '-c', [...deno, ...args].join(' ')]
@@ -52,9 +52,9 @@ export function test(
   opts: TestOptions,
   fn: (proc: Deno.ChildProcess) => void | Promise<void>,
 ) {
-  const name = opts.name ?? ['netzoctl', ...opts.args].join(' ')
+  const name = opts.name ?? ['netzo', ...opts.args].join(' ')
   Deno.test(name, async () => {
-    const proc = netzoctl(opts.args, opts.permissions)
+    const proc = netzo(opts.args, opts.permissions)
     await fn(proc)
   })
 }

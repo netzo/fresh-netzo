@@ -1,12 +1,12 @@
-# netzoctl
+# `netzo` CLI
 
-`netzoctl` is the command line tool for Netzo. This repository also
+`netzo` is the command line tool for Netzo. This repository also
 contains the `netzo/github-action` GitHub Action.
 
 ## Install
 
 ```shell
-deno install --allow-read --allow-write --allow-env --allow-net --allow-run --no-check -r -f https://deno.land/x/netzo/cli/netzoctl.ts
+deno install --allow-read --allow-write --allow-env --allow-net --allow-run --no-check -r -f https://deno.land/x/netzo/cli/netzo.ts
 ```
 
 ## Usage
@@ -14,16 +14,16 @@ deno install --allow-read --allow-write --allow-env --allow-net --allow-run --no
 Before being able to deploy, you need to get an API key from the
 [Workspace > Settings > API keys](https://netzo.io/docs/platform/workspaces#api-keys) page.
 Store this token in a `NETZO_API_KEY` environment variable, or pass it to
-`netzoctl` with the `--api-key` flag.
+`netzo` with the `--api-key` flag.
 
 ```shell
-netzoctl deploy --project=hello-world ./examples/hello.ts
+netzo deploy --project=hello-world ./examples/hello.ts
 ```
 
 View the help:
 
 ```shell
-netzoctl -h
+netzo -h
 ```
 
 ## Action Example

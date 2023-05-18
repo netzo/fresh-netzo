@@ -1,4 +1,4 @@
-# netzoctl GitHub Action
+# `netzo` GitHub Action
 
 The Netzo GitHub Action allows for easy deployment to Netzo from a
 GitHub Actions workflow. This allows a simple way to have a build step before

@@ -4,20 +4,20 @@ import { wait } from '../../deps.ts'
 import { error } from '../error.ts'
 import { API, APIError } from '../utils/api.ts'
 
-const help = `netzoctl logs
+const help = `netzo logs
 Stream logs for the given project.
 
 To show the latest logs of a project:
-  netzoctl logs --project=helloworld
+  netzo logs --project=helloworld
 
 To show the logs of a particular deployment:
-  netzoctl logs --project=helloworld --deployment=1234567890ab
+  netzo logs --project=helloworld --deployment=1234567890ab
 
 To show the logs of the production deployment:
-  netzoctl logs --project=helloworld --prod
+  netzo logs --project=helloworld --prod
 
 USAGE:
-    netzoctl logs [OPTIONS] [<PROJECT>]
+    netzo logs [OPTIONS] [<PROJECT>]
 
 OPTIONS:
         --deployment=<DEPLOYMENT_ID>  The id of the deployment you want to get the logs (defaults to latest deployment)

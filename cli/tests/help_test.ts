@@ -14,14 +14,14 @@ test({ args: ['-V'] }, async (proc) => {
   const [stdout, stderr, { code }] = await output(proc)
   assertEquals(stderr, '')
   assertEquals(code, 0)
-  assert(stdout.startsWith('netzoctl '))
+  assert(stdout.startsWith('netzo '))
 })
 
 test({ args: ['--version'] }, async (proc) => {
   const [stdout, stderr, { code }] = await output(proc)
   assertEquals(stderr, '')
   assertEquals(code, 0)
-  assert(stdout.startsWith('netzoctl '))
+  assert(stdout.startsWith('netzo '))
 })
 
 test({ args: ['-h'] }, async (proc) => {
@@ -36,14 +36,14 @@ test({ args: ['-h'] }, async (proc) => {
 test({ args: ['deploy', '-h'] }, async (proc) => {
   const [stdout, stderr, { code }] = await output(proc)
   assertStringIncludes(stdout, 'USAGE:')
-  assertStringIncludes(stdout, 'netzoctl deploy')
+  assertStringIncludes(stdout, 'netzo deploy')
   assertEquals(code, 0)
   assertEquals(stderr, '')
 })
 
 test({ args: ['upgrade', '-h'] }, async (proc) => {
   const [stdout, stderr, { code }] = await output(proc)
-  assertStringIncludes(stdout, 'netzoctl upgrade')
+  assertStringIncludes(stdout, 'netzo upgrade')
   assertStringIncludes(stdout, 'USAGE:')
   assertStringIncludes(stdout, 'ARGS:')
   assertEquals(code, 0)
