@@ -1,24 +1,15 @@
-// TODO: implement tests from https://github.com/johannschopplich/uncreate/blob/main/test/index.test.ts
+import { get } from 'https://deno.land/x/lodash_es@v0.0.2/mod.ts'
 import {
   assertEquals,
   assertExists,
 } from 'https://deno.land/std@0.97.0/testing/asserts.ts'
-import { createApi } from './mod.ts'
-import { auth } from './auth/mod.ts'
+import { jsonplaceholder } from './mod.ts'
 
-Deno.test('createApi', async (t) => {
-  const api = createApi({
-    baseURL: 'https://jsonplaceholder.typicode.com',
-    headers: {
-      'content-type': 'application/json',
-    },
-    async onRequest(ctx) {
-      await auth({ type: 'none' }, ctx)
-    },
-  })
+Deno.test('jsonplaceholder', async (t) => {
+  const { api } = jsonplaceholder()
 
   await t.step('declarations', () => {
-    assertExists(createApi)
+    assertExists(jsonplaceholder)
     assertExists(api)
   })
 
@@ -27,9 +18,19 @@ Deno.test('createApi', async (t) => {
     assertEquals(todos?.length, 200)
   })
 
+  await t.step('api.todos.get({ userId: 1 })', async () => {
+    const todos = await api.todos.get({ userId: 1 })
+    assertEquals(todos?.length, 20)
+  })
+
   await t.step('api.todos[1].get()', async () => {
     const todo = await api.todos[1].get()
     assertEquals(todo?.id, 1)
+  })
+
+  await t.step('api.todos[1].get({ userId: 1 })', async () => {
+    const todoQuery = await api.todos[1].get({ userId: 1 })
+    assertEquals(todoQuery?.id, 1)
   })
 
   await t.step('api.todos.post()', async () => {
@@ -58,6 +59,18 @@ Deno.test('createApi', async (t) => {
 
   await t.step('api.todos[1].delete()', async () => {
     const todo = await api.todos[1].delete()
+    assertExists(todo)
+  })
+
+  await t.step('lodash.get(api, \'todos\').get()', async () => {
+    const endpoint = get(api, 'todos')
+    const todo = await endpoint.get()
+    assertExists(todo)
+  })
+
+  await t.step('lodash.get(api, \'todos.get\')()', async () => {
+    const endpointFn = get(api, 'todos.get')
+    const todo = await endpointFn()
     assertExists(todo)
   })
 })

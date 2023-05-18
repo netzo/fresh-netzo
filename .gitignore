@@ -1,3 +1,6 @@
+cli
+templates/fresh-tremor
+
 # Logs
 logs
 *.log

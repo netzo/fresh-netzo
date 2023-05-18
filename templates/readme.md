@@ -37,7 +37,7 @@ To submit an template for review:
 1. Fork this repository
 2. Select and copy any other template as a starting template
 3. Develop the template by modifying the copied files accordingly
-4. Add the URL of the `template.json` file to `scripts/templates.json`
+4. Add the URL of the `template.json` file to `templates/templates.json`
 5. Create a pull request
 
 > Feel free to contribute template requests. We continuously select popular

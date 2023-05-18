@@ -2,5 +2,11 @@
   "deno.enable": true,
   "deno.lint": true,
   "deno.unstable": true,
-  "vue.features.codeActions.enable": false
+  "vue.features.codeActions.enable": false,
+  "cSpell.words": [
+    "googleappsheet",
+    "googlesheets",
+    "mongodbatlasdata",
+    "whatsappbusiness"
+  ]
 }

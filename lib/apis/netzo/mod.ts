@@ -18,7 +18,8 @@ export const netzo = ({ apiKey = Deno.env.get('NETZO_API_KEY') ?? '' }) => {
       await auth({
         type: 'apiKey',
         in: 'header',
-        name: 'x-api-key',
+        // heuristic to determine if apiKey (64) or envVarApiKey (128)
+        name: apiKey.length === 64 ? 'x-api-key' : 'x-env-var-api-key',
         value: apiKey,
       }, ctx)
     },

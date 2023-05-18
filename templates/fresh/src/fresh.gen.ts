@@ -13,7 +13,7 @@ const manifest = {
   islands: {
     './islands/Counter.tsx': $$0,
   },
-  baseURL: import.meta.url,
+  baseUrl: import.meta.url,
   config,
 }
 

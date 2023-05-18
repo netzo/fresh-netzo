@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env -S deno run --allow-env --allow-net --allow-read
 import { config } from 'https://deno.land/x/dotenv@v3.2.0/mod.ts'
 
 const { AUTH_ENV_VAR_API_KEY_EDIT: xEnvVarApiKey } = config()
@@ -6,9 +6,9 @@ const { AUTH_ENV_VAR_API_KEY_EDIT: xEnvVarApiKey } = config()
 const repoBaseUrl = 'https://raw.githubusercontent.com/netzo/netzo/main'
 const apiBaseUrls = ['http://localhost:4321', 'https://api.netzo.io']
 const defaultHeaders = {
+  accept: 'application/json',
   'content-type': 'application/json',
-  Accept: 'application/json',
-  'Cache-Control': 'no-cache',
+  'cache-control': 'no-cache',
 }
 const headers = { ...defaultHeaders, 'x-env-var-api-key': xEnvVarApiKey }
 
@@ -16,7 +16,7 @@ const headers = { ...defaultHeaders, 'x-env-var-api-key': xEnvVarApiKey }
  * Syncs all templates present in the @netzo/netzo
  * repo to the 'dev' and 'prod' mongodb databases.
  *
- * The function fetches the @netzo/netzo/scripts/templates.json array of links, and maps
+ * The function fetches the @netzo/netzo/templates/templates.json array of links, and maps
  * them to an array of template.json objects to then either create a new or patch
  * an existing template record in the templates collection of each of the mongodb databases
  */
@@ -24,9 +24,9 @@ export async function deployTemplates() {
   try {
     // GitHub:
 
-    // 1) fetch array of template urls from @netzo/netzo/scripts/templates.json
+    // 1) fetch array of template urls from @netzo/netzo/templates/templates.json
     const allUrlsResponse = await fetch(
-      `${repoBaseUrl}/scripts/templates.json`,
+      `${repoBaseUrl}/templates/templates.json`,
       {
         headers: defaultHeaders,
       },
@@ -34,7 +34,7 @@ export async function deployTemplates() {
     const allUrls = await allUrlsResponse.json()
     const urls = [...new Set(allUrls)] as string[] // remove possible duplicates
     console.log(
-      `[deploy-templates] fetched array of ${urls.length} urls from @netzo/netzo/scripts/templates.json`,
+      `[deploy-templates] fetched array of ${urls.length} urls from @netzo/netzo/templates/templates.json`,
     )
 
     // 2) map array of url pointers to each template.json to array of template objects
@@ -85,7 +85,7 @@ export async function deployTemplates() {
                   body: JSON.stringify(template),
                 })
                 console.debug('[deploy-templates] patched', template.uid)
-                ;++patchedCount
+                  ; ++patchedCount
                 return template
               } catch ({ message: cause }) {
                 console.error(
@@ -103,7 +103,7 @@ export async function deployTemplates() {
                   body: JSON.stringify(template),
                 })
                 console.debug('[deploy-templates] created', template.uid)
-                ;++createdCount
+                  ; ++createdCount
                 return template
               } catch ({ message: cause }) {
                 console.error(
