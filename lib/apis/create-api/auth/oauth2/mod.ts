@@ -35,17 +35,6 @@ export const getTokenClientCredentialsFlow = async (
 ) => {
   const { clientId, clientSecret, authorizationUrl, scope } = authorization
   const response = await fetch(authorizationUrl, {
-    // method: "POST",
-    // headers: {
-    //   "content-type": "application/x-www-form-urlencoded",
-    // },
-    // body: new URLSearchParams({
-    //   grant_type: "client_credentials",
-    //   client_id: clientId,
-    //   client_secret: clientSecret,
-    //   ...(scope && { scope }),
-    //   response_type: "code",
-    // }),
     method: 'POST',
     headers: new Headers({
       'content-type': 'application/x-www-form-urlencoded',
