@@ -17,7 +17,7 @@ To deploy a local script:
   netzo deploy --project=helloworld ./main.ts
 
 To deploy a remote script:
-  netzo deploy --project=helloworld https://deno.land/x/netzo/cli/examples/hello.js
+  netzo deploy --project=helloworld https://deno.land/x/netzo/cli/examples/hello.ts
 
 SUBCOMMANDS:
     deploy    Deploy a script with static files to Netzo

@@ -6,7 +6,7 @@
 ## Install
 
 ```shell
-deno install --allow-read --allow-write --allow-env --allow-net --allow-run --no-check -r -f https://deno.land/x/netzo/cli/netzo.ts
+deno install --allow-all --no-check -r -f https://deno.land/x/netzo/cli/netzo.ts
 ```
 
 ## Usage
@@ -52,4 +52,4 @@ jobs:
           entrypoint: main.ts # the entrypoint to deploy
 ```
 
-To learn more about the action, checkout [action readme](./action/README.md).
+To learn more about the action, checkout [action readme](./action/readme.md).

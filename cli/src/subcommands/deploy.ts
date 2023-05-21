@@ -14,10 +14,10 @@ To deploy a local script:
   netzo deploy --project=helloworld main.ts
 
 To deploy a remote script:
-  netzo deploy --project=helloworld https://deno.land/x/netzo/cli/examples/hello.js
+  netzo deploy --project=helloworld https://deno.land/x/netzo/cli/examples/hello.ts
 
 To deploy a remote script without static files:
-  netzo deploy --project=helloworld --no-static https://deno.land/x/netzo/cli/examples/hello.js
+  netzo deploy --project=helloworld --no-static https://deno.land/x/netzo/cli/examples/hello.ts
 
 To ignore the node_modules directory while deploying:
   netzo deploy --project=helloworld --exclude=node_modules main.tsx
@@ -184,9 +184,8 @@ async function deploy(opts: DeployOpts): Promise<void> {
       uploadSpinner.succeed('No new assets to upload.')
       uploadSpinner = null
     } else {
-      uploadSpinner.text = `${files.length} new asset${
-        files.length === 1 ? '' : 's'
-      } to upload.`
+      uploadSpinner.text = `${files.length} new asset${files.length === 1 ? '' : 's'
+        } to upload.`
     }
 
     manifest = { entries }
@@ -210,16 +209,14 @@ async function deploy(opts: DeployOpts): Promise<void> {
       switch (event.type) {
         case 'staticFile': {
           const percentage = (event.currentBytes / event.totalBytes) * 100
-          uploadSpinner!.text = `Uploading ${files.length} asset${
-            files.length === 1 ? '' : 's'
-          }... (${percentage.toFixed(1)}%)`
+          uploadSpinner!.text = `Uploading ${files.length} asset${files.length === 1 ? '' : 's'
+            }... (${percentage.toFixed(1)}%)`
           break
         }
         case 'load': {
           if (uploadSpinner) {
             uploadSpinner.succeed(
-              `Uploaded ${files.length} new asset${
-                files.length === 1 ? '' : 's'
+              `Uploaded ${files.length} new asset${files.length === 1 ? '' : 's'
               }.`,
             )
             uploadSpinner = null
