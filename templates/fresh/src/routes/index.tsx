@@ -4,7 +4,7 @@ import Counter from '../islands/Counter.tsx'
 
 export default function Home() {
   return (
-    <div>
+    <div class='text-red text-xl'>
       <img
         src='/logo.svg'
         width='128'
