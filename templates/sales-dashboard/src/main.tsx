@@ -2,7 +2,7 @@
 import { serve } from 'http/server.ts'
 import { h } from 'preact'
 import { renderToString } from 'preact-render-to-string'
-import { Card, ColGrid, Flex, Text, Title } from 'tremor'
+import { Card, ColGrid, Flex, Text, Title } from '@tremor/react'
 import { KpiCard } from './components/kpi-card.tsx'
 import { SalesTable } from './components/sales-table.tsx'
 import { getDataKpis, getDataSales } from './data/mod.ts'

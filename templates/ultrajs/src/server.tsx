@@ -1,5 +1,6 @@
 /** @jsx h */
-import { h } from 'preact'
+/** @jsxFrag Fragment */
+import { Fragment, h } from 'preact'
 import { serve } from 'https://deno.land/std@0.176.0/http/server.ts'
 import { createServer } from 'ultra/server.ts'
 import App from './app.tsx'

@@ -12,7 +12,7 @@ import {
   Title,
   Tracking,
   TrackingBlock,
-} from 'tremor'
+} from '@tremor/react'
 import data from './data.json' assert { type: 'json' }
 
 interface Item {

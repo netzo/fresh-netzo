@@ -1,6 +1,14 @@
 /** @jsx h */
-import { h } from 'preact'
-import { BadgeDelta, Card, Flex, Metric, ProgressBar, Text } from 'tremor'
+/** @jsxFrag Fragment */
+import { Fragment, h } from 'preact'
+import {
+  BadgeDelta,
+  Card,
+  Flex,
+  Metric,
+  ProgressBar,
+  Text,
+} from '@tremor/react'
 
 // interface Kpi {
 //   title: string

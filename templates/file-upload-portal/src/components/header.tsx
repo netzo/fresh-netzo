@@ -1,5 +1,6 @@
 /** @jsx h */
-import { h } from 'https://deno.land/x/netzo@v0.1.59/mod.ts'
+/** @jsxFrag Fragment */
+import { Fragment, h } from 'https://deno.land/x/netzo@v0.1.59/mod.ts'
 
 export function Header({ title, description }) {
   return (

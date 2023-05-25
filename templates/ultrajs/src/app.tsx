@@ -1,5 +1,6 @@
 /** @jsx h */
-import { h } from 'preact'
+/** @jsxFrag Fragment */
+import { Fragment, h } from 'preact'
 import { useState } from 'react'
 import hydrate from 'ultra/hydrate.js'
 

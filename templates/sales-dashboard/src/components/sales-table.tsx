@@ -1,5 +1,6 @@
 /** @jsx h */
-import { h } from 'preact'
+/** @jsxFrag Fragment */
+import { Fragment, h } from 'preact'
 import {
   BadgeDelta,
   Table,
@@ -8,7 +9,7 @@ import {
   TableHead,
   TableHeaderCell,
   TableRow,
-} from 'tremor'
+} from '@tremor/react'
 
 // interface SalesPerson {
 //   name: string

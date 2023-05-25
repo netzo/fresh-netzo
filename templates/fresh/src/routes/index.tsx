@@ -1,5 +1,6 @@
 /** @jsx h */
-import { h } from 'preact'
+/** @jsxFrag Fragment */
+import { Fragment, h } from 'preact'
 import Counter from '../islands/Counter.tsx'
 
 export default function Home() {
