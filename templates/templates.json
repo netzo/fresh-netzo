@@ -1,5 +1,4 @@
 [
-  "https://raw.githubusercontent.com/netzo/netzo/main/templates/alephjs-api/template.json",
   "https://raw.githubusercontent.com/netzo/netzo/main/templates/daisyui/template.json",
   "https://raw.githubusercontent.com/netzo/netzo/main/templates/file-upload-portal/template.json",
   "https://raw.githubusercontent.com/netzo/netzo/main/templates/fresh/template.json",
@@ -11,6 +10,5 @@
   "https://raw.githubusercontent.com/netzo/netzo/main/templates/rutt/template.json",
   "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard/template.json",
   "https://raw.githubusercontent.com/netzo/netzo/main/templates/statuspage/template.json",
-  "https://raw.githubusercontent.com/netzo/netzo/main/templates/twind/template.json",
-  "https://raw.githubusercontent.com/netzo/netzo/main/templates/ultrajs/template.json"
+  "https://raw.githubusercontent.com/netzo/netzo/main/templates/twind/template.json"
 ]

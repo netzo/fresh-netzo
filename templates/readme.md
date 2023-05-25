@@ -83,11 +83,11 @@ The following table provides some examples of labels grouped by category.
 
 | Category    | Values                                                                          |
 | ----------- | ------------------------------------------------------------------------------- |
-| `framework` | `react`, `fresh`, `alephjs`...                                                  |
+| `framework` | `fresh`, `preact`...                                                            |
 | `usecase`   | `blog`, `ecommerce`, `portfolio`, `documentation`, `landing-page`, `website`... |
 | `api`       | `graphql`, `rest`, `json`, `yaml`, `xml`...                                     |
 | `auth`      | `jwt`, `oauth`, `saml`...                                                       |
-| `css`       | `tailwind`, `bootstrap`, `bulma`...                                             |
+| `css`       | `tailwind`, `unocss`, `bulma`...                                                |
 | `cms`       | `wordpress`, `ghost`, `prismic`, `contentful`...                                |
 | `database`  | `mongodb`, `mysql`, `postgresql`, `sqlite`...                                   |
 | `website`   | `github`, `netlify`, `vercel`, `surge`...                                       |
