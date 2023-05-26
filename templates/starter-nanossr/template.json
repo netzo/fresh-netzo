@@ -1,0 +1,41 @@
+{
+  "uid": "starter-nanossr",
+  "status": "published",
+  "name": "NanoSSR",
+  "description": "",
+  "labels": [
+    "framework"
+  ],
+  "display": {
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-nanossr/icon.webp"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/templates/starter-nanossr"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-nanossr/src/readme.md"
+    }
+  ],
+  "item": {
+    "_type": "project",
+    "uid": "starter-nanossr",
+    "fs": {
+      "readme.md": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-nanossr/src/readme.md"
+      },
+      "main.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-nanossr/src/main.tsx"
+      }
+    },
+    "configuration": {
+      "entrypoint": "main.tsx",
+      "envs": {},
+      "permissions": {
+        "net": true
+      }
+    }
+  }
+}

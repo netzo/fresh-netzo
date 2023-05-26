@@ -1,0 +1,53 @@
+{
+  "uid": "starter-fresh",
+  "status": "requested",
+  "name": "Fresh",
+  "description": "A basic starting template for the Fresh framework",
+  "labels": [
+    "framework"
+  ],
+  "display": {
+    "avatar": "https://api.iconify.design/logos:fresh.svg"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/templates/starter-fresh"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-fresh/src/readme.md"
+    }
+  ],
+  "item": {
+    "_type": "project",
+    "uid": "starter-fresh",
+    "fs": {
+      "readme.md": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-fresh/src/readme.md"
+      },
+      "main.ts": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-fresh/src/main.ts"
+      },
+      "fresh.gen.ts": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-fresh/src/fresh.gen.ts"
+      },
+      "import_map.json": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-fresh/src/import_map.json"
+      },
+      "islands/Counter.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-fresh/src/islands/Counter.tsx"
+      },
+      "routes/index.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-fresh/src/routes/index.tsx"
+      }
+    },
+    "configuration": {
+      "entrypoint": "main.ts",
+      "envs": {},
+      "permissions": {
+        "net": true
+      }
+    }
+  }
+}

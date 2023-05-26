@@ -1,0 +1,54 @@
+{
+  "uid": "sales-dashboard-fresh",
+  "status": "published",
+  "name": "Sales Dashboard",
+  "description": "An HTTP server that serves a sales dashboard to track performance of sales teams in real-time, and provides a variety of metrics to help make informed decisions.",
+  "labels": [
+    "usecase",
+    "dashboard"
+  ],
+  "display": {
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard-fresh/icon.webp"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/templates/sales-dashboard-fresh"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard-fresh/src/readme.md"
+    }
+  ],
+  "item": {
+    "_type": "project",
+    "uid": "sales-dashboard-fresh",
+    "fs": {
+      "readme.md": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard-fresh/src/readme.md"
+      },
+      "import_map.json": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard-fresh/src/import_map.json"
+      },
+      "main.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard-fresh/src/main.tsx"
+      },
+      "components/kpi-card.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard-fresh/src/components/kpi-card.tsx"
+      },
+      "components/sales-table.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard-fresh/src/components/sales-table.tsx"
+      },
+      "data/mod.ts": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard-fresh/src/data/mod.ts"
+      }
+    },
+    "configuration": {
+      "entrypoint": "main.tsx",
+      "envs": {},
+      "permissions": {
+        "net": true
+      }
+    }
+  }
+}

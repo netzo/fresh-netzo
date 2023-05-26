@@ -63,7 +63,7 @@ The following table summarizes the fields in a `template.json` file.
 
 | Property      | Type                             | Required | Description                                                                                   |
 | ------------- | -------------------------------- | -------- | --------------------------------------------------------------------------------------------- |
-| `uid`         | `string`                         | `true`   | unique ID in kebab-case (e.g. `sales-dashboard`)                                              |
+| `uid`         | `string`                         | `true`   | unique ID in kebab-case (e.g. `sales-dashboard-fresh`)                                        |
 | `status`      | `published` \| `requested`       | `true`   | if template is published or in requested status for upvotes.                                  |
 | `name`        | `string`                         | `true`   | human-friendly display name for the template                                                  |
 | `description` | `string`                         | `true`   | brief description of template                                                                 |
@@ -128,7 +128,7 @@ look at other templates for further reference.
 
 ```json
 {
-  "uid": "netzo",
+  "uid": "starter-netzo",
   "status": "published",
   "name": "Netzo",
   "description": "An HTTP server using netzo that responds with different payload types based on route. Netzo includes a routing and utility library for Deno Deploy. Its route handler signature is simple and easy to understand. Handlers accept a Request and return a Response.",
@@ -141,22 +141,22 @@ look at other templates for further reference.
   "links": [
     {
       "rel": "repository",
-      "href": "https://github.com/netzo/netzo/tree/main/templates/netzo"
+      "href": "https://github.com/netzo/netzo/tree/main/templates/starter-netzo"
     },
     {
       "rel": "readme",
-      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/netzo/src/readme.md"
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-netzo/src/readme.md"
     }
   ],
   "item": {
     "_type": "project",
-    "uid": "netzo",
+    "uid": "starter-netzo",
     "fs": {
       "readme.md": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/netzo/src/readme.md"
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-netzo/src/readme.md"
       },
       "main.tsx": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/netzo/src/main.tsx"
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-netzo/src/main.tsx"
       }
     },
     "configuration": {

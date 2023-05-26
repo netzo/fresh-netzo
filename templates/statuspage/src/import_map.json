@@ -1,8 +1,0 @@
-{
-  "imports": {
-    "http/": "https://deno.land/std@0.168.0/http/",
-    "preact": "https://esm.sh/preact@10.13.1",
-    "preact-render-to-string": "https://esm.sh/preact-render-to-string@5.1.19?deps=preact@10.13.1",
-    "@tremor/react": "https://esm.sh/@tremor/react@1.6.0?alias=react:preact/compat,react-dom:preact/compat&deps=preact@10.13.1"
-  }
-}

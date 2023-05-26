@@ -1,14 +1,12 @@
 [
-  "https://raw.githubusercontent.com/netzo/netzo/main/templates/daisyui/template.json",
-  "https://raw.githubusercontent.com/netzo/netzo/main/templates/file-upload-portal/template.json",
-  "https://raw.githubusercontent.com/netzo/netzo/main/templates/fresh/template.json",
-  "https://raw.githubusercontent.com/netzo/netzo/main/templates/gql/template.json",
-  "https://raw.githubusercontent.com/netzo/netzo/main/templates/nanossr/template.json",
-  "https://raw.githubusercontent.com/netzo/netzo/main/templates/netzo/template.json",
-  "https://raw.githubusercontent.com/netzo/netzo/main/templates/oak/template.json",
-  "https://raw.githubusercontent.com/netzo/netzo/main/templates/peko/template.json",
-  "https://raw.githubusercontent.com/netzo/netzo/main/templates/rutt/template.json",
-  "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard/template.json",
-  "https://raw.githubusercontent.com/netzo/netzo/main/templates/statuspage/template.json",
-  "https://raw.githubusercontent.com/netzo/netzo/main/templates/twind/template.json"
+  "https://raw.githubusercontent.com/netzo/netzo/main/templates/file-upload-portal-fresh/template.json",
+  "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard-fresh/template.json",
+  "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-fresh/template.json",
+  "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-gql/template.json",
+  "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-nanossr/template.json",
+  "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-netzo/template.json",
+  "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-oak/template.json",
+  "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-peko/template.json",
+  "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-rutt/template.json",
+  "https://raw.githubusercontent.com/netzo/netzo/main/templates/statuspage-fresh/template.json"
 ]
