@@ -1,12 +1,16 @@
 {
   "fmt": {
     "files": {
-      "exclude": ["action/node_modules/"]
+      "exclude": [
+        "action/node_modules/"
+      ]
     }
   },
   "lint": {
     "files": {
-      "exclude": ["action/node_modules/"]
+      "exclude": [
+        "action/node_modules/"
+      ]
     }
   },
   "tasks": {

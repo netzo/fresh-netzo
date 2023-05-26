@@ -1,9 +1,7 @@
 {
   "fmt": {
-    "options": {
-      "semiColons": false,
-      "singleQuote": true
-    }
+    "semiColons": false,
+    "singleQuote": true
   },
   "tasks": {
     "test": "deno test --allow-env --allow-net --allow-read",
