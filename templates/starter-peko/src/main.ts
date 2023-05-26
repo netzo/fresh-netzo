@@ -3,25 +3,25 @@ import * as Peko from 'https://deno.land/x/peko@1.8.0/mod.ts'
 const server = new Peko.Server()
 
 // TODO: replace from env
-const crypto = new Peko.Crypto("SUPER_SECRET_KEY_123")
+const crypto = new Peko.Crypto('SUPER_SECRET_KEY_123')
 // TODO: replace with db / auth provider query
 const user = {
-  username: "test-user",
-  password: await crypto.hash("test-password")
+  username: 'test-user',
+  password: await crypto.hash('test-password'),
 }
 
 const validateUser = async (username: string, password: string) => {
-  return username && password
-    && username === user.username
-    && await crypto.hash(password) === user.password
+  return username && password &&
+    username === user.username &&
+    await crypto.hash(password) === user.password
 }
 
 server.use(Peko.logger(console.log))
-server.post("/login", async (ctx) => {
+server.post('/login', async (ctx) => {
   const { username, password } = await ctx.request.json()
 
   if (!await validateUser(username, password)) {
-    return new Response("Bad credentials", { status: 401 })
+    return new Response('Bad credentials', { status: 401 })
   }
 
   const exp = new Date()
@@ -29,25 +29,28 @@ server.post("/login", async (ctx) => {
   const jwt = await crypto.sign({
     iat: Date.now(),
     exp: exp.valueOf(),
-    data: { user: user.username }
+    data: { user: user.username },
   })
 
   return new Response(jwt, {
     status: 201,
     headers: new Headers({
-      "Content-Type": "application/json"
-    })
+      'Content-Type': 'application/json',
+    }),
   })
 })
 
 server.get(
-  "/verify",
+  '/verify',
   Peko.authenticator(crypto),
-  () => new Response("You are authenticated!")
+  () => new Response('You are authenticated!'),
 )
 
 const html = String
-server.get("/", Peko.ssrHandler(() => html`<!doctype html>
+server.get(
+  '/',
+  Peko.ssrHandler(() =>
+    html`<!doctype html>
   <html lang="en">
   <head>
     <title>Peko auth example</title>
@@ -133,6 +136,8 @@ server.get("/", Peko.ssrHandler(() => html`<!doctype html>
     </script>
   </body>
   </html>
-`))
+`
+  ),
+)
 
 server.listen()

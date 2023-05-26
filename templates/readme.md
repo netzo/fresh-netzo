@@ -128,35 +128,35 @@ look at other templates for further reference.
 
 ```json
 {
-  "uid": "starter-netzo",
+  "uid": "starter-sift",
   "status": "published",
-  "name": "Netzo",
-  "description": "An HTTP server using netzo that responds with different payload types based on route. Netzo includes a routing and utility library for Deno Deploy. Its route handler signature is simple and easy to understand. Handlers accept a Request and return a Response.",
+  "name": "Sift",
+  "description": "An HTTP server using sift that responds with different payload types based on route. Netzo includes a routing and utility library for Deno Deploy. Its route handler signature is simple and easy to understand. Handlers accept a Request and return a Response.",
   "labels": [
     "framework"
   ],
   "display": {
-    "avatar": "https://netzo.io/images/netzo-symbol-light.svg"
+    "avatar": "https://api.iconify.design/mdi-routes.svg?color=%2344c47d"
   },
   "links": [
     {
       "rel": "repository",
-      "href": "https://github.com/netzo/netzo/tree/main/templates/starter-netzo"
+      "href": "https://github.com/netzo/netzo/tree/main/templates/starter-sift"
     },
     {
       "rel": "readme",
-      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-netzo/src/readme.md"
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-sift/src/readme.md"
     }
   ],
   "item": {
     "_type": "project",
-    "uid": "starter-netzo",
+    "uid": "starter-sift",
     "fs": {
       "readme.md": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-netzo/src/readme.md"
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-sift/src/readme.md"
       },
       "main.tsx": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-netzo/src/main.tsx"
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-sift/src/main.tsx"
       }
     },
     "configuration": {

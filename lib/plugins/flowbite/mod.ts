@@ -1,34 +1,38 @@
-import { Plugin } from "$fresh/server.ts";
-import { PluginRenderContext } from "$fresh/src/server/types.ts";
+import { Plugin } from '$fresh/server.ts'
+import { PluginRenderContext } from '$fresh/src/server/types.ts'
 
 export type FlowbitePluginOptions = {
-  additionalStylesheets?: string[];
-  additionalScripts?: string[];
+  additionalStylesheets?: string[]
+  additionalScripts?: string[]
   plugins?: {
-    datepicker?: boolean;
-  };
-};
+    datepicker?: boolean
+  }
+}
 
 export function FlowbitePlugin(options: FlowbitePluginOptions = {}): Plugin {
-  if (!options.additionalScripts) options.additionalScripts = [];
-  if (!options.additionalStylesheets) options.additionalStylesheets = [];
-  if (!options.plugins) options.plugins = { datepicker: true };
+  if (!options.additionalScripts) options.additionalScripts = []
+  if (!options.additionalStylesheets) options.additionalStylesheets = []
+  if (!options.plugins) options.plugins = { datepicker: true }
 
-  if (options.plugins.datepicker) options.additionalScripts.push("https://unpkg.com/flowbite@1.6.3/dist/datepicker.js");
+  if (options.plugins.datepicker) {
+    options.additionalScripts.push(
+      'https://unpkg.com/flowbite@1.6.3/dist/datepicker.js',
+    )
+  }
 
   return {
-    name: "flowbite",
-    entrypoints: { "main": import.meta.resolve("./plugin.ts") },
+    name: 'flowbite',
+    entrypoints: { 'main': import.meta.resolve('./plugin.ts') },
     render(ctx: PluginRenderContext) {
-      ctx.render();
+      ctx.render()
       return {
         scripts: [
           {
-            entrypoint: "main",
+            entrypoint: 'main',
             state: options,
           },
         ],
-      };
+      }
     },
-  };
+  }
 }

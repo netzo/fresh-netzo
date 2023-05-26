@@ -1,4 +1,4 @@
-# starter-netzo
+# starter-gql
 
 An open-source source template for 'GQL'.
 
