@@ -7,7 +7,12 @@ declare global {
 }
 
 // see https://unocss.dev/integrations/runtime#builds
-export type Options = 'uno' | 'core' | 'attributify' | 'mini' | Record<string, unknown>
+export type Options =
+  | 'uno'
+  | 'core'
+  | 'attributify'
+  | 'mini'
+  | Record<string, unknown>
 
 export default function unocss(options: Options = 'uno'): Plugin {
   return {

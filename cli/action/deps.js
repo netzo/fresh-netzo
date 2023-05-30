@@ -3884,22 +3884,22 @@ class APIError extends Error {
 }
 class API {
   #endpoint;
-  #authorization;
-  constructor(authorization, endpoint) {
-    this.#authorization = authorization;
+  #apiKey;
+  constructor(apiKey, endpoint) {
+    this.#apiKey = apiKey;
     this.#endpoint = endpoint;
   }
-  static fromToken(token) {
+  static fromApiKey(apiKey) {
     const endpoint = Deno.env.get("NETZO_API_ENDPOINT") ?? "https://api.netzo.io";
-    return new API(`Bearer ${token}`, endpoint);
+    return new API(apiKey, endpoint);
   }
   async #request(path2, opts = {}) {
-    const url = `${this.#endpoint}/api${path2}`;
+    const url = `${this.#endpoint}${path2}`;
     const method = opts.method ?? "GET";
     const body = opts.body !== undefined ? opts.body instanceof FormData ? opts.body : JSON.stringify(opts.body) : undefined;
     const headers = {
       "Accept": "application/json",
-      "Authorization": this.#authorization,
+      [this.#apiKey.length === 64 ? 'x-api-key' : 'x-env-var-api-key']: this.#apiKey,
       ...opts.body !== undefined ? opts.body instanceof FormData ? {} : {
         "Content-Type": "application/json"
       } : {}
@@ -3951,7 +3951,7 @@ class API {
   }
   async getDeployments(projectId) {
     try {
-      return await this.#requestJson(`/projects/${projectId}/deployments/`);
+      return await this.#requestJson(`/deployments?projectId=${projectId}`)
     } catch (err) {
       if (err instanceof APIError && err.code === "projectNotFound") {
         return null;
@@ -3960,7 +3960,7 @@ class API {
     }
   }
   getLogs(projectId, deploymentId) {
-    return this.#requestStream(`/projects/${projectId}/deployments/${deploymentId}/logs/`);
+    return this.#requestStream(`/logs?projectId=${projectId}&deploymentId=${deploymentId}`);
   }
   async projectNegotiateAssets(id, manifest) {
     return await this.#requestJson(`/projects/${id}/assets/negotiate`, {

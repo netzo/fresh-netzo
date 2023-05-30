@@ -46,7 +46,7 @@ const args = parseArgs(Deno.args, {
   ],
   string: [
     'project',
-    'token',
+    'api-key',
     'include',
     'exclude',
     'import-map',

@@ -1,5 +1,5 @@
 name: Netzo
-description: Deploy applications to Netzo right from GitHub Actions
+description: Deploy projects to Netzo right from GitHub Actions
 author: Deno Land Inc
 
 branding:

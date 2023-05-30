@@ -23,13 +23,13 @@ OPTIONS:
         --deployment=<DEPLOYMENT_ID>  The id of the deployment you want to get the logs (defaults to latest deployment)
         --prod                        Select the production deployment
     -p, --project=NAME                The project you want to get the logs
-        --api-key=TOKEN                 The API token to use (defaults to NETZO_API_KEY env var)
+        --api-key=<KEY>               The API key to use (defaults to NETZO_API_KEY env var)
 `
 
 export interface Args {
   help: boolean
   prod: boolean
-  token: string | null
+  apiKey: string | null
   deployment: string | null
   project: string | null
 }
@@ -39,7 +39,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
   const args: Args = {
     help: !!rawArgs.help,
     prod: !!rawArgs.prod,
-    token: rawArgs.token ? String(rawArgs.token) : null,
+    apiKey: rawArgs['api-key'] ? String(rawArgs['api-key']) : null,
     deployment: rawArgs.deployment ? String(rawArgs.deployment) : null,
     project: rawArgs.project ? String(rawArgs.project) : null,
   }
@@ -48,8 +48,8 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     console.log(help)
     Deno.exit(0)
   }
-  const token = args.token ?? Deno.env.get('NETZO_API_KEY') ?? null
-  if (token === null) {
+  const apiKey = args.apiKey ?? Deno.env.get('NETZO_API_KEY') ?? null
+  if (apiKey === null) {
     console.error(help)
     error('Missing API key. Set via --api-key or NETZO_API_KEY.')
   }
@@ -66,7 +66,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     projectId: args.project,
     deploymentId: args.deployment,
     prod: args.prod,
-    token,
+    apiKey,
   }
 
   await logs(opts)
@@ -76,7 +76,7 @@ interface DeployOpts {
   projectId: string
   deploymentId: string | null
   prod: boolean
-  token: string
+  apiKey: string
 }
 
 async function logs(opts: DeployOpts): Promise<void> {
@@ -86,7 +86,7 @@ async function logs(opts: DeployOpts): Promise<void> {
     )
   }
   const projectSpinner = wait('Fetching project information...').start()
-  const api = API.fromToken(opts.token)
+  const api = API.fromApiKey(opts.apiKey)
   const project = await api.getProject(opts.projectId)
   const projectDeployments = await api.getDeployments(opts.projectId)
   if (project === null) {

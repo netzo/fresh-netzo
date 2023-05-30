@@ -33,7 +33,7 @@ OPTIONS:
         --no-static           Don't include the files in the CWD as static files
         --prod                Create a production deployment (default is preview deployment)
     -p, --project=NAME        The project to deploy to
-        --api-key=TOKEN         The API token to use (defaults to NETZO_API_KEY env var)
+        --api-key=<KEY>       The API key to use (defaults to NETZO_API_KEY env var)
         --dry-run             Dry run the deployment process.
 `
 
@@ -43,7 +43,7 @@ export interface Args {
   prod: boolean
   exclude?: string[]
   include?: string[]
-  token: string | null
+  apiKey: string | null
   project: string | null
   importMap: string | null
   dryRun: boolean
@@ -51,11 +51,12 @@ export interface Args {
 
 // deno-lint-ignore no-explicit-any
 export default async function (rawArgs: Record<string, any>): Promise<void> {
+  console.log(rawArgs)
   const args: Args = {
     help: !!rawArgs.help,
     static: !!rawArgs.static,
     prod: !!rawArgs.prod,
-    token: rawArgs.token ? String(rawArgs.token) : null,
+    apiKey: rawArgs['api-key'] ? String(rawArgs['api-key']) : null,
     project: rawArgs.project ? String(rawArgs.project) : null,
     importMap: rawArgs['import-map'] ? String(rawArgs['import-map']) : null,
     exclude: rawArgs.exclude?.split(','),
@@ -69,8 +70,8 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     console.log(help)
     Deno.exit(0)
   }
-  const token = args.token ?? Deno.env.get('NETZO_API_KEY') ?? null
-  if (token === null) {
+  const apiKey = args.apiKey ?? Deno.env.get('NETZO_API_KEY') ?? null
+  if (apiKey === null) {
     console.error(help)
     error('Missing API key. Set via --api-key or NETZO_API_KEY.')
   }
@@ -95,7 +96,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
         .catch((e) => error(e)),
     static: args.static,
     prod: args.prod,
-    token,
+    apiKey,
     project: args.project,
     include: args.include?.map((pattern) => normalize(pattern)),
     exclude: args.exclude?.map((pattern) => normalize(pattern)),
@@ -112,7 +113,7 @@ interface DeployOpts {
   prod: boolean
   exclude?: string[]
   include?: string[]
-  token: string
+  apiKey: string
   project: string
   dryRun: boolean
 }
@@ -122,7 +123,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
     wait('').start().info('Performing dry run of deployment')
   }
   const projectSpinner = wait('Fetching project information...').start()
-  const api = API.fromToken(opts.token)
+  const api = API.fromApiKey(opts.apiKey)
   const project = await api.getProject(opts.project)
   if (project === null) {
     projectSpinner.fail('Project not found.')

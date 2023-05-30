@@ -34,6 +34,8 @@ export interface DeploymentsSummary {
   totalPages: number
 }
 
+// manifest:
+
 export interface ManifestEntryFile {
   kind: 'file'
   gitSha1: string
@@ -55,6 +57,8 @@ export type ManifestEntry =
   | ManifestEntryDirectory
   | ManifestEntrySymlink
 
+// deployment-request:
+
 export interface PushDeploymentRequest {
   url: string
   importMapUrl: string | null
@@ -68,6 +72,8 @@ export interface GitHubActionsDeploymentRequest {
   manifest: { entries: Record<string, ManifestEntry> }
   event?: unknown
 }
+
+// deployment-progress:
 
 export type DeploymentProgress =
   | DeploymentProgressStaticFile
@@ -102,6 +108,8 @@ export interface DeploymentProgressError {
   code: string
   ctx: string
 }
+
+// logs:
 
 export interface LogReady {
   type: 'ready'

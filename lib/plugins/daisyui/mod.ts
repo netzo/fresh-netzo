@@ -1,8 +1,8 @@
 import type { Plugin } from '../../deps.ts'
 
-export interface Options { }
+// export interface Options {}
 
-export default function unocss(options: Options = {}): Plugin {
+export default function unocss(options = {}): Plugin {
   return {
     name: 'unocss',
     entrypoints: { 'main': import.meta.resolve('./main.ts') },
