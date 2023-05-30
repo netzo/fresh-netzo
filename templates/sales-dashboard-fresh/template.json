@@ -80,7 +80,7 @@
       }
     },
     "configuration": {
-      "entrypoint": "main.tsx",
+      "entrypoint": "main.ts",
       "envs": {},
       "permissions": {
         "net": true
