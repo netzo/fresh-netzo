@@ -6,6 +6,16 @@ An open-source source template for 'File Upload Portal'.
 
 This project does not require additional configuration.
 
+### Usage
+
+Start the project:
+
+```
+deno task start
+```
+
+This will watch the project directory and restart as necessary.
+
 ## Links
 
 - [Homepage](https://app.netzo.io/templates/file-upload-portal-fresh)

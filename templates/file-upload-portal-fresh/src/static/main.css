@@ -1,0 +1,16 @@
+:root {
+  --primary-color: #0080ff;
+  --text-secondary: #4f4f4f;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+html {
+  accent-color: var(--primary-color);
+}
+
+body {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: min-content auto min-content;
+  padding: 0px 24px;
+}

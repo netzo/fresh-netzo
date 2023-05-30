@@ -69,7 +69,7 @@ server.get(
     </style>
   </head>
   <body>
-    <div class="auth-box">
+    <div className="auth-box">
       <input id="email" type="email" value="test-user">
       <input id="password" type="password" value="test-password">
       <button id="login">Login</button>

@@ -1,4 +1,18 @@
-import { jsx, serve } from 'https://deno.land/x/netzo@v0.1.59/mod.ts'
-import { app } from './components/app.tsx'
+/// <reference no-default-lib="true" />
+/// <reference lib="dom" />
+/// <reference lib="dom.iterable" />
+/// <reference lib="dom.asynciterable" />
+/// <reference lib="deno.ns" />
 
-serve({ '*': (_req: Request) => jsx(app) })
+import '$std/dotenv/load.ts'
+
+import { start } from '$fresh/server.ts'
+import manifest from './fresh.gen.ts'
+
+import daisyui from '../../../lib/plugins/daisyui/mod.ts'
+
+await start(manifest, {
+  plugins: [
+    daisyui(),
+  ],
+})

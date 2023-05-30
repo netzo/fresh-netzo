@@ -20,7 +20,7 @@ export default () => {
       <main className='p-6'>
         <Flex justifyContent='justify-between' spaceX='space-x-2'>
           <Flex justifyContent='justify-start'>
-            <img src={asset('/logo.svg')} className='h-8' />
+            <img src={asset('/logo.svg')} className='h-8 mr-6' />
             <div>
               <Title>{title}</Title>
               <Text marginTop='mt-2'>{description}</Text>

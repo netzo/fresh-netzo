@@ -18,6 +18,6 @@ await start(manifest, {
     twindPlugin(twindConfig),
     // WORKAROUND: use unocss since the tailwind.config of
     // @tremor/react is not being picked up/loaded by twind
-    unocss({ build: 'uno' }),
+    unocss('uno'),
   ],
 })
