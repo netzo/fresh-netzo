@@ -24,23 +24,59 @@
     "_type": "project",
     "uid": "sales-dashboard-fresh",
     "fs": {
-      "readme.md": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard-fresh/src/readme.md"
+      ".vscode/extensions.json": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard-fresh/src/.vscode/extensions.json"
+      },
+      ".vscode/settings.json": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard-fresh/src/.vscode/settings.json"
+      },
+      "islands/ChartCard.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard-fresh/src/islands/ChartCard.tsx"
+      },
+      "islands/MetricCard.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard-fresh/src/islands/MetricCard.tsx"
+      },
+      "islands/Shell.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard-fresh/src/islands/Shell.tsx"
+      },
+      "islands/TableCard.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard-fresh/src/islands/TableCard.tsx"
+      },
+      "routes/index.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard-fresh/src/routes/index.tsx"
+      },
+      "static/built-with-netzo.svg": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard-fresh/src/static/built-with-netzo.svg"
+      },
+      "static/favicon.svg": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard-fresh/src/static/favicon.svg"
+      },
+      "static/logo.svg": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard-fresh/src/static/logo.svg"
+      },
+      ".gitignore": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard-fresh/src/.gitignore"
+      },
+      "deno.json": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard-fresh/src/deno.json"
       },
       "import_map.json": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard-fresh/src/import_map.json"
       },
-      "main.tsx": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard-fresh/src/main.tsx"
+      "dev.ts": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard-fresh/src/dev.ts"
       },
-      "components/kpi-card.tsx": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard-fresh/src/components/kpi-card.tsx"
+      "fresh.gen.ts": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard-fresh/src/fresh.gen.ts"
       },
-      "components/sales-table.tsx": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard-fresh/src/components/sales-table.tsx"
+      "main.ts": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard-fresh/src/main.ts"
       },
-      "data/mod.ts": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard-fresh/src/data/mod.ts"
+      "readme.md": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard-fresh/src/readme.md"
+      },
+      "twind.config.json": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard-fresh/src/twind.config.json"
       }
     },
     "configuration": {
