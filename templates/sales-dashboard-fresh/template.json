@@ -75,8 +75,8 @@
       "readme.md": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard-fresh/src/readme.md"
       },
-      "twind.config.json": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard-fresh/src/twind.config.json"
+      "twind.config.ts": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard-fresh/src/twind.config.ts"
       }
     },
     "configuration": {
