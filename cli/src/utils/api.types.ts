@@ -1,17 +1,15 @@
-import type { Deployment, Project } from '../../deps.ts'
+// @netzo/api: hard-coded to avoid esm.sh tree-shaking issues
 
-// NOTE: original types from deployctl replaced with types from @netzo/api
-
-// export interface DomainMapping {
-//   domain: string
-//   createdAt: string
-//   updatedAt: string
-// }
+export * from './api.netzo.types.ts'
 
 // export interface Deployment {
 //   id: string
 //   url: string
-//   domainMappings: DomainMapping[]
+//   domainMappings: {
+//     domain: string
+//     createdAt: string
+//     updatedAt: string
+//   }[]
 //   project?: Project
 //   projectId: string
 //   createdAt: string
@@ -29,8 +27,6 @@ import type { Deployment, Project } from '../../deps.ts'
 //   updatedAt: string
 //   envVars: string[]
 // }
-
-export type { Deployment, Project }
 
 export interface DeploymentsSummary {
   page: number

@@ -1,26 +1,30 @@
 // Copyright 2021 Deno Land Inc. All rights reserved. MIT license.
 
 import { fromFileUrl, normalize, Spinner, wait } from '../../deps.ts'
-import { error } from '../error.ts'
+import { error, printWarning } from '../console.ts'
 import { API } from '../utils/api.ts'
-import { ManifestEntry, ManifestEntryFile } from '../utils/api.types.ts'
+import {
+  ManifestEntry,
+  ManifestEntryFile,
+  Project,
+} from '../utils/api.types.ts'
 import { parseEntrypoint } from '../utils/entrypoint.ts'
 import { walk } from '../utils/walk.ts'
 
 const help = `netzo deploy
-Deploy a script with static files to Netzo.
+Deploy a project with static files to Netzo.
 
-To deploy a local script:
-  netzo deploy --project=helloworld main.ts
+To deploy a local project:
+  netzo deploy --project=my-project main.ts
 
-To deploy a remote script:
-  netzo deploy --project=helloworld https://deno.land/x/netzo/cli/examples/hello.ts
+To deploy a remote project:
+  netzo deploy --project=my-project https://deno.land/x/netzo/cli/examples/hello.ts
 
-To deploy a remote script without static files:
-  netzo deploy --project=helloworld --no-static https://deno.land/x/netzo/cli/examples/hello.ts
+To deploy a remote project without static files:
+  netzo deploy --project=my-project --no-static https://deno.land/x/netzo/cli/examples/hello.ts
 
 To ignore the node_modules directory while deploying:
-  netzo deploy --project=helloworld --exclude=node_modules main.tsx
+  netzo deploy --project=my-project --exclude=node_modules main.tsx
 
 USAGE:
     netzo deploy [OPTIONS] <ENTRYPOINT>
@@ -53,7 +57,7 @@ export interface Args {
 export default async function (rawArgs: Record<string, any>): Promise<void> {
   const args: Args = {
     help: !!rawArgs.help,
-    static: !!rawArgs.static,
+    static: !rawArgs['no-static'], // negate the flag
     prod: !!rawArgs.prod,
     apiKey: rawArgs['api-key'] ? String(rawArgs['api-key']) : null,
     project: rawArgs.project ? String(rawArgs.project) : null,
@@ -84,7 +88,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
   }
   if (args.project === null) {
     console.error(help)
-    error('Missing project ID.')
+    error('Missing project UID.')
   }
 
   const opts = {
@@ -123,16 +127,24 @@ async function deploy(opts: DeployOpts): Promise<void> {
   }
   const projectSpinner = wait('Fetching project information...').start()
   const api = API.fromApiKey(opts.apiKey)
-  const project = await api.getProject(opts.project)
+  const project = (await api.getProjectByUid(opts.project))!
   if (project === null) {
     projectSpinner.fail('Project not found.')
     Deno.exit(1)
   }
-  projectSpinner.succeed(`Project UID: ${project.uid}`)
+  projectSpinner.succeed(`Project: ${project.uid}`)
 
   let url = opts.entrypoint
   const cwd = Deno.cwd()
-  if (url.protocol === 'file:') {
+
+  if (['http:', 'https:'].includes(url.protocol)) {
+    // TODO: support remote entrypoints like deployctl. Note that this
+    // might not apply to netzo though, since deno deploy only really
+    // uses remote deployments to deploy single-file playground projects,
+    // and `netzo deploy` is really meant to deploy from local -> remote.
+    projectSpinner.fail('Remote entrypoints (http/https) are not supported.')
+    Deno.exit(1)
+  } else if (url.protocol === 'file:') {
     const path = fromFileUrl(url)
     if (!path.startsWith(cwd)) {
       error('Entrypoint must be in the current working directory.')
@@ -151,7 +163,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
   }
 
   let uploadSpinner: Spinner | null = null
-  const files = []
+  const files: string[] = []
   let manifest: { entries: Record<string, ManifestEntry> } | undefined =
     undefined
 
@@ -203,25 +215,31 @@ async function deploy(opts: DeployOpts): Promise<void> {
   // until multipart upload is implemented in the API for api.pushDeploy() to work
 
   let deploySpinner: Spinner | null = null
-
-  const fileEntries = buildFlatManifestOfOnlyFileEntriesForDB(manifest!.entries)
-
-  const progress = await api.pushDeployJson(project._id, {
-    configuration: {
-      entrypoint: project.configuration?.entrypoint ?? url.href,
-      importMap: project.configuration?.importMap ?? importMapUrl?.href,
-      envs: project.configuration?.envs ?? {},
-      envsDev: project.configuration?.envsDev ?? {},
-      permissions: project.configuration?.permissions ?? { net: true },
-    },
-    fs: Object.entries(fileEntries).reduce(
-      (acc, [path /* { gitSha1, kind, size } */], i) => ({
-        ...acc,
-        [path]: { /* gitSha1, kind, size, */ contents: files[i] },
-      }),
-      {},
-    ),
+  const {
+    entrypoint,
+    importMap = importMapUrl?.href,
+    envVars = {},
+    envVarsDev = {},
+    permissions = { net: true },
+  } = project.configuration ?? {}
+  const progress = api.pushDeployJson(project._id, {
+    configuration: { entrypoint, importMap, envVars, envVarsDev, permissions },
+    fs: buildFS(manifest?.entries, files),
   })
+
+  // alerts: useful hints/warnings for the user
+  const projectUrl =
+    `https://app.netzo.io/workspaces/${project.workspaceId}/projects/${project._id}`
+  if (!entrypoint) {
+    printWarning(
+      `No entrypoint configured (open ${projectUrl}/settings/configuration).`,
+    )
+  }
+  if (!importMap) {
+    printWarning(
+      `No import map configured (open ${projectUrl}/settings/configuration).`,
+    )
+  }
 
   for await (const event of progress) {
     switch (event.type) {
@@ -347,30 +365,41 @@ async function deploy(opts: DeployOpts): Promise<void> {
   } */
 }
 
-export function buildFlatManifestOfOnlyFileEntriesForDB(
-  obj: ManifestEntry,
-): Record<string, ManifestEntryFile> {
-  const result: Record<string, ManifestEntryFile> = {}
+function buildFS(
+  entries: Record<string, ManifestEntry> = {},
+  files: string[] = [],
+): Project['fs'] {
+  const fsWithoutContents: Record<string, ManifestEntryFile> = {}
 
-  function walk(obj: ManifestEntry, path: string) {
+  // deno-lint-ignore no-explicit-any
+  function walk(obj: any, path: string) {
     if (obj.kind === 'file') {
       const fileEntry: ManifestEntryFile = {
         gitSha1: obj.gitSha1,
         kind: obj.kind,
         size: obj.size,
       }
-      result[path] = fileEntry
+      fsWithoutContents[path] = fileEntry
     } else if (typeof obj === 'object') {
       for (const key in obj) {
         // deno-lint-ignore no-prototype-builtins
         if (obj.hasOwnProperty(key)) {
           const newPath = path ? `${path}/${key}` : key
-          walk(obj[key] as ManifestEntry, newPath)
+          walk(obj[key], newPath)
         }
       }
     }
   }
 
-  walk(obj, '')
-  return result
+  walk(entries, '')
+
+  const fs = Object.entries(fsWithoutContents).reduce(
+    // deno-lint-ignore no-unused-vars
+    (acc, [path, { gitSha1, kind, size }], i) => ({
+      ...acc,
+      [path]: { contents: files[i] }, // NOTE: gitSha1, kind, size resolved in API
+    }),
+    {},
+  )
+  return fs
 }

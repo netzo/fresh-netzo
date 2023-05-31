@@ -4,7 +4,9 @@
       "exclude": [
         "action/node_modules/"
       ]
-    }
+    },
+    "semiColons": false,
+    "singleQuote": true
   },
   "lint": {
     "files": {
@@ -16,7 +18,7 @@
   "tasks": {
     "test": "deno test -A --unstable tests/ src/",
     "build-action": "deno bundle ./src/utils/mod.ts > ./action/deps.js",
-    "install": "deno install -A --no-check -r -f https://deno.land/x/netzo/cli/netzo.ts",
-    "install:dev": "deno install -A --no-check -r -f -n netzo-dev netzo.ts"
+    "install": "deno install --allow-read --allow-write --allow-env --allow-net --allow-run --no-check -r -f https://deno.land/x/netzo/cli/netzo.ts",
+    "install:dev": "deno install --allow-read --allow-write --allow-env --allow-net --allow-run --no-check -r -f -n netzo-dev netzo.ts"
   }
 }

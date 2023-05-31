@@ -9,6 +9,7 @@ export {
   toFileUrl,
 } from 'https://deno.land/std@0.170.0/path/mod.ts'
 export {
+  blue,
   bold,
   green,
   red,
@@ -25,6 +26,3 @@ export {
 
 // x/wait
 export { Spinner, wait } from 'https://deno.land/x/wait@0.1.12/mod.ts'
-
-// @netzo/api
-export * from 'https://esm.sh/@netzo/api@1.0.11'

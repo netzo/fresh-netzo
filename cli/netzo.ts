@@ -3,7 +3,7 @@
 // Copyright 2021 Deno Land Inc. All rights reserved. MIT license.
 
 import { parseArgs, semverGreaterThanOrEquals } from './deps.ts'
-import { error } from './src/error.ts'
+import { error } from './src/console.ts'
 import deploySubcommand from './src/subcommands/deploy.ts'
 import upgradeSubcommand from './src/subcommands/upgrade.ts'
 import logsSubcommand from './src/subcommands/logs.ts'
@@ -13,14 +13,17 @@ import { fetchReleases, getConfigPaths } from './src/utils/info.ts'
 const help = `netzo ${VERSION}
 Command line tool for Netzo.
 
-To deploy a local script:
-  netzo deploy --project=helloworld ./main.ts
+To create a new project:
+  deno run -A -r https://fresh.deno.dev my-project
 
-To deploy a remote script:
-  netzo deploy --project=helloworld https://deno.land/x/netzo/cli/examples/hello.ts
+To deploy a local project:
+  netzo deploy --project=my-project ./main.ts
+
+To deploy a remote project:
+  netzo deploy --project=my-project https://deno.land/x/netzo/cli/examples/hello.ts
 
 SUBCOMMANDS:
-    deploy    Deploy a script with static files to Netzo
+    deploy    Deploy a project with static files to Netzo
     upgrade   Upgrade netzo to the given version (defaults to latest)
     logs      Stream logs for the given project
 `

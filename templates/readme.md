@@ -161,7 +161,7 @@ look at other templates for further reference.
     },
     "configuration": {
       "entrypoint": "main.tsx",
-      "envs": {},
+      "envVars": {},
       "permissions": {
         "net": true
       }

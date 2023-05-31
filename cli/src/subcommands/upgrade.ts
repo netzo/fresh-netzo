@@ -1,6 +1,6 @@
 // Copyright 2021 Deno Land Inc. All rights reserved. MIT license.
 
-import { error } from '../error.ts'
+import { error } from '../console.ts'
 import { semverGreaterThanOrEquals, semverValid } from '../../deps.ts'
 import { VERSION } from '../version.ts'
 

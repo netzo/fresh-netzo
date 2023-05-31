@@ -1,20 +1,20 @@
 // Copyright 2021 Deno Land Inc. All rights reserved. MIT license.
 
 import { wait } from '../../deps.ts'
-import { error } from '../error.ts'
+import { error } from '../console.ts'
 import { API, APIError } from '../utils/api.ts'
 
 const help = `netzo logs
 Stream logs for the given project.
 
 To show the latest logs of a project:
-  netzo logs --project=helloworld
+  netzo logs --project=my-project
 
 To show the logs of a particular deployment:
-  netzo logs --project=helloworld --deployment=1234567890ab
+  netzo logs --project=my-project --deployment=1234567890ab
 
 To show the logs of the production deployment:
-  netzo logs --project=helloworld --prod
+  netzo logs --project=my-project --prod
 
 USAGE:
     netzo logs [OPTIONS] [<PROJECT>]
@@ -55,7 +55,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
   }
   if (args.project === null) {
     console.error(help)
-    error('Missing project ID.')
+    error('Missing project UID.')
   }
   if (rawArgs._.length > 1) {
     console.error(help)
@@ -63,7 +63,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
   }
 
   const opts = {
-    projectId: args.project,
+    projectUid: args.project,
     deploymentId: args.deployment,
     prod: args.prod,
     apiKey,
@@ -73,7 +73,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
 }
 
 interface DeployOpts {
-  projectId: string
+  projectUid: string
   deploymentId: string | null
   prod: boolean
   apiKey: string
@@ -87,8 +87,8 @@ async function logs(opts: DeployOpts): Promise<void> {
   }
   const projectSpinner = wait('Fetching project information...').start()
   const api = API.fromApiKey(opts.apiKey)
-  const project = await api.getProject(opts.projectId)
-  const projectDeployments = await api.getDeployments(opts.projectId)
+  const project = (await api.getProjectByUid(opts.projectUid))!
+  const projectDeployments = await api.getDeployments(project._id)
   if (project === null) {
     projectSpinner.fail('Project not found.')
     Deno.exit(1)
@@ -106,8 +106,8 @@ async function logs(opts: DeployOpts): Promise<void> {
   }
   projectSpinner.succeed(`Project: ${project.name}`)
   const logs = opts.deploymentId
-    ? api.getLogs(opts.projectId, opts.deploymentId)
-    : api.getLogs(opts.projectId, 'latest')
+    ? api.getLogs(project._id, opts.deploymentId)
+    : api.getLogs(project._id, 'latest')
   if (logs === null) {
     projectSpinner.fail('Project not found.')
     Deno.exit(1)

@@ -121,6 +121,20 @@ export class API {
     }
   }
 
+  async getProjectByUid(projectUid: string): Promise<Project | null> {
+    try {
+      const { data: [project] } = await this.#requestJson(
+        `/projects?uid=${projectUid}&$limit=1`,
+      ) as { data: Project[] }
+      return project
+    } catch (err) {
+      if (err instanceof APIError && err.code === 'projectNotFound') {
+        return null
+      }
+      throw err
+    }
+  }
+
   async getDeployments(
     projectId: string,
   ): Promise<[Deployment[], DeploymentsSummary] | null> {
@@ -179,9 +193,12 @@ export class API {
     body: Pick<Project, 'configuration' | 'fs'>,
   ): AsyncIterable<DeploymentProgress> {
     try {
-      for (const [path, { contents }] of Object.entries(body.fs)) {
-        yield { type: 'load', url: path, seen: 0, total: contents.length }
-      }
+      const paths = Object.keys(body.fs)
+      const total = paths.length
+      let i = 0
+      do {
+        yield { type: 'load', url: paths[i], seen: i++, total }
+      } while (i < paths.length)
       const result: Project = await this.#requestJson(
         `/projects/${projectId}`,
         { method: 'PATCH', body },

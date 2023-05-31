@@ -6,7 +6,7 @@
 ## Install
 
 ```shell
-deno install --allow-all --no-check -r -f https://deno.land/x/netzo/cli/netzo.ts
+deno install --allow-read --allow-write --allow-env --allow-net --allow-run --no-check -r -f https://deno.land/x/netzo/cli/netzo.ts
 ```
 
 ## Usage
@@ -17,7 +17,7 @@ page. Store this API key in a `NETZO_API_KEY` environment variable, or pass it
 to `netzo` with the `--api-key` flag.
 
 ```shell
-netzo deploy --project=hello-world ./examples/hello.ts
+netzo deploy --project=my-project ./examples/hello.ts
 ```
 
 View the help:
@@ -53,3 +53,9 @@ jobs:
 ```
 
 To learn more about the action, checkout [action readme](./action/readme.md).
+
+## Attribution
+
+The Netzo CLI is heavily inspired by
+[`deployctl`](https://github.com/denoland/deployctl) the official Deno Deploy
+CLI ([MIT License](https://github.com/denoland/deployctl/blob/main/LICENSE))

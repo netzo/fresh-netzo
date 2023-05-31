@@ -39,7 +39,7 @@
     },
     "configuration": {
       "entrypoint": "main.tsx",
-      "envs": {},
+      "envVars": {},
       "permissions": {
         "net": true
       }

@@ -32,7 +32,7 @@
     },
     "configuration": {
       "entrypoint": "main.ts",
-      "envs": {},
+      "envVars": {},
       "permissions": {
         "net": true
       }
