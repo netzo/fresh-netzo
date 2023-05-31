@@ -1,4 +1,4 @@
-import type { Variable } from 'https://esm.sh/@netzo/api@1.0.10'
+import type { Variable } from '../../deps.ts'
 import { createApi } from '../create-api/mod.ts'
 import { auth } from '../create-api/auth/mod.ts'
 
