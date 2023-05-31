@@ -61,13 +61,13 @@ export class API {
       ? opts.body instanceof FormData ? opts.body : JSON.stringify(opts.body)
       : undefined
     const headers = {
-      'Accept': 'application/json',
+      'accept': 'application/json',
       [this.#apiKey.length === 64 ? 'x-api-key' : 'x-env-var-api-key']:
         this.#apiKey,
       ...(opts.body !== undefined
         ? opts.body instanceof FormData
           ? {}
-          : { 'Content-Type': 'application/json' }
+          : { 'content-type': 'application/json' }
         : {}),
     }
     return await fetch(url, { method, headers, body })
@@ -75,7 +75,7 @@ export class API {
 
   async #requestJson<T>(path: string, opts?: RequestOptions): Promise<T> {
     const res = await this.#request(path, opts)
-    if (res.headers.get('Content-Type') !== 'application/json') {
+    if (!res.headers.get('content-type')?.startsWith('application/json')) {
       const text = await res.text()
       throw new Error(`Expected JSON, got '${text}'`)
     }
@@ -140,14 +140,58 @@ export class API {
     )
   }
 
+  // TODO: implement an endpoint (e.g. `/projects/${id}/assets/negotiate`)
+  // that returns only the hashes of assets that need to be uploaded.
+  // In the meantime we return all hashes (string[]) to deploy all each time.
   async projectNegotiateAssets(
+    // deno-lint-ignore no-unused-vars
     id: string,
     manifest: { entries: Record<string, ManifestEntry> },
   ): Promise<string[]> {
-    return await this.#requestJson(`/projects/${id}/assets/negotiate`, {
-      method: 'POST',
-      body: manifest,
-    })
+    const result: string[] = []
+    // deno-lint-ignore no-explicit-any
+    function walk(obj: any) {
+      // deno-lint-ignore no-prototype-builtins
+      if (obj.hasOwnProperty('gitSha1')) result.push(obj.gitSha1)
+      if (typeof obj === 'object') {
+        for (const key in obj) {
+          // deno-lint-ignore no-prototype-builtins
+          if (obj.hasOwnProperty(key)) walk(obj[key])
+        }
+      }
+    }
+    await walk(manifest)
+    return result
+
+    // return await this.#requestJson(`/projects/${id}/assets/negotiate`, {
+    //   method: 'POST',
+    //   body: manifest,
+    // })
+  }
+
+  // TODO: replace `pushDeployJson` with `pushDeploy` below once @netzo/api
+  // adds support for deploying with assets via multipart/form-data directly.
+  // In the meantime, we use POST /projects/:id with JSON body (files as strings)
+  // instead of POST /projects/:id/deployment_with_assets with multipart/form-data
+  // and use the existing progress indicator in the CLI by returning AsyncIterable
+  async *pushDeployJson(
+    projectId: string,
+    body: Pick<Project, 'configuration' | 'fs'>,
+  ): AsyncIterable<DeploymentProgress> {
+    try {
+      for (const [path, { contents }] of Object.entries(body.fs)) {
+        yield { type: 'load', url: path, seen: 0, total: contents.length }
+      }
+      const result: Project = await this.#requestJson(
+        `/projects/${projectId}`,
+        { method: 'PATCH', body },
+      )
+      yield { type: 'uploadComplete' }
+      // deno-lint-ignore no-explicit-any
+      yield { ...result, type: 'success' } as any
+    } catch (err) {
+      yield { type: 'error', code: 'unknown', ctx: err.message }
+    }
   }
 
   pushDeploy(

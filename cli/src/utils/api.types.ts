@@ -1,30 +1,36 @@
-export interface DomainMapping {
-  domain: string
-  createdAt: string
-  updatedAt: string
-}
+import type { Deployment, Project } from '../../deps.ts'
 
-export interface Deployment {
-  id: string
-  url: string
-  domainMappings: DomainMapping[]
-  project?: Project
-  projectId: string
-  createdAt: string
-  updatedAt: string
-  envVars: string[]
-}
+// NOTE: original types from deployctl replaced with types from @netzo/api
 
-export interface Project {
-  id: string
-  name: string
-  productionDeployment?: Deployment | null
-  hasProductionDeployment: boolean
-  organizationId: string
-  createdAt: string
-  updatedAt: string
-  envVars: string[]
-}
+// export interface DomainMapping {
+//   domain: string
+//   createdAt: string
+//   updatedAt: string
+// }
+
+// export interface Deployment {
+//   id: string
+//   url: string
+//   domainMappings: DomainMapping[]
+//   project?: Project
+//   projectId: string
+//   createdAt: string
+//   updatedAt: string
+//   envVars: string[]
+// }
+
+// export interface Project {
+//   id: string
+//   name: string
+//   productionDeployment?: Deployment | null
+//   hasProductionDeployment: boolean
+//   organizationId: string
+//   createdAt: string
+//   updatedAt: string
+//   envVars: string[]
+// }
+
+export type { Deployment, Project }
 
 export interface DeploymentsSummary {
   page: number

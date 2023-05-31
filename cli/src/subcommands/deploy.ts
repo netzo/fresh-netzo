@@ -2,8 +2,8 @@
 
 import { fromFileUrl, normalize, Spinner, wait } from '../../deps.ts'
 import { error } from '../error.ts'
-import { API, APIError } from '../utils/api.ts'
-import { ManifestEntry } from '../utils/api.types.ts'
+import { API } from '../utils/api.ts'
+import { ManifestEntry, ManifestEntryFile } from '../utils/api.types.ts'
 import { parseEntrypoint } from '../utils/entrypoint.ts'
 import { walk } from '../utils/walk.ts'
 
@@ -51,7 +51,6 @@ export interface Args {
 
 // deno-lint-ignore no-explicit-any
 export default async function (rawArgs: Record<string, any>): Promise<void> {
-  console.log(rawArgs)
   const args: Args = {
     help: !!rawArgs.help,
     static: !!rawArgs.static,
@@ -129,7 +128,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
     projectSpinner.fail('Project not found.')
     Deno.exit(1)
   }
-  projectSpinner.succeed(`Project: ${project.name}`)
+  projectSpinner.succeed(`Project UID: ${project.uid}`)
 
   let url = opts.entrypoint
   const cwd = Deno.cwd()
@@ -159,7 +158,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
   if (opts.static) {
     wait('').start().info(`Uploading all files from the current dir (${cwd})`)
     const assetSpinner = wait('Finding static assets...').start()
-    const assets = new Map<string, string>()
+    const assets = new Map<string, string>() // map of gitSha1 -> path
     const entries = await walk(cwd, cwd, assets, {
       include: opts.include,
       exclude: opts.exclude,
@@ -169,7 +168,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
     )
 
     uploadSpinner = wait('Determining assets to upload...').start()
-    const neededHashes = await api.projectNegotiateAssets(project.id, {
+    const neededHashes = await api.projectNegotiateAssets(project._id, {
       entries,
     })
 
@@ -179,7 +178,8 @@ async function deploy(opts: DeployOpts): Promise<void> {
         error(`Asset ${hash} not found.`)
       }
       const data = await Deno.readFile(path)
-      files.push(data)
+      // files.push(data)
+      files.push(new TextDecoder().decode(data))
     }
     if (files.length === 0) {
       uploadSpinner.succeed('No new assets to upload.')
@@ -198,29 +198,106 @@ async function deploy(opts: DeployOpts): Promise<void> {
     return
   }
 
+  // TODO: implement deploy via api.pushDeploy() with multipart upload and progress
+  // In the meantime we api.pushDeployJson() to POST project data as JSON directly
+  // until multipart upload is implemented in the API for api.pushDeploy() to work
+
   let deploySpinner: Spinner | null = null
+
+  const fileEntries = buildFlatManifestOfOnlyFileEntriesForDB(manifest!.entries)
+
+  const progress = await api.pushDeployJson(project._id, {
+    configuration: {
+      entrypoint: project.configuration?.entrypoint ?? url.href,
+      importMap: project.configuration?.importMap ?? importMapUrl?.href,
+      envs: project.configuration?.envs ?? {},
+      envsDev: project.configuration?.envsDev ?? {},
+      permissions: project.configuration?.permissions ?? { net: true },
+    },
+    fs: Object.entries(fileEntries).reduce(
+      (acc, [path /* { gitSha1, kind, size } */], i) => ({
+        ...acc,
+        [path]: { /* gitSha1, kind, size, */ contents: files[i] },
+      }),
+      {},
+    ),
+  })
+
+  for await (const event of progress) {
+    switch (event.type) {
+      case 'staticFile': {
+        const percentage = (event.currentBytes / event.totalBytes) * 100
+        uploadSpinner!.text = `Uploading ${files.length} asset${
+          files.length === 1 ? '' : 's'
+        }... (${percentage.toFixed(1)}%)`
+        break
+      }
+      case 'load': {
+        if (uploadSpinner) {
+          uploadSpinner.succeed(
+            `Uploaded ${files.length} new asset${
+              files.length === 1 ? '' : 's'
+            }.`,
+          )
+          uploadSpinner = null
+        }
+        if (deploySpinner === null) {
+          deploySpinner = wait('Deploying...').start()
+        }
+        const progress = event.seen / event.total * 100
+        deploySpinner.text = `Deploying... (${progress.toFixed(1)}%)`
+        break
+      }
+      case 'uploadComplete':
+        deploySpinner!.text = `Finishing deployment...`
+        break
+      case 'success':
+        deploySpinner!.succeed(`Deployment complete.`)
+        // console.log('\nView at:')
+        // for (const { domain } of event.domainMappings) {
+        //   console.log(` - https://${domain}`)
+        // }
+        console.log('\nView in production at:')
+        console.log(` - https://${event.uid}.netzo.io`)
+        console.log(` - https://${event.deploymentId}.netzo.io`)
+        console.log('View in development at:')
+        console.log(` - https://d-${event.uid}.netzo.io`)
+        console.log(` - https://d-${event.deploymentId}.netzo.io`)
+        break
+      case 'error':
+        if (uploadSpinner) {
+          uploadSpinner.fail(`Upload failed.`)
+          uploadSpinner = null
+        }
+        if (deploySpinner) {
+          deploySpinner.fail(`Deployment failed.`)
+          deploySpinner = null
+        }
+        error(event.ctx)
+    }
+  }
+
+  /* let deploySpinner: Spinner | null = null
   const req = {
     url: url.href,
     importMapUrl: importMapUrl ? importMapUrl.href : null,
     production: opts.prod,
     manifest,
   }
-  const progress = api.pushDeploy(project.id, req, files)
+  const progress = api.pushDeploy(project._id, req, files)
   try {
     for await (const event of progress) {
       switch (event.type) {
         case 'staticFile': {
           const percentage = (event.currentBytes / event.totalBytes) * 100
-          uploadSpinner!.text = `Uploading ${files.length} asset${
-            files.length === 1 ? '' : 's'
-          }... (${percentage.toFixed(1)}%)`
+          uploadSpinner!.text = `Uploading ${files.length} asset${files.length === 1 ? '' : 's'
+            }... (${percentage.toFixed(1)}%)`
           break
         }
         case 'load': {
           if (uploadSpinner) {
             uploadSpinner.succeed(
-              `Uploaded ${files.length} new asset${
-                files.length === 1 ? '' : 's'
+              `Uploaded ${files.length} new asset${files.length === 1 ? '' : 's'
               }.`,
             )
             uploadSpinner = null
@@ -267,5 +344,33 @@ async function deploy(opts: DeployOpts): Promise<void> {
       error(err.toString())
     }
     error(String(err))
+  } */
+}
+
+export function buildFlatManifestOfOnlyFileEntriesForDB(
+  obj: ManifestEntry,
+): Record<string, ManifestEntryFile> {
+  const result: Record<string, ManifestEntryFile> = {}
+
+  function walk(obj: ManifestEntry, path: string) {
+    if (obj.kind === 'file') {
+      const fileEntry: ManifestEntryFile = {
+        gitSha1: obj.gitSha1,
+        kind: obj.kind,
+        size: obj.size,
+      }
+      result[path] = fileEntry
+    } else if (typeof obj === 'object') {
+      for (const key in obj) {
+        // deno-lint-ignore no-prototype-builtins
+        if (obj.hasOwnProperty(key)) {
+          const newPath = path ? `${path}/${key}` : key
+          walk(obj[key] as ManifestEntry, newPath)
+        }
+      }
+    }
   }
+
+  walk(obj, '')
+  return result
 }
