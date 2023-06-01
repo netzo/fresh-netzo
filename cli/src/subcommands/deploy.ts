@@ -1,5 +1,3 @@
-// Copyright 2021 Deno Land Inc. All rights reserved. MIT license.
-
 import { fromFileUrl, normalize, Spinner, wait } from '../../deps.ts'
 import { error, printWarning } from '../console.ts'
 import { API } from '../utils/api.ts'
@@ -17,11 +15,8 @@ Deploy a project with static files to Netzo.
 To deploy a local project:
   netzo deploy --project=my-project main.ts
 
-To deploy a remote project:
-  netzo deploy --project=my-project https://deno.land/x/netzo/cli/examples/hello.ts
-
-To deploy a remote project without static files:
-  netzo deploy --project=my-project --no-static https://deno.land/x/netzo/cli/examples/hello.ts
+To deploy a local project without static files:
+  netzo deploy --project=my-project --no-static main.ts
 
 To ignore the node_modules directory while deploying:
   netzo deploy --project=my-project --exclude=node_modules main.tsx
@@ -30,15 +25,15 @@ USAGE:
     netzo deploy [OPTIONS] <ENTRYPOINT>
 
 OPTIONS:
-        --exclude=<PATTERNS>  Exclude files that match this pattern
-        --include=<PATTERNS>  Only upload files that match this pattern
-        --import-map=<FILE>   Use import map file
-    -h, --help                Prints help information
-        --no-static           Don't include the files in the CWD as static files
-        --prod                Create a production deployment (default is preview deployment)
-    -p, --project=NAME        The project to deploy to
-        --api-key=<KEY>       The API key to use (defaults to NETZO_API_KEY env var)
-        --dry-run             Dry run the deployment process.
+        --exclude=<PATTERNS>      Exclude files that match this pattern
+        --include=<PATTERNS>      Only upload files that match this pattern
+        --import-map=<FILE>       Use import map file
+    -h, --help                    Prints help information
+        --no-static               Don't include the files in the CWD as static files
+        --prod                    Create a production deployment (default is preview deployment)
+    -p, --project=<PROJECT_UID>   The UID of the project to deploy to
+        --api-key=<API_KEY>       The API key to use (defaults to NETZO_API_KEY env var)
+        --dry-run                 Dry run the deployment process.
 `
 
 export interface Args {

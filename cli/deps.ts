@@ -1,5 +1,3 @@
-// Copyright 2021 Deno Land Inc. All rights reserved. MIT license.
-
 // std
 export {
   fromFileUrl,

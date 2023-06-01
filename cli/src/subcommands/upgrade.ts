@@ -1,5 +1,3 @@
-// Copyright 2021 Deno Land Inc. All rights reserved. MIT license.
-
 import { error } from '../console.ts'
 import { semverGreaterThanOrEquals, semverValid } from '../../deps.ts'
 import { VERSION } from '../version.ts'
@@ -19,10 +17,10 @@ USAGE:
     netzo upgrade [OPTIONS] [<version>]
 
 OPTIONS:
-    -h, --help        Prints help information
+    -h, --help   Prints help information
 
 ARGS:
-    <version>         The version to upgrade to (defaults to latest)
+    <version>    The version to upgrade to (defaults to latest)
 `
 
 export interface Args {
@@ -83,7 +81,8 @@ export async function getVersions(): Promise<
   const aborter = new AbortController()
   const timer = setTimeout(() => aborter.abort(), 2500)
   const response = await fetch(
-    'https://cdn.deno.land/deploy/meta/versions.json',
+    // 'https://cdn.deno.land/deploy/meta/versions.json',
+    'https://api.github.com/repos/netzo/netzo/releases',
     { signal: aborter.signal },
   )
   if (!response.ok) {
@@ -93,5 +92,8 @@ export async function getVersions(): Promise<
   }
   const data = await response.json()
   clearTimeout(timer)
-  return data
+  const versions = data.map(({ tag_name }: { tag_name: string }) =>
+    tag_name.replace(/^v/, '')
+  )
+  return { latest: versions[0], versions } // builds a versions object like cdn.deno.land above
 }

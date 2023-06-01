@@ -1,5 +1,3 @@
-// Copyright 2021 Deno Land Inc. All rights reserved. MIT license.
-
 import { wait } from '../../deps.ts'
 import { error } from '../console.ts'
 import { API, APIError } from '../utils/api.ts'
@@ -20,10 +18,10 @@ USAGE:
     netzo logs [OPTIONS] [<PROJECT>]
 
 OPTIONS:
-        --deployment=<DEPLOYMENT_ID>  The id of the deployment you want to get the logs (defaults to latest deployment)
-        --prod                        Select the production deployment
-    -p, --project=NAME                The project you want to get the logs
-        --api-key=<KEY>               The API key to use (defaults to NETZO_API_KEY env var)
+        --deployment=<DEPLOYMENT_ID>   The id of the deployment you want to get the logs (defaults to latest deployment)
+        --prod                         Select the production deployment
+    -p, --project=<PROJECT_UID>        The project you want to get the logs
+        --api-key=<API_KEY>            The API key to use (defaults to NETZO_API_KEY env var)
 `
 
 export interface Args {

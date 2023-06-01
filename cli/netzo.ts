@@ -1,7 +1,5 @@
 #!/usr/bin/env -S deno run --allow-read --allow-write --allow-env --allow-net --allow-run --no-check
 
-// Copyright 2021 Deno Land Inc. All rights reserved. MIT license.
-
 import { parseArgs, semverGreaterThanOrEquals } from './deps.ts'
 import { error } from './src/console.ts'
 import deploySubcommand from './src/subcommands/deploy.ts'
@@ -18,9 +16,6 @@ To create a new project:
 
 To deploy a local project:
   netzo deploy --project=my-project ./main.ts
-
-To deploy a remote project:
-  netzo deploy --project=my-project https://deno.land/x/netzo/cli/examples/hello.ts
 
 SUBCOMMANDS:
     deploy    Deploy a project with static files to Netzo
