@@ -92,8 +92,6 @@ export async function getVersions(): Promise<
   }
   const data = await response.json()
   clearTimeout(timer)
-  const versions = data.map(({ tag_name }: { tag_name: string }) =>
-    tag_name.replace(/^v/, '')
-  )
+  const versions = data.map(({ tag_name }: { tag_name: string }) => tag_name)
   return { latest: versions[0], versions } // builds a versions object like cdn.deno.land above
 }
