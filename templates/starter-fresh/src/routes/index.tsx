@@ -9,6 +9,7 @@ export default function Home() {
     <>
       <Head>
         <title>Fresh App</title>
+        <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
       </Head>
       <div className='p-4 mx-auto max-w-screen-md'>
         <img

@@ -1,0 +1,54 @@
+{
+  "uid": "blog-fresh",
+  "status": "requested",
+  "name": "Blog",
+  "description": "A simple blog template",
+  "labels": [
+    "usecase",
+    "blog"
+  ],
+  "display": {
+    "avatar": "https://api.iconify.design/logos-fresh.svg"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/templates/blog-fresh"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/blog-fresh/src/readme.md"
+    }
+  ],
+  "item": {
+    "_type": "project",
+    "uid": "blog-fresh",
+    "fs": {
+      "readme.md": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/blog-fresh/src/readme.md"
+      },
+      "main.ts": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/blog-fresh/src/main.ts"
+      },
+      "fresh.gen.ts": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/blog-fresh/src/fresh.gen.ts"
+      },
+      "import_map.json": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/blog-fresh/src/import_map.json"
+      },
+      "islands/Counter.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/blog-fresh/src/islands/Counter.tsx"
+      },
+      "routes/index.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/blog-fresh/src/routes/index.tsx"
+      }
+    },
+    "configuration": {
+      "entrypoint": "main.ts",
+      "envVars": {},
+      "permissions": {
+        "net": true
+      }
+    }
+  }
+}

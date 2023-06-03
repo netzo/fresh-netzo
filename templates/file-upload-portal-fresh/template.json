@@ -2,7 +2,7 @@
   "uid": "file-upload-portal-fresh",
   "status": "published",
   "name": "File Upload Portal",
-  "description": "An HTTP server that serves a file upload portal to ease data processing and syncing from files.",
+  "description": "A file upload portal to ease data processing and syncing from files.",
   "labels": [
     "usecase",
     "form",

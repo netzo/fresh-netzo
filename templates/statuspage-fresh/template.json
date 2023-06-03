@@ -2,7 +2,7 @@
   "uid": "statuspage-fresh",
   "status": "published",
   "name": "Statuspage",
-  "description": "An HTTP server that serves an a status page to track the 'up', 'down' and 'maintenance' status of (multiple) services over time.",
+  "description": "A status page to track the 'up', 'down' and 'maintenance' status of (multiple) services over time.",
   "labels": [
     "usecase",
     "jsx"
