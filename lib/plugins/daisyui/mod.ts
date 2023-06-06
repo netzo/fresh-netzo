@@ -2,9 +2,9 @@ import type { Plugin } from '../../deps.ts'
 
 // export interface Options {}
 
-export default function unocss(options = {}): Plugin {
+export default (options = {}): Plugin => {
   return {
-    name: 'unocss',
+    name: 'daisyui',
     entrypoints: { 'main': import.meta.resolve('./main.ts') },
     render(ctx) {
       ctx.render()

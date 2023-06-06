@@ -14,7 +14,7 @@ export type Options =
   | 'mini'
   | Record<string, unknown>
 
-export default function unocss(options: Options = 'uno'): Plugin {
+export default (options: Options = 'uno'): Plugin => {
   return {
     name: 'unocss',
     entrypoints: { 'main': import.meta.resolve('./main.ts') },
