@@ -18,9 +18,7 @@ export default ({
   description,
   appLoginUrl,
 }: AppCardProps) => {
-  const handleCardClick = () => {
-    window.open(appLoginUrl, '_blank')
-  }
+  const handleCardClick = () => window.open(appLoginUrl, '_blank')
 
   return (
     <div

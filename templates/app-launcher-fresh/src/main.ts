@@ -11,11 +11,11 @@ import manifest from './fresh.gen.ts'
 
 import twindPlugin from '$fresh/plugins/twind.ts'
 import twindConfig from './twind.config.ts'
-import daisyui from 'https://deno.land/x/netzo@v0.1.72/lib/plugins/daisyui/mod.ts'
+import flowbitePlugin from 'https://deno.land/x/netzo@v0.1.73/lib/plugins/flowbite/mod.ts'
 
 await start(manifest, {
   plugins: [
     twindPlugin(twindConfig),
-    daisyui(),
+    flowbitePlugin(),
   ],
 })
