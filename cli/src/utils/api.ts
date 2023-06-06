@@ -3,10 +3,10 @@ import { TextLineStream } from '../../deps.ts'
 import {
   Deployment,
   DeploymentProgress,
-  DeploymentsSummary,
   GitHubActionsDeploymentRequest,
   Logs,
   ManifestEntry,
+  Paginated,
   Project,
   PushDeploymentRequest,
 } from './api.types.ts'
@@ -125,7 +125,7 @@ export class API {
     try {
       const { data: [project] } = await this.#requestJson(
         `/projects?uid=${projectUid}&$limit=1`,
-      ) as { data: Project[] }
+      ) as Paginated<Project>
       return project
     } catch (err) {
       if (err instanceof APIError && err.code === 'projectNotFound') {
@@ -135,11 +135,12 @@ export class API {
     }
   }
 
-  async getDeployments(
-    projectId: string,
-  ): Promise<[Deployment[], DeploymentsSummary] | null> {
+  async getDeployments(projectId: string): Promise<Deployment[] | null> {
     try {
-      return await this.#requestJson(`/deployments?projectId=${projectId}`)
+      const { data } = await this.#requestJson(
+        `/deployments?projectId=${projectId}`,
+      ) as Paginated<Deployment>
+      return data
     } catch (err) {
       if (err instanceof APIError && err.code === 'projectNotFound') {
         return null

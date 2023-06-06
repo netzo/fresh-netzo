@@ -2,6 +2,13 @@
 
 export * from './api.netzo.types.ts'
 
+export interface Paginated<T> {
+  total: number
+  limit: number
+  skip: number
+  data: T[]
+}
+
 // export interface Deployment {
 //   id: string
 //   url: string
@@ -28,13 +35,13 @@ export * from './api.netzo.types.ts'
 //   envVars: string[]
 // }
 
-export interface DeploymentsSummary {
-  page: number
-  count: number
-  limit: number
-  totalCount: number
-  totalPages: number
-}
+// export interface DeploymentsSummary {
+//   page: number
+//   count: number
+//   limit: number
+//   totalCount: number
+//   totalPages: number
+// }
 
 // manifest:
 

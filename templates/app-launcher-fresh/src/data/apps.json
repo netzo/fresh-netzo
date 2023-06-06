@@ -1,0 +1,294 @@
+[
+  {
+    "name": "Dripify",
+    "group": "marketing",
+    "tags": [
+      "marketing",
+      "email",
+      "automation"
+    ],
+    "logo": "https://images.g2crowd.com/uploads/product/image/social_landscape/social_landscape_95972e3cb605d1b6a329d9a43d00610b/dripify.png",
+    "description": "Description of Dripify",
+    "appLoginUrl": "https://app.dripify.io/"
+  },
+  {
+    "name": "PayPro Global",
+    "group": "finance",
+    "tags": [
+      "finance",
+      "payments",
+      "ecommerce"
+    ],
+    "logo": "https://s3-eu-west-1.amazonaws.com/tpd/logos/5038b71700006400051a0e68/0x0.png",
+    "description": "Description of PayPro Global",
+    "appLoginUrl": "https://cc.payproglobal.com/"
+  },
+  {
+    "name": "Revolut",
+    "group": "finance",
+    "tags": [
+      "finance"
+    ],
+    "logo": "https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco,dpr_1/t6nais5lghcxmc9nkpnk",
+    "description": "Description of Revolut",
+    "appLoginUrl": "https://business.revolut.com/signin"
+  },
+  {
+    "name": "Paddle Sandbox",
+    "group": "finance",
+    "tags": [
+      "finance",
+      "payments"
+    ],
+    "logo": "https://images.g2crowd.com/uploads/product/image/social_landscape/social_landscape_cc7e067e23998a5784dac2fc3e8cdab4/paddle.png",
+    "description": "Description of Paddle Sandbox",
+    "appLoginUrl": "https://sandbox-login.paddle.com/"
+  },
+  {
+    "name": "Paddle Vendor",
+    "group": "finance",
+    "tags": [
+      "finance",
+      "payments"
+    ],
+    "logo": "https://images.g2crowd.com/uploads/product/image/social_landscape/social_landscape_cc7e067e23998a5784dac2fc3e8cdab4/paddle.png",
+    "description": "Description of Paddle Vendor",
+    "appLoginUrl": "https://vendor.paddle.com/login"
+  },
+  {
+    "name": "Lanzadera",
+    "group": "productivity",
+    "tags": [
+      "productivity",
+      "business"
+    ],
+    "logo": "https://lanzadera.es/wp-content/uploads/2020/06/cohete-movil-comprimido.png",
+    "description": "Description of Lanzadera",
+    "appLoginUrl": "https://app.lanzadera.es/"
+  },
+  {
+    "name": "Holded",
+    "group": "finance",
+    "tags": [
+      "finance",
+      "accounting",
+      "invoices"
+    ],
+    "logo": "https://images.ctfassets.net/2d5q1td6cyxq/40jES7ANlG9s4C1LSBlNWP/76debabe8919784aceaa23f6b71a9e2d/LogoHolded.png",
+    "description": "Description of Holded",
+    "appLoginUrl": "https://app.holded.com/"
+  },
+  {
+    "name": "Customerly",
+    "group": "marketing",
+    "tags": [
+      "marketing",
+      "customer support"
+    ],
+    "logo": "https://leadsbridge.com/wp-content/themes/leadsbridge/img/integration-lg-logos/logo31.png",
+    "description": "Description of Customerly",
+    "appLoginUrl": "https://app.customerly.io/"
+  },
+  {
+    "name": "Discord",
+    "group": "customer",
+    "tags": [
+      "communications"
+    ],
+    "logo": "https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png",
+    "description": "Description of Discord",
+    "appLoginUrl": "https://discord.com/invite/tbDUpRQCTk"
+  },
+  {
+    "name": "Kapwing",
+    "group": "media",
+    "tags": [
+      "media",
+      "video editing"
+    ],
+    "logo": "https://www.kapwing.com/help/content/images/2023/01/circle-logo.png",
+    "description": "Description of Kapwing",
+    "appLoginUrl": "https://kapwing.com"
+  },
+  {
+    "name": "Airtable",
+    "group": "productivity",
+    "tags": [
+      "productivity",
+      "database"
+    ],
+    "logo": "https://assets.stickpng.com/images/62c6e32a7a58a4aa1fb77092.png",
+    "description": "Description of Airtable",
+    "appLoginUrl": "https://airtable.com/login"
+  },
+  {
+    "name": "ChatGPT",
+    "group": "artificial intelligence",
+    "tags": [
+      "ai",
+      "chatbot"
+    ],
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/ChatGPT_logo.svg/2048px-ChatGPT_logo.svg.png",
+    "description": "Description of ChatGPT",
+    "appLoginUrl": "https://chat.openai.com/auth/login"
+  },
+  {
+    "name": "Hotjar",
+    "group": "analytics",
+    "tags": [
+      "analytics"
+    ],
+    "logo": "https://inclusivelyremote.com/wp-content/uploads/2023/01/IMG_3131.jpeg",
+    "description": "Description of Hotjar",
+    "appLoginUrl": "https://insights.hotjar.com/"
+  },
+  {
+    "name": "Usercentrics",
+    "group": "compliance",
+    "tags": [
+      "compliance",
+      "consent"
+    ],
+    "logo": "https://uploads.commoninja.com/searchengine/wordpress/usercentrics-consent-management-platform.png",
+    "description": "Description of Usercentrics",
+    "appLoginUrl": "https://usercentrics.com/login"
+  },
+  {
+    "name": "1Password",
+    "group": "security",
+    "tags": [
+      "security"
+    ],
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/1Password_favicon.svg/2048px-1Password_favicon.svg.png",
+    "description": "Description of 1Password",
+    "appLoginUrl": "https://1password.com/login"
+  },
+  {
+    "name": "Auth0",
+    "group": "authentication",
+    "tags": [
+      "authentication",
+      "development"
+    ],
+    "logo": "https://cdn.freebiesupply.com/logos/thumbs/2x/auth0-logo.png",
+    "description": "Description of Auth0",
+    "appLoginUrl": "https://auth0.com/login"
+  },
+  {
+    "name": "Datev Unternehmen Online",
+    "group": "finance",
+    "tags": [
+      "finance",
+      "accounting"
+    ],
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/1/17/Logo_Datev.png",
+    "description": "Description of Datev Unternehmen Online",
+    "appLoginUrl": "https://datev.com/login"
+  },
+  {
+    "name": "Fathom Analytics",
+    "group": "analytics",
+    "tags": [
+      "analytics"
+    ],
+    "logo": "https://images.g2crowd.com/uploads/product/image/large_detail/large_detail_76ea0739b8bfbf2fc2e5cff743331a9b/fathom-analytics.png",
+    "description": "Description of Fathom Analytics",
+    "appLoginUrl": "https://fathom.com/login"
+  },
+  {
+    "name": "Figma",
+    "group": "design",
+    "tags": [
+      "design"
+    ],
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Figma-logo.svg/1667px-Figma-logo.svg.png",
+    "description": "Description of Figma",
+    "appLoginUrl": "https://figma.com/login"
+  },
+  {
+    "name": "Github",
+    "group": "development",
+    "tags": [
+      "development",
+      "devops"
+    ],
+    "logo": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
+    "description": "Description of Github",
+    "appLoginUrl": "https://github.com/netzo/netzo"
+  },
+  {
+    "name": "MongoDB Atlas",
+    "group": "database",
+    "tags": [
+      "database",
+      "development"
+    ],
+    "logo": "https://images.g2crowd.com/uploads/product/image/social_landscape/social_landscape_a0b9e371c09d15b9a0b48ed84b31ed35/mongodb-atlas.png",
+    "description": "Description of MongoDB Atlas",
+    "appLoginUrl": "https://mongodb.com/login"
+  },
+  {
+    "name": "Penta",
+    "group": "finance",
+    "tags": [
+      "finance"
+    ],
+    "logo": "https://res.cloudinary.com/apideck/image/upload/v1568782011/radar/icons/penta.jpg",
+    "description": "Description of Penta",
+    "appLoginUrl": "https://getpenta.com/login"
+  },
+  {
+    "name": "Postman",
+    "group": "development",
+    "tags": [
+      "development",
+      "api"
+    ],
+    "logo": "https://img.uxwing.com/wp-content/themes/uxwing/download/brands-social-media/postman-icon.png",
+    "description": "Description of Postman",
+    "appLoginUrl": "https://postman.com/login"
+  },
+  {
+    "name": "Santander empresas",
+    "group": "finance",
+    "tags": [
+      "finance"
+    ],
+    "logo": "https://www.santander.com.br/sites/WPC_CMS/imagem/21-09-08_194432_santander-logo.png",
+    "description": "Description of Santander empresas",
+    "appLoginUrl": "https://santander.com/login"
+  },
+  {
+    "name": "Twitter",
+    "group": "social media",
+    "tags": [
+      "social",
+      "marketing"
+    ],
+    "logo": "https://assets.stickpng.com/images/580b57fcd9996e24bc43c53e.png",
+    "description": "Description of Twitter",
+    "appLoginUrl": "https://twitter.com/login"
+  },
+  {
+    "name": "LinkedIn",
+    "group": "professional networking",
+    "tags": [
+      "social",
+      "marketing"
+    ],
+    "logo": "https://cdn-icons-png.flaticon.com/512/174/174857.png",
+    "description": "Description of LinkedIn",
+    "appLoginUrl": "https://linkedin.com/login"
+  },
+  {
+    "name": "YouTube",
+    "group": "video sharing",
+    "tags": [
+      "social",
+      "marketing"
+    ],
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png",
+    "description": "Description of YouTube",
+    "appLoginUrl": "https://youtube.com/login"
+  }
+]

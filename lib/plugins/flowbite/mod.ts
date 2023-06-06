@@ -9,7 +9,7 @@ export type FlowbitePluginOptions = {
   }
 }
 
-export function FlowbitePlugin(options: FlowbitePluginOptions = {}): Plugin {
+export default function flowbitePlugin(options: FlowbitePluginOptions = {}): Plugin {
   if (!options.additionalScripts) options.additionalScripts = []
   if (!options.additionalStylesheets) options.additionalStylesheets = []
   if (!options.plugins) options.plugins = { datepicker: true }

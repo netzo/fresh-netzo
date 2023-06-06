@@ -9,19 +9,22 @@ To show the latest logs of a project:
   netzo logs --project=my-project
 
 To show the logs of a particular deployment:
-  netzo logs --project=my-project --deployment=1234567890ab
+  netzo logs --project=my-project --deployment=6405152d946bb1948d4b18ebc5431
 
-To show the logs of the production deployment:
-  netzo logs --project=my-project --prod
+To show the latest logs of a project (in development):
+  netzo logs --project=my-project --env=development
+
+To show the logs of a particular deployment (in development):
+  netzo logs --project=my-project --deployment=6405152d946bb1948d4b18ebc5431 --env=development
 
 USAGE:
     netzo logs [OPTIONS] [<PROJECT>]
 
 OPTIONS:
-        --deployment=<DEPLOYMENT_ID>   The id of the deployment you want to get the logs (defaults to latest deployment)
+        --deployment=<DEPLOYMENT_ID>   The ID of the deployment you want to stream logs for (defaults to latest deployment)
         --prod                         Select the production deployment
-    -p, --project=<PROJECT_UID>        The project you want to get the logs
-        --api-key=<API_KEY>            The API key to use (defaults to NETZO_API_KEY env var)
+    -p, --project=<PROJECT_UID>        The UID of the project you want to stream logs for
+        --api-key=<API_KEY>            The API key to use (defaults to NETZO_API_KEY environment variable)
 `
 
 export interface Args {

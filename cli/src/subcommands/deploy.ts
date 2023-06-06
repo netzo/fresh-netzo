@@ -32,7 +32,7 @@ OPTIONS:
         --no-static               Don't include the files in the CWD as static files
         --prod                    Create a production deployment (default is preview deployment)
     -p, --project=<PROJECT_UID>   The UID of the project to deploy to
-        --api-key=<API_KEY>       The API key to use (defaults to NETZO_API_KEY env var)
+        --api-key=<API_KEY>       The API key to use (defaults to NETZO_API_KEY environment variable)
         --dry-run                 Dry run the deployment process.
 `
 
