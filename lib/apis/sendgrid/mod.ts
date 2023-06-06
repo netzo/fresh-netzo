@@ -1,5 +1,5 @@
-import { createApi } from "../create-api/mod.ts";
-import { auth } from "../create-api/auth/mod.ts";
+import { createApi } from '../create-api/mod.ts'
+import { auth } from '../create-api/auth/mod.ts'
 
 /**
  * SDK constructor function for the Sendgrid API
@@ -8,22 +8,22 @@ import { auth } from "../create-api/auth/mod.ts";
  * @returns {object} - an object of multiple utilities for the API
  */
 export const sendgrid = ({
-  apiKey = Deno.env.get("SENDGRID_API_KEY") ?? "",
+  apiKey = Deno.env.get('SENDGRID_API_KEY') ?? '',
 }) => {
   const api = createApi({
-    baseURL: "https://api.sendgrid.com/v3",
+    baseURL: 'https://api.sendgrid.com/v3',
     headers: {
-      "content-type": "application/json",
+      'content-type': 'application/json',
     },
     async onRequest(ctx) {
       await auth({
-        type: "apiKey",
-        in: "header",
-        name: "Authorization",
+        type: 'apiKey',
+        in: 'header',
+        name: 'Authorization',
         value: `Bearer ${apiKey}`,
-      }, ctx);
+      }, ctx)
     },
-  });
+  })
 
-  return { api };
-};
+  return { api }
+}

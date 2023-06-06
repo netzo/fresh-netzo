@@ -1,9 +1,9 @@
 export interface Permissions {
-  net: boolean;
-  read: boolean;
-  write: boolean;
-  env: boolean;
-  run: boolean;
+  net: boolean
+  read: boolean
+  write: boolean
+  env: boolean
+  run: boolean
 }
 
 export function netzo(
@@ -18,45 +18,45 @@ export function netzo(
 ): Deno.ChildProcess {
   const deno = [
     Deno.execPath(),
-    "run",
-    "--no-check",
-  ];
+    'run',
+    '--no-check',
+  ]
 
-  if (permissions?.net) deno.push("--allow-net");
-  if (permissions?.read) deno.push("--allow-read");
-  if (permissions?.write) deno.push("--allow-write");
-  if (permissions?.env) deno.push("--allow-env");
-  if (permissions?.run) deno.push("--allow-run");
+  if (permissions?.net) deno.push('--allow-net')
+  if (permissions?.read) deno.push('--allow-read')
+  if (permissions?.write) deno.push('--allow-write')
+  if (permissions?.env) deno.push('--allow-env')
+  if (permissions?.run) deno.push('--allow-run')
 
-  deno.push(new URL("../netzo.ts", import.meta.url).toString());
+  deno.push(new URL('../netzo.ts', import.meta.url).toString())
 
-  const cmd = Deno.build.os == "linux"
-    ? ["bash", "-c", [...deno, ...args].join(" ")]
-    : [...deno, ...args];
+  const cmd = Deno.build.os == 'linux'
+    ? ['bash', '-c', [...deno, ...args].join(' ')]
+    : [...deno, ...args]
 
   return new Deno.Command(cmd[0], {
     args: cmd.slice(1),
-    stdin: "null",
-    stdout: "piped",
-    stderr: "piped",
-  }).spawn();
+    stdin: 'null',
+    stdout: 'piped',
+    stderr: 'piped',
+  }).spawn()
 }
 
 export interface TestOptions {
-  args: string[];
-  name?: string;
-  permissions?: Permissions;
+  args: string[]
+  name?: string
+  permissions?: Permissions
 }
 
 export function test(
   opts: TestOptions,
   fn: (proc: Deno.ChildProcess) => void | Promise<void>,
 ) {
-  const name = opts.name ?? ["netzo", ...opts.args].join(" ");
+  const name = opts.name ?? ['netzo', ...opts.args].join(' ')
   Deno.test(name, async () => {
-    const proc = netzo(opts.args, opts.permissions);
-    await fn(proc);
-  });
+    const proc = netzo(opts.args, opts.permissions)
+    await fn(proc)
+  })
 }
 
 export async function output(
@@ -65,10 +65,10 @@ export async function output(
   const [status, { stdout, stderr }] = await Promise.all([
     proc.status,
     proc.output(),
-  ]);
+  ])
   return [
     new TextDecoder().decode(stdout),
     new TextDecoder().decode(stderr),
     status,
-  ];
+  ]
 }

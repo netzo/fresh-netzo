@@ -11,7 +11,9 @@
       "exclude": [
         "action/node_modules/"
       ]
-    }
+    },
+    "semiColons": false,
+    "singleQuote": true
   },
   "lint": {
     "files": {

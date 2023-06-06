@@ -1,33 +1,33 @@
-import type { Plugin } from "../../deps.ts";
+import type { Plugin } from '../../deps.ts'
 
 declare global {
   interface Window {
-    __unocss: Record<string, unknown>;
+    __unocss: Record<string, unknown>
   }
 }
 
 // see https://unocss.dev/integrations/runtime#builds
 export type Options =
-  | "uno"
-  | "core"
-  | "attributify"
-  | "mini"
-  | Record<string, unknown>;
+  | 'uno'
+  | 'core'
+  | 'attributify'
+  | 'mini'
+  | Record<string, unknown>
 
-export default function unocss(options: Options = "uno"): Plugin {
+export default function unocss(options: Options = 'uno'): Plugin {
   return {
-    name: "unocss",
-    entrypoints: { "main": import.meta.resolve("./main.ts") },
+    name: 'unocss',
+    entrypoints: { 'main': import.meta.resolve('./main.ts') },
     render(ctx) {
-      ctx.render();
+      ctx.render()
       return {
         scripts: [
           {
-            entrypoint: "main",
+            entrypoint: 'main',
             state: options,
           },
         ],
-      };
+      }
     },
-  };
+  }
 }

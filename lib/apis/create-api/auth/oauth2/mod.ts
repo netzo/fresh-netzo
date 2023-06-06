@@ -4,7 +4,7 @@ import {
   AuthorizationOAuth2ClientCredentials,
   AuthorizationOAuth2Implicit,
   AuthorizationOAuth2PasswordCredentials,
-} from "../types.ts";
+} from '../types.ts'
 // import { OAuth2Client } from "https://deno.land/x/oauth2_client/mod.ts"
 
 /**
@@ -21,32 +21,32 @@ import {
  * @see https://darutk.medium.com/diagrams-and-movies-of-all-the-oauth-2-0-flows-194f3c3ade85
  */
 const DEFAULTS: AuthorizationOAuth2ClientCredentials = {
-  type: "oauth2",
-  grantType: "client_credentials",
-  headerPrefix: "Bearer",
+  type: 'oauth2',
+  grantType: 'client_credentials',
+  headerPrefix: 'Bearer',
   clientId:
-    "333607581312-m8un366ektgv0agc3q897ld1ep3dmr84.apps.googleusercontent.com",
-  clientSecret: "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",
-  authorizationUrl: "https://accounts.google.com/o/oauth2/auth",
-  scope: "https://www.googleapis.com/auth/drive",
-};
+    '333607581312-m8un366ektgv0agc3q897ld1ep3dmr84.apps.googleusercontent.com',
+  clientSecret: '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',
+  authorizationUrl: 'https://accounts.google.com/o/oauth2/auth',
+  scope: 'https://www.googleapis.com/auth/drive',
+}
 export const getTokenClientCredentialsFlow = async (
   authorization: AuthorizationOAuth2ClientCredentials = DEFAULTS,
 ) => {
-  const { clientId, clientSecret, authorizationUrl, scope } = authorization;
+  const { clientId, clientSecret, authorizationUrl, scope } = authorization
   const response = await fetch(authorizationUrl, {
-    method: "POST",
+    method: 'POST',
     headers: new Headers({
-      "content-type": "application/x-www-form-urlencoded",
+      'content-type': 'application/x-www-form-urlencoded',
       Authorization: `Basic ${btoa(`${clientId}:${clientSecret}`)}`,
     }),
     body: new URLSearchParams({
-      "grant_type": "client_credentials",
+      'grant_type': 'client_credentials',
       ...(scope && { scope }),
     }),
-  });
-  return response.json();
-};
+  })
+  return response.json()
+}
 
 /**
  * Resource Owner Password Credentials Flow (3-legged authorization)
@@ -55,23 +55,23 @@ export const getTokenPasswordCredentialsFlow = async (
   authorization: AuthorizationOAuth2PasswordCredentials,
 ) => {
   const { clientId, clientSecret, accessTokenUrl, username, password, scope } =
-    authorization;
+    authorization
   const response = await fetch(accessTokenUrl, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "content-type": "application/x-www-form-urlencoded",
+      'content-type': 'application/x-www-form-urlencoded',
     },
     body: new URLSearchParams({
-      grant_type: "password_credentials",
+      grant_type: 'password_credentials',
       client_id: clientId,
       client_secret: clientSecret,
       username,
       password,
       ...(scope && { scope }),
     }),
-  });
-  return response.json();
-};
+  })
+  return response.json()
+}
 
 /**
  * Implicit Flow (3-legged authorization)
@@ -79,21 +79,21 @@ export const getTokenPasswordCredentialsFlow = async (
 export const getTokenImplicitFlow = async (
   authorization: AuthorizationOAuth2Implicit,
 ) => {
-  const { clientId, authorizationUrl, redirectUrl, scope } = authorization;
+  const { clientId, authorizationUrl, redirectUrl, scope } = authorization
   const response = await fetch(authorizationUrl, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "content-type": "application/x-www-form-urlencoded",
+      'content-type': 'application/x-www-form-urlencoded',
     },
     body: new URLSearchParams({
-      grant_type: "implicit",
+      grant_type: 'implicit',
       client_id: clientId,
       redirect_uri: redirectUrl,
       ...(scope && { scope }),
     }),
-  });
-  return response.json();
-};
+  })
+  return response.json()
+}
 
 /**
  * Authorization Code Flow (3-legged authorization)
@@ -113,57 +113,57 @@ export const getTokenAuthorizationCodeFlow = async (
   authorization: AuthorizationOAuth2AuthorizationCode,
 ) => {
   const { clientId, clientSecret, accessTokenUrl, redirectUrl, scope } =
-    authorization;
+    authorization
 
   const getAuthorizationCode = async () => {
     const response = await fetch(accessTokenUrl, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "content-type": "application/x-www-form-urlencoded",
+        'content-type': 'application/x-www-form-urlencoded',
       },
       body: new URLSearchParams({
-        grant_type: "authorization_code",
+        grant_type: 'authorization_code',
         client_id: clientId,
         client_secret: clientSecret,
         redirect_uri: redirectUrl,
-        response_type: "code",
+        response_type: 'code',
         ...(scope && { scope }),
       }),
-    });
-    const code = response.json();
-    console.log(code);
-    return code;
-  };
+    })
+    const code = response.json()
+    console.log(code)
+    return code
+  }
 
   const response = await fetch(accessTokenUrl, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "content-type": "application/x-www-form-urlencoded",
+      'content-type': 'application/x-www-form-urlencoded',
     },
     body: new URLSearchParams({
-      grant_type: "authorization_code",
+      grant_type: 'authorization_code',
       client_id: clientId,
       client_secret: clientSecret,
       redirect_uri: redirectUrl,
       ...(scope && { scope }),
       code: await getAuthorizationCode(),
     }),
-  });
-  return response.json();
-};
+  })
+  return response.json()
+}
 
 export const getToken = async (authorization: AuthorizationOAuth2) => {
-  if (authorization.grantType === "client_credentials") {
-    return await getTokenClientCredentialsFlow(authorization);
+  if (authorization.grantType === 'client_credentials') {
+    return await getTokenClientCredentialsFlow(authorization)
   }
-  if (authorization.grantType === "password_credentials") {
-    return await getTokenPasswordCredentialsFlow(authorization);
+  if (authorization.grantType === 'password_credentials') {
+    return await getTokenPasswordCredentialsFlow(authorization)
   }
-  if (authorization.grantType === "implicit") {
-    return await getTokenImplicitFlow(authorization);
+  if (authorization.grantType === 'implicit') {
+    return await getTokenImplicitFlow(authorization)
   }
-  if (authorization.grantType === "authorization_code") {
-    return await getTokenAuthorizationCodeFlow(authorization);
+  if (authorization.grantType === 'authorization_code') {
+    return await getTokenAuthorizationCodeFlow(authorization)
   }
-  throw new Error("Grant type not supported");
-};
+  throw new Error('Grant type not supported')
+}

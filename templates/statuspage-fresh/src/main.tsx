@@ -1,7 +1,7 @@
 /** @jsx h */
-import { serve } from "http/server.ts";
-import { h } from "preact";
-import { renderToString } from "preact-render-to-string";
+import { serve } from 'http/server.ts'
+import { h } from 'preact'
+import { renderToString } from 'preact-render-to-string'
 import {
   Badge,
   Block,
@@ -12,17 +12,17 @@ import {
   Title,
   Tracking,
   TrackingBlock,
-} from "@tremor/react";
-import data from "./data.json" assert { type: "json" };
+} from '@tremor/react'
+import data from './data.json' assert { type: 'json' }
 
 interface Item {
-  name: string;
-  url: string;
-  status: "up" | "down" | "maintenance";
-  timestamp: string;
+  name: string
+  url: string
+  status: 'up' | 'down' | 'maintenance'
+  timestamp: string
 }
 
-const statusColors = { up: "emerald", down: "red", maintenance: "gray" };
+const statusColors = { up: 'emerald', down: 'red', maintenance: 'gray' }
 
 function Statuspage({ data }) {
   // TODO: add custom business logic to fetch and transform data to match Item interface
@@ -30,39 +30,39 @@ function Statuspage({ data }) {
     return array.reduce(
       (acc, obj) => ({ ...acc, [obj[key]]: (acc[obj[key]] || []).concat(obj) }),
       {},
-    );
-  };
+    )
+  }
 
-  const groupedData = groupByKey(data, "url");
+  const groupedData = groupByKey(data, 'url')
 
   const systemsIndownCount =
     Object.keys(groupedData).filter((key) =>
-      groupedData[key].at(-1).status === "down"
-    )?.length ?? 0;
+      groupedData[key].at(-1).status === 'down'
+    )?.length ?? 0
 
   const BadgeStatus = ({ status }) => (
-    <Badge text={status} color={statusColors[status]} size="xs" />
-  );
+    <Badge text={status} color={statusColors[status]} size='xs' />
+  )
 
   return (
-    <main style="padding: 24px 48px;">
-      <Flex justifyContent="justify-space-between">
-        <Flex justifyContent="justify-start" spaceX="space-x-2">
+    <main style='padding: 24px 48px;'>
+      <Flex justifyContent='justify-space-between'>
+        <Flex justifyContent='justify-start' spaceX='space-x-2'>
           <Title>Statuspage</Title>
         </Flex>
-        <a href="https://netzo.io" target="_blank">
+        <a href='https://netzo.io' target='_blank'>
           <img
-            src="https://netzo.io/images/built-with-netzo-light.svg"
-            style="height: 32px;"
+            src='https://netzo.io/images/built-with-netzo-light.svg'
+            style='height: 32px;'
           />
         </a>
       </Flex>
-      <Flex marginTop="mt-2" justifyContent="justify-start" spaceX="space-x-1">
+      <Flex marginTop='mt-2' justifyContent='justify-start' spaceX='space-x-1'>
         <Text>Tracks the</Text>
-        <BadgeStatus status="up" />,
-        <BadgeStatus status="down" />
+        <BadgeStatus status='up' />,
+        <BadgeStatus status='down' />
         <Text>and</Text>
-        <BadgeStatus status="maintenance" />
+        <BadgeStatus status='maintenance' />
         <Text>
           status of a (multiple) services over time. Note that the data used in
           this template is mock data and is not the real for the services.
@@ -73,48 +73,48 @@ function Statuspage({ data }) {
         ? (
           <Callout
             title={systemsIndownCount === 1
-              ? "1 system is down"
+              ? '1 system is down'
               : `${systemsIndownCount} systems are down`}
-            color={statusColors["down"]}
-            marginTop="mt-4"
+            color={statusColors['down']}
+            marginTop='mt-4'
           />
         )
         : (
           <Callout
-            title="All systems up"
-            color={statusColors["up"]}
-            marginTop="mt-3"
+            title='All systems up'
+            color={statusColors['up']}
+            marginTop='mt-3'
           />
         )}
 
-      <div style="margin-top: 36px;">
+      <div style='margin-top: 36px;'>
         {Object.values(groupedData).map((data, idx) => (
           <StatuspageCard data={data} key={idx} />
         ))}
       </div>
     </main>
-  );
+  )
 }
 
 function StatuspageCard({ data }) {
   return (
-    <Card marginTop="mt-5">
+    <Card marginTop='mt-5'>
       <Flex>
         <div>
           <Title>{data.at(-1).name}</Title>
-          <a href={data.at(-1).url} target="_blank">
+          <a href={data.at(-1).url} target='_blank'>
             <Text>{data.at(-1).url}</Text>
           </a>
         </div>
         <Badge
           text={data.at(-1).status}
           color={statusColors[data.at(-1).status]}
-          size="xs"
+          size='xs'
         />
       </Flex>
-      <Block spaceY="space-y-2">
+      <Block spaceY='space-y-2'>
         <Flex>
-          <Tracking marginTop="mt-3">
+          <Tracking marginTop='mt-3'>
             {data.map((item, index) => (
               <TrackingBlock
                 key={item._id}
@@ -125,12 +125,12 @@ function StatuspageCard({ data }) {
           </Tracking>
         </Flex>
       </Block>
-      <Flex marginTop="mt-3">
+      <Flex marginTop='mt-3'>
         <Text>{`${data.length || 0} minutes ago`}</Text>
         <Text>now</Text>
       </Flex>
     </Card>
-  );
+  )
 }
 
 function handler(req: Request): Promise<Response> {
@@ -139,21 +139,21 @@ function handler(req: Request): Promise<Response> {
       <head>
         <title>Statuspage | Netzo</title>
         <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/@tremor/react@1.0.7/dist/esm/tremor.css"
+          rel='stylesheet'
+          href='https://cdn.jsdelivr.net/npm/@tremor/react@1.0.7/dist/esm/tremor.css'
         />
       </head>
       <body>
         <Statuspage data={data} />
       </body>
     </html>
-  );
+  )
 
-  const html = renderToString(page);
+  const html = renderToString(page)
 
   return new Response(html, {
-    headers: { "content-type": "text/html" },
-  });
+    headers: { 'content-type': 'text/html' },
+  })
 }
 
-serve(handler);
+serve(handler)
