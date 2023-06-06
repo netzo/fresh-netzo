@@ -24,7 +24,7 @@ export default function flowbitePlugin(
 
   return {
     name: 'flowbite',
-    entrypoints: { 'main': import.meta.resolve('./plugin.ts') },
+    entrypoints: { 'main': import.meta.resolve('./main.ts') },
     render(ctx: PluginRenderContext) {
       ctx.render()
       return {
