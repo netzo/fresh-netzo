@@ -11,7 +11,7 @@ import manifest from './fresh.gen.ts'
 
 import twindPlugin from '$fresh/plugins/twind.ts'
 import twindConfig from './twind.config.ts'
-import unocss from 'https://deno.land/x/netzo@v0.1.68/lib/plugins/unocss/mod.ts'
+import unocss from 'https://deno.land/x/netzo@v0.1.69/lib/plugins/unocss/mod.ts'
 
 await start(manifest, {
   plugins: [
