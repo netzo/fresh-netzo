@@ -1,13 +1,13 @@
 /** @jsx h */
-import { h } from 'preact'
+import { h } from "preact";
 
 interface AppCardProps {
-  name: string
-  group: string
-  tags: string[]
-  logo: string
-  description: string
-  appLoginUrl: string
+  name: string;
+  group: string;
+  tags: string[];
+  logo: string;
+  description: string;
+  appLoginUrl: string;
 }
 
 export default ({
@@ -19,27 +19,27 @@ export default ({
   appLoginUrl,
 }: AppCardProps) => {
   const handleCardClick = () => {
-    window.open(appLoginUrl, '_blank')
-  }
+    window.open(appLoginUrl, "_blank");
+  };
 
   return (
     <div
-      class='card cursor-pointer border-1 hover:border-primary'
+      class="card cursor-pointer border-1 hover:border-primary"
       onClick={handleCardClick}
     >
       <figure>
-        <img src={logo} alt={name} class='object-contain max-h-12 max-w-12' />
+        <img src={logo} alt={name} class="object-contain max-h-12 max-w-12" />
       </figure>
-      <div class='card-body'>
-        <h2 class='card-title'>
+      <div class="card-body">
+        <h2 class="card-title">
           {name}
-          <div class='badge badge-primary badge-outline'>{group}</div>
+          <div class="badge badge-primary badge-outline">{group}</div>
         </h2>
         <p>{description}</p>
-        <div class='card-actions'>
-          {tags.map((tag) => <div class='badge badge-outline'>{tag}</div>)}
+        <div class="card-actions">
+          {tags.map((tag) => <div class="badge badge-outline">{tag}</div>)}
         </div>
       </div>
     </div>
-  )
-}
+  );
+};

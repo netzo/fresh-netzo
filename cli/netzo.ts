@@ -1,12 +1,12 @@
 #!/usr/bin/env -S deno run --allow-read --allow-write --allow-env --allow-net --allow-run --no-check
 
-import { parseArgs, semverGreaterThanOrEquals } from './deps.ts'
-import { error } from './src/console.ts'
-import deploySubcommand from './src/subcommands/deploy.ts'
-import upgradeSubcommand from './src/subcommands/upgrade.ts'
-import logsSubcommand from './src/subcommands/logs.ts'
-import { MINIMUM_DENO_VERSION, VERSION } from './src/version.ts'
-import { fetchReleases, getConfigPaths } from './src/utils/info.ts'
+import { parseArgs, semverGreaterThanOrEquals } from "./deps.ts";
+import { error } from "./src/console.ts";
+import deploySubcommand from "./src/subcommands/deploy.ts";
+import upgradeSubcommand from "./src/subcommands/upgrade.ts";
+import logsSubcommand from "./src/subcommands/logs.ts";
+import { MINIMUM_DENO_VERSION, VERSION } from "./src/version.ts";
+import { fetchReleases, getConfigPaths } from "./src/utils/info.ts";
 
 const help = `netzo ${VERSION}
 Command line tool for Netzo.
@@ -21,65 +21,65 @@ SUBCOMMANDS:
     deploy    Deploy a project with static files to Netzo
     upgrade   Upgrade netzo to the given version (defaults to latest)
     logs      Stream logs for the given project
-`
+`;
 
 if (!semverGreaterThanOrEquals(Deno.version.deno, MINIMUM_DENO_VERSION)) {
   error(
     `The Deno version you are using is too old. Please update to Deno ${MINIMUM_DENO_VERSION} or later. To do this run \`deno upgrade\`.`,
-  )
+  );
 }
 
 const args = parseArgs(Deno.args, {
   alias: {
-    'help': 'h',
-    'version': 'V',
-    'project': 'p',
+    "help": "h",
+    "version": "V",
+    "project": "p",
   },
   boolean: [
-    'help',
-    'prod',
-    'static',
-    'version',
-    'dry-run',
+    "help",
+    "prod",
+    "static",
+    "version",
+    "dry-run",
   ],
   string: [
-    'project',
-    'api-key',
-    'include',
-    'exclude',
-    'import-map',
-    'deployment',
+    "project",
+    "api-key",
+    "include",
+    "exclude",
+    "import-map",
+    "deployment",
   ],
   default: {
     static: true,
   },
-})
+});
 
 if (Deno.isatty(Deno.stdin.rid)) {
-  let latestVersion
+  let latestVersion;
   // Get the path to the update information json file.
-  const { updatePath } = getConfigPaths()
+  const { updatePath } = getConfigPaths();
   // Try to read the json file.
   const updateInfoJson = await Deno.readTextFile(updatePath).catch((error) => {
-    if (error.name == 'NotFound') return null
-    console.error(error)
-  })
+    if (error.name == "NotFound") return null;
+    console.error(error);
+  });
   if (updateInfoJson) {
     const updateInfo = JSON.parse(updateInfoJson) as {
-      lastFetched: number
-      latest: number
-    }
+      lastFetched: number;
+      latest: number;
+    };
     const moreThanADay =
-      Math.abs(Date.now() - updateInfo.lastFetched) > 24 * 60 * 60 * 1000
+      Math.abs(Date.now() - updateInfo.lastFetched) > 24 * 60 * 60 * 1000;
     // Fetch the latest release if it has been more than a day since the last
     // time the information about new version is fetched.
     if (moreThanADay) {
-      fetchReleases()
+      fetchReleases();
     } else {
-      latestVersion = updateInfo.latest
+      latestVersion = updateInfo.latest;
     }
   } else {
-    fetchReleases()
+    fetchReleases();
   }
 
   // If latestVersion is set we need to inform the user about a new release.
@@ -90,33 +90,33 @@ if (Deno.isatty(Deno.stdin.rid)) {
     console.log(
       [
         `A new release of netzo CLI is available: ${VERSION} -> ${latestVersion}`,
-        'To upgrade, run `netzo upgrade`',
+        "To upgrade, run `netzo upgrade`",
         `https://github.com/netzo/github-action/releases/tag/${latestVersion}\n`,
-      ].join('\n'),
-    )
+      ].join("\n"),
+    );
   }
 }
 
-const subcommand = args._.shift()
+const subcommand = args._.shift();
 switch (subcommand) {
-  case 'deploy':
-    await deploySubcommand(args)
-    break
-  case 'upgrade':
-    await upgradeSubcommand(args)
-    break
-  case 'logs':
-    await logsSubcommand(args)
-    break
+  case "deploy":
+    await deploySubcommand(args);
+    break;
+  case "upgrade":
+    await upgradeSubcommand(args);
+    break;
+  case "logs":
+    await logsSubcommand(args);
+    break;
   default:
     if (args.version) {
-      console.log(`netzo ${VERSION}`)
-      Deno.exit(0)
+      console.log(`netzo ${VERSION}`);
+      Deno.exit(0);
     }
     if (args.help) {
-      console.log(help)
-      Deno.exit(0)
+      console.log(help);
+      Deno.exit(0);
     }
-    console.error(help)
-    Deno.exit(1)
+    console.error(help);
+    Deno.exit(1);
 }

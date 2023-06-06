@@ -1,5 +1,5 @@
-import { createApi } from '../create-api/mod.ts'
-import { auth } from '../create-api/auth/mod.ts'
+import { createApi } from "../create-api/mod.ts";
+import { auth } from "../create-api/auth/mod.ts";
 
 /**
  * SDK constructor function for the JSONPlaceholder API
@@ -8,14 +8,14 @@ import { auth } from '../create-api/auth/mod.ts'
  */
 export const jsonplaceholder = () => {
   const api = createApi({
-    baseURL: 'https://jsonplaceholder.typicode.com',
+    baseURL: "https://jsonplaceholder.typicode.com",
     headers: {
-      'content-type': 'application/json',
+      "content-type": "application/json",
     },
     async onRequest(ctx) {
-      await auth({ type: 'none' }, ctx)
+      await auth({ type: "none" }, ctx);
     },
-  })
+  });
 
-  return { api }
-}
+  return { api };
+};

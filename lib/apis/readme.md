@@ -28,19 +28,19 @@ more details.
 ### Use existing API (e.g. Netzo API)
 
 ```ts
-import * as apis from 'https://deno.land/x/netzo/mod.ts'
+import * as apis from "https://deno.land/x/netzo/mod.ts";
 
-const { api } = apis.netzo({ apiKey: Deno.env.get('NETZO_API_KEY') })
-const users = await api.users.get()
+const { api } = apis.netzo({ apiKey: Deno.env.get("NETZO_API_KEY") });
+const users = await api.users.get();
 ```
 
 ### Create a custom HTTP API
 
 ```ts
-import { createApi } from 'https://deno.land/x/netzo/mod.ts'
+import { createApi } from "https://deno.land/x/netzo/mod.ts";
 
-const api = createApi({ baseURL: 'https://jsonplaceholder.typicode.com' })
-const users = await client.users.get()
+const api = createApi({ baseURL: "https://jsonplaceholder.typicode.com" });
+const users = await client.users.get();
 ```
 
 ## License

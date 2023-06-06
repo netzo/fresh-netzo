@@ -1,9 +1,5 @@
 {
   "lock": false,
-  "fmt": {
-    "semiColons": false,
-    "singleQuote": true
-  },
   "tasks": {
     "test": "deno test -A --unstable",
     "check": "deno fmt --check && deno lint",

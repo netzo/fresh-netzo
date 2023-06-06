@@ -1,4 +1,4 @@
-import { TextLineStream } from '../../deps.ts'
+import { TextLineStream } from "../../deps.ts";
 
 import {
   Deployment,
@@ -9,115 +9,115 @@ import {
   Paginated,
   Project,
   PushDeploymentRequest,
-} from './api.types.ts'
+} from "./api.types.ts";
 
 export interface RequestOptions {
-  method?: string
-  body?: unknown
+  method?: string;
+  body?: unknown;
 }
 
 export class APIError extends Error {
-  code: string
-  xDenoRay: string | null
+  code: string;
+  xDenoRay: string | null;
 
-  name = 'APIError'
+  name = "APIError";
 
   constructor(code: string, message: string, xDenoRay: string | null) {
-    super(message)
-    this.code = code
-    this.xDenoRay = xDenoRay
+    super(message);
+    this.code = code;
+    this.xDenoRay = xDenoRay;
   }
 
   toString() {
-    let error = `${this.name}: ${this.message}`
+    let error = `${this.name}: ${this.message}`;
     if (this.xDenoRay !== null) {
-      error += `\nx-deno-ray: ${this.xDenoRay}`
-      error += '\nIf you encounter this error frequently,' +
-        ' contact us at help@netzo.io with the above x-deno-ray.'
+      error += `\nx-deno-ray: ${this.xDenoRay}`;
+      error += "\nIf you encounter this error frequently," +
+        " contact us at help@netzo.io with the above x-deno-ray.";
     }
-    return error
+    return error;
   }
 }
 
 export class API {
-  #endpoint: string
-  #apiKey: string
+  #endpoint: string;
+  #apiKey: string;
 
   constructor(authorization: string, endpoint: string) {
-    this.#apiKey = authorization
-    this.#endpoint = endpoint
+    this.#apiKey = authorization;
+    this.#endpoint = endpoint;
   }
 
   static fromApiKey(apiKey: string) {
-    const endpoint = Deno.env.get('NETZO_API_ENDPOINT') ??
-      'https://api.netzo.io'
-    return new API(apiKey, endpoint)
+    const endpoint = Deno.env.get("NETZO_API_ENDPOINT") ??
+      "https://api.netzo.io";
+    return new API(apiKey, endpoint);
   }
 
   async #request(path: string, opts: RequestOptions = {}): Promise<Response> {
-    const url = `${this.#endpoint}${path}`
-    const method = opts.method ?? 'GET'
+    const url = `${this.#endpoint}${path}`;
+    const method = opts.method ?? "GET";
     const body = opts.body !== undefined
       ? opts.body instanceof FormData ? opts.body : JSON.stringify(opts.body)
-      : undefined
+      : undefined;
     const headers = {
-      'accept': 'application/json',
-      [this.#apiKey.length === 64 ? 'x-api-key' : 'x-env-var-api-key']:
+      "accept": "application/json",
+      [this.#apiKey.length === 64 ? "x-api-key" : "x-env-var-api-key"]:
         this.#apiKey,
       ...(opts.body !== undefined
         ? opts.body instanceof FormData
           ? {}
-          : { 'content-type': 'application/json' }
+          : { "content-type": "application/json" }
         : {}),
-    }
-    return await fetch(url, { method, headers, body })
+    };
+    return await fetch(url, { method, headers, body });
   }
 
   async #requestJson<T>(path: string, opts?: RequestOptions): Promise<T> {
-    const res = await this.#request(path, opts)
-    if (!res.headers.get('content-type')?.startsWith('application/json')) {
-      const text = await res.text()
-      throw new Error(`Expected JSON, got '${text}'`)
+    const res = await this.#request(path, opts);
+    if (!res.headers.get("content-type")?.startsWith("application/json")) {
+      const text = await res.text();
+      throw new Error(`Expected JSON, got '${text}'`);
     }
-    const json = await res.json()
+    const json = await res.json();
     if (res.status !== 200) {
-      const xDenoRay = res.headers.get('x-deno-ray')
-      throw new APIError(json.code, json.message, xDenoRay)
+      const xDenoRay = res.headers.get("x-deno-ray");
+      throw new APIError(json.code, json.message, xDenoRay);
     }
-    return json
+    return json;
   }
 
   async *#requestStream<T>(
     path: string,
     opts?: RequestOptions,
   ): AsyncIterable<T> {
-    const res = await this.#request(path, opts)
+    const res = await this.#request(path, opts);
     if (res.status !== 200) {
-      const json = await res.json()
-      const xDenoRay = res.headers.get('x-deno-ray')
-      throw new APIError(json.code, json.message, xDenoRay)
+      const json = await res.json();
+      const xDenoRay = res.headers.get("x-deno-ray");
+      throw new APIError(json.code, json.message, xDenoRay);
     }
     if (res.body === null) {
-      throw new Error('Stream ended unexpectedly')
+      throw new Error("Stream ended unexpectedly");
     }
 
     const lines = res.body
       .pipeThrough(new TextDecoderStream())
-      .pipeThrough(new TextLineStream())
+      .pipeThrough(new TextLineStream());
     for await (const line of lines) {
-      if (line === '') return
-      yield JSON.parse(line)
+      if (line === "") return;
+      yield JSON.parse(line);
     }
   }
 
   async getProject(id: string): Promise<Project | null> {
     try {
-      return await this.#requestJson(`/projects/${id}`)
+      return await this.#requestJson(`/projects/${id}`);
     } catch (err) {
-      if (err instanceof APIError && err.code === 'projectNotFound') {
-        return null
+      if (err instanceof APIError && err.code === "projectNotFound") {
+        return null;
       }
-      throw err
+      throw err;
     }
   }
 
@@ -125,13 +125,13 @@ export class API {
     try {
       const { data: [project] } = await this.#requestJson(
         `/projects?uid=${projectUid}&$limit=1`,
-      ) as Paginated<Project>
-      return project
+      ) as Paginated<Project>;
+      return project;
     } catch (err) {
-      if (err instanceof APIError && err.code === 'projectNotFound') {
-        return null
+      if (err instanceof APIError && err.code === "projectNotFound") {
+        return null;
       }
-      throw err
+      throw err;
     }
   }
 
@@ -139,20 +139,20 @@ export class API {
     try {
       const { data } = await this.#requestJson(
         `/deployments?projectId=${projectId}`,
-      ) as Paginated<Deployment>
-      return data
+      ) as Paginated<Deployment>;
+      return data;
     } catch (err) {
-      if (err instanceof APIError && err.code === 'projectNotFound') {
-        return null
+      if (err instanceof APIError && err.code === "projectNotFound") {
+        return null;
       }
-      throw err
+      throw err;
     }
   }
 
   getLogs(projectId: string, deploymentId: string): AsyncIterable<Logs> {
     return this.#requestStream(
       `/logs?projectId=${projectId}&deploymentId=${deploymentId}`,
-    )
+    );
   }
 
   // TODO: implement an endpoint (e.g. `/projects/${id}/assets/negotiate`)
@@ -163,20 +163,20 @@ export class API {
     id: string,
     manifest: { entries: Record<string, ManifestEntry> },
   ): Promise<string[]> {
-    const result: string[] = []
+    const result: string[] = [];
     // deno-lint-ignore no-explicit-any
     function walk(obj: any) {
       // deno-lint-ignore no-prototype-builtins
-      if (obj.hasOwnProperty('gitSha1')) result.push(obj.gitSha1)
-      if (typeof obj === 'object') {
+      if (obj.hasOwnProperty("gitSha1")) result.push(obj.gitSha1);
+      if (typeof obj === "object") {
         for (const key in obj) {
           // deno-lint-ignore no-prototype-builtins
-          if (obj.hasOwnProperty(key)) walk(obj[key])
+          if (obj.hasOwnProperty(key)) walk(obj[key]);
         }
       }
     }
-    await walk(manifest)
-    return result
+    await walk(manifest);
+    return result;
 
     // return await this.#requestJson(`/projects/${id}/assets/negotiate`, {
     //   method: 'POST',
@@ -191,24 +191,24 @@ export class API {
   // and use the existing progress indicator in the CLI by returning AsyncIterable
   async *pushDeployJson(
     projectId: string,
-    body: Pick<Project, 'configuration' | 'fs'>,
+    body: Pick<Project, "configuration" | "fs">,
   ): AsyncIterable<DeploymentProgress> {
     try {
-      const paths = Object.keys(body.fs)
-      const total = paths.length
-      let i = 0
+      const paths = Object.keys(body.fs);
+      const total = paths.length;
+      let i = 0;
       do {
-        yield { type: 'load', url: paths[i], seen: i++, total }
-      } while (i < paths.length)
+        yield { type: "load", url: paths[i], seen: i++, total };
+      } while (i < paths.length);
       const result: Project = await this.#requestJson(
         `/projects/${projectId}`,
-        { method: 'PATCH', body },
-      )
-      yield { type: 'uploadComplete' }
+        { method: "PATCH", body },
+      );
+      yield { type: "uploadComplete" };
       // deno-lint-ignore no-explicit-any
-      yield { ...result, type: 'success' } as any
+      yield { ...result, type: "success" } as any;
     } catch (err) {
-      yield { type: 'error', code: 'unknown', ctx: err.message }
+      yield { type: "error", code: "unknown", ctx: err.message };
     }
   }
 
@@ -217,15 +217,15 @@ export class API {
     request: PushDeploymentRequest,
     files: Uint8Array[],
   ): AsyncIterable<DeploymentProgress> {
-    const form = new FormData()
-    form.append('request', JSON.stringify(request))
+    const form = new FormData();
+    form.append("request", JSON.stringify(request));
     for (const bytes of files) {
-      form.append('file', new Blob([bytes]))
+      form.append("file", new Blob([bytes]));
     }
     return this.#requestStream(
       `/projects/${projectId}/deployment_with_assets`,
-      { method: 'POST', body: form },
-    )
+      { method: "POST", body: form },
+    );
   }
 
   gitHubActionsDeploy(
@@ -233,14 +233,14 @@ export class API {
     request: GitHubActionsDeploymentRequest,
     files: Uint8Array[],
   ): AsyncIterable<DeploymentProgress> {
-    const form = new FormData()
-    form.append('request', JSON.stringify(request))
+    const form = new FormData();
+    form.append("request", JSON.stringify(request));
     for (const bytes of files) {
-      form.append('file', new Blob([bytes]))
+      form.append("file", new Blob([bytes]));
     }
     return this.#requestStream(
       `/projects/${projectId}/deployment_github_actions`,
-      { method: 'POST', body: form },
-    )
+      { method: "POST", body: form },
+    );
   }
 }
