@@ -12,6 +12,7 @@
     // templates: "dev:fresh": "deno task --cwd=templates/fresh/src dev"
   },
   "imports": {
+    "@/": "./",
     "$fresh/": "https://deno.land/x/fresh@1.1.2/",
     "preact": "https://esm.sh/preact@10.11.0",
     "preact/": "https://esm.sh/preact@10.11.0/",

@@ -4,7 +4,6 @@
   "name": "Statuspage",
   "description": "A status page to track the 'up', 'down' and 'maintenance' status of (multiple) services over time.",
   "labels": [
-    "usecase",
     "jsx"
   ],
   "display": {

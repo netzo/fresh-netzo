@@ -2,7 +2,7 @@
 
 An open-source source template for 'Landing Page'.
 
-> Forked from
+> Edited from
 > [themesberg/tailwind-landing-page](https://github.com/themesberg/tailwind-landing-page).
 
 ## Configuration

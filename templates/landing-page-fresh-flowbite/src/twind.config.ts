@@ -2,8 +2,6 @@ import { Options } from '$fresh/plugins/twind.ts'
 
 export default {
   selfURL: import.meta.url,
-  content: ['index.html', './node_modules/flowbite/**/*.js'],
-  darkMode: 'class',
   theme: {
     extend: {
       colors: {
@@ -22,7 +20,4 @@ export default {
       },
     },
   },
-  plugins: [
-    // require('flowbite/plugin')
-  ],
 } as Options

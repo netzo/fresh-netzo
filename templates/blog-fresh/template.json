@@ -4,7 +4,6 @@
   "name": "Blog",
   "description": "A simple blog template",
   "labels": [
-    "usecase",
     "blog"
   ],
   "display": {

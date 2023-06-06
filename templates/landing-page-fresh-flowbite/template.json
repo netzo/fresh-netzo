@@ -4,7 +4,6 @@
   "name": "Landing Page",
   "description": "A landing page built with Tailwind CSS and the Flowbite Blocks system.",
   "labels": [
-    "usecase",
     "landing-page",
     "flowbite"
   ],

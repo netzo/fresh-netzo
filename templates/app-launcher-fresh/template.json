@@ -4,7 +4,6 @@
   "name": "App Launcher",
   "description": "An app launcher template for Netzo",
   "labels": [
-    "usecase",
     "app-launcher"
   ],
   "display": {
