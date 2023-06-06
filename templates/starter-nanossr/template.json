@@ -4,6 +4,7 @@
   "name": "NanoSSR",
   "description": "",
   "labels": [
+    "starter",
     "framework"
   ],
   "display": {

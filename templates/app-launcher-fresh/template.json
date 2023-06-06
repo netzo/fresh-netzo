@@ -4,7 +4,7 @@
   "name": "App Launcher",
   "description": "An app launcher template for Netzo",
   "labels": [
-    "app-launcher"
+    "fresh"
   ],
   "display": {
     "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/app-launcher-fresh/icon.svg"

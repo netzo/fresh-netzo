@@ -5,6 +5,7 @@
   "description": "A landing page built with Tailwind CSS and the Flowbite Blocks system.",
   "labels": [
     "landing-page",
+    "fresh",
     "flowbite"
   ],
   "display": {

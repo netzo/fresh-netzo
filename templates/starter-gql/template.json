@@ -4,8 +4,8 @@
   "name": "GQL",
   "description": "A GraphQL server using gql.",
   "labels": [
-    "framework",
-    "graphql"
+    "starter",
+    "gql"
   ],
   "display": {
     "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-gql/icon.webp"

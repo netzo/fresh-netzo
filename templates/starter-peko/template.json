@@ -4,6 +4,7 @@
   "name": "Peko",
   "description": "",
   "labels": [
+    "starter",
     "framework"
   ],
   "display": {

@@ -5,7 +5,8 @@
   "description": "A file upload portal to ease data processing and syncing from files.",
   "labels": [
     "form",
-    "file"
+    "file",
+    "fresh"
   ],
   "display": {
     "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/file-upload-portal-fresh/icon.svg"

@@ -133,7 +133,8 @@ look at other templates for further reference.
   "name": "Sift",
   "description": "An HTTP server using sift that responds with different payload types based on route. Netzo includes a routing and utility library for Deno Deploy. Its route handler signature is simple and easy to understand. Handlers accept a Request and return a Response.",
   "labels": [
-    "framework"
+    "starter",
+    "sift"
   ],
   "display": {
     "avatar": "https://api.iconify.design/mdi-routes.svg?color=%2344c47d"

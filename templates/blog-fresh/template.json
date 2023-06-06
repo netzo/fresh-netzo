@@ -4,7 +4,8 @@
   "name": "Blog",
   "description": "A simple blog template",
   "labels": [
-    "blog"
+    "blog",
+    "fresh"
   ],
   "display": {
     "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/blog-fresh/icon.svg"

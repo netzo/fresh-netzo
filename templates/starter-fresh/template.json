@@ -4,6 +4,7 @@
   "name": "Fresh",
   "description": "A basic starting template for the Fresh framework",
   "labels": [
+    "starter",
     "framework"
   ],
   "display": {

@@ -4,7 +4,8 @@
   "name": "Statuspage",
   "description": "A status page to track the 'up', 'down' and 'maintenance' status of (multiple) services over time.",
   "labels": [
-    "jsx"
+    "usecase",
+    "fresh"
   ],
   "display": {
     "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/statuspage-fresh/icon.svg"

@@ -4,6 +4,7 @@
   "name": "Oak",
   "description": "An HTTP server using router to handle POST and GET requests separately. Router by denosaurs is a tiny router framework for Deno Deploy. It can route based on method, route, and has customizable handlers for cases such as no match, errors, or unknown methods.",
   "labels": [
+    "starter",
     "framework"
   ],
   "display": {

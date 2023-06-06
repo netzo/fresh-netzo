@@ -3,5 +3,9 @@
   "tasks": {
     "start": "deno run -A --watch=static/,routes/ dev.ts"
   },
+  "fmt": {
+    "semiColons": false,
+    "singleQuote": true
+  },
   "importMap": "./import_map.json"
 }

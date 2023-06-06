@@ -7,6 +7,10 @@
     "types:generate": "deno types > deno-runtime-types.ts"
     // templates: "dev:fresh": "deno task --cwd=templates/fresh/src dev"
   },
+  "fmt": {
+    "semiColons": false,
+    "singleQuote": true
+  },
   "imports": {
     "@/": "./",
     "$fresh/": "https://deno.land/x/fresh@1.1.2/",
