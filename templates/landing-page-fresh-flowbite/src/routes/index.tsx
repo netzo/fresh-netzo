@@ -14,10 +14,6 @@ export default () => {
         <title>{`${title} | Netzo`}</title>
         <meta name='description' content={description} />
         <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
-        <link
-          href='https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css'
-          rel='stylesheet'
-        />
       </Head>
 
       <body>
@@ -1232,8 +1228,6 @@ export default () => {
             </div>
           </div>
         </footer>
-
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js' />
       </body>
     </>
   )
