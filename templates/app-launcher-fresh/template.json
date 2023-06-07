@@ -30,13 +30,13 @@
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/app-launcher-fresh/src/.vscode/settings.json"
       },
       "components/AppCard.tsx": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/app-launcher-fresh/src/islands/AppCard.tsx"
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/app-launcher-fresh/src/components/AppCard.tsx"
       },
       "components/FilterBar.tsx": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/app-launcher-fresh/src/islands/FilterBar.tsx"
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/app-launcher-fresh/src/components/FilterBar.tsx"
       },
       "components/SearchBar.tsx": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/app-launcher-fresh/src/islands/SearchBar.tsx"
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/app-launcher-fresh/src/components/SearchBar.tsx"
       },
       "data/apps.json": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/app-launcher-fresh/src/data/apps.json"
