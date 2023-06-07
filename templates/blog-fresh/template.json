@@ -1,6 +1,6 @@
 {
   "uid": "blog-fresh",
-  "status": "published",
+  "status": "requested",
   "name": "Blog",
   "description": "A simple blog template",
   "labels": [

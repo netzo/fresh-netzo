@@ -1,6 +1,6 @@
 {
   "uid": "sales-dashboard-fresh",
-  "status": "published",
+  "status": "requested",
   "name": "Sales Dashboard",
   "description": "A sales dashboard to track performance of sales teams in real-time, and provides a variety of metrics to help make informed decisions.",
   "labels": [
