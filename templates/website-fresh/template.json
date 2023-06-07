@@ -1,0 +1,72 @@
+{
+  "uid": "website-fresh",
+  "status": "published",
+  "name": "Website",
+  "description": "A landing page built with Tailwind CSS and the Flowbite Blocks system.",
+  "labels": [
+    "website",
+    "fresh"
+  ],
+  "display": {
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-fresh/icon.svg"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/templates/website-fresh"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-fresh/src/readme.md"
+    }
+  ],
+  "item": {
+    "_type": "project",
+    "uid": "website-fresh",
+    "fs": {
+      ".vscode/extensions.json": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-fresh/src/.vscode/extensions.json"
+      },
+      ".vscode/settings.json": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-fresh/src/.vscode/settings.json"
+      },
+      "routes/index.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-fresh/src/routes/index.tsx"
+      },
+      "static/favicon.svg": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-fresh/src/static/favicon.svg"
+      },
+      ".gitignore": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-fresh/src/.gitignore"
+      },
+      "deno.json": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-fresh/src/deno.json"
+      },
+      "import_map.json": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-fresh/src/import_map.json"
+      },
+      "dev.ts": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-fresh/src/dev.ts"
+      },
+      "fresh.gen.ts": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-fresh/src/fresh.gen.ts"
+      },
+      "main.ts": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-fresh/src/main.ts"
+      },
+      "readme.md": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-fresh/src/readme.md"
+      },
+      "twind.config.ts": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-fresh/src/twind.config.ts"
+      }
+    },
+    "configuration": {
+      "entrypoint": "main.ts",
+      "envVars": {},
+      "permissions": {
+        "net": true
+      }
+    }
+  }
+}

@@ -7,11 +7,10 @@ import AppCard from '../components/AppCard.tsx'
 
 interface App {
   name: string
-  group: string
   tags: string[]
   logo: string
   description: string
-  appLoginUrl: string
+  href: string
 }
 
 interface Props {
@@ -48,26 +47,27 @@ export default ({ apps }: Props) => {
   )
 
   return (
-    <div class='flex flex-col w-full h-[calc(100%-96px)] overflow-y-auto overflow-x-hidden'>
-      <div class='w-full py-2 px-10'>
-        <SearchBar onSearch={handleSearch} />
-      </div>
-      <div class='w-full py-2 px-10'>
-        <FilterBar
-          tags={Array.from(new Set(apps.flatMap((app) => app.tags)))}
-          selectedTags={selectedTags}
-          onTagSelect={handleTagSelect}
-        />
-      </div>
-      <div class='flex-1 grid grid-cols-4 gap-8 py-6 px-10'>
+    <div class='flex flex-col w-full h-[calc(100%-96px)]'>
+      <header class='sticky top-0 bg-white dark:bg-gray-900'>
+        <div class='w-full mx-auto py-4 px-10'>
+          <SearchBar onSearch={handleSearch} />
+        </div>
+        <div class='w-full mx-auto pb-6 px-10'>
+          <FilterBar
+            tags={Array.from(new Set(apps.flatMap((app) => app.tags)))}
+            selectedTags={selectedTags}
+            onTagSelect={handleTagSelect}
+          />
+        </div>
+      </header>
+      <div class='flex-1 grid grid-cols-4 gap-8 pb-6 px-10'>
         {filteredApps.value.map((app: App) => (
           <AppCard
             name={app.name}
-            group={app.group}
             tags={app.tags}
             logo={app.logo}
             description={app.description}
-            appLoginUrl={app.appLoginUrl}
+            href={app.href}
           />
         ))}
       </div>

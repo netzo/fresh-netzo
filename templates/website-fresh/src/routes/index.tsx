@@ -4,7 +4,7 @@ import { Fragment, h } from 'preact'
 import { Head } from '$fresh/runtime.ts'
 
 const meta = {
-  title: 'Landing Page',
+  title: 'Website',
   description:
     'A landing page built with Tailwind CSS and the Flowbite Blocks system.',
 }

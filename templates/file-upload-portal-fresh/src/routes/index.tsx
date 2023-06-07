@@ -44,15 +44,17 @@ export default () => {
 
       <body class='flex flex-col'>
         <header className='flex justify-between items-center py-6'>
-          <span className='flex items-center'>
-            <img src={asset('/logo.svg')} className='block h-8' />
-            <div className='ml-4'>
-              <h1>{meta.title}</h1>
-              <p>{meta.description}</p>
-            </div>
-          </span>
+          <div>
+            <h1 class='text-2xl mb-1 font-semibold dark:text-white'>
+              {meta.title}
+            </h1>
+            <p class='text-sm dark:text-gray-300'>{meta.description}</p>
+          </div>
           <a href='https://netzo.io' target='_blank'>
-            <img src={asset('/built-with-netzo.svg')} className='block h-8' />
+            <img
+              src='https://netzo.io/images/built-with-netzo-light.svg'
+              class='h-10'
+            />
           </a>
         </header>
 

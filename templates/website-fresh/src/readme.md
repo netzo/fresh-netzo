@@ -1,9 +1,9 @@
-# landing-page-fresh-flowbite
+# website-fresh
 
-An open-source source template for 'Landing Page'.
+An open-source source template for 'Website'.
 
 > Edited from
-> [themesberg/tailwind-landing-page](https://github.com/themesberg/tailwind-landing-page).
+> [themesberg/tailwind-website](https://github.com/themesberg/tailwind-website).
 
 ## Configuration
 
@@ -21,7 +21,7 @@ This will watch the project directory and restart as necessary.
 
 ## Links
 
-- [Homepage](https://app.netzo.io/templates/landing-page-fresh-flowbite)
+- [Homepage](https://app.netzo.io/templates/website-fresh)
 
 <div align="center">
   <h4>© Netzo</h4>

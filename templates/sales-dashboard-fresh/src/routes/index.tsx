@@ -2,7 +2,6 @@
 /** @jsxFrag Fragment */
 import { Fragment, h } from 'preact'
 import { asset, Head } from '$fresh/runtime.ts'
-import { Flex, Text, Title } from '@tremor/react'
 import Shell from '../islands/Shell.tsx'
 
 const meta = {
@@ -20,22 +19,26 @@ export default () => {
         <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
       </Head>
 
-      <main className='p-6'>
-        <Flex justifyContent='justify-between' spaceX='space-x-2'>
-          <Flex justifyContent='justify-start'>
-            <img src={asset('/logo.svg')} className='h-8 mr-6' />
-            <div>
-              <Title>{meta.title}</Title>
-              <Text marginTop='mt-2'>{meta.description}</Text>
-            </div>
-          </Flex>
+      <body class='flex flex-col'>
+        <header className='flex justify-between items-center py-6'>
+          <div>
+            <h1 class='text-2xl mb-1 font-semibold dark:text-white'>
+              {meta.title}
+            </h1>
+            <p class='text-sm dark:text-gray-300'>{meta.description}</p>
+          </div>
           <a href='https://netzo.io' target='_blank'>
-            <img src={asset('/built-with-netzo.svg')} className='h-8' />
+            <img
+              src='https://netzo.io/images/built-with-netzo-light.svg'
+              class='h-10'
+            />
           </a>
-        </Flex>
+        </header>
 
-        <Shell />
-      </main>
+        <main class='flex-1'>
+          <Shell />
+        </main>
+      </body>
     </>
   )
 }

@@ -1,5 +1,4 @@
 import { Plugin } from '$fresh/server.ts'
-import { PluginRenderContext } from '$fresh/src/server/types.ts'
 
 export type FlowbitePluginOptions = {
   additionalStylesheets?: string[]
@@ -23,7 +22,7 @@ export default (options: FlowbitePluginOptions = {}): Plugin => {
   return {
     name: 'flowbite',
     entrypoints: { 'main': import.meta.resolve('./main.ts') },
-    render(ctx: PluginRenderContext) {
+    render(ctx) {
       ctx.render()
       return {
         scripts: [

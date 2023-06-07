@@ -7,7 +7,7 @@ import apps from '../data/apps.json' assert { type: 'json' }
 
 const meta = {
   title: 'App Launcher',
-  description: 'An list of quick links for important apps and services.',
+  description: 'Quick links for important apps and services.',
 }
 
 export default () => {
@@ -18,17 +18,19 @@ export default () => {
         <meta name='description' content={meta.description} />
         <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
       </Head>
-      <body class='flex flex-col'>
+      <body class='flex-col text-bg-white dark:bg-gray-900 dark:text-white'>
         <header class='flex justify-between items-center py-6 px-10'>
-          <span class='flex items-center'>
-            <img src={asset('/logo.svg')} class='block h-8' />
-            <div class='ml-4'>
-              <h1>{meta.title}</h1>
-              <p>{meta.description}</p>
-            </div>
-          </span>
+          <div>
+            <h1 class='text-2xl mb-1 font-semibold dark:text-white'>
+              {meta.title}
+            </h1>
+            <p class='text-sm dark:text-gray-300'>{meta.description}</p>
+          </div>
           <a href='https://netzo.io' target='_blank'>
-            <img src={asset('/built-with-netzo.svg')} class='block h-8' />
+            <img
+              src='https://netzo.io/images/built-with-netzo-light.svg'
+              class='h-10'
+            />
           </a>
         </header>
 
