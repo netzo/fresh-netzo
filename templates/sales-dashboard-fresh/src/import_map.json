@@ -10,6 +10,7 @@
     "twind": "https://esm.sh/twind@0.16.19",
     "twind/": "https://esm.sh/twind@0.16.19/",
     "$std/": "https://deno.land/std@0.190.0/",
-    "@tremor/react": "https://esm.sh/@tremor/react@2.9.1?alias=react:preact/compat,react-dom:preact/compat&deps=preact@10.13.1"
+    "@tremor/react": "https://esm.sh/@tremor/react@2.9.1?alias=react:preact/compat,react-dom:preact/compat&deps=preact@10.13.1",
+    "netzo/": "https://deno.land/x/netzo@v0.1.73/"
   }
 }

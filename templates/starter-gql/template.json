@@ -27,8 +27,8 @@
       "readme.md": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-gql/src/readme.md"
       },
-      "main.tsx": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-gql/src/main.tsx"
+      "main.ts": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-gql/src/main.ts"
       }
     },
     "configuration": {

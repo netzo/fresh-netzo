@@ -13,9 +13,9 @@ import {
   Tracking,
   TrackingBlock,
 } from '@tremor/react'
-import data from './data.json' assert { type: 'json' }
+import events from './data/events.json' assert { type: 'json' }
 
-interface Item {
+interface Event {
   name: string
   url: string
   status: 'up' | 'down' | 'maintenance'
@@ -24,16 +24,15 @@ interface Item {
 
 const statusColors = { up: 'emerald', down: 'red', maintenance: 'gray' }
 
-function Statuspage({ data }) {
-  // TODO: add custom business logic to fetch and transform data to match Item interface
-  const groupByKey = (array: Item[], key: string): Record<string, Item[]> => {
+function Statuspage({ events }) {
+  const groupByKey = (array: Event[], key: string): Record<string, Event[]> => {
     return array.reduce(
       (acc, obj) => ({ ...acc, [obj[key]]: (acc[obj[key]] || []).concat(obj) }),
       {},
     )
   }
 
-  const groupedData = groupByKey(data, 'url')
+  const groupedData = groupByKey(events, 'url')
 
   const systemsIndownCount =
     Object.keys(groupedData).filter((key) =>
@@ -88,34 +87,34 @@ function Statuspage({ data }) {
         )}
 
       <div style='margin-top: 36px;'>
-        {Object.values(groupedData).map((data, idx) => (
-          <StatuspageCard data={data} key={idx} />
+        {Object.values(groupedData).map((event, idx) => (
+          <StatuspageCard event={event} key={idx} />
         ))}
       </div>
     </main>
   )
 }
 
-function StatuspageCard({ data }) {
+function StatuspageCard({ event }) {
   return (
     <Card marginTop='mt-5'>
       <Flex>
         <div>
-          <Title>{data.at(-1).name}</Title>
-          <a href={data.at(-1).url} target='_blank'>
-            <Text>{data.at(-1).url}</Text>
+          <Title>{event.at(-1).name}</Title>
+          <a href={event.at(-1).url} target='_blank'>
+            <Text>{event.at(-1).url}</Text>
           </a>
         </div>
         <Badge
-          text={data.at(-1).status}
-          color={statusColors[data.at(-1).status]}
+          text={event.at(-1).status}
+          color={statusColors[event.at(-1).status]}
           size='xs'
         />
       </Flex>
       <Block spaceY='space-y-2'>
         <Flex>
           <Tracking marginTop='mt-3'>
-            {data.map((item, index) => (
+            {event.map((item, index) => (
               <TrackingBlock
                 key={item._id}
                 color={statusColors[item.status]}
@@ -126,7 +125,7 @@ function StatuspageCard({ data }) {
         </Flex>
       </Block>
       <Flex marginTop='mt-3'>
-        <Text>{`${data.length || 0} minutes ago`}</Text>
+        <Text>{`${event.length || 0} minutes ago`}</Text>
         <Text>now</Text>
       </Flex>
     </Card>
@@ -144,7 +143,7 @@ function handler(req: Request): Promise<Response> {
         />
       </head>
       <body>
-        <Statuspage data={data} />
+        <Statuspage event={event} />
       </body>
     </html>
   )

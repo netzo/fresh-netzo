@@ -11,7 +11,7 @@ import manifest from './fresh.gen.ts'
 
 import twindPlugin from '$fresh/plugins/twind.ts'
 import twindConfig from './twind.config.ts'
-import flowbitePlugin from 'https://deno.land/x/netzo@v0.1.73/lib/plugins/flowbite/mod.ts'
+import flowbitePlugin from 'netzo/lib/plugins/flowbite/mod.ts'
 
 await start(manifest, {
   plugins: [

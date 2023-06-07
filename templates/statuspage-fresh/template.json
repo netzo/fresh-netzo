@@ -24,8 +24,8 @@
     "_type": "project",
     "uid": "statuspage-fresh",
     "fs": {
-      "readme.md": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/statuspage-fresh/src/readme.md"
+      "data/events.json": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/statuspage-fresh/src/data/events.json"
       },
       "import_map.json": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/statuspage-fresh/src/import_map.json"
@@ -33,8 +33,8 @@
       "main.tsx": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/statuspage-fresh/src/main.tsx"
       },
-      "data.json": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/statuspage-fresh/src/data.json"
+      "readme.md": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/statuspage-fresh/src/readme.md"
       }
     },
     "configuration": {
