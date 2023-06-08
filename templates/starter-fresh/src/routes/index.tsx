@@ -11,13 +11,13 @@ export default function Home() {
         <title>Fresh App</title>
         <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
       </Head>
-      <div className='p-4 mx-auto max-w-screen-md'>
+      <div class='p-4 mx-auto max-w-screen-md'>
         <img
           src='/logo.svg'
-          className='w-32 h-32'
+          class='w-32 h-32'
           alt='the fresh logo: a sliced lemon dripping with juice'
         />
-        <p className='my-6'>
+        <p class='my-6'>
           Welcome to `fresh`. Try updating this message in the
           ./routes/index.tsx file, and refresh.
         </p>

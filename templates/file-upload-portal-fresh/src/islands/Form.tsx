@@ -7,24 +7,24 @@ import { signal } from '@preact/signals'
 export default () => {
   const isLoading = signal(false)
   return (
-    <form method='POST' className=''>
-      <div className='form-control w-full max-w-xs'>
-        <label className='label'>
-          <span className='label-text'>Pick a file</span>
-          <span className='label-text-alt'>Alt label</span>
+    <form method='POST' class=''>
+      <div class='form-control w-full max-w-xs'>
+        <label class='label'>
+          <span class='label-text'>Pick a file</span>
+          <span class='label-text-alt'>Alt label</span>
         </label>
         <input
           type='file'
           name='files'
           multiple
-          className='file-input file-input-bordered w-full max-w-xs'
+          class='file-input file-input-bordered w-full max-w-xs'
         />
       </div>
-      <div className='flex justify-center'>
+      <div class='flex justify-center'>
         <button
           disabled
           type='submit'
-          className={isLoading ? 'btn btn-block' : 'btn btn-block loading'}
+          class={isLoading ? 'btn btn-block' : 'btn btn-block loading'}
         >
           Upload files
         </button>

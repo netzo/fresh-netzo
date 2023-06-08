@@ -39,9 +39,6 @@
       },
       "components/header.tsx": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/file-upload-portal-fresh/src/components/header.tsx"
-      },
-      "components/main.css": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/file-upload-portal-fresh/src/static/main.css"
       }
     },
     "configuration": {

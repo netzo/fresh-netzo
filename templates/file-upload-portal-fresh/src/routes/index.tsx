@@ -1,7 +1,7 @@
 /** @jsx h */
 /** @jsxFrag Fragment */
 import { Fragment, h } from 'preact'
-import { asset, Head } from '$fresh/runtime.ts'
+import { Head } from '$fresh/runtime.ts'
 import { Handlers } from '$fresh/server.ts'
 import { signal } from '@preact/signals'
 import Form from '../islands/Form.tsx'
@@ -39,11 +39,10 @@ export default () => {
         <title>{`${meta.title} | Netzo`}</title>
         <meta name='description' content={meta.description} />
         <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
-        <link rel='stylesheet' href={asset('/main.css')} />
       </Head>
 
       <body class='flex flex-col'>
-        <header className='flex justify-between items-center py-6'>
+        <header class='flex justify-between items-center py-6 px-10'>
           <div>
             <h1 class='text-2xl mb-1 font-semibold dark:text-white'>
               {meta.title}
