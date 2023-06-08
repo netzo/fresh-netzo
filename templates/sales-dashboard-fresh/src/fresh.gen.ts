@@ -4,7 +4,7 @@
 
 import config from './deno.json' assert { type: 'json' }
 import * as $0 from './routes/index.tsx'
-import * as $$0 from './islands/ChartCard.tsx'
+import * as $$0 from './islands/DateRangePicker.tsx'
 import * as $$1 from './islands/MetricCard.tsx'
 import * as $$2 from './islands/Shell.tsx'
 import * as $$3 from './islands/TableCard.tsx'
@@ -14,7 +14,7 @@ const manifest = {
     './routes/index.tsx': $0,
   },
   islands: {
-    './islands/ChartCard.tsx': $$0,
+    './islands/DateRangePicker.tsx': $$0,
     './islands/MetricCard.tsx': $$1,
     './islands/Shell.tsx': $$2,
     './islands/TableCard.tsx': $$3,

@@ -2,10 +2,10 @@
 /** @jsxFrag Fragment */
 import { Fragment, h } from 'preact'
 import { signal } from '@preact/signals'
-import { Card, Grid, Tab, TabList } from '@tremor/react'
+import { Grid } from '@tremor/react'
+import DateRangePicker from './DateRangePicker.tsx'
 import MetricCard, { type Category } from './MetricCard.tsx'
 import TableCard from './TableCard.tsx'
-// import ChartCard from './ChartCard.tsx'
 
 const categories: Category[] = [
   {
@@ -36,35 +36,17 @@ const selectedView = signal('1')
 export default function Home() {
   return (
     <>
-      <TabList
-        defaultValue='1'
-        onValueChange={(value) => selectedView.value = value}
-        className='mt-6'
-      >
-        <Tab value='1' text='Overview' />
-        <Tab value='2' text='Detail' />
-      </TabList>
+      <div className='flex justify-end items-center pb-4'>
+        <DateRangePicker />
+      </div>
 
-      {selectedView.value === '1'
-        ? (
-          <>
-            <Grid numColsMd={2} numColsLg={3} className='gap-6 mt-6'>
-              {categories.map((item) => (
-                <MetricCard key={item.title} item={item} />
-              ))}
-            </Grid>
+      <Grid numColsMd={2} numColsLg={3} className='gap-6'>
+        {categories.map((item) => <MetricCard key={item.title} item={item} />)}
+      </Grid>
 
-            <div className='mt-6'>
-              <TableCard />
-            </div>
-          </>
-        )
-        : (
-          <div className='mt-6'>
-            {/* <ChartCard /> */}
-            <TableCard />
-          </div>
-        )}
+      <div className='mt-6'>
+        <TableCard />
+      </div>
     </>
   )
 }

@@ -1,6 +1,6 @@
 {
   "uid": "sales-dashboard-fresh",
-  "status": "requested",
+  "status": "published",
   "name": "Sales Dashboard",
   "description": "A sales dashboard to track performance of sales teams in real-time, and provides a variety of metrics to help make informed decisions.",
   "labels": [
@@ -30,8 +30,8 @@
       ".vscode/settings.json": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard-fresh/src/.vscode/settings.json"
       },
-      "islands/ChartCard.tsx": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard-fresh/src/islands/ChartCard.tsx"
+      "islands/DateRangePicker.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard-fresh/src/islands/DateRangePicker.tsx"
       },
       "islands/MetricCard.tsx": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard-fresh/src/islands/MetricCard.tsx"
