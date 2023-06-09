@@ -1,0 +1,48 @@
+{
+  "uid": "starter-rpc",
+  "status": "published",
+  "name": "RPC",
+  "description": "A JSONRPC server router",
+  "labels": [
+    "starter",
+    "rcp"
+  ],
+  "display": {
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-rpc/icon.webp"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/templates/starter-rpc"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-rpc/src/readme.md"
+    }
+  ],
+  "item": {
+    "_type": "project",
+    "uid": "starter-rpc",
+    "fs": {
+      ".vscode/extensions.json": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-rpc/src/.vscode/extensions.json"
+      },
+      ".vscode/settings.json": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-rpc/src/.vscode/settings.json"
+      },
+      "readme.md": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-rpc/src/readme.md"
+      },
+      "main.ts": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-rpc/src/main.ts"
+      }
+    },
+    "configuration": {
+      "entrypoint": "main.ts",
+      "envVars": {},
+      "permissions": {
+        "net": true
+      }
+    }
+  }
+}
