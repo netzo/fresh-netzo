@@ -24,6 +24,12 @@
     "_type": "project",
     "uid": "starter-gql",
     "fs": {
+      ".vscode/extensions.json": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-gql/src/.vscode/extensions.json"
+      },
+      ".vscode/settings.json": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-gql/src/.vscode/settings.json"
+      },
       "readme.md": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-gql/src/readme.md"
       },
@@ -32,7 +38,7 @@
       }
     },
     "configuration": {
-      "entrypoint": "main.tsx",
+      "entrypoint": "main.ts",
       "envVars": {},
       "permissions": {
         "net": true

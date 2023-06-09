@@ -24,6 +24,12 @@
     "_type": "project",
     "uid": "statuspage-fresh",
     "fs": {
+      ".vscode/extensions.json": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/statuspage-fresh/src/.vscode/extensions.json"
+      },
+      ".vscode/settings.json": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/statuspage-fresh/src/.vscode/settings.json"
+      },
       "data/events.json": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/statuspage-fresh/src/data/events.json"
       },

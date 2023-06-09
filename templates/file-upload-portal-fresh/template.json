@@ -25,6 +25,12 @@
     "_type": "project",
     "uid": "file-upload-portal-fresh",
     "fs": {
+      ".vscode/extensions.json": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/file-upload-portal-fresh/src/.vscode/extensions.json"
+      },
+      ".vscode/settings.json": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/file-upload-portal-fresh/src/.vscode/settings.json"
+      },
       "readme.md": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/file-upload-portal-fresh/src/readme.md"
       },
