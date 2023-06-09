@@ -153,6 +153,12 @@ look at other templates for further reference.
     "_type": "project",
     "uid": "starter-sift",
     "fs": {
+      ".vscode/extensions.json": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-sift/src/.vscode/extensions.json"
+      },
+      ".vscode/settings.json": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-sift/src/.vscode/settings.json"
+      },
       "readme.md": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-sift/src/readme.md"
       },
