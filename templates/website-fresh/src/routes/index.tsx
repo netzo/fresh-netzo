@@ -2,6 +2,7 @@
 /** @jsxFrag Fragment */
 import { Fragment, h } from 'preact'
 import { Head } from '$fresh/runtime.ts'
+import { PageProps } from '$fresh/server.ts'
 
 const meta = {
   title: 'Website',
@@ -9,7 +10,7 @@ const meta = {
     'A landing page built with Tailwind CSS and the Flowbite Blocks system.',
 }
 
-export default () => {
+export default (props: PageProps) => {
   return (
     <>
       <Head>

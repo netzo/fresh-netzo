@@ -1,7 +1,7 @@
 /** @jsx h */
 /** @jsxFrag Fragment */
 import { Fragment, h } from 'preact'
-import { Head } from '$fresh/runtime.ts'
+import { asset, Head } from '$fresh/runtime.ts'
 import App from '../islands/App.tsx'
 import apps from '../data/apps.json' assert { type: 'json' }
 
@@ -19,7 +19,7 @@ export default () => {
         <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
       </Head>
 
-      <body class='flex flex-col text-bg-white dark:bg-gray-900 dark:text-white'>
+      <body class='flex-col text-bg-white dark:bg-gray-900 dark:text-white'>
         <header class='flex justify-between items-center py-6 px-10'>
           <div>
             <h1 class='text-2xl mb-1 font-semibold dark:text-white'>

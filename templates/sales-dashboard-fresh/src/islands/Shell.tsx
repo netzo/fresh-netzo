@@ -36,15 +36,15 @@ const selectedView = signal('1')
 export default function Home() {
   return (
     <>
-      <div className='flex justify-end items-center pb-4'>
+      <div class='flex justify-end items-center pb-4'>
         <DateRangePicker />
       </div>
 
-      <Grid numColsMd={2} numColsLg={3} className='gap-6'>
+      <Grid numColsMd={2} numColsLg={3} class='gap-6'>
         {categories.map((item) => <MetricCard key={item.title} item={item} />)}
       </Grid>
 
-      <div className='mt-6'>
+      <div class='mt-6'>
         <TableCard />
       </div>
     </>

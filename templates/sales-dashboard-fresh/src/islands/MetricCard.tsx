@@ -54,10 +54,10 @@ export default ({ item }: { item: Category }) => {
       <Flex
         justifyContent='start'
         alignItems='baseline'
-        className='truncate space-x-3'
+        class='truncate space-x-3'
       >
         <Metric>{item.metric}</Metric>
-        <Text className='truncate'>from {item.metricPrev}</Text>
+        <Text class='truncate'>from {item.metricPrev}</Text>
       </Flex>
     </Card>
   )

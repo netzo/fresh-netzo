@@ -104,18 +104,18 @@ export default () => {
         <TableHead>
           <TableRow>
             <TableHeaderCell>Name</TableHeaderCell>
-            <TableHeaderCell className='text-right'>Leads</TableHeaderCell>
-            <TableHeaderCell className='text-right'>
+            <TableHeaderCell class='text-right'>Leads</TableHeaderCell>
+            <TableHeaderCell class='text-right'>
               {' '}
               Sales ($){' '}
             </TableHeaderCell>
-            <TableHeaderCell className='text-right'>
+            <TableHeaderCell class='text-right'>
               {' '}
               Quota ($){' '}
             </TableHeaderCell>
-            <TableHeaderCell className='text-right'>Variance</TableHeaderCell>
-            <TableHeaderCell className='text-right'>Region</TableHeaderCell>
-            <TableHeaderCell className='text-right'>Status</TableHeaderCell>
+            <TableHeaderCell class='text-right'>Variance</TableHeaderCell>
+            <TableHeaderCell class='text-right'>Region</TableHeaderCell>
+            <TableHeaderCell class='text-right'>Status</TableHeaderCell>
           </TableRow>
         </TableHead>
 
@@ -123,12 +123,12 @@ export default () => {
           {sales.map((item) => (
             <TableRow key={item.name}>
               <TableCell>{item.name}</TableCell>
-              <TableCell className='text-right'>{item.leads}</TableCell>
-              <TableCell className='text-right'>{item.sales}</TableCell>
-              <TableCell className='text-right'>{item.quota}</TableCell>
-              <TableCell className='text-right'>{item.variance}</TableCell>
-              <TableCell className='text-right'>{item.region}</TableCell>
-              <TableCell className='text-right'>
+              <TableCell class='text-right'>{item.leads}</TableCell>
+              <TableCell class='text-right'>{item.sales}</TableCell>
+              <TableCell class='text-right'>{item.quota}</TableCell>
+              <TableCell class='text-right'>{item.variance}</TableCell>
+              <TableCell class='text-right'>{item.region}</TableCell>
+              <TableCell class='text-right'>
                 <BadgeDelta deltaType={item.deltaType} size='xs'>
                   {item.delta}
                 </BadgeDelta>

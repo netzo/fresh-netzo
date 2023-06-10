@@ -6,5 +6,8 @@ export default function main(options: Options = 'uno') {
     injectScript(
       `https://cdn.jsdelivr.net/npm/@unocss/runtime/${options}.global.js`,
     )
-  } else if (typeof options === 'object') window.__unocss = options
+  } else if (typeof options === 'object') {
+    injectScript(`https://cdn.jsdelivr.net/npm/@unocss/runtime`)
+    window.__unocss = options
+  }
 }
