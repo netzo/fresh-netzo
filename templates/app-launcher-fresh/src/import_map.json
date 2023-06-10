@@ -10,6 +10,6 @@
     "twind": "https://esm.sh/twind@0.16.19",
     "twind/": "https://esm.sh/twind@0.16.19/",
     "$std/": "https://deno.land/std@0.187.0/",
-    "netzo/": "https://deno.land/x/netzo@v0.1.74/"
+    "netzo/": "https://deno.land/x/netzo@v0.1.75/"
   }
 }
