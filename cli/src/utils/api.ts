@@ -191,7 +191,7 @@ export class API {
   // and use the existing progress indicator in the CLI by returning AsyncIterable
   async *pushDeployJson(
     projectId: string,
-    body: Pick<Project, 'configuration' | 'fs'>,
+    body: Pick<Project, 'deploymentId' | 'configuration' | 'fs'>,
   ): AsyncIterable<DeploymentProgress> {
     try {
       const paths = Object.keys(body.fs)

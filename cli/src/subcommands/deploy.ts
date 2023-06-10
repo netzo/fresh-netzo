@@ -218,6 +218,8 @@ async function deploy(opts: DeployOpts): Promise<void> {
     permissions = { net: true },
   } = project.configuration ?? {}
   const progress = api.pushDeployJson(project._id, {
+    // deno-lint-ignore no-explicit-any
+    ...(opts.prod && { deploymentId: 'production' }) as any,
     configuration: { entrypoint, importMap, envVars, envVarsDev, permissions },
     fs: buildFS(manifest?.entries, files),
   })
