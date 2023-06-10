@@ -1,4 +1,4 @@
-{
+export default {
   "timeline": {
     "soundtrack": {
       "src": "{{soundTrack}}",
