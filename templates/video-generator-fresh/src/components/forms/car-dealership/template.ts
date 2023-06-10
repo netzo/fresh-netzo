@@ -1,4 +1,4 @@
-{
+export default {
   "timeline": {
     "soundtrack": {
       "src": "https://shotstack-assets.s3.ap-southeast-2.amazonaws.com/music/unminus/kring.mp3",
