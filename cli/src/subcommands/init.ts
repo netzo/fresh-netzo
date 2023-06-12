@@ -20,7 +20,6 @@ USAGE:
     netzo init [OPTIONS] <template>
 
 OPTIONS:
-        --api-key=<API_KEY>   The API key to use (defaults to NETZO_API_KEY environment variable)
     -h, --help                Prints help information
         --dir                 The directory path to initialize project in (defaults to <template>)
         --dry-run             Dry run the initialization process
@@ -31,7 +30,6 @@ ARGS:
 
 export interface Args {
   help: boolean
-  apiKey: string | null
   dir: string | null
   dryRun: boolean
 }
@@ -40,7 +38,6 @@ export interface Args {
 export default async function (rawArgs: Record<string, any>): Promise<void> {
   const args: Args = {
     help: !!rawArgs.help,
-    apiKey: rawArgs['api-key'] ? String(rawArgs['api-key']) : null,
     dir: rawArgs.dir ? String(rawArgs.dir) : null,
     dryRun: !!rawArgs['dry-run'],
   }
@@ -55,11 +52,6 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     // @ts-ignore: types of question module are broken due to function overloading
     : await question('list', 'Select a template:', await getTemplateUids())
 
-  // const apiKey = args.apiKey ?? Deno.env.get('NETZO_API_KEY') ?? null
-  // if (apiKey === null) {
-  //   console.error(help)
-  //   error('Missing API key. Set via --api-key or NETZO_API_KEY.')
-  // }
   if (rawArgs._.length > 2) {
     console.error(help)
     error('Too many positional arguments given.')
@@ -92,15 +84,9 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
 
 async function getTemplateUids() {
   const base = 'https://raw.githubusercontent.com/netzo/netzo/main/templates'
-  const response = await fetch(`${base}/templates.json`,
-    {
-      headers: {
-        accept: 'application/json',
-        'content-type': 'application/json',
-        'cache-control': 'no-cache',
-      },
-    },
-  )
+  const response = await fetch(`${base}/templates.json`, {
+    headers: { accept: 'application/json', 'cache-control': 'no-cache' },
+  })
   const allUrls: string[] = await response.json()
   const urls = [...new Set(allUrls)] // remove possible
   const pattern = `${base}/(.*)/template.json` // extract UID from URL
