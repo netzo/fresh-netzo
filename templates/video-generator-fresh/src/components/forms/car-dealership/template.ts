@@ -1,11 +1,10 @@
 export default {
   'timeline': {
     'soundtrack': {
-      'src':
-        'https://shotstack-assets.s3.ap-southeast-2.amazonaws.com/music/unminus/kring.mp3',
-      'effect': 'fadeOut',
+      'src': '{{soundTrack}}',
+      'effect': '{{effect}}',
     },
-    'background': '#000000',
+    'background': '{{background}}',
     'cache': false,
     'tracks': [
       {
@@ -13,7 +12,7 @@ export default {
           {
             'asset': {
               'type': 'html',
-              'html': '<p data-html-type="text">{{Vehicle_Year}}</p>',
+              'html': '<p data-html-type="text">{{year}}</p>',
               'css':
                 'p { color: #ffffff; font-size: 100px; font-family: Montserrat ExtraBold; text-align: left; }',
               'width': 844,
@@ -40,7 +39,7 @@ export default {
           {
             'asset': {
               'type': 'html',
-              'html': '<p data-html-type="text">{{Vehicle_Make}}</p>',
+              'html': '<p data-html-type="text">{{make}}</p>',
               'css':
                 'p { color: #ffffff; font-size: 80px; font-family: Montserrat ExtraBold; text-align: left }',
               'width': 1031,
@@ -67,7 +66,7 @@ export default {
           {
             'asset': {
               'type': 'html',
-              'html': '<p data-html-type="text">{{Vehicle_Model}}</p>',
+              'html': '<p data-html-type="text">{{model}}</p>',
               'css':
                 'p { color: #ffffff; font-size: 80px; font-family: Montserrat SemiBold; text-align: left; }',
               'width': 1019,
@@ -90,7 +89,7 @@ export default {
           {
             'asset': {
               'type': 'html',
-              'html': '<p data-html-type="text">{{Vehicle_Description}}</p>',
+              'html': '<p data-html-type="text">{{description}}</p>',
               'css':
                 'p { color: #ffffff; font-size: 40px; font-family: Montserrat SemiBold; text-align: left; }',
               'width': 1648,
@@ -117,7 +116,7 @@ export default {
           {
             'asset': {
               'type': 'image',
-              'src': '{{First_image}}',
+              'src': '{{firstImage}}',
             },
             'start': 0,
             'length': 5,
@@ -141,7 +140,7 @@ export default {
           {
             'asset': {
               'type': 'html',
-              'html': '<p data-html-type="text">{{Vehicle_Engine_Type}}</p>',
+              'html': '<p data-html-type="text">{{engineType}}</p>',
               'css':
                 'p { color: #ffffff; font-size: 40px; font-family: Montserrat SemiBold; text-align: left }',
               'width': 620,
@@ -164,7 +163,7 @@ export default {
           {
             'asset': {
               'type': 'html',
-              'html': '<p data-html-type="text">{{Vehicle_kms}}</p>',
+              'html': '<p data-html-type="text">{{kilometers}}</p>',
               'css':
                 'p { color: #ffffff; font-size: 70px; font-family: Montserrat ExtraBold; text-align: left; }',
               'width': 600,
@@ -214,7 +213,7 @@ export default {
           {
             'asset': {
               'type': 'image',
-              'src': '{{First_image}}',
+              'src': '{{secondImage}}',
             },
             'start': 5.7,
             'length': 4.3,
@@ -237,7 +236,7 @@ export default {
           {
             'asset': {
               'type': 'image',
-              'src': '{{Second_image}}',
+              'src': '{{thirdImage}}',
             },
             'position': 'center',
             'offset': {
@@ -261,7 +260,7 @@ export default {
           {
             'asset': {
               'type': 'image',
-              'src': '{{Third_image}}',
+              'src': '{{fourthImage}}',
             },
             'effect': 'zoomIn',
             'offset': {
@@ -308,7 +307,7 @@ export default {
           {
             'asset': {
               'type': 'image',
-              'src': '{{First_Image}}',
+              'src': '{{fifthImage}}',
             },
             'start': 11,
             'length': 7,
@@ -332,7 +331,7 @@ export default {
           {
             'asset': {
               'type': 'image',
-              'src': '{{Second_Image}}',
+              'src': '{{sixthImage}}',
             },
             'start': 17,
             'length': 4,
@@ -354,7 +353,7 @@ export default {
           {
             'asset': {
               'type': 'image',
-              'src': '{{Third_Image}}',
+              'src': '{{seventhImage}}',
             },
             'start': 20,
             'length': 6,
@@ -376,7 +375,7 @@ export default {
           {
             'asset': {
               'type': 'html',
-              'html': '<p data-html-type="text">{{Vehicle_Price}}</p>',
+              'html': '<p data-html-type="text">{{price}}</p>',
               'css':
                 'p { color: #ffffff; font-size: 120px; font-family: Montserrat ExtraBold; text-align: center; }',
               'width': 1311,
@@ -399,8 +398,7 @@ export default {
           {
             'asset': {
               'type': 'html',
-              'html':
-                '<p data-html-type="text">{{Vehicle_Price_Disclaimer}}</p>',
+              'html': '<p data-html-type="text">{{priceDisclaimer}}</p>',
               'css':
                 'p { color: #ffffff; font-size: 36px; font-family: Montserrat SemiBold; text-align: left; }',
               'width': 883,
@@ -423,7 +421,7 @@ export default {
           {
             'asset': {
               'type': 'html',
-              'html': '<p data-html-type="text">{{Vehicle_Price_Method}}</p>',
+              'html': '<p data-html-type="text">{{priceMethod}}</p>',
               'css':
                 'p { color: #ffffff; font-size: 50px; font-family: Montserrat ExtraBold; text-align: left; }',
               'width': 672,
@@ -450,7 +448,7 @@ export default {
           {
             'asset': {
               'type': 'image',
-              'src': '{{Dealer_logo}}',
+              'src': '{{dealerLogo}}',
             },
             'start': 30.8,
             'length': 5.2,
@@ -468,7 +466,7 @@ export default {
           {
             'asset': {
               'type': 'html',
-              'html': '<p data-html-type="text">{{Dealer_website}}</p>',
+              'html': '<p data-html-type="text">{{dealerWebsite}}</p>',
               'css':
                 'p { color: #ffffff; font-size: 50px; font-family: Montserrat SemiBold; text-align: center; }',
               'width': 1025,
@@ -494,7 +492,7 @@ export default {
           {
             'asset': {
               'type': 'image',
-              'src': '{{First_Image}}',
+              'src': '{{eighthImage}}',
             },
             'start': 25,
             'length': 8,
