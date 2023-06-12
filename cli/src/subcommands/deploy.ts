@@ -33,7 +33,7 @@ OPTIONS:
         --no-static               Don't include the files in the CWD as static files
         --prod                    Create a production deployment (default is preview deployment)
     -p, --project=<PROJECT_UID>   The UID of the project to deploy to
-        --dry-run                 Dry run the deployment process.
+        --dry-run                 Dry run the deployment process
 
 ARGS:
     <entrypoint>                  The file path to the entrypoint file (e.g. main.tsx)

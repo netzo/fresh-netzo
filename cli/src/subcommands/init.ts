@@ -23,7 +23,7 @@ OPTIONS:
         --api-key=<API_KEY>   The API key to use (defaults to NETZO_API_KEY environment variable)
     -h, --help                Prints help information
         --dir                 The directory path to initialize project in (defaults to <template>)
-        --dry-run             Dry run the initialization process.
+        --dry-run             Dry run the initialization process
 
 ARGS:
     <template>                The UID of the template (omit to list options)
@@ -44,15 +44,17 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     dir: rawArgs.dir ? String(rawArgs.dir) : null,
     dryRun: !!rawArgs['dry-run'],
   }
-  const template = typeof rawArgs._[0] === 'string'
-    ? rawArgs._[0]
-    // @ts-ignore: types of question module are broken due to function overloading
-    : await question('list', 'Select a template:', await getTemplateUids())
 
   if (args.help) {
     console.log(help)
     Deno.exit(0)
   }
+
+  const template = typeof rawArgs._[0] === 'string'
+    ? rawArgs._[0]
+    // @ts-ignore: types of question module are broken due to function overloading
+    : await question('list', 'Select a template:', await getTemplateUids())
+
   // const apiKey = args.apiKey ?? Deno.env.get('NETZO_API_KEY') ?? null
   // if (apiKey === null) {
   //   console.error(help)

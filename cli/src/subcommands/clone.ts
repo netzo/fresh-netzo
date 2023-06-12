@@ -14,7 +14,7 @@ USAGE:
 OPTIONS:
         --api-key=<API_KEY>        The API key to use (defaults to NETZO_API_KEY environment variable)
     -h, --help                     Prints help information
-        --dry-run                  Dry run the initialization process.
+        --dry-run                  Dry run the cloning process
 
 ARGS:
     <project>                    The UID of the project (e.g. starter-fresh)

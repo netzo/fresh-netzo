@@ -4,6 +4,7 @@ import { output, test } from './utils.ts'
 test({ args: [] }, async (proc) => {
   const [stdout, stderr, { code }] = await output(proc)
   assertStringIncludes(stderr, 'SUBCOMMANDS:')
+  assertStringIncludes(stderr, 'init ')
   assertStringIncludes(stderr, 'deploy ')
   assertStringIncludes(stderr, 'upgrade ')
   assertEquals(code, 1)
@@ -27,8 +28,17 @@ test({ args: ['--version'] }, async (proc) => {
 test({ args: ['-h'] }, async (proc) => {
   const [stdout, stderr, { code }] = await output(proc)
   assertStringIncludes(stdout, 'SUBCOMMANDS:')
+  assertStringIncludes(stdout, 'init ')
   assertStringIncludes(stdout, 'deploy ')
   assertStringIncludes(stdout, 'upgrade ')
+  assertEquals(code, 0)
+  assertEquals(stderr, '')
+})
+
+test({ args: ['init', '-h'] }, async (proc) => {
+  const [stdout, stderr, { code }] = await output(proc)
+  assertStringIncludes(stdout, 'USAGE:')
+  assertStringIncludes(stdout, 'netzo init')
   assertEquals(code, 0)
   assertEquals(stderr, '')
 })
