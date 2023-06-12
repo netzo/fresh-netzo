@@ -2,6 +2,7 @@
 
 import { parseArgs, semverGreaterThanOrEquals } from './deps.ts'
 import { error } from './src/console.ts'
+import initSubcommand from './src/subcommands/init.ts'
 import deploySubcommand from './src/subcommands/deploy.ts'
 import upgradeSubcommand from './src/subcommands/upgrade.ts'
 import logsSubcommand from './src/subcommands/logs.ts'
@@ -11,13 +12,14 @@ import { fetchReleases, getConfigPaths } from './src/utils/info.ts'
 const help = `netzo ${VERSION}
 Command line tool for Netzo.
 
-To create a new project:
-  deno run -A -r https://fresh.deno.dev my-project
+To create a new project from a template:
+  netzo init
 
 To deploy a local project:
   netzo deploy --project=my-project ./main.ts
 
 SUBCOMMANDS:
+    init      Create a project from an existing template (see https://app.netzo.io/templates)
     deploy    Deploy a project with static files to Netzo
     upgrade   Upgrade netzo to the given version (defaults to latest)
     logs      Stream logs for the given project
@@ -99,6 +101,9 @@ if (Deno.isatty(Deno.stdin.rid)) {
 
 const subcommand = args._.shift()
 switch (subcommand) {
+  case 'init':
+    await initSubcommand(args)
+    break
   case 'deploy':
     await deploySubcommand(args)
     break

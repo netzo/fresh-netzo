@@ -22,7 +22,7 @@ To ignore the node_modules directory while deploying:
   netzo deploy --project=my-project --exclude=node_modules main.tsx
 
 USAGE:
-    netzo deploy [OPTIONS] <ENTRYPOINT>
+    netzo deploy [OPTIONS] <entrypoint>
 
 OPTIONS:
         --exclude=<PATTERNS>      Exclude files that match this pattern
@@ -34,6 +34,9 @@ OPTIONS:
     -p, --project=<PROJECT_UID>   The UID of the project to deploy to
         --api-key=<API_KEY>       The API key to use (defaults to NETZO_API_KEY environment variable)
         --dry-run                 Dry run the deployment process.
+
+ARGS:
+    <entrypoint>                  The file path to the entrypoint file (e.g. main.tsx)
 `
 
 export interface Args {
@@ -61,9 +64,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     include: rawArgs.include?.split(','),
     dryRun: !!rawArgs['dry-run'],
   }
-  const entrypoint: string | null = typeof rawArgs._[0] === 'string'
-    ? rawArgs._[0]
-    : null
+  const entrypoint = typeof rawArgs._[0] === 'string' ? rawArgs._[0] : null
   if (args.help) {
     console.log(help)
     Deno.exit(0)
