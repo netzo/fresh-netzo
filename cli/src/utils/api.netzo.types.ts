@@ -1,5 +1,42 @@
-// NOTE: hard--coded types for @netzo/api since theywere not being properly
+// NOTE: hard--coded types for @netzo/api since they were not being properly
 // tree-shaken by esm.sh and were also being downloaded each time CLI was run.
+
+export interface Template {
+  _id: string
+  name: string
+  item: {
+    _type: string
+    uid: string
+    fs: Record<string, { url: string }>
+    configuration: {
+      entrypoint: string
+      envVars?: Record<string, unknown>
+      envVarsDev?: Record<string, unknown>
+      permissions?: {
+        net: boolean
+      }
+    }
+  }
+  uid: string
+  status: string
+  description: string
+  labels: string[]
+  display: {
+    avatar: string
+  }
+  links: Array<{
+    rel: string
+    href: string
+  }>
+  _type: string
+  version: string
+  stars: number
+  authors: string[]
+  license: string
+  upvotes: number
+  createdAt: string
+  updatedAt: string
+}
 
 export interface Project {
   _id: string

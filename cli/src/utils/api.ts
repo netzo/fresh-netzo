@@ -9,6 +9,7 @@ import {
   Paginated,
   Project,
   PushDeploymentRequest,
+  Template,
 } from './api.types.ts'
 
 export interface RequestOptions {
@@ -129,6 +130,20 @@ export class API {
       return project
     } catch (err) {
       if (err instanceof APIError && err.code === 'projectNotFound') {
+        return null
+      }
+      throw err
+    }
+  }
+
+  async getTemplateByUid(templateUid: string): Promise<Template | null> {
+    try {
+      const { data: [template] } = await this.#requestJson(
+        `/templates?uid=${templateUid}&$limit=1`,
+      ) as Paginated<Template>
+      return template
+    } catch (err) {
+      if (err instanceof APIError && err.code === 'templateNotFound') {
         return null
       }
       throw err
