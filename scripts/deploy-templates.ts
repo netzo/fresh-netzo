@@ -31,8 +31,8 @@ export async function deployTemplates() {
         headers: defaultHeaders,
       },
     )
-    const allUrls = await allUrlsResponse.json()
-    const urls = [...new Set(allUrls)] as string[] // remove possible duplicates
+    const allUrls: string[] = await allUrlsResponse.json()
+    const urls = [...new Set(allUrls)] // remove possible duplicates
     console.log(
       `[deploy-templates] fetched array of ${urls.length} urls from @netzo/netzo/templates/templates.json`,
     )

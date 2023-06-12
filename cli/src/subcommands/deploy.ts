@@ -25,6 +25,7 @@ USAGE:
     netzo deploy [OPTIONS] <entrypoint>
 
 OPTIONS:
+        --api-key=<API_KEY>       The API key to use (defaults to NETZO_API_KEY environment variable)
         --exclude=<PATTERNS>      Exclude files that match this pattern
         --include=<PATTERNS>      Only upload files that match this pattern
         --import-map=<FILE>       Use import map file
@@ -32,7 +33,6 @@ OPTIONS:
         --no-static               Don't include the files in the CWD as static files
         --prod                    Create a production deployment (default is preview deployment)
     -p, --project=<PROJECT_UID>   The UID of the project to deploy to
-        --api-key=<API_KEY>       The API key to use (defaults to NETZO_API_KEY environment variable)
         --dry-run                 Dry run the deployment process.
 
 ARGS:
@@ -193,9 +193,8 @@ async function deploy(opts: DeployOpts): Promise<void> {
       uploadSpinner.succeed('No new assets to upload.')
       uploadSpinner = null
     } else {
-      uploadSpinner.text = `${files.length} new asset${
-        files.length === 1 ? '' : 's'
-      } to upload.`
+      uploadSpinner.text = `${files.length} new asset${files.length === 1 ? '' : 's'
+        } to upload.`
     }
 
     manifest = { entries }
@@ -243,16 +242,14 @@ async function deploy(opts: DeployOpts): Promise<void> {
     switch (event.type) {
       case 'staticFile': {
         const percentage = (event.currentBytes / event.totalBytes) * 100
-        uploadSpinner!.text = `Uploading ${files.length} asset${
-          files.length === 1 ? '' : 's'
-        }... (${percentage.toFixed(1)}%)`
+        uploadSpinner!.text = `Uploading ${files.length} asset${files.length === 1 ? '' : 's'
+          }... (${percentage.toFixed(1)}%)`
         break
       }
       case 'load': {
         if (uploadSpinner) {
           uploadSpinner.succeed(
-            `Uploaded ${files.length} new asset${
-              files.length === 1 ? '' : 's'
+            `Uploaded ${files.length} new asset${files.length === 1 ? '' : 's'
             }.`,
           )
           uploadSpinner = null

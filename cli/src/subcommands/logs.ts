@@ -21,10 +21,10 @@ USAGE:
     netzo logs [OPTIONS] [<PROJECT>]
 
 OPTIONS:
+        --api-key=<API_KEY>            The API key to use (defaults to NETZO_API_KEY environment variable)
         --deployment=<DEPLOYMENT_ID>   The ID of the deployment you want to stream logs for (defaults to latest deployment)
         --prod                         Select the production deployment
     -p, --project=<PROJECT_UID>        The UID of the project you want to stream logs for
-        --api-key=<API_KEY>            The API key to use (defaults to NETZO_API_KEY environment variable)
 `
 
 export interface Args {

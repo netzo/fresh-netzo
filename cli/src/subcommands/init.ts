@@ -7,19 +7,22 @@ Create a new project from an existing template (see https://app.netzo.io/templat
 To create a new project from a template:
   netzo init
 
+To create a new project from a template in a custom directory:
+  netzo init --dir=path/to/
+
+To create a new project from a template in the current working directory:
+  netzo init --dir=.
+
 To create a new project from a specific template:
   netzo init starter-app
-
-To create a new project from a template in a specific directory:
-  netzo init --dir=my-project
 
 USAGE:
     netzo init [OPTIONS] <template>
 
 OPTIONS:
-    -h, --help                Prints help information
         --api-key=<API_KEY>   The API key to use (defaults to NETZO_API_KEY environment variable)
-        --dir                 The directory path to initialize the project in (defaults to <template>)
+    -h, --help                Prints help information
+        --dir                 The directory path to initialize project in (defaults to <template>)
         --dry-run             Dry run the initialization process.
 
 ARGS:

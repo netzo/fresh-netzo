@@ -5,7 +5,6 @@ import { error } from './src/console.ts'
 import initSubcommand from './src/subcommands/init.ts'
 import deploySubcommand from './src/subcommands/deploy.ts'
 import upgradeSubcommand from './src/subcommands/upgrade.ts'
-import logsSubcommand from './src/subcommands/logs.ts'
 import { MINIMUM_DENO_VERSION, VERSION } from './src/version.ts'
 import { fetchReleases, getConfigPaths } from './src/utils/info.ts'
 
@@ -22,7 +21,6 @@ SUBCOMMANDS:
     init      Create a project from an existing template (see https://app.netzo.io/templates)
     deploy    Deploy a project with static files to Netzo
     upgrade   Upgrade netzo to the given version (defaults to latest)
-    logs      Stream logs for the given project
 `
 
 if (!semverGreaterThanOrEquals(Deno.version.deno, MINIMUM_DENO_VERSION)) {
@@ -109,9 +107,6 @@ switch (subcommand) {
     break
   case 'upgrade':
     await upgradeSubcommand(args)
-    break
-  case 'logs':
-    await logsSubcommand(args)
     break
   default:
     if (args.version) {
