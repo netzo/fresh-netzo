@@ -3,11 +3,48 @@ import { h } from 'preact'
 import type { Signal } from '@preact/signals'
 
 interface Props {
+  data: Record<string, string>
   disabled: Signal<boolean>
-  onSubmit: (e: Event) => Promise<void>
+  onSubmit: (e: Event) => Promise<unknown>
 }
 
-export default ({ disabled, onSubmit }: Props) => (
+export default ({
+  data = {
+    'soundtrack':
+      'https://shotstack-assets.s3.ap-southeast-2.amazonaws.com/music/unminus/kring.mp3',
+    'effect': 'fadeOut',
+    'background': '#000000',
+    'year': '2023',
+    'make': 'AUDI A3 SPORTBACK',
+    'model': '35 TDI 150 S-Tronic Sport',
+    'description': 'CONSECIONARIO | USADO | VALENCIA, ES',
+    'firstImage':
+      'https://raw.githubusercontent.com/netzo/netzo/d6c475859a174b535b1e78563034e9b9249b98b3/templates/video-generator-fresh/src/components/templates/car-dealership/default-images/exterior1.webp',
+    'engineType': '2.0 TDI 150 S-Tronic | Diesel | 150 CV',
+    'kilometers': '17,432',
+    'secondImage':
+      'https://raw.githubusercontent.com/netzo/netzo/d6c475859a174b535b1e78563034e9b9249b98b3/templates/video-generator-fresh/src/components/templates/car-dealership/default-images/exterior2.webp',
+    'thirdImage':
+      'https://raw.githubusercontent.com/netzo/netzo/d6c475859a174b535b1e78563034e9b9249b98b3/templates/video-generator-fresh/src/components/templates/car-dealership/default-images/exterior3.webp',
+    'price': '23,400',
+    'priceDisclaimer': 'Incuidos impuestos y gastos de transferencia',
+    'priceMethod': '',
+    'dealerLogo': 'https://snaps.es/img/logo-dark.png',
+    'dealerWebsite': 'vendetucoche.es',
+    'fourthImage':
+      'https://raw.githubusercontent.com/netzo/netzo/d6c475859a174b535b1e78563034e9b9249b98b3/templates/video-generator-fresh/src/components/templates/car-dealership/default-images/exterior3.webp',
+    'fifthImage':
+      'https://raw.githubusercontent.com/netzo/netzo/d6c475859a174b535b1e78563034e9b9249b98b3/templates/video-generator-fresh/src/components/templates/car-dealership/default-images/exterior4.webp',
+    'sixthImage':
+      'https://raw.githubusercontent.com/netzo/netzo/d6c475859a174b535b1e78563034e9b9249b98b3/templates/video-generator-fresh/src/components/templates/car-dealership/default-images/exterior5.webp',
+    'seventhImage':
+      'https://raw.githubusercontent.com/netzo/netzo/d6c475859a174b535b1e78563034e9b9249b98b3/templates/video-generator-fresh/src/components/templates/car-dealership/default-images/interior1.webp',
+    'eighthImage':
+      'https://raw.githubusercontent.com/netzo/netzo/d6c475859a174b535b1e78563034e9b9249b98b3/templates/video-generator-fresh/src/components/templates/car-dealership/default-images/interior2.webp',
+  },
+  disabled,
+  onSubmit,
+}: Props) => (
   <form method='post' onSubmit={onSubmit}>
     <button
       type='submit'
@@ -28,7 +65,7 @@ export default ({ disabled, onSubmit }: Props) => (
           name='soundtrack'
           required
           class='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
-          value='https://shotstack-assets.s3.ap-southeast-2.amazonaws.com/music/unminus/kring.mp3'
+          value={data.soundtrack}
         />
 
         <label for='effect'>Effect</label>
@@ -37,7 +74,7 @@ export default ({ disabled, onSubmit }: Props) => (
           name='effect'
           required
           class='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
-          value='fadeOut'
+          value={data.effect}
         >
           <option value='fadeIn'>Fade in</option>
           <option value='fadeOut'>Fade out</option>
@@ -50,7 +87,7 @@ export default ({ disabled, onSubmit }: Props) => (
           name='background'
           required
           class='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
-          value='#000000'
+          value={data.color}
         />
       </fieldset>
     </details>
@@ -66,7 +103,7 @@ export default ({ disabled, onSubmit }: Props) => (
           name='year'
           required
           class='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
-          value='2023'
+          value={data.year}
         />
 
         <label for='make'>Make</label>
@@ -76,7 +113,7 @@ export default ({ disabled, onSubmit }: Props) => (
           name='make'
           required
           class='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
-          value='AUDI A3 SPORTBACK'
+          value={data.make}
         />
 
         <label for='model'>Model</label>
@@ -86,7 +123,7 @@ export default ({ disabled, onSubmit }: Props) => (
           name='model'
           required
           class='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
-          value='35 TDI 150 S-Tronic Sport'
+          value={data.model}
         />
 
         <label for='description'>Description</label>
@@ -96,7 +133,7 @@ export default ({ disabled, onSubmit }: Props) => (
           name='description'
           required
           class='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
-          value='CONSECIONARIO | USADO | VALENCIA, ES'
+          value={data.description}
         />
 
         <label for='engineType'>Engine Type</label>
@@ -106,7 +143,7 @@ export default ({ disabled, onSubmit }: Props) => (
           name='engineType'
           required
           class='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
-          value='2.0 TDI 150 S-Tronic | Diesel | 150 CV'
+          value={data.engineType}
         />
 
         <label for='kilometers'>Kilometers</label>
@@ -116,7 +153,7 @@ export default ({ disabled, onSubmit }: Props) => (
           name='kilometers'
           required
           class='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
-          value='17,432'
+          value={data.kilometers}
         />
 
         <label for='price'>Price</label>
@@ -126,7 +163,7 @@ export default ({ disabled, onSubmit }: Props) => (
           name='price'
           required
           class='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
-          value='23,400'
+          value={data.price}
         />
 
         <label for='priceDisclaimer'>Price Disclaimer</label>
@@ -136,7 +173,7 @@ export default ({ disabled, onSubmit }: Props) => (
           name='priceDisclaimer'
           required
           class='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
-          value='incuidos impuestos y gastos de transferencia'
+          value={data.priceDisclaimer}
         />
 
         <label for='dealerLogo'>Dealer Logo</label>
@@ -146,7 +183,7 @@ export default ({ disabled, onSubmit }: Props) => (
           name='dealerLogo'
           required
           class='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
-          value='https://netzo.io/images/netzo-logo-light.svg'
+          value={data.dealerLogo}
         />
 
         <label for='dealerWebsite'>Dealer Website</label>
@@ -156,7 +193,7 @@ export default ({ disabled, onSubmit }: Props) => (
           name='dealerWebsite'
           required
           class='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
-          value='vendetucoche.es'
+          value={data.dealerWebsite}
         />
       </fieldset>
     </details>
@@ -172,7 +209,7 @@ export default ({ disabled, onSubmit }: Props) => (
           name='firstImage'
           required
           class='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
-          value='https://netzo.io/images/netzo-logo-light.svg'
+          value={data.firstImage}
         />
 
         <label for='secondImage'>Second Image</label>
@@ -182,7 +219,7 @@ export default ({ disabled, onSubmit }: Props) => (
           name='secondImage'
           required
           class='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
-          value='https://netzo.io/images/netzo-logo-light.svg'
+          value={data.secondImage}
         />
 
         <label for='thirdImage'>Third Image</label>
@@ -192,7 +229,7 @@ export default ({ disabled, onSubmit }: Props) => (
           name='thirdImage'
           required
           class='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
-          value='https://netzo.io/images/netzo-logo-light.svg'
+          value={data.thirdImage}
         />
 
         <label for='fourthImage'>Fourth Image</label>
@@ -202,7 +239,7 @@ export default ({ disabled, onSubmit }: Props) => (
           name='fourthImage'
           required
           class='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
-          value='https://netzo.io/images/netzo-logo-light.svg'
+          value={data.fourthImage}
         />
 
         <label for='fifthImage'>Fifth Image</label>
@@ -212,7 +249,7 @@ export default ({ disabled, onSubmit }: Props) => (
           name='fifthImage'
           required
           class='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
-          value='https://netzo.io/images/netzo-logo-light.svg'
+          value={data.fifthImage}
         />
 
         <label for='sixthImage'>Sixth Image</label>
@@ -222,7 +259,7 @@ export default ({ disabled, onSubmit }: Props) => (
           name='sixthImage'
           required
           class='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
-          value='https://netzo.io/images/netzo-logo-light.svg'
+          value={data.sixthImage}
         />
 
         <label for='seventhImage'>Seventh Image</label>
@@ -232,7 +269,7 @@ export default ({ disabled, onSubmit }: Props) => (
           name='seventhImage'
           required
           class='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
-          value='https://netzo.io/images/netzo-logo-light.svg'
+          value={data.seventhImage}
         />
 
         <label for='eighthImage'>Eighth Image</label>
@@ -242,7 +279,7 @@ export default ({ disabled, onSubmit }: Props) => (
           name='eighthImage'
           required
           class='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
-          value='https://netzo.io/images/netzo-logo-light.svg'
+          value={data.eighthImage}
         />
       </fieldset>
     </details>

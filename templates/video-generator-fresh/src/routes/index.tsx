@@ -8,7 +8,7 @@ import App from '../islands/App.tsx'
 const meta = {
   title: 'Video Generator',
   description:
-    'A video generator tool to ease video creation via the Shotstack API.',
+    'A video generator tool to create videos from pre-defined templates one-by-one or in bulk using the Shotstack API.',
 }
 
 export default (props: PageProps) => {

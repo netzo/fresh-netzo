@@ -3,12 +3,12 @@
 import { Fragment, h } from 'preact'
 import { computed, signal } from '@preact/signals'
 import TemplateSelect from '../components/TemplateSelect.tsx'
-import FormCarDealership from '../components/forms/car-dealership/Form.tsx'
-import FormRealEstate from '../components/forms/real-estate/Form.tsx'
+import FormCarDealership from '../components/templates/car-dealership/Form.tsx'
+import FormRealEstate from '../components/templates/real-estate/Form.tsx'
 import Mustache from 'mustache'
 import Video from '../components/Video.tsx'
-import templateCarDealership from '../components/forms/car-dealership/template.ts'
-import templateRealEstate from '../components/forms/real-estate/template.ts'
+import templateCarDealership from '../components/templates/car-dealership/template.ts'
+import templateRealEstate from '../components/templates/real-estate/template.ts'
 
 const templatesEnum = {
   'Car Dealership': templateCarDealership,
@@ -105,11 +105,11 @@ export default () => {
           <li class='mr-2' role='presentation'>
             <button
               class='inline-flex p-4 border-b-2 rounded-t-lg'
-              id='webform-tab'
-              data-tabs-target='#webform'
+              id='single-tab'
+              data-tabs-target='#single'
               type='button'
               role='tab'
-              aria-controls='webform'
+              aria-controls='single'
               aria-selected='false'
             >
               <svg
@@ -119,17 +119,17 @@ export default () => {
               >
                 <path d='M17 7h5v10h-5v2a1 1 0 0 0 1 1h2v2h-2.5c-.55 0-1.5-.45-1.5-1c0 .55-.95 1-1.5 1H12v-2h2a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1h-2V2h2.5c.55 0 1.5.45 1.5 1c0-.55.95-1 1.5-1H20v2h-2a1 1 0 0 0-1 1v2M2 7h11v2H4v6h9v2H2V7m18 8V9h-3v6h3Z' />
               </svg>
-              WebForm
+              Single (web form)
             </button>
           </li>
           <li class='mr-2' role='presentation'>
             <button
               class='inline-flex p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300'
-              id='csv-upload-tab'
-              data-tabs-target='#csv-upload'
+              id='multiple-tab'
+              data-tabs-target='#multiple'
               type='button'
               role='tab'
-              aria-controls='csv-upload'
+              aria-controls='multiple'
               aria-selected='false'
             >
               <svg
@@ -139,7 +139,7 @@ export default () => {
               >
                 <path d='M19 11V9h-8V5H9v4H5v2h4v8h2v-8h8m0-8c.5 0 1 .2 1.39.61C20.8 4 21 4.5 21 5v14c0 .5-.2 1-.61 1.39c-.39.41-.89.61-1.39.61H5c-.5 0-1-.2-1.39-.61C3.2 20 3 19.5 3 19V5c0-.5.2-1 .61-1.39C4 3.2 4.5 3 5 3h14Z' />
               </svg>
-              CSV Upload
+              Multiple (in bulk)
             </button>
           </li>
         </ul>
@@ -147,35 +147,46 @@ export default () => {
       <div id='myTabContent'>
         <div
           class='hidden p-4'
-          id='webform'
+          id='single'
           role='tabpanel'
-          aria-labelledby='webform-tab'
+          aria-labelledby='single-tab'
         >
-          <form onSubmit={onSubmit}>
-            <div class='grid grid-cols-1 md:grid-cols-2 gap-10 p-2 h-full overflow-y-auto'>
-              <>
-                {template.value === 'Car Dealership' && (
-                  <FormCarDealership disabled={disabled} onSubmit={onSubmit} />
-                )}
-                {template.value === 'Real Estate' && (
-                  <FormRealEstate disabled={disabled} onSubmit={onSubmit} />
-                )}
-              </>
-              <div class='h-max pa-6 block text-center'>
-                <Video video={video} />
-              </div>
+          <div class='grid grid-cols-1 md:grid-cols-2 gap-10 p-2 h-full overflow-y-auto'>
+            <>
+              {template.value === 'Car Dealership' && (
+                <FormCarDealership disabled={disabled} onSubmit={onSubmit} />
+              )}
+              {template.value === 'Real Estate' && (
+                <FormRealEstate disabled={disabled} onSubmit={onSubmit} />
+              )}
+            </>
+            <div class='h-max pa-6 block text-center'>
+              <Video video={video} />
             </div>
-          </form>
+          </div>
         </div>
         <div
           class='hidden p-4'
-          id='csv-upload'
+          id='single'
           role='tabpanel'
-          aria-labelledby='csv-upload-tab'
+          aria-labelledby='single-tab'
         >
-          <p class='text-sm text-gray-500 dark:text-gray-400'>
-            Work in progress...
-          </p>
+          <div class='grid grid-cols-1 md:grid-cols-2 gap-10 p-2 h-full overflow-y-auto'>
+            <>
+              <form method='post' onSubmit={onSubmit}>
+                <button
+                  type='submit'
+                  disabled={disabled.value}
+                  class='w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800'
+                >
+                  Submit
+                </button>
+              </form>
+            </>
+            <div class='h-max pa-6 block text-center'>
+              <Video video={video} />
+            </div>
+          </div>
         </div>
       </div>
     </>
