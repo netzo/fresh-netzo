@@ -1,10 +1,12 @@
 /** @jsx h */
 /** @jsxFrag Fragment */
 import { Fragment, h } from 'preact'
-import { signal } from '@preact/signals'
+import { computed, signal } from '@preact/signals'
 import TemplateSelect from '../components/TemplateSelect.tsx'
 import FormCarDealership from '../components/forms/car-dealership/Form.tsx'
 import FormRealEstate from '../components/forms/real-estate/Form.tsx'
+import Mustache from 'mustache'
+import Video from '../components/Video.tsx'
 import templateCarDealership from '../components/forms/car-dealership/template.ts'
 import templateRealEstate from '../components/forms/real-estate/template.ts'
 
@@ -17,23 +19,70 @@ const template = signal<keyof typeof templatesEnum>('Car Dealership')
 
 const result = signal({})
 
+const video = signal({})
+
+const disabled = computed(() =>
+  ['queued', 'fetching', 'rendering', 'saving'].includes(
+    video.value?.response?.status,
+  )
+)
+
 export default () => {
+  const editApi = 'https://api.shotstack.io/edit/stage'
+  // console.log(Deno.env.get('SHOTSTOCK_API_KEY_STAGING'))
+
   const onSubmit = async (event: Event) => {
     event.preventDefault()
     const formData = new FormData(event.target as HTMLFormElement)
-    const data = Object.fromEntries(formData.entries())
-    console.log({ data })
+    const formJson = Object.fromEntries(formData.entries())
+    const body = Mustache.render(
+      JSON.stringify(templatesEnum[template.value]),
+      formJson,
+    )
     try {
-      const response = await fetch('https://shotstock.com/api/endpoint', {
+      const responseResult = await fetch(`${editApi}/render`, {
         method: 'POST',
-        body: JSON.stringify(data),
+        headers: {
+          'x-api-key': 'wdpxe25PMD9SGR9qh85T35JJB5xqBImV4q27xWyd',
+          'accept': 'application/json',
+          'content-type': 'application/json',
+        },
+        body,
       })
-
-      result.value = await response.json()
-      console.log({ result: result.value })
+      result.value = await responseResult.json()
+      pollStatus(result.value.response.id)
       return result.value
     } catch (error) {
       console.error('Failed to send form:', error)
+    }
+  }
+
+  // @ts-ignore: no explicit any
+  async function pollStatus(id: string) {
+    try {
+      const response = await fetch(`${editApi}/render/${id}`, {
+        method: 'GET',
+        headers: {
+          'x-api-key': 'wdpxe25PMD9SGR9qh85T35JJB5xqBImV4q27xWyd',
+          'accept': 'application/json',
+        },
+      })
+      const jsonData = await response.json()
+
+      video.value = jsonData
+      console.log('status:', video.value.response.status, jsonData)
+
+      if (['done', 'failed'].includes(video.value.response.status)) {
+        video.value = jsonData
+        return jsonData
+      } else {
+        // wait for some time before making the next request
+        await new Promise((resolve) => setTimeout(resolve, 1000))
+        return pollStatus(id) // recursive call
+      }
+    } catch (error) {
+      console.error('Error polling endpoint:', error)
+      throw error
     }
   }
 
@@ -106,14 +155,14 @@ export default () => {
             <div class='grid grid-cols-1 md:grid-cols-2 gap-10 p-2 h-full overflow-y-auto'>
               <>
                 {template.value === 'Car Dealership' && (
-                  <FormCarDealership onSubmit={onSubmit} />
+                  <FormCarDealership disabled={disabled} onSubmit={onSubmit} />
                 )}
                 {template.value === 'Real Estate' && (
-                  <FormRealEstate onSubmit={onSubmit} />
+                  <FormRealEstate disabled={disabled} onSubmit={onSubmit} />
                 )}
               </>
-              <div class='pa-6'>
-                RESULT: {JSON.stringify(result.value, null, 2)}
+              <div class='h-max pa-6 block text-center'>
+                <Video video={video} />
               </div>
             </div>
           </form>

@@ -1,10 +1,10 @@
 export default {
   'timeline': {
     'soundtrack': {
-      'src': '{{soundTrack}}',
-      'effect': '{{effect}}',
+      'src': '{{{soundtrack}}}',
+      'effect': '{{{effect}}}',
     },
-    'background': '{{background}}',
+    'background': '{{{background}}}',
     'cache': false,
     'tracks': [
       {
@@ -12,7 +12,7 @@ export default {
           {
             'asset': {
               'type': 'html',
-              'html': '<p data-html-type="text">{{badge}}</p>',
+              'html': '<p data-html-type="text">{{{year}}}</p>',
               'css':
                 'p { color: #ffffff; font-size: 100px; font-family: Montserrat ExtraBold; text-align: left; }',
               'width': 844,
@@ -39,7 +39,7 @@ export default {
           {
             'asset': {
               'type': 'html',
-              'html': '<p data-html-type="text">{{topic}}</p>',
+              'html': '<p data-html-type="text">{{{make}}}</p>',
               'css':
                 'p { color: #ffffff; font-size: 80px; font-family: Montserrat ExtraBold; text-align: left }',
               'width': 1031,
@@ -66,7 +66,7 @@ export default {
           {
             'asset': {
               'type': 'html',
-              'html': '<p data-html-type="text">{{ammenities}}</p>',
+              'html': '<p data-html-type="text">{{{model}}}</p>',
               'css':
                 'p { color: #ffffff; font-size: 80px; font-family: Montserrat SemiBold; text-align: left; }',
               'width': 1019,
@@ -89,7 +89,7 @@ export default {
           {
             'asset': {
               'type': 'html',
-              'html': '<p data-html-type="text">{{description}}</p>',
+              'html': '<p data-html-type="text">{{{description}}}</p>',
               'css':
                 'p { color: #ffffff; font-size: 40px; font-family: Montserrat SemiBold; text-align: left; }',
               'width': 1648,
@@ -116,7 +116,7 @@ export default {
           {
             'asset': {
               'type': 'image',
-              'src': '{{firstImage}}',
+              'src': '{{{firstImage}}}',
             },
             'start': 0,
             'length': 5,
@@ -140,7 +140,7 @@ export default {
           {
             'asset': {
               'type': 'html',
-              'html': '<p data-html-type="text">{{dream}}</p>',
+              'html': '<p data-html-type="text">{{{engineType}}}</p>',
               'css':
                 'p { color: #ffffff; font-size: 40px; font-family: Montserrat SemiBold; text-align: left }',
               'width': 620,
@@ -163,7 +163,7 @@ export default {
           {
             'asset': {
               'type': 'html',
-              'html': '<p data-html-type="text">{{kilometers}}</p>',
+              'html': '<p data-html-type="text">{{{kilometers}}}</p>',
               'css':
                 'p { color: #ffffff; font-size: 70px; font-family: Montserrat ExtraBold; text-align: left; }',
               'width': 600,
@@ -213,7 +213,7 @@ export default {
           {
             'asset': {
               'type': 'image',
-              'src': '{{secondImage}}',
+              'src': '{{{secondImage}}}',
             },
             'start': 5.7,
             'length': 4.3,
@@ -236,7 +236,7 @@ export default {
           {
             'asset': {
               'type': 'image',
-              'src': '{{thirdImage}}',
+              'src': '{{{thirdImage}}}',
             },
             'position': 'center',
             'offset': {
@@ -260,7 +260,7 @@ export default {
           {
             'asset': {
               'type': 'image',
-              'src': '{{fourthImage}}',
+              'src': '{{{fourthImage}}}',
             },
             'effect': 'zoomIn',
             'offset': {
@@ -307,7 +307,7 @@ export default {
           {
             'asset': {
               'type': 'image',
-              'src': '{{fifthImage}}',
+              'src': '{{{fifthImage}}}',
             },
             'start': 11,
             'length': 7,
@@ -331,7 +331,7 @@ export default {
           {
             'asset': {
               'type': 'image',
-              'src': '{{sixthImage}}',
+              'src': '{{{sixthImage}}}',
             },
             'start': 17,
             'length': 4,
@@ -353,7 +353,7 @@ export default {
           {
             'asset': {
               'type': 'image',
-              'src': '{{seventhImage}}',
+              'src': '{{{seventhImage}}}',
             },
             'start': 20,
             'length': 6,
@@ -375,7 +375,7 @@ export default {
           {
             'asset': {
               'type': 'html',
-              'html': '<p data-html-type="text">{{price}}</p>',
+              'html': '<p data-html-type="text">{{{price}}}</p>',
               'css':
                 'p { color: #ffffff; font-size: 120px; font-family: Montserrat ExtraBold; text-align: center; }',
               'width': 1311,
@@ -398,7 +398,7 @@ export default {
           {
             'asset': {
               'type': 'html',
-              'html': '<p data-html-type="text">{{priceDisclaimer}}</p>',
+              'html': '<p data-html-type="text">{{{priceDisclaimer}}}</p>',
               'css':
                 'p { color: #ffffff; font-size: 36px; font-family: Montserrat SemiBold; text-align: left; }',
               'width': 883,
@@ -421,7 +421,7 @@ export default {
           {
             'asset': {
               'type': 'html',
-              'html': '<p data-html-type="text">{{priceMethod}}</p>',
+              'html': '<p data-html-type="text">{{{priceMethod}}}</p>',
               'css':
                 'p { color: #ffffff; font-size: 50px; font-family: Montserrat ExtraBold; text-align: left; }',
               'width': 672,
@@ -448,7 +448,7 @@ export default {
           {
             'asset': {
               'type': 'image',
-              'src': '{{dealerLogo}}',
+              'src': '{{{dealerLogo}}}',
             },
             'start': 30.8,
             'length': 5.2,
@@ -466,7 +466,7 @@ export default {
           {
             'asset': {
               'type': 'html',
-              'html': '<p data-html-type="text">{{dealerWebsite}}</p>',
+              'html': '<p data-html-type="text">{{{dealerWebsite}}}</p>',
               'css':
                 'p { color: #ffffff; font-size: 50px; font-family: Montserrat SemiBold; text-align: center; }',
               'width': 1025,
@@ -492,7 +492,7 @@ export default {
           {
             'asset': {
               'type': 'image',
-              'src': '{{eighthImage}}',
+              'src': '{{{eighthImage}}}',
             },
             'start': 25,
             'length': 8,

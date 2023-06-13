@@ -1,14 +1,17 @@
 /** @jsx h */
 import { h } from 'preact'
+import type { Signal } from '@preact/signals'
 
 interface Props {
+  disabled: Signal<boolean>
   onSubmit: (e: Event) => Promise<void>
 }
 
-export default ({ onSubmit }: Props) => (
+export default ({ disabled, onSubmit }: Props) => (
   <form method='post' onSubmit={onSubmit}>
     <button
       type='submit'
+      disabled={disabled.value}
       class='w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800'
     >
       Submit
