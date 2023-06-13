@@ -1,0 +1,56 @@
+{
+  "defaults": {
+    "car-dealership": [
+      {
+        "soundtrack": "https://shotstack-assets.s3.ap-southeast-2.amazonaws.com/music/unminus/kring.mp3",
+        "effect": "fadeOut",
+        "background": "#000000",
+        "year": "2023",
+        "make": "AUDI A3 SPORTBACK",
+        "model": "35 TDI 150 S-Tronic Sport",
+        "description": "CONSECIONARIO | USADO | VALENCIA, ES",
+        "firstImage": "https://github.com/netzo/netzo/blob/d6c475859a174b535b1e78563034e9b9249b98b3/templates/video-generator-fresh/src/components/forms/car-dealership/default-images/exterior1.webp",
+        "engineType": "2.0 TDI 150 S-Tronic | Diesel | 150 CV",
+        "kilometers": "17,432",
+        "secondImage": "https://github.com/netzo/netzo/blob/d6c475859a174b535b1e78563034e9b9249b98b3/templates/video-generator-fresh/src/components/forms/car-dealership/default-images/exterior2.webp",
+        "thirdImage": "https://github.com/netzo/netzo/blob/d6c475859a174b535b1e78563034e9b9249b98b3/templates/video-generator-fresh/src/components/forms/car-dealership/default-images/exterior3.webp",
+        "price": "23,400",
+        "priceDisclaimer": "Incuidos impuestos y gastos de transferencia",
+        "priceMethod": "",
+        "dealerLogo": "https://netzo.io/netzo-logo-light.png",
+        "dealerWebsite": "vendetucoche.es",
+        "fourthImage": "https://github.com/netzo/netzo/blob/d6c475859a174b535b1e78563034e9b9249b98b3/templates/video-generator-fresh/src/components/forms/car-dealership/default-images/exterior3.webp",
+        "fifthImage": "https://github.com/netzo/netzo/blob/d6c475859a174b535b1e78563034e9b9249b98b3/templates/video-generator-fresh/src/components/forms/car-dealership/default-images/exterior4.webp",
+        "sixthImage": "https://github.com/netzo/netzo/blob/d6c475859a174b535b1e78563034e9b9249b98b3/templates/video-generator-fresh/src/components/forms/car-dealership/default-images/exterior5.webp",
+        "seventhImage": "https://github.com/netzo/netzo/blob/d6c475859a174b535b1e78563034e9b9249b98b3/templates/video-generator-fresh/src/components/forms/car-dealership/default-images/interior1.webp",
+        "eighthImage": "https://github.com/netzo/netzo/blob/d6c475859a174b535b1e78563034e9b9249b98b3/templates/video-generator-fresh/src/components/forms/car-dealership/default-images/interior2.webp"
+      }
+    ],
+    "real-estate": [
+      {
+        "soundtrack": "https://shotstack-assets.s3.ap-southeast-2.amazonaws.com/music/unminus/kring.mp3",
+        "effect": "fadeIn",
+        "background": "#000000",
+        "badge": "HOY",
+        "topic": "Espectacular Chalet en Madrid",
+        "ammenities": "4 Habitaciones | 5.5 Baños | 1,000 m2 | Piscina",
+        "description": "REFORMADA | Madrid Centro",
+        "firstImage": "https://drive.google.com/file/d/1PDHHPbD_Mf47rYmp68IMN8uLkPj3fT6A/view",
+        "dream": "Un sueno para familias que buscan espacio y tranquilidad en el centro de Madrid",
+        "kilometers": "Centro a 2.5",
+        "secondImage": "https://drive.google.com/file/d/1lcphf7N5TASEsbvxCtAwKrCBZXFFVbFX/view?usp=drive_link",
+        "thirdImage": "https://drive.google.com/file/d/1NtNNC3w8LRYrpzQ48OBhi9CCL0MrMz5x/view?usp=drive_link",
+        "price": "3.8 Millones",
+        "priceDisclaimer": "Incluidos gastos de transferencia",
+        "priceMethod": "",
+        "dealerLogo": "https://netzo.io/netzo-logo-light.png",
+        "dealerWebsite": "asesores-bienesraices.es",
+        "fourthImage": "https://drive.google.com/file/d/1HV-9zDhxoHWbeM84IwCJdSO9fF7FJbCX/view?usp=drive_link",
+        "fifthImage": "https://drive.google.com/file/d/1N3ujzQu-pKCxrC7PFWuwjpSNWtbcDCLc/view?usp=drive_link",
+        "sixthImage": "https://drive.google.com/file/d/1qzts8tcmiFvJuw-pAN4-ILdoeO-52Ww4/view?usp=drive_link",
+        "seventhImage": "https://drive.google.com/file/d/1PeCp_G_t0toPr4bGA3JqGn7n4SOnIEQn/view?usp=drive_link",
+        "eighthImage": ""
+      }
+    ]
+  }
+}
