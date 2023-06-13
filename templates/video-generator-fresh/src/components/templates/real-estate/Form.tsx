@@ -11,37 +11,37 @@ interface Props {
 export default ({
   data = {
     'soundtrack':
-      'https://shotstack-assets.s3.ap-southeast-2.amazonaws.com/music/unminus/kring.mp3',
+      'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/default-images/ambient-guitar.mp3',
     'effect': 'fadeIn',
     'background': '#000000',
     'badge': 'HOY',
-    'topic': 'Espectacular Chalet en Madrid',
+    'topic': 'Espectacular Residencia',
     'ammenities': '4 Habitaciones | 5.5 Baños | 1,000 m2 | Piscina',
-    'description': 'REFORMADA | Madrid Centro',
+    'description': 'NUEVA | Madrid ❤',
     'firstImage':
-      'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/default-images/exterior1.webp',
+      'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/default-images/exterior1.jpg',
     'dream':
-      'Un sueno para familias que buscan espacio y tranquilidad en el centro de Madrid',
+      'Oportunidad para familias que desean encontrar amplitud y serenidad en el corazón de Madrid.',
     'kilometers': 'Centro a 2.5 Km',
     'secondImage':
-      'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/default-images/exterior2.webp',
+      'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/default-images/exterior2.png',
     'thirdImage':
-      'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/default-images/kitchen1.webp',
-    'price': 'Tuyo por €23,400',
-    'priceDisclaimer': 'Garantía 1 año, IVA incluido',
-    'priceMethod': '',
+      'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/default-images/kitchen1.jpg',
+    'price': 'Tuya por €1,900,00',
+    'priceDisclaimer': 'A estrenar',
+    'priceMethod': 'No dejes pasar esta oportunidad',
     'dealerLogo': 'https://snaps.es/img/logo-dark.png',
     'dealerWebsite': 'inmuebles.es',
     'fourthImage':
-      'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/default-images/living-room1.webp',
+      'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/default-images/living-room1.jpg',
     'fifthImage':
-      'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/default-images/living-room2.webp',
+      'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/default-images/living-room2.png',
     'sixthImage':
-      'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/default-images/bedroom1.webp',
+      'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/default-images/bedroom1.png',
     'seventhImage':
-      'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/default-images/bedroom2.webp',
+      'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/default-images/bedroom2.png',
     'eighthImage':
-      'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/default-images/exterior3.webp',
+      'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/default-images/exterior3.png',
   },
   disabled,
   onSubmit,
@@ -118,7 +118,7 @@ export default ({
       <fieldset class='my-4 p-4 border-1 rounded-md'>
         <label for='badge'>Badge</label>
         <input
-          type='number'
+          type='text'
           id='badge'
           name='badge'
           required
