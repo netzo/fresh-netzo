@@ -2,11 +2,12 @@
 /** @jsxFrag Fragment */
 import { Fragment, h } from 'preact'
 import { computed, signal } from '@preact/signals'
+import Mustache from 'mustache'
+import Video, { RenderStatus } from '../components/Video.tsx'
 import TemplateSelect from '../components/TemplateSelect.tsx'
 import FormCarDealership from '../components/templates/car-dealership/Form.tsx'
 import FormRealEstate from '../components/templates/real-estate/Form.tsx'
-import Mustache from 'mustache'
-import Video from '../components/Video.tsx'
+import FormBulk from '../components/FormBulk.tsx'
 import templateCarDealership from '../components/templates/car-dealership/template.ts'
 import templateRealEstate from '../components/templates/real-estate/template.ts'
 
@@ -21,11 +22,24 @@ const result = signal({})
 
 const video = signal({})
 
+const status = signal<RenderStatus>('idle')
+
 const disabled = computed(() =>
-  ['queued', 'fetching', 'rendering', 'saving'].includes(
-    video.value?.response?.status,
+  ['loading', 'queued', 'fetching', 'rendering', 'saving'].includes(
+    status.value,
   )
 )
+
+const url = signal('')
+
+const urlCsvFile = computed(() => {
+  switch (template.value) {
+    case 'Car Dealership':
+      return `/car-dealership.template.csv`
+    case 'Real Estate':
+      return `/real-estate.template.csv`
+  }
+})
 
 export default () => {
   const editApi = 'https://api.shotstack.io/edit/stage'
@@ -60,6 +74,9 @@ export default () => {
   // @ts-ignore: no explicit any
   async function pollStatus(id: string) {
     try {
+      if (['idle', 'done', 'failed'].includes(status.value)) {
+        status.value = 'loading'
+      }
       const response = await fetch(`${editApi}/render/${id}`, {
         method: 'GET',
         headers: {
@@ -70,9 +87,11 @@ export default () => {
       const jsonData = await response.json()
 
       video.value = jsonData
-      console.log('status:', video.value.response.status, jsonData)
+      status.value = jsonData.response.status
+      console.log('status:', status.value, jsonData)
 
-      if (['done', 'failed'].includes(video.value.response.status)) {
+      if (['done', 'failed'].includes(status.value)) {
+        video.value = jsonData.response?.url
         video.value = jsonData
         return jsonData
       } else {
@@ -160,8 +179,8 @@ export default () => {
                 <FormRealEstate disabled={disabled} onSubmit={onSubmit} />
               )}
             </>
-            <div class='h-max pa-6 block text-center'>
-              <Video video={video} />
+            <div class='h-max pa-6 block'>
+              <Video status={status} url={url} />
             </div>
           </div>
         </div>
@@ -172,60 +191,9 @@ export default () => {
           aria-labelledby='multiple-tab'
         >
           <div class='grid grid-cols-1 md:grid-cols-2 gap-10 p-2 h-full'>
-            <>
-              <form method='post' onSubmit={onSubmit}>
-                <button
-                  type='submit'
-                  disabled={disabled}
-                  href='/car-dealership.template.csv'
-                  target='_blank'
-                  class='w-full text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800'
-                >
-                  Download Video Template
-                </button>
-
-                <div class='flex items-center justify-center w-full'>
-                  <label
-                    for='dropzone-file'
-                    class='flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600'
-                  >
-                    <div class='flex flex-col items-center justify-center pt-5 pb-6'>
-                      <svg
-                        aria-hidden='true'
-                        class='w-10 h-10 mb-3 text-gray-400'
-                        fill='none'
-                        stroke='currentColor'
-                        viewBox='0 0 24 24'
-                        xmlns='http://www.w3.org/2000/svg'
-                      >
-                        <path
-                          stroke-linecap='round'
-                          stroke-linejoin='round'
-                          stroke-width='2'
-                          d='M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12'
-                        >
-                        </path>
-                      </svg>
-                      <p class='mb-2 text-sm text-gray-500 dark:text-gray-400'>
-                        <span class='font-semibold'>Click to upload</span>{' '}
-                        or drag and drop
-                      </p>
-                      <p class='text-xs text-gray-500 dark:text-gray-400'>
-                        CSV
-                      </p>
-                    </div>
-                    <input
-                      id='dropzone-file'
-                      type='file'
-                      accept='.csv'
-                      class='hidden'
-                    />
-                  </label>
-                </div>
-              </form>
-            </>
-            <div class='h-max pa-6 block text-center'>
-              <Video video={video} />
+            <FormBulk url={urlCsvFile} disabled={disabled} />
+            <div class='h-max pa-6 block'>
+              <Video status={status} url={url} />
             </div>
           </div>
         </div>
