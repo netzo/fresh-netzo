@@ -68,7 +68,7 @@ export default {
               'type': 'html',
               'html': '<p data-html-type="text">{{{model}}}</p>',
               'css':
-                'p { color: #ffffff; font-size: 80px; font-family: Montserrat SemiBold; text-align: left; }',
+                'p { color: #ffffff; font-size: 42px; font-family: Montserrat SemiBold; text-align: left; }',
               'width': 1019,
               'height': 77,
             },
@@ -142,7 +142,7 @@ export default {
               'type': 'html',
               'html': '<p data-html-type="text">{{{engineType}}}</p>',
               'css':
-                'p { color: #ffffff; font-size: 40px; font-family: Montserrat SemiBold; text-align: left }',
+                'p { color: #ffffff; font-size: 26px; font-family: Montserrat SemiBold; text-align: left }',
               'width': 620,
               'height': 72,
             },
