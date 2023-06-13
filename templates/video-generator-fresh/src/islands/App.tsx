@@ -167,13 +167,14 @@ export default () => {
         </div>
         <div
           class='hidden p-4'
-          id='single'
+          id='multiple'
           role='tabpanel'
-          aria-labelledby='single-tab'
+          aria-labelledby='multiple-tab'
         >
           <div class='grid grid-cols-1 md:grid-cols-2 gap-10 p-2 h-full overflow-y-auto'>
             <>
-              <form method='post' onSubmit={onSubmit}>
+              {
+                /* <form method='post' onSubmit={onSubmit}>
                 <button
                   type='submit'
                   disabled={disabled.value}
@@ -181,7 +182,9 @@ export default () => {
                 >
                   Submit
                 </button>
-              </form>
+              </form> */
+              }
+              Waiting
             </>
             <div class='h-max pa-6 block text-center'>
               <Video video={video} />
