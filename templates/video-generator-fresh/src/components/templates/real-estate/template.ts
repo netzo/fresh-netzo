@@ -14,7 +14,7 @@ export default {
               'type': 'html',
               'html': '<p data-html-type="text">{{{badge}}}</p>',
               'css':
-                'p { color: #ffffff; font-size: 100px; font-family: Montserrat ExtraBold; text-align: left; }',
+                'p { color: #ffffff; font-size: 42px; font-family: Montserrat ExtraBold; text-align: left; }',
               'width': 844,
               'height': 180,
             },
@@ -41,7 +41,7 @@ export default {
               'type': 'html',
               'html': '<p data-html-type="text">{{{topic}}}</p>',
               'css':
-                'p { color: #ffffff; font-size: 80px; font-family: Montserrat ExtraBold; text-align: left }',
+                'p { color: #ffffff; font-size: 64px; font-family: Montserrat ExtraBold; text-align: left }',
               'width': 1031,
               'height': 114,
             },
@@ -68,7 +68,7 @@ export default {
               'type': 'html',
               'html': '<p data-html-type="text">{{{ammenities}}}</p>',
               'css':
-                'p { color: #ffffff; font-size: 80px; font-family: Montserrat SemiBold; text-align: left; }',
+                'p { color: #ffffff; font-size: 42px; font-family: Montserrat SemiBold; text-align: left; }',
               'width': 1019,
               'height': 77,
             },
@@ -140,9 +140,9 @@ export default {
           {
             'asset': {
               'type': 'html',
-              'html': '<p data-html-type="text">{{{dream}}}</p>',
+              'html': '<p data-html-type="text">{{{benefit}}}</p>',
               'css':
-                'p { color: #ffffff; font-size: 40px; font-family: Montserrat SemiBold; text-align: left }',
+                'p { color: #ffffff; font-size: 28px; font-family: Montserrat SemiBold; text-align: left }',
               'width': 620,
               'height': 72,
             },
@@ -163,9 +163,9 @@ export default {
           {
             'asset': {
               'type': 'html',
-              'html': '<p data-html-type="text">{{{kilometers}}}</p>',
+              'html': '<p data-html-type="text">{{{benefitTitle}}}</p>',
               'css':
-                'p { color: #ffffff; font-size: 70px; font-family: Montserrat ExtraBold; text-align: left; }',
+                'p { color: #ffffff; font-size: 42px; font-family: Montserrat ExtraBold; text-align: left; }',
               'width': 600,
               'height': 109,
             },
@@ -377,7 +377,7 @@ export default {
               'type': 'html',
               'html': '<p data-html-type="text">{{{price}}}</p>',
               'css':
-                'p { color: #ffffff; font-size: 120px; font-family: Montserrat ExtraBold; text-align: center; }',
+                'p { color: #ffffff; font-size: 80px; font-family: Montserrat ExtraBold; text-align: center; }',
               'width': 1311,
               'height': 180,
             },

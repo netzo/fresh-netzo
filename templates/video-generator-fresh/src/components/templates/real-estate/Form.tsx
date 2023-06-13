@@ -14,6 +14,7 @@ export default ({
       'https://shotstack-assets.s3.ap-southeast-2.amazonaws.com/music/unminus/kring.mp3',
     'effect': 'fadeIn',
     'background': '#000000',
+<<<<<<< HEAD
     'badge': 'HOY',
     'topic': 'Espectacular Chalet en Madrid',
     'ammenities': '4 Habitaciones | 5.5 Baños | 1,000 m2 | Piscina',
@@ -23,13 +24,30 @@ export default ({
     'dream':
       'Un sueno para familias que buscan espacio y tranquilidad en el centro de Madrid',
     'kilometers': 'Centro a 2.5 Km',
+=======
+    'badge': '¡Solo hoy!',
+    'topic': 'Espectacular Residencia',
+    'ammenities': '4 Habitaciones | 5.5 Baños | 1,000 m2 | Piscina',
+    'description': 'NUEVA | Monterrey, Nuevo León',
+    'firstImage':
+      'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/default-images/exterior1.jpg',
+    'benefitTitle': 'Un sueño hecho realidad',
+    'benefit': 'Encuentra amplitud, paz y armonia en el corazón de San Pedro',
+>>>>>>> 4b19551e4ed798194809cb4f38d46d6632eb0eb3
     'secondImage':
       'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/default-images/exterior2.webp',
     'thirdImage':
+<<<<<<< HEAD
       'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/default-images/kitchen1.webp',
     'price': 'Tuyo por €23,400',
     'priceDisclaimer': 'Garantía 1 año, IVA incluido',
     'priceMethod': '',
+=======
+      'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/default-images/kitchen1.jpg',
+    'price': 'Estrenala por €1,900,000',
+    'priceDisclaimer': 'Y vive la vida que mereces...',
+    'priceMethod': 'No dejes pasar esta oportunidad',
+>>>>>>> 4b19551e4ed798194809cb4f38d46d6632eb0eb3
     'dealerLogo': 'https://snaps.es/img/logo-dark.png',
     'dealerWebsite': 'inmuebles.es',
     'fourthImage':
@@ -39,7 +57,11 @@ export default ({
     'sixthImage':
       'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/default-images/bedroom1.webp',
     'seventhImage':
+<<<<<<< HEAD
       'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/default-images/bedroom2.webp',
+=======
+      'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/default-images/bedroom2.jpg',
+>>>>>>> 4b19551e4ed798194809cb4f38d46d6632eb0eb3
     'eighthImage':
       'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/default-images/exterior3.webp',
   },
@@ -137,24 +159,24 @@ export default ({
           value={data.description}
         />
 
-        <label for='dream'>Dream</label>
+        <label for='benefitTitle'>BenefitTitle</label>
         <input
           type='text'
-          id='dream'
-          name='dream'
+          id='benefitTitle'
+          name='benefitTitle'
           required
           class='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
-          value={data.dream}
+          value={data.benefitTitle}
         />
 
-        <label for='kilometers'>Kilometers</label>
+        <label for='benefit'>Benefit</label>
         <input
           type='text'
-          id='kilometers'
-          name='kilometers'
+          id='benefit'
+          name='benefit'
           required
           class='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
-          value={data.kilometers}
+          value={data.benefit}
         />
 
         <label for='price'>Price</label>
