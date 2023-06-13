@@ -20,15 +20,14 @@ export default ({
     'description': 'NUEVA | Madrid ❤',
     'firstImage':
       'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/default-images/exterior1.jpg',
-    'dream':
-      'Oportunidad para familias que desean encontrar amplitud y serenidad en el corazón de Madrid.',
-    'kilometers': 'Centro a 2.5 Km',
+    'benefit': 'Encuentra amplitud, paz y armonia en el corazón de Madrid.',
+    'benefitTitle': 'Un sueño hecho realidad',
     'secondImage':
       'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/default-images/exterior2.png',
     'thirdImage':
       'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/default-images/kitchen1.jpg',
-    'price': 'Tuya por €1,900,00',
-    'priceDisclaimer': 'A estrenar',
+    'price': 'Estrenala por €1,900,000',
+    'priceDisclaimer': 'Y vive la vida que mereces',
     'priceMethod': 'No dejes pasar esta oportunidad',
     'dealerLogo': 'https://snaps.es/img/logo-dark.png',
     'dealerWebsite': 'inmuebles.es',
@@ -39,7 +38,7 @@ export default ({
     'sixthImage':
       'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/default-images/bedroom1.png',
     'seventhImage':
-      'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/default-images/bedroom2.png',
+      'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/default-images/bedroom2.jpg',
     'eighthImage':
       'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/default-images/exterior3.png',
   },
@@ -137,24 +136,24 @@ export default ({
           value={data.description}
         />
 
-        <label for='dream'>Dream</label>
+        <label for='benefitTitle'>BenefitTitle</label>
         <input
           type='text'
-          id='dream'
-          name='dream'
+          id='benefitTitle'
+          name='benefitTitle'
           required
           class='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
-          value={data.dream}
+          value={data.benefitTitle}
         />
 
-        <label for='kilometers'>Kilometers</label>
+        <label for='benefit'>Benefit</label>
         <input
           type='text'
-          id='kilometers'
-          name='kilometers'
+          id='benefit'
+          name='benefit'
           required
           class='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
-          value={data.kilometers}
+          value={data.benefit}
         />
 
         <label for='price'>Price</label>
