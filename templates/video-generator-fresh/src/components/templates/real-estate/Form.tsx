@@ -19,28 +19,29 @@ export default ({
     'ammenities': '4 Habitaciones | 5.5 Baños | 1,000 m2 | Piscina',
     'description': 'REFORMADA | Madrid Centro',
     'firstImage':
-      'https://drive.google.com/file/d/1PDHHPbD_Mf47rYmp68IMN8uLkPj3fT6A/view',
+      'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/default-images/exterior1.webp',
     'dream':
       'Un sueno para familias que buscan espacio y tranquilidad en el centro de Madrid',
-    'kilometers': 'Centro a 2.5',
+    'kilometers': 'Centro a 2.5 Km',
     'secondImage':
-      'https://drive.google.com/file/d/1lcphf7N5TASEsbvxCtAwKrCBZXFFVbFX/view?usp=drive_link',
+      'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/default-images/exterior2.webp',
     'thirdImage':
-      'https://drive.google.com/file/d/1NtNNC3w8LRYrpzQ48OBhi9CCL0MrMz5x/view?usp=drive_link',
-    'price': '3.8 Millones',
-    'priceDisclaimer': 'Incluidos gastos de transferencia',
+      'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/default-images/kitchen1.webp',
+    'price': 'Tuyo por €23,400',
+    'priceDisclaimer': 'Garantía 1 año, IVA incluido',
     'priceMethod': '',
     'dealerLogo': 'https://snaps.es/img/logo-dark.png',
-    'dealerWebsite': 'asesores-bienesraices.es',
+    'dealerWebsite': 'inmuebles.es',
     'fourthImage':
-      'https://drive.google.com/file/d/1HV-9zDhxoHWbeM84IwCJdSO9fF7FJbCX/view?usp=drive_link',
+      'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/default-images/living-room1.webp',
     'fifthImage':
-      'https://drive.google.com/file/d/1N3ujzQu-pKCxrC7PFWuwjpSNWtbcDCLc/view?usp=drive_link',
+      'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/default-images/living-room2.webp',
     'sixthImage':
-      'https://drive.google.com/file/d/1qzts8tcmiFvJuw-pAN4-ILdoeO-52Ww4/view?usp=drive_link',
+      'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/default-images/bedroom1.webp',
     'seventhImage':
-      'https://drive.google.com/file/d/1PeCp_G_t0toPr4bGA3JqGn7n4SOnIEQn/view?usp=drive_link',
-    'eighthImage': '',
+      'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/default-images/bedroom2.webp',
+    'eighthImage':
+      'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/default-images/exterior3.webp',
   },
   disabled,
   onSubmit,

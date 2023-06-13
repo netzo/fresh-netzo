@@ -12,7 +12,7 @@ export default {
           {
             'asset': {
               'type': 'html',
-              'html': '<p data-html-type="text">{{{year}}}</p>',
+              'html': '<p data-html-type="text">{{{badge}}}</p>',
               'css':
                 'p { color: #ffffff; font-size: 100px; font-family: Montserrat ExtraBold; text-align: left; }',
               'width': 844,
@@ -39,7 +39,7 @@ export default {
           {
             'asset': {
               'type': 'html',
-              'html': '<p data-html-type="text">{{{make}}}</p>',
+              'html': '<p data-html-type="text">{{{topic}}}</p>',
               'css':
                 'p { color: #ffffff; font-size: 80px; font-family: Montserrat ExtraBold; text-align: left }',
               'width': 1031,
@@ -66,7 +66,7 @@ export default {
           {
             'asset': {
               'type': 'html',
-              'html': '<p data-html-type="text">{{{model}}}</p>',
+              'html': '<p data-html-type="text">{{{ammenities}}}</p>',
               'css':
                 'p { color: #ffffff; font-size: 80px; font-family: Montserrat SemiBold; text-align: left; }',
               'width': 1019,
@@ -140,7 +140,7 @@ export default {
           {
             'asset': {
               'type': 'html',
-              'html': '<p data-html-type="text">{{{engineType}}}</p>',
+              'html': '<p data-html-type="text">{{{dream}}}</p>',
               'css':
                 'p { color: #ffffff; font-size: 40px; font-family: Montserrat SemiBold; text-align: left }',
               'width': 620,
