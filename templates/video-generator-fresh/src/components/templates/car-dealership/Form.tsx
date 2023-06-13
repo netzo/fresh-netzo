@@ -11,7 +11,7 @@ interface Props {
 export default ({
   data = {
     'soundtrack':
-      'https://shotstack-assets.s3.ap-southeast-2.amazonaws.com/music/unminus/kring.mp3',
+      'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/car-dealership/default-images/urban.mp3',
     'effect': 'fadeOut',
     'background': '#000000',
     'year': '2023',
