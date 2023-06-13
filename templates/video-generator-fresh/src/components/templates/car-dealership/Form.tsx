@@ -19,28 +19,28 @@ export default ({
     'model': '35 TDI 150 S-Tronic Sport',
     'description': 'CONSECIONARIO | USADO | VALENCIA, ES',
     'firstImage':
-      'https://raw.githubusercontent.com/netzo/netzo/d6c475859a174b535b1e78563034e9b9249b98b3/templates/video-generator-fresh/src/components/templates/car-dealership/default-images/exterior1.webp',
+      'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/car-dealership/default-images/exterior1.webp',
     'engineType': '2.0 TDI 150 S-Tronic | Diesel | 150 CV',
-    'kilometers': '17,432',
+    'kilometers': '17,432 KMs',
     'secondImage':
-      'https://raw.githubusercontent.com/netzo/netzo/d6c475859a174b535b1e78563034e9b9249b98b3/templates/video-generator-fresh/src/components/templates/car-dealership/default-images/exterior2.webp',
+      'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/car-dealership/default-images/exterior2.webp',
     'thirdImage':
-      'https://raw.githubusercontent.com/netzo/netzo/d6c475859a174b535b1e78563034e9b9249b98b3/templates/video-generator-fresh/src/components/templates/car-dealership/default-images/exterior3.webp',
-    'price': '23,400',
-    'priceDisclaimer': 'Incuidos impuestos y gastos de transferencia',
+      'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/car-dealership/default-images/exterior3.webp',
+    'price': 'Tuyo por €23,400',
+    'priceDisclaimer': 'Garantía 1 año, IVA incluido',
     'priceMethod': '',
     'dealerLogo': 'https://snaps.es/img/logo-dark.png',
     'dealerWebsite': 'vendetucoche.es',
     'fourthImage':
-      'https://raw.githubusercontent.com/netzo/netzo/d6c475859a174b535b1e78563034e9b9249b98b3/templates/video-generator-fresh/src/components/templates/car-dealership/default-images/exterior3.webp',
+      'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/car-dealership/default-images/exterior3.webp',
     'fifthImage':
-      'https://raw.githubusercontent.com/netzo/netzo/d6c475859a174b535b1e78563034e9b9249b98b3/templates/video-generator-fresh/src/components/templates/car-dealership/default-images/exterior4.webp',
+      'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/car-dealership/default-images/exterior4.webp',
     'sixthImage':
-      'https://raw.githubusercontent.com/netzo/netzo/d6c475859a174b535b1e78563034e9b9249b98b3/templates/video-generator-fresh/src/components/templates/car-dealership/default-images/exterior5.webp',
+      'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/car-dealership/default-images/exterior5.webp',
     'seventhImage':
-      'https://raw.githubusercontent.com/netzo/netzo/d6c475859a174b535b1e78563034e9b9249b98b3/templates/video-generator-fresh/src/components/templates/car-dealership/default-images/interior1.webp',
+      'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/car-dealership/default-images/interior1.webp',
     'eighthImage':
-      'https://raw.githubusercontent.com/netzo/netzo/d6c475859a174b535b1e78563034e9b9249b98b3/templates/video-generator-fresh/src/components/templates/car-dealership/default-images/interior2.webp',
+      'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/car-dealership/default-images/interior2.webp',
   },
   disabled,
   onSubmit,
