@@ -196,9 +196,8 @@ async function deploy(opts: DeployOpts): Promise<void> {
       uploadSpinner.succeed('No new assets to upload.')
       uploadSpinner = null
     } else {
-      uploadSpinner.text = `${files.length} new asset${
-        files.length === 1 ? '' : 's'
-      } to upload.`
+      uploadSpinner.text = `${files.length} new asset${files.length === 1 ? '' : 's'
+        } to upload.`
     }
 
     manifest = { entries }
@@ -246,16 +245,14 @@ async function deploy(opts: DeployOpts): Promise<void> {
     switch (event.type) {
       case 'staticFile': {
         const percentage = (event.currentBytes / event.totalBytes) * 100
-        uploadSpinner!.text = `Uploading ${files.length} asset${
-          files.length === 1 ? '' : 's'
-        }... (${percentage.toFixed(1)}%)`
+        uploadSpinner!.text = `Uploading ${files.length} asset${files.length === 1 ? '' : 's'
+          }... (${percentage.toFixed(1)}%)`
         break
       }
       case 'load': {
         if (uploadSpinner) {
           uploadSpinner.succeed(
-            `Uploaded ${files.length} new asset${
-              files.length === 1 ? '' : 's'
+            `Uploaded ${files.length} new asset${files.length === 1 ? '' : 's'
             }.`,
           )
           uploadSpinner = null
@@ -276,12 +273,9 @@ async function deploy(opts: DeployOpts): Promise<void> {
         // for (const { domain } of event.domainMappings) {
         //   console.log(` - https://${domain}`)
         // }
-        console.log('\nView in production at:')
-        console.log(` - https://${event.uid}.netzo.io`)
-        console.log(` - https://${event.deploymentId}.netzo.io`)
-        console.log('View in development at:')
-        console.log(` - https://d-${event.uid}.netzo.io`)
-        console.log(` - https://d-${event.deploymentId}.netzo.io`)
+        console.log('\nView at:')
+        console.log(` - https://${event.uid}.netzo.io (production)`)
+        console.log(` - https://${event.deploymentId}.netzo.io (preview)`)
         break
       case 'error':
         if (uploadSpinner) {
@@ -385,9 +379,13 @@ function buildFS(
       for (const key in obj) {
         // deno-lint-ignore no-prototype-builtins
         if (obj.hasOwnProperty(key)) {
-          const newPath = path ? `${path}/${key}` : key
+          let newPath = path ? `${path}/${key}` : key
+          // WORKAROUND: remove trailing /kind and /entries from path
+          if (newPath.endsWith('/kind')) newPath = newPath.replace('/kind', '')
+          if (newPath.endsWith('/entries')) newPath = newPath.replace('/entries', '')
           walk(obj[key], newPath)
         }
+
       }
     }
   }
