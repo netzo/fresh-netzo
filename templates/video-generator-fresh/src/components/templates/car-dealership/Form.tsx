@@ -1,10 +1,13 @@
 /** @jsx h */
 import { h } from 'preact'
 import type { Signal } from '@preact/signals'
+import { RenderStatus } from '../../../islands/Video.tsx'
+import ButtonGenerate from '../../buttons/ButtonGenerate.tsx'
 
 interface Props {
-  data: Record<string, string>
-  disabled: Signal<boolean>
+  data?: Record<string, string>
+  status: Signal<RenderStatus>
+  loading: Signal<boolean>
   onSubmit: (e: Event) => Promise<unknown>
 }
 
@@ -42,7 +45,8 @@ export default ({
     'eighthImage':
       'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/car-dealership/default-images/interior2.webp',
   },
-  disabled,
+  status,
+  loading,
   onSubmit,
 }: Props) => (
   <form method='post' onSubmit={onSubmit}>
@@ -276,12 +280,6 @@ export default ({
       </fieldset>
     </details>
 
-    <button
-      type='submit'
-      disabled={disabled.value}
-      class='my-4 w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800'
-    >
-      Generate Video
-    </button>
+    <ButtonGenerate loading={loading} />
   </form>
 )

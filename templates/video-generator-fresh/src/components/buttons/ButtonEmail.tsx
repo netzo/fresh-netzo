@@ -1,15 +1,16 @@
 /** @jsx h */
 /** @jsxFrag Fragment */
-import { Fragment, h } from 'preact'
+import { Fragment, h, JSX } from 'preact'
 import type { Signal } from '@preact/signals'
 
 interface Props {
   url: Signal<string>
 }
 
-export default ({ url }: Props) => (
+export default (props: Props & JSX.HTMLAttributes<HTMLButtonElement>) => (
   <>
     <button
+      {...props}
       data-modal-target='authentication-modal'
       data-modal-toggle='authentication-modal'
       type='button'
@@ -95,16 +96,18 @@ export default ({ url }: Props) => (
                   rows={4}
                   class='block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
                   placeholder='Write a friendly message here...'
-                  value={`Hey, I just wanted to share this video with you. I hope you like it! ${url.value}`}
+                  value={`Hey, I just wanted to share this video with you. I hope you like it! ${props.url.value}`}
                 >
                 </textarea>
               </div>
-              <button
+              <a
+                href={`#`}
+                target='_blank'
                 type='button'
                 class='w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
               >
                 Send
-              </button>
+              </a>
             </form>
           </div>
         </div>

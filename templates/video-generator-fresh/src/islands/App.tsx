@@ -3,7 +3,7 @@
 import { Fragment, h } from 'preact'
 import { computed, signal } from '@preact/signals'
 import Mustache from 'mustache'
-import Video, { RenderStatus } from '../components/Video.tsx'
+import Video, { RenderStatus } from './Video.tsx'
 import TemplateSelect from '../components/TemplateSelect.tsx'
 import FormCarDealership from '../components/templates/car-dealership/Form.tsx'
 import FormRealEstate from '../components/templates/real-estate/Form.tsx'
@@ -24,7 +24,7 @@ const video = signal({})
 
 const status = signal<RenderStatus>('idle')
 
-const disabled = computed(() =>
+const loading = computed(() =>
   ['loading', 'queued', 'fetching', 'rendering', 'saving'].includes(
     status.value,
   )
@@ -32,7 +32,7 @@ const disabled = computed(() =>
 
 const url = signal('')
 
-const urlCsvFile = computed(() => {
+const urlCsv = computed(() => {
   switch (template.value) {
     case 'Car Dealership':
       return `/car-dealership.template.csv`
@@ -47,6 +47,7 @@ export default () => {
 
   const onSubmit = async (event: Event) => {
     event.preventDefault()
+    if (!loading.value) status.value = 'loading'
     const formData = new FormData(event.target as HTMLFormElement)
     const formJson = Object.fromEntries(formData.entries())
     const body = Mustache.render(
@@ -74,9 +75,6 @@ export default () => {
   // @ts-ignore: no explicit any
   async function pollStatus(id: string) {
     try {
-      if (['idle', 'done', 'failed'].includes(status.value)) {
-        status.value = 'loading'
-      }
       const response = await fetch(`${editApi}/render/${id}`, {
         method: 'GET',
         headers: {
@@ -91,7 +89,7 @@ export default () => {
       console.log('status:', status.value, jsonData)
 
       if (['done', 'failed'].includes(status.value)) {
-        video.value = jsonData.response?.url
+        url.value = jsonData.response?.url
         video.value = jsonData
         return jsonData
       } else {
@@ -173,10 +171,18 @@ export default () => {
           <div class='grid grid-cols-1 md:grid-cols-2 gap-10 p-2 h-full'>
             <>
               {template.value === 'Car Dealership' && (
-                <FormCarDealership disabled={disabled} onSubmit={onSubmit} />
+                <FormCarDealership
+                  status={status}
+                  loading={loading}
+                  onSubmit={onSubmit}
+                />
               )}
               {template.value === 'Real Estate' && (
-                <FormRealEstate disabled={disabled} onSubmit={onSubmit} />
+                <FormRealEstate
+                  status={status}
+                  loading={loading}
+                  onSubmit={onSubmit}
+                />
               )}
             </>
             <div class='h-max pa-6 block'>
@@ -191,7 +197,11 @@ export default () => {
           aria-labelledby='multiple-tab'
         >
           <div class='grid grid-cols-1 md:grid-cols-2 gap-10 p-2 h-full'>
-            <FormBulk url={urlCsvFile} disabled={disabled} />
+            <FormBulk
+              url={urlCsv}
+              loading={loading}
+              onSubmit={(e) => console.log(e)}
+            />
             <div class='h-max pa-6 block'>
               <Video status={status} url={url} />
             </div>

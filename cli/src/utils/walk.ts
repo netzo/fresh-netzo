@@ -1,5 +1,5 @@
 import { join } from '../../deps.ts'
-import { printWarning } from "../console.ts";
+import { printWarning } from '../console.ts'
 import { ManifestEntry } from './api.types.ts'
 
 /** Calculate git object hash, like `git hash-object` does. */
@@ -55,39 +55,42 @@ export async function walk(
     // (images, videos, etc.) and add support for them as well via the
     // Subhosting API integration (see https://deno-deploy.redoc.ly)
     // TODO: read .gitignore file and skip those paths instead (if any)
-    if ([
-      'png',
-      'jpg',
-      'jpeg',
-      'webp',
-      'gif',
-      'ico',
-      'mp3',
-      'mp4',
-      'wav',
-      'ogg',
-      'pdf',
-      'doc',
-      'docx',
-      'xls',
-      'xlsx',
-      'ppt',
-      'pptx',
-      'zip',
-      'webm',
-      'ogg',
-      'm4a',
-      'm4v',
-      'mov',
-      'avi',
-      'wmv',
-      'mpg',
-      'mpeg',
-    ].includes(relative?.split('.').pop()!)) {
-      printWarning(`Skipping ${relative} because it is a binary file (not yet supported)`)
+    if (
+      [
+        'png',
+        'jpg',
+        'jpeg',
+        'webp',
+        'gif',
+        'ico',
+        'mp3',
+        'mp4',
+        'wav',
+        'ogg',
+        'pdf',
+        'doc',
+        'docx',
+        'xls',
+        'xlsx',
+        'ppt',
+        'pptx',
+        'zip',
+        'webm',
+        'ogg',
+        'm4a',
+        'm4v',
+        'mov',
+        'avi',
+        'wmv',
+        'mpg',
+        'mpeg',
+      ].includes(relative?.split('.').pop()!)
+    ) {
+      printWarning(
+        `Skipping ${relative} because it is a binary file (not yet supported)`,
+      )
       continue
-    }
-    else if (file.isFile) {
+    } else if (file.isFile) {
       const data = await Deno.readFile(path)
       const gitSha1 = await calculateGitSha1(data)
       entry = {
