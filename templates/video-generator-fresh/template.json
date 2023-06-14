@@ -29,23 +29,50 @@
       ".vscode/settings.json": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/.vscode/settings.json"
       },
-      "components/AppCard.tsx": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/AppCard.tsx"
+      "components/buttons/ButtonEmail.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/buttons/ButtonEmail.tsx"
       },
-      "components/FilterBar.tsx": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/FilterBar.tsx"
+      "components/buttons/ButtonGenerate.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/buttons/ButtonGenerate.tsx"
       },
-      "components/SearchBar.tsx": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/SearchBar.tsx"
+      "components/buttons/ButtonUpload.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/buttons/ButtonUpload.tsx"
       },
-      "data/apps.json": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/data/apps.json"
+      "components/templates/car-dealership/Form.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/car-dealership/Form.tsx"
+      },
+      "components/templates/car-dealership/template.ts": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/car-dealership/template.ts"
+      },
+      "components/templates/real-estate/Form.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/Form.tsx"
+      },
+      "components/templates/real-estate/template.ts": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/template.ts"
+      },
+      "components/templates/FormBulk.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/FormBulk.tsx"
+      },
+      "components/templates/ProgressSpinner.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/ProgressSpinner.tsx"
+      },
+      "components/templates/TemplateSelect.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/TemplateSelect.tsx"
       },
       "islands/App.tsx": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/islands/App.tsx"
       },
+      "islands/Video.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/islands/Video.tsx"
+      },
       "routes/index.tsx": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/routes/index.tsx"
+      },
+      "static/car-dealership.template.csv": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/static/car-dealership.template.csv"
+      },
+      "static/real-estate.template.csv": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/static/real-estate.template.csv"
       },
       "static/favicon.svg": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/static/favicon.svg"
@@ -55,6 +82,9 @@
       },
       "deno.json": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/deno.json"
+      },
+      ".env": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/.env"
       },
       "import_map.json": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/import_map.json"
