@@ -1,17 +1,20 @@
 /** @jsx h */
 import { h } from 'preact'
 import type { Signal } from '@preact/signals'
+import { RenderStatus } from '../../../islands/Video.tsx'
+import ButtonGenerate from '../../buttons/ButtonGenerate.tsx'
 
 interface Props {
-  data: Record<string, string>
-  disabled: Signal<boolean>
+  data?: Record<string, string>
+  status: Signal<RenderStatus>
+  loading: Signal<boolean>
   onSubmit: (e: Event) => Promise<unknown>
 }
 
 export default ({
   data = {
     'soundtrack':
-      'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/default-images/ambient-guitar.mp3',
+      'https://shotstack-assets.s3.ap-southeast-2.amazonaws.com/music/unminus/kring.mp3',
     'effect': 'fadeIn',
     'background': '#000000',
     'badge': '¡Solo hoy!',
@@ -30,30 +33,16 @@ export default ({
     'priceDisclaimer': 'Y vive la vida que mereces...',
     'priceMethod': 'No dejes pasar esta oportunidad',
     'dealerLogo': 'https://snaps.es/img/logo-dark.png',
-    'dealerWebsite': 'inmuebles.es',
-    'fourthImage':
-      'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/default-images/living-room1.jpg',
-    'fifthImage':
-      'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/default-images/living-room2.png',
-    'sixthImage':
-      'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/default-images/bedroom1.png',
     'seventhImage':
       'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/default-images/bedroom2.jpg',
     'eighthImage':
       'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/default-images/exterior3.png',
   },
-  disabled,
+  status,
+  loading,
   onSubmit,
 }: Props) => (
   <form method='post' onSubmit={onSubmit}>
-    <button
-      type='submit'
-      disabled={disabled.value}
-      class='w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800'
-    >
-      Generate Video
-    </button>
-
     <details open>
       <summary class='mb-3 text-lg cursor-pointer'>Video Settings</summary>
 
@@ -98,7 +87,7 @@ export default ({
       <fieldset class='my-4 p-4 border-1 rounded-md'>
         <label for='badge'>Badge</label>
         <input
-          type='text'
+          type='number'
           id='badge'
           name='badge'
           required
@@ -283,5 +272,7 @@ export default ({
         />
       </fieldset>
     </details>
+
+    <ButtonGenerate loading={loading} />
   </form>
 )

@@ -1,7 +1,8 @@
 /** @jsx h */
 import { h } from 'preact'
+import ButtonGenerate from './buttons/ButtonGenerate.tsx'
 
-export default ({ url, disabled, onSubmit }) => {
+export default ({ url, loading, onSubmit }) => {
   return (
     <form method='post' onSubmit={onSubmit}>
       <p class='mb-3 text-sm text-gray-500 dark:text-gray-400'>
@@ -11,7 +12,7 @@ export default ({ url, disabled, onSubmit }) => {
       <a
         href={url.value}
         target='_blank'
-        class='flex w-full justify-center text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800'
+        class='my-4 flex w-full justify-center text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800 cursor-pointer'
       >
         Download Video Template
       </a>
@@ -60,13 +61,7 @@ export default ({ url, disabled, onSubmit }) => {
         </label>
       </div>
 
-      <button
-        type='submit'
-        disabled={disabled.value}
-        class='my-4 w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800'
-      >
-        Generate Video
-      </button>
+      <ButtonGenerate loading={loading} />
     </form>
   )
 }
