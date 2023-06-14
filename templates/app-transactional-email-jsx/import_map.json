@@ -1,7 +1,0 @@
-{
-  "imports": {
-    "netzo/": "https://deno.land/x/netzo@v0.1.59/",
-    "gfm/": "https://deno.land/x/gfm@0.2.1/",
-    "object-replace-mustache": "https://esm.sh/object-replace-mustache@1.0.2"
-  }
-}
