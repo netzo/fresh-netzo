@@ -1,0 +1,5 @@
+{
+  "imports": {
+    "netzo/": "https://deno.land/x/netzo@v0.1.59/"
+  }
+}
