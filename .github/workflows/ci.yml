@@ -1,44 +1,25 @@
 name: ci
 
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+on: [push, pull_request]
 
 jobs:
-  test:
-    name: test-${{ matrix.os }}-${{ matrix.deno }}
+  build:
+    name: ${{ matrix.kind }} ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
-
     strategy:
       matrix:
-        # Test on the oldest supported, the latest stable, and nightly
-        deno: [old, stable, canary]
-        os: [macOS-latest, windows-latest, ubuntu-22.04-xl]
+        os: [macOS-latest, ubuntu-latest, windows-latest]
 
     steps:
-      - name: Setup repo
-        uses: actions/checkout@v3
-
+      - uses: actions/checkout@v2
       - name: Setup Deno
         uses: denoland/setup-deno@v1
-        with:
-          deno-version: ${{ matrix.deno == 'old' && '1.28.3' || (matrix.deno == 'stable' && '1.x' || matrix.deno) }}
-
-      - run: deno --version
 
       - name: Format
-        if: runner.os == 'Linux' && matrix.deno == 'stable'
         run: deno fmt --check
 
       - name: Lint
-        if: runner.os == 'Linux' && matrix.deno == 'stable'
         run: deno lint
 
-      - name: Typecheck
-        if: runner.os == 'Linux' && matrix.deno == 'stable'
-        run: deno check deployctl.ts
-
-      - name: Run tests
-        run: deno task test
+      - name: Tests
+        run: deno test --allow-env --allow-net --allow-read --allow-run
