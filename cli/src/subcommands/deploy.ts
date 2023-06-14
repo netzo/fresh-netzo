@@ -196,8 +196,9 @@ async function deploy(opts: DeployOpts): Promise<void> {
       uploadSpinner.succeed('No new assets to upload.')
       uploadSpinner = null
     } else {
-      uploadSpinner.text = `${files.length} new asset${files.length === 1 ? '' : 's'
-        } to upload.`
+      uploadSpinner.text = `${files.length} new asset${
+        files.length === 1 ? '' : 's'
+      } to upload.`
     }
 
     manifest = { entries }
@@ -245,14 +246,16 @@ async function deploy(opts: DeployOpts): Promise<void> {
     switch (event.type) {
       case 'staticFile': {
         const percentage = (event.currentBytes / event.totalBytes) * 100
-        uploadSpinner!.text = `Uploading ${files.length} asset${files.length === 1 ? '' : 's'
-          }... (${percentage.toFixed(1)}%)`
+        uploadSpinner!.text = `Uploading ${files.length} asset${
+          files.length === 1 ? '' : 's'
+        }... (${percentage.toFixed(1)}%)`
         break
       }
       case 'load': {
         if (uploadSpinner) {
           uploadSpinner.succeed(
-            `Uploaded ${files.length} new asset${files.length === 1 ? '' : 's'
+            `Uploaded ${files.length} new asset${
+              files.length === 1 ? '' : 's'
             }.`,
           )
           uploadSpinner = null
@@ -382,10 +385,11 @@ function buildFS(
           let newPath = path ? `${path}/${key}` : key
           // WORKAROUND: remove trailing /kind and /entries from path
           if (newPath.endsWith('/kind')) newPath = newPath.replace('/kind', '')
-          if (newPath.endsWith('/entries')) newPath = newPath.replace('/entries', '')
+          if (newPath.endsWith('/entries')) {
+            newPath = newPath.replace('/entries', '')
+          }
           walk(obj[key], newPath)
         }
-
       }
     }
   }
