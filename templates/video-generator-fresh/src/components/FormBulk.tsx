@@ -7,7 +7,7 @@ export default ({ url, loading, onSubmit }) => {
     <form method='post' onSubmit={onSubmit}>
       <p class='mb-3 text-sm text-gray-500 dark:text-gray-400'>
         1. Download the CSV file of the selected template and fill it out (one
-        row will generate one video).
+        each row will generate one video).
       </p>
       <a
         href={url.value}
