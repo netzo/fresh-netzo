@@ -21,18 +21,26 @@ export default ({
     'topic': 'Espectacular Residencia',
     'ammenities': '4 Habitaciones | 5.5 Baños | 1,000 m2 | Piscina',
     'description': 'NUEVA | Monterrey, Nuevo León',
-    'firstImage':
-      'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/default-images/exterior1.jpg',
     'benefitTitle': 'Un sueño hecho realidad',
     'benefit': 'Encuentra amplitud, paz y armonia en el corazón de San Pedro',
+    'price': 'Estrenala por €1,900,000',
+    'priceDisclaimer': 'Y vive la vida que mereces...',
+    'priceMethod': 'No dejes pasar esta oportunidad',
+    'dealerLogo':
+      'https://api.iconify.design/mdi:home-circle.svg?color=%23ffffff',
+    'dealerWebsite': 'inmuebles.es',
+    'firstImage':
+      'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/default-images/exterior1.jpg',
     'secondImage':
       'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/default-images/exterior2.png',
     'thirdImage':
       'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/default-images/kitchen1.jpg',
-    'price': 'Estrenala por €1,900,000',
-    'priceDisclaimer': 'Y vive la vida que mereces...',
-    'priceMethod': 'No dejes pasar esta oportunidad',
-    'dealerLogo': 'https://snaps.es/img/logo-dark.png',
+    'fourthImage':
+      'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/default-images/living-room1.jpg',
+    'fifthImage':
+      'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/default-images/living-room2.png',
+    'sixthImage':
+      'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/default-images/bedroom1.png',
     'seventhImage':
       'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/real-estate/default-images/bedroom2.jpg',
     'eighthImage':
@@ -87,7 +95,7 @@ export default ({
       <fieldset class='my-4 p-4 border-1 rounded-md'>
         <label for='badge'>Badge</label>
         <input
-          type='number'
+          type='text'
           id='badge'
           name='badge'
           required

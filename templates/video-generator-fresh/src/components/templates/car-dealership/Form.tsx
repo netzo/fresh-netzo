@@ -21,19 +21,19 @@ export default ({
     'make': 'AUDI A3 SPORTBACK',
     'model': '35 TDI 150 S-Tronic Sport',
     'description': 'CONSECIONARIO | USADO | VALENCIA, ES',
-    'firstImage':
-      'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/car-dealership/default-images/exterior1.webp',
     'engineType': '2.0 TDI 150 S-Tronic | Diesel | 150 CV',
     'kilometers': '17,432 KMs',
+    'price': 'Tuyo por €23,400',
+    'priceDisclaimer': 'Garantía 1 año, IVA incluido',
+    'priceMethod': '',
+    'dealerLogo': 'https://api.iconify.design/mdi:car-side.svg?color=%23ffffff',
+    'dealerWebsite': 'vendetucoche.es',
+    'firstImage':
+      'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/car-dealership/default-images/exterior1.webp',
     'secondImage':
       'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/car-dealership/default-images/exterior2.webp',
     'thirdImage':
       'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/car-dealership/default-images/exterior3.webp',
-    'price': 'Tuyo por €23,400',
-    'priceDisclaimer': 'Garantía 1 año, IVA incluido',
-    'priceMethod': '',
-    'dealerLogo': 'https://snaps.es/img/logo-dark.png',
-    'dealerWebsite': 'vendetucoche.es',
     'fourthImage':
       'https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/components/templates/car-dealership/default-images/exterior3.webp',
     'fifthImage':

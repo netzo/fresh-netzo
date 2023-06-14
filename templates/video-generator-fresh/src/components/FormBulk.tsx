@@ -57,11 +57,12 @@ export default ({ url, loading, onSubmit }) => {
             type='file'
             accept='.csv'
             class='hidden'
+            required
           />
         </label>
       </div>
 
-      <ButtonGenerate loading={loading} />
+      <ButtonGenerate disabled loading={loading} />
     </form>
   )
 }

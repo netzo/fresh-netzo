@@ -7,9 +7,7 @@ import ButtonEmail from '../components/buttons/ButtonEmail.tsx'
 import ButtonUpload from '../components/buttons/ButtonUpload.tsx'
 
 export type RenderStatus =
-  | 'idle' // the asset is ready to be rendered
-  | 'loading' // the asset is being loaded
-  // form api:
+  | 'idle' // no render has been requested
   | 'queued' // render is queued waiting to be rendered
   | 'fetching' // assets are being fetched
   | 'rendering' // the asset is being rendered
@@ -23,8 +21,6 @@ interface Props {
 }
 
 export default (props: Props) => {
-  const disabled = useComputed(() => !['done'].includes(props.status.value))
-
   const placeholder = useComputed(() => {
     switch (props.status.value) {
       case 'queued':
@@ -99,11 +95,13 @@ export default (props: Props) => {
   return (
     <>
       {placeholder.value}
-      <div class='flex space-x-3 my-4'>
-        <ButtonEmail disabled={disabled.value} url={props.url} />
+      {props.status.value === 'done' && (
+        <div class='flex space-x-3 my-4'>
+          <ButtonEmail url={props.url} />
 
-        <ButtonUpload disabled={disabled.value} />
-      </div>
+          <ButtonUpload />
+        </div>
+      )}
     </>
   )
 }

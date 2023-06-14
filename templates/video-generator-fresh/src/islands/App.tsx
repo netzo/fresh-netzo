@@ -25,9 +25,7 @@ const video = signal({})
 const status = signal<RenderStatus>('idle')
 
 const loading = computed(() =>
-  ['loading', 'queued', 'fetching', 'rendering', 'saving'].includes(
-    status.value,
-  )
+  ['queued', 'fetching', 'rendering', 'saving'].includes(status.value)
 )
 
 const url = signal('')
@@ -47,7 +45,7 @@ export default () => {
 
   const onSubmit = async (event: Event) => {
     event.preventDefault()
-    if (!loading.value) status.value = 'loading'
+    if (!loading.value) status.value = 'queued' // set before awaiting fetch
     const formData = new FormData(event.target as HTMLFormElement)
     const formJson = Object.fromEntries(formData.entries())
     const body = Mustache.render(
