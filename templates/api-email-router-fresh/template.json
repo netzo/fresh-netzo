@@ -1,6 +1,6 @@
 {
   "uid": "api-email-router-fresh",
-  "status": "requested",
+  "status": "published",
   "name": "API Email Router",
   "description": "An HTTP API to generate and send emails from existing templates written in JSX.",
   "labels": [
@@ -30,6 +30,24 @@
       },
       ".vscode/settings.json": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/api-email-router-fresh/src/.vscode/settings.json"
+      },
+      "components/Button.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/api-email-router-fresh/src/components/Button.tsx"
+      },
+      "components/Footer.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/api-email-router-fresh/src/components/Footer.tsx"
+      },
+      "components/Header.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/api-email-router-fresh/src/components/Header.tsx"
+      },
+      "components/InputSearch.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/api-email-router-fresh/src/components/InputSearch.tsx"
+      },
+      "data/templates.json": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/api-email-router-fresh/src/data/templates.json"
+      },
+      "routes/[id].tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/api-email-router-fresh/src/routes/[id].tsx"
       },
       "routes/index.tsx": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/api-email-router-fresh/src/routes/index.tsx"

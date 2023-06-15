@@ -10,78 +10,34 @@ export default function InputSearch(
   props: JSX.HTMLAttributes<HTMLInputElement> & Props,
 ) {
   return (
-    <form>
+    <form method='GET' action='/'>
       <div class='flex'>
-        <label
-          for='location-search'
-          class='mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white'
+        <label for='locale' class='sr-only'>Choose a state</label>
+        <select
+          id='locale'
+          name='locale'
+          value={props.locale}
+          class='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-l-lg border-l-gray-100 dark:border-l-gray-700 border-l-2 focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
         >
-          Your Email
-        </label>
-        <button
-          id='dropdown-button-2'
-          data-dropdown-toggle='dropdown-search-city'
-          class='flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-500 bg-gray-100 border border-gray-300 rounded-l-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600'
-          type='button'
-        >
-          <IconLocale locale={props.locale} />
-          {props.locale.toUpperCase()}
-          <svg
-            aria-hidden='true'
-            class='w-4 h-4 ml-1'
-            fill='currentColor'
-            viewBox='0 0 20 20'
-            xmlns='http://www.w3.org/2000/svg'
-          >
-            <path
-              fill-rule='evenodd'
-              d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z'
-              clip-rule='evenodd'
-            >
-            </path>
-          </svg>
-        </button>
-        <div
-          id='dropdown-search-city'
-          class='z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700'
-        >
-          <ul
-            class='py-2 text-sm text-gray-700 dark:text-gray-200'
-            aria-labelledby='dropdown-button-2'
-          >
-            <li>
-              <button
-                type='button'
-                class='inline-flex w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white'
-                role='menuitem'
-              >
-                <div class='inline-flex items-center'>
-                  <IconLocale locale='en' />
-                  English
-                </div>
-              </button>
-            </li>
-            <li>
-              <button
-                type='button'
-                class='inline-flex w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white'
-                role='menuitem'
-              >
-                <div class='inline-flex items-center'>
-                  <IconLocale locale='es' />
-                  Español
-                </div>
-              </button>
-            </li>
-          </ul>
-        </div>
+          <option value='' selected>All</option>
+          <option value='en' class='inline-flex items-center'>
+            <IconLocale locale='en' />
+            EN
+          </option>
+          <option value='es' class='inline-flex items-center'>
+            <IconLocale locale='es' />
+            ES
+          </option>
+        </select>
+
         <div class='relative w-full'>
           <input
             type='search'
-            id='location-search'
-            class='block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-r-lg border-l-gray-50 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500'
-            placeholder='Search for city or address'
-            required
+            name='query'
+            id='query'
+            placeholder='Search for email templates'
+            value={props.query}
+            class='block p-2.5 w-full z-20 text-sm text-gray-900 rounded-r-lg bg-gray-50 border-l-gray-50 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500'
           />
           <button
             type='submit'
@@ -111,8 +67,8 @@ export default function InputSearch(
   )
 }
 
-function IconLocale({ locale }) {
-  switch (locale) {
+function IconLocale(props: { locale: Props['locale'] }) {
+  switch (props.locale) {
     case 'en':
       return (
         <svg
