@@ -1,11 +1,11 @@
 // NOTE: import_map.json is for apps, deps.ts is for modules/libraries
 
 // fresh:
-export * from 'https://deno.land/x/fresh@1.1.6/dev.ts'
-export * from 'https://deno.land/x/fresh@1.1.6/init.ts'
-export * from 'https://deno.land/x/fresh@1.1.6/runtime.ts'
-export * from 'https://deno.land/x/fresh@1.1.6/server.ts'
-export * from 'https://deno.land/x/fresh@1.1.6/update.ts'
+export * from 'https://deno.land/x/fresh@1.2.0/dev.ts'
+export * from 'https://deno.land/x/fresh@1.2.0/init.ts'
+export * from 'https://deno.land/x/fresh@1.2.0/runtime.ts'
+export * from 'https://deno.land/x/fresh@1.2.0/server.ts'
+export * from 'https://deno.land/x/fresh@1.2.0/update.ts'
 
 // preact:
 export * from 'https://esm.sh/preact@10.11.0'

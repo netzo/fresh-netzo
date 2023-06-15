@@ -17,7 +17,7 @@
     "singleQuote": true
   },
   "imports": {
-    "$fresh/": "https://deno.land/x/fresh@1.1.2/",
+    "$fresh/": "https://deno.land/x/fresh@1.2.0/",
     "preact": "https://esm.sh/preact@10.11.0",
     "preact/": "https://esm.sh/preact@10.11.0/",
     "preact-render-to-string": "https://esm.sh/*preact-render-to-string@5.2.4",
