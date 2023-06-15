@@ -1,6 +1,6 @@
 # statuspage-fresh
 
-An open-source source template for 'Statuspage'.
+An open-source source template for Netzo.
 
 ## Configuration
 

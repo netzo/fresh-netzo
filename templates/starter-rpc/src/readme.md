@@ -1,6 +1,6 @@
 # starter-rpc
 
-An open-source source template for 'RPC'.
+An open-source source template for Netzo.
 
 ## Configuration
 

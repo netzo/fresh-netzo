@@ -1,0 +1,80 @@
+[
+  {
+    "locale": "es",
+    "id": "newsletter-subscription-doi",
+    "emailSubject": "Algo",
+    "pageTitle": "Confirmar suscripción",
+    "title": "Ya casi has llegado...",
+    "description": "Requerimos una verificación de correo electrónico para completar su suscripción al boletín de Netzo",
+    "buttons": [
+      {
+        "variant": "primary",
+        "text": "Confirmar mi suscripción",
+        "href": "https://636aa2bfb6c0eae532cf9898.netzo.io/newsletter/subscribed"
+      }
+    ],
+    "caption": "Este correo electrónico se ha enviado a {{ email }} porque usted o alguien ha intentado suscribirse al boletín de Netzo. Si ha recibido este correo electrónico por accidente, simplemente bórrelo. No estarás suscrito a ninguna lista"
+  },
+  {
+    "locale": "es",
+    "id": "workspace-send-invitation",
+    "emailSubject": "",
+    "pageTitle": "Unirse al espacio de trabajo",
+    "title": "Has sido invitado a unirte",
+    "description": "¡{email}} te ha invitado a unirte a su espacio de trabajo!",
+    "buttons": [
+      {
+        "variant": "primary",
+        "text": "Únete al espacio de trabajo",
+        "href": "https://app.netzo.io"
+      }
+    ],
+    "caption": "Este correo electrónico se ha enviado a {{email}} porque usted o alguien ha intentado suscribirse al boletín de Netzo. Si ha recibido este correo electrónico por accidente, simplemente bórrelo. No estarás suscrito a ninguna lista"
+  },
+  {
+    "locale": "es",
+    "id": "users-welcome",
+    "emailSubject": "",
+    "pageTitle": "¡Bienvenidos a bordo!",
+    "title": "¡Bienvenido a bordo!",
+    "description": "Gracias por tu interés en Netzo, ¡estamos deseando tenerte a bordo! Si tiene algún problema con su cuenta, no dude en ponerse en contacto con nosotros respondiendo a este correo.",
+    "buttons": [
+      {
+        "variant": "primary",
+        "text": "Leer la documentación",
+        "href": "https://netzo.io/docs/getting-started/introduction"
+      },
+      {
+        "variant": "secondary",
+        "text": "Reservar una llamada",
+        "href": "https://meet.sendinblue.com/book-a-demo"
+      }
+    ],
+    "caption": "Este correo electrónico se ha enviado a {{email}} porque tú o alguien ha creado una cuenta en Netzo. Si has recibido este correo electrónico por accidente, es posible que alguien haya accedido a las credenciales de tu cuenta de correo electrónico. Si este es el caso, te instamos a que te pongas en contacto con nosotros inmediatamente y tomes las medidas necesarias para asegurar tu cuenta."
+  },
+  {
+    "locale": "es",
+    "id": "users-inactivity-6months",
+    "emailSubject": "",
+    "pageTitle": "Inactividad del usuario",
+    "title": "¿Todo bien?",
+    "description": "Nos hemos dado cuenta de que no has accedido a tu espacio de trabajo desde hace tiempo, ¿va todo bien? Los planes gratuitos se eliminan periódicamente tras 12 meses de inactividad y nos entristecería que te fueras.Si tienes problemas para usar la plataforma, ¡podemos ayudarte!",
+    "buttons": [
+      {
+        "variant": "primary",
+        "text": "Reservar una llamada",
+        "href": "https://meet.sendinblue.com/book-a-demo"
+      }
+    ],
+    "caption": "Este correo electrónico se ha enviado a {{email}} porque tu último inicio de sesión en Netzo fue en {{lastActivityDate}}. Si has recibido este correo por error, por favor, háznoslo saber"
+  },
+  {
+    "locale": "es",
+    "id": "website-contact-form-autoresponse",
+    "emailSubject": "",
+    "pageTitle": "Consulta recibida",
+    "title": "Gracias por ponerse en contacto",
+    "description": "Hemos recibido su consulta y nos pondremos en contacto con usted en breve",
+    "caption": "Este correo electrónico se ha enviado a {{email}} porque usted o alguien ha enviado un formulario web de Netzo utilizando este correo electrónico. Si lo has recibido por accidente, por favor, háznoslo saber. No serás suscrito a ninguna lista"
+  }
+]

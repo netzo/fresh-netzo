@@ -1,6 +1,6 @@
 # starter-gql
 
-An open-source source template for 'GQL'.
+An open-source source template for Netzo.
 
 ## Configuration
 

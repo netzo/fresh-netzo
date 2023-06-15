@@ -1,6 +1,6 @@
 # starter-oak
 
-An open-source source template for 'Oak'.
+An open-source source template for Netzo.
 
 ## Configuration
 

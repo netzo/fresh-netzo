@@ -1,6 +1,6 @@
 # starter-nanossr
 
-An open-source source template for 'NanoSSR'.
+An open-source source template for Netzo.
 
 ## Configuration
 

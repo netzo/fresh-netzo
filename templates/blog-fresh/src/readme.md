@@ -1,6 +1,6 @@
 # blog-fresh
 
-An open-source source template for 'Fresh Counter'.
+An open-source source template for Netzo.
 
 ## Configuration
 

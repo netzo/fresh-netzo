@@ -1,6 +1,6 @@
 # sales-dashboard-fresh
 
-An open-source source template for 'Sales Dashboard'.
+An open-source source template for Netzo.
 
 ## Configuration
 

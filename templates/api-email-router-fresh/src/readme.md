@@ -1,9 +1,6 @@
-# website-fresh
+# api-email-router-fresh
 
 An open-source source template for Netzo.
-
-> Edited from
-> [themesberg/tailwind-website](https://github.com/themesberg/tailwind-website).
 
 ## Configuration
 
@@ -21,7 +18,7 @@ This will watch the project directory and restart as necessary.
 
 ## Links
 
-- [Homepage](https://app.netzo.io/templates/website-fresh)
+- [Homepage](https://app.netzo.io/templates/api-email-router-fresh)
 
 <div align="center">
   <h4>© Netzo</h4>

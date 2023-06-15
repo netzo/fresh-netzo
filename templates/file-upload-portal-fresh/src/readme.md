@@ -1,6 +1,6 @@
 # file-upload-portal-fresh
 
-An open-source source template for 'File Upload Portal'.
+An open-source source template for Netzo.
 
 ## Configuration
 

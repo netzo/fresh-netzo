@@ -1,6 +1,6 @@
 # starter-rutt
 
-An open-source source template for 'Rutt'.
+An open-source source template for Netzo.
 
 ## Configuration
 

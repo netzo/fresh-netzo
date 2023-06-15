@@ -1,6 +1,6 @@
 # starter-hono
 
-An open-source source template for 'Hono'.
+An open-source source template for Netzo.
 
 ## Configuration
 
