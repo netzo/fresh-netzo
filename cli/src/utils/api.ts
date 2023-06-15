@@ -115,9 +115,6 @@ export class API {
     try {
       return await this.#requestJson(`/projects/${id}`)
     } catch (err) {
-      if (err instanceof APIError && err.code === 'projectNotFound') {
-        return null
-      }
       throw err
     }
   }
@@ -129,9 +126,6 @@ export class API {
       ) as Paginated<Project>
       return project
     } catch (err) {
-      if (err instanceof APIError && err.code === 'projectNotFound') {
-        return null
-      }
       throw err
     }
   }
@@ -143,9 +137,6 @@ export class API {
       ) as Paginated<Template>
       return template
     } catch (err) {
-      if (err instanceof APIError && err.code === 'templateNotFound') {
-        return null
-      }
       throw err
     }
   }
@@ -157,9 +148,6 @@ export class API {
       ) as Paginated<Deployment>
       return data
     } catch (err) {
-      if (err instanceof APIError && err.code === 'projectNotFound') {
-        return null
-      }
       throw err
     }
   }
