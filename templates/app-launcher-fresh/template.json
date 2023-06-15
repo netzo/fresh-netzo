@@ -56,9 +56,6 @@
       "deno.json": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/app-launcher-fresh/src/deno.json"
       },
-      "import_map.json": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/app-launcher-fresh/src/import_map.json"
-      },
       "dev.ts": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/app-launcher-fresh/src/dev.ts"
       },

@@ -86,9 +86,6 @@
       ".env": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/.env"
       },
-      "import_map.json": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/import_map.json"
-      },
       "dev.ts": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/dev.ts"
       },
