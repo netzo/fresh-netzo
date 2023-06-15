@@ -79,6 +79,9 @@ export default (props: PageProps) => {
                               {template.title}
                             </p>
                             <p class='text-sm text-gray-500 truncate dark:text-gray-400'>
+                              {template.id}
+                            </p>
+                            <p class='mt-1 text-sm text-gray-500 truncate dark:text-gray-400'>
                               {template.description}
                             </p>
                           </div>
