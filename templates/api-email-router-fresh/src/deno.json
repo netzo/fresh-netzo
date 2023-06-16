@@ -20,6 +20,6 @@
     "twind/": "https://esm.sh/twind@0.16.19/",
     "$std/": "https://deno.land/std@0.190.0/",
     "mustache": "https://esm.sh/mustache@4.2.0",
-    "netzo/": "https://deno.land/x/netzo@v0.1.83/"
+    "netzo/": "https://deno.land/x/netzo@v0.1.84/"
   }
 }
