@@ -20,6 +20,6 @@
     "./": "./",
     "$gfm": "https://deno.land/x/gfm@0.1.26/mod.ts",
     "feed": "https://esm.sh/feed@4.2.2",
-    "netzo/": "https://deno.land/x/netzo@v0.1.84/"
+    "netzo/": "https://deno.land/x/netzo@v0.1.85/"
   }
 }
