@@ -7,30 +7,30 @@ Create a new project from an existing template (see https://app.netzo.io/templat
 To create a new project from a template:
   netzo init
 
+To create a new project from a specific template:
+  netzo init --template=starter-app
+
 To create a new project from a template in a custom directory:
-  netzo init --dir=path/to/
+  netzo init path/to/directory
 
 To create a new project from a template in the current working directory:
-  netzo init --dir=.
-
-To create a new project from a specific template:
-  netzo init starter-app
+  netzo init .
 
 USAGE:
-    netzo init [OPTIONS] <template>
+    netzo init [OPTIONS] [<directory>]
 
 OPTIONS:
-    -h, --help                Prints help information
-        --dir                 The directory path to initialize project in (defaults to <template>)
-        --dry-run             Dry run the initialization process
+    -h, --help       Prints help information
+    -t, --template   The UID of the template (omit to list options)
+        --dry-run    Dry run the initialization process
 
 ARGS:
-    <template>                The UID of the template (omit to list options)
+    <directory>      The directory path to initialize project in (defaults to --template)
 `
 
 export interface Args {
   help: boolean
-  dir: string | null
+  template: string | null
   dryRun: boolean
 }
 
@@ -38,7 +38,7 @@ export interface Args {
 export default async function (rawArgs: Record<string, any>): Promise<void> {
   const args: Args = {
     help: !!rawArgs.help,
-    dir: rawArgs.dir ? String(rawArgs.dir) : null,
+    template: rawArgs.template ? String(rawArgs.template) : null,
     dryRun: !!rawArgs['dry-run'],
   }
 
@@ -46,22 +46,22 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     console.log(help)
     Deno.exit(0)
   }
-
-  const template = typeof rawArgs._[0] === 'string'
-    ? rawArgs._[0]
-    // @ts-ignore: types of question module are broken due to function overloading
-    : await question('list', 'Select a template:', await getTemplateUids())
-
-  if (rawArgs._.length > 2) {
+  if (rawArgs._.length > 1) {
     console.error(help)
     error('Too many positional arguments given.')
   }
-  if (template === null) {
+  if (args.template === null) {
+    // @ts-ignore: types of question module are broken due to function overloading
+    args.template = await question('list', 'Select a template:', await getTemplateUids())
+    // NOTE: exit directly if undefined (when cancelling/escaping prompt)
+    if (args.template === undefined) Deno.exit(1)
+  }
+  if (args.template === null) {
     console.error(help)
     error('Missing template UID.')
   }
 
-  const dir = args.dir ?? template! // defaults to template UID
+  const directory = typeof rawArgs._[0] === 'string' ? rawArgs._[0] : args.template! // defaults to template UID
 
   const process = new Deno.Command(Deno.execPath(), {
     args: [
@@ -74,8 +74,8 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
       '--allow-sys',
       '--no-check',
       `npm:giget@1.1.2`,
-      `gh:netzo/netzo/templates/${template}/src`,
-      dir,
+      `gh:netzo/netzo/templates/${args.template}/src`,
+      directory,
       '--force', // clone to existing directory even if exists
     ],
   }).spawn()
