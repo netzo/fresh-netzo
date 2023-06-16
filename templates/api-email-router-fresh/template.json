@@ -72,9 +72,6 @@
       },
       "readme.md": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/api-email-router-fresh/src/readme.md"
-      },
-      "twind.config.ts": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/api-email-router-fresh/src/twind.config.ts"
       }
     },
     "configuration": {

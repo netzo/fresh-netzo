@@ -68,9 +68,6 @@
       },
       "readme.md": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-fresh/src/readme.md"
-      },
-      "twind.config.ts": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-fresh/src/twind.config.ts"
       }
     },
     "configuration": {

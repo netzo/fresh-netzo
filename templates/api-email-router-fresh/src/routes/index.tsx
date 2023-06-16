@@ -54,7 +54,7 @@ export default (props: PageProps) => {
 
         <main class='pt-12 flex-1 grid place-items-center'>
           <div class='w-full max-w-3xl mx-auto'>
-            <div class='sticky top-0 py-6 dark:bg-gray-900'>
+            <div class='sticky top-0 py-6 bg-white dark:bg-gray-900'>
               <InputSearch
                 locale={props.data.locale}
                 query={props.data.query}

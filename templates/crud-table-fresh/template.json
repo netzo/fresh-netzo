@@ -67,9 +67,6 @@
       },
       "readme.md": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/crud-table-fresh/src/readme.md"
-      },
-      "twind.config.ts": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/crud-table-fresh/src/twind.config.ts"
       }
     },
     "configuration": {

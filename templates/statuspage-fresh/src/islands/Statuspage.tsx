@@ -1,7 +1,5 @@
 /** @jsx h */
-import { serve } from 'http/server.ts'
 import { h } from 'preact'
-import { renderToString } from 'preact-render-to-string'
 import {
   Badge,
   Block,
@@ -13,7 +11,7 @@ import {
   Tracking,
   TrackingBlock,
 } from '@tremor/react'
-import events from './data/events.json' assert { type: 'json' }
+import events from '../data/events.json' assert { type: 'json' }
 
 interface Event {
   name: string
@@ -24,7 +22,7 @@ interface Event {
 
 const statusColors = { up: 'emerald', down: 'red', maintenance: 'gray' }
 
-function Statuspage({ events }) {
+export default function Statuspage() {
   const groupByKey = (array: Event[], key: string): Record<string, Event[]> => {
     return array.reduce(
       (acc, obj) => ({ ...acc, [obj[key]]: (acc[obj[key]] || []).concat(obj) }),
@@ -131,28 +129,3 @@ function StatuspageCard({ event }) {
     </Card>
   )
 }
-
-function handler(req: Request): Promise<Response> {
-  const page = (
-    <html>
-      <head>
-        <title>Statuspage | Netzo</title>
-        <link
-          rel='stylesheet'
-          href='https://cdn.jsdelivr.net/npm/@tremor/react@1.0.7/dist/esm/tremor.css'
-        />
-      </head>
-      <body>
-        <Statuspage event={event} />
-      </body>
-    </html>
-  )
-
-  const html = renderToString(page)
-
-  return new Response(html, {
-    headers: { 'content-type': 'text/html' },
-  })
-}
-
-serve(handler)

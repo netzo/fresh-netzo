@@ -97,9 +97,6 @@
       },
       "readme.md": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/readme.md"
-      },
-      "twind.config.ts": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/video-generator-fresh/src/twind.config.ts"
       }
     },
     "configuration": {

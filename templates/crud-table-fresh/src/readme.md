@@ -1,4 +1,4 @@
-# statuspage-fresh
+# crud-table-fresh
 
 An open-source source template for Netzo.
 
@@ -18,7 +18,7 @@ This will watch the project directory and restart as necessary.
 
 ## Links
 
-- [Homepage](https://app.netzo.io/templates/statuspage-fresh)
+- [Homepage](https://app.netzo.io/templates/crud-table-fresh)
 
 <div align="center">
   <h4>© Netzo</h4>
