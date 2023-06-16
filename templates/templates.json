@@ -1,9 +1,9 @@
 [
-  "https://raw.githubusercontent.com/netzo/netzo/main/templates/api-email-router-fresh/template.json",
-  "https://raw.githubusercontent.com/netzo/netzo/main/templates/app-launcher-fresh/template.json",
-  "https://raw.githubusercontent.com/netzo/netzo/main/templates/blog-fresh/template.json",
-  "https://raw.githubusercontent.com/netzo/netzo/main/templates/file-upload-portal-fresh/template.json",
-  "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard-fresh/template.json",
+  "https://raw.githubusercontent.com/netzo/netzo/main/templates/api-email-router/template.json",
+  "https://raw.githubusercontent.com/netzo/netzo/main/templates/app-launcher/template.json",
+  "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-blog-fresh/template.json",
+  "https://raw.githubusercontent.com/netzo/netzo/main/templates/file-upload-portal/template.json",
+  "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard/template.json",
   "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-cheetah/template.json",
   "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-fresh/template.json",
   "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-gql/template.json",
@@ -13,6 +13,6 @@
   "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-rpc/template.json",
   "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-rutt/template.json",
   "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-sift/template.json",
-  "https://raw.githubusercontent.com/netzo/netzo/main/templates/statuspage-fresh/template.json",
-  "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-fresh/template.json"
+  "https://raw.githubusercontent.com/netzo/netzo/main/templates/statuspage/template.json",
+  "https://raw.githubusercontent.com/netzo/netzo/main/templates/website/template.json"
 ]

@@ -1,0 +1,81 @@
+{
+  "uid": "statuspage",
+  "status": "requested",
+  "name": "Statuspage",
+  "description": "A status page to track the 'up', 'down' and 'maintenance' status of (multiple) services over time.",
+  "labels": [
+    "usecase",
+    "fresh"
+  ],
+  "display": {
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/statuspage/icon.svg"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/templates/statuspage"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/statuspage/src/readme.md"
+    }
+  ],
+  "item": {
+    "_type": "project",
+    "uid": "statuspage",
+    "fs": {
+      ".vscode/extensions.json": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/statuspage/src/.vscode/extensions.json"
+      },
+      ".vscode/settings.json": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/statuspage/src/.vscode/settings.json"
+      },
+      "components/Button.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/statuspage/src/components/Button.tsx"
+      },
+      "islands/Counter.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/statuspage/src/islands/Counter.tsx"
+      },
+      "routes/api/joke.ts": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/statuspage/src/routes/api/joke.ts"
+      },
+      "routes/[name].tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/statuspage/src/routes/[name].tsx"
+      },
+      "routes/index.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/statuspage/src/routes/index.tsx"
+      },
+      "static/favicon.svg": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/statuspage/src/static/favicon.svg"
+      },
+      "static/logo.svg": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/statuspage/src/static/logo.svg"
+      },
+      ".gitignore": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/statuspage/src/.gitignore"
+      },
+      "deno.json": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/statuspage/src/deno.json"
+      },
+      "dev.ts": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/statuspage/src/dev.ts"
+      },
+      "fresh.gen.ts": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/statuspage/src/fresh.gen.ts"
+      },
+      "main.ts": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/statuspage/src/main.ts"
+      },
+      "readme.md": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/statuspage/src/readme.md"
+      }
+    },
+    "configuration": {
+      "entrypoint": "main.ts",
+      "envVars": {},
+      "permissions": {
+        "net": true
+      }
+    }
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "uid": "file-upload-portal",
+  "status": "requested",
+  "name": "File Upload Portal",
+  "description": "A file upload portal to ease data processing and syncing from files.",
+  "labels": [
+    "form",
+    "file",
+    "fresh"
+  ],
+  "display": {
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/file-upload-portal/icon.svg"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/templates/file-upload-portal"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/file-upload-portal/src/readme.md"
+    }
+  ],
+  "item": {
+    "_type": "project",
+    "uid": "file-upload-portal",
+    "fs": {
+      ".vscode/extensions.json": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/file-upload-portal/src/.vscode/extensions.json"
+      },
+      ".vscode/settings.json": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/file-upload-portal/src/.vscode/settings.json"
+      },
+      "readme.md": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/file-upload-portal/src/readme.md"
+      },
+      "main.ts": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/file-upload-portal/src/main.ts"
+      },
+      "components/app.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/file-upload-portal/src/components/app.tsx"
+      },
+      "components/footer.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/file-upload-portal/src/components/footer.tsx"
+      },
+      "components/header.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/file-upload-portal/src/components/header.tsx"
+      }
+    },
+    "configuration": {
+      "entrypoint": "main.ts",
+      "envVars": {},
+      "permissions": {
+        "net": true
+      }
+    }
+  }
+}
