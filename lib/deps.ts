@@ -13,5 +13,5 @@ export * from 'https://esm.sh/preact@10.11.0'
 // preact-render-to-string:
 export { default } from 'https://esm.sh/*preact-render-to-string@6.1.0'
 
-// @netzo/api:
-export * from 'https://esm.sh/@netzo/api@1.0.11'
+// @netzo/api: cherry-pick exports to avoid esm.sh tree-shaking issues
+export type { Variable } from 'https://esm.sh/@netzo/api@1.0.21'

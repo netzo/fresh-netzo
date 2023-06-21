@@ -1,16 +1,18 @@
 import { TextLineStream } from '../../deps.ts'
 
-import {
-  Deployment,
-  DeploymentProgress,
-  GitHubActionsDeploymentRequest,
-  Logs,
-  ManifestEntry,
-  Paginated,
-  Project,
-  PushDeploymentRequest,
+// externalized types in @denoland/deployctl/src/utils/api_types.ts
+// to @netzo/api to use them both for @netzo/app and @netzo/netzo/cli
+import type {
   Template,
-} from './api.types.ts'
+  Project,
+  Paginated,
+  DenoProjectDeployment,
+  DenoDeploymentProgress,
+  ManifestEntry,
+  Log,
+  DenoProjectDeploymentRequestPush,
+  DenoProjectDeploymentRequestGitHubActions,
+} from '../../deps.ts'
 
 export interface RequestOptions {
   method?: string
@@ -141,18 +143,18 @@ export class API {
     }
   }
 
-  async getDeployments(projectId: string): Promise<Deployment[] | null> {
+  async getDeployments(projectId: string): Promise<DenoProjectDeployment[] | null> {
     try {
       const { data } = await this.#requestJson(
         `/deployments?projectId=${projectId}`,
-      ) as Paginated<Deployment>
+      ) as Paginated<DenoProjectDeployment>
       return data
     } catch (err) {
       throw err
     }
   }
 
-  getLogs(projectId: string, deploymentId: string): AsyncIterable<Logs> {
+  getLogs(projectId: string, deploymentId: string): AsyncIterable<Log> {
     return this.#requestStream(
       `/logs?projectId=${projectId}&deploymentId=${deploymentId}`,
     )
@@ -194,10 +196,10 @@ export class API {
   // and use the existing progress indicator in the CLI by returning AsyncIterable
   async *pushDeployJson(
     projectId: string,
-    body: Pick<Project, 'deploymentId' | 'configuration' | 'fs'>,
-  ): AsyncIterable<DeploymentProgress> {
+    body: Pick<Project, 'deploymentId' | 'configuration' | 'files'>,
+  ): AsyncIterable<DenoDeploymentProgress> {
     try {
-      const paths = Object.keys(body.fs)
+      const paths = Object.keys(body.files)
       const total = paths.length
       let i = 0
       do {
@@ -217,9 +219,9 @@ export class API {
 
   pushDeploy(
     projectId: string,
-    request: PushDeploymentRequest,
+    request: DenoProjectDeploymentRequestPush,
     files: Uint8Array[],
-  ): AsyncIterable<DeploymentProgress> {
+  ): AsyncIterable<DenoDeploymentProgress> {
     const form = new FormData()
     form.append('request', JSON.stringify(request))
     for (const bytes of files) {
@@ -233,9 +235,9 @@ export class API {
 
   gitHubActionsDeploy(
     projectId: string,
-    request: GitHubActionsDeploymentRequest,
+    request: DenoProjectDeploymentRequestGitHubActions,
     files: Uint8Array[],
-  ): AsyncIterable<DeploymentProgress> {
+  ): AsyncIterable<DenoDeploymentProgress> {
     const form = new FormData()
     form.append('request', JSON.stringify(request))
     for (const bytes of files) {

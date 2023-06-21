@@ -24,7 +24,7 @@
   "item": {
     "_type": "project",
     "uid": "file-upload-portal",
-    "fs": {
+    "files": {
       ".vscode/extensions.json": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/file-upload-portal/src/.vscode/extensions.json"
       },

@@ -25,3 +25,53 @@ export {
 
 // x/wait
 export { Spinner, wait } from 'https://deno.land/x/wait@0.1.12/mod.ts'
+
+// @netzo/api
+// @netzo/api: cherry-pick exports to avoid esm.sh tree-shaking issues
+export type {
+  Template,
+  Project,
+  Paginated,
+  // auth:
+  AuthorizationNone,
+  AuthorizationBasic,
+  AuthorizationBearer,
+  AuthorizationApiKey,
+  AuthorizationOAuth2ClientCredentials,
+  AuthorizationOAuth2PasswordCredentials,
+  AuthorizationOAuth2Implicit,
+  AuthorizationOAuth2AuthorizationCode,
+  AuthorizationOAuth2,
+  Authorization,
+  // deno:
+  DenoOrganization,
+  DenoProjectDeployment,
+  DenoProjectDeploymentsSummary,
+  DenoProjectDeploymentsResult,
+  DenoDeploymentProgressStaticFile,
+  DenoDeploymentProgressLoad,
+  DenoDeploymentProgressUploadComplete,
+  DenoDeploymentProgressSuccess,
+  DenoDeploymentProgressError,
+  DenoDeploymentProgress,
+  DenoProjectAnalytics,
+  DenoProjectDomain,
+  DenoProject,
+  ManifestEntryDirectory,
+  ManifestEntryFile,
+  ManifestEntrySymlink,
+  ManifestEntry,
+  Manifest,
+  // files:
+  TemplateFiles,
+  ProjectFilesFile,
+  ProjectFiles,
+  // logs:
+  LogReady,
+  LogPing,
+  LogMessage,
+  Log,
+  // deployment-requests:
+  DenoProjectDeploymentRequestPush,
+  DenoProjectDeploymentRequestGitHubActions,
+} from 'https://esm.sh/@netzo/api@1.0.21'

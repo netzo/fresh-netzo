@@ -118,7 +118,7 @@ The following table provides some examples of labels grouped by category.
 | `labels`*       | `string[]`          | `false`  | relevant keywords (tags) (kebab-case)                 |
 | `display`*      | [Display](#display) | `false`  | relevant details for rendering the template in the UI |
 | `request`*      | `object`            | `false`  | initial configuration for the default request         |
-| `fs`            | `object`            | `true`   | the file system structure of the template             |
+| `files`         | `object`            | `true`   | all file entries in the template                      |
 | `configuration` | `object`            | `true`   | deployment configuration                              |
 
 ## Example template.json
@@ -152,7 +152,7 @@ look at other templates for further reference.
   "item": {
     "_type": "project",
     "uid": "starter-sift",
-    "fs": {
+    "files": {
       ".vscode/extensions.json": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-sift/src/.vscode/extensions.json"
       },

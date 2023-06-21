@@ -23,7 +23,7 @@
   "item": {
     "_type": "project",
     "uid": "statuspage",
-    "fs": {
+    "files": {
       ".vscode/extensions.json": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/statuspage/src/.vscode/extensions.json"
       },

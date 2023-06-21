@@ -1,11 +1,7 @@
+import type { ManifestEntry, ManifestEntryFile, Project } from '../../deps.ts'
 import { fromFileUrl, normalize, Spinner, wait } from '../../deps.ts'
 import { error, printWarning } from '../console.ts'
 import { API } from '../utils/api.ts'
-import {
-  ManifestEntry,
-  ManifestEntryFile,
-  Project,
-} from '../utils/api.types.ts'
 import { parseEntrypoint } from '../utils/entrypoint.ts'
 import { walk } from '../utils/walk.ts'
 
@@ -198,9 +194,8 @@ async function deploy(opts: DeployOpts): Promise<void> {
       uploadSpinner.succeed('No new assets to upload.')
       uploadSpinner = null
     } else {
-      uploadSpinner.text = `${files.length} new asset${
-        files.length === 1 ? '' : 's'
-      } to upload.`
+      uploadSpinner.text = `${files.length} new asset${files.length === 1 ? '' : 's'
+        } to upload.`
     }
 
     manifest = { entries }
@@ -220,14 +215,13 @@ async function deploy(opts: DeployOpts): Promise<void> {
     entrypoint = opts.entrypoint,
     importMap = importMapUrl?.href,
     envVars = {},
-    envVarsDev = {},
     permissions = { net: true },
   } = project.configuration ?? {}
   const progress = api.pushDeployJson(project._id, {
     // deno-lint-ignore no-explicit-any
     ...(opts.prod && { deploymentId: 'production' }) as any,
-    configuration: { entrypoint, importMap, envVars, envVarsDev, permissions },
-    fs: buildFS(manifest?.entries, files),
+    configuration: { entrypoint, importMap, envVars, permissions },
+    files: buildProjectFiles(manifest?.entries, files),
   })
 
   // alerts: useful hints/warnings for the user
@@ -248,16 +242,14 @@ async function deploy(opts: DeployOpts): Promise<void> {
     switch (event.type) {
       case 'staticFile': {
         const percentage = (event.currentBytes / event.totalBytes) * 100
-        uploadSpinner!.text = `Uploading ${files.length} asset${
-          files.length === 1 ? '' : 's'
-        }... (${percentage.toFixed(1)}%)`
+        uploadSpinner!.text = `Uploading ${files.length} asset${files.length === 1 ? '' : 's'
+          }... (${percentage.toFixed(1)}%)`
         break
       }
       case 'load': {
         if (uploadSpinner) {
           uploadSpinner.succeed(
-            `Uploaded ${files.length} new asset${
-              files.length === 1 ? '' : 's'
+            `Uploaded ${files.length} new asset${files.length === 1 ? '' : 's'
             }.`,
           )
           uploadSpinner = null
@@ -365,11 +357,11 @@ async function deploy(opts: DeployOpts): Promise<void> {
   } */
 }
 
-function buildFS(
+function buildProjectFiles(
   entries: Record<string, ManifestEntry> = {},
   files: string[] = [],
-): Project['fs'] {
-  const fsWithoutContents: Record<string, ManifestEntryFile> = {}
+): Project['files'] {
+  const filesWithoutContents: Record<string, ManifestEntryFile> = {}
 
   // deno-lint-ignore no-explicit-any
   function walk(obj: any, path: string) {
@@ -379,7 +371,7 @@ function buildFS(
         kind: obj.kind,
         size: obj.size,
       }
-      fsWithoutContents[path] = fileEntry
+      filesWithoutContents[path] = fileEntry
     } else if (typeof obj === 'object') {
       for (const key in obj) {
         // deno-lint-ignore no-prototype-builtins
@@ -398,7 +390,7 @@ function buildFS(
 
   walk(entries, '')
 
-  const fs = Object.entries(fsWithoutContents).reduce(
+  const files = Object.entries(filesWithoutContents).reduce(
     // deno-lint-ignore no-unused-vars
     (acc, [path, { gitSha1, kind, size }], i) => ({
       ...acc,
@@ -406,5 +398,5 @@ function buildFS(
     }),
     {},
   )
-  return fs
+  return files
 }

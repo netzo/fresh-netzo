@@ -22,7 +22,7 @@
   "item": {
     "_type": "project",
     "uid": "app-launcher",
-    "fs": {
+    "files": {
       ".vscode/extensions.json": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/app-launcher/src/.vscode/extensions.json"
       },
