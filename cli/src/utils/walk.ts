@@ -20,46 +20,6 @@ function include(
   include?: string[],
   exclude?: string[],
 ): boolean {
-  // FIXME: remove first if case that exclude binary multimedia files
-  // (images, videos, etc.) and add support for them as well via the
-  // Subhosting API integration (see https://deno-deploy.redoc.ly)
-  // TODO: read .gitignore file and skip those paths instead (if any)
-  if (
-    [
-      'png',
-      'jpg',
-      'jpeg',
-      'webp',
-      'gif',
-      'ico',
-      'mp3',
-      'mp4',
-      'wav',
-      'ogg',
-      'pdf',
-      'doc',
-      'docx',
-      'xls',
-      'xlsx',
-      'ppt',
-      'pptx',
-      'zip',
-      'webm',
-      'ogg',
-      'm4a',
-      'm4v',
-      'mov',
-      'avi',
-      'wmv',
-      'mpg',
-      'mpeg',
-    ].includes(path?.split('.').pop()!)
-  ) {
-    printWarning(
-      `Skipping ${path} because it is a binary file (not yet supported)`,
-    )
-    return false
-  }
   if (
     include && !include.some((pattern): boolean => path.startsWith(pattern))
   ) {
