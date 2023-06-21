@@ -1,5 +1,4 @@
-import { join, ManifestEntryDirectory, type ManifestEntry } from '../../deps.ts'
-import { printWarning } from '../console.ts'
+import { join, type ManifestEntry, ManifestEntryDirectory } from '../../deps.ts'
 
 /** Calculate git object hash, like `git hash-object` does. */
 export async function calculateGitSha1(bytes: Uint8Array) {

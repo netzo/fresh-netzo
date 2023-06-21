@@ -1,7 +1,7 @@
 import { wait } from '../../deps.ts'
 import { error } from '../console.ts'
 import { APIError, DenoAPI } from '../utils/api.deno.ts'
-import { NetzoAPI } from "../utils/api.netzo.ts";
+import { NetzoAPI } from '../utils/api.netzo.ts'
 
 const help = `netzo logs
 Stream logs for the given project.

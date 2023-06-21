@@ -69,4 +69,4 @@ export type {
   ProjectFilesFile,
   Template,
   TemplateFiles,
-} from 'https://esm.sh/@netzo/api@1.0.21'
+} from 'https://esm.sh/@netzo/api@1.0.22'
