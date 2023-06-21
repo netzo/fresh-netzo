@@ -1,4 +1,4 @@
-#!/usr/bin/env -S deno run --allow-read --allow-write --allow-env --allow-net --allow-run --no-check
+#!/usr/bin/env -S deno run --allow-read --allow-write --allow-env --allow-net --allow-run
 
 import { parseArgs, semverGreaterThanOrEquals } from './deps.ts'
 import { error } from './src/console.ts'
