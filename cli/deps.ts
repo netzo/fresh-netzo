@@ -33,7 +33,6 @@ export type {
   AuthorizationApiKey,
   AuthorizationBasic,
   AuthorizationBearer,
-  // auth:
   AuthorizationNone,
   AuthorizationOAuth2,
   AuthorizationOAuth2AuthorizationCode,
@@ -46,13 +45,11 @@ export type {
   DenoDeploymentProgressStaticFile,
   DenoDeploymentProgressSuccess,
   DenoDeploymentProgressUploadComplete,
-  // deno:
   DenoOrganization,
   DenoProject,
   DenoProjectAnalytics,
   DenoProjectDeployment,
   DenoProjectDeploymentRequestGitHubActions,
-  // deployment-requests:
   DenoProjectDeploymentRequestPush,
   DenoProjectDeploymentsResult,
   DenoProjectDeploymentsSummary,
@@ -60,7 +57,6 @@ export type {
   Log,
   LogMessage,
   LogPing,
-  // logs:
   LogReady,
   Manifest,
   ManifestEntry,
@@ -72,6 +68,5 @@ export type {
   ProjectFiles,
   ProjectFilesFile,
   Template,
-  // files:
   TemplateFiles,
 } from 'https://esm.sh/@netzo/api@1.0.21'

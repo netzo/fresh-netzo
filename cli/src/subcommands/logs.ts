@@ -1,6 +1,7 @@
 import { wait } from '../../deps.ts'
 import { error } from '../console.ts'
-import { API, APIError } from '../utils/api.ts'
+import { APIError, DenoAPI } from '../utils/api.deno.ts'
+import { NetzoAPI } from "../utils/api.netzo.ts";
 
 const help = `netzo logs
 Stream logs for the given project.
@@ -87,9 +88,10 @@ async function logs(opts: DeployOpts): Promise<void> {
     )
   }
   const projectSpinner = wait('Fetching project information...').start()
-  const api = API.fromApiKey(opts.apiKey)
-  const project = (await api.getProjectByUid(opts.projectUid))!
-  const projectDeployments = await api.getDeployments(project._id)
+  const denoApi = DenoAPI.fromToken(opts.token)
+  const netzoApi = NetzoAPI.fromApiKey(opts.apiKey)
+  const project = (await netzoApi.getProjectByUid(opts.projectUid))!
+  const projectDeployments = await denoApi.getDeployments(project._id)
   if (project === null) {
     projectSpinner.fail('Project not found.')
     Deno.exit(1)
@@ -107,8 +109,8 @@ async function logs(opts: DeployOpts): Promise<void> {
   }
   projectSpinner.succeed(`Project: ${project.name}`)
   const logs = opts.deploymentId
-    ? api.getLogs(project._id, opts.deploymentId)
-    : api.getLogs(project._id, 'latest')
+    ? denoApi.getLogs(project._id, opts.deploymentId)
+    : denoApi.getLogs(project._id, 'latest')
   if (logs === null) {
     projectSpinner.fail('Project not found.')
     Deno.exit(1)

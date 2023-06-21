@@ -1,6 +1,5 @@
-import { join } from '../../deps.ts'
+import { join, ManifestEntryDirectory, type ManifestEntry } from '../../deps.ts'
 import { printWarning } from '../console.ts'
-import { ManifestEntry } from './api.types.ts'
 
 /** Calculate git object hash, like `git hash-object` does. */
 export async function calculateGitSha1(bytes: Uint8Array) {
@@ -71,6 +70,7 @@ function include(
   }
   return true
 }
+
 export async function walk(
   cwd: string,
   dir: string,
@@ -105,7 +105,7 @@ export async function walk(
       entry = {
         kind: 'directory',
         entries: await walk(cwd, path, files, options),
-      }
+      } as unknown as ManifestEntryDirectory
     } else if (file.isSymlink) {
       const target = await Deno.readLink(path)
       entry = {

@@ -1,7 +1,8 @@
-import type { ManifestEntry, ManifestEntryFile, Project } from '../../deps.ts'
+import type { DenoProjectDeploymentRequestPush, Manifest } from '../../deps.ts'
 import { fromFileUrl, normalize, Spinner, wait } from '../../deps.ts'
-import { error, printWarning } from '../console.ts'
-import { API } from '../utils/api.ts'
+import { error } from '../console.ts'
+import { APIError, DenoAPI } from '../utils/api.deno.ts'
+import { NetzoAPI } from '../utils/api.netzo.ts'
 import { parseEntrypoint } from '../utils/entrypoint.ts'
 import { walk } from '../utils/walk.ts'
 
@@ -44,6 +45,7 @@ export interface Args {
   prod: boolean
   exclude?: string[]
   include?: string[]
+  token: string | null // FIXME(deno): remove token and use env var
   apiKey: string | null
   project: string | null
   importMap: string | null
@@ -56,6 +58,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     help: !!rawArgs.help,
     static: !rawArgs['no-static'], // negate the flag
     prod: !!rawArgs.prod,
+    token: rawArgs.token ? String(rawArgs.token) : null, // FIXME(deno): remove token and use env var
     apiKey: rawArgs['api-key'] ? String(rawArgs['api-key']) : null,
     project: rawArgs.project ? String(rawArgs.project) : null,
     importMap: rawArgs['import-map'] ? String(rawArgs['import-map']) : null,
@@ -68,6 +71,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     console.log(help)
     Deno.exit(0)
   }
+  const token = args.token ?? Deno.env.get('DENO_TOKEN') ?? null // FIXME(deno): remove token and use env var
   const apiKey = args.apiKey ?? Deno.env.get('NETZO_API_KEY') ?? null
   if (apiKey === null) {
     console.error(help)
@@ -94,6 +98,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
         .catch((e) => error(e)),
     static: args.static,
     prod: args.prod,
+    token,
     apiKey,
     project: args.project,
     include: args.include?.map((pattern) => normalize(pattern)),
@@ -111,6 +116,7 @@ interface DeployOpts {
   prod: boolean
   exclude?: string[]
   include?: string[]
+  token: string // FIXME(deno): remove token and use env var
   apiKey: string
   project: string
   dryRun: boolean
@@ -121,17 +127,39 @@ async function deploy(opts: DeployOpts): Promise<void> {
     wait('').start().info('Performing dry run of deployment')
   }
   const projectSpinner = wait('Fetching project information...').start()
-  const api = API.fromApiKey(opts.apiKey)
-  const project = (await api.getProjectByUid(opts.project))!
+  const denoApi = DenoAPI.fromToken(opts.token)
+  const netzoApi = NetzoAPI.fromApiKey(opts.apiKey)
+  const project = (await netzoApi.getProjectByUid(opts.project))!
   if (!project) {
     projectSpinner.fail(
       'Project not found. Check your API key and project UID.',
     )
     Deno.exit(1)
   }
+
+  const {
+    entrypoint,
+    importMap,
+    // envVars = {},
+    // permissions = { net: true },
+  } = project.configuration ?? {}
+
+  const deploymentsListing = await denoApi.getDeployments(project.uid)
+  if (deploymentsListing === null) {
+    projectSpinner.fail('Project deployments details not found.')
+    Deno.exit(1)
+  }
+  const [projectDeployments, _pagination] = deploymentsListing!
   projectSpinner.succeed(`Project: ${project.uid}`)
 
-  let url = opts.entrypoint
+  if (projectDeployments.length === 0) {
+    wait('').start().info(
+      'Empty project detected, automatically pushing initial deployment to production (use --prod for further updates).',
+    )
+    opts.prod = true
+  }
+
+  let url = opts.entrypoint ?? entrypoint
   const cwd = Deno.cwd()
 
   if (['http:', 'https:'].includes(url.protocol)) {
@@ -149,7 +177,8 @@ async function deploy(opts: DeployOpts): Promise<void> {
     const entrypoint = path.slice(cwd.length)
     url = new URL(`file:///src${entrypoint}`)
   }
-  let importMapUrl = opts.importMapUrl
+
+  let importMapUrl = opts.importMapUrl ?? importMap
   if (importMapUrl && importMapUrl.protocol === 'file:') {
     const path = fromFileUrl(importMapUrl)
     if (!path.startsWith(cwd)) {
@@ -160,9 +189,8 @@ async function deploy(opts: DeployOpts): Promise<void> {
   }
 
   let uploadSpinner: Spinner | null = null
-  const files: string[] = []
-  let manifest: { entries: Record<string, ManifestEntry> } | undefined =
-    undefined
+  const files: Uint8Array[] = []
+  let manifest: Manifest | undefined = undefined
 
   if (opts.static) {
     wait('').start().info(`Uploading all files from the current dir (${cwd})`)
@@ -177,7 +205,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
     )
 
     uploadSpinner = wait('Determining assets to upload...').start()
-    const neededHashes = await api.projectNegotiateAssets(project._id, {
+    const neededHashes = await denoApi.projectNegotiateAssets(project.uid, {
       entries,
     })
 
@@ -187,16 +215,14 @@ async function deploy(opts: DeployOpts): Promise<void> {
         error(`Asset ${hash} not found.`)
       }
       const data = await Deno.readFile(path)
-      // files.push(data)
-      files.push(new TextDecoder().decode(data))
+      files.push(data) // equivalent to files.push(new TextDecoder().decode(contents))
     }
     if (files.length === 0) {
       uploadSpinner.succeed('No new assets to upload.')
       uploadSpinner = null
     } else {
-      uploadSpinner.text = `${files.length} new asset${
-        files.length === 1 ? '' : 's'
-      } to upload.`
+      uploadSpinner.text = `${files.length} new asset${files.length === 1 ? '' : 's'
+        } to upload.`
     }
 
     manifest = { entries }
@@ -207,110 +233,27 @@ async function deploy(opts: DeployOpts): Promise<void> {
     return
   }
 
-  // TODO: implement deploy via api.pushDeploy() with multipart upload and progress
-  // In the meantime we api.pushDeployJson() to POST project data as JSON directly
-  // until multipart upload is implemented in the API for api.pushDeploy() to work
-
   let deploySpinner: Spinner | null = null
-  const {
-    entrypoint = opts.entrypoint,
-    importMap = importMapUrl?.href,
-    envVars = {},
-    permissions = { net: true },
-  } = project.configuration ?? {}
-  const progress = api.pushDeployJson(project._id, {
-    // deno-lint-ignore no-explicit-any
-    ...(opts.prod && { deploymentId: 'production' }) as any,
-    configuration: { entrypoint, importMap, envVars, permissions },
-    files: buildProjectFiles(manifest?.entries, files),
-  })
-
-  // alerts: useful hints/warnings for the user
-  const projectUrl =
-    `https://app.netzo.io/workspaces/${project.workspaceId}/projects/${project._id}`
-  if (!entrypoint) {
-    printWarning(
-      `No entrypoint configured (open ${projectUrl}/settings/configuration).`,
-    )
-  }
-  if (!importMap) {
-    printWarning(
-      `No import map configured (open ${projectUrl}/settings/configuration).`,
-    )
-  }
-
-  // for await (const event of progress) {
-  //   switch (event.type) {
-  //     case 'staticFile': {
-  //       const percentage = (event.currentBytes / event.totalBytes) * 100
-  //       uploadSpinner!.text = `Uploading ${files.length} asset${files.length === 1 ? '' : 's'
-  //         }... (${percentage.toFixed(1)}%)`
-  //       break
-  //     }
-  //     case 'load': {
-  //       if (uploadSpinner) {
-  //         uploadSpinner.succeed(
-  //           `Uploaded ${files.length} new asset${files.length === 1 ? '' : 's'
-  //           }.`,
-  //         )
-  //         uploadSpinner = null
-  //       }
-  //       if (deploySpinner === null) {
-  //         deploySpinner = wait('Deploying...').start()
-  //       }
-  //       const progress = event.seen / event.total * 100
-  //       deploySpinner.text = `Deploying... (${progress.toFixed(1)}%)`
-  //       break
-  //     }
-  //     case 'uploadComplete':
-  //       deploySpinner!.text = `Finishing deployment...`
-  //       break
-  //     case 'success':
-  //       deploySpinner!.succeed(`Deployment complete.`)
-  //       // console.log('\nView at:')
-  //       // for (const { domain } of event.domainMappings) {
-  //       //   console.log(` - https://${domain}`)
-  //       // }
-  //       console.log('\nView at:')
-  //       console.log(` - https://${event.uid}.netzo.io (production)`)
-  //       console.log(` - https://${event.deploymentId}.netzo.io (preview)`)
-  //       break
-  //     case 'error':
-  //       if (uploadSpinner) {
-  //         uploadSpinner.fail(`Upload failed.`)
-  //         uploadSpinner = null
-  //       }
-  //       if (deploySpinner) {
-  //         deploySpinner.fail(`Deployment failed.`)
-  //         deploySpinner = null
-  //       }
-  //       error(event.ctx)
-  //   }
-  // }
-
-  let deploySpinner: Spinner | null = null
-  const req = {
+  const req: DenoProjectDeploymentRequestPush = {
     url: url.href,
     importMapUrl: importMapUrl ? importMapUrl.href : null,
     production: opts.prod,
     manifest,
   }
-  const progress = api.pushDeploy(project._id, req, files)
+  const progress = denoApi.pushDeploy(project.uid, req, files)
   try {
     for await (const event of progress) {
       switch (event.type) {
         case 'staticFile': {
           const percentage = (event.currentBytes / event.totalBytes) * 100
-          uploadSpinner!.text = `Uploading ${files.length} asset${
-            files.length === 1 ? '' : 's'
-          }... (${percentage.toFixed(1)}%)`
+          uploadSpinner!.text = `Uploading ${files.length} asset${files.length === 1 ? '' : 's'
+            }... (${percentage.toFixed(1)}%)`
           break
         }
         case 'load': {
           if (uploadSpinner) {
             uploadSpinner.succeed(
-              `Uploaded ${files.length} new asset${
-                files.length === 1 ? '' : 's'
+              `Uploaded ${files.length} new asset${files.length === 1 ? '' : 's'
               }.`,
             )
             uploadSpinner = null
@@ -325,13 +268,15 @@ async function deploy(opts: DeployOpts): Promise<void> {
         case 'uploadComplete':
           deploySpinner!.text = `Finishing deployment...`
           break
-        case 'success':
-          deploySpinner!.succeed(`Deployment complete.`)
+        case 'success': {
+          const deploymentKind = opts.prod ? 'Production' : 'Preview'
+          deploySpinner!.succeed(`${deploymentKind} deployment complete.`)
           console.log('\nView at:')
           for (const { domain } of event.domainMappings) {
             console.log(` - https://${domain}`)
           }
           break
+        }
         case 'error':
           if (uploadSpinner) {
             uploadSpinner.fail(`Upload failed.`)
@@ -358,48 +303,4 @@ async function deploy(opts: DeployOpts): Promise<void> {
     }
     error(String(err))
   }
-}
-
-function buildProjectFiles(
-  entries: Record<string, ManifestEntry> = {},
-  files: string[] = [],
-): Project['files'] {
-  const filesWithoutContents: Record<string, ManifestEntryFile> = {}
-
-  // deno-lint-ignore no-explicit-any
-  function walk(obj: any, path: string) {
-    if (obj.kind === 'file') {
-      const fileEntry: ManifestEntryFile = {
-        gitSha1: obj.gitSha1,
-        kind: obj.kind,
-        size: obj.size,
-      }
-      filesWithoutContents[path] = fileEntry
-    } else if (typeof obj === 'object') {
-      for (const key in obj) {
-        // deno-lint-ignore no-prototype-builtins
-        if (obj.hasOwnProperty(key)) {
-          let newPath = path ? `${path}/${key}` : key
-          // WORKAROUND: remove trailing /kind and /entries from path
-          if (newPath.endsWith('/kind')) newPath = newPath.replace('/kind', '')
-          if (newPath.endsWith('/entries')) {
-            newPath = newPath.replace('/entries', '')
-          }
-          walk(obj[key], newPath)
-        }
-      }
-    }
-  }
-
-  walk(entries, '')
-
-  const files = Object.entries(filesWithoutContents).reduce(
-    // deno-lint-ignore no-unused-vars
-    (acc, [path, { gitSha1, kind, size }], i) => ({
-      ...acc,
-      [path]: { contents: files[i] }, // NOTE: gitSha1, kind, size resolved in API
-    }),
-    {},
-  )
-  return files
 }
