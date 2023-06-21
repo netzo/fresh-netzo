@@ -3,15 +3,15 @@ import { TextLineStream } from '../../deps.ts'
 // externalized types in @denoland/deployctl/src/utils/api_types.ts
 // to @netzo/api to use them both for @netzo/app and @netzo/netzo/cli
 import type {
-  Template,
-  Project,
-  Paginated,
-  DenoProjectDeployment,
   DenoDeploymentProgress,
-  ManifestEntry,
-  Log,
-  DenoProjectDeploymentRequestPush,
+  DenoProjectDeployment,
   DenoProjectDeploymentRequestGitHubActions,
+  DenoProjectDeploymentRequestPush,
+  Log,
+  ManifestEntry,
+  Paginated,
+  Project,
+  Template,
 } from '../../deps.ts'
 
 export interface RequestOptions {
@@ -143,7 +143,9 @@ export class API {
     }
   }
 
-  async getDeployments(projectId: string): Promise<DenoProjectDeployment[] | null> {
+  async getDeployments(
+    projectId: string,
+  ): Promise<DenoProjectDeployment[] | null> {
     try {
       const { data } = await this.#requestJson(
         `/deployments?projectId=${projectId}`,

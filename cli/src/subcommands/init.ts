@@ -52,7 +52,11 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
   }
   if (args.template === null) {
     // @ts-ignore: types of question module are broken due to function overloading
-    args.template = await question('list', 'Select a template:', await getTemplateUids())
+    args.template = await question(
+      'list',
+      'Select a template:',
+      await getTemplateUids(),
+    )
     // NOTE: exit directly if undefined (when cancelling/escaping prompt)
     if (args.template === undefined) Deno.exit(1)
   }
@@ -61,7 +65,9 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     error('Missing template UID.')
   }
 
-  const directory = typeof rawArgs._[0] === 'string' ? rawArgs._[0] : args.template! // defaults to template UID
+  const directory = typeof rawArgs._[0] === 'string'
+    ? rawArgs._[0]
+    : args.template! // defaults to template UID
 
   const process = new Deno.Command(Deno.execPath(), {
     args: [
