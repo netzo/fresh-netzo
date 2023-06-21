@@ -4,8 +4,6 @@ import {
   TextLineStream,
 } from '../../deps.ts'
 
-// externalized types in @denoland/deployctl/src/utils/api_types.ts
-// to @netzo/api to use them both for @netzo/app and @netzo/netzo/cli
 import type {
   DenoDeploymentProgress,
   DenoProjectDeploymentRequestGitHubActions,

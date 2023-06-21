@@ -1,8 +1,14 @@
-import type { DenoProjectDeploymentRequestPush, Manifest } from '../../deps.ts'
+import {
+  DenoProjectDeploymentRequestPush,
+  Manifest,
+  ManifestEntryFile,
+  netzo,
+  Paginated,
+  Project,
+} from '../../deps.ts'
 import { fromFileUrl, normalize, Spinner, wait } from '../../deps.ts'
 import { error } from '../console.ts'
-import { APIError, DenoAPI } from '../utils/api.deno.ts'
-import { NetzoAPI } from '../utils/api.netzo.ts'
+import { APIError, DenoAPI } from '../utils/api.ts'
 import { parseEntrypoint } from '../utils/entrypoint.ts'
 import { walk } from '../utils/walk.ts'
 
@@ -45,7 +51,7 @@ export interface Args {
   prod: boolean
   exclude?: string[]
   include?: string[]
-  token: string | null // FIXME(deno): remove token and use env var
+  token: string | null // FIXME(deno): remove token FROM EVERYWHERE and use env var
   apiKey: string | null
   project: string | null
   importMap: string | null
@@ -58,7 +64,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     help: !!rawArgs.help,
     static: !rawArgs['no-static'], // negate the flag
     prod: !!rawArgs.prod,
-    token: rawArgs.token ? String(rawArgs.token) : null, // FIXME(deno): remove token and use env var
+    token: rawArgs.token ? String(rawArgs.token) : null,
     apiKey: rawArgs['api-key'] ? String(rawArgs['api-key']) : null,
     project: rawArgs.project ? String(rawArgs.project) : null,
     importMap: rawArgs['import-map'] ? String(rawArgs['import-map']) : null,
@@ -71,7 +77,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     console.log(help)
     Deno.exit(0)
   }
-  const token = args.token ?? Deno.env.get('DENO_TOKEN') ?? null // FIXME(deno): remove token and use env var
+  const token = args.token ?? Deno.env.get('DENO_TOKEN') ?? null
   const apiKey = args.apiKey ?? Deno.env.get('NETZO_API_KEY') ?? null
   if (apiKey === null) {
     console.error(help)
@@ -116,7 +122,7 @@ interface DeployOpts {
   prod: boolean
   exclude?: string[]
   include?: string[]
-  token: string // FIXME(deno): remove token and use env var
+  token: string
   apiKey: string
   project: string
   dryRun: boolean
@@ -128,8 +134,11 @@ async function deploy(opts: DeployOpts): Promise<void> {
   }
   const projectSpinner = wait('Fetching project information...').start()
   const denoApi = DenoAPI.fromToken(opts.token)
-  const netzoApi = NetzoAPI.fromApiKey(opts.apiKey)
-  const project = (await netzoApi.getProjectByUid(opts.project))!
+  const { api } = netzo({ apiKey: opts.apiKey })
+  const { data: [project] } = await api.projects.get<Paginated<Project>>({
+    uid: opts.project,
+    $limit: 1,
+  })
   if (!project) {
     projectSpinner.fail(
       'Project not found. Check your API key and project UID.',
@@ -221,9 +230,8 @@ async function deploy(opts: DeployOpts): Promise<void> {
       uploadSpinner.succeed('No new assets to upload.')
       uploadSpinner = null
     } else {
-      uploadSpinner.text = `${files.length} new asset${
-        files.length === 1 ? '' : 's'
-      } to upload.`
+      uploadSpinner.text = `${files.length} new asset${files.length === 1 ? '' : 's'
+        } to upload.`
     }
 
     manifest = { entries }
@@ -247,16 +255,14 @@ async function deploy(opts: DeployOpts): Promise<void> {
       switch (event.type) {
         case 'staticFile': {
           const percentage = (event.currentBytes / event.totalBytes) * 100
-          uploadSpinner!.text = `Uploading ${files.length} asset${
-            files.length === 1 ? '' : 's'
-          }... (${percentage.toFixed(1)}%)`
+          uploadSpinner!.text = `Uploading ${files.length} asset${files.length === 1 ? '' : 's'
+            }... (${percentage.toFixed(1)}%)`
           break
         }
         case 'load': {
           if (uploadSpinner) {
             uploadSpinner.succeed(
-              `Uploaded ${files.length} new asset${
-                files.length === 1 ? '' : 's'
+              `Uploaded ${files.length} new asset${files.length === 1 ? '' : 's'
               }.`,
             )
             uploadSpinner = null
@@ -278,6 +284,11 @@ async function deploy(opts: DeployOpts): Promise<void> {
           for (const { domain } of event.domainMappings) {
             console.log(` - https://${domain}`)
           }
+          const files = buildProjectFilesFromManifest(manifest)
+          await api.projects[project._id].patch({ files })
+          deploySpinner!.succeed(
+            `Patched project files (open in studio at https://app.netzo.io/workspaces/${project.workspaceId}/projects/${project._id}/src)`,
+          )
           break
         }
         case 'error':
@@ -306,4 +317,59 @@ async function deploy(opts: DeployOpts): Promise<void> {
     }
     error(String(err))
   }
+}
+
+/**
+ * Build flat manifest (project.files) from nested manifest and array of file hashes to include
+ *
+ * USAGE:
+ * const files = await buildProjectFilesFromManifest(manifest)
+ * @param manifest {Manifest} - a nested manifest with entries
+ * @param files {string[]} - an array of file hashes to include
+ * @returns {Project['files']} - a flat manifest of file entries
+ */
+function buildProjectFilesFromManifest(
+  manifest: Manifest = { entries: {} },
+  files: string[] = [],
+): Project['files'] {
+  const filesWithoutContents: Record<string, ManifestEntryFile> = {}
+
+  // deno-lint-ignore no-explicit-any
+  function walk(obj: any, path: string) {
+    if (obj.kind === 'file') {
+      const fileEntry: ManifestEntryFile = {
+        gitSha1: obj.gitSha1,
+        kind: obj.kind,
+        size: obj.size,
+      }
+      filesWithoutContents[path] = fileEntry
+    } else if (typeof obj === 'object') {
+      for (const key in obj) {
+        // deno-lint-ignore no-prototype-builtins
+        if (obj.hasOwnProperty(key)) {
+          let newPath = path ? `${path}/${key}` : key
+          // WORKAROUND: remove trailing /kind and /entries from path
+          if (newPath.endsWith('/kind')) {
+            newPath = newPath.replace('/kind', '')
+          }
+          if (newPath.endsWith('/entries')) {
+            newPath = newPath.replace('/entries', '')
+          }
+
+          walk(obj[key], newPath)
+        }
+      }
+    }
+  }
+
+  walk(manifest.entries, '')
+
+  return Object.entries(filesWithoutContents).reduce(
+    // deno-lint-ignore no-unused-vars
+    (acc, [path, { gitSha1, kind, size }], i) => ({
+      ...acc,
+      [path]: { contents: files[i] }, // NOTE: gitSha1, kind, size resolved in API
+    }),
+    {},
+  )
 }

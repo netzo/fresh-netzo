@@ -26,8 +26,13 @@ export {
 // x/wait
 export { Spinner, wait } from 'https://deno.land/x/wait@0.1.12/mod.ts'
 
+// netzo/lib/apis/netzo
+export { netzo } from 'https://deno.land/x/netzo@v0.1.85/lib/apis/netzo/mod.ts'
+
 // @netzo/api
-// @netzo/api: cherry-pick exports to avoid esm.sh tree-shaking issues
+// externalized types in @denoland/deployctl/src/utils/api_types.ts
+// to @netzo/api to use them both for @netzo/app and @netzo/netzo/cli
+// and cherry-pick exports to avoid esm.sh tree-shaking issues
 export type {
   Authorization,
   AuthorizationApiKey,
