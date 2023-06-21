@@ -1,4 +1,7 @@
 {
+  "exclude": [
+    "templates/_wip/"
+  ],
   "lock": false,
   "tasks": {
     "test": "deno test -A --unstable --coverage=./cov",
