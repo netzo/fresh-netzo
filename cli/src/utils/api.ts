@@ -48,7 +48,7 @@ export class DenoAPI {
     this.#endpoint = endpoint
   }
   static fromToken(token: string) {
-    const endpoint = Deno.env.get('DENO_API_ENDPOINT') ??
+    const endpoint = Deno.env.get('DENO_API_URL') ??
       'https://api.deno.com'
     return new DenoAPI(`Bearer ${token}`, endpoint)
   }

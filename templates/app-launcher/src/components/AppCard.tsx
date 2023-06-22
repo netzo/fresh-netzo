@@ -1,6 +1,3 @@
-/** @jsx h */
-import { h } from 'preact'
-
 interface AppCardProps {
   name: string
   tags: string[]

@@ -1,6 +1,4 @@
-/** @jsx h */
-/** @jsxFrag Fragment */
-import { Fragment, h, JSX } from 'preact'
+import { JSX } from 'preact'
 import type { Signal } from '@preact/signals'
 
 interface Props {

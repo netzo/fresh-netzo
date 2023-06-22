@@ -1,6 +1,3 @@
-/** @jsx h */
-import { h } from 'preact'
-
 export default function Header() {
   return (
     <header className='justify-between py-4 px-8'>

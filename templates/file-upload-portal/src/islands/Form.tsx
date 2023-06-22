@@ -1,5 +1,3 @@
-/** @jsx h */
-import { h } from 'preact'
 import { signal } from '@preact/signals'
 
 // see https://creatomate.com/blog/the-best-video-generation-apis

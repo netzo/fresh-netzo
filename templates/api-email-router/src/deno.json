@@ -8,6 +8,12 @@
     "semiColons": false,
     "singleQuote": true
   },
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxFactory": "h",
+    "jsxFragmentFactory": "Fragment",
+    "jsxImportSource": "https://esm.sh/preact"
+  },
   "imports": {
     "@/": "./",
     "$fresh/": "https://deno.land/x/fresh@1.2.0/",

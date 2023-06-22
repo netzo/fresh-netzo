@@ -1,5 +1,3 @@
-/** @jsx h */
-import { h } from 'preact'
 import { useState } from 'preact/hooks'
 import { Button } from '../components/Button.tsx'
 

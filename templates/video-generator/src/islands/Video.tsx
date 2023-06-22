@@ -1,6 +1,3 @@
-/** @jsx h */
-/** @jsxFrag Fragment */
-import { Fragment, h } from 'preact'
 import { type Signal, useComputed } from '@preact/signals'
 import ProgressSpinner from '../components/ProgressSpinner.tsx'
 import ButtonEmail from '../components/buttons/ButtonEmail.tsx'

@@ -1,5 +1,3 @@
-/** @jsx h */
-import { h } from 'preact'
 import ButtonGenerate from './buttons/ButtonGenerate.tsx'
 
 export default ({ url, loading, onSubmit }) => {

@@ -1,5 +1,3 @@
-/** @jsx h */
-import { h } from 'preact'
 import type { Signal } from '@preact/signals'
 import { RenderStatus } from '../../../islands/Video.tsx'
 import ButtonGenerate from '../../buttons/ButtonGenerate.tsx'

@@ -1,7 +1,6 @@
 import {
   DenoProjectDeploymentRequestPush,
   Manifest,
-  ManifestEntryFile,
   netzo,
   Paginated,
   Project,
@@ -11,6 +10,8 @@ import { error } from '../console.ts'
 import { APIError, DenoAPI } from '../utils/api.ts'
 import { parseEntrypoint } from '../utils/entrypoint.ts'
 import { walk } from '../utils/walk.ts'
+import { buildProjectFilesFromManifest, readDecodeAndAddFileContentsToProjectFiles } from '../utils/netzo.ts'
+
 
 const help = `netzo deploy
 Deploy a project with static files to Netzo.
@@ -134,7 +135,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
   }
   const projectSpinner = wait('Fetching project information...').start()
   const denoApi = DenoAPI.fromToken(opts.token)
-  const { api } = netzo({ apiKey: opts.apiKey })
+  const { api } = netzo({ apiKey: opts.apiKey, baseURL: Deno.env.get('NETZO_API_URL') })
   const { data: [project] } = await api.projects.get<Paginated<Project>>({
     uid: opts.project,
     $limit: 1,
@@ -198,13 +199,13 @@ async function deploy(opts: DeployOpts): Promise<void> {
   }
 
   let uploadSpinner: Spinner | null = null
+  const assets = new Map<string, string>() // map of gitSha1 -> path
   const files: Uint8Array[] = []
   let manifest: Manifest | undefined = undefined
 
   if (opts.static) {
     wait('').start().info(`Uploading all files from the current dir (${cwd})`)
     const assetSpinner = wait('Finding static assets...').start()
-    const assets = new Map<string, string>() // map of gitSha1 -> path
     const entries = await walk(cwd, cwd, assets, {
       include: opts.include,
       exclude: opts.exclude,
@@ -223,8 +224,8 @@ async function deploy(opts: DeployOpts): Promise<void> {
       if (path === undefined) {
         error(`Asset ${hash} not found.`)
       }
-      const data = await Deno.readFile(path)
-      files.push(data) // equivalent to files.push(new TextDecoder().decode(contents))
+      const data: Uint8Array = await Deno.readFile(path)
+      files.push(data)
     }
     if (files.length === 0) {
       uploadSpinner.succeed('No new assets to upload.')
@@ -243,13 +244,23 @@ async function deploy(opts: DeployOpts): Promise<void> {
   }
 
   let deploySpinner: Spinner | null = null
-  const req: DenoProjectDeploymentRequestPush = {
-    url: url.href,
-    importMapUrl: importMapUrl ? importMapUrl.href : null,
+  const request: DenoProjectDeploymentRequestPush = {
+    url: url.href ?? `file:///src/${entrypoint}`,
+    importMapUrl: importMapUrl
+      ? importMapUrl.href
+      : importMap in files ? `file:///src/${importMap}` : undefined,
+    // configures automatic JSX runtime for preact by default
+    // see https://deno.com/manual@v1.34.3/advanced/jsx_dom/jsx#using-jsx-import-source-in-a-configuration-file
+    compilerOptions: {
+      jsx: 'react-jsx',
+      jsxFactory: 'h',
+      jsxFragmentFactory: 'Fragment',
+      jsxImportSource: 'https://esm.sh/preact',
+    },
     production: opts.prod,
     manifest,
   }
-  const progress = denoApi.pushDeploy(project.uid, req, files)
+  const progress = denoApi.pushDeploy(project.uid, request, files)
   try {
     for await (const event of progress) {
       switch (event.type) {
@@ -284,8 +295,12 @@ async function deploy(opts: DeployOpts): Promise<void> {
           for (const { domain } of event.domainMappings) {
             console.log(` - https://${domain}`)
           }
-          const files = buildProjectFilesFromManifest(manifest)
-          await api.projects[project._id].patch({ files })
+          // patch ALL project.files and project.deployment in netzo API:
+          const projectFilesWithoutContents = buildProjectFilesFromManifest(manifest)
+          const projectFiles = await readDecodeAndAddFileContentsToProjectFiles(projectFilesWithoutContents)
+          const result = await api.projects[project._id].patch<Project>({
+            files: projectFiles
+          })
           deploySpinner!.succeed(
             `Patched project files (open in studio at https://app.netzo.io/workspaces/${project.workspaceId}/projects/${project._id}/src)`,
           )
@@ -317,59 +332,4 @@ async function deploy(opts: DeployOpts): Promise<void> {
     }
     error(String(err))
   }
-}
-
-/**
- * Build flat manifest (project.files) from nested manifest and array of file hashes to include
- *
- * USAGE:
- * const files = await buildProjectFilesFromManifest(manifest)
- * @param manifest {Manifest} - a nested manifest with entries
- * @param files {string[]} - an array of file hashes to include
- * @returns {Project['files']} - a flat manifest of file entries
- */
-function buildProjectFilesFromManifest(
-  manifest: Manifest = { entries: {} },
-  files: string[] = [],
-): Project['files'] {
-  const filesWithoutContents: Record<string, ManifestEntryFile> = {}
-
-  // deno-lint-ignore no-explicit-any
-  function walk(obj: any, path: string) {
-    if (obj.kind === 'file') {
-      const fileEntry: ManifestEntryFile = {
-        gitSha1: obj.gitSha1,
-        kind: obj.kind,
-        size: obj.size,
-      }
-      filesWithoutContents[path] = fileEntry
-    } else if (typeof obj === 'object') {
-      for (const key in obj) {
-        // deno-lint-ignore no-prototype-builtins
-        if (obj.hasOwnProperty(key)) {
-          let newPath = path ? `${path}/${key}` : key
-          // WORKAROUND: remove trailing /kind and /entries from path
-          if (newPath.endsWith('/kind')) {
-            newPath = newPath.replace('/kind', '')
-          }
-          if (newPath.endsWith('/entries')) {
-            newPath = newPath.replace('/entries', '')
-          }
-
-          walk(obj[key], newPath)
-        }
-      }
-    }
-  }
-
-  walk(manifest.entries, '')
-
-  return Object.entries(filesWithoutContents).reduce(
-    // deno-lint-ignore no-unused-vars
-    (acc, [path, { gitSha1, kind, size }], i) => ({
-      ...acc,
-      [path]: { contents: files[i] }, // NOTE: gitSha1, kind, size resolved in API
-    }),
-    {},
-  )
 }

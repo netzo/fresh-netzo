@@ -1,6 +1,3 @@
-/** @jsx h */
-/** @jsxFrag Fragment */
-import { Fragment, h } from 'preact'
 import DrawerUpdate from '../components/DrawerUpdate.tsx'
 import DrawerRead from '../components/DrawerRead.tsx'
 import ModalCreate from '../components/ModalCreate.tsx'

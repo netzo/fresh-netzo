@@ -1,6 +1,3 @@
-/** @jsx h */
-/** @jsxFrag Fragment */
-import { Fragment, h } from 'preact'
 import { computed, signal } from '@preact/signals'
 import Mustache from 'mustache'
 import Video, { RenderStatus } from './Video.tsx'

@@ -93,7 +93,7 @@ async function logs(opts: DeployOpts): Promise<void> {
   }
   const projectSpinner = wait('Fetching project information...').start()
   const denoApi = DenoAPI.fromToken(opts.token)
-  const { api } = netzo({ apiKey: opts.apiKey })
+  const { api } = netzo({ apiKey: opts.apiKey, baseURL: Deno.env.get('NETZO_API_URL') })
   const { data: [project] } = await api.projects.get<Paginated<Project>>({
     uid: opts.project,
     $limit: 1,

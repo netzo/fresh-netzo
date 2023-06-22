@@ -1,5 +1,3 @@
-/** @jsx h */
-import { h } from 'preact'
 import { computed, signal } from '@preact/signals'
 import FilterBar from '../components/FilterBar.tsx'
 import SearchBar from '../components/SearchBar.tsx'

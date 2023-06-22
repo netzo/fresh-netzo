@@ -1,9 +1,8 @@
-/** @jsx h */
-import { h, json, jsx, serve } from 'https://deno.land/x/sift@0.6.0/mod.ts'
+import { json, jsx, serve } from 'https://deno.land/x/sift@0.6.0/mod.ts'
 
 const App = () => (
   <div>
-    <h1>Hello world!</h1>
+    <h1>Hey Ho!</h1>
   </div>
 )
 

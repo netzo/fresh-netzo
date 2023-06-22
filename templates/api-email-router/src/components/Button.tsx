@@ -1,5 +1,4 @@
-/** @jsx h */
-import { h, JSX } from 'preact'
+import { JSX } from 'preact'
 
 interface Props {
   variant: 'primary' | 'secondary'

@@ -4,6 +4,16 @@
     "start": "deno run -A --watch=static/,routes/ dev.ts",
     "update": "deno run -A -r https://fresh.deno.dev/update ."
   },
+  "fmt": {
+    "semiColons": false,
+    "singleQuote": true
+  },
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxFactory": "h",
+    "jsxFragmentFactory": "Fragment",
+    "jsxImportSource": "https://esm.sh/preact"
+  },
   "imports": {
     "$fresh/": "https://deno.land/x/fresh@1.2.0/",
     "preact": "https://esm.sh/preact@10.15.1",

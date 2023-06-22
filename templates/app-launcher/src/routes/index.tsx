@@ -1,6 +1,3 @@
-/** @jsx h */
-/** @jsxFrag Fragment */
-import { Fragment, h } from 'preact'
 import { asset, Head } from '$fresh/runtime.ts'
 import App from '../islands/App.tsx'
 import apps from '../data/apps.json' assert { type: 'json' }

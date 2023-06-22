@@ -1,6 +1,3 @@
-/** @jsx h */
-import { h } from 'preact'
-
 interface FilterBarProps {
   tags: string[]
   selectedTags: string[]

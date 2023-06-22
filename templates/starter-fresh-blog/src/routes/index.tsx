@@ -1,5 +1,3 @@
-/** @jsx h */
-import { h } from 'preact'
 import { Handlers, PageProps } from '$fresh/server.ts'
 import { getPost, getPosts, Post } from '@/utils/posts.ts'
 

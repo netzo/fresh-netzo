@@ -1,7 +1,3 @@
-/** @jsx h */
-/** @jsxFrag Fragment */
-import { Fragment, h } from 'preact'
-
 interface SearchBarProps {
   onSearch: (query: string) => void
 }

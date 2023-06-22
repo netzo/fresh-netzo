@@ -1,6 +1,3 @@
-/** @jsx h */
-/** @jsxFrag Fragment */
-import { Fragment, h } from 'preact'
 import { signal } from '@preact/signals'
 import { Grid } from '@tremor/react'
 import DateRangePicker from './DateRangePicker.tsx'

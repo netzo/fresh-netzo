@@ -1,5 +1,3 @@
-/** @jsx h */
-import { h } from 'preact'
 import { Signal } from '@preact/signals'
 
 interface TemplateSelectProps {

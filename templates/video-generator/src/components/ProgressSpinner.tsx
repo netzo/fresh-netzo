@@ -1,6 +1,3 @@
-/** @jsx h */
-import { h } from 'preact'
-
 export default ({ text }: { text: string }) => (
   <div role='status' class='h-fit my-4 mx-auto'>
     <svg
