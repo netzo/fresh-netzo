@@ -16,6 +16,7 @@ export {
 export { parse as parseArgs } from 'https://deno.land/std@0.170.0/flags/mod.ts'
 export { TextLineStream } from 'https://deno.land/std@0.170.0/streams/text_line_stream.ts'
 export { default as question } from 'https://deno.land/x/question@0.0.2/mod.ts'
+export { load } from 'https://deno.land/std@0.192.0/dotenv/mod.ts'
 
 // x/semver
 export {
@@ -27,7 +28,7 @@ export {
 export { Spinner, wait } from 'https://deno.land/x/wait@0.1.12/mod.ts'
 
 // netzo/lib/apis/netzo
-export { netzo } from 'https://deno.land/x/netzo@v0.1.85/lib/apis/netzo/mod.ts'
+export { netzo } from '../lib/apis/netzo/mod.ts'
 
 // @netzo/api
 // externalized types in @denoland/deployctl/src/utils/api_types.ts
@@ -74,4 +75,4 @@ export type {
   ProjectFilesFile,
   Template,
   TemplateFiles,
-} from 'https://esm.sh/@netzo/api@1.0.22'
+} from 'https://esm.sh/@netzo/api@1.0.23'
