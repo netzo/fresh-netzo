@@ -8,9 +8,12 @@ import { auth } from '../create-api/auth/mod.ts'
  * @param {string} apiKey - the API key to use for authentication
  * @returns {object} - an object of multiple utilities for the API
  */
-export const netzo = ({ apiKey = Deno.env.get('NETZO_API_KEY') ?? '' }) => {
+export const netzo = ({
+  apiKey = Deno.env.get('NETZO_API_KEY') ?? '',
+  baseURL = 'https://api.netzo.io',
+}) => {
   const api = createApi({
-    baseURL: 'https://api.netzo.io',
+    baseURL,
     headers: {
       'content-type': 'application/json',
     },
