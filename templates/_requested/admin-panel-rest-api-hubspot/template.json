@@ -1,0 +1,22 @@
+{
+  "uid": "admin-panel-rest-api-hubspot",
+  "status": "requested",
+  "name": "Advanced CRM extension for Hubspot",
+  "description": "A personalized admin interface that extends the CRM functionality of Hubspot through its REST API. Easily view and interact with customer information, perform bulk actions and add advanced functionality, AI algorithms and more.",
+  "labels": [
+    "department:sales",
+    "department:marketing",
+    "resources:hubspot",
+    "usecase:admin-panel",
+    "usecase:productivity"
+  ],
+  "display": {
+    "avatar": "https://netzo.io/images/home/admin-panels.svg"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/templates/_requested/admin-panel-rest-api-hubspot"
+    }
+  ]
+}

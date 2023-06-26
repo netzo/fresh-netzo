@@ -1,0 +1,21 @@
+{
+  "uid": "website-employee-directory",
+  "status": "requested",
+  "name": "Employee Directory",
+  "description": "A web app to quickly find employee data, skills and contact info in a convenient easily accesible interface. This app simplifies matching employees to tasks and projects. Employee data may be stored in any HR system or database and simply streamed, when required.",
+  "labels": [
+    "usecase:dashboard",
+    "usecase:business metrics",
+    "department:sales",
+    "department:marketing"
+  ],
+  "display": {
+    "avatar": "https://netzo.io/images/home/admin-panels.svg"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/templates/_requested/website-employee-directory"
+    }
+  ]
+}

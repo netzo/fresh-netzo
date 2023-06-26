@@ -1,0 +1,22 @@
+{
+  "uid": "admin-panel-customer-table-mongodb",
+  "status": "requested",
+  "name": "Customer Management for MongoDB",
+  "description": "An user-friendly admin panel for managing customer data stored in MongoDB. This app allows you to view and interact with customer information stored in your own database.",
+  "labels": [
+    "department:sales",
+    "department:customer-support",
+    "department:marketing",
+    "resources:mongodb",
+    "usecase:admin-panel"
+  ],
+  "display": {
+    "avatar": "https://netzo.io/images/home/admin-panels.svg"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/templates/_requested/admin-panel-customer-table-mongodb"
+    }
+  ]
+}

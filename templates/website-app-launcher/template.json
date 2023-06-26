@@ -1,0 +1,80 @@
+{
+  "uid": "website-app-launcher",
+  "status": "published",
+  "name": "App Launcher",
+  "description": "Quick links for important apps and services",
+  "labels": [
+    "fresh"
+  ],
+  "display": {
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-app-launcher/icon.svg"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/templates/website-app-launcher"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-app-launcher/src/readme.md"
+    }
+  ],
+  "item": {
+    "_type": "project",
+    "uid": "website-app-launcher",
+    "files": {
+      ".vscode/extensions.json": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-app-launcher/src/.vscode/extensions.json"
+      },
+      ".vscode/settings.json": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-app-launcher/src/.vscode/settings.json"
+      },
+      "components/AppCard.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-app-launcher/src/components/AppCard.tsx"
+      },
+      "components/FilterBar.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-app-launcher/src/components/FilterBar.tsx"
+      },
+      "components/SearchBar.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-app-launcher/src/components/SearchBar.tsx"
+      },
+      "data/apps.json": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-app-launcher/src/data/apps.json"
+      },
+      "islands/App.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-app-launcher/src/islands/App.tsx"
+      },
+      "routes/index.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-app-launcher/src/routes/index.tsx"
+      },
+      "static/favicon.svg": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-app-launcher/src/static/favicon.svg"
+      },
+      ".gitignore": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-app-launcher/src/.gitignore"
+      },
+      "deno.json": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-app-launcher/src/deno.json"
+      },
+      "dev.ts": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-app-launcher/src/dev.ts"
+      },
+      "fresh.gen.ts": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-app-launcher/src/fresh.gen.ts"
+      },
+      "main.ts": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-app-launcher/src/main.ts"
+      },
+      "readme.md": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-app-launcher/src/readme.md"
+      }
+    },
+    "configuration": {
+      "entrypoint": "main.ts",
+      "envVars": {},
+      "permissions": {
+        "net": true
+      }
+    }
+  }
+}

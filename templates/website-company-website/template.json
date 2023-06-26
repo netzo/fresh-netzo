@@ -1,0 +1,66 @@
+{
+  "uid": "website-company-website",
+  "status": "published",
+  "name": "Company Website",
+  "description": "A full-blown company website with a perfect Lighthouse score. It includes a blog, a contact form, a newsletter, and a lot more. Built with Flowbite blocks, JSX and and Tailwind CSS.",
+  "labels": [
+    "website-company-website",
+    "fresh"
+  ],
+  "display": {
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-company-website/icon.svg"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/templates/website-company-website"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-company-website/src/readme.md"
+    }
+  ],
+  "item": {
+    "_type": "project",
+    "uid": "website-company-website",
+    "files": {
+      ".vscode/extensions.json": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-company-website/src/.vscode/extensions.json"
+      },
+      ".vscode/settings.json": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-company-website/src/.vscode/settings.json"
+      },
+      "routes/index.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-company-website/src/routes/index.tsx"
+      },
+      "static/favicon.svg": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-company-website/src/static/favicon.svg"
+      },
+      ".gitignore": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-company-website/src/.gitignore"
+      },
+      "deno.json": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-company-website/src/deno.json"
+      },
+      "dev.ts": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-company-website/src/dev.ts"
+      },
+      "fresh.gen.ts": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-company-website/src/fresh.gen.ts"
+      },
+      "main.ts": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-company-website/src/main.ts"
+      },
+      "readme.md": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-company-website/src/readme.md"
+      }
+    },
+    "configuration": {
+      "entrypoint": "main.ts",
+      "envVars": {},
+      "permissions": {
+        "net": true
+      }
+    }
+  }
+}
