@@ -1,0 +1,37 @@
+{
+  "uid": "dashboard-executive-company-overview",
+  "status": "requested",
+  "name": "Executive Data Visualization Dashboard",
+  "description": "Consolidate, cross-check and display data from all departments in a single real-time view for executives. Take snapshots, automate reporting and share with stakeholders, live, on-print or email.",
+  "labels": [
+    "usecase:dashboards",
+    "usecase:",
+    "usecase:data analysis",
+    "department:marketing",
+    "department:sales"
+  ],
+  "display": {
+    "avatar": "https://netzo.io/images/home/{{usecase}}.svg"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/templates/_requested/dashboard-executive-company-overview"
+    }
+  ],
+  "sales": {
+    "users": [
+      "marketer",
+      "sales-executive"
+    ],
+    "buyers": [
+      "cto",
+      "coo"
+    ],
+    "painPoint": [
+      "Difficulty in creating executive dashboards for different departments",
+      "Cumbersome and repetitive reporting for executives"
+    ],
+    "objections": []
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "uid": "admin-panel-cms-github",
+  "status": "requested",
+  "name": "Custom CMS on GitHub",
+  "description": "An intuitive content management system (CMS) to easily store and manage digital assets such as images, files, videos and audio in different formats with version control and web hosting via Github.",
+  "labels": [
+    "department:marketing",
+    "department:operations",
+    "department:product",
+    "department:engineering",
+    "resources:github",
+    "usecase:admin-panel",
+    "usecase:content/cms"
+  ],
+  "display": {
+    "avatar": "https://netzo.io/images/home/admin-panels.svg"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/templates/_requested/admin-panel-cms-github"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "uid": "dashboard-asset-directory-awss3",
+  "status": "requested",
+  "name": "Asset Directory for AWS S3",
+  "description": "An user-friendly dashboard enhances search and organization capabilities automatically and links to assets stored in AWS S3. This app allows you to view assets stored in your own database.",
+  "labels": [
+    "department:sales",
+    "department:marketing",
+    "department:operations",
+    "resources:awss3",
+    "usecase:productivity",
+    "usecase:content/cms"
+  ],
+  "display": {
+    "avatar": "https://netzo.io/images/home/admin-panels.svg"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/templates/_requested/dashboard-asset-directory-awss3"
+    }
+  ]
+}

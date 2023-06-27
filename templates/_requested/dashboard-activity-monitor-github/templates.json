@@ -1,0 +1,22 @@
+{
+  "uid": "dashboard-activity-monitor-github",
+  "status": "requested",
+  "name": "Progress Tracker for GitHub",
+  "description": "An activity monitoring tool for GitHub repository's activity, owner and collaborators for availability insights for task delegation.",
+  "labels": [
+    "department:engineering",
+    "department:product",
+    "resources:github",
+    "usecase:dashboard",
+    "usecase:productivity"
+  ],
+  "display": {
+    "avatar": "https://netzo.io/images/home/dashboard-activity-monitor-github.svg"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/templates/_requested/dashboard-activity-monitor-github"
+    }
+  ]
+}
