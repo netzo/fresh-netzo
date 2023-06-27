@@ -18,6 +18,6 @@
     {
       "rel": "repository",
       "href": "https://github.com/netzo/netzo/tree/main/templates/_requested/api-department-metrics"
-    },
-  ],
+    }
+  ]
 }
