@@ -1,0 +1,24 @@
+{
+  "uid": "dashboard-terms-and-privacy-acceptance-monitoring",
+  "status": "requested",
+  "name": "Terms and Privacy Policy Acceptance Monitoring",
+  "description": "Monitor and track the acceptance of terms and privacy policies, providing insights and analytics based on the dataset, either from your Auth0 or your own database. Trigger email reminders to users who have not accepted the terms and privacy policies.",
+  "labels": [
+    "department:operations",
+    "department:legal",
+    "resource:auth0",
+    "resource:mongodb",
+    "usecase:dashboard",
+    "usecase:compliance",
+    "usecase:productivity"
+  ],
+  "display": {
+    "avatar": "https://netzo.io/images/home/dashboard.svg"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/templates/_requested/dashboard-terms-and-privacy-acceptance-monitoring"
+    }
+  ]
+}
