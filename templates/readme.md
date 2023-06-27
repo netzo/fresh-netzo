@@ -118,7 +118,6 @@ The following table provides some examples of labels grouped by category.
 | `labels`*       | `string[]`          | `false`  | relevant keywords (tags) (kebab-case)                 |
 | `display`*      | [Display](#display) | `false`  | relevant details for rendering the template in the UI |
 | `request`*      | `object`            | `false`  | initial configuration for the default request         |
-| `files`         | `object`            | `true`   | all file entries in the template                      |
 | `configuration` | `object`            | `true`   | deployment configuration                              |
 
 ## Example template.json
