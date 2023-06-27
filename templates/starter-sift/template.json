@@ -24,20 +24,6 @@
     "_type": "project",
     "uid": "starter-sift",
     "src": "https://api.github.com/repos/netzo/netzo/contents/templates/starter-sift/src",
-    "files": {
-      ".vscode/extensions.json": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-sift/src/.vscode/extensions.json"
-      },
-      ".vscode/settings.json": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-sift/src/.vscode/settings.json"
-      },
-      "readme.md": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-sift/src/readme.md"
-      },
-      "main.tsx": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-sift/src/main.tsx"
-      }
-    },
     "configuration": {
       "entrypoint": "main.tsx",
       "envVars": {},

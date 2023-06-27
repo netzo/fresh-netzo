@@ -24,50 +24,6 @@
     "_type": "project",
     "uid": "sales-dashboard",
     "src": "https://api.github.com/repos/netzo/netzo/contents/templates/sales-dashboard/src",
-    "files": {
-      ".vscode/extensions.json": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard/src/.vscode/extensions.json"
-      },
-      ".vscode/settings.json": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard/src/.vscode/settings.json"
-      },
-      "islands/DateRangePicker.tsx": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard/src/islands/DateRangePicker.tsx"
-      },
-      "islands/MetricCard.tsx": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard/src/islands/MetricCard.tsx"
-      },
-      "islands/Shell.tsx": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard/src/islands/Shell.tsx"
-      },
-      "islands/TableCard.tsx": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard/src/islands/TableCard.tsx"
-      },
-      "routes/index.tsx": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard/src/routes/index.tsx"
-      },
-      "static/favicon.svg": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard/src/static/favicon.svg"
-      },
-      ".gitignore": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard/src/.gitignore"
-      },
-      "deno.json": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard/src/deno.json"
-      },
-      "dev.ts": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard/src/dev.ts"
-      },
-      "fresh.gen.ts": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard/src/fresh.gen.ts"
-      },
-      "main.ts": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard/src/main.ts"
-      },
-      "readme.md": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard/src/readme.md"
-      }
-    },
     "configuration": {
       "entrypoint": "main.ts",
       "envVars": {},

@@ -24,20 +24,6 @@
     "_type": "project",
     "uid": "starter-hono",
     "src": "https://api.github.com/repos/netzo/netzo/contents/templates/starter-hono/src",
-    "files": {
-      ".vscode/extensions.json": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-hono/src/.vscode/extensions.json"
-      },
-      ".vscode/settings.json": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-hono/src/.vscode/settings.json"
-      },
-      "readme.md": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-hono/src/readme.md"
-      },
-      "main.ts": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-hono/src/main.ts"
-      }
-    },
     "configuration": {
       "entrypoint": "main.ts",
       "envVars": {},

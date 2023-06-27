@@ -31,56 +31,6 @@
     "_type": "project",
     "uid": "api-transactional-email-generator",
     "src": "https://api.github.com/repos/netzo/netzo/contents/templates/api-transactional-email-generator/src",
-    "files": {
-      ".vscode/extensions.json": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/api-transactional-email-generator/src/.vscode/extensions.json"
-      },
-      ".vscode/settings.json": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/api-transactional-email-generator/src/.vscode/settings.json"
-      },
-      "components/Button.tsx": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/api-transactional-email-generator/src/components/Button.tsx"
-      },
-      "components/Footer.tsx": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/api-transactional-email-generator/src/components/Footer.tsx"
-      },
-      "components/Header.tsx": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/api-transactional-email-generator/src/components/Header.tsx"
-      },
-      "components/InputSearch.tsx": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/api-transactional-email-generator/src/components/InputSearch.tsx"
-      },
-      "data/templates.json": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/api-transactional-email-generator/src/data/templates.json"
-      },
-      "routes/[id].tsx": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/api-transactional-email-generator/src/routes/[id].tsx"
-      },
-      "routes/index.tsx": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/api-transactional-email-generator/src/routes/index.tsx"
-      },
-      "static/favicon.svg": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/api-transactional-email-generator/src/static/favicon.svg"
-      },
-      ".gitignore": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/api-transactional-email-generator/src/.gitignore"
-      },
-      "deno.json": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/api-transactional-email-generator/src/deno.json"
-      },
-      "dev.ts": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/api-transactional-email-generator/src/dev.ts"
-      },
-      "fresh.gen.ts": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/api-transactional-email-generator/src/fresh.gen.ts"
-      },
-      "main.ts": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/api-transactional-email-generator/src/main.ts"
-      },
-      "readme.md": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/api-transactional-email-generator/src/readme.md"
-      }
-    },
     "configuration": {
       "entrypoint": "main.ts",
       "envVars": {},

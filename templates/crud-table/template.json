@@ -23,53 +23,6 @@
     "_type": "project",
     "uid": "crud-table",
     "src": "https://api.github.com/repos/netzo/netzo/contents/templates/crud-table/src",
-    "files": {
-      ".vscode/extensions.json": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/crud-table/src/.vscode/extensions.json"
-      },
-      ".vscode/settings.json": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/crud-table/src/.vscode/settings.json"
-      },
-      "components/AppCard.tsx": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/crud-table/src/components/AppCard.tsx"
-      },
-      "components/FilterBar.tsx": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/crud-table/src/components/FilterBar.tsx"
-      },
-      "components/SearchBar.tsx": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/crud-table/src/components/SearchBar.tsx"
-      },
-      "data/apps.json": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/crud-table/src/data/apps.json"
-      },
-      "islands/App.tsx": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/crud-table/src/islands/App.tsx"
-      },
-      "routes/index.tsx": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/crud-table/src/routes/index.tsx"
-      },
-      "static/favicon.svg": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/crud-table/src/static/favicon.svg"
-      },
-      ".gitignore": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/crud-table/src/.gitignore"
-      },
-      "deno.json": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/crud-table/src/deno.json"
-      },
-      "dev.ts": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/crud-table/src/dev.ts"
-      },
-      "fresh.gen.ts": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/crud-table/src/fresh.gen.ts"
-      },
-      "main.ts": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/crud-table/src/main.ts"
-      },
-      "readme.md": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/crud-table/src/readme.md"
-      }
-    },
     "configuration": {
       "entrypoint": "main.ts",
       "envVars": {},

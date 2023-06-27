@@ -25,53 +25,6 @@
     "_type": "project",
     "uid": "starter-fresh-blog",
     "src": "https://api.github.com/repos/netzo/netzo/contents/templates/starter-fresh-blog/src",
-    "files": {
-      ".vscode/extensions.json": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-fresh-blog/src/.vscode/extensions.json"
-      },
-      ".vscode/settings.json": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-fresh-blog/src/.vscode/settings.json"
-      },
-      "posts/first-blog-post.md": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-fresh-blog/src/posts/first-blog-post.md"
-      },
-      "routes/_404.tsx": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-fresh-blog/src/routes/_404.tsx"
-      },
-      "routes/[slug].tsx": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-fresh-blog/src/routes/[slug].tsx"
-      },
-      "routes/feed.tsx": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-fresh-blog/src/routes/feed.tsx"
-      },
-      "routes/index.tsx": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-fresh-blog/src/routes/index.tsx"
-      },
-      "static/favicon.svg": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-fresh-blog/src/static/favicon.svg"
-      },
-      "utils/posts.ts": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-fresh-blog/src/utils/posts.ts"
-      },
-      ".gitignore": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-fresh-blog/src/.gitignore"
-      },
-      "deno.json": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-fresh-blog/src/deno.json"
-      },
-      "dev.ts": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-fresh-blog/src/dev.ts"
-      },
-      "fresh.gen.ts": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-fresh-blog/src/fresh.gen.ts"
-      },
-      "main.ts": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-fresh-blog/src/main.ts"
-      },
-      "readme.md": {
-        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-fresh-blog/src/readme.md"
-      }
-    },
     "configuration": {
       "entrypoint": "main.ts",
       "envVars": {},
