@@ -1,5 +1,6 @@
 {
   "uid": "admin-panel-cms-github",
+  "src": "https://api.github.com/repos/netzo/netzo/contents/templates/admin-panel-cms-github/src",
   "status": "requested",
   "name": "Custom CMS on GitHub",
   "description": "An intuitive content management system (CMS) to easily store and manage digital assets such as images, files, videos and audio in different formats with version control and web hosting via Github.",

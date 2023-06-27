@@ -129,6 +129,7 @@ look at other templates for further reference.
 ```json
 {
   "uid": "starter-sift",
+  "src": "https://api.github.com/repos/netzo/netzo/contents/templates/starter-sift/src",
   "status": "published",
   "name": "Sift",
   "description": "An HTTP server using sift that responds with different payload types based on route. Netzo includes a routing and utility library for Deno Deploy. Its route handler signature is simple and easy to understand. Handlers accept a Request and return a Response.",
@@ -152,6 +153,7 @@ look at other templates for further reference.
   "item": {
     "_type": "project",
     "uid": "starter-sift",
+    "src": "https://api.github.com/repos/netzo/netzo/contents/templates/starter-sift/src",
     "files": {
       ".vscode/extensions.json": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-sift/src/.vscode/extensions.json"

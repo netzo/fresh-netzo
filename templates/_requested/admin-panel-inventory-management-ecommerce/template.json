@@ -1,5 +1,6 @@
 {
   "uid": "admin-panel-inventory-management-ecommerce",
+  "src": "https://api.github.com/repos/netzo/netzo/contents/templates/admin-panel-inventory-management-ecommerce/src",
   "status": "requested",
   "name": "E-Commerce Inventory Management",
   "description": "A personalized administration panel to perform manual actions, override or extend e-commerce functionality, and manage inventory. Operations teams can use this to manage their e-commerce sites with advanced control tailored to their needs.",

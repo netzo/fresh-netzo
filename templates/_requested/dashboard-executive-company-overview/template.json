@@ -1,5 +1,6 @@
 {
   "uid": "dashboard-executive-company-overview",
+  "src": "https://api.github.com/repos/netzo/netzo/contents/templates/dashboard-executive-company-overview/src",
   "status": "requested",
   "name": "Executive Data Visualization Dashboard",
   "description": "Consolidate, cross-check and display data from all departments in a single real-time view for executives. Take snapshots, automate reporting and share with stakeholders, live, on-print or email.",

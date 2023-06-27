@@ -1,5 +1,6 @@
 {
   "uid": "crud-table",
+  "src": "https://api.github.com/repos/netzo/netzo/contents/templates/crud-table/src",
   "status": "published",
   "name": "CRUD Table",
   "description": "A CRUD table to create, read, update, delete resources, including search and filter",
@@ -22,6 +23,7 @@
   "item": {
     "_type": "project",
     "uid": "crud-table",
+    "src": "https://api.github.com/repos/netzo/netzo/contents/templates/crud-table/src",
     "files": {
       ".vscode/extensions.json": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/crud-table/src/.vscode/extensions.json"

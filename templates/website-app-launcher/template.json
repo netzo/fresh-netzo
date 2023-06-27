@@ -1,5 +1,6 @@
 {
   "uid": "website-app-launcher",
+  "src": "https://api.github.com/repos/netzo/netzo/contents/templates/website-app-launcher/src",
   "status": "published",
   "name": "App Launcher",
   "description": "Quick links for important apps and services",
@@ -22,6 +23,7 @@
   "item": {
     "_type": "project",
     "uid": "website-app-launcher",
+    "src": "https://api.github.com/repos/netzo/netzo/contents/templates/website-app-launcher/src",
     "files": {
       ".vscode/extensions.json": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-app-launcher/src/.vscode/extensions.json"

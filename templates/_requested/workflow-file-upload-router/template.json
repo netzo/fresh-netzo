@@ -1,5 +1,6 @@
 {
   "uid": "workflow-file-upload-router",
+  "src": "https://api.github.com/repos/netzo/netzo/contents/templates/workflow-file-upload-router/src",
   "status": "requested",
   "name": "File Upload Router for Drive",
   "description": "A file upload portal that automatically names files with a defined naming convention, logs activity in Google Sheets and stores them in the corresponding locations in Google Drive. This app streamlines file management, handling, searching and retrieval.",

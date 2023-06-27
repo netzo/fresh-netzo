@@ -12,6 +12,18 @@ const defaultHeaders = {
 }
 const headers = { ...defaultHeaders, 'x-env-var-api-key': xEnvVarApiKey }
 
+interface RepositoryContents {
+  sha: string
+  url: string
+  tree: {
+    path: string
+    mode: string
+    type: 'blob' | 'tree'
+    sha: string
+    url: number
+  }[]
+}
+
 /**
  * Syncs all templates present in the @netzo/netzo
  * repo to the 'dev' and 'prod' mongodb databases.
@@ -23,6 +35,10 @@ const headers = { ...defaultHeaders, 'x-env-var-api-key': xEnvVarApiKey }
 export async function deployTemplates() {
   try {
     // GitHub:
+
+    // 0) fetch repository contents from @netzo/netzo repo
+    const repoContentsUrl = `https://api.github.com/repos/netzo/netzo/git/trees/main?recursive=true`
+    const repoResponse: RepositoryContents = await fetch(repoContentsUrl).then((res) => res.json())
 
     // 1) fetch array of template urls from @netzo/netzo/templates/templates.json
     const allUrlsResponse = await fetch(
@@ -77,6 +93,16 @@ export async function deployTemplates() {
         let createdCount = 0
         const totalTemplates = await Promise.all(
           templates.map(async (template) => {
+            // populate template.files dynamically from repo contents (starting at template.src)
+            template.files = await Promise.all(repoResponse.tree
+              .filter((item) => item.type === 'blob')
+              .map(async (item) => {
+                const response = await fetch(`${repoBaseUrl}/${item.path}`)
+                return { contents: await response.text() }
+              })
+            )
+            console.log(template.files)
+
             if (template._id) {
               try {
                 await fetch(`${apiBaseUrl}/templates/${template._id}`, {
@@ -85,7 +111,7 @@ export async function deployTemplates() {
                   body: JSON.stringify(template),
                 })
                 console.debug('[deploy-templates] patched', template.uid)
-                ;++patchedCount
+                  ; ++patchedCount
                 return template
               } catch ({ message: cause }) {
                 console.error(
@@ -103,7 +129,7 @@ export async function deployTemplates() {
                   body: JSON.stringify(template),
                 })
                 console.debug('[deploy-templates] created', template.uid)
-                ;++createdCount
+                  ; ++createdCount
                 return template
               } catch ({ message: cause }) {
                 console.error(

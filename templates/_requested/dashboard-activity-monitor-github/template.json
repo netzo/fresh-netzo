@@ -1,5 +1,6 @@
 {
   "uid": "dashboard-activity-monitor-github",
+  "src": "https://api.github.com/repos/netzo/netzo/contents/templates/dashboard-activity-monitor-github/src",
   "status": "requested",
   "name": "Progress Tracker for GitHub",
   "description": "An activity monitoring tool for GitHub repository's activity, owner and collaborators for availability insights for task delegation.",

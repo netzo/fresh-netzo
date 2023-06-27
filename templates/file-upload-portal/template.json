@@ -1,5 +1,6 @@
 {
   "uid": "file-upload-portal",
+  "src": "https://api.github.com/repos/netzo/netzo/contents/templates/file-upload-portal/src",
   "status": "requested",
   "name": "File Upload Portal",
   "description": "A file upload portal to ease data processing and syncing from files.",
@@ -24,6 +25,7 @@
   "item": {
     "_type": "project",
     "uid": "file-upload-portal",
+    "src": "https://api.github.com/repos/netzo/netzo/contents/templates/file-upload-portal/src",
     "files": {
       ".vscode/extensions.json": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/file-upload-portal/src/.vscode/extensions.json"

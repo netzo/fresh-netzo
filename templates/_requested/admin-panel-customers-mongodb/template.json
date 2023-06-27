@@ -1,5 +1,6 @@
 {
   "uid": "admin-panel-customers-mongodb",
+  "src": "https://api.github.com/repos/netzo/netzo/contents/templates/admin-panel-customers-mongodb/src",
   "status": "requested",
   "name": "Customer Management for MongoDB",
   "description": "An user-friendly admin panel for managing customer data stored in MongoDB. This app allows you to view and interact with customer information stored in your own database.",

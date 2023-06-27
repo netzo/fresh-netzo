@@ -1,5 +1,6 @@
 {
   "uid": "website-employee-directory",
+  "src": "https://api.github.com/repos/netzo/netzo/contents/templates/website-employee-directory/src",
   "status": "requested",
   "name": "Employee Directory",
   "description": "A web app to quickly find employee data, skills and contact info in a convenient easily accesible interface. This app simplifies matching employees to tasks and projects. Employee data may be stored in any HR system or database and simply streamed, when required.",
