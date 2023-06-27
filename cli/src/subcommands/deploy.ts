@@ -150,8 +150,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
   const {
     entrypoint,
     importMap,
-    // envVars = {},
-    // permissions = { net: true },
+    // envVars = {}, // TODO: update env vars via PATCH /projects/{projectId}/env
   } = project.configuration ?? {}
 
   const deploymentsListing = await denoApi.getDeployments(project.uid)
@@ -248,7 +247,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
     url: url.href ?? `file:///src/${entrypoint}`,
     importMapUrl: importMapUrl
       ? importMapUrl.href
-      : importMap in files ? `file:///src/${importMap}` : undefined,
+      : importMap && importMap in files ? `file:///src/${importMap}` : undefined,
     // configures automatic JSX runtime for preact by default
     // see https://deno.com/manual@v1.34.3/advanced/jsx_dom/jsx#using-jsx-import-source-in-a-configuration-file
     compilerOptions: {

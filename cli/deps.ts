@@ -54,12 +54,12 @@ export type {
   DenoOrganization,
   DenoProject,
   DenoProjectAnalytics,
-  DenoProjectDeployment,
   DenoProjectDeploymentRequestGitHubActions,
   DenoProjectDeploymentRequestPush,
   DenoProjectDeploymentsResult,
   DenoProjectDeploymentsSummary,
   DenoProjectDomain,
+  Deployment,
   Log,
   LogMessage,
   LogPing,
@@ -75,4 +75,4 @@ export type {
   ProjectFilesFile,
   Template,
   TemplateFiles,
-} from 'https://esm.sh/@netzo/api@1.0.23'
+} from 'https://esm.sh/@netzo/api@1.0.24'
