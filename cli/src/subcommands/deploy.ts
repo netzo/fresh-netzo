@@ -10,8 +10,10 @@ import { error } from '../console.ts'
 import { APIError, DenoAPI } from '../utils/api.ts'
 import { parseEntrypoint } from '../utils/entrypoint.ts'
 import { walk } from '../utils/walk.ts'
-import { buildProjectFilesFromManifest, readDecodeAndAddFileContentsToProjectFiles } from '../utils/netzo.ts'
-
+import {
+  buildProjectFilesFromManifest,
+  readDecodeAndAddFileContentsToProjectFiles,
+} from '../utils/netzo.ts'
 
 const help = `netzo deploy
 Deploy a project with static files to Netzo.
@@ -135,7 +137,10 @@ async function deploy(opts: DeployOpts): Promise<void> {
   }
   const projectSpinner = wait('Fetching project information...').start()
   const denoApi = DenoAPI.fromToken(opts.token)
-  const { api } = netzo({ apiKey: opts.apiKey, baseURL: Deno.env.get('NETZO_API_URL') })
+  const { api } = netzo({
+    apiKey: opts.apiKey,
+    baseURL: Deno.env.get('NETZO_API_URL'),
+  })
   const { data: [project] } = await api.projects.get<Paginated<Project>>({
     uid: opts.project,
     $limit: 1,
@@ -230,8 +235,9 @@ async function deploy(opts: DeployOpts): Promise<void> {
       uploadSpinner.succeed('No new assets to upload.')
       uploadSpinner = null
     } else {
-      uploadSpinner.text = `${files.length} new asset${files.length === 1 ? '' : 's'
-        } to upload.`
+      uploadSpinner.text = `${files.length} new asset${
+        files.length === 1 ? '' : 's'
+      } to upload.`
     }
 
     manifest = { entries }
@@ -247,7 +253,9 @@ async function deploy(opts: DeployOpts): Promise<void> {
     url: url.href ?? `file:///src/${entrypoint}`,
     importMapUrl: importMapUrl
       ? importMapUrl.href
-      : importMap && importMap in files ? `file:///src/${importMap}` : undefined,
+      : importMap && importMap in files
+      ? `file:///src/${importMap}`
+      : undefined,
     // configures automatic JSX runtime for preact by default
     // see https://deno.com/manual@v1.34.3/advanced/jsx_dom/jsx#using-jsx-import-source-in-a-configuration-file
     compilerOptions: {
@@ -265,14 +273,16 @@ async function deploy(opts: DeployOpts): Promise<void> {
       switch (event.type) {
         case 'staticFile': {
           const percentage = (event.currentBytes / event.totalBytes) * 100
-          uploadSpinner!.text = `Uploading ${files.length} asset${files.length === 1 ? '' : 's'
-            }... (${percentage.toFixed(1)}%)`
+          uploadSpinner!.text = `Uploading ${files.length} asset${
+            files.length === 1 ? '' : 's'
+          }... (${percentage.toFixed(1)}%)`
           break
         }
         case 'load': {
           if (uploadSpinner) {
             uploadSpinner.succeed(
-              `Uploaded ${files.length} new asset${files.length === 1 ? '' : 's'
+              `Uploaded ${files.length} new asset${
+                files.length === 1 ? '' : 's'
               }.`,
             )
             uploadSpinner = null
@@ -295,10 +305,14 @@ async function deploy(opts: DeployOpts): Promise<void> {
             console.log(` - https://${domain}`)
           }
           // patch ALL project.files and project.deployment in netzo API:
-          const projectFilesWithoutContents = buildProjectFilesFromManifest(manifest)
-          const projectFiles = await readDecodeAndAddFileContentsToProjectFiles(projectFilesWithoutContents)
-          const result = await api.projects[project._id].patch<Project>({
-            files: projectFiles
+          const projectFilesWithoutContents = buildProjectFilesFromManifest(
+            manifest,
+          )
+          const projectFiles = await readDecodeAndAddFileContentsToProjectFiles(
+            projectFilesWithoutContents,
+          )
+          const _result = await api.projects[project._id].patch<Project>({
+            files: projectFiles,
           })
           deploySpinner!.succeed(
             `Patched project files (open in studio at https://app.netzo.io/workspaces/${project.workspaceId}/projects/${project._id}/src)`,

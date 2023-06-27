@@ -1,4 +1,9 @@
-import { ProjectFilesFile, Manifest, ManifestEntryFile, Project } from '../../deps.ts'
+import {
+  Manifest,
+  ManifestEntryFile,
+  Project,
+  ProjectFilesFile,
+} from '../../deps.ts'
 
 /**
  * Build flat manifest (project.files) from nested manifest
@@ -9,7 +14,7 @@ import { ProjectFilesFile, Manifest, ManifestEntryFile, Project } from '../../de
  * @returns {Omit<Project['files'], 'contents'>} - a flat manifest of file entries
  */
 export function buildProjectFilesFromManifest(
-  manifest: Manifest = { entries: {} }
+  manifest: Manifest = { entries: {} },
 ): Omit<Project['files'], 'contents'> {
   const filesWithoutContents: Record<string, ManifestEntryFile> = {}
 
@@ -57,15 +62,18 @@ export function buildProjectFilesFromManifest(
  * @returns {Project['files']} - a flat manifest of file entries
  */
 export async function readDecodeAndAddFileContentsToProjectFiles(
-  filesWithoutContents: Omit<Project['files'], 'contents'>
+  filesWithoutContents: Omit<Project['files'], 'contents'>,
 ): Promise<Project['files']> {
-  return Object.fromEntries(await Promise.all(
-    Object.entries(filesWithoutContents).map(
-      async ([path, file]) => {
-        const { kind, gitSha1, size } = file as ProjectFilesFile
-        const bytes: Uint8Array = await Deno.readFile(path)
-        const contents: string = new TextDecoder().decode(bytes)
-        return [path, { kind, contents, gitSha1, size }]
-      })
-  ))
+  return Object.fromEntries(
+    await Promise.all(
+      Object.entries(filesWithoutContents).map(
+        async ([path, file]) => {
+          const { kind, gitSha1, size } = file as ProjectFilesFile
+          const bytes: Uint8Array = await Deno.readFile(path)
+          const contents: string = new TextDecoder().decode(bytes)
+          return [path, { kind, contents, gitSha1, size }]
+        },
+      ),
+    ),
+  )
 }
