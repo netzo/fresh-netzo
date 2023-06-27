@@ -1,4 +1,7 @@
 [
+  "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/api-department-metrics/template.json",
+  "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/api-internal-operations/template.json",
+  "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/dashboard-terms-and-privacy-acceptance-monitoring/template.json",
   "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/admin-panel-assets-awss3/template.json",
   "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/admin-panel-cms-github/template.json",
   "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/admin-panel-custom-crm-googlesheets/template.json",
