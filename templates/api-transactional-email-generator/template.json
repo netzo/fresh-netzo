@@ -1,0 +1,91 @@
+{
+  "uid": "api-transactional-email-generator",
+  "status": "published",
+  "name": "Transactional Email Generator API",
+  "description": "An HTTP API to easily create and send multi language transactional emails with templates written in JSX. Easily scale your email design and delivery process with this API and send via any email delivery API.",
+  "labels": [
+    "department:operations",
+    "department:marketing",
+    "resources:brevo",
+    "resources:sendgrid",
+    "resources:activecampaign",
+    "resources:mailchimp",
+    "usecase:communication/email",
+    "usecase:productivity",
+    "usecase:workflow"
+  ],
+  "display": {
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/api-transactional-email-generator/icon.svg"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/templates/api-transactional-email-generator"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/api-transactional-email-generator/src/readme.md"
+    }
+  ],
+  "item": {
+    "_type": "project",
+    "uid": "api-transactional-email-generator",
+    "files": {
+      ".vscode/extensions.json": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/api-transactional-email-generator/src/.vscode/extensions.json"
+      },
+      ".vscode/settings.json": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/api-transactional-email-generator/src/.vscode/settings.json"
+      },
+      "components/Button.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/api-transactional-email-generator/src/components/Button.tsx"
+      },
+      "components/Footer.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/api-transactional-email-generator/src/components/Footer.tsx"
+      },
+      "components/Header.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/api-transactional-email-generator/src/components/Header.tsx"
+      },
+      "components/InputSearch.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/api-transactional-email-generator/src/components/InputSearch.tsx"
+      },
+      "data/templates.json": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/api-transactional-email-generator/src/data/templates.json"
+      },
+      "routes/[id].tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/api-transactional-email-generator/src/routes/[id].tsx"
+      },
+      "routes/index.tsx": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/api-transactional-email-generator/src/routes/index.tsx"
+      },
+      "static/favicon.svg": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/api-transactional-email-generator/src/static/favicon.svg"
+      },
+      ".gitignore": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/api-transactional-email-generator/src/.gitignore"
+      },
+      "deno.json": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/api-transactional-email-generator/src/deno.json"
+      },
+      "dev.ts": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/api-transactional-email-generator/src/dev.ts"
+      },
+      "fresh.gen.ts": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/api-transactional-email-generator/src/fresh.gen.ts"
+      },
+      "main.ts": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/api-transactional-email-generator/src/main.ts"
+      },
+      "readme.md": {
+        "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/api-transactional-email-generator/src/readme.md"
+      }
+    },
+    "configuration": {
+      "entrypoint": "main.ts",
+      "envVars": {},
+      "permissions": {
+        "net": true
+      }
+    }
+  }
+}
