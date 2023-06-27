@@ -1,4 +1,4 @@
-# video-generator
+# admin-panel-video-generator
 
 An open-source source template for Netzo.
 
@@ -18,7 +18,7 @@ This will watch the project directory and restart as necessary.
 
 ## Links
 
-- [Homepage](https://app.netzo.io/templates/video-generator)
+- [Homepage](https://app.netzo.io/templates/admin-panel-video-generator)
 
 <div align="center">
   <h4>© Netzo</h4>

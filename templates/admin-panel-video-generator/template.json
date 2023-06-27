@@ -1,5 +1,5 @@
 {
-  "uid": "admin-panel-video-generator",
+  "uid": "admin-panel-admin-panel-video-generator",
   "status": "published",
   "name": "Video Generator from Template (Single and Bulk)",
   "description": "An API interface to the Shotstack API for creating single videos or bulk creation from CSV values using a predefined template. This app automates video generation, making it extremely easy to create any type of sales, marketing, and other videos.",
@@ -17,7 +17,7 @@
   "links": [
     {
       "rel": "repository",
-      "href": "https://github.com/netzo/netzo/tree/main/templates/admin-panel-video-generator"
+      "href": "https://github.com/netzo/netzo/tree/main/templates/admin-panel-admin-panel-video-generator"
     },
     {
       "rel": "readme",
@@ -26,7 +26,7 @@
   ],
   "item": {
     "_type": "project",
-    "uid": "admin-panel-video-generator",
+    "uid": "admin-panel-admin-panel-video-generator",
     "files": {
       ".vscode/extensions.json": {
         "url": "https://raw.githubusercontent.com/netzo/netzo/main/templates/admin-panel-video-generator/src/.vscode/extensions.json"
