@@ -11,27 +11,12 @@
     "department:sales"
   ],
   "display": {
-    "avatar": "https://netzo.io/images/home/{{usecase}}.svg"
+    "avatar": "https://netzo.io/images/home/bi-dashboards.svg"
   },
   "links": [
     {
       "rel": "repository",
       "href": "https://github.com/netzo/netzo/tree/main/templates/_requested/dashboard-executive-company-overview"
     }
-  ],
-  "sales": {
-    "users": [
-      "marketer",
-      "sales-executive"
-    ],
-    "buyers": [
-      "cto",
-      "coo"
-    ],
-    "painPoint": [
-      "Difficulty in creating executive dashboards for different departments",
-      "Cumbersome and repetitive reporting for executives"
-    ],
-    "objections": []
-  }
+  ]
 }
