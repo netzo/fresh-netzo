@@ -1,6 +1,5 @@
 {
   "uid": "website-company-website",
-  "src": "https://api.github.com/repos/netzo/netzo/contents/templates/website-company-website/src",
   "status": "published",
   "name": "Company Website",
   "description": "A full-blown company website with a perfect Lighthouse score. It includes a blog, a contact form, a newsletter, and a lot more. Built with Flowbite blocks, JSX and and Tailwind CSS.",

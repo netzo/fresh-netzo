@@ -1,6 +1,5 @@
 {
   "uid": "admin-panel-customer-table-postgresql",
-  "src": "https://api.github.com/repos/netzo/netzo/contents/templates/admin-panel-customer-table-postgresql/src",
   "status": "requested",
   "name": "Customer Management for PostgreSQL",
   "description": "An user-friendly admin panel for managing customer data stored in postgresql. This app allows you to view and interact with customer information stored in your own database.",

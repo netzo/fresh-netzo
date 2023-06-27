@@ -1,6 +1,5 @@
 {
   "uid": "admin-panel-assets-awss3",
-  "src": "https://api.github.com/repos/netzo/netzo/contents/templates/admin-panel-assets-awss3/src",
   "status": "requested",
   "name": "Asset Management for AWS S3",
   "description": "An user-friendly admin panel for managing assets stored in AWS S3. This app allows you to view and manage assets stored in your own database, add advanced functionality and enhance productivity.",

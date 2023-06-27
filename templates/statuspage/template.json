@@ -1,6 +1,5 @@
 {
   "uid": "statuspage",
-  "src": "https://api.github.com/repos/netzo/netzo/contents/templates/statuspage/src",
   "status": "requested",
   "name": "Statuspage",
   "description": "A status page to track the 'up', 'down' and 'maintenance' status of (multiple) services over time.",

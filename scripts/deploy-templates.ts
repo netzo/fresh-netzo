@@ -39,10 +39,9 @@ export async function deployTemplates() {
     // 0) fetch repository contents from @netzo/netzo repo
     const repoContentsUrl =
       `https://api.github.com/repos/netzo/netzo/git/trees/main?recursive=true`
-    const repoResponse: RepositoryContents = await fetch(repoContentsUrl).then((
-      res,
-    ) => res.json())
-    console.log(repoResponse)
+    const repositoryResponse = await fetch(repoContentsUrl)
+    const repositoryContents: RepositoryContents = await repositoryResponse
+      .json()
 
     // 1) fetch array of template urls from @netzo/netzo/templates/templates.json
     const allUrlsResponse = await fetch(
@@ -97,16 +96,18 @@ export async function deployTemplates() {
         let createdCount = 0
         const totalTemplates = await Promise.all(
           templates.map(async (template) => {
-            // populate template.files dynamically from repo contents (starting at template.src)
-            template.files = await Promise.all(
-              repoResponse.tree
-                .filter((item) => item.type === 'blob')
-                .map(async (item) => {
-                  const response = await fetch(`${repoBaseUrl}/${item.path}`)
-                  return { contents: await response.text() }
-                }),
-            )
-            console.log(template.files)
+            // populate template.item.files dynamically from repo contents (starting at template.src)
+            template.item.files = repositoryContents.tree
+              .filter((item) => item.type === 'blob') // keep files only
+              .filter((item) => item.path.startsWith('templates/'))
+              .filter((item) => item.path.includes(`/${template.uid}/`))
+              .reduce((acc, file) => {
+                const url = `${repoBaseUrl}/${file.path}`
+                return { ...acc, [file.path]: { url } }
+              }, {})
+            delete template.item.src
+
+            console.log(`[deploy-templates] ${Object.keys(template.item.files).length} files populated for template ${template.uid}`)
 
             if (template._id) {
               try {
@@ -116,7 +117,7 @@ export async function deployTemplates() {
                   body: JSON.stringify(template),
                 })
                 console.debug('[deploy-templates] patched', template.uid)
-                ;++patchedCount
+                  ; ++patchedCount
                 return template
               } catch ({ message: cause }) {
                 console.error(
@@ -134,7 +135,7 @@ export async function deployTemplates() {
                   body: JSON.stringify(template),
                 })
                 console.debug('[deploy-templates] created', template.uid)
-                ;++createdCount
+                  ; ++createdCount
                 return template
               } catch ({ message: cause }) {
                 console.error(

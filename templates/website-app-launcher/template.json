@@ -1,6 +1,5 @@
 {
   "uid": "website-app-launcher",
-  "src": "https://api.github.com/repos/netzo/netzo/contents/templates/website-app-launcher/src",
   "status": "published",
   "name": "App Launcher",
   "description": "Quick links for important apps and services",

@@ -1,6 +1,5 @@
 {
   "uid": "workflow-invoice-upload-portal",
-  "src": "https://api.github.com/repos/netzo/netzo/contents/templates/workflow-invoice-upload-portal/src",
   "status": "requested",
   "name": "E-Invoice Upload Portal",
   "description": "An e-invoice upload portal that loads and processes mexican electronic invoices versions CFDI3.2, CDFI3.3, CFDI4.0 (PDF and XML), writes data to Google Sheets, and stores files in Google Drive. This app streamlines the invoice handling, naming and submission, increasing efficiency and accuracy.",

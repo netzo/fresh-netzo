@@ -1,6 +1,5 @@
 {
   "uid": "file-upload-portal",
-  "src": "https://api.github.com/repos/netzo/netzo/contents/templates/file-upload-portal/src",
   "status": "requested",
   "name": "File Upload Portal",
   "description": "A file upload portal to ease data processing and syncing from files.",

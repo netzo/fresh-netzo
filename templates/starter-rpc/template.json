@@ -1,6 +1,5 @@
 {
   "uid": "starter-rpc",
-  "src": "https://api.github.com/repos/netzo/netzo/contents/templates/starter-rpc/src",
   "status": "published",
   "name": "RPC",
   "description": "A JSONRPC server router",

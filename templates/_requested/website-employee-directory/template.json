@@ -1,6 +1,5 @@
 {
   "uid": "admin-panel-rest-api-salesforce",
-  "src": "https://api.github.com/repos/netzo/netzo/contents/templates/admin-panel-rest-api-salesforce/src",
   "status": "requested",
   "name": "Advanced CRM extension for Salesforce",
   "description": "A personalized admin interface that extends the CRM functionality of Salesforce through its REST API. Easily view and interact with customer information, perform bulk actions and add advanced functionality, AI algorithms and more.",

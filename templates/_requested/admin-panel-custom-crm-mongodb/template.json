@@ -1,6 +1,5 @@
 {
   "uid": "admin-panel-custom-crm-mongodb",
-  "src": "https://api.github.com/repos/netzo/netzo/contents/templates/admin-panel-custom-crm-mongodb/src",
   "status": "requested",
   "name": "Custom CRM on MongoDB",
   "description": "An adaptable CRM solution designed to cater to the unique requirements of your marketing or sales team with a customizable API interface endpoints for advanced functionality, prospecting and AI integration.",
