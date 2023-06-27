@@ -1,4 +1,4 @@
-# api-email-router
+# api-transactional-email-generator
 
 An open-source source template for Netzo.
 
@@ -18,7 +18,7 @@ This will watch the project directory and restart as necessary.
 
 ## Links
 
-- [Homepage](https://app.netzo.io/templates/api-email-router)
+- [Homepage](https://app.netzo.io/templates/api-transactional-email-generator)
 
 <div align="center">
   <h4>© Netzo</h4>
