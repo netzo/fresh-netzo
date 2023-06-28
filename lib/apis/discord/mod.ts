@@ -10,7 +10,7 @@ import { auth } from '../create-api/auth/mod.ts'
  */
 export const discord = ({
   tokenType = Deno.env.get('DISCORD_TOKEN_TYPE') ?? 'Bot',
-  token = Deno.env.get('DISCORD_TOKEN') ?? '',
+  token = Deno.env.get('DISCORD_TOKEN'),
 }) => {
   const api = createApi({
     baseURL: 'https://discord.com/api/v10',

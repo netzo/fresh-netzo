@@ -8,7 +8,7 @@ import { auth } from '../create-api/auth/mod.ts'
  * @returns {object} - an object of multiple utilities for the API
  */
 export const sendgrid = ({
-  apiKey = Deno.env.get('SENDGRID_API_KEY') ?? '',
+  apiKey = Deno.env.get('SENDGRID_API_KEY'),
 }) => {
   const api = createApi({
     baseURL: 'https://api.sendgrid.com/v3',
