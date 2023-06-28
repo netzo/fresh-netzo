@@ -5,7 +5,7 @@ import templates from '@/data/templates.json' assert { type: 'json' }
 import { Data } from './[id].tsx'
 
 const meta = {
-  title: 'API Email Router',
+  title: 'Transactional Email Generator API',
   description:
     'An HTTP API to generate and send emails from existing templates written in JSX.',
 }
