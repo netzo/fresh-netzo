@@ -8,7 +8,7 @@ import { auth } from '../create-api/auth/mod.ts'
  * @returns {object} - an object of multiple utilities for the API
  */
 export const github = ({
-  personalAccessToken = Deno.env.get('GITHUB_PERSONAL_ACCESS_TOKEN') ?? '',
+  personalAccessToken = Deno.env.get('GITHUB_PERSONAL_ACCESS_TOKEN'),
 }) => {
   const api = createApi({
     baseURL: 'https://api.github.com',

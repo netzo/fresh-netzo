@@ -9,8 +9,8 @@ import { auth } from '../create-api/auth/mod.ts'
  * @returns {object} - an object of multiple utilities for the API
  */
 export const facturama = ({
-  username = Deno.env.get('FACTURAMA_USERNAME') ?? '',
-  password = Deno.env.get('FACTURAMA_PASSWORD') ?? '',
+  username = Deno.env.get('FACTURAMA_USERNAME'),
+  password = Deno.env.get('FACTURAMA_PASSWORD'),
 }) => {
   const api = createApi({
     baseURL: 'https://api.facturama.mx',

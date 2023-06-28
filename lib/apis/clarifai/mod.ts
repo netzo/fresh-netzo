@@ -9,8 +9,8 @@ import { auth } from '../create-api/auth/mod.ts'
  * @returns {object} - an object of multiple utilities for the API
  */
 export const clarifai = ({
-  datasetId = Deno.env.get('CLARIFAI_DATASET_ID') ?? '',
-  apiKey = Deno.env.get('CLARIFAI_API_KEY') ?? '',
+  datasetId = Deno.env.get('CLARIFAI_DATASET_ID'),
+  apiKey = Deno.env.get('CLARIFAI_API_KEY'),
 }) => {
   const api = createApi({
     baseURL: `https://api.clarifai.com/v2/users/datasets/${datasetId}`,

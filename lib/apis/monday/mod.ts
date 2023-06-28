@@ -8,7 +8,7 @@ import { auth } from '../create-api/auth/mod.ts'
  * @returns {object} - an object of multiple utilities for the API
  */
 export const monday = ({
-  apiKey = Deno.env.get('MONDAY_API_KEY') ?? '',
+  apiKey = Deno.env.get('MONDAY_API_KEY'),
 }) => {
   const api = createApi({
     baseURL: 'https://api.monday.com/v2',

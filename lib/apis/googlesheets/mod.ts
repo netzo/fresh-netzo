@@ -10,9 +10,9 @@ import { auth } from '../create-api/auth/mod.ts'
  * @returns {object} - an object of multiple utilities for the API
  */
 export const googlesheets = ({
-  spreadsheetId = Deno.env.get('GOOGLESHEETS_SPREADSHEET_ID') ?? '',
-  clientId = Deno.env.get('GOOGLESHEETS_CLIENT_ID') ?? '',
-  clientSecret = Deno.env.get('GOOGLESHEETS_CLIENT_SECRET') ?? '',
+  spreadsheetId = Deno.env.get('GOOGLESHEETS_SPREADSHEET_ID'),
+  clientId = Deno.env.get('GOOGLESHEETS_CLIENT_ID'),
+  clientSecret = Deno.env.get('GOOGLESHEETS_CLIENT_SECRET'),
 }) => {
   const api = createApi({
     baseURL: `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}`,

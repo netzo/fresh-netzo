@@ -9,8 +9,8 @@ import { auth } from '../create-api/auth/mod.ts'
  * @returns {object} - an object of multiple utilities for the API
  */
 export const activecampaign = ({
-  accountName = Deno.env.get('ACTIVECAMPAIGN_ACCOUNT_NAME') ?? '',
-  apiKey = Deno.env.get('ACTIVECAMPAIGN_API_KEY') ?? '',
+  accountName = Deno.env.get('ACTIVECAMPAIGN_ACCOUNT_NAME'),
+  apiKey = Deno.env.get('ACTIVECAMPAIGN_API_KEY'),
 }) => {
   const api = createApi({
     baseURL: `https://${accountName}.api-us1.com/api/3`,
