@@ -55,7 +55,9 @@ export async function deployTemplates() {
     const allUrls: string[] = await allUrlsResponse.json()
     const urls = [...new Set(allUrls)] // remove possible duplicates
     console.log(
-      `[deploy-templates] fetched array of ${pad(urls.length)} urls from @netzo/netzo/templates/templates.json`,
+      `[deploy-templates] fetched array of ${
+        pad(urls.length)
+      } urls from @netzo/netzo/templates/templates.json`,
     )
 
     // 2) map array of url pointers to each template.json to array of template objects
@@ -65,7 +67,9 @@ export async function deployTemplates() {
       ),
     )
     console.log(
-      `[deploy-templates] mapped ${pad(templatesJson.length)} urls to template objects (from template.json file)`,
+      `[deploy-templates] mapped ${
+        pad(templatesJson.length)
+      } urls to template objects (from template.json file)`,
     )
 
     // Netzo API: for each apiBaseUrl (handles dev, prod and demo databases)
@@ -89,7 +93,9 @@ export async function deployTemplates() {
           }),
         )
         console.log(
-          `[deploy-templates] merged ${pad(templates.length)} templates from repository and database via ${apiBaseUrl} api`,
+          `[deploy-templates] merged ${
+            pad(templates.length)
+          } templates from repository and database via ${apiBaseUrl} api`,
         )
 
         // 4) patch db record with merged template or create new if it already exists (has _id)
@@ -109,7 +115,11 @@ export async function deployTemplates() {
               }, {})
             delete template.item.src
 
-            console.log(`[deploy-templates] populated ${pad(Object.keys(template.item.files).length)} files for template ${template.uid}`)
+            console.log(
+              `[deploy-templates] populated ${
+                pad(Object.keys(template.item.files).length)
+              } files for template ${template.uid}`,
+            )
 
             if (template._id) {
               try {
@@ -119,7 +129,7 @@ export async function deployTemplates() {
                   body: JSON.stringify(template),
                 })
                 console.debug('[deploy-templates] patched', template.uid)
-                  ; ++patchedCount
+                ;++patchedCount
                 return template
               } catch ({ message: cause }) {
                 console.error(
@@ -137,7 +147,7 @@ export async function deployTemplates() {
                   body: JSON.stringify(template),
                 })
                 console.debug('[deploy-templates] created', template.uid)
-                  ; ++createdCount
+                ;++createdCount
                 return template
               } catch ({ message: cause }) {
                 console.error(
