@@ -1,21 +1,22 @@
 {
-  "uid": "website-employee-directory",
+  "uid": "admin-panel-rest-api-salesforce",
   "status": "requested",
-  "name": "Employee Directory",
-  "description": "A web app to quickly find employee data, skills and contact info in a convenient easily accesible interface. This app simplifies matching employees to tasks and projects. Employee data may be stored in any HR system or database and simply streamed, when required.",
+  "name": "Advanced CRM extension for Salesforce",
+  "description": "A personalized admin interface that extends the CRM functionality of Salesforce through its REST API. Easily view and interact with customer information, perform bulk actions and add advanced functionality, AI algorithms and more.",
   "labels": [
-    "usecase:dashboard",
-    "usecase:business metrics",
     "department:sales",
-    "department:marketing"
+    "department:marketing",
+    "resources:salesforce",
+    "usecase:admin-panel",
+    "usecase:productivity"
   ],
   "display": {
-    "avatar": "https://netzo.io/images/home/admin-panels.svg"
+    "avatar": "https://netzo.io/images/home/websites.svg"
   },
   "links": [
     {
       "rel": "repository",
-      "href": "https://github.com/netzo/netzo/tree/main/templates/_requested/website-employee-directory"
+      "href": "https://github.com/netzo/netzo/tree/main/templates/_requested/admin-panel-rest-api-salesforce"
     }
   ]
 }

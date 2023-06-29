@@ -1,8 +1,8 @@
 {
-  "uid": "dashboard-nps-sales-customer-support",
+  "uid": "workflow-gdpr-data-export-utility",
   "status": "requested",
-  "name": "NPS for Sales and Support",
-  "description": "A dashboard for visualizing and analyzing Net Promoter Score (NPS) data for sales and customer support representatives.",
+  "name": "GDPR Data Export Utility",
+  "description": "A web portal to easily retrieve data subject personal information from multiple sources and export in a standard format (PDF, JSON, CSV), to comply with GDPR requirements. Alternatively, send via email.",
   "labels": [
     "department:sales",
     "department:customer-support",
