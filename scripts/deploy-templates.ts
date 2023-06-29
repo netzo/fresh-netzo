@@ -55,8 +55,7 @@ export async function deployTemplates() {
     const allUrls: string[] = await allUrlsResponse.json()
     const urls = [...new Set(allUrls)] // remove possible duplicates
     console.log(
-      `[deploy-templates] fetched array of ${
-        pad(urls.length)
+      `[deploy-templates] fetched array of ${pad(urls.length)
       } urls from @netzo/netzo/templates/templates.json`,
     )
 
@@ -67,8 +66,7 @@ export async function deployTemplates() {
       ),
     )
     console.log(
-      `[deploy-templates] mapped ${
-        pad(templatesJson.length)
+      `[deploy-templates] mapped ${pad(templatesJson.length)
       } urls to template objects (from template.json file)`,
     )
 
@@ -93,8 +91,7 @@ export async function deployTemplates() {
           }),
         )
         console.log(
-          `[deploy-templates] merged ${
-            pad(templates.length)
+          `[deploy-templates] merged ${pad(templates.length)
           } templates from repository and database via ${apiBaseUrl} api`,
         )
 
@@ -105,19 +102,21 @@ export async function deployTemplates() {
         const totalTemplates = await Promise.all(
           templates.map(async (template) => {
             // populate template.item.files dynamically from repo contents (starting at template.src)
+            if (!template.item) template.item = {}
             template.item.files = repositoryContents.tree
-              .filter((item) => item.type === 'blob') // keep files only
-              .filter((item) => item.path.startsWith('templates/'))
-              .filter((item) => item.path.includes(`/${template.uid}/`))
+              .filter(({ type }) => type === 'blob') // keep files only
+              .filter(({ path }) => path.startsWith('templates/')) // under templates/
+              .filter(({ path }) => path.includes(`/${template.uid}/src/`)) // under template src/
               .reduce((acc, file) => {
                 const url = `${repoBaseUrl}/${file.path}`
-                return { ...acc, [file.path]: { url } }
+                const pathToSrc = new RegExp(`.*/${template.uid}/src/`)
+                const path = file.path.replace(pathToSrc, '')
+                return { ...acc, [path]: { url } } // path is relative to template
               }, {})
             delete template.item.src
 
             console.log(
-              `[deploy-templates] populated ${
-                pad(Object.keys(template.item.files).length)
+              `[deploy-templates] populated ${pad(Object.keys(template.item.files).length)
               } files for template ${template.uid}`,
             )
 
@@ -129,7 +128,7 @@ export async function deployTemplates() {
                   body: JSON.stringify(template),
                 })
                 console.debug('[deploy-templates] patched', template.uid)
-                ;++patchedCount
+                  ; ++patchedCount
                 return template
               } catch ({ message: cause }) {
                 console.error(
@@ -147,7 +146,7 @@ export async function deployTemplates() {
                   body: JSON.stringify(template),
                 })
                 console.debug('[deploy-templates] created', template.uid)
-                ;++createdCount
+                  ; ++createdCount
                 return template
               } catch ({ message: cause }) {
                 console.error(
