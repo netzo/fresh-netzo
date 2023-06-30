@@ -5,7 +5,7 @@
   "description": "Consolidate department metrics from multiple APIs and standardize, cross-check and cross-create KPIs for any departments, such as sales, marketing, operations, and more. Use you internal API to easily build Business Intelligence dashboards, reports and enhance intradepartment communications.",
   "labels": [
     "department:operations",
-    "resource:mongodb",
+    "api:mongodb",
     "usecase:api",
     "usecase:business-intelligence",
     "usecase:api",

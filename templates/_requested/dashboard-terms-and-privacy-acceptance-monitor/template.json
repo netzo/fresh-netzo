@@ -6,8 +6,8 @@
   "labels": [
     "department:operations",
     "department:legal",
-    "resource:auth0",
-    "resource:mongodb",
+    "api:auth0",
+    "api:mongodb",
     "usecase:dashboard",
     "usecase:compliance",
     "usecase:productivity"
