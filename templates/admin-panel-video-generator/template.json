@@ -26,7 +26,6 @@
   ],
   "item": {
     "_type": "project",
-    "uid": "admin-panel-admin-panel-video-generator",
     "src": "https://api.github.com/repos/netzo/netzo/contents/templates/admin-panel-admin-panel-video-generator/src",
     "configuration": {
       "entrypoint": "main.ts",
