@@ -9,7 +9,7 @@
     "usecase:dashboard"
   ],
   "display": {
-    "avatar": "https://netzo.io/images/home/bi-dashboards.svg"
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-gdpr-data-export-utility/icon.svg"
   },
   "links": [
     {
