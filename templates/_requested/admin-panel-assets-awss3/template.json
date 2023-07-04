@@ -7,7 +7,7 @@
     "department:sales",
     "department:marketing",
     "department:operations",
-    "resources:awss3",
+    "api:awss3",
     "usecase:admin-panel",
     "usecase:productivity",
     "usecase:content/cms"

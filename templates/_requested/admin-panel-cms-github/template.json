@@ -8,7 +8,7 @@
     "department:operations",
     "department:product",
     "department:engineering",
-    "resources:github",
+    "api:github",
     "usecase:admin-panel",
     "usecase:content/cms"
   ],

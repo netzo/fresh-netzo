@@ -6,7 +6,7 @@
   "labels": [
     "department:sales",
     "department:marketing",
-    "resources:mongodb",
+    "api:mongodb",
     "usecase:admin-panel",
     "usecase:productivity"
   ],

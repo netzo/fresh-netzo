@@ -6,9 +6,9 @@
   "labels": [
     "department:operations",
     "department:sales",
-    "resources:googlesheets",
-    "resources:pipedrive",
-    "resources:stripe",
+    "api:googlesheets",
+    "api:pipedrive",
+    "api:stripe",
     "usecase:compliance",
     "usecase:dashboard"
   ],

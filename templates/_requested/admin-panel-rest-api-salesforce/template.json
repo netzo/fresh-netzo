@@ -6,7 +6,7 @@
   "labels": [
     "department:sales",
     "department:marketing",
-    "resources:salesforce",
+    "api:salesforce",
     "usecase:admin-panel",
     "usecase:productivity"
   ],

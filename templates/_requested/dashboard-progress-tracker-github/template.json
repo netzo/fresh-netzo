@@ -8,7 +8,7 @@
     "department:product",
     "department:marketing",
     "department:sales",
-    "resources:github",
+    "api:github",
     "usecase:dashboard",
     "usecase:communication/email",
     "usecase:productivity"
