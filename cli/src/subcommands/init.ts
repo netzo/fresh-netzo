@@ -94,7 +94,9 @@ async function getTemplateUids() {
     headers: { accept: 'application/json', 'cache-control': 'no-cache' },
   })
   const allUrls: string[] = await response.json()
-  const urls = [...new Set(allUrls)] // remove possible
+  const urls = [...new Set(allUrls)]
+    .filter((url) => !url.includes('/templates/_requested/'))
+    .filter((url) => !url.includes('/templates/_wip/'))
   const pattern = `${base}/(.*)/template.json` // extract UID from URL
   return urls.map((url) => url.match(new RegExp(pattern))?.[1])
 }
