@@ -10,7 +10,7 @@
     "usecase:productivity"
   ],
   "display": {
-    "avatar": "https://netzo.io/images/home/{{usecase}}.svg"
+    "avatar": "https://netzo.io/images/home/admin-panels.svg"
   },
   "links": [
     {
