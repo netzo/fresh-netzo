@@ -1,5 +1,5 @@
 {
-  "uid": "sales-dashboard",
+  "uid": "website-sales-dashboard",
   "status": "requested",
   "name": "Sales Dashboard",
   "description": "A sales dashboard to track performance of sales teams in real-time, and provides a variety of metrics to help make informed decisions.",
@@ -8,21 +8,21 @@
     "fresh"
   ],
   "display": {
-    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard/icon.svg"
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-sales-dashboard/icon.svg"
   },
   "links": [
     {
       "rel": "repository",
-      "href": "https://github.com/netzo/netzo/tree/main/templates/sales-dashboard"
+      "href": "https://github.com/netzo/netzo/tree/main/templates/website-sales-dashboard"
     },
     {
       "rel": "readme",
-      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/sales-dashboard/src/readme.md"
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-sales-dashboard/src/readme.md"
     }
   ],
   "item": {
     "_type": "project",
-    "src": "https://api.github.com/repos/netzo/netzo/contents/templates/sales-dashboard/src",
+    "src": "https://api.github.com/repos/netzo/netzo/contents/templates/website-sales-dashboard/src",
     "configuration": {
       "entrypoint": "main.ts",
       "envVars": {},

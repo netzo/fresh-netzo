@@ -1,4 +1,4 @@
-# statuspage
+# website-sales-dashboard
 
 An open-source source template for Netzo.
 
@@ -18,7 +18,7 @@ This will watch the project directory and restart as necessary.
 
 ## Links
 
-- [Homepage](https://app.netzo.io/templates/statuspage)
+- [Homepage](https://app.netzo.io/templates/website-sales-dashboard)
 
 <div align="center">
   <h4>© Netzo</h4>

@@ -63,7 +63,7 @@ The following table summarizes the fields in a `template.json` file.
 
 | Property      | Type                             | Required | Description                                                                                   |
 | ------------- | -------------------------------- | -------- | --------------------------------------------------------------------------------------------- |
-| `uid`         | `string`                         | `true`   | unique ID in kebab-case (e.g. `sales-dashboard`)                                              |
+| `uid`         | `string`                         | `true`   | unique ID in kebab-case (e.g. `website-sales-dashboard`)                                              |
 | `status`      | `published` \| `requested`       | `true`   | if template is published or in requested status for upvotes.                                  |
 | `name`        | `string`                         | `true`   | human-friendly display name for the template                                                  |
 | `description` | `string`                         | `true`   | brief description of template                                                                 |
