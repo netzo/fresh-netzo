@@ -1,4 +1,4 @@
-import { Plugin } from '$fresh/server.ts'
+import { Plugin } from 'fresh/server.ts'
 
 export type FlowbitePluginOptions = {
   additionalStylesheets?: string[]
