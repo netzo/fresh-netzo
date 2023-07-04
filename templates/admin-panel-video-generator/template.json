@@ -9,7 +9,7 @@
     "department:operations",
     "usecase:content/cms",
     "usecase:productivity",
-    "resources:shotstack"
+    "api:shotstack"
   ],
   "display": {
     "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/admin-panel-video-generator/icon.svg"

@@ -6,10 +6,10 @@
   "labels": [
     "department:operations",
     "department:marketing",
-    "resources:brevo",
-    "resources:sendgrid",
-    "resources:activecampaign",
-    "resources:mailchimp",
+    "api:brevo",
+    "api:sendgrid",
+    "api:activecampaign",
+    "api:mailchimp",
     "usecase:communication/email",
     "usecase:productivity",
     "usecase:workflow"

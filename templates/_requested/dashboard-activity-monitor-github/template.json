@@ -6,7 +6,7 @@
   "labels": [
     "department:engineering",
     "department:product",
-    "resources:github",
+    "api:github",
     "usecase:dashboard",
     "usecase:productivity"
   ],

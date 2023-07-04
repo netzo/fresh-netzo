@@ -7,7 +7,7 @@
     "department:sales",
     "department:customer-support",
     "department:marketing",
-    "resources:mongodb",
+    "api:mongodb",
     "usecase:admin-panel"
   ],
   "display": {

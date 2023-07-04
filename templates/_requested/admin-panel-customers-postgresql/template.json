@@ -7,7 +7,7 @@
     "department:sales",
     "department:customer-support",
     "department:marketing",
-    "resources:postgresql",
+    "api:postgresql",
     "usecase:admin-panel"
   ],
   "display": {

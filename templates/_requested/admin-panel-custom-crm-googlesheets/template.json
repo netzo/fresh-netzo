@@ -6,7 +6,7 @@
   "labels": [
     "department:sales",
     "department:marketing",
-    "resources:googlesheets",
+    "api:googlesheets",
     "usecase:admin-panel",
     "usecase:productivity"
   ],
