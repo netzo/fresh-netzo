@@ -5,7 +5,7 @@
   "description": "Build custom business logic, operations and workflows under a single api. Execute sinple to complex operations, such as sending emails, provisioning users, provisioning infrastructure, and much more via your webhooks and API calls from anywhere.",
   "labels": [
     "department:operations",
-    "resource:mongodb",
+    "api:mongodb",
     "usecase:api",
     "usecase:operations",
     "usecase:productivity",

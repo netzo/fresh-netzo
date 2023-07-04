@@ -29,7 +29,6 @@
   ],
   "item": {
     "_type": "project",
-    "uid": "api-transactional-email-generator",
     "src": "https://api.github.com/repos/netzo/netzo/contents/templates/api-transactional-email-generator/src",
     "configuration": {
       "entrypoint": "main.ts",

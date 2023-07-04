@@ -4,7 +4,7 @@
   "name": "File Upload Portal",
   "description": "A file upload portal, to process, rename and store files in preset locations in Google Drive.",
   "labels": [
-    "resource:googledrive",
+    "api:googledrive",
     "usecase:productivity"
   ],
   "display": {
@@ -22,7 +22,6 @@
   ],
   "item": {
     "_type": "project",
-    "uid": "workflow-file-upload-portal",
     "src": "https://api.github.com/repos/netzo/netzo/contents/templates/workflow-file-upload-portal/src",
     "configuration": {
       "entrypoint": "main.ts",

@@ -150,7 +150,6 @@ look at other templates for further reference.
   ],
   "item": {
     "_type": "project",
-    "uid": "starter-sift",
     "src": "https://api.github.com/repos/netzo/netzo/contents/templates/starter-sift/src",
     "configuration": {
       "entrypoint": "main.tsx",

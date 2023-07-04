@@ -55,7 +55,8 @@ export async function deployTemplates() {
     const allUrls: string[] = await allUrlsResponse.json()
     const urls = [...new Set(allUrls)] // remove possible duplicates
     console.log(
-      `[deploy-templates] fetched array of ${pad(urls.length)
+      `[deploy-templates] fetched array of ${
+        pad(urls.length)
       } urls from @netzo/netzo/templates/templates.json`,
     )
 
@@ -66,7 +67,8 @@ export async function deployTemplates() {
       ),
     )
     console.log(
-      `[deploy-templates] mapped ${pad(templatesJson.length)
+      `[deploy-templates] mapped ${
+        pad(templatesJson.length)
       } urls to template objects (from template.json file)`,
     )
 
@@ -91,7 +93,8 @@ export async function deployTemplates() {
           }),
         )
         console.log(
-          `[deploy-templates] merged ${pad(templates.length)
+          `[deploy-templates] merged ${
+            pad(templates.length)
           } templates from repository and database via ${apiBaseUrl} api`,
         )
 
@@ -116,7 +119,8 @@ export async function deployTemplates() {
             delete template.item.src
 
             console.log(
-              `[deploy-templates] populated ${pad(Object.keys(template.item.files).length)
+              `[deploy-templates] populated ${
+                pad(Object.keys(template.item.files).length)
               } files for template ${template.uid}`,
             )
 
@@ -128,7 +132,7 @@ export async function deployTemplates() {
                   body: JSON.stringify(template),
                 })
                 console.debug('[deploy-templates] patched', template.uid)
-                  ; ++patchedCount
+                ;++patchedCount
                 return template
               } catch ({ message: cause }) {
                 console.error(
@@ -146,7 +150,7 @@ export async function deployTemplates() {
                   body: JSON.stringify(template),
                 })
                 console.debug('[deploy-templates] created', template.uid)
-                  ; ++createdCount
+                ;++createdCount
                 return template
               } catch ({ message: cause }) {
                 console.error(
