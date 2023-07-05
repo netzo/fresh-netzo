@@ -4,8 +4,8 @@
   "name": "GQL",
   "description": "A GraphQL server using gql, a universal GraphQL HTTP middleware for Deno.",
   "labels": [
-    "starter",
-    "gql"
+    "usecase:starter",
+    "framework:gql"
   ],
   "display": {
     "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-gql/icon.svg"

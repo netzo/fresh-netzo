@@ -4,8 +4,8 @@
   "name": "Fresh",
   "description": "A basic starting template for the Fresh framework",
   "labels": [
-    "starter",
-    "framework"
+    "usecase:starter",
+    "framework:fresh"
   ],
   "display": {
     "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-fresh/icon.svg"

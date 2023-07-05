@@ -4,8 +4,8 @@
   "name": "RPC",
   "description": "A JSONRPC server router",
   "labels": [
-    "starter",
-    "rcp"
+    "usecase:starter",
+    "framework:rpc"
   ],
   "display": {
     "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-rpc/icon.svg"

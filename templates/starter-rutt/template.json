@@ -4,8 +4,8 @@
   "name": "Rutt",
   "description": "A tiny and fast http request router designed for deno.",
   "labels": [
-    "starter",
-    "framework"
+    "usecase:starter",
+    "framework:rutt"
   ],
   "display": {
     "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-rutt/icon.svg"

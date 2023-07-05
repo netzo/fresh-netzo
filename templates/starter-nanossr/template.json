@@ -4,8 +4,8 @@
   "name": "NanoSSR",
   "description": "SSR first, lightweight 1kB JSX library.",
   "labels": [
-    "starter",
-    "framework"
+    "usecase:starter",
+    "framework:nanossr"
   ],
   "display": {
     "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-nanossr/icon.svg"
