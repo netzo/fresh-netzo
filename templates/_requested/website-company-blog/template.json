@@ -1,0 +1,33 @@
+{
+  "uid": "website-company-blog",
+  "status": "requested",
+  "name": "Company Blog",
+  "description": "A fully featured blog with a CMS, SEO, and more.",
+  "labels": [
+    "usecase:website"
+  ],
+  "display": {
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/website-company-blog/icon.png"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/templates/_requested/website-company-blog"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/website-company-blog/src/readme.md"
+    }
+  ],
+  "item": {
+    "_type": "project",
+    "src": "https://api.github.com/repos/netzo/netzo/contents/templates/_requested/website-company-blog/src",
+    "configuration": {
+      "entrypoint": "main.ts",
+      "envVars": {},
+      "permissions": {
+        "net": true
+      }
+    }
+  }
+}
