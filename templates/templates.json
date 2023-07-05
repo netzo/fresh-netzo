@@ -7,6 +7,7 @@
   "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/api-iot-cloud-gateway/template.json",
   "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/dashboard-know-your-customer/template.json",
   "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/dashboard-terms-and-privacy-acceptance-monitor/template.json",
+  "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/website-company-blog/template.json",
   "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/website-dynamic-landing-page-generator/template.json",
   "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/website-employee-directory/template.json",
   "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-gdpr-data-export-utility/template.json",
@@ -24,7 +25,6 @@
   "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-sift/template.json",
   "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-app-launcher/template.json",
   "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-company-website/template.json",
-  "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-company-blog/template.json",
   "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-sales-dashboard/template.json",
   "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-statuspage/template.json",
   "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-file-upload-portal/template.json"
