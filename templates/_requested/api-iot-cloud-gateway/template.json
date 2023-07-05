@@ -1,0 +1,20 @@
+{
+  "uid": "api-iot-cloud-gateway",
+  "status": "requested",
+  "name": "IoT Cloud Gateway API",
+  "description": "An IoT cloud gateway API to collect, capture, process and route IoT field device data to your database or cloud service.",
+  "labels": [
+    "department:operations",
+    "usecase:api",
+    "usecase:workflow"
+  ],
+  "display": {
+    "avatar": "https://netzo.io/images/home/apis.svg"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/templates/_requested/api-internal-operations"
+    }
+  ]
+}
