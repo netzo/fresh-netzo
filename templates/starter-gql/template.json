@@ -2,7 +2,7 @@
   "uid": "starter-gql",
   "status": "published",
   "name": "GQL",
-  "description": "A GraphQL server using gql.",
+  "description": "A GraphQL server using gql, a universal GraphQL HTTP middleware for Deno.",
   "labels": [
     "starter",
     "gql"

@@ -2,7 +2,7 @@
   "uid": "starter-rutt",
   "status": "published",
   "name": "Rutt",
-  "description": "",
+  "description": "A tiny and fast http request router designed for deno.",
   "labels": [
     "starter",
     "framework"

@@ -2,7 +2,7 @@
   "uid": "starter-nanossr",
   "status": "published",
   "name": "NanoSSR",
-  "description": "",
+  "description": "SSR first, lightweight 1kB JSX library.",
   "labels": [
     "starter",
     "framework"
