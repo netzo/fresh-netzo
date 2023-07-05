@@ -20,6 +20,7 @@ export const googlesheets = ({
       'content-type': 'application/json',
     },
     async onRequest(ctx) {
+      // see https://github.com/azurystudio/authenticus
       await auth({
         type: 'oauth2',
         'grantType': 'authorization_code',
