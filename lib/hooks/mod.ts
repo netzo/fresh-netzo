@@ -1,4 +1,5 @@
 import { computed, signal } from '@preact/signals'
+import { get } from '../deps.ts'
 
 // @uidotdev/usehooks:
 export * from 'https://esm.sh/@uidotdev/usehooks@2.0.1'
@@ -16,13 +17,15 @@ export const usePagination = <T>(items: T[] = []) => {
   return { page, itemsPerPage, pageCount, paginatedItems }
 }
 
-export const useSearch = <T>(items: T[] = [], keys = ['name']) => {
+export const useSearch = <T>(items: T[] = [], keys: string[]) => {
+  if (!keys) keys = Object.keys(items[0] as object)
+
   const search = signal('')
   const filteredItems = computed(() => {
     const query = search.value.toLowerCase()
     return items.filter((item) => {
-      return keys.some((key) =>
-        item[key].toString().toLowerCase().includes(query)
+      return keys.some((key: string) =>
+        get(item, key)?.toString().toLowerCase().includes(query)
       )
     })
   })
