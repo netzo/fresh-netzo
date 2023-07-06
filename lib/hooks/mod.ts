@@ -1,8 +1,4 @@
-import { computed, signal } from '@preact/signals'
-import { get } from '../deps.ts'
-
-// @uidotdev/usehooks:
-export * from 'https://esm.sh/@uidotdev/usehooks@2.0.1'
+import { computed, signal, get } from '../deps.ts'
 
 export const usePagination = <T>(items: T[] = []) => {
   const page = signal(1)

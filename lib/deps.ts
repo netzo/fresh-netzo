@@ -1,19 +1,14 @@
 // NOTE: import_map.json is for apps, deps.ts is for modules/libraries
+// IMPORTANT: import/export only what's required to avoid bloating bundle
 
 // fresh:
-export * from 'https://deno.land/x/fresh@1.2.0/dev.ts'
-export * from 'https://deno.land/x/fresh@1.2.0/init.ts'
-export * from 'https://deno.land/x/fresh@1.2.0/runtime.ts'
-export * from 'https://deno.land/x/fresh@1.2.0/server.ts'
-export * from 'https://deno.land/x/fresh@1.2.0/update.ts'
+export type { Plugin } from 'https://deno.land/x/fresh@1.2.0/server.ts'
 
 // preact:
-export * from 'https://esm.sh/preact@10.11.0'
-
-// preact-render-to-string:
+export { signal, computed, effect, Signal } from 'https://esm.sh/*@preact/signals@1.1.4'
 export { default } from 'https://esm.sh/*preact-render-to-string@6.1.0'
 
-// @netzo/api: cherry-pick exports to avoid esm.sh tree-shaking issues
+// @netzo/api
 export type { Variable } from 'https://esm.sh/@netzo/api@1.0.24'
 
 // radash:
