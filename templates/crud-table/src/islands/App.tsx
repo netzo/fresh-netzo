@@ -4,11 +4,7 @@ import ModalCreate from '../components/ModalCreate.tsx'
 import ModalDelete from '../components/ModalDelete.tsx'
 import RatingStars from '../components/table/RatingStars.tsx'
 import products, { Product } from '../data/products.ts'
-import {
-  usePagination,
-  useSearch,
-  useSelected,
-} from '../../../../lib/hooks/mod.ts'
+import { usePagination, useSearch, useSelected } from 'netzo/lib/hooks/mod.ts'
 
 const {
   page,
