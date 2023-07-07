@@ -1,21 +1,26 @@
-import DrawerUpdate from "../components/DrawerUpdate.tsx";
-import DrawerRead from "../components/DrawerRead.tsx";
-import ModalCreate from "../components/ModalCreate.tsx";
-import ModalDelete from "../components/ModalDelete.tsx";
 import RatingStars from "../components/RatingStars.tsx";
-import products, { Product } from "../data/products.ts";
+import ModalInspect from "../islands/ModalInspect.tsx";
 import { usePagination, useSearch, useSelected } from "netzo/lib/hooks/mod.ts";
+import { IconSort } from "../components/icons/IconSort.tsx";
+import { CardKpi } from "../components/CardKpi.tsx";
+import { TableCell } from "../components/TableCell.tsx";
+// data:
+import { Product, products } from "../routes/api/products/index.ts";
+import { rows as _rows } from "../data/mod.ts";
+
+const rows = _rows.map(({ id, ...rest }) => rest);
+const cols = Object.keys(rows[0]);
 
 const {
   page,
   itemsPerPage,
   pageCount,
   paginatedItems,
-} = usePagination<Product>(products);
+} = usePagination<Product>(rows);
 const {
   search,
   filteredItems,
-} = useSearch<Product>(paginatedItems.value);
+} = useSearch<Product>(paginatedItems.value, ["Product title", "Category"]);
 const {
   selected,
   selectedAll,
@@ -27,10 +32,17 @@ export default () => {
   return (
     <>
       {/* Start block */}
-      <section class="bg-gray-50 dark:bg-gray-900 antialiased">
-        <div class="mx-auto px-4 lg:px-12">
-          <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
-            <div class="flex flex-col md:flex-row items-stretch md:items-center md:space-x-3 space-y-3 md:space-y-0 justify-between mx-4 py-4 border-t dark:border-gray-700">
+      <section class="bg-white dark:bg-gray-800 antialiased">
+        <div class="w-full mb-6 grid grid-cols-4 gap-12px px-6">
+          <CardKpi title="KPI 1" badge="" metric="$ 11,111" />
+          <CardKpi title="KPI 2" metric="$ 22,222" />
+          <CardKpi title="KPI 3" metric="$ 33,333" />
+          <CardKpi title="KPI 4" metric="$ 44,444" />
+        </div>
+
+        <div class="w-full">
+          <div class="bg-white dark:bg-gray-800 relative sm:rounded-lg overflow-hidden">
+            <div class="flex flex-col md:flex-row items-stretch md:items-center md:space-x-3 space-y-3 md:space-y-0 justify-between mx-4 py-4 dark:border-gray-700 mb-2">
               <div class="w-full md:w-1/2">
                 <form class="flex items-center">
                   <label htmlFor="simple-search" class="sr-only">
@@ -66,27 +78,26 @@ export default () => {
                 </form>
               </div>
               <div class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
-                <button
-                  type="button"
-                  id="createProductButton"
-                  data-modal-toggle="createProductModal"
-                  class="flex items-center justify-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-                >
-                  <svg
-                    class="h-3.5 w-3.5 mr-1.5 -ml-1"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true"
+                <div>
+                  <select
+                    id="period"
+                    class="flex bg-gray-50 py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
                   >
-                    <path
-                      clipRule="evenodd"
-                      fillRule="evenodd"
-                      d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
-                    />
-                  </svg>
-                  Add product
-                </button>
+                    <option value="today">Today</option>
+                    <option value="yesterday">Yesterday</option>
+                    <option value="last-7-days" selected>Last 7 days</option>
+                    <option value="this-week">This week</option>
+                    <option value="last-week">Last week</option>
+                    <option value="last-30-days">Last 30 days</option>
+                    <option value="this-month">This month</option>
+                    <option value="last-month">Last month</option>
+                    <option value="last-3-months">Last 3 months</option>
+                    <option value="last-6-months">Last 6 months</option>
+                    <option value="this-year">This year</option>
+                    <option value="last-year">Last year</option>
+                    <option value="custom">Custom Range</option>
+                  </select>
+                </div>
                 <button
                   id="filterDropdownButton"
                   data-dropdown-toggle="filterDropdown"
@@ -831,7 +842,7 @@ export default () => {
                               class="w-5 h-5 text-gray-300 dark:text-gray-500"
                               fill="currentColor"
                               viewBox="0 0 20 20"
-                              xmlns="http://www.w3.org/2000/svg"
+                              xmlns="http://www['C']w3.org/2000/svg"
                             >
                               <title>Second star</title>
                               <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
@@ -872,195 +883,142 @@ export default () => {
                     </div>
                   </div>
                 </div>
+                <button
+                  type="button"
+                  data-modal-toggle="inspectModal"
+                  class="flex items-center justify-center text-white bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 32 32"
+                    class="mr-1.5"
+                  >
+                    <defs>
+                      <linearGradient
+                        id="vscodeIconsFileTypeExcel0"
+                        x1="4.494"
+                        x2="13.832"
+                        y1="-2092.086"
+                        y2="-2075.914"
+                        gradientTransform="translate(0 2100)"
+                        gradientUnits="userSpaceOnUse"
+                      >
+                        <stop offset="0" stop-color="#18884f" />
+                        <stop offset=".5" stop-color="#117e43" />
+                        <stop offset="1" stop-color="#0b6631" />
+                      </linearGradient>
+                    </defs>
+                    <path
+                      fill="#185c37"
+                      d="M19.581 15.35L8.512 13.4v14.409A1.192 1.192 0 0 0 9.705 29h19.1A1.192 1.192 0 0 0 30 27.809V22.5Z"
+                    />
+                    <path
+                      fill="#21a366"
+                      d="M19.581 3H9.705a1.192 1.192 0 0 0-1.193 1.191V9.5L19.581 16l5.861 1.95L30 16V9.5Z"
+                    />
+                    <path fill="#107c41" d="M8.512 9.5h11.069V16H8.512Z" />
+                    <path
+                      d="M16.434 8.2H8.512v16.25h7.922a1.2 1.2 0 0 0 1.194-1.191V9.391A1.2 1.2 0 0 0 16.434 8.2Z"
+                      opacity=".1"
+                    />
+                    <path
+                      d="M15.783 8.85H8.512V25.1h7.271a1.2 1.2 0 0 0 1.194-1.191V10.041a1.2 1.2 0 0 0-1.194-1.191Z"
+                      opacity=".2"
+                    />
+                    <path
+                      d="M15.783 8.85H8.512V23.8h7.271a1.2 1.2 0 0 0 1.194-1.191V10.041a1.2 1.2 0 0 0-1.194-1.191Z"
+                      opacity=".2"
+                    />
+                    <path
+                      d="M15.132 8.85h-6.62V23.8h6.62a1.2 1.2 0 0 0 1.194-1.191V10.041a1.2 1.2 0 0 0-1.194-1.191Z"
+                      opacity=".2"
+                    />
+                    <path
+                      fill="url(#vscodeIconsFileTypeExcel0)"
+                      d="M3.194 8.85h11.938a1.193 1.193 0 0 1 1.194 1.191v11.918a1.193 1.193 0 0 1-1.194 1.191H3.194A1.192 1.192 0 0 1 2 21.959V10.041A1.192 1.192 0 0 1 3.194 8.85Z"
+                    />
+                    <path
+                      fill="#fff"
+                      d="m5.7 19.873l2.511-3.884l-2.3-3.862h1.847L9.013 14.6c.116.234.2.408.238.524h.017c.082-.188.169-.369.26-.546l1.342-2.447h1.7l-2.359 3.84l2.419 3.905h-1.809l-1.45-2.711A2.355 2.355 0 0 1 9.2 16.8h-.024a1.688 1.688 0 0 1-.168.351l-1.493 2.722Z"
+                    />
+                    <path
+                      fill="#33c481"
+                      d="M28.806 3h-9.225v6.5H30V4.191A1.192 1.192 0 0 0 28.806 3Z"
+                    />
+                    <path fill="#107c41" d="M19.581 16H30v6.5H19.581Z" />
+                  </svg>
+                  Download CSV
+                </button>
               </div>
             </div>
+
             <div class="overflow-x-auto">
               <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                   <tr>
                     <th scope="col" class="p-4">
-                      <div class="flex items-center">
-                        <input
-                          id="checkbox-all"
-                          type="checkbox"
-                          class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                        />
-                        <label htmlFor="checkbox-all" class="sr-only">
-                          checkbox
-                        </label>
-                      </div>
+                      Actions
                     </th>
-                    <th scope="col" class="p-4">
-                      Product
-                    </th>
-                    <th scope="col" class="p-4">
-                      Category
-                    </th>
-                    <th scope="col" class="p-4">
-                      Stock
-                    </th>
-                    <th scope="col" class="p-4">
-                      Rating
-                    </th>
-                    <th scope="col" class="p-4">
-                      Sales
-                    </th>
-                    <th scope="col" class="p-4">
-                      Revenue
-                    </th>
-                    <th scope="col" class="p-4">
-                      Last Update
-                    </th>
+                    {cols.map((col) => (
+                      <th scope="col" class="p-4">
+                        <a href="#" class="flex items-center">
+                          {col}
+                          <IconSort class="ml-1" />
+                        </a>
+                      </th>
+                    ))}
                   </tr>
                 </thead>
                 <tbody>
-                  {filteredItems.value.map((product: Product) => (
+                  {filteredItems.value.map((row) => (
                     <tr class="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700">
-                      <td class="p-4 w-4">
-                        <div class="flex items-center">
-                          <input
-                            id="checkbox-table-search-1"
-                            type="checkbox"
-                            onInput={(e) => e.stopPropagation()}
-                            class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                          />
-                          <label
-                            htmlFor="checkbox-table-search-1"
-                            class="sr-only"
-                          >
-                            checkbox
-                          </label>
-                        </div>
-                      </td>
-                      <th
-                        scope="row"
-                        class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                      >
-                        <div class="flex items-center mr-3">
-                          <img
-                            src={product.image}
-                            alt={product.name}
-                            class="h-8 w-auto mr-3"
-                          />
-                          {product.name}
-                        </div>
-                      </th>
-                      <td class="px-4 py-3">
-                        <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
-                          {product.category}
-                        </span>
-                      </td>
-                      <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        <div class="flex items-center">
-                          <div class="h-4 w-4 rounded-full inline-block mr-2 bg-red-700" />
-                          95
-                        </div>
-                      </td>
-                      <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        <RatingStars rating={product.rating} />
-                      </td>
-                      <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        <div class="flex items-center">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 24 24"
-                            fill="currentColor"
-                            class="w-5 h-5 text-gray-400 mr-2"
-                            aria-hidden="true"
-                          >
-                            <path d="M2.25 2.25a.75.75 0 000 1.5h1.386c.17 0 .318.114.362.278l2.558 9.592a3.752 3.752 0 00-2.806 3.63c0 .414.336.75.75.75h15.75a.75.75 0 000-1.5H5.378A2.25 2.25 0 017.5 15h11.218a.75.75 0 00.674-.421 60.358 60.358 0 002.96-7.228.75.75 0 00-.525-.965A60.864 60.864 0 005.68 4.509l-.232-.867A1.875 1.875 0 003.636 2.25H2.25zM3.75 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM16.5 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z" />
-                          </svg>
-                          {product.sales}
-                        </div>
-                      </td>
-                      <td class="px-4 py-3">{product.revenue}</td>
                       <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         <div class="flex items-center space-x-4">
                           <button
                             type="button"
-                            data-drawer-target="drawer-update-product"
-                            data-drawer-show="drawer-update-product"
-                            aria-controls="drawer-update-product"
-                            class="py-2 px-3 flex items-center text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                          >
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              class="h-4 w-4 mr-2 -ml-0.5"
-                              viewBox="0 0 20 20"
-                              fill="currentColor"
-                              aria-hidden="true"
-                            >
-                              <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
-                              <path
-                                fillRule="evenodd"
-                                d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
-                                clipRule="evenodd"
-                              />
-                            </svg>
-                            Edit
-                          </button>
-                          <button
-                            type="button"
-                            data-drawer-target="drawer-read-product-advanced"
-                            data-drawer-show="drawer-read-product-advanced"
-                            aria-controls="drawer-read-product-advanced"
+                            data-modal-toggle="inspectModal"
                             class="py-2 px-3 flex items-center text-sm font-medium text-center text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
+                              width="20"
+                              height="20"
                               viewBox="0 0 24 24"
                               fill="currentColor"
-                              class="w-4 h-4 mr-2 -ml-0.5"
-                            >
-                              <path d="M12 15a3 3 0 100-6 3 3 0 000 6z" />
-                              <path
-                                fillRule="evenodd"
-                                clipRule="evenodd"
-                                d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.487 4.471-5.705 7.697-10.677 7.697-4.97 0-9.186-3.223-10.675-7.69a1.762 1.762 0 010-1.113zM17.25 12a5.25 5.25 0 11-10.5 0 5.25 5.25 0 0110.5 0z"
-                              />
-                            </svg>
-                            Preview
-                          </button>
-                          <button
-                            type="button"
-                            data-modal-target="delete-modal"
-                            data-modal-toggle="delete-modal"
-                            class="flex items-center text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-2 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"
-                          >
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
                               class="h-4 w-4 mr-2 -ml-0.5"
-                              viewBox="0 0 20 20"
-                              fill="currentColor"
-                              aria-hidden="true"
                             >
                               <path
-                                fillRule="evenodd"
-                                d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                                clipRule="evenodd"
+                                fill="currentColor"
+                                d="M21 8c-1.5 0-2.3 1.4-1.9 2.5l-3.6 3.6c-.3-.1-.7-.1-1 0l-2.6-2.6c.4-1.1-.4-2.5-1.9-2.5c-1.4 0-2.3 1.4-1.9 2.5L3.5 16c-1.1-.3-2.5.5-2.5 2c0 1.1.9 2 2 2c1.4 0 2.3-1.4 1.9-2.5l4.5-4.6c.3.1.7.1 1 0l2.6 2.6c-.3 1 .5 2.5 2 2.5s2.3-1.4 1.9-2.5l3.6-3.6c1.1.3 2.5-.5 2.5-1.9c0-1.1-.9-2-2-2m-6 1l.9-2.1L18 6l-2.1-.9L15 3l-.9 2.1L12 6l2.1.9L15 9M3.5 11L4 9l2-.5L4 8l-.5-2L3 8l-2 .5L3 9l.5 2Z"
                               />
                             </svg>
-                            Delete
+                            Inspect
                           </button>
                         </div>
                       </td>
+
+                      {Object.entries(row).map(
+                        ([key, value]) => <TableCell key={key} value={value} />,
+                      )}
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
             <nav
-              class="flex flex-col md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-4"
+              class="fixed bottom-0 w-full bg-white dark:bg-gray-800 flex flex-col md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-4"
               aria-label="Table navigation"
             >
               <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
                 Showing
-                <span class="font-semibold text-gray-900 dark:text-white">
-                  1-10
+                <span class="font-semibold text-gray-900 dark:text-white mx-1">
+                  1-{itemsPerPage.value}
                 </span>
                 of
-                <span class="font-semibold text-gray-900 dark:text-white">
-                  1000
+                <span class="font-semibold text-gray-900 dark:text-white mx-1">
+                  {rows.length}
                 </span>
               </span>
               <ul class="inline-flex items-stretch -space-x-px">
@@ -1152,14 +1110,7 @@ export default () => {
           </div>
         </div>
       </section>
-      {/* End block */}
-      <ModalCreate />
-      {/* drawer component */}
-      <DrawerUpdate />
-      {/* Preview Drawer */}
-      <DrawerRead />
-      {/* Delete Modal */}
-      <ModalDelete />
+      <ModalInspect />
     </>
   );
 };

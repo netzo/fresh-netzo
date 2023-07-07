@@ -9,6 +9,11 @@ import 'std/dotenv/load.ts'
 import { start } from 'fresh/server.ts'
 import manifest from './fresh.gen.ts'
 
-import unocssPlugin from 'netzo/lib/plugins/unocss.ts'
+import unocssPlugin from 'netzo/lib/plugins/unocss/mod.ts'
+import { presetNetzo } from 'netzo/lib/ui/mod.ts'
 
-await start(manifest, { plugins: [unocssPlugin()] })
+await start(manifest, {
+  plugins: [
+    unocssPlugin({ presets: [presetNetzo()] }),
+  ],
+})
