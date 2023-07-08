@@ -1,9 +1,25 @@
 import {
+  feathers,
+  io,
   Manifest,
   ManifestEntryFile,
   Project,
   ProjectFilesFile,
+  socketio,
 } from '../../deps.ts'
+
+export const createClient = async () => {
+  const socket = io(Deno.env.get('NETZO_API_URL'), {
+    transports: ['websocket'],
+  })
+  const connection = socketio(socket)
+  const app = feathers().configure(connection)
+  await app.service('authentication').create({
+    strategy: 'apiKey',
+    apiKey: Deno.env.get('NETZO_API_KEY'),
+  })
+  return app
+}
 
 /**
  * Build flat manifest (project.files) from nested manifest
@@ -69,8 +85,9 @@ export async function readDecodeAndAddFileContentsToProjectFiles(
       Object.entries(filesWithoutContents).map(
         async ([path, file]) => {
           const { kind, gitSha1, size } = file as ProjectFilesFile
-          const bytes: Uint8Array = await Deno.readFile(path)
-          const contents: string = new TextDecoder().decode(bytes)
+          // const bytes: Uint8Array = await Deno.readFile(path)
+          // const contents: string = new TextDecoder().decode(bytes)
+          const contents: string = await Deno.readTextFile(path)
           return [path, { kind, contents, gitSha1, size }]
         },
       ),

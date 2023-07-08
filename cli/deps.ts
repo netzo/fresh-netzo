@@ -33,10 +33,7 @@ export { Spinner, wait } from 'https://deno.land/x/wait@0.1.12/mod.ts'
 // netzo/lib/apis/netzo
 export { netzo } from '../lib/apis/netzo/mod.ts'
 
-// @netzo/api
-// externalized types in @denoland/deployctl/src/utils/api_types.ts
-// to @netzo/api to use them both for @netzo/app and @netzo/netzo/cli
-// and cherry-pick exports to avoid esm.sh tree-shaking issues
+// @netzo/api: cherry-pick exports to avoid esm.sh tree-shaking issues
 export type {
   Authorization,
   AuthorizationApiKey,
@@ -63,6 +60,7 @@ export type {
   DenoProjectDeploymentsSummary,
   DenoProjectDomain,
   Deployment,
+  DeploymentData,
   Log,
   LogMessage,
   LogPing,
@@ -77,5 +75,9 @@ export type {
   ProjectFiles,
   ProjectFilesFile,
   Template,
-  TemplateFiles,
-} from 'https://esm.sh/@netzo/api@1.0.24'
+} from 'https://esm.sh/@netzo/api@1.0.26'
+
+// socket.io-client:
+export { feathers } from 'https://esm.sh/@feathersjs/feathers@5.0.6'
+export { default as socketio } from 'https://esm.sh/@feathersjs/socketio-client@5.0.6'
+export { default as io } from 'https://esm.sh/socket.io-client@4.7.1'

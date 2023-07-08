@@ -1,19 +1,29 @@
 import {
-  DenoProjectDeploymentRequestPush,
+  DenoDeploymentProgress,
+  DenoDeploymentProgressError,
+  DenoDeploymentProgressLoad,
+  DenoDeploymentProgressStaticFile,
+  DenoDeploymentProgressSuccess,
+  Deployment,
+  DeploymentData,
+  fromFileUrl,
   Manifest,
   netzo,
+  normalize,
   Paginated,
   Project,
+  Spinner,
+  wait,
 } from '../../deps.ts'
-import { fromFileUrl, normalize, Spinner, wait } from '../../deps.ts'
 import { error } from '../console.ts'
-import { APIError, DenoAPI } from '../utils/api.ts'
 import { parseEntrypoint } from '../utils/entrypoint.ts'
 import { walk } from '../utils/walk.ts'
 import {
   buildProjectFilesFromManifest,
+  createClient,
   readDecodeAndAddFileContentsToProjectFiles,
 } from '../utils/netzo.ts'
+import { APIError } from '../utils/api.ts'
 
 const help = `netzo deploy
 Deploy a project with static files to Netzo.
@@ -54,7 +64,6 @@ export interface Args {
   prod: boolean
   exclude?: string[]
   include?: string[]
-  token: string | null // FIXME(deno): remove token FROM EVERYWHERE and use env var
   apiKey: string | null
   project: string | null
   importMap: string | null
@@ -67,7 +76,6 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     help: !!rawArgs.help,
     static: !rawArgs['no-static'], // negate the flag
     prod: !!rawArgs.prod,
-    token: rawArgs.token ? String(rawArgs.token) : null,
     apiKey: rawArgs['api-key'] ? String(rawArgs['api-key']) : null,
     project: rawArgs.project ? String(rawArgs.project) : null,
     importMap: rawArgs['import-map'] ? String(rawArgs['import-map']) : null,
@@ -80,7 +88,6 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     console.log(help)
     Deno.exit(0)
   }
-  const token = args.token ?? Deno.env.get('DENO_TOKEN') ?? null
   const apiKey = args.apiKey ?? Deno.env.get('NETZO_API_KEY') ?? null
   if (apiKey === null) {
     console.error(help)
@@ -107,7 +114,6 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
         .catch((e) => error(e)),
     static: args.static,
     prod: args.prod,
-    token,
     apiKey,
     project: args.project,
     include: args.include?.map((pattern) => normalize(pattern)),
@@ -125,7 +131,6 @@ interface DeployOpts {
   prod: boolean
   exclude?: string[]
   include?: string[]
-  token: string
   apiKey: string
   project: string
   dryRun: boolean
@@ -136,7 +141,6 @@ async function deploy(opts: DeployOpts): Promise<void> {
     wait('').start().info('Performing dry run of deployment')
   }
   const projectSpinner = wait('Fetching project information...').start()
-  const denoApi = DenoAPI.fromToken(opts.token)
   const { api } = netzo({
     apiKey: opts.apiKey,
     baseURL: Deno.env.get('NETZO_API_URL'),
@@ -152,28 +156,25 @@ async function deploy(opts: DeployOpts): Promise<void> {
     Deno.exit(1)
   }
 
-  const {
-    entrypoint,
-    importMap,
-    // envVars = {}, // TODO: update env vars via PATCH /projects/{projectId}/env
-  } = project.configuration ?? {}
-
-  const deploymentsListing = await denoApi.getDeployments(project.uid)
-  if (deploymentsListing === null) {
+  const { data: deployments } = await api.deployments.get({
+    projectId: project.uid,
+  })
+  if (!deployments) {
+    // e.g. if projectId is invalid or API key lacks permissions the
+    // API returns error with { message: string }, so data === undefined
     projectSpinner.fail('Project deployments details not found.')
     Deno.exit(1)
   }
-  const [projectDeployments, _pagination] = deploymentsListing!
   projectSpinner.succeed(`Project: ${project.uid}`)
 
-  if (projectDeployments.length === 0) {
+  if (deployments.length === 0) {
     wait('').start().info(
       'Empty project detected, automatically pushing initial deployment to production (use --prod for further updates).',
     )
     opts.prod = true
   }
 
-  let url = opts.entrypoint ?? entrypoint
+  let url = opts.entrypoint ?? project.configuration?.entrypoint
   const cwd = Deno.cwd()
 
   if (['http:', 'https:'].includes(url.protocol)) {
@@ -192,7 +193,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
     url = new URL(`file:///src${entrypoint}`)
   }
 
-  let importMapUrl = opts.importMapUrl ?? importMap
+  let importMapUrl = opts.importMapUrl ?? project.configuration?.importMapURL
   if (importMapUrl && importMapUrl.protocol === 'file:') {
     const path = fromFileUrl(importMapUrl)
     if (!path.startsWith(cwd)) {
@@ -204,7 +205,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
 
   let uploadSpinner: Spinner | null = null
   const assets = new Map<string, string>() // map of gitSha1 -> path
-  const files: Uint8Array[] = []
+  const files: Project['files'] = [] // Uint8Array[]
   let manifest: Manifest | undefined = undefined
 
   if (opts.static) {
@@ -218,27 +219,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
       `Found ${assets.size} asset${assets.size === 1 ? '' : 's'}.`,
     )
 
-    uploadSpinner = wait('Determining assets to upload...').start()
-    const neededHashes = await denoApi.projectNegotiateAssets(project.uid, {
-      entries,
-    })
-
-    for (const hash of neededHashes) {
-      const path = assets.get(hash)
-      if (path === undefined) {
-        error(`Asset ${hash} not found.`)
-      }
-      const data: Uint8Array = await Deno.readFile(path)
-      files.push(data)
-    }
-    if (files.length === 0) {
-      uploadSpinner.succeed('No new assets to upload.')
-      uploadSpinner = null
-    } else {
-      uploadSpinner.text = `${files.length} new asset${
-        files.length === 1 ? '' : 's'
-      } to upload.`
-    }
+    uploadSpinner = wait('Uploading assets...').start()
 
     manifest = { entries }
   }
@@ -248,14 +229,17 @@ async function deploy(opts: DeployOpts): Promise<void> {
     return
   }
 
-  let deploySpinner: Spinner | null = null
-  const request: DenoProjectDeploymentRequestPush = {
-    url: url.href ?? `file:///src/${entrypoint}`,
-    importMapUrl: importMapUrl
-      ? importMapUrl.href
-      : importMap && importMap in files
-      ? `file:///src/${importMap}`
-      : undefined,
+  const projectFilesWithoutContents = await buildProjectFilesFromManifest(
+    manifest,
+  )
+  const projectFiles = await readDecodeAndAddFileContentsToProjectFiles(
+    projectFilesWithoutContents,
+  )
+
+  const data: DeploymentData = {
+    projectId: project.uid,
+    url: url.href,
+    importMapUrl: importMapUrl?.href ?? null,
     // configures automatic JSX runtime for preact by default
     // see https://deno.com/manual@v1.34.3/advanced/jsx_dom/jsx#using-jsx-import-source-in-a-configuration-file
     compilerOptions: {
@@ -265,72 +249,83 @@ async function deploy(opts: DeployOpts): Promise<void> {
       jsxImportSource: 'https://esm.sh/preact',
     },
     production: opts.prod,
-    manifest,
+    files: projectFiles,
   }
-  const progress = denoApi.pushDeploy(project.uid, request, files)
+
+  console.groupCollapsed(`[netzo] deploying project "${project.uid}"`)
+
+  let deploySpinner: Spinner | null = null
+
   try {
-    for await (const event of progress) {
-      switch (event.type) {
-        case 'staticFile': {
-          const percentage = (event.currentBytes / event.totalBytes) * 100
-          uploadSpinner!.text = `Uploading ${files.length} asset${
-            files.length === 1 ? '' : 's'
-          }... (${percentage.toFixed(1)}%)`
-          break
+    const app = await createClient()
+
+    app.service('deployments').on(
+      'progress',
+      (event: DenoDeploymentProgress) => {
+        switch (event.type) {
+          case 'staticFile': {
+            const { currentBytes, totalBytes } =
+              event as DenoDeploymentProgressStaticFile
+            const percentage = (currentBytes / totalBytes) * 100
+            const s = files.length === 1 ? '' : 's'
+            const message = `Uploading ${files.length} asset${s}...`
+            uploadSpinner!.text = `${message}... (${percentage.toFixed(1)}%)`
+            break
+          }
+          case 'load': {
+            const { seen, total } = event as DenoDeploymentProgressLoad
+            if (uploadSpinner) {
+              const s = files.length === 1 ? '' : 's'
+              uploadSpinner.succeed(`Uploaded ${files.length} new asset${s}.`)
+              uploadSpinner = null
+            }
+            if (deploySpinner === null) {
+              deploySpinner = wait('Deploying...').start()
+            }
+            const progress = seen / total * 100
+            deploySpinner.text = `Deploying... (${progress.toFixed(1)}%)`
+            break
+          }
+          case 'uploadComplete':
+            deploySpinner!.text = `Finishing deployment...`
+            break
+          case 'success': {
+            const { domainMappings } = event as DenoDeploymentProgressSuccess
+            const deploymentKind = opts.prod ? 'Production' : 'Preview'
+            deploySpinner!.succeed(`${deploymentKind} deployment complete.`)
+            console.log('\nView at:')
+            for (const { domain } of domainMappings) {
+              console.log(` - https://${domain}`)
+            }
+            // // patch ALL project.files and project.deployment in netzo API:
+            // await api.projects[project._id].patch<Project>({
+            //   files: projectFiles,
+            // })
+            // deploySpinner!.succeed(
+            //   `Patched project files (open in studio at https://app.netzo.io/workspaces/${project.workspaceId}/projects/${project._id}/src)`,
+            // )
+            break
+          }
+          case 'error': {
+            const { ctx } = event as DenoDeploymentProgressError
+            if (uploadSpinner) {
+              uploadSpinner.fail(`Upload failed.`)
+              uploadSpinner = null
+            }
+            if (deploySpinner) {
+              deploySpinner.fail(`Deployment failed.`)
+              deploySpinner = null
+            }
+            error(ctx)
+          }
         }
-        case 'load': {
-          if (uploadSpinner) {
-            uploadSpinner.succeed(
-              `Uploaded ${files.length} new asset${
-                files.length === 1 ? '' : 's'
-              }.`,
-            )
-            uploadSpinner = null
-          }
-          if (deploySpinner === null) {
-            deploySpinner = wait('Deploying...').start()
-          }
-          const progress = event.seen / event.total * 100
-          deploySpinner.text = `Deploying... (${progress.toFixed(1)}%)`
-          break
-        }
-        case 'uploadComplete':
-          deploySpinner!.text = `Finishing deployment...`
-          break
-        case 'success': {
-          const deploymentKind = opts.prod ? 'Production' : 'Preview'
-          deploySpinner!.succeed(`${deploymentKind} deployment complete.`)
-          console.log('\nView at:')
-          for (const { domain } of event.domainMappings) {
-            console.log(` - https://${domain}`)
-          }
-          // patch ALL project.files and project.deployment in netzo API:
-          const projectFilesWithoutContents = buildProjectFilesFromManifest(
-            manifest,
-          )
-          const projectFiles = await readDecodeAndAddFileContentsToProjectFiles(
-            projectFilesWithoutContents,
-          )
-          const _result = await api.projects[project._id].patch<Project>({
-            files: projectFiles,
-          })
-          deploySpinner!.succeed(
-            `Patched project files (open in studio at https://app.netzo.io/workspaces/${project.workspaceId}/projects/${project._id}/src)`,
-          )
-          break
-        }
-        case 'error':
-          if (uploadSpinner) {
-            uploadSpinner.fail(`Upload failed.`)
-            uploadSpinner = null
-          }
-          if (deploySpinner) {
-            deploySpinner.fail(`Deployment failed.`)
-            deploySpinner = null
-          }
-          error(event.ctx)
-      }
-    }
+      },
+    )
+
+    // create denoDeployment via Netzo API (accepts/returns `application/json`)
+    await api.deployments.post<Deployment>(data)
+    // IMPORTANT: stop listening on first 'success' event (api sends 2 somehow)
+    app.service('deployments').removeAllListeners('progress')
   } catch (err: unknown) {
     if (err instanceof APIError) {
       if (uploadSpinner) {
