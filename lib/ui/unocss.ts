@@ -1,4 +1,8 @@
-import type { Preset, RuleContext, UserConfig } from 'https://esm.sh/@unocss/core@0.53.4?bundle'
+import type {
+  Preset,
+  RuleContext,
+  UserConfig,
+} from 'https://esm.sh/@unocss/core@0.53.4?bundle'
 import type { Theme } from 'https://esm.sh/@unocss/preset-uno@0.53.4?bundle'
 import { parseColor } from 'https://esm.sh/@unocss/preset-mini@0.53.4/utils?bundle'
 import { theme as unoTheme } from 'https://esm.sh/@unocss/preset-mini@0.53.4?bundle'
@@ -25,7 +29,10 @@ export function presetNetzo(user: UserConfig = {}): Preset {
       presetTypography(),
       presetIcons({
         collections: {
-          mdi: () => import('https://esm.sh/@iconify-json/mdi/icons.json', { assert: { type: "json" } }).then(i => i.default),
+          mdi: () =>
+            import('https://esm.sh/@iconify-json/mdi/icons.json', {
+              assert: { type: 'json' },
+            }).then((i) => i.default),
         },
         prefix: ['i-'],
         scale: 1.2,
@@ -122,21 +129,37 @@ export function presetNetzo(user: UserConfig = {}): Preset {
       ['n-borderless', '!border-transparent !shadow-none'],
 
       // link
-      ['n-link-base', 'underline underline-offset-2 underline-black/20 dark:underline-white/40'],
-      ['n-link-hover', 'decoration-dotted text-context underline-context! op100!'],
+      [
+        'n-link-base',
+        'underline underline-offset-2 underline-black/20 dark:underline-white/40',
+      ],
+      [
+        'n-link-hover',
+        'decoration-dotted text-context underline-context! op100!',
+      ],
 
       // card
       ['n-card-base', 'border n-border-base rounded n-bg-base shadow-sm'],
 
       // header
-      ['n-header-upper', 'text-sm uppercase mb-2 leading-1.2em tracking-wide op50'],
+      [
+        'n-header-upper',
+        'text-sm uppercase mb-2 leading-1.2em tracking-wide op50',
+      ],
 
       // badge:
       ['n-badge', 'text-xs font-medium mr-2 px-2.5 py-0.5 rounded'],
-      [/n-badge-(.*)$/, ([_, c]) => `n-badge bg-${c}-100 text-${c}-800 dark:bg-${c}-900 dark:text-${c}-300`],
+      [
+        /n-badge-(.*)$/,
+        ([_, c]) =>
+          `n-badge bg-${c}-100 text-${c}-800 dark:bg-${c}-900 dark:text-${c}-300`,
+      ],
 
       // button
-      ['n-button-base', 'border n-border-base rounded shadow-sm px-1em py-0.25em inline-flex items-center gap-1 op80 !outline-none touch-manipulation'],
+      [
+        'n-button-base',
+        'border n-border-base rounded shadow-sm px-1em py-0.25em inline-flex items-center gap-1 op80 !outline-none touch-manipulation',
+      ],
       ['n-button-hover', 'op100 !border-context text-context'],
       ['n-button-active', 'n-active-base bg-context/5'],
       ['n-button-icon', '-ml-0.2em mr-0.2em text-1.1em'],
@@ -144,27 +167,45 @@ export function presetNetzo(user: UserConfig = {}): Preset {
       // checkbox
       ['n-checkbox', 'inline-flex gap-1 items-center rounded'],
       ['n-checkbox-hover', 'op100 n-bg-hover cursor-pointer'],
-      ['n-checkbox-box', 'border n-border-base w-1.1em h-1.1em mr-1 text-white flex flex-none items-center rounded-sm overflow-visible'],
+      [
+        'n-checkbox-box',
+        'border n-border-base w-1.1em h-1.1em mr-1 text-white flex flex-none items-center rounded-sm overflow-visible',
+      ],
       ['n-checkbox-box-checked', 'bg-context border-context'],
       ['n-checkbox-icon', 'carbon-checkmark w-1em h-1em m-auto'],
 
       // radio
-      ['n-radio-box', 'border rounded n-border-base w-1.2em h-1.2em mr-1 text-white flex flex-none rounded-full overflow-visible'],
+      [
+        'n-radio-box',
+        'border rounded n-border-base w-1.2em h-1.2em mr-1 text-white flex flex-none rounded-full overflow-visible',
+      ],
       ['n-radio-hover', 'op100 n-bg-hover cursor-pointer'],
       ['n-radio-box-checked', 'border-context'],
       ['n-radio-inner', 'bg-context rounded-1/2 w-0 h-0 m-auto'],
       ['n-radio-inner-checked', 'w-0.8em h-0.8em'],
 
       // switch
-      ['n-switch-base', 'inline-flex items-center select-none rounded-full pe-2'],
+      [
+        'n-switch-base',
+        'inline-flex items-center select-none rounded-full pe-2',
+      ],
       ['n-switch-hover', 'op100 n-bg-hover cursor-pointer'],
-      ['n-switch-slider', 'mr-1 rounded-full border n-border-base relative p-2px'],
+      [
+        'n-switch-slider',
+        'mr-1 rounded-full border n-border-base relative p-2px',
+      ],
       ['n-switch-slider-checked', 'border-context/20 bg-context/10'],
-      ['n-switch-thumb', 'h-1em w-1em rounded-1/2 border n-border-base ml-0 mr-0.8em'],
+      [
+        'n-switch-thumb',
+        'h-1em w-1em rounded-1/2 border n-border-base ml-0 mr-0.8em',
+      ],
       ['n-switch-thumb-checked', 'bg-context border-context ml-0.8em mr-0'],
 
       // tip
-      ['n-tip-base', 'bg-context/4 text-context px-1em py-0.4em rounded flex gap-2 items-center dark:bg-context/12'],
+      [
+        'n-tip-base',
+        'bg-context/4 text-context px-1em py-0.4em rounded flex gap-2 items-center dark:bg-context/12',
+      ],
 
       // icon
       ['n-icon', 'flex-none'],
@@ -173,12 +214,18 @@ export function presetNetzo(user: UserConfig = {}): Preset {
       ['n-code-block', 'dark:bg-[#121212] bg-white'],
 
       // icon-button
-      ['n-icon-button', 'aspect-1/1 w-1.6em h-1.6em flex items-center justify-center rounded op50 hover:op100 hover:n-bg-active'],
+      [
+        'n-icon-button',
+        'aspect-1/1 w-1.6em h-1.6em flex items-center justify-center rounded op50 hover:op100 hover:n-bg-active',
+      ],
 
       // loading
       ['n-loading', 'flex h-full w-full justify-center items-center'],
       ['n-panel-grids', 'n-panel-grids-light dark:n-panel-grids-dark'],
-      ['n-panel-grids-center', 'n-panel-grids flex flex-col h-full gap-2 items-center justify-center']
+      [
+        'n-panel-grids-center',
+        'n-panel-grids flex flex-col h-full gap-2 items-center justify-center',
+      ],
     ],
   }
 }
