@@ -67,18 +67,18 @@ export default (props: PageProps) => {
                   href='#'
                   class='
                 text-white
-                bg-primary-700
-                hover:bg-primary-800
-                focus:ring-4 focus:ring-primary-300
+                bg-blue-700
+                hover:bg-blue-800
+                focus:ring-4 focus:ring-blue-300
                 font-medium
                 rounded-lg
                 text-sm
                 px-5
                 py-2.5
                 mr-2
-                dark:bg-primary-600 dark:hover:bg-primary-700
+                dark:bg-blue-600 dark:hover:bg-blue-700
                 focus:outline-none
-                dark:focus:ring-primary-800
+                dark:focus:ring-blue-800
               '
                 >
                   Get started
@@ -158,8 +158,8 @@ export default (props: PageProps) => {
                     pl-3
                     text-white
                     rounded
-                    bg-primary-700
-                    lg:bg-transparent lg:text-primary-700 lg:p-0
+                    bg-blue-700
+                    lg:bg-transparent lg:text-blue-700 lg:p-0
                     dark:text-white
                   '
                       aria-current='page'
@@ -180,7 +180,7 @@ export default (props: PageProps) => {
                     hover:bg-gray-50
                     lg:hover:bg-transparent
                     lg:border-0
-                    lg:hover:text-primary-700
+                    lg:hover:text-blue-700
                     lg:p-0
                     dark:text-gray-400
                     lg:dark:hover:text-white
@@ -205,7 +205,7 @@ export default (props: PageProps) => {
                     hover:bg-gray-50
                     lg:hover:bg-transparent
                     lg:border-0
-                    lg:hover:text-primary-700
+                    lg:hover:text-blue-700
                     lg:p-0
                     dark:text-gray-400
                     lg:dark:hover:text-white
@@ -230,7 +230,7 @@ export default (props: PageProps) => {
                     hover:bg-gray-50
                     lg:hover:bg-transparent
                     lg:border-0
-                    lg:hover:text-primary-700
+                    lg:hover:text-blue-700
                     lg:p-0
                     dark:text-gray-400
                     lg:dark:hover:text-white
@@ -255,7 +255,7 @@ export default (props: PageProps) => {
                     hover:bg-gray-50
                     lg:hover:bg-transparent
                     lg:border-0
-                    lg:hover:text-primary-700
+                    lg:hover:text-blue-700
                     lg:p-0
                     dark:text-gray-400
                     lg:dark:hover:text-white
@@ -280,7 +280,7 @@ export default (props: PageProps) => {
                     hover:bg-gray-50
                     lg:hover:bg-transparent
                     lg:border-0
-                    lg:hover:text-primary-700
+                    lg:hover:text-blue-700
                     lg:p-0
                     dark:text-gray-400
                     lg:dark:hover:text-white
@@ -348,10 +348,10 @@ export default (props: PageProps) => {
               font-medium
               text-center text-white
               rounded-lg
-              bg-primary-700
-              hover:bg-primary-800
-              focus:ring-4 focus:ring-primary-300
-              dark:focus:ring-primary-900
+              bg-blue-700
+              hover:bg-blue-800
+              focus:ring-4 focus:ring-blue-300
+              dark:focus:ring-blue-900
             '
               >
                 Get started
@@ -664,17 +664,17 @@ export default (props: PageProps) => {
                 w-10
                 h-10
                 rounded-full
-                bg-primary-100
+                bg-blue-100
                 lg:h-12 lg:w-12
-                dark:bg-primary-900
+                dark:bg-blue-900
               '>
                   <svg
                     class='
                   w-5
                   h-5
-                  text-primary-600
+                  text-blue-600
                   lg:w-6 lg:h-6
-                  dark:text-primary-300
+                  dark:text-blue-300
                 '
                     fill='currentColor'
                     viewBox='0 0 20 20'
@@ -706,17 +706,17 @@ export default (props: PageProps) => {
                 w-10
                 h-10
                 rounded-full
-                bg-primary-100
+                bg-blue-100
                 lg:h-12 lg:w-12
-                dark:bg-primary-900
+                dark:bg-blue-900
               '>
                   <svg
                     class='
                   w-5
                   h-5
-                  text-primary-600
+                  text-blue-600
                   lg:w-6 lg:h-6
-                  dark:text-primary-300
+                  dark:text-blue-300
                 '
                     fill='currentColor'
                     viewBox='0 0 20 20'
@@ -741,17 +741,17 @@ export default (props: PageProps) => {
                 w-10
                 h-10
                 rounded-full
-                bg-primary-100
+                bg-blue-100
                 lg:h-12 lg:w-12
-                dark:bg-primary-900
+                dark:bg-blue-900
               '>
                   <svg
                     class='
                   w-5
                   h-5
-                  text-primary-600
+                  text-blue-600
                   lg:w-6 lg:h-6
-                  dark:text-primary-300
+                  dark:text-blue-300
                 '
                     fill='currentColor'
                     viewBox='0 0 20 20'
@@ -785,17 +785,17 @@ export default (props: PageProps) => {
                 w-10
                 h-10
                 rounded-full
-                bg-primary-100
+                bg-blue-100
                 lg:h-12 lg:w-12
-                dark:bg-primary-900
+                dark:bg-blue-900
               '>
                   <svg
                     class='
                   w-5
                   h-5
-                  text-primary-600
+                  text-blue-600
                   lg:w-6 lg:h-6
-                  dark:text-primary-300
+                  dark:text-blue-300
                 '
                     fill='currentColor'
                     viewBox='0 0 20 20'
@@ -826,17 +826,17 @@ export default (props: PageProps) => {
                 w-10
                 h-10
                 rounded-full
-                bg-primary-100
+                bg-blue-100
                 lg:h-12 lg:w-12
-                dark:bg-primary-900
+                dark:bg-blue-900
               '>
                   <svg
                     class='
                   w-5
                   h-5
-                  text-primary-600
+                  text-blue-600
                   lg:w-6 lg:h-6
-                  dark:text-primary-300
+                  dark:text-blue-300
                 '
                     fill='currentColor'
                     viewBox='0 0 20 20'
@@ -863,17 +863,17 @@ export default (props: PageProps) => {
                 w-10
                 h-10
                 rounded-full
-                bg-primary-100
+                bg-blue-100
                 lg:h-12 lg:w-12
-                dark:bg-primary-900
+                dark:bg-blue-900
               '>
                   <svg
                     class='
                   w-5
                   h-5
-                  text-primary-600
+                  text-blue-600
                   lg:w-6 lg:h-6
-                  dark:text-primary-300
+                  dark:text-blue-300
                 '
                     fill='currentColor'
                     viewBox='0 0 20 20'
@@ -966,9 +966,9 @@ export default (props: PageProps) => {
               inline-flex
               items-center
               font-medium
-              text-primary-600
-              hover:text-primary-800
-              dark:text-primary-500 dark:hover:text-primary-700
+              text-blue-600
+              hover:text-blue-800
+              dark:text-blue-500 dark:hover:text-blue-700
             '
               >
                 Learn more
@@ -1010,9 +1010,9 @@ export default (props: PageProps) => {
                 href='#'
                 class='
               text-white
-              bg-primary-700
-              hover:bg-primary-800
-              focus:ring-4 focus:ring-primary-300
+              bg-blue-700
+              hover:bg-blue-800
+              focus:ring-4 focus:ring-blue-300
               font-medium
               rounded-lg
               text-sm
@@ -1020,9 +1020,9 @@ export default (props: PageProps) => {
               py-2.5
               mr-2
               mb-2
-              dark:bg-primary-600 dark:hover:bg-primary-700
+              dark:bg-blue-600 dark:hover:bg-blue-700
               focus:outline-none
-              dark:focus:ring-primary-800
+              dark:focus:ring-blue-800
             '
               >
                 Free trial for 30 days

@@ -117,7 +117,7 @@ export default () => {
           <dd class='flex items-center space-x-2 font-light text-gray-500 dark:text-gray-400'>
             <div class='flex-shrink-0 w-6 h-6 bg-purple-600 rounded-full' />
             <div class='flex-shrink-0 w-6 h-6 bg-indigo-400 rounded-full' />
-            <div class='flex-shrink-0 w-6 h-6 rounded-full bg-primary-600' />
+            <div class='flex-shrink-0 w-6 h-6 rounded-full bg-blue-600' />
             <div class='flex-shrink-0 w-6 h-6 bg-pink-400 rounded-full' />
             <div class='flex-shrink-0 w-6 h-6 bg-teal-300 rounded-full' />
             <div class='flex-shrink-0 w-6 h-6 bg-green-300 rounded-full' />
@@ -128,7 +128,7 @@ export default () => {
             Product State
           </dt>
           <dd class='text-gray-500 dark:text-gray-400'>
-            <span class='bg-primary-100 text-primary-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-primary-200 dark:text-primary-800'>
+            <span class='bg-blue-100 text-blue-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800'>
               <svg
                 aria-hidden='true'
                 class='mr-1 w-3 h-3'
@@ -176,7 +176,7 @@ export default () => {
       <div class='flex bottom-0 left-0 justify-center pb-4 space-x-4 w-full'>
         <button
           type='button'
-          class='text-white w-full inline-flex items-center justify-center bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800'
+          class='text-white w-full inline-flex items-center justify-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
         >
           <svg
             aria-hidden='true'

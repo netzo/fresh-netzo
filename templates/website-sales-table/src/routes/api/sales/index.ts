@@ -20,23 +20,25 @@ export interface Sale {
   // 'YoY %': number
 }
 
-export const sales: Sale[] = rows.map(row => pick(row, [
-  'id',
-  'productId',
-  'Dispatched revenue (Current Date)',
-  'Dispatched revenue (Compare Date)',
-  'YoY Amount',
-  'YoY %',
-  'Y&Y',
-  'Dispatched units',
-  'Dispatched units LY',
-  // 'YoY Amount',
-  // 'YoY %',
-  'Customer returns',
-  'Customer returns LY',
-  // 'YoY Amount',
-  // 'YoY %',
-]))
+export const sales: Sale[] = rows.map((row) =>
+  pick(row, [
+    'id',
+    'productId',
+    'Dispatched revenue (Current Date)',
+    'Dispatched revenue (Compare Date)',
+    'YoY Amount',
+    'YoY %',
+    'Y&Y',
+    'Dispatched units',
+    'Dispatched units LY',
+    // 'YoY Amount',
+    // 'YoY %',
+    'Customer returns',
+    'Customer returns LY',
+    // 'YoY Amount',
+    // 'YoY %',
+  ])
+)
 
 export const handler: Handlers = {
   GET(_req: Request, _ctx: HandlerContext) {

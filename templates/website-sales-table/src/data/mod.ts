@@ -1,5 +1,5 @@
-import { Product } from "../routes/api/products/index.ts"
-import { Sale } from "../routes/api/sales/index.ts"
+import { Product } from '../routes/api/products/index.ts'
+import { Sale } from '../routes/api/sales/index.ts'
 
 export interface Row {
   product: Product
