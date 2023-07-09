@@ -1,5 +1,3 @@
-import { serve } from 'std/http/server.ts'
-
 async function handler(_req: Request) {
   const text = await Deno.readTextFile(new URL(import.meta.url))
   return new Response(text, {
@@ -8,4 +6,4 @@ async function handler(_req: Request) {
 }
 
 console.log('Listening on http://localhost:8000')
-serve(handler)
+Deno.serve(handler)
