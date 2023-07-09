@@ -7,13 +7,13 @@ import {
   DenoDeploymentProgressSuccess,
   Deployment,
   DeploymentData,
+  fromFileUrl,
   Manifest,
+  netzo,
+  normalize,
   Paginated,
   Project,
   Spinner,
-  fromFileUrl,
-  netzo,
-  normalize,
   wait,
 } from '../../deps.ts'
 import { error } from '../console.ts'
@@ -221,7 +221,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
 
     // NOTE: asset negotiation done in API so we handle it with custom
     // progress event of type 'assetNegotiation' after creating deployment
-    uploadSpinner = wait("Determining assets to upload...").start();
+    uploadSpinner = wait('Determining assets to upload...').start()
 
     manifest = { entries }
   }
@@ -264,13 +264,15 @@ async function deploy(opts: DeployOpts): Promise<void> {
       async (event: DenoDeploymentProgress) => {
         switch (event.type) {
           case 'assetNegotiation': {
-            neededHashes = (event as DenoDeploymentProgressAssetNegotiation).neededHashes
+            neededHashes =
+              (event as DenoDeploymentProgressAssetNegotiation).neededHashes
             const s = neededHashes.length === 1 ? '' : 's'
             if (neededHashes.length === 0) {
-              uploadSpinner!.succeed("No new assets to upload.");
-              uploadSpinner = null;
+              uploadSpinner!.succeed('No new assets to upload.')
+              uploadSpinner = null
             } else {
-              uploadSpinner!.text = `${neededHashes.length} new asset${s} to upload.`;
+              uploadSpinner!.text =
+                `${neededHashes.length} new asset${s} to upload.`
             }
             break
           }
@@ -287,7 +289,9 @@ async function deploy(opts: DeployOpts): Promise<void> {
             const { seen, total } = event as DenoDeploymentProgressLoad
             if (uploadSpinner) {
               const s = neededHashes.length === 1 ? '' : 's'
-              uploadSpinner.succeed(`Uploaded ${neededHashes.length} new asset${s}.`)
+              uploadSpinner.succeed(
+                `Uploaded ${neededHashes.length} new asset${s}.`,
+              )
               uploadSpinner = null
             }
             if (deploySpinner === null) {

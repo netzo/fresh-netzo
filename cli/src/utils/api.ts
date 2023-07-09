@@ -6,9 +6,9 @@ import {
 
 import type {
   DenoDeploymentProgress,
+  DenoLog,
   DenoProjectDeploymentRequestGitHubActions,
   DenoProjectDeploymentRequestPush,
-  Log,
   Project,
 } from '../../deps.ts'
 
@@ -125,7 +125,7 @@ export class DenoAPI {
     }
   }
 
-  getLogs(uid: string, deploymentId: string): AsyncIterable<Log> {
+  getLogs(uid: string, deploymentId: string): AsyncIterable<DenoLog> {
     return this.#requestStream(
       `/projects/${uid}/deployments/${deploymentId}/logs/`,
     )
