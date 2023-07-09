@@ -52,6 +52,10 @@ export type {
   DenoDeploymentProgressStaticFile,
   DenoDeploymentProgressSuccess,
   DenoDeploymentProgressUploadComplete,
+  DenoLog,
+  DenoLogMessage,
+  DenoLogPing,
+  DenoLogReady,
   DenoOrganization,
   DenoProject,
   DenoProjectAnalytics,
@@ -62,10 +66,6 @@ export type {
   DenoProjectDomain,
   Deployment,
   DeploymentData,
-  Log,
-  LogMessage,
-  LogPing,
-  LogReady,
   Manifest,
   ManifestEntry,
   ManifestEntryDirectory,
@@ -76,7 +76,7 @@ export type {
   ProjectFiles,
   ProjectFilesFile,
   Template,
-} from 'https://esm.sh/@netzo/api@1.0.28'
+} from 'https://esm.sh/@netzo/api@1.0.29'
 
 // socket.io-client:
 export { feathers } from 'https://esm.sh/@feathersjs/feathers@5.0.6'

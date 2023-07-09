@@ -14,13 +14,13 @@ export {
 export { default } from 'https://esm.sh/*preact-render-to-string@6.1.0'
 
 // @netzo/api
-export type { Variable } from 'https://esm.sh/@netzo/api@1.0.26'
+export type { Variable } from 'https://esm.sh/@netzo/api@1.0.29'
 
 // radash:
 export { get } from 'https://esm.sh/radash@11.0.0'
 
 // @headlessui/react:
-export {} from 'https://esm.sh/@headlessui/react@1.7.14?alias=react:preact/compat,react-dom:preact/compat,@types/react:preact/compat&external=preact/compat'
+export { } from 'https://esm.sh/@headlessui/react@1.7.14?alias=react:preact/compat,react-dom:preact/compat,@types/react:preact/compat&external=preact/compat'
 
 // shiki-es:
 export {
