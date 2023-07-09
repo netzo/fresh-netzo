@@ -1,18 +1,19 @@
 import {
   DenoDeploymentProgress,
+  DenoDeploymentProgressAssetNegotiation,
   DenoDeploymentProgressError,
   DenoDeploymentProgressLoad,
   DenoDeploymentProgressStaticFile,
   DenoDeploymentProgressSuccess,
   Deployment,
   DeploymentData,
-  fromFileUrl,
   Manifest,
-  netzo,
-  normalize,
   Paginated,
   Project,
   Spinner,
+  fromFileUrl,
+  netzo,
+  normalize,
   wait,
 } from '../../deps.ts'
 import { error } from '../console.ts'
@@ -205,7 +206,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
 
   let uploadSpinner: Spinner | null = null
   const assets = new Map<string, string>() // map of gitSha1 -> path
-  const files: Project['files'] = [] // Uint8Array[]
+  let neededHashes: string[] // new assets to upload (set on assetNegotiation event)
   let manifest: Manifest | undefined = undefined
 
   if (opts.static) {
@@ -215,11 +216,12 @@ async function deploy(opts: DeployOpts): Promise<void> {
       include: opts.include,
       exclude: opts.exclude,
     })
-    assetSpinner.succeed(
-      `Found ${assets.size} asset${assets.size === 1 ? '' : 's'}.`,
-    )
+    const s = assets.size === 1 ? '' : 's'
+    assetSpinner.succeed(`Found ${assets.size} asset${s}.`)
 
-    uploadSpinner = wait('Uploading assets...').start()
+    // NOTE: asset negotiation done in API so we handle it with custom
+    // progress event of type 'assetNegotiation' after creating deployment
+    uploadSpinner = wait("Determining assets to upload...").start();
 
     manifest = { entries }
   }
@@ -252,8 +254,6 @@ async function deploy(opts: DeployOpts): Promise<void> {
     files: projectFiles,
   }
 
-  console.groupCollapsed(`[netzo] deploying project "${project.uid}"`)
-
   let deploySpinner: Spinner | null = null
 
   try {
@@ -261,22 +261,33 @@ async function deploy(opts: DeployOpts): Promise<void> {
 
     app.service('deployments').on(
       'progress',
-      (event: DenoDeploymentProgress) => {
+      async (event: DenoDeploymentProgress) => {
         switch (event.type) {
+          case 'assetNegotiation': {
+            neededHashes = (event as DenoDeploymentProgressAssetNegotiation).neededHashes
+            const s = neededHashes.length === 1 ? '' : 's'
+            if (neededHashes.length === 0) {
+              uploadSpinner!.succeed("No new assets to upload.");
+              uploadSpinner = null;
+            } else {
+              uploadSpinner!.text = `${neededHashes.length} new asset${s} to upload.`;
+            }
+            break
+          }
           case 'staticFile': {
             const { currentBytes, totalBytes } =
               event as DenoDeploymentProgressStaticFile
             const percentage = (currentBytes / totalBytes) * 100
-            const s = files.length === 1 ? '' : 's'
-            const message = `Uploading ${files.length} asset${s}...`
+            const s = neededHashes.length === 1 ? '' : 's'
+            const message = `Uploading ${neededHashes.length} asset${s}...`
             uploadSpinner!.text = `${message}... (${percentage.toFixed(1)}%)`
             break
           }
           case 'load': {
             const { seen, total } = event as DenoDeploymentProgressLoad
             if (uploadSpinner) {
-              const s = files.length === 1 ? '' : 's'
-              uploadSpinner.succeed(`Uploaded ${files.length} new asset${s}.`)
+              const s = neededHashes.length === 1 ? '' : 's'
+              uploadSpinner.succeed(`Uploaded ${neededHashes.length} new asset${s}.`)
               uploadSpinner = null
             }
             if (deploySpinner === null) {
@@ -297,13 +308,14 @@ async function deploy(opts: DeployOpts): Promise<void> {
             for (const { domain } of domainMappings) {
               console.log(` - https://${domain}`)
             }
-            // // patch ALL project.files and project.deployment in netzo API:
-            // await api.projects[project._id].patch<Project>({
-            //   files: projectFiles,
-            // })
-            // deploySpinner!.succeed(
-            //   `Patched project files (open in studio at https://app.netzo.io/workspaces/${project.workspaceId}/projects/${project._id}/src)`,
-            // )
+            // patch ALL project.files and project.deployment in netzo API:
+            await api.projects[project._id].patch<Project>({
+              files: projectFiles,
+            })
+            deploySpinner!.succeed(
+              `Patched project files (open in studio at https://app.netzo.io/workspaces/${project.workspaceId}/projects/${project._id}/src)`,
+            )
+            Deno.exit(0) // exits with success code 0
             break
           }
           case 'error': {
@@ -316,7 +328,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
               deploySpinner.fail(`Deployment failed.`)
               deploySpinner = null
             }
-            error(ctx)
+            error(ctx) // exits with error code 1
           }
         }
       },

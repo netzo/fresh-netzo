@@ -20,7 +20,6 @@ function include(
   include?: string[],
   exclude?: string[],
 ): boolean {
-
   // FIXME: remove first if case that exclude binary multimedia files
   // (images, videos, etc.) and add support for them as well via the
   // Subhosting API integration (see https://deno-deploy.redoc.ly)
@@ -57,8 +56,8 @@ function include(
     ].includes(path?.split('.').pop()!)
   ) {
     printWarning(
-      `Skipping ${path} because it is a binary file (not yet supported)`,
-    )
+      `Skipping ${path} because it is a binary file (not yet supported)\n`,
+    ) // requires newline "\n" to avoid being swallowed by the spinner
     return false
   }
   if (

@@ -46,6 +46,7 @@ export type {
   AuthorizationOAuth2Implicit,
   AuthorizationOAuth2PasswordCredentials,
   DenoDeploymentProgress,
+  DenoDeploymentProgressAssetNegotiation,
   DenoDeploymentProgressError,
   DenoDeploymentProgressLoad,
   DenoDeploymentProgressStaticFile,
@@ -75,7 +76,7 @@ export type {
   ProjectFiles,
   ProjectFilesFile,
   Template,
-} from 'https://esm.sh/@netzo/api@1.0.26'
+} from 'https://esm.sh/@netzo/api@1.0.28'
 
 // socket.io-client:
 export { feathers } from 'https://esm.sh/@feathersjs/feathers@5.0.6'
