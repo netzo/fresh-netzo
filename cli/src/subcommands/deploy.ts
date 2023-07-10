@@ -248,7 +248,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
       jsx: 'react-jsx',
       jsxFactory: 'h',
       jsxFragmentFactory: 'Fragment',
-      jsxImportSource: 'https://esm.sh/preact',
+      jsxImportSource: 'preact',
     },
     production: opts.prod,
     files: projectFiles,
