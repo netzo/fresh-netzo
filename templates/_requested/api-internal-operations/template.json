@@ -6,10 +6,9 @@
   "labels": [
     "department:operations",
     "api:mongodb",
-    "usecase:api",
-    "usecase:operations",
-    "usecase:productivity",
-    "usecase:workflow"
+    "category:api",
+    "type:operations",
+    "type:productivity"
   ],
   "display": {
     "avatar": "https://netzo.io/images/home/apis.svg"

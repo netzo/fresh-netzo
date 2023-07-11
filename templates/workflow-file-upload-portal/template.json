@@ -5,7 +5,7 @@
   "description": "A file upload portal, to process, rename and store files in preset locations in Google Drive.",
   "labels": [
     "api:googledrive",
-    "usecase:productivity"
+    "type:productivity"
   ],
   "display": {
     "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-file-upload-portal/icon.svg"

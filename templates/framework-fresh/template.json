@@ -1,0 +1,34 @@
+{
+  "uid": "framework-fresh",
+  "status": "requested",
+  "name": "Fresh",
+  "description": "A basic starting template for the Fresh framework",
+  "labels": [
+    "category:framework",
+    "framework:fresh"
+  ],
+  "display": {
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/framework-fresh/icon.svg"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/templates/framework-fresh"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/framework-fresh/src/readme.md"
+    }
+  ],
+  "item": {
+    "_type": "project",
+    "src": "https://api.github.com/repos/netzo/netzo/contents/templates/framework-fresh/src",
+    "configuration": {
+      "entrypoint": "main.ts",
+      "envVars": {},
+      "permissions": {
+        "net": true
+      }
+    }
+  }
+}

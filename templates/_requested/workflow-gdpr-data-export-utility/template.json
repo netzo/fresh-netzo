@@ -6,7 +6,7 @@
   "labels": [
     "department:sales",
     "department:customer-support",
-    "usecase:dashboard"
+    "category:app"
   ],
   "display": {
     "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-gdpr-data-export-utility/icon.png"
@@ -14,7 +14,7 @@
   "links": [
     {
       "rel": "repository",
-      "href": "https://github.com/netzo/netzo/tree/main/templates/_requested/dashboard-nps-sales-customer-support"
+      "href": "https://github.com/netzo/netzo/tree/main/templates/_requested/app-nps-sales-customer-support"
     }
   ]
 }

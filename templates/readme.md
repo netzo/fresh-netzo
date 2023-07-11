@@ -127,12 +127,12 @@ look at other templates for further reference.
 
 ```json
 {
-  "uid": "starter-sift",
+  "uid": "framework-sift",
   "status": "published",
   "name": "Sift",
   "description": "An HTTP server using sift that responds with different payload types based on route. Netzo includes a routing and utility library for Deno Deploy. Its route handler signature is simple and easy to understand. Handlers accept a Request and return a Response.",
   "labels": [
-    "usecase:starter",
+    "category:framework",
     "framework:sift"
   ],
   "display": {
@@ -141,16 +141,16 @@ look at other templates for further reference.
   "links": [
     {
       "rel": "repository",
-      "href": "https://github.com/netzo/netzo/tree/main/templates/starter-sift"
+      "href": "https://github.com/netzo/netzo/tree/main/templates/framework-sift"
     },
     {
       "rel": "readme",
-      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/starter-sift/src/readme.md"
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/framework-sift/src/readme.md"
     }
   ],
   "item": {
     "_type": "project",
-    "src": "https://api.github.com/repos/netzo/netzo/contents/templates/starter-sift/src",
+    "src": "https://api.github.com/repos/netzo/netzo/contents/templates/framework-sift/src",
     "configuration": {
       "entrypoint": "main.tsx",
       "envVars": {},

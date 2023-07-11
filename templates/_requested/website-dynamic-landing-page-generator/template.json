@@ -4,7 +4,7 @@
   "name": "Dynamic Landing Page Generator",
   "description": "A dynamic landing page generator with perfect SEO score, multilanguage and multi buyer persona support from a single JSON file.",
   "labels": [
-    "usecase:website",
+    "category:website",
     "departments:marketing"
   ],
   "display": {
@@ -14,10 +14,6 @@
     {
       "rel": "repository",
       "href": "https://github.com/netzo/netzo/tree/main/templates/_requested/website-dynamic-landing-page-generator"
-    },
-    {
-      "rel": "readme",
-      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/website-dynamic-landing-page-generator/src/readme.md"
     }
   ],
   "item": {}

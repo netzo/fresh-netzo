@@ -1,0 +1,34 @@
+{
+  "uid": "framework-hono",
+  "status": "published",
+  "name": "Hono",
+  "description": "An HTTP server using router to handle POST and GET requests separately. Router by denosaurs is a tiny router framework for Deno Deploy. It can route based on method, route, and has customizable handlers for cases such as no match, errors, or unknown methods.",
+  "labels": [
+    "category:framework",
+    "framework:hono"
+  ],
+  "display": {
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/framework-hono/icon.svg"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/templates/framework-hono"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/framework-hono/src/readme.md"
+    }
+  ],
+  "item": {
+    "_type": "project",
+    "src": "https://api.github.com/repos/netzo/netzo/contents/templates/framework-hono/src",
+    "configuration": {
+      "entrypoint": "main.ts",
+      "envVars": {},
+      "permissions": {
+        "net": true
+      }
+    }
+  }
+}

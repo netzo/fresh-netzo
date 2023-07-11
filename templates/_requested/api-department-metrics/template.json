@@ -6,10 +6,9 @@
   "labels": [
     "department:operations",
     "api:mongodb",
-    "usecase:api",
-    "usecase:business-intelligence",
-    "usecase:api",
-    "usecase:productivity"
+    "category:api",
+    "type:business-intelligence",
+    "type:productivity"
   ],
   "display": {
     "avatar": "https://netzo.io/images/home/apis.svg"

@@ -4,7 +4,7 @@
   "name": "Company Blog",
   "description": "A fully featured blog with a CMS, SEO, and more.",
   "labels": [
-    "usecase:website"
+    "category:website"
   ],
   "display": {
     "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/website-company-blog/icon.png"
@@ -13,10 +13,6 @@
     {
       "rel": "repository",
       "href": "https://github.com/netzo/netzo/tree/main/templates/_requested/website-company-blog"
-    },
-    {
-      "rel": "readme",
-      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/website-company-blog/src/readme.md"
     }
   ],
   "item": {

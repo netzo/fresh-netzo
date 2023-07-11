@@ -1,0 +1,24 @@
+{
+  "uid": "app-know-your-customer",
+  "status": "requested",
+  "name": "Know-Your-Customer (KYC) Dashboard",
+  "description": "Consolidate customer data from any SaaS API, database or spreadsheet for a holistic view of the customer. Enhance team productivity with all the required informationn in one place, while protecting sensitive data from unathorized individuals.",
+  "labels": [
+    "department:operations",
+    "department:sales",
+    "api:googlesheets",
+    "api:pipedrive",
+    "api:stripe",
+    "type:compliance",
+    "category:app"
+  ],
+  "display": {
+    "avatar": "https://netzo.io/images/home/bi-dashboards.svg"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/templates/_requested/app-know-your-customer"
+    }
+  ]
+}

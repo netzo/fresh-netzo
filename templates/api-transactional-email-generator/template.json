@@ -10,9 +10,9 @@
     "api:sendgrid",
     "api:activecampaign",
     "api:mailchimp",
-    "usecase:communication/email",
-    "usecase:productivity",
-    "usecase:workflow"
+    "type:communication/email",
+    "type:productivity",
+    "category:api"
   ],
   "display": {
     "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/api-transactional-email-generator/icon.svg"

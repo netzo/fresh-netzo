@@ -1,13 +1,13 @@
 {
   "uid": "workflow-onboarding-provisioning-configuration",
   "status": "requested",
-  "name": "Onboarding, Provisioning, and Configuration Worflow",
+  "name": "Onboarding, Provisioning, and Configuration Workflow",
   "description": "Automate the onboarding, provisioning, and configuration of new customer accounts across your core infrastructure.",
   "labels": [
-    "usecase:workflow",
-    "usecase:onboarding",
-    "usecase:provisioning",
-    "usecase:configuration",
+    "category:workflow",
+    "type:onboarding",
+    "type:provisioning",
+    "type:configuration",
     "department:engineering",
     "department:operations"
   ],

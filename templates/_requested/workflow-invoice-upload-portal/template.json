@@ -7,7 +7,7 @@
     "department:accounting/finance",
     "api:googlesheets",
     "api:googledrive",
-    "usecase:productivity"
+    "type:productivity"
   ],
   "display": {
     "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-invoice-upload-portal/icon.svg"
