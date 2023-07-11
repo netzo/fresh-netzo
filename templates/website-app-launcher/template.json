@@ -4,7 +4,7 @@
   "name": "App Launcher",
   "description": "Quick links for important apps and services",
   "labels": [
-    "fresh"
+    "category:website"
   ],
   "display": {
     "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-app-launcher/icon.svg"

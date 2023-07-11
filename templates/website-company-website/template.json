@@ -4,8 +4,7 @@
   "name": "Company Website",
   "description": "A full-blown company website with a perfect Lighthouse score. It includes a blog, a contact form, a newsletter, and a lot more. Built with Flowbite blocks, JSX and and Tailwind CSS.",
   "labels": [
-    "website-company-website",
-    "fresh"
+    "category:website"
   ],
   "display": {
     "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-company-website/icon.svg"
