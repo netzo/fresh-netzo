@@ -8,6 +8,13 @@
     "semiColons": false,
     "singleQuote": true
   },
+  "lint": {
+    "rules": {
+      "tags": [
+        "fresh"
+      ]
+    }
+  },
   "compilerOptions": {
     "jsx": "react-jsx",
     "jsxFactory": "h",
