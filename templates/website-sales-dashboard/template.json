@@ -4,7 +4,7 @@
   "name": "Sales Dashboard",
   "description": "A sales dashboard to track performance of sales teams in real-time, and provides a variety of metrics to help make informed decisions.",
   "labels": [
-    "usecases:dashboard"
+    "category:website"
   ],
   "display": {
     "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-sales-dashboard/icon.svg"
