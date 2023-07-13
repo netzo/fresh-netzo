@@ -1,7 +1,7 @@
 import { HandlerContext, Handlers, PageProps } from 'fresh/server.ts'
 import { Head } from 'fresh/runtime.ts'
 import Mustache from 'mustache'
-import { createApi } from 'netzo/lib/apis/create-api/mod.ts'
+import { rest } from 'netzo/lib/apis/rest/mod.ts'
 import Header from '@/components/Header.tsx'
 import Button from '@/components/Button.tsx'
 import Footer from '@/components/Footer.tsx'
@@ -24,7 +24,7 @@ export interface Data {
   avatar: string
 }
 
-const { api } = createApi({ baseURL: 'https://enahwxkchnfyd.x.pipedream.net' })
+const { api } = rest({ baseURL: 'https://enahwxkchnfyd.x.pipedream.net' })
 
 export const handler: Handlers = {
   GET(req: Request, ctx: HandlerContext) {

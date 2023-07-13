@@ -1,5 +1,5 @@
-import { createApi } from '../create-api/mod.ts'
-import { auth } from '../create-api/auth/mod.ts'
+import { createApi } from '../_create-api/mod.ts'
+import { auth } from '../_create-api/auth/mod.ts'
 
 /**
  * SDK constructor function for the FaunaDB API
@@ -9,8 +9,8 @@ import { auth } from '../create-api/auth/mod.ts'
  */
 export const faunadb = ({
   regionGroupHostname = Deno.env.get('FAUNADB_REGION_GROUP_HOSTNAME'),
-  username = Deno.env.get('FAUNADB_USERNAME'),
-  password = Deno.env.get('FAUNADB_PASSWORD'),
+  username = Deno.env.get('FAUNADB_USERNAME')!,
+  password = Deno.env.get('FAUNADB_PASSWORD')!,
 }) => {
   const api = createApi({
     baseURL: `"https://${regionGroupHostname}/graphql`,

@@ -1,5 +1,5 @@
-import { createApi } from '../create-api/mod.ts'
-import { auth } from '../create-api/auth/mod.ts'
+import { createApi } from '../_create-api/mod.ts'
+import { auth } from '../_create-api/auth/mod.ts'
 
 /**
  * SDK constructor function for the Clarifai API
@@ -10,7 +10,7 @@ import { auth } from '../create-api/auth/mod.ts'
  */
 export const clarifai = ({
   datasetId = Deno.env.get('CLARIFAI_DATASET_ID'),
-  apiKey = Deno.env.get('CLARIFAI_API_KEY'),
+  apiKey = Deno.env.get('CLARIFAI_API_KEY')!,
 }) => {
   const api = createApi({
     baseURL: `https://api.clarifai.com/v2/users/datasets/${datasetId}`,

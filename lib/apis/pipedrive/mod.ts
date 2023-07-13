@@ -1,5 +1,5 @@
-import { createApi } from '../create-api/mod.ts'
-import { auth } from '../create-api/auth/mod.ts'
+import { createApi } from '../_create-api/mod.ts'
+import { auth } from '../_create-api/auth/mod.ts'
 
 /**
  * SDK constructor function for the Pipedrive API
@@ -8,7 +8,7 @@ import { auth } from '../create-api/auth/mod.ts'
  * @returns {object} - an object of multiple utilities for the API
  */
 export const pipedrive = ({
-  apiToken = Deno.env.get('PIPEDRIVE_API_TOKEN'),
+  apiToken = Deno.env.get('PIPEDRIVE_API_TOKEN')!,
   companyDomain = Deno.env.get('PIPEDRIVE_COMPANY_DOMAIN'),
 }) => {
   const api = createApi({

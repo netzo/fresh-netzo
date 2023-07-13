@@ -1,5 +1,5 @@
-import { createApi } from '../create-api/mod.ts'
-import { auth } from '../create-api/auth/mod.ts'
+import { createApi } from '../_create-api/mod.ts'
+import { auth } from '../_create-api/auth/mod.ts'
 
 /**
  * SDK constructor function for the Mongodb Atlas Data API
@@ -9,7 +9,7 @@ import { auth } from '../create-api/auth/mod.ts'
  */
 export const mongodbatlasdata = ({
   dataApiAppId = Deno.env.get('MONGODBATLASDATA_DATA_API_APP_ID'),
-  apiKey = Deno.env.get('MONGODBATLASDATA_API_KEY'),
+  apiKey = Deno.env.get('MONGODBATLASDATA_API_KEY')!,
 }) => {
   const api = createApi({
     baseURL:

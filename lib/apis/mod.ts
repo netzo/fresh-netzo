@@ -1,7 +1,3 @@
-// create-api:
-export * from './create-api/mod.ts'
-export * from './create-api/types.ts'
-
 // apis:
 export * from './activecampaign/mod.ts'
 export * from './clarifai/mod.ts'
@@ -22,6 +18,7 @@ export * from './openai/mod.ts'
 export * from './pandadoc/mod.ts'
 export * from './plain/mod.ts'
 export * from './purpleair/mod.ts'
+export * from './rest/mod.ts'
 export * from './restdb/mod.ts'
 export * from './sendgrid/mod.ts'
 export * from './brevo/mod.ts'

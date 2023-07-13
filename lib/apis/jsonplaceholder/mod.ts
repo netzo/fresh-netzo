@@ -1,5 +1,5 @@
-import { createApi } from '../create-api/mod.ts'
-import { auth } from '../create-api/auth/mod.ts'
+import { createApi } from '../_create-api/mod.ts'
+import { auth } from '../_create-api/auth/mod.ts'
 
 /**
  * SDK constructor function for the JSONPlaceholder API

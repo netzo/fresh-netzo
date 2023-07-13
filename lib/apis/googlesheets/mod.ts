@@ -1,5 +1,5 @@
-import { createApi } from '../create-api/mod.ts'
-import { auth } from '../create-api/auth/mod.ts'
+import { createApi } from '../_create-api/mod.ts'
+import { auth } from '../_create-api/auth/mod.ts'
 
 /**
  * SDK constructor function for the Google Sheets API
@@ -11,8 +11,8 @@ import { auth } from '../create-api/auth/mod.ts'
  */
 export const googlesheets = ({
   spreadsheetId = Deno.env.get('GOOGLESHEETS_SPREADSHEET_ID'),
-  clientId = Deno.env.get('GOOGLESHEETS_CLIENT_ID'),
-  clientSecret = Deno.env.get('GOOGLESHEETS_CLIENT_SECRET'),
+  clientId = Deno.env.get('GOOGLESHEETS_CLIENT_ID')!,
+  clientSecret = Deno.env.get('GOOGLESHEETS_CLIENT_SECRET')!,
 }) => {
   const api = createApi({
     baseURL: `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}`,

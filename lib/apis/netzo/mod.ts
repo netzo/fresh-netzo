@@ -1,6 +1,6 @@
 import type { Variable } from '../../deps.ts'
-import { createApi } from '../create-api/mod.ts'
-import { auth } from '../create-api/auth/mod.ts'
+import { createApi } from '../_create-api/mod.ts'
+import { auth } from '../_create-api/auth/mod.ts'
 
 /**
  * SDK constructor function for the Netzo API
@@ -9,7 +9,7 @@ import { auth } from '../create-api/auth/mod.ts'
  * @returns {object} - an object of multiple utilities for the API
  */
 export const netzo = ({
-  apiKey = Deno.env.get('NETZO_API_KEY'),
+  apiKey = Deno.env.get('NETZO_API_KEY')!,
   baseURL = 'https://api.netzo.io',
 }) => {
   const api = createApi({
