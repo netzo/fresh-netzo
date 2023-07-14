@@ -317,7 +317,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
               files: projectFiles,
             })
             deploySpinner!.succeed(
-              `Patched project files (open in studio at https://app.netzo.io/workspaces/${project.workspaceId}/projects/${project._id}/src)`,
+              `Patched project files (open in studio at https://app.netzo.io/workspaces/${project.workspaceId}/projects/${project._id}/studio)`,
             )
             Deno.exit(0) // exits with success code 0
             break
