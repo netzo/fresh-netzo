@@ -10,21 +10,22 @@ export {
   effect,
   Signal,
   signal,
-} from 'https://esm.sh/*@preact/signals@1.1.4'
-export { default } from 'https://esm.sh/*preact-render-to-string@6.1.0'
+  useComputed,
+  useSignal,
+} from 'https://esm.sh/*@preact/signals@1.1.5'
 
 // @netzo/api
-export type { Variable } from 'https://esm.sh/@netzo/api@1.0.29'
+export type { Variable } from 'https://esm.sh/@netzo/api@1.0.30'
 
 // radash:
 export { get } from 'https://esm.sh/radash@11.0.0'
 
 // @headlessui/react:
-export { } from 'https://esm.sh/@headlessui/react@1.7.14?alias=react:preact/compat,react-dom:preact/compat,@types/react:preact/compat&external=preact/compat'
+export {} from 'https://esm.sh/@headlessui/react@1.7.14?alias=react:preact/compat,react-dom:preact/compat,@types/react:preact/compat&external=preact/compat'
 
 // shiki-es:
 export {
   getHighlighter,
-  Highlighter,
-  Lang,
+  type Highlighter,
+  type Lang,
 } from 'https://esm.sh/shiki-es@0.14.0'

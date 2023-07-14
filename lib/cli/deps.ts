@@ -30,8 +30,8 @@ export {
 // x/wait
 export { Spinner, wait } from 'https://deno.land/x/wait@0.1.12/mod.ts'
 
-// netzo/lib/apis/netzo
-export { netzo } from '../lib/apis/netzo/mod.ts'
+// x/netzo/apis/netzo
+export { netzo } from '../apis/netzo/mod.ts'
 
 // @netzo/api: cherry-pick exports to avoid esm.sh tree-shaking issues
 export type {
@@ -76,7 +76,7 @@ export type {
   ProjectFiles,
   ProjectFilesFile,
   Template,
-} from 'https://esm.sh/@netzo/api@1.0.29'
+} from 'https://esm.sh/@netzo/api@1.0.30'
 
 // socket.io-client:
 export { feathers } from 'https://esm.sh/@feathersjs/feathers@5.0.6'
