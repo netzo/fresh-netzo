@@ -9,7 +9,7 @@ import {
 } from '../../deps.ts'
 
 export const createClient = async () => {
-  const socket = io(Deno.env.get('NETZO_API_URL'), {
+  const socket = io('https://api.netzo.io', {
     transports: ['websocket'],
   })
   const connection = socketio(socket)

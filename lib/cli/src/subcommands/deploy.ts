@@ -144,7 +144,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
   const projectSpinner = wait('Fetching project information...').start()
   const { api } = netzo({
     apiKey: opts.apiKey,
-    baseURL: Deno.env.get('NETZO_API_URL'),
+    baseURL: 'https://api.netzo.io',
   })
   const { data: [project] } = await api.projects.get<Paginated<Project>>({
     uid: opts.project,
