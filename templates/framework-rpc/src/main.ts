@@ -1,4 +1,4 @@
-import { App } from 'https://deno.land/x/rpc@0.2.1/app.ts'
+import { App } from 'https://deno.land/x/rpc@0.2.2/app.ts'
 
 const app = new App()
 
