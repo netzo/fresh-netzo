@@ -5,8 +5,6 @@ client for an HTTP API. The client is a minimal wrapper around the `fetch` API
 using JS proxies that simplifies making HTTP requests.
 
 ```ts
-const netzo = Netzo(Deno.env.get('NETZO_API_KEY'))
-
 const client = await createApi({
   baseURL: 'https://jsonplaceholder.typicode.com',
 })
@@ -97,8 +95,8 @@ the [supported specs](#supported-specs):
 
 ### No auth
 
-By default Netzo sends requests with no authorization details. If your resource
-does not require any authorization details you may go ahead and start using your
+Requests will be sent without authorization by default. If your resource does
+not require any authorization details you may go ahead and start using your
 resource right away.
 
 ### Basic auth
@@ -196,7 +194,3 @@ There are four types of hooks:
 - **`onResponseError`:** runs **if** the `fetch` response fails (when
   `response.ok` is not true). Allows modifying `request`, `options` and
   `response`
-
-<!-- ## Type Definitions
-
-Refer to [`http/types.ts`](https://github.com/netzo/netzo/blob/main/packages/sdk/resource/http/types.ts) for the type definitions of this module. -->
