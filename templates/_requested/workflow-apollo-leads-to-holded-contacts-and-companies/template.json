@@ -1,21 +1,25 @@
 {
-    "uid": "workflow-apollo-leads-to-holded-contacts-and-companies",
-    "status": "requested",
-    "name": "Send Apollo leads to Holded contacts and companies",
-    "description": "This workflow seamlessly integrates Apollo leads with Holded contacts and companies, ensuring a smooth transfer of valuable customer information. By automating this process, businesses can save time and effort, eliminating the need for manual data entry and reducing the risk of errors. With complete control over the source code, businesses can easily customize and tailor the workflow to their specific needs, allowing for maximum adaptability and flexibility.",
-    "labels": ["'api:apollo','api:holded','category:workflow'"],
-    "display": {
-      "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-apollo-leads-to-holded-contacts-and-companies/icon.svg"
+  "uid": "workflow-apollo-leads-to-holded-contacts-and-companies",
+  "status": "requested",
+  "name": "Send Apollo leads to Holded contacts and companies",
+  "description": "This workflow seamlessly integrates Apollo leads with Holded contacts and companies, ensuring a smooth transfer of valuable customer information. By automating this process, businesses can save time and effort, eliminating the need for manual data entry and reducing the risk of errors. With complete control over the source code, businesses can easily customize and tailor the workflow to their specific needs, allowing for maximum adaptability and flexibility.",
+  "labels": [
+    "api:apollo",
+    "api:holded",
+    "category:workflow"
+  ],
+  "display": {
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-apollo-leads-to-holded-contacts-and-companies/icon.svg"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-apollo-leads-to-holded-contacts-and-companies"
     },
-    "links": [
-      {
-        "rel": "repository",
-        "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-apollo-leads-to-holded-contacts-and-companies"
-      },
-      {
-        "rel": "readme",
-        "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-apollo-leads-to-holded-contacts-and-companies/src/readme.md"
-      }
-    ],
-    "item": {}
-  }
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-apollo-leads-to-holded-contacts-and-companies/src/readme.md"
+    }
+  ],
+  "item": {}
+}
