@@ -3,7 +3,7 @@
     "status": "requested",
     "name": "Send Meet Alfred leads to SAP Hana Cloud contacts and companies",
     "description": "This workflow seamlessly integrates Meet Alfred leads with SAP Hana Cloud contacts and companies, ensuring a smooth transfer of data between the two platforms. By automating this process, it eliminates the need for manual data entry, saving time and reducing the risk of errors. Additionally, having complete control over the source code allows users to customize and tailor the workflow to their specific needs, making it adaptable and flexible for any use case.",
-    "labels": ["resource:meetalfred, resource:saphanacloud, category:workflow, department:engineering"],
+    "labels": ["'api:meetalfred','api:saphanacloud','category:workflow'"],
     "display": {
       "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-meet-alfred-leads-to-sap-hana-cloud-contacts-and-companies/icon.svg"
     },

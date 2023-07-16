@@ -3,7 +3,7 @@
     "status": "requested",
     "name": "Send Apollo leads to Holded contacts and companies",
     "description": "This workflow seamlessly integrates Apollo leads with Holded contacts and companies, ensuring a smooth transfer of valuable customer information. By automating this process, businesses can save time and effort, eliminating the need for manual data entry and reducing the risk of errors. With complete control over the source code, businesses can easily customize and tailor the workflow to their specific needs, allowing for maximum adaptability and flexibility.",
-    "labels": ["resource:apollo,resource:holded,category:workflow,department:engineering,department:human-resources,department:marketing,department:operations,department:product,department:sales,api:activecampaign,api:brevo,api:clarifai,api:cloudflare,api:discord,api:ergastf1,api:facturama,api:fathomanalytics,api:faunadb,api:github,api:googleappsheet,api:googlesheets,api:holded,api:jsonplaceholder,api:monday"],
+    "labels": ["'api:apollo','api:holded','category:workflow'"],
     "display": {
       "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-apollo-leads-to-holded-contacts-and-companies/icon.svg"
     },

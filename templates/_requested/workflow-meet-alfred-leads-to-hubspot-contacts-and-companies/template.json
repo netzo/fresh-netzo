@@ -3,7 +3,7 @@
     "status": "requested",
     "name": "Send Meet Alfred leads to HubSpot contacts and companies",
     "description": "This workflow seamlessly integrates Meet Alfred leads with HubSpot contacts and companies, providing a streamlined process for managing and nurturing potential leads. By automating the transfer of data, it eliminates the need for manual entry and ensures accurate and up-to-date information, saving time and reducing the risk of errors. With complete control over the source code, users have the flexibility to customize and tailor the workflow to their specific needs, making it a versatile solution for any use case.",
-    "labels": ["resource:meetalfred,resource:hubspottags,category:workflow,type:communication/email,type:compliance,type:content/cmstype:productivity,type:security,type:social-mediadepartment:accounting/financedepartment:customer-supportdepartment:data-analyticsdepartment:devopsdepartment:engineeringdepartment:human-resourcesdepartment:maretingdepartment:operationsdepartment:productdepartment:salesapi:activecampaignapi:brevoapi:clarifaiapi:cloudflareapi:discordapi:ergastf1api:facturamaapi:fathomanalyticsapi:faunadbapi:githubapi:googleappsheetapi:googlesheetsapi:holdedapi:jsonplaceholderapi:monday"],
+    "labels": ["'api:meetalfred','api:hubspot','category:workflow'"],
     "display": {
       "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-meet-alfred-leads-to-hubspot-contacts-and-companies/icon.svg"
     },

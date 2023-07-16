@@ -3,7 +3,7 @@
     "status": "requested",
     "name": "Send Meet Alfred leads to Pipedrive contacts and companies",
     "description": "This workflow seamlessly integrates Meet Alfred leads with Pipedrive contacts and companies, ensuring a smooth transfer of valuable information. It eliminates the hassle of manually inputting data, saving time and effort for sales teams. With complete control over the source code, users can easily customize and tailor the workflow to perfectly align with their unique requirements and business processes.",
-    "labels": ["resource:meetalfred,resource:pipedrivetags,category:workflow,department:sales"],
+    "labels": ["'api:meetalfred','api:pipedrive','category:workflow'"],
     "display": {
       "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-meet-alfred-leads-to-pipedrive-contacts-and-companies/icon.svg"
     },
