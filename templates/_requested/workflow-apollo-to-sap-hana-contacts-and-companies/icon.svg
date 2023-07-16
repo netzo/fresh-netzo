@@ -1,11 +1,14 @@
 <svg width="285" height="175" viewBox="0 0 285 175" fill="none" xmlns="http://www.w3.org/2000/svg">
   <rect width="285" height="175" fill="white" />
   <g transform="translate(142.5, 87.5)">
-    <image href="https://raw.githubusercontent.com/netzo/netzo/main/assets/apis/apollo.svg" width="60" height="60"
-      x="-100" y="-29" />
-    <image href="https://api.iconify.design/mdi:plus-circle-outline.svg?color=%23999999" width="32" height="32" x="-16"
-      y="-16" />
-    <image href="https://raw.githubusercontent.com/netzo/netzo/main/assets/apis/saphana.svg" width="60" height="60"
-      x="40" y="-29" />
+    <foreignObject x="-100" y="-29" width="60" height="60">
+    <img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/apis/apollo.svg" width="100%" height="100%" />
+    </foreignObject>
+    <foreignObject x="-16" y="-16" width="32" height="32">
+    <img src="https://api.iconify.design/mdi:plus-circle-outline.svg?color=%23999999" width="100%" height="100%" />
+    </foreignObject>
+    <foreignObject x="40" y="-29" width="60" height="60">
+    <img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/apis/saphana.svg" width="100%" height="100%" />
+    </foreignObject>
   </g>
 </svg>
