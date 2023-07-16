@@ -1,11 +1,11 @@
 <svg width="285" height="175" viewBox="0 0 285 175" fill="none" xmlns="http://www.w3.org/2000/svg">
   <rect width="285" height="175" fill="white" />
   <g transform="translate(142.5, 87.5)">
-    <image xlink:href="https://raw.githubusercontent.com/netzo/netzo/main/assets/apis/meetalfred.svg" width="60"
-      height="60" x="-100" y="-29" />
-    <image xlink:href="https://api.iconify.design/mdi:plus-circle-outline.svg?color=%23999999" width="32" height="32"
-      x="-16" y="-16" />
-    <image xlink:href="https://raw.githubusercontent.com/netzo/netzo/main/assets/apis/brevo.svg" width="60" height="60"
-      x="40" y="-29" />
+    <image href="https://raw.githubusercontent.com/netzo/netzo/main/assets/apis/meetalfred.svg" width="60" height="60"
+      x="-100" y="-29" />
+    <image href="https://api.iconify.design/mdi:plus-circle-outline.svg?color=%23999999" width="32" height="32" x="-16"
+      y="-16" />
+    <image href="https://raw.githubusercontent.com/netzo/netzo/main/assets/apis/brevo.svg" width="60" height="60" x="40"
+      y="-29" />
   </g>
 </svg>
