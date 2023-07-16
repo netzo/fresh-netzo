@@ -1,5 +1,5 @@
 {
-  "uid": "workflow-dripify-leads-to-sap-hana-cloud-contacts-and-companies",
+  "uid": "workflow-dripify-leads-to-sap-hana-contacts-and-companies",
   "status": "requested",
   "name": "Send Dripify leads to SAP Hana Cloud contacts and companies",
   "description": "This workflow seamlessly integrates Dripify leads with SAP Hana Cloud contacts and companies, ensuring a smooth transfer of data between the two platforms. By automating this process, it eliminates the need for manual data entry, saving time and reducing the risk of errors. Additionally, having complete control over the source code allows for customization and flexibility, enabling users to tailor the workflow to their specific needs and requirements.",
@@ -9,16 +9,16 @@
     "category:workflow"
   ],
   "display": {
-    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-dripify-leads-to-sap-hana-cloud-contacts-and-companies/icon.svg"
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-dripify-leads-to-sap-hana-contacts-and-companies/icon.svg"
   },
   "links": [
     {
       "rel": "repository",
-      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-dripify-leads-to-sap-hana-cloud-contacts-and-companies"
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-dripify-leads-to-sap-hana-contacts-and-companies"
     },
     {
       "rel": "readme",
-      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-dripify-leads-to-sap-hana-cloud-contacts-and-companies/src/readme.md"
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-dripify-leads-to-sap-hana-contacts-and-companies/src/readme.md"
     }
   ],
   "item": {}
