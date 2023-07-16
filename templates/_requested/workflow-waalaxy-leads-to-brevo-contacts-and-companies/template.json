@@ -1,0 +1,23 @@
+{
+  "uid": "workflow-waalaxy-leads-to-brevo-contacts-and-companies",
+  "status": "requested",
+  "name": "Send Waalaxy leads to Brevo contacts and companies",
+  "description": "This workflow seamlessly transfers leads generated through Waalaxy to Brevo's contacts and companies, streamlining the process of managing and nurturing potential customers. By automating this data transfer, it eliminates the need for manual entry, saving time and reducing the risk of errors. Additionally, users have complete control over the source code, allowing them to customize and tailor the workflow to their specific needs, ensuring it fits any use case perfectly.",
+  "labels": [
+    "resource:waalaxy,resource:brevo,category:workflow,department:accounting/finance,department:customer-support,department:data-analytics,department:devops,department:engineering,department:human-resources,department:marketing,department:operations,department:product,department:sales,api:activecampaign,api:brevo,api:clarifai,api:cloudflare,api:discord,api:ergastf1,api:facturama,api:fathomanalytics,api:faunadb,api:github,api:googleappsheet,api:googlesheets,api:holded,api:jsonplaceholder,api:monday"
+  ],
+  "display": {
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-waalaxy-leads-to-brevo-contacts-and-companies/icon.svg"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-waalaxy-leads-to-brevo-contacts-and-companies"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-waalaxy-leads-to-brevo-contacts-and-companies/src/readme.md"
+    }
+  ],
+  "item": {}
+}

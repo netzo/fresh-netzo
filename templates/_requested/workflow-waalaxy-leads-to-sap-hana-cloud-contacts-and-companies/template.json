@@ -1,0 +1,23 @@
+{
+  "uid": "workflow-waalaxy-leads-to-sap-hana-cloud-contacts-and-companies",
+  "status": "requested",
+  "name": "Send Waalaxy leads to SAP Hana Cloud contacts and companies",
+  "description": "This workflow seamlessly integrates Waalaxy leads with SAP Hana Cloud contacts and companies, eliminating the need for manual data entry and ensuring accurate and up-to-date information. By automating this process, users can save time and effort while maintaining a comprehensive and synchronized database. Additionally, having complete control over the source code allows for easy customization and tailoring to specific business needs, ensuring a perfect fit for any use case.",
+  "labels": [
+    "resource:waalaxy,resource:saphanacloud,category:workflow,department:customer-support,department:data-analytics,department:devops,department:engineering,department:human-resources,department:marketing,department:operations,department:product,department:sales,api:activecampaign,api:brevo,api:clarifai,api:cloudflare,api:discord,api:ergastf1,api:facturama,api:fathomanalytics,api:faunadb,api:github,api:googleappsheet,api:googlesheets,api:holded,api:jsonplaceholder,api:monday"
+  ],
+  "display": {
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-waalaxy-leads-to-sap-hana-cloud-contacts-and-companies/icon.svg"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-waalaxy-leads-to-sap-hana-cloud-contacts-and-companies"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-waalaxy-leads-to-sap-hana-cloud-contacts-and-companies/src/readme.md"
+    }
+  ],
+  "item": {}
+}
