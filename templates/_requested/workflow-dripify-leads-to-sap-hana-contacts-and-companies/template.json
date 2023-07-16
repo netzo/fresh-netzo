@@ -5,7 +5,7 @@
   "description": "This workflow seamlessly integrates Dripify leads with SAP Hana Cloud contacts and companies, ensuring a smooth transfer of data between the two platforms. By automating this process, it eliminates the need for manual data entry, saving time and reducing the risk of errors. Additionally, having complete control over the source code allows for customization and flexibility, enabling users to tailor the workflow to their specific needs and requirements.",
   "labels": [
     "api:dripify",
-    "api:saphanacloud",
+    "api:saphana",
     "category:workflow"
   ],
   "display": {

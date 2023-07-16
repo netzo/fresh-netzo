@@ -5,7 +5,7 @@
   "description": "This workflow seamlessly integrates Apollo leads with SAP Hana Cloud contacts and companies, enabling efficient data transfer and synchronization. By automating this process, it eliminates the need for manual data entry, saving time and reducing the risk of errors. Additionally, having complete control over the source code empowers users to customize and tailor the workflow to their specific needs, ensuring a perfect fit for any use case.",
   "labels": [
     "api:apollo",
-    "api:saphanacloud",
+    "api:saphana",
     "category:workflow"
   ],
   "display": {
