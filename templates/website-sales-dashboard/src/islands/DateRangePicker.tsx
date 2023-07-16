@@ -10,7 +10,7 @@ export default () => {
   return (
     <DateRangePicker
       class='max-w-md'
-      value={value}
+      value={value.value}
       onValueChange={setValue}
     />
   )

@@ -1,8 +1,9 @@
-<svg width='300' height='190' viewBox='0 0 300 190' fill='none' xmlns='http://www.w3.org/2000/svg'>
-  <rect width='300' height='190' fill='white'/>
-  <g transform='translate(150, 95)'>
-    <image xlink:href='${sourceIconUrl}' width='60' height='60' x='-90' y='-25'/>
-    <image xlink:href='https://api.iconify.design/mdi:plus-circle-outline.svg?color=%23999999' width='32' height='32' x='-16' y='-16'/>
-    <image xlink:href='${destinationIconUrl}' width='60' height='60' x='36' y='-25'/>
+<svg width="300" height="190" viewBox="0 0 300 190" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="300" height="190" fill="white" />
+  <g transform="translate(150, 95)">
+    <image xlink:href="${sourceIconUrl}" width="60" height="60" x="-90" y="-25" />
+    <image xlink:href="https://api.iconify.design/mdi:plus-circle-outline.svg?color=%23999999" width="32" height="32"
+      x="-16" y="-16" />
+    <image xlink:href="${destinationIconUrl}" width="60" height="60" x="36" y="-25" />
   </g>
 </svg>
