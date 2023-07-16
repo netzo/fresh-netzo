@@ -1,23 +1,21 @@
 {
-  "uid": "workflow-dripify-leads-to-activecampaign-contacts-and-companies",
-  "status": "requested",
-  "name": "Send Dripify leads to ActiveCampaign contacts and companies",
-  "description": "This workflow seamlessly integrates Dripify leads with ActiveCampaign contacts and companies, providing a streamlined process for managing customer data. By automating the transfer of information, it eliminates the need for manual data entry and ensures accurate and up-to-date records, saving time and reducing errors. With complete control over the source code, users have the flexibility to customize and tailor the workflow to their specific needs, making it a versatile solution for any business or use case.",
-  "labels": [
-    "resource:dripify,resource:activecampaign,category:workflow,department:sales"
-  ],
-  "display": {
-    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-dripify-leads-to-activecampaign-contacts-and-companies/icon.svg"
-  },
-  "links": [
-    {
-      "rel": "repository",
-      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-dripify-leads-to-activecampaign-contacts-and-companies"
+    "uid": "workflow-dripify-leads-to-activecampaign-contacts-and-companies",
+    "status": "requested",
+    "name": "Send Dripify leads to ActiveCampaign contacts and companies",
+    "description": "This workflow seamlessly integrates Dripify leads with ActiveCampaign contacts and companies, providing a streamlined process for managing customer data. By automating the transfer of information, it eliminates the need for manual data entry and ensures accurate and up-to-date records, saving time and reducing errors. With complete control over the source code, users have the flexibility to customize and tailor the workflow to their specific needs, making it a versatile solution for any business or use case.",
+    "labels": ["resource:dripify,resource:activecampaign,category:workflow,department:sales"],
+    "display": {
+      "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-dripify-leads-to-activecampaign-contacts-and-companies/icon.svg"
     },
-    {
-      "rel": "readme",
-      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-dripify-leads-to-activecampaign-contacts-and-companies/src/readme.md"
-    }
-  ],
-  "item": {}
-}
+    "links": [
+      {
+        "rel": "repository",
+        "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-dripify-leads-to-activecampaign-contacts-and-companies"
+      },
+      {
+        "rel": "readme",
+        "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-dripify-leads-to-activecampaign-contacts-and-companies/src/readme.md"
+      }
+    ],
+    "item": {}
+  }

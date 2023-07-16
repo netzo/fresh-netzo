@@ -1,23 +1,21 @@
 {
-  "uid": "workflow-apollo-to-sap-hana-cloud-contacts-and-companies",
-  "status": "requested",
-  "name": "Send Apollo leads to SAP Hana Cloud contacts and companies",
-  "description": "This workflow seamlessly integrates Apollo leads with SAP Hana Cloud contacts and companies, enabling efficient data transfer and synchronization. By automating this process, it eliminates the need for manual data entry, saving time and reducing the risk of errors. Additionally, having complete control over the source code empowers users to customize and tailor the workflow to their specific needs, ensuring a perfect fit for any use case.",
-  "labels": [
-    "resource:apollo,resource:sap_hana_cloud,category:workflow,department:operations"
-  ],
-  "display": {
-    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-apollo-to-sap-hana-cloud-contacts-and-companies/icon.svg"
-  },
-  "links": [
-    {
-      "rel": "repository",
-      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-apollo-to-sap-hana-cloud-contacts-and-companies"
+    "uid": "workflow-apollo-to-sap-hana-cloud-contacts-and-companies",
+    "status": "requested",
+    "name": "Send Apollo leads to SAP Hana Cloud contacts and companies",
+    "description": "This workflow seamlessly integrates Apollo leads with SAP Hana Cloud contacts and companies, enabling efficient data transfer and synchronization. By automating this process, it eliminates the need for manual data entry, saving time and reducing the risk of errors. Additionally, having complete control over the source code empowers users to customize and tailor the workflow to their specific needs, ensuring a perfect fit for any use case.",
+    "labels": ["resource:apollo,resource:sap_hana_cloud,category:workflow,department:operations"],
+    "display": {
+      "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-apollo-to-sap-hana-cloud-contacts-and-companies/icon.svg"
     },
-    {
-      "rel": "readme",
-      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-apollo-to-sap-hana-cloud-contacts-and-companies/src/readme.md"
-    }
-  ],
-  "item": {}
-}
+    "links": [
+      {
+        "rel": "repository",
+        "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-apollo-to-sap-hana-cloud-contacts-and-companies"
+      },
+      {
+        "rel": "readme",
+        "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-apollo-to-sap-hana-cloud-contacts-and-companies/src/readme.md"
+      }
+    ],
+    "item": {}
+  }
