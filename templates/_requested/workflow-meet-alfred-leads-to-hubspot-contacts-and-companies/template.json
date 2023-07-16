@@ -9,16 +9,16 @@
     "category:workflow"
   ],
   "display": {
-    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-meet-alfred-leads-to-hubspot-contacts-and-companies/icon.svg"
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-meet-alfred-leads-to-hubspot-contacts-and-companies/icon.svg"
   },
   "links": [
     {
       "rel": "repository",
-      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-meet-alfred-leads-to-hubspot-contacts-and-companies"
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-meet-alfred-leads-to-hubspot-contacts-and-companies"
     },
     {
       "rel": "readme",
-      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-meet-alfred-leads-to-hubspot-contacts-and-companies/src/readme.md"
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-meet-alfred-leads-to-hubspot-contacts-and-companies/src/readme.md"
     }
   ],
   "item": {}

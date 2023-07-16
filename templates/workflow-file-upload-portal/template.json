@@ -8,7 +8,7 @@
     "type:productivity"
   ],
   "display": {
-    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-file-upload-portal/icon.svg"
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-file-upload-portal/icon.svg"
   },
   "links": [
     {
@@ -17,7 +17,7 @@
     },
     {
       "rel": "readme",
-      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-file-upload-portal/src/readme.md"
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-file-upload-portal/src/readme.md"
     }
   ],
   "item": {

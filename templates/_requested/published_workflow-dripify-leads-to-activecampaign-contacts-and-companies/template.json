@@ -1,21 +1,23 @@
 {
-    "uid": "workflow-dripify-leads-to-activecampaign-contacts-and-companies",
-    "status": "published",
-    "name": "Send Dripify leads to ActiveCampaign contacts and companies",
-    "description": "#ERROR!",
-    "labels": ["category:-category:-category:workflows"],
-    "display": {
-      "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-dripify-leads-to-activecampaign-contacts-and-companies/icon.svg"
+  "uid": "workflow-dripify-leads-to-activecampaign-contacts-and-companies",
+  "status": "published",
+  "name": "Send Dripify leads to ActiveCampaign contacts and companies",
+  "description": "#ERROR!",
+  "labels": [
+    "category:-category:-category:workflows"
+  ],
+  "display": {
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-dripify-leads-to-activecampaign-contacts-and-companies/icon.svg"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-dripify-leads-to-activecampaign-contacts-and-companies"
     },
-    "links": [
-      {
-        "rel": "repository",
-        "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-dripify-leads-to-activecampaign-contacts-and-companies"
-      },
-      {
-        "rel": "readme",
-        "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-dripify-leads-to-activecampaign-contacts-and-companies/src/readme.md"
-      }
-    ],
-    "item": {}
-  }
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-dripify-leads-to-activecampaign-contacts-and-companies/src/readme.md"
+    }
+  ],
+  "item": {}
+}
