@@ -1,21 +1,21 @@
 {
-    "uid": "workflow-send-waalaxy-leads-to-holded-contacts-and-companies",
-    "status": "requested",
-    "name": "Send Waalaxy leads to Holded contacts and companies",
-    "description": "This workflow seamlessly integrates Waalaxy leads with Holded contacts and companies, eliminating the need for manual data entry and ensuring accurate and up-to-date information. By automating this process, users can save time and effort, allowing them to focus on more important tasks and improving overall productivity. Additionally, with complete control over the source code, users have the flexibility to customize and tailor the workflow to their specific needs, making it a versatile solution for any use case.",
-    "labels": ["api:waalaxy", "api:holded", "category:workflow"],
-    "display": {
-      "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-send-waalaxy-leads-to-holded-contacts-and-companies/icon.svg"
+  "uid": "workflow-send-waalaxy-leads-to-holded-contacts-and-companies",
+  "status": "requested",
+  "name": "Send Waalaxy leads to Holded contacts and companies",
+  "description": "This workflow seamlessly integrates Waalaxy leads with Holded contacts and companies, eliminating the need for manual data entry and ensuring accurate and up-to-date information. By automating this process, users can save time and effort, allowing them to focus on more important tasks and improving overall productivity. Additionally, with complete control over the source code, users have the flexibility to customize and tailor the workflow to their specific needs, making it a versatile solution for any use case.",
+  "labels": ["api:waalaxy", "api:holded", "category:workflow"],
+  "display": {
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-send-waalaxy-leads-to-holded-contacts-and-companies/icon.svg"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-send-waalaxy-leads-to-holded-contacts-and-companies"
     },
-    "links": [
-      {
-        "rel": "repository",
-        "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-send-waalaxy-leads-to-holded-contacts-and-companies"
-      },
-      {
-        "rel": "readme",
-        "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-send-waalaxy-leads-to-holded-contacts-and-companies/src/readme.md"
-      }
-    ],
-    "item": {}
-  }
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-send-waalaxy-leads-to-holded-contacts-and-companies/src/readme.md"
+    }
+  ],
+  "item": {}
+}

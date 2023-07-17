@@ -1,21 +1,21 @@
 {
-    "uid": "workflow-send-meet-alfred-leads-to-hubspot-contacts-and-companies",
-    "status": "requested",
-    "name": "Send Meet Alfred leads to HubSpot contacts and companies",
-    "description": "This workflow seamlessly integrates Meet Alfred leads with HubSpot contacts and companies, providing a streamlined process for managing and nurturing potential leads. By automating the transfer of data, it eliminates the need for manual entry and ensures accurate and up-to-date information, saving time and reducing the risk of errors. With complete control over the source code, users have the flexibility to customize and tailor the workflow to their specific needs, making it a versatile solution for any use case.",
-    "labels": ["api:meetalfred", "api:hubspot", "category:workflow"],
-    "display": {
-      "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-send-meet-alfred-leads-to-hubspot-contacts-and-companies/icon.svg"
+  "uid": "workflow-send-meet-alfred-leads-to-hubspot-contacts-and-companies",
+  "status": "requested",
+  "name": "Send Meet Alfred leads to HubSpot contacts and companies",
+  "description": "This workflow seamlessly integrates Meet Alfred leads with HubSpot contacts and companies, providing a streamlined process for managing and nurturing potential leads. By automating the transfer of data, it eliminates the need for manual entry and ensures accurate and up-to-date information, saving time and reducing the risk of errors. With complete control over the source code, users have the flexibility to customize and tailor the workflow to their specific needs, making it a versatile solution for any use case.",
+  "labels": ["api:meetalfred", "api:hubspot", "category:workflow"],
+  "display": {
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-send-meet-alfred-leads-to-hubspot-contacts-and-companies/icon.svg"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-send-meet-alfred-leads-to-hubspot-contacts-and-companies"
     },
-    "links": [
-      {
-        "rel": "repository",
-        "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-send-meet-alfred-leads-to-hubspot-contacts-and-companies"
-      },
-      {
-        "rel": "readme",
-        "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-send-meet-alfred-leads-to-hubspot-contacts-and-companies/src/readme.md"
-      }
-    ],
-    "item": {}
-  }
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-send-meet-alfred-leads-to-hubspot-contacts-and-companies/src/readme.md"
+    }
+  ],
+  "item": {}
+}

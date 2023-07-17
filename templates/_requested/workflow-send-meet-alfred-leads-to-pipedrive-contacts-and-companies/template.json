@@ -1,21 +1,21 @@
 {
-    "uid": "workflow-send-meet-alfred-leads-to-pipedrive-contacts-and-companies",
-    "status": "requested",
-    "name": "Send Meet Alfred leads to Pipedrive contacts and companies",
-    "description": "This workflow seamlessly integrates Meet Alfred leads with Pipedrive contacts and companies, ensuring a smooth transfer of valuable information. It eliminates the hassle of manually inputting data, saving time and effort for sales teams. With complete control over the source code, users can easily customize and tailor the workflow to perfectly align with their unique requirements and business processes.",
-    "labels": ["api:meetalfred", "api:pipedrive", "category:workflow"],
-    "display": {
-      "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-send-meet-alfred-leads-to-pipedrive-contacts-and-companies/icon.svg"
+  "uid": "workflow-send-meet-alfred-leads-to-pipedrive-contacts-and-companies",
+  "status": "requested",
+  "name": "Send Meet Alfred leads to Pipedrive contacts and companies",
+  "description": "This workflow seamlessly integrates Meet Alfred leads with Pipedrive contacts and companies, ensuring a smooth transfer of valuable information. It eliminates the hassle of manually inputting data, saving time and effort for sales teams. With complete control over the source code, users can easily customize and tailor the workflow to perfectly align with their unique requirements and business processes.",
+  "labels": ["api:meetalfred", "api:pipedrive", "category:workflow"],
+  "display": {
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-send-meet-alfred-leads-to-pipedrive-contacts-and-companies/icon.svg"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-send-meet-alfred-leads-to-pipedrive-contacts-and-companies"
     },
-    "links": [
-      {
-        "rel": "repository",
-        "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-send-meet-alfred-leads-to-pipedrive-contacts-and-companies"
-      },
-      {
-        "rel": "readme",
-        "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-send-meet-alfred-leads-to-pipedrive-contacts-and-companies/src/readme.md"
-      }
-    ],
-    "item": {}
-  }
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-send-meet-alfred-leads-to-pipedrive-contacts-and-companies/src/readme.md"
+    }
+  ],
+  "item": {}
+}

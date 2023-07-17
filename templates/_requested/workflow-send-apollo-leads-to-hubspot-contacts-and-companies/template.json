@@ -1,21 +1,21 @@
 {
-    "uid": "workflow-send-apollo-leads-to-hubspot-contacts-and-companies",
-    "status": "requested",
-    "name": "Send Apollo leads to HubSpot contacts and companies",
-    "description": "This workflow seamlessly integrates Apollo leads with HubSpot contacts and companies, ensuring a smooth transfer of valuable customer information. By automating this process, it eliminates the need for manual data entry, saving time and reducing the risk of errors. With complete control over the source code, users can easily customize and tailor the workflow to their specific needs, making it a versatile solution for any business use case.",
-    "labels": ["api:apollo", "api:hubspot", "category:workflow"],
-    "display": {
-      "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-send-apollo-leads-to-hubspot-contacts-and-companies/icon.svg"
+  "uid": "workflow-send-apollo-leads-to-hubspot-contacts-and-companies",
+  "status": "requested",
+  "name": "Send Apollo leads to HubSpot contacts and companies",
+  "description": "This workflow seamlessly integrates Apollo leads with HubSpot contacts and companies, ensuring a smooth transfer of valuable customer information. By automating this process, it eliminates the need for manual data entry, saving time and reducing the risk of errors. With complete control over the source code, users can easily customize and tailor the workflow to their specific needs, making it a versatile solution for any business use case.",
+  "labels": ["api:apollo", "api:hubspot", "category:workflow"],
+  "display": {
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-send-apollo-leads-to-hubspot-contacts-and-companies/icon.svg"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-send-apollo-leads-to-hubspot-contacts-and-companies"
     },
-    "links": [
-      {
-        "rel": "repository",
-        "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-send-apollo-leads-to-hubspot-contacts-and-companies"
-      },
-      {
-        "rel": "readme",
-        "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-send-apollo-leads-to-hubspot-contacts-and-companies/src/readme.md"
-      }
-    ],
-    "item": {}
-  }
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-send-apollo-leads-to-hubspot-contacts-and-companies/src/readme.md"
+    }
+  ],
+  "item": {}
+}

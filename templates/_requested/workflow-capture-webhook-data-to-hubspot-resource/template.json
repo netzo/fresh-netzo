@@ -1,21 +1,21 @@
 {
-    "uid": "workflow-capture-webhook-data-to-hubspot-resource",
-    "status": "requested",
-    "name": "Capture Webhook data to HubSpot resource",
-    "description": "This workflow allows you to seamlessly capture Webhook data and integrate it into your HubSpot resource, providing you with a centralized platform to manage and analyze your data effectively. By automating this process, it eliminates the need for manual data entry, saving you time and ensuring accurate data transfer. With complete control over the source code, you have the flexibility to customize and tailor the workflow to perfectly fit your unique business needs, allowing for easy adaptation and extension to any use case.",
-    "labels": ["api:webhook", "api:hubspot", "category:workflow"],
-    "display": {
-      "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-capture-webhook-data-to-hubspot-resource/icon.svg"
+  "uid": "workflow-capture-webhook-data-to-hubspot-resource",
+  "status": "requested",
+  "name": "Capture Webhook data to HubSpot resource",
+  "description": "This workflow allows you to seamlessly capture Webhook data and integrate it into your HubSpot resource, providing you with a centralized platform to manage and analyze your data effectively. By automating this process, it eliminates the need for manual data entry, saving you time and ensuring accurate data transfer. With complete control over the source code, you have the flexibility to customize and tailor the workflow to perfectly fit your unique business needs, allowing for easy adaptation and extension to any use case.",
+  "labels": ["api:webhook", "api:hubspot", "category:workflow"],
+  "display": {
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-capture-webhook-data-to-hubspot-resource/icon.svg"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-capture-webhook-data-to-hubspot-resource"
     },
-    "links": [
-      {
-        "rel": "repository",
-        "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-capture-webhook-data-to-hubspot-resource"
-      },
-      {
-        "rel": "readme",
-        "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-capture-webhook-data-to-hubspot-resource/src/readme.md"
-      }
-    ],
-    "item": {}
-  }
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-capture-webhook-data-to-hubspot-resource/src/readme.md"
+    }
+  ],
+  "item": {}
+}
