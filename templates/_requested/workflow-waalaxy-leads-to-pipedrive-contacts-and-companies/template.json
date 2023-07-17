@@ -1,25 +1,21 @@
 {
-  "uid": "workflow-waalaxy-leads-to-pipedrive-contacts-and-companies",
-  "status": "requested",
-  "name": "Send Waalaxy leads to Pipedrive contacts and companies",
-  "description": "This workflow seamlessly transfers leads generated through Waalaxy to Pipedrive, ensuring a smooth transition from prospecting to customer relationship management. By automating this process, it eliminates the need for manual data entry, saving time and reducing the risk of errors. Additionally, having complete control over the source code allows users to customize and tailor the workflow to their specific needs, making it adaptable and versatile for any use case.",
-  "labels": [
-    "api:waalaxy",
-    "api:pipedrive",
-    "category:workflow"
-  ],
-  "display": {
-    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-waalaxy-leads-to-pipedrive-contacts-and-companies/icon.svg"
-  },
-  "links": [
-    {
-      "rel": "repository",
-      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-waalaxy-leads-to-pipedrive-contacts-and-companies"
+    "uid": "workflow-waalaxy-leads-to-pipedrive-contacts-and-companies",
+    "status": "requested",
+    "name": "Send Waalaxy leads to Pipedrive contacts and companies",
+    "description": "This workflow seamlessly transfers leads generated through Waalaxy to Pipedrive, ensuring a smooth transition from prospecting to customer relationship management. By automating this process, it eliminates the need for manual data entry, saving time and reducing the risk of errors. Additionally, having complete control over the source code allows users to customize and tailor the workflow to their specific needs, making it adaptable and versatile for any use case.",
+    "labels": ["'api:waalaxy','api:pipedrive','category:workflow'"],
+    "display": {
+      "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-waalaxy-leads-to-pipedrive-contacts-and-companies/icon.svg"
     },
-    {
-      "rel": "readme",
-      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-waalaxy-leads-to-pipedrive-contacts-and-companies/src/readme.md"
-    }
-  ],
-  "item": {}
-}
+    "links": [
+      {
+        "rel": "repository",
+        "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-waalaxy-leads-to-pipedrive-contacts-and-companies"
+      },
+      {
+        "rel": "readme",
+        "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-waalaxy-leads-to-pipedrive-contacts-and-companies/src/readme.md"
+      }
+    ],
+    "item": {}
+  }
