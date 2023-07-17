@@ -16,13 +16,13 @@ export interface NSectionBlockProps extends JSX.HTMLAttributes<HTMLDivElement> {
 }
 
 export const NSectionBlock = (props: NSectionBlockProps) => {
-  const ui = (ui?: string) => ({
+  const ui = (extra?: string) => ({
     containerClass: "",
     open: true,
     padding: true,
     collapse: true,
     ...props,
-    class: n(["n-panel-grids-center", props.class, ui]),
+    class: n(["n-panel-grids-center", props.class, extra]),
   });
 
   const open = useSignal(props.open ?? true);

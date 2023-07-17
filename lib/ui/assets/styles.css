@@ -90,6 +90,13 @@ html.dark {
   z-index: 1;
 }
 
+/* NInputDate */
+
+.react-datepicker-wrapper .n-input-text input {
+  all: unset;
+  width: 100%;
+}
+
 /* NSectionBlock */
 
 details.n-section-block {

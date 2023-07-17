@@ -31,6 +31,10 @@
     "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.2.3",
     "std/": "https://deno.land/std@0.190.0/",
     "netzo/": "../../",
-    "radash": "https://esm.sh/radash@11.0.0"
+    "radash": "https://esm.sh/radash@11.0.0",
+    "react": "https://esm.sh/preact/compat",
+    "react-dom": "https://esm.sh/preact/compat",
+    "react/jsx-runtime": "https://esm.sh/preact/compat/jsx-runtime",
+    "@tremor/react": "https://esm.sh/@tremor/react?external=react,react-dom,react/jsx-runtime"
   }
 }

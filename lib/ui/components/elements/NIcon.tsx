@@ -6,9 +6,9 @@ export interface NIconProps extends JSX.HTMLAttributes<HTMLDivElement> {
 }
 
 export const NIcon = (props: NIconProps) => {
-  const ui = (ui?: string) => ({
+  const ui = (extra?: string) => ({
     ...props,
-    class: n([props.class, ui, props.icon]),
+    class: n([props.class, extra, props.icon]),
   });
 
   return <div {...ui()} />;

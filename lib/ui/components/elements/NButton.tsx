@@ -9,12 +9,12 @@ export interface NButtonProps extends JSX.HTMLAttributes<HTMLButtonElement> {
 }
 
 export const NButton = (props: NButtonProps) => {
-  const ui = (ui?: string) => ({
+  const ui = (extra?: string) => ({
     ...props,
     class: n([
       "n-button active:n-button-active focus-visible:n-focus-base n-transition hover:n-button-hover n-disabled:n-disabled",
       props.class,
-      ui,
+      extra,
     ]),
   });
 

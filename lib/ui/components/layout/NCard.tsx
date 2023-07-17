@@ -6,9 +6,9 @@ export interface NCardProps extends JSX.HTMLAttributes<HTMLDivElement> {
 }
 
 export function NCard(props: NCardProps) {
-  const ui = (ui?: string) => ({
+  const ui = (extra?: string) => ({
     ...props,
-    class: n(["n-card n-card-base", props.class, ui]),
+    class: n(["n-card n-card-base", props.class, extra]),
   });
 
   return (

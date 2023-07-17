@@ -12,12 +12,12 @@ export interface NRadioProps extends JSX.HTMLAttributes<HTMLInputElement> {
 }
 
 export function NRadio(props: NRadioProps) {
-  const ui = (ui?: string) => ({
+  const ui = (extra?: string) => ({
     ...props,
     class: n([
       "n-radio inline-flex hover:n-radio-hover select-none items-center n-disabled:n-disabled",
       props.class,
-      ui,
+      extra,
     ]),
   });
 
