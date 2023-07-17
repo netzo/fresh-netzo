@@ -1,4 +1,4 @@
-import { computed, get, signal } from '../deps.ts'
+import { computed, get, signal } from '../../deps.ts'
 
 export const useSearch = <T>(items: T[] = [], keys: string[]) => {
   if (!keys) keys = Object.keys(items[0] as object)
@@ -6,7 +6,7 @@ export const useSearch = <T>(items: T[] = [], keys: string[]) => {
   const search = signal('')
   const filteredItems = computed(() => {
     const query = search.value.toLowerCase()
-    return items.filter((item) => {
+    return !query ? items : items.filter((item) => {
       return keys.some((key: string) =>
         get(item, key)?.toString().toLowerCase().includes(query)
       )

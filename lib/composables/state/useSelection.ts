@@ -1,4 +1,4 @@
-import { computed, signal } from '../deps.ts'
+import { computed, signal } from '../../deps.ts'
 
 export const useSelection = <T>(items: T[] = []) => {
   const selected = signal<T[]>([])

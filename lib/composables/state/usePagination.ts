@@ -1,4 +1,4 @@
-import { computed, signal } from '../deps.ts'
+import { computed, signal } from '../../deps.ts'
 
 export const usePagination = <T>(items: T[] = []) => {
   const page = signal(1)
