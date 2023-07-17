@@ -3,7 +3,7 @@
     "status": "requested",
     "name": "Send Waalaxy leads to Brevo contacts and companies",
     "description": "This workflow seamlessly transfers leads generated through Waalaxy to Brevo's contacts and companies, streamlining the process of managing and nurturing potential customers. By automating this data transfer, it eliminates the need for manual entry, saving time and reducing the risk of errors. Additionally, users have complete control over the source code, allowing them to customize and tailor the workflow to their specific needs, ensuring it fits any use case perfectly.",
-    "labels": ["'api:waalaxy','api:brevo','category:workflow'"],
+    "labels": ["api:waalaxy", "api:brevo", "category:workflow"],
     "display": {
       "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-waalaxy-leads-to-brevo-contacts-and-companies/icon.svg"
     },

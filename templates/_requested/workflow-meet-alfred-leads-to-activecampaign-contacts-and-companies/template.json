@@ -3,7 +3,7 @@
     "status": "requested",
     "name": "Send Meet Alfred leads to ActiveCampaign contacts and companies",
     "description": "This workflow seamlessly integrates Meet Alfred leads with ActiveCampaign contacts and companies, providing a streamlined process for managing and nurturing potential customers. By automating the transfer of leads, it eliminates the need for manual data entry and ensures that no valuable prospects are missed. Additionally, the complete control over the source code empowers users to customize and tailor the workflow to their specific needs, allowing for maximum adaptability and flexibility.",
-    "labels": ["'api:meetalfred','api:activecampaign','category:workflow'"],
+    "labels": ["api:meetalfred", "api:activecampaign", "category:workflow"],
     "display": {
       "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-meet-alfred-leads-to-activecampaign-contacts-and-companies/icon.svg"
     },

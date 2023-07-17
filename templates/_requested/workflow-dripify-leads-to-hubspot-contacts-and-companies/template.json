@@ -3,7 +3,7 @@
     "status": "requested",
     "name": "Send Dripify leads to HubSpot contacts and companies",
     "description": "This workflow seamlessly integrates Dripify leads with HubSpot contacts and companies, ensuring a smooth transfer of valuable customer data. By automating this process, businesses can save time and effort, while also gaining a comprehensive view of their leads and customers in one centralized platform. Additionally, having complete control over the source code allows for easy customization and adaptation to meet specific business needs, providing a flexible solution for any use case.",
-    "labels": ["'api:dripify','api:hubspot','category:workflow'"],
+    "labels": ["api:dripify", "api:hubspot", "category:workflow"],
     "display": {
       "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-dripify-leads-to-hubspot-contacts-and-companies/icon.svg"
     },
