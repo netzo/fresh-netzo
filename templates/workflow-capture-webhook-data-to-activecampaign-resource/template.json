@@ -1,0 +1,31 @@
+{
+  "uid": "workflow-capture-webhook-data-to-activecampaign-resource",
+  "status": "published",
+  "name": "Capture Webhook data to ActiveCampaign resource",
+  "description": "This workflow allows you to seamlessly capture Webhook data and integrate it into your ActiveCampaign resource, providing you with a streamlined process for managing and organizing your customer data. By automating this task, you can save time and effort, ensuring that no valuable information is missed or lost. Additionally, with complete control over the source code, you have the flexibility to customize and tailor the workflow to perfectly fit your specific needs and requirements.",
+  "labels": ["api:webhook", "api:activecampaign", "category:workflow"],
+  "display": {
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-capture-webhook-data-to-activecampaign-resource/icon.svg"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-capture-webhook-data-to-activecampaign-resource"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-capture-webhook-data-to-activecampaign-resource/src/readme.md"
+    }
+  ],
+  "item": {
+    "_type": "project",
+    "src": "https://api.github.com/repos/netzo/netzo/contents/templates/workflow-capture-webhook-data-to-activecampaign-resource/src",
+    "configuration": {
+      "entrypoint": "main.ts",
+      "envVars": {},
+      "permissions": {
+        "net": true
+      }
+    }
+  }
+}

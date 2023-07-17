@@ -17,5 +17,15 @@
       "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-capture-webhook-data-to-hubspot-resource/src/readme.md"
     }
   ],
-  "item": {}
+  "item": {
+    "_type": "project",
+    "src": "https://api.github.com/repos/netzo/netzo/contents/templates/workflow-capture-webhook-data-to-hubspot-resource/src",
+    "configuration": {
+      "entrypoint": "main.ts",
+      "envVars": {},
+      "permissions": {
+        "net": true
+      }
+    }
+  }
 }

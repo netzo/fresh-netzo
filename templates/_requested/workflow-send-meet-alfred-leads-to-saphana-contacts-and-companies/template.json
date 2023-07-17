@@ -1,0 +1,21 @@
+{
+  "uid": "workflow-send-meet-alfred-leads-to-saphana-contacts-and-companies",
+  "status": "requested",
+  "name": "Send Meet Alfred leads to SAP Hana contacts and companies",
+  "description": "This workflow seamlessly integrates Meet Alfred leads with SAP Hana contacts and companies, ensuring a smooth transfer of data between the two platforms. By automating this process, it eliminates the need for manual data entry, saving time and reducing the risk of errors. Additionally, having complete control over the source code allows users to customize and tailor the workflow to their specific needs, making it adaptable and flexible for any use case.",
+  "labels": ["api:meetalfred", "api:saphana", "category:workflow"],
+  "display": {
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-send-meet-alfred-leads-to-saphana-contacts-and-companies/icon.svg"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-send-meet-alfred-leads-to-saphana-contacts-and-companies"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-send-meet-alfred-leads-to-saphana-contacts-and-companies/src/readme.md"
+    }
+  ],
+  "item": {}
+}
