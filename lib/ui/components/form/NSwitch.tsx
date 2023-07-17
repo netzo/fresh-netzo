@@ -13,12 +13,12 @@ export interface NSwitchProps extends JSX.HTMLAttributes<HTMLInputElement> {
 }
 
 export function NSwitch(props: NSwitchProps) {
-  const ui = (ui?: string) => ({
+  const ui = (extra?: string) => ({
     ...props,
     class: n([
       "n-switch n-switch-base hover:n-switch-hover n-disabled:n-disabled",
       props.class,
-      ui,
+      extra,
     ]),
   });
 

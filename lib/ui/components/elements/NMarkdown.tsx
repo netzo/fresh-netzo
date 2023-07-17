@@ -1,4 +1,4 @@
-import { JSX } from "preact";
+import { JSX } from 'preact'
 import { IS_BROWSER } from 'fresh/runtime.ts'
 
 interface NMarkdownProps extends JSX.HTMLAttributes<HTMLSpanElement> {

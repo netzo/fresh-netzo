@@ -13,7 +13,7 @@ export interface NSelectProps extends JSX.HTMLAttributes<HTMLSelectElement> {
 }
 
 export function NSelect(props: NSelectProps) {
-  const ui = (ui?: string) => ({
+  const ui = (extra?: string) => ({
     value: undefined,
     placeholder: "",
     disabled: false,
@@ -22,7 +22,7 @@ export function NSelect(props: NSelectProps) {
     class: n([
       "w-full flex-auto n-bg-base !outline-none",
       props.class,
-      ui,
+      extra,
     ]),
   });
 
@@ -33,7 +33,7 @@ export function NSelect(props: NSelectProps) {
   };
 
   return (
-    <div class="n-text-input flex flex items-center border n-border-base rounded px-2 py-1 focus-within:n-focus-base focus-within:border-context n-bg-base">
+    <div class="n-input-text flex flex items-center border n-border-base rounded px-2 py-1 focus-within:n-focus-base focus-within:border-context n-bg-base">
       {props.icon && (
         <NIcon icon={props.icon} class="mr-0.4em text-1.1em op50" />
       )}

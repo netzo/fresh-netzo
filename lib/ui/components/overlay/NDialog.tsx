@@ -7,9 +7,9 @@ export interface NDialogProps extends JSX.HTMLAttributes<HTMLDialogElement> {
 }
 
 export const NDialog = (props: NDialogProps) => {
-  const ui = (ui: string) => ({
+  const ui = (extra?: string) => ({
     ...props,
-    class: n([props.class, ui]),
+    class: n([props.class, extra]),
   });
 
   const dialogRef = createRef<HTMLDialogElement>();

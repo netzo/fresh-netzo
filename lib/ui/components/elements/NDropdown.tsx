@@ -9,12 +9,12 @@ export interface NDropdownProps extends JSX.HTMLAttributes<HTMLDivElement> {
 }
 
 export const NDropdown = (props: NDropdownProps) => {
-  const ui = (ui: string) => ({
+  const ui = (extra?: string) => ({
     ...props,
     class: n([
       "absolute z-100 border n-border-base rounded shadow n-transition n-bg-base",
       props.class,
-      ui,
+      extra,
     ]),
   });
 

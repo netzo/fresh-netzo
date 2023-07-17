@@ -1,5 +1,5 @@
 import { Head } from 'fresh/runtime.ts'
-import Demo from '../islands/Demo.tsx'
+import Docs from '../islands/Docs.tsx'
 
 export default function Home() {
   return (
@@ -9,7 +9,7 @@ export default function Home() {
         <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
       </Head>
       <main class='p-4 mx-auto max-w-screen-lg'>
-        <Demo />
+        <Docs />
       </main>
     </>
   )

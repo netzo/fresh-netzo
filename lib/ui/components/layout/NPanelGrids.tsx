@@ -6,9 +6,9 @@ export interface NPanelGridsProps extends JSX.HTMLAttributes<HTMLDivElement> {
 }
 
 export const NPanelGrids = (props: NPanelGridsProps) => {
-  const ui = (ui?: string) => ({
+  const ui = (extra?: string) => ({
     ...props,
-    class: n(["n-panel-grids-center", props.class, ui]),
+    class: n(["n-panel-grids-center", props.class, extra]),
   });
 
   return (

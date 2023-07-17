@@ -3,7 +3,7 @@
  * @param groups - Array of classes to join
  * @returns Deduplicated and joined classes
  */
-export const n = (groups: string[]): string => {
+export const n = (groups: (string | undefined)[]): string => {
   const classes = groups.reduce<string[]>((acc, group) => {
     const groupClasses = group?.split?.(' ') ?? []
     return [...acc, ...groupClasses]

@@ -10,13 +10,13 @@ export interface NCodeBlockProps extends JSX.HTMLAttributes<HTMLPreElement> {
 }
 
 export function NCodeBlock(props: NCodeBlockProps) {
-  const ui = (ui?: string) => ({
+  const ui = (extra?: string) => ({
     ...props,
     class: n([
       "n-code-block",
       props.lines ? "n-code-block-lines" : "",
       props.class,
-      ui,
+      extra,
     ]),
   });
 

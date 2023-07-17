@@ -6,9 +6,9 @@ export interface NChipProps extends JSX.HTMLAttributes<HTMLSpanElement> {
 }
 
 export const NChip = (props: NChipProps) => {
-  const ui = (ui?: string) => ({
+  const ui = (extra?: string) => ({
     ...props,
-    class: n(["n-chip", props.class, ui]),
+    class: n(["n-chip", props.class, extra]),
   });
 
   return (

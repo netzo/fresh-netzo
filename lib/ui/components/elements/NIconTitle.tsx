@@ -8,9 +8,9 @@ export interface NIconTitleProps extends JSX.HTMLAttributes<HTMLDivElement> {
 }
 
 export const NIconTitle = (props: NIconTitleProps) => {
-  const ui = (ui?: string) => ({
+  const ui = (extra?: string) => ({
     ...props,
-    class: n(["flex gap-3 items-center", props.class, ui]),
+    class: n(["flex gap-3 items-center", props.class, extra]),
   });
 
   return (

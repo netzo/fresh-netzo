@@ -1,5 +1,5 @@
 import { useComputed, useSignal } from '@preact/signals'
-import { IS_BROWSER } from 'https://deno.land/x/fresh@1.2.0/src/runtime/utils.ts'
+import { IS_BROWSER } from 'fresh/runtime.ts'
 
 interface Props {
   src: string

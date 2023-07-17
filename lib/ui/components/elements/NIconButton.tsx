@@ -10,9 +10,9 @@ export interface NIconButtonProps
 }
 
 export const NIconButton = (props: NIconButtonProps) => {
-  const ui = (ui?: string) => ({
+  const ui = (extra?: string) => ({
     ...props,
-    class: n(["n-transition n-icon-button", props.class, ui]),
+    class: n(["n-transition n-icon-button", props.class, extra]),
   });
 
   return props.href
