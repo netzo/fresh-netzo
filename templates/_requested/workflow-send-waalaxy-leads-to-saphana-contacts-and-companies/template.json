@@ -1,0 +1,21 @@
+{
+  "uid": "workflow-send-waalaxy-leads-to-saphana-contacts-and-companies",
+  "status": "requested",
+  "name": "Send Waalaxy leads to SAP Hana contacts and companies",
+  "description": "This workflow seamlessly integrates Waalaxy leads with SAP Hana contacts and companies, eliminating the need for manual data entry and ensuring accurate and up-to-date information. By automating this process, users can save time and effort while maintaining a comprehensive and synchronized database. Additionally, having complete control over the source code allows for easy customization and tailoring to specific business needs, ensuring a perfect fit for any use case.",
+  "labels": ["api:waalaxy", "api:saphana", "category:workflow"],
+  "display": {
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-send-waalaxy-leads-to-saphana-contacts-and-companies/icon.svg"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-send-waalaxy-leads-to-saphana-contacts-and-companies"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-send-waalaxy-leads-to-saphana-contacts-and-companies/src/readme.md"
+    }
+  ],
+  "item": {}
+}

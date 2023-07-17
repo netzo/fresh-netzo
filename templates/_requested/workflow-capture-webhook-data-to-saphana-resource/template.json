@@ -1,0 +1,21 @@
+{
+  "uid": "workflow-capture-webhook-data-to-saphana-resource",
+  "status": "requested",
+  "name": "Capture Webhook data to SAP Hana resource",
+  "description": "This workflow enables seamless integration between webhooks and SAP Hana, allowing for real-time data capture and synchronization. By automating the process, it eliminates the need for manual data entry, reducing errors and saving time. With complete control over the source code, users can easily customize and tailor the workflow to their specific needs, ensuring a perfect fit for any use case.",
+  "labels": ["api:webhook", "api:saphana", "category:workflow"],
+  "display": {
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-capture-webhook-data-to-saphana-resource/icon.svg"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-capture-webhook-data-to-saphana-resource"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-capture-webhook-data-to-saphana-resource/src/readme.md"
+    }
+  ],
+  "item": {}
+}

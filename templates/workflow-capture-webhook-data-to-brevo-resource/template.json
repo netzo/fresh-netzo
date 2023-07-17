@@ -1,0 +1,31 @@
+{
+  "uid": "workflow-capture-webhook-data-to-brevo-resource",
+  "status": "published",
+  "name": "Capture Webhook data to Brevo resource",
+  "description": "This workflow enables seamless integration of webhook data into Brevo resource, providing users with real-time updates and eliminating the need for manual data entry. It resolves the pain point of time-consuming and error-prone data transfer, allowing users to focus on more important tasks. With complete control over the source code, users can easily customize and tailor the workflow to perfectly fit their specific use case, ensuring maximum efficiency and flexibility.",
+  "labels": ["api:webhook", "api:brevo", "category:workflow"],
+  "display": {
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-capture-webhook-data-to-brevo-resource/icon.svg"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-capture-webhook-data-to-brevo-resource"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-capture-webhook-data-to-brevo-resource/src/readme.md"
+    }
+  ],
+  "item": {
+    "_type": "project",
+    "src": "https://api.github.com/repos/netzo/netzo/contents/templates/workflow-capture-webhook-data-to-brevo-resource/src",
+    "configuration": {
+      "entrypoint": "main.ts",
+      "envVars": {},
+      "permissions": {
+        "net": true
+      }
+    }
+  }
+}

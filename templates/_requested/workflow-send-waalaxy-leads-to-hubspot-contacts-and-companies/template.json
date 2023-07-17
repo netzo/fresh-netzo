@@ -17,5 +17,15 @@
       "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-send-waalaxy-leads-to-hubspot-contacts-and-companies/src/readme.md"
     }
   ],
-  "item": {}
+  "item": {
+    "_type": "project",
+    "src": "https://api.github.com/repos/netzo/netzo/contents/templates/workflow-send-waalaxy-leads-to-hubspot-contacts-and-companies/src",
+    "configuration": {
+      "entrypoint": "main.ts",
+      "envVars": {},
+      "permissions": {
+        "net": true
+      }
+    }
+  }
 }
