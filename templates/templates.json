@@ -56,9 +56,5 @@
   "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-company-website/template.json",
   "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-sales-dashboard/template.json",
   "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-statuspage/template.json",
-<<<<<<< HEAD
-  "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-file-upload-portal/template.json",
-=======
   "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-file-upload-portal/template.json"
->>>>>>> 6b30bb8739cf58d6493d5fdef4e488ee82898494
 ]
