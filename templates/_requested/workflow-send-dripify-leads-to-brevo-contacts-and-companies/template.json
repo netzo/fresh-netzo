@@ -1,0 +1,21 @@
+{
+    "uid": "workflow-send-dripify-leads-to-brevo-contacts-and-companies",
+    "status": "requested",
+    "name": "Send Dripify leads to Brevo contacts and companies",
+    "description": "This workflow seamlessly transfers leads generated through Dripify to Brevo's contact and company database, ensuring a smooth integration between the two platforms. By automating this process, it eliminates the need for manual data entry, saving time and reducing the risk of errors. Additionally, having complete control over the source code allows users to customize and tailor the workflow to their specific needs, ensuring it perfectly fits any use case.",
+    "labels": ["api:dripify", "api:brevo", "category:workflow"],
+    "display": {
+      "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-send-dripify-leads-to-brevo-contacts-and-companies/icon.svg"
+    },
+    "links": [
+      {
+        "rel": "repository",
+        "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-send-dripify-leads-to-brevo-contacts-and-companies"
+      },
+      {
+        "rel": "readme",
+        "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-send-dripify-leads-to-brevo-contacts-and-companies/src/readme.md"
+      }
+    ],
+    "item": {}
+  }

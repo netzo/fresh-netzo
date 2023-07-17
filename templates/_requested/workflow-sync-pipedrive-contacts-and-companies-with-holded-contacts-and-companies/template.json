@@ -1,0 +1,21 @@
+{
+    "uid": "workflow-sync-pipedrive-contacts-and-companies-with-holded-contacts-and-companies",
+    "status": "requested",
+    "name": "Sync Pipedrive contacts and companies with Holded contacts and companies",
+    "description": "This workflow seamlessly syncs Pipedrive contacts and companies with Holded contacts and companies, ensuring that all customer information remains up-to-date across both platforms. By automating this process, it eliminates the need for manual data entry and reduces the risk of errors or inconsistencies. With complete control over the source code, users can easily customize and tailor the workflow to their specific needs, allowing for a truly adaptable and flexible solution.",
+    "labels": ["api:pipedrive", "api:holded", "category:workflow"],
+    "display": {
+      "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-sync-pipedrive-contacts-and-companies-with-holded-contacts-and-companies/icon.svg"
+    },
+    "links": [
+      {
+        "rel": "repository",
+        "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-sync-pipedrive-contacts-and-companies-with-holded-contacts-and-companies"
+      },
+      {
+        "rel": "readme",
+        "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-sync-pipedrive-contacts-and-companies-with-holded-contacts-and-companies/src/readme.md"
+      }
+    ],
+    "item": {}
+  }
