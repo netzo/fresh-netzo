@@ -34,7 +34,7 @@ export function presetNetzo(user: UserConfig = {}): Preset {
               assert: { type: 'json' },
             }).then((i) => i.default),
         },
-        prefix: ['i-'],
+        prefix: ['i-', ''],
         scale: 1.2,
         extraProperties: {
           'display': 'inline-block',
@@ -43,6 +43,15 @@ export function presetNetzo(user: UserConfig = {}): Preset {
       }),
       ...(user.presets ?? []),
     ] as UserConfig['presets'],
+
+    preflights: [
+      {
+        getCSS: () => {
+          const url = new URL('./assets/styles.css', import.meta.url)
+          return fetch(url.href).then((res) => res.text())
+        },
+      },
+    ],
 
     // NOTE: build step required for transformers (see @unocss/unocss#1673)
     // transformers: [transformerDirectives(), transformerVariantGroup()],
@@ -147,18 +156,23 @@ export function presetNetzo(user: UserConfig = {}): Preset {
         'text-sm uppercase mb-2 leading-1.2em tracking-wide op50',
       ],
 
-      // badge:
-      ['n-badge', 'text-xs font-medium mr-2 px-2.5 py-0.5 rounded'],
+      // chip:
+      ['n-chip', 'text-xs font-medium mr-2 px-2.5 py-0.5 rounded'],
       [
-        /n-badge-(.*)$/,
+        /n-chip-(.*)$/,
         ([_, c]) =>
-          `n-badge bg-${c}-100 text-${c}-800 dark:bg-${c}-900 dark:text-${c}-300`,
+          `n-chip bg-${c}-100 text-${c}-800 dark:bg-${c}-900 dark:text-${c}-300`,
       ],
 
       // button
       [
-        'n-button-base',
+        'n-button',
         'border n-border-base rounded shadow-sm px-1em py-0.25em inline-flex items-center gap-1 op80 !outline-none touch-manipulation',
+      ],
+      [
+        /n-button-(.*)$/,
+        ([_, c]) =>
+          `bg-${c}-100 text-${c}-800 dark:bg-${c}-900 dark:text-${c}-300`,
       ],
       ['n-button-hover', 'op100 !border-context text-context'],
       ['n-button-active', 'n-active-base bg-context/5'],
@@ -172,7 +186,7 @@ export function presetNetzo(user: UserConfig = {}): Preset {
         'border n-border-base w-1.1em h-1.1em mr-1 text-white flex flex-none items-center rounded-sm overflow-visible',
       ],
       ['n-checkbox-box-checked', 'bg-context border-context'],
-      ['n-checkbox-icon', 'carbon-checkmark w-1em h-1em m-auto'],
+      ['n-checkbox-icon', 'mdi-check w-1em h-1em m-auto'],
 
       // radio
       [
