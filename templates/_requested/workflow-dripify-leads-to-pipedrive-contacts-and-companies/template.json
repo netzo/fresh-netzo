@@ -1,21 +1,25 @@
 {
-    "uid": "workflow-dripify-leads-to-pipedrive-contacts-and-companies",
-    "status": "requested",
-    "name": "Send Dripify leads to Pipedrive contacts and companies",
-    "description": "This workflow seamlessly transfers leads from Dripify to Pipedrive, ensuring a smooth transition of potential customers into your contact and company database. By automating this process, it eliminates the need for manual data entry, saving you time and reducing the risk of errors. With complete control over the source code, you have the flexibility to customize and tailor the workflow to perfectly align with your unique business needs, allowing for effortless adaptation and extension to any use case.",
-    "labels": ["api:dripify", "api:pipedrive", "category:workflow"],
-    "display": {
-      "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-dripify-leads-to-pipedrive-contacts-and-companies/icon.svg"
+  "uid": "workflow-dripify-leads-to-pipedrive-contacts-and-companies",
+  "status": "requested",
+  "name": "Send Dripify leads to Pipedrive contacts and companies",
+  "description": "This workflow seamlessly transfers leads from Dripify to Pipedrive, ensuring a smooth transition of potential customers into your contact and company database. By automating this process, it eliminates the need for manual data entry, saving you time and reducing the risk of errors. With complete control over the source code, you have the flexibility to customize and tailor the workflow to perfectly align with your unique business needs, allowing for effortless adaptation and extension to any use case.",
+  "labels": [
+    "api:dripify",
+    "api:pipedrive",
+    "category:workflow"
+  ],
+  "display": {
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-dripify-leads-to-pipedrive-contacts-and-companies/icon.svg"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-dripify-leads-to-pipedrive-contacts-and-companies"
     },
-    "links": [
-      {
-        "rel": "repository",
-        "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-dripify-leads-to-pipedrive-contacts-and-companies"
-      },
-      {
-        "rel": "readme",
-        "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-dripify-leads-to-pipedrive-contacts-and-companies/src/readme.md"
-      }
-    ],
-    "item": {}
-  }
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-dripify-leads-to-pipedrive-contacts-and-companies/src/readme.md"
+    }
+  ],
+  "item": {}
+}

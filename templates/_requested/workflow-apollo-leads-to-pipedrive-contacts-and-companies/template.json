@@ -1,21 +1,25 @@
 {
-    "uid": "workflow-apollo-leads-to-pipedrive-contacts-and-companies",
-    "status": "requested",
-    "name": "Send Apollo leads to Pipedrive contacts and companies",
-    "description": "This workflow seamlessly integrates Apollo leads with Pipedrive contacts and companies, eliminating the need for manual data entry and ensuring accurate and up-to-date information. By automating this process, users can save valuable time and effort, allowing them to focus on nurturing leads and closing deals. Additionally, with complete control over the source code, users have the flexibility to customize and tailor the workflow to their specific needs, making it a versatile solution for any use case.",
-    "labels": ["api:apollo", "api:pipedrive", "category:workflow"],
-    "display": {
-      "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-apollo-leads-to-pipedrive-contacts-and-companies/icon.svg"
+  "uid": "workflow-apollo-leads-to-pipedrive-contacts-and-companies",
+  "status": "requested",
+  "name": "Send Apollo leads to Pipedrive contacts and companies",
+  "description": "This workflow seamlessly integrates Apollo leads with Pipedrive contacts and companies, eliminating the need for manual data entry and ensuring accurate and up-to-date information. By automating this process, users can save valuable time and effort, allowing them to focus on nurturing leads and closing deals. Additionally, with complete control over the source code, users have the flexibility to customize and tailor the workflow to their specific needs, making it a versatile solution for any use case.",
+  "labels": [
+    "api:apollo",
+    "api:pipedrive",
+    "category:workflow"
+  ],
+  "display": {
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-apollo-leads-to-pipedrive-contacts-and-companies/icon.svg"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-apollo-leads-to-pipedrive-contacts-and-companies"
     },
-    "links": [
-      {
-        "rel": "repository",
-        "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-apollo-leads-to-pipedrive-contacts-and-companies"
-      },
-      {
-        "rel": "readme",
-        "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-apollo-leads-to-pipedrive-contacts-and-companies/src/readme.md"
-      }
-    ],
-    "item": {}
-  }
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-apollo-leads-to-pipedrive-contacts-and-companies/src/readme.md"
+    }
+  ],
+  "item": {}
+}
