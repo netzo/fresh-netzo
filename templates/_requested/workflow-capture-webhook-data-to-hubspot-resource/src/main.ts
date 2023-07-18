@@ -13,12 +13,8 @@ Deno.serve(async (req: Request) => {
     api.endpoint2.post({
       // POST_BODY_2
       //e.g.  event?.email
-    })
+    }),
   ])
 
   return Response.json({ resource1, resource2 })
 })
-
-
-
-

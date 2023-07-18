@@ -8,28 +8,23 @@ Deno.serve(async (req: Request) => {
   const event = await req.json()
   const [person] = await Promise.all([
     api.persons.post({
-      "name": `${event?.firstName} ${event?.lastName}`,
-      "email": [
+      'name': `${event?.firstName} ${event?.lastName}`,
+      'email': [
         {
-          "value": event?.email,
-          "primary": "TRUE",
+          'value': event?.email,
+          'primary': 'TRUE',
         },
       ],
-      "phone": [
+      'phone': [
         {
-          "value": event?.phone,
-          "primary": "TRUE"
+          'value': event?.phone,
+          'primary': 'TRUE',
         },
       ],
-      "visible_to": "1",
-      "marketing_status": "no_consent",
-    })
+      'visible_to': '1',
+      'marketing_status': 'no_consent',
+    }),
   ])
 
   return Response.json({ person })
 })
-
-
-
-
-

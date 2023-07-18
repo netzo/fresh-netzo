@@ -8,55 +8,50 @@ Deno.serve(async (req: Request) => {
   const event = await req.json()
   const [contact, company] = await Promise.all([
     api.contacts.v2.contact.post({
-      "properties": [
+      'properties': [
         {
-          "property": "email",
-          "value": event?.email
+          'property': 'email',
+          'value': event?.email,
         },
         {
-          "property": "firstname",
-          "value": event?.firstName
+          'property': 'firstname',
+          'value': event?.firstName,
         },
         {
-          "property": "lastname",
-          "value": event?.lastName
+          'property': 'lastname',
+          'value': event?.lastName,
         },
         {
-          "property": "website",
-          "value": event?.company_website
+          'property': 'website',
+          'value': event?.company_website,
         },
         {
-          "property": "company",
-          "value": event?.company_name
+          'property': 'company',
+          'value': event?.company_name,
         },
         {
-          "property": "phone",
-          "value": event?.phone
+          'property': 'phone',
+          'value': event?.phone,
         },
         {
-          "property": "city",
-          "value": event?.city
-        }
-      ]
+          'property': 'city',
+          'value': event?.city,
+        },
+      ],
     }),
     api.companies.v2.companies.post({
-      "properties": [
+      'properties': [
         {
-          "name": "name",
-          "value": event?.company_name
+          'name': 'name',
+          'value': event?.company_name,
         },
         {
-          "name": "description",
-          "value": event?.company_description
-        }
-      ]
-    })
+          'name': 'description',
+          'value': event?.company_description,
+        },
+      ],
+    }),
   ])
 
   return Response.json({ contact, company })
 })
-
-
-
-
-

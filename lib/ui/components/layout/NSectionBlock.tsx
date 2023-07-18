@@ -1,43 +1,43 @@
-import { JSX } from "preact";
-import { useSignal } from "@preact/signals";
-import { n } from "../../utils/mod.ts";
-import { NIconTitle } from "../mod.ts";
+import { JSX } from 'preact'
+import { useSignal } from '@preact/signals'
+import { n } from '../../utils/mod.ts'
+import { NIconTitle } from '../mod.ts'
 
 export interface NSectionBlockProps extends JSX.HTMLAttributes<HTMLDivElement> {
-  icon?: string;
-  text?: string;
-  description?: string;
-  containerClass?: string;
-  headerClass?: string;
-  collapse?: boolean;
-  open?: boolean;
-  padding?: boolean | string;
-  children?: preact.ComponentChildren;
+  icon?: string
+  text?: string
+  description?: string
+  containerClass?: string
+  headerClass?: string
+  collapse?: boolean
+  open?: boolean
+  padding?: boolean | string
+  children?: preact.ComponentChildren
 }
 
 export const NSectionBlock = (props: NSectionBlockProps) => {
   const ui = (extra?: string) => ({
-    containerClass: "",
+    containerClass: '',
     open: true,
     padding: true,
     collapse: true,
     ...props,
-    class: n(["n-panel-grids-center", props.class, extra]),
-  });
+    class: n(['n-panel-grids-center', props.class, extra]),
+  })
 
-  const open = useSignal(props.open ?? true);
+  const open = useSignal(props.open ?? true)
 
   function onToggle(e: any) {
-    open.value = e.target.open;
+    open.value = e.target.open
   }
 
   return (
     <>
-      <details class="n-section-block" open={open.value} onToggle={onToggle}>
+      <details class='n-section-block' open={open.value} onToggle={onToggle}>
         <summary
           class={n([
-            "cursor-pointer select-none hover:bg-active p4",
-            props.collapse ? "" : "pointer-events-none",
+            'cursor-pointer select-none hover:bg-active p4',
+            props.collapse ? '' : 'pointer-events-none',
           ])}
         >
           {props.text}
@@ -74,19 +74,19 @@ export const NSectionBlock = (props: NSectionBlockProps) => {
         {open.value && (
           <div
             class={n([
-              "flex flex-col flex-gap2 pb6 pt2",
-              typeof props.padding === "string"
+              'flex flex-col flex-gap2 pb6 pt2',
+              typeof props.padding === 'string'
                 ? props.padding
                 : props.padding
-                ? "px4"
-                : "",
+                ? 'px4'
+                : '',
             ])}
           >
             {props.children}
           </div>
         )}
       </details>
-      <div class="x-divider" />
+      <div class='x-divider' />
     </>
-  );
-};
+  )
+}

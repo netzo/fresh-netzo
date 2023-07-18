@@ -1,35 +1,35 @@
-import { JSX } from "preact";
-import { computed } from "../../../deps.ts";
-import { n } from "../../utils/mod.ts";
+import { JSX } from 'preact'
+import { computed } from '../../../deps.ts'
+import { n } from '../../utils/mod.ts'
 
 export interface NCodeBlockProps extends JSX.HTMLAttributes<HTMLPreElement> {
-  code: string;
-  lang?: string;
-  lines?: boolean;
-  transformRendered?: (code: string) => string;
+  code: string
+  lang?: string
+  lines?: boolean
+  transformRendered?: (code: string) => string
 }
 
 export function NCodeBlock(props: NCodeBlockProps) {
   const ui = (extra?: string) => ({
     ...props,
     class: n([
-      "n-code-block",
-      props.lines ? "n-code-block-lines" : "",
+      'n-code-block',
+      props.lines ? 'n-code-block-lines' : '',
       props.class,
       extra,
     ]),
-  });
+  })
 
   const rendered = computed(() => {
     const result = devToolsClient.value?.devtools.renderCodeHighlight(
       props.code,
       props.lang as string,
-    ) || { code: props.code, supported: false };
+    ) || { code: props.code, supported: false }
     if (result.supported && props.transformRendered) {
-      result.code = props.transformRendered(result.code);
+      result.code = props.transformRendered(result.code)
     }
-    return result;
-  });
+    return result
+  })
 
   return (
     <>
@@ -47,5 +47,5 @@ export function NCodeBlock(props: NCodeBlockProps) {
           </pre>
         )}
     </>
-  );
+  )
 }

@@ -9,25 +9,20 @@ Deno.serve(async (req: Request) => {
   const [contact] = await Promise.all([
     api.contacts.post(
       {
-        "name": event?.firstName,
-        "email": event?.email,
-        "mobile": event?.phone,
-        "phone": event?.phone,
-        "isperson": true,
-        "socialNetworks": {
-          "website": event?.linkedinUrl,
+        'name': event?.firstName,
+        'email': event?.email,
+        'mobile': event?.phone,
+        'phone': event?.phone,
+        'isperson': true,
+        'socialNetworks': {
+          'website': event?.linkedinUrl,
         },
-        "tags": [
-          `${event?.occupation}`
+        'tags': [
+          `${event?.occupation}`,
         ],
-        "note": "Contact accepted LinkedIn invitation",
-      }
-    )
+        'note': 'Contact accepted LinkedIn invitation',
+      },
+    ),
   ])
   return Response.json({ contact })
 })
-
-
-
-
-

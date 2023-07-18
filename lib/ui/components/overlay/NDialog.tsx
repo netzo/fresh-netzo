@@ -1,26 +1,26 @@
-import { createRef, JSX } from "preact";
-import { n } from "../../utils/mod.ts";
-import { NButton, type NButtonProps } from "../mod.ts";
+import { createRef, JSX } from 'preact'
+import { n } from '../../utils/mod.ts'
+import { NButton, type NButtonProps } from '../mod.ts'
 
 export interface NDialogProps extends JSX.HTMLAttributes<HTMLDialogElement> {
-  buttonProps?: NButtonProps & { text?: string };
+  buttonProps?: NButtonProps & { text?: string }
 }
 
 export const NDialog = (props: NDialogProps) => {
   const ui = (extra?: string) => ({
     ...props,
     class: n([props.class, extra]),
-  });
+  })
 
-  const dialogRef = createRef<HTMLDialogElement>();
+  const dialogRef = createRef<HTMLDialogElement>()
 
   const onClick = (e: MouseEvent) => {
     if (dialogRef.current?.open) {
-      dialogRef.current?.close();
+      dialogRef.current?.close()
     } else if (!dialogRef.current?.open) {
-      dialogRef.current?.showModal();
+      dialogRef.current?.showModal()
     }
-  };
+  }
 
   return (
     <>
@@ -30,9 +30,9 @@ export const NDialog = (props: NDialogProps) => {
 
       <div>
         <NButton {...props.buttonProps} onClick={onClick}>
-          {props.buttonProps?.text ?? "Open Dialog"}
+          {props.buttonProps?.text ?? 'Open Dialog'}
         </NButton>
       </div>
     </>
-  );
-};
+  )
+}

@@ -1,27 +1,27 @@
 {
-  "uid": "website-statuspage",
+  "uid": "app-statuspage",
   "status": "requested",
   "name": "Statuspage",
   "description": "A status page to track the 'up', 'down' and 'maintenance' status of (multiple) services over time.",
   "labels": [
-    "category:website"
+    "category:app"
   ],
   "display": {
-    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-statuspage/icon.svg"
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/app-statuspage/icon.svg"
   },
   "links": [
     {
       "rel": "repository",
-      "href": "https://github.com/netzo/netzo/tree/main/templates/website-statuspage"
+      "href": "https://github.com/netzo/netzo/tree/main/templates/app-statuspage"
     },
     {
       "rel": "readme",
-      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/website-statuspage/src/readme.md"
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/app-statuspage/src/readme.md"
     }
   ],
   "item": {
     "_type": "project",
-    "src": "https://api.github.com/repos/netzo/netzo/contents/templates/website-statuspage/src",
+    "src": "https://api.github.com/repos/netzo/netzo/contents/templates/app-statuspage/src",
     "configuration": {
       "entrypoint": "main.ts",
       "envVars": {},
