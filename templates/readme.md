@@ -127,32 +127,31 @@ look at other templates for further reference.
 
 ```json
 {
-  "uid": "framework-sift",
-  "status": "published",
-  "name": "Sift",
-  "description": "An HTTP server using sift that responds with different payload types based on route. Netzo includes a routing and utility library for Deno Deploy. Its route handler signature is simple and easy to understand. Handlers accept a Request and return a Response.",
+  "uid": "app-statuspage",
+  "status": "requested",
+  "name": "Statuspage",
+  "description": "A status page to track the 'up', 'down' and 'maintenance' status of (multiple) services over time.",
   "labels": [
-    "category:framework",
-    "framework:sift"
+    "category:app"
   ],
   "display": {
-    "avatar": "https://api.iconify.design/mdi-routes.svg?color=%2344c47d"
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/app-statuspage/icon.svg"
   },
   "links": [
     {
       "rel": "repository",
-      "href": "https://github.com/netzo/netzo/tree/main/templates/framework-sift"
+      "href": "https://github.com/netzo/netzo/tree/main/templates/app-statuspage"
     },
     {
       "rel": "readme",
-      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/framework-sift/src/readme.md"
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/app-statuspage/src/readme.md"
     }
   ],
   "item": {
     "_type": "project",
-    "src": "https://api.github.com/repos/netzo/netzo/contents/templates/framework-sift/src",
+    "src": "https://api.github.com/repos/netzo/netzo/contents/templates/app-statuspage/src",
     "configuration": {
-      "entrypoint": "main.tsx",
+      "entrypoint": "main.ts",
       "envVars": {},
       "permissions": {
         "net": true
