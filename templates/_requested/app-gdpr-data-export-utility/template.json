@@ -1,15 +1,15 @@
 {
-  "uid": "workflow-gdpr-data-export-utility",
+  "uid": "app-gdpr-data-export-utility",
   "status": "requested",
   "name": "GDPR Data Export Utility",
   "description": "A web portal to easily retrieve data subject personal information from multiple sources and export in a standard format (PDF, JSON, CSV), to comply with GDPR requirements. Alternatively, send via email.",
   "labels": [
     "department:sales",
     "department:customer-support",
-    "category:workflow"
+    "category:app"
   ],
   "display": {
-    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-gdpr-data-export-utility/icon.png"
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/app-gdpr-data-export-utility/icon.png"
   },
   "links": [
     {
