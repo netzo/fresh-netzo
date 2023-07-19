@@ -79,7 +79,7 @@ export default function Demo() {
                 Buttons
               </div>
               <div class="flex flex-wrap items-center gap-3">
-                <NButton n="yellow6 dark:yellow5 xs">
+                <NButton n="yellow6 dark:yellow5 xs border-solid">
                   XS Yellow
                 </NButton>
                 <NButton n="orange6 dark:orange5 sm dashed">
