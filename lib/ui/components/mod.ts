@@ -10,7 +10,6 @@ export * from './elements/NIconButton.tsx'
 export * from './elements/NIconTitle.tsx'
 export * from './elements/NLink.tsx'
 export * from './elements/NLoading.tsx'
-// export * from "./elements/NMarkdown.tsx";
 export * from './elements/NTip.tsx'
 // form:
 export * from './form/NCheckbox.tsx'
