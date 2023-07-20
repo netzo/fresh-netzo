@@ -2,20 +2,18 @@ import { createApi } from '../_create-api/mod.ts'
 import { auth } from '../_create-api/auth/mod.ts'
 
 /**
- * SDK constructor function for the ActiveCampaign API
+ * SDK constructor function for the Stripe API
  *
- * @see https://netzo.io/docs/netzo/apis/activecampaign
+ * @see https://netzo.io/docs/netzo/apis/stripe
  *
- * @param {string} accountName - the account name to construct the base URL
  * @param {string} apiKey - the API key to use for authentication
  * @returns {object} - an object of multiple utilities for the API
  */
-export const activecampaign = ({
-  accountName = Deno.env.get('ACTIVECAMPAIGN_ACCOUNT_NAME'),
-  apiKey = Deno.env.get('ACTIVECAMPAIGN_API_KEY')!,
+export const stripe = ({
+  apiKey = Deno.env.get('STRIPE_API_KEY')!,
 }) => {
   const api = createApi({
-    baseURL: `https://${accountName}.api-us1.com/api/3`,
+    baseURL: 'https://api.stripe.com/v1',
     headers: {
       'content-type': 'application/json',
     },
@@ -23,7 +21,7 @@ export const activecampaign = ({
       await auth({
         type: 'apiKey',
         in: 'header',
-        name: 'Api-Token',
+        name: 'apiKey',
         value: apiKey,
       }, ctx)
     },
