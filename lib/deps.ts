@@ -17,9 +17,6 @@ export {
   useSignal,
 } from 'https://esm.sh/*@preact/signals@1.1.5'
 
-// @netzo/api
-export type { Variable } from 'https://esm.sh/@netzo/api@1.0.30'
-
 // radash:
 export { get } from 'https://esm.sh/radash@11.0.0'
 

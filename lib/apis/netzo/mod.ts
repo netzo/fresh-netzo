@@ -1,4 +1,3 @@
-import type { Variable } from '../../deps.ts'
 import { createApi } from '../_create-api/mod.ts'
 import { auth } from '../_create-api/auth/mod.ts'
 
@@ -28,7 +27,7 @@ export const netzo = ({
     },
   })
 
-  const getVariable = async (uid: string): Promise<Variable['value']> => {
+  const getVariable = async (uid: string): Promise<string> => {
     const result = await api.variables.get({ uid })
     return result?.data?.value
   }
