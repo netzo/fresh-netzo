@@ -15,6 +15,6 @@
   },
   "imports": {
     "@/": "./",
-    "netzo/": "https://deno.land/x/netzo@v0.2.5/"
+    "netzo/": "https://deno.land/x/netzo@v0.2.6/"
   }
 }
