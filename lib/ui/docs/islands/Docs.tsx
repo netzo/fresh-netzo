@@ -9,8 +9,8 @@ import {
   NDropdown,
   NIconButton,
   NIconTitle,
-  // NInputDate,
-  // NInputDateRange,
+  NInputDate,
+  NInputDateRange,
   NInputText,
   NLink,
   NLoading,
@@ -23,7 +23,7 @@ import {
 } from "netzo/ui/components/mod.ts";
 import ShowSource from "./ShowSource.tsx";
 
-const VERSION = "0.2.8";
+const VERSION = "0.2.9";
 const REPO = "https://github.com/netzo/netzo/tree/main/lib/ui";
 
 export default function Demo() {
@@ -329,8 +329,7 @@ export default function Demo() {
               <ShowSource src="/docs/islands/Docs.tsx#L190-L205" />
             </NCard>
 
-            {
-              /* <NCard class="p4">
+            <NCard class="p4">
               <div class="n-header-upper">
                 InputDate
               </div>
@@ -348,8 +347,7 @@ export default function Demo() {
                 <NInputDateRange n="lime6 dark:lime5" />
               </div>
               <ShowSource src="/docs/islands/Docs.tsx#L190-L205" />
-            </NCard> */
-            }
+            </NCard>
           </div>
         </details>
 
