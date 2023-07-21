@@ -1,6 +1,6 @@
 export type DealId = number
 
-export type DealData = {
+export interface DealData {
   id: DealId
   creator_user_id: {
     id: number
