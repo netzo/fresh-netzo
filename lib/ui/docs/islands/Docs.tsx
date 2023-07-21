@@ -23,7 +23,7 @@ import {
 } from "netzo/ui/components/mod.ts";
 import ShowSource from "./ShowSource.tsx";
 
-const VERSION = "0.2.9";
+const VERSION = "0.2.10";
 const REPO = "https://github.com/netzo/netzo/tree/main/lib/ui";
 
 export default function Demo() {
@@ -96,6 +96,9 @@ export default function Demo() {
                 </NButton>
                 <NButton disabled>
                   Disabled
+                </NButton>
+                <NButton loading>
+                  Loading
                 </NButton>
                 <NButton n="purple6 dark:purple5 xl">
                   XL Purple

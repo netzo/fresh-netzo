@@ -32,7 +32,7 @@ export function NInputText(props: NInputTextProps) {
       {props.icon && (
         <NIcon icon={props.icon} class="ml-0.3em mr-0.1em text-1.1em op50" />
       )}
-      <input {...ui()} value={value.value} onInput={onInput} />
+      <input {...ui()} value={value} onInput={onInput} />
     </div>
   );
 }

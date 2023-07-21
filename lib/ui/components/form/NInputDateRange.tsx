@@ -12,12 +12,22 @@ export interface NInputDateRangeProps extends DatePicker {
 }
 
 export function NInputDateRange(props: NInputDateRangeProps) {
+  const today = new Date();
+
   const ui = (extra?: string) => ({
+    selectsRange: true,
+    showWeekNumbers: true,
+    monthsShown: 2,
+    maxDate: today,
+    highlightDates: [today],
+    openToDate: subMonths(new Date(), 1),
+    placeholderText: "Select date range",
+    showYearDropdown: true,
+    todayButton: "Today",
     ...props,
     class: n(["n-input-date-range cursor-pointer", props.class, extra]),
   });
 
-  const today = new Date();
   const start = useSignal<Date>(props.valueStart ?? subMonths(today, 1));
   const end = useSignal<Date>(props.valueStart ?? today);
 
@@ -45,15 +55,6 @@ export function NInputDateRange(props: NInputDateRangeProps) {
         onChange={onChange}
         startDate={start.value}
         endDate={end.value}
-        selectsRange
-        showWeekNumbers
-        monthsShown={2}
-        maxDate={new Date()}
-        highlightDates={[new Date()]}
-        openToDate={subMonths(new Date(), 1)}
-        placeholderText="Select date range"
-        showYearDropdown
-        todayButton="Today"
         customInput={<NInputTextDateRange />}
       />
     </>
