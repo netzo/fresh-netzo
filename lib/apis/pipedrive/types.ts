@@ -107,7 +107,7 @@ export interface QueryGetDeals {
 }
 
 export interface QueryAddOrUpdateDeal {
-  title: string
+  title?: string
   value?: string
   currency?: string
   user_id?: number
