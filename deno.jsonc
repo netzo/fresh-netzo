@@ -15,10 +15,6 @@
     "cov": "deno coverage ./cov/ --lcov --exclude='test.ts|testdata' > cov.lcov"
     // templates: "dev:fresh": "deno task --cwd=templates/fresh/src dev"
   },
-  "fmt": {
-    "semiColons": false,
-    "singleQuote": true
-  },
   "imports": {
     "fresh/": "https://deno.land/x/fresh@1.3.0/",
     "preact": "https://esm.sh/preact@10.16.0",

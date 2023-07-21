@@ -1,5 +1,5 @@
-import { createApi } from '../_create-api/mod.ts'
-import { auth } from '../_create-api/auth/mod.ts'
+import { createApi } from "../_create-api/mod.ts";
+import { auth } from "../_create-api/auth/mod.ts";
 
 /**
  * SDK constructor function for the Clarifai API
@@ -11,23 +11,23 @@ import { auth } from '../_create-api/auth/mod.ts'
  * @returns {object} - an object of multiple utilities for the API
  */
 export const clarifai = ({
-  datasetId = Deno.env.get('CLARIFAI_DATASET_ID'),
-  apiKey = Deno.env.get('CLARIFAI_API_KEY')!,
+  datasetId = Deno.env.get("CLARIFAI_DATASET_ID"),
+  apiKey = Deno.env.get("CLARIFAI_API_KEY")!,
 }) => {
   const api = createApi({
     baseURL: `https://api.clarifai.com/v2/users/datasets/${datasetId}`,
     headers: {
-      'content-type': 'application/json',
+      "content-type": "application/json",
     },
     async onRequest(ctx) {
       await auth({
-        type: 'apiKey',
-        in: 'header',
-        name: 'X-Clarifai-REST-API-Key',
+        type: "apiKey",
+        in: "header",
+        name: "X-Clarifai-REST-API-Key",
         value: apiKey,
-      }, ctx)
+      }, ctx);
     },
-  })
+  });
 
-  return { api }
-}
+  return { api };
+};

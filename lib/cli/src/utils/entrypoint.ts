@@ -1,4 +1,4 @@
-import { resolve, toFileUrl } from '../../deps.ts'
+import { resolve, toFileUrl } from "../../deps.ts";
 
 /**
  * Parses the entrypoint to a URL.
@@ -7,29 +7,29 @@ import { resolve, toFileUrl } from '../../deps.ts'
 export async function parseEntrypoint(
   entrypoint: string,
   root?: string,
-  diagnosticName = 'entrypoint',
+  diagnosticName = "entrypoint",
 ): Promise<URL> {
-  let entrypointSpecifier: URL
+  let entrypointSpecifier: URL;
   try {
     if (
-      entrypoint.startsWith('https://') || entrypoint.startsWith('http://') ||
-      entrypoint.startsWith('file://')
+      entrypoint.startsWith("https://") || entrypoint.startsWith("http://") ||
+      entrypoint.startsWith("file://")
     ) {
-      entrypointSpecifier = new URL(entrypoint)
+      entrypointSpecifier = new URL(entrypoint);
     } else {
-      entrypointSpecifier = toFileUrl(resolve(root ?? Deno.cwd(), entrypoint))
+      entrypointSpecifier = toFileUrl(resolve(root ?? Deno.cwd(), entrypoint));
     }
   } catch (err) {
-    throw `Failed to parse ${diagnosticName} specifier '${entrypoint}': ${err.message}`
+    throw `Failed to parse ${diagnosticName} specifier '${entrypoint}': ${err.message}`;
   }
 
-  if (entrypointSpecifier.protocol == 'file:') {
+  if (entrypointSpecifier.protocol == "file:") {
     try {
-      await Deno.lstat(entrypointSpecifier)
+      await Deno.lstat(entrypointSpecifier);
     } catch (err) {
-      throw `Failed to open ${diagnosticName} file at '${entrypointSpecifier}': ${err.message}`
+      throw `Failed to open ${diagnosticName} file at '${entrypointSpecifier}': ${err.message}`;
     }
   }
 
-  return entrypointSpecifier
+  return entrypointSpecifier;
 }

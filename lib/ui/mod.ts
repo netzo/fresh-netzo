@@ -1,1 +1,1 @@
-export { presetNetzo } from './unocss.ts'
+export { presetNetzo } from "./unocss.ts";

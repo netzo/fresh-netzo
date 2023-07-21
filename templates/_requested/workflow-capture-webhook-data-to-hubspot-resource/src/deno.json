@@ -3,10 +3,6 @@
   "tasks": {
     "start": "deno run -A --watch main.ts"
   },
-  "fmt": {
-    "semiColons": false,
-    "singleQuote": true
-  },
   "compilerOptions": {
     "jsx": "react-jsx",
     "jsxFactory": "h",

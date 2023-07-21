@@ -4,15 +4,15 @@
 /// <reference lib="dom.asynciterable" />
 /// <reference lib="deno.ns" />
 
-import 'std/dotenv/load.ts'
+import "std/dotenv/load.ts";
 
-import { start } from 'fresh/server.ts'
-import manifest from './fresh.gen.ts'
+import { start } from "fresh/server.ts";
+import manifest from "./fresh.gen.ts";
 
-import daisyui from 'netzo/plugins/daisyui/mod.ts'
+import daisyui from "netzo/plugins/daisyui/mod.ts";
 
 await start(manifest, {
   plugins: [
     daisyui(),
   ],
-})
+});

@@ -1,15 +1,15 @@
-import { JSX } from 'preact'
-import { n } from '../../utils/mod.ts'
+import { JSX } from "preact";
+import { n } from "../../utils/mod.ts";
 
 export interface NIconProps extends JSX.HTMLAttributes<HTMLDivElement> {
-  icon: string
+  icon: string;
 }
 
 export const NIcon = (props: NIconProps) => {
   const ui = (extra?: string) => ({
     ...props,
     class: n([props.class, extra, props.icon]),
-  })
+  });
 
-  return <div {...ui()} />
-}
+  return <div {...ui()} />;
+};

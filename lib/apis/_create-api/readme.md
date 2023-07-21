@@ -6,14 +6,14 @@ using JS proxies that simplifies making HTTP requests.
 
 ```ts
 const client = await createApi({
-  baseURL: 'https://jsonplaceholder.typicode.com',
-})
+  baseURL: "https://jsonplaceholder.typicode.com",
+});
 
 // GET {baseURL}/users (types optional)
-const users = await client.users.get<User[]>()
+const users = await client.users.get<User[]>();
 
 // PATCH {baseURL}/users/12 (types optional)
-const user = await client.users[12].patch<User>({ name: 'John' })
+const user = await client.users[12].patch<User>({ name: "John" });
 ```
 
 ::: tip This module is heavily inspired by
@@ -37,7 +37,7 @@ call.
 
 ```ts
 // GET {baseURL}/users?search=john
-const result = await client.users.get({ search: 'john' })
+const result = await client.users.get({ search: "john" });
 ```
 
 ::: tip URL encoding Query parameters are automatically URL encoded using
@@ -50,9 +50,9 @@ you have two options:
 
 ```ts
 // GET {baseURL}/users/12 (chain syntax):
-const user = await client.users(12).get<UserResponse>()
+const user = await client.users(12).get<UserResponse>();
 // GET {baseURL}/users/12 (bracket syntax):
-const user = await client.users[12].get<UserResponse>()
+const user = await client.users[12].get<UserResponse>();
 ```
 
 ## Payload requests
@@ -61,7 +61,7 @@ For HTTP request methods supporting a payload, add it to the method call.
 
 ```ts
 // POST request to {baseURL}/users
-const result = await client.users.post({ name: 'foo' })
+const result = await client.users.post({ name: "foo" });
 ```
 
 ## Request Options
@@ -70,14 +70,14 @@ You can add/overwrite client options on a method-level:
 
 ```ts
 const result = await client.users.get({
-  headers: { 'content-type': 'application/json' },
+  headers: { "content-type": "application/json" },
   onRequest: (request, options) => {
-    request.url = request.url.replace('/v1', '/v2')
+    request.url = request.url.replace("/v1", "/v2");
   },
   onError: (request, options, error) => {
-    console.error(error)
+    console.error(error);
   },
-})
+});
 ```
 
 ## Authorization
