@@ -1,12 +1,13 @@
 import { createApi } from '../_create-api/mod.ts'
 import { auth } from '../_create-api/auth/mod.ts'
+import type { Deal, QueryGetDeals } from './types.ts'
 
 /**
  * SDK constructor function for the Pipedrive API
  *
  * @see https://netzo.io/docs/netzo/apis/pipedrive
  *
- * @param {string} apiTOKEN - the API token to use for authentication
+ * @param {string} apiToken - the API token to use for authentication
  * @returns {object} - an object of multiple utilities for the API
  */
 export const pipedrive = ({
@@ -28,5 +29,21 @@ export const pipedrive = ({
     },
   })
 
-  return { api }
+  /**
+   * Get deals from Pipedrive
+   */
+  const getDeals = async (query: QueryGetDeals = {}): Promise<Deal[]> => {
+    const deals = await api.deals.get<Deal[]>(query)
+    return deals
+  }
+
+  /**
+   * Add a deal to Pipedrive
+   */
+  const addDeal = async (data: Deal): Promise<Deal> => {
+    const deal = await api.deals.post<Deal>(data)
+    return deal
+  }
+
+  return { api, getDeals, addDeal }
 }
