@@ -11,7 +11,7 @@ import { auth } from '../_create-api/auth/mod.ts'
  */
 export const netzo = ({
   apiKey = Deno.env.get('NETZO_API_KEY')!,
-  baseURL = 'http://localhost:4321',
+  baseURL = 'https://api.netzo.io',
 }) => {
   const api = createApi({
     baseURL,
