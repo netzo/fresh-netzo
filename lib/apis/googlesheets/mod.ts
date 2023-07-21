@@ -4,6 +4,8 @@ import { auth } from '../_create-api/auth/mod.ts'
 /**
  * SDK constructor function for the Google Sheets API
  *
+ * @see https://netzo.io/docs/netzo/apis/googlesheets
+ *
  * @param {string} spreadsheetId - the spreadsheet ID to construct the base URL
  * @param {string} clientId - the client ID to use for authentication
  * @param {string} clientSecret - the client secret to use for authentication
