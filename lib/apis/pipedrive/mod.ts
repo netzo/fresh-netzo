@@ -1,6 +1,6 @@
 import { createApi } from '../_create-api/mod.ts'
 import { auth } from '../_create-api/auth/mod.ts'
-import type { Deal, QueryGetDeals } from './types.ts'
+import type {DealId, DealData, QueryGetDeals, QueryAddOrUpdateDeal } from './types.ts'
 
 /**
  * SDK constructor function for the Pipedrive API
@@ -32,18 +32,38 @@ export const pipedrive = ({
   /**
    * Get deals from Pipedrive
    */
-  const getDeals = async (query: QueryGetDeals = {}): Promise<Deal[]> => {
-    const deals = await api.deals.get<Deal[]>(query)
-    return deals
+  const getDeals = async (query: QueryGetDeals = {}): Promise<DealData[]> => {
+    const result = await api.deals.get(query)
+    return result.data
   }
 
   /**
    * Add a deal to Pipedrive
    */
-  const addDeal = async (data: Deal): Promise<Deal> => {
-    const deal = await api.deals.post<Deal>(data)
-    return deal
+  const addDeal = async (data: QueryAddOrUpdateDeal): Promise<DealData> => {
+    const result = await api.deals.post(data)
+    return result.data
   }
 
-  return { api, getDeals, addDeal }
+    /**
+   * Update a deal to Pipedrive by id
+   */
+  const updateDeal = async(id: DealId, data: QueryAddOrUpdateDeal): Promise<DealData> => {
+    const result = await api.deals[`${id}`].put(data)
+    return result.data
+  }
+
+    /**
+   * Delete a deal from Pipedrive by id
+   */
+  const deleteDeal = async(id: DealId): Promise<DealId> => {
+    const result = await api.deals[`${id}`].delete()
+    return result.data.id
+  }
+  
+  return { api, getDeals, addDeal, updateDeal, deleteDeal }
 }
+
+
+
+
