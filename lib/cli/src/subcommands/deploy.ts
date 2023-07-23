@@ -92,7 +92,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
   const apiKey = args.apiKey ?? Deno.env.get("NETZO_API_KEY") ?? null;
   if (apiKey === null) {
     console.error(help);
-    error("Missing API key. Set via --api-key or NETZO_API_KEY.");
+    error("Missing API key. Set via --api-key flag or NETZO_API_KEY environment variable to avoid passing it each time.");
   }
   if (entrypoint === null) {
     console.error(help);
@@ -207,7 +207,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
   let uploadSpinner: Spinner | null = null;
   const assets = new Map<string, string>(); // map of gitSha1 -> path
   let neededHashes: string[] // new assets to upload (set on assetNegotiation event)
-  ;
+    ;
   let manifest: Manifest | undefined = undefined;
 
   if (opts.static) {
