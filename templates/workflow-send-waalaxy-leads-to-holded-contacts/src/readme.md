@@ -1,4 +1,4 @@
-# app-app-launcher
+# workflow-send-waalaxy-leads-to-holded-contacts
 
 An open-source source template for Netzo.
 
@@ -49,7 +49,7 @@ This will watch the project directory and restart as necessary.
 
 ## Links
 
-- [Homepage](https://app.netzo.io/templates/app-app-launcher)
+- [Homepage](https://app.netzo.io/templates/workflow-send-waalaxy-leads-to-holded-contacts)
 
 <div align="center">
   <h4>© Netzo</h4>

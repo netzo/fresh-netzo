@@ -1,4 +1,4 @@
-# app-app-launcher
+# workflow-capture-webhook-data-to-holded-resource
 
 An open-source source template for Netzo.
 
@@ -49,7 +49,7 @@ This will watch the project directory and restart as necessary.
 
 ## Links
 
-- [Homepage](https://app.netzo.io/templates/app-app-launcher)
+- [Homepage](https://app.netzo.io/templates/workflow-capture-webhook-data-to-holded-resource)
 
 <div align="center">
   <h4>© Netzo</h4>

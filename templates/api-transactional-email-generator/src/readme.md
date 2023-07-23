@@ -6,15 +6,44 @@ An open-source source template for Netzo.
 
 This project does not require additional configuration.
 
-### Usage
+## Development
 
-Start the project:
+Install the `Deno` runtime
 
+```sh
+curl -fsSL https://deno.land/x/install/install.sh | sh
 ```
-deno task start
+
+Start the server for development
+
+```sh
+deno task start # start using pre-defined task (if any)
+deno run -A --watch <entrypoint> # or run the entrypoint file directly
 ```
 
-This will watch the project directory and restart as necessary.
+## Deployment
+
+Install the `netzo/cli` command line tool
+
+```sh
+deno install -Arf https://deno.land/x/netzo/cli/netzo.ts
+```
+
+Configure your API key as an environment variable
+
+```sh
+export NETZO_API_KEY=... # Linux / MacOS
+set NETZO_API_KEY=... # Windows
+```
+
+Create a project in [Netzo](https://app.netzo.io) if you haven't and copy the
+project UID.
+
+Deploy the project (pass the `--prod` flag to deploy to production)
+
+```sh
+netzo deploy --project=my-project <entrypoint>
+```
 
 ## Links
 
