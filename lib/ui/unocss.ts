@@ -1,13 +1,13 @@
-import type { Preset, RuleContext, UserConfig, Theme } from "../deps.ts";
+import type { Preset, RuleContext, Theme, UserConfig } from "../deps.ts";
 import {
-  parseColor,
-  unoTheme,
   fonts,
   mergeDeep,
+  parseColor,
   presetAttributify,
   presetIcons,
   presetTypography,
   presetUno,
+  unoTheme,
 } from "../deps.ts";
 
 // @unocss-include
