@@ -1,19 +1,14 @@
-import type {
-  Preset,
-  RuleContext,
-  UserConfig,
-} from "https://esm.sh/@unocss/core@0.53.4?bundle";
-import type { Theme } from "https://esm.sh/@unocss/preset-uno@0.53.4?bundle";
-import { parseColor } from "https://esm.sh/@unocss/preset-mini@0.53.4/utils?bundle";
-import { theme as unoTheme } from "https://esm.sh/@unocss/preset-mini@0.53.4?bundle";
-import { fonts } from "https://esm.sh/@unocss/preset-mini@0.53.4/rules?bundle";
+import type { Preset, RuleContext, UserConfig, Theme } from "../deps.ts";
 import {
+  parseColor,
+  unoTheme,
+  fonts,
   mergeDeep,
   presetAttributify,
   presetIcons,
   presetTypography,
   presetUno,
-} from "https://esm.sh/unocss@0.53.4?bundle";
+} from "../deps.ts";
 
 // @unocss-include
 

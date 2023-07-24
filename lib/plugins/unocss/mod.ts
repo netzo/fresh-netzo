@@ -1,5 +1,4 @@
-import type { UserConfig } from "https://esm.sh/@unocss/core@0.53.1";
-import { UnoGenerator } from "https://esm.sh/@unocss/core@0.53.4?bundle";
+import { UnoGenerator, type UserConfig } from "../../deps.ts";
 import { Plugin } from "../../deps.ts";
 
 const unoResetCSS = `/* reset */

@@ -1,8 +1,5 @@
-import { get } from "https://deno.land/x/lodash_es@v0.0.2/mod.ts";
-import {
-  assertEquals,
-  assertExists,
-} from "https://deno.land/std@0.97.0/testing/asserts.ts";
+import { get } from "../../deps.ts";
+import { assertEquals, assertExists } from "../../deps.ts";
 import { jsonplaceholder } from "./mod.ts";
 
 Deno.test("jsonplaceholder", async (t) => {

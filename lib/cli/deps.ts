@@ -76,7 +76,7 @@ export type {
   ProjectFiles,
   ProjectFilesFile,
   Template,
-} from "https://esm.sh/@netzo/api@1.0.30";
+} from "https://esm.sh/@netzo/api@1.0.31";
 
 // socket.io-client:
 export { feathers } from "https://esm.sh/@feathersjs/feathers@5.0.6";

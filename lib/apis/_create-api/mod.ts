@@ -1,5 +1,10 @@
-import { $fetch, FetchOptions } from "https://esm.sh/ofetch@1.0.0";
-import { QueryObject, resolveURL, withQuery } from "https://esm.sh/ufo@0.8.5";
+import {
+  $fetch,
+  type FetchOptions,
+  type QueryObject,
+  resolveURL,
+  withQuery,
+} from "../../deps.ts";
 import type {
   ClientBuilder,
   ClientMethodHandler,
