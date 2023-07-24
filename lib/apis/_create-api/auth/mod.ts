@@ -1,6 +1,7 @@
-import { FetchContext } from "https://esm.sh/ofetch@1.0.0";
+import { type FetchContext } from "../../../deps.ts";
 import { Authorization } from "./types.ts";
-import { getToken } from "./oauth2/mod.ts";
+import { getToken, type GoogleAuth } from "../../../deps.ts";
+import { getToken as getTokenOauth2 } from "./oauth2/mod.ts";
 
 /**
  * Auth hook to mutate context based on authorization.type
@@ -28,9 +29,17 @@ export const auth = async (
     const { in: In, name, value } = authorization;
     if (In === "query") query[name] = value;
     if (In === "header") headers[name] = value;
+  } else if (authorization.type === "googlejwtsa") {
+    const { googleServiceAccountCredentials, googleAuthOptions } =
+      authorization;
+    const { access_token }: GoogleAuth = await getToken(
+      googleServiceAccountCredentials,
+      googleAuthOptions,
+    );
+    headers.Authorization = `Bearer ${access_token}`;
   } else if (authorization.type === "oauth2") {
     const { headerPrefix = "Bearer" } = authorization;
-    const { token_type = headerPrefix, access_token } = await getToken(
+    const { token_type = headerPrefix, access_token } = await getTokenOauth2(
       authorization,
     );
     headers.Authorization = token_type

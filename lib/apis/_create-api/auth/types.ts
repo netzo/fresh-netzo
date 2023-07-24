@@ -20,6 +20,24 @@ export interface AuthorizationApiKey {
   value: string;
 }
 
+// Requires first creating a service account key file in the Google Cloud Console
+// https://console.cloud.google.com/apis/credentials/serviceaccountkey
+export interface AuthorizationGoogleJwtSa {
+  type: "googlejwtsa";
+  // NOTE: expects a stringified JSON key file
+  // like the result of JSON.stringify(keyFile)
+  // or await Deno.readTextFile('./keyFile.json')
+  googleServiceAccountCredentials: string;
+  googleAuthOptions: {
+    scope: string[];
+    sub?: string;
+  };
+}
+
+// This grant type allows your serverless function to obtain access tokens directly
+// from the authorization server using its client credentials (clientId and clientSecret)
+// It doesn't involve any user authentication and is suitable for server-to-server
+// communication where the client (serverless function) acts on its own behalf.
 export interface AuthorizationOAuth2ClientCredentials {
   type: "oauth2";
   grantType: "client_credentials";
@@ -30,6 +48,11 @@ export interface AuthorizationOAuth2ClientCredentials {
   scope?: string;
 }
 
+// This grant type involves exchanging the user's credentials (username and password)
+// for an access token. However, this is not generally recommended for serverless
+// functions because it requires the client (serverless function) to handle
+// sensitive user credentials, which can pose security risks. If possible, you
+// avoid using this grant type and opt for a more secure method.
 export interface AuthorizationOAuth2PasswordCredentials {
   type: "oauth2";
   grantType: "password_credentials";
@@ -42,6 +65,7 @@ export interface AuthorizationOAuth2PasswordCredentials {
   scope?: string;
 }
 
+// NOTE: this is made for frontend environments (require user interaction)
 export interface AuthorizationOAuth2Implicit {
   type: "oauth2";
   grantType: "implicit";
@@ -54,6 +78,7 @@ export interface AuthorizationOAuth2Implicit {
   state?: string;
 }
 
+// NOTE: this is made for frontend environments (require user interaction)
 export interface AuthorizationOAuth2AuthorizationCode {
   type: "oauth2";
   grantType: "authorization_code";
@@ -70,12 +95,13 @@ export interface AuthorizationOAuth2AuthorizationCode {
 export type AuthorizationOAuth2 =
   | AuthorizationOAuth2ClientCredentials
   | AuthorizationOAuth2PasswordCredentials
-  | AuthorizationOAuth2Implicit
-  | AuthorizationOAuth2AuthorizationCode;
+  | AuthorizationOAuth2Implicit // not relevant for backend environments
+  | AuthorizationOAuth2AuthorizationCode; // not relevant for backend environments
 
 export type Authorization =
   | AuthorizationNone
   | AuthorizationBasic
   | AuthorizationBearer
   | AuthorizationApiKey
+  | AuthorizationGoogleJwtSa
   | AuthorizationOAuth2;
