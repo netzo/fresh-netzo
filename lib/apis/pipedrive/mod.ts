@@ -1,6 +1,15 @@
 import { createApi } from '../_create-api/mod.ts'
 import { auth } from '../_create-api/auth/mod.ts'
-import type {DealId, DealData, QueryGetDeals, QueryAddOrUpdateDeal } from './types.ts'
+import type {
+  Deal,
+  Person,
+  QueryAddOrUpdateDeal,
+  QueryAddOrUpdatePerson,
+  QueryGetDeals,
+  QueryGetPersons,
+  QuerySearchDeals,
+  QuerySearchPersons,
+} from './types.ts'
 
 /**
  * SDK constructor function for the Pipedrive API
@@ -32,39 +41,109 @@ export const pipedrive = ({
   /**
    * Get deals from Pipedrive
    */
-
-    const getDeals = async (query: QueryGetDeals = {}): Promise<DealData[]> => {
+  const getDeals = async (query: QueryGetDeals = {}): Promise<Deal[]> => {
     const result = await api.deals.get(query)
-    return result.data  //not correct - must map first!
+    const deals = result.map((item) => item.data)
+    return deals
+  }
+
+  /**
+   * Search deals on Pipedrive
+   */
+  const searchDeals = async (query: QuerySearchDeals): Promise<Deal[]> => {
+    const result = await api.deals.search.get(query)
+    const deals = result.map((item) => item.data)
+    return deals
   }
 
   /**
    * Add a deal to Pipedrive
    */
-  const addDeal = async (data: QueryAddOrUpdateDeal): Promise<DealData> => {
+  const addDeal = async (data: QueryAddOrUpdateDeal): Promise<Deal> => {
     const result = await api.deals.post(data)
     return result.data
   }
 
-    /**
+  /**
    * Update a deal to Pipedrive by id
    */
-  const updateDeal = async(id: DealId, data: QueryAddOrUpdateDeal): Promise<DealData> => {
+  const updateDeal = async (
+    id: number,
+    data: QueryAddOrUpdateDeal,
+  ): Promise<Deal> => {
     const result = await api.deals[`${id}`].put(data)
     return result.data
   }
 
-    /**
+  /**
    * Delete a deal from Pipedrive by id
    */
-  const deleteDeal = async(id: DealId): Promise<DealId> => {
+  const deleteDeal = async (id: number): Promise<number> => {
     const result = await api.deals[`${id}`].delete()
     return result.data.id
   }
-  
-  return { api, getDeals, addDeal, updateDeal, deleteDeal }
+
+  /**
+   * Get persons from Pipedrive
+   */
+  const getPersons = async (query: QueryGetPersons = {}): Promise<Person[]> => {
+    const result = await api.persons.get(query)
+    const persons = result.map((item) => item.data)
+    return persons
+  }
+
+  /**
+   * Search persons on Pipedrive
+   */
+  const searchPersons = async (
+    query: QuerySearchPersons,
+  ): Promise<Person[]> => {
+    const result = await api.persons.search.get(query)
+    const persons = result.map((item) => item.data)
+    return persons
+  }
+
+  /**
+   * Add a person to Pipedrive
+   */
+  const addPerson = async (data: QueryAddOrUpdatePerson): Promise<Person> => {
+    const result = await api.persons.post(data)
+    return result.data
+  }
+
+  /**
+   * Update a person to Pipedrive by id
+   */
+
+  const updatePerson = async (
+    id: number,
+    data: QueryAddOrUpdatePerson,
+  ): Promise<Person> => {
+    const result = await api.persons[`${id}`].put(data)
+    return result.data
+  }
+
+  /**
+   * Delete a person from Pipedrive by id
+   */
+  const deletePerson = async (id: number): Promise<number> => {
+    const result = await api.persons[`${id}`].delete()
+    return result.data.id
+  }
+
+  return {
+    api,
+    getDeals,
+    searchDeals,
+    addDeal,
+    updateDeal,
+    deleteDeal,
+    getPersons,
+    searchPersons,
+    addPerson,
+    updatePerson,
+    deletePerson
+  }
 }
 
-
-
-
+//To resolve: interface for query; search interface; item datatype in map
