@@ -32,9 +32,10 @@ export const pipedrive = ({
   /**
    * Get deals from Pipedrive
    */
-  const getDeals = async (query: QueryGetDeals = {}): Promise<DealData[]> => {
+
+    const getDeals = async (query: QueryGetDeals = {}): Promise<DealData[]> => {
     const result = await api.deals.get(query)
-    return result.data
+    return result.data  //not correct - must map first!
   }
 
   /**
