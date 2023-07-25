@@ -19,13 +19,72 @@ export const sendgrid = ({
     },
     async onRequest(ctx) {
       await auth({
-        type: "apiKey",
-        in: "header",
-        name: "Authorization",
-        value: `Bearer ${apiKey}`,
+        type: "bearer",
+        token: apiKey,
       }, ctx);
     },
   });
 
   return { api };
+};
+
+interface Personalization {
+  email: string;
+  name: string;
+}
+
+interface Email {
+  toEmail: string;
+  toName: string;
+  subject: string;
+  content: string;
+  fromEmail: string;
+  fromName: string;
+  replyToEmail: string;
+  replyToName: string;
+}
+
+/**
+ * Send an email
+ * @example const result = await postEmail({
+ *  toEmail: "
+ * toName: "
+ * subject: "
+ * content: "
+ * fromEmail: "
+ * fromName: "
+ * replyToEmail: "
+ * replyToName: "
+ * });
+*/
+const postEmail = async (email: Email) => {
+  const result = await api.mail.send.post({
+    personalizations: [
+      {
+        to: [
+          {
+            email: email.toEmail,
+            name: email.toName,
+          },
+        ],
+        subject: email.subject,
+      },
+    ],
+    content: [
+      {
+        type: "text/plain",
+        value: email.content,
+      },
+    ],
+    from: {
+      email: email.fromEmail,
+      name: email.fromName,
+    },
+    reply_to: {
+      email: email.replyToEmail,
+      name: email.replyToName,
+    },
+  }, email.fromEmail); // Add email.fromEmail as the second argument to api.mail.send.post
+
+  return result;
 };
