@@ -7,13 +7,13 @@ import { auth } from "../_create-api/auth/mod.ts";
  * @see https://netzo.io/docs/netzo/apis/airtable
  *
  * @param {string} accountName - the account name to construct the base URL
- * @param {string} apiKey - the API key to use for authentication
+ * @param {string} personalAccessToken - the API key to use for authentication
  * @returns {object} - an object of multiple utilities for the API
  */
 export const airtable = ({
   baseId = Deno.env.get('AIRTABLE_BASE_ID'),
   tableIdOrName = Deno.env.get('AIRTABLE_TABLE_ID_OR_NAME'),
-  apiKey = Deno.env.get('AIRTABLE_PERSONAL_ACCESS_TOKEN'),
+  personalAccessToken = Deno.env.get('AIRTABLE_PERSONAL_ACCESS_TOKEN'),
 }) => {
   const api = createApi({
     baseURL: `https://api.airtable.com/v0/${baseId}YOUR_BASE_ID/${tableIdOrName}`,
@@ -22,10 +22,8 @@ export const airtable = ({
     },
     async onRequest(ctx) {
       await auth({
-        type: 'apiKey',
-        in: 'header',
-        name: 'Authorization',
-        value: `Bearer ${apiKey}`,
+        type: 'bearer',
+        token: personalAccessToken
       }, ctx)
     },
   })

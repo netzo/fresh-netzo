@@ -6,11 +6,11 @@ import { auth } from "../_create-api/auth/mod.ts";
  *
  * @see https://netzo.io/docs/netzo/apis/clickup
  *
- * @param {string} personalAccessToken - the API key to use for authentication
+ * @param {string} personalApiKey - the API key to use for authentication
  * @returns {object} - an object of multiple utilities for the API
  */
 export const clickup = ({
-  personalAccessToken = Deno.env.get("CLICKUP_PERSONAL_API_KEY")!,
+  personalApiKey = Deno.env.get("CLICKUP_PERSONAL_API_KEY")!,
 }) => {
   const api = createApi({
     baseURL: `https://api.clickup.com/api/v2`,
@@ -22,7 +22,7 @@ export const clickup = ({
         type: "apiKey",
         in: "header",
         name: "Authorization",
-        value: personalAccessToken,
+        value: personalApiKey,
       }, ctx);
     },
   });
