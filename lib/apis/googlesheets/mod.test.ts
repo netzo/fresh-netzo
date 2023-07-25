@@ -1,8 +1,8 @@
 import { assertExists } from "../../deps.ts";
 import { googlesheets } from "./mod.ts";
-import options from "./googlesheets.options.ts";
 
 Deno.test("googlesheets", async (t) => {
+  const { options } = await import("./googlesheets.options.ts");
   const { api, getRows, getRow, addRows, updateRow, deleteRow } = googlesheets(options);
 
   const range = "directorio!A:H";
