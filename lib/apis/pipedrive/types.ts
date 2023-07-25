@@ -107,6 +107,30 @@ export interface QueryGetDeals {
   owned_by_you?: number
 }
 
+export interface SearchDealsResult {
+    id: number
+    type: string
+    title: string
+    value: number
+    currency: string
+    status: string
+    visible_to: number
+    owner: {
+      id: number
+    }
+    stage: {
+      id: number
+      name: string
+    }
+    person: {
+      id: number
+      name: string
+    }
+    organization: any
+    custom_fields: Array<any>
+    notes: Array<any>
+}
+
 export interface QuerySearchDeals {
   term: string
   fields?: string[]
@@ -237,6 +261,25 @@ export interface QuerySearchPersons {
   include_fields?: string
   start?: number
   limit?: number
+}
+
+export interface SearchPersonsResult {
+    id: number
+    type: string
+    name: string
+    phones: Array<string>
+    emails: Array<string>
+    visible_to: number
+    owner: {
+      id: number
+    }
+    organization: {
+      id: number
+      name: string
+      address: any
+    }
+    custom_fields: Array<any>
+    notes: Array<any>
 }
 
 export interface QueryAddOrUpdatePerson {

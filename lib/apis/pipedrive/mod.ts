@@ -9,6 +9,8 @@ import type {
   QueryGetPersons,
   QuerySearchDeals,
   QuerySearchPersons,
+  SearchDealsResult,
+  SearchPersonsResult,
 } from './types.ts'
 
 /**
@@ -43,16 +45,16 @@ export const pipedrive = ({
    */
   const getDeals = async (query: QueryGetDeals = {}): Promise<Deal[]> => {
     const result = await api.deals.get(query)
-    const deals = result.map((item) => item.data)
+    const deals = result.map((item:any) => item.data)
     return deals
   }
 
   /**
    * Search deals on Pipedrive
    */
-  const searchDeals = async (query: QuerySearchDeals): Promise<Deal[]> => {
+  const searchDeals = async (query: QuerySearchDeals): Promise<SearchDealsResult[]> => {
     const result = await api.deals.search.get(query)
-    const deals = result.map((item) => item.data)
+    const deals = result.data.items.map((item:any) => item.item)
     return deals
   }
 
@@ -88,7 +90,7 @@ export const pipedrive = ({
    */
   const getPersons = async (query: QueryGetPersons = {}): Promise<Person[]> => {
     const result = await api.persons.get(query)
-    const persons = result.map((item) => item.data)
+    const persons = result.map((item:any) => item.data)
     return persons
   }
 
@@ -97,9 +99,9 @@ export const pipedrive = ({
    */
   const searchPersons = async (
     query: QuerySearchPersons,
-  ): Promise<Person[]> => {
+  ): Promise<SearchPersonsResult[]> => {
     const result = await api.persons.search.get(query)
-    const persons = result.map((item) => item.data)
+    const persons = result.data.items.map((item:any) => item.item)
     return persons
   }
 
