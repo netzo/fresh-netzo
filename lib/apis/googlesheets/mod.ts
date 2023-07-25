@@ -13,7 +13,7 @@ export interface GoogleSheetsOptions {
  * @see https://netzo.io/docs/netzo/apis/googlesheets
  *
  * @param {string} googleServiceAccountCredentials - the Google Service Account Credentials to use for authentication
- * @param {string} scope - the scope to use for authentication (default: ['spreadsheets'])
+ * @param {string} scope - the scope to use for authentication (default: ['spreadsheets.readonly'])
  * @param {string} spreadsheetId - the spreadsheet ID to construct the base URL
  * @returns {object} - an object of multiple utilities for the API
  */
