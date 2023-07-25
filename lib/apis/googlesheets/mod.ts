@@ -40,17 +40,26 @@ export const googlesheets = ({
 
   const resultToRows = <T>(result: any) => {
     const [keys, ...rows] = result.values;
-    return rows.map((row: object[]) =>
-      keys.reduce(
-        (acc: object, key: string, index: number) => ({
-          ...acc,
-          [key]: row[index],
-        }),
-      ), {});
+
+    return !keys || !Array.isArray(keys)
+      // If there are no header keys, generate numeric indices instead.
+      ? rows.map((row: object[], index: number) =>
+        row.reduce(
+          (acc: object, value: any, columnIndex: number) => ({ ...acc, [columnIndex]: value, }),
+          {}
+        )
+      )
+      // If there are header keys, use them to generate the row objects.
+      : rows.map((row: object[]) =>
+        keys.reduce(
+          (acc: object, key: string, index: number) => ({ ...acc, [key]: row[index], }),
+          {}
+        )
+      )
   };
 
   /**
-   * Get spreadheet rows from a given range
+   * Get spreadheet rows from a given range (first row treated as header)
    * @example const rows = await getRows<{ name: string }>('A1:A10');
    * @param {string} range - the range to get rows from
    * @returns {Promise<T[]>} - an array of rows
@@ -61,7 +70,7 @@ export const googlesheets = ({
   };
 
   /**
-   * Get spreadheet row from a given range
+   * Get spreadheet row from a given range (first row treated as header)
    * @example const row = await getRow<{ name: string }>('A1:A1');
    * @param {string} range - the range to get row from
    * @returns {Promise<T>} - a row
@@ -72,7 +81,7 @@ export const googlesheets = ({
   };
 
   /**
-   * Add rows to a given range
+   * Add rows to a given range (first row treated as header)
    * @example const rows = await addRows<{ name: string }>('A1:A10', [{ name: 'John' }]);
    * @param {string} range - the range to add rows to
    * @param {T[]} rows - an array of rows to add
@@ -84,7 +93,7 @@ export const googlesheets = ({
   };
 
   /**
-   * Update row in a given range
+   * Update row in a given range (first row treated as header)
    * @example const row = await updateRow<{ name: string }>('A1:A1', { name: 'John' });
    * @param {string} range - the range to update row in
    * @param {T} row - a row to update
@@ -96,7 +105,7 @@ export const googlesheets = ({
   };
 
   /**
-   * Delete row in a given range
+   * Delete row in a given range (first row treated as header)
    * @example const row = await deleteRow<{ name: string }>('A1:A1');
    * @param {string} range - the range to delete row in
    * @returns {Promise<T>} - a row

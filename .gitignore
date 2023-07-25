@@ -1,5 +1,6 @@
 # Netzo
 _wip
+*.credentials.json
 
 # Logs
 logs
