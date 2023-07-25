@@ -1,6 +1,6 @@
 # Netzo
 _wip
-*.credentials.json
+*.options.ts
 
 # Logs
 logs

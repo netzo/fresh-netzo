@@ -40,22 +40,13 @@ export const googlesheets = ({
 
   const resultToRows = <T>(result: any) => {
     const [keys, ...rows] = result.values;
-
-    return !keys || !Array.isArray(keys)
-      // If there are no header keys, generate numeric indices instead.
-      ? rows.map((row: object[], index: number) =>
-        row.reduce(
-          (acc: object, value: any, columnIndex: number) => ({ ...acc, [columnIndex]: value, }),
-          {}
-        )
-      )
-      // If there are header keys, use them to generate the row objects.
-      : rows.map((row: object[]) =>
-        keys.reduce(
-          (acc: object, key: string, index: number) => ({ ...acc, [key]: row[index], }),
-          {}
-        )
-      )
+    return rows.map((row: object[]) =>
+      keys.reduce(
+        (acc: object, key: string, index: number) => ({
+          ...acc,
+          [key]: row[index],
+        }),
+      ), {});
   };
 
   /**

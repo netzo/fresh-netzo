@@ -1,12 +1,9 @@
 import { assertExists } from "../../deps.ts";
 import { googlesheets } from "./mod.ts";
+import options from "./googlesheets.options.ts";
 
 Deno.test("googlesheets", async (t) => {
-  const { api, getRows, getRow, addRows, updateRow, deleteRow } = googlesheets({
-    googleServiceAccountCredentials: await Deno.readTextFile("./google.credentials.json"),
-    scope: ["spreadsheets"],
-    spreadsheetId: "1pYUPHA2Z1mXvY8xkTrdBsSBktACBzpNeWGnce8B2bcY",
-  });
+  const { api, getRows, getRow, addRows, updateRow, deleteRow } = googlesheets(options);
 
   const range = "directorio!A:H";
 
