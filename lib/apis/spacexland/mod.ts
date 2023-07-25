@@ -1,6 +1,10 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
 
+export interface SpaceXLandOptions {
+  apiKey: string;
+}
+
 /**
  * SDK constructor function for the SpaceX Land API
  *
@@ -11,7 +15,7 @@ import { auth } from "../_create-api/auth/mod.ts";
  */
 export const spacexland = ({
   apiKey = Deno.env.get("SPACEXLAND_API_KEY")!,
-}) => {
+}: SpaceXLandOptions) => {
   const api = createApi({
     baseURL: "https://api.spacexland.com/v2",
     headers: {

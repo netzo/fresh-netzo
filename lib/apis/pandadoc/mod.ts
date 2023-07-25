@@ -1,6 +1,10 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
 
+export interface PandaDocOptions {
+  apiKey: string;
+}
+
 /**
  * SDK constructor function for the PandaDoc API
  *
@@ -11,7 +15,7 @@ import { auth } from "../_create-api/auth/mod.ts";
  */
 export const pandadoc = ({
   apiKey = Deno.env.get("PANDADOC_API_KEY")!,
-}) => {
+}: PandaDocOptions) => {
   const api = createApi({
     baseURL: "https://api.pandadoc.com/public/v1",
     headers: {

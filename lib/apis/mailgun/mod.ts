@@ -1,5 +1,11 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
+import { MailchimpOptions } from "@/lib/apis/mailchimpmarketing/mod.ts";
+
+export interface MailgunOptions {
+  apiKey: string;
+  domainName: string;
+}
 
 /**
  * SDK constructor function for the Mailgun API
@@ -12,7 +18,7 @@ import { auth } from "../_create-api/auth/mod.ts";
 export const mailgun = ({
   apiKey = Deno.env.get("MAILGUN_API_KEY")!,
   domainName = Deno.env.get("MAILGUN_DOMAIN_NAME")!,
-}) => {
+}: MailgunOptions) => {
   const api = createApi({
     baseURL: `https://api.mailgun.net/v3/${domainName}`,
     headers: {

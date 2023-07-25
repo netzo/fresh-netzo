@@ -1,6 +1,10 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
 
+export interface PurpleAirOptions {
+  apiKey: string;
+}
+
 /**
  * SDK constructor function for the PurpleAir API
  *
@@ -11,7 +15,7 @@ import { auth } from "../_create-api/auth/mod.ts";
  */
 export const purpleair = ({
   apiKey = Deno.env.get("PURPLEAIR_API_KEY")!,
-}) => {
+}: PurpleAirOptions) => {
   const api = createApi({
     baseURL: "https://api.purpleair.com/v1",
     headers: {

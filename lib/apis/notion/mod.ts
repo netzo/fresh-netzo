@@ -1,6 +1,11 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
 
+export interface NotionOptions {
+  internalIntegrationToken: string;
+  notionVersion: string;
+}
+
 /**
  * SDK constructor function for the Notion API
  *
@@ -13,7 +18,7 @@ import { auth } from "../_create-api/auth/mod.ts";
 export const notion = ({
   internalIntegrationToken = Deno.env.get("NOTION_INTERNAL_INTEGRATION_TOKEN")!,
   notionVersion = Deno.env.get("NOTION_VERSION")!,
-}) => {
+}: NotionOptions) => {
   const api = createApi({
     baseURL: `https://api.notion.com`,
     headers: {

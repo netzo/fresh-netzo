@@ -1,6 +1,10 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
 
+export interface MediumOptions {
+  accessToken: string;
+}
+
 /**
  * SDK constructor function for the Medium API
  *
@@ -11,7 +15,7 @@ import { auth } from "../_create-api/auth/mod.ts";
  */
 export const medium = ({
   accessToken = Deno.env.get("MEDIUM_ACCESS_TOKEN")!,
-}) => {
+}: MediumOptions) => {
   const api = createApi({
     baseURL: `https://api.medium.com/v1`,
     headers: {

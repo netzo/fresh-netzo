@@ -1,6 +1,12 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
 
+export interface WixOptions {
+  accountId: string;
+  siteId: string;
+  apiKey: string;
+}
+
 /**
  * SDK constructor function for the Wix API
  *
@@ -12,10 +18,10 @@ import { auth } from "../_create-api/auth/mod.ts";
  * @returns {object} - an object of multiple utilities for the API
  */
 export const wix = ({
-  accountId = Deno.env.get("WIX_ACCOUNT_ID"),
-  siteId = Deno.env.get("WIX_SITE_ID"),
+  accountId = Deno.env.get("WIX_ACCOUNT_ID")!,
+  siteId = Deno.env.get("WIX_SITE_ID")!,
   apiKey = Deno.env.get("WIX_API_KEY")!,
-}) => {
+}: WixOptions) => {
   const api = createApi({
     baseURL: `https://www.wixapis.com`,
     headers: {

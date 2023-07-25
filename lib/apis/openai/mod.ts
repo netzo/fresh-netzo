@@ -1,6 +1,10 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
 
+export interface OpenAIOptions {
+  apiKey: string;
+}
+
 /**
  * SDK constructor function for the OpenAI API
  *
@@ -11,7 +15,7 @@ import { auth } from "../_create-api/auth/mod.ts";
  */
 export const openai = ({
   apiKey = Deno.env.get("OPENAI_API_KEY")!,
-}) => {
+}: OpenAIOptions) => {
   const api = createApi({
     baseURL: "https://api.openai.com/v1",
     headers: {
