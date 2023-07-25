@@ -6,8 +6,7 @@ import { auth } from "../_create-api/auth/mod.ts";
  *
  * @see https://netzo.io/docs/netzo/apis/clickup
  *
- * @param {string} accountName - the account name to construct the base URL
- * @param {string} apiKey - the API key to use for authentication
+ * @param {string} personalAccessToken - the API key to use for authentication
  * @returns {object} - an object of multiple utilities for the API
  */
 export const clickup = ({
