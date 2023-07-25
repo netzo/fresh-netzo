@@ -1,5 +1,5 @@
-import { createApi } from '../_create-api/mod.js'
-import { auth } from '../_create-api/auth/mod.js'
+import { createApi } from "../_create-api/mod.ts";
+import { auth } from "../_create-api/auth/mod.ts";
 
 /**
  * SDK constructor function for the Airtable API
@@ -13,7 +13,7 @@ import { auth } from '../_create-api/auth/mod.js'
 export const airtable = ({
   baseId = Deno.env.get('AIRTABLE_BASE_ID'),
   tableIdOrName = Deno.env.get('AIRTABLE_TABLE_ID_OR_NAME'),
-  apiKey = Deno.env.get('AIRTABLE_PERSONAL_ACCESS_TOKEN')!,
+  apiKey = Deno.env.get('AIRTABLE_PERSONAL_ACCESS_TOKEN'),
 }) => {
   const api = createApi({
     baseURL: `https://api.airtable.com/v0/${baseId}YOUR_BASE_ID/${tableIdOrName}`,
