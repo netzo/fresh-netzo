@@ -1,6 +1,10 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
 
+export interface CloudflareOptions {
+  apiKey: string;
+}
+
 /**
  * SDK constructor function for the Cloudflare API
  *
@@ -11,7 +15,7 @@ import { auth } from "../_create-api/auth/mod.ts";
  */
 export const cloudflare = ({
   apiKey = Deno.env.get("CLOUDFLARE_API_KEY")!,
-}) => {
+}: CloudflareOptions) => {
   const api = createApi({
     baseURL: "https://api.cloudflare.com/client/v4",
     headers: {

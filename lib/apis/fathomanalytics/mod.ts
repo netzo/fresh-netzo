@@ -1,6 +1,10 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
 
+export interface FathomAnalyticsOptions {
+  apiKey: string;
+}
+
 /**
  * SDK constructor function for the Fathom Analytics API
  *
@@ -11,7 +15,7 @@ import { auth } from "../_create-api/auth/mod.ts";
  */
 export const fathomanalytics = ({
   apiKey = Deno.env.get("FATHOMANALYTICS_API_KEY")!,
-}) => {
+}: FathomAnalyticsOptions) => {
   const api = createApi({
     baseURL: "https://api.usefathom.com/v1",
     headers: {

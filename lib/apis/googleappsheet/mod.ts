@@ -1,6 +1,11 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
 
+export interface GoogleAppsheetOptions {
+  appId: string;
+  applicationAccessKey: string;
+}
+
 /**
  * SDK constructor function for the Google Appsheet API
  *
@@ -10,9 +15,9 @@ import { auth } from "../_create-api/auth/mod.ts";
  * @returns {object} - an object of multiple utilities for the API
  */
 export const googleappsheet = ({
-  appId = Deno.env.get("GOOGLEAPPSHEET_APP_ID"),
+  appId = Deno.env.get("GOOGLEAPPSHEET_APP_ID")!,
   applicationAccessKey = Deno.env.get("GOOGLEAPPSHEET_APPLICATION_ACCESS_KEY")!,
-}) => {
+}: GoogleAppsheetOptions) => {
   const api = createApi({
     baseURL: `https://api.appsheet.com/api/v2/apps/${appId}/tables`,
     headers: {

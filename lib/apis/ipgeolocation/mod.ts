@@ -1,6 +1,10 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
 
+export interface IpGeolocationOptions {
+  apiKey: string;
+}
+
 /**
  * SDK constructor function for the Ip Geolocation API
  *
@@ -11,7 +15,7 @@ import { auth } from "../_create-api/auth/mod.ts";
  */
 export const ipgeolocation = ({
   apiKey = Deno.env.get("IPGEOLOCATION_API_KEY")!,
-}) => {
+}: IpGeolocationOptions) => {
   const api = createApi({
     baseURL: `https://api.ipgeolocation.io/`,
     headers: {

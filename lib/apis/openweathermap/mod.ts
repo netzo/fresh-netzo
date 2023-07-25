@@ -1,6 +1,10 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
 
+export interface OpenWeatherMapOptions {
+  apiKey: string;
+}
+
 /**
  * SDK constructor function for the Openweathermap API
  *
@@ -11,7 +15,7 @@ import { auth } from "../_create-api/auth/mod.ts";
  */
 export const openweathermap = ({
   apiKey = Deno.env.get("OPENWEATHERMAP_API_KEY")!,
-}) => {
+}: OpenWeatherMapOptions) => {
   const api = createApi({
     baseURL: `https://api.openweathermap.org/data/3.0`,
     headers: {

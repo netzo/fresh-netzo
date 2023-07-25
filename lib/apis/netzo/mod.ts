@@ -1,6 +1,11 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
 
+export interface NetzoOptions {
+  apiKey: string;
+  baseURL?: string;
+}
+
 /**
  * SDK constructor function for the Netzo API
  *
@@ -12,7 +17,7 @@ import { auth } from "../_create-api/auth/mod.ts";
 export const netzo = ({
   apiKey = Deno.env.get("NETZO_API_KEY")!,
   baseURL = "https://api.netzo.io",
-}) => {
+}: NetzoOptions) => {
   const api = createApi({
     baseURL,
     headers: {

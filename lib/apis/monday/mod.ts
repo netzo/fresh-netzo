@@ -1,6 +1,10 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
 
+export interface MondayOptions {
+  apiKey: string;
+}
+
 /**
  * SDK constructor function for the Monday API
  *
@@ -11,7 +15,7 @@ import { auth } from "../_create-api/auth/mod.ts";
  */
 export const monday = ({
   apiKey = Deno.env.get("MONDAY_API_KEY")!,
-}) => {
+}: MondayOptions) => {
   const api = createApi({
     baseURL: "https://api.monday.com/v2",
     headers: {

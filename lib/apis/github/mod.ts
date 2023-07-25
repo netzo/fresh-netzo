@@ -1,6 +1,10 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
 
+export interface GithubOptions {
+  personalAccessToken: string;
+}
+
 /**
  * SDK constructor function for the GitHub API
  *
@@ -11,7 +15,7 @@ import { auth } from "../_create-api/auth/mod.ts";
  */
 export const github = ({
   personalAccessToken = Deno.env.get("GITHUB_PERSONAL_ACCESS_TOKEN")!,
-}) => {
+}: GithubOptions) => {
   const api = createApi({
     baseURL: "https://api.github.com",
     headers: {

@@ -1,6 +1,10 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
 
+export interface StripeOptions {
+  apiKey: string;
+}
+
 /**
  * SDK constructor function for the Stripe API
  *
@@ -11,7 +15,7 @@ import { auth } from "../_create-api/auth/mod.ts";
  */
 export const stripe = ({
   apiKey = Deno.env.get("STRIPE_API_KEY")!,
-}) => {
+}: StripeOptions) => {
   const api = createApi({
     baseURL: "https://api.stripe.com/v1",
     headers: {
