@@ -108,27 +108,27 @@ export interface QueryGetDeals {
 }
 
 export interface SearchDealsResult {
+  id: number
+  type: string
+  title: string
+  value: number
+  currency: string
+  status: string
+  visible_to: number
+  owner: {
     id: number
-    type: string
-    title: string
-    value: number
-    currency: string
-    status: string
-    visible_to: number
-    owner: {
-      id: number
-    }
-    stage: {
-      id: number
-      name: string
-    }
-    person: {
-      id: number
-      name: string
-    }
-    organization: any
-    custom_fields: Array<any>
-    notes: Array<any>
+  }
+  stage: {
+    id: number
+    name: string
+  }
+  person: {
+    id: number
+    name: string
+  }
+  organization: any
+  custom_fields: Array<any>
+  notes: Array<any>
 }
 
 export interface QuerySearchDeals {
@@ -137,7 +137,7 @@ export interface QuerySearchDeals {
   exact_match?: boolean
   person_id?: number
   organization_id?: number
-  status?: string
+  status?: "open" | "won" | "lost"
   include_fields?: string
   start?: number
   limit?: number
@@ -152,7 +152,7 @@ export interface QueryAddOrUpdateDeal {
   org_id?: number
   pipeline_id?: number
   stage_id?: number
-  status?: string
+  status?: "open" | "won" | "lost" | "deleted"
   expected_close_date?: string
   probability?: number
   lost_reason?: string
@@ -264,22 +264,22 @@ export interface QuerySearchPersons {
 }
 
 export interface SearchPersonsResult {
+  id: number
+  type: string
+  name: string
+  phones: Array<string>
+  emails: Array<string>
+  visible_to: number
+  owner: {
     id: number
-    type: string
+  }
+  organization: {
+    id: number
     name: string
-    phones: Array<string>
-    emails: Array<string>
-    visible_to: number
-    owner: {
-      id: number
-    }
-    organization: {
-      id: number
-      name: string
-      address: any
-    }
-    custom_fields: Array<any>
-    notes: Array<any>
+    address: any
+  }
+  custom_fields: Array<any>
+  notes: Array<any>
 }
 
 export interface QueryAddOrUpdatePerson {
@@ -289,6 +289,6 @@ export interface QueryAddOrUpdatePerson {
   email?: string
   phone?: string
   visible_to?: string
-  marketing_status?: string
+  marketing_status?: 'no_consent' | 'unsubscribed' | 'subscribed' | 'archived' //only one change allowed
   add_time?: string
 }

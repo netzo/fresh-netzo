@@ -45,16 +45,18 @@ export const pipedrive = ({
    */
   const getDeals = async (query: QueryGetDeals = {}): Promise<Deal[]> => {
     const result = await api.deals.get(query)
-    const deals = result.map((item:any) => item.data)
+    const deals = result.map((item: any) => item.data)
     return deals
   }
 
   /**
    * Search deals on Pipedrive
    */
-  const searchDeals = async (query: QuerySearchDeals): Promise<SearchDealsResult[]> => {
+  const searchDeals = async (
+    query: QuerySearchDeals,
+  ): Promise<SearchDealsResult[]> => {
     const result = await api.deals.search.get(query)
-    const deals = result.data.items.map((item:any) => item.item)
+    const deals = result.data.items.map((item: any) => item.item)
     return deals
   }
 
@@ -90,7 +92,7 @@ export const pipedrive = ({
    */
   const getPersons = async (query: QueryGetPersons = {}): Promise<Person[]> => {
     const result = await api.persons.get(query)
-    const persons = result.map((item:any) => item.data)
+    const persons = result.map((item: any) => item.data)
     return persons
   }
 
@@ -101,7 +103,7 @@ export const pipedrive = ({
     query: QuerySearchPersons,
   ): Promise<SearchPersonsResult[]> => {
     const result = await api.persons.search.get(query)
-    const persons = result.data.items.map((item:any) => item.item)
+    const persons = result.data.items.map((item: any) => item.item)
     return persons
   }
 
@@ -144,8 +146,6 @@ export const pipedrive = ({
     searchPersons,
     addPerson,
     updatePerson,
-    deletePerson
+    deletePerson,
   }
 }
-
-//To resolve: interface for query; search interface; item datatype in map
