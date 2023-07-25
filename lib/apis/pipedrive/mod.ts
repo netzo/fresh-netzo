@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { createApi } from '../_create-api/mod.ts'
 import { auth } from '../_create-api/auth/mod.ts'
 import type {
@@ -13,11 +12,6 @@ import type {
   SearchDealsResult,
   SearchPersonsResult,
 } from './types.ts'
-=======
-import { createApi } from "../_create-api/mod.ts";
-import { auth } from "../_create-api/auth/mod.ts";
-import type { Deal, QueryGetDeals } from "./types.ts";
->>>>>>> main
 
 /**
  * SDK constructor function for the Pipedrive API
@@ -50,7 +44,6 @@ export const pipedrive = ({
    * Get deals from Pipedrive
    */
   const getDeals = async (query: QueryGetDeals = {}): Promise<Deal[]> => {
-<<<<<<< HEAD
     const result = await api.deals.get(query)
     const deals = result.map((item: any) => item.data)
     return deals
@@ -66,16 +59,10 @@ export const pipedrive = ({
     const deals = result.data.items.map((item: any) => item.item)
     return deals
   }
-=======
-    const deals = await api.deals.get<Deal[]>(query);
-    return deals;
-  };
->>>>>>> main
 
   /**
    * Add a deal to Pipedrive
    */
-<<<<<<< HEAD
   const addDeal = async (data: QueryAddOrUpdateDeal): Promise<Deal> => {
     const result = await api.deals.post(data)
     return result.data
@@ -162,12 +149,3 @@ export const pipedrive = ({
     deletePerson,
   }
 }
-=======
-  const addDeal = async (data: Deal): Promise<Deal> => {
-    const deal = await api.deals.post<Deal>(data);
-    return deal;
-  };
-
-  return { api, getDeals, addDeal };
-};
->>>>>>> main
