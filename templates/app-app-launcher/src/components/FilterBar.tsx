@@ -1,14 +1,14 @@
 interface FilterBarProps {
-  tags: string[]
-  selectedTags: string[]
-  onTagSelect: (tag: string) => void
+  tags: string[];
+  selectedTags: string[];
+  onTagSelect: (tag: string) => void;
 }
 
 export default ({ tags, selectedTags, onTagSelect }: FilterBarProps) => {
   const getClass = (tag: string) =>
     selectedTags.value.includes(tag)
-      ? 'dark:bg-blue-900 dark:text-blue-300'
-      : 'dark:bg-gray-700 dark:text-blue-400 border border-blue-400'
+      ? "dark:bg-blue-900 dark:text-blue-300"
+      : "dark:bg-gray-700 dark:text-blue-400 border border-blue-400";
 
   return (
     tags.map((tag) => (
@@ -22,5 +22,5 @@ export default ({ tags, selectedTags, onTagSelect }: FilterBarProps) => {
         {tag}
       </button>
     ))
-  )
-}
+  );
+};

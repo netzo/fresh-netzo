@@ -5,8 +5,8 @@
  */
 export const n = (groups: (string | undefined)[]): string => {
   const classes = groups.reduce<string[]>((acc, group) => {
-    const groupClasses = group?.split?.(' ') ?? []
-    return [...acc, ...groupClasses]
-  }, [])
-  return classes.filter(Boolean).join(' ')
-}
+    const groupClasses = group?.split?.(" ") ?? [];
+    return [...acc, ...groupClasses];
+  }, []);
+  return classes.filter(Boolean).join(" ");
+};
