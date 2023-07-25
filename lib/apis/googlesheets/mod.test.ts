@@ -1,19 +1,21 @@
 import { assertExists } from "../../deps.ts";
 import { googlesheets } from "./mod.ts";
 
-Deno.test("googlesheets", async () => {
-  const { api, getRows, getRow, addRows, updateRow, deleteRow } = googlesheets({
-    googleServiceAccountCredentials: await Deno.readTextFile("./config.json"),
-    googleAuthOptions: {
-      scope: ["https://www.googleapis.com/auth/spreadsheets"],
-    },
-    spreadsheetId: "1pYUPHA2Z1mXvY8xkTrdBsSBktACBzpNeWGnce8B2bcY",
-  });
+Deno.test("googlesheets", async (t) => {
+  const { options } = await import("./googlesheets.options.ts");
+  const { api, getRows, getRow, addRows, updateRow, deleteRow } = googlesheets(options);
 
   const range = "directorio!A:H";
 
-  const data1 = await api.values[range].get();
-  assertExists(data1);
-  const data2 = await getRows(range);
-  assertExists(data2);
+  await t.step("api", async () => {
+    const result = await api.values[range].get();
+    assertExists(result.range);
+    assertExists(result.majorDimension);
+    assertExists(result.values);
+  });
+
+  await t.step("getRows", async () => {
+    const rows = await getRows(range);
+    assertExists(rows);
+  });
 });

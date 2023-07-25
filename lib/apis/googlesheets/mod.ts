@@ -1,7 +1,7 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
 
-export interface GoogleSheetsOptions {
+export interface GooglesheetsOptions {
   googleServiceAccountCredentials: string;
   scope?: Array<"drive" | "drive.readonly" | "drive.file" | "spreadsheets" | "spreadsheets.readonly">;
   spreadsheetId: string;
@@ -21,7 +21,7 @@ export const googlesheets = ({
   googleServiceAccountCredentials = Deno.env.get("GOOGLE_SERVICE_ACCOUNT_CREDENTIALS")!,
   scope = ["spreadsheets.readonly"],
   spreadsheetId = Deno.env.get("GOOGLESHEETS_SPREADSHEET_ID")!,
-}: GoogleSheetsOptions) => {
+}: GooglesheetsOptions) => {
   const api = createApi({
     baseURL: `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}`,
     headers: {
@@ -50,7 +50,7 @@ export const googlesheets = ({
   };
 
   /**
-   * Get spreadheet rows from a given range
+   * Get spreadheet rows from a given range (first row treated as header)
    * @example const rows = await getRows<{ name: string }>('A1:A10');
    * @param {string} range - the range to get rows from
    * @returns {Promise<T[]>} - an array of rows
@@ -61,7 +61,7 @@ export const googlesheets = ({
   };
 
   /**
-   * Get spreadheet row from a given range
+   * Get spreadheet row from a given range (first row treated as header)
    * @example const row = await getRow<{ name: string }>('A1:A1');
    * @param {string} range - the range to get row from
    * @returns {Promise<T>} - a row
@@ -72,7 +72,7 @@ export const googlesheets = ({
   };
 
   /**
-   * Add rows to a given range
+   * Add rows to a given range (first row treated as header)
    * @example const rows = await addRows<{ name: string }>('A1:A10', [{ name: 'John' }]);
    * @param {string} range - the range to add rows to
    * @param {T[]} rows - an array of rows to add
@@ -84,7 +84,7 @@ export const googlesheets = ({
   };
 
   /**
-   * Update row in a given range
+   * Update row in a given range (first row treated as header)
    * @example const row = await updateRow<{ name: string }>('A1:A1', { name: 'John' });
    * @param {string} range - the range to update row in
    * @param {T} row - a row to update
@@ -96,7 +96,7 @@ export const googlesheets = ({
   };
 
   /**
-   * Delete row in a given range
+   * Delete row in a given range (first row treated as header)
    * @example const row = await deleteRow<{ name: string }>('A1:A1');
    * @param {string} range - the range to delete row in
    * @returns {Promise<T>} - a row
