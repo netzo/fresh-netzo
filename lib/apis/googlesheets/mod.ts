@@ -18,10 +18,8 @@ export interface GoogleSheetsOptions {
  * @returns {object} - an object of multiple utilities for the API
  */
 export const googlesheets = ({
-  googleServiceAccountCredentials = Deno.env.get(
-    "GOOGLE_SERVICE_ACCOUNT_CREDENTIALS",
-  )!,
-  scope = ['spreadsheets'],
+  googleServiceAccountCredentials = Deno.env.get("GOOGLE_SERVICE_ACCOUNT_CREDENTIALS")!,
+  scope = ["spreadsheets.readonly"],
   spreadsheetId = Deno.env.get("GOOGLESHEETS_SPREADSHEET_ID")!,
 }: GoogleSheetsOptions) => {
   const api = createApi({
