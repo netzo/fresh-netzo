@@ -1,18 +1,18 @@
-import { brevo } from 'netzo/apis/brevo/mod.ts'
-const { api } = brevo({ apiKey: Deno.env.get('BREVO_API_KEY') })
+import { brevo } from "netzo/apis/brevo/mod.ts";
+const { api } = brevo({ apiKey: Deno.env.get("BREVO_API_KEY") });
 
 Deno.serve(async (req: Request) => {
-  const event = await req.json()
+  const event = await req.json();
   const [products, users] = await Promise.all([
     api.products.post({
       id: event?.id,
       userId: event.user?.id,
-      userName: event.user?.name ?? 'Unknown',
+      userName: event.user?.name ?? "Unknown",
       productId: event.product?.id,
-      productAsin: event.product?.asin ?? 'Unknown',
-      productName: event.product?.name ?? 'Unknown',
+      productAsin: event.product?.asin ?? "Unknown",
+      productName: event.product?.name ?? "Unknown",
     }),
     api.users.post(body),
-  ])
-  return Response.json({ products, users })
-})
+  ]);
+  return Response.json({ products, users });
+});

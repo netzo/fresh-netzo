@@ -1,5 +1,5 @@
-import { createApi } from '../_create-api/mod.ts'
-import { auth } from '../_create-api/auth/mod.ts'
+import { createApi } from "../_create-api/mod.ts";
+import { auth } from "../_create-api/auth/mod.ts";
 
 /**
  * SDK constructor function for the ErgastF1 API
@@ -10,14 +10,14 @@ import { auth } from '../_create-api/auth/mod.ts'
  */
 export const ergastf1 = () => {
   const api = createApi({
-    baseURL: 'https://ergast.com/api',
+    baseURL: "https://ergast.com/api",
     headers: {
-      'content-type': 'application/json',
+      "content-type": "application/json",
     },
     async onRequest(ctx) {
-      await auth({ type: 'none' }, ctx)
+      await auth({ type: "none" }, ctx);
     },
-  })
+  });
 
-  return { api }
-}
+  return { api };
+};

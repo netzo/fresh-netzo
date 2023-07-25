@@ -1,21 +1,21 @@
-import type { Plugin } from '../../deps.ts'
+import type { Plugin } from "../../deps.ts";
 
 // export interface Options {}
 
 export default (options = {}): Plugin => {
   return {
-    name: 'daisyui',
-    entrypoints: { 'main': import.meta.resolve('./main.ts') },
+    name: "daisyui",
+    entrypoints: { "main": import.meta.resolve("./main.ts") },
     render(ctx) {
-      ctx.render()
+      ctx.render();
       return {
         scripts: [
           {
-            entrypoint: 'main',
+            entrypoint: "main",
             state: options,
           },
         ],
-      }
+      };
     },
-  }
-}
+  };
+};

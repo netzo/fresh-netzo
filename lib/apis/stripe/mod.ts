@@ -1,5 +1,5 @@
-import { createApi } from '../_create-api/mod.ts'
-import { auth } from '../_create-api/auth/mod.ts'
+import { createApi } from "../_create-api/mod.ts";
+import { auth } from "../_create-api/auth/mod.ts";
 
 /**
  * SDK constructor function for the Stripe API
@@ -10,22 +10,22 @@ import { auth } from '../_create-api/auth/mod.ts'
  * @returns {object} - an object of multiple utilities for the API
  */
 export const stripe = ({
-  apiKey = Deno.env.get('STRIPE_API_KEY')!,
+  apiKey = Deno.env.get("STRIPE_API_KEY")!,
 }) => {
   const api = createApi({
-    baseURL: 'https://api.stripe.com/v1',
+    baseURL: "https://api.stripe.com/v1",
     headers: {
-      'content-type': 'application/json',
+      "content-type": "application/json",
     },
     async onRequest(ctx) {
       await auth({
-        type: 'apiKey',
-        in: 'header',
-        name: 'apiKey',
+        type: "apiKey",
+        in: "header",
+        name: "apiKey",
         value: apiKey,
-      }, ctx)
+      }, ctx);
     },
-  })
+  });
 
-  return { api }
-}
+  return { api };
+};

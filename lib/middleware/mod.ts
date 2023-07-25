@@ -1,1 +1,1 @@
-export * from './allow.ts'
+export * from "./allow.ts";

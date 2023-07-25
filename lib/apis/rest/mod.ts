@@ -1,4 +1,4 @@
-import { createApi } from '../_create-api/mod.ts'
+import { createApi } from "../_create-api/mod.ts";
 
 /**
  * SDK constructor function for REST APIs
@@ -9,7 +9,7 @@ import { createApi } from '../_create-api/mod.ts'
  * @returns {object} - an object of multiple utilities for the API
  */
 export const rest = (options: Parameters<typeof createApi>[0]) => {
-  const api = createApi(options)
+  const api = createApi(options);
 
-  return { api }
-}
+  return { api };
+};
