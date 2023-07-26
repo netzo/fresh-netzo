@@ -1,17 +1,19 @@
-import { createApi } from '../_create-api/mod.ts'
-import { auth } from '../_create-api/auth/mod.ts'
+import { createApi } from "../_create-api/mod.ts";
+import { auth } from "../_create-api/auth/mod.ts";
 import type {
   Deal,
   Person,
-  QueryAddOrUpdateDeal,
-  QueryAddOrUpdatePerson,
+  QueryAddDeal,
+  QueryAddPerson,
   QueryGetDeals,
   QueryGetPersons,
   QuerySearchDeals,
   QuerySearchPersons,
+  QueryUpdateDeal,
+  QueryUpdatePerson,
   SearchDealsResult,
   SearchPersonsResult,
-} from './types.ts'
+} from "./types.ts";
 
 export interface PipeDriveOptions {
   apiToken: string;
@@ -50,57 +52,57 @@ export const pipedrive = ({
    * Get deals from Pipedrive
    */
   const getDeals = async (query: QueryGetDeals = {}): Promise<Deal[]> => {
-    const result = await api.deals.get(query)
-    const deals = result.map((item: any) => item.data)
-    return deals
-  }
+    const result = await api.deals.get(query);
+    const deals = result.map((item: any) => item.data);
+    return deals;
+  };
 
   /**
-   * Search deals on Pipedrive
+   * Search deals in Pipedrive
    */
   const searchDeals = async (
     query: QuerySearchDeals,
   ): Promise<SearchDealsResult[]> => {
-    const result = await api.deals.search.get(query)
-    const deals = result.data.items.map((item: any) => item.item)
-    return deals
-  }
+    const result = await api.deals.search.get(query);
+    const deals = result.data.items.map((item: any) => item.item);
+    return deals;
+  };
 
   /**
-   * Add a deal to Pipedrive
+   * Add a deal in Pipedrive
    */
-  const addDeal = async (data: QueryAddOrUpdateDeal): Promise<Deal> => {
-    const result = await api.deals.post(data)
-    return result.data
-  }
+  const addDeal = async (data: QueryAddDeal): Promise<Deal> => {
+    const result = await api.deals.post(data);
+    return result.data;
+  };
 
   /**
-   * Update a deal to Pipedrive by id
+   * Update a deal in Pipedrive by id
    */
   const updateDeal = async (
     id: number,
-    data: QueryAddOrUpdateDeal,
+    data: QueryUpdateDeal = {},
   ): Promise<Deal> => {
-    const result = await api.deals[`${id}`].put(data)
-    return result.data
-  }
+    const result = await api.deals[`${id}`].put(data);
+    return result.data;
+  };
 
   /**
    * Delete a deal from Pipedrive by id
    */
   const deleteDeal = async (id: number): Promise<number> => {
-    const result = await api.deals[`${id}`].delete()
-    return result.data.id
-  }
+    const result = await api.deals[`${id}`].delete();
+    return result.data.id;
+  };
 
   /**
    * Get persons from Pipedrive
    */
   const getPersons = async (query: QueryGetPersons = {}): Promise<Person[]> => {
-    const result = await api.persons.get(query)
-    const persons = result.map((item: any) => item.data)
-    return persons
-  }
+    const result = await api.persons.get(query);
+    const persons = result.map((item: any) => item.data);
+    return persons;
+  };
 
   /**
    * Search persons on Pipedrive
@@ -108,18 +110,18 @@ export const pipedrive = ({
   const searchPersons = async (
     query: QuerySearchPersons,
   ): Promise<SearchPersonsResult[]> => {
-    const result = await api.persons.search.get(query)
-    const persons = result.data.items.map((item: any) => item.item)
-    return persons
-  }
+    const result = await api.persons.search.get(query);
+    const persons = result.data.items.map((item: any) => item.item);
+    return persons;
+  };
 
   /**
    * Add a person to Pipedrive
    */
-  const addPerson = async (data: QueryAddOrUpdatePerson): Promise<Person> => {
-    const result = await api.persons.post(data)
-    return result.data
-  }
+  const addPerson = async (data: QueryAddPerson): Promise<Person> => {
+    const result = await api.persons.post(data);
+    return result.data;
+  };
 
   /**
    * Update a person to Pipedrive by id
@@ -127,19 +129,19 @@ export const pipedrive = ({
 
   const updatePerson = async (
     id: number,
-    data: QueryAddOrUpdatePerson,
+    data: QueryUpdatePerson = {},
   ): Promise<Person> => {
-    const result = await api.persons[`${id}`].put(data)
-    return result.data
-  }
+    const result = await api.persons[`${id}`].put(data);
+    return result.data;
+  };
 
   /**
    * Delete a person from Pipedrive by id
    */
   const deletePerson = async (id: number): Promise<number> => {
-    const result = await api.persons[`${id}`].delete()
-    return result.data.id
-  }
+    const result = await api.persons[`${id}`].delete();
+    return result.data.id;
+  };
 
   return {
     api,
@@ -153,5 +155,5 @@ export const pipedrive = ({
     addPerson,
     updatePerson,
     deletePerson,
-  }
-}
+  };
+};
