@@ -1,6 +1,11 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
 
+export interface FacturamaOptions {
+  username: string;
+  password: string;
+}
+
 /**
  * SDK constructor function for the Facturama API
  *
@@ -13,7 +18,7 @@ import { auth } from "../_create-api/auth/mod.ts";
 export const facturama = ({
   username = Deno.env.get("FACTURAMA_USERNAME")!,
   password = Deno.env.get("FACTURAMA_PASSWORD")!,
-}) => {
+}: FacturamaOptions) => {
   const api = createApi({
     baseURL: "https://api.facturama.mx",
     headers: {

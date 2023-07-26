@@ -1,6 +1,12 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
 
+export interface ShopifyAdminOptions {
+  storeName: string;
+  apiKey: string;
+  apiVersion: string;
+}
+
 /**
  * SDK constructor function for the Shopify Admin API
  *
@@ -12,10 +18,10 @@ import { auth } from "../_create-api/auth/mod.ts";
  * @returns {object} - an object of multiple utilities for the API
  */
 export const shopifyadmin = ({
-  storeName = Deno.env.get("SHOPIFYADMIN_STORE_NAME"),
+  storeName = Deno.env.get("SHOPIFYADMIN_STORE_NAME")!,
   apiKey = Deno.env.get("SHOPIFYADMIN_API_KEY")!,
   apiVersion = Deno.env.get("SHOPIFYADMIN_API_VERSION")!,
-}) => {
+}: ShopifyAdminOptions) => {
   const api = createApi({
     baseURL: `https://${storeName}.myshopify.com/admin/api/${apiVersion}`,
     headers: {

@@ -1,5 +1,9 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
+
+export interface AirtableOptions {
+  personalAccessToken: string;
+}
 import {
   QueryAddRecords,
   QueryDeleteRecords,
@@ -18,8 +22,8 @@ import {
  * @returns {object} - an object of multiple utilities for the API
  */
 export const airtable = ({
-  personalAccessToken = Deno.env.get("AIRTABLE_PERSONAL_ACCESS_TOKEN"),
-}) => {
+  personalAccessToken = Deno.env.get('AIRTABLE_PERSONAL_ACCESS_TOKEN')!,
+}: AirtableOptions) => {
   const api = createApi({
     baseURL: `https://api.airtable.com/v0`,
     headers: {

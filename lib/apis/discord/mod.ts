@@ -1,6 +1,11 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
 
+export interface DiscordOptions {
+  tokenType: string;
+  token: string;
+}
+
 /**
  * SDK constructor function for the Discord API
  *
@@ -13,7 +18,7 @@ import { auth } from "../_create-api/auth/mod.ts";
 export const discord = ({
   tokenType = Deno.env.get("DISCORD_TOKEN_TYPE") ?? "Bot",
   token = Deno.env.get("DISCORD_TOKEN")!,
-}) => {
+}: DiscordOptions) => {
   const api = createApi({
     baseURL: "https://discord.com/api/v10",
     headers: {

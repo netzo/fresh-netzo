@@ -1,36 +1,39 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
 
+export interface GoogleSheetsOptions {
+  googleServiceAccountCredentials: string;
+  scope?: Array<"drive" | "drive.readonly" | "drive.file" | "spreadsheets" | "spreadsheets.readonly">;
+  spreadsheetId: string;
+}
+
 /**
  * SDK constructor function for the Google Sheets API
  *
  * @see https://netzo.io/docs/netzo/apis/googlesheets
  *
+ * @param {string} googleServiceAccountCredentials - the Google Service Account Credentials to use for authentication
+ * @param {string} scope - the scope to use for authentication (default: ['spreadsheets.readonly'])
  * @param {string} spreadsheetId - the spreadsheet ID to construct the base URL
- * @param {string} clientId - the client ID to use for authentication
- * @param {string} clientSecret - the client secret to use for authentication
  * @returns {object} - an object of multiple utilities for the API
  */
 export const googlesheets = ({
-  googleServiceAccountCredentials = Deno.env.get(
-    "GOOGLE_SERVICE_ACCOUNT_CREDENTIALS",
-  )!,
-  googleAuthOptions = {
-    scope: ["https://www.googleapis.com/auth/spreadsheets"],
-  },
+  googleServiceAccountCredentials = Deno.env.get("GOOGLE_SERVICE_ACCOUNT_CREDENTIALS")!,
+  scope = ["spreadsheets.readonly"],
   spreadsheetId = Deno.env.get("GOOGLESHEETS_SPREADSHEET_ID")!,
-}) => {
+}: GoogleSheetsOptions) => {
   const api = createApi({
     baseURL: `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}`,
     headers: {
       "content-type": "application/json",
     },
     async onRequest(ctx) {
-      // see https://github.com/azurystudio/authenticus
       await auth({
         type: "googlejwtsa",
         googleServiceAccountCredentials,
-        googleAuthOptions,
+        googleAuthOptions: {
+          scope: scope.map(s => `https://www.googleapis.com/auth/${s}`),
+        },
       }, ctx);
     },
   });
@@ -47,7 +50,7 @@ export const googlesheets = ({
   };
 
   /**
-   * Get spreadheet rows from a given range
+   * Get spreadheet rows from a given range (first row treated as header)
    * @example const rows = await getRows<{ name: string }>('A1:A10');
    * @param {string} range - the range to get rows from
    * @returns {Promise<T[]>} - an array of rows
@@ -58,7 +61,7 @@ export const googlesheets = ({
   };
 
   /**
-   * Get spreadheet row from a given range
+   * Get spreadheet row from a given range (first row treated as header)
    * @example const row = await getRow<{ name: string }>('A1:A1');
    * @param {string} range - the range to get row from
    * @returns {Promise<T>} - a row
@@ -69,7 +72,7 @@ export const googlesheets = ({
   };
 
   /**
-   * Add rows to a given range
+   * Add rows to a given range (first row treated as header)
    * @example const rows = await addRows<{ name: string }>('A1:A10', [{ name: 'John' }]);
    * @param {string} range - the range to add rows to
    * @param {T[]} rows - an array of rows to add
@@ -81,7 +84,7 @@ export const googlesheets = ({
   };
 
   /**
-   * Update row in a given range
+   * Update row in a given range (first row treated as header)
    * @example const row = await updateRow<{ name: string }>('A1:A1', { name: 'John' });
    * @param {string} range - the range to update row in
    * @param {T} row - a row to update
@@ -93,7 +96,7 @@ export const googlesheets = ({
   };
 
   /**
-   * Delete row in a given range
+   * Delete row in a given range (first row treated as header)
    * @example const row = await deleteRow<{ name: string }>('A1:A1');
    * @param {string} range - the range to delete row in
    * @returns {Promise<T>} - a row

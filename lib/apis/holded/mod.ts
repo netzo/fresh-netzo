@@ -1,6 +1,10 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
 
+export interface HoldedOptions {
+  apiKey: string;
+}
+
 /**
  * SDK constructor function for the Holded API
  *
@@ -11,7 +15,7 @@ import { auth } from "../_create-api/auth/mod.ts";
  */
 export const holded = ({
   apiKey = Deno.env.get("HOLDED_API_KEY")!,
-}) => {
+}: HoldedOptions) => {
   const api = createApi({
     baseURL: "https://api.holded.com/api",
     headers: {

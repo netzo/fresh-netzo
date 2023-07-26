@@ -1,6 +1,10 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
 
+export interface BrevoOptions {
+  apiKey: string;
+}
+
 /**
  * SDK constructor function for the Brevo API
  *
@@ -11,7 +15,7 @@ import { auth } from "../_create-api/auth/mod.ts";
  */
 export const brevo = ({
   apiKey = Deno.env.get("BREVO_API_KEY")!,
-}) => {
+}: BrevoOptions) => {
   const api = createApi({
     baseURL: "https://api.brevo.com/v3",
     headers: {

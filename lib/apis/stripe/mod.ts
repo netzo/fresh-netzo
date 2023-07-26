@@ -17,6 +17,10 @@ import {
   Transaction,
 } from "@/lib/apis/stripe/types.ts";
 
+export interface StripeOptions {
+  apiKey: string;
+}
+
 /**
  * SDK constructor function for the Stripe API
  *
@@ -27,7 +31,7 @@ import {
  */
 export const stripe = ({
   apiKey = Deno.env.get("STRIPE_API_KEY")!,
-}) => {
+}: StripeOptions) => {
   const api = createApi({
     baseURL: "https://api.stripe.com/v1",
     headers: {
