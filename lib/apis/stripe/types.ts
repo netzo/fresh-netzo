@@ -137,36 +137,37 @@ export interface QuerySubscriptionItems extends StripePagination {
 }
 
 export interface Customer {
-  "id": "cus_9s6XKzkNRiz8i3";
-  "object": "customer";
-  "address": null;
-  "balance": 0;
-  "created": 1483565364;
-  "currency": "usd";
-  "default_source": "card_1NPfgj2eZvKYlo2CyDrD1yJ4";
-  "delinquent": false;
-  "description": "Casetabs Organization";
-  "discount": null;
-  "email": null;
-  "invoice_prefix": "28278FC";
-  "invoice_settings": {
-    "custom_fields": null;
-    "default_payment_method": null;
-    "footer": null;
-    "rendering_options": null;
-  };
-  "livemode": false;
-  "metadata": {
-    "order_id": "6735";
-  };
-  "name": null;
-  "next_invoice_sequence": 40;
-  "phone": null;
-  "preferred_locales": [];
-  "shipping": null;
-  "tax_exempt": "none";
-  "test_clock": null;
+  id: string
+  object: string
+  address: any
+  balance: number
+  created: number
+  currency: string
+  default_source: string
+  delinquent: boolean
+  description: string
+  discount: any
+  email: any
+  invoice_prefix: string
+  invoice_settings: {
+    custom_fields: any
+    default_payment_method: any
+    footer: any
+    rendering_options: any
+  }
+  livemode: boolean
+  metadata: {
+    order_id: string
+  }
+  name: any
+  next_invoice_sequence: number
+  phone: any
+  preferred_locales: Array<any>
+  shipping: any
+  tax_exempt: string
+  test_clock: any
 }
+
 
 export interface QueryCustomers extends StripePagination {
   email?: string;
