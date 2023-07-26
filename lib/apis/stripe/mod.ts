@@ -47,7 +47,7 @@ export const stripe = ({
     },
   });
 
-  /** 
+  /**
    * Get subscriptions with optional query parameters
    */
   const getSubscriptions = async (
@@ -108,7 +108,7 @@ export const stripe = ({
   };
 
   /**
-   * Get  transactions that have contributed to the Stripe account balance
+   * Get transactions that have contributed to the Stripe account balance
    */
   const getBalanceTransactions = async (
     query: QueryTransactions = {},

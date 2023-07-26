@@ -1,7 +1,7 @@
 interface StripePagination {
   limit?: number;
-  ending_before?: string; //for pagination: ending_before is an object ID that defines your place in the list.
-  starting_after?: string; //for pagination: starting_after is an object ID that defines your place in the list.
+  ending_before?: string;
+  starting_after?: string;
 }
 
 export interface SubscriptionItem {
@@ -39,26 +39,6 @@ export interface SubscriptionItem {
   quantity: number;
   subscription: string;
   tax_rates: Array<any>;
-}
-
-export interface QuerySubscriptions extends StripePagination {
-  customer?: string;
-  price?: string;
-  status?:
-    | "active"
-    | "past_due"
-    | "unpaid"
-    | "canceled"
-    | "incomplete"
-    | "incomplete_expired"
-    | "trialing"
-    | "paused"
-    | "all"
-    | "ended";
-  collection_method?: "charge_automatically" | "send_invoice";
-  created?: string | number;
-  current_period_end?: string | number;
-  current_period_start?: string | number;
 }
 
 export interface Subscription {
@@ -132,46 +112,70 @@ export interface Subscription {
   trial_start: any;
 }
 
+export interface QuerySubscriptions extends StripePagination {
+  customer?: string;
+  price?: string;
+  status?:
+    | "active"
+    | "past_due"
+    | "unpaid"
+    | "canceled"
+    | "incomplete"
+    | "incomplete_expired"
+    | "trialing"
+    | "paused"
+    | "all"
+    | "ended";
+  automatic_tax?: {
+    enabled: boolean;
+  };
+  collection_method?: "charge_automatically" | "send_invoice";
+  created?: string;
+  current_period_end?: string;
+  current_period_start?: string;
+  test_clock?: string;
+}
+
 export interface QuerySubscriptionItems extends StripePagination {
-  subscription: string; //id - required
+  subscription: string;
 }
 
 export interface Customer {
-  id: string
-  object: string
-  address: any
-  balance: number
-  created: number
-  currency: string
-  default_source: string
-  delinquent: boolean
-  description: string
-  discount: any
-  email: any
-  invoice_prefix: string
+  id: string;
+  object: string;
+  address: any;
+  balance: number;
+  created: number;
+  currency: string;
+  default_source: string;
+  delinquent: boolean;
+  description: string;
+  discount: any;
+  email: any;
+  invoice_prefix: string;
   invoice_settings: {
-    custom_fields: any
-    default_payment_method: any
-    footer: any
-    rendering_options: any
-  }
-  livemode: boolean
+    custom_fields: any;
+    default_payment_method: any;
+    footer: any;
+    rendering_options: any;
+  };
+  livemode: boolean;
   metadata: {
-    order_id: string
-  }
-  name: any
-  next_invoice_sequence: number
-  phone: any
-  preferred_locales: Array<any>
-  shipping: any
-  tax_exempt: string
-  test_clock: any
+    order_id: string;
+  };
+  name: any;
+  next_invoice_sequence: number;
+  phone: any;
+  preferred_locales: Array<any>;
+  shipping: any;
+  tax_exempt: string;
+  test_clock: any;
 }
-
 
 export interface QueryCustomers extends StripePagination {
   email?: string;
-  created?: string | number;
+  created?: string;
+  test_clock?: string;
 }
 
 export interface Invoice {
@@ -326,8 +330,8 @@ export interface QueryInvoices extends StripePagination {
   status?: "draft" | "open" | "void" | "paid" | "uncollectible";
   subscription?: string;
   collection_method?: "charge_automatically" | "send_invoice";
-  created?: string | number;
-  due_date?: string | number;
+  created?: string;
+  due_date?: string;
 }
 
 export interface Charge {
@@ -429,9 +433,9 @@ export interface Charge {
 
 export interface QueryCharges extends StripePagination {
   customer?: string;
-  created?: string | number;
+  created?: string;
   payment_intent?: string;
-  transfer_group?: string; //This argument is only relevant if you're using Stripe Connect
+  transfer_group?: string;
 }
 
 export interface Plan {
@@ -459,7 +463,7 @@ export interface Plan {
 export interface QueryPlans extends StripePagination {
   active?: boolean;
   product?: string;
-  created?: string | number;
+  created?: string;
 }
 
 type TransactionType =
@@ -517,13 +521,13 @@ export interface Transaction {
   reporting_category: string;
   source: string;
   status: string;
-  type: TransactionType
+  type: TransactionType;
 }
 
 export interface QueryTransactions extends StripePagination {
   payout?: string;
-  type?: TransactionType
-  created?: string | number;
+  type?: TransactionType;
+  created?: string;
   currency?: string;
   source?: string;
 }
