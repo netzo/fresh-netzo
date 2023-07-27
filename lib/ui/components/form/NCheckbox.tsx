@@ -33,11 +33,11 @@ export function NCheckbox(props: NCheckboxProps) {
   };
 
   return (
-    <label {...ui()} checked={checked.value}>
+    <label {...ui()} checked={checked}>
       <input
         type="checkbox"
         class="peer absolute op0"
-        checked={checked.value}
+        checked={checked}
         name={props.name}
         value={props.value}
         disabled={props.disabled}

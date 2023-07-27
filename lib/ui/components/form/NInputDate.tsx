@@ -37,7 +37,7 @@ export function NInputDate(props: NInputDateProps) {
       </Head>
       <DatePicker
         {...ui()}
-        selected={value.value}
+        selected={value}
         onChange={onChange}
         placeholderText="Select date range"
         showYearDropdown

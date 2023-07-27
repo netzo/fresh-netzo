@@ -51,10 +51,10 @@ export function NInputDateRange(props: NInputDateRangeProps) {
       </Head>
       <DatePicker
         {...ui()}
-        selected={start.value}
+        selected={start}
         onChange={onChange}
-        startDate={start.value}
-        endDate={end.value}
+        startDate={start}
+        endDate={end}
         customInput={<NInputTextDateRange />}
       />
     </>

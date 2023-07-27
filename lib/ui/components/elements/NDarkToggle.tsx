@@ -24,7 +24,7 @@ export const NDarkToggle = (props: NDarkToggleProps) => {
   };
 
   return (
-    <NSwitch {...ui()} checked={isDark.value} onClick={onClick}>
+    <NSwitch {...ui()} checked={isDark} onClick={onClick}>
       {isDark.value ? "Dark" : "Light"}
     </NSwitch>
   );

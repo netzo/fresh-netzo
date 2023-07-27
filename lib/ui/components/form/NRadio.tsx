@@ -34,11 +34,11 @@ export function NRadio(props: NRadioProps) {
   };
 
   return (
-    <label {...ui()} checked={checked.value}>
+    <label {...ui()} checked={checked}>
       <input
         type="radio"
         class="peer absolute op0"
-        checked={checked.value}
+        checked={checked}
         name={props.name}
         value={props.value}
         disabled={props.disabled}
