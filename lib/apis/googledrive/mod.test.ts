@@ -1,4 +1,4 @@
-import { assertExists } from "../../deps.ts";
+import { assertExists } from "../deps.ts";
 import { googledrive } from "./mod.ts";
 
 Deno.test("googledrive", async (t) => {

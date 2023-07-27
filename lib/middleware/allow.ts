@@ -1,4 +1,4 @@
-import { MiddlewareHandler } from "../deps.ts";
+import { MiddlewareHandler } from "./deps.ts";
 
 export type Visibility = "private" | "public";
 
