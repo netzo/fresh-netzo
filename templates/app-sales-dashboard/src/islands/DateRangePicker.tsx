@@ -14,7 +14,7 @@ export default () => {
   return (
     <DateRangePicker
       class="max-w-md"
-      value={value}
+      value={value.value}
       onValueChange={onValueChange}
     />
   );
@@ -41,7 +41,7 @@ export default () => {
 //   return (
 //     <DateRangePicker
 //       className="max-w-md mx-auto"
-//       value={value}
+//       value={value.value}
 //       onValueChange={onValueChange}
 //       locale={es}
 //       selectPlaceholder="Seleccionar"

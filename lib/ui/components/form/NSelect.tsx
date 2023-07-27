@@ -40,7 +40,7 @@ export function NSelect(props: NSelectProps) {
       <select
         {...ui()}
         disabled={props.disabled}
-        value={value}
+        value={value.value}
         onInput={onInput}
       >
         {props.placeholder && (

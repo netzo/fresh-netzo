@@ -35,11 +35,11 @@ export function NSwitch(props: NSwitchProps) {
   };
 
   return (
-    <label {...ui()} checked={checked}>
+    <label {...ui()} checked={checked.value}>
       <input
         type="checkbox"
         class="peer absolute op0"
-        checked={checked}
+        checked={checked.value}
         name={props.name}
         value={props.value}
         disabled={props.disabled}

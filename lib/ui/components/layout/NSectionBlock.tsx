@@ -33,7 +33,7 @@ export const NSectionBlock = (props: NSectionBlockProps) => {
 
   return (
     <>
-      <details class="n-section-block" open={open} onToggle={onToggle}>
+      <details class="n-section-block" open={open.value} onToggle={onToggle}>
         <summary
           class={n([
             "cursor-pointer select-none hover:bg-active p4",
