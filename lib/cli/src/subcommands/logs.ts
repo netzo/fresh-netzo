@@ -97,7 +97,7 @@ async function logs(opts: DeployOpts): Promise<void> {
     uid: opts.project,
     $limit: 1,
   });
-  const projectDeployments = await denoApi.getDeployments(project._id);
+  const projectDeployments = await DenoAPI.getDeployments(project._id);
   if (project === null) {
     projectSpinner.fail("Project not found.");
     Deno.exit(1);
@@ -115,8 +115,8 @@ async function logs(opts: DeployOpts): Promise<void> {
   }
   projectSpinner.succeed(`Project: ${project.name}`);
   const logs = opts.deploymentId
-    ? denoApi.getLogs(project._id, opts.deploymentId)
-    : denoApi.getLogs(project._id, "latest");
+    ? DenoAPI.getLogs(project._id, opts.deploymentId)
+    : DenoAPI.getLogs(project._id, "latest");
   if (logs === null) {
     projectSpinner.fail("Project not found.");
     Deno.exit(1);

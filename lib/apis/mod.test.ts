@@ -1,4 +1,4 @@
-import { assertExists } from "../deps.ts";
+import { assertExists } from "./deps.ts";
 import * as apis from "./mod.ts";
 
 Deno.test("apis", async (t) => {

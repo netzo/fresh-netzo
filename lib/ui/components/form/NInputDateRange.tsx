@@ -3,7 +3,7 @@ import { forwardRef } from "preact/compat";
 import { Head } from "fresh/runtime.ts";
 import { NInputText } from "../mod.ts";
 import { n } from "../../utils/mod.ts";
-import { DatePicker } from "../../../deps.ts";
+import { DatePicker } from "../../deps.ts";
 
 export interface NInputDateRangeProps extends DatePicker {
   valueStart?: Date;

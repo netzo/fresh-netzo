@@ -1,6 +1,3 @@
-// NOTE: import_map.json is for apps, deps.ts is for modules/libraries
-// IMPORTANT: import/export only what's required to avoid bloating bundle
-
 // std
 export {
   fromFileUrl,

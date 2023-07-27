@@ -1,6 +1,6 @@
-import { type FetchContext } from "../../../deps.ts";
+import { type FetchContext } from "../../deps.ts";
 import { Authorization } from "./types.ts";
-import { getToken, type GoogleAuth } from "../../../deps.ts";
+import { getToken, type GoogleAuth } from "../../deps.ts";
 import { getToken as getTokenOauth2 } from "./oauth2/mod.ts";
 
 /**

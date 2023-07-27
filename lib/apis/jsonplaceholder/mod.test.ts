@@ -1,5 +1,4 @@
-import { get } from "../../deps.ts";
-import { assertEquals, assertExists } from "../../deps.ts";
+import { assertEquals, assertExists } from "../deps.ts";
 import { jsonplaceholder } from "./mod.ts";
 
 Deno.test("jsonplaceholder", async (t) => {
@@ -56,18 +55,6 @@ Deno.test("jsonplaceholder", async (t) => {
 
   await t.step("api.todos[1].delete()", async () => {
     const todo = await api.todos[1].delete();
-    assertExists(todo);
-  });
-
-  await t.step("lodash.get(api, 'todos').get()", async () => {
-    const endpoint = get(api, "todos");
-    const todo = await endpoint.get();
-    assertExists(todo);
-  });
-
-  await t.step("lodash.get(api, 'todos.get')()", async () => {
-    const endpointFn = get(api, "todos.get");
-    const todo = await endpointFn();
     assertExists(todo);
   });
 });

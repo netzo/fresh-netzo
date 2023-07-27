@@ -1,7 +1,7 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
 
-export interface GoogleDriveOptions {
+export interface GoogledriveOptions {
   googleServiceAccountCredentials: string;
   scope?: Array<"drive" | "drive.appdata" | "drive.file" | "drive.metadata" | "drive.metadata.readonly" | "drive.photos.readonly" | "drive.readonly" | "drive.scripts">;
 }
@@ -18,7 +18,7 @@ export interface GoogleDriveOptions {
 export const googledrive = ({
   googleServiceAccountCredentials = Deno.env.get("GOOGLE_SERVICE_ACCOUNT_CREDENTIALS")!,
   scope = ["drive.readonly"],
-}: GoogleDriveOptions) => {
+}: GoogledriveOptions) => {
   const api = createApi({
     baseURL: `https://www.googleapis.com/drive/v3`,
     headers: {
