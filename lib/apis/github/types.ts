@@ -1,4 +1,25 @@
-export interface User {
+interface UserBasics {
+  login: string
+  id: number
+  node_id: string
+  avatar_url: string
+  gravatar_id: string
+  url: string
+  html_url: string
+  followers_url: string
+  following_url: string
+  gists_url: string
+  starred_url: string
+  subscriptions_url: string
+  organizations_url: string
+  repos_url: string
+  events_url: string
+  received_events_url: string
+  type: string
+  site_admin: boolean
+}
+
+export interface User extends UserBasics {
   login: string
   id: number
   node_id: string
@@ -33,31 +54,12 @@ export interface User {
   updated_at: string
 }
 
-export interface Repository {
+interface RepoBasics {
   id: number
   node_id: string
   name: string
   full_name: string
-  owner: {
-    login: string
-    id: number
-    node_id: string
-    avatar_url: string
-    gravatar_id: string
-    url: string
-    html_url: string
-    followers_url: string
-    following_url: string
-    gists_url: string
-    starred_url: string
-    subscriptions_url: string
-    organizations_url: string
-    repos_url: string
-    events_url: string
-    received_events_url: string
-    type: string
-    site_admin: boolean
-  }
+  owner: UserBasics
   private: boolean
   html_url: string
   description: string
@@ -131,7 +133,10 @@ export interface Repository {
     push: boolean
     pull: boolean
   }
-  security_and_analysis: {
+}
+
+export interface Repository extends RepoBasics {
+    security_and_analysis: {
     advanced_security: {
       status: string
     }
@@ -147,6 +152,7 @@ export interface Repository {
 export interface QueryRepositories {
   type?: 'owner' | 'member' | 'all'
   sort?: 'full_name' | 'created' | 'updated' | 'pushed'
+  direction?: 'asc' | 'desc'
   page?: number
   per_page?: number
   visibility?: 'public' | 'private' | 'all' //from here on, only for authenticated user's repos
@@ -168,26 +174,7 @@ export interface Issue {
   state: string
   title: string
   body: string
-  user: {
-    login: string
-    id: number
-    node_id: string
-    avatar_url: string
-    gravatar_id: string
-    url: string
-    html_url: string
-    followers_url: string
-    following_url: string
-    gists_url: string
-    starred_url: string
-    subscriptions_url: string
-    organizations_url: string
-    repos_url: string
-    events_url: string
-    received_events_url: string
-    type: string
-    site_admin: boolean
-  }
+  user: UserBasics
   labels: Array<{
     id: number
     node_id: string
@@ -197,46 +184,8 @@ export interface Issue {
     color: string
     default: boolean
   }>
-  assignee: {
-    login: string
-    id: number
-    node_id: string
-    avatar_url: string
-    gravatar_id: string
-    url: string
-    html_url: string
-    followers_url: string
-    following_url: string
-    gists_url: string
-    starred_url: string
-    subscriptions_url: string
-    organizations_url: string
-    repos_url: string
-    events_url: string
-    received_events_url: string
-    type: string
-    site_admin: boolean
-  }
-  assignees: Array<{
-    login: string
-    id: number
-    node_id: string
-    avatar_url: string
-    gravatar_id: string
-    url: string
-    html_url: string
-    followers_url: string
-    following_url: string
-    gists_url: string
-    starred_url: string
-    subscriptions_url: string
-    organizations_url: string
-    repos_url: string
-    events_url: string
-    received_events_url: string
-    type: string
-    site_admin: boolean
-  }>
+  assignee: UserBasics
+  assignees: UserBasics[]
   milestone: {
     url: string
     html_url: string
@@ -247,26 +196,7 @@ export interface Issue {
     state: string
     title: string
     description: string
-    creator: {
-      login: string
-      id: number
-      node_id: string
-      avatar_url: string
-      gravatar_id: string
-      url: string
-      html_url: string
-      followers_url: string
-      following_url: string
-      gists_url: string
-      starred_url: string
-      subscriptions_url: string
-      organizations_url: string
-      repos_url: string
-      events_url: string
-      received_events_url: string
-      type: string
-      site_admin: boolean
-    }
+    creator: UserBasics
     open_issues: number
     closed_issues: number
     created_at: string
@@ -286,103 +216,7 @@ export interface Issue {
   closed_at: any
   created_at: string
   updated_at: string
-  repository: {
-    id: number
-    node_id: string
-    name: string
-    full_name: string
-    owner: {
-      login: string
-      id: number
-      node_id: string
-      avatar_url: string
-      gravatar_id: string
-      url: string
-      html_url: string
-      followers_url: string
-      following_url: string
-      gists_url: string
-      starred_url: string
-      subscriptions_url: string
-      organizations_url: string
-      repos_url: string
-      events_url: string
-      received_events_url: string
-      type: string
-      site_admin: boolean
-    }
-    private: boolean
-    html_url: string
-    description: string
-    fork: boolean
-    url: string
-    archive_url: string
-    assignees_url: string
-    blobs_url: string
-    branches_url: string
-    collaborators_url: string
-    comments_url: string
-    commits_url: string
-    compare_url: string
-    contents_url: string
-    contributors_url: string
-    deployments_url: string
-    downloads_url: string
-    events_url: string
-    forks_url: string
-    git_commits_url: string
-    git_refs_url: string
-    git_tags_url: string
-    git_url: string
-    issue_comment_url: string
-    issue_events_url: string
-    issues_url: string
-    keys_url: string
-    labels_url: string
-    languages_url: string
-    merges_url: string
-    milestones_url: string
-    notifications_url: string
-    pulls_url: string
-    releases_url: string
-    ssh_url: string
-    stargazers_url: string
-    statuses_url: string
-    subscribers_url: string
-    subscription_url: string
-    tags_url: string
-    teams_url: string
-    trees_url: string
-    clone_url: string
-    mirror_url: string
-    hooks_url: string
-    svn_url: string
-    homepage: string
-    language: any
-    forks_count: number
-    stargazers_count: number
-    watchers_count: number
-    size: number
-    default_branch: string
-    open_issues_count: number
-    is_template: boolean
-    topics: Array<string>
-    has_issues: boolean
-    has_projects: boolean
-    has_wiki: boolean
-    has_pages: boolean
-    has_downloads: boolean
-    archived: boolean
-    disabled: boolean
-    visibility: string
-    pushed_at: string
-    created_at: string
-    updated_at: string
-    permissions: {
-      admin: boolean
-      push: boolean
-      pull: boolean
-    }
+  repository: RepoBasics & {
     allow_rebase_merge: boolean
     template_repository: any
     temp_clone_token: string
@@ -425,7 +259,7 @@ export interface QueryIssues {
 export interface SearchResult {
   total_count: number
   incomplete_results: boolean
-  items: [] //results vary depending on search target area
+  items: [] 
 }
 
 export interface SearchTarget {

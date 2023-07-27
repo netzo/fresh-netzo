@@ -39,7 +39,7 @@ export const github = ({
     },
   });
 
-  /*
+  /**
    * Get a user/organisation profile from Github.
    * If no username is provided, get authenticated user's profile
    */
@@ -53,13 +53,13 @@ export const github = ({
     return result
   }
 
-  /*
+  /**
    * Get a user's/organisation's repositories from Github
    * If no username is provided, get authenticated user's repositories
    */
   const getRepositories = async (
     username?: string,
-    query?: QueryRepositories,
+    query: QueryRepositories = {},
   ): Promise<Repository[]> => {
     let result: Repository[]
     if (username) {
@@ -70,15 +70,15 @@ export const github = ({
     return result
   }
 
-  /*
-   * List issues assigned to the authenticated user across owned, member, and organization repositories
+  /**
+   * List issues relevant to the authenticated user across owned, member, and organization repositories
    */
-  const getIssues = async (query: QueryIssues): Promise<Issue[]> => {
+  const getIssues = async (query: QueryIssues = {}): Promise<Issue[]> => {
     const result = await api.issues.get(query)
     return result
   }
 
-  /*
+  /**
    * Build a search query to search for specific items
    */
   const search = async (
