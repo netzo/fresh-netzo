@@ -5,6 +5,7 @@ import {
   Customer,
   CustomerSpecific,
   Order,
+  OrderByCustomer,
   OrderSpecific,
   OrderStatus,
   Payout,
@@ -76,12 +77,10 @@ export const shopifyadmin = ({
   /**
    * Get orders belonging to a specific customer from Shopify
    */
-
-  //must check if order object the same
   const getCustomerOrders = async (
     customerId: string,
     status: OrderStatus = "any",
-  ): Promise<Order[]> => {
+  ): Promise<OrderByCustomer[]> => {
     const result = await api.customers[`${customerId}`]["orders.json"].get(
       status,
     );
@@ -112,7 +111,6 @@ export const shopifyadmin = ({
   /**
    * Get orders from Shopify
    */
-
   const getOrders = async (query: QueryOrder = {}): Promise<Order[]> => {
     const result = await api["orders.json"].get(query);
     return result.orders;
