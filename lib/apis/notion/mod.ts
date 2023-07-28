@@ -30,7 +30,7 @@ export const notion = ({
   notionVersion = Deno.env.get("NOTION_VERSION")!,
 }: NotionOptions) => {
   const api = createApi({
-    baseURL: `https://api.notion.com`,
+    baseURL: `https://api.notion.com/v1`,
     headers: {
       "content-type": "application/json",
       "Notion-Version": notionVersion,
@@ -47,15 +47,11 @@ export const notion = ({
   /**
    * Get pages that belong to a database in Notion
    */
-
-  //filter props are query params;    queryBody are body params
-  // https://developers.notion.com/reference/post-database-query
   const getPages = async (
     databaseId: string,
-    filter_properties = "",
-    queryBody: QueryDbBody = {},
+    query: QueryDbBody = {},
   ): Promise<Page[]> => {
-    const result = await api.databases[`${databaseId}`].query.post(?); //!!!PARAMS
+    const result = await api.databases[`${databaseId}`].query.post(query);
     return result.results;
   };
 
