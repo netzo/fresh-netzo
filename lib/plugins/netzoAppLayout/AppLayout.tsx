@@ -7,8 +7,10 @@ export default (options: NetzoAppLayoutOptions) => {
       <>
         <Head>
           <title>{options.title}</title>
+          <meta name="description" content={options.description} />
+          <link rel="icon" type="image/svg+xml" href={`/${options.favicon}`} />
         </Head>
-        <main class="max-w-screen-md px-4 pt-16 mx-auto">
+        <main class="p-4 mx-auto max-w-screen-lg">
           <Component />
         </main>
       </>
