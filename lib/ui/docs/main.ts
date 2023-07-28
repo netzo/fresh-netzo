@@ -9,15 +9,17 @@ import "std/dotenv/load.ts";
 import { start } from "fresh/server.ts";
 import manifest from "./fresh.gen.ts";
 
-import { unocss,/*  app, visibility */ } from "netzo/plugins/mod.ts";
+import { netzoAppLayout, netzoAuth, unocss } from "netzo/plugins/mod.ts";
 import { presetNetzo } from "netzo/ui/mod.ts";
 
 
 await start(manifest, {
   plugins: [
+    netzoAppLayout({ title: 'Docs | netzo/ui' }),
+    netzoAuth(),
+    // FIXME: netzoErrorPage(),
+    // FIXME: netzoErrorPageNotFound(),
     unocss({ presets: [presetNetzo()] }),
-    // app({ title: 'Docs | netzo/ui' }),
-    // visibility(),
   ],
 });
 
