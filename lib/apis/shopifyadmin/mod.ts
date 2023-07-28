@@ -1,6 +1,7 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
 import {
+  AddOrUpdateCustomer,
   Customer,
   CustomerSpecific,
   Order,
@@ -9,7 +10,6 @@ import {
   Payout,
   Product,
   ProductSpecific,
-  AddOrUpdateCustomer,
   QueryCustomers,
   QueryOrder,
   QueryPayouts,
@@ -58,7 +58,7 @@ export const shopifyadmin = ({
   const getCustomers = async (
     query: QueryCustomers = {},
   ): Promise<Customer[]> => {
-    const result = await api.customers.get(query);
+    const result = await api["customers.json"].get(query);
     return result.customers;
   };
 
@@ -69,7 +69,7 @@ export const shopifyadmin = ({
     customerId: string,
     fields = "",
   ): Promise<CustomerSpecific> => {
-    const result = await api.customers[`${customerId}`].get(fields);
+    const result = await api.customers[`${customerId}.json`].get(fields);
     return result.customer;
   };
 
@@ -82,7 +82,9 @@ export const shopifyadmin = ({
     customerId: string,
     status: OrderStatus = "any",
   ): Promise<Order[]> => {
-    const result = await api.customers[`${customerId}`].orders.get(status);
+    const result = await api.customers[`${customerId}`]["orders.json"].get(
+      status,
+    );
     return result.orders;
   };
 
@@ -92,7 +94,7 @@ export const shopifyadmin = ({
   const addCustomer = async (
     data: AddOrUpdateCustomer = {},
   ): Promise<CustomerSpecific> => {
-    const result = await api.customers.post(data);
+    const result = await api["customers.json"].post(data);
     return result.customer;
   };
 
@@ -103,7 +105,7 @@ export const shopifyadmin = ({
     customerId: string,
     data: AddOrUpdateCustomer = {},
   ): Promise<CustomerSpecific> => {
-    const result = await api.customers[`${customerId}`].put(data);
+    const result = await api.customers[`${customerId}.json`].put(data);
     return result.customer;
   };
 
@@ -112,7 +114,7 @@ export const shopifyadmin = ({
    */
 
   const getOrders = async (query: QueryOrder = {}): Promise<Order[]> => {
-    const result = await api.orders.get(query);
+    const result = await api["orders.json"].get(query);
     return result.orders;
   };
 
@@ -123,7 +125,7 @@ export const shopifyadmin = ({
     orderId: string,
     fields = "",
   ): Promise<OrderSpecific> => {
-    const result = await api.orders[`${orderId}`].get(fields);
+    const result = await api.orders[`${orderId}.json`].get(fields);
     return result.order;
   };
 
@@ -131,7 +133,7 @@ export const shopifyadmin = ({
    * Get products from Shopify
    */
   const getProducts = async (query: QueryProducts = {}): Promise<Product[]> => {
-    const result = await api.products.get(query);
+    const result = await api["products.json"].get(query);
     return result.products;
   };
 
@@ -142,7 +144,7 @@ export const shopifyadmin = ({
     productId: string,
     fields = "",
   ): Promise<ProductSpecific> => {
-    const result = await api.products[`${productId}`].get(fields);
+    const result = await api.products[`${productId}.json`].get(fields);
     return result.product;
   };
 
@@ -150,7 +152,7 @@ export const shopifyadmin = ({
    * Get payouts from Shopify
    */
   const getPayouts = async (query: QueryPayouts = {}): Promise<Payout[]> => {
-    const result = await api.shopify_payments.payouts.get(query);
+    const result = await api.shopify_payments["payouts.json"].get(query);
     return result.payouts;
   };
 
