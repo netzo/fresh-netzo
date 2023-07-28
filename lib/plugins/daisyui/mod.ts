@@ -1,8 +1,9 @@
 import type { Plugin } from "../deps.ts";
 
-// export interface Options {}
+// deno-lint-ignore no-empty-interface
+export interface DaisyuiOptions { }
 
-export default (options = {}): Plugin => {
+export const daisyui = (options: DaisyuiOptions = {}): Plugin => {
   return {
     name: "daisyui",
     entrypoints: { "main": import.meta.resolve("./main.ts") },

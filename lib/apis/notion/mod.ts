@@ -20,7 +20,7 @@ export const notion = ({
   notionVersion = Deno.env.get("NOTION_VERSION")!,
 }: NotionOptions) => {
   const api = createApi({
-    baseURL: `https://api.notion.com`,
+    baseURL: `https://api.notion.com/v1`,
     headers: {
       "content-type": "application/json",
       "Notion-Version": notionVersion,
