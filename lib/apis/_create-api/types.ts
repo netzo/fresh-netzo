@@ -1,5 +1,5 @@
 // deno-lint-ignore-file no-explicit-any
-import { type FetchOptions } from "../../deps.ts";
+import { type FetchOptions } from "../deps.ts";
 
 export interface ResponseMap {
   blob: Blob;

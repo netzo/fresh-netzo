@@ -1,7 +1,7 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
 
-export interface ActiveCampaignOptions {
+export interface ActivecampaignOptions {
   accountName: string;
   apiKey: string;
 }
@@ -18,7 +18,7 @@ export interface ActiveCampaignOptions {
 export const activecampaign = ({
   accountName = Deno.env.get("ACTIVECAMPAIGN_ACCOUNT_NAME")!,
   apiKey = Deno.env.get("ACTIVECAMPAIGN_API_KEY")!,
-}: ActivecampaignOptions) => {
+}: ActiveCampaignOptions) => {
   const api = createApi({
     baseURL: `https://${accountName}.api-us1.com/api/3`,
     headers: {

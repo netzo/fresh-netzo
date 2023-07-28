@@ -1,4 +1,4 @@
-import type { Plugin } from "../../deps.ts";
+import type { Plugin } from "../deps.ts";
 
 // export interface Options {}
 
