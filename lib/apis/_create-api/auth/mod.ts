@@ -19,8 +19,8 @@ export const auth = async (
   const headers = {} as Record<string, string>;
 
   if (authorization.type === "basic") {
-    const { username, password } = authorization;
-    const token = btoa(`${username}:${password}`);
+    const { username, password, value } = authorization;
+    const token = value ?? btoa(`${username}:${password}`);
     headers.Authorization = `Basic ${token}`;
   } else if (authorization.type === "bearer") {
     const { token } = authorization;
