@@ -47,7 +47,8 @@ export function createApi<R extends ResponseType = "json">(
           if (method === "GET") {
             if (data) url = withQuery(url, data as QueryObject);
             // GET disallows body so remove it
-            defaultOptions.body = options.body = undefined;
+            defaultOptions.body = undefined;
+            options.body = undefined;
           } else if (payloadMethods.includes(method)) {
             options.body = data;
           }

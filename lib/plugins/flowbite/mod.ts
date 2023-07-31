@@ -1,6 +1,6 @@
-import { Plugin } from "fresh/server.ts";
+import { Plugin } from "../deps.ts";
 
-export type FlowbitePluginOptions = {
+export type FlowbiteOptions = {
   additionalStylesheets?: string[];
   additionalScripts?: string[];
   plugins?: {
@@ -8,7 +8,7 @@ export type FlowbitePluginOptions = {
   };
 };
 
-export default (options: FlowbitePluginOptions = {}): Plugin => {
+export const flowbite = (options: FlowbiteOptions = {}): Plugin => {
   if (!options.additionalScripts) options.additionalScripts = [];
   if (!options.additionalStylesheets) options.additionalStylesheets = [];
   if (!options.plugins) options.plugins = { datepicker: true };
