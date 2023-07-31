@@ -1,37 +1,24 @@
 import {
   AuthorizationOAuth2,
-  AuthorizationOAuth2AuthorizationCode,
   AuthorizationOAuth2ClientCredentials,
-  AuthorizationOAuth2Implicit,
   AuthorizationOAuth2PasswordCredentials,
+  AuthorizationOAuth2AuthorizationCode,
 } from "../types.ts";
 // import { OAuth2Client } from "https://deno.land/x/oauth2_client/mod.ts"
 
 /**
  * Client Credential Flow (2-legged authorization)
  *
- * The Client Credentials Flow allows applications to pass their
- * Client Secret and Client ID to an authorization server, which
- * authenticates the user, and returns a token. This happens
- * without any user intervention.
- *
- * Relevant for: M2M apps (daemons, back-end resources, and CLIs)
+ * Relevant for: Machine-to-Machine (M2M) applications, daemons, back-end resources, and CLIs.
+ * Use case: Allows applications to obtain an access token by passing their client secret and
+ * client ID directly to the authorization server without user intervention.
  *
  * @see https://frontegg.com/blog/oauth-flows
  * @see https://darutk.medium.com/diagrams-and-movies-of-all-the-oauth-2-0-flows-194f3c3ade85
  */
-const DEFAULTS: AuthorizationOAuth2ClientCredentials = {
-  type: "oauth2",
-  grantType: "client_credentials",
-  headerPrefix: "Bearer",
-  clientId:
-    "333607581312-m8un366ektgv0agc3q897ld1ep3dmr84.apps.googleusercontent.com",
-  clientSecret: "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",
-  authorizationUrl: "https://accounts.google.com/o/oauth2/auth",
-  scope: "https://www.googleapis.com/auth/drive",
-};
+
 export const getTokenClientCredentialsFlow = async (
-  authorization: AuthorizationOAuth2ClientCredentials = DEFAULTS,
+  authorization: AuthorizationOAuth2ClientCredentials,
 ) => {
   const { clientId, clientSecret, authorizationUrl, scope } = authorization;
   const response = await fetch(authorizationUrl, {
@@ -67,28 +54,6 @@ export const getTokenPasswordCredentialsFlow = async (
       client_secret: clientSecret,
       username,
       password,
-      ...(scope && { scope }),
-    }),
-  });
-  return response.json();
-};
-
-/**
- * Implicit Flow (3-legged authorization)
- */
-export const getTokenImplicitFlow = async (
-  authorization: AuthorizationOAuth2Implicit,
-) => {
-  const { clientId, authorizationUrl, redirectUrl, scope } = authorization;
-  const response = await fetch(authorizationUrl, {
-    method: "POST",
-    headers: {
-      "content-type": "application/x-www-form-urlencoded",
-    },
-    body: new URLSearchParams({
-      grant_type: "implicit",
-      client_id: clientId,
-      redirect_uri: redirectUrl,
       ...(scope && { scope }),
     }),
   });
@@ -158,9 +123,6 @@ export const getToken = async (authorization: AuthorizationOAuth2) => {
   }
   if (authorization.grantType === "password_credentials") {
     return await getTokenPasswordCredentialsFlow(authorization);
-  }
-  if (authorization.grantType === "implicit") {
-    return await getTokenImplicitFlow(authorization);
   }
   if (authorization.grantType === "authorization_code") {
     return await getTokenAuthorizationCodeFlow(authorization);
