@@ -22,4 +22,3 @@ export {
 
 // react-datepicker:
 export { default as DatePicker } from "https://esm.sh/react-datepicker@4.16.0?alias=react:preact/compat,react-dom:preact/compat,@types/react:preact/compat&external=preact/compat";
-

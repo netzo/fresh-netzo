@@ -46,26 +46,26 @@ export interface Database extends Page {
 }
 
 export interface Block {
-  object: string
-  id: string
+  object: string;
+  id: string;
   parent: {
-    type: string
-    block_id: string
-  }
-  type: string
-  created_time: string
-  last_edited_time: string
+    type: string;
+    block_id: string;
+  };
+  type: string;
+  created_time: string;
+  last_edited_time: string;
   created_by: {
-    object: string
-    id: string
-  }
+    object: string;
+    id: string;
+  };
   last_edited_by: {
-    object: string
-    id: string
-  }
-  has_children: boolean
-  archived: boolean
-  [key: string]: {}  //property name is the value of property "type"
+    object: string;
+    id: string;
+  };
+  has_children: boolean;
+  archived: boolean;
+  [key: string]: {}; //property name is the value of property "type"
 }
 
 interface User {

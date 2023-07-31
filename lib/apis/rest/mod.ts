@@ -1,6 +1,6 @@
 import { createApi } from "../_create-api/mod.ts";
 
-export type RestOptions = Parameters<typeof createApi>[0]
+export type RestOptions = Parameters<typeof createApi>[0];
 
 /**
  * SDK constructor function for REST APIs

@@ -286,7 +286,7 @@ export interface QueryAddPerson {
   email?: string;
   phone?: string;
   visible_to?: string;
-  marketing_status?: "no_consent" | "unsubscribed" | "subscribed" | "archived"; 
+  marketing_status?: "no_consent" | "unsubscribed" | "subscribed" | "archived";
   add_time?: string;
 }
 

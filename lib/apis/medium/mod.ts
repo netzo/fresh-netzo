@@ -23,7 +23,7 @@ export const medium = ({
     },
     async onRequest(ctx) {
       await auth({
-        type: 'bearer',
+        type: "bearer",
         token: accessToken,
       }, ctx);
     },
