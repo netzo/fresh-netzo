@@ -1,5 +1,5 @@
-import { createApi } from '../_create-api/mod.ts'
-import { auth } from '../_create-api/auth/mod.ts'
+import { createApi } from "../_create-api/mod.ts";
+import { auth } from "../_create-api/auth/mod.ts";
 import {
   Issue,
   QueryIssues,
@@ -9,7 +9,7 @@ import {
   SearchResult,
   SearchTarget,
   User,
-} from '@/lib/apis/github/types.ts'
+} from "@/lib/apis/github/types.ts";
 
 export interface GithubOptions {
   personalAccessToken: string;
@@ -44,14 +44,14 @@ export const github = ({
    * If no username is provided, get authenticated user's profile
    */
   const getUser = async (username?: string): Promise<User> => {
-    let result: User
+    let result: User;
     if (username) {
-      result = await api.users[`${username}`].get()
+      result = await api.users[`${username}`].get();
     } else {
-      result = await api.user.get()
+      result = await api.user.get();
     }
-    return result
-  }
+    return result;
+  };
 
   /**
    * Get a user's/organisation's repositories from Github
@@ -61,22 +61,22 @@ export const github = ({
     username?: string,
     query: QueryRepositories = {},
   ): Promise<Repository[]> => {
-    let result: Repository[]
+    let result: Repository[];
     if (username) {
-      result = await api.users[`${username}`].repos.get(query)
+      result = await api.users[`${username}`].repos.get(query);
     } else {
-      result = await api.user.repos.get(query) //Authorization is included??
+      result = await api.user.repos.get(query); //Authorization is included??
     }
-    return result
-  }
+    return result;
+  };
 
   /**
    * List issues relevant to the authenticated user across owned, member, and organization repositories
    */
   const getIssues = async (query: QueryIssues = {}): Promise<Issue[]> => {
-    const result = await api.issues.get(query)
-    return result
-  }
+    const result = await api.issues.get(query);
+    return result;
+  };
 
   /**
    * Build a search query to search for specific items
@@ -85,9 +85,9 @@ export const github = ({
     target: SearchTarget,
     query: QuerySearch,
   ): Promise<SearchResult> => {
-    const result = await api.search[`${target}`].get(query)
-    return result
-  }
+    const result = await api.search[`${target}`].get(query);
+    return result;
+  };
 
-  return { api, getUser, getRepositories, getIssues, search }
-}
+  return { api, getUser, getRepositories, getIssues, search };
+};

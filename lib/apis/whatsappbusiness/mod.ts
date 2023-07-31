@@ -15,7 +15,8 @@ export interface WhatsappBusinessOptions {
  * @returns {object} - an object of multiple utilities for the API
  */
 export const whatsappbusiness = ({
-  businessAccountId = Deno.env.get("WHATSAPPBUSINESS_BUSINESS_ACCOUNT_ID") || "",
+  businessAccountId = Deno.env.get("WHATSAPPBUSINESS_BUSINESS_ACCOUNT_ID") ||
+    "",
   permanentToken = Deno.env.get("WHATSAPPBUSINESS_PERMANENT_TOKEN")!,
 }: WhatsappBusinessOptions) => {
   const api = createApi({
