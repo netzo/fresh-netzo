@@ -31,7 +31,7 @@ export const hubspot = ({
   privateAppAccessToken = Deno.env.get("HUBSPOT_PRIVATE_APP_ACCESS_TOKEN")!,
 }: HubspotOptions) => {
   const api = createApi({
-    baseURL: "https://api.hubapi.com",
+    baseURL: 'https://api.hubapi.com',
     headers: {
       "content-type": "application/json",
     },
