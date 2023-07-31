@@ -1,5 +1,15 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
+import {
+Block,
+  BotUser,
+  Database,
+  NotionPagination,
+  Page,
+  PersonUser,
+  QueryDbBody,
+  QuerySearch,
+} from "@/lib/apis/notion/types.ts";
 
 export interface NotionOptions {
   internalIntegrationToken: string;
@@ -33,5 +43,59 @@ export const notion = ({
     },
   });
 
-  return { api };
+  
+  /**
+   * Get pages that belong to a database in Notion
+   */
+  const getPages = async (
+    databaseId: string,
+    query: QueryDbBody = {},
+  ): Promise<Page[]> => {
+    const result = await api.databases[`${databaseId}`].query.post(query);
+    return result.results;
+  };
+
+  /**
+   * Get page properties from Notion
+   */
+  const getPageProperties = async (
+    pageId: string,
+    filter_properties = "",
+  ): Promise<Page> => {
+    const result = await api.pages[`${pageId}`].get(filter_properties);
+    return result;
+  };
+
+  /**
+   * Get page content from Notion
+   */
+  const getPageContent = async (
+    pageId: string,
+    query: NotionPagination = {},
+  ): Promise<Block[]> => {
+    const result = await api.blocks[`${pageId}`].children.get(query);
+    return result.results;
+  };
+
+  /**
+   * Get users connected to the workspace
+   */
+  const getUsers = async (
+    query: NotionPagination = {},
+  ): Promise<(PersonUser | BotUser)[]> => {
+    const result = await api.users.get(query);
+    return result.results;
+  };
+
+  /**
+   * Search pages or databases in Notion
+   */
+  const search = async (
+    query: QuerySearch = {},
+  ): Promise<(Database | Page)[]> => {
+    const result = await api.search.post(query);
+    return result.results;
+  };
+
+  return { api, getPages, getPageProperties, getPageContent, getUsers, search };
 };
