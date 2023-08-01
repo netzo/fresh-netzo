@@ -48,7 +48,7 @@ export const stripe = ({
   });
 
   /**
-   * Get subscriptions with optional query parameters
+   * Get subscriptions from Stripe
    */
   const getSubscriptions = async (
     query: QuerySubscriptions = {},
@@ -70,7 +70,7 @@ export const stripe = ({
   };
 
   /**
-   * Get customers with optional query parameters
+   * Get customers from Stripe
    */
   const getCustomers = async (
     query: QueryCustomers = {},
@@ -81,7 +81,7 @@ export const stripe = ({
   };
 
   /**
-   * Get invoices with optional query parameters
+   * Get invoices from Stripe
    */
   const getInvoices = async (query: QueryInvoices = {}): Promise<Invoice[]> => {
     const result = await api.invoices.get(query);
@@ -90,7 +90,7 @@ export const stripe = ({
   };
 
   /**
-   * Get charges with optional query parameters
+   * Get charges from Stripe
    */
   const getCharges = async (query: QueryCharges = {}): Promise<Charge[]> => {
     const result = await api.charges.get(query);
@@ -99,7 +99,7 @@ export const stripe = ({
   };
 
   /**
-   * Get plans with optional query parameters
+   * Get plans from Stripe
    */
   const getPlans = async (query: QueryPlans = {}): Promise<Plan[]> => {
     const result = await api.plans.get(query);
