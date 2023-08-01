@@ -65,13 +65,13 @@ export const github = ({
     if (username) {
       result = await api.users[`${username}`].repos.get(query)
     } else {
-      result = await api.user.repos.get(query) //Authorization is included??
+      result = await api.user.repos.get(query) 
     }
     return result
   }
 
   /**
-   * List issues relevant to the authenticated user across owned, member, and organization repositories
+   * Get issues relevant to the authenticated user across owned, member, and organization repositories
    */
   const getIssues = async (query: QueryIssues = {}): Promise<Issue[]> => {
     const result = await api.issues.get(query)
