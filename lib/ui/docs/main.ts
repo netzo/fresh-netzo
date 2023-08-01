@@ -20,7 +20,7 @@ import { presetNetzo } from "netzo/ui/mod.ts";
 await start(manifest, {
   plugins: [
     netzoAppLayout({ title: "Docs | netzo/ui" }),
-    netzoAuth(),
+    netzoAuth({ visibility: "public" }),
     netzoErrorPages(),
     unocss({ presets: [presetNetzo()] }),
   ],

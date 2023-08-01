@@ -1,12 +1,10 @@
 import type { MiddlewareHandler, Plugin } from "../deps.ts";
 
 export interface NetzoAuthOptions {
-  visibility?: "private" | "public";
+  visibility: "private" | "public";
 }
 
-const createHandler = (
-  options: NetzoAuthOptions = { visibility: "private" },
-): MiddlewareHandler => {
+const createHandler = (options: NetzoAuthOptions): MiddlewareHandler => {
   return async (req, ctx) => {
     if (["internal"].includes(ctx.destination)) return await ctx.next();
 
@@ -33,7 +31,7 @@ const createHandler = (
   };
 };
 
-export const netzoAuth = (options: NetzoAuthOptions = {}): Plugin => {
+export const netzoAuth = (options: NetzoAuthOptions): Plugin => {
   return {
     name: "netzoAuth",
     middlewares: [
