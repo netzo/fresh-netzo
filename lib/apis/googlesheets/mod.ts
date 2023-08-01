@@ -3,7 +3,13 @@ import { auth } from "../_create-api/auth/mod.ts";
 
 export interface GooglesheetsOptions {
   googleServiceAccountCredentials: string;
-  scope?: Array<"drive" | "drive.readonly" | "drive.file" | "spreadsheets" | "spreadsheets.readonly">;
+  scope?: Array<
+    | "drive"
+    | "drive.readonly"
+    | "drive.file"
+    | "spreadsheets"
+    | "spreadsheets.readonly"
+  >;
   spreadsheetId: string;
 }
 
@@ -18,7 +24,9 @@ export interface GooglesheetsOptions {
  * @returns {object} - an object of multiple utilities for the API
  */
 export const googlesheets = ({
-  googleServiceAccountCredentials = Deno.env.get("GOOGLE_SERVICE_ACCOUNT_CREDENTIALS")!,
+  googleServiceAccountCredentials = Deno.env.get(
+    "GOOGLE_SERVICE_ACCOUNT_CREDENTIALS",
+  )!,
   scope = ["spreadsheets.readonly"],
   spreadsheetId = Deno.env.get("GOOGLESHEETS_SPREADSHEET_ID")!,
 }: GooglesheetsOptions) => {
@@ -32,7 +40,7 @@ export const googlesheets = ({
         type: "googlejwtsa",
         googleServiceAccountCredentials,
         googleAuthOptions: {
-          scope: scope.map(s => `https://www.googleapis.com/auth/${s}`),
+          scope: scope.map((s) => `https://www.googleapis.com/auth/${s}`),
         },
       }, ctx);
     },

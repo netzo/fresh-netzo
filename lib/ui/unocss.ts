@@ -1,4 +1,8 @@
-import type { Preset, RuleContext, UserConfig } from "https://esm.sh/@unocss/core@0.53.4?bundle";
+import type {
+  Preset,
+  RuleContext,
+  UserConfig,
+} from "https://esm.sh/@unocss/core@0.53.4?bundle";
 import type { Theme } from "https://esm.sh/@unocss/preset-uno@0.53.4?bundle";
 import { parseColor } from "https://esm.sh/@unocss/preset-mini@0.53.4/utils?bundle";
 import { theme as unoTheme } from "https://esm.sh/@unocss/preset-mini@0.53.4?bundle";

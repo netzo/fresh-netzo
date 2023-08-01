@@ -35,10 +35,10 @@ export const ipgeolocation = ({
   /**
    * Get geolocation based on IP address
    */
-  const getLocation = async(ip: string): Promise<Geolocation> => {
-    const result = await api.ipgeo.get(ip)
-    return result
-  }
+  const getLocation = async (ip: string): Promise<Geolocation> => {
+    const result = await api.ipgeo.get(ip);
+    return result;
+  };
 
   return { api, getLocation };
 };

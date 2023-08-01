@@ -1,3 +1,9 @@
+import { clsx, type ClassValue, twMerge } from "../deps.ts"
+
+export const cn = (...inputs: ClassValue[]) => {
+  return twMerge(clsx(inputs))
+}
+
 /**
  * Join classes without de-duplicating to ensure override order is maintained.
  * @param groups - Array of classes to join

@@ -1,7 +1,7 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
 import {
-Block,
+  Block,
   BotUser,
   Database,
   NotionPagination,
@@ -43,7 +43,6 @@ export const notion = ({
     },
   });
 
-  
   /**
    * Get pages that belong to a database in Notion
    */
