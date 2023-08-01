@@ -64,12 +64,13 @@ export const airtable = ({
   /**
    * Update one or multiple records in Airtable
    */
+  
   const updateRecords = async (
     dataBaseId: string,
     tableIdOrName: string,
     data: QueryUpdateRecords,
   ): Promise<Record[]> => {
-    const result = await api[`${dataBaseId}`][`${tableIdOrName}`].put(data);
+    const result = await api[`${dataBaseId}`][`${tableIdOrName}`].patch(data);
     return result.records;
   };
 

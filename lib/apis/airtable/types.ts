@@ -19,7 +19,7 @@ export interface QueryRecords {
   sort?: {
     field?: string;
     direction?: "asc" | "desc";
-  };
+  }[];
   filterByFormula?: string;
   cellFormat?: "json" | "string";
   fields?: string[];
