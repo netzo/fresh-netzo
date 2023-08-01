@@ -41,11 +41,11 @@ export const airtable = ({
    * Get records from Airtable
    */
   const getRecords = async (
-    dataBaseId: string,
+    databaseId: string,
     tableIdOrName: string,
     query: QueryRecords = {},
   ): Promise<Record[]> => {
-    const result = await api[`${dataBaseId}`][`${tableIdOrName}`].get(query);
+    const result = await api[`${databaseId}`][`${tableIdOrName}`].get(query);
     return result.records;
   };
 
@@ -53,11 +53,11 @@ export const airtable = ({
    * Create one or multiple records in Airtable
    */
   const addRecords = async (
-    dataBaseId: string,
+    databaseId: string,
     tableIdOrName: string,
     data: QueryAddRecords,
   ): Promise<Record[]> => {
-    const result = await api[`${dataBaseId}`][`${tableIdOrName}`].post(data);
+    const result = await api[`${databaseId}`][`${tableIdOrName}`].post(data);
     return result.records;
   };
 
@@ -66,11 +66,11 @@ export const airtable = ({
    */
   
   const updateRecords = async (
-    dataBaseId: string,
+    databaseId: string,
     tableIdOrName: string,
     data: QueryUpdateRecords,
   ): Promise<Record[]> => {
-    const result = await api[`${dataBaseId}`][`${tableIdOrName}`].patch(data);
+    const result = await api[`${databaseId}`][`${tableIdOrName}`].patch(data);
     return result.records;
   };
 
@@ -78,11 +78,11 @@ export const airtable = ({
    * Delete one or multiple records in Airtable
    */
   const deleteRecords = async (
-    dataBaseId: string,
+    databaseId: string,
     tableIdOrName: string,
     query: QueryDeleteRecords,
   ): Promise<RecordDeleted[]> => {
-    const result = await api[`${dataBaseId}`][`${tableIdOrName}`].delete(
+    const result = await api[`${databaseId}`][`${tableIdOrName}`].delete(
       query,
     );
     return result.records;
