@@ -52,7 +52,7 @@ export const hubspot = ({
   };
 
   /**
-   * Add contact in Hubspot CRM(v3)
+   * Add a contact in Hubspot CRM(v3)
    */
   const addContact = async (
     data: QueryAddContact,
