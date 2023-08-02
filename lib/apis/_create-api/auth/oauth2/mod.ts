@@ -1,8 +1,8 @@
 import {
   AuthorizationOAuth2,
+  AuthorizationOAuth2AuthorizationCode,
   AuthorizationOAuth2ClientCredentials,
   AuthorizationOAuth2PasswordCredentials,
-  AuthorizationOAuth2AuthorizationCode,
 } from "../types.ts";
 // import { OAuth2Client } from "https://deno.land/x/oauth2_client/mod.ts"
 
