@@ -11,6 +11,8 @@ export type {
 } from "https://deno.land/x/fresh@1.3.1/server.ts";
 
 // preact:
+export type { JSX } from "https://esm.sh/preact@10.16.0";
+export { forwardRef } from "https://esm.sh/preact@10.16.0/compat";
 export {
   computed,
   effect,
@@ -21,7 +23,7 @@ export {
 } from "https://esm.sh/*@preact/signals@1.1.5";
 
 // shadcn-ui:
-export { clsx, type ClassValue } from "https://esm.sh/clsx@2.0.0";
+export { type ClassValue, clsx } from "https://esm.sh/clsx@2.0.0";
 export { twMerge } from "https://esm.sh/tailwind-merge@1.14.0";
 
 // react-datepicker:
