@@ -41,7 +41,7 @@ export default function Demo() {
 
         <div class="flex items-center gap-2">
           <div class="text-4xl">
-            @netzo/ui
+            netzo/components
           </div>
           <sup class="text-xl">
             <code>v{VERSION}</code>
