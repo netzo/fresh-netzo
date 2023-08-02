@@ -77,21 +77,21 @@ export const pipedrive = ({
   };
 
   /**
-   * Update a deal in Pipedrive by id
+   * Update a deal in Pipedrive
    */
   const updateDeal = async (
-    id: number,
+    dealId: number,
     data: QueryUpdateDeal = {},
   ): Promise<Deal> => {
-    const result = await api.deals[`${id}`].put(data);
+    const result = await api.deals[`${dealId}`].put(data);
     return result.data;
   };
 
   /**
-   * Delete a deal from Pipedrive by id
+   * Delete a deal from Pipedrive
    */
-  const deleteDeal = async (id: number): Promise<number> => {
-    const result = await api.deals[`${id}`].delete();
+  const deleteDeal = async (dealId: number): Promise<number> => {
+    const result = await api.deals[`${dealId}`].delete();
     return result.data.id;
   };
 
@@ -105,7 +105,7 @@ export const pipedrive = ({
   };
 
   /**
-   * Search persons on Pipedrive
+   * Search persons in Pipedrive
    */
   const searchPersons = async (
     query: QuerySearchPersons,
@@ -124,22 +124,22 @@ export const pipedrive = ({
   };
 
   /**
-   * Update a person to Pipedrive by id
+   * Update a person in Pipedrive
    */
 
   const updatePerson = async (
-    id: number,
+    personId: number,
     data: QueryUpdatePerson = {},
   ): Promise<Person> => {
-    const result = await api.persons[`${id}`].put(data);
+    const result = await api.persons[`${personId}`].put(data);
     return result.data;
   };
 
   /**
-   * Delete a person from Pipedrive by id
+   * Delete a person from Pipedrive 
    */
-  const deletePerson = async (id: number): Promise<number> => {
-    const result = await api.persons[`${id}`].delete();
+  const deletePerson = async (personId: number): Promise<number> => {
+    const result = await api.persons[`${personId}`].delete();
     return result.data.id;
   };
 
