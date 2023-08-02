@@ -1374,7 +1374,7 @@ export interface OrderByCustomer {
 
 export type OrderStatus = "open" | "close" | "cancelled" | "any";
 
-export interface QueryOrder extends QueryCustomers {
+export interface QueryOrders extends QueryCustomers {
   attribution_app_id?: string;
   financial_status?:
     | "authorized"

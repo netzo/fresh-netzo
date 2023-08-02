@@ -12,7 +12,7 @@ import {
   Product,
   ProductSpecific,
   QueryCustomers,
-  QueryOrder,
+  QueryOrders,
   QueryPayouts,
   QueryProducts,
 } from "@/lib/apis/shopifyadmin/types.ts";
@@ -111,7 +111,7 @@ export const shopifyadmin = ({
   /**
    * Get orders from Shopify
    */
-  const getOrders = async (query: QueryOrder = {}): Promise<Order[]> => {
+  const getOrders = async (query: QueryOrders = {}): Promise<Order[]> => {
     const result = await api["orders.json"].get(query);
     return result.orders;
   };
