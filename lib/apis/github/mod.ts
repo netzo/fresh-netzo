@@ -65,7 +65,7 @@ export const github = ({
     if (username) {
       result = await api.users[`${username}`].repos.get(query);
     } else {
-      result = await api.user.repos.get(query) 
+      result = await api.user.repos.get(query);
     }
     return result;
   };
