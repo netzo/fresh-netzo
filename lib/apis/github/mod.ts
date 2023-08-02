@@ -40,7 +40,7 @@ export const github = ({
   });
 
   /**
-   * Get a user/organisation profile from Github.
+   * Get a user/organization profile from Github.
    * If no username is provided, get authenticated user's profile
    */
   const getUser = async (username?: string): Promise<User> => {
@@ -54,7 +54,7 @@ export const github = ({
   };
 
   /**
-   * Get a user's/organisation's repositories from Github
+   * Get a user's/organization's repositories from Github
    * If no username is provided, get authenticated user's repositories
    */
   const getRepositories = async (
