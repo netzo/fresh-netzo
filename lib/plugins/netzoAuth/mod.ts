@@ -47,7 +47,7 @@ const createHandler = (options: NetzoAuthOptions): MiddlewareHandler => {
     const isApp = (url: string) => !!url && (new URL(url).host).endsWith('netzo.io');
     const is = { app: isApp(origin!) || isApp(referer!) };
 
-    console.log({ destination: ctx.destination, options, origin, referer, is });
+    // console.debug({ destination: ctx.destination, options, origin, referer, is });
 
     switch (options.visibility) {
       case "private": {
