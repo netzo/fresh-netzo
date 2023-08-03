@@ -10,7 +10,6 @@ import { start } from "fresh/server.ts";
 import manifest from "./fresh.gen.ts";
 
 import {
-  netzoAppLayout,
   netzoAuth,
   netzoErrorPages,
   unocss,
@@ -20,7 +19,6 @@ import { presetNetzo } from "netzo/ui/mod.ts";
 await start(manifest, {
   plugins: [
     netzoAuth({ visibility: "public" }),
-    netzoAppLayout({ title: "netzo/components | Netzo" }),
     netzoErrorPages(),
     unocss({ presets: [presetNetzo()] }),
   ],
