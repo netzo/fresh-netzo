@@ -2,20 +2,22 @@ import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
 import {
   AddOrUpdateCustomer,
+  Customers,
   Customer,
-  CustomerSpecific,
   Order,
-  OrderByCustomer,
-  OrderSpecific,
   OrderStatus,
-  Payout,
   Product,
-  ProductSpecific,
   QueryCustomers,
   QueryOrders,
   QueryPayouts,
   QueryProducts,
+  OrdersByCustomer,
+  AddOrUpdateCustomerResponse,
+  Orders,
+  Products,
+  Payouts,
 } from "@/lib/apis/shopifyadmin/types.ts";
+
 
 export interface ShopifyAdminOptions {
   storeName: string;
@@ -58,7 +60,7 @@ export const shopifyadmin = ({
    */
   const getCustomers = async (
     query: QueryCustomers = {},
-  ): Promise<Customer[]> => {
+  ): Promise<Customers> => {
     const result = await api["customers.json"].get(query);
     return result.customers;
   };
@@ -69,7 +71,7 @@ export const shopifyadmin = ({
   const getSingleCustomer = async (
     customerId: string,
     fields = "",
-  ): Promise<CustomerSpecific> => {
+  ): Promise<Customer> => {
     const result = await api.customers[`${customerId}.json`].get(fields);
     return result.customer;
   };
@@ -80,7 +82,7 @@ export const shopifyadmin = ({
   const getCustomerOrders = async (
     customerId: string,
     status: OrderStatus = "any",
-  ): Promise<OrderByCustomer[]> => {
+  ): Promise<OrdersByCustomer> => {
     const result = await api.customers[`${customerId}`]["orders.json"].get(
       status,
     );
@@ -92,7 +94,7 @@ export const shopifyadmin = ({
    */
   const addCustomer = async (
     data: AddOrUpdateCustomer = {},
-  ): Promise<CustomerSpecific> => {
+  ): Promise<AddOrUpdateCustomerResponse> => {
     const result = await api["customers.json"].post(data);
     return result.customer;
   };
@@ -103,7 +105,7 @@ export const shopifyadmin = ({
   const updateCustomer = async (
     customerId: string,
     data: AddOrUpdateCustomer = {},
-  ): Promise<CustomerSpecific> => {
+  ): Promise<AddOrUpdateCustomerResponse> => {
     const result = await api.customers[`${customerId}.json`].put(data);
     return result.customer;
   };
@@ -111,7 +113,7 @@ export const shopifyadmin = ({
   /**
    * Get orders from Shopify
    */
-  const getOrders = async (query: QueryOrders = {}): Promise<Order[]> => {
+  const getOrders = async (query: QueryOrders = {}): Promise<Orders> => {
     const result = await api["orders.json"].get(query);
     return result.orders;
   };
@@ -122,7 +124,7 @@ export const shopifyadmin = ({
   const getSingleOrder = async (
     orderId: string,
     fields = "",
-  ): Promise<OrderSpecific> => {
+  ): Promise<Order> => {
     const result = await api.orders[`${orderId}.json`].get(fields);
     return result.order;
   };
@@ -130,7 +132,7 @@ export const shopifyadmin = ({
   /**
    * Get products from Shopify
    */
-  const getProducts = async (query: QueryProducts = {}): Promise<Product[]> => {
+  const getProducts = async (query: QueryProducts = {}): Promise<Products> => {
     const result = await api["products.json"].get(query);
     return result.products;
   };
@@ -141,7 +143,7 @@ export const shopifyadmin = ({
   const getSingleProduct = async (
     productId: string,
     fields = "",
-  ): Promise<ProductSpecific> => {
+  ): Promise<Product> => {
     const result = await api.products[`${productId}.json`].get(fields);
     return result.product;
   };
@@ -149,7 +151,7 @@ export const shopifyadmin = ({
   /**
    * Get payouts from Shopify
    */
-  const getPayouts = async (query: QueryPayouts = {}): Promise<Payout[]> => {
+  const getPayouts = async (query: QueryPayouts = {}): Promise<Payouts> => {
     const result = await api.shopify_payments["payouts.json"].get(query);
     return result.payouts;
   };

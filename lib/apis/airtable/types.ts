@@ -9,6 +9,13 @@ export interface Record extends RecordObject {
   createdTime: string;
 }
 
+export interface Records {
+  records: Array<RecordObject & {
+    createdTime: string
+  }
+  >
+}
+
 export interface QueryRecords {
   timeZone?: {};
   userLocale?: string;
@@ -45,6 +52,8 @@ export interface QueryDeleteRecords {
 }
 
 export interface RecordDeleted {
-  deleted: boolean;
-  id: string;
+  records: Array<{
+    deleted: boolean
+    id: string;
+  }>
 }

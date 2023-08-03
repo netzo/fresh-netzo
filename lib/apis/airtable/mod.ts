@@ -7,6 +7,7 @@ import {
   QueryUpdateRecords,
   Record,
   RecordDeleted,
+Records,
 } from "@/lib/apis/airtable/types.ts";
 
 export interface AirtableOptions {
@@ -44,7 +45,7 @@ export const airtable = ({
     databaseId: string,
     tableIdOrName: string,
     query: QueryRecords = {},
-  ): Promise<Record[]> => {
+  ): Promise<Records> => {
     const result = await api[`${databaseId}`][`${tableIdOrName}`].get(query);
     return result.records;
   };
@@ -56,7 +57,7 @@ export const airtable = ({
     databaseId: string,
     tableIdOrName: string,
     data: QueryAddRecords,
-  ): Promise<Record[]> => {
+  ): Promise<Records> => {
     const result = await api[`${databaseId}`][`${tableIdOrName}`].post(data);
     return result.records;
   };
@@ -69,7 +70,7 @@ export const airtable = ({
     databaseId: string,
     tableIdOrName: string,
     data: QueryUpdateRecords,
-  ): Promise<Record[]> => {
+  ): Promise<Records> => {
     const result = await api[`${databaseId}`][`${tableIdOrName}`].patch(data);
     return result.records;
   };
@@ -81,7 +82,7 @@ export const airtable = ({
     databaseId: string,
     tableIdOrName: string,
     query: QueryDeleteRecords,
-  ): Promise<RecordDeleted[]> => {
+  ): Promise<RecordDeleted> => {
     const result = await api[`${databaseId}`][`${tableIdOrName}`].delete(
       query,
     );

@@ -1,8 +1,8 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
 import type {
-  Deal,
-  Person,
+  Deals,
+  Persons,
   QueryAddDeal,
   QueryAddPerson,
   QueryGetDeals,
@@ -11,8 +11,10 @@ import type {
   QuerySearchPersons,
   QueryUpdateDeal,
   QueryUpdatePerson,
-  SearchDealsResult,
-  SearchPersonsResult,
+  SearchDealsResponse,
+  SearchPersonsResponse,
+  AddOrUpdatePersonResponse,
+AddOrUpdateDealResponse
 } from "./types.ts";
 
 export interface PipeDriveOptions {
@@ -51,7 +53,7 @@ export const pipedrive = ({
   /**
    * Get deals from Pipedrive
    */
-  const getDeals = async (query: QueryGetDeals = {}): Promise<Deal[]> => {
+  const getDeals = async (query: QueryGetDeals = {}): Promise<Deals> => {
     const result = await api.deals.get(query);
     const deals = result.map((item: any) => item.data);
     return deals;
@@ -62,7 +64,7 @@ export const pipedrive = ({
    */
   const searchDeals = async (
     query: QuerySearchDeals,
-  ): Promise<SearchDealsResult[]> => {
+  ): Promise<SearchDealsResponse> => {
     const result = await api.deals.search.get(query);
     const deals = result.data.items.map((item: any) => item.item);
     return deals;
@@ -71,7 +73,7 @@ export const pipedrive = ({
   /**
    * Add a deal in Pipedrive
    */
-  const addDeal = async (data: QueryAddDeal): Promise<Deal> => {
+  const addDeal = async (data: QueryAddDeal): Promise<AddOrUpdateDealResponse> => {
     const result = await api.deals.post(data);
     return result.data;
   };
@@ -82,7 +84,7 @@ export const pipedrive = ({
   const updateDeal = async (
     dealId: number,
     data: QueryUpdateDeal = {},
-  ): Promise<Deal> => {
+  ): Promise<AddOrUpdateDealResponse> => {
     const result = await api.deals[`${dealId}`].put(data);
     return result.data;
   };
@@ -98,7 +100,7 @@ export const pipedrive = ({
   /**
    * Get persons from Pipedrive
    */
-  const getPersons = async (query: QueryGetPersons = {}): Promise<Person[]> => {
+  const getPersons = async (query: QueryGetPersons = {}): Promise<Persons> => {
     const result = await api.persons.get(query);
     const persons = result.map((item: any) => item.data);
     return persons;
@@ -109,7 +111,7 @@ export const pipedrive = ({
    */
   const searchPersons = async (
     query: QuerySearchPersons,
-  ): Promise<SearchPersonsResult[]> => {
+  ): Promise<SearchPersonsResponse> => {
     const result = await api.persons.search.get(query);
     const persons = result.data.items.map((item: any) => item.item);
     return persons;
@@ -118,7 +120,7 @@ export const pipedrive = ({
   /**
    * Add a person to Pipedrive
    */
-  const addPerson = async (data: QueryAddPerson): Promise<Person> => {
+  const addPerson = async (data: QueryAddPerson): Promise<AddOrUpdatePersonResponse> => {
     const result = await api.persons.post(data);
     return result.data;
   };
@@ -130,7 +132,7 @@ export const pipedrive = ({
   const updatePerson = async (
     personId: number,
     data: QueryUpdatePerson = {},
-  ): Promise<Person> => {
+  ): Promise<AddOrUpdatePersonResponse> => {
     const result = await api.persons[`${personId}`].put(data);
     return result.data;
   };

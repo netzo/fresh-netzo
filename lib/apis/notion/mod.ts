@@ -6,9 +6,11 @@ import {
   Database,
   NotionPagination,
   Page,
+  Pages,
   PersonUser,
   QueryDbBody,
   QuerySearch,
+Users,
 } from "@/lib/apis/notion/types.ts";
 
 export interface NotionOptions {
@@ -49,7 +51,7 @@ export const notion = ({
   const getPages = async (
     databaseId: string,
     query: QueryDbBody = {},
-  ): Promise<Page[]> => {
+  ): Promise<Pages> => {
     const result = await api.databases[`${databaseId}`].query.post(query);
     return result.results;
   };
@@ -71,7 +73,7 @@ export const notion = ({
   const getPageContent = async (
     pageId: string,
     query: NotionPagination = {},
-  ): Promise<Block[]> => {
+  ): Promise<Block> => {
     const result = await api.blocks[`${pageId}`].children.get(query);
     return result.results;
   };
@@ -81,7 +83,7 @@ export const notion = ({
    */
   const getUsers = async (
     query: NotionPagination = {},
-  ): Promise<(PersonUser | BotUser)[]> => {
+  ): Promise<Users> => {
     const result = await api.users.get(query);
     return result.results;
   };
@@ -89,12 +91,16 @@ export const notion = ({
   /**
    * Search pages or databases in Notion
    */
-  const search = async (
-    query: QuerySearch = {},
-  ): Promise<(Database | Page)[]> => {
-    const result = await api.search.post(query);
-    return result.results;
-  };
+
+
+  //CONSIDER DELETING SEARCH FUNCTION
+
+  // const search = async (
+  //   query: QuerySearch = {},
+  // ): Promise<(Database | Page)[]> => {
+  //   const result = await api.search.post(query);
+  //   return result.results;
+  // };
 
   return { api, getPages, getPageProperties, getPageContent, getUsers, search };
 };

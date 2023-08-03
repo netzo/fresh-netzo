@@ -3,10 +3,10 @@ import { auth } from "../_create-api/auth/mod.ts";
 import {
   AddContactResponse,
   AddDealResponse,
-  Contact,
-  Deal,
+  Contacts,
+  Deals,
   Form,
-  FormSubmission,
+  FormSubmissions,
   QueryAddContact,
   QueryAddDeal,
   QueryContacts,
@@ -46,7 +46,7 @@ export const hubspot = ({
   /**
    * Get contacts from Hubspot CRM (v3)
    */
-  const getContacts = async (query: QueryContacts = {}): Promise<Contact[]> => {
+  const getContacts = async (query: QueryContacts = {}): Promise<Contacts> => {
     const result = await api.crm.v3.objects.contacts.get(query);
     return result.results;
   };
@@ -97,7 +97,7 @@ export const hubspot = ({
   const getSubmissions = async (
     formId: string,
     query: QuerySubmissions = {},
-  ): Promise<FormSubmission[]> => {
+  ): Promise<FormSubmissions> => {
     const result = await api["form-integrations"].v1.submissions
       .forms[`${formId}`].get(query);
     return result.results;
@@ -106,7 +106,7 @@ export const hubspot = ({
   /**
    * Get deals - Api v3
    */
-  const getDeals = async (query: QueryDeals = {}): Promise<Deal[]> => {
+  const getDeals = async (query: QueryDeals = {}): Promise<Deals> => {
     const result = await api.crm.v3.objects.deals.get(query);
     return result.results;
   };

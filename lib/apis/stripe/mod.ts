@@ -1,10 +1,10 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
 import {
-  Charge,
-  Customer,
-  Invoice,
-  Plan,
+  Charges,
+  Customers,
+  Invoices,
+  Plans,
   QueryCharges,
   QueryCustomers,
   QueryInvoices,
@@ -12,9 +12,9 @@ import {
   QuerySubscriptionItems,
   QuerySubscriptions,
   QueryTransactions,
-  Subscription,
-  SubscriptionItem,
-  Transaction,
+  Subscriptions,
+  SubscriptionItems,
+  Transactions,
 } from "@/lib/apis/stripe/types.ts";
 
 export interface StripeOptions {
@@ -52,7 +52,7 @@ export const stripe = ({
    */
   const getSubscriptions = async (
     query: QuerySubscriptions = {},
-  ): Promise<Subscription[]> => {
+  ): Promise<Subscriptions> => {
     const result = await api.subscriptions.get(query);
     const subscriptions = result.map((item: any) => item.data);
     return subscriptions;
@@ -63,7 +63,7 @@ export const stripe = ({
    */
   const getSubscriptionItems = async (
     query: QuerySubscriptionItems,
-  ): Promise<SubscriptionItem[]> => {
+  ): Promise<SubscriptionItems> => {
     const result = await api.subscription_items.get(query);
     const subscriptionItems = result.map((item: any) => item.data);
     return subscriptionItems;
@@ -74,7 +74,7 @@ export const stripe = ({
    */
   const getCustomers = async (
     query: QueryCustomers = {},
-  ): Promise<Customer[]> => {
+  ): Promise<Customers> => {
     const result = await api.customers.get(query);
     const customers = result.map((item: any) => item.data);
     return customers;
@@ -83,7 +83,7 @@ export const stripe = ({
   /**
    * Get invoices from Stripe
    */
-  const getInvoices = async (query: QueryInvoices = {}): Promise<Invoice[]> => {
+  const getInvoices = async (query: QueryInvoices = {}): Promise<Invoices> => {
     const result = await api.invoices.get(query);
     const invoices = result.map((item: any) => item.data);
     return invoices;
@@ -92,7 +92,7 @@ export const stripe = ({
   /**
    * Get charges from Stripe
    */
-  const getCharges = async (query: QueryCharges = {}): Promise<Charge[]> => {
+  const getCharges = async (query: QueryCharges = {}): Promise<Charges> => {
     const result = await api.charges.get(query);
     const charges = result.map((item: any) => item.data);
     return charges;
@@ -101,7 +101,7 @@ export const stripe = ({
   /**
    * Get plans from Stripe
    */
-  const getPlans = async (query: QueryPlans = {}): Promise<Plan[]> => {
+  const getPlans = async (query: QueryPlans = {}): Promise<Plans> => {
     const result = await api.plans.get(query);
     const plans = result.map((item: any) => item.data);
     return plans;
@@ -112,7 +112,7 @@ export const stripe = ({
    */
   const getBalanceTransactions = async (
     query: QueryTransactions = {},
-  ): Promise<Transaction[]> => {
+  ): Promise<Transactions> => {
     const result = await api.balance_transactions.get(query);
     const transactions = result.map((item: any) => item.data);
     return transactions;
