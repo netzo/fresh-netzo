@@ -38,6 +38,10 @@ export interface Page {
   public_url: any;
 }
 
+export interface QueryProperties {
+  filter_properties: string[];
+}
+
 export interface Pages {
   object: string;
   results: Page[],
@@ -45,12 +49,6 @@ export interface Pages {
   has_more: false,
   type: string,
   [key: string]: {}  //type value becomes the key name
-}
-
-export interface Database extends Page {
-  title: string;
-  description: string;
-  is_inline: boolean;
 }
 
 export interface Block {
@@ -113,19 +111,7 @@ export interface Users {
   has_more: boolean
 }
 
-export interface QuerySearch extends NotionPagination {
-  query?: string;
-  sort?: {
-    timestamp?: "last_edited_time";
-    direction?: "ascending" | "descending";
-  };
-  filter?: {
-    value?: "page" | "database";
-    property?: "object";
-  };
-}
-
-export interface QueryDbBody extends NotionPagination {
+export interface QueryDatabase extends NotionPagination {
   filter?: {
     property?: string;
     checkbox?: {};
