@@ -208,8 +208,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
 
   let uploadSpinner: Spinner | null = null;
   const assets = new Map<string, string>(); // map of gitSha1 -> path
-  let neededHashes: string[] // new assets to upload (set on assetNegotiation event)
-  ;
+  let neededHashes: string[]; // new assets to upload (set on assetNegotiation event)
   let manifest: Manifest | undefined = undefined;
 
   if (opts.static) {
@@ -243,7 +242,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
 
   const data: DeploymentData = {
     projectId: project.uid,
-    url: url.href,
+    url: url.href, // e.g. file:///src/main.ts
     importMapUrl: importMapUrl?.href ?? null,
     // configures automatic JSX runtime for preact by default
     // see https://deno.com/manual@v1.34.3/advanced/jsx_dom/jsx#using-jsx-import-source-in-a-configuration-file
