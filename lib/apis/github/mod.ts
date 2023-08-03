@@ -20,7 +20,7 @@ export interface GithubOptions {
  *
  * @see https://netzo.io/docs/netzo/apis/github
  *
- * @param {string} apiKey - the API key to use for authentication
+ * @param {string} personalAccessToken - the token to use for authentication
  * @returns {object} - an object of multiple utilities for the API
  */
 export const github = ({

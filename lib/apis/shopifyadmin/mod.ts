@@ -19,8 +19,8 @@ import {
 
 export interface ShopifyAdminOptions {
   storeName: string;
-  apiKey: string;
   apiVersion: string;
+  apiKey: string;
 }
 
 /**
@@ -29,14 +29,14 @@ export interface ShopifyAdminOptions {
  * @see https://netzo.io/docs/netzo/apis/shopifyadmin
  *
  * @param {string} storeName - the store name to construct the base URL
- * @param {string} apiKey - the API key to use for authentication
  * @param {string} apiVersion - the version to use for the base URL
+ * @param {string} apiKey - the API key to use for authentication
  * @returns {object} - an object of multiple utilities for the API
  */
 export const shopifyadmin = ({
-  storeName = Deno.env.get("SHOPIFYADMIN_STORE_NAME")!,
-  apiKey = Deno.env.get("SHOPIFYADMIN_API_KEY")!,
-  apiVersion = Deno.env.get("SHOPIFYADMIN_API_VERSION")!,
+  storeName = Deno.env.get("SHOPIFY_STORE_NAME")!,
+  apiVersion = Deno.env.get("SHOPIFY_API_VERSION")!,
+  apiKey = Deno.env.get("SHOPIFY_API_KEY")!,
 }: ShopifyAdminOptions) => {
   const api = createApi({
     baseURL: `https://${storeName}.myshopify.com/admin/api/${apiVersion}`,
