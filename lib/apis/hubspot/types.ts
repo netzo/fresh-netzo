@@ -40,70 +40,6 @@ export interface AddContactResponse extends ContactBase {
   archived: boolean;
 }
 
-export interface FormBase {
-  id: string
-  name: string
-  createdAt: string
-  updatedAt: string
-  archived: boolean
-  fieldGroups?: Array<{
-    groupType: string
-    richTextType: string
-    fields: Array<{
-      objectTypeId: string
-      name: string
-      label: string
-      required: boolean
-      hidden: boolean
-      fieldType: string
-      validation?: {
-        blockedEmailDomains: Array<any>
-        useDefaultBlockList: boolean
-      }
-    }>
-  }>
-  configuration?: {
-    language: string
-    cloneable: boolean
-    postSubmitAction: {
-      type: string
-      value: string
-    }
-    editable: boolean
-    archivable: boolean
-    recaptchaEnabled: boolean
-    notifyContactOwner: boolean
-    notifyRecipients: Array<string>
-    createNewContactForNewEmail: boolean
-    prePopulateKnownValues: boolean
-    allowLinkToResetKnownValues: boolean
-  }
-  displayOptions?: {
-    renderRawHtml: boolean
-    theme: string
-    submitButtonText: string
-    style: {
-      fontFamily: string
-      backgroundWidth: string
-      labelTextColor: string
-      labelTextSize: string
-      helpTextColor: string
-      helpTextSize: string
-      legalConsentTextColor: string
-      legalConsentTextSize: string
-      submitColor: string
-      submitAlignment: string
-      submitFontColor: string
-      submitSize: string
-    }
-    cssClass: string
-  }
-  legalConsentOptions?: {
-    type: string
-  }
-  formType: string
-}
-
 export interface Form {
     portalId: number
     guid: string
@@ -188,7 +124,6 @@ export interface FormSubmissions {
     }
   }
 }
-
 
 export interface QuerySubmissions {
   limit?: number;
