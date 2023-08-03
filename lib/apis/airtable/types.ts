@@ -5,10 +5,6 @@ interface RecordObject {
   id?: string;
 }
 
-export interface Record extends RecordObject {
-  createdTime: string;
-}
-
 export interface Records {
   records: Array<RecordObject & {
     createdTime: string
@@ -51,7 +47,7 @@ export interface QueryDeleteRecords {
   records: string[];
 }
 
-export interface RecordDeleted {
+export interface RecordsDeleted {
   records: Array<{
     deleted: boolean
     id: string;
