@@ -571,6 +571,13 @@ export interface AddOrUpdatePersonResponse {
   }
 }
 
+export interface DeleteResponse {
+  success: boolean
+  data: {
+    id: number
+  }
+}
+   
 
 
 
