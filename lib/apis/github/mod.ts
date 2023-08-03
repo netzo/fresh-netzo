@@ -4,10 +4,7 @@ export type {
   Issue,
   QueryIssues,
   QueryRepositories,
-  QuerySearch,
   Repository,
-  SearchResult,
-  SearchTarget,
   User,
 } from "./types.ts";
 
