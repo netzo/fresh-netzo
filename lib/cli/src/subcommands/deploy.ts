@@ -259,7 +259,10 @@ async function deploy(opts: DeployOpts): Promise<void> {
   let deploySpinner: Spinner | null = null;
 
   try {
-    const app = await createClient();
+    const app = await createClient({
+      apiKey: opts.apiKey,
+      baseURL: "https://api.netzo.io",
+    });
 
     app.service("deployments").on(
       "progress",
