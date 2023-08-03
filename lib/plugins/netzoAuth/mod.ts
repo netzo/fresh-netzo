@@ -45,10 +45,10 @@ const createHandler = (options: NetzoAuthOptions): MiddlewareHandler => {
 
     // simple heuristics to determine source of request:
     const isNetzoApp = (url: string) => !!url && new URL(url).origin === "https://app.netzo.io";
-    const isNetzo = (url: string) => !!url && (new URL(url).host).endsWith('netzo.io');
+    const isInternal = (url: string) => !!url && (new URL(url).host).endsWith('netzo.io');
     const is = {
       app: isNetzoApp(referer!),
-      external: !isNetzo(origin!) || !isNetzo(referer!),
+      external: !isInternal(origin!) || !isInternal(referer!),
     };
 
     console.log({ destination: ctx.destination, options, origin, referer, is });

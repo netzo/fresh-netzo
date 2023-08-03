@@ -10,7 +10,7 @@ import { start } from "fresh/server.ts";
 import manifest from "./fresh.gen.ts";
 
 import unocss from "netzo/plugins/unocss/mod.ts";
-import { presetNetzo } from "netzo/ui/components/mod.ts";
+import { presetNetzo } from "netzo/ui/mod.ts";
 
 await start(manifest, {
   plugins: [
