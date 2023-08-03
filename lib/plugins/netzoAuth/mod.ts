@@ -26,15 +26,15 @@ making a request to a project/deployment from any source:
     • host: "6486ed1c1d0eaf9d649719ec.netzo.io" (NOTE: sends request to {deploymentId}.netzo.io for better latency)
     • origin: "https://app.netzo.io"
     • referer: "https://app.netzo.io/"
-[external] from external HTTP clients (e.g. browser tab, curl, postman)
+[external] from external HTTP clients (e.g. browser tab, curl, postman, hoppscotch)
   • host: "app-launcher-fresh-131374.netzo.io"
   • origin: null
-  • referer: null | "https://example.com/"
+  • referer: null | "https://hoppscotch.io/"
 */
 const createHandler = (options: NetzoAuthOptions): MiddlewareHandler => {
   return async (req, ctx) => {
-    if (["internal"].includes(ctx.destination)) return await ctx.next();
-    // else if "internal" | "static" | "notFound":
+    // type DestinationKind = "internal" | "static" | "route" | "notFound";
+    if (["internal", "static", "notFound"].includes(ctx.destination)) return await ctx.next();
 
     const url = new URL(req.url);
     const token = req.headers.get("x-token") ?? url.searchParams.get("token");
@@ -44,33 +44,25 @@ const createHandler = (options: NetzoAuthOptions): MiddlewareHandler => {
     const referer = req.headers.get("referer"); // SOMETIMES SET e.g. https://app.netzo.io/some-path
 
     // simple heuristics to determine source of request:
-    const isNetzoApp = (url: string) => !!url && new URL(url).origin === "https://app.netzo.io";
-    const isInternal = (url: string) => !!url && (new URL(url).host).endsWith('netzo.io');
-    const is = {
-      app: isNetzoApp(referer!),
-      external: !isInternal(origin!) || !isInternal(referer!),
-    };
+    const isApp = (url: string) => !!url && (new URL(url).host).endsWith('netzo.io');
+    const is = { app: isApp(origin!) || isApp(referer!) };
 
     console.log({ destination: ctx.destination, options, origin, referer, is });
 
     switch (options.visibility) {
       case "private": {
-        // [external] deny all
-        if (is.external) {
-          throw new Error("Private deployments cannot be accessed externally");
-        }
-        // [app] allow all
-        else return await ctx.next();
+        if (!is.app) throw new Error("Private deployments cannot be accessed externally");
+        return await ctx.next();
       }
       case "protected": {
-        if (!options.tokens?.length) {
-          throw new Error("Missing required option 'tokens' in netzoAuth plugin");
+        if (!is.app) {
+          if (!options.tokens?.length) {
+            throw new Error("Missing required option 'tokens' in netzoAuth plugin");
+          }
+          if (!options.tokens.includes(token!)) {
+            throw new Error("Protected deployments require a valid token");
+          }
         }
-        // [external] allow if API key is provided and valid
-        if (is.external && !options.tokens.includes(token!)) {
-          throw new Error("Protected deployments require a valid token");
-        }
-        // [app] allow all
         return await ctx.next();
       }
       case "public":
