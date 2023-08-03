@@ -168,7 +168,7 @@ export interface QuerySubscriptions extends StripePagination {
     | "all"
     | "ended";
   automatic_tax?: {
-    enabled: boolean;
+    enabled?: boolean;
   };
   collection_method?: "charge_automatically" | "send_invoice";
   created?: string;
