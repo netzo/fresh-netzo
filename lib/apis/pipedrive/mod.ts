@@ -138,7 +138,7 @@ export const pipedrive = ({
   };
 
   /**
-   * Delete a person from Pipedrive 
+   * Delete a person from Pipedrive
    */
   const deletePerson = async (personId: number): Promise<number> => {
     const result = await api.persons[`${personId}`].delete();

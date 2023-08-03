@@ -65,7 +65,7 @@ export const airtable = ({
   /**
    * Update one or multiple records in Airtable
    */
-  
+
   const updateRecords = async (
     databaseId: string,
     tableIdOrName: string,

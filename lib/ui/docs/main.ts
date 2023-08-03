@@ -19,8 +19,8 @@ import { presetNetzo } from "netzo/ui/components/mod.ts";
 
 await start(manifest, {
   plugins: [
-    netzoAppLayout({ title: "Docs | netzo/ui" }),
     netzoAuth({ visibility: "public" }),
+    netzoAppLayout({ title: "netzo/components | Netzo" }),
     netzoErrorPages(),
     unocss({ presets: [presetNetzo()] }),
   ],

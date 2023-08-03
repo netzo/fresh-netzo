@@ -47,7 +47,7 @@ set NETZO_API_KEY=... # Windows
 netzo deploy --project=my-project <entrypoint>
 ```
 
-## Links
+## References
 
 - [Homepage](https://app.netzo.io/templates/workflow-capture-webhook-data-to-brevo-resource)
 
