@@ -40,7 +40,7 @@ export default () => {
 
 //   return (
 //     <DateRangePicker
-//       className="max-w-md mx-auto"
+//       class="max-w-md mx-auto"
 //       value={value.value}
 //       onValueChange={onValueChange}
 //       locale={es}
