@@ -1,5 +1,17 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
+export type {
+  Contacts,
+  Contact,
+  QueryContacts,
+  QueryContact,
+  QueryAddContact,
+  QueryUpdateContact,
+  EmailCampaigns,
+  QueryEmailCampaigns,
+  Companies,
+  QueryCompanies
+} from "./types.ts";
 
 export interface BrevoOptions {
   apiKey: string;
