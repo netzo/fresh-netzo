@@ -13,7 +13,7 @@ export interface WixOptions {
  * @see https://netzo.io/docs/netzo/apis/wix
  *
  * @param {string} accountId - the account id to construct the request headers
- * @param {string} accountId - the account id to construct the request headers
+ * @param {string} siteId - the site id to construct the request headers
  * @param {string} apiKey - the API key to use for authentication
  * @returns {object} - an object of multiple utilities for the API
  */

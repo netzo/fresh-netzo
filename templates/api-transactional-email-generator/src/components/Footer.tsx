@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="py-4 px-8">
+    <footer class="py-4 px-8">
       <div class="flex space-x-2 justify-center text-sm text-gray-600">
         <a
           style="padding: 5px"
@@ -69,7 +69,7 @@ export default function Footer() {
         </a>
       </div>
 
-      <p className="py-4 text-center text-sm text-gray-600">
+      <p class="py-4 text-center text-sm text-gray-600">
         Copyright © {new Date().getFullYear()} Netzo
       </p>
 

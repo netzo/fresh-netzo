@@ -18,7 +18,7 @@ export interface AirtableOptions {
  *
  * @see https://netzo.io/docs/netzo/apis/airtable
  *
- * @param {string} personalAccessToken - the API key to use for authentication
+ * @param {string} personalAccessToken - the token to use for authentication
  * @returns {object} - an object of multiple utilities for the API
  */
 export const airtable = ({
@@ -64,7 +64,7 @@ export const airtable = ({
   /**
    * Update one or multiple records in Airtable
    */
-  
+
   const updateRecords = async (
     databaseId: string,
     tableIdOrName: string,

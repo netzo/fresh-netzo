@@ -25,7 +25,7 @@ export interface PipeDriveOptions {
  *
  * @see https://netzo.io/docs/netzo/apis/pipedrive
  *
- * @param {string} apiToken - the API token to use for authentication
+ * @param {string} apiToken - the token to use for authentication
  * @param {string} companyDomain - the company domain to use for authentication
  * @returns {object} - an object of multiple utilities for the API
  */
@@ -136,7 +136,7 @@ export const pipedrive = ({
   };
 
   /**
-   * Delete a person from Pipedrive 
+   * Delete a person from Pipedrive
    */
   const deletePerson = async (personId: number): Promise<number> => {
     const result = await api.persons[`${personId}`].delete();

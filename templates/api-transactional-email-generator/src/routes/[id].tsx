@@ -64,8 +64,8 @@ export default function Welcome(props: PageProps<Data>) {
       <body class="grid place-items-center gap-4 max-w-2xl mx-auto text-center">
         <Header />
 
-        <main className="p-4">
-          <h1 className="mb-4 text-3xl font-bold">
+        <main class="p-4">
+          <h1 class="mb-4 text-3xl font-bold">
             {props.data.title}
           </h1>
 

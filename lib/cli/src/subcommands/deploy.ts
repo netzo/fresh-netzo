@@ -66,6 +66,7 @@ export interface Args {
   exclude?: string[];
   include?: string[];
   apiKey: string | null;
+  apiUrl?: string;
   project: string | null;
   importMap: string | null;
   dryRun: boolean;
@@ -78,6 +79,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     static: !rawArgs["no-static"], // negate the flag
     prod: !!rawArgs.prod,
     apiKey: rawArgs["api-key"] ? String(rawArgs["api-key"]) : null,
+    apiUrl: rawArgs["api-url"] ?? 'https://api.netzo.io',
     project: rawArgs.project ? String(rawArgs.project) : null,
     importMap: rawArgs["import-map"] ? String(rawArgs["import-map"]) : null,
     exclude: rawArgs.exclude?.split(","),
@@ -109,7 +111,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     error("Missing project UID.");
   }
 
-  const opts = {
+  const opts: DeployOpts = {
     entrypoint: await parseEntrypoint(entrypoint).catch((e) => error(e)),
     importMapUrl: args.importMap === null
       ? null
@@ -118,6 +120,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     static: args.static,
     prod: args.prod,
     apiKey,
+    apiUrl: args.apiUrl,
     project: args.project,
     include: args.include?.map((pattern) => normalize(pattern)),
     exclude: args.exclude?.map((pattern) => normalize(pattern)),
@@ -135,6 +138,7 @@ interface DeployOpts {
   exclude?: string[];
   include?: string[];
   apiKey: string;
+  apiUrl?: string;
   project: string;
   dryRun: boolean;
 }
@@ -144,10 +148,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
     wait("").start().info("Performing dry run of deployment");
   }
   const projectSpinner = wait("Fetching project information...").start();
-  const { api } = netzo({
-    apiKey: opts.apiKey,
-    baseURL: "https://api.netzo.io",
-  });
+  const { api } = netzo({ apiKey: opts.apiKey, baseURL: opts.apiUrl });
   const { data: [project] } = await api.projects.get<Paginated<Project>>({
     uid: opts.project,
     $limit: 1,
@@ -208,8 +209,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
 
   let uploadSpinner: Spinner | null = null;
   const assets = new Map<string, string>(); // map of gitSha1 -> path
-  let neededHashes: string[] // new assets to upload (set on assetNegotiation event)
-  ;
+  let neededHashes: string[]; // new assets to upload (set on assetNegotiation event)
   let manifest: Manifest | undefined = undefined;
 
   if (opts.static) {
@@ -243,7 +243,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
 
   const data: DeploymentData = {
     projectId: project.uid,
-    url: url.href,
+    url: url.href, // e.g. file:///src/main.ts
     importMapUrl: importMapUrl?.href ?? null,
     // configures automatic JSX runtime for preact by default
     // see https://deno.com/manual@v1.34.3/advanced/jsx_dom/jsx#using-jsx-import-source-in-a-configuration-file
@@ -260,7 +260,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
   let deploySpinner: Spinner | null = null;
 
   try {
-    const app = await createClient();
+    const app = await createClient({ apiKey: opts.apiKey, baseURL: opts.apiUrl });
 
     app.service("deployments").on(
       "progress",
