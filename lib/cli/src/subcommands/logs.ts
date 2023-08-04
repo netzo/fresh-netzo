@@ -31,6 +31,7 @@ export interface Args {
   help: boolean;
   prod: boolean;
   apiKey: string | null;
+  apiUrl?: string;
   deployment: string | null;
   project: string | null;
 }
@@ -41,6 +42,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     help: !!rawArgs.help,
     prod: !!rawArgs.prod,
     apiKey: rawArgs["api-key"] ? String(rawArgs["api-key"]) : null,
+    apiUrl: rawArgs["api-url"] ?? 'https://api.netzo.io',
     deployment: rawArgs.deployment ? String(rawArgs.deployment) : null,
     project: rawArgs.project ? String(rawArgs.project) : null,
   };
@@ -65,11 +67,12 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     error("Too many positional arguments given.");
   }
 
-  const opts = {
+  const opts: DeployOpts = {
     project: args.project,
     deploymentId: args.deployment,
     prod: args.prod,
     apiKey,
+    apiUrl: args.apiUrl,
   };
 
   await logs(opts);
@@ -80,6 +83,7 @@ interface DeployOpts {
   deploymentId: string | null;
   prod: boolean;
   apiKey: string;
+  apiUrl?: string;
 }
 
 async function logs(opts: DeployOpts): Promise<void> {
@@ -89,10 +93,7 @@ async function logs(opts: DeployOpts): Promise<void> {
     );
   }
   const projectSpinner = wait("Fetching project information...").start();
-  const { api } = netzo({
-    apiKey: opts.apiKey,
-    baseURL: "https://api.netzo.io",
-  });
+  const { api } = netzo({ apiKey: opts.apiKey, baseURL: opts.apiUrl });
   const { data: [project] } = await api.projects.get<Paginated<Project>>({
     uid: opts.project,
     $limit: 1,

@@ -20,8 +20,8 @@ export interface NotionOptions {
  *
  * @see https://netzo.io/docs/netzo/apis/notion
  *
- * @param {string} internalIntegrationToken - the Internal Integration Token to use for authentication
- * @param {string} notionVersion - the Notion API version to use
+ * @param {string} internalIntegrationToken - the token to use for authentication
+ * @param {string} notionVersion - the Notion API version to use (a date string)
  * @returns {object} - an object of multiple utilities for the API
  */
 export const notion = ({

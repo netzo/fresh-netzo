@@ -1,5 +1,5 @@
 import { pipedrive } from "netzo/apis/pipedrive/mod.ts";
-const { api } = pipedrive({ apiKey: Deno.env.get("PIPEDRIVE_API_KEY") });
+const { api } = pipedrive({ apiKey: Deno.env.get("PIPEDRIVE_API_TOKEN") });
 
 // see https://developers.pipedrive.com/docs/api/v1/Leads#getLeads
 // see https://blog.waalaxy.com/en/synchronize-waalaxy-crms/#What%20data%20is%20synchronised

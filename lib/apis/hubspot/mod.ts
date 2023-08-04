@@ -24,7 +24,7 @@ export interface HubspotOptions {
  *
  * @see https://netzo.io/docs/netzo/apis/hubspot
  *
- * @param {string} apiKey - the API key to use for authentication
+ * @param {string} privateAppAccessToken - the token to use for authentication
  * @returns {object} - an object of multiple utilities for the API
  */
 export const hubspot = ({

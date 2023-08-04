@@ -23,7 +23,7 @@ import {
 } from "netzo/ui/components/mod.ts";
 import ShowSource from "./ShowSource.tsx";
 
-const VERSION = "0.2.16";
+const VERSION = "0.2.19";
 const REPO = "https://github.com/netzo/netzo/tree/main/lib/ui";
 
 export default function Demo() {

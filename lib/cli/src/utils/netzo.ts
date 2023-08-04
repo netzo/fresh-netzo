@@ -8,16 +8,14 @@ import {
   socketio,
 } from "../../deps.ts";
 
-export const createClient = async () => {
-  const socket = io("https://api.netzo.io", {
-    transports: ["websocket"],
-  });
+export const createClient = async ({
+  apiKey = Deno.env.get("NETZO_API_KEY")!,
+  baseURL = "https://api.netzo.io",
+}) => {
+  const socket = io(baseURL, { transports: ["websocket"] });
   const connection = socketio(socket);
   const app = feathers().configure(connection);
-  await app.service("authentication").create({
-    strategy: "apiKey",
-    apiKey: Deno.env.get("NETZO_API_KEY"),
-  });
+  await app.service("authentication").create({ strategy: "apiKey", apiKey });
   return app;
 };
 
