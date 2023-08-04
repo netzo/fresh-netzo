@@ -21,7 +21,8 @@ import {
   NSwitch,
   NTip,
 } from "netzo/ui/components/mod.ts";
-import DemoDataTable from "./DemoDataTable.tsx";
+import { columns, data } from "@/data/data-table.tsx";
+import { DataTable } from "netzo/ui/components/data-table.tsx";
 import ShowSource from "./ShowSource.tsx";
 
 const VERSION = "0.2.20";
@@ -67,7 +68,9 @@ export default function Demo() {
                 NTable <NChip class="n-chip-blue">alpha</NChip>
               </div>
               <div class="flex flex-wrap items-center gap-3">
-                <DemoDataTable />
+                <div class="w-full py-10">
+                  <DataTable columns={columns} data={data} />
+                </div>
               </div>
             </NCard>
           </div>
