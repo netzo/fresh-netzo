@@ -35,7 +35,6 @@ export interface AuthorizationGoogleJwtSa {
   };
 }
 
-
 // This grant type allows your serverless function to obtain access tokens directly
 // from the authorization server using its client credentials (clientId and clientSecret)
 // It doesn't involve any user authentication and is suitable for server-to-server
@@ -43,7 +42,7 @@ export interface AuthorizationGoogleJwtSa {
 export interface AuthorizationOAuth2ClientCredentials {
   type: "oauth2";
   grantType: "client_credentials";
-  headerPrefix: "Bearer" | string;
+  headerPrefix?: "Bearer" | string;
   authorizationUrl: string;
   clientId: string;
   clientSecret: string;
@@ -60,7 +59,6 @@ export interface AuthorizationOAuth2AccessTokenResponse {
   ext_expires_in?: number;
 }
 
-
 // This grant type involves exchanging the user's credentials (username and password)
 // for an access token. However, this is not generally recommended for serverless
 // functions because it requires the client (serverless function) to handle
@@ -69,7 +67,7 @@ export interface AuthorizationOAuth2AccessTokenResponse {
 export interface AuthorizationOAuth2PasswordCredentials {
   type: "oauth2";
   grantType: "password_credentials";
-  headerPrefix: "Bearer" | string;
+  headerPrefix?: "Bearer" | string;
   accessTokenUrl: string;
   clientId: string;
   clientSecret: string;
@@ -77,7 +75,6 @@ export interface AuthorizationOAuth2PasswordCredentials {
   password: string;
   scope?: string;
 }
-
 
 // Authorization Code Flow (3-legged authorization):
 // Use case: Commonly used for server-side web applications where the client ID
@@ -87,7 +84,7 @@ export interface AuthorizationOAuth2PasswordCredentials {
 export interface AuthorizationOAuth2AuthorizationCode {
   type: "oauth2";
   grantType: "authorization_code";
-  headerPrefix: "Bearer" | string;
+  headerPrefix?: "Bearer" | string;
   redirectUrl: string;
   authorizationUrl: string;
   accessTokenUrl: string;
