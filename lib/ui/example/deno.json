@@ -1,0 +1,65 @@
+{
+  "lock": false,
+  "tasks": {
+    "start": "deno run -A --watch=static/,routes/ dev.ts",
+    "update": "deno run -A -r https://fresh.deno.dev/update ."
+  },
+  "lint": {
+    "rules": {
+      "tags": [
+        "fresh",
+        "recommended"
+      ]
+    }
+  },
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxFactory": "h",
+    "jsxFragmentFactory": "Fragment",
+    "jsxImportSource": "preact"
+  },
+  "imports": {
+    "@/": "./",
+    "netzo/": "https://deno.land/x/netzo@v0.2.19",
+    "fresh/": "https://deno.land/x/fresh@1.3.1/",
+    "preact": "https://esm.sh/preact@10.16.0",
+    "preact/": "https://esm.sh/preact@10.16.0/",
+    "preact-render-to-string": "https://esm.sh/*preact-render-to-string@6.2.0",
+    "@preact/signals": "https://esm.sh/*@preact/signals@1.1.5",
+    "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.2.3",
+    "std/": "https://deno.land/std@0.190.0/",
+    "react": "https://esm.sh/preact@10.16.0/compat",
+    "react-dom": "https://esm.sh/preact@10.16.0/compat",
+    "react/jsx-runtime": "https://esm.sh/preact@10.16.0/compat",
+    "@radix-ui/react-toggle-group": "https://esm.sh/@radix-ui/react-toggle-group@latest?external=react,react-dom&target=es2022",
+    "@radix-ui/react-toggle": "https://esm.sh/@radix-ui/react-toggle@latest?external=react,react-dom&target=es2022",
+    "@radix-ui/react-avatar": "https://esm.sh/@radix-ui/react-avatar@latest?external=react,react-dom&target=es2022",
+    "@radix-ui/react-aspect-ratio": "https://esm.sh/@radix-ui/react-aspect-ratio@latest?external=react,react-dom&target=es2022",
+    "@radix-ui/react-accordion": "https://esm.sh/@radix-ui/react-accordion@latest?external=react,react-dom&target=es2022",
+    "@radix-ui/react-switch": "https://esm.sh/@radix-ui/react-switch@latest?external=react,react-dom&target=es2022",
+    "@radix-ui/react-toast": "https://esm.sh/@radix-ui/react-toast@latest?external=react,react-dom&target=es2022",
+    "@radix-ui/colors": "https://esm.sh/@radix-ui/colors@1.0.0?external=react,react-dom&target=es2022",
+    "@radix-ui/react-dropdown-menu": "https://esm.sh/@radix-ui/react-dropdown-menu@2.0.5?external=react,react-dom&target=es2022",
+    "@radix-ui/react-icons": "https://esm.sh/@radix-ui/react-icons@1.3.0?external=react,react-dom&target=es2022",
+    "@radix-ui/react-alert-dialog": "https://esm.sh/@radix-ui/react-alert-dialog@1.0.4?external=react,react-dom&target=es2022",
+    "@radix-ui/react-progress": "https://esm.sh/@radix-ui/react-progress@1.0.3?external=react,react-dom&target=es2022",
+    "@radix-ui/react-menubar": "https://esm.sh/@radix-ui/react-menubar@latest?external=react,react-dom&target=es2022",
+    "@radix-ui/react-radio-group": "https://esm.sh/@radix-ui/react-radio-group@latest?external=react,react-dom&target=es2022",
+    "@radix-ui/react-form": "https://esm.sh/@radix-ui/react-form@0.0.3?external=react,react-dom&target=es2022",
+    "@radix-ui/react-navigation-menu": "https://esm.sh/@radix-ui/react-navigation-menu@latest?external=react,react-dom&target=es2022",
+    "@radix-ui/react-checkbox": "https://esm.sh/@radix-ui/react-checkbox@latest?external=react,react-dom&target=es2022",
+    "@radix-ui/react-collapsible": "https://esm.sh/@radix-ui/react-collapsible@latest?external=react,react-dom&target=es2022",
+    "@radix-ui/react-context-menu": "https://esm.sh/@radix-ui/react-context-menu@latest?external=react,react-dom&target=es2022",
+    "@radix-ui/react-dialog": "https://esm.sh/@radix-ui/react-dialog@latest?external=react,react-dom&target=es2022",
+    "@radix-ui/react-hover-card": "https://esm.sh/@radix-ui/react-hover-card@latest?external=react,react-dom&target=es2022",
+    "@radix-ui/react-label": "https://esm.sh/@radix-ui/react-label@latest?external=react,react-dom&target=es2022",
+    "@radix-ui/react-popover": "https://esm.sh/@radix-ui/react-popover@latest?external=react,react-dom&target=es2022",
+    "@radix-ui/react-select": "https://esm.sh/@radix-ui/react-select@latest?external=react,react-dom&target=es2022",
+    "@radix-ui/react-separator": "https://esm.sh/@radix-ui/react-separator@latest?external=react,react-dom&target=es2022",
+    "@radix-ui/react-slider": "https://esm.sh/@radix-ui/react-slider@latest?external=react,react-dom&target=es2022",
+    "@radix-ui/react-tabs": "https://esm.sh/@radix-ui/react-tabs@latest?external=react,react-dom&target=es2022",
+    "@radix-ui/react-toolbar": "https://esm.sh/@radix-ui/react-toolbar@latest?external=react,react-dom&target=es2022",
+    "@tanstack/react-table": "https://esm.sh/@tanstack/react-table@8.9.3?external=react,react-dom&target=es2022",
+    "lucide-react": "https://esm.sh/lucide-react@0.263.1?external=react,react-dom&target=es2022"
+  }
+}
