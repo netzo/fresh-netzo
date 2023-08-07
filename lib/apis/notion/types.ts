@@ -22,7 +22,6 @@ export interface Page {
       url: string;
     };
   };
-
   icon: {
     type: string;
     emoji: string;
@@ -39,36 +38,50 @@ export interface Page {
   public_url: any;
 }
 
-export interface Database extends Page {
-  title: string;
-  description: string;
-  is_inline: boolean;
+export interface QueryProperties {
+  filter_properties: string[];
+}
+
+export interface Pages {
+  object: string;
+  results: Page[],
+  next_cursor: any,
+  has_more: false,
+  type: string,
+  [key: string]: {}  //type value becomes the key name
 }
 
 export interface Block {
-  object: string;
-  id: string;
-  parent: {
+  object: string,
+  results:Array<{  
+    object: string;
+    id: string;
+    parent: {
+      type: string;
+      block_id: string;
+    };
     type: string;
-    block_id: string;
-  };
-  type: string;
-  created_time: string;
-  last_edited_time: string;
-  created_by: {
-    object: string;
-    id: string;
-  };
-  last_edited_by: {
-    object: string;
-    id: string;
-  };
-  has_children: boolean;
-  archived: boolean;
-  [key: string]: {}; //property name is the value of property "type"
+    created_time: string;
+    last_edited_time: string;
+    created_by: {
+      object: string;
+      id: string;
+    };
+    last_edited_by: {
+      object: string;
+      id: string;
+    };
+    has_children: boolean;
+    archived: boolean;
+    [key: string]: {}; 
+  }>,
+  next_cursor: any,
+  has_more: false,
+  type: string,
+  [key: string]: {} //type value becomes the key name
 }
 
-interface User {
+interface UserBase {
   object: "user";
   id: string;
   type: "person" | "bot";
@@ -76,13 +89,13 @@ interface User {
   avatar_url: string;
 }
 
-export interface PersonUser extends User {
+interface PersonUser extends UserBase {
   person: {
     email: string;
   };
 }
 
-export interface BotUser extends User {
+interface BotUser extends UserBase {
   bot: {
     owner: {
       type: string;
@@ -92,19 +105,13 @@ export interface BotUser extends User {
   };
 }
 
-export interface QuerySearch extends NotionPagination {
-  query?: string;
-  sort?: {
-    timestamp?: "last_edited_time";
-    direction?: "ascending" | "descending";
-  };
-  filter?: {
-    value?: "page" | "database";
-    property?: "object";
-  };
+export interface Users {
+  results: Array<PersonUser | BotUser>
+  next_cursor: string,
+  has_more: boolean
 }
 
-export interface QueryDbBody extends NotionPagination {
+export interface QueryDatabase extends NotionPagination {
   filter?: {
     property?: string;
     checkbox?: {};

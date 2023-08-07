@@ -261,26 +261,3 @@ export interface QueryIssues {
   per_page?: number;
   page?: number;
 }
-
-export interface SearchResult {
-  total_count: number;
-  incomplete_results: boolean;
-  items: [];
-}
-
-export interface SearchTarget {
-  target:
-    | "code"
-    | "commits"
-    | "issues"
-    | "labels"
-    | "repositories"
-    | "topics"
-    | "users";
-}
-
-export interface QuerySearch {
-  q: string;
-  per_page?: number;
-  page?: number;
-}

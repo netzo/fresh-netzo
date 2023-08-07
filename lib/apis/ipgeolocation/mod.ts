@@ -1,6 +1,6 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
-import { Geolocation } from "@/lib/apis/ipgeolocation/types.ts";
+export type { Geolocation } from "./types.ts";
 
 export interface IpGeolocationOptions {
   apiKey: string;
@@ -32,13 +32,5 @@ export const ipgeolocation = ({
     },
   });
 
-  /**
-   * Get geolocation based on IP address
-   */
-  const getLocation = async (ip: string): Promise<Geolocation> => {
-    const result = await api.ipgeo.get(ip);
-    return result;
-  };
-
-  return { api, getLocation };
+  return { api };
 };

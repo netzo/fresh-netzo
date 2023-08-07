@@ -1,14 +1,24 @@
-export interface Contact {
+interface ContactBase {
   properties: {
-    company: string;
-    createdate: string;
-    email: string;
-    firstname: string;
-    lastmodifieddate: string;
-    lastname: string;
-    phone: string;
-    website: string;
-  };
+    company: string
+    createdate: string
+    email: string
+    firstname: string
+    lastmodifieddate: string
+    lastname: string
+    phone: string
+    website: string
+  }
+}
+
+export interface Contacts {
+  results: ContactBase[]
+  paging: {
+    next: {
+      after: string
+      link: string
+    }
+  }
 }
 
 export interface QueryContacts {
@@ -19,11 +29,11 @@ export interface QueryContacts {
 
 export interface QueryAddContact {
   properties?: Partial<
-    Omit<Contact["properties"], "createdate" | "lastmodifieddate">
+    Omit<ContactBase["properties"], "createdate" | "lastmodifieddate">
   >;
 }
 
-export interface AddContactResponse extends Contact {
+export interface AddContactResponse extends ContactBase {
   id: string;
   createdAt: string;
   updatedAt: string;
@@ -31,65 +41,65 @@ export interface AddContactResponse extends Contact {
 }
 
 export interface Form {
-  portalId: number;
-  guid: string;
-  name: string;
-  action: string;
-  method: string;
-  cssClass: string;
-  redirect: string;
-  submitText: string;
-  followUpId: string;
-  notifyRecipients: string;
-  leadNurturingCampaignId: string;
-  formFieldGroups: Array<{
-    fields: Array<{
-      name: string;
-      label: string;
-      type: string;
-      fieldType: string;
-      description: string;
-      groupName: string;
-      displayOrder: number;
-      required: boolean;
-      selectedOptions: Array<any>;
-      options: Array<any>;
-      validation: {
-        name: string;
-        message: string;
-        data: string;
-        useDefaultBlockList: boolean;
-        blockedEmailAddresses: Array<any>;
-      };
-      enabled: boolean;
-      hidden: boolean;
-      defaultValue: string;
-      isSmartField: boolean;
-      unselectedLabel: string;
-      placeholder: string;
-      dependentFieldFilters: Array<any>;
-      labelHidden: boolean;
-    }>;
-    default: boolean;
-    isSmartGroup: boolean;
-    richText: {
-      content: string;
-    };
-  }>;
-  createdAt: number;
-  updatedAt: number;
-  performableHtml: string;
-  migratedFrom: string;
-  ignoreCurrentValues: boolean;
-  metaData: Array<any>;
-  deletable: boolean;
-  inlineMessage: string;
-  tmsId: string;
-  captchaEnabled: boolean;
-  campaignGuid: string;
-  cloneable: boolean;
-  editable: boolean;
-  formType: string;
+    portalId: number
+    guid: string
+    name: string
+    action: string
+    method: string
+    cssClass: string
+    redirect: string
+    submitText: string
+    followUpId: string
+    notifyRecipients: string
+    leadNurturingCampaignId: string
+    formFieldGroups: Array<{
+      fields: Array<{
+        name: string
+        label: string
+        type: string
+        fieldType: string
+        description: string
+        groupName: string
+        displayOrder: number
+        required: boolean
+        selectedOptions: Array<any>
+        options: Array<any>
+        validation: {
+          name: string
+          message: string
+          data: string
+          useDefaultBlockList: boolean
+          blockedEmailAddresses: Array<any>
+        }
+        enabled: boolean
+        hidden: boolean
+        defaultValue: string
+        isSmartField: boolean
+        unselectedLabel: string
+        placeholder: string
+        dependentFieldFilters: Array<any>
+        labelHidden: boolean
+      }>
+      default: boolean
+      isSmartGroup: boolean
+      richText: {
+        content: string
+      }
+    }>
+    createdAt: number
+    updatedAt: number
+    performableHtml: string
+    migratedFrom: string
+    ignoreCurrentValues: boolean
+    metaData: Array<any>
+    deletable: boolean
+    inlineMessage: string
+    tmsId: string
+    captchaEnabled: boolean
+    campaignGuid: string
+    cloneable: boolean
+    editable: boolean
+    formType: string
 }
 
 export interface QueryForms {
@@ -98,13 +108,21 @@ export interface QueryForms {
   formTypes?: "ALL";
 }
 
-export interface FormSubmission {
-  submittedAt: number;
-  values: Array<{
-    name: string;
-    value: string;
-  }>;
-  pageUrl?: string;
+export interface FormSubmissions {
+  results: Array<{
+    submittedAt: number
+    values: Array<{
+      name: string
+      value: string
+    }>
+    pageUrl?: string
+  }>
+  paging: {
+    next: {
+      after: string
+      link: string
+    }
+  }
 }
 
 export interface QuerySubmissions {
@@ -118,7 +136,7 @@ export interface QueryDeals {
   properties?: string[];
 }
 
-export interface Deal {
+interface DealBase {
   properties: {
     amount: string;
     closedate: string;
@@ -129,6 +147,16 @@ export interface Deal {
     hubspot_owner_id: string;
     pipeline: string;
   };
+}
+
+export interface Deals {
+    results: DealBase[]
+    paging: {
+      next: {
+        after: string
+        link: string
+      }
+    }
 }
 
 export interface QueryAddDeal {
@@ -151,7 +179,7 @@ export interface QueryAddDeal {
   }>;
 }
 
-export interface AddDealResponse extends Deal {
+export interface AddDealResponse extends DealBase {
   id: string;
   createdAt: string;
   updatedAt: string;

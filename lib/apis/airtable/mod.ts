@@ -1,13 +1,13 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
-import {
+export type {
   QueryAddRecords,
   QueryDeleteRecords,
   QueryRecords,
   QueryUpdateRecords,
-  Record,
-  RecordDeleted,
-} from "@/lib/apis/airtable/types.ts";
+  Records,
+  RecordsDeleted,
+} from "./types.ts";
 
 export interface AirtableOptions {
   personalAccessToken: string;
@@ -37,56 +37,5 @@ export const airtable = ({
     },
   });
 
-  /**
-   * Get records from Airtable
-   */
-  const getRecords = async (
-    databaseId: string,
-    tableIdOrName: string,
-    query: QueryRecords = {},
-  ): Promise<Record[]> => {
-    const result = await api[`${databaseId}`][`${tableIdOrName}`].get(query);
-    return result.records;
-  };
-
-  /**
-   * Create one or multiple records in Airtable
-   */
-  const addRecords = async (
-    databaseId: string,
-    tableIdOrName: string,
-    data: QueryAddRecords,
-  ): Promise<Record[]> => {
-    const result = await api[`${databaseId}`][`${tableIdOrName}`].post(data);
-    return result.records;
-  };
-
-  /**
-   * Update one or multiple records in Airtable
-   */
-
-  const updateRecords = async (
-    databaseId: string,
-    tableIdOrName: string,
-    data: QueryUpdateRecords,
-  ): Promise<Record[]> => {
-    const result = await api[`${databaseId}`][`${tableIdOrName}`].patch(data);
-    return result.records;
-  };
-
-  /**
-   * Delete one or multiple records in Airtable
-   */
-  const deleteRecords = async (
-    databaseId: string,
-    tableIdOrName: string,
-    query: QueryDeleteRecords,
-  ): Promise<RecordDeleted[]> => {
-    const result = await api[`${databaseId}`][`${tableIdOrName}`].delete(
-      query,
-    );
-    return result.records;
-  };
-
-  return { api, getRecords, addRecords, updateRecords, deleteRecords };
+   return { api };
 };

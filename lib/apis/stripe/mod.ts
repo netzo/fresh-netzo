@@ -1,10 +1,10 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
-import {
-  Charge,
-  Customer,
-  Invoice,
-  Plan,
+export type {
+  Charges,
+  Customers,
+  Invoices,
+  Plans,
   QueryCharges,
   QueryCustomers,
   QueryInvoices,
@@ -12,10 +12,10 @@ import {
   QuerySubscriptionItems,
   QuerySubscriptions,
   QueryTransactions,
-  Subscription,
-  SubscriptionItem,
-  Transaction,
-} from "@/lib/apis/stripe/types.ts";
+  Subscriptions,
+  SubscriptionItems,
+  Transactions,
+} from "./types.ts";
 
 export interface StripeOptions {
   apiKey: string;
@@ -47,85 +47,5 @@ export const stripe = ({
     },
   });
 
-  /**
-   * Get subscriptions from Stripe
-   */
-  const getSubscriptions = async (
-    query: QuerySubscriptions = {},
-  ): Promise<Subscription[]> => {
-    const result = await api.subscriptions.get(query);
-    const subscriptions = result.map((item: any) => item.data);
-    return subscriptions;
-  };
-
-  /**
-   * Get subscription items that correspond to a specific subscription id
-   */
-  const getSubscriptionItems = async (
-    query: QuerySubscriptionItems,
-  ): Promise<SubscriptionItem[]> => {
-    const result = await api.subscription_items.get(query);
-    const subscriptionItems = result.map((item: any) => item.data);
-    return subscriptionItems;
-  };
-
-  /**
-   * Get customers from Stripe
-   */
-  const getCustomers = async (
-    query: QueryCustomers = {},
-  ): Promise<Customer[]> => {
-    const result = await api.customers.get(query);
-    const customers = result.map((item: any) => item.data);
-    return customers;
-  };
-
-  /**
-   * Get invoices from Stripe
-   */
-  const getInvoices = async (query: QueryInvoices = {}): Promise<Invoice[]> => {
-    const result = await api.invoices.get(query);
-    const invoices = result.map((item: any) => item.data);
-    return invoices;
-  };
-
-  /**
-   * Get charges from Stripe
-   */
-  const getCharges = async (query: QueryCharges = {}): Promise<Charge[]> => {
-    const result = await api.charges.get(query);
-    const charges = result.map((item: any) => item.data);
-    return charges;
-  };
-
-  /**
-   * Get plans from Stripe
-   */
-  const getPlans = async (query: QueryPlans = {}): Promise<Plan[]> => {
-    const result = await api.plans.get(query);
-    const plans = result.map((item: any) => item.data);
-    return plans;
-  };
-
-  /**
-   * Get transactions that have contributed to the Stripe account balance
-   */
-  const getBalanceTransactions = async (
-    query: QueryTransactions = {},
-  ): Promise<Transaction[]> => {
-    const result = await api.balance_transactions.get(query);
-    const transactions = result.map((item: any) => item.data);
-    return transactions;
-  };
-
-  return {
-    api,
-    getSubscriptions,
-    getSubscriptionItems,
-    getCustomers,
-    getInvoices,
-    getCharges,
-    getPlans,
-    getBalanceTransactions,
-  };
+  return { api };
 };
