@@ -27,6 +27,6 @@
     "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.2.3",
     "std/": "https://deno.land/std@0.190.0/",
     "@tremor/react": "https://esm.sh/@tremor/react@2.9.1?alias=react:preact/compat,react-dom:preact/compat&deps=preact@10.16.0",
-    "netzo/": "https://deno.land/x/netzo@v0.2.19/"
+    "netzo/": "https://deno.land/x/netzo@v0.2.20/"
   }
 }

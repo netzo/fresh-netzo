@@ -42,7 +42,7 @@ export interface AuthorizationGoogleJwtSa {
 export interface AuthorizationOAuth2ClientCredentials {
   type: "oauth2";
   grantType: "client_credentials";
-  headerPrefix: "Bearer" | string;
+  headerPrefix?: "Bearer" | string;
   authorizationUrl: string;
   clientId: string;
   clientSecret: string;
@@ -67,7 +67,7 @@ export interface AuthorizationOAuth2AccessTokenResponse {
 export interface AuthorizationOAuth2PasswordCredentials {
   type: "oauth2";
   grantType: "password_credentials";
-  headerPrefix: "Bearer" | string;
+  headerPrefix?: "Bearer" | string;
   accessTokenUrl: string;
   clientId: string;
   clientSecret: string;
@@ -84,7 +84,7 @@ export interface AuthorizationOAuth2PasswordCredentials {
 export interface AuthorizationOAuth2AuthorizationCode {
   type: "oauth2";
   grantType: "authorization_code";
-  headerPrefix: "Bearer" | string;
+  headerPrefix?: "Bearer" | string;
   redirectUrl: string;
   authorizationUrl: string;
   accessTokenUrl: string;

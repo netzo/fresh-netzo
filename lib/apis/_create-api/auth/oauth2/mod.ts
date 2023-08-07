@@ -1,8 +1,8 @@
 import {
   AuthorizationOAuth2,
-  AuthorizationOAuth2AuthorizationCode,
+  // AuthorizationOAuth2AuthorizationCode,
   AuthorizationOAuth2ClientCredentials,
-  AuthorizationOAuth2PasswordCredentials,
+  // AuthorizationOAuth2PasswordCredentials,
 } from "../types.ts";
 // import { OAuth2Client } from "https://deno.land/x/oauth2_client/mod.ts"
 
@@ -16,11 +16,20 @@ import {
  * @see https://frontegg.com/blog/oauth-flows
  * @see https://darutk.medium.com/diagrams-and-movies-of-all-the-oauth-2-0-flows-194f3c3ade85
  */
-
 export const getTokenClientCredentialsFlow = async (
   authorization: AuthorizationOAuth2ClientCredentials,
 ) => {
   const { clientId, clientSecret, authorizationUrl, scope } = authorization;
+
+  let scopeString: string | undefined;
+  if (scope) {
+    if (Array.isArray(scope)) {
+      scopeString = scope.join(" ");
+    } else {
+      scopeString = scope;
+    }
+  }
+
   const response = await fetch(authorizationUrl, {
     method: "POST",
     headers: new Headers({
@@ -29,7 +38,7 @@ export const getTokenClientCredentialsFlow = async (
     }),
     body: new URLSearchParams({
       "grant_type": "client_credentials",
-      ...(scope && { scope }),
+      ...(scopeString && { scope: scopeString }),
     }),
   });
   return response.json();
@@ -38,27 +47,27 @@ export const getTokenClientCredentialsFlow = async (
 /**
  * Resource Owner Password Credentials Flow (3-legged authorization)
  */
-export const getTokenPasswordCredentialsFlow = async (
-  authorization: AuthorizationOAuth2PasswordCredentials,
-) => {
-  const { clientId, clientSecret, accessTokenUrl, username, password, scope } =
-    authorization;
-  const response = await fetch(accessTokenUrl, {
-    method: "POST",
-    headers: {
-      "content-type": "application/x-www-form-urlencoded",
-    },
-    body: new URLSearchParams({
-      grant_type: "password_credentials",
-      client_id: clientId,
-      client_secret: clientSecret,
-      username,
-      password,
-      ...(scope && { scope }),
-    }),
-  });
-  return response.json();
-};
+// export const getTokenPasswordCredentialsFlow = async (
+//   authorization: AuthorizationOAuth2PasswordCredentials,
+// ) => {
+//   const { clientId, clientSecret, accessTokenUrl, username, password, scope } =
+//     authorization;
+//   const response = await fetch(accessTokenUrl, {
+//     method: "POST",
+//     headers: {
+//       "content-type": "application/x-www-form-urlencoded",
+//     },
+//     body: new URLSearchParams({
+//       grant_type: "password_credentials",
+//       client_id: clientId,
+//       client_secret: clientSecret,
+//       username,
+//       password,
+//       ...(scope && { scope }),
+//     }),
+//   });
+//   return response.json();
+// };
 
 /**
  * Authorization Code Flow (3-legged authorization)
@@ -74,58 +83,58 @@ export const getTokenPasswordCredentialsFlow = async (
  * @see https://frontegg.com/blog/oauth-flows
  * @see https://darutk.medium.com/diagrams-and-movies-of-all-the-oauth-2-0-flows-194f3c3ade85
  */
-export const getTokenAuthorizationCodeFlow = async (
-  authorization: AuthorizationOAuth2AuthorizationCode,
-) => {
-  const { clientId, clientSecret, accessTokenUrl, redirectUrl, scope } =
-    authorization;
+// export const getTokenAuthorizationCodeFlow = async (
+//   authorization: AuthorizationOAuth2AuthorizationCode,
+// ) => {
+//   const { clientId, clientSecret, accessTokenUrl, redirectUrl, scope } =
+//     authorization;
 
-  const getAuthorizationCode = async () => {
-    const response = await fetch(accessTokenUrl, {
-      method: "POST",
-      headers: {
-        "content-type": "application/x-www-form-urlencoded",
-      },
-      body: new URLSearchParams({
-        grant_type: "authorization_code",
-        client_id: clientId,
-        client_secret: clientSecret,
-        redirect_uri: redirectUrl,
-        response_type: "code",
-        ...(scope && { scope }),
-      }),
-    });
-    const code = response.json();
-    console.log(code);
-    return code;
-  };
+//   const getAuthorizationCode = async () => {
+//     const response = await fetch(accessTokenUrl, {
+//       method: "POST",
+//       headers: {
+//         "content-type": "application/x-www-form-urlencoded",
+//       },
+//       body: new URLSearchParams({
+//         grant_type: "authorization_code",
+//         client_id: clientId,
+//         client_secret: clientSecret,
+//         redirect_uri: redirectUrl,
+//         response_type: "code",
+//         ...(scope && { scope }),
+//       }),
+//     });
+//     const code = response.json();
+//     console.log(code);
+//     return code;
+//   };
 
-  const response = await fetch(accessTokenUrl, {
-    method: "POST",
-    headers: {
-      "content-type": "application/x-www-form-urlencoded",
-    },
-    body: new URLSearchParams({
-      grant_type: "authorization_code",
-      client_id: clientId,
-      client_secret: clientSecret,
-      redirect_uri: redirectUrl,
-      ...(scope && { scope }),
-      code: await getAuthorizationCode(),
-    }),
-  });
-  return response.json();
-};
+//   const response = await fetch(accessTokenUrl, {
+//     method: "POST",
+//     headers: {
+//       "content-type": "application/x-www-form-urlencoded",
+//     },
+//     body: new URLSearchParams({
+//       grant_type: "authorization_code",
+//       client_id: clientId,
+//       client_secret: clientSecret,
+//       redirect_uri: redirectUrl,
+//       ...(scope && { scope }),
+//       code: await getAuthorizationCode(),
+//     }),
+//   });
+//   return response.json();
+// };
 
 export const getToken = async (authorization: AuthorizationOAuth2) => {
   if (authorization.grantType === "client_credentials") {
     return await getTokenClientCredentialsFlow(authorization);
   }
-  if (authorization.grantType === "password_credentials") {
-    return await getTokenPasswordCredentialsFlow(authorization);
-  }
-  if (authorization.grantType === "authorization_code") {
-    return await getTokenAuthorizationCodeFlow(authorization);
-  }
+  // if (authorization.grantType === "password_credentials") {
+  //   return await getTokenPasswordCredentialsFlow(authorization);
+  // }
+  // if (authorization.grantType === "authorization_code") {
+  //   return await getTokenAuthorizationCodeFlow(authorization);
+  // }
   throw new Error("Grant type not supported");
 };

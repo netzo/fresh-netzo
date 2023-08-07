@@ -21,9 +21,11 @@ import {
   NSwitch,
   NTip,
 } from "netzo/ui/components/mod.ts";
+import { columns, data } from "@/data/data-table.tsx";
+import { DataTable } from "netzo/ui/components/data-table.tsx";
 import ShowSource from "./ShowSource.tsx";
 
-const VERSION = "0.2.19";
+const VERSION = "0.2.20";
 const REPO = "https://github.com/netzo/netzo/tree/main/lib/ui";
 
 export default function Demo() {
@@ -56,14 +58,19 @@ export default function Demo() {
           <NDarkToggle />
         </div>
 
-        <details>
+        <details open>
           <summary class="cursor-pointer uppercase text-lg font-bold">
             Data
           </summary>
           <div class="flex flex-col gap-3 my-3">
             <NCard class="p4">
               <div class="n-header-upper">
-                NTable <NChip class="n-chip-blue">soon</NChip>
+                NTable <NChip class="n-chip-blue">alpha</NChip>
+              </div>
+              <div class="flex flex-wrap items-center gap-3">
+                <div class="w-full py-10">
+                  <DataTable columns={columns} data={data} />
+                </div>
               </div>
             </NCard>
           </div>
@@ -106,7 +113,7 @@ export default function Demo() {
                 <NIconButton icon="mdi-home" />
                 <NIconButton icon="mdi-home" n="purple6 dark:purple5 xl" />
               </div>
-              <ShowSource src="/docs/islands/Docs.tsx#L50-L67" />
+              <ShowSource src="/docs/islands/Demo.tsx#L50-L67" />
             </NCard>
 
             <NCard class="p4">
@@ -123,7 +130,7 @@ export default function Demo() {
                   </div>
                 </NDropdown>
               </div>
-              <ShowSource src="/docs/islands/Docs.tsx#L168-L180" />
+              <ShowSource src="/docs/islands/Demo.tsx#L168-L180" />
             </NCard>
 
             <NCard class="p4">
@@ -133,7 +140,7 @@ export default function Demo() {
               <div class="flex flex-col gap-2">
                 <NIconTitle text="Home" icon="mdi-home" />
               </div>
-              <ShowSource src="/docs/islands/Docs.tsx#L246" />
+              <ShowSource src="/docs/islands/Demo.tsx#L246" />
             </NCard>
 
             <NCard class="p4">
@@ -148,7 +155,7 @@ export default function Demo() {
                   netzo.io
                 </NLink>
               </form>
-              <ShowSource src="/docs/islands/Docs.tsx#L86-L91" />
+              <ShowSource src="/docs/islands/Demo.tsx#L86-L91" />
             </NCard>
 
             <NCard class="p4">
@@ -158,7 +165,7 @@ export default function Demo() {
               <div class="flex flex-col gap-2">
                 <NLoading />
               </div>
-              <ShowSource src="/docs/islands/Docs.tsx#L246" />
+              <ShowSource src="/docs/islands/Demo.tsx#L246" />
             </NCard>
 
             <NCard class="p4">
@@ -176,7 +183,7 @@ export default function Demo() {
                   Error!
                 </NTip>
               </div>
-              <ShowSource src="/docs/islands/Docs.tsx#L150-L158" />
+              <ShowSource src="/docs/islands/Demo.tsx#L150-L158" />
             </NCard>
           </div>
         </details>
@@ -205,7 +212,7 @@ export default function Demo() {
                   XL Disabled
                 </NCheckbox>
               </div>
-              <ShowSource src="/demo/islands/Docs.tsx#L77-L85" />
+              <ShowSource src="/demo/islands/Demo.tsx#L77-L85" />
             </NCard>
 
             <NCard class="p4">
@@ -238,7 +245,7 @@ export default function Demo() {
                   Orange
                 </NRadio>
               </form>
-              <ShowSource src="/docs/islands/Docs.tsx#L101-L119" />
+              <ShowSource src="/docs/islands/Demo.tsx#L101-L119" />
             </NCard>
 
             <NCard class="p4">
@@ -272,7 +279,7 @@ export default function Demo() {
                   </NButton>
                 </div>
               </form>
-              <ShowSource src="/docs/islands/Docs.tsx#L190-L205" />
+              <ShowSource src="/docs/islands/Demo.tsx#L190-L205" />
             </NCard>
 
             <NCard class="p4">
@@ -293,7 +300,7 @@ export default function Demo() {
                   XL
                 </NSwitch>
               </div>
-              <ShowSource src="/docs/islands/Docs.tsx#L129-L140" />
+              <ShowSource src="/docs/islands/Demo.tsx#L129-L140" />
             </NCard>
 
             <NCard class="p4">
@@ -329,7 +336,7 @@ export default function Demo() {
                   </NButton>
                 </div>
               </form>
-              <ShowSource src="/docs/islands/Docs.tsx#L190-L205" />
+              <ShowSource src="/docs/islands/Demo.tsx#L190-L205" />
             </NCard>
 
             <NCard class="p4">
@@ -339,7 +346,7 @@ export default function Demo() {
               <div class="flex flex-col gap-2">
                 <NInputDate n="lime6 dark:lime5" />
               </div>
-              <ShowSource src="/docs/islands/Docs.tsx#L190-L205" />
+              <ShowSource src="/docs/islands/Demo.tsx#L190-L205" />
             </NCard>
 
             <NCard class="p4">
@@ -349,7 +356,7 @@ export default function Demo() {
               <div class="flex flex-col gap-2">
                 <NInputDateRange n="lime6 dark:lime5" />
               </div>
-              <ShowSource src="/docs/islands/Docs.tsx#L190-L205" />
+              <ShowSource src="/docs/islands/Demo.tsx#L190-L205" />
             </NCard>
           </div>
         </details>
@@ -372,7 +379,7 @@ export default function Demo() {
               <div class="flex flex-col gap-2">
                 <NPanelGrids />
               </div>
-              <ShowSource src="/docs/islands/Docs.tsx#L246" />
+              <ShowSource src="/docs/islands/Demo.tsx#L246" />
             </NCard>
 
             <NCard class="p4">
@@ -387,7 +394,7 @@ export default function Demo() {
                   </>
                 </NSectionBlock>
               </div>
-              <ShowSource src="/docs/islands/Docs.tsx#L246" />
+              <ShowSource src="/docs/islands/Demo.tsx#L246" />
             </NCard>
           </div>
         </details>
@@ -433,7 +440,7 @@ export default function Demo() {
                   </form>
                 </NDialog>
               </div>
-              <ShowSource src="/docs/islands/Docs.tsx#L215-L231" />
+              <ShowSource src="/docs/islands/Demo.tsx#L215-L231" />
             </NCard>
           </div>
         </details>

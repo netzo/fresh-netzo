@@ -12,7 +12,7 @@ import manifest from "./fresh.gen.ts";
 import {
   unocss,
 } from "netzo/plugins/mod.ts";
-import { presetNetzo } from "netzo/ui/mod.ts";
+import { presetNetzo } from "netzo/ui/unocss.ts";
 
 await start(manifest, {
   plugins: [

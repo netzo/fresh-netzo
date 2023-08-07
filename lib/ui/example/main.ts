@@ -14,7 +14,7 @@ import {
   netzoErrorPages,
   unocss,
 } from "netzo/plugins/mod.ts";
-import { presetNetzo } from "netzo/ui/mod.ts";
+import { presetNetzo } from "netzo/ui/unocss.ts";
 
 await start(manifest, {
   plugins: [
