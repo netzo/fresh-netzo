@@ -4,6 +4,7 @@ export type {
   Issue,
   QueryIssues,
   QueryRepositories,
+  QueryUsers,
   Repository,
   User,
 } from "./types.ts";
