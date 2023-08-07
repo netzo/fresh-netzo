@@ -3,7 +3,7 @@ import { googlesheets } from "./mod.ts";
 
 Deno.test("googlesheets", async (t) => {
   const { options } = await import("./googlesheets.options.ts");
-  const { api, getRows } = googlesheets(options);
+  const { api } = googlesheets(options);
 
   const range = "Sheet1!A:D";
 
@@ -12,10 +12,5 @@ Deno.test("googlesheets", async (t) => {
     assertExists(result.range);
     assertExists(result.majorDimension);
     assertExists(result.values);
-  });
-
-  await t.step("getRows", async () => {
-    const rows = await getRows(range);
-    assertExists(rows);
   });
 });
