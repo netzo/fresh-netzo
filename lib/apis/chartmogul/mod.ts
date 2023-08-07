@@ -32,7 +32,7 @@ export const chartmogul = ({
   apiKey = Deno.env.get("CHARTMOGUL_API_KEY")!,
 }: ChartmogulOptions) => {
   const api = createApi({
-    baseURL: "https://api.chartmogul.com",
+    baseURL: "https://api.chartmogul.com/v1",
     headers: {
       "content-type": "application/json",
     },
