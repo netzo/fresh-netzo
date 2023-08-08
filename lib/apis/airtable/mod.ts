@@ -7,6 +7,7 @@ export type {
   QueryUpdateRecords,
   Records,
   RecordsDeleted,
+  UpdateRecordsResponse,
 } from "./types.ts";
 
 export interface AirtableOptions {
@@ -37,5 +38,5 @@ export const airtable = ({
     },
   });
 
-   return { api };
+  return { api };
 };

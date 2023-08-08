@@ -6,10 +6,11 @@ interface RecordObject {
 }
 
 export interface Records {
-  records: Array<RecordObject & {
-    createdTime: string
-  }
-  >
+  records: Array<
+    RecordObject & {
+      createdTime: string;
+    }
+  >;
 }
 
 export interface QueryRecords {
@@ -43,13 +44,19 @@ export interface QueryUpdateRecords {
   typecast?: boolean;
 }
 
+export interface UpdateRecordsResponse {
+  createdRecords: string[];
+  records: RecordObject[];
+  updatedRecords: string[];
+}
+
 export interface QueryDeleteRecords {
   records: string[];
 }
 
 export interface RecordsDeleted {
   records: Array<{
-    deleted: boolean
+    deleted: boolean;
     id: string;
-  }>
+  }>;
 }
