@@ -1,7 +1,22 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
+export type {
+  Accounts,
+  AddOrUpdateContactResponse,
+  AddUserResponse,
+  Contact,
+  Contacts,
+  Deals,
+  FilterDeals,
+  QueryAccounts,
+  QueryAddContact,
+  QueryAddUser,
+  QueryContacts,
+  QueryUpdateContact,
+  Users,
+} from "./types.ts";
 
-export interface ActivecampaignOptions {
+export interface ActiveCampaignOptions {
   accountName: string;
   apiKey: string;
 }
