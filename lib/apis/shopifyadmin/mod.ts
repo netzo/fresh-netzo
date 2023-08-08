@@ -3,21 +3,20 @@ import { auth } from "../_create-api/auth/mod.ts";
 export type {
   AddOrUpdateCustomer,
   AddOrUpdateCustomerResponse,
-  Customers,
   Customer,
+  Customers,
+  Order,
+  Orders,
+  OrdersByCustomer,
+  OrderStatus,
+  Payouts,
+  Product,
+  Products,
   QueryCustomers,
   QueryOrders,
   QueryPayouts,
   QueryProducts,
-  OrderStatus,
-  OrdersByCustomer,
-  Orders,
-  Order,
-  Products,
-  Product,
-  Payouts,
 } from "./types.ts";
-
 
 export interface ShopifyAdminOptions {
   storeName: string;
