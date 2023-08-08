@@ -5,8 +5,8 @@ export type {
   NotionPagination,
   Page,
   Pages,
-  QueryProperties,
   QueryDatabase,
+  QueryProperties,
   Users,
 } from "./types.ts";
 
