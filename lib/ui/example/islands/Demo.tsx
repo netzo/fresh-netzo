@@ -25,7 +25,7 @@ import { columns, data } from "@/data/columns.tsx";
 import { DataTable } from "netzo/ui/components/data-table.tsx";
 import ShowSource from "./ShowSource.tsx";
 
-const VERSION = "0.2.20";
+const VERSION = "0.2.21";
 const REPO = "https://github.com/netzo/netzo/tree/main/lib/ui";
 
 export default function Demo() {
