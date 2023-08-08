@@ -14,6 +14,7 @@ import {
   presetTypography,
   presetUno,
 } from "https://esm.sh/unocss@0.53.4?bundle";
+import { presetShadcn } from "./unocss.shadcn.ts";
 
 // @unocss-include
 
@@ -41,6 +42,7 @@ export function presetNetzo(user: UserConfig = {}): Preset {
           "vertical-align": "middle",
         },
       }),
+      presetShadcn(),
       ...(user.presets ?? []),
     ] as UserConfig["presets"],
 
@@ -48,6 +50,15 @@ export function presetNetzo(user: UserConfig = {}): Preset {
       {
         getCSS: () => {
           const url = new URL("./assets/styles.css", import.meta.url);
+          return fetch(url.href).then((res) => res.text());
+        },
+      },
+      {
+        // unocss allows multiple custom layers (see https://unocss.dev/config/layers)
+        // the following theme was generated using https://ui.shadcn.com/themes
+        layer: "base",
+        getCSS: () => {
+          const url = new URL("./assets/shadcn-ui.base.css", import.meta.url);
           return fetch(url.href).then((res) => res.text());
         },
       },
