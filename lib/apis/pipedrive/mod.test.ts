@@ -14,28 +14,30 @@ Deno.test("pipedrive", async (t) => {
   });
 
   await t.step("search deals", async () => {
-    const result = await api.deals.search.get({ term: "" }); //What term do we want?
+    const result = await api.deals.search.get({ term: "" });
     assertExists(result.data.items);
     assertEquals(Array.isArray(result.data.items), true);
   });
 
   await t.step("add deal", async () => {
-    const result = await api.deals.post({ title: "Test Deal", value: 100 }); //Are we dealing with real DB?
+    const result = await api.deals.post({
+      title: "Test Deal",
+    });
     assertExists(result.data);
     assertEquals(typeof result.data, "object");
   });
 
-  //   await t.step("update deal", async () => {
-  //     const result = await api.deals[DEAL_ID].put({ title: "Updated Title" }) //We don't have deal id
-  //     assertExists(result.data)
-  //     assertEquals(typeof result.data, "object")
-  //   });
+  await t.step("update deal", async () => {
+    const result = await api.deals["DEAL_ID"].put({ title: "Updated Title" });
+    assertExists(result.data);
+    assertEquals(typeof result.data, "object");
+  });
 
-  //   await t.step("delete deal", async () => {
-  //     const result = api.deals[DEAL_ID].delete() //We don't have deal id
-  //     assertExists(result.data)
-  //     assertEquals(typeof result.data, "object")
-  //   });
+  await t.step("delete deal", async () => {
+    const result = await api.deals["DEAL_ID"].delete();
+    assertExists(result.data);
+    assertEquals(typeof result.data, "object");
+  });
 
   await t.step("find persons", async () => {
     const result = await api.persons.get();
@@ -44,7 +46,7 @@ Deno.test("pipedrive", async (t) => {
   });
 
   await t.step("search persons", async () => {
-    const result = await api.persons.search.get({ term: "" }); //TERM?
+    const result = await api.persons.search.get({ term: "" });
     assertExists(result.data.items);
     assertEquals(Array.isArray(result.data.items), true);
   });
@@ -55,15 +57,15 @@ Deno.test("pipedrive", async (t) => {
     assertEquals(typeof result.data, "object");
   });
 
-  //   await t.step("update person", async () => {
-  //     const result = await api.persons[PERSON_ID].put({ name: "Jane Doe" })
-  //     assertExists(result.data)
-  //     assertEquals(typeof result.data, "object")
-  //   });
+  await t.step("update person", async () => {
+    const result = await api.persons["PERSON_ID"].put({ name: "Jane Doe" });
+    assertExists(result.data);
+    assertEquals(typeof result.data, "object");
+  });
 
-  //   await t.step("delete person", async () => {
-  //     const result = await api.persons[PERSON_ID].delete()
-  //     assertExists(result.data)
-  //     assertEquals(typeof result.data, "object")
-  //   });
+  await t.step("delete person", async () => {
+    const result = await api.persons["PERSON_ID"].delete();
+    assertExists(result.data);
+    assertEquals(typeof result.data, "object");
+  });
 });
