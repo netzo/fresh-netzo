@@ -21,7 +21,7 @@ import {
   NSwitch,
   NTip,
 } from "netzo/ui/components/mod.ts";
-import { columns, data } from "@/data/data-table.tsx";
+import { columns, data } from "@/data/columns.tsx";
 import { DataTable } from "netzo/ui/components/data-table.tsx";
 import ShowSource from "./ShowSource.tsx";
 

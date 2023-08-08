@@ -34,6 +34,11 @@ export { default as DatePicker } from "https://esm.sh/react-datepicker@4.16.0?ex
 export { type ClassValue, clsx } from "https://esm.sh/clsx@2.0.0";
 export { twMerge } from "https://esm.sh/tailwind-merge@1.14.0";
 export { cva, type VariantProps } from "https://esm.sh/class-variance-authority@0.7.0"
+export { Slot } from "https://esm.sh/@radix-ui/react-slot@1.0.2?external=react,react-dom&target=es2022"
+export * as DropdownMenuPrimitive from "https://esm.sh/@radix-ui/react-dropdown-menu@2.0.5?external=react,react-dom&target=es2022"
+export * as CheckboxPrimitive from "https://esm.sh/@radix-ui/react-checkbox@1.0.4?external=react,react-dom&target=es2022"
+export { Check, ChevronRight, Circle } from "https://esm.sh/lucide-react@0.263.1?external=react,react-dom&target=es2022";
+// data-table:
 export {
   type ColumnDef,
   type ColumnFiltersState,
@@ -46,7 +51,3 @@ export {
   getSortedRowModel,
   useReactTable,
 } from "https://esm.sh/@tanstack/react-table@8.9.3?external=react,react-dom&target=es2022";
-export { Slot } from "https://esm.sh/@radix-ui/react-slot@1.0.2?external=react,react-dom&target=es2022"
-export * as DropdownMenuPrimitive from "https://esm.sh/@radix-ui/react-dropdown-menu@2.0.5?external=react,react-dom&target=es2022"
-export * as CheckboxPrimitive from "https://esm.sh/@radix-ui/react-checkbox@1.0.4?external=react,react-dom&target=es2022"
-export { Check, ChevronRight, Circle } from "https://esm.sh/lucide-react@0.263.1?external=react,react-dom&target=es2022";

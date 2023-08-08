@@ -15,9 +15,9 @@ import {
   QueryOrders,
   QueryPayouts,
   QueryProducts,
-} from "@/lib/apis/shopifyadmin/types.ts";
+} from "@/lib/apis/shopify/types.ts";
 
-export interface ShopifyAdminOptions {
+export interface ShopifyOptions {
   storeName: string;
   apiVersion: string;
   apiKey: string;
@@ -26,18 +26,18 @@ export interface ShopifyAdminOptions {
 /**
  * SDK constructor function for the Shopify Admin API
  *
- * @see https://netzo.io/docs/netzo/apis/shopifyadmin
+ * @see https://netzo.io/docs/netzo/apis/shopify
  *
  * @param {string} storeName - the store name to construct the base URL
  * @param {string} apiVersion - the version to use for the base URL
  * @param {string} apiKey - the API key to use for authentication
  * @returns {object} - an object of multiple utilities for the API
  */
-export const shopifyadmin = ({
+export const shopify = ({
   storeName = Deno.env.get("SHOPIFY_STORE_NAME")!,
   apiVersion = Deno.env.get("SHOPIFY_API_VERSION")!,
   apiKey = Deno.env.get("SHOPIFY_API_KEY")!,
-}: ShopifyAdminOptions) => {
+}: ShopifyOptions) => {
   const api = createApi({
     baseURL: `https://${storeName}.myshopify.com/admin/api/${apiVersion}`,
     headers: {

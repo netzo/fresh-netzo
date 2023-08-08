@@ -13,14 +13,14 @@ import { Checkbox } from "netzo/ui/components/checkbox.tsx";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
-export type Item = {
+export type Row = {
   id: string;
   amount: number;
   status: "pending" | "processing" | "success" | "failed";
   email: string;
 };
 
-export const columns: ColumnDef<Item>[] = [
+export const columns: ColumnDef<Row>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -74,8 +74,6 @@ export const columns: ColumnDef<Item>[] = [
   {
     id: "actions",
     cell: ({ row }) => {
-      const item = row.original;
-
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -87,13 +85,12 @@ export const columns: ColumnDef<Item>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(item.id)}
+              onClick={() => navigator.clipboard.writeText(row.original.id)}
             >
-              Copy item ID
+              Copy ID
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View customer</DropdownMenuItem>
-            <DropdownMenuItem>View item details</DropdownMenuItem>
+            <DropdownMenuItem>View details</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       );
@@ -101,7 +98,7 @@ export const columns: ColumnDef<Item>[] = [
   },
 ];
 
-export const data: Item[] = [
+export const data: Row[] = [
   {
     "id": "728ed52f",
     "amount": 100,
