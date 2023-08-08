@@ -1,6 +1,6 @@
 import { JSX } from "preact";
 import { useSignal } from "@preact/signals";
-import { n } from "../../utils/mod.ts";
+import { n } from "netzo/ui/utils/mod.ts";
 import { NIconTitle } from "../mod.ts";
 
 export interface NSectionBlockProps extends JSX.HTMLAttributes<HTMLDivElement> {

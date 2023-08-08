@@ -42,7 +42,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     help: !!rawArgs.help,
     prod: !!rawArgs.prod,
     apiKey: rawArgs["api-key"] ? String(rawArgs["api-key"]) : null,
-    apiUrl: rawArgs["api-url"] ?? 'https://api.netzo.io',
+    apiUrl: rawArgs["api-url"] ?? "https://api.netzo.io",
     deployment: rawArgs.deployment ? String(rawArgs.deployment) : null,
     project: rawArgs.project ? String(rawArgs.project) : null,
   };

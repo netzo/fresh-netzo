@@ -1,39 +1,57 @@
 // from https://github.com/fisand/unocss-preset-shadcn
-import { h, variantGetParameter } from "https://esm.sh/@unocss/preset-mini@0.53.4/utils?bundle";
-import type { Preset, VariantContext, VariantObject } from "https://esm.sh/@unocss/core@0.53.4?bundle";
-import type { PresetMiniOptions, Theme } from "https://esm.sh/@unocss/preset-mini@0.53.4/rules?bundle";
+import {
+  h,
+  variantGetParameter,
+} from "https://esm.sh/@unocss/preset-mini@0.53.4/utils?bundle";
+import type {
+  Preset,
+  VariantContext,
+  VariantObject,
+} from "https://esm.sh/@unocss/core@0.53.4?bundle";
+import type {
+  PresetMiniOptions,
+  Theme,
+} from "https://esm.sh/@unocss/preset-mini@0.53.4/rules?bundle";
 import { presetIcons, presetUno } from "https://esm.sh/unocss@0.53.4?bundle";
 
-export interface PresetShadcnOptions extends PresetMiniOptions { }
+export interface PresetShadcnOptions extends PresetMiniOptions {}
 
 const variantGroupDataAttribute: VariantObject = {
-  name: 'group-data',
+  name: "group-data",
   match(matcher, ctx: VariantContext<Theme>) {
-    const variant = variantGetParameter('group-data-', matcher, ctx.generator.config.separators)
+    const variant = variantGetParameter(
+      "group-data-",
+      matcher,
+      ctx.generator.config.separators,
+    );
     if (variant) {
-      const [match, rest] = variant
-      const dataAttribute = h.bracket(match) ?? ctx.theme.data?.[match] ?? ''
+      const [match, rest] = variant;
+      const dataAttribute = h.bracket(match) ?? ctx.theme.data?.[match] ?? "";
       if (dataAttribute) {
         return {
           matcher: `group-[[data-${dataAttribute}]]:${rest}`,
-        }
+        };
       }
     }
   },
-}
+};
 
-const handleMatchNumber = (v: string, defaultVal = '0') =>
-  h.bracket.cssvar.global.auto.fraction.number(v || defaultVal)?.replace('%', '')
-const handleMatchRem = (v: string, defaultVal = 'full') => h.bracket.cssvar.global.auto.fraction.rem(v || defaultVal)
+const handleMatchNumber = (v: string, defaultVal = "0") =>
+  h.bracket.cssvar.global.auto.fraction.number(v || defaultVal)?.replace(
+    "%",
+    "",
+  );
+const handleMatchRem = (v: string, defaultVal = "full") =>
+  h.bracket.cssvar.global.auto.fraction.rem(v || defaultVal);
 
 export function presetShadcn(options: PresetShadcnOptions = {}): Preset<Theme> {
   return {
-    name: 'unocss-preset-shadcn',
+    name: "unocss-preset-shadcn",
     presets: [presetUno(), presetIcons()],
     shortcuts: [
       {
-        'flex-center': 'flex justify-center items-center',
-        'flex-col-center': 'flex flex-col justify-center items-center',
+        "flex-center": "flex justify-center items-center",
+        "flex-col-center": "flex flex-col justify-center items-center",
       },
     ],
     preflights: [
@@ -91,45 +109,45 @@ export function presetShadcn(options: PresetShadcnOptions = {}): Preset<Theme> {
     rules: [],
     theme: {
       colors: {
-        border: 'hsl(var(--border))',
-        input: 'hsl(var(--input))',
-        ring: 'hsl(var(--ring))',
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))',
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
-          DEFAULT: 'hsl(var(--secondary))',
-          foreground: 'hsl(var(--secondary-foreground))',
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
         },
         destructive: {
-          DEFAULT: 'hsl(var(--destructive))',
-          foreground: 'hsl(var(--destructive-foreground))',
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
         },
         muted: {
-          DEFAULT: 'hsl(var(--muted))',
-          foreground: 'hsl(var(--muted-foreground))',
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
         },
         accent: {
-          DEFAULT: 'hsl(var(--accent))',
-          foreground: 'hsl(var(--accent-foreground))',
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
         },
         popover: {
-          DEFAULT: 'hsl(var(--popover))',
-          foreground: 'hsl(var(--popover-foreground))',
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
         },
         card: {
-          DEFAULT: 'hsl(var(--card))',
-          foreground: 'hsl(var(--card-foreground))',
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
         },
       },
       borderRadius: {
         lg: `var(--radius)`,
         md: `calc(var(--radius) - 2px)`,
-        sm: 'calc(var(--radius) - 4px)',
+        sm: "calc(var(--radius) - 4px)",
       },
-    }
-  }
+    },
+  };
 }

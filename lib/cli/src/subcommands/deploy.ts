@@ -79,7 +79,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     static: !rawArgs["no-static"], // negate the flag
     prod: !!rawArgs.prod,
     apiKey: rawArgs["api-key"] ? String(rawArgs["api-key"]) : null,
-    apiUrl: rawArgs["api-url"] ?? 'https://api.netzo.io',
+    apiUrl: rawArgs["api-url"] ?? "https://api.netzo.io",
     project: rawArgs.project ? String(rawArgs.project) : null,
     importMap: rawArgs["import-map"] ? String(rawArgs["import-map"]) : null,
     exclude: rawArgs.exclude?.split(","),
@@ -260,7 +260,10 @@ async function deploy(opts: DeployOpts): Promise<void> {
   let deploySpinner: Spinner | null = null;
 
   try {
-    const app = await createClient({ apiKey: opts.apiKey, baseURL: opts.apiUrl });
+    const app = await createClient({
+      apiKey: opts.apiKey,
+      baseURL: opts.apiUrl,
+    });
 
     app.service("deployments").on(
       "progress",

@@ -9,9 +9,7 @@ import "std/dotenv/load.ts";
 import { start } from "fresh/server.ts";
 import manifest from "./fresh.gen.ts";
 
-import {
-  daisyui,
-} from "netzo/plugins/mod.ts";
+import { daisyui } from "netzo/plugins/mod.ts";
 
 await start(manifest, {
   plugins: [

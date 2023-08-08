@@ -1,5 +1,5 @@
 import { JSX } from "preact";
-import { n } from "../../utils/mod.ts";
+import { n } from "netzo/ui/utils/mod.ts";
 
 export interface NIconProps extends JSX.HTMLAttributes<HTMLDivElement> {
   icon: string;

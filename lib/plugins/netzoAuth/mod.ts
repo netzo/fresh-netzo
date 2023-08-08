@@ -7,7 +7,7 @@ export type NetzoAuthOptions = {
   tokens: string[];
 } | {
   visibility: "public";
-}
+};
 
 /*
 The following lists the possible header combinations when
@@ -34,7 +34,9 @@ making a request to a project/deployment from any source:
 const createHandler = (options: NetzoAuthOptions): MiddlewareHandler => {
   return async (req, ctx) => {
     // type DestinationKind = "internal" | "static" | "route" | "notFound";
-    if (["internal", "static", "notFound"].includes(ctx.destination)) return await ctx.next();
+    if (["internal", "static", "notFound"].includes(ctx.destination)) {
+      return await ctx.next();
+    }
 
     const url = new URL(req.url);
     const token = req.headers.get("x-token") ?? url.searchParams.get("token");
@@ -44,20 +46,25 @@ const createHandler = (options: NetzoAuthOptions): MiddlewareHandler => {
     const referer = req.headers.get("referer"); // SOMETIMES SET e.g. https://app.netzo.io/some-path
 
     // simple heuristics to determine source of request:
-    const isApp = (url: string) => !!url && (new URL(url).host).endsWith('netzo.io');
+    const isApp = (url: string) =>
+      !!url && (new URL(url).host).endsWith("netzo.io");
     const is = { app: isApp(origin!) || isApp(referer!) };
 
     // console.debug({ destination: ctx.destination, options, origin, referer, is });
 
     switch (options.visibility) {
       case "private": {
-        if (!is.app) throw new Error("Private deployments cannot be accessed externally");
+        if (!is.app) {
+          throw new Error("Private deployments cannot be accessed externally");
+        }
         return await ctx.next();
       }
       case "protected": {
         if (!is.app) {
           if (!options.tokens?.length) {
-            throw new Error("Missing required option 'tokens' in netzoAuth plugin");
+            throw new Error(
+              "Missing required option 'tokens' in netzoAuth plugin",
+            );
           }
           if (!options.tokens.includes(token!)) {
             throw new Error("Protected deployments require a valid token");

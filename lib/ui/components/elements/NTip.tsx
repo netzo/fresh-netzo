@@ -1,4 +1,4 @@
-import { n } from "../../utils/mod.ts";
+import { n } from "netzo/ui/utils/mod.ts";
 import { NIcon } from "../mod.ts";
 
 export interface NTipProps {

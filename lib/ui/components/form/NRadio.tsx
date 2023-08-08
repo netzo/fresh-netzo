@@ -1,6 +1,6 @@
 import { JSX } from "preact";
 import { useSignal } from "@preact/signals";
-import { n } from "../../utils/mod.ts";
+import { n } from "netzo/ui/utils/mod.ts";
 
 export interface NRadioProps extends JSX.HTMLAttributes<HTMLInputElement> {
   name?: string;
