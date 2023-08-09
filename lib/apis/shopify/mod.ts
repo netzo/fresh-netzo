@@ -18,11 +18,7 @@ export type {
   QueryProducts,
 } from "./types.ts";
 
-<<<<<<< HEAD:lib/apis/shopifyadmin/mod.ts
-export interface ShopifyAdminOptions {
-=======
 export interface ShopifyOptions {
->>>>>>> main:lib/apis/shopify/mod.ts
   storeName: string;
   apiVersion: string;
   apiKey: string;

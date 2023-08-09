@@ -1,14 +1,11 @@
-import {
-  assertEquals,
-  assertExists,
-} from "../deps.ts";
-import { shopifyadmin } from "./mod.ts";
+import { assertEquals, assertExists } from "../deps.ts";
+import { shopify } from "./mod.ts";
 
-Deno.test("shopifyadmin", async (t) => {
-  const { api } = shopifyadmin({
-    storeName: Deno.env.get("SHOPIFY_STORE_NAME"),
-    apiKey: Deno.env.get("SHOPIFY_API_KEY"),
-    apiVersion: Deno.env.get("2023-07"),
+Deno.test("shopify", async (t) => {
+  const { api } = shopify({
+    storeName: Deno.env.get("SHOPIFY_STORE_NAME")!,
+    apiKey: Deno.env.get("SHOPIFY_API_KEY")!,
+    apiVersion: "2023-07",
   });
 
   await t.step("find customers", async () => {
