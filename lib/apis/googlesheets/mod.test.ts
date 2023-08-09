@@ -50,8 +50,9 @@ Deno.test("googlesheets", async (t) => {
     const result = await api.values[range_to_update].put({
       values: ["updatedValue1", "updatedValue2, updatedValue3, updatedValue4"],
     });
-    assertExists(result.updatedData);
-    assertEquals(typeof result.updatedData, "object");
+    assertExists(result.updatedData.values);
+    assertExists(resultToRows(result.updatedData));
+    assertEquals(Array.isArray(resultToRows(result.updatedData)), true);
   });
 
   await t.step("delete row", async () => {
