@@ -1,12 +1,12 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
 export type {
-  ValueRange,
+  AddValuesResponse,
+  DeleteValuesResponse,
   RequestAddOrUpdateValues,
   UpdateValuesResponse,
-  AddValuesResponse,
-  DeleteValuesResponse
-} from "./types.ts"
+  ValueRange,
+} from "./types.ts";
 export interface GoogleSheetsOptions {
   googleServiceAccountCredentials: string;
   scope?: Array<
