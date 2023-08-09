@@ -18,19 +18,15 @@ Deno.test("googlesheets", async (t) => {
 
   await t.step("get rows", async () => {
     const result = await api.values[range].get();
-    console.log(result.values);
     assertExists(result.values);
     assertExists(resultToRows(result));
-    console.log(resultToRows(result));
     assertEquals(Array.isArray(resultToRows(result)), true);
   });
 
   await t.step("get row", async () => {
     const result = await api.values[range].get();
-    console.log(result.values);
     assertExists(result.values);
     assertExists(resultToRows(result));
-    console.log(resultToRows(result));
     assertEquals(Array.isArray(resultToRows(result)), true);
   });
 
