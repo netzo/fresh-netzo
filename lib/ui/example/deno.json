@@ -20,7 +20,7 @@
   },
   "imports": {
     "@/": "./",
-    "netzo/": "https://deno.land/x/netzo@v0.2.20/",
+    "netzo/": "https://deno.land/x/netzo@v0.2.21/",
     "fresh/": "https://deno.land/x/fresh@1.3.1/",
     "preact": "https://esm.sh/preact@10.16.0",
     "preact/": "https://esm.sh/preact@10.16.0/",
@@ -60,6 +60,7 @@
     "@radix-ui/react-tabs": "https://esm.sh/@radix-ui/react-tabs@latest?external=react,react-dom&target=es2022",
     "@radix-ui/react-toolbar": "https://esm.sh/@radix-ui/react-toolbar@latest?external=react,react-dom&target=es2022",
     "@tanstack/react-table": "https://esm.sh/@tanstack/react-table@8.9.3?external=react,react-dom&target=es2022",
+    "react-datepicker": "https://esm.sh/react-datepicker@4.16.0?external=react,react-dom&target=es2022",
     "lucide-react": "https://esm.sh/lucide-react@0.263.1?external=react,react-dom&target=es2022"
   }
 }

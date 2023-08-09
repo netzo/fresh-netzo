@@ -9,10 +9,7 @@ import "std/dotenv/load.ts";
 import { start } from "fresh/server.ts";
 import manifest from "./fresh.gen.ts";
 
-import {
-  unocss,
-  flowbite
-} from "netzo/plugins/mod.ts";
+import { flowbite, unocss } from "netzo/plugins/mod.ts";
 import { presetNetzo } from "netzo/ui/unocss.ts";
 
 await start(manifest, {

@@ -1,6 +1,6 @@
 import { createRef, JSX } from "preact";
 import { useSignal } from "@preact/signals";
-import { n } from "../../utils/mod.ts";
+import { n } from "netzo/ui/utils/mod.ts";
 import { NButton, type NButtonProps } from "../mod.ts";
 
 export interface NDropdownProps extends JSX.HTMLAttributes<HTMLDivElement> {

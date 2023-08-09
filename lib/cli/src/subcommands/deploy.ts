@@ -45,7 +45,6 @@ USAGE:
     netzo deploy [OPTIONS] <entrypoint>
 
 OPTIONS:
-        --api-key=<API_KEY>       The API key to use (defaults to NETZO_API_KEY environment variable)
         --exclude=<PATTERNS>      Exclude files that match this pattern
         --include=<PATTERNS>      Only upload files that match this pattern
         --import-map=<FILE>       Use import map file
@@ -54,6 +53,7 @@ OPTIONS:
         --prod                    Create a production deployment (default is preview deployment)
     -p, --project=<PROJECT_UID>   The UID of the project to deploy to
         --dry-run                 Dry run the deployment process
+        --api-key=<API_KEY>       The API key to use (defaults to NETZO_API_KEY environment variable)
 
 ARGS:
     <entrypoint>                  The file path to the entrypoint file (e.g. main.tsx)
@@ -65,11 +65,11 @@ export interface Args {
   prod: boolean;
   exclude?: string[];
   include?: string[];
-  apiKey: string | null;
-  apiUrl?: string;
   project: string | null;
   importMap: string | null;
   dryRun: boolean;
+  apiKey: string | null;
+  apiUrl?: string;
 }
 
 // deno-lint-ignore no-explicit-any
@@ -78,13 +78,13 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     help: !!rawArgs.help,
     static: !rawArgs["no-static"], // negate the flag
     prod: !!rawArgs.prod,
-    apiKey: rawArgs["api-key"] ? String(rawArgs["api-key"]) : null,
-    apiUrl: rawArgs["api-url"] ?? 'https://api.netzo.io',
     project: rawArgs.project ? String(rawArgs.project) : null,
     importMap: rawArgs["import-map"] ? String(rawArgs["import-map"]) : null,
     exclude: rawArgs.exclude?.split(","),
     include: rawArgs.include?.split(","),
     dryRun: !!rawArgs["dry-run"],
+    apiKey: rawArgs["api-key"] ? String(rawArgs["api-key"]) : null,
+    apiUrl: rawArgs["api-url"] ?? "https://api.netzo.io",
   };
   const entrypoint = typeof rawArgs._[0] === "string" ? rawArgs._[0] : null;
   if (args.help) {
@@ -111,23 +111,23 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     error("Missing project UID.");
   }
 
-  const opts: DeployOpts = {
-    entrypoint: await parseEntrypoint(entrypoint).catch((e) => error(e)),
-    importMapUrl: args.importMap === null
-      ? null
-      : await parseEntrypoint(args.importMap, undefined, "import map")
-        .catch((e) => error(e)),
-    static: args.static,
-    prod: args.prod,
-    apiKey,
-    apiUrl: args.apiUrl,
-    project: args.project,
-    include: args.include?.map((pattern) => normalize(pattern)),
-    exclude: args.exclude?.map((pattern) => normalize(pattern)),
-    dryRun: args.dryRun,
-  };
-
-  await deploy(opts);
+  await deploy(
+    {
+      entrypoint: await parseEntrypoint(entrypoint).catch((e) => error(e)),
+      importMapUrl: args.importMap === null
+        ? null
+        : await parseEntrypoint(args.importMap, undefined, "import map")
+          .catch((e) => error(e)),
+      static: args.static,
+      prod: args.prod,
+      project: args.project,
+      include: args.include?.map((pattern) => normalize(pattern)),
+      exclude: args.exclude?.map((pattern) => normalize(pattern)),
+      dryRun: args.dryRun,
+      apiKey,
+      apiUrl: args.apiUrl,
+    } satisfies DeployOpts,
+  );
 }
 
 interface DeployOpts {
@@ -137,10 +137,10 @@ interface DeployOpts {
   prod: boolean;
   exclude?: string[];
   include?: string[];
-  apiKey: string;
-  apiUrl?: string;
   project: string;
   dryRun: boolean;
+  apiKey: string;
+  apiUrl?: string;
 }
 
 async function deploy(opts: DeployOpts): Promise<void> {
@@ -260,7 +260,10 @@ async function deploy(opts: DeployOpts): Promise<void> {
   let deploySpinner: Spinner | null = null;
 
   try {
-    const app = await createClient({ apiKey: opts.apiKey, baseURL: opts.apiUrl });
+    const app = await createClient({
+      apiKey: opts.apiKey,
+      baseURL: opts.apiUrl,
+    });
 
     app.service("deployments").on(
       "progress",

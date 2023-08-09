@@ -44,7 +44,7 @@ export const auth = async (
     );
     headers.Authorization = token_type
       ? `${token_type} ${access_token}`
-      : access_token;;
+      : access_token;
   }
 
   options.query = { ...options.query, ...query };

@@ -1,5 +1,5 @@
 import { NSwitch, NSwitchProps } from "../mod.ts";
-import { n } from "../../utils/mod.ts";
+import { n } from "netzo/ui/utils/mod.ts";
 import { useTheme } from "../../../composables/browser/useTheme.ts";
 
 export interface NDarkToggleProps extends NSwitchProps {

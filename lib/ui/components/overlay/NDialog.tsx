@@ -1,5 +1,5 @@
 import { createRef, JSX } from "preact";
-import { n } from "../../utils/mod.ts";
+import { n } from "netzo/ui/utils/mod.ts";
 import { NButton, type NButtonProps } from "../mod.ts";
 
 export interface NDialogProps extends JSX.HTMLAttributes<HTMLDialogElement> {
