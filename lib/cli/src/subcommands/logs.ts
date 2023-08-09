@@ -21,19 +21,19 @@ USAGE:
     netzo logs [OPTIONS] <project>
 
 OPTIONS:
-        --api-key      The API key to use (defaults to NETZO_API_KEY environment variable)
         --deployment   The ID of the deployment you want to stream logs for (defaults to latest deployment)
         --prod         Select the production deployment
     -p, --project      The UID of the project you want to stream logs for
+        --api-key      The API key to use (defaults to NETZO_API_KEY environment variable)
 `;
 
 export interface Args {
   help: boolean;
   prod: boolean;
-  apiKey: string | null;
-  apiUrl?: string;
   deployment: string | null;
   project: string | null;
+  apiKey: string | null;
+  apiUrl?: string;
 }
 
 // deno-lint-ignore no-explicit-any
@@ -41,10 +41,10 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
   const args: Args = {
     help: !!rawArgs.help,
     prod: !!rawArgs.prod,
-    apiKey: rawArgs["api-key"] ? String(rawArgs["api-key"]) : null,
-    apiUrl: rawArgs["api-url"] ?? "https://api.netzo.io",
     deployment: rawArgs.deployment ? String(rawArgs.deployment) : null,
     project: rawArgs.project ? String(rawArgs.project) : null,
+    apiKey: rawArgs["api-key"] ? String(rawArgs["api-key"]) : null,
+    apiUrl: rawArgs["api-url"] ?? "https://api.netzo.io",
   };
 
   if (args.help) {
@@ -67,7 +67,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     error("Too many positional arguments given.");
   }
 
-  const opts: DeployOpts = {
+  const opts: LogsOpts = {
     project: args.project,
     deploymentId: args.deployment,
     prod: args.prod,
@@ -78,7 +78,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
   await logs(opts);
 }
 
-interface DeployOpts {
+interface LogsOpts {
   project: string;
   deploymentId: string | null;
   prod: boolean;
@@ -86,7 +86,7 @@ interface DeployOpts {
   apiUrl?: string;
 }
 
-async function logs(opts: DeployOpts): Promise<void> {
+async function logs(opts: LogsOpts): Promise<void> {
   if (opts.prod && opts.deploymentId) {
     error(
       "You can't select a deployment and choose production flag at the same time",
@@ -98,6 +98,7 @@ async function logs(opts: DeployOpts): Promise<void> {
     uid: opts.project,
     $limit: 1,
   });
+  // FIXME: get deployments from project using `api` client
   const projectDeployments = await DenoAPI.getDeployments(project._id);
   if (project === null) {
     projectSpinner.fail("Project not found.");
