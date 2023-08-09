@@ -44,16 +44,16 @@ export interface QueryProperties {
 
 export interface Pages {
   object: string;
-  results: Page[],
-  next_cursor: any,
-  has_more: false,
-  type: string,
-  [key: string]: {}  //type value becomes the key name
+  results: Page[];
+  next_cursor: any;
+  has_more: false;
+  type: string;
+  [key: string]: {}; //type value becomes the key name
 }
 
 export interface Block {
-  object: string,
-  results:Array<{  
+  object: string;
+  results: Array<{
     object: string;
     id: string;
     parent: {
@@ -73,12 +73,12 @@ export interface Block {
     };
     has_children: boolean;
     archived: boolean;
-    [key: string]: {}; 
-  }>,
-  next_cursor: any,
-  has_more: false,
-  type: string,
-  [key: string]: {} //type value becomes the key name
+    [key: string]: {};
+  }>;
+  next_cursor: any;
+  has_more: false;
+  type: string;
+  [key: string]: {}; //type value becomes the key name
 }
 
 interface UserBase {
@@ -106,9 +106,9 @@ interface BotUser extends UserBase {
 }
 
 export interface Users {
-  results: Array<PersonUser | BotUser>
-  next_cursor: string,
-  has_more: boolean
+  results: Array<PersonUser | BotUser>;
+  next_cursor: string;
+  has_more: boolean;
 }
 
 export interface QueryDatabase extends NotionPagination {

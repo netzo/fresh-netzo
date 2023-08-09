@@ -1,24 +1,24 @@
 interface ContactBase {
   properties: {
-    company: string
-    createdate: string
-    email: string
-    firstname: string
-    lastmodifieddate: string
-    lastname: string
-    phone: string
-    website: string
-  }
+    company: string;
+    createdate: string;
+    email: string;
+    firstname: string;
+    lastmodifieddate: string;
+    lastname: string;
+    phone: string;
+    website: string;
+  };
 }
 
 export interface Contacts {
-  results: ContactBase[]
+  results: ContactBase[];
   paging: {
     next: {
-      after: string
-      link: string
-    }
-  }
+      after: string;
+      link: string;
+    };
+  };
 }
 
 export interface QueryContacts {
@@ -41,65 +41,65 @@ export interface AddContactResponse extends ContactBase {
 }
 
 export interface Form {
-    portalId: number
-    guid: string
-    name: string
-    action: string
-    method: string
-    cssClass: string
-    redirect: string
-    submitText: string
-    followUpId: string
-    notifyRecipients: string
-    leadNurturingCampaignId: string
-    formFieldGroups: Array<{
-      fields: Array<{
-        name: string
-        label: string
-        type: string
-        fieldType: string
-        description: string
-        groupName: string
-        displayOrder: number
-        required: boolean
-        selectedOptions: Array<any>
-        options: Array<any>
-        validation: {
-          name: string
-          message: string
-          data: string
-          useDefaultBlockList: boolean
-          blockedEmailAddresses: Array<any>
-        }
-        enabled: boolean
-        hidden: boolean
-        defaultValue: string
-        isSmartField: boolean
-        unselectedLabel: string
-        placeholder: string
-        dependentFieldFilters: Array<any>
-        labelHidden: boolean
-      }>
-      default: boolean
-      isSmartGroup: boolean
-      richText: {
-        content: string
-      }
-    }>
-    createdAt: number
-    updatedAt: number
-    performableHtml: string
-    migratedFrom: string
-    ignoreCurrentValues: boolean
-    metaData: Array<any>
-    deletable: boolean
-    inlineMessage: string
-    tmsId: string
-    captchaEnabled: boolean
-    campaignGuid: string
-    cloneable: boolean
-    editable: boolean
-    formType: string
+  portalId: number;
+  guid: string;
+  name: string;
+  action: string;
+  method: string;
+  cssClass: string;
+  redirect: string;
+  submitText: string;
+  followUpId: string;
+  notifyRecipients: string;
+  leadNurturingCampaignId: string;
+  formFieldGroups: Array<{
+    fields: Array<{
+      name: string;
+      label: string;
+      type: string;
+      fieldType: string;
+      description: string;
+      groupName: string;
+      displayOrder: number;
+      required: boolean;
+      selectedOptions: Array<any>;
+      options: Array<any>;
+      validation: {
+        name: string;
+        message: string;
+        data: string;
+        useDefaultBlockList: boolean;
+        blockedEmailAddresses: Array<any>;
+      };
+      enabled: boolean;
+      hidden: boolean;
+      defaultValue: string;
+      isSmartField: boolean;
+      unselectedLabel: string;
+      placeholder: string;
+      dependentFieldFilters: Array<any>;
+      labelHidden: boolean;
+    }>;
+    default: boolean;
+    isSmartGroup: boolean;
+    richText: {
+      content: string;
+    };
+  }>;
+  createdAt: number;
+  updatedAt: number;
+  performableHtml: string;
+  migratedFrom: string;
+  ignoreCurrentValues: boolean;
+  metaData: Array<any>;
+  deletable: boolean;
+  inlineMessage: string;
+  tmsId: string;
+  captchaEnabled: boolean;
+  campaignGuid: string;
+  cloneable: boolean;
+  editable: boolean;
+  formType: string;
 }
 
 export interface QueryForms {
@@ -110,19 +110,19 @@ export interface QueryForms {
 
 export interface FormSubmissions {
   results: Array<{
-    submittedAt: number
+    submittedAt: number;
     values: Array<{
-      name: string
-      value: string
-    }>
-    pageUrl?: string
-  }>
+      name: string;
+      value: string;
+    }>;
+    pageUrl?: string;
+  }>;
   paging: {
     next: {
-      after: string
-      link: string
-    }
-  }
+      after: string;
+      link: string;
+    };
+  };
 }
 
 export interface QuerySubmissions {
@@ -150,13 +150,13 @@ interface DealBase {
 }
 
 export interface Deals {
-    results: DealBase[]
-    paging: {
-      next: {
-        after: string
-        link: string
-      }
-    }
+  results: DealBase[];
+  paging: {
+    next: {
+      after: string;
+      link: string;
+    };
+  };
 }
 
 export interface QueryAddDeal {

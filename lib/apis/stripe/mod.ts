@@ -12,8 +12,8 @@ export type {
   QuerySubscriptionItems,
   QuerySubscriptions,
   QueryTransactions,
-  Subscriptions,
   SubscriptionItems,
+  Subscriptions,
   Transactions,
 } from "./types.ts";
 
