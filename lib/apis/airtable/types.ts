@@ -44,6 +44,12 @@ export interface QueryUpdateRecords {
   typecast?: boolean;
 }
 
+export interface UpdateRecordsResponse {
+  createdRecords: string[];
+  records: RecordObject[];
+  updatedRecords: string[];
+}
+
 export interface QueryDeleteRecords {
   records: string[];
 }

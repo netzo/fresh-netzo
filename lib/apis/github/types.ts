@@ -135,6 +135,11 @@ interface RepoBasics {
   };
 }
 
+export interface QueryUsers {
+  since: number;
+  per_page: number;
+}
+
 export interface Repository extends RepoBasics {
   security_and_analysis: {
     advanced_security: {

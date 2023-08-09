@@ -7,6 +7,7 @@ export type {
   QueryUpdateRecords,
   Records,
   RecordsDeleted,
+  UpdateRecordsResponse,
 } from "./types.ts";
 
 export interface AirtableOptions {

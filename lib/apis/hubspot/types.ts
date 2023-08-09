@@ -27,13 +27,13 @@ export interface QueryContacts {
   properties?: [];
 }
 
-export interface QueryAddContact {
+export interface QueryAddOrUpdateContact {
   properties?: Partial<
     Omit<ContactBase["properties"], "createdate" | "lastmodifieddate">
   >;
 }
 
-export interface AddContactResponse extends ContactBase {
+export interface AddOrUpdateContactResponse extends ContactBase {
   id: string;
   createdAt: string;
   updatedAt: string;
