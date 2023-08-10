@@ -1,7 +1,4 @@
-import {
-  assertEquals,
-  assertExists,
-} from "../deps.ts";
+import { assertEquals, assertExists } from "../deps.ts";
 import { ipgeolocation } from "./mod.ts";
 
 Deno.test("ip geolocation", async (t) => {
