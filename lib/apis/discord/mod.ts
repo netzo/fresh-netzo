@@ -1,5 +1,11 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
+export type {
+  Channel,
+  Message,
+  QueryAddOrUpdateMessage,
+  QueryMessages,
+} from "./types.ts";
 
 export interface DiscordOptions {
   tokenType: string;
