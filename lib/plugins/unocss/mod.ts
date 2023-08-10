@@ -18,7 +18,7 @@ export const unocss = (config: UnocssOptions, runtime = true): Plugin => {
   return {
     name: "unocss",
     entrypoints: runtime
-      ? { "main": import.meta.resolve("./unocss/main.ts") }
+      ? { "main": import.meta.resolve("./main.ts") }
       : undefined,
     async renderAsync(ctx) {
       const { htmlText } = await ctx.renderAsync();

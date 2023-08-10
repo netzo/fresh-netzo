@@ -1,18 +1,6 @@
-// from https://github.com/fisand/unocss-preset-shadcn
-import {
-  h,
-  variantGetParameter,
-} from "https://esm.sh/@unocss/preset-mini@0.53.4/utils?bundle";
-import type {
-  Preset,
-  VariantContext,
-  VariantObject,
-} from "https://esm.sh/@unocss/core@0.53.4?bundle";
-import type {
-  PresetMiniOptions,
-  Theme,
-} from "https://esm.sh/@unocss/preset-mini@0.53.4/rules?bundle";
-import { presetIcons, presetUno } from "https://esm.sh/unocss@0.53.4?bundle";
+import { h, variantGetParameter } from "@unocss/preset-mini/utils";
+import type { Preset, VariantContext, VariantObject } from "unocss";
+import type { PresetMiniOptions, Theme } from "unocss/preset-mini";
 
 export interface PresetShadcnOptions extends PresetMiniOptions {}
 
@@ -47,13 +35,6 @@ const handleMatchRem = (v: string, defaultVal = "full") =>
 export function presetShadcn(options: PresetShadcnOptions = {}): Preset<Theme> {
   return {
     name: "unocss-preset-shadcn",
-    presets: [presetUno(), presetIcons()],
-    shortcuts: [
-      {
-        "flex-center": "flex justify-center items-center",
-        "flex-col-center": "flex flex-col justify-center items-center",
-      },
-    ],
     preflights: [
       {
         getCSS: () => `
@@ -62,56 +43,6 @@ export function presetShadcn(options: PresetShadcnOptions = {}): Preset<Theme> {
           @keyframes shadcn-enter { from{ opacity: var(--un-enter-opacity, 1); transform: translate3d(var(--un-enter-translate-x, 0), var(--un-enter-translate-y, 0), 0) scale3d(var(--un-enter-scale, 1), var(--un-enter-scale, 1), var(--un-enter-scale, 1)) rotate(var(--un-enter-rotate, 0)) } }
           @keyframes shadcn-exit { to{ opacity: var(--un-exit-opacity, 1); transform: translate3d(var(--un-exit-translate-x, 0), var(--un-exit-translate-y, 0), 0) scale3d(var(--un-exit-scale, 1), var(--un-exit-scale, 1), var(--un-exit-scale, 1)) rotate(var(--un-exit-rotate, 0)) } }
         `,
-      },
-      {
-        // generated from https://ui.shadcn.com/themes
-        getCSS: () => `
-        @layer base {
-          :root {
-            --background: 0 0% 100%;
-            --foreground: 240 10% 3.9%;
-            --card: 0 0% 100%;
-            --card-foreground: 240 10% 3.9%;
-            --popover: 0 0% 100%;;
-            --popover-foreground: 240 10% 3.9%;
-            --primary: 240 5.9% 10%;
-            --primary-foreground: 0 0% 98%;
-            --secondary: 240 4.8% 95.9%;
-            --secondary-foreground: 240 5.9% 10%;
-            --muted: 240 4.8% 95.9%;
-            --muted-foreground: 240 3.8% 46.1%;
-            --accent: 240 4.8% 95.9%;
-            --accent-foreground: 240 5.9% 10%;
-            --destructive: 0 84.2% 60.2%;
-            --destructive-foreground: 0 0% 98%;
-            --border: 240 5.9% 90%;
-            --input: 240 5.9% 90%;
-            --ring: 240 5.9% 10%;
-            --radius: 0.3rem;
-          }
-
-          .dark {
-            --background: 240 10% 3.9%;
-            --foreground: 0 0% 98%;
-            --card: 240 10% 3.9%;
-            --card-foreground: 0 0% 98%;
-            --popover: 240 10% 3.9%;
-            --popover-foreground: 0 0% 98%;
-            --primary: 0 0% 98%;
-            --primary-foreground: 240 5.9% 10%;
-            --secondary: 240 3.7% 15.9%;
-            --secondary-foreground: 0 0% 98%;
-            --muted: 240 3.7% 15.9%;
-            --muted-foreground: 240 5% 64.9%;
-            --accent: 240 3.7% 15.9%;
-            --accent-foreground: 0 0% 98%;
-            --destructive: 0 62.8% 30.6%;
-            --destructive-foreground: 0 0% 98%;
-            --border: 240 3.7% 15.9%;
-            --input: 240 3.7% 15.9%;
-            --ring: 240 4.9% 83.9%;
-          }
-        }`,
       },
     ],
     variants: [variantGroupDataAttribute.match],
@@ -223,45 +154,7 @@ export function presetShadcn(options: PresetShadcnOptions = {}): Preset<Theme> {
         ([, d]) => ({ "--un-exit-translate-x": handleMatchRem(d) }),
       ],
     ],
-    theme: {
-      colors: {
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
-        primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
-        },
-        secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
-        },
-        destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
-        },
-        muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
-        },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
-        },
-        popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
-        },
-        card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
-        },
-      },
-      fontFamily: {
-        sans: "Avenir, Helvetica, Arial, sans-serif",
-      },
-    },
   };
 }
+
+export default presetShadcn;
