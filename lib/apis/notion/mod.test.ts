@@ -1,7 +1,4 @@
-import {
-  assertEquals,
-  assertExists,
-} from "../deps.ts";
+import { assertEquals, assertExists } from "../deps.ts";
 import { notion } from "./mod.ts";
 
 Deno.test("notion", async (t) => {
