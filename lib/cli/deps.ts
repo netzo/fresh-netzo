@@ -16,7 +16,7 @@ export {
 export { parse as parseArgs } from "https://deno.land/std@0.170.0/flags/mod.ts";
 export { TextLineStream } from "https://deno.land/std@0.170.0/streams/text_line_stream.ts";
 export { default as question } from "https://deno.land/x/question@0.0.2/mod.ts";
-export { load } from "https://deno.land/std@0.192.0/dotenv/mod.ts";
+export { config, load } from "https://deno.land/std@0.192.0/dotenv/mod.ts";
 
 // x/semver
 export {

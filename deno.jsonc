@@ -4,16 +4,13 @@
   ],
   "lock": false,
   "tasks": {
-    "test": "deno test -A --unstable --coverage=./cov",
-    "check:license": "deno run -A tools/check_license.ts --check",
-    "check:types": "deno check --unstable demo.ts mod.ts",
-    "check": "deno task check:license && deno task check:types",
+    "test": "deno test -A --parallel --unstable --coverage=./cov",
+    "check:types": "deno check **/*.ts && deno check **/*.tsx",
+    "ok": "deno fmt --check && deno lint && deno task check:types && deno task test",
     "deploy": "deno run --allow-env --allow-net --allow-read scripts/deploy-templates.ts",
-    "types:generate": "deno types > deno-runtime-types.ts",
-    "ok": "deno fmt --check && deno lint && deno task check && deno task test",
     // use https://lcov-viewer.netlify.app to preview cov.lcov
     "cov": "deno coverage ./cov/ --lcov --exclude='test.ts|testdata' > cov.lcov"
-    // templates: "dev:fresh": "deno task --cwd=templates/fresh/src dev"
+    // run template in development: "deno task --cwd=templates/fresh/src dev"
   },
   "imports": {
     "fresh/": "https://deno.land/x/fresh@1.3.1/",
@@ -24,7 +21,7 @@
     "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.2.3",
     "twind": "https://esm.sh/twind@0.16.17",
     "twind/": "https://esm.sh/twind@0.16.17/",
-    "netzo/": "https://deno.land/x/netzo@v0.2.20/",
+    "netzo/": "https://deno.land/x/netzo@v0.2.21/",
     "@/": "./"
   }
 }
