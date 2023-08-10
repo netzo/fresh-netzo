@@ -3,7 +3,7 @@ import { chartmogul } from "./mod.ts";
 
 Deno.test("chartmogul", async (t) => {
   const { api } = chartmogul({
-    apiKey: Deno.env.get("CHARTMOGUL_API_KEY"),
+    apiKey: Deno.env.get("CHARTMOGUL_API_KEY")!,
   });
 
   await t.step("find customers", async () => {

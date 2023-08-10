@@ -1,5 +1,7 @@
 // deno-lint-ignore-file no-explicit-any
-import { type FetchOptions } from "../deps.ts";
+import type { FetchContext, FetchOptions } from "https://esm.sh/ofetch@1.0.0";
+
+export type { FetchContext, FetchOptions };
 
 export interface ResponseMap {
   blob: Blob;

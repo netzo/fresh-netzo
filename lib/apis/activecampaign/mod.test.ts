@@ -3,8 +3,8 @@ import { activecampaign } from "./mod.ts";
 
 Deno.test("activecampaign", async (t) => {
   const { api } = activecampaign({
-    accountName: Deno.env.get("ACTIVECAMPAIGN_ACCOUNT_NAME"),
-    apiKey: Deno.env.get("ACTIVECAMPAIGN_API_KEY"),
+    accountName: Deno.env.get("ACTIVECAMPAIGN_ACCOUNT_NAME")!,
+    apiKey: Deno.env.get("ACTIVECAMPAIGN_API_KEY")!,
   });
 
   await t.step("find contacts", async () => {

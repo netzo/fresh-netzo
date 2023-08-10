@@ -3,7 +3,7 @@ import { airtable } from "./mod.ts";
 
 Deno.test("airtable", async (t) => {
   const { api } = airtable({
-    personalAccessToken: Deno.env.get("AIRTABLE_PERSONAL_ACCESS_TOKEN"),
+    personalAccessToken: Deno.env.get("AIRTABLE_PERSONAL_ACCESS_TOKEN")!,
   });
 
   await t.step("find records", async () => {

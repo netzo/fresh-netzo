@@ -7,7 +7,7 @@ export type {
   UpdateValuesResponse,
   ValueRange,
 } from "./types.ts";
-export interface GoogleSheetsOptions {
+export interface GooglesheetsOptions {
   googleServiceAccountCredentials: string;
   scope?: Array<
     | "drive"
@@ -35,7 +35,7 @@ export const googlesheets = ({
   )!,
   scope = ["spreadsheets.readonly"],
   spreadsheetId = Deno.env.get("GOOGLESHEETS_SPREADSHEET_ID")!,
-}: GoogleSheetsOptions) => {
+}: GooglesheetsOptions) => {
   const api = createApi({
     baseURL: `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}`,
     headers: {
