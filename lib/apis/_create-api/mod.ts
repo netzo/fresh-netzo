@@ -1,10 +1,10 @@
+import { $fetch, type FetchOptions } from "https://esm.sh/ofetch@1.0.0";
 import {
-  $fetch,
-  type FetchOptions,
   type QueryObject,
   resolveURL,
   withQuery,
-} from "../deps.ts";
+} from "https://esm.sh/ufo@0.8.5";
+
 import type {
   ClientBuilder,
   ClientMethodHandler,
@@ -15,8 +15,8 @@ import { headersToObject } from "./utils.ts";
 const payloadMethods: ReadonlyArray<string> = [
   "POST",
   "PUT",
-  "DELETE",
   "PATCH",
+  "DELETE",
 ];
 
 /**

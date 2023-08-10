@@ -3,7 +3,7 @@ import { github } from "./mod.ts";
 
 Deno.test("github", async (t) => {
   const { api } = github({
-    personalAccessToken: Deno.env.get("GITHUB_PERSONAL_ACCESS_TOKEN"),
+    personalAccessToken: Deno.env.get("GITHUB_PERSONAL_ACCESS_TOKEN")!,
   });
 
   await t.step("find users", async () => {

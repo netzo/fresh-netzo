@@ -3,8 +3,8 @@ import { pipedrive } from "./mod.ts";
 
 Deno.test("pipedrive", async (t) => {
   const { api } = pipedrive({
-    apiToken: Deno.env.get("PIPEDRIVE_API_TOKEN"),
-    companyDomain: Deno.env.get("PIPEDRIVE_COMPANY_DOMAIN"),
+    apiToken: Deno.env.get("PIPEDRIVE_API_TOKEN")!,
+    companyDomain: Deno.env.get("PIPEDRIVE_COMPANY_DOMAIN")!,
   });
 
   await t.step("find deals", async () => {

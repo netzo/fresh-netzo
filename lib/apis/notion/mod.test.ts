@@ -3,7 +3,9 @@ import { notion } from "./mod.ts";
 
 Deno.test("notion", async (t) => {
   const { api } = notion({
-    internalIntegrationToken: Deno.env.get("NOTION_INTERNAL_INTEGRATION_TOKEN"),
+    internalIntegrationToken: Deno.env.get(
+      "NOTION_INTERNAL_INTEGRATION_TOKEN",
+    )!,
     notionVersion: "2022-06-28",
   });
 

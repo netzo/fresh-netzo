@@ -3,7 +3,7 @@ import { hubspot } from "./mod.ts";
 
 Deno.test("hubspot", async (t) => {
   const { api } = hubspot({
-    privateAppAccessToken: Deno.env.get("HUBSPOT_PRIVATE_APP_ACCESS_TOKEN"),
+    privateAppAccessToken: Deno.env.get("HUBSPOT_PRIVATE_APP_ACCESS_TOKEN")!,
   });
 
   await t.step("find contacts", async () => {

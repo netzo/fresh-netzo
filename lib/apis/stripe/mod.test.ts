@@ -3,7 +3,7 @@ import { stripe } from "./mod.ts";
 
 Deno.test("stripe", async (t) => {
   const { api } = stripe({
-    apiKey: Deno.env.get("STRIPE_API_KEY"),
+    apiKey: Deno.env.get("STRIPE_API_KEY")!,
   });
 
   await t.step("find subscriptions", async () => {

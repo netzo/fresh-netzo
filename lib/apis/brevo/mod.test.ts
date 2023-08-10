@@ -3,7 +3,7 @@ import { brevo } from "./mod.ts";
 
 Deno.test("brevo", async (t) => {
   const { api } = brevo({
-    apiKey: Deno.env.get("BREVO_API_KEY"),
+    apiKey: Deno.env.get("BREVO_API_KEY")!,
   });
 
   await t.step("find contacts", async () => {
