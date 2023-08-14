@@ -1,5 +1,12 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
+export type {
+  File,
+  Files,
+  QueryCopyFile,
+  QueryFile,
+  QueryFiles,
+} from "./types.ts";
 
 export interface GoogledriveOptions {
   googleServiceAccountCredentials: string;
