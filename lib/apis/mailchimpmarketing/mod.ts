@@ -1,5 +1,14 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
+export type {
+  Campaign,
+  CampaignContent,
+  Campaigns,
+  QueryCampaign,
+  QueryCampaigns,
+  QueryScheduleCampaign,
+  QueryUpdateCampaignContent,
+} from "./types.ts";
 
 export interface MailchimpOptions {
   marketingApiKey: string;
