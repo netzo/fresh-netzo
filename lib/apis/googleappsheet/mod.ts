@@ -1,5 +1,6 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
+
 export type {
   QueryAddRecords,
   QueryDeleteRecords,
@@ -7,7 +8,8 @@ export type {
   QueryUpdateRecords,
   Records,
 } from "./types.ts";
-export interface GoogleAppsheetOptions {
+
+export interface GoogleappsheetOptions {
   appId: string;
   applicationAccessKey: string;
 }
@@ -23,7 +25,7 @@ export interface GoogleAppsheetOptions {
 export const googleappsheet = ({
   appId = Deno.env.get("GOOGLEAPPSHEET_APP_ID")!,
   applicationAccessKey = Deno.env.get("GOOGLEAPPSHEET_APPLICATION_ACCESS_KEY")!,
-}: GoogleAppsheetOptions) => {
+}: GoogleappsheetOptions) => {
   const api = createApi({
     baseURL: `https://api.appsheet.com/api/v2/apps/${appId}/tables`,
     headers: {
