@@ -1,5 +1,14 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
+export type {
+  Contact,
+  Contacts,
+  Document,
+  Documents,
+  QueryAddContact,
+  QueryDocuments,
+  QueryUpdateDocument,
+} from "./types.ts";
 
 export interface PandaDocOptions {
   apiKey: string;
