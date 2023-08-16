@@ -1,10 +1,6 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
-export type {
-  Product,
-  QueryAddProduct,
-  QueryUpdateProduct
-} from './types.ts'
+export type { Product, QueryAddProduct, QueryUpdateProduct } from "./types.ts";
 export interface FacturamaOptions {
   username: string;
   password: string;

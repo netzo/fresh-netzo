@@ -1,6 +1,6 @@
+import "https://deno.land/std@0.198.0/dotenv/load.ts";
 import { assertEquals, assertExists } from "../deps.ts";
 import { googlesheets } from "./mod.ts";
-import "https://deno.land/std@0.198.0/dotenv/load.ts";
 
 Deno.test("googlesheets", async (t) => {
   const { api, resultToRows } = googlesheets({
