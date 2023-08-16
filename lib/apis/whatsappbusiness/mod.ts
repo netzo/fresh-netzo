@@ -1,5 +1,11 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
+export type {
+  Profile,
+  QueryProfile,
+  QueryUpdateProfile,
+  UpdateProfileResponse,
+} from "./types.ts";
 
 export interface WhatsappBusinessOptions {
   businessAccountId: string;
@@ -20,7 +26,7 @@ export const whatsappbusiness = ({
   permanentToken = Deno.env.get("WHATSAPPBUSINESS_PERMANENT_TOKEN")!,
 }: WhatsappBusinessOptions) => {
   const api = createApi({
-    baseURL: `https://graph.facebook.com/v15.0/${businessAccountId}`,
+    baseURL: `https://graph.facebook.com/v17.0/${businessAccountId}`,
     headers: {
       "content-type": "application/json",
     },
