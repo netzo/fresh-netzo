@@ -1,19 +1,22 @@
 // from https://github.com/drollinger/deployctl
 // see https://github.com/denoland/deployctl/issues/138
 
-import { config, netzo, Paginated, Project, wait } from "../../deps.ts";
+import { load, netzo, Paginated, Project, wait } from "../../deps.ts";
 import { error } from "../console.ts";
 
 const help = `netzo env
 Update project environment variables from env file to Netzo.
 
 USAGE:
-    netzo env [OPTIONS] <ENV_FILE>
+    netzo env [OPTIONS] [<envPath>]
 
 OPTIONS:
     -h, --help                Prints help information
     -p, --project=NAME        The project to deploy to
         --api-key=<API_KEY>   The API key to use (defaults to NETZO_API_KEY environment variable)
+
+ARGS:
+    <envPath>                 The file path to the env file (defaults to .env)
 `;
 
 export interface Args {
@@ -31,7 +34,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     apiKey: rawArgs["api-key"] ? String(rawArgs["api-key"]) : null,
     apiUrl: rawArgs["api-url"] ?? "https://api.netzo.io",
   };
-  const envFile = typeof rawArgs._[0] === "string" ? rawArgs._[0] : null;
+  const envPath = typeof rawArgs._[0] === "string" ? rawArgs._[0] : ".env";
   if (args.help) {
     console.log(help);
     Deno.exit(0);
@@ -42,10 +45,6 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     error(
       "Missing API key. Set via --api-key flag or NETZO_API_KEY environment variable to avoid passing it each time.",
     );
-  }
-  if (envFile === null) {
-    console.error(help);
-    error("No env file specifier given.");
   }
   if (rawArgs._.length > 1) {
     console.error(help);
@@ -58,7 +57,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
 
   await syncEnv(
     {
-      envFile,
+      envPath,
       project: args.project,
       apiKey,
       apiUrl: args.apiUrl,
@@ -67,7 +66,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
 }
 
 interface SyncEnvOpts {
-  envFile: string;
+  envPath: string;
   project: string;
   apiKey: string;
   apiUrl?: string;
@@ -89,16 +88,16 @@ async function syncEnv(opts: SyncEnvOpts): Promise<void> {
   const fileSpinner = wait("Reading env file...").start();
   let envVars: Record<string, string> = {};
   try {
-    envVars = await config({ path: opts.envFile });
+    envVars = await load({ envPath: opts.envPath, examplePath: null });
     if (Object.keys(envVars).length === 0) {
       fileSpinner.info("File did not contain any variables.");
       Deno.exit(1);
     }
   } catch {
-    fileSpinner.fail(`Could not load file: ${opts.envFile}`);
+    fileSpinner.fail(`Could not load file: ${opts.envPath}`);
     Deno.exit(1);
   }
-  fileSpinner.succeed(`File Loaded: ${opts.envFile}`);
+  fileSpinner.succeed(`File Loaded: ${opts.envPath}`);
 
   const syncSpinner = wait("Syncing environment variables...").start();
   try {
