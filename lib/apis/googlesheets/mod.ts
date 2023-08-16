@@ -59,8 +59,7 @@ export const googlesheets = ({
         (acc: object, key: string, index: number) => ({
           ...acc,
           [key]: row[index],
-        }),
-      ), {});
+        }), {}));
   };
 
   return { api, resultToRows };
