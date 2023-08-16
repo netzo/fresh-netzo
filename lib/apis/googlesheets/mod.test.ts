@@ -1,9 +1,15 @@
 import { assertEquals, assertExists } from "../deps.ts";
 import { googlesheets } from "./mod.ts";
+import "https://deno.land/std@0.198.0/dotenv/load.ts";
 
 Deno.test("googlesheets", async (t) => {
-  const { options } = await import("./googlesheets.options.ts");
-  const { api, resultToRows } = googlesheets(options);
+  const { api, resultToRows } = googlesheets({
+    googleServiceAccountCredentials: Deno.env.get(
+      "GOOGLE_SERVICE_ACCOUNT_CREDENTIALS",
+    )!,
+    scope: ["spreadsheets"],
+    spreadsheetId: Deno.env.get("GOOGLESHEETS_SPREADSHEET_ID")!,
+  });
 
   const range = "Sheet1!A:D";
   const range_to_update = "Sheet1!A32:D32";
