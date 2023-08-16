@@ -5,7 +5,7 @@ import { config, netzo, Paginated, Project, wait } from "../../deps.ts";
 import { error } from "../console.ts";
 
 const help = `netzo env
-Sync environment variable with Netzo.
+Update project environment variables from env file to Netzo.
 
 USAGE:
     netzo env [OPTIONS] <ENV_FILE>
@@ -31,9 +31,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     apiKey: rawArgs["api-key"] ? String(rawArgs["api-key"]) : null,
     apiUrl: rawArgs["api-url"] ?? "https://api.netzo.io",
   };
-  const envFile: string | null = typeof rawArgs._[0] === "string"
-    ? rawArgs._[0]
-    : null;
+  const envFile = typeof rawArgs._[0] === "string" ? rawArgs._[0] : null;
   if (args.help) {
     console.log(help);
     Deno.exit(0);
@@ -47,7 +45,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
   }
   if (envFile === null) {
     console.error(help);
-    error("No environment file specifier given.");
+    error("No env file specifier given.");
   }
   if (rawArgs._.length > 1) {
     console.error(help);
@@ -55,7 +53,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
   }
   if (args.project === null) {
     console.error(help);
-    error("Missing project name.");
+    error("Missing project UID.");
   }
 
   await syncEnv(
@@ -104,11 +102,10 @@ async function syncEnv(opts: SyncEnvOpts): Promise<void> {
 
   const syncSpinner = wait("Syncing environment variables...").start();
   try {
-    await api.projects[project._id].patch<Project>({
-      ...project.configuration,
-      envVars,
-    });
-  } catch {
+    const data = { configuration: { ...project.configuration, envVars } };
+    await api.projects[project._id].patch<Project>(data);
+  } catch (error) {
+    console.error(error);
     syncSpinner.fail("Failed to sync variables.");
     Deno.exit(1);
   }
