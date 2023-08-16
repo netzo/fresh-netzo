@@ -1,3 +1,4 @@
+import "https://deno.land/std@0.198.0/dotenv/load.ts";
 import { assertExists } from "./deps.ts";
 import * as apis from "./mod.ts";
 

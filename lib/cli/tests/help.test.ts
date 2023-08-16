@@ -1,3 +1,4 @@
+import "https://deno.land/std@0.198.0/dotenv/load.ts";
 import { assert, assertEquals, assertStringIncludes } from "./deps.ts";
 import { output, test } from "./utils.ts";
 
