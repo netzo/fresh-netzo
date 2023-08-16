@@ -11,12 +11,12 @@ USAGE:
     netzo env [OPTIONS] [<envPath>]
 
 OPTIONS:
-    -h, --help                Prints help information
-    -p, --project=NAME        The project to deploy to
-        --api-key=<API_KEY>   The API key to use (defaults to NETZO_API_KEY environment variable)
+    -h, --help                    Prints help information
+    -p, --project=<PROJECT_UID>   The project to update environment variables for
+        --api-key=<API_KEY>       The API key to use (defaults to NETZO_API_KEY environment variable)
 
 ARGS:
-    <envPath>                 The file path to the env file (defaults to .env)
+    <envPath>                     The file path to the env file (defaults to .env)
 `;
 
 export interface Args {
