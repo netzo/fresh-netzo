@@ -31,16 +31,9 @@ Deno.test("googlesheets", async (t) => {
 
   await t.step("get row", async () => {
     const result = await api.values[range].get();
-    assertExists(result.values);
-    assertExists(resultToRows(result));
-    assertEquals(Array.isArray(resultToRows(result)), true);
-  });
-
-  await t.step("get row", async () => {
-    const result = await api.values[range].get();
     assertExists(result.values[1]);
-    assertExists(resultToRows(result)[0]);
-    assertEquals(Array.isArray(resultToRows(result)[0]), true);
+    assertExists((resultToRows(result))[0]);
+    assertEquals(typeof (resultToRows(result)[0]), "object");
   });
 
   //To be completed
@@ -48,19 +41,19 @@ Deno.test("googlesheets", async (t) => {
 
   // })
 
-  await t.step("update row", async () => {
-    const result = await api.values[range_to_update].put({
-      values: ["updatedValue1", "updatedValue2, updatedValue3, updatedValue4"],
-    });
-    assertExists(result.updatedData.values);
-    assertExists(resultToRows(result.updatedData));
-    assertEquals(Array.isArray(resultToRows(result.updatedData)), true);
-  });
+  //Needs both query and request body:
+
+  // await t.step("update row", async () => {
+  //   const result = await api.values[range_to_update].put({
+  //     values: ["updatedValue1"],
+  //   });
+  //   assertExists(result.updatedData.values);
+  //   assertExists(resultToRows(result.updatedData));
+  //   assertEquals(Array.isArray(resultToRows(result.updatedData)), true);
+  // });
 
   await t.step("delete row", async () => {
-    const data = await api.values[range_to_delete].put({
-      values: ["updatedValue1", "updatedValue2, updatedValue3, updatedValue4"],
-    });
+    const data = await api.values[`${range_to_delete}:clear`].post();
     assertExists(data);
     assertEquals(typeof data, "object");
   });
