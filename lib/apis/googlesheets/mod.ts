@@ -52,14 +52,24 @@ export const googlesheets = ({
     },
   });
 
-  const resultToRows = <T>(result: any) => {
-    const [keys, ...rows] = result.values;
+  const resultToRows = (result: any, headers?: string[]) => {
+    let keys: string[];
+    let rows: Array<[]>;
+    if (headers) {
+      keys = headers;
+      rows = result.values;
+    } else {
+      [keys, ...rows] = result.values;
+    }
     return rows.map((row: object[]) =>
       keys.reduce(
         (acc: object, key: string, index: number) => ({
           ...acc,
           [key]: row[index],
-        }), {}));
+        }),
+        {},
+      )
+    );
   };
 
   return { api, resultToRows };
