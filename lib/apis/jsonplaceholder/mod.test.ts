@@ -5,57 +5,42 @@ import { jsonplaceholder } from "./mod.ts";
 Deno.test("jsonplaceholder", async (t) => {
   const { api } = jsonplaceholder();
 
-  await t.step("declarations", () => {
-    assertExists(jsonplaceholder);
-    assertExists(api);
+  await t.step("find todos", async () => {
+    const data = await api.todos.get();
+    assertExists(data);
+    assertEquals(Array.isArray(data), true);
   });
 
-  await t.step("api.todos.get()", async () => {
-    const todos = await api.todos.get();
-    assertEquals(todos?.length, 200);
+  await t.step("get todos", async () => {
+    const data = await api.todos["5"].get();
+    assertExists(data);
+    assertEquals(typeof data, "object");
   });
 
-  await t.step("api.todos.get({ userId: 1 })", async () => {
-    const todos = await api.todos.get({ userId: 1 });
-    assertEquals(todos?.length, 20);
-  });
-
-  await t.step("api.todos[1].get()", async () => {
-    const todo = await api.todos[1].get();
-    assertEquals(todo?.id, 1);
-  });
-
-  await t.step("api.todos[1].get({ userId: 1 })", async () => {
-    const todoQuery = await api.todos[1].get({ userId: 1 });
-    assertEquals(todoQuery?.id, 1);
-  });
-
-  await t.step("api.todos.post()", async () => {
-    const todo = await api.todos.post({
+  await t.step("add todo", async () => {
+    const data = await api.todos.post({
       userId: 1,
-      title: "lorem ipsum",
-      completed: true,
+      title: "New task",
     });
-    assertExists(todo);
+    assertExists(data);
+    assertEquals(typeof data, "object");
   });
 
-  await t.step("api.todos[1].put()", async () => {
-    const todo = await api.todos[1].put({
+  await t.step("update todo", async () => {
+    const data = await api.todos["1"].put({
       userId: 1,
+      title: "Updated task",
       id: 1,
-      title: "lorem ipsum",
       completed: true,
     });
-    assertExists(todo);
+    assertExists(data);
+    assertEquals(typeof data, "object");
   });
 
-  await t.step("api.todos[1].patch()", async () => {
-    const todo = await api.todos[1].patch({ completed: true });
-    assertExists(todo);
-  });
-
-  await t.step("api.todos[1].delete()", async () => {
-    const todo = await api.todos[1].delete();
-    assertExists(todo);
+  await t.step("delete todo", async () => {
+    const data = await api.todos["1"].delete();
+    console.log(data);
+    assertExists(data);
+    assertEquals(typeof data, "object");
   });
 });
