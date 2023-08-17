@@ -18,7 +18,6 @@ Deno.test("airtable", async (t) => {
   });
 
   await t.step("find tables", async () => {
-    console.log(database_id);
     const result = await api.meta.bases[database_id].tables.get();
     assertExists(result.tables);
     assertEquals(Array.isArray(result.tables), true);
