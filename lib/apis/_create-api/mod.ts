@@ -1,13 +1,14 @@
-import { $fetch, type FetchOptions } from "https://esm.sh/ofetch@1.0.0";
+import { $fetch, type FetchOptions } from "https://esm.sh/ofetch@1.1.1";
 import {
   type QueryObject,
   resolveURL,
   withQuery,
-} from "https://esm.sh/ufo@0.8.5";
+} from "https://esm.sh/ufo@1.2.0";
 
 import type {
   ClientBuilder,
   ClientMethodHandler,
+  ClientMethodHandlerGET,
   ResponseType,
 } from "./types.ts";
 import { headersToObject } from "./utils.ts";
@@ -37,38 +38,52 @@ export function createApi<R extends ResponseType = "json">(
           return p(resolveURL(url, key));
         }
 
+        const handlerGET: ClientMethodHandlerGET = <
+          T = unknown,
+          R extends ResponseType = "json",
+        >(
+          query?: QueryObject,
+          options: FetchOptions<R> = {},
+        ) => {
+          if (query) url = withQuery(url, query);
+          options = {
+            ...defaultOptions,
+            ...options,
+            method,
+            headers: {
+              ...headersToObject(defaultOptions.headers),
+              ...headersToObject(options.headers),
+            },
+            body: undefined, // GET disallows body so remove it
+          } as FetchOptions<R>;
+
+          return $fetch<T, R>(url, options);
+        };
+
         const handler: ClientMethodHandler = <
           T = unknown,
           R extends ResponseType = "json",
         >(
           data?: RequestInit["body"] | Record<string, unknown>,
+          query?: QueryObject,
           options: FetchOptions<R> = {},
         ) => {
-          if (method === "GET") {
-            if (data) url = withQuery(url, data as QueryObject);
-            // GET disallows body so remove it
-            defaultOptions.body = undefined;
-            options.body = undefined;
-          } else if (payloadMethods.includes(method)) {
-            options.body = data;
-          }
+          if (query) url = withQuery(url, query);
+          options = {
+            ...defaultOptions,
+            ...options,
+            method,
+            headers: {
+              ...headersToObject(defaultOptions.headers),
+              ...headersToObject(options.headers),
+            },
+            body: data,
+          } as FetchOptions<R>;
 
-          options.method = method;
-
-          return $fetch<T, R>(
-            url,
-            {
-              ...defaultOptions,
-              ...options,
-              headers: {
-                ...headersToObject(defaultOptions.headers || {}),
-                ...headersToObject(options.headers || {}),
-              },
-            } as FetchOptions<R>,
-          );
+          return $fetch<T, R>(url, options);
         };
 
-        return handler;
+        return payloadMethods.includes(method) ? handler : handlerGET;
       },
       apply(_target, _thisArg, args: (string | number)[] = []) {
         return p(resolveURL(url, ...args.map((i) => `${i}`)));
