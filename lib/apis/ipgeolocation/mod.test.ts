@@ -8,7 +8,7 @@ Deno.test("ip geolocation", async (t) => {
   });
 
   await t.step("get geolocation", async () => {
-    const data = await api.ipgeo.get("192.168.123.132");
+    const data = await api.ipgeo.get({ ip: "192.168.123.132" });
     assertExists(data);
     assertEquals(typeof data, "object");
   });

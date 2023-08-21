@@ -4,7 +4,7 @@ import { cloudflare } from "./mod.ts";
 
 Deno.test("cloudfare", async (t) => {
   const { api } = cloudflare({
-    apiKey: Deno.env.get("CLOUDFLARE_API_KEY"),
+    apiKey: Deno.env.get("CLOUDFLARE_API_KEY")!,
   });
 
   await t.step("find organizations", async () => {
