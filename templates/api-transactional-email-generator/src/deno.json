@@ -39,6 +39,6 @@
     "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.4.0",
     "std/": "https://deno.land/std@0.190.0/",
     "mustache": "https://esm.sh/mustache@4.2.0",
-    "netzo/": "https://deno.land/x/netzo@v0.2.26/"
+    "netzo/": "https://deno.land/x/netzo@v0.2.27/"
   }
 }
