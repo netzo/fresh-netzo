@@ -24,7 +24,7 @@ import {
 import DemoDataTable from "netzo/ui/components/example/data-table-demo.tsx";
 import ShowSource from "./ShowSource.tsx";
 
-const VERSION = "0.2.25";
+const VERSION = "0.2.26";
 const REPO = "https://github.com/netzo/netzo/tree/main/lib/ui";
 
 export default function Demo() {
