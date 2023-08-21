@@ -1,5 +1,5 @@
 import { useComputed, useSignal } from "@preact/signals";
-import { IS_BROWSER } from "fresh/runtime.ts";
+import { IS_BROWSER } from "$fresh/runtime.ts";
 
 interface Props {
   src: string;

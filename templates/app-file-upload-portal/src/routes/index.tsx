@@ -1,6 +1,6 @@
-import { Head } from "fresh/runtime.ts";
-import { PageProps } from "fresh/server.ts";
-import { Handlers } from "fresh/server.ts";
+import { Head } from "$fresh/runtime.ts";
+import { PageProps } from "$fresh/server.ts";
+import { Handlers } from "$fresh/server.ts";
 import { signal } from "@preact/signals";
 import Form from "../islands/Form.tsx";
 

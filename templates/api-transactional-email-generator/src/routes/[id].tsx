@@ -1,5 +1,5 @@
-import { HandlerContext, Handlers, PageProps } from "fresh/server.ts";
-import { Head } from "fresh/runtime.ts";
+import { HandlerContext, Handlers, PageProps } from "$fresh/server.ts";
+import { Head } from "$fresh/runtime.ts";
 import Mustache from "mustache";
 import { rest } from "netzo/apis/rest/mod.ts";
 import Header from "@/components/Header.tsx";

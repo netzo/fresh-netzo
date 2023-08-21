@@ -1,5 +1,5 @@
-import { Head } from "fresh/runtime.ts";
-import { PageProps } from "fresh/server.ts";
+import { Head } from "$fresh/runtime.ts";
+import { PageProps } from "$fresh/server.ts";
 import Shell from "../islands/Shell.tsx";
 
 const meta = {

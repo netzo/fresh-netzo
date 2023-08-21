@@ -1,5 +1,5 @@
 import { effect, signal } from "@preact/signals";
-import { IS_BROWSER } from "fresh/runtime.ts";
+import { IS_BROWSER } from "$fresh/runtime.ts";
 
 export type Theme = "light" | "dark";
 

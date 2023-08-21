@@ -1,4 +1,4 @@
-import { asset, Head } from "fresh/runtime.ts";
+import { asset, Head } from "$fresh/runtime.ts";
 import App from "../islands/App.tsx";
 import apps from "../data/apps.json" assert { type: "json" };
 

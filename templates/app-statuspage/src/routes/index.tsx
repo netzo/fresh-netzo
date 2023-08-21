@@ -1,4 +1,4 @@
-import { Head } from "fresh/runtime.ts";
+import { Head } from "$fresh/runtime.ts";
 import Statuspage from "../islands/Statuspage.tsx";
 
 export default function Home() {
