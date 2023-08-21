@@ -47,7 +47,7 @@ const createHandler = (options: NetzoAuthOptions): MiddlewareHandler => {
 
     // simple heuristics to determine source of request:
     const isApp = (url: string) =>
-      !!url && (new URL(url).host).endsWith("netzo.io");
+      !!url && new URL(url).host.endsWith("netzo.io");
     const is = { app: isApp(origin!) || isApp(referer!) };
 
     // console.debug({ destination: ctx.destination, options, origin, referer, is });
