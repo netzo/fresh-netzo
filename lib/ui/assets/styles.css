@@ -2,6 +2,11 @@
   --nui-c-context: 125,125,125;
 }
 
+/* see https://unocss.dev/integrations/runtime#preventing-fouc */
+[un-cloak] {
+  display: none !important;
+}
+
 html {
   background-color: #ffffff;
 }
