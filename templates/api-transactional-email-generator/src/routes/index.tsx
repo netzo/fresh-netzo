@@ -1,5 +1,5 @@
-import { HandlerContext, Handlers, PageProps } from "fresh/server.ts";
-import { Head } from "fresh/runtime.ts";
+import { HandlerContext, Handlers, PageProps } from "$fresh/server.ts";
+import { Head } from "$fresh/runtime.ts";
 import InputSearch from "@/components/InputSearch.tsx";
 import templates from "@/data/templates.json" assert { type: "json" };
 import { Data } from "./[id].tsx";

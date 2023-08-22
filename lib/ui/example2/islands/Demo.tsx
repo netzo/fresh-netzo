@@ -45,7 +45,7 @@ import ToggleOutline from "netzo/ui/components/example/toggle-outline.tsx";
 import ToggleWithText from "netzo/ui/components/example/toggle-with-text.tsx";
 import TooltipDemo from "netzo/ui/components/example/tooltip-demo.tsx";
 import { Button } from "netzo/ui/components/ui/button.tsx";
-import { Head } from "fresh/runtime.ts";
+import { Head } from "$fresh/runtime.ts";
 
 export default function KitchenSinkPage() {
   return (

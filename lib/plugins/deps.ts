@@ -6,5 +6,5 @@ export type {
   Plugin,
   PluginRenderResult,
   UnknownPageProps,
-} from "https://deno.land/x/fresh@1.3.1/server.ts";
-export { Head } from "https://deno.land/x/fresh@1.3.1/runtime.ts";
+} from "https://deno.land/x/fresh@1.4.2/server.ts";
+export { Head } from "https://deno.land/x/fresh@1.4.2/runtime.ts";

@@ -17,7 +17,7 @@ const user = await client.users[12].patch<User>({ name: "John" });
 ```
 
 ::: tip This module is heavily inspired by
-[`johannschopplich/uncreate`](https://github.com/johannschopplich/uncreate) and
+[`johannschopplich/unrested`](https://github.com/johannschopplich/unrested) and
 its documentation. :::
 
 ## HTTP request methods

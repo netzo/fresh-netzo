@@ -1,4 +1,4 @@
-// TODO: implement tests from https://github.com/johannschopplich/uncreate/blob/main/test/index.test.ts
+// TODO: implement tests from https://github.com/johannschopplich/unrested/blob/main/test/index.test.ts
 import "https://deno.land/std@0.198.0/dotenv/load.ts";
 import { assertEquals, assertExists } from "../deps.ts";
 import { createApi } from "./mod.ts";

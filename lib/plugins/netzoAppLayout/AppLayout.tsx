@@ -1,5 +1,5 @@
 import { JSX } from "preact";
-import { type AppProps, Head } from "../deps.ts";
+import { type AppProps } from "../deps.ts";
 import { type NetzoAppLayoutOptions } from "./mod.ts";
 import { cn } from "../../ui/utils/mod.ts";
 
@@ -83,13 +83,15 @@ export default (options: NetzoAppLayoutOptions) => {
   const { title, description, favicon, image } = options;
   return ({ Component }: AppProps) => {
     return (
-      <>
-        <Head>
+      <html>
+        <head>
+          <meta charSet="utf-8" />
           <title>{title}</title>
           <meta name="description" content={description} />
           <link rel="icon" type="image/svg+xml" href={favicon} />
-        </Head>
-        <body class="flex flex-col n-bg-base">
+        </head>
+        {/* see https://unocss.dev/integrations/runtime#preventing-fouc */}
+        <body class="flex flex-col n-bg-base" un-cloak>
           <header class="flex justify-between items-center py-6 px-4">
             <div class="flex">
               {/* NOTE: use dark:filter-invert (in image.class) to invert color on dark */}
@@ -112,7 +114,7 @@ export default (options: NetzoAppLayoutOptions) => {
             <Component />
           </main>
         </body>
-      </>
+      </html>
     );
   };
 };

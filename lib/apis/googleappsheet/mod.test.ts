@@ -4,8 +4,10 @@ import { googleappsheet } from "./mod.ts";
 
 Deno.test("googleappsheet", async (t) => {
   const { api } = googleappsheet({
-    appId: Deno.env.get("GOOGLEAPPSHEET_APP_ID"),
-    applicationAccessKey: Deno.env.get("GOOGLEAPPSHEET_APPLICATION_ACCESS_KEY"),
+    appId: Deno.env.get("GOOGLEAPPSHEET_APP_ID")!,
+    applicationAccessKey: Deno.env.get(
+      "GOOGLEAPPSHEET_APPLICATION_ACCESS_KEY",
+    )!,
   });
 
   await t.step("find records", async () => {

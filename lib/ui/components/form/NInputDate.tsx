@@ -1,6 +1,6 @@
 import { useSignal } from "@preact/signals";
 import { forwardRef } from "preact/compat";
-import { Head } from "fresh/runtime.ts";
+import { Head } from "$fresh/runtime.ts";
 import { NInputText } from "../mod.ts";
 import { n } from "netzo/ui/utils/mod.ts";
 import DatePicker from "react-datepicker";
