@@ -3,7 +3,6 @@ import { auth } from "../_create-api/auth/mod.ts";
 
 export interface MailgunOptions {
   apiKey: string;
-  domainName: string;
 }
 
 /**
@@ -16,10 +15,9 @@ export interface MailgunOptions {
  */
 export const mailgun = ({
   apiKey = Deno.env.get("MAILGUN_API_KEY")!,
-  domainName = Deno.env.get("MAILGUN_DOMAIN_NAME")!,
 }: MailgunOptions) => {
   const api = createApi({
-    baseURL: `https://api.mailgun.net/v3/${domainName}`,
+    baseURL: `https://api.mailgun.net`,
     headers: {
       "content-type": "application/json",
     },
