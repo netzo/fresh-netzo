@@ -6,7 +6,7 @@ export interface ValueRange {
 
 //Request Body:
 export interface RequestAddOrUpdateValues {
-  values: Array<any>;
+  values: Array<string[]>;
 }
 
 export interface UpdateValuesResponse {
@@ -15,7 +15,7 @@ export interface UpdateValuesResponse {
   updatedRows: number;
   updatedColumns: number;
   updatedCells: number;
-  updatedData: {};
+  updatedData: ValueRange; // ??
 }
 
 export interface AddValuesResponse {
@@ -24,15 +24,15 @@ export interface AddValuesResponse {
   updates: UpdateValuesResponse;
 }
 
-//Query parameters for adding or updating rows. Not possible yet:
+//Query parameters:
 
-// export interface QueryAddOrUpdateRows {
-//     valueInputOption: "RAW" | "USER_ENTERED"
-//     insertDataOption?: "OVERWRITE" | "INSERT_ROWS"
-//     includeValuesInResponse?: boolean
-//     responseValueRenderOption?: "FORMATTED_VALUE" | "UNFORMATTED_VALUE" | "FORMULA"
-//     responseDateTimeRenderOption?: "SERIAL_NUMBER" | "FORMATTED_STRING"
-// }
+export interface QueryAddOrUpdateRows {
+    valueInputOption: "RAW" | "USER_ENTERED"
+    insertDataOption?: "OVERWRITE" | "INSERT_ROWS"
+    includeValuesInResponse?: boolean
+    responseValueRenderOption?: "FORMATTED_VALUE" | "UNFORMATTED_VALUE" | "FORMULA"
+    responseDateTimeRenderOption?: "SERIAL_NUMBER" | "FORMATTED_STRING"
+}
 
 export interface DeleteValuesResponse {
   spreadsheetId: string;

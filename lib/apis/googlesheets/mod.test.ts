@@ -52,40 +52,31 @@ Deno.test("googlesheets", async (t) => {
     assertExists(rows[0]);
     assertEquals(typeof (rows[0]),"object")});
 
-  // To be completed
+  await t.step("add row", async () => {
+    const request = { values: [["value1", "value2", "value3"]] }
 
-  // await t.step("add row", async () => {
-  //   const request = { values: ["value1", "value2"] }
+    const query = { 
+    valueInputOption: "USER_ENTERED", 
+    insertDataOption: "INSERT_ROWS",
+    includeValuesInResponse: true
+  }
 
-  //   const query = { 
-  //   valueInputOption: "USER_ENTERED", 
-  //   insertDataOption: "INSERT_ROWS",
-  //   includeValuesInResponse: true
-  // }
+    const result = await api.values[`${range_to_addOrUpdate}:append`].post(request, query)
+    assertExists(result.updates.updatedData.values)
+    assertEquals(Array.isArray(result.updates.updatedData.values), true)
+  });
 
-  //   const result = await api.values[`${range_to_addOrUpdate}:append`].post(request, query)
-  //   assertExists(result.updates.updatedData.values)
-  //   console.log(result.updates.updatedData)
-  //   console.log(result.updates.updatedData.values)
-  //   assertEquals(typeof (result.updates.updatedData),"object")
-  // });
+  await t.step("update row", async () => {
+    const query = { 
+      valueInputOption: "USER_ENTERED",
+      includeValuesInResponse: true
+      }
 
-
-  // await t.step("update row", async () => {
-
-  //   const query = { 
-  //     valueInputOption: "USER_ENTERED"
-  //     }
-
-  //   const result = await api.values[range_to_addOrUpdate].put({
-  //     values: ["updatedValue1"],
-  //   }, query);
-  //   assertExists(result.updatedData.values);
-  //   assertExists(resultToRows(result.updatedData));
-  //   console.log(result.updates.updatedData)
-  //   console.log(result.updates.updatedData.values)
-  //   assertEquals(Array.isArray(resultToRows(result.updatedData)), true);
-  // });
+    const request = { values: [["updatedValue1"]] }
+    const result = await api.values[range_to_addOrUpdate].put(request, query);
+    assertExists(result.updatedData.values);
+    assertEquals(Array.isArray(result.updatedData.values), true);
+  });
 
   await t.step("delete row", async () => {
     const data = await api.values[`${range_to_delete}:clear`].post();
