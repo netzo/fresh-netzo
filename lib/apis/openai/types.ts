@@ -1,20 +1,45 @@
-export interface File {
+export interface ChatCompletion {
   id: string;
   object: string;
-  bytes: number;
-  created_at: number;
-  filename: string;
-  purpose: string;
-  status: string;
-  status_details: any;
+  created: number;
+  model: string;
+  choices: Array<{
+    index: number;
+    message: {
+      role: string;
+      content: string;
+    };
+    finish_reason: string;
+  }>;
+  usage: {
+    prompt_tokens: number;
+    completion_tokens: number;
+    total_tokens: number;
+  };
 }
 
-export interface Files {
-  data: Array<File>;
-  object: string;
-}
-
-export interface UploadFileRequest {
-  file: string; //Name of the JSON Lines file to be uploaded.
-  purpose: string;
+export interface QueryChatCompletion {
+  model: string;
+  messages: Array<{
+    role: "system" | "user" | "assistant" | "function";
+    content: string;
+    name?: string;
+    function_call?: {};
+  }>;
+  functions?: Array<{
+    name: string;
+    description?: string;
+    parameters: {};
+  }>;
+  function_call?: string;
+  temperature?: number;
+  top_p?: number;
+  n?: number;
+  stream?: boolean;
+  stop?: string;
+  max_tokens?: number;
+  presence_penalty?: number;
+  frequency_penalty?: number;
+  logit_bias?: any;
+  user?: string;
 }
