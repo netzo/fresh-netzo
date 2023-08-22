@@ -79,7 +79,6 @@
     "clsx": "https://esm.sh/clsx@2.0.0",
     "tailwind-merge": "https://esm.sh/tailwind-merge@1.14.0",
     "class-variance-authority": "https://esm.sh/class-variance-authority@0.7.0",
-    "lucide-react": "https://esm.sh/lucide-react@0.263.1?external=react,react-dom&target=es2022",
     "react-day-picker": "https://esm.sh/react-day-picker@8.8.0?external=react,react-dom&target=es2022",
     "react-datepicker": "https://esm.sh/react-datepicker@4.16.0?external=react,react-dom&target=es2022",
     "zod": "https://esm.sh/zod@3.21.4"
