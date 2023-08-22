@@ -15,7 +15,7 @@ export interface UpdateValuesResponse {
   updatedRows: number;
   updatedColumns: number;
   updatedCells: number;
-  updatedData: ValueRange; // ??
+  updatedData: ValueRange;
 }
 
 export interface AddValuesResponse {
