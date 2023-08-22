@@ -6,7 +6,8 @@ Deno.test("googledrive", async (t) => {
   const { api } = googledrive({
     googleServiceAccountCredentials: Deno.env.get(
       "GOOGLE_SERVICE_ACCOUNT_CREDENTIALS",
-  )!});
+    )!,
+  });
 
   await t.step("api", async () => {
     const result = await api.drives.get();

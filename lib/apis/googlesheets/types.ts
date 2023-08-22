@@ -27,11 +27,14 @@ export interface AddValuesResponse {
 //Query parameters:
 
 export interface QueryAddOrUpdateRows {
-    valueInputOption: "RAW" | "USER_ENTERED"
-    insertDataOption?: "OVERWRITE" | "INSERT_ROWS"
-    includeValuesInResponse?: boolean
-    responseValueRenderOption?: "FORMATTED_VALUE" | "UNFORMATTED_VALUE" | "FORMULA"
-    responseDateTimeRenderOption?: "SERIAL_NUMBER" | "FORMATTED_STRING"
+  valueInputOption: "RAW" | "USER_ENTERED";
+  insertDataOption?: "OVERWRITE" | "INSERT_ROWS";
+  includeValuesInResponse?: boolean;
+  responseValueRenderOption?:
+    | "FORMATTED_VALUE"
+    | "UNFORMATTED_VALUE"
+    | "FORMULA";
+  responseDateTimeRenderOption?: "SERIAL_NUMBER" | "FORMATTED_STRING";
 }
 
 export interface DeleteValuesResponse {
