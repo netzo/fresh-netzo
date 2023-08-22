@@ -38,6 +38,6 @@
     "@preact/signals": "https://esm.sh/*@preact/signals@1.2.1",
     "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.4.0",
     "std/": "https://deno.land/std@0.187.0/",
-    "netzo/": "https://deno.land/x/netzo@v0.2.27/"
+    "netzo/": "https://deno.land/x/netzo@v0.2.28/"
   }
 }
