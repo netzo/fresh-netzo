@@ -32,7 +32,12 @@ Deno.test("googlesheets", async (t) => {
 
   await t.step("get headerless rows", async () => {
     const result = await api.values[headerless_range].get();
-    const rows = resultToRows(result, ["header1", "header2", "header3", "header4"])
+    const rows = resultToRows(result, [
+      "header1",
+      "header2",
+      "header3",
+      "header4",
+    ]);
     assertExists(result.values);
     assertExists(rows);
     assertEquals(typeof rows, "object");
@@ -47,32 +52,41 @@ Deno.test("googlesheets", async (t) => {
 
   await t.step("get headerless row", async () => {
     const result = await api.values[headerless_range].get();
-    const rows = resultToRows(result, ["header1", "header2", "header3", "header4"])
+    const rows = resultToRows(result, [
+      "header1",
+      "header2",
+      "header3",
+      "header4",
+    ]);
     assertExists(result.values[0]);
     assertExists(rows[0]);
-    assertEquals(typeof (rows[0]),"object")});
+    assertEquals(typeof (rows[0]), "object");
+  });
 
   await t.step("add row", async () => {
-    const request = { values: [["value1", "value2", "value3"]] }
+    const request = { values: [["value1", "value2", "value3"]] };
 
-    const query = { 
-    valueInputOption: "USER_ENTERED", 
-    insertDataOption: "INSERT_ROWS",
-    includeValuesInResponse: true
-  }
+    const query = {
+      valueInputOption: "USER_ENTERED",
+      insertDataOption: "INSERT_ROWS",
+      includeValuesInResponse: true,
+    };
 
-    const result = await api.values[`${range_to_addOrUpdate}:append`].post(request, query)
-    assertExists(result.updates.updatedData.values)
-    assertEquals(Array.isArray(result.updates.updatedData.values), true)
+    const result = await api.values[`${range_to_addOrUpdate}:append`].post(
+      request,
+      query,
+    );
+    assertExists(result.updates.updatedData.values);
+    assertEquals(Array.isArray(result.updates.updatedData.values), true);
   });
 
   await t.step("update row", async () => {
-    const query = { 
+    const query = {
       valueInputOption: "USER_ENTERED",
-      includeValuesInResponse: true
-      }
+      includeValuesInResponse: true,
+    };
 
-    const request = { values: [["updatedValue1"]] }
+    const request = { values: [["updatedValue1"]] };
     const result = await api.values[range_to_addOrUpdate].put(request, query);
     assertExists(result.updatedData.values);
     assertEquals(Array.isArray(result.updatedData.values), true);
