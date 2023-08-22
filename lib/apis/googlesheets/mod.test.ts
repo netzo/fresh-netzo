@@ -13,8 +13,8 @@ Deno.test("googlesheets", async (t) => {
 
   const range = "Sheet1!A:D";
   const headerless_range = "Sheet1!A2:D";
-  const range_to_update = "Sheet1!A32:D32";
-  const range_to_delete = range_to_update;
+  const range_to_addOrUpdate = "Sheet1!A32:D32";
+  const range_to_delete = range_to_addOrUpdate;
 
   await t.step("api", async () => {
     const result = await api.values[range].get();
@@ -52,25 +52,44 @@ Deno.test("googlesheets", async (t) => {
     assertExists(rows[0]);
     assertEquals(typeof (rows[0]),"object")});
 
-  //To be completed
+  // To be completed
+
   // await t.step("add row", async () => {
+  //   const request = { values: ["value1", "value2"] }
 
-  // })
+  //   const query = { 
+  //   valueInputOption: "USER_ENTERED", 
+  //   insertDataOption: "INSERT_ROWS",
+  //   includeValuesInResponse: true
+  // }
 
-  //Needs both query and request body:
+  //   const result = await api.values[`${range_to_addOrUpdate}:append`].post(request, query)
+  //   assertExists(result.updates.updatedData.values)
+  //   console.log(result.updates.updatedData)
+  //   console.log(result.updates.updatedData.values)
+  //   assertEquals(typeof (result.updates.updatedData),"object")
+  // });
+
 
   // await t.step("update row", async () => {
-  //   const result = await api.values[range_to_update].put({
+
+  //   const query = { 
+  //     valueInputOption: "USER_ENTERED"
+  //     }
+
+  //   const result = await api.values[range_to_addOrUpdate].put({
   //     values: ["updatedValue1"],
-  //   });
+  //   }, query);
   //   assertExists(result.updatedData.values);
   //   assertExists(resultToRows(result.updatedData));
+  //   console.log(result.updates.updatedData)
+  //   console.log(result.updates.updatedData.values)
   //   assertEquals(Array.isArray(resultToRows(result.updatedData)), true);
   // });
 
-  // await t.step("delete row", async () => {
-  //   const data = await api.values[`${range_to_delete}:clear`].post();
-  //   assertExists(data);
-  //   assertEquals(typeof data, "object");
-  // });
+  await t.step("delete row", async () => {
+    const data = await api.values[`${range_to_delete}:clear`].post();
+    assertExists(data);
+    assertEquals(typeof data, "object");
+  });
 });
