@@ -1,5 +1,14 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
+export type {
+  Contact,
+  Contacts,
+  QueryAddContact,
+  QueryContacts,
+  QuerySite,
+  QueryUpdateContact,
+  Site,
+} from "./types.ts";
 
 export interface WixOptions {
   accountId: string;
