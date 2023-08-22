@@ -1,5 +1,16 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
+export type {
+  AddContactsResponse,
+  List,
+  Lists,
+  QueryAddContacts,
+  QueryList,
+  QueryLists,
+  QuerySendEmail,
+  QueryUpdateList,
+  UpdateListResponse,
+} from "./types.ts";
 
 export interface SendgridOptions {
   apiKey: string;

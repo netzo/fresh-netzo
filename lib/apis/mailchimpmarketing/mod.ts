@@ -24,7 +24,7 @@ export interface MailchimpOptions {
  * @param {string} dataCenter - the data center to construct the base URL
  * @returns {object} - an object of multiple utilities for the API
  */
-export const mailchimp = ({
+export const mailchimpmarketing = ({
   marketingApiKey = Deno.env.get("MAILCHIMP_MARKETING_API_KEY")!,
   dataCenter = Deno.env.get("MAILCHIMP_MARKETING_DATA_CENTER")!,
 }: MailchimpOptions) => {

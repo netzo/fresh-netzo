@@ -60,3 +60,46 @@ export interface RecordsDeleted {
     id: string;
   }>;
 }
+
+export interface Databases {
+  bases: Array<{
+    id: string;
+    name: string;
+    permissionLevel: string;
+  }>;
+  offset: string;
+}
+
+export interface QueryDatabases {
+  offset?: string;
+}
+
+export interface Tables {
+  tables: Array<{
+    description?: string;
+    fields: Array<{
+      description?: string;
+      id: string;
+      name: string;
+      type: string;
+      options?: {
+        inverseLinkFieldId: string;
+        isReversed: boolean;
+        linkedTableId: string;
+        prefersSingleRecordLink: boolean;
+      };
+    }>;
+    id: string;
+    name: string;
+    primaryFieldId: string;
+    views: Array<{
+      id: string;
+      name: string;
+      type: string;
+    }>;
+  }>;
+}
+
+export interface QueryTables {
+  include?: Array<string>;
+}
