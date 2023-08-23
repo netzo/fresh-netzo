@@ -1,19 +1,16 @@
-import type {
-  Preset,
-  RuleContext,
-  UserConfig,
-} from "https://esm.sh/@unocss/core@0.53.4?bundle";
-import type { Theme } from "https://esm.sh/@unocss/preset-uno@0.53.4?bundle";
-import { parseColor } from "https://esm.sh/@unocss/preset-mini@0.53.4/utils?bundle";
-import { theme as unoTheme } from "https://esm.sh/@unocss/preset-mini@0.53.4?bundle";
-import { fonts } from "https://esm.sh/@unocss/preset-mini@0.53.4/rules?bundle";
 import {
-  mergeDeep,
-  presetAttributify,
-  presetIcons,
-  presetTypography,
-  presetUno,
-} from "https://esm.sh/unocss@0.53.4?bundle";
+  type Preset,
+  type RuleContext,
+  type UserConfig,
+  mergeDeep
+} from "https://esm.sh/@unocss/core@0.55.2?bundle";
+import { presetAttributify } from "https://esm.sh/@unocss/preset-attributify@0.55.2?bundle";
+import { presetIcons } from "https://esm.sh/@unocss/preset-icons@0.55.2/browser?bundle";
+import { presetTypography } from "https://esm.sh/@unocss/preset-typography@0.55.2?bundle";
+import { type Theme, presetUno } from "https://esm.sh/@unocss/preset-uno@0.55.2?bundle";
+import { theme as unoTheme } from "https://esm.sh/@unocss/preset-mini@0.55.2?bundle";
+import { parseColor } from "https://esm.sh/@unocss/preset-mini@0.55.2/utils?bundle";
+import { fonts } from "https://esm.sh/@unocss/preset-mini@0.55.2/rules?bundle";
 import { presetShadcn } from "./unocss.shadcn.ts";
 
 // @unocss-include
@@ -48,10 +45,81 @@ export function presetNetzo(user: UserConfig = {}): Preset {
 
     preflights: [
       {
-        getCSS: () => {
-          const url = new URL("./assets/styles.css", import.meta.url);
-          return fetch(url.href).then((res) => res.text());
-        },
+        getCSS: ({ theme }) => `
+          :root {
+            --nui-c-context: 125,125,125;
+          }
+
+          /* see https://unocss.dev/integrations/runtime#preventing-fouc */
+          [un-cloak] {
+            display: none !important;
+          }
+
+          html {
+            background-color: #ffffff;
+          }
+
+          html.dark {
+            color-scheme: dark;
+            background-color: #151515;
+            color: #ffffff;
+          }
+
+          ::selection {
+            background: #8884;
+          }
+
+          /* Color Mode transition */
+          ::view-transition-old(root),
+          ::view-transition-new(root) {
+            animation: none;
+            mix-blend-mode: normal;
+          }
+          ::view-transition-old(root) {
+            z-index: 1;
+          }
+          ::view-transition-new(root) {
+            z-index: 2147483646;
+          }
+          .dark::view-transition-old(root) {
+            z-index: 2147483646;
+          }
+          .dark::view-transition-new(root) {
+            z-index: 1;
+          }
+
+          /* NInputDate */
+
+          .react-datepicker-wrapper .n-input-text input {
+            all: unset;
+            width: 100%;
+          }
+
+          /* NSectionBlock */
+
+          details.n-section-block {
+            --at-apply: border-none;
+          }
+
+          details.n-section-block summary {
+            --at-apply: border-none;
+            cursor: pointer;
+            list-style: none;
+          }
+
+          details.n-section-block[open] summary {
+            --at-apply: border-none;
+          }
+
+          details.n-section-block summary::-webkit-details-marker {
+            display:none;
+          }
+
+          details.n-section-block[open] .chevron {
+            transform: rotate(180deg);
+            opacity: 0.75;
+          }
+        `,
       },
     ],
 

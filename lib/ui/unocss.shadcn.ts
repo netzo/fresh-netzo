@@ -1,18 +1,19 @@
 // from https://github.com/fisand/unocss-preset-shadcn
-import {
-  h,
-  variantGetParameter,
-} from "https://esm.sh/@unocss/preset-mini@0.53.4/utils?bundle";
 import type {
   Preset,
   VariantContext,
   VariantObject,
-} from "https://esm.sh/@unocss/core@0.53.4?bundle";
+} from "https://esm.sh/@unocss/core@0.55.2?bundle";
 import type {
   PresetMiniOptions,
   Theme,
-} from "https://esm.sh/@unocss/preset-mini@0.53.4/rules?bundle";
-import { presetIcons, presetUno } from "https://esm.sh/unocss@0.53.4?bundle";
+} from "https://esm.sh/@unocss/preset-mini@0.55.2?bundle";
+import {
+  h,
+  variantGetParameter,
+} from "https://esm.sh/@unocss/preset-mini@0.55.2/utils?bundle";
+import { presetUno } from "https://esm.sh/@unocss/preset-uno@0.55.2?bundle";
+import { presetIcons } from "https://esm.sh/@unocss/preset-icons@0.55.2/browser?bundle";
 
 export interface PresetShadcnOptions extends PresetMiniOptions {}
 
