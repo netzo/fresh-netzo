@@ -1,449 +1,214 @@
-import { useSignal } from "@preact/signals";
-import {
-  NButton,
-  NCard,
-  NCheckbox,
-  NChip,
-  NDarkToggle,
-  NDialog,
-  NDropdown,
-  NIconButton,
-  NIconTitle,
-  NInputDate,
-  NInputDateRange,
-  NInputText,
-  NLink,
-  NLoading,
-  NPanelGrids,
-  NRadio,
-  NSectionBlock,
-  NSelect,
-  NSwitch,
-  NTip,
-} from "netzo/ui/components/mod.ts";
-import DemoDataTable from "netzo/ui/components/example/data-table-demo.tsx";
-import ShowSource from "./ShowSource.tsx";
+import { cn } from "netzo/ui/utils/mod.ts";
+import AccordionDemo from "netzo/ui/components/example/accordion-demo.tsx";
+import AlertDialogDemo from "netzo/ui/components/example/alert-dialog-demo.tsx";
+import AspectRatioDemo from "netzo/ui/components/example/aspect-ratio-demo.tsx";
+import AvatarDemo from "netzo/ui/components/example/avatar-demo.tsx";
+import BadgeDemo from "netzo/ui/components/example/badge-demo.tsx";
+import BadgeDestructive from "netzo/ui/components/example/badge-destructive.tsx";
+import BadgeOutline from "netzo/ui/components/example/badge-outline.tsx";
+import BadgeSecondary from "netzo/ui/components/example/badge-secondary.tsx";
+import ButtonDemo from "netzo/ui/components/example/button-demo.tsx";
+import ButtonDestructive from "netzo/ui/components/example/button-destructive.tsx";
+import ButtonGhost from "netzo/ui/components/example/button-ghost.tsx";
+import ButtonLink from "netzo/ui/components/example/button-link.tsx";
+import ButtonLoading from "netzo/ui/components/example/button-loading.tsx";
+import ButtonOutline from "netzo/ui/components/example/button-outline.tsx";
+import ButtonSecondary from "netzo/ui/components/example/button-secondary.tsx";
+import ButtonWithIcon from "netzo/ui/components/example/button-with-icon.tsx";
+import CardDemo from "netzo/ui/components/example/card-demo.tsx";
+import CheckboxDemo from "netzo/ui/components/example/checkbox-demo.tsx";
+import CollapsibleDemo from "netzo/ui/components/example/collapsible-demo.tsx";
+import CommandDemo from "netzo/ui/components/example/command-demo.tsx";
+import ContextMenuDemo from "netzo/ui/components/example/context-menu-demo.tsx";
+import DatePickerDemo from "netzo/ui/components/example/date-picker-demo.tsx";
+import DatePickerWithRangeDemo from "netzo/ui/components/example/date-picker-with-range.tsx";
+import DialogDemo from "netzo/ui/components/example/dialog-demo.tsx";
+import DropdownMenuDemo from "netzo/ui/components/example/dropdown-menu-demo.tsx";
+import HoverCardDemo from "netzo/ui/components/example/hover-card-demo.tsx";
+import MenubarDemo from "netzo/ui/components/example/menubar-demo.tsx";
+import NavigationMenuDemo from "netzo/ui/components/example/navigation-menu-demo.tsx";
+import PopoverDemo from "netzo/ui/components/example/popover-demo.tsx";
+import ProgressDemo from "netzo/ui/components/example/progress-demo.tsx";
+import RadioGroupDemo from "netzo/ui/components/example/radio-group-demo.tsx";
+import ScrollAreaDemo from "netzo/ui/components/example/scroll-area-demo.tsx";
+import SelectDemo from "netzo/ui/components/example/select-demo.tsx";
+import SeparatorDemo from "netzo/ui/components/example/separator-demo.tsx";
+import SheetDemo from "netzo/ui/components/example/sheet-demo.tsx";
+import SkeletonDemo from "netzo/ui/components/example/skeleton-demo.tsx";
+import SliderDemo from "netzo/ui/components/example/slider-demo.tsx";
+import SwitchDemo from "netzo/ui/components/example/switch-demo.tsx";
+import TabsDemo from "netzo/ui/components/example/tabs-demo.tsx";
+import ToastDemo from "netzo/ui/components/example/toast-demo.tsx";
+import ToggleDemo from "netzo/ui/components/example/toggle-demo.tsx";
+import ToggleDisabled from "netzo/ui/components/example/toggle-disabled.tsx";
+import ToggleOutline from "netzo/ui/components/example/toggle-outline.tsx";
+import ToggleWithText from "netzo/ui/components/example/toggle-with-text.tsx";
+import TooltipDemo from "netzo/ui/components/example/tooltip-demo.tsx";
+import { Button } from "netzo/ui/components/ui/button.tsx";
+import { Head } from "$fresh/runtime.ts";
 
-const VERSION = "0.2.28";
-const REPO = "https://github.com/netzo/netzo/tree/main/lib/ui";
-
-export default function Demo() {
-  const showDialog = useSignal(false);
-  // const showDropdown = useSignal(false);
-  // const radio = useSignal("a");
-
+export default function KitchenSinkPage() {
   return (
-    <div class="relative p-10">
-      <div class="mx-auto w-full flex flex-col gap-4 container">
-        <NTip icon="mdi-alert" n="yellow-600 dark:yellow-500">
-          This library is heavily working in progress. Breaking changes may not
-          follow semver. Pin the version if used.
-        </NTip>
-
-        <div class="flex items-center gap-2">
-          <div class="text-4xl">
-            netzo/components
-          </div>
-          <sup class="text-xl">
-            <code>v{VERSION}</code>
-          </sup>
-        </div>
-
-        <div class="mb-5 flex gap-1">
-          <NButton n="sm" href={REPO} target="_blank" prependIcon="mdi-github">
-            GitHub
-          </NButton>
-
-          <NDarkToggle />
-        </div>
-
-        <details open>
-          <summary class="cursor-pointer uppercase text-lg font-bold">
-            Data
-          </summary>
-          <div class="flex flex-col gap-3 my-3">
-            <NCard class="p4">
-              <div class="n-header-upper">
-                NTable <NChip class="n-chip-blue">alpha</NChip>
-              </div>
-              <div class="flex flex-wrap items-center gap-3">
-                <div class="w-full py-10">
-                  <DemoDataTable />
-                </div>
-              </div>
-            </NCard>
-          </div>
-        </details>
-
-        <details open>
-          <summary class="cursor-pointer uppercase text-lg font-bold">
-            Elements
-          </summary>
-          <div class="flex flex-col gap-3 my-3">
-            <NCard class="p4">
-              <div class="n-header-upper">
-                Buttons
-              </div>
-              <div class="flex flex-wrap items-center gap-3">
-                <NButton n="yellow6 dark:yellow5 xs border-solid">
-                  XS Yellow
-                </NButton>
-                <NButton n="orange6 dark:orange5 sm dashed">
-                  S Orange Dashed
-                </NButton>
-                <NButton
-                  n="blue6 dark:blue5 solid"
-                  prependIcon="mdi-information"
-                >
-                  Blue Solid
-                </NButton>
-                <NButton n="red6 dark:red5 solid" prependIcon="mdi-delete">
-                  Red Solid
-                </NButton>
-                <NButton disabled>
-                  Disabled
-                </NButton>
-                <NButton loading>
-                  Loading
-                </NButton>
-                <NButton n="purple6 dark:purple5 xl">
-                  XL Purple
-                </NButton>
-                <NIconButton icon="mdi-home" />
-                <NIconButton icon="mdi-home" n="purple6 dark:purple5 xl" />
-              </div>
-              <ShowSource src="/docs/islands/Demo.tsx#L50-L67" />
-            </NCard>
-
-            <NCard class="p4">
-              <div class="n-header-upper">
-                Dropdown <NChip class="n-chip-blue">soon</NChip>
-              </div>
-              <div class="flex flex-col gap-2">
-                <NDropdown v-model="showDropdown" n="lime6 dark:lime5">
-                  <div class="flex flex-col gap-2 p-3">
-                    <div>Item 1</div>
-                    <div>Item 2</div>
-                    <div>Item 3</div>
-                    <div>Item 4</div>
-                  </div>
-                </NDropdown>
-              </div>
-              <ShowSource src="/docs/islands/Demo.tsx#L168-L180" />
-            </NCard>
-
-            <NCard class="p4">
-              <div class="n-header-upper">
-                NIconTitle
-              </div>
-              <div class="flex flex-col gap-2">
-                <NIconTitle text="Home" icon="mdi-home" />
-              </div>
-              <ShowSource src="/docs/islands/Demo.tsx#L246" />
-            </NCard>
-
-            <NCard class="p4">
-              <div class="n-header-upper">
-                Links
-              </div>
-              <form class="flex items-center gap-3">
-                <NLink to="/" n="green">
-                  Homepage
-                </NLink>
-                <NLink href="https://netzo.io" target="_blank">
-                  netzo.io
-                </NLink>
-              </form>
-              <ShowSource src="/docs/islands/Demo.tsx#L86-L91" />
-            </NCard>
-
-            <NCard class="p4">
-              <div class="n-header-upper">
-                Loading
-              </div>
-              <div class="flex flex-col gap-2">
-                <NLoading />
-              </div>
-              <ShowSource src="/docs/islands/Demo.tsx#L246" />
-            </NCard>
-
-            <NCard class="p4">
-              <div class="n-header-upper">
-                Tips
-              </div>
-              <div class="flex flex-col gap-2">
-                <NTip n="lime6 dark:lime5" icon="mdi-check-circle">
-                  Success!
-                </NTip>
-                <NTip n="yellow6 dark:yellow5" icon="mdi-alert">
-                  Warning!
-                </NTip>
-                <NTip n="red6 dark:red5" icon="mdi-alert-circle">
-                  Error!
-                </NTip>
-              </div>
-              <ShowSource src="/docs/islands/Demo.tsx#L150-L158" />
-            </NCard>
-          </div>
-        </details>
-
-        <details open>
-          <summary class="cursor-pointer uppercase text-lg font-bold">
-            Form
-          </summary>
-          <div class="flex flex-col gap-3 my-3">
-            <NCard class="p4">
-              <div class="n-header-upper">
-                Checkboxes
-              </div>
-              <div class="flex items-center gap-3">
-                <NCheckbox n="sky6 dark:sky5 sm" checked={true}>
-                  Small
-                </NCheckbox>
-                <NCheckbox n="red6 dark:red5" checked={false}>
-                  Normal
-                </NCheckbox>
-                <NCheckbox
-                  n="purple6 dark:purple5 xl"
-                  checked={true}
-                  disabled
-                >
-                  XL Disabled
-                </NCheckbox>
-              </div>
-              <ShowSource src="/demo/islands/Demo.tsx#L77-L85" />
-            </NCard>
-
-            <NCard class="p4">
-              <div class="n-header-upper">
-                Radios
-              </div>
-              <form class="flex items-center gap-3">
-                <NRadio
-                  v-model="radio"
-                  n="red6 dark:red5"
-                  name="name"
-                  value="a"
-                >
-                  Apple
-                </NRadio>
-                <NRadio
-                  v-model="radio"
-                  n="yellow6 dark:yellow5"
-                  name="name"
-                  value="b"
-                >
-                  Banana
-                </NRadio>
-                <NRadio
-                  v-model="radio"
-                  n="orange6 dark:orange5"
-                  name="name"
-                  value="c"
-                >
-                  Orange
-                </NRadio>
-              </form>
-              <ShowSource src="/docs/islands/Demo.tsx#L101-L119" />
-            </NCard>
-
-            <NCard class="p4">
-              <form>
-                <div class="n-header-upper">
-                  Select
-                </div>
-                <div class="flex flex-col gap-2">
-                  <NSelect
-                    n="lime6 dark:lime5"
-                    value="Some value"
+    <>
+      <Head>
+        <link
+          href="https://esm.sh/react-day-picker@8.8.0/dist/style.css"
+          rel="stylesheet"
+        />
+      </Head>
+      <div className="container">
+        <div className="grid gap-4">
+          <div className="grid grid-cols-3 items-start gap-4">
+            <div className="grid gap-4">
+              <ComponentWrapper>
+                <CardDemo className="w-full" />
+              </ComponentWrapper>
+              <ComponentWrapper>
+                <SliderDemo className="w-full" />
+              </ComponentWrapper>
+              <ComponentWrapper className="spa flex-col items-start space-x-0
+          space-y-2">
+                <p className="text-sm text-muted-foreground">Documentation</p>
+                <p className="text-sm font-medium leading-none">
+                  You can customize the theme using{" "}
+                  <code className="relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold text-foreground">
+                    CSS variables
+                  </code>
+                  .{" "}
+                  <a
+                    href="#"
+                    className="font-medium text-primary underline underline-offset-4"
                   >
-                    <option value="audi">Audi</option>
-                    <option value="bmw">BMW</option>
-                    <option value="mercedes">Mercedes</option>
-                    <option value="volkswagen">Volkswagen</option>
-                  </NSelect>
-                  <NSelect
-                    n="pink6 dark:pink5"
-                    icon="mdi-car"
-                    placeholder="Select brand"
-                    options={[
-                      { value: "audi", innerHTML: "Audi" },
-                      { value: "bmw", innerHTML: "BMW" },
-                      { value: "mercedes", innerHTML: "Mercedes" },
-                      { value: "volkswagen", innerHTML: "Volkswagen" },
-                    ]}
-                  />
-                  <NButton class="self-start">
-                    Submit
-                  </NButton>
+                    Click here
+                  </a>{" "}
+                  to learn more.
+                </p>
+              </ComponentWrapper>
+              <ComponentWrapper>
+                <CheckboxDemo />
+                <HoverCardDemo />
+              </ComponentWrapper>
+              <ComponentWrapper className="[&>div]:w-full">
+                <TabsDemo />
+              </ComponentWrapper>
+            </div>
+            <div className="grid gap-4">
+              <ComponentWrapper>
+                <MenubarDemo />
+                <AvatarDemo />
+              </ComponentWrapper>
+              <ComponentWrapper className="flex-col items-start space-x-0 space-y-2">
+                <div className="flex space-x-2">
+                  <ButtonDemo />
+                  <ButtonSecondary />
+                  <ButtonDestructive />
                 </div>
-              </form>
-              <ShowSource src="/docs/islands/Demo.tsx#L190-L205" />
-            </NCard>
-
-            <NCard class="p4">
-              <div class="n-header-upper">
-                Switches
-              </div>
-              <div class="flex items-center gap-3">
-                <NSwitch n="lime6 dark:lime5 sm" checked={true}>
-                  SM
-                </NSwitch>
-                <NSwitch n="red6 dark:red5" checked={true}>
-                  Normal
-                </NSwitch>
-                <NSwitch checked={true} disabled>
-                  Disabled
-                </NSwitch>
-                <NSwitch n="purple6 dark:purple5 xl" checked={false}>
-                  XL
-                </NSwitch>
-              </div>
-              <ShowSource src="/docs/islands/Demo.tsx#L129-L140" />
-            </NCard>
-
-            <NCard class="p4">
-              <form>
-                <div class="n-header-upper">
-                  InputText
+                <div className="flex space-x-2">
+                  <ButtonOutline />
+                  <ButtonLink />
+                  <ButtonGhost />
                 </div>
-                <div class="flex flex-col gap-2">
-                  <NInputText
-                    n="lime6 dark:lime5"
-                    value="Some value"
-                  />
-                  <NInputText
-                    n="pink6 dark:pink5"
-                    icon="mdi-account"
-                    placeholder="Name"
-                  />
-                  <NInputText
-                    n="pink6 dark:pink5"
-                    icon="mdi-numeric"
-                    placeholder="Age"
-                    type="number"
-                  />
-                  <NInputText
-                    n="lime6 dark:lime5"
-                    icon="mdi-key"
-                    type="password"
-                    placeholder="Password"
-                    required
-                  />
-                  <NButton class="self-start">
-                    Submit
-                  </NButton>
+                <div className="flex space-x-2">
+                  <ButtonWithIcon />
+                  <ButtonLoading />
                 </div>
-              </form>
-              <ShowSource src="/docs/islands/Demo.tsx#L190-L205" />
-            </NCard>
-
-            <NCard class="p4">
-              <div class="n-header-upper">
-                InputDate
-              </div>
-              <div class="flex flex-col gap-2">
-                <NInputDate n="lime6 dark:lime5" />
-              </div>
-              <ShowSource src="/docs/islands/Demo.tsx#L190-L205" />
-            </NCard>
-
-            <NCard class="p4">
-              <div class="n-header-upper">
-                InputDateRange
-              </div>
-              <div class="flex flex-col gap-2">
-                <NInputDateRange n="lime6 dark:lime5" />
-              </div>
-              <ShowSource src="/docs/islands/Demo.tsx#L190-L205" />
-            </NCard>
+                <div className="flex space-x-2">
+                  <Button size="lg">Large</Button>
+                  <Button size="sm">Small</Button>
+                </div>
+              </ComponentWrapper>
+              <ComponentWrapper>
+                <DatePickerDemo />
+              </ComponentWrapper>
+              <ComponentWrapper>
+                <DatePickerWithRangeDemo />
+              </ComponentWrapper>
+              <ComponentWrapper>
+                <AccordionDemo />
+              </ComponentWrapper>
+              <ComponentWrapper className="[&_ul>li:last-child]:hidden">
+                <NavigationMenuDemo />
+              </ComponentWrapper>
+              <ComponentWrapper className="justify-between">
+                <SwitchDemo />
+                <SelectDemo />
+              </ComponentWrapper>
+              <ComponentWrapper>
+                <SeparatorDemo />
+              </ComponentWrapper>
+              <ComponentWrapper>
+                <AspectRatioDemo />
+              </ComponentWrapper>
+              <ComponentWrapper>
+                <PopoverDemo />
+                <ToastDemo />
+              </ComponentWrapper>
+            </div>
+            <div className="grid gap-4">
+              <ComponentWrapper>
+                <TooltipDemo />
+                <SheetDemo />
+                <ProgressDemo />
+              </ComponentWrapper>
+              <ComponentWrapper>
+                <CommandDemo />
+              </ComponentWrapper>
+              <ComponentWrapper className="[&>span]:h-[80px] [&>span]:w-[200px]">
+                <RadioGroupDemo />
+                <ContextMenuDemo />
+              </ComponentWrapper>
+              <ComponentWrapper>
+                <div className="flex space-x-2">
+                  <DropdownMenuDemo />
+                  <AlertDialogDemo />
+                  <DialogDemo />
+                </div>
+              </ComponentWrapper>
+              <ComponentWrapper>
+                <div className="flex space-x-2">
+                  <BadgeDemo />
+                  <BadgeSecondary />
+                  <BadgeDestructive />
+                  <BadgeOutline />
+                </div>
+              </ComponentWrapper>
+              <ComponentWrapper>
+                <SkeletonDemo />
+              </ComponentWrapper>
+              <ComponentWrapper className="[&>div]:w-full">
+                <CollapsibleDemo />
+              </ComponentWrapper>
+              <ComponentWrapper>
+                <div className="flex space-x-2">
+                  <ToggleDemo />
+                  <ToggleOutline />
+                  <ToggleDisabled />
+                  <ToggleWithText />
+                </div>
+              </ComponentWrapper>
+              <ComponentWrapper>
+                <ScrollAreaDemo />
+              </ComponentWrapper>
+            </div>
           </div>
-        </details>
-
-        <details open>
-          <summary class="cursor-pointer uppercase text-lg font-bold">
-            Layout
-          </summary>
-          <div class="flex flex-col gap-3 my-3">
-            <NCard class="p4">
-              <div class="n-header-upper">
-                NCard <NChip class="n-chip-blue">soon</NChip>
-              </div>
-            </NCard>
-
-            <NCard class="p4">
-              <div class="n-header-upper">
-                NPanelGrids <NChip class="n-chip-blue">soon</NChip>
-              </div>
-              <div class="flex flex-col gap-2">
-                <NPanelGrids />
-              </div>
-              <ShowSource src="/docs/islands/Demo.tsx#L246" />
-            </NCard>
-
-            <NCard class="p4">
-              <div class="n-header-upper">
-                NSectionBlock <NChip class="n-chip-blue">soon</NChip>
-              </div>
-              <div class="flex flex-col gap-2">
-                <NSectionBlock text="Header">
-                  <>
-                    <h4>Header 4</h4>
-                    <p>Lorem ipsum</p>
-                  </>
-                </NSectionBlock>
-              </div>
-              <ShowSource src="/docs/islands/Demo.tsx#L246" />
-            </NCard>
-          </div>
-        </details>
-
-        <details open>
-          <summary class="cursor-pointer uppercase text-lg font-bold">
-            Overlay
-          </summary>
-          <div class="flex flex-col gap-3 my-3">
-            <NCard class="p4">
-              <div class="n-header-upper">
-                Dialog
-              </div>
-              <div class="flex flex-col gap-2">
-                <NDialog
-                  class="max-w-500px"
-                  buttonProps={{ text: "Open Dialog" }}
-                >
-                  <h3 class="mb2 text-lg font-semibold">Header 4</h3>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Quisquam voluptatum, quibusdam, quia, quod voluptates
-                    voluptatem voluptatibus quos dolorum quas voluptate.
-                    Quisquam voluptatum, quibusdam, quia, quod voluptates
-                    voluptatem voluptatibus quos dolorum quas voluptate.
-                  </p>
-                </NDialog>
-                <NDialog buttonProps={{ text: "Open Dialog Form" }}>
-                  <form method="dialog">
-                    <NInputText
-                      type="email"
-                      name="email"
-                      id="email"
-                      placeholder="Enter your email"
-                      required
-                      autofocus
-                    >
-                    </NInputText>
-                    <menu class="pt2">
-                      <NButton value="cancel" class="mr1">Cancel</NButton>
-                      <NButton value="default">Confirm</NButton>
-                    </menu>
-                  </form>
-                </NDialog>
-              </div>
-              <ShowSource src="/docs/islands/Demo.tsx#L215-L231" />
-            </NCard>
-          </div>
-        </details>
+        </div>
       </div>
+    </>
+  );
+}
+
+function ComponentWrapper({
+  className,
+  children,
+}: JSX.HTMLAttributes<HTMLDivElement>) {
+  return (
+    <div
+      className={cn(
+        "flex items-center justify-between space-x-4 rounded-md p-4",
+        className,
+      )}
+    >
+      {children}
     </div>
   );
 }

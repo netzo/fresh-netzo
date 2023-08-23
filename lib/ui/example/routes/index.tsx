@@ -8,7 +8,7 @@ export default function Home() {
         <title>netzo/components</title>
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
       </Head>
-      <main class="p-4 mx-auto max-w-screen-lg">
+      <main class="p-4 mx-auto">
         <Demo />
       </main>
     </>
