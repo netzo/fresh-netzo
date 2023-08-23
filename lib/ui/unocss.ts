@@ -46,13 +46,13 @@ export function presetNetzo(user: UserConfig = {}): Preset {
     preflights: [
       {
         getCSS: ({ theme }) => `
-          :root {
-            --nui-c-context: 125,125,125;
-          }
-
           /* see https://unocss.dev/integrations/runtime#preventing-fouc */
           [un-cloak] {
             display: none !important;
+          }
+
+          :root {
+            --nui-c-context: 125,125,125;
           }
 
           html {
@@ -86,38 +86,6 @@ export function presetNetzo(user: UserConfig = {}): Preset {
           }
           .dark::view-transition-new(root) {
             z-index: 1;
-          }
-
-          /* NInputDate */
-
-          .react-datepicker-wrapper .n-input-text input {
-            all: unset;
-            width: 100%;
-          }
-
-          /* NSectionBlock */
-
-          details.n-section-block {
-            --at-apply: border-none;
-          }
-
-          details.n-section-block summary {
-            --at-apply: border-none;
-            cursor: pointer;
-            list-style: none;
-          }
-
-          details.n-section-block[open] summary {
-            --at-apply: border-none;
-          }
-
-          details.n-section-block summary::-webkit-details-marker {
-            display:none;
-          }
-
-          details.n-section-block[open] .chevron {
-            transform: rotate(180deg);
-            opacity: 0.75;
           }
         `,
       },
