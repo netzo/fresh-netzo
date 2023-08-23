@@ -10,11 +10,11 @@ import { start } from "$fresh/server.ts";
 import manifest from "./fresh.gen.ts";
 
 import { flowbite, unocss } from "netzo/plugins/mod.ts";
-import { presetNetzo } from "netzo/ui/unocss.ts";
+import unoConfig from "./uno.config.ts";
 
 await start(manifest, {
   plugins: [
-    unocss({ presets: [presetNetzo()] }),
+    unocss(unoConfig),
     flowbite(),
   ],
 });
