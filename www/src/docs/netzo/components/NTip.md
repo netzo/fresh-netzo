@@ -13,7 +13,7 @@ const item = en.components.find(({ uid }) => uid === 'tip')
 ## Usage
 
 ```tsx
-import { NTip } from 'netzo/components/mod.ts'
+import { NTip } from 'netzo/ui/components/mod.ts'
 
 export default () => <NTip />
 ```

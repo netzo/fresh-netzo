@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>netzo/components</title>
+        <title>netzo/ui/components</title>
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
       </Head>
       <main class="p-4 mx-auto">

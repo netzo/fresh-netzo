@@ -13,7 +13,7 @@ const item = en.components.find(({ uid }) => uid === 'switch')
 ## Usage
 
 ```tsx
-import { NSwitch } from 'netzo/components/mod.ts'
+import { NSwitch } from 'netzo/ui/components/mod.ts'
 
 export default () => <NSwitch />
 ```

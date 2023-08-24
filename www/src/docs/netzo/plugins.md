@@ -7,13 +7,13 @@ import SectionDocsCards from '@theme/components/sections/SectionDocsCards.vue'
 import en from '~/locales/en.js'
 </script>
 
-# `netzo/plugins`
+# `netzo/ui/plugins`
 
-> [`https://deno.land/x/netzo/plugins`](https://deno.land/x/netzo/plugins)
+> [`https://deno.land/x/netzo/ui/plugins`](https://deno.land/x/netzo/ui/plugins)
 
-**The `netzo/plugins` module exports all [Plugins](https://fresh.deno.dev/docs/concepts/plugins) for the [Fresh](https://fresh.deno.dev) framework.** Plugins can dynamically add new functionality to Fresh without exposing significant complexity to the user. Users can add plugins by importing and initializing them in the `start` function of the entrypoint file e.g. `main.ts`.
+**The `netzo/ui/plugins` module exports all [Plugins](https://fresh.deno.dev/docs/concepts/plugins) for the [Fresh](https://fresh.deno.dev) framework.** Plugins can dynamically add new functionality to Fresh without exposing significant complexity to the user. Users can add plugins by importing and initializing them in the `start` function of the entrypoint file e.g. `main.ts`.
 
-Apart from first-party plugins, and those provided by `netzo/plugins`, you can also search for community plugins or [create your own](https://fresh.deno.dev/docs/concepts/plugins).
+Apart from first-party plugins, and those provided by `netzo/ui/plugins`, you can also search for community plugins or [create your own](https://fresh.deno.dev/docs/concepts/plugins).
 
 <SectionDocsCards :items="en.plugins" compact>
   <template #image="{ src, title }">

@@ -319,7 +319,7 @@ export default {
         },
         {
           icon: 'i-mdi-widgets',
-          description: '<strong style="color: #0080ff"><a href="/docs/netzo/components">UI components</a></strong>, <strong style="color: #0080ff"><a href="/docs/netzo/plugins">Plugins</a></strong> and <strong style="color: #0080ff"><a href="/docs/netzo/composables">Utilities</a></strong> for speed and simplicity',
+          description: '<strong style="color: #0080ff"><a href="/docs/netzo/ui/components">UI components</a></strong>, <strong style="color: #0080ff"><a href="/docs/netzo/ui/plugins">Plugins</a></strong> and <strong style="color: #0080ff"><a href="/docs/netzo/ui/composables">Utilities</a></strong> for speed and simplicity',
         },
         {
           icon: 'i-mdi-bug',
@@ -781,42 +781,42 @@ export default {
       title: 'DaisyUI',
       description: 'DaisyUI is a component library for Tailwind CSS that allows you to easily build beautiful UIs for your web apps.',
       src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/plugins/daisyui.svg',
-      href: '/docs/netzo/plugins/daisyui',
+      href: '/docs/netzo/ui/plugins/daisyui',
     },
     {
       uid: 'flowbite',
       title: 'Flowbite',
       description: 'Flowbite is an open-source library of over 600+ UI components, sections, and pages built with the utility classes from Tailwind CSS and designed in Figma.',
       src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/plugins/flowbite.svg',
-      href: '/docs/netzo/plugins/flowbite',
+      href: '/docs/netzo/ui/plugins/flowbite',
     },
     {
       uid: 'netzoAppLayout',
       title: 'Netzo App Layout',
       description: 'Adds a global layout route from which all other routes inherit from.',
       src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/plugins/netzoAppLayout.svg',
-      href: '/docs/netzo/plugins/netzoAppLayout',
+      href: '/docs/netzo/ui/plugins/netzoAppLayout',
     },
     {
       uid: 'netzoAuth',
       title: 'Netzo Auth',
       description: 'Adds a middleware to protect routes with authentication based on access control settings set for the project in Netzo.',
       src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/plugins/netzoAuth.svg',
-      href: '/docs/netzo/plugins/netzoAuth',
+      href: '/docs/netzo/ui/plugins/netzoAuth',
     },
     {
       uid: 'netzoErrorPages',
       title: 'Netzo Error Pages',
       description: 'Adds routes to render a custom error page for "404: Not Found" and "500: Server Error".',
       src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/plugins/netzoErrorPages.svg',
-      href: '/docs/netzo/plugins/netzoErrorPages',
+      href: '/docs/netzo/ui/plugins/netzoErrorPages',
     },
     {
       uid: 'unocss',
       title: 'UnoCSS',
       description: 'UnoCSS is an instant, on-demand atomic CSS engine. It generates atomic CSS classes on the fly based on the classes and attributes used in your project.',
       src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/plugins/unocss.svg',
-      href: '/docs/netzo/plugins/unocss',
+      href: '/docs/netzo/ui/plugins/unocss',
     },
   ].sort((a, b) => a.uid.localeCompare(b.uid)),
   components: [
@@ -827,7 +827,7 @@ export default {
       description: 'Display tabulated data.',
       icon: 'i-mdi-table',
       // src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/components/table.svg',
-      href: '/docs/netzo/components/NTable',
+      href: '/docs/netzo/ui/components/NTable',
     },
     {
       uid: 'button',
@@ -836,7 +836,7 @@ export default {
       description: 'Trigger queries or actions with a button.',
       icon: 'i-mdi-button-pointer',
       // src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/components/button.svg',
-      href: '/docs/netzo/components/NButton',
+      href: '/docs/netzo/ui/components/NButton',
     },
     {
       uid: 'chip',
@@ -845,7 +845,7 @@ export default {
       description: 'Display a collection of tags.',
       icon: 'i-mdi-label',
       // src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/components/chip.svg',
-      href: '/docs/netzo/components/NChip',
+      href: '/docs/netzo/ui/components/NChip',
     },
     {
       uid: 'darktoggle',
@@ -854,7 +854,7 @@ export default {
       description: 'Toggle a dark mode theme.',
       icon: 'i-mdi-theme-light-dark',
       // src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/components/darktoggle.svg',
-      href: '/docs/netzo/components/NDarkToggle',
+      href: '/docs/netzo/ui/components/NDarkToggle',
     },
     {
       uid: 'dropdown',
@@ -863,7 +863,7 @@ export default {
       description: 'Select options from a dropdown menu.',
       icon: 'i-mdi-form-dropdown',
       // src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/components/dropdown.svg',
-      href: '/docs/netzo/components/NDropdown',
+      href: '/docs/netzo/ui/components/NDropdown',
     },
     {
       uid: 'icon',
@@ -872,7 +872,7 @@ export default {
       description: 'Display an icon symbol.',
       icon: 'i-mdi-shape',
       // src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/components/icon.svg',
-      href: '/docs/netzo/components/NIcon',
+      href: '/docs/netzo/ui/components/NIcon',
     },
     {
       uid: 'iconbutton',
@@ -881,7 +881,7 @@ export default {
       description: 'Trigger queries or actions with an icon button.',
       icon: 'i-mdi-button-pointer',
       // src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/components/iconbutton.svg',
-      href: '/docs/netzo/components/NIconButton',
+      href: '/docs/netzo/ui/components/NIconButton',
     },
     {
       uid: 'icontitle',
@@ -890,7 +890,7 @@ export default {
       description: 'Display an icon with a title.',
       icon: 'i-mdi-format-title',
       // src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/components/icontitle.svg',
-      href: '/docs/netzo/components/NIconTitle',
+      href: '/docs/netzo/ui/components/NIconTitle',
     },
     {
       uid: 'link',
@@ -899,7 +899,7 @@ export default {
       description: 'Trigger queries or actions with a hyperlink.',
       icon: 'i-mdi-link',
       // src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/components/link.svg',
-      href: '/docs/netzo/components/NLink',
+      href: '/docs/netzo/ui/components/NLink',
     },
     {
       uid: 'loading',
@@ -908,7 +908,7 @@ export default {
       description: 'Display a loading indicator.',
       icon: 'i-mdi-loading',
       // src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/components/loading.svg',
-      href: '/docs/netzo/components/NLoading',
+      href: '/docs/netzo/ui/components/NLoading',
     },
     {
       uid: 'tip',
@@ -917,7 +917,7 @@ export default {
       description: 'Provide contextual tips and hints.',
       icon: 'i-mdi-information',
       // src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/components/tip.svg',
-      href: '/docs/netzo/components/NTip',
+      href: '/docs/netzo/ui/components/NTip',
     },
     {
       uid: 'checkbox',
@@ -926,7 +926,7 @@ export default {
       description: 'Toggle a boolean value using a checkbox.',
       icon: 'i-mdi-checkbox-marked',
       // src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/components/checkbox.svg',
-      href: '/docs/netzo/components/NCheckbox',
+      href: '/docs/netzo/ui/components/NCheckbox',
     },
     {
       uid: 'form',
@@ -935,7 +935,7 @@ export default {
       description: 'Group inputs and submit their values.',
       icon: 'i-mdi-format-list-group',
       // src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/components/form.svg',
-      href: '/docs/netzo/components/NForm',
+      href: '/docs/netzo/ui/components/NForm',
     },
     {
       uid: 'inputtext',
@@ -944,7 +944,7 @@ export default {
       description: 'Enter a single line of text.',
       icon: 'i-mdi-form-textbox',
       // src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/components/inputtext.svg',
-      href: '/docs/netzo/components/NInputText',
+      href: '/docs/netzo/ui/components/NInputText',
     },
     {
       uid: 'inputdate',
@@ -953,7 +953,7 @@ export default {
       description: 'Select or enter a date.',
       icon: 'i-mdi-calendar',
       // src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/components/inputdate.svg',
-      href: '/docs/netzo/components/NInputDate',
+      href: '/docs/netzo/ui/components/NInputDate',
     },
     {
       uid: 'inputdaterange',
@@ -962,7 +962,7 @@ export default {
       description: 'Specify start and end dates for a range.',
       icon: 'i-mdi-calendar-range',
       // src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/components/inputdaterange.svg',
-      href: '/docs/netzo/components/NInputDateRange',
+      href: '/docs/netzo/ui/components/NInputDateRange',
     },
     {
       uid: 'radio',
@@ -971,7 +971,7 @@ export default {
       description: 'Select one value from a set of options.',
       icon: 'i-mdi-radiobox-marked',
       // src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/components/radio.svg',
-      href: '/docs/netzo/components/NRadio',
+      href: '/docs/netzo/ui/components/NRadio',
     },
     {
       uid: 'select',
@@ -980,7 +980,7 @@ export default {
       description: 'Select or enter a single value from a dropdown.',
       icon: 'i-mdi-form-select',
       // src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/components/select.svg',
-      href: '/docs/netzo/components/NSelect',
+      href: '/docs/netzo/ui/components/NSelect',
     },
     {
       uid: 'switch',
@@ -989,7 +989,7 @@ export default {
       description: 'Toggle a boolean value using a switch.',
       icon: 'i-mdi-toggle-switch',
       // src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/components/switch.svg',
-      href: '/docs/netzo/components/NSwitch',
+      href: '/docs/netzo/ui/components/NSwitch',
     },
     {
       uid: 'card',
@@ -998,7 +998,7 @@ export default {
       description: 'Group components in a card.',
       icon: 'i-mdi-card-text',
       // src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/components/card.svg',
-      href: '/docs/netzo/components/NCard',
+      href: '/docs/netzo/ui/components/NCard',
     },
     {
       uid: 'panelgrids',
@@ -1007,7 +1007,7 @@ export default {
       description: 'Organize components in a grid layout.',
       icon: 'i-mdi-view-grid',
       // src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/components/panelgrids.svg',
-      href: '/docs/netzo/components/NPanelGrids',
+      href: '/docs/netzo/ui/components/NPanelGrids',
     },
     {
       uid: 'sectionblock',
@@ -1016,7 +1016,7 @@ export default {
       description: 'Group components in a section block.',
       icon: 'i-mdi-view-sequential',
       // src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/components/sectionblock.svg',
-      href: '/docs/netzo/components/NSectionBlock',
+      href: '/docs/netzo/ui/components/NSectionBlock',
     },
     {
       uid: 'dialog',
@@ -1025,7 +1025,7 @@ export default {
       description: 'Display a modal dialog overlay.',
       icon: 'i-mdi-window-maximize',
       // src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/components/dialog.svg',
-      href: '/docs/netzo/components/NDialog',
+      href: '/docs/netzo/ui/components/NDialog',
     },
   ].sort((a, b) => a.uid.localeCompare(b.uid)),
 }

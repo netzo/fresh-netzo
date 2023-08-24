@@ -1,6 +1,6 @@
 import type { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown, MoreHorizontal } from "lucide-react";
-import { Button } from "netzo/components/ui/button.tsx";
+import { Button } from "netzo/ui/components/ui/button.tsx";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -8,8 +8,8 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "netzo/components/ui/dropdown-menu.tsx";
-import { Checkbox } from "netzo/components/ui/checkbox.tsx";
+} from "netzo/ui/components/ui/dropdown-menu.tsx";
+import { Checkbox } from "netzo/ui/components/ui/checkbox.tsx";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.

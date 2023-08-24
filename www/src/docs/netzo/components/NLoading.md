@@ -13,7 +13,7 @@ const item = en.components.find(({ uid }) => uid === 'loading')
 ## Usage
 
 ```tsx
-import { NLoading } from 'netzo/components/mod.ts'
+import { NLoading } from 'netzo/ui/components/mod.ts'
 
 export default () => <NLoading />
 ```

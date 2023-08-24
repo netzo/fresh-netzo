@@ -13,7 +13,7 @@ const item = en.components.find(({ uid }) => uid === 'select')
 ## Usage
 
 ```tsx
-import { NSelect } from 'netzo/components/mod.ts'
+import { NSelect } from 'netzo/ui/components/mod.ts'
 
 export default () => <NSelect />
 ```

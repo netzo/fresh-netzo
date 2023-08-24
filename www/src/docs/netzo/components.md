@@ -3,14 +3,14 @@ import SectionDocsCards from '@theme/components/sections/SectionDocsCards.vue'
 import en from '~/locales/en.js'
 </script>
 
-# `netzo/components`
+# `netzo/ui/components`
 
-> [`https://deno.land/x/netzo/components`](https://deno.land/x/netzo/components)
+> [`https://deno.land/x/netzo/ui/components`](https://deno.land/x/netzo/ui/components)
 
-::: tip The `netzo/components` module is still a work in progress.
+::: tip The `netzo/ui/components` module is still a work in progress.
 :::
 
-**The `netzo/components` module is a collection of UI components written in [Preact](https://preactjs.com/) (TSX) and built with [Radix UI](https://www.radix-ui.com/) and [UnoCSS](https://unocss.dev/).** This is not a component library. It is a collection of re-usable components that you can copy and paste into your apps.
+**The `netzo/ui/components` module is a collection of UI components written in [Preact](https://preactjs.com/) (TSX) and built with [Radix UI](https://www.radix-ui.com/) and [UnoCSS](https://unocss.dev/).** This is not a component library. It is a collection of re-usable components that you can copy and paste into your apps.
 
 Pick the components you need. Copy and paste the code into your project and customize to your needs. The code is yours. Use this as a reference to customize the components to your needs. Most components and documentation takes heavy inspiration from [shadcn/ui](https://ui.shadcn.com/).
 
@@ -20,7 +20,7 @@ This approach gives you full ownership and control over the code, allowing you t
 
 The styles of your components should be separate from their implementation. One of the drawback of packaging components into a component library is that the style is coupled with the implementation.
 
-`netzo/components` separates [(unstyled) components](#components) from [styles](#styles). The components are built using headless (unstyled) primitives from `radix-ui` and can be styled however you would like, though we recommend `unocss`. To ease styling, the UnoCSS `netzoPreset` can be used for beautiful and consistent defaults which you can still easily customize however you want.
+`netzo/ui/components` separates [(unstyled) components](#components) from [styles](#styles). The components are built using headless (unstyled) primitives from `radix-ui` and can be styled however you would like, though we recommend `unocss`. To ease styling, the UnoCSS `netzoPreset` can be used for beautiful and consistent defaults which you can still easily customize however you want.
 
 ## Components
 
@@ -87,17 +87,17 @@ You can choose to theme components however you would like. However, we strongly 
 
 Powered by [UnoCSS](https://github.com/antfu/unocss), you can use Tailwind/Windi CSS utilities to quickly customize the look and feel of components. The `netzoPreset` includes component class names with beautiful and consistent defaults which you can still easily customize.
 
-::: warning Requires the [`unocss`](/docs/netzo/plugins/unocss) plugin to be registered as well.
+::: warning Requires the [`unocss`](/docs/netzo/ui/plugins/unocss) plugin to be registered as well.
 :::
 
 ### Theming
 
-The netzo theme is based on the UnoCSS `netzoPreset`. You can find all the default values and available entries in [`netzo/unocss/preset-netzo.ts`](https://github.com/netzo/netzo/blob/main/lib/unocss/preset-netzo.ts). Note that the [`UserConfig`](https://unocss.dev/config) object can be passed additional properties to extend the netzo theme globally.
+The netzo theme is based on the UnoCSS `netzoPreset`. You can find all the default values and available entries in [`netzo/ui/unocss/preset-netzo.ts`](https://github.com/netzo/netzo/blob/main/lib/unocss/preset-netzo.ts). Note that the [`UserConfig`](https://unocss.dev/config) object can be passed additional properties to extend the netzo theme globally.
 
 ::: code-group
 ```ts [main.ts]
-import { unocss } from 'netzo/plugins/unocss/mod.ts'
-import { presetNetzo } from 'netzo/unocss/preset-netzo.ts'
+import { unocss } from 'netzo/ui/plugins/unocss/mod.ts'
+import { presetNetzo } from 'netzo/ui/unocss/preset-netzo.ts'
 
 await start(manifest, {
   plugins: [

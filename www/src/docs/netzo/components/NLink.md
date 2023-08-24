@@ -13,7 +13,7 @@ const item = en.components.find(({ uid }) => uid === 'link')
 ## Usage
 
 ```tsx
-import { NLink } from 'netzo/components/mod.ts'
+import { NLink } from 'netzo/ui/components/mod.ts'
 
 export default () => <NLink />
 ```

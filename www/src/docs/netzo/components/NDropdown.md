@@ -13,7 +13,7 @@ const item = en.components.find(({ uid }) => uid === 'dropdown')
 ## Usage
 
 ```tsx
-import { NDropdown } from 'netzo/components/mod.ts'
+import { NDropdown } from 'netzo/ui/components/mod.ts'
 
 export default () => <NDropdown />
 ```

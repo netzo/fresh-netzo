@@ -13,7 +13,7 @@ const item = en.components.find(({ uid }) => uid === 'inputtext')
 ## Usage
 
 ```tsx
-import { NInputText } from 'netzo/components/mod.ts'
+import { NInputText } from 'netzo/ui/components/mod.ts'
 
 export default () => <NInputText />
 ```

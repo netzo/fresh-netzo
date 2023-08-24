@@ -13,7 +13,7 @@ const item = en.components.find(({ uid }) => uid === 'chip')
 ## Usage
 
 ```tsx
-import { NChip } from 'netzo/components/mod.ts'
+import { NChip } from 'netzo/ui/components/mod.ts'
 
 export default () => <NChip />
 ```

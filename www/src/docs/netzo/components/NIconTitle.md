@@ -13,7 +13,7 @@ const item = en.components.find(({ uid }) => uid === 'icontitle')
 ## Usage
 
 ```tsx
-import { NIconTitle } from 'netzo/components/mod.ts'
+import { NIconTitle } from 'netzo/ui/components/mod.ts'
 
 export default () => <NIconTitle />
 ```

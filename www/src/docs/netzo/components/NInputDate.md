@@ -13,7 +13,7 @@ const item = en.components.find(({ uid }) => uid === 'inputdate')
 ## Usage
 
 ```tsx
-import { NInputDate } from 'netzo/components/mod.ts'
+import { NInputDate } from 'netzo/ui/components/mod.ts'
 
 export default () => <NInputDate />
 ```

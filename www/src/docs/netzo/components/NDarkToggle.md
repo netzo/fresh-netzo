@@ -13,7 +13,7 @@ const item = en.components.find(({ uid }) => uid === 'darktoggle')
 ## Usage
 
 ```tsx
-import { NDarkToggle } from 'netzo/components/mod.ts'
+import { NDarkToggle } from 'netzo/ui/components/mod.ts'
 
 export default () => <NDarkToggle />
 ```

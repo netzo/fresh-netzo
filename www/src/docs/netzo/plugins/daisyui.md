@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/plugins/daisyui.svg" alt="netzo/plugins/daisyui" class="mb-5 w-75px">
+<img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/plugins/daisyui.svg" alt="netzo/ui/plugins/daisyui" class="mb-5 w-75px">
 
 # `daisyui`
 
@@ -9,7 +9,7 @@
 ## Usage
 
 ```ts
-import { daisyui } from 'netzo/plugins/daisyui/mod.ts'
+import { daisyui } from 'netzo/ui/plugins/daisyui/mod.ts'
 
 await start(manifest, {
   plugins: [daisyui()]

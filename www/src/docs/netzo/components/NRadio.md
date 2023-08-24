@@ -13,7 +13,7 @@ const item = en.components.find(({ uid }) => uid === 'radio')
 ## Usage
 
 ```tsx
-import { NRadio } from 'netzo/components/mod.ts'
+import { NRadio } from 'netzo/ui/components/mod.ts'
 
 export default () => <NRadio />
 ```

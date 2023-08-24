@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/plugins/unocss.svg" alt="netzo/plugins/unocss" class="mb-5 w-75px">
+<img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/plugins/unocss.svg" alt="netzo/ui/plugins/unocss" class="mb-5 w-75px">
 
 # `unocss`
 
@@ -9,7 +9,7 @@
 ## Usage
 
 ```ts
-import { unocss } from 'netzo/plugins/unocss/mod.ts'
+import { unocss } from 'netzo/ui/plugins/unocss/mod.ts'
 
 await start(manifest, {
   plugins: [unocss()]

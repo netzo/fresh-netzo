@@ -13,7 +13,7 @@ const item = en.components.find(({ uid }) => uid === 'checkbox')
 ## Usage
 
 ```tsx
-import { NCheckbox } from 'netzo/components/mod.ts'
+import { NCheckbox } from 'netzo/ui/components/mod.ts'
 
 export default () => <NCheckbox />
 ```

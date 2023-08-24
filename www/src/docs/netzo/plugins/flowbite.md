@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/plugins/flowbite.svg" alt="netzo/plugins/flowbite" class="mb-5 w-75px">
+<img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/plugins/flowbite.svg" alt="netzo/ui/plugins/flowbite" class="mb-5 w-75px">
 
 # `flowbite`
 
@@ -9,7 +9,7 @@
 ## Usage
 
 ```ts
-import { flowbite } from 'netzo/plugins/flowbite/mod.ts'
+import { flowbite } from 'netzo/ui/plugins/flowbite/mod.ts'
 
 await start(manifest, {
   plugins: [flowbite()]
