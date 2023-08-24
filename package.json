@@ -1,0 +1,14 @@
+{
+  "name": "@netzo/website",
+  "type": "module",
+  "version": "0.1.0",
+  "description": "Netzo official website",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "scripts": {
+    "www:dev": "vitepress dev www",
+    "www:build": "vitepress build www && tsx ./www/.vitepress/plugins/gen-feed.plugin",
+    "www:preview": "vitepress preview www"
+  }
+}
