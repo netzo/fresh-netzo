@@ -2,6 +2,10 @@
 _wip
 *.options.ts
 
+# www
+www/.vitepress/cache
+www/.vitepress/dist
+
 # Logs
 logs
 *.log
