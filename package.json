@@ -7,8 +7,8 @@
     "node": ">=16.0.0"
   },
   "scripts": {
-    "www:dev": "vitepress dev www",
-    "www:build": "vitepress build www && tsx ./www/.vitepress/plugins/gen-feed.plugin",
-    "www:preview": "vitepress preview www"
+    "www:dev": "npx vitepress dev www",
+    "www:build": "npx vitepress build www && npx tsx ./www/.vitepress/plugins/gen-feed.plugin",
+    "www:preview": "npx vitepress preview www"
   }
 }
