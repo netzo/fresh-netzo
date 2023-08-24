@@ -7,8 +7,10 @@
     "node": ">=16.0.0"
   },
   "scripts": {
-    "www:dev": "npx vitepress dev www",
-    "www:build": "npx vitepress build www && npx tsx ./www/.vitepress/plugins/gen-feed.plugin",
-    "www:preview": "npx vitepress preview www"
+    "www:dev": "vitepress dev www",
+    "www:build": "vitepress build www && tsx ./www/.vitepress/plugins/gen-feed.plugin",
+    "www:serve": "vitepress serve www",
+    "www:lint": "eslint 'www/**/*.{js,ts,vue,md}' --ignore-path .gitignore",
+    "www:lint:fix": "eslint 'www/**/*.{js,ts,vue,md}' --ignore-path .gitignore --fix"
   }
 }
