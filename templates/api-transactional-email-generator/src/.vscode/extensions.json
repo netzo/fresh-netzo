@@ -1,6 +1,7 @@
 {
   "recommendations": [
     "denoland.vscode-deno",
+    "antfu.iconify",
     "antfu.file-nesting",
     "antfu.unocss"
   ]

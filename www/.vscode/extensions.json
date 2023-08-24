@@ -1,12 +1,13 @@
 {
   "recommendations": [
-    "antfu.vite",
-    "vue.volar",
-    "lokalise.i18n-ally",
     "antfu.iconify",
+    "antfu.file-nesting",
+    "antfu.unocss",
     "dbaeumer.vscode-eslint",
-    "voorjaar.windicss-intellisense",
     "josa.markdown-table-formatter",
+    "lokalise.i18n-ally",
+    "vue.volar",
+    "voorjaar.windicss-intellisense",
     "zcong1993.markdown-table-generator"
   ]
 }

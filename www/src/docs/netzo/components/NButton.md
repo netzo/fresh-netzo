@@ -40,5 +40,5 @@ interface NButtonProps extends JSX.HTMLAttributes<HTMLButtonElement> {
 ### Button with icon
 
 ::: code-group
-<<< @/../../lib/components/example/button-with-icon.tsx
+<<< @/../../lib/components/example/button.with-icon.tsx
 :::
