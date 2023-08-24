@@ -1,0 +1,35 @@
+.VPHome {
+  padding-bottom: 0px !important;
+}
+
+.VPNavBarTitle {
+  display: flex;
+  align-items: center;
+  padding-top: 1px;
+  text-transform: lowercase !important;
+}
+
+.VPNavBarTitle .VPImage {
+  height: 38px;
+}
+
+.VPNavBarSocialLinks {
+  display: none !important;
+}
+
+@media (min-width: 1280px) {
+  .VPNavBarSocialLinks {
+    display: flex !important;
+   }
+}
+
+.VPFooter {
+  border-top: 1px solid var(--vp-c-bg-soft) !important;
+  padding: 23px 0 24px !important;
+  background-color: var(--vp-c-bg-soft) !important;
+  transition: border-top 0.5s, background-color 0.5s !important;
+}
+
+.dark .VPFooter {
+  background-color: var(--vp-c-bg) !important;
+}

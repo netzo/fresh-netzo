@@ -1,0 +1,23 @@
+{
+  "hash": "ad43a6a6",
+  "browserHash": "e454d35b",
+  "optimized": {
+    "vue": {
+      "src": "../../../node_modules/vue/dist/vue.runtime.esm-bundler.js",
+      "file": "vue.js",
+      "fileHash": "a984283d",
+      "needsInterop": false
+    },
+    "@formkit/vue": {
+      "src": "../../../node_modules/@formkit/vue/dist/index.mjs",
+      "file": "@formkit_vue.js",
+      "fileHash": "3910ac58",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-CZGXVFL7": {
+      "file": "chunk-CZGXVFL7.js"
+    }
+  }
+}

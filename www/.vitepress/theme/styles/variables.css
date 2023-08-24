@@ -1,0 +1,211 @@
+/**
+ * Magic Numbers
+ * -------------------------------------------------------------------------- */
+
+ :root {
+  --vp-sidebar-width: 310px;
+ }
+
+/**
+ * Colors
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --vp-c-primary: #0080FF;
+  --vp-c-primary-light: #69afff;
+  --vp-c-primary-lighter: #b2d8ff;
+  --vp-c-primary-lightest: #cce5ff;
+  --vp-c-primary-dark: #0055cb;
+  --vp-c-primary-darker: #003b8e;
+  --vp-c-primary-dimm: rgba(0, 128, 255, 0.08);
+
+  --vp-c-secondary: #01E0CB;
+  --vp-c-secondary-light: #6dfff3;
+  --vp-c-secondary-dark: #026F6F;
+
+  --vp-c-accent: #ff3b7c;
+  --vp-c-accent-light: #FF5D96;
+  --vp-c-accent-dark: #DF0263;
+
+  /* brand colors required by vitepress built-in components */
+
+  --vp-c-brand: var(--vp-c-primary);
+  --vp-c-brand-light: var(--vp-c-primary-light);
+  --vp-c-brand-lighter: var(--vp-c-primary-lighter);
+  --vp-c-brand-lightest: var(--vp-c-primary-lightest);
+  --vp-c-brand-dark: var(--vp-c-primary-dark);
+  --vp-c-brand-darker: var(--vp-c-primary-darker);
+  --vp-c-brand-dimm: var(--vp-c-primary-dimm);
+
+  /* black/gray/white colors */
+
+  --vp-c-white: #ffffff;
+  --vp-c-white-soft: #F9F9F9;
+  --vp-c-white-mute: #DDDDDD;
+
+  --vp-c-gray: #8e8e8e;
+  --vp-c-gray-light-1: #aeaeae;
+  --vp-c-gray-light-2: #c7c7c7;
+  --vp-c-gray-light-3: #d1d1d1;
+  --vp-c-gray-light-4: #e5e5e5;
+  --vp-c-gray-light-5: #f2f2f2;
+  --vp-c-gray-dark-1: #636363;
+  --vp-c-gray-dark-2: #484848;
+  --vp-c-gray-dark-3: #3a3a3a;
+  --vp-c-gray-dark-4: #282828;
+  --vp-c-gray-dark-5: #202020;
+
+  --vp-c-black: #000000;
+  --vp-c-black-soft: #121212;
+  --vp-c-black-mute: #1c1c1c;
+
+  /* dividers */
+
+  --vp-c-divider-light-1: rgba(60, 60, 60, 0.29);
+  --vp-c-divider-light-2: rgba(60, 60, 60, 0.12);
+  --vp-c-divider-dark-1: rgba(84, 84, 84, 0.65);
+  --vp-c-divider-dark-2: rgba(84, 84, 84, 0.48);
+}
+
+/**
+ * Colors Theme
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --vp-c-bg: var(--vp-c-white);
+  --vp-c-bg-soft: var(--vp-c-white-soft);
+  --vp-c-bg-mute: var(--vp-c-white-mute);
+
+  --vp-c-divider: var(--vp-c-divider-light-1);
+  --vp-c-divider-light: var(--vp-c-divider-light-2);
+
+  --vp-c-divider-inverse: var(--vp-c-divider-dark-1);
+  --vp-c-divider-inverse-light: var(--vp-c-divider-dark-2);
+
+  --vp-c-text-1: var(--vp-c-text-light-1);
+  --vp-c-text-2: var(--vp-c-text-light-2);
+  --vp-c-text-3: var(--vp-c-text-light-3);
+  --vp-c-text-4: var(--vp-c-text-light-4);
+  --vp-c-text-code: var(--vp-c-text-light-code);
+}
+
+.dark {
+  --vp-c-bg: var(--vp-c-black);
+  --vp-c-bg-soft: var(--vp-c-black-soft);
+  --vp-c-bg-mute: var(--vp-c-black-mute);
+
+  --vp-c-divider: var(--vp-c-divider-dark-1);
+  --vp-c-divider-light: var(--vp-c-divider-dark-2);
+
+  --vp-c-divider-inverse: var(--vp-c-divider-light-1);
+  --vp-c-divider-inverse-light: var(--vp-c-divider-light-2);
+
+  --vp-c-text-1: var(--vp-c-text-dark-1);
+  --vp-c-text-2: var(--vp-c-text-dark-2);
+  --vp-c-text-3: var(--vp-c-text-dark-3);
+  --vp-c-text-4: var(--vp-c-text-dark-4);
+  --vp-c-text-code: var(--vp-c-text-dark-code);
+}
+
+/**
+ * Component: Button
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --vp-button-brand-border: var(--vp-c-primary-light);
+  --vp-button-brand-text: var(--vp-c-text-dark-1);
+  --vp-button-brand-bg: var(--vp-c-primary);
+  --vp-button-brand-hover-border: var(--vp-c-primary-light);
+  --vp-button-brand-hover-text: var(--vp-c-text-dark-1);
+  --vp-button-brand-hover-bg: var(--vp-c-primary-light);
+  --vp-button-brand-active-border: var(--vp-c-primary-light);
+  --vp-button-brand-active-text: var(--vp-c-text-dark-1);
+  --vp-button-brand-active-bg: var(--vp-button-brand-bg);
+}
+
+/**
+ * Component: Home
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: -webkit-linear-gradient(
+    120deg,
+    var(--vp-c-secondary) 30%,
+    var(--vp-c-primary)
+  );
+
+  --vp-home-hero-image-background-image: linear-gradient(
+    -45deg,
+    var(--vp-c-secondary) 50%,
+    var(--vp-c-primary) 50%
+  );
+  --vp-home-hero-image-filter: blur(40px);
+}
+
+@media (min-width: 640px) {
+  :root {
+    --vp-home-hero-image-filter: blur(56px);
+  }
+}
+
+@media (min-width: 960px) {
+  :root {
+    --vp-home-hero-image-filter: blur(72px);
+  }
+}
+
+/**
+ * Component: Custom Block
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --vp-custom-block-tip-border: var(--vp-c-primary);
+  --vp-custom-block-tip-text: var(--vp-c-primary-darker);
+  --vp-custom-block-tip-bg: var(--vp-c-primary-dimm);
+}
+
+.dark {
+  --vp-custom-block-tip-border: var(--vp-c-primary);
+  --vp-custom-block-tip-text: var(--vp-c-primary-lightest);
+  --vp-custom-block-tip-bg: var(--vp-c-primary-dimm);
+}
+
+/**
+ * Component: Algolia
+ * -------------------------------------------------------------------------- */
+
+.DocSearch {
+  --docsearch-primary-color: var(--vp-c-primary) !important;
+}
+
+/**
+ * VitePress: Custom fix
+ * -------------------------------------------------------------------------- */
+
+/*
+  Use lighter colors for links in dark mode for a11y.
+  Also specify some classes twice to have higher specificity
+  over scoped class data attribute.
+*/
+.dark .vp-doc a,
+.dark .vp-doc a > code,
+.dark .VPNavBarMenuLink.VPNavBarMenuLink:hover,
+.dark .VPNavBarMenuLink.VPNavBarMenuLink.active,
+.dark .link.link:hover,
+.dark .link.link.active,
+.dark .edit-link-button.edit-link-button,
+.dark .pager-link .title {
+  color: var(--vp-c-primary-lighter);
+}
+
+.dark .vp-doc a:hover,
+.dark .vp-doc a > code:hover {
+  color: var(--vp-c-primary-lightest);
+  opacity: 1;
+}
+
+/* Transition by color instead of opacity */
+.dark .vp-doc .custom-block a {
+  transition: color 0.25s;
+}
