@@ -149,6 +149,8 @@ Apply it to parent components could make a local theme scope and both children c
 
 ## Credits
 
-- [shadcn/ui](https://ui.shadcn.com/)
-- [Radix UI](https://www.radix-ui.com/)
-- [UnoCSS](https://unocss.dev/)
+- [`shadcn/ui`](https://ui.shadcn.com/)
+- [`radix-ui`](https://www.radix-ui.com/)
+- [`unocss`](https://unocss.dev/)
+- [`@tanstack/react-table`](https://tanstack.com/table/v8)
+- [`cmdk`](https://cmdk.paco.me/)
