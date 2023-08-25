@@ -39,7 +39,7 @@ Find all publications a user is subscribed to, writes to, or edits.
 import type { Publications } from 'netzo/apis/medium/types.ts'
 
 const result = await api.users[USER_ID].publications.get<Publications>()
-const data = result.data
+const resultData = result.data
 ```
 
 ### Get user
@@ -50,7 +50,7 @@ Get the authenticated user's info.
 import type { User } from 'netzo/apis/medium/types.ts'
 
 const result = await api.me.get<User>()
-const data = result.data
+const resultData = result.data
 ```
 
 ### Add post
@@ -66,7 +66,7 @@ const payload: QueryPost = {
   content: '<h1>New title</h1><p>This is new post content</p>'
 }
 const result = await api.users[AUTHOR_ID].posts.post<Post>(payload)
-const data = result.data
+const resultData = result.data
 ```
 
 ## References

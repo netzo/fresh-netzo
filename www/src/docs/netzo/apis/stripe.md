@@ -41,7 +41,7 @@ import type { QuerySubscriptions, Subscriptions } from 'netzo/apis/stripe/types.
 
 const query: QuerySubscriptions = {}
 const result = await api.subscriptions.get<Subscriptions>(query)
-const data = result.data
+const resultData = result.data
 ```
 
 ### Find subscription items
@@ -53,7 +53,7 @@ import type { QuerySubscriptionItems, SubscriptionItems } from 'netzo/apis/strip
 
 const query: QuerySubscriptionItems = { subscription: SUBSCRIPTION_ID }
 const result = await api.subscription_items.get<SubscriptionItems>(query)
-const data = result.data
+const resultData = result.data
 ```
 
 ###  Find customers
@@ -65,7 +65,7 @@ import type { Customers, QueryCustomers } from 'netzo/apis/stripe/types.ts'
 
 const query: QueryCustomers = {}
 const result = await api.customers.get<Customers>(query)
-const data = result.data
+const resultData = result.data
 ```
 
 ### Find invoices
@@ -77,7 +77,7 @@ import type { Invoices, QueryInvoices } from 'netzo/apis/stripe/types.ts'
 
 const query: QueryInvoices = {}
 const result = await api.invoices.get<Invoices>(query)
-const data = result.data
+const resultData = result.data
 ```
 
 ### Find charges
@@ -89,7 +89,7 @@ import type { Charges, QueryCharges } from 'netzo/apis/stripe/types.ts'
 
 const query: QueryCharges = {}
 const result = await api.charges.get<Charges>(query)
-const data = result.data
+const resultData = result.data
 ```
 
 ### Find plans
@@ -101,7 +101,7 @@ import type { Plans, QueryPlans } from 'netzo/apis/stripe/types.ts'
 
 const query: QueryPlans = {}
 const result = await api.plans.get<Plans>(query)
-const data = result.data
+const resultData = result.data
 ```
 
 ### Find transactions
@@ -113,7 +113,7 @@ import type { QueryTransactions, Transactions } from 'netzo/apis/stripe/types.ts
 
 const query: QueryTransactions = {}
 const result = await api.transactions.get<Transactions>(query)
-const data = result.data
+const resultData = result.data
 ```
 
 ## References

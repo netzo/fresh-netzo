@@ -37,11 +37,11 @@ The following examples assume you have [created an api client instance](#usage).
 Find all contacts with optional filtering and pagination.
 
 ```ts
-import type { Contacts, QueryContacts } from 'netzo/apis/brevo/mod.ts'
+import type { Contacts, QueryContacts } from 'netzo/apis/brevo/types.ts'
 
 const query: QueryContacts = {}
 const result = await api.contacts.get<Contacts>(query)
-const data = result.contacts
+const resultData = result.contacts
 ```
 
 ### Get contact
@@ -49,10 +49,10 @@ const data = result.contacts
 Get a contact by its unique identifier, which can be id, email or SMS attribute value.
 
 ```ts
-import type { Contact, QueryContact } from 'netzo/apis/brevo/mod.ts'
+import type { Contact, QueryContact } from 'netzo/apis/brevo/types.ts'
 
 const query: QueryContact = {}
-const data = await api.contacts[CONTACT_IDENTIFIER].get<Contact>(query)
+const resultData = await api.contacts[CONTACT_IDENTIFIER].get<Contact>(query)
 ```
 
 ### Add contact
@@ -60,10 +60,10 @@ const data = await api.contacts[CONTACT_IDENTIFIER].get<Contact>(query)
 Add a new contact.
 
 ```ts
-import type { QueryAddContact } from 'netzo/apis/brevo/mod.ts'
+import type { QueryAddContact } from 'netzo/apis/brevo/types.ts'
 
 const payload: QueryContact = { email: 'example@email.com' }
-const data = await api.contacts.post<{ id: number }>(payload)
+const resultData = await api.contacts.post<{ id: number }>(payload)
 ```
 
 ### Update contact
@@ -71,7 +71,7 @@ const data = await api.contacts.post<{ id: number }>(payload)
 Update a contact by its unique identifier, which can be id, email or SMS attribute value.
 
 ```ts
-import type { QueryUpdateContact } from 'netzo/apis/brevo/mod.ts'
+import type { QueryUpdateContact } from 'netzo/apis/brevo/types.ts'
 
 const payload: QueryUpdateContact = {
   attributes: {
@@ -86,11 +86,11 @@ await api.contacts[CONTACT_IDENTIFIER].put<void>(payload)
 Find all email campaigns that match the query.
 
 ```ts
-import type { EmailCampaigns, QueryEmailCampaigns } from 'netzo/apis/brevo/mod.ts'
+import type { EmailCampaigns, QueryEmailCampaigns } from 'netzo/apis/brevo/types.ts'
 
 const query: QueryEmailCampaigns = {}
 const result = await api.emailCampaigns.get<EmailCampaigns>(query)
-const data = result.campaigns
+const resultData = result.campaigns
 ```
 
 ### Find companies
@@ -98,11 +98,11 @@ const data = result.campaigns
 Find all companies with optional filtering and pagination.
 
 ```ts
-import type { Companies, QueryCompanies } from 'netzo/apis/brevo/mod.ts'
+import type { Companies, QueryCompanies } from 'netzo/apis/brevo/types.ts'
 
 const query: QueryCompanies = {}
 const result = await api.companies.get<Companies>(query)
-const data = result.items
+const resultData = result.items
 ```
 
 ## References

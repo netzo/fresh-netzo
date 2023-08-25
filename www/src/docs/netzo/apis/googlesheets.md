@@ -54,7 +54,7 @@ The resultToRows function returns your data as key-value pairs, assuming the top
 import type { ValueRange } from 'netzo/apis/googlesheets/types.ts'
 
 const result = await api.values[RANGE].get<ValueRange>()
-const data = result.values
+const resultData = result.values
 const rows = resultToRows(result)
 ```
 
@@ -69,7 +69,7 @@ import type { ValueRange } from 'netzo/apis/googlesheets/types.ts'
 
 const index = 1
 const result = await api.values[RANGE].get<ValueRange>()
-const data = result.values[index]
+const resultData = result.values[index]
 const row = resultToRows(result)[index - 1]
 ```
 
@@ -90,7 +90,7 @@ const query: QueryAddOrUpdateRows = {
 const payload: RequestAddOrUpdateValues = { values: [['value1', 'value2', 'value3']] }
 
 const result = await api.values[`${RANGE_TO_INSERT}:append`].post<AddValuesResponse>(payload, query)
-const data = result.updates.updatedData.values
+const resultData = result.updates.updatedData.values
 ```
 
 ### Update row
@@ -106,7 +106,7 @@ const query: QueryAddOrUpdateRows = {
 }
 const payload: RequestAddOrUpdateValues = { values: [['updatedValue1', 'updatedValue2', 'updatedValue3']] }
 const result = await api.values[RANGE_TO_UPDATE].put<UpdateValuesResponse>(payload, query)
-const data = result.updatedData.values
+const resultData = result.updatedData.values
 ```
 
 ### Delete row
@@ -116,7 +116,7 @@ Delete a row by specifying the range.
 ```ts
 import type { DeleteValuesResponse } from 'netzo/apis/googlesheets/types.ts'
 
-const data = await api.values[`${RANGE_TO_DELETE}:clear`].post<DeleteValuesResponse>()
+const resultData = await api.values[`${RANGE_TO_DELETE}:clear`].post<DeleteValuesResponse>()
  ```
 
 ## References

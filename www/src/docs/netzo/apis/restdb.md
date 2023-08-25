@@ -41,7 +41,7 @@ Find records from a collection.
 ```ts
 import type { Record } from 'netzo/apis/restdb/types.ts'
 
-const data = await api[COLLECTION_NAME].get<Record[]>()
+const resultData = await api[COLLECTION_NAME].get<Record[]>()
 ```
 
 ### Add record
@@ -52,7 +52,7 @@ Add a new record to a collection.
 import type { AddOrUpdateRecordResponse, Record } from 'netzo/apis/restdb/types.ts'
 
 const payload: Record = { title: 'New title' }
-const data = await api[COLLECTION_NAME].post<AddOrUpdateRecordResponse>(payload)
+const resultData = await api[COLLECTION_NAME].post<AddOrUpdateRecordResponse>(payload)
 ```
 
 ### Update record
@@ -63,7 +63,7 @@ Update a record by id.
 import type { AddOrUpdateRecordResponse, Record } from 'netzo/apis/restdb/types.ts'
 
 const payload: Record = { title: 'Updated title' }
-const data = await api[COLLECTION_NAME][RECORD_ID].patch<AddOrUpdateRecordResponse>(payload)
+const resultData = await api[COLLECTION_NAME][RECORD_ID].patch<AddOrUpdateRecordResponse>(payload)
 ```
 
 ### Delete record
@@ -74,7 +74,7 @@ Delete a record by id.
 import type { DeleteRecordResponse } from 'netzo/apis/restdb/types.ts'
 
 const result = await api[COLLECTION_NAME][RECORD_ID].delete<DeleteRecordResponse>()
-const data = result.result
+const resultData = result.result
 ```
 
 ## References

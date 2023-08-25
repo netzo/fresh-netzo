@@ -42,7 +42,7 @@ import type { Campaigns, QueryCampaigns } from 'netzo/apis/mailchimpmarketing/ty
 
 const query: QueryCampaigns = {}
 const result = await api.campaigns.get<Campaigns>(query)
-const data = result.campaigns
+const resultData = result.campaigns
 ```
 
 ### Get campaign
@@ -53,7 +53,7 @@ Get a campaign by id.
 import type { Campaign, QueryCampaign } from 'netzo/apis/mailchimpmarketing/types.ts'
 
 const query: QueryCampaign = {}
-const data = await api.campaigns[CAMPAIGN_ID].get<Campaign>(query)
+const resultData = await api.campaigns[CAMPAIGN_ID].get<Campaign>(query)
 ```
 
 ### Get campaign content
@@ -64,7 +64,7 @@ Get the content of a campaign by id.
 import type { CampaignContent, QueryCampaign } from 'netzo/apis/mailchimpmarketing/types.ts'
 
 const query: QueryCampaign = {}
-const data = await api.campaigns[CAMPAIGN_ID].content.get<CampaignContent>(query)
+const resultData = await api.campaigns[CAMPAIGN_ID].content.get<CampaignContent>(query)
 ```
 
 ### Update campaign content
@@ -75,7 +75,7 @@ Set the content of a campaign by id.
 import type { CampaignContent, QueryUpdateCampaignContent } from 'netzo/apis/mailchimpmarketing/types.ts'
 
 const payload: QueryUpdateCampaignContent = { url: 'html-source@example.com' }
-const data = await api.campaigns[CAMPAIGN_ID].content.put<CampaignContent>(payload)
+const resultData = await api.campaigns[CAMPAIGN_ID].content.put<CampaignContent>(payload)
 ```
 
 ### Schedule campaign
@@ -86,7 +86,7 @@ Schedule a campaign for delivery.
 import type { QueryScheduleCampaign } from 'netzo/apis/mailchimpmarketing/types.ts'
 
 const payload: QueryScheduleCampaign = { schedule_time: '2024-05-30T15:00' }
-const data = await api.campaigns[CAMPAIGN_ID].post<{}>(payload)
+const resultData = await api.campaigns[CAMPAIGN_ID].post<{}>(payload)
 ```
 
 ## References

@@ -40,7 +40,7 @@ import type { MailingLists, QueryMailingLists } from  'netzo/apis/mailgun/types.
 
 const query: QueryMailingLists = {}
 const result = await api.v3.lists.pages.get<MailingLists>(query)
-const data = result.items
+const resultData = result.items
 ```
 
 ### Add mailing list
@@ -55,7 +55,7 @@ const payload: QueryAddMailingList = {
     name: 'Newsletter'
  }
 const result = await api.v3.lists.post<QueryAddMailingList>(payload)
-const data = result.list
+const resultData = result.list
 ```
 
 ### Update mailing list
@@ -69,7 +69,7 @@ const payload: QueryUpdateMailingList = {
     name: 'Updated name'
  }
 const result = await api.v3.lists[LIST_ADDRESS].put<QueryUpdateMailingList>(payload)
-const data = result.list
+const resultData = result.list
 ```
 
 ### Add member to mailing list
@@ -83,7 +83,7 @@ const payload: QueryAddMember = {
     address: 'example@email.com'
  }
 const result = await api.v3.lists[LIST_ADDRESS].members.post<QueryUpdateMailingList>(payload)
-const data = result.member
+const resultData = result.member
 ```
 
 ### Delete mailing list member
@@ -93,7 +93,7 @@ Remove an email from a mailing list.
 ```ts
 import type { DeleteMemberResponse } from  'netzo/apis/mailgun/types.ts'
 
-const data = await api.v3.lists[LIST_ADDRESS].members[MEMBER_ADDRESS].delete<DeleteMemberResponse>()
+const resultData = await api.v3.lists[LIST_ADDRESS].members[MEMBER_ADDRESS].delete<DeleteMemberResponse>()
 ```
 
 ## References

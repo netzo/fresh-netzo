@@ -44,7 +44,7 @@ import type { Customers, QueryCustomers } from 'netzo/apis/shopify/types.ts'
 
 const query: QueryCustomers = {}
 const result = await api['customers.json'].get<Customers>(query)
-const data = result.customers
+const resultData = result.customers
 ```
 
 ### Get customer
@@ -58,7 +58,7 @@ import type { Customer } from 'netzo/apis/shopify/types.ts'
 
 const query: { fields: string } = {}
 const result = await api.customers[`${CUSTOMER_ID}.json`].get<Customer>(fields)
-const data = result.customer
+const resultData = result.customer
 ```
 
 ### Find customer's orders
@@ -70,7 +70,7 @@ import type { OrderStatus, OrdersByCustomer } from 'netzo/apis/shopify/types.ts'
 
 const query: OrderStatus = 'any'
 const result = await api.customers[CUSTOMER_ID]['orders.json'].get<OrdersByCustomer>(query)
-const data = result.orders
+const resultData = result.orders
 ```
 
 ###  Add customer
@@ -88,7 +88,7 @@ const payload: AddOrUpdateCustomer = {
   }
 }
 const result = await api['customers.json'].post<AddOrUpdateCustomerResponse>(payload)
-const data = result.customer
+const resultData = result.customer
 ```
 
 ###  Update customer
@@ -104,7 +104,7 @@ const payload: AddOrUpdateCustomer = {
   }
 }
 const result = await api.customers[`${CUSTOMER_ID}.json`].put<AddOrUpdateCustomerResponse>(payload)
-const data = result.customer
+const resultData = result.customer
 ```
 
 ### Find orders
@@ -116,7 +116,7 @@ import type { Orders, QueryOrders } from 'netzo/apis/shopify/types.ts'
 
 const query: QueryOrders = {}
 const result = await api['orders.json'].get<Orders>(query)
-const data = result.orders
+const resultData = result.orders
 ```
 
 ### Get order
@@ -130,7 +130,7 @@ import type { Order } from 'netzo/apis/shopify/types.ts'
 
 const query: { fields: string } = {}
 const result = await api.orders[`${ORDER_ID}.json`].get<Order>(fields)
-const data = result.order
+const resultData = result.order
 ```
 
 ###  Find products
@@ -142,7 +142,7 @@ import type { Products, QueryProducts } from 'netzo/apis/shopify/types.ts'
 
 const query: QueryProducts = {}
 const result = await api['products.json'].get<Products>(query)
-const data = result.products
+const resultData = result.products
 ```
 
 ### Get product
@@ -156,7 +156,7 @@ import type { Product } from 'netzo/apis/shopify/types.ts'
 
 const query: { fields: string } = {}
 const result = await api.products[`${PRODUCT_ID}.json`].get<Product>(fields)
-const data = result.product
+const resultData = result.product
 ```
 
 ### Find payouts
@@ -168,7 +168,7 @@ import type { Payouts, QueryPayouts } from 'netzo/apis/shopify/types.ts'
 
 const query: QueryPayouts = {}
 const result = await api.shopify_payments['payouts.json'].get<Payouts>(query)
-const data = result.payouts
+const resultData = result.payouts
 ```
 
 ## References

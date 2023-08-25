@@ -41,7 +41,7 @@ import type { Lists, QueryLists } from 'netzo/apis/sendgrid/types.ts'
 
 const query: QueryLists = {}
 const result = await api.marketing.lists.get<Lists>(query)
-const data = result.result
+const resultData = result.result
 ```
 
 ### Get list
@@ -52,7 +52,7 @@ Get a list by id.
 import type { List, QueryList } from 'netzo/apis/sendgrid/types.ts'
 
 const query: QueryList = {}
-const data = await api.marketing.lists[LIST_ID].get<List>(query)
+const resultData = await api.marketing.lists[LIST_ID].get<List>(query)
 ```
 
 ### Update list name
@@ -63,7 +63,7 @@ Update the name of a list.
 import type { QueryUpdateList, UpdateListResponse } from 'netzo/apis/sendgrid/types.ts'
 
 const payload: QueryUpdateList = { name: 'Updated list name' }
-const data = await api.marketing.lists[LIST_ID].patch<UpdateListResponse>(payload)
+const resultData = await api.marketing.lists[LIST_ID].patch<UpdateListResponse>(payload)
 ```
 
 ### Add contacts to list
@@ -77,7 +77,7 @@ const payload: QueryAddContacts = {
   list_ids: [LIST_ID1, LIST_ID2],
   contacts: [{ email: 'email@example.com' }]
 }
-const data = await api.marketing.contacts.put<AddContactsResponse>(payload)
+const resultData = await api.marketing.contacts.put<AddContactsResponse>(payload)
 ```
 
 ### Send email

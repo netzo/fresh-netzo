@@ -39,9 +39,9 @@ The following examples assume you have [created an api client instance](#usage).
 Get a product by id.
 
 ```ts
-import type { Product } from 'netzo/apis/facturama/mod.ts'
+import type { Product } from 'netzo/apis/facturama/types.ts'
 
-const data = await api.Product[PRODUCT_ID].get<Product>()
+const resultData = await api.Product[PRODUCT_ID].get<Product>()
 ```
 
 ### Add product
@@ -49,7 +49,7 @@ const data = await api.Product[PRODUCT_ID].get<Product>()
 Add a new product.
 
 ```ts
-import type { Product, QueryAddProduct } from 'netzo/apis/facturama/mod.ts'
+import type { Product, QueryAddProduct } from 'netzo/apis/facturama/types.ts'
 
 const payload: QueryAddProduct = {
   name: 'New Product',
@@ -57,7 +57,7 @@ const payload: QueryAddProduct = {
   price: 100,
   unit: 'service'
 }
-const data = await api.Product.post<Product>(payload)
+const resultData = await api.Product.post<Product>(payload)
 ```
 
 ### Update product
@@ -65,7 +65,7 @@ const data = await api.Product.post<Product>(payload)
 Update a product by id.
 
 ```ts
-import type { QueryUpdateProduct } from 'netzo/apis/facturama/mod.ts'
+import type { QueryUpdateProduct } from 'netzo/apis/facturama/types.ts'
 
 const payload: QueryUpdateProduct = { description: 'Updated description' }
 await api.Product[PRODUCT_ID].put<void>(payload)
@@ -76,9 +76,9 @@ await api.Product[PRODUCT_ID].put<void>(payload)
 Delete a product by id.
 
 ```ts
-import type { Product } from 'netzo/apis/facturama/mod.ts'
+import type { Product } from 'netzo/apis/facturama/types.ts'
 
-const data = await api.Product[PRODUCT_ID].delete<Product>()
+const resultData = await api.Product[PRODUCT_ID].delete<Product>()
 ```
 
 ## References

@@ -44,7 +44,7 @@ import type { QuerySite, Site } from 'netzo/apis/wix/types.ts'
 
 const query: QuerySite = {}
 const result = await api['site-properties'].v4.properties.get<Site>(query)
-const data = result.properties
+const resultData = result.properties
 ```
 
 ### Find contacts
@@ -56,7 +56,7 @@ import type { Contacts, QueryContacts } from 'netzo/apis/wix/types.ts'
 
 const query: QueryContacts = {}
 const result = await api.contacts.v4.contacts.get<Contacts>(query)
-const data = result.contacts
+const resultData = result.contacts
 ```
 
 ### Add contact
@@ -70,7 +70,7 @@ const payload: QueryAddContact = {
   info: { name: { first: 'John', last: 'Doe' } }
 }
 const result = await api.contacts.v4.contacts.post<Contact>(payload)
-const data = result.contact
+const resultData = result.contact
 ```
 
 ### Update contact
@@ -85,7 +85,7 @@ const payload: QueryUpdateContact = {
   info: { name: { first: 'Jane', last: 'Doe' } }
 }
 const result = await api.contacts.v4.contacts[CONTACT_ID].patch<Contact>(payload)
-const data = result.contact
+const resultData = result.contact
 ```
 
 ### Delete contact
@@ -93,7 +93,7 @@ const data = result.contact
 Delete a contact by id.
 
 ```ts
-const data = await api.contacts.v4.contacts[CONTACT_ID].delete<{}>()
+const resultData = await api.contacts.v4.contacts[CONTACT_ID].delete<{}>()
 ```
 
 ## References

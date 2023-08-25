@@ -36,11 +36,11 @@ The following examples assume you have [created an api client instance](#usage).
 Find all lists that match the query.
 
 ```ts
-import type { Lists, QueryLists } from 'netzo/apis/clickup/mod.ts'
+import type { Lists, QueryLists } from 'netzo/apis/clickup/types.ts'
 
 const query: QueryLists = {}
 const result = await api.folder[FOLDER_ID].list.get<Lists>(query)
-const data = result.lists
+const resultData = result.lists
 ```
 
 ### Get list
@@ -48,9 +48,9 @@ const data = result.lists
 Get a list by id.
 
 ```ts
-import type { List } from 'netzo/apis/clickup/mod.ts'
+import type { List } from 'netzo/apis/clickup/types.ts'
 
-const data = await api.list[LIST_ID].get<List>()
+const resultData = await api.list[LIST_ID].get<List>()
 ```
 
 ### Find tasks
@@ -58,11 +58,11 @@ const data = await api.list[LIST_ID].get<List>()
 Find all tasks of a specific list that match the query.
 
 ```ts
-import type { QueryTasks, Tasks } from 'netzo/apis/clickup/mod.ts'
+import type { QueryTasks, Tasks } from 'netzo/apis/clickup/types.ts'
 
 const query: QueryTasks = {}
 const result = await api.list[LIST_ID].task.get<Tasks>(query)
-const data = result.tasks
+const resultData = result.tasks
 ```
 
 ### Add task
@@ -70,10 +70,10 @@ const data = result.tasks
 Add a new task.
 
 ```ts
-import type { QueryAddTask, Task } from 'netzo/apis/clickup/mod.ts'
+import type { QueryAddTask, Task } from 'netzo/apis/clickup/types.ts'
 
 const payload: QueryAddTask = { name: 'New Task' }
-const data = await api.list[LIST_ID].task.post<Task>(payload)
+const resultData = await api.list[LIST_ID].task.post<Task>(payload)
 ```
 
 ### Update task
@@ -81,10 +81,10 @@ const data = await api.list[LIST_ID].task.post<Task>(payload)
 Update a task by id.
 
 ```ts
-import type { QueryUpdateTask, Task } from 'netzo/apis/clickup/mod.ts'
+import type { QueryUpdateTask, Task } from 'netzo/apis/clickup/types.ts'
 
 const payload: QueryAddTask = { name: 'Updated Task Name' }
-const data = await api.task[TASK_ID].put<Task>(payload)
+const resultData = await api.task[TASK_ID].put<Task>(payload)
 ```
 
 ### Delete task
@@ -92,7 +92,7 @@ const data = await api.task[TASK_ID].put<Task>(payload)
 Delete a task by id.
 
 ```ts
-const data = await api.task[TASK_ID].delete<{}>()
+const resultData = await api.task[TASK_ID].delete<{}>()
 ```
 
 ## References

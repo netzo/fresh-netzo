@@ -38,9 +38,9 @@ The following examples assume you have [created an api client instance](#usage).
 Get a channel by id.
 
 ```ts
-import type { Channel } from 'netzo/apis/discord/mod.ts'
+import type { Channel } from 'netzo/apis/discord/types.ts'
 
-const data = await api.channels[CHANNEL_ID].get<Channel>()
+const resultData = await api.channels[CHANNEL_ID].get<Channel>()
 ```
 
 ### Find messages
@@ -48,10 +48,10 @@ const data = await api.channels[CHANNEL_ID].get<Channel>()
 Find all messages on a specific channel.
 
 ```ts
-import type { Message, QueryMessages } from 'netzo/apis/discord/mod.ts'
+import type { Message, QueryMessages } from 'netzo/apis/discord/types.ts'
 
 const query: QueryMessages = {}
-const data = await api.channels[CHANNEL_ID].messages.get<Message[]>(query)
+const resultData = await api.channels[CHANNEL_ID].messages.get<Message[]>(query)
 ```
 
 ### Add message
@@ -59,10 +59,10 @@ const data = await api.channels[CHANNEL_ID].messages.get<Message[]>(query)
 Post a message to a channel.
 
 ```ts
-import type { Message, QueryAddOrUpdateMessage } from 'netzo/apis/discord/mod.ts'
+import type { Message, QueryAddOrUpdateMessage } from 'netzo/apis/discord/types.ts'
 
 const payload: QueryAddOrUpdateMessage = { content: 'New message' }
-const data = await api.channels[CHANNEL_ID].messages.post<Message>(payload)
+const resultData = await api.channels[CHANNEL_ID].messages.post<Message>(payload)
  ```
 
 ### Update Message
@@ -70,10 +70,10 @@ const data = await api.channels[CHANNEL_ID].messages.post<Message>(payload)
 Update a message by id.
 
 ```ts
-import type { Message, QueryAddOrUpdateMessage } from 'netzo/apis/discord/mod.ts'
+import type { Message, QueryAddOrUpdateMessage } from 'netzo/apis/discord/types.ts'
 
 const payload: QueryAddOrUpdateMessage = { content: 'Updated message' }
-const data = await api.channels[CHANNEL_ID].messages[MESSAGE_ID].patch<Message>(payload)
+const resultData = await api.channels[CHANNEL_ID].messages[MESSAGE_ID].patch<Message>(payload)
 ```
 
 ## References

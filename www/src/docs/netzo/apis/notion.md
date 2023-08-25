@@ -43,7 +43,7 @@ import type { Pages, QueryDatabase } from 'netzo/apis/notion/types.ts'
 
 const query: QueryDatabase = {}
 const result = await api.databases[DATABASE_ID].query.post<Pages>(query)
-const data = result.results
+const resultData = result.results
 ```
 
 ### Get page
@@ -56,7 +56,7 @@ Property ids can be passed as query parameters to limit the search to specific p
 import type { Page, QueryProperties } from 'netzo/apis/notion/types.ts'
 
 const query: QueryProperties = {}
-const data = await api.pages[PAGE_ID].get<Page>(query)
+const resultData = await api.pages[PAGE_ID].get<Page>(query)
 ```
 
 ### Get page content
@@ -68,7 +68,7 @@ import type { Block, NotionPagination } from 'netzo/apis/notion/types.ts'
 
 const query: NotionPagination = {}
 const result = await api.blocks[PAGE_ID].children.get<Block>(query)
-const data = result.results
+const resultData = result.results
 ```
 
 ### Find users
@@ -80,7 +80,7 @@ import type { NotionPagination, Users } from 'netzo/apis/notion/types.ts'
 
 const query: NotionPagination = {}
 const result = await api.users.get<Users>(query)
-const data = result.results
+const resultData = result.results
 ```
 
 ## References

@@ -52,7 +52,7 @@ const payload: QueryChatCompletion = {
     ]
   }
 const result = await api.chat.completions.post<ChatCompletion>(payload)
-const data = result.choices
+const resultData = result.choices
  ```
 
 ## References

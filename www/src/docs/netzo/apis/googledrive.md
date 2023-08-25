@@ -45,7 +45,7 @@ import type { Files, QueryFiles } from 'netzo/apis/googlesheets/types.ts'
 
 const query: QueryFiles = {}
 const result = await api.files.get<Files>(query)
-const data = result.files
+const resultData = result.files
 ```
 
 ### Get file
@@ -56,7 +56,7 @@ Get a file by id.
 import type { File, QueryFile } from 'netzo/apis/googlesheets/types.ts'
 
 const query: QueryFile = {}
-const data = await api.files[FILE_ID].get<File>(query)
+const resultData = await api.files[FILE_ID].get<File>(query)
 ```
 
 ### Copy file
@@ -67,7 +67,7 @@ Create a copy of a file and apply updates.
 import type { File, QueryCopyFile } from 'netzo/apis/googlesheets/types.ts'
 
 const payload: QueryCopyFile = { description: 'Copy of my file' }
-const data = await api.files[FILE_ID].copy.post<File>(payload)
+const resultData = await api.files[FILE_ID].copy.post<File>(payload)
 ```
 
 ## References

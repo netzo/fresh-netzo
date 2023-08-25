@@ -41,7 +41,7 @@ import type { Contacts, QueryContacts } from 'netzo/apis/hubspot/types.ts'
 
 const query: QueryContacts = {}
 const result = await api.crm.v3.objects.contacts.get<Contacts>(query)
-const data = result.results
+const resultData = result.results
 ```
 
 ### Add contact
@@ -57,7 +57,7 @@ const payload: QueryAddOrUpdateContact = {
     email: 'example@email.com'
   }
 }
-const data = await api.crm.v3.objects.contacts.post<AddOrUpdateContactResponse>(payload)
+const resultData = await api.crm.v3.objects.contacts.post<AddOrUpdateContactResponse>(payload)
 ```
 
 ### Update contact
@@ -72,7 +72,7 @@ const payload: QueryAddOrUpdateContact = {
     company: 'New Company Name',
   }
 }
-const data = await api.crm.v3.objects.contacts[CONTACT_ID].patch<AddOrUpdateContactResponse>(payload)
+const resultData = await api.crm.v3.objects.contacts[CONTACT_ID].patch<AddOrUpdateContactResponse>(payload)
 ```
 
 ### Delete contact
@@ -91,7 +91,7 @@ Find all forms that match the query.
 import type { Form, QueryForms } from 'netzo/apis/hubspot/types.ts'
 
 const query: QueryForms = {}
-const data = await api.forms.v2.forms.get<Form[]>(query)
+const resultData = await api.forms.v2.forms.get<Form[]>(query)
 ```
 
 ### Find submissions
@@ -103,7 +103,7 @@ import type { FormSubmissions, QuerySubmissions } from 'netzo/apis/hubspot/types
 
 const query: QuerySubmissions = {}
 const result = await api['form-integrations'].v1.submissions.forms[FORM_ID].get<FormSubmissions>(query)
-const data = result.results
+const resultData = result.results
 ```
 
 ### Find deals
@@ -115,7 +115,7 @@ import type { Deals, QueryDeals } from 'netzo/apis/hubspot/types.ts'
 
 const query: QueryDeals = {}
 const result = await api.crm.v3.objects.deals.get<Deals>(query)
-const data = result.results
+const resultData = result.results
 ```
 
 ### Add deal
@@ -131,7 +131,7 @@ const payload: QueryAddDeal = {
     dealname: 'New deal'
   }
 }
-const data = await api.crm.v3.objects.deals.post<AddDealResponse>(payload)
+const resultData = await api.crm.v3.objects.deals.post<AddDealResponse>(payload)
 ```
 
 ## References

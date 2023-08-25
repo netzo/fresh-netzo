@@ -43,7 +43,7 @@ import type { QueryRecords, Records } from 'netzo/apis/googleappsheet/types.ts'
 
 const query: QueryRecords = { Action: 'Find' }
 const result = await api[TABLE_NAME].Action.get<Records>(query)
-const data = result.Rows
+const resultData = result.Rows
 ```
 
 ### Add records
@@ -60,7 +60,7 @@ const payload: QueryAddRecords = {
   }]
 }
 const result = await api[TABLE_NAME].Action.post<Records>(payload)
-const data = result.Rows
+const resultData = result.Rows
 ```
 
 ### Update records
@@ -80,7 +80,7 @@ const payload: QueryUpdateRecords = {
   }]
 }
 const result = await api[TABLE_NAME].Action.post<Records>(payload)
-const data = result.Rows
+const resultData = result.Rows
 ```
 
 ### Delete records
@@ -99,7 +99,7 @@ const query: QueryDeleteRecords = {
   }]
 }
 const result = await api[TABLE_NAME].Action.post<Records>(query)
-const data = result.Rows
+const resultData = result.Rows
 ```
 
 ## References

@@ -41,7 +41,7 @@ import type { Documents, QueryDocuments } from 'netzo/apis/pandadoc/types.ts'
 
 const query: QueryDocuments = {}
 const result = await api.documents.get<Documents>(query)
-const data = result.results
+const resultData = result.results
 ```
 
 ### Get document
@@ -51,7 +51,7 @@ Get all details of a document by id.
 ```ts
 import type { Document } from 'netzo/apis/pandadoc/types.ts'
 
-const data = await api.documents[DOCUMENT_ID].details.get<Document>()
+const resultData = await api.documents[DOCUMENT_ID].details.get<Document>()
 ```
 
 ### Update document
@@ -67,7 +67,7 @@ const payload: QueryAddDocument = {
     first_name: 'John Doe'
   }
 }
-const data = await api.documents[DOCUMENT_ID].patch<{}>(payload)
+const resultData = await api.documents[DOCUMENT_ID].patch<{}>(payload)
 ```
 
 ### Delete document
@@ -86,7 +86,7 @@ Find all contacts associated with the workspace.
 import type { Contacts } from 'netzo/apis/pandadoc/types.ts'
 
 const result = await api.contacts.get<Contacts>()
-const data = result.results
+const resultData = result.results
 ```
 
 ### Add contact
@@ -97,7 +97,7 @@ Add a new contact.
 import type { Contact, QueryAddContact } from 'netzo/apis/pandadoc/types.ts'
 
 const payload: QueryAddContact = { email: 'email@example.com' }
-const data = await api.contacts.post<Contact>(payload)
+const resultData = await api.contacts.post<Contact>(payload)
 ```
 
 ## References

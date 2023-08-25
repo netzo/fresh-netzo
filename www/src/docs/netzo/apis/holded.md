@@ -39,7 +39,7 @@ Find all contacts that match the query.
 import type { Contact, QueryContacts } from 'netzo/apis/holded/types.ts'
 
 const query: QueryContacts = {}
-const data = await api.invoicing.v1.contacts.get<Contact[]>(query)
+const resultData = await api.invoicing.v1.contacts.get<Contact[]>(query)
 ```
 
 ### Get contact
@@ -49,7 +49,7 @@ Get a contact by id.
 ```ts
 import type { Contact } from 'netzo/apis/holded/types.ts'
 
-const data = await api.invoicing.v1.contacts[CONTACT_ID].get<Contact>()
+const resultData = await api.invoicing.v1.contacts[CONTACT_ID].get<Contact>()
 ```
 
 ### Add contact
@@ -60,7 +60,7 @@ Add a new contact.
 import type { ContactResponse, QueryAddContact } from 'netzo/apis/holded/types.ts'
 
 const payload: QueryAddContact = { name: 'New contact name' }
-const data = await api.invoicing.v1.contacts.post<ContactResponse>(payload)
+const resultData = await api.invoicing.v1.contacts.post<ContactResponse>(payload)
 ```
 
 ### Update contact
@@ -71,7 +71,7 @@ Update a contact by id.
 import type { ContactResponse, QueryUpdateContact } from 'netzo/apis/holded/types.ts'
 
 const payload: QueryUpdateContact = { name: 'Updated contact name' }
-const data = await api.invoicing.v1.contacts[CONTACT_ID].put<ContactResponse>(payload)
+const resultData = await api.invoicing.v1.contacts[CONTACT_ID].put<ContactResponse>(payload)
 ```
 
 ### Delete contact
@@ -81,7 +81,7 @@ Delete a contact by id.
 ```ts
 import type { ContactResponse } from 'netzo/apis/holded/types.ts'
 
-const data = await api.invoicing.v1.contacts[CONTACT_ID].delete<ContactResponse>()
+const resultData = await api.invoicing.v1.contacts[CONTACT_ID].delete<ContactResponse>()
 ```
 
 - [API Documentation](https://developers.holded.com/reference/api-key)

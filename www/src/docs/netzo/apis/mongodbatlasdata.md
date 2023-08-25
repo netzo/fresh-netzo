@@ -49,7 +49,7 @@ const query: QueryDocuments = {
   }
 }
 const result = await api.action.find.post<Documents | null>(query)
-const data = result.documents
+const resultData = result.documents
 ```
 
 
@@ -66,7 +66,7 @@ const payload: QueryAddDocument = {
   collection: COLLECTION_NAME,
   document: { DATA_TO_ADD },
 }
-const data = await api.action.insertOne.post<AddDocumentResponse>(payload)
+const resultData = await api.action.insertOne.post<AddDocumentResponse>(payload)
 ```
 
 ### Update document
@@ -83,7 +83,7 @@ const payload: QueryUpdateDocument = {
   filter: { FILTERS },
   update: { DATA_TO_UPDATE },
 }
-const data = await api.action.updateOne.post<UpdateDocumentResponse>(payload)
+const resultData = await api.action.updateOne.post<UpdateDocumentResponse>(payload)
 ```
 
 ## References

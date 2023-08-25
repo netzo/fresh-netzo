@@ -43,7 +43,7 @@ import type { Deals, QueryGetDeals } from 'netzo/apis/pipedrive/types.ts'
 
 const query: QueryGetDeals = {}
 const result = await api.deals.get<Deals>(query)
-const data = result.data
+const resultData = result.data
 ```
 
 ### Search Deals
@@ -55,7 +55,7 @@ import type { QuerySearchDeals, SearchDealsResponse } from 'netzo/apis/pipedrive
 
 const query: QuerySearchDeals = { term: 'New Deal' }
 const result = await api.deals.search.get<SearchDealsResponse>(query)
-const data = result.data.items
+const resultData = result.data.items
 ```
 
 ### Add Deal
@@ -67,7 +67,7 @@ import type { AddOrUpdateDealResponse, QueryAddDeal } from 'netzo/apis/pipedrive
 
 const payload: QueryAddDeal = { title: 'New Deal', value: 100 }
 const result = await api.deals.post<AddOrUpdateDealResponse>(payload)
-const data = result.data
+const resultData = result.data
 ```
 
 ### Update deal
@@ -79,7 +79,7 @@ import type { AddOrUpdateDealResponse, QueryUpdateDeal } from 'netzo/apis/pipedr
 
 const payload: QueryUpdateDeal = { title: 'Updated Title' }
 const result = await api.deals[DEAL_ID].put<AddOrUpdateDealResponse>(payload)
-const data = result.data
+const resultData = result.data
 ```
 
 ### Delete deal
@@ -90,7 +90,7 @@ Delete a deal by id.
 import type { DeleteResponse } from 'netzo/apis/pipedrive/types.ts'
 
 const result = await api.deals[DEAL_ID].delete<DeleteResponse>()
-const data = result.data
+const resultData = result.data
 ```
 
 ### Find persons
@@ -102,7 +102,7 @@ import type { Persons, QueryGetPersons } from 'netzo/apis/pipedrive/types.ts'
 
 const query: QueryGetPersons = {}
 const result = await api.persons.get<Persons>(query)
-const data = result.data
+const resultData = result.data
 ```
 
 ### Search persons
@@ -114,7 +114,7 @@ import type { QuerySearchPersons, SearchPersonsResponse } from 'netzo/apis/piped
 
 const query: QuerySearchPersons = { term: 'Smith' }
 const result = await api.persons.search.get<SearchPersonsResponse>(query)
-const data = result.data.items
+const resultData = result.data.items
 ```
 
 ### Add person
@@ -126,7 +126,7 @@ import type { AddOrUpdatePersonResponse, QueryAddPerson } from 'netzo/apis/piped
 
 const payload: QueryAddPerson = { name: 'John Doe' }
 const result = await api.persons.post<AddOrUpdatePersonResponse>(payload)
-const data = result.data
+const resultData = result.data
 ```
 
 ### Update person
@@ -138,7 +138,7 @@ import type { AddOrUpdatePersonResponse, QueryUpdatePerson } from 'netzo/apis/pi
 
 const payload: QueryUpdatePerson = { email: 'updated-email@email.com' }
 const result = await api.persons[PERSON_ID].put<AddOrUpdatePersonResponse>(payload)
-const data = result.data
+const resultData = result.data
 ```
 
 ### Delete person
@@ -149,7 +149,7 @@ Delete a person by id.
 import type { DeleteResponse } from 'netzo/apis/pipedrive/types.ts'
 
 const result = await api.persons[PERSON_ID].delete<DeleteResponse>()
-const data = result.data
+const resultData = result.data
 ```
 
 ## References
