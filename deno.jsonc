@@ -15,14 +15,12 @@
   },
   "imports": {
     "@/": "./",
+    "netzo/": "https://deno.land/x/netzo@v0.2.28/",
     "$fresh/": "https://deno.land/x/fresh@1.4.2/",
     "preact": "https://esm.sh/preact@10.17.1",
     "preact/": "https://esm.sh/preact@10.17.1/",
     "preact-render-to-string": "https://esm.sh/*preact-render-to-string@6.2.1",
     "@preact/signals": "https://esm.sh/*@preact/signals@1.2.1",
-    "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.4.0",
-    "twind": "https://esm.sh/twind@0.16.17",
-    "twind/": "https://esm.sh/twind@0.16.17/",
-    "netzo/": "https://deno.land/x/netzo@v0.2.28/"
+    "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.4.0"
   }
 }

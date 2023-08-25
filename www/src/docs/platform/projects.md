@@ -139,7 +139,8 @@ Import maps allows control over what URLs get fetched by `import` statements and
 ```json [config.json]
 {
   "imports": {
-    "netzo/": "https://deno.land/netzo/"
+    "@/": "./",
+    "netzo/": "https://deno.land/x/netzo/"
   }
 }
 ```
@@ -159,7 +160,8 @@ Import maps allows control over what URLs get fetched by `import` statements and
 ```json [import_map.json]
 {
   "imports": {
-    "netzo/": "https://deno.land/netzo/"
+    "@/": "./",
+    "netzo/": "https://deno.land/x/netzo/"
   }
 }
 ```

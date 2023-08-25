@@ -15,6 +15,8 @@ import en from '~/locales/en.js'
 
 Apart from first-party plugins, and those provided by `netzo/ui/plugins`, you can also search for community plugins or [create your own](https://fresh.deno.dev/docs/concepts/plugins).
 
+<!-- NOTE: pass in 'compact' prop if using with `aside: true` -->
+<!-- NOTE: could split into H3 groups via `en.components.filter(...)` -->
 <SectionDocsCards :items="en.plugins" compact>
   <template #image="{ src, title }">
     <img
