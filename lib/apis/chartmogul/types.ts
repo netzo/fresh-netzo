@@ -22,13 +22,13 @@ export const customerSchema = z.object({
     tags: z.array(z.string()),
     stripe: z.any(),
     clearbit: z.any(),
-    custom: z.any()
+    custom: z.any(),
   }),
   address: z.object({
     address_zip: z.string(),
     city: z.string(),
     country: z.string(),
-    state: z.string()
+    state: z.string(),
   }),
   mrr: z.number(),
   arr: z.number(),
@@ -36,8 +36,8 @@ export const customerSchema = z.object({
   "chartmogul-url": z.string(),
   "billing-system-type": z.string(),
   currency: z.string(),
-  "currency-sign": z.string()
-}).deepPartial()
+  "currency-sign": z.string(),
+}).deepPartial();
 
 export const customersSchema = z.object({
   entries: z.array(customerSchema),
@@ -45,8 +45,8 @@ export const customersSchema = z.object({
   per_page: z.number(),
   page: z.number(),
   current_page: z.number(),
-  total_pages: z.number()
-}).deepPartial()
+  total_pages: z.number(),
+}).deepPartial();
 
 export const queryCustomersSchema = z.object({
   data_source_uuid: z.string().optional(),
@@ -56,13 +56,13 @@ export const queryCustomersSchema = z.object({
       z.literal("Lead"),
       z.literal("Active"),
       z.literal("Past_Due"),
-      z.literal("Cancelled")
+      z.literal("Cancelled"),
     ])
     .optional(),
   system: z.string().optional(),
   page: z.number().optional(),
-  per_page: z.number().optional()
-})
+  per_page: z.number().optional(),
+});
 
 export const queryAddCustomerSchema = z.object({
   data_source_uuid: z.string(),
@@ -86,10 +86,10 @@ export const queryAddCustomerSchema = z.object({
             type: z.string(),
             key: z.string(),
             value: z.string(),
-            source: z.string().optional()
-          })
+            source: z.string().optional(),
+          }),
         )
-        .optional()
+        .optional(),
     })
     .optional(),
   primary_contact: z
@@ -101,10 +101,10 @@ export const queryAddCustomerSchema = z.object({
       phone: z.string().optional(),
       linked_in: z.string().optional(),
       twitter: z.string().optional(),
-      notes: z.string().optional()
+      notes: z.string().optional(),
     })
-    .optional()
-})
+    .optional(),
+});
 
 export const addOrUpdateCustomerResponseSchema = z.object({
   id: z.number(),
@@ -118,7 +118,7 @@ export const addOrUpdateCustomerResponseSchema = z.object({
     custom: z.record(z.any()),
     clearbit: z.object({}),
     stripe: z.object({}),
-    tags: z.array(z.string())
+    tags: z.array(z.string()),
   }),
   data_source_uuid: z.string(),
   data_source_uuids: z.array(z.string()),
@@ -134,7 +134,7 @@ export const addOrUpdateCustomerResponseSchema = z.object({
     country: z.string(),
     state: z.any(),
     city: z.string(),
-    address_zip: z.any()
+    address_zip: z.any(),
   }),
   mrr: z.number(),
   arr: z.number(),
@@ -143,10 +143,13 @@ export const addOrUpdateCustomerResponseSchema = z.object({
   "billing-system-type": z.string(),
   currency: z.string(),
   "currency-sign": z.string(),
-  owner: z.string()
-}).deepPartial()
+  owner: z.string(),
+}).deepPartial();
 
-export const queryUpdateCustomerSchema = queryAddCustomerSchema.omit({ data_source_uuid: true, external_id: true })
+export const queryUpdateCustomerSchema = queryAddCustomerSchema.omit({
+  data_source_uuid: true,
+  external_id: true,
+});
 
 export const customerSubscriptionsSchema = z.object({
   customer_uuid: z.string(),
@@ -157,17 +160,17 @@ export const customerSubscriptionsSchema = z.object({
       subscription_set_external_id: z.string(),
       plan_uuid: z.string(),
       data_source_uuid: z.string(),
-      cancellation_dates: z.array(z.any())
-    })
+      cancellation_dates: z.array(z.any()),
+    }),
   ),
   current_page: z.number(),
-  total_pages: z.number()
-}).deepPartial()
+  total_pages: z.number(),
+}).deepPartial();
 
 export const queryCustomerSubscriptionsSchema = z.object({
   page: z.number().optional(),
-  per_page: z.number().optional()
-})
+  per_page: z.number().optional(),
+});
 
 export const invoiceSchema = z.object({
   uuid: z.string(),
@@ -198,8 +201,8 @@ export const invoiceSchema = z.object({
       discount_description: z.string(),
       event_order: z.number().optional(),
       account_code: z.any(),
-      description: z.string().optional()
-    })
+      description: z.string().optional(),
+    }),
   ),
   transactions: z.array(
     z.object({
@@ -207,51 +210,57 @@ export const invoiceSchema = z.object({
       external_id: z.any(),
       type: z.string(),
       date: z.string(),
-      result: z.string()
-    })
-  )
-}).deepPartial()
+      result: z.string(),
+    }),
+  ),
+}).deepPartial();
 
 export const customerInvoicesSchema = z.object({
   customer_uuid: z.string(),
-  invoices: z.array(invoiceSchema.omit({ customer_uuid: true }))
-}).deepPartial()
+  invoices: z.array(invoiceSchema.omit({ customer_uuid: true })),
+}).deepPartial();
 
 export const queryCustomerInvoicesSchema = z.object({
   page: z.number().optional(),
   per_page: z.number().optional(),
   validation_type: z
     .union([z.literal("valid"), z.literal("invalid"), z.literal("all")])
-    .optional()
-})
+    .optional(),
+});
 
 export const invoicesSchema = z.object({
   invoices: z.array(invoiceSchema),
   current_page: z.number(),
   total_pages: z.number(),
-}).deepPartial()
+}).deepPartial();
 
 export const queryInvoicesSchema = queryCustomerInvoicesSchema.extend({
   data_source_uuid: z.string().optional(),
   customer_uuid: z.string().optional(),
-  external_id: z.string().optional()
-})
+  external_id: z.string().optional(),
+});
 
-export const queryInvoiceSchema = queryCustomerInvoicesSchema.pick({ validation_type: true })
+export const queryInvoiceSchema = queryCustomerInvoicesSchema.pick({
+  validation_type: true,
+});
 
-//types: 
+//types:
 
-export type Customer = z.infer<typeof customerSchema>
-export type Customers = z.infer<typeof customersSchema>
-export type QueryCustomers = z.infer<typeof queryCustomersSchema>
-export type QueryAddCustomer = z.infer<typeof queryAddCustomerSchema>
-export type AddOrUpdateCustomerResponse = z.infer<typeof addOrUpdateCustomerResponseSchema>
-export type QueryUpdateCustomer = z.infer<typeof queryUpdateCustomerSchema>
-export type CustomerSubscriptions = z.infer<typeof customerSubscriptionsSchema>
-export type QueryCustomerSubscriptions = z.infer<typeof queryCustomerSubscriptionsSchema>
-export type Invoice = z.infer<typeof invoiceSchema>
-export type CustomerInvoices = z.infer<typeof customerInvoicesSchema>
-export type QueryCustomerInvoices = z.infer<typeof queryCustomerInvoicesSchema>
-export type Invoices = z.infer<typeof invoicesSchema>
-export type QueryInvoices = z.infer<typeof queryInvoicesSchema>
-export type QueryInvoice = z.infer<typeof queryInvoiceSchema>
+export type Customer = z.infer<typeof customerSchema>;
+export type Customers = z.infer<typeof customersSchema>;
+export type QueryCustomers = z.infer<typeof queryCustomersSchema>;
+export type QueryAddCustomer = z.infer<typeof queryAddCustomerSchema>;
+export type AddOrUpdateCustomerResponse = z.infer<
+  typeof addOrUpdateCustomerResponseSchema
+>;
+export type QueryUpdateCustomer = z.infer<typeof queryUpdateCustomerSchema>;
+export type CustomerSubscriptions = z.infer<typeof customerSubscriptionsSchema>;
+export type QueryCustomerSubscriptions = z.infer<
+  typeof queryCustomerSubscriptionsSchema
+>;
+export type Invoice = z.infer<typeof invoiceSchema>;
+export type CustomerInvoices = z.infer<typeof customerInvoicesSchema>;
+export type QueryCustomerInvoices = z.infer<typeof queryCustomerInvoicesSchema>;
+export type Invoices = z.infer<typeof invoicesSchema>;
+export type QueryInvoices = z.infer<typeof queryInvoicesSchema>;
+export type QueryInvoice = z.infer<typeof queryInvoiceSchema>;

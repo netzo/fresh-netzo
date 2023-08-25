@@ -21,7 +21,7 @@ export const contactSchema = z.object({
     province: z.string(),
     country: z.string(),
     countryCode: z.string(),
-    info: z.string()
+    info: z.string(),
   }),
   defaults: z.object({
     salesChannel: z.number(),
@@ -32,10 +32,10 @@ export const contactSchema = z.object({
     language: z.string(),
     currency: z.string(),
     tax: z.string(),
-    retention: z.string()
+    retention: z.string(),
   }),
   socialNetworks: z.object({
-    website: z.string()
+    website: z.string(),
   }),
   tags: z.array(z.string()),
   notes: z.array(
@@ -45,8 +45,8 @@ export const contactSchema = z.object({
       description: z.string(),
       color: z.string(),
       updatedAt: z.number(),
-      userId: z.string()
-    })
+      userId: z.string(),
+    }),
   ),
   contactPersons: z.array(
     z.object({
@@ -56,8 +56,8 @@ export const contactSchema = z.object({
       phone: z.string(),
       email: z.string(),
       sendDocumentsByDefault: z.boolean(),
-      linkedin: z.string()
-    })
+      linkedin: z.string(),
+    }),
   ),
   shippingAddresses: z.array(
     z.object({
@@ -70,22 +70,22 @@ export const contactSchema = z.object({
       country: z.string(),
       countryCode: z.string(),
       notes: z.string(),
-      privateNotes: z.string()
-    })
+      privateNotes: z.string(),
+    }),
   ),
   customFields: z.array(
     z.object({
       field: z.string(),
-      value: z.string()
-    })
-  )
-}).deepPartial()
+      value: z.string(),
+    }),
+  ),
+}).deepPartial();
 
 export const queryContactsSchema = z.object({
   phone: z.string().optional(),
   mobile: z.string().optional(),
-  customId: z.array(z.string()).optional()
-})
+  customId: z.array(z.string()).optional(),
+});
 
 export const queryAddContactSchema = z.object({
   CustomId: z.string().optional(),
@@ -100,7 +100,7 @@ export const queryAddContactSchema = z.object({
       z.literal("debtor"),
       z.literal("creditor"),
       z.literal("client"),
-      z.literal("lead")
+      z.literal("lead"),
     ])
     .optional(),
   isperson: z.boolean().optional(),
@@ -119,23 +119,28 @@ export const queryAddContactSchema = z.object({
   socialNetworks: z.object({}).optional(),
   tags: z.array(z.string()).optional(),
   note: z.string().optional(),
-  contactPersons: z.array(z.object({})).optional()
-})
+  contactPersons: z.array(z.object({})).optional(),
+});
 
 export const contactResponseSchema = z.object({
   status: z.number(),
   info: z.string(),
-  id: z.string()
-}).deepPartial()
+  id: z.string(),
+}).deepPartial();
 
-export const queryUpdateContactSchema = queryAddContactSchema.omit({ tags: true, note:true, contacPersons: true, CustomId: true }).extend({
-  tradeName: z.string().optional()
-})
+export const queryUpdateContactSchema = queryAddContactSchema.omit({
+  tags: true,
+  note: true,
+  contacPersons: true,
+  CustomId: true,
+}).extend({
+  tradeName: z.string().optional(),
+});
 
 //types:
 
-export type Contact = z.infer<typeof contactSchema>
-export type QueryContacts = z.infer<typeof queryContactsSchema>
-export type QueryAddContact = z.infer<typeof queryAddContactSchema>
-export type ContactResponse = z.infer<typeof contactResponseSchema>
-export type QueryUpdateContact = z.infer<typeof queryUpdateContactSchema>
+export type Contact = z.infer<typeof contactSchema>;
+export type QueryContacts = z.infer<typeof queryContactsSchema>;
+export type QueryAddContact = z.infer<typeof queryAddContactSchema>;
+export type ContactResponse = z.infer<typeof contactResponseSchema>;
+export type QueryUpdateContact = z.infer<typeof queryUpdateContactSchema>;

@@ -10,8 +10,8 @@ export const fileSchema = z.object({
     indexableText: z.string(),
     thumbnail: z.object({
       image: z.string(),
-      mimeType: z.string()
-    })
+      mimeType: z.string(),
+    }),
   }),
   writersCanShare: z.boolean(),
   viewedByMe: z.boolean(),
@@ -94,7 +94,7 @@ export const fileSchema = z.object({
     canModifyLabels: z.boolean(),
     canModifyEditorContentRestriction: z.boolean(),
     canModifyOwnerContentRestriction: z.boolean(),
-    canRemoveContentRestriction: z.boolean()
+    canRemoveContentRestriction: z.boolean(),
   }),
   hasAugmentedPermissions: z.boolean(),
   trashingUser: z.object({}),
@@ -114,7 +114,7 @@ export const fileSchema = z.object({
     location: z.object({
       latitude: z.number(),
       longitude: z.number(),
-      altitude: z.number()
+      altitude: z.number(),
     }),
     rotation: z.number(),
     time: z.string(),
@@ -127,37 +127,37 @@ export const fileSchema = z.object({
     exposureBias: z.number(),
     maxApertureValue: z.number(),
     subjectDistance: z.number(),
-    lens: z.string()
+    lens: z.string(),
   }),
   videoMediaMetadata: z.object({
     width: z.number(),
     height: z.number(),
-    durationMillis: z.string()
+    durationMillis: z.string(),
   }),
   shortcutDetails: z.object({
     targetId: z.string(),
     targetMimeType: z.string(),
-    targetResourceKey: z.string()
+    targetResourceKey: z.string(),
   }),
   contentRestrictions: z.array(z.object({})),
   resourceKey: z.string(),
   linkShareMetadata: z.object({
     securityUpdateEligible: z.boolean(),
-    securityUpdateEnabled: z.boolean()
+    securityUpdateEnabled: z.boolean(),
   }),
   labelInfo: z.object({
     labels: z.array(z.object({})),
     sha1Checksum: z.string(),
-    sha256Checksum: z.string()
-  })
-}).deepPartial()
+    sha256Checksum: z.string(),
+  }),
+}).deepPartial();
 
 export const filesSchema = z.object({
   nextPageToken: z.string(),
   kind: z.string(),
   incompleteSearch: z.boolean(),
-  files: z.array(fileSchema)
-}).deepPartial()
+  files: z.array(fileSchema),
+}).deepPartial();
 
 export const queryFilesSchema = z.object({
   corpora: z.string().optional(),
@@ -175,7 +175,7 @@ export const queryFilesSchema = z.object({
       z.literal("recency"),
       z.literal("sharedWithMeTime"),
       z.literal("starred"),
-      z.literal("viewedByMeTime")
+      z.literal("viewedByMeTime"),
     ])
     .optional(),
   pageSize: z.number().optional(),
@@ -184,22 +184,22 @@ export const queryFilesSchema = z.object({
   spaces: z.string().optional(),
   supportsAllDrives: z.boolean().optional(),
   includePermissionsForView: z.literal("published").optional(),
-  includeLabels: z.string().optional()
-})
+  includeLabels: z.string().optional(),
+});
 
 export const queryFileSchema = z.object({
   acknowledgeAbuse: z.boolean().optional(),
   supportsAllDrives: z.boolean().optional(),
   includePermissionsForView: z.literal("published").optional(),
-  includeLabels: z.string().optional()
-})
+  includeLabels: z.string().optional(),
+});
 
-export const queryCopyFileSchema = fileSchema.partial()
+export const queryCopyFileSchema = fileSchema.partial();
 
 //types:
 
-export type File = z.infer<typeof fileSchema>
-export type Files = z.infer<typeof filesSchema>
-export type QueryFiles = z.infer<typeof queryFilesSchema>
-export type QueryFile = z.infer<typeof queryFileSchema>
-export type QueryCopyFile = z.infer<typeof queryCopyFileSchema>
+export type File = z.infer<typeof fileSchema>;
+export type Files = z.infer<typeof filesSchema>;
+export type QueryFiles = z.infer<typeof queryFilesSchema>;
+export type QueryFile = z.infer<typeof queryFileSchema>;
+export type QueryCopyFile = z.infer<typeof queryCopyFileSchema>;

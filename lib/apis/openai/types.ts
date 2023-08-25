@@ -10,17 +10,17 @@ export const chatCompletionSchema = z.object({
       index: z.number(),
       message: z.object({
         role: z.string(),
-        content: z.string()
+        content: z.string(),
       }),
-      finish_reason: z.string()
-    })
+      finish_reason: z.string(),
+    }),
   ),
   usage: z.object({
     prompt_tokens: z.number(),
     completion_tokens: z.number(),
-    total_tokens: z.number()
-  })
-}).deepPartial()
+    total_tokens: z.number(),
+  }),
+}).deepPartial();
 
 export const queryChatCompletionSchema = z.object({
   model: z.string(),
@@ -30,20 +30,20 @@ export const queryChatCompletionSchema = z.object({
         z.literal("system"),
         z.literal("user"),
         z.literal("assistant"),
-        z.literal("function")
+        z.literal("function"),
       ]),
       content: z.string(),
       name: z.string().optional(),
-      function_call: z.object({}).optional()
-    })
+      function_call: z.object({}).optional(),
+    }),
   ),
   functions: z
     .array(
       z.object({
         name: z.string(),
         description: z.string().optional(),
-        parameters: z.object({})
-      })
+        parameters: z.object({}),
+      }),
     )
     .optional(),
   function_call: z.string().optional(),
@@ -56,10 +56,10 @@ export const queryChatCompletionSchema = z.object({
   presence_penalty: z.number().optional(),
   frequency_penalty: z.number().optional(),
   logit_bias: z.any().optional(),
-  user: z.string().optional()
-})
+  user: z.string().optional(),
+});
 
 //types:
 
-export type ChatCompletion = z.infer<typeof chatCompletionSchema>
-export type QueryChatCompletion = z.infer<typeof queryChatCompletionSchema>
+export type ChatCompletion = z.infer<typeof chatCompletionSchema>;
+export type QueryChatCompletion = z.infer<typeof queryChatCompletionSchema>;

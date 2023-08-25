@@ -35,8 +35,8 @@ export const channelSchema = z.object({
   default_reaction_emoji: z.object({}),
   default_thread_rate_limit_per_user: z.number(),
   default_sort_order: z.number(),
-  default_forum_layout: z.number()
-}).deepPartial()
+  default_forum_layout: z.number(),
+}).deepPartial();
 
 export const messageSchema = z.object({
   id: z.string(),
@@ -69,15 +69,15 @@ export const messageSchema = z.object({
   sticker_items: z.array(z.object({})),
   stickers: z.array(z.object({})),
   position: z.number(),
-  role_subscription_data: z.object({})
-}).deepPartial()
+  role_subscription_data: z.object({}),
+}).deepPartial();
 
 export const queryMessagesSchema = z.object({
   around: z.string().optional(),
   before: z.string().optional(),
   after: z.string().optional(),
-  limit: z.number().optional()
-})
+  limit: z.number().optional(),
+});
 
 export const queryAddOrUpdateMessageSchema = z.object({
   content: z.string().optional(),
@@ -88,12 +88,14 @@ export const queryAddOrUpdateMessageSchema = z.object({
   message_reference: z.object({}).optional(),
   components: z.array(z.object({})).optional(),
   sticker_ids: z.array(z.string()).optional(),
-  flags: z.number().optional()
-})
+  flags: z.number().optional(),
+});
 
 //types:
 
-export type Channel = z.infer<typeof channelSchema>
-export type Message = z.infer<typeof messageSchema>
-export type QueryMessages = z.infer<typeof queryMessagesSchema>
-export type QueryAddOrUpdateMessage = z.infer<typeof queryAddOrUpdateMessageSchema>
+export type Channel = z.infer<typeof channelSchema>;
+export type Message = z.infer<typeof messageSchema>;
+export type QueryMessages = z.infer<typeof queryMessagesSchema>;
+export type QueryAddOrUpdateMessage = z.infer<
+  typeof queryAddOrUpdateMessageSchema
+>;

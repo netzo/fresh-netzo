@@ -8,11 +8,11 @@ export const listSchema = z.object({
   status: z.object({
     status: z.string(),
     color: z.string(),
-    hide_label: z.boolean()
+    hide_label: z.boolean(),
   }),
   priority: z.object({
     priority: z.string(),
-    color: z.string()
+    color: z.string(),
   }),
   assignee: z.any(),
   due_date: z.string(),
@@ -23,12 +23,12 @@ export const listSchema = z.object({
     id: z.string(),
     name: z.string(),
     hidden: z.boolean(),
-    access: z.boolean()
+    access: z.boolean(),
   }),
   space: z.object({
     id: z.string(),
     name: z.string(),
-    access: z.boolean()
+    access: z.boolean(),
   }),
   inbound_address: z.string(),
   archived: z.boolean(),
@@ -38,19 +38,19 @@ export const listSchema = z.object({
       status: z.string(),
       orderindex: z.number(),
       color: z.string(),
-      type: z.string()
-    })
+      type: z.string(),
+    }),
   ),
-  permission_level: z.string()
-}).deepPartial()
+  permission_level: z.string(),
+}).deepPartial();
 
 export const listsSchema = z.object({
-  lists: z.array(listSchema)
-}).deepPartial()
+  lists: z.array(listSchema),
+}).deepPartial();
 
 export const queryListsSchema = z.object({
-  archived: z.boolean().optional()
-})
+  archived: z.boolean().optional(),
+});
 
 export const taskSchema = z.object({
   id: z.string(),
@@ -62,7 +62,7 @@ export const taskSchema = z.object({
     status: z.string(),
     color: z.string(),
     orderindex: z.number(),
-    type: z.string()
+    type: z.string(),
   }),
   orderindex: z.string(),
   date_created: z.string(),
@@ -72,7 +72,7 @@ export const taskSchema = z.object({
     id: z.number(),
     username: z.string(),
     color: z.string(),
-    profilePicture: z.string()
+    profilePicture: z.string(),
   }),
   assignees: z.array(z.string()),
   checklists: z.array(z.string()),
@@ -85,20 +85,20 @@ export const taskSchema = z.object({
   time_spent: z.string(),
   custom_fields: z.array(z.object({})),
   list: z.object({
-    id: z.string()
+    id: z.string(),
   }),
   folder: z.object({
-    id: z.string()
+    id: z.string(),
   }),
   space: z.object({
-    id: z.string()
+    id: z.string(),
   }),
-  url: z.string()
-}).deepPartial()
+  url: z.string(),
+}).deepPartial();
 
 export const tasksSchema = z.object({
-  tasks: z.array(taskSchema)
-}).deepPartial()
+  tasks: z.array(taskSchema),
+}).deepPartial();
 
 export const queryTasksSchema = z.object({
   archived: z.literal(false).optional(),
@@ -118,8 +118,8 @@ export const queryTasksSchema = z.object({
   date_updated_lt: z.number().optional(),
   date_done_gt: z.number().optional(),
   date_done_lt: z.number().optional(),
-  custom_fields: z.array(z.string()).optional()
-})
+  custom_fields: z.array(z.string()).optional(),
+});
 
 export const queryAddTaskSchema = z.object({
   name: z.string(),
@@ -141,11 +141,11 @@ export const queryAddTaskSchema = z.object({
     .array(
       z.object({
         id: z.string(),
-        value: z.string()
-      })
+        value: z.string(),
+      }),
     )
-    .optional()
-})
+    .optional(),
+});
 
 export const queryUpdateTaskSchema = z.object({
   name: z.string().optional(),
@@ -161,19 +161,19 @@ export const queryUpdateTaskSchema = z.object({
   assignees: z
     .object({
       add: z.array(z.any()),
-      rem: z.array(z.any())
+      rem: z.array(z.any()),
     })
     .optional(),
-  archived: z.boolean().optional()
-})
+  archived: z.boolean().optional(),
+});
 
 //types:
 
-export type List = z.infer<typeof listSchema>
-export type Lists = z.infer<typeof listsSchema>
-export type QueryLists = z.infer<typeof queryListsSchema>
-export type Task = z.infer<typeof taskSchema>
-export type Tasks = z.infer<typeof tasksSchema>
-export type QueryTasks = z.infer<typeof queryTasksSchema>
-export type QueryAddTask = z.infer<typeof queryAddTaskSchema>
-export type QueryUpdateTask = z.infer<typeof queryUpdateTaskSchema>
+export type List = z.infer<typeof listSchema>;
+export type Lists = z.infer<typeof listsSchema>;
+export type QueryLists = z.infer<typeof queryListsSchema>;
+export type Task = z.infer<typeof taskSchema>;
+export type Tasks = z.infer<typeof tasksSchema>;
+export type QueryTasks = z.infer<typeof queryTasksSchema>;
+export type QueryAddTask = z.infer<typeof queryAddTaskSchema>;
+export type QueryUpdateTask = z.infer<typeof queryUpdateTaskSchema>;

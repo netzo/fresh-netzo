@@ -6,9 +6,9 @@ export const userSchema = z.object({
     username: z.string(),
     name: z.string(),
     url: z.string(),
-    imageUrl: z.string()
-  })
-}).deepPartial()
+    imageUrl: z.string(),
+  }),
+}).deepPartial();
 
 export const publicationsSchema = z.object({
   data: z.array(
@@ -17,10 +17,10 @@ export const publicationsSchema = z.object({
       name: z.string(),
       description: z.string(),
       url: z.string(),
-      imageUrl: z.string()
-    })
-  )
-}).deepPartial()
+      imageUrl: z.string(),
+    }),
+  ),
+}).deepPartial();
 
 export const postSchema = z.object({
   data: z.object({
@@ -33,9 +33,9 @@ export const postSchema = z.object({
     publishStatus: z.string(),
     publishedAt: z.number(),
     license: z.string(),
-    licenseUrl: z.string()
-  })
-}).deepPartial()
+    licenseUrl: z.string(),
+  }),
+}).deepPartial();
 
 export const queryPostSchema = z.object({
   title: z.string(),
@@ -56,15 +56,15 @@ export const queryPostSchema = z.object({
       z.literal("cc-40-by-nc-nd"),
       z.literal("cc-40-by-nc-sa"),
       z.literal("cc-40-zero"),
-      z.literal("public-domain")
+      z.literal("public-domain"),
     ])
     .optional(),
-  notifyFollowers: z.boolean().optional()
-})
+  notifyFollowers: z.boolean().optional(),
+});
 
 //types:
 
-export type User = z.infer<typeof userSchema>
-export type Publications = z.infer<typeof publicationsSchema>
-export type Post = z.infer<typeof postSchema>
-export type QueryPost = z.infer<typeof queryPostSchema>
+export type User = z.infer<typeof userSchema>;
+export type Publications = z.infer<typeof publicationsSchema>;
+export type Post = z.infer<typeof postSchema>;
+export type QueryPost = z.infer<typeof queryPostSchema>;

@@ -1,24 +1,24 @@
 import { z } from "../deps.ts";
 
 export const queryUpdateListSchema = z.object({
-  name: z.string()
-})
+  name: z.string(),
+});
 
 export const updateListResponseSchema = z.object({
   id: z.string(),
   name: z.string(),
   contact_count: z.number(),
   _metadata: z.object({
-    self: z.string()
-  })
-}).deepPartial()
+    self: z.string(),
+  }),
+}).deepPartial();
 
 export const listSchema = z.object({
   id: z.string(),
   name: z.string(),
   contact_count: z.number(),
   _metadata: z.object({
-    self: z.string()
+    self: z.string(),
   }),
   contact_sample: z.object({
     id: z.string(),
@@ -43,11 +43,11 @@ export const listSchema = z.object({
       created_at: z.string(),
       updated_at: z.string(),
       _metadata: z.object({
-        self: z.string()
-      })
-    })
-  })
-}).deepPartial()
+        self: z.string(),
+      }),
+    }),
+  }),
+}).deepPartial();
 
 export const listsSchema = z.object({
   result: z.array(updateListResponseSchema),
@@ -55,18 +55,18 @@ export const listsSchema = z.object({
     prev: z.string(),
     self: z.string(),
     next: z.string(),
-    count: z.string()
-  })
-}).deepPartial()
+    count: z.string(),
+  }),
+}).deepPartial();
 
 export const queryListsSchema = z.object({
   page_size: z.number().optional(),
-  page_token: z.string().optional()
-})
+  page_token: z.string().optional(),
+});
 
 export const queryListSchema = z.object({
-  contact_sample: z.boolean().optional()
-})
+  contact_sample: z.boolean().optional(),
+});
 
 export const queryAddContactsSchema = z.object({
   list_ids: z.array(z.string()),
@@ -82,14 +82,14 @@ export const queryAddContactsSchema = z.object({
       state_province_region: z.string().optional(),
       country: z.string().optional(),
       postal_code: z.string().optional(),
-      custom_fields: z.object({}).optional()
-    })
-  )
-})
+      custom_fields: z.object({}).optional(),
+    }),
+  ),
+});
 
 export const addContactsResponseSchema = z.object({
-  job_id: z.string()
-}).deepPartial()
+  job_id: z.string(),
+}).deepPartial();
 
 export const querySendEmailSchema = z.object({
   personalizations: z.array(
@@ -97,29 +97,29 @@ export const querySendEmailSchema = z.object({
       to: z.array(
         z.object({
           email: z.string(),
-          name: z.string().optional()
-        })
+          name: z.string().optional(),
+        }),
       ),
       cc: z
         .array(
           z.object({
             email: z.string().optional(),
-            name: z.string().optional()
-          })
+            name: z.string().optional(),
+          }),
         )
         .optional(),
       bcc: z
         .array(
           z.object({
             email: z.string().optional(),
-            name: z.string().optional()
-          })
+            name: z.string().optional(),
+          }),
         )
         .optional(),
       from: z
         .object({
           email: z.string().optional(),
-          name: z.string().optional()
+          name: z.string().optional(),
         })
         .optional(),
       subject: z.string().optional(),
@@ -127,25 +127,25 @@ export const querySendEmailSchema = z.object({
       substitutions: z.object({}).optional(),
       dynamic_template_data: z.object({}).optional(),
       custom_args: z.object({}).optional(),
-      send_at: z.number().optional()
-    })
+      send_at: z.number().optional(),
+    }),
   ),
   from: z.object({
     email: z.string(),
-    name: z.string().optional()
+    name: z.string().optional(),
   }),
   reply_to: z
     .object({
       email: z.string().optional(),
-      name: z.string().optional()
+      name: z.string().optional(),
     })
     .optional(),
   subject: z.string(),
   content: z.array(
     z.object({
       type: z.string(),
-      value: z.string()
-    })
+      value: z.string(),
+    }),
   ),
   attachments: z
     .array(
@@ -153,8 +153,8 @@ export const querySendEmailSchema = z.object({
         content: z.string().optional(),
         filename: z.string().optional(),
         type: z.string().optional(),
-        disposition: z.string().optional()
-      })
+        disposition: z.string().optional(),
+      }),
     )
     .optional(),
   categories: z.array(z.string()).optional(),
@@ -163,7 +163,7 @@ export const querySendEmailSchema = z.object({
   asm: z
     .object({
       group_id: z.number().optional(),
-      groups_to_display: z.array(z.number()).optional()
+      groups_to_display: z.array(z.number()).optional(),
     })
     .optional(),
   ip_pool_name: z.string().optional(),
@@ -171,19 +171,19 @@ export const querySendEmailSchema = z.object({
     .object({
       bypass_list_management: z
         .object({
-          enable: z.boolean().optional()
+          enable: z.boolean().optional(),
         })
         .optional(),
       footer: z
         .object({
-          enable: z.boolean().optional()
+          enable: z.boolean().optional(),
         })
         .optional(),
       sandbox_mode: z
         .object({
-          enable: z.boolean().optional()
+          enable: z.boolean().optional(),
         })
-        .optional()
+        .optional(),
     })
     .optional(),
   tracking_settings: z
@@ -191,34 +191,32 @@ export const querySendEmailSchema = z.object({
       click_tracking: z
         .object({
           enable: z.boolean().optional(),
-          enable_text: z.boolean().optional()
+          enable_text: z.boolean().optional(),
         })
         .optional(),
       open_tracking: z
         .object({
           enable: z.boolean().optional(),
-          substitution_tag: z.string().optional()
+          substitution_tag: z.string().optional(),
         })
         .optional(),
       subscription_tracking: z
         .object({
-          enable: z.boolean().optional()
+          enable: z.boolean().optional(),
         })
-        .optional()
+        .optional(),
     })
-    .optional()
-})
+    .optional(),
+});
 
 //types:
 
-export type QueryUpdateList = z.infer<typeof queryUpdateListSchema>
-export type UpdateListResponse = z.infer<typeof updateListResponseSchema>
-export type List = z.infer<typeof listSchema>
-export type Lists = z.infer<typeof listsSchema>
-export type QueryLists = z.infer<typeof queryListsSchema>
-export type QueryList = z.infer<typeof queryListSchema>
-export type QueryAddContacts = z.infer<typeof queryAddContactsSchema>
-export type AddContactsResponse = z.infer<typeof addContactsResponseSchema>
-export type QuerySendEmail = z.infer<typeof querySendEmailSchema>
-
-
+export type QueryUpdateList = z.infer<typeof queryUpdateListSchema>;
+export type UpdateListResponse = z.infer<typeof updateListResponseSchema>;
+export type List = z.infer<typeof listSchema>;
+export type Lists = z.infer<typeof listsSchema>;
+export type QueryLists = z.infer<typeof queryListsSchema>;
+export type QueryList = z.infer<typeof queryListSchema>;
+export type QueryAddContacts = z.infer<typeof queryAddContactsSchema>;
+export type AddContactsResponse = z.infer<typeof addContactsResponseSchema>;
+export type QuerySendEmail = z.infer<typeof querySendEmailSchema>;

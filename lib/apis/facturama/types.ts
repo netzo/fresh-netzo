@@ -17,20 +17,20 @@ export const queryAddProductSchema = z.object({
         Rate: z.number().optional(),
         IsRetention: z.boolean().optional(),
         IsFederalTax: z.boolean().optional(),
-        Total: z.number().optional()
-      })
+        Total: z.number().optional(),
+      }),
     )
-    .optional()
-})
+    .optional(),
+});
 
 export const productSchema = queryAddProductSchema.extend({
-  Id: z.string()
-}).deepPartial()
+  Id: z.string(),
+}).deepPartial();
 
 export const queryUpdateProductSchema = queryAddProductSchema.deepPartial();
 
 //types:
 
-export type QueryAddProduct = z.infer<typeof queryAddProductSchema>
-export type Product = z.infer<typeof productSchema>
-export type QueryUpdateProduct = z.infer<typeof queryUpdateProductSchema>
+export type QueryAddProduct = z.infer<typeof queryAddProductSchema>;
+export type Product = z.infer<typeof productSchema>;
+export type QueryUpdateProduct = z.infer<typeof queryUpdateProductSchema>;

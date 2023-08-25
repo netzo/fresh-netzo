@@ -1,11 +1,10 @@
 import { z } from "../deps.ts";
 
-
 const brevoPaginationSchema = z.object({
   limit: z.number().optional(),
   offset: z.number().optional(),
-  sort: z.union([z.literal("asc"), z.literal("desc")]).optional()
-})
+  sort: z.union([z.literal("asc"), z.literal("desc")]).optional(),
+});
 
 const contactBaseSchema = z.object({
   email: z.string(),
@@ -15,23 +14,23 @@ const contactBaseSchema = z.object({
   createdAt: z.string(),
   modifiedAt: z.string(),
   listIds: z.array(z.number()),
-  attributes: z.record(z.any())
-})
+  attributes: z.record(z.any()),
+});
 
 export const contactsSchema = z.object({
   contacts: z.array(contactBaseSchema),
-  count: z.number()
-}).deepPartial()
+  count: z.number(),
+}).deepPartial();
 
 export const queryContactsSchema = brevoPaginationSchema.extend({
   modifiedSince: z.string().optional(),
-  createdSince: z.string().optional()
-})
+  createdSince: z.string().optional(),
+});
 
 export const queryContactSchema = z.object({
   startDate: z.string().optional(),
-  endDate: z.string().optional()
-})
+  endDate: z.string().optional(),
+});
 
 export const contactSchema = contactBaseSchema.extend({
   listIds: z.array(z.number()),
@@ -39,16 +38,16 @@ export const contactSchema = contactBaseSchema.extend({
     messagesSent: z.array(
       z.object({
         campaignId: z.number(),
-        eventTime: z.string()
-      })
+        eventTime: z.string(),
+      }),
     ),
     opened: z.array(
       z.object({
         campaignId: z.number(),
         count: z.number(),
         eventTime: z.string(),
-        ip: z.string()
-      })
+        ip: z.string(),
+      }),
     ),
     clicked: z.array(
       z.object({
@@ -58,21 +57,21 @@ export const contactSchema = contactBaseSchema.extend({
             count: z.number(),
             eventTime: z.string(),
             ip: z.string(),
-            url: z.string()
-          })
-        )
-      })
+            url: z.string(),
+          }),
+        ),
+      }),
     ),
     delivered: z.array(
       z.object({
         campaignId: z.number(),
         count: z.number(),
         eventTime: z.string(),
-        ip: z.string()
-      })
-    )
-  })
-}).deepPartial()
+        ip: z.string(),
+      }),
+    ),
+  }),
+}).deepPartial();
 
 export const queryAddContactSchema = z.object({
   email: z.string().optional(),
@@ -82,12 +81,15 @@ export const queryAddContactSchema = z.object({
   smsBlacklisted: z.boolean().optional(),
   listIds: z.array(z.number()).optional(),
   updateEnabled: z.boolean().optional(),
-  smtpBlacklistSender: z.array(z.string()).optional()
-})
+  smtpBlacklistSender: z.array(z.string()).optional(),
+});
 
-export const queryUpdateContactSchema = queryAddContactSchema.omit({ email: true, updateEnabled: true }).extend({
-  unlinkListIds: z.array(z.number()).optional()
-})
+export const queryUpdateContactSchema = queryAddContactSchema.omit({
+  email: true,
+  updateEnabled: true,
+}).extend({
+  unlinkListIds: z.array(z.number()).optional(),
+});
 
 export const emailCampaignsSchema = z.object({
   count: z.number(),
@@ -106,7 +108,7 @@ export const emailCampaignsSchema = z.object({
       sender: z.object({
         email: z.string(),
         name: z.string(),
-        id: z.number()
+        id: z.number(),
       }),
       replyTo: z.string(),
       toField: z.string(),
@@ -120,7 +122,7 @@ export const emailCampaignsSchema = z.object({
       recurring: z.boolean(),
       recipients: z.object({
         lists: z.array(z.number()),
-        exclusionLists: z.array(z.number())
+        exclusionLists: z.array(z.number()),
       }),
       statistics: z.object({
         globalStats: z.object({
@@ -136,7 +138,7 @@ export const emailCampaignsSchema = z.object({
           trackableViewsRate: z.number(),
           estimatedViews: z.number(),
           unsubscriptions: z.number(),
-          viewed: z.number()
+          viewed: z.number(),
         }),
         campaignStats: z.array(
           z.object({
@@ -152,8 +154,8 @@ export const emailCampaignsSchema = z.object({
             trackableViews: z.number(),
             unsubscriptions: z.number(),
             viewed: z.number(),
-            deferred: z.number()
-          })
+            deferred: z.number(),
+          }),
         ),
         mirrorClick: z.number(),
         remaining: z.number(),
@@ -169,13 +171,13 @@ export const emailCampaignsSchema = z.object({
             uniqueViews: z.number(),
             unsubscriptions: z.number(),
             viewed: z.number(),
-            delivered: z.number()
-          })
-        )
-      })
-    })
-  )
-}).deepPartial()
+            delivered: z.number(),
+          }),
+        ),
+      }),
+    }),
+  ),
+}).deepPartial();
 
 export const queryEmailCampaignsSchema = brevoPaginationSchema.extend({
   type: z.union([z.literal("classic"), z.literal("trigger")]).optional(),
@@ -186,20 +188,20 @@ export const queryEmailCampaignsSchema = brevoPaginationSchema.extend({
       z.literal("sent"),
       z.literal("queued"),
       z.literal("draft"),
-      z.literal("inProcess")
+      z.literal("inProcess"),
     ])
     .optional(),
   statistics: z
     .union([
       z.literal("globalStats"),
       z.literal("linksStats"),
-      z.literal("statsByDomain")
+      z.literal("statsByDomain"),
     ])
     .optional(),
   startDate: z.string().optional(),
   endDate: z.string().optional(),
-  excludeHtmlContent: z.boolean().optional()
-})
+  excludeHtmlContent: z.boolean().optional(),
+});
 
 export const companiesSchema = z.object({
   items: z.array(
@@ -214,31 +216,32 @@ export const companiesSchema = z.object({
         owner: z.string(),
         owner_assign_date: z.string(),
         phone_number: z.number(),
-        revenue: z.number()
+        revenue: z.number(),
       }),
       linkedContactsIds: z.array(z.number()),
-      linkedDealsIds: z.array(z.string())
-    })
-  )
-}).deepPartial()
+      linkedDealsIds: z.array(z.string()),
+    }),
+  ),
+}).deepPartial();
 
-export const queryCompaniesSchema = brevoPaginationSchema.omit({offset: true}).extend({
-  filters: z.string().optional(),
-  linkedContactsIds: z.number().optional(),
-  linkedDealsIds: z.string().optional(),
-  page: z.number().optional(),
-  sortBy: z.string().optional()
-})
+export const queryCompaniesSchema = brevoPaginationSchema.omit({ offset: true })
+  .extend({
+    filters: z.string().optional(),
+    linkedContactsIds: z.number().optional(),
+    linkedDealsIds: z.string().optional(),
+    page: z.number().optional(),
+    sortBy: z.string().optional(),
+  });
 
-//types: 
+//types:
 
-export type Contacts = z.infer<typeof contactsSchema>
-export type QueryContacts = z.infer<typeof queryContactsSchema>
-export type Contact = z.infer<typeof contactSchema>
-export type QueryContact = z.infer<typeof queryContactSchema>
-export type QueryAddContact = z.infer<typeof queryAddContactSchema>
-export type QueryUpdateContact = z.infer<typeof queryUpdateContactSchema>
-export type EmailCampaigns = z.infer<typeof emailCampaignsSchema>
-export type QueryEmailCampaigns = z.infer<typeof queryEmailCampaignsSchema>
-export type Companies = z.infer<typeof companiesSchema>
-export type QueryCompanies = z.infer<typeof queryCompaniesSchema>
+export type Contacts = z.infer<typeof contactsSchema>;
+export type QueryContacts = z.infer<typeof queryContactsSchema>;
+export type Contact = z.infer<typeof contactSchema>;
+export type QueryContact = z.infer<typeof queryContactSchema>;
+export type QueryAddContact = z.infer<typeof queryAddContactSchema>;
+export type QueryUpdateContact = z.infer<typeof queryUpdateContactSchema>;
+export type EmailCampaigns = z.infer<typeof emailCampaignsSchema>;
+export type QueryEmailCampaigns = z.infer<typeof queryEmailCampaignsSchema>;
+export type Companies = z.infer<typeof companiesSchema>;
+export type QueryCompanies = z.infer<typeof queryCompaniesSchema>;

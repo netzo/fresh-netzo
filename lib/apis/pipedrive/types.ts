@@ -9,7 +9,7 @@ const dealBaseSchema = z.object({
     has_pic: z.boolean(),
     pic_hash: z.any(),
     active_flag: z.boolean(),
-    value: z.number()
+    value: z.number(),
   }),
   user_id: z.object({
     id: z.number(),
@@ -18,7 +18,7 @@ const dealBaseSchema = z.object({
     has_pic: z.boolean(),
     pic_hash: z.any(),
     active_flag: z.boolean(),
-    value: z.number()
+    value: z.number(),
   }),
   person_id: z.object({
     active_flag: z.boolean(),
@@ -27,17 +27,17 @@ const dealBaseSchema = z.object({
       z.object({
         label: z.string(),
         value: z.string(),
-        primary: z.boolean()
-      })
+        primary: z.boolean(),
+      }),
     ),
     phone: z.array(
       z.object({
         label: z.string(),
         value: z.string(),
-        primary: z.boolean()
-      })
+        primary: z.boolean(),
+      }),
     ),
-    value: z.number()
+    value: z.number(),
   }),
   org_id: z.object({
     name: z.string(),
@@ -46,7 +46,7 @@ const dealBaseSchema = z.object({
     address: z.string(),
     active_flag: z.boolean(),
     cc_email: z.string(),
-    value: z.number()
+    value: z.number(),
   }),
   stage_id: z.number(),
   title: z.string(),
@@ -99,8 +99,8 @@ const dealBaseSchema = z.object({
   owner_name: z.string(),
   cc_email: z.string(),
   org_hidden: z.boolean(),
-  person_hidden: z.boolean()
-})
+  person_hidden: z.boolean(),
+});
 
 const relatedObjectsDealSchema = z.object({
   user: z.record(
@@ -110,8 +110,8 @@ const relatedObjectsDealSchema = z.object({
       email: z.string(),
       has_pic: z.boolean(),
       pic_hash: z.any(),
-      active_flag: z.boolean()
-    })
+      active_flag: z.boolean(),
+    }),
   ),
   organization: z.record(
     z.object({
@@ -121,8 +121,8 @@ const relatedObjectsDealSchema = z.object({
       owner_id: z.number(),
       address: z.string(),
       active_flag: z.boolean(),
-      cc_email: z.string()
-    })
+      cc_email: z.string(),
+    }),
   ),
   person: z.record(
     z.object({
@@ -133,18 +133,18 @@ const relatedObjectsDealSchema = z.object({
         z.object({
           label: z.string(),
           value: z.string(),
-          primary: z.boolean()
-        })
+          primary: z.boolean(),
+        }),
       ),
       phone: z.array(
         z.object({
           label: z.string(),
           value: z.string(),
-          primary: z.boolean()
-        })
+          primary: z.boolean(),
+        }),
       ),
-      owner_id: z.number()
-    })
+      owner_id: z.number(),
+    }),
   ),
   stage: z.record(
     z.object({
@@ -160,8 +160,8 @@ const relatedObjectsDealSchema = z.object({
       add_time: z.string(),
       update_time: z.string(),
       pipeline_name: z.string(),
-      pipeline_deal_probability: z.boolean()
-    })
+      pipeline_deal_probability: z.boolean(),
+    }),
   ),
   pipeline: z.record(
     z.object({
@@ -172,10 +172,10 @@ const relatedObjectsDealSchema = z.object({
       active: z.boolean(),
       deal_probability: z.boolean(),
       add_time: z.string(),
-      update_time: z.string()
-    })
-  )
-})
+      update_time: z.string(),
+    }),
+  ),
+});
 
 export const dealsSchema = z.object({
   success: z.boolean(),
@@ -186,10 +186,10 @@ export const dealsSchema = z.object({
       start: z.number(),
       limit: z.number(),
       more_items_in_collection: z.boolean(),
-      next_start: z.number()
-    })
-  })
-}).deepPartial()
+      next_start: z.number(),
+    }),
+  }),
+}).deepPartial();
 
 export const queryGetDealsSchema = z.object({
   user_id: z.number().optional(),
@@ -201,14 +201,14 @@ export const queryGetDealsSchema = z.object({
       z.literal("won"),
       z.literal("lost"),
       z.literal("deleted"),
-      z.literal("all_not_deleted")
+      z.literal("all_not_deleted"),
     ])
     .optional(),
   start: z.number().optional(),
   limit: z.number().optional(),
   sort: z.string().optional(),
-  owned_by_you: z.union([z.literal(0), z.literal(1)]).optional()
-})
+  owned_by_you: z.union([z.literal(0), z.literal(1)]).optional(),
+});
 
 export const searchDealsResponseSchema = z.object({
   success: z.boolean(),
@@ -225,22 +225,22 @@ export const searchDealsResponseSchema = z.object({
           status: z.string(),
           visible_to: z.number(),
           owner: z.object({
-            id: z.number()
+            id: z.number(),
           }),
           stage: z.object({
             id: z.number(),
-            name: z.string()
+            name: z.string(),
           }),
           person: z.object({
             id: z.number(),
-            name: z.string()
+            name: z.string(),
           }),
           organization: z.any(),
           custom_fields: z.array(z.any()),
-          notes: z.array(z.any())
-        })
-      })
-    )
+          notes: z.array(z.any()),
+        }),
+      }),
+    ),
   }),
   additional_data: z.object({
     description: z.string(),
@@ -248,19 +248,19 @@ export const searchDealsResponseSchema = z.object({
     properties: z.object({
       start: z.object({
         type: z.string(),
-        description: z.string()
+        description: z.string(),
       }),
       limit: z.object({
         type: z.string(),
-        description: z.string()
+        description: z.string(),
       }),
       more_items_in_collection: z.object({
         type: z.string(),
-        description: z.string()
-      })
-    })
-  })
-}).deepPartial()
+        description: z.string(),
+      }),
+    }),
+  }),
+}).deepPartial();
 
 export const querySearchDealsSchema = z.object({
   term: z.string(),
@@ -273,8 +273,8 @@ export const querySearchDealsSchema = z.object({
     .optional(),
   include_fields: z.string().optional(),
   start: z.number().optional(),
-  limit: z.number().optional()
-})
+  limit: z.number().optional(),
+});
 
 export const queryAddDealSchema = z.object({
   title: z.string(),
@@ -290,23 +290,25 @@ export const queryAddDealSchema = z.object({
       z.literal("open"),
       z.literal("won"),
       z.literal("lost"),
-      z.literal("deleted")
+      z.literal("deleted"),
     ])
     .optional(),
   expected_close_date: z.string().optional(),
   probability: z.number().optional(),
   lost_reason: z.string().optional(),
   visible_to: z.string().optional(),
-  add_time: z.string().optional()
-})
+  add_time: z.string().optional(),
+});
 
-export const queryUpdateDealSchema = queryAddDealSchema.omit({ add_time: true })
+export const queryUpdateDealSchema = queryAddDealSchema.omit({
+  add_time: true,
+});
 
 export const addOrUpdateDealResponseSchema = z.object({
   success: z.boolean(),
   data: dealBaseSchema,
-  related_objects: relatedObjectsDealSchema
-}).deepPartial()
+  related_objects: relatedObjectsDealSchema,
+}).deepPartial();
 
 export const personsSchema = z.object({
   success: z.boolean(),
@@ -321,7 +323,7 @@ export const personsSchema = z.object({
         has_pic: z.number(),
         pic_hash: z.string(),
         active_flag: z.boolean(),
-        value: z.number()
+        value: z.number(),
       }),
       org_id: z.object({
         name: z.string(),
@@ -330,7 +332,7 @@ export const personsSchema = z.object({
         address: z.string(),
         active_flag: z.boolean(),
         cc_email: z.string(),
-        value: z.number()
+        value: z.number(),
       }),
       name: z.string(),
       first_name: z.string(),
@@ -357,15 +359,15 @@ export const personsSchema = z.object({
         z.object({
           value: z.string(),
           primary: z.boolean(),
-          label: z.string()
-        })
+          label: z.string(),
+        }),
       ),
       email: z.array(
         z.object({
           value: z.string(),
           primary: z.boolean(),
-          label: z.string()
-        })
+          label: z.string(),
+        }),
       ),
       primary_email: z.string(),
       first_char: z.string(),
@@ -381,7 +383,7 @@ export const personsSchema = z.object({
         update_time: z.string(),
         added_by_user_id: z.number(),
         pictures: z.record(z.string()),
-        value: z.number()
+        value: z.number(),
       }),
       next_activity_date: z.string(),
       next_activity_time: z.string(),
@@ -393,16 +395,16 @@ export const personsSchema = z.object({
       label: z.number(),
       org_name: z.string(),
       owner_name: z.string(),
-      cc_email: z.string()
-    })
+      cc_email: z.string(),
+    }),
   ),
   additional_data: z.object({
     pagination: z.object({
       start: z.number(),
       limit: z.number(),
       more_items_in_collection: z.boolean(),
-      next_start: z.number()
-    })
+      next_start: z.number(),
+    }),
   }),
   related_objects: z.object({
     organization: z.record(
@@ -413,8 +415,8 @@ export const personsSchema = z.object({
         owner_id: z.number(),
         address: z.string(),
         active_flag: z.boolean(),
-        cc_email: z.string()
-      })
+        cc_email: z.string(),
+      }),
     ),
     user: z.record(
       z.object({
@@ -423,8 +425,8 @@ export const personsSchema = z.object({
         email: z.string(),
         has_pic: z.number(),
         pic_hash: z.string(),
-        active_flag: z.boolean()
-      })
+        active_flag: z.boolean(),
+      }),
     ),
     picture: z.record(
       z.object({
@@ -435,11 +437,11 @@ export const personsSchema = z.object({
         add_time: z.string(),
         update_time: z.string(),
         added_by_user_id: z.number(),
-        pictures: z.record(z.string())
-      })
-    )
-  })
-}).deepPartial()
+        pictures: z.record(z.string()),
+      }),
+    ),
+  }),
+}).deepPartial();
 
 export const queryGetPersonsSchema = z.object({
   user_id: z.number().optional(),
@@ -447,13 +449,13 @@ export const queryGetPersonsSchema = z.object({
   first_char: z.string().optional(),
   start: z.number().optional(),
   limit: z.number().optional(),
-  sort: z.string().optional()
-})
+  sort: z.string().optional(),
+});
 
 export const querySearchPersonsSchema = querySearchDealsSchema.omit({
   person_id: true,
-  status: true
-})
+  status: true,
+});
 
 export const searchPersonsResponseSchema = z.object({
   success: z.boolean(),
@@ -469,27 +471,27 @@ export const searchPersonsResponseSchema = z.object({
           emails: z.array(z.string()),
           visible_to: z.number(),
           owner: z.object({
-            id: z.number()
+            id: z.number(),
           }),
           organization: z.object({
             id: z.number(),
             name: z.string(),
-            address: z.any()
+            address: z.any(),
           }),
           custom_fields: z.array(z.any()),
-          notes: z.array(z.any())
-        })
-      })
-    )
+          notes: z.array(z.any()),
+        }),
+      }),
+    ),
   }),
   additional_data: z.object({
     pagination: z.object({
       start: z.number(),
       limit: z.number(),
-      more_items_in_collection: z.boolean()
-    })
-  })
-}).deepPartial()
+      more_items_in_collection: z.boolean(),
+    }),
+  }),
+}).deepPartial();
 
 export const queryAddPersonSchema = z.object({
   name: z.string(),
@@ -503,13 +505,13 @@ export const queryAddPersonSchema = z.object({
       z.literal("no_consent"),
       z.literal("unsubscribed"),
       z.literal("subscribed"),
-      z.literal("archived")
+      z.literal("archived"),
     ])
     .optional(),
-  add_time: z.string().optional()
-})
+  add_time: z.string().optional(),
+});
 
-export const queryUpdatePersonSchema = queryAddPersonSchema.partial()
+export const queryUpdatePersonSchema = queryAddPersonSchema.partial();
 
 export const addOrUpdatePersonResponseSchema = z.object({
   success: z.boolean(),
@@ -523,7 +525,7 @@ export const addOrUpdatePersonResponseSchema = z.object({
       has_pic: z.number(),
       pic_hash: z.string(),
       active_flag: z.boolean(),
-      value: z.number()
+      value: z.number(),
     }),
     org_id: z.object({
       name: z.string(),
@@ -532,7 +534,7 @@ export const addOrUpdatePersonResponseSchema = z.object({
       address: z.string(),
       active_flag: z.boolean(),
       cc_email: z.string(),
-      value: z.number()
+      value: z.number(),
     }),
     name: z.string(),
     first_name: z.string(),
@@ -559,15 +561,15 @@ export const addOrUpdatePersonResponseSchema = z.object({
       z.object({
         value: z.string(),
         primary: z.boolean(),
-        label: z.string()
-      })
+        label: z.string(),
+      }),
     ),
     email: z.array(
       z.object({
         value: z.string(),
         primary: z.boolean(),
-        label: z.string()
-      })
+        label: z.string(),
+      }),
     ),
     primary_email: z.string(),
     first_char: z.string(),
@@ -583,7 +585,7 @@ export const addOrUpdatePersonResponseSchema = z.object({
       update_time: z.string(),
       added_by_user_id: z.number(),
       pictures: z.record(z.string()),
-      value: z.number()
+      value: z.number(),
     }),
     next_activity_date: z.string(),
     next_activity_time: z.string(),
@@ -595,7 +597,7 @@ export const addOrUpdatePersonResponseSchema = z.object({
     label: z.number(),
     org_name: z.string(),
     owner_name: z.string(),
-    cc_email: z.string()
+    cc_email: z.string(),
   }),
   related_objects: z.object({
     user: z.record(
@@ -605,34 +607,37 @@ export const addOrUpdatePersonResponseSchema = z.object({
         email: z.string(),
         has_pic: z.number(),
         pic_hash: z.string(),
-        active_flag: z.boolean()
-      })
-    )
-  })
-}).deepPartial()
+        active_flag: z.boolean(),
+      }),
+    ),
+  }),
+}).deepPartial();
 
 export const deleteResponseSchema = z.object({
   success: z.boolean(),
   data: z.object({
-    id: z.number()
-  })
-}).deepPartial()
+    id: z.number(),
+  }),
+}).deepPartial();
 
 //types:
 
-export type Deals = z.infer<typeof dealsSchema>
-export type QueryGetDeals = z.infer<typeof queryGetDealsSchema>
-export type SearchDealsResponse = z.infer<typeof searchDealsResponseSchema>
-export type QuerySearchDeals = z.infer<typeof querySearchDealsSchema>
-export type QueryAddDeal  = z.infer<typeof queryAddDealSchema>
-export type QueryUpdateDeal = z.infer<typeof queryUpdateDealSchema>
-export type AddOrUpdateDealResponse = z.infer<typeof addOrUpdateDealResponseSchema>
-export type Persons = z.infer<typeof personsSchema>
-export type QueryGetPersons = z.infer<typeof queryGetPersonsSchema>
-export type QuerySearchPersons = z.infer<typeof querySearchPersonsSchema>
-export type SearchPersonsResponse = z.infer<typeof searchPersonsResponseSchema>
-export type QueryAddPerson = z.infer<typeof queryAddPersonSchema>
-export type QueryUpdatePerson = z.infer<typeof queryUpdatePersonSchema>
-export type AddOrUpdatePersonResponse = z.infer<typeof addOrUpdatePersonResponseSchema>
-export type DeleteResponse = z.infer<typeof deleteResponseSchema>
-
+export type Deals = z.infer<typeof dealsSchema>;
+export type QueryGetDeals = z.infer<typeof queryGetDealsSchema>;
+export type SearchDealsResponse = z.infer<typeof searchDealsResponseSchema>;
+export type QuerySearchDeals = z.infer<typeof querySearchDealsSchema>;
+export type QueryAddDeal = z.infer<typeof queryAddDealSchema>;
+export type QueryUpdateDeal = z.infer<typeof queryUpdateDealSchema>;
+export type AddOrUpdateDealResponse = z.infer<
+  typeof addOrUpdateDealResponseSchema
+>;
+export type Persons = z.infer<typeof personsSchema>;
+export type QueryGetPersons = z.infer<typeof queryGetPersonsSchema>;
+export type QuerySearchPersons = z.infer<typeof querySearchPersonsSchema>;
+export type SearchPersonsResponse = z.infer<typeof searchPersonsResponseSchema>;
+export type QueryAddPerson = z.infer<typeof queryAddPersonSchema>;
+export type QueryUpdatePerson = z.infer<typeof queryUpdatePersonSchema>;
+export type AddOrUpdatePersonResponse = z.infer<
+  typeof addOrUpdatePersonResponseSchema
+>;
+export type DeleteResponse = z.infer<typeof deleteResponseSchema>;

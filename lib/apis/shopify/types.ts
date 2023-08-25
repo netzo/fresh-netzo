@@ -17,8 +17,8 @@ const addressSchema = z.object({
   province_code: z.string(),
   country_code: z.string(),
   country_name: z.string(),
-  default: z.boolean()
-})
+  default: z.boolean(),
+});
 
 const customerDetailsSchema = z.object({
   id: z.number(),
@@ -45,16 +45,16 @@ const customerDetailsSchema = z.object({
   marketing_opt_in_level: z.any(),
   tax_exemptions: z.array(z.any()),
   admin_graphql_api_id: z.string(),
-  default_address: addressSchema
-})
+  default_address: addressSchema,
+});
 
 export const customersSchema = z.object({
-  customers: z.array(customerDetailsSchema)
-})
+  customers: z.array(customerDetailsSchema),
+});
 
 export const customerSchema = z.object({
-  customer: customerDetailsSchema
-})
+  customer: customerDetailsSchema,
+});
 
 export const queryCustomersSchema = z.object({
   fields: z.string().optional(),
@@ -64,8 +64,8 @@ export const queryCustomersSchema = z.object({
   created_at_max: z.string().optional(),
   created_at_min: z.string().optional(),
   updated_at_max: z.string().optional(),
-  updated_at_min: z.string().optional()
-})
+  updated_at_min: z.string().optional(),
+});
 
 export const addOrUpdateCustomerSchema = z.object({
   customer: z
@@ -85,13 +85,13 @@ export const addOrUpdateCustomerSchema = z.object({
             zip: true,
             last_name: true,
             first_name: true,
-            country: true
-          })
+            country: true,
+          }),
         )
-        .optional()
+        .optional(),
     })
-    .optional()
-})
+    .optional(),
+});
 
 export const addOrUpdateCustomerResponseSchema = z.object({
   customer: customerDetailsSchema.and(
@@ -99,17 +99,17 @@ export const addOrUpdateCustomerResponseSchema = z.object({
       email_marketing_consent: z.object({
         state: z.string(),
         opt_in_level: z.string(),
-        consent_updated_at: z.any()
+        consent_updated_at: z.any(),
       }),
       sms_marketing_consent: z.object({
         state: z.string(),
         opt_in_level: z.string(),
         consent_updated_at: z.any(),
-        consent_collected_from: z.string()
-      })
-    })
-  )
-})
+        consent_collected_from: z.string(),
+      }),
+    }),
+  ),
+});
 
 export const ordersSchema = z.object({
   orders: z.array(
@@ -130,7 +130,7 @@ export const ordersSchema = z.object({
         browser_ip: z.string(),
         browser_width: z.any(),
         session_hash: z.any(),
-        user_agent: z.any()
+        user_agent: z.any(),
       }),
       closed_at: z.any(),
       confirmed: z.boolean(),
@@ -141,46 +141,46 @@ export const ordersSchema = z.object({
       current_subtotal_price_set: z.object({
         shop_money: z.object({
           amount: z.string(),
-          currency_code: z.string()
+          currency_code: z.string(),
         }),
         presentment_money: z.object({
           amount: z.string(),
-          currency_code: z.string()
-        })
+          currency_code: z.string(),
+        }),
       }),
       current_total_discounts: z.string(),
       current_total_discounts_set: z.object({
         shop_money: z.object({
           amount: z.string(),
-          currency_code: z.string()
+          currency_code: z.string(),
         }),
         presentment_money: z.object({
           amount: z.string(),
-          currency_code: z.string()
-        })
+          currency_code: z.string(),
+        }),
       }),
       current_total_duties_set: z.any(),
       current_total_price: z.string(),
       current_total_price_set: z.object({
         shop_money: z.object({
           amount: z.string(),
-          currency_code: z.string()
+          currency_code: z.string(),
         }),
         presentment_money: z.object({
           amount: z.string(),
-          currency_code: z.string()
-        })
+          currency_code: z.string(),
+        }),
       }),
       current_total_tax: z.string(),
       current_total_tax_set: z.object({
         shop_money: z.object({
           amount: z.string(),
-          currency_code: z.string()
+          currency_code: z.string(),
         }),
         presentment_money: z.object({
           amount: z.string(),
-          currency_code: z.string()
-        })
+          currency_code: z.string(),
+        }),
       }),
       customer_locale: z.any(),
       device_id: z.any(),
@@ -188,8 +188,8 @@ export const ordersSchema = z.object({
         z.object({
           code: z.string(),
           amount: z.string(),
-          type: z.string()
-        })
+          type: z.string(),
+        }),
       ),
       email: z.string(),
       estimated_taxes: z.boolean(),
@@ -204,8 +204,8 @@ export const ordersSchema = z.object({
       note_attributes: z.array(
         z.object({
           name: z.string(),
-          value: z.string()
-        })
+          value: z.string(),
+        }),
       ),
       number: z.number(),
       order_number: z.number(),
@@ -225,12 +225,12 @@ export const ordersSchema = z.object({
       subtotal_price_set: z.object({
         shop_money: z.object({
           amount: z.string(),
-          currency_code: z.string()
+          currency_code: z.string(),
         }),
         presentment_money: z.object({
           amount: z.string(),
-          currency_code: z.string()
-        })
+          currency_code: z.string(),
+        }),
       }),
       tags: z.string(),
       tax_lines: z.array(
@@ -241,14 +241,14 @@ export const ordersSchema = z.object({
           price_set: z.object({
             shop_money: z.object({
               amount: z.string(),
-              currency_code: z.string()
+              currency_code: z.string(),
             }),
             presentment_money: z.object({
               amount: z.string(),
-              currency_code: z.string()
-            })
-          })
-        })
+              currency_code: z.string(),
+            }),
+          }),
+        }),
       ),
       taxes_included: z.boolean(),
       test: z.boolean(),
@@ -257,57 +257,57 @@ export const ordersSchema = z.object({
       total_discounts_set: z.object({
         shop_money: z.object({
           amount: z.string(),
-          currency_code: z.string()
+          currency_code: z.string(),
         }),
         presentment_money: z.object({
           amount: z.string(),
-          currency_code: z.string()
-        })
+          currency_code: z.string(),
+        }),
       }),
       total_line_items_price: z.string(),
       total_line_items_price_set: z.object({
         shop_money: z.object({
           amount: z.string(),
-          currency_code: z.string()
+          currency_code: z.string(),
         }),
         presentment_money: z.object({
           amount: z.string(),
-          currency_code: z.string()
-        })
+          currency_code: z.string(),
+        }),
       }),
       total_outstanding: z.string(),
       total_price: z.string(),
       total_price_set: z.object({
         shop_money: z.object({
           amount: z.string(),
-          currency_code: z.string()
+          currency_code: z.string(),
         }),
         presentment_money: z.object({
           amount: z.string(),
-          currency_code: z.string()
-        })
+          currency_code: z.string(),
+        }),
       }),
       total_price_usd: z.string(),
       total_shipping_price_set: z.object({
         shop_money: z.object({
           amount: z.string(),
-          currency_code: z.string()
+          currency_code: z.string(),
         }),
         presentment_money: z.object({
           amount: z.string(),
-          currency_code: z.string()
-        })
+          currency_code: z.string(),
+        }),
       }),
       total_tax: z.string(),
       total_tax_set: z.object({
         shop_money: z.object({
           amount: z.string(),
-          currency_code: z.string()
+          currency_code: z.string(),
         }),
         presentment_money: z.object({
           amount: z.string(),
-          currency_code: z.string()
-        })
+          currency_code: z.string(),
+        }),
       }),
       total_tip_received: z.string(),
       total_weight: z.number(),
@@ -328,7 +328,7 @@ export const ordersSchema = z.object({
         longitude: z.number(),
         name: z.string(),
         country_code: z.string(),
-        province_code: z.string()
+        province_code: z.string(),
       }),
       customer: z.object({
         id: z.number(),
@@ -371,8 +371,8 @@ export const ordersSchema = z.object({
           province_code: z.string(),
           country_code: z.string(),
           country_name: z.string(),
-          default: z.boolean()
-        })
+          default: z.boolean(),
+        }),
       }),
       discount_applications: z.array(
         z.object({
@@ -382,8 +382,8 @@ export const ordersSchema = z.object({
           value_type: z.string(),
           allocation_method: z.string(),
           target_selection: z.string(),
-          code: z.string()
-        })
+          code: z.string(),
+        }),
       ),
       fulfillments: z.array(
         z.object({
@@ -396,7 +396,7 @@ export const ordersSchema = z.object({
           origin_address: z.object({}),
           receipt: z.object({
             testcase: z.boolean(),
-            authorization: z.string()
+            authorization: z.string(),
           }),
           service: z.string(),
           shipment_status: z.any(),
@@ -421,20 +421,20 @@ export const ordersSchema = z.object({
               price_set: z.object({
                 shop_money: z.object({
                   amount: z.string(),
-                  currency_code: z.string()
+                  currency_code: z.string(),
                 }),
                 presentment_money: z.object({
                   amount: z.string(),
-                  currency_code: z.string()
-                })
+                  currency_code: z.string(),
+                }),
               }),
               product_exists: z.boolean(),
               product_id: z.number(),
               properties: z.array(
                 z.object({
                   name: z.string(),
-                  value: z.string()
-                })
+                  value: z.string(),
+                }),
               ),
               quantity: z.number(),
               requires_shipping: z.boolean(),
@@ -445,12 +445,12 @@ export const ordersSchema = z.object({
               total_discount_set: z.object({
                 shop_money: z.object({
                   amount: z.string(),
-                  currency_code: z.string()
+                  currency_code: z.string(),
                 }),
                 presentment_money: z.object({
                   amount: z.string(),
-                  currency_code: z.string()
-                })
+                  currency_code: z.string(),
+                }),
               }),
               variant_id: z.number(),
               variant_inventory_management: z.string(),
@@ -462,16 +462,16 @@ export const ordersSchema = z.object({
                   price_set: z.object({
                     shop_money: z.object({
                       amount: z.string(),
-                      currency_code: z.string()
+                      currency_code: z.string(),
                     }),
                     presentment_money: z.object({
                       amount: z.string(),
-                      currency_code: z.string()
-                    })
+                      currency_code: z.string(),
+                    }),
                   }),
                   rate: z.number(),
-                  title: z.string()
-                })
+                  title: z.string(),
+                }),
               ),
               duties: z.array(z.any()),
               discount_allocations: z.array(
@@ -480,19 +480,19 @@ export const ordersSchema = z.object({
                   amount_set: z.object({
                     shop_money: z.object({
                       amount: z.string(),
-                      currency_code: z.string()
+                      currency_code: z.string(),
                     }),
                     presentment_money: z.object({
                       amount: z.string(),
-                      currency_code: z.string()
-                    })
+                      currency_code: z.string(),
+                    }),
                   }),
-                  discount_application_index: z.number()
-                })
-              )
-            })
-          )
-        })
+                  discount_application_index: z.number(),
+                }),
+              ),
+            }),
+          ),
+        }),
       ),
       line_items: z.array(
         z.object({
@@ -508,20 +508,20 @@ export const ordersSchema = z.object({
           price_set: z.object({
             shop_money: z.object({
               amount: z.string(),
-              currency_code: z.string()
+              currency_code: z.string(),
             }),
             presentment_money: z.object({
               amount: z.string(),
-              currency_code: z.string()
-            })
+              currency_code: z.string(),
+            }),
           }),
           product_exists: z.boolean(),
           product_id: z.number(),
           properties: z.array(
             z.object({
               name: z.string(),
-              value: z.string()
-            })
+              value: z.string(),
+            }),
           ),
           quantity: z.number(),
           requires_shipping: z.boolean(),
@@ -532,12 +532,12 @@ export const ordersSchema = z.object({
           total_discount_set: z.object({
             shop_money: z.object({
               amount: z.string(),
-              currency_code: z.string()
+              currency_code: z.string(),
             }),
             presentment_money: z.object({
               amount: z.string(),
-              currency_code: z.string()
-            })
+              currency_code: z.string(),
+            }),
           }),
           variant_id: z.number(),
           variant_inventory_management: z.string(),
@@ -549,16 +549,16 @@ export const ordersSchema = z.object({
               price_set: z.object({
                 shop_money: z.object({
                   amount: z.string(),
-                  currency_code: z.string()
+                  currency_code: z.string(),
                 }),
                 presentment_money: z.object({
                   amount: z.string(),
-                  currency_code: z.string()
-                })
+                  currency_code: z.string(),
+                }),
               }),
               rate: z.number(),
-              title: z.string()
-            })
+              title: z.string(),
+            }),
           ),
           duties: z.array(z.any()),
           discount_allocations: z.array(
@@ -567,17 +567,17 @@ export const ordersSchema = z.object({
               amount_set: z.object({
                 shop_money: z.object({
                   amount: z.string(),
-                  currency_code: z.string()
+                  currency_code: z.string(),
                 }),
                 presentment_money: z.object({
                   amount: z.string(),
-                  currency_code: z.string()
-                })
+                  currency_code: z.string(),
+                }),
               }),
-              discount_application_index: z.number()
-            })
-          )
-        })
+              discount_application_index: z.number(),
+            }),
+          ),
+        }),
       ),
       payment_details: z.object({
         credit_card_bin: z.any(),
@@ -585,7 +585,7 @@ export const ordersSchema = z.object({
         cvv_result_code: z.any(),
         credit_card_number: z.string(),
         credit_card_company: z.string(),
-        buyer_action_info: z.any()
+        buyer_action_info: z.any(),
       }),
       payment_terms: z.any(),
       refunds: z.array(
@@ -600,12 +600,12 @@ export const ordersSchema = z.object({
           total_duties_set: z.object({
             shop_money: z.object({
               amount: z.string(),
-              currency_code: z.string()
+              currency_code: z.string(),
             }),
             presentment_money: z.object({
               amount: z.string(),
-              currency_code: z.string()
-            })
+              currency_code: z.string(),
+            }),
           }),
           user_id: z.number(),
           order_adjustments: z.array(z.any()),
@@ -630,8 +630,8 @@ export const ordersSchema = z.object({
               source_name: z.string(),
               status: z.string(),
               test: z.boolean(),
-              user_id: z.any()
-            })
+              user_id: z.any(),
+            }),
           ),
           refund_line_items: z.array(
             z.object({
@@ -644,23 +644,23 @@ export const ordersSchema = z.object({
               subtotal_set: z.object({
                 shop_money: z.object({
                   amount: z.string(),
-                  currency_code: z.string()
+                  currency_code: z.string(),
                 }),
                 presentment_money: z.object({
                   amount: z.string(),
-                  currency_code: z.string()
-                })
+                  currency_code: z.string(),
+                }),
               }),
               total_tax: z.number(),
               total_tax_set: z.object({
                 shop_money: z.object({
                   amount: z.string(),
-                  currency_code: z.string()
+                  currency_code: z.string(),
                 }),
                 presentment_money: z.object({
                   amount: z.string(),
-                  currency_code: z.string()
-                })
+                  currency_code: z.string(),
+                }),
               }),
               line_item: z.object({
                 id: z.number(),
@@ -675,20 +675,20 @@ export const ordersSchema = z.object({
                 price_set: z.object({
                   shop_money: z.object({
                     amount: z.string(),
-                    currency_code: z.string()
+                    currency_code: z.string(),
                   }),
                   presentment_money: z.object({
                     amount: z.string(),
-                    currency_code: z.string()
-                  })
+                    currency_code: z.string(),
+                  }),
                 }),
                 product_exists: z.boolean(),
                 product_id: z.number(),
                 properties: z.array(
                   z.object({
                     name: z.string(),
-                    value: z.string()
-                  })
+                    value: z.string(),
+                  }),
                 ),
                 quantity: z.number(),
                 requires_shipping: z.boolean(),
@@ -699,12 +699,12 @@ export const ordersSchema = z.object({
                 total_discount_set: z.object({
                   shop_money: z.object({
                     amount: z.string(),
-                    currency_code: z.string()
+                    currency_code: z.string(),
                   }),
                   presentment_money: z.object({
                     amount: z.string(),
-                    currency_code: z.string()
-                  })
+                    currency_code: z.string(),
+                  }),
                 }),
                 variant_id: z.number(),
                 variant_inventory_management: z.string(),
@@ -716,16 +716,16 @@ export const ordersSchema = z.object({
                     price_set: z.object({
                       shop_money: z.object({
                         amount: z.string(),
-                        currency_code: z.string()
+                        currency_code: z.string(),
                       }),
                       presentment_money: z.object({
                         amount: z.string(),
-                        currency_code: z.string()
-                      })
+                        currency_code: z.string(),
+                      }),
                     }),
                     rate: z.number(),
-                    title: z.string()
-                  })
+                    title: z.string(),
+                  }),
                 ),
                 duties: z.array(z.any()),
                 discount_allocations: z.array(
@@ -734,21 +734,21 @@ export const ordersSchema = z.object({
                     amount_set: z.object({
                       shop_money: z.object({
                         amount: z.string(),
-                        currency_code: z.string()
+                        currency_code: z.string(),
                       }),
                       presentment_money: z.object({
                         amount: z.string(),
-                        currency_code: z.string()
-                      })
+                        currency_code: z.string(),
+                      }),
                     }),
-                    discount_application_index: z.number()
-                  })
-                )
-              })
-            })
+                    discount_application_index: z.number(),
+                  }),
+                ),
+              }),
+            }),
           ),
-          duties: z.array(z.any())
-        })
+          duties: z.array(z.any()),
+        }),
       ),
       shipping_address: z.object({
         first_name: z.string(),
@@ -765,7 +765,7 @@ export const ordersSchema = z.object({
         longitude: z.number(),
         name: z.string(),
         country_code: z.string(),
-        province_code: z.string()
+        province_code: z.string(),
       }),
       shipping_lines: z.array(
         z.object({
@@ -777,35 +777,35 @@ export const ordersSchema = z.object({
           discounted_price_set: z.object({
             shop_money: z.object({
               amount: z.string(),
-              currency_code: z.string()
+              currency_code: z.string(),
             }),
             presentment_money: z.object({
               amount: z.string(),
-              currency_code: z.string()
-            })
+              currency_code: z.string(),
+            }),
           }),
           phone: z.any(),
           price: z.string(),
           price_set: z.object({
             shop_money: z.object({
               amount: z.string(),
-              currency_code: z.string()
+              currency_code: z.string(),
             }),
             presentment_money: z.object({
               amount: z.string(),
-              currency_code: z.string()
-            })
+              currency_code: z.string(),
+            }),
           }),
           requested_fulfillment_service_id: z.any(),
           source: z.string(),
           title: z.string(),
           tax_lines: z.array(z.any()),
-          discount_allocations: z.array(z.any())
-        })
-      )
-    })
-  )
-})
+          discount_allocations: z.array(z.any()),
+        }),
+      ),
+    }),
+  ),
+});
 
 export const orderSchema = z.object({
   order: z.object({
@@ -826,20 +826,20 @@ export const orderSchema = z.object({
         price_set: z.object({
           shop_money: z.object({
             amount: z.string(),
-            currency_code: z.string()
+            currency_code: z.string(),
           }),
           presentment_money: z.object({
             amount: z.string(),
-            currency_code: z.string()
-          })
+            currency_code: z.string(),
+          }),
         }),
         product_exists: z.boolean(),
         product_id: z.number(),
         properties: z.array(
           z.object({
             name: z.string(),
-            value: z.string()
-          })
+            value: z.string(),
+          }),
         ),
         quantity: z.number(),
         requires_shipping: z.boolean(),
@@ -850,12 +850,12 @@ export const orderSchema = z.object({
         total_discount_set: z.object({
           shop_money: z.object({
             amount: z.string(),
-            currency_code: z.string()
+            currency_code: z.string(),
           }),
           presentment_money: z.object({
             amount: z.string(),
-            currency_code: z.string()
-          })
+            currency_code: z.string(),
+          }),
         }),
         variant_id: z.number(),
         variant_inventory_management: z.string(),
@@ -868,16 +868,16 @@ export const orderSchema = z.object({
             price_set: z.object({
               shop_money: z.object({
                 amount: z.string(),
-                currency_code: z.string()
+                currency_code: z.string(),
               }),
               presentment_money: z.object({
                 amount: z.string(),
-                currency_code: z.string()
-              })
+                currency_code: z.string(),
+              }),
             }),
             rate: z.number(),
-            title: z.string()
-          })
+            title: z.string(),
+          }),
         ),
         duties: z.array(z.any()),
         discount_allocations: z.array(
@@ -886,20 +886,20 @@ export const orderSchema = z.object({
             amount_set: z.object({
               shop_money: z.object({
                 amount: z.string(),
-                currency_code: z.string()
+                currency_code: z.string(),
               }),
               presentment_money: z.object({
                 amount: z.string(),
-                currency_code: z.string()
-              })
+                currency_code: z.string(),
+              }),
             }),
-            discount_application_index: z.number()
-          })
-        )
-      })
-    )
-  })
-})
+            discount_application_index: z.number(),
+          }),
+        ),
+      }),
+    ),
+  }),
+});
 
 export const ordersByCustomerSchema = z.object({
   orders: z.array(
@@ -920,7 +920,7 @@ export const ordersByCustomerSchema = z.object({
         browser_ip: z.string(),
         browser_width: z.any(),
         session_hash: z.any(),
-        user_agent: z.any()
+        user_agent: z.any(),
       }),
       closed_at: z.any(),
       confirmation_number: z.any(),
@@ -931,24 +931,24 @@ export const ordersByCustomerSchema = z.object({
       current_subtotal_price: z.string(),
       current_subtotal_price_set: z.object({
         shop_money: z.object({}),
-        presentment_money: z.object({})
+        presentment_money: z.object({}),
       }),
       current_total_additional_fees_set: z.any(),
       current_total_discounts: z.string(),
       current_total_discounts_set: z.object({
         shop_money: z.object({}),
-        presentment_money: z.object({})
+        presentment_money: z.object({}),
       }),
       current_total_duties_set: z.any(),
       current_total_price: z.string(),
       current_total_price_set: z.object({
         shop_money: z.object({}),
-        presentment_money: z.object({})
+        presentment_money: z.object({}),
       }),
       current_total_tax: z.string(),
       current_total_tax_set: z.object({
         shop_money: z.object({}),
-        presentment_money: z.object({})
+        presentment_money: z.object({}),
       }),
       customer_locale: z.any(),
       device_id: z.any(),
@@ -956,8 +956,8 @@ export const ordersByCustomerSchema = z.object({
         z.object({
           code: z.string(),
           amount: z.string(),
-          type: z.string()
-        })
+          type: z.string(),
+        }),
       ),
       email: z.string(),
       estimated_taxes: z.boolean(),
@@ -972,8 +972,8 @@ export const ordersByCustomerSchema = z.object({
       note_attributes: z.array(
         z.object({
           name: z.string(),
-          value: z.string()
-        })
+          value: z.string(),
+        }),
       ),
       number: z.number(),
       order_number: z.number(),
@@ -993,7 +993,7 @@ export const ordersByCustomerSchema = z.object({
       subtotal_price: z.string(),
       subtotal_price_set: z.object({
         shop_money: z.object({}),
-        presentment_money: z.object({})
+        presentment_money: z.object({}),
       }),
       tags: z.string(),
       tax_exempt: z.boolean(),
@@ -1003,8 +1003,8 @@ export const ordersByCustomerSchema = z.object({
           rate: z.number(),
           title: z.string(),
           price_set: z.object({}),
-          channel_liable: z.any()
-        })
+          channel_liable: z.any(),
+        }),
       ),
       taxes_included: z.boolean(),
       test: z.boolean(),
@@ -1012,27 +1012,27 @@ export const ordersByCustomerSchema = z.object({
       total_discounts: z.string(),
       total_discounts_set: z.object({
         shop_money: z.object({}),
-        presentment_money: z.object({})
+        presentment_money: z.object({}),
       }),
       total_line_items_price: z.string(),
       total_line_items_price_set: z.object({
         shop_money: z.object({}),
-        presentment_money: z.object({})
+        presentment_money: z.object({}),
       }),
       total_outstanding: z.string(),
       total_price: z.string(),
       total_price_set: z.object({
         shop_money: z.object({}),
-        presentment_money: z.object({})
+        presentment_money: z.object({}),
       }),
       total_shipping_price_set: z.object({
         shop_money: z.object({}),
-        presentment_money: z.object({})
+        presentment_money: z.object({}),
       }),
       total_tax: z.string(),
       total_tax_set: z.object({
         shop_money: z.object({}),
-        presentment_money: z.object({})
+        presentment_money: z.object({}),
       }),
       total_tip_received: z.string(),
       total_weight: z.number(),
@@ -1053,7 +1053,7 @@ export const ordersByCustomerSchema = z.object({
         longitude: z.number(),
         name: z.string(),
         country_code: z.string(),
-        province_code: z.string()
+        province_code: z.string(),
       }),
       customer: z.object({
         id: z.number(),
@@ -1072,13 +1072,13 @@ export const ordersByCustomerSchema = z.object({
         email_marketing_consent: z.object({
           state: z.string(),
           opt_in_level: z.any(),
-          consent_updated_at: z.string()
+          consent_updated_at: z.string(),
         }),
         sms_marketing_consent: z.object({
           state: z.string(),
           opt_in_level: z.string(),
           consent_updated_at: z.string(),
-          consent_collected_from: z.string()
+          consent_collected_from: z.string(),
         }),
         tags: z.string(),
         currency: z.string(),
@@ -1103,8 +1103,8 @@ export const ordersByCustomerSchema = z.object({
           province_code: z.string(),
           country_code: z.string(),
           country_name: z.string(),
-          default: z.boolean()
-        })
+          default: z.boolean(),
+        }),
       }),
       discount_applications: z.array(
         z.object({
@@ -1114,8 +1114,8 @@ export const ordersByCustomerSchema = z.object({
           value_type: z.string(),
           allocation_method: z.string(),
           target_selection: z.string(),
-          code: z.string()
-        })
+          code: z.string(),
+        }),
       ),
       fulfillments: z.array(
         z.object({
@@ -1128,7 +1128,7 @@ export const ordersByCustomerSchema = z.object({
           origin_address: z.object({}),
           receipt: z.object({
             testcase: z.boolean(),
-            authorization: z.string()
+            authorization: z.string(),
           }),
           service: z.string(),
           shipment_status: z.any(),
@@ -1153,20 +1153,20 @@ export const ordersByCustomerSchema = z.object({
               price_set: z.object({
                 shop_money: z.object({
                   amount: z.string(),
-                  currency_code: z.string()
+                  currency_code: z.string(),
                 }),
                 presentment_money: z.object({
                   amount: z.string(),
-                  currency_code: z.string()
-                })
+                  currency_code: z.string(),
+                }),
               }),
               product_exists: z.boolean(),
               product_id: z.number(),
               properties: z.array(
                 z.object({
                   name: z.string(),
-                  value: z.string()
-                })
+                  value: z.string(),
+                }),
               ),
               quantity: z.number(),
               requires_shipping: z.boolean(),
@@ -1177,12 +1177,12 @@ export const ordersByCustomerSchema = z.object({
               total_discount_set: z.object({
                 shop_money: z.object({
                   amount: z.string(),
-                  currency_code: z.string()
+                  currency_code: z.string(),
                 }),
                 presentment_money: z.object({
                   amount: z.string(),
-                  currency_code: z.string()
-                })
+                  currency_code: z.string(),
+                }),
               }),
               variant_id: z.number(),
               variant_inventory_management: z.string(),
@@ -1195,16 +1195,16 @@ export const ordersByCustomerSchema = z.object({
                   price_set: z.object({
                     shop_money: z.object({
                       amount: z.string(),
-                      currency_code: z.string()
+                      currency_code: z.string(),
                     }),
                     presentment_money: z.object({
                       amount: z.string(),
-                      currency_code: z.string()
-                    })
+                      currency_code: z.string(),
+                    }),
                   }),
                   rate: z.number(),
-                  title: z.string()
-                })
+                  title: z.string(),
+                }),
               ),
               duties: z.array(z.any()),
               discount_allocations: z.array(
@@ -1213,19 +1213,19 @@ export const ordersByCustomerSchema = z.object({
                   amount_set: z.object({
                     shop_money: z.object({
                       amount: z.string(),
-                      currency_code: z.string()
+                      currency_code: z.string(),
                     }),
                     presentment_money: z.object({
                       amount: z.string(),
-                      currency_code: z.string()
-                    })
+                      currency_code: z.string(),
+                    }),
                   }),
-                  discount_application_index: z.number()
-                })
-              )
-            })
-          )
-        })
+                  discount_application_index: z.number(),
+                }),
+              ),
+            }),
+          ),
+        }),
       ),
       line_items: z.array(
         z.object({
@@ -1240,15 +1240,15 @@ export const ordersByCustomerSchema = z.object({
           price: z.string(),
           price_set: z.object({
             shop_money: z.object({}),
-            presentment_money: z.object({})
+            presentment_money: z.object({}),
           }),
           product_exists: z.boolean(),
           product_id: z.number(),
           properties: z.array(
             z.object({
               name: z.string(),
-              value: z.string()
-            })
+              value: z.string(),
+            }),
           ),
           quantity: z.number(),
           requires_shipping: z.boolean(),
@@ -1258,7 +1258,7 @@ export const ordersByCustomerSchema = z.object({
           total_discount: z.string(),
           total_discount_set: z.object({
             shop_money: z.object({}),
-            presentment_money: z.object({})
+            presentment_money: z.object({}),
           }),
           variant_id: z.number(),
           variant_inventory_management: z.string(),
@@ -1270,11 +1270,11 @@ export const ordersByCustomerSchema = z.object({
               price: z.string(),
               price_set: z.object({
                 shop_money: z.object({}),
-                presentment_money: z.object({})
+                presentment_money: z.object({}),
               }),
               rate: z.number(),
-              title: z.string()
-            })
+              title: z.string(),
+            }),
           ),
           duties: z.array(z.any()),
           discount_allocations: z.array(
@@ -1282,12 +1282,12 @@ export const ordersByCustomerSchema = z.object({
               amount: z.string(),
               amount_set: z.object({
                 shop_money: z.object({}),
-                presentment_money: z.object({})
+                presentment_money: z.object({}),
               }),
-              discount_application_index: z.number()
-            })
-          )
-        })
+              discount_application_index: z.number(),
+            }),
+          ),
+        }),
       ),
       payment_terms: z.any(),
       refunds: z.array(
@@ -1301,11 +1301,11 @@ export const ordersByCustomerSchema = z.object({
           restock: z.boolean(),
           total_additional_fees_set: z.object({
             shop_money: z.object({}),
-            presentment_money: z.object({})
+            presentment_money: z.object({}),
           }),
           total_duties_set: z.object({
             shop_money: z.object({}),
-            presentment_money: z.object({})
+            presentment_money: z.object({}),
           }),
           user_id: z.number(),
           order_adjustments: z.array(z.any()),
@@ -1331,8 +1331,8 @@ export const ordersByCustomerSchema = z.object({
               source_name: z.string(),
               status: z.string(),
               test: z.boolean(),
-              user_id: z.any()
-            })
+              user_id: z.any(),
+            }),
           ),
           refund_line_items: z.array(
             z.object({
@@ -1345,23 +1345,23 @@ export const ordersByCustomerSchema = z.object({
               subtotal_set: z.object({
                 shop_money: z.object({
                   amount: z.string(),
-                  currency_code: z.string()
+                  currency_code: z.string(),
                 }),
                 presentment_money: z.object({
                   amount: z.string(),
-                  currency_code: z.string()
-                })
+                  currency_code: z.string(),
+                }),
               }),
               total_tax: z.number(),
               total_tax_set: z.object({
                 shop_money: z.object({
                   amount: z.string(),
-                  currency_code: z.string()
+                  currency_code: z.string(),
                 }),
                 presentment_money: z.object({
                   amount: z.string(),
-                  currency_code: z.string()
-                })
+                  currency_code: z.string(),
+                }),
               }),
               line_item: z.object({
                 id: z.number(),
@@ -1376,20 +1376,20 @@ export const ordersByCustomerSchema = z.object({
                 price_set: z.object({
                   shop_money: z.object({
                     amount: z.string(),
-                    currency_code: z.string()
+                    currency_code: z.string(),
                   }),
                   presentment_money: z.object({
                     amount: z.string(),
-                    currency_code: z.string()
-                  })
+                    currency_code: z.string(),
+                  }),
                 }),
                 product_exists: z.boolean(),
                 product_id: z.number(),
                 properties: z.array(
                   z.object({
                     name: z.string(),
-                    value: z.string()
-                  })
+                    value: z.string(),
+                  }),
                 ),
                 quantity: z.number(),
                 requires_shipping: z.boolean(),
@@ -1400,12 +1400,12 @@ export const ordersByCustomerSchema = z.object({
                 total_discount_set: z.object({
                   shop_money: z.object({
                     amount: z.string(),
-                    currency_code: z.string()
+                    currency_code: z.string(),
                   }),
                   presentment_money: z.object({
                     amount: z.string(),
-                    currency_code: z.string()
-                  })
+                    currency_code: z.string(),
+                  }),
                 }),
                 variant_id: z.number(),
                 variant_inventory_management: z.string(),
@@ -1418,16 +1418,16 @@ export const ordersByCustomerSchema = z.object({
                     price_set: z.object({
                       shop_money: z.object({
                         amount: z.string(),
-                        currency_code: z.string()
+                        currency_code: z.string(),
                       }),
                       presentment_money: z.object({
                         amount: z.string(),
-                        currency_code: z.string()
-                      })
+                        currency_code: z.string(),
+                      }),
                     }),
                     rate: z.number(),
-                    title: z.string()
-                  })
+                    title: z.string(),
+                  }),
                 ),
                 duties: z.array(z.any()),
                 discount_allocations: z.array(
@@ -1436,22 +1436,22 @@ export const ordersByCustomerSchema = z.object({
                     amount_set: z.object({
                       shop_money: z.object({
                         amount: z.string(),
-                        currency_code: z.string()
+                        currency_code: z.string(),
                       }),
                       presentment_money: z.object({
                         amount: z.string(),
-                        currency_code: z.string()
-                      })
+                        currency_code: z.string(),
+                      }),
                     }),
-                    discount_application_index: z.number()
-                  })
-                )
-              })
-            })
+                    discount_application_index: z.number(),
+                  }),
+                ),
+              }),
+            }),
           ),
           duties: z.array(z.any()),
-          additional_fees: z.array(z.any())
-        })
+          additional_fees: z.array(z.any()),
+        }),
       ),
       shipping_address: z.object({
         first_name: z.string(),
@@ -1468,7 +1468,7 @@ export const ordersByCustomerSchema = z.object({
         longitude: z.number(),
         name: z.string(),
         country_code: z.string(),
-        province_code: z.string()
+        province_code: z.string(),
       }),
       shipping_lines: z.array(
         z.object({
@@ -1478,31 +1478,31 @@ export const ordersByCustomerSchema = z.object({
           discounted_price: z.string(),
           discounted_price_set: z.object({
             shop_money: z.object({}),
-            presentment_money: z.object({})
+            presentment_money: z.object({}),
           }),
           phone: z.any(),
           price: z.string(),
           price_set: z.object({
             shop_money: z.object({}),
-            presentment_money: z.object({})
+            presentment_money: z.object({}),
           }),
           requested_fulfillment_service_id: z.any(),
           source: z.string(),
           title: z.string(),
           tax_lines: z.array(z.any()),
-          discount_allocations: z.array(z.any())
-        })
-      )
-    })
-  )
-})
+          discount_allocations: z.array(z.any()),
+        }),
+      ),
+    }),
+  ),
+});
 
 export const orderStatusSchema = z.union([
   z.literal("open"),
   z.literal("close"),
   z.literal("cancelled"),
-  z.literal("any")
-])
+  z.literal("any"),
+]);
 
 export const queryOrdersSchema = queryCustomersSchema.extend({
   attribution_app_id: z.string().optional(),
@@ -1516,7 +1516,7 @@ export const queryOrdersSchema = queryCustomersSchema.extend({
       z.literal("voided"),
       z.literal("partially_refunded"),
       z.literal("any"),
-      z.literal("unpaid")
+      z.literal("unpaid"),
     ])
     .optional(),
   fulfillment_status: z
@@ -1525,13 +1525,13 @@ export const queryOrdersSchema = queryCustomersSchema.extend({
       z.literal("partial"),
       z.literal("unshipped"),
       z.literal("any"),
-      z.literal("unfulfilled")
+      z.literal("unfulfilled"),
     ])
     .optional(),
   status: orderStatusSchema.optional(),
   processed_at_max: z.string().optional(),
-  processed_at_min: z.string().optional()
-})
+  processed_at_min: z.string().optional(),
+});
 
 const productBaseSchema = z.object({
   id: z.number(),
@@ -1577,14 +1577,14 @@ const productBaseSchema = z.object({
         z.object({
           price: z.object({
             amount: z.string(),
-            currency_code: z.string()
+            currency_code: z.string(),
           }),
-          compare_at_price: z.any()
-        })
+          compare_at_price: z.any(),
+        }),
       ),
       requires_shipping: z.boolean(),
-      admin_graphql_api_id: z.string()
-    })
+      admin_graphql_api_id: z.string(),
+    }),
   ),
   options: z.array(
     z.object({
@@ -1592,8 +1592,8 @@ const productBaseSchema = z.object({
       product_id: z.number(),
       name: z.string(),
       position: z.number(),
-      values: z.array(z.string())
-    })
+      values: z.array(z.string()),
+    }),
   ),
   images: z.array(
     z.object({
@@ -1607,8 +1607,8 @@ const productBaseSchema = z.object({
       height: z.number(),
       src: z.string(),
       variant_ids: z.array(z.number()),
-      admin_graphql_api_id: z.string()
-    })
+      admin_graphql_api_id: z.string(),
+    }),
   ),
   image: z
     .object({
@@ -1622,18 +1622,18 @@ const productBaseSchema = z.object({
       height: z.number(),
       src: z.string(),
       variant_ids: z.array(z.any()),
-      admin_graphql_api_id: z.string()
+      admin_graphql_api_id: z.string(),
     })
-    .optional()
-})
+    .optional(),
+});
 
 export const productsSchema = z.object({
-  products: z.array(productBaseSchema)
-})
+  products: z.array(productBaseSchema),
+});
 
 export const productSchema = z.object({
-  product: productBaseSchema
-})
+  product: productBaseSchema,
+});
 export const queryProductsSchema = queryCustomersSchema.extend({
   collection_id: z.string().optional(),
   handle: z.string().optional(),
@@ -1648,8 +1648,8 @@ export const queryProductsSchema = queryCustomersSchema.extend({
     .union([z.literal("active"), z.literal("archived"), z.literal("draft")])
     .optional(),
   title: z.string().optional(),
-  vendor: z.string().optional()
-})
+  vendor: z.string().optional(),
+});
 
 export const payoutsSchema = z.object({
   payouts: z.array(
@@ -1659,10 +1659,10 @@ export const payoutsSchema = z.object({
       date: z.string(),
       currency: z.string(),
       amount: z.string(),
-      summary: z.object({})
-    })
-  )
-})
+      summary: z.object({}),
+    }),
+  ),
+});
 
 export const queryPayoutsSchema = z.object({
   date: z.string().optional(),
@@ -1676,27 +1676,27 @@ export const queryPayoutsSchema = z.object({
       z.literal("in_transit"),
       z.literal("paid"),
       z.literal("failed"),
-      z.literal("canceled")
+      z.literal("canceled"),
     ])
-    .optional()
-})
+    .optional(),
+});
 
 // types:
 
-export type Customers = z.infer<typeof customersSchema>
-export type Customer = z.infer<typeof customerSchema>
-export type QueryCustomers = z.infer<typeof queryCustomersSchema>
-export type AddOrUpdateCustomer = z.infer<typeof addOrUpdateCustomerSchema>
-export type AddOrUpdateCustomerResponse = z.infer<typeof addOrUpdateCustomerResponseSchema>
-export type Orders = z.infer<typeof ordersSchema>
-export type Order = z.infer<typeof orderSchema>
-export type OrdersByCustomer = z.infer<typeof ordersByCustomerSchema>
-export type OrderStatus = z.infer<typeof orderStatusSchema>
-export type QueryOrders = z.infer<typeof queryOrdersSchema>
-export type Products = z.infer<typeof productsSchema>
-export type Product = z.infer<typeof productSchema>
-export type QueryProducts = z.infer<typeof queryProductsSchema>
-export type Payouts = z.infer<typeof payoutsSchema>
-export type QueryPayouts = z.infer<typeof queryPayoutsSchema>
-
-
+export type Customers = z.infer<typeof customersSchema>;
+export type Customer = z.infer<typeof customerSchema>;
+export type QueryCustomers = z.infer<typeof queryCustomersSchema>;
+export type AddOrUpdateCustomer = z.infer<typeof addOrUpdateCustomerSchema>;
+export type AddOrUpdateCustomerResponse = z.infer<
+  typeof addOrUpdateCustomerResponseSchema
+>;
+export type Orders = z.infer<typeof ordersSchema>;
+export type Order = z.infer<typeof orderSchema>;
+export type OrdersByCustomer = z.infer<typeof ordersByCustomerSchema>;
+export type OrderStatus = z.infer<typeof orderStatusSchema>;
+export type QueryOrders = z.infer<typeof queryOrdersSchema>;
+export type Products = z.infer<typeof productsSchema>;
+export type Product = z.infer<typeof productSchema>;
+export type QueryProducts = z.infer<typeof queryProductsSchema>;
+export type Payouts = z.infer<typeof payoutsSchema>;
+export type QueryPayouts = z.infer<typeof queryPayoutsSchema>;

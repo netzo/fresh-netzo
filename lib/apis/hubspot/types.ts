@@ -9,39 +9,39 @@ const contactBaseSchema = z.object({
     lastmodifieddate: z.string(),
     lastname: z.string(),
     phone: z.string(),
-    website: z.string()
-  })
-})
+    website: z.string(),
+  }),
+});
 
 export const contactsSchema = z.object({
   results: z.array(contactBaseSchema),
   paging: z.object({
     next: z.object({
       after: z.string(),
-      link: z.string()
-    })
-  })
-})
+      link: z.string(),
+    }),
+  }),
+});
 
 export const queryContactsSchema = z.object({
   limit: z.number().optional(),
   after: z.string().optional(),
-  properties: z.tuple([]).optional()
-})
+  properties: z.tuple([]).optional(),
+});
 
 export const queryAddOrUpdateContactSchema = z.object({
   properties: contactBaseSchema.shape.properties.omit({
     createdate: true,
-    lastmodifieddate: true
-  })
-})
+    lastmodifieddate: true,
+  }),
+});
 
 export const addOrUpdateContactResponseSchema = contactBaseSchema.extend({
   id: z.string(),
   createdAt: z.string(),
   updatedAt: z.string(),
-  archived: z.boolean()
-})
+  archived: z.boolean(),
+});
 
 export const formSchema = z.object({
   portalId: z.number(),
@@ -74,7 +74,7 @@ export const formSchema = z.object({
             message: z.string(),
             data: z.string(),
             useDefaultBlockList: z.boolean(),
-            blockedEmailAddresses: z.array(z.any())
+            blockedEmailAddresses: z.array(z.any()),
           }),
           enabled: z.boolean(),
           hidden: z.boolean(),
@@ -83,15 +83,15 @@ export const formSchema = z.object({
           unselectedLabel: z.string(),
           placeholder: z.string(),
           dependentFieldFilters: z.array(z.any()),
-          labelHidden: z.boolean()
-        })
+          labelHidden: z.boolean(),
+        }),
       ),
       default: z.boolean(),
       isSmartGroup: z.boolean(),
       richText: z.object({
-        content: z.string()
-      })
-    })
+        content: z.string(),
+      }),
+    }),
   ),
   createdAt: z.number(),
   updatedAt: z.number(),
@@ -106,14 +106,14 @@ export const formSchema = z.object({
   campaignGuid: z.string(),
   cloneable: z.boolean(),
   editable: z.boolean(),
-  formType: z.string()
-})
+  formType: z.string(),
+});
 
 export const queryFormsSchema = z.object({
   limit: z.number().optional(),
   offset: z.number().optional(),
-  formTypes: z.literal("ALL").optional()
-})
+  formTypes: z.literal("ALL").optional(),
+});
 
 export const formSubmissionsSchema = z.object({
   results: z.array(
@@ -122,30 +122,30 @@ export const formSubmissionsSchema = z.object({
       values: z.array(
         z.object({
           name: z.string(),
-          value: z.string()
-        })
+          value: z.string(),
+        }),
       ),
-      pageUrl: z.string().optional()
-    })
+      pageUrl: z.string().optional(),
+    }),
   ),
   paging: z.object({
     next: z.object({
       after: z.string(),
-      link: z.string()
-    })
-  })
-})
+      link: z.string(),
+    }),
+  }),
+});
 
 export const querySubmissionsSchema = z.object({
   limit: z.number().optional(),
-  after: z.string().optional()
-})
+  after: z.string().optional(),
+});
 
 export const queryDealsSchema = z.object({
   limit: z.number().optional(),
   after: z.string().optional(),
-  properties: z.array(z.string()).optional()
-})
+  properties: z.array(z.string()).optional(),
+});
 
 const dealBaseSchema = z.object({
   properties: z.object({
@@ -156,19 +156,19 @@ const dealBaseSchema = z.object({
     dealstage: z.string(),
     hs_lastmodifieddate: z.string(),
     hubspot_owner_id: z.string(),
-    pipeline: z.string()
-  })
-})
+    pipeline: z.string(),
+  }),
+});
 
 export const dealsSchema = z.object({
   results: z.array(dealBaseSchema),
   paging: z.object({
     next: z.object({
       after: z.string(),
-      link: z.string()
-    })
-  })
-})
+      link: z.string(),
+    }),
+  }),
+});
 
 export const queryAddDealSchema = z.object({
   properties: z
@@ -178,7 +178,7 @@ export const queryAddDealSchema = z.object({
       dealname: z.string().optional(),
       dealstage: z.string().optional(),
       hubspot_owner_id: z.string().optional(),
-      pipeline: z.string().optional()
+      pipeline: z.string().optional(),
     })
     .optional(),
   associations: z
@@ -186,43 +186,45 @@ export const queryAddDealSchema = z.object({
       z.object({
         to: z
           .object({
-            id: z.string().optional()
+            id: z.string().optional(),
           })
           .optional(),
         types: z
           .array(
             z.object({
               associationCategory: z.string().optional(),
-              associationTypeId: z.number().optional()
-            })
+              associationTypeId: z.number().optional(),
+            }),
           )
-          .optional()
-      })
+          .optional(),
+      }),
     )
-    .optional()
-})
+    .optional(),
+});
 
 export const addDealResponseSchema = dealBaseSchema.extend({
   id: z.string(),
   createdAt: z.string(),
   updatedAt: z.string(),
-  archived: z.boolean()
-})
+  archived: z.boolean(),
+});
 
 //types:
 
-export type Contacts = z.infer<typeof contactsSchema>
-export type QueryContacts = z.infer<typeof queryContactsSchema>
-export type QueryAddOrUpdateContact = z.infer<typeof queryAddOrUpdateContactSchema>
-export type AddOrUpdateContactResponse = z.infer<typeof addOrUpdateContactResponseSchema>
-export type Form = z.infer<typeof formSchema>
-export type QueryForms = z.infer<typeof queryFormsSchema>
-export type FormSubmissions = z.infer<typeof formSubmissionsSchema>
-export type QuerySubmissions = z.infer<typeof querySubmissionsSchema>
-export type QueryDeals = z.infer<typeof queryDealsSchema>
-export type DealBase = z.infer<typeof dealBaseSchema>
-export type Deals = z.infer<typeof dealsSchema>
-export type QueryAddDeal = z.infer<typeof queryAddDealSchema>
-export type AddDealResponse = z.infer<typeof addDealResponseSchema>
-
-
+export type Contacts = z.infer<typeof contactsSchema>;
+export type QueryContacts = z.infer<typeof queryContactsSchema>;
+export type QueryAddOrUpdateContact = z.infer<
+  typeof queryAddOrUpdateContactSchema
+>;
+export type AddOrUpdateContactResponse = z.infer<
+  typeof addOrUpdateContactResponseSchema
+>;
+export type Form = z.infer<typeof formSchema>;
+export type QueryForms = z.infer<typeof queryFormsSchema>;
+export type FormSubmissions = z.infer<typeof formSubmissionsSchema>;
+export type QuerySubmissions = z.infer<typeof querySubmissionsSchema>;
+export type QueryDeals = z.infer<typeof queryDealsSchema>;
+export type DealBase = z.infer<typeof dealBaseSchema>;
+export type Deals = z.infer<typeof dealsSchema>;
+export type QueryAddDeal = z.infer<typeof queryAddDealSchema>;
+export type AddDealResponse = z.infer<typeof addDealResponseSchema>;

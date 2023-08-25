@@ -18,8 +18,8 @@ const userBasicsSchema = z.object({
   events_url: z.string(),
   received_events_url: z.string(),
   type: z.string(),
-  site_admin: z.boolean()
-})
+  site_admin: z.boolean(),
+});
 
 const repoBasicsSchema = z.object({
   id: z.number(),
@@ -98,9 +98,9 @@ const repoBasicsSchema = z.object({
   permissions: z.object({
     admin: z.boolean(),
     push: z.boolean(),
-    pull: z.boolean()
-  })
-})
+    pull: z.boolean(),
+  }),
+});
 
 export const userSchema = userBasicsSchema.extend({
   name: z.string(),
@@ -116,27 +116,27 @@ export const userSchema = userBasicsSchema.extend({
   followers: z.number(),
   following: z.number(),
   created_at: z.string(),
-  updated_at: z.string()
-}).deepPartial()
+  updated_at: z.string(),
+}).deepPartial();
 
 export const queryUsersSchema = z.object({
   since: z.number().optional(),
-  per_page: z.number().optional()
-})
+  per_page: z.number().optional(),
+});
 
 export const repositorySchema = repoBasicsSchema.extend({
   security_and_analysis: z.object({
     advanced_security: z.object({
-      status: z.string()
+      status: z.string(),
     }),
     secret_scanning: z.object({
-      status: z.string()
+      status: z.string(),
     }),
     secret_scanning_push_protection: z.object({
-      status: z.string()
-    })
-  })
-}).deepPartial()
+      status: z.string(),
+    }),
+  }),
+}).deepPartial();
 
 export const queryRepositoriesSchema = z.object({
   type: z
@@ -147,7 +147,7 @@ export const queryRepositoriesSchema = z.object({
       z.literal("full_name"),
       z.literal("created"),
       z.literal("updated"),
-      z.literal("pushed")
+      z.literal("pushed"),
     ])
     .optional(),
   direction: z.union([z.literal("asc"), z.literal("desc")]).optional(),
@@ -158,8 +158,8 @@ export const queryRepositoriesSchema = z.object({
     .optional(),
   affiliation: z.string().optional(),
   since: z.string().optional(),
-  before: z.string().optional()
-})
+  before: z.string().optional(),
+});
 
 export const issueSchema = z.object({
   id: z.number(),
@@ -183,8 +183,8 @@ export const issueSchema = z.object({
       name: z.string(),
       description: z.string(),
       color: z.string(),
-      default: z.boolean()
-    })
+      default: z.boolean(),
+    }),
   ),
   assignee: userBasicsSchema,
   assignees: z.array(userBasicsSchema),
@@ -203,7 +203,7 @@ export const issueSchema = z.object({
     created_at: z.string(),
     updated_at: z.string(),
     closed_at: z.string(),
-    due_on: z.string()
+    due_on: z.string(),
   }),
   locked: z.boolean(),
   active_lock_reason: z.string(),
@@ -212,37 +212,37 @@ export const issueSchema = z.object({
     url: z.string(),
     html_url: z.string(),
     diff_url: z.string(),
-    patch_url: z.string()
+    patch_url: z.string(),
   }),
   closed_at: z.any(),
   created_at: z.string(),
   updated_at: z.string(),
   repository: repoBasicsSchema.merge(
     z.object({
-    allow_rebase_merge: z.boolean(),
-    template_repository: z.any(),
-    temp_clone_token: z.string(),
-    allow_squash_merge: z.boolean(),
-    allow_auto_merge: z.boolean(),
-    delete_branch_on_merge: z.boolean(),
-    allow_merge_commit: z.boolean(),
-    subscribers_count: z.number(),
-    network_count: z.number(),
-    license: z.object({
-      key: z.string(),
-      name: z.string(),
-      url: z.string(),
-      spdx_id: z.string(),
-      node_id: z.string(),
-      html_url: z.string()
+      allow_rebase_merge: z.boolean(),
+      template_repository: z.any(),
+      temp_clone_token: z.string(),
+      allow_squash_merge: z.boolean(),
+      allow_auto_merge: z.boolean(),
+      delete_branch_on_merge: z.boolean(),
+      allow_merge_commit: z.boolean(),
+      subscribers_count: z.number(),
+      network_count: z.number(),
+      license: z.object({
+        key: z.string(),
+        name: z.string(),
+        url: z.string(),
+        spdx_id: z.string(),
+        node_id: z.string(),
+        html_url: z.string(),
+      }),
+      forks: z.number(),
+      open_issues: z.number(),
+      watchers: z.number(),
     }),
-    forks: z.number(),
-    open_issues: z.number(),
-    watchers: z.number()
-  }),
   ),
-  author_association: z.string()
-}).deepPartial()
+  author_association: z.string(),
+}).deepPartial();
 
 export const queryIssuesSchema = z.object({
   filter: z
@@ -252,7 +252,7 @@ export const queryIssuesSchema = z.object({
       z.literal("mentioned"),
       z.literal("subscribed"),
       z.literal("repos"),
-      z.literal("all")
+      z.literal("all"),
     ])
     .optional(),
   state: z
@@ -269,14 +269,14 @@ export const queryIssuesSchema = z.object({
   owned: z.boolean().optional(),
   pulls: z.boolean().optional(),
   per_page: z.number().optional(),
-  page: z.number().optional()
-})
+  page: z.number().optional(),
+});
 
 // types:
 
 export type User = z.infer<typeof userSchema>;
-export type Repository = z.infer<typeof repositorySchema>
-export type QueryUsers = z.infer<typeof queryUsersSchema> 
-export type QueryRepositories = z.infer<typeof queryRepositoriesSchema>
-export type Issue = z.infer<typeof issueSchema>
-export type QueryIssues = z.infer<typeof queryIssuesSchema> 
+export type Repository = z.infer<typeof repositorySchema>;
+export type QueryUsers = z.infer<typeof queryUsersSchema>;
+export type QueryRepositories = z.infer<typeof queryRepositoriesSchema>;
+export type Issue = z.infer<typeof issueSchema>;
+export type QueryIssues = z.infer<typeof queryIssuesSchema>;

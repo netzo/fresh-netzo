@@ -2,16 +2,16 @@ import { z } from "../deps.ts";
 
 const recordObjectSchema = z.object({
   fields: z.record(z.any()),
-  id: z.string().optional()
-})
+  id: z.string().optional(),
+});
 
 export const recordsSchema = z.object({
   records: z.array(recordObjectSchema.merge(
     z.object({
-      createdTime: z.string()
-    }))
-  )
-}).deepPartial()
+      createdTime: z.string(),
+    }),
+  )),
+}).deepPartial();
 
 export const queryRecordsSchema = z.object({
   timeZone: z.object({}).optional(),
@@ -24,67 +24,67 @@ export const queryRecordsSchema = z.object({
     .array(
       z.object({
         field: z.string().optional(),
-        direction: z.union([z.literal("asc"), z.literal("desc")]).optional()
-      })
+        direction: z.union([z.literal("asc"), z.literal("desc")]).optional(),
+      }),
     )
     .optional(),
   filterByFormula: z.string().optional(),
   cellFormat: z.union([z.literal("json"), z.literal("string")]).optional(),
   fields: z.array(z.string()).optional(),
   returnFieldsByFieldId: z.boolean().optional(),
-  recordMetaData: z.array(z.string()).optional()
-})
+  recordMetaData: z.array(z.string()).optional(),
+});
 
 export const queryAddRecordsSchema = z.object({
-  records: z.array(recordObjectSchema.pick({fields: true})),
+  records: z.array(recordObjectSchema.pick({ fields: true })),
   returnFieldsByFieldId: z.boolean().optional(),
-  typecast: z.boolean().optional()
-})
+  typecast: z.boolean().optional(),
+});
 
 export const queryUpdateRecordsSchema = z.object({
   records: z.array(recordObjectSchema),
   performUpsert: z
     .object({
-      fieldsToMergeOn: z.array(z.string())
+      fieldsToMergeOn: z.array(z.string()),
     })
     .optional(),
   returnFieldsByFieldId: z.boolean().optional(),
-  typecast: z.boolean().optional()
-})
+  typecast: z.boolean().optional(),
+});
 
 export const updateRecordsResponseSchema = z.object({
   records: z.array(recordObjectSchema),
   createdRecords: z.array(z.string()),
-  updatedRecords: z.array(z.string())
-}).deepPartial()
+  updatedRecords: z.array(z.string()),
+}).deepPartial();
 
 export const queryDeleteRecordsSchema = z.object({
-  records: z.array(z.string())
-})
+  records: z.array(z.string()),
+});
 
 export const recordsDeletedSchema = z.object({
   records: z.array(
     z.object({
       deleted: z.boolean(),
-      id: z.string()
-    })
-  )
-}).deepPartial()
+      id: z.string(),
+    }),
+  ),
+}).deepPartial();
 
 export const databasesSchema = z.object({
   bases: z.array(
     z.object({
       id: z.string(),
       name: z.string(),
-      permissionLevel: z.string()
-    })
+      permissionLevel: z.string(),
+    }),
   ),
-  offset: z.string()
-}).deepPartial()
+  offset: z.string(),
+}).deepPartial();
 
 export const queryDatabasesSchema = z.object({
-  offset: z.string().optional()
-})
+  offset: z.string().optional(),
+});
 
 export const tablesSchema = z.object({
   tables: z.array(
@@ -101,10 +101,10 @@ export const tablesSchema = z.object({
               inverseLinkFieldId: z.string(),
               isReversed: z.boolean(),
               linkedTableId: z.string(),
-              prefersSingleRecordLink: z.boolean()
+              prefersSingleRecordLink: z.boolean(),
             })
-            .optional()
-        })
+            .optional(),
+        }),
       ),
       id: z.string(),
       name: z.string(),
@@ -113,27 +113,27 @@ export const tablesSchema = z.object({
         z.object({
           id: z.string(),
           name: z.string(),
-          type: z.string()
-        })
-      )
-    })
-  )
-}).deepPartial()
+          type: z.string(),
+        }),
+      ),
+    }),
+  ),
+}).deepPartial();
 
 export const queryTablesSchema = z.object({
-  include: z.array(z.string()).optional()
-})
+  include: z.array(z.string()).optional(),
+});
 
 // types:
 
-export type Records = z.infer<typeof recordsSchema>
-export type QueryRecords = z.infer<typeof queryRecordsSchema>
-export type QueryAddRecords = z.infer<typeof queryAddRecordsSchema>
-export type QueryUpdateRecords = z.infer<typeof queryUpdateRecordsSchema>
-export type UpdateRecordsResponse = z.infer<typeof updateRecordsResponseSchema>
-export type QueryDeleteRecords = z.infer<typeof queryDeleteRecordsSchema>
-export type RecordsDeleted = z.infer<typeof recordsDeletedSchema>
-export type Databases = z.infer<typeof databasesSchema>
-export type QueryDatabases = z.infer<typeof queryDatabasesSchema>
-export type Tables = z.infer<typeof tablesSchema>
-export type QueryTables = z.infer<typeof queryTablesSchema>
+export type Records = z.infer<typeof recordsSchema>;
+export type QueryRecords = z.infer<typeof queryRecordsSchema>;
+export type QueryAddRecords = z.infer<typeof queryAddRecordsSchema>;
+export type QueryUpdateRecords = z.infer<typeof queryUpdateRecordsSchema>;
+export type UpdateRecordsResponse = z.infer<typeof updateRecordsResponseSchema>;
+export type QueryDeleteRecords = z.infer<typeof queryDeleteRecordsSchema>;
+export type RecordsDeleted = z.infer<typeof recordsDeletedSchema>;
+export type Databases = z.infer<typeof databasesSchema>;
+export type QueryDatabases = z.infer<typeof queryDatabasesSchema>;
+export type Tables = z.infer<typeof tablesSchema>;
+export type QueryTables = z.infer<typeof queryTablesSchema>;

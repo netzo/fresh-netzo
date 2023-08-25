@@ -3,8 +3,8 @@ import { z } from "../deps.ts";
 const stripePaginationSchema = z.object({
   limit: z.number().optional(),
   ending_before: z.string().optional(),
-  starting_after: z.string().optional()
-})
+  starting_after: z.string().optional(),
+});
 
 export const subscriptionItemsSchema = z.object({
   object: z.string(),
@@ -34,21 +34,21 @@ export const subscriptionItemsSchema = z.object({
           aggregate_usage: z.any(),
           interval: z.string(),
           interval_count: z.number(),
-          usage_type: z.string()
+          usage_type: z.string(),
         }),
         tax_behavior: z.string(),
         tiers_mode: z.any(),
         transform_quantity: z.any(),
         type: z.string(),
         unit_amount: z.number(),
-        unit_amount_decimal: z.string()
+        unit_amount_decimal: z.string(),
       }),
       quantity: z.number(),
       subscription: z.string(),
-      tax_rates: z.array(z.any())
-    })
-  )
-}).deepPartial()
+      tax_rates: z.array(z.any()),
+    }),
+  ),
+}).deepPartial();
 
 export const subscriptionsSchema = z.object({
   object: z.string(),
@@ -61,7 +61,7 @@ export const subscriptionsSchema = z.object({
       application: z.any(),
       application_fee_percent: z.any(),
       automatic_tax: z.object({
-        enabled: z.boolean()
+        enabled: z.boolean(),
       }),
       billing_cycle_anchor: z.number(),
       billing_thresholds: z.any(),
@@ -71,7 +71,7 @@ export const subscriptionsSchema = z.object({
       cancellation_details: z.object({
         comment: z.any(),
         feedback: z.any(),
-        reason: z.any()
+        reason: z.any(),
       }),
       collection_method: z.string(),
       created: z.number(),
@@ -112,22 +112,22 @@ export const subscriptionsSchema = z.object({
                 aggregate_usage: z.any(),
                 interval: z.string(),
                 interval_count: z.number(),
-                usage_type: z.string()
+                usage_type: z.string(),
               }),
               tax_behavior: z.string(),
               tiers_mode: z.any(),
               transform_quantity: z.any(),
               type: z.string(),
               unit_amount: z.number(),
-              unit_amount_decimal: z.string()
+              unit_amount_decimal: z.string(),
             }),
             quantity: z.number(),
             subscription: z.string(),
-            tax_rates: z.array(z.any())
-          })
+            tax_rates: z.array(z.any()),
+          }),
         ),
         has_more: z.boolean(),
-        url: z.string()
+        url: z.string(),
       }),
       latest_invoice: z.string(),
       livemode: z.boolean(),
@@ -138,7 +138,7 @@ export const subscriptionsSchema = z.object({
       payment_settings: z.object({
         payment_method_options: z.any(),
         payment_method_types: z.any(),
-        save_default_payment_method: z.string()
+        save_default_payment_method: z.string(),
       }),
       pending_invoice_item_interval: z.any(),
       pending_setup_intent: z.any(),
@@ -151,13 +151,13 @@ export const subscriptionsSchema = z.object({
       trial_end: z.any(),
       trial_settings: z.object({
         end_behavior: z.object({
-          missing_payment_method: z.string()
-        })
+          missing_payment_method: z.string(),
+        }),
       }),
-      trial_start: z.any()
-    })
-  )
-}).deepPartial()
+      trial_start: z.any(),
+    }),
+  ),
+}).deepPartial();
 
 export const querySubscriptionsSchema = stripePaginationSchema.extend({
   customer: z.string().optional(),
@@ -173,12 +173,12 @@ export const querySubscriptionsSchema = stripePaginationSchema.extend({
       z.literal("trialing"),
       z.literal("paused"),
       z.literal("all"),
-      z.literal("ended")
+      z.literal("ended"),
     ])
     .optional(),
   automatic_tax: z
     .object({
-      enabled: z.boolean().optional()
+      enabled: z.boolean().optional(),
     })
     .optional(),
   collection_method: z
@@ -187,12 +187,12 @@ export const querySubscriptionsSchema = stripePaginationSchema.extend({
   created: z.string().optional(),
   current_period_end: z.string().optional(),
   current_period_start: z.string().optional(),
-  test_clock: z.string().optional()
-})
+  test_clock: z.string().optional(),
+});
 
 export const querySubscriptionItemsSchema = stripePaginationSchema.extend({
-  subscription: z.string()
-})
+  subscription: z.string(),
+});
 
 export const customersSchema = z.object({
   url: z.string(),
@@ -215,11 +215,11 @@ export const customersSchema = z.object({
         custom_fields: z.any(),
         default_payment_method: z.any(),
         footer: z.any(),
-        rendering_options: z.any()
+        rendering_options: z.any(),
       }),
       livemode: z.boolean(),
       metadata: z.object({
-        order_id: z.string()
+        order_id: z.string(),
       }),
       name: z.any(),
       next_invoice_sequence: z.number(),
@@ -227,16 +227,16 @@ export const customersSchema = z.object({
       preferred_locales: z.array(z.any()),
       shipping: z.any(),
       tax_exempt: z.string(),
-      test_clock: z.any()
-    })
-  )
-}).deepPartial()
+      test_clock: z.any(),
+    }),
+  ),
+}).deepPartial();
 
 export const queryCustomersSchema = stripePaginationSchema.extend({
   email: z.string().optional(),
   created: z.string().optional(),
-  test_clock: z.string().optional()
-})
+  test_clock: z.string().optional(),
+});
 
 export const invoicesSchema = z.object({
   object: z.string(),
@@ -260,7 +260,7 @@ export const invoicesSchema = z.object({
       auto_advance: z.boolean(),
       automatic_tax: z.object({
         enabled: z.boolean(),
-        status: z.any()
+        status: z.any(),
       }),
       billing_reason: z.string(),
       charge: z.any(),
@@ -309,7 +309,7 @@ export const invoicesSchema = z.object({
             metadata: z.object({}),
             period: z.object({
               end: z.number(),
-              start: z.number()
+              start: z.number(),
             }),
             price: z.object({
               id: z.string(),
@@ -330,22 +330,22 @@ export const invoicesSchema = z.object({
               transform_quantity: z.any(),
               type: z.string(),
               unit_amount: z.number(),
-              unit_amount_decimal: z.string()
+              unit_amount_decimal: z.string(),
             }),
             proration: z.boolean(),
             proration_details: z.object({
-              credited_items: z.any()
+              credited_items: z.any(),
             }),
             quantity: z.number(),
             subscription: z.any(),
             tax_amounts: z.array(z.any()),
             tax_rates: z.array(z.any()),
             type: z.string(),
-            unit_amount_excluding_tax: z.string()
-          })
+            unit_amount_excluding_tax: z.string(),
+          }),
         ),
         has_more: z.boolean(),
-        url: z.string()
+        url: z.string(),
       }),
       livemode: z.boolean(),
       metadata: z.object({}),
@@ -358,7 +358,7 @@ export const invoicesSchema = z.object({
       payment_settings: z.object({
         default_mandate: z.any(),
         payment_method_options: z.any(),
-        payment_method_types: z.any()
+        payment_method_types: z.any(),
       }),
       period_end: z.number(),
       period_start: z.number(),
@@ -377,7 +377,7 @@ export const invoicesSchema = z.object({
         finalized_at: z.any(),
         marked_uncollectible_at: z.any(),
         paid_at: z.any(),
-        voided_at: z.any()
+        voided_at: z.any(),
       }),
       subscription: z.any(),
       subtotal: z.number(),
@@ -389,10 +389,10 @@ export const invoicesSchema = z.object({
       total_excluding_tax: z.number(),
       total_tax_amounts: z.array(z.any()),
       transfer_data: z.any(),
-      webhooks_delivered_at: z.any()
-    })
-  )
-}).deepPartial()
+      webhooks_delivered_at: z.any(),
+    }),
+  ),
+}).deepPartial();
 
 export const queryInvoicesSchema = stripePaginationSchema.extend({
   customer: z.string().optional(),
@@ -402,7 +402,7 @@ export const queryInvoicesSchema = stripePaginationSchema.extend({
       z.literal("open"),
       z.literal("void"),
       z.literal("paid"),
-      z.literal("uncollectible")
+      z.literal("uncollectible"),
     ])
     .optional(),
   subscription: z.string().optional(),
@@ -410,8 +410,8 @@ export const queryInvoicesSchema = stripePaginationSchema.extend({
     .union([z.literal("charge_automatically"), z.literal("send_invoice")])
     .optional(),
   created: z.string().optional(),
-  due_date: z.string().optional()
-})
+  due_date: z.string().optional(),
+});
 
 export const chargesSchema = z.object({
   object: z.string(),
@@ -435,11 +435,11 @@ export const chargesSchema = z.object({
           line1: z.any(),
           line2: z.any(),
           postal_code: z.any(),
-          state: z.any()
+          state: z.any(),
         }),
         email: z.any(),
         name: z.any(),
-        phone: z.any()
+        phone: z.any(),
       }),
       calculated_statement_descriptor: z.any(),
       captured: z.boolean(),
@@ -455,7 +455,7 @@ export const chargesSchema = z.object({
       invoice: z.any(),
       livemode: z.boolean(),
       metadata: z.object({
-        order_id: z.string()
+        order_id: z.string(),
       }),
       on_behalf_of: z.any(),
       outcome: z.object({
@@ -463,7 +463,7 @@ export const chargesSchema = z.object({
         reason: z.string(),
         risk_level: z.string(),
         seller_message: z.string(),
-        type: z.string()
+        type: z.string(),
       }),
       paid: z.boolean(),
       payment_intent: z.any(),
@@ -474,7 +474,7 @@ export const chargesSchema = z.object({
           checks: z.object({
             address_line1_check: z.any(),
             address_postal_code_check: z.any(),
-            cvc_check: z.string()
+            cvc_check: z.string(),
           }),
           country: z.string(),
           exp_month: z.number(),
@@ -487,12 +487,12 @@ export const chargesSchema = z.object({
           moto: z.any(),
           network: z.string(),
           network_token: z.object({
-            used: z.boolean()
+            used: z.boolean(),
           }),
           three_d_secure: z.any(),
-          wallet: z.any()
+          wallet: z.any(),
         }),
-        type: z.string()
+        type: z.string(),
       }),
       receipt_email: z.string(),
       receipt_number: z.any(),
@@ -503,7 +503,7 @@ export const chargesSchema = z.object({
         object: z.string(),
         data: z.array(z.any()),
         has_more: z.boolean(),
-        url: z.string()
+        url: z.string(),
       }),
       review: z.any(),
       shipping: z.any(),
@@ -512,17 +512,17 @@ export const chargesSchema = z.object({
       statement_descriptor_suffix: z.any(),
       status: z.string(),
       transfer_data: z.any(),
-      transfer_group: z.any()
-    })
-  )
-}).deepPartial()
+      transfer_group: z.any(),
+    }),
+  ),
+}).deepPartial();
 
 export const queryChargesSchema = stripePaginationSchema.extend({
   customer: z.string().optional(),
   created: z.string().optional(),
   payment_intent: z.string().optional(),
-  transfer_group: z.string().optional()
-})
+  transfer_group: z.string().optional(),
+});
 
 export const plansSchema = z.object({
   object: z.string(),
@@ -548,16 +548,16 @@ export const plansSchema = z.object({
       tiers_mode: z.any(),
       transform_usage: z.any(),
       trial_period_days: z.any(),
-      usage_type: z.string()
-    })
-  )
-}).deepPartial()
+      usage_type: z.string(),
+    }),
+  ),
+}).deepPartial();
 
 export const queryPlansSchema = stripePaginationSchema.extend({
   active: z.boolean().optional(),
   product: z.string().optional(),
-  created: z.string().optional()
-})
+  created: z.string().optional(),
+});
 
 export const transactionsSchema = z.object({
   object: z.string(),
@@ -580,39 +580,41 @@ export const transactionsSchema = z.object({
           application: z.any(),
           currency: z.string(),
           description: z.string(),
-          type: z.string()
-        })
+          type: z.string(),
+        }),
       ),
       net: z.number(),
       reporting_category: z.string(),
       source: z.string(),
       status: z.string(),
-      type: z.string()
-    })
-  )
-}).deepPartial()
+      type: z.string(),
+    }),
+  ),
+}).deepPartial();
 
 export const queryTransactionsSchema = stripePaginationSchema.extend({
   payout: z.string().optional(),
   type: z.string().optional(),
   created: z.string().optional(),
   currency: z.string().optional(),
-  source: z.string().optional()
-})
+  source: z.string().optional(),
+});
 
 //types:
 
-export type SubscriptionItems = z.infer<typeof subscriptionItemsSchema>
-export type Subscriptions = z.infer<typeof subscriptionsSchema>
-export type QuerySubscriptions = z.infer<typeof querySubscriptionsSchema>
-export type QuerySubscriptionItems = z.infer<typeof querySubscriptionItemsSchema>
-export type Customers = z.infer<typeof customersSchema>
-export type QueryCustomers = z.infer<typeof queryCustomersSchema>
-export type Invoices = z.infer<typeof invoicesSchema>
-export type QueryInvoices = z.infer<typeof queryInvoicesSchema>
-export type Charges = z.infer<typeof chargesSchema>
-export type QueryCharges = z.infer<typeof queryChargesSchema>
-export type Plans = z.infer<typeof plansSchema>
-export type QueryPlans = z.infer<typeof queryPlansSchema>
-export type Transactions = z.infer<typeof transactionsSchema>
-export type QueryTransactions = z.infer<typeof queryTransactionsSchema>
+export type SubscriptionItems = z.infer<typeof subscriptionItemsSchema>;
+export type Subscriptions = z.infer<typeof subscriptionsSchema>;
+export type QuerySubscriptions = z.infer<typeof querySubscriptionsSchema>;
+export type QuerySubscriptionItems = z.infer<
+  typeof querySubscriptionItemsSchema
+>;
+export type Customers = z.infer<typeof customersSchema>;
+export type QueryCustomers = z.infer<typeof queryCustomersSchema>;
+export type Invoices = z.infer<typeof invoicesSchema>;
+export type QueryInvoices = z.infer<typeof queryInvoicesSchema>;
+export type Charges = z.infer<typeof chargesSchema>;
+export type QueryCharges = z.infer<typeof queryChargesSchema>;
+export type Plans = z.infer<typeof plansSchema>;
+export type QueryPlans = z.infer<typeof queryPlansSchema>;
+export type Transactions = z.infer<typeof transactionsSchema>;
+export type QueryTransactions = z.infer<typeof queryTransactionsSchema>;

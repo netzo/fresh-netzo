@@ -12,23 +12,23 @@ export const documentSchema = z.object({
     email: z.string(),
     first_name: z.string(),
     last_name: z.string(),
-    avatar: z.string()
+    avatar: z.string(),
   }),
   template: z.object({
     id: z.string(),
-    name: z.string()
+    name: z.string(),
   }),
   expiration_date: z.any(),
   metadata: z.object({
     document__created_via_public_api: z.string(),
     my_favorite_pet: z.string(),
-    opp_id: z.string()
+    opp_id: z.string(),
   }),
   tokens: z.array(
     z.object({
       name: z.string(),
-      value: z.string()
-    })
+      value: z.string(),
+    }),
   ),
   fields: z.array(
     z.object({
@@ -47,10 +47,10 @@ export const documentSchema = z.object({
         recipient_type: z.string(),
         has_completed: z.boolean(),
         role: z.string(),
-        type: z.string()
+        type: z.string(),
       }),
-      value: z.any()
-    })
+      value: z.any(),
+    }),
   ),
   pricing: z.object({
     tables: z.array(
@@ -63,7 +63,7 @@ export const documentSchema = z.object({
           subtotal: z.string(),
           total: z.string(),
           discount: z.string(),
-          tax: z.string()
+          tax: z.string(),
         }),
         items: z.array(
           z.object({
@@ -75,24 +75,24 @@ export const documentSchema = z.object({
             price: z.string(),
             description: z.string(),
             custom_fields: z.object({
-              Fluffiness: z.string()
+              Fluffiness: z.string(),
             }),
             custom_columns: z.object({
-              Fluffiness: z.string()
+              Fluffiness: z.string(),
             }),
             discount: z.any(),
             tax_first: z.object({
               value: z.string(),
-              type: z.string()
+              type: z.string(),
             }),
             tax_second: z.any(),
             subtotal: z.string(),
             options: z.object({
               optional: z.boolean(),
-              optional_selected: z.boolean()
+              optional_selected: z.boolean(),
             }),
-            sale_price: z.string()
-          })
+            sale_price: z.string(),
+          }),
         ),
         currency: z.string(),
         columns: z.array(
@@ -100,12 +100,12 @@ export const documentSchema = z.object({
             header: z.string().optional(),
             name: z.string(),
             merge_name: z.string().optional(),
-            hidden: z.boolean()
-          })
-        )
-      })
+            hidden: z.boolean(),
+          }),
+        ),
+      }),
     ),
-    total: z.string()
+    total: z.string(),
   }),
   tags: z.array(z.any()),
   status: z.string(),
@@ -119,20 +119,20 @@ export const documentSchema = z.object({
       has_completed: z.boolean(),
       role: z.string(),
       signing_order: z.number(),
-      shared_link: z.string()
-    })
+      shared_link: z.string(),
+    }),
   ),
   sent_by: z.any(),
   grand_total: z.object({
     amount: z.string(),
-    currency: z.string()
+    currency: z.string(),
   }),
   linked_objects: z.array(
     z.object({
       provider: z.string(),
       entity_type: z.string(),
-      entity_id: z.string()
-    })
+      entity_id: z.string(),
+    }),
   ),
   version: z.string(),
   approval_execution: z.object({
@@ -153,27 +153,27 @@ export const documentSchema = z.object({
                 email: z.string(),
                 first_name: z.string(),
                 last_name: z.string(),
-                avatar: z.any()
+                avatar: z.any(),
               }),
-              is_selected: z.boolean()
-            })
-          )
+              is_selected: z.boolean(),
+            }),
+          ),
         }),
         conditions: z.array(
           z.object({
             relation: z.string(),
             type: z.string(),
             value: z.number(),
-            kind: z.any()
-          })
+            kind: z.any(),
+          }),
         ),
         approve_user: z.any(),
         approve_message: z.any(),
         reject_user: z.any(),
         reject_message: z.any(),
         is_skipped: z.boolean(),
-        skip_reason: z.any()
-      })
+        skip_reason: z.any(),
+      }),
     ),
     sender: z.any(),
     sender_message: z.any(),
@@ -181,9 +181,9 @@ export const documentSchema = z.object({
     skip_message: z.any(),
     is_completed: z.boolean(),
     is_editing_allowed: z.boolean(),
-    is_ordering_enabled: z.boolean()
-  })
-}).deepPartial()
+    is_ordering_enabled: z.boolean(),
+  }),
+}).deepPartial();
 
 export const documentsSchema = z.object({
   results: z.array(
@@ -194,10 +194,10 @@ export const documentsSchema = z.object({
       date_created: z.string(),
       date_modified: z.string(),
       expiration_date: z.any(),
-      version: z.string()
-    })
-  )
-}).deepPartial()
+      version: z.string(),
+    }),
+  ),
+}).deepPartial();
 
 export const queryDocumentsSchema = z.object({
   q: z.string().optional(),
@@ -219,8 +219,8 @@ export const queryDocumentsSchema = z.object({
   completed_from: z.string().optional(),
   completed_to: z.string().optional(),
   membership_id: z.string().optional(),
-  contact_id: z.string().optional()
-})
+  contact_id: z.string().optional(),
+});
 
 export const queryUpdateDocumentSchema = z.object({
   recipients: z
@@ -231,35 +231,35 @@ export const queryUpdateDocumentSchema = z.object({
         last_name: z.string().optional(),
         role: z.string().optional(),
         default: z.boolean().optional(),
-        ID: z.string().optional()
-      })
+        ID: z.string().optional(),
+      }),
     )
     .optional(),
   tokens: z
     .array(
       z.object({
         name: z.string().optional(),
-        value: z.string().optional()
-      })
+        value: z.string().optional(),
+      }),
     )
     .optional(),
   fields: z
     .array(
       z.object({
         value: z.string().optional(),
-        role: z.string().optional()
-      })
+        role: z.string().optional(),
+      }),
     )
     .optional(),
   pricing_tables: z
     .array(
       z.object({
         name: z.string().optional(),
-        sections: z.string().optional()
-      })
+        sections: z.string().optional(),
+      }),
     )
-    .optional()
-})
+    .optional(),
+});
 
 export const queryAddContactSchema = z.object({
   email: z.string(),
@@ -272,23 +272,23 @@ export const queryAddContactSchema = z.object({
   state: z.string().optional(),
   street_address: z.string().optional(),
   city: z.string().optional(),
-  postal_code: z.string().optional()
-})
+  postal_code: z.string().optional(),
+});
 
 export const contactSchema = queryAddContactSchema.extend({
-  id: z.string()
-}).deepPartial()
+  id: z.string(),
+}).deepPartial();
 
 export const contactsSchema = z.object({
-  results: z.array(contactSchema)
-}).deepPartial()
+  results: z.array(contactSchema),
+}).deepPartial();
 
 //types:
 
-export type Document = z.infer<typeof documentSchema>
-export type Documents = z.infer<typeof documentsSchema>
-export type QueryDocuments = z.infer<typeof queryDocumentsSchema>
-export type QueryUpdateDocument = z.infer<typeof queryUpdateDocumentSchema>
-export type QueryAddContact = z.infer<typeof queryAddContactSchema>
-export type Contact = z.infer<typeof contactSchema>
-export type Contacts = z.infer<typeof contactsSchema>
+export type Document = z.infer<typeof documentSchema>;
+export type Documents = z.infer<typeof documentsSchema>;
+export type QueryDocuments = z.infer<typeof queryDocumentsSchema>;
+export type QueryUpdateDocument = z.infer<typeof queryUpdateDocumentSchema>;
+export type QueryAddContact = z.infer<typeof queryAddContactSchema>;
+export type Contact = z.infer<typeof contactSchema>;
+export type Contacts = z.infer<typeof contactsSchema>;

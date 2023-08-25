@@ -19,11 +19,11 @@ export const contactSchema = z.object({
       links: z.object({
         automation: z.string(),
         contact: z.string(),
-        contactGoals: z.string()
+        contactGoals: z.string(),
       }),
       id: z.string(),
-      automation: z.string()
-    })
+      automation: z.string(),
+    }),
   ),
   contactLists: z.array(
     z.object({
@@ -55,11 +55,11 @@ export const contactSchema = z.object({
         autosyncLog: z.string(),
         campaign: z.string(),
         unsubscribeAutomation: z.string(),
-        message: z.string()
+        message: z.string(),
       }),
       id: z.string(),
-      automation: z.any()
-    })
+      automation: z.any(),
+    }),
   ),
   deals: z.array(
     z.object({
@@ -82,11 +82,11 @@ export const contactSchema = z.object({
         owner: z.string(),
         scoreValues: z.string(),
         stage: z.string(),
-        tasks: z.string()
+        tasks: z.string(),
       }),
       id: z.string(),
-      nextTask: z.any()
-    })
+      nextTask: z.any(),
+    }),
   ),
   fieldValues: z.array(
     z.object({
@@ -97,11 +97,11 @@ export const contactSchema = z.object({
       udate: z.string(),
       links: z.object({
         owner: z.string(),
-        field: z.string()
+        field: z.string(),
       }),
       id: z.string(),
-      owner: z.string()
-    })
+      owner: z.string(),
+    }),
   ),
   geoAddresses: z.array(
     z.object({
@@ -117,8 +117,8 @@ export const contactSchema = z.object({
       tz: z.string(),
       tstamp: z.string(),
       links: z.array(z.any()),
-      id: z.string()
-    })
+      id: z.string(),
+    }),
   ),
   geoIps: z.array(
     z.object({
@@ -130,10 +130,10 @@ export const contactSchema = z.object({
       tstamp: z.string(),
       geoAddress: z.string(),
       links: z.object({
-        geoAddress: z.string()
+        geoAddress: z.string(),
       }),
-      id: z.string()
-    })
+      id: z.string(),
+    }),
   ),
   contact: z.object({
     cdate: z.string(),
@@ -181,12 +181,12 @@ export const contactSchema = z.object({
       organization: z.string(),
       plusAppend: z.string(),
       trackingLogs: z.string(),
-      scoreValues: z.string()
+      scoreValues: z.string(),
     }),
     id: z.string(),
-    organization: z.any()
-  })
-}).deepPartial()
+    organization: z.any(),
+  }),
+}).deepPartial();
 
 export const contactsSchema = z.object({
   scoreValues: z.array(z.any()),
@@ -232,13 +232,13 @@ export const contactsSchema = z.object({
         organization: z.string(),
         plusAppend: z.string(),
         trackingLogs: z.string(),
-        scoreValues: z.string()
+        scoreValues: z.string(),
       }),
       id: z.string(),
       organization: z.any(),
       adate: z.string().optional(),
-      edate: z.string().optional()
-    })
+      edate: z.string().optional(),
+    }),
   ),
   meta: z.object({
     total: z.string(),
@@ -255,10 +255,10 @@ export const contactsSchema = z.object({
       waitid: z.number(),
       status: z.number(),
       forceQuery: z.number(),
-      cacheid: z.string()
-    })
-  })
-}).deepPartial()
+      cacheid: z.string(),
+    }),
+  }),
+}).deepPartial();
 
 export const queryContactsSchema = z.object({
   ids: z.string().optional(),
@@ -278,7 +278,7 @@ export const queryContactsSchema = z.object({
   filters: z.object({
     created_before: z.string().optional(),
     updated_before: z.string().optional(),
-    updated_after: z.string().optional()
+    updated_after: z.string().optional(),
   }),
   waitid: z.number().optional(),
   orders: z.object({
@@ -287,10 +287,10 @@ export const queryContactsSchema = z.object({
     first_name: z.string().optional(),
     last_name: z.string().optional(),
     name: z.string().optional(),
-    score: z.string().optional()
+    score: z.string().optional(),
   }),
-  in_group_lists: z.string().optional()
-})
+  in_group_lists: z.string().optional(),
+});
 
 export const queryAddContactSchema = z.object({
   contact: z.object({
@@ -298,11 +298,11 @@ export const queryAddContactSchema = z.object({
     firstName: z.string().optional(),
     lastName: z.string().optional(),
     phone: z.string().optional(),
-    fieldValues: z.array(z.record(z.any())).optional()
-  })
-})
+    fieldValues: z.array(z.record(z.any())).optional(),
+  }),
+});
 
-export const queryUpdateContactSchema = queryAddContactSchema.deepPartial()
+export const queryUpdateContactSchema = queryAddContactSchema.deepPartial();
 
 export const addOrUpdateContactResponseSchema = z.object({
   fieldValues: z.array(
@@ -314,11 +314,11 @@ export const addOrUpdateContactResponseSchema = z.object({
       udate: z.string(),
       links: z.object({
         owner: z.string(),
-        field: z.string()
+        field: z.string(),
       }),
       id: z.string(),
-      owner: z.string()
-    })
+      owner: z.string(),
+    }),
   ),
   contact: z.object({
     email: z.string(),
@@ -341,12 +341,12 @@ export const addOrUpdateContactResponseSchema = z.object({
       organization: z.string(),
       plusAppend: z.string(),
       trackingLogs: z.string(),
-      scoreValues: z.string()
+      scoreValues: z.string(),
     }),
     id: z.string(),
-    organization: z.string()
-  })
-}).deepPartial()
+    organization: z.string(),
+  }),
+}).deepPartial();
 
 export const dealsSchema = z.object({
   deals: z.array(
@@ -386,7 +386,7 @@ export const dealsSchema = z.object({
           scoreValues: z.string(),
           stage: z.string(),
           tasks: z.string(),
-          dealCustomFieldData: z.string().optional()
+          dealCustomFieldData: z.string().optional(),
         })
         .optional(),
       id: z.string(),
@@ -394,20 +394,20 @@ export const dealsSchema = z.object({
       account: z.string().optional(),
       customerAccount: z.string().optional(),
       hash: z.string().optional(),
-      nextTask: z.string().optional()
-    })
+      nextTask: z.string().optional(),
+    }),
   ),
   meta: z.object({
     currencies: z.object({
       USD: z.object({
         currency: z.string(),
         total: z.string(),
-        value: z.string()
-      })
+        value: z.string(),
+      }),
     }),
-    total: z.number()
-  })
-}).deepPartial()
+    total: z.number(),
+  }),
+}).deepPartial();
 
 export const filterDealsSchema = z.object({
   filters: z
@@ -431,7 +431,7 @@ export const filterDealsSchema = z.object({
       maximum_value: z.number().optional(),
       score_greater_than: z.string().optional(),
       score_less_than: z.string().optional(),
-      score: z.string().optional()
+      score: z.string().optional(),
     })
     .optional(),
   orders: z
@@ -441,10 +441,10 @@ export const filterDealsSchema = z.object({
       cdate: z.string().optional(),
       contact_name: z.string().optional(),
       contact_orgname: z.string().optional(),
-      next_action: z.string().optional()
+      next_action: z.string().optional(),
     })
-    .optional()
-})
+    .optional(),
+});
 
 export const accountsSchema = z.object({
   accounts: z.array(
@@ -458,20 +458,20 @@ export const accountsSchema = z.object({
       links: z.object({
         notes: z.string(),
         accountCustomFieldData: z.string(),
-        accountContacts: z.string()
+        accountContacts: z.string(),
       }),
-      id: z.string()
-    })
+      id: z.string(),
+    }),
   ),
   meta: z.object({
-    total: z.string()
-  })
-}).deepPartial()
+    total: z.string(),
+  }),
+}).deepPartial();
 
 export const queryAccountsSchema = z.object({
   search: z.string().optional(),
-  count_deals: z.boolean().optional()
-})
+  count_deals: z.boolean().optional(),
+});
 
 export const usersSchema = z.object({
   users: z.array(
@@ -487,27 +487,27 @@ export const usersSchema = z.object({
         userGroup: z.string(),
         dealGroupTotals: z.string(),
         dealGroupUsers: z.string(),
-        configs: z.string()
+        configs: z.string(),
       }),
-      id: z.string()
-    })
+      id: z.string(),
+    }),
   ),
   meta: z.object({
-    total: z.string()
-  })
-}).deepPartial()
+    total: z.string(),
+  }),
+}).deepPartial();
 
 export const queryAddUserSchema = z.object({
   user: z.object({
-      username: z.string().optional(),
-      email: z.string().optional(),
-      firstName: z.string().optional(),
-      lastName: z.string().optional(),
-      group: z.number().optional(),
-      password: z.string().optional()
-    })
-    .optional()
-})
+    username: z.string().optional(),
+    email: z.string().optional(),
+    firstName: z.string().optional(),
+    lastName: z.string().optional(),
+    group: z.number().optional(),
+    password: z.string().optional(),
+  })
+    .optional(),
+});
 
 export const addUserResponseSchema = z.object({
   user: z.object({
@@ -527,25 +527,26 @@ export const addUserResponseSchema = z.object({
       configs: z.string(),
       dealConnection: z.string(),
       userConversationsPermission: z.string(),
-      seatUser: z.string()
+      seatUser: z.string(),
     }),
-    id: z.string()
-  })
-}).deepPartial()
+    id: z.string(),
+  }),
+}).deepPartial();
 
 // types:
 
-export type Contact = z.infer<typeof contactSchema>
-export type Contacts = z.infer<typeof contactsSchema>
-export type QueryContacts = z.infer<typeof queryContactsSchema>
-export type QueryAddContact = z.infer<typeof queryAddContactSchema>
-export type QueryUpdateContact = z.infer<typeof queryUpdateContactSchema>
-export type AddOrUpdateContactResponse = z.infer<typeof addOrUpdateContactResponseSchema>
-export type Deals = z.infer<typeof dealsSchema>
-export type FilterDeals = z.infer<typeof filterDealsSchema>
-export type Accounts = z.infer<typeof accountsSchema>
-export type QueryAccounts = z.infer<typeof queryAccountsSchema>
-export type Users = z.infer<typeof usersSchema>
-export type QueryAddUser = z.infer<typeof queryAddUserSchema>
-export type AddUserResponse = z.infer<typeof addUserResponseSchema>
-
+export type Contact = z.infer<typeof contactSchema>;
+export type Contacts = z.infer<typeof contactsSchema>;
+export type QueryContacts = z.infer<typeof queryContactsSchema>;
+export type QueryAddContact = z.infer<typeof queryAddContactSchema>;
+export type QueryUpdateContact = z.infer<typeof queryUpdateContactSchema>;
+export type AddOrUpdateContactResponse = z.infer<
+  typeof addOrUpdateContactResponseSchema
+>;
+export type Deals = z.infer<typeof dealsSchema>;
+export type FilterDeals = z.infer<typeof filterDealsSchema>;
+export type Accounts = z.infer<typeof accountsSchema>;
+export type QueryAccounts = z.infer<typeof queryAccountsSchema>;
+export type Users = z.infer<typeof usersSchema>;
+export type QueryAddUser = z.infer<typeof queryAddUserSchema>;
+export type AddUserResponse = z.infer<typeof addUserResponseSchema>;

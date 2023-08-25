@@ -5,37 +5,36 @@ export const siteSchema = z.object({
   object: z.string(),
   name: z.string(),
   sharing: z.string(),
-  created_at: z.string()
-}).deepPartial()
+  created_at: z.string(),
+}).deepPartial();
 
 export const sitesSchema = z.object({
   object: z.string(),
   url: z.string(),
   has_more: z.boolean(),
-  data: z.array(siteSchema)
-}).deepPartial()
+  data: z.array(siteSchema),
+}).deepPartial();
 
 export const querySitesSchema = z.object({
   limit: z.number().optional(),
   starting_after: z.string().optional(),
-  ending_before: z.string().optional()
-})
+  ending_before: z.string().optional(),
+});
 
 export const queryAddSiteSchema = z.object({
   name: z.string(),
   sharing: z
     .union([z.literal("none"), z.literal("private"), z.literal("public")])
     .optional(),
-  share_password: z.string().optional()
-})
+  share_password: z.string().optional(),
+});
 
-export const queryUpdateSiteSchema = queryAddSiteSchema.deepPartial()
+export const queryUpdateSiteSchema = queryAddSiteSchema.deepPartial();
 
 //types:
 
-export type Site = z.infer<typeof siteSchema>
-export type Sites = z.infer<typeof sitesSchema>
-export type QuerySites = z.infer<typeof querySitesSchema>
-export type QueryAddSite = z.infer<typeof queryAddSiteSchema>
-export type QueryUpdateSite = z.infer<typeof queryUpdateSiteSchema>
-
+export type Site = z.infer<typeof siteSchema>;
+export type Sites = z.infer<typeof sitesSchema>;
+export type QuerySites = z.infer<typeof querySitesSchema>;
+export type QueryAddSite = z.infer<typeof queryAddSiteSchema>;
+export type QueryUpdateSite = z.infer<typeof queryUpdateSiteSchema>;
