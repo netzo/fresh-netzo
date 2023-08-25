@@ -223,7 +223,6 @@ The following Web and Deno APIs are supported on the runtime.
 To learn more, you can always head over to the Deno [documentation](https://deno.com/deploy/docs)
 :::
 
-
 ### (Virtual) Filesystem
 
 Projects have access to a **read-only virtual filesystem** that is scoped to the Project's files and mounted at `file:///src/`. Reading outside of the project root is not allowed.

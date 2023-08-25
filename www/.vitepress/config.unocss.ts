@@ -84,6 +84,8 @@ export const unocssConfig = {
     'i-mdi-link',
     'i-mdi-loading',
     'i-mdi-information',
+    'i-mdi-alert-circle',
+    'i-mdi-alert-box',
     'i-mdi-checkbox-marked',
     'i-mdi-format-list-group',
     'i-mdi-form-textbox',
