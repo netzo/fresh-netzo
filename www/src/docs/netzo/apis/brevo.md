@@ -60,9 +60,9 @@ const resultData = await api.contacts[CONTACT_IDENTIFIER].get<Contact>(query)
 Add a new contact.
 
 ```ts
-import type { QueryAddContact } from 'netzo/apis/brevo/types.ts'
+import type { DataAddContact } from 'netzo/apis/brevo/types.ts'
 
-const data: QueryContact = { email: 'example@email.com' }
+const data: DataAddContact = { email: 'example@email.com' }
 const resultData = await api.contacts.post<{ id: number }>(data)
 ```
 
@@ -71,9 +71,9 @@ const resultData = await api.contacts.post<{ id: number }>(data)
 Update a contact by its unique identifier, which can be id, email or SMS attribute value.
 
 ```ts
-import type { QueryUpdateContact } from 'netzo/apis/brevo/types.ts'
+import type { DataUpdateContact } from 'netzo/apis/brevo/types.ts'
 
-const data: QueryUpdateContact = {
+const data: DataUpdateContact = {
   attributes: {
     EMAIL: 'updated-email@email.com'
   }

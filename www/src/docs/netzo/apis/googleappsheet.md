@@ -51,9 +51,9 @@ const resultData = result.Rows
 Add one or multiple rows to a table.
 
 ```ts
-import type { QueryAddRecords, Records } from 'netzo/apis/googleappsheet/types.ts'
+import type { DataAddRecords, Records } from 'netzo/apis/googleappsheet/types.ts'
 
-const data: QueryAddRecords = {
+const data: DataAddRecords = {
   Action: 'Add',
   Rows: [{
     FIELD: 'NEW_VALUE'
@@ -70,9 +70,9 @@ Update one or multiple rows.
 In the request, each row must include the key fields and values that identify the row to be updated.
 
 ```ts
-import type { QueryUpdateRecords, Records } from 'netzo/apis/googleappsheet/types.ts'
+import type { DataUpdateRecords, Records } from 'netzo/apis/googleappsheet/types.ts'
 
-const data: QueryUpdateRecords = {
+const data: DataUpdateRecords = {
   Action: 'Edit',
   Rows: [{
     KEY_FIELD: 'KEY_VALUE',

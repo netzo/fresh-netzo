@@ -49,9 +49,9 @@ const resultData = await api.Product[PRODUCT_ID].get<Product>()
 Add a new product.
 
 ```ts
-import type { Product, QueryAddProduct } from 'netzo/apis/facturama/types.ts'
+import type { Product, DataAddProduct } from 'netzo/apis/facturama/types.ts'
 
-const data: QueryAddProduct = {
+const data: DataAddProduct = {
   name: 'New Product',
   description: 'Product description',
   price: 100,
@@ -65,9 +65,9 @@ const resultData = await api.Product.post<Product>(data)
 Update a product by id.
 
 ```ts
-import type { QueryUpdateProduct } from 'netzo/apis/facturama/types.ts'
+import type { DataUpdateProduct } from 'netzo/apis/facturama/types.ts'
 
-const data: QueryUpdateProduct = { description: 'Updated description' }
+const data: DataUpdateProduct = { description: 'Updated description' }
 await api.Product[PRODUCT_ID].put<void>(data)
 ```
 

@@ -51,9 +51,9 @@ const resultData = result.data
 Update your business profile.
 
 ```ts
-import type { QueryUpdateProfile, UpdateProfileResponse } from 'netzo/apis/whatsappbusiness/types.ts'
+import type { UpdateProfileResponse, DataUpdateProfile } from 'netzo/apis/whatsappbusiness/types.ts'
 
-const data: QueryUpdateProfile = {
+const data: DataUpdateProfile = {
   messaging_product: 'whatsapp',
   about: 'About my business'
 }

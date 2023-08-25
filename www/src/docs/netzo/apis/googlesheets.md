@@ -80,14 +80,14 @@ Add a row to the spreadsheet.
 Be sure to keep insertDataOption as INSERT_ROWS, or existing data in your range will be overwritten.
 
 ```ts
-import type { AddValuesResponse, QueryAddOrUpdateRows, RequestAddOrUpdateValues } from 'netzo/apis/googlesheets/types.ts'
+import type { AddValuesResponse, QueryAddOrUpdateValues, DataAddOrUpdateValues } from 'netzo/apis/googlesheets/types.ts'
 
-const query: QueryAddOrUpdateRows = {
+const query: QueryAddOrUpdateValues = {
   valueInputOption: 'USER_ENTERED',
   insertDataOption: 'INSERT_ROWS',
   includeValuesInResponse: true
 }
-const data: RequestAddOrUpdateValues = { values: [['value1', 'value2', 'value3']] }
+const data: DataAddOrUpdateValues = { values: [['value1', 'value2', 'value3']] }
 
 const result = await api.values[`${RANGE_TO_INSERT}:append`].post<AddValuesResponse>(data, query)
 const resultData = result.updates.updatedData.values
@@ -98,13 +98,13 @@ const resultData = result.updates.updatedData.values
 Update a row by specifying the range.
 
 ```ts
-import type { QueryAddOrUpdateRows, RequestAddOrUpdateValues, UpdateValuesResponse } from 'netzo/apis/googlesheets/types.ts'
+import type { QueryAddOrUpdateValues, DataAddOrUpdateValues, UpdateValuesResponse } from 'netzo/apis/googlesheets/types.ts'
 
-const query: QueryAddOrUpdateRows = {
+const query: QueryAddOrUpdateValues = {
   valueInputOption: 'USER_ENTERED',
   includeValuesInResponse: true
 }
-const data: RequestAddOrUpdateValues = { values: [['updatedValue1', 'updatedValue2', 'updatedValue3']] }
+const data: DataAddOrUpdateValues = { values: [['updatedValue1', 'updatedValue2', 'updatedValue3']] }
 const result = await api.values[RANGE_TO_UPDATE].put<UpdateValuesResponse>(data, query)
 const resultData = result.updatedData.values
 ```

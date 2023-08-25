@@ -49,9 +49,9 @@ const resultData = result.results
 Add a new contact.
 
 ```ts
-import type { AddOrUpdateContactResponse, QueryAddOrUpdateContact } from 'netzo/apis/hubspot/types.ts'
+import type { AddOrUpdateContactResponse, DataAddOrUpdateContact } from 'netzo/apis/hubspot/types.ts'
 
-const data: QueryAddOrUpdateContact = {
+const data: DataAddOrUpdateContact = {
   properties: {
     company: 'Company X',
     email: 'example@email.com'
@@ -65,9 +65,9 @@ const resultData = await api.crm.v3.objects.contacts.post<AddOrUpdateContactResp
 Update a contact by id.
 
 ```ts
-import type { AddOrUpdateContactResponse, QueryAddOrUpdateContact } from 'netzo/apis/hubspot/types.ts'
+import type { AddOrUpdateContactResponse, DataAddOrUpdateContact } from 'netzo/apis/hubspot/types.ts'
 
-const data: QueryAddOrUpdateContact = {
+const data: DataAddOrUpdateContact = {
   properties: {
     company: 'New Company Name',
   }
@@ -123,9 +123,9 @@ const resultData = result.results
 Add a new deal.
 
 ```ts
-import type { AddDealResponse, QueryAddDeal } from 'netzo/apis/hubspot/types.ts'
+import type { AddDealResponse, DataAddDeal } from 'netzo/apis/hubspot/types.ts'
 
-const data: QueryAddDeal = {
+const data: DataAddDeal = {
   properties: {
     amount: '1000.00',
     dealname: 'New deal'

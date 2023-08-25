@@ -60,9 +60,9 @@ const resultData = await api.customers[CUSTOMER_UUID].get<Customer>()
 Add a new customer.
 
 ```ts
-import type { AddOrUpdateCustomerResponse, QueryAddCustomer } from 'netzo/apis/chartmogul/types.ts'
+import type { AddOrUpdateCustomerResponse, DataAddCustomer } from 'netzo/apis/chartmogul/types.ts'
 
-const data: QueryAddCustomer = { data_source_uuid: DATA_SOURCE_UUID, external_id: EXTERNAL_ID, email: 'example@email.com'; }
+const data: DataAddCustomer = { data_source_uuid: DATA_SOURCE_UUID, external_id: EXTERNAL_ID, email: 'example@email.com'; }
 const resultData = await api.customers.post<AddOrUpdateCustomerResponse>(data)
 ```
 
@@ -71,9 +71,9 @@ const resultData = await api.customers.post<AddOrUpdateCustomerResponse>(data)
 Update a customer by id.
 
 ```ts
-import type { AddOrUpdateCustomerResponse, QueryUpdateCustomer } from 'netzo/apis/chartmogul/types.ts'
+import type { AddOrUpdateCustomerResponse, DataUpdateCustomer } from 'netzo/apis/chartmogul/types.ts'
 
-const data: QueryUpdateCustomer = { email: 'updated-email@email.com' }
+const data: DataUpdateCustomer = { email: 'updated-email@email.com' }
 const resultData = await api.customers[CUSTOMER_UUID].patch<AddOrUpdateCustomerResponse>(data)
 ```
 

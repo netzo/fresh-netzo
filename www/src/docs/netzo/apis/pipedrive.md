@@ -63,9 +63,9 @@ const resultData = result.data.items
 Add a new deal.
 
 ```ts
-import type { AddOrUpdateDealResponse, QueryAddDeal } from 'netzo/apis/pipedrive/types.ts'
+import type { AddOrUpdateDealResponse, DataAddDeal } from 'netzo/apis/pipedrive/types.ts'
 
-const data: QueryAddDeal = { title: 'New Deal', value: 100 }
+const data: DataAddDeal = { title: 'New Deal', value: 100 }
 const result = await api.deals.post<AddOrUpdateDealResponse>(data)
 const resultData = result.data
 ```
@@ -75,9 +75,9 @@ const resultData = result.data
 Update a deal by id.
 
 ```ts
-import type { AddOrUpdateDealResponse, QueryUpdateDeal } from 'netzo/apis/pipedrive/types.ts'
+import type { AddOrUpdateDealResponse, DataUpdateDeal } from 'netzo/apis/pipedrive/types.ts'
 
-const data: QueryUpdateDeal = { title: 'Updated Title' }
+const data: DataUpdateDeal = { title: 'Updated Title' }
 const result = await api.deals[DEAL_ID].put<AddOrUpdateDealResponse>(data)
 const resultData = result.data
 ```
@@ -122,9 +122,9 @@ const resultData = result.data.items
 Add a new person.
 
 ```ts
-import type { AddOrUpdatePersonResponse, QueryAddPerson } from 'netzo/apis/pipedrive/types.ts'
+import type { AddOrUpdatePersonResponse, DataAddPerson } from 'netzo/apis/pipedrive/types.ts'
 
-const data: QueryAddPerson = { name: 'John Doe' }
+const data: DataAddPerson = { name: 'John Doe' }
 const result = await api.persons.post<AddOrUpdatePersonResponse>(data)
 const resultData = result.data
 ```
@@ -134,9 +134,9 @@ const resultData = result.data
 Update a person by id.
 
 ```ts
-import type { AddOrUpdatePersonResponse, QueryUpdatePerson } from 'netzo/apis/pipedrive/types.ts'
+import type { AddOrUpdatePersonResponse, DataUpdatePerson } from 'netzo/apis/pipedrive/types.ts'
 
-const data: QueryUpdatePerson = { email: 'updated-email@email.com' }
+const data: DataUpdatePerson = { email: 'updated-email@email.com' }
 const result = await api.persons[PERSON_ID].put<AddOrUpdatePersonResponse>(data)
 const resultData = result.data
 ```

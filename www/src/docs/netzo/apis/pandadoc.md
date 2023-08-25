@@ -59,9 +59,9 @@ const resultData = await api.documents[DOCUMENT_ID].details.get<Document>()
 Update a document by id.
 
 ```ts
-import type { QueryAddDocument } from 'netzo/apis/pandadoc/types.ts'
+import type { DataAddDocument } from 'netzo/apis/pandadoc/types.ts'
 
-const data: QueryAddDocument = {
+const data: DataAddDocument = {
   recipients: {
     ID: RECIPIENT_ID,
     first_name: 'John Doe'
@@ -94,9 +94,9 @@ const resultData = result.results
 Add a new contact.
 
 ```ts
-import type { Contact, QueryAddContact } from 'netzo/apis/pandadoc/types.ts'
+import type { Contact, DataAddContact } from 'netzo/apis/pandadoc/types.ts'
 
-const data: QueryAddContact = { email: 'email@example.com' }
+const data: DataAddContact = { email: 'email@example.com' }
 const resultData = await api.contacts.post<Contact>(data)
 ```
 

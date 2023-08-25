@@ -78,9 +78,9 @@ const resultData = result.orders
 Add a new customer.
 
 ```ts
-import type { AddOrUpdateCustomer, AddOrUpdateCustomerResponse } from 'netzo/apis/shopify/types.ts'
+import type { DataAddOrUpdateCustomer, AddOrUpdateCustomerResponse } from 'netzo/apis/shopify/types.ts'
 
-const data: AddOrUpdateCustomer = {
+const data: DataAddOrUpdateCustomer = {
   customer: {
     first_name: 'John',
     last_name: 'Doe',
@@ -96,9 +96,9 @@ const resultData = result.customer
 Update a customer by id.
 
 ```ts
-import type { AddOrUpdateCustomer, AddOrUpdateCustomerResponse } from 'netzo/apis/shopify/types.ts'
+import type { DataAddOrUpdateCustomer, AddOrUpdateCustomerResponse } from 'netzo/apis/shopify/types.ts'
 
-const data: AddOrUpdateCustomer = {
+const data: DataAddOrUpdateCustomer = {
   customer: {
     email: 'new-email@email.com'
   }

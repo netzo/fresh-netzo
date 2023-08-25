@@ -59,9 +59,9 @@ const resultData = await api.sites[SITE_ID].get<Site>()
 Add a new site
 
 ```ts
-import type { QueryAddSite, Site } from 'netzo/apis/fathomanalytics/types.ts'
+import type { DataAddSite, Site } from 'netzo/apis/fathomanalytics/types.ts'
 
-const data: QueryAddSite = { name: 'New website' }
+const data: DataAddSite = { name: 'New website' }
 const resultData = await api.sites.post<Site>(data)
 ```
 
@@ -70,9 +70,9 @@ const resultData = await api.sites.post<Site>(data)
 Update a site by id
 
 ```ts
-import type { QueryUpdateSite, Site } from 'netzo/apis/fathomanalytics/types.ts'
+import type { DataUpdateSite, Site } from 'netzo/apis/fathomanalytics/types.ts'
 
-const data: QueryUpdateSite = { name: 'Updated website' }
+const data: DataUpdateSite = { name: 'Updated website' }
 const resultData = await api.sites[SITE_ID].post<Site>(data)
 ```
 

@@ -61,9 +61,9 @@ const resultData = await api.contacts[CONTACT_ID].get<Contact>()
 Add a new contact.
 
 ```ts
-import type { AddOrUpdateContactResponse, QueryAddContact } from 'netzo/apis/activecampaign/types.ts'
+import type { AddOrUpdateContactResponse, DataAddContact } from 'netzo/apis/activecampaign/types.ts'
 
-const data: QueryAddContact = {
+const data: DataAddContact = {
   contact: {
     email: 'example@email.com'
   }
@@ -76,9 +76,9 @@ const resultData = await api.contacts.post<AddOrUpdateContactResponse>(data)
 Update a contact by id.
 
 ```ts
-import type { AddOrUpdateContactResponse, QueryUpdateContact } from 'netzo/apis/activecampaign/types.ts'
+import type { AddOrUpdateContactResponse, DataUpdateContact } from 'netzo/apis/activecampaign/types.ts'
 
-const data: QueryUpdateContact = {
+const data: DataUpdateContact = {
   contact: {
     email: 'updated-email@email.com'
   }
@@ -134,9 +134,9 @@ const resultData = result.users
 Add a new user to the account.
 
 ```ts
-import type { AddUserResponse, QueryAddUser } from 'netzo/apis/activecampaign/types.ts'
+import type { AddUserResponse, DataAddUser } from 'netzo/apis/activecampaign/types.ts'
 
-const data: QueryAddUser = {
+const data: DataAddUser = {
   user: {
     username: 'jsmith'
   }

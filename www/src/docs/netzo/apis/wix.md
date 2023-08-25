@@ -64,9 +64,9 @@ const resultData = result.contacts
 Add a new contact.
 
 ```ts
-import type { Contact, QueryAddContact } from 'netzo/apis/wix/types.ts'
+import type { Contact, DataAddContact } from 'netzo/apis/wix/types.ts'
 
-const data: QueryAddContact = {
+const data: DataAddContact = {
   info: { name: { first: 'John', last: 'Doe' } }
 }
 const result = await api.contacts.v4.contacts.post<Contact>(data)
@@ -78,9 +78,9 @@ const resultData = result.contact
 Update a contact by id.
 
 ```ts
-import type { Contact, QueryUpdateContact } from 'netzo/apis/wix/types.ts'
+import type { Contact, DataUpdateContact } from 'netzo/apis/wix/types.ts'
 
-const data: QueryUpdateContact = {
+const data: DataUpdateContact = {
   revision: REVISION_NUMBER,
   info: { name: { first: 'Jane', last: 'Doe' } }
 }

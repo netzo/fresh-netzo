@@ -59,9 +59,9 @@ const resultData = await api.channels[CHANNEL_ID].messages.get<Message[]>(query)
 Post a message to a channel.
 
 ```ts
-import type { Message, QueryAddOrUpdateMessage } from 'netzo/apis/discord/types.ts'
+import type { Message, DataAddOrUpdateMessage } from 'netzo/apis/discord/types.ts'
 
-const data: QueryAddOrUpdateMessage = { content: 'New message' }
+const data: DataAddOrUpdateMessage = { content: 'New message' }
 const resultData = await api.channels[CHANNEL_ID].messages.post<Message>(data)
  ```
 
@@ -70,9 +70,9 @@ const resultData = await api.channels[CHANNEL_ID].messages.post<Message>(data)
 Update a message by id.
 
 ```ts
-import type { Message, QueryAddOrUpdateMessage } from 'netzo/apis/discord/types.ts'
+import type { Message, DataAddOrUpdateMessage } from 'netzo/apis/discord/types.ts'
 
-const data: QueryAddOrUpdateMessage = { content: 'Updated message' }
+const data: DataAddOrUpdateMessage = { content: 'Updated message' }
 const resultData = await api.channels[CHANNEL_ID].messages[MESSAGE_ID].patch<Message>(data)
 ```
 

@@ -49,9 +49,9 @@ const resultData = result.records
 Add one or multiple records.
 
 ```ts
-import type { QueryAddRecords, Records } from 'netzo/apis/airtable/types.ts'
+import type { DataAddRecords, Records } from 'netzo/apis/airtable/types.ts'
 
-const data: QueryRecords = {
+const data: DataRecords = {
   records: [
     {
       fields: {
@@ -73,9 +73,9 @@ Update one or multiple records by id.
 Id property of the data is optional if upsert property is enabled.
 
 ```ts
-import type { QueryUpdateRecords, UpdateRecordsResponse } from 'netzo/apis/airtable/types.ts'
+import type { DataUpdateRecords, UpdateRecordsResponse } from 'netzo/apis/airtable/types.ts'
 
-const data: QueryUpdateRecords = {
+const data: DataUpdateRecords = {
   records: [
     {
       fields: {

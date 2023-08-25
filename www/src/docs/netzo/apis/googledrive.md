@@ -64,9 +64,9 @@ const resultData = await api.files[FILE_ID].get<File>(query)
 Create a copy of a file and apply updates.
 
 ```ts
-import type { File, QueryCopyFile } from 'netzo/apis/googlesheets/types.ts'
+import type { File, DataCopyFile } from 'netzo/apis/googlesheets/types.ts'
 
-const data: QueryCopyFile = { description: 'Copy of my file' }
+const data: DataCopyFile = { description: 'Copy of my file' }
 const resultData = await api.files[FILE_ID].copy.post<File>(data)
 ```
 

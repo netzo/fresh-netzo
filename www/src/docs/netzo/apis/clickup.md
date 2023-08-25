@@ -70,9 +70,9 @@ const resultData = result.tasks
 Add a new task.
 
 ```ts
-import type { QueryAddTask, Task } from 'netzo/apis/clickup/types.ts'
+import type { DataAddTask, Task } from 'netzo/apis/clickup/types.ts'
 
-const data: QueryAddTask = { name: 'New Task' }
+const data: DataAddTask = { name: 'New Task' }
 const resultData = await api.list[LIST_ID].task.post<Task>(data)
 ```
 
@@ -81,9 +81,9 @@ const resultData = await api.list[LIST_ID].task.post<Task>(data)
 Update a task by id.
 
 ```ts
-import type { QueryUpdateTask, Task } from 'netzo/apis/clickup/types.ts'
+import type { DataUpdateTask, Task } from 'netzo/apis/clickup/types.ts'
 
-const data: QueryAddTask = { name: 'Updated Task Name' }
+const data: DataAddTask = { name: 'Updated Task Name' }
 const resultData = await api.task[TASK_ID].put<Task>(data)
 ```
 

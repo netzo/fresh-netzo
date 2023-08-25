@@ -58,9 +58,9 @@ const resultData = result.data
 Create a post to the authenticated user's profile.
 
 ```ts
-import type { Post, QueryPost } from 'netzo/apis/medium/types.ts'
+import type { Post, DataAddPost } from 'netzo/apis/medium/types.ts'
 
-const data: QueryPost = {
+const data: DataAddPost = {
   title: 'New Post',
   contentFormat: 'html',
   content: '<h1>New title</h1><p>This is new post content</p>'

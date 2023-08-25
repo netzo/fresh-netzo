@@ -60,9 +60,9 @@ const resultData = await api.marketing.lists[LIST_ID].get<List>(query)
 Update the name of a list.
 
 ```ts
-import type { QueryUpdateList, UpdateListResponse } from 'netzo/apis/sendgrid/types.ts'
+import type { DataUpdateList, UpdateListResponse } from 'netzo/apis/sendgrid/types.ts'
 
-const data: QueryUpdateList = { name: 'Updated list name' }
+const data: DataUpdateList = { name: 'Updated list name' }
 const resultData = await api.marketing.lists[LIST_ID].patch<UpdateListResponse>(data)
 ```
 
@@ -71,9 +71,9 @@ const resultData = await api.marketing.lists[LIST_ID].patch<UpdateListResponse>(
 Add contacts to one or multiple lists.
 
 ```ts
-import type { AddContactsResponse, QueryAddContacts } from 'netzo/apis/sendgrid/types.ts'
+import type { AddContactsResponse, DataAddContacts } from 'netzo/apis/sendgrid/types.ts'
 
-const data: QueryAddContacts = {
+const data: DataAddContacts = {
   list_ids: [LIST_ID1, LIST_ID2],
   contacts: [{ email: 'email@example.com' }]
 }
@@ -85,9 +85,9 @@ const resultData = await api.marketing.contacts.put<AddContactsResponse>(data)
 Send an email over the API.
 
 ```ts
-import type { QuerySendEmail } from 'netzo/apis/sendgrid/types.ts'
+import type { DataSendEmail } from 'netzo/apis/sendgrid/types.ts'
 
-const data: QuerySendEmail = {
+const data: DataSendEmail = {
   personalizations: [
     {
       to: [
@@ -110,7 +110,6 @@ const data: QuerySendEmail = {
     }
   ]
 }
-
 await api.mail.send.post<void>(data)
 ```
 

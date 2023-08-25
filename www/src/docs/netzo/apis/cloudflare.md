@@ -62,9 +62,9 @@ const resultData = result.result
 Add a new zone.
 
 ```ts
-import type { QueryAddZone, Zone } from 'netzo/apis/cloudflare/types.ts'
+import type { DataAddZone, Zone } from 'netzo/apis/cloudflare/types.ts'
 
-const data: QueryAddZone = {
+const data: DataAddZone = {
   account: { id: ZONE_ID },
   name: DOMAIN_NAME
 }

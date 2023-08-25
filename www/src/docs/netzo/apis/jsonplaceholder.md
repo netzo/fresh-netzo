@@ -50,9 +50,9 @@ const resultData = await api.todos[TODO_ID].get<Todo>()
 Add a new todo.
 
 ```ts
-import type { QueryAddTodo, Todo } from 'netzo/apis/jsonplaceholder/types.ts'
+import type { DataAddTodo, Todo } from 'netzo/apis/jsonplaceholder/types.ts'
 
-const data: QueryAddTodo = {
+const data: DataAddTodo = {
   userId: 1,
   title: 'New task'
 }

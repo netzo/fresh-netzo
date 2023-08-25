@@ -48,13 +48,13 @@ const resultData = result.items
 Add a new mailing list.
 
 ```ts
-import type { AddOrUpdateListResponse, QueryAddMailingList } from  'netzo/apis/mailgun/types.ts'
+import type { AddOrUpdateListResponse, DataAddMailingList } from  'netzo/apis/mailgun/types.ts'
 
-const data: QueryAddMailingList = { 
+const data: DataAddMailingList = { 
     address:'list_name@email.com', 
     name: 'Newsletter'
  }
-const result = await api.v3.lists.post<QueryAddMailingList>(data)
+const result = await api.v3.lists.post<AddOrUpdateListResponse>(data)
 const resultData = result.list
 ```
 
@@ -63,12 +63,12 @@ const resultData = result.list
 Update a mailing list by its email address.
 
 ```ts
-import type { AddOrUpdateListResponse, QueryUpdateMailingList } from  'netzo/apis/mailgun/types.ts'
+import type { AddOrUpdateListResponse, DataUpdateMailingList } from  'netzo/apis/mailgun/types.ts'
 
-const data: QueryUpdateMailingList = { 
+const data: DataUpdateMailingList = { 
     name: 'Updated name'
  }
-const result = await api.v3.lists[LIST_ADDRESS].put<QueryUpdateMailingList>(data)
+const result = await api.v3.lists[LIST_ADDRESS].put<AddOrUpdateListResponse>(data)
 const resultData = result.list
 ```
 
@@ -77,12 +77,12 @@ const resultData = result.list
 Add a new email address to a mailing list.
 
 ```ts
-import type { AddMemberResponse, QueryAddMember } from  'netzo/apis/mailgun/types.ts'
+import type { AddMemberResponse, DataAddMember } from  'netzo/apis/mailgun/types.ts'
 
-const data: QueryAddMember = { 
+const data: DataAddMember = { 
     address: 'example@email.com'
  }
-const result = await api.v3.lists[LIST_ADDRESS].members.post<QueryUpdateMailingList>(data)
+const result = await api.v3.lists[LIST_ADDRESS].members.post<AddMemberResponse>(data)
 const resultData = result.member
 ```
 

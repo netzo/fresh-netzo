@@ -58,9 +58,9 @@ const resultData = result.documents
 Add a document to a collection.
 
 ```ts
-import type { AddDocumentResponse, QueryAddDocument } from 'netzo/apis/mongodbatlasdata/types.ts'
+import type { AddDocumentResponse, DataAddDocument } from 'netzo/apis/mongodbatlasdata/types.ts'
 
-const data: QueryAddDocument = {
+const data: DataAddDocument = {
   dataSource: 'mongodb-atlas',
   database: DATABASE_NAME,
   collection: COLLECTION_NAME,
@@ -74,9 +74,9 @@ const resultData = await api.action.insertOne.post<AddDocumentResponse>(data)
 Update a specific document.
 
 ```ts
-import type { QueryUpdateDocument, UpdateDocumentResponse } from 'netzo/apis/mongodbatlasdata/types.ts'
+import type { DataUpdateDocument, UpdateDocumentResponse } from 'netzo/apis/mongodbatlasdata/types.ts'
 
-const data: QueryUpdateDocument = {
+const data: DataUpdateDocument = {
   dataSource: 'mongodb-atlas',
   database: DATABASE_NAME,
   collection: COLLECTION_NAME,
