@@ -28,7 +28,7 @@ export const queryDocumentsSchema = z.object({
   skip: z.number().optional(),
 });
 
-export const queryAddDocumentSchema = z.object({
+export const dataAddDocumentSchema = z.object({
   dataSource: z.string(),
   database: z.string(),
   collection: z.string(),
@@ -39,7 +39,7 @@ export const addDocumentResponseSchema = z.object({
   insertedId: z.string(),
 });
 
-export const queryUpdateDocumentSchema = z.object({
+export const dataUpdateDocumentSchema = z.object({
   dataSource: z.string(),
   database: z.string(),
   collection: z.string(),
@@ -57,9 +57,9 @@ export const updateDocumentResponseSchema = z.object({
 
 export type Documents = z.infer<typeof documentsSchema>;
 export type QueryDocuments = z.infer<typeof queryDocumentsSchema>;
-export type QueryAddDocument = z.infer<typeof queryAddDocumentSchema>;
+export type DataAddDocument = z.infer<typeof dataAddDocumentSchema>;
 export type AddDocumentResponse = z.infer<typeof addDocumentResponseSchema>;
-export type QueryUpdateDocument = z.infer<typeof queryUpdateDocumentSchema>;
+export type DataUpdateDocument = z.infer<typeof dataUpdateDocumentSchema>;
 export type UpdateDocumentResponse = z.infer<
   typeof updateDocumentResponseSchema
 >;

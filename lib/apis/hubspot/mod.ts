@@ -1,19 +1,5 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
-export type {
-  AddDealResponse,
-  AddOrUpdateContactResponse,
-  Contacts,
-  Deals,
-  Form,
-  FormSubmissions,
-  QueryAddDeal,
-  QueryAddOrUpdateContact,
-  QueryContacts,
-  QueryDeals,
-  QueryForms,
-  QuerySubmissions,
-} from "./types.ts";
 
 export interface HubspotOptions {
   privateAppAccessToken: string;

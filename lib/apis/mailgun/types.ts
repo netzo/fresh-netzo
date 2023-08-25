@@ -23,7 +23,7 @@ export const queryMailingListsSchema = z.object({
   limit: z.number().optional(),
 });
 
-export const queryAddMailingListSchema = z.object({
+export const dataAddMailingListSchema = z.object({
   address: z.string(),
   name: z.string().optional(),
   description: z.string().optional(),
@@ -34,14 +34,14 @@ export const queryAddMailingListSchema = z.object({
     .optional(),
 });
 
-export const queryUpdateMailingListSchema = queryAddMailingListSchema.partial();
+export const dataUpdateMailingListSchema = dataAddMailingListSchema.partial();
 
 export const addOrUpdateListResponseSchema = z.object({
   message: z.string(),
   list: mailingListBaseSchema,
 });
 
-export const queryAddMemberSchema = z.object({
+export const dataAddMemberSchema = z.object({
   address: z.string(),
   name: z.string().optional(),
   vars: z.record(z.any()).optional(),
@@ -70,13 +70,13 @@ export const deleteMemberResponseSchema = z.object({
 
 export type MailingLists = z.infer<typeof mailingListsSchema>;
 export type QueryMailingLists = z.infer<typeof queryMailingListsSchema>;
-export type QueryAddMailingList = z.infer<typeof queryAddMailingListSchema>;
-export type QueryUpdateMailingList = z.infer<
-  typeof queryUpdateMailingListSchema
+export type DataAddMailingList = z.infer<typeof dataAddMailingListSchema>;
+export type DataUpdateMailingList = z.infer<
+  typeof dataUpdateMailingListSchema
 >;
 export type AddOrUpdateListResponse = z.infer<
   typeof addOrUpdateListResponseSchema
 >;
-export type QueryAddMember = z.infer<typeof queryAddMemberSchema>;
+export type DataAddMember = z.infer<typeof dataAddMemberSchema>;
 export type AddMemberResponse = z.infer<typeof addMemberResponseSchema>;
 export type DeleteMemberResponse = z.infer<typeof deleteMemberResponseSchema>;

@@ -17,7 +17,7 @@ export const profileSchema = z.object({
 
 export const queryProfileSchema = profileBaseSchema.partial();
 
-export const queryUpdateProfileSchema = profileBaseSchema.partial().extend({
+export const dataUpdateProfileSchema = profileBaseSchema.partial().extend({
   messaging_product: z.string(),
 });
 
@@ -29,5 +29,5 @@ export const updateProfileResponseSchema = z.object({
 
 export type Profile = z.infer<typeof profileSchema>;
 export type QueryProfile = z.infer<typeof queryProfileSchema>;
-export type QueryUpdateProfile = z.infer<typeof queryUpdateProfileSchema>;
+export type DataUpdateProfile = z.infer<typeof dataUpdateProfileSchema>;
 export type UpdateProfileResponse = z.infer<typeof updateProfileResponseSchema>;

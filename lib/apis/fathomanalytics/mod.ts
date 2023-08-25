@@ -1,12 +1,6 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
-export type {
-  QueryAddSite,
-  QuerySites,
-  QueryUpdateSite,
-  Site,
-  Sites,
-} from "./types.ts";
+
 export interface FathomAnalyticsOptions {
   apiKey: string;
 }

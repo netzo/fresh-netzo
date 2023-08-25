@@ -1,21 +1,6 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
-export type {
-  AddOrUpdateCustomerResponse,
-  Customer,
-  CustomerInvoices,
-  Customers,
-  CustomerSubscriptions,
-  Invoice,
-  Invoices,
-  QueryAddCustomer,
-  QueryCustomerInvoices,
-  QueryCustomers,
-  QueryCustomerSubscriptions,
-  QueryInvoice,
-  QueryInvoices,
-  QueryUpdateCustomer,
-} from "./types.ts";
+
 export interface ChartmogulOptions {
   apiKey: string;
 }

@@ -1,22 +1,5 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
-export type {
-  AddOrUpdateCustomer,
-  AddOrUpdateCustomerResponse,
-  Customer,
-  Customers,
-  Order,
-  Orders,
-  OrdersByCustomer,
-  OrderStatus,
-  Payouts,
-  Product,
-  Products,
-  QueryCustomers,
-  QueryOrders,
-  QueryPayouts,
-  QueryProducts,
-} from "./types.ts";
 
 export interface ShopifyOptions {
   storeName: string;

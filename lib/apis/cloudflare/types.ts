@@ -99,7 +99,7 @@ export const zoneSchema = responseBaseSchema.extend({
   result: zoneBaseSchema,
 }).deepPartial();
 
-export const queryAddZoneSchema = z.object({
+export const dataAddZoneSchema = z.object({
   account: z.object({
     id: z.string(),
   }),
@@ -120,5 +120,5 @@ export type QueryOrganizations = z.infer<typeof queryOrganizationsSchema>;
 export type Zones = z.infer<typeof zonesSchema>;
 export type QueryZones = z.infer<typeof queryZonesSchema>;
 export type Zone = z.infer<typeof zoneSchema>;
-export type QueryAddZone = z.infer<typeof queryAddZoneSchema>;
+export type DataAddZone = z.infer<typeof dataAddZoneSchema>;
 export type DeleteResponse = z.infer<typeof deleteResponseSchema>;

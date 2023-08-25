@@ -292,7 +292,7 @@ export const queryContactsSchema = z.object({
   in_group_lists: z.string().optional(),
 });
 
-export const queryAddContactSchema = z.object({
+export const dataAddContactSchema = z.object({
   contact: z.object({
     email: z.string(),
     firstName: z.string().optional(),
@@ -302,7 +302,7 @@ export const queryAddContactSchema = z.object({
   }),
 });
 
-export const queryUpdateContactSchema = queryAddContactSchema.deepPartial();
+export const dataUpdateContactSchema = dataAddContactSchema.deepPartial();
 
 export const addOrUpdateContactResponseSchema = z.object({
   fieldValues: z.array(
@@ -497,7 +497,7 @@ export const usersSchema = z.object({
   }),
 }).deepPartial();
 
-export const queryAddUserSchema = z.object({
+export const dataAddUserSchema = z.object({
   user: z.object({
     username: z.string().optional(),
     email: z.string().optional(),
@@ -538,8 +538,8 @@ export const addUserResponseSchema = z.object({
 export type Contact = z.infer<typeof contactSchema>;
 export type Contacts = z.infer<typeof contactsSchema>;
 export type QueryContacts = z.infer<typeof queryContactsSchema>;
-export type QueryAddContact = z.infer<typeof queryAddContactSchema>;
-export type QueryUpdateContact = z.infer<typeof queryUpdateContactSchema>;
+export type DataAddContact = z.infer<typeof dataAddContactSchema>;
+export type DataUpdateContact = z.infer<typeof dataUpdateContactSchema>;
 export type AddOrUpdateContactResponse = z.infer<
   typeof addOrUpdateContactResponseSchema
 >;
@@ -548,5 +548,5 @@ export type FilterDeals = z.infer<typeof filterDealsSchema>;
 export type Accounts = z.infer<typeof accountsSchema>;
 export type QueryAccounts = z.infer<typeof queryAccountsSchema>;
 export type Users = z.infer<typeof usersSchema>;
-export type QueryAddUser = z.infer<typeof queryAddUserSchema>;
+export type DataAddUser = z.infer<typeof dataAddUserSchema>;
 export type AddUserResponse = z.infer<typeof addUserResponseSchema>;

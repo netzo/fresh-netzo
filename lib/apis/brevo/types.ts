@@ -73,7 +73,7 @@ export const contactSchema = contactBaseSchema.extend({
   }),
 }).deepPartial();
 
-export const queryAddContactSchema = z.object({
+export const dataAddContactSchema = z.object({
   email: z.string().optional(),
   ext_id: z.string().optional(),
   attributes: z.record(z.any()).optional(),
@@ -84,7 +84,7 @@ export const queryAddContactSchema = z.object({
   smtpBlacklistSender: z.array(z.string()).optional(),
 });
 
-export const queryUpdateContactSchema = queryAddContactSchema.omit({
+export const dataUpdateContactSchema = dataAddContactSchema.omit({
   email: true,
   updateEnabled: true,
 }).extend({
@@ -239,8 +239,8 @@ export type Contacts = z.infer<typeof contactsSchema>;
 export type QueryContacts = z.infer<typeof queryContactsSchema>;
 export type Contact = z.infer<typeof contactSchema>;
 export type QueryContact = z.infer<typeof queryContactSchema>;
-export type QueryAddContact = z.infer<typeof queryAddContactSchema>;
-export type QueryUpdateContact = z.infer<typeof queryUpdateContactSchema>;
+export type DataAddContact = z.infer<typeof dataAddContactSchema>;
+export type DataUpdateContact = z.infer<typeof dataUpdateContactSchema>;
 export type EmailCampaigns = z.infer<typeof emailCampaignsSchema>;
 export type QueryEmailCampaigns = z.infer<typeof queryEmailCampaignsSchema>;
 export type Companies = z.infer<typeof companiesSchema>;

@@ -7,9 +7,9 @@ export const todoSchema = z.object({
   completed: z.boolean(),
 }).deepPartial();
 
-export const queryAddTodoSchema = todoSchema.omit({ id: true });
+export const dataAddTodoSchema = todoSchema.omit({ id: true });
 
 //types:
 
 export type Todo = z.infer<typeof todoSchema>;
-export type QueryAddTodo = z.infer<typeof queryAddTodoSchema>;
+export type DataAddTodo = z.infer<typeof dataAddTodoSchema>;

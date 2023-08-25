@@ -35,13 +35,13 @@ export const queryRecordsSchema = z.object({
   recordMetaData: z.array(z.string()).optional(),
 });
 
-export const queryAddRecordsSchema = z.object({
+export const dataAddRecordsSchema = z.object({
   records: z.array(recordObjectSchema.pick({ fields: true })),
   returnFieldsByFieldId: z.boolean().optional(),
   typecast: z.boolean().optional(),
 });
 
-export const queryUpdateRecordsSchema = z.object({
+export const dataUpdateRecordsSchema = z.object({
   records: z.array(recordObjectSchema),
   performUpsert: z
     .object({
@@ -128,8 +128,8 @@ export const queryTablesSchema = z.object({
 
 export type Records = z.infer<typeof recordsSchema>;
 export type QueryRecords = z.infer<typeof queryRecordsSchema>;
-export type QueryAddRecords = z.infer<typeof queryAddRecordsSchema>;
-export type QueryUpdateRecords = z.infer<typeof queryUpdateRecordsSchema>;
+export type DataAddRecords = z.infer<typeof dataAddRecordsSchema>;
+export type DataUpdateRecords = z.infer<typeof dataUpdateRecordsSchema>;
 export type UpdateRecordsResponse = z.infer<typeof updateRecordsResponseSchema>;
 export type QueryDeleteRecords = z.infer<typeof queryDeleteRecordsSchema>;
 export type RecordsDeleted = z.infer<typeof recordsDeletedSchema>;

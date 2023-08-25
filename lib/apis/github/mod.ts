@@ -1,13 +1,5 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
-export type {
-  Issue,
-  QueryIssues,
-  QueryRepositories,
-  QueryUsers,
-  Repository,
-  User,
-} from "./types.ts";
 
 export interface GithubOptions {
   personalAccessToken: string;

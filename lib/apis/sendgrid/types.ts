@@ -1,6 +1,6 @@
 import { z } from "../deps.ts";
 
-export const queryUpdateListSchema = z.object({
+export const dataUpdateListSchema = z.object({
   name: z.string(),
 });
 
@@ -68,7 +68,7 @@ export const queryListSchema = z.object({
   contact_sample: z.boolean().optional(),
 });
 
-export const queryAddContactsSchema = z.object({
+export const dataAddContactsSchema = z.object({
   list_ids: z.array(z.string()),
   contacts: z.array(
     z.object({
@@ -91,7 +91,7 @@ export const addContactsResponseSchema = z.object({
   job_id: z.string(),
 }).deepPartial();
 
-export const querySendEmailSchema = z.object({
+export const dataSendEmailSchema = z.object({
   personalizations: z.array(
     z.object({
       to: z.array(
@@ -211,12 +211,12 @@ export const querySendEmailSchema = z.object({
 
 //types:
 
-export type QueryUpdateList = z.infer<typeof queryUpdateListSchema>;
+export type DataUpdateList = z.infer<typeof dataUpdateListSchema>;
 export type UpdateListResponse = z.infer<typeof updateListResponseSchema>;
 export type List = z.infer<typeof listSchema>;
 export type Lists = z.infer<typeof listsSchema>;
 export type QueryLists = z.infer<typeof queryListsSchema>;
 export type QueryList = z.infer<typeof queryListSchema>;
-export type QueryAddContacts = z.infer<typeof queryAddContactsSchema>;
+export type DataAddContacts = z.infer<typeof dataAddContactsSchema>;
 export type AddContactsResponse = z.infer<typeof addContactsResponseSchema>;
-export type QuerySendEmail = z.infer<typeof querySendEmailSchema>;
+export type DataSendEmail = z.infer<typeof dataSendEmailSchema>;

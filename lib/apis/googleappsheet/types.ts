@@ -22,11 +22,11 @@ export const recordsSchema = z.object({
   Rows: z.array(z.record(z.any())),
 });
 
-export const queryAddRecordsSchema = queryRecordsSchema.extend({
+export const dataAddRecordsSchema = queryRecordsSchema.extend({
   Action: z.literal("Add"),
 });
 
-export const queryUpdateRecordsSchema = queryRecordsSchema.extend({
+export const dataUpdateRecordsSchema = queryRecordsSchema.extend({
   Action: z.literal("Edit"),
 });
 
@@ -38,6 +38,6 @@ export const queryDeleteRecordsSchema = queryRecordsSchema.extend({
 
 export type QueryRecords = z.infer<typeof queryRecordsSchema>;
 export type Records = z.infer<typeof recordsSchema>;
-export type QueryAddRecords = z.infer<typeof queryAddRecordsSchema>;
-export type QueryUpdateRecords = z.infer<typeof queryUpdateRecordsSchema>;
+export type DataAddRecords = z.infer<typeof dataAddRecordsSchema>;
+export type DataUpdateRecords = z.infer<typeof dataUpdateRecordsSchema>;
 export type QueryDeleteRecords = z.infer<typeof queryDeleteRecordsSchema>;

@@ -121,7 +121,7 @@ export const queryTasksSchema = z.object({
   custom_fields: z.array(z.string()).optional(),
 });
 
-export const queryAddTaskSchema = z.object({
+export const dataAddTaskSchema = z.object({
   name: z.string(),
   description: z.string().optional(),
   assignees: z.array(z.number()).optional(),
@@ -147,7 +147,7 @@ export const queryAddTaskSchema = z.object({
     .optional(),
 });
 
-export const queryUpdateTaskSchema = z.object({
+export const dataUpdateTaskSchema = z.object({
   name: z.string().optional(),
   description: z.string().optional(),
   status: z.string().optional(),
@@ -175,5 +175,5 @@ export type QueryLists = z.infer<typeof queryListsSchema>;
 export type Task = z.infer<typeof taskSchema>;
 export type Tasks = z.infer<typeof tasksSchema>;
 export type QueryTasks = z.infer<typeof queryTasksSchema>;
-export type QueryAddTask = z.infer<typeof queryAddTaskSchema>;
-export type QueryUpdateTask = z.infer<typeof queryUpdateTaskSchema>;
+export type DataAddTask = z.infer<typeof dataAddTaskSchema>;
+export type DataUpdateTask = z.infer<typeof dataUpdateTaskSchema>;

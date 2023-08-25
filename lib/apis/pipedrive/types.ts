@@ -276,7 +276,7 @@ export const querySearchDealsSchema = z.object({
   limit: z.number().optional(),
 });
 
-export const queryAddDealSchema = z.object({
+export const dataAddDealSchema = z.object({
   title: z.string(),
   value: z.string().optional(),
   currency: z.string().optional(),
@@ -300,7 +300,7 @@ export const queryAddDealSchema = z.object({
   add_time: z.string().optional(),
 });
 
-export const queryUpdateDealSchema = queryAddDealSchema.omit({
+export const dataUpdateDealSchema = dataAddDealSchema.omit({
   add_time: true,
 });
 
@@ -493,7 +493,7 @@ export const searchPersonsResponseSchema = z.object({
   }),
 }).deepPartial();
 
-export const queryAddPersonSchema = z.object({
+export const dataAddPersonSchema = z.object({
   name: z.string(),
   owner_id: z.number().optional(),
   org_id: z.number().optional(),
@@ -511,7 +511,7 @@ export const queryAddPersonSchema = z.object({
   add_time: z.string().optional(),
 });
 
-export const queryUpdatePersonSchema = queryAddPersonSchema.partial();
+export const dataUpdatePersonSchema = dataAddPersonSchema.partial();
 
 export const addOrUpdatePersonResponseSchema = z.object({
   success: z.boolean(),
@@ -626,8 +626,8 @@ export type Deals = z.infer<typeof dealsSchema>;
 export type QueryGetDeals = z.infer<typeof queryGetDealsSchema>;
 export type SearchDealsResponse = z.infer<typeof searchDealsResponseSchema>;
 export type QuerySearchDeals = z.infer<typeof querySearchDealsSchema>;
-export type QueryAddDeal = z.infer<typeof queryAddDealSchema>;
-export type QueryUpdateDeal = z.infer<typeof queryUpdateDealSchema>;
+export type DataAddDeal = z.infer<typeof dataAddDealSchema>;
+export type DataUpdateDeal = z.infer<typeof dataUpdateDealSchema>;
 export type AddOrUpdateDealResponse = z.infer<
   typeof addOrUpdateDealResponseSchema
 >;
@@ -635,8 +635,8 @@ export type Persons = z.infer<typeof personsSchema>;
 export type QueryGetPersons = z.infer<typeof queryGetPersonsSchema>;
 export type QuerySearchPersons = z.infer<typeof querySearchPersonsSchema>;
 export type SearchPersonsResponse = z.infer<typeof searchPersonsResponseSchema>;
-export type QueryAddPerson = z.infer<typeof queryAddPersonSchema>;
-export type QueryUpdatePerson = z.infer<typeof queryUpdatePersonSchema>;
+export type DataAddPerson = z.infer<typeof dataAddPersonSchema>;
+export type DataUpdatePerson = z.infer<typeof dataUpdatePersonSchema>;
 export type AddOrUpdatePersonResponse = z.infer<
   typeof addOrUpdatePersonResponseSchema
 >;

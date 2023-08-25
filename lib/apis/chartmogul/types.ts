@@ -64,7 +64,7 @@ export const queryCustomersSchema = z.object({
   per_page: z.number().optional(),
 });
 
-export const queryAddCustomerSchema = z.object({
+export const dataAddCustomerSchema = z.object({
   data_source_uuid: z.string(),
   external_id: z.string(),
   name: z.string().optional(),
@@ -146,7 +146,7 @@ export const addOrUpdateCustomerResponseSchema = z.object({
   owner: z.string(),
 }).deepPartial();
 
-export const queryUpdateCustomerSchema = queryAddCustomerSchema.omit({
+export const dataUpdateCustomerSchema = dataAddCustomerSchema.omit({
   data_source_uuid: true,
   external_id: true,
 });
@@ -249,11 +249,11 @@ export const queryInvoiceSchema = queryCustomerInvoicesSchema.pick({
 export type Customer = z.infer<typeof customerSchema>;
 export type Customers = z.infer<typeof customersSchema>;
 export type QueryCustomers = z.infer<typeof queryCustomersSchema>;
-export type QueryAddCustomer = z.infer<typeof queryAddCustomerSchema>;
+export type DataAddCustomer = z.infer<typeof dataAddCustomerSchema>;
 export type AddOrUpdateCustomerResponse = z.infer<
   typeof addOrUpdateCustomerResponseSchema
 >;
-export type QueryUpdateCustomer = z.infer<typeof queryUpdateCustomerSchema>;
+export type DataUpdateCustomer = z.infer<typeof dataUpdateCustomerSchema>;
 export type CustomerSubscriptions = z.infer<typeof customerSubscriptionsSchema>;
 export type QueryCustomerSubscriptions = z.infer<
   typeof queryCustomerSubscriptionsSchema
