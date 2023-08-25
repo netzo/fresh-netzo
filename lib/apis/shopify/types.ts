@@ -1686,7 +1686,9 @@ export const queryPayoutsSchema = z.object({
 export type Customers = z.infer<typeof customersSchema>;
 export type Customer = z.infer<typeof customerSchema>;
 export type QueryCustomers = z.infer<typeof queryCustomersSchema>;
-export type DataAddOrUpdateCustomer = z.infer<typeof dataAddOrUpdateCustomerSchema>;
+export type DataAddOrUpdateCustomer = z.infer<
+  typeof dataAddOrUpdateCustomerSchema
+>;
 export type AddOrUpdateCustomerResponse = z.infer<
   typeof addOrUpdateCustomerResponseSchema
 >;

@@ -56,5 +56,7 @@ export type DataAddOrUpdateValues = z.infer<
 >;
 export type UpdateValuesResponse = z.infer<typeof updateValuesResponseSchema>;
 export type AddValuesResponse = z.infer<typeof addValuesResponseSchema>;
-export type QueryAddOrUpdateValues = z.infer<typeof queryAddOrUpdateValuesSchema>;
+export type QueryAddOrUpdateValues = z.infer<
+  typeof queryAddOrUpdateValuesSchema
+>;
 export type DeleteValuesResponse = z.infer<typeof deleteValuesResponseSchema>;
