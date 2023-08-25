@@ -1,6 +1,5 @@
 import { z } from "https://deno.land/x/zod/mod.ts";
 
-// Zod schemas
 const userBasicsSchema = z.object({
   login: z.string(),
   id: z.number(),
@@ -273,7 +272,8 @@ export const queryIssuesSchema = z.object({
   page: z.number().optional()
 })
 
-// Types
+// types:
+
 export type User = z.infer<typeof userSchema>;
 export type Repository = z.infer<typeof repositorySchema>
 export type QueryUsers = z.infer<typeof queryUsersSchema> 
