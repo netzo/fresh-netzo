@@ -169,7 +169,7 @@ export const queryContactsSchema = z.object({
   fieldsets: z.array(z.string()).optional(),
 });
 
-export const queryAddContactSchema = z.object({
+export const dataAddContactSchema = z.object({
   info: z.object({
     name: z
       .object({
@@ -239,7 +239,7 @@ export const queryAddContactSchema = z.object({
   allowDuplicates: z.boolean().optional(),
 });
 
-export const queryUpdateContactSchema = queryAddContactSchema.extend({
+export const dataUpdateContactSchema = dataAddContactSchema.extend({
   revision: z.number(),
 });
 
@@ -251,5 +251,5 @@ export type ContactBase = z.infer<typeof contactBaseSchema>;
 export type Contact = z.infer<typeof contactSchema>;
 export type Contacts = z.infer<typeof contactsSchema>;
 export type QueryContacts = z.infer<typeof queryContactsSchema>;
-export type QueryAddContact = z.infer<typeof queryAddContactSchema>;
-export type QueryUpdateContact = z.infer<typeof queryUpdateContactSchema>;
+export type DataAddContact = z.infer<typeof dataAddContactSchema>;
+export type DataUpdateContact = z.infer<typeof dataUpdateContactSchema>;

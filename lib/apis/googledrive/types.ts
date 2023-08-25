@@ -194,7 +194,7 @@ export const queryFileSchema = z.object({
   includeLabels: z.string().optional(),
 });
 
-export const queryCopyFileSchema = fileSchema.partial();
+export const dataCopyFileSchema = fileSchema.partial();
 
 //types:
 
@@ -202,4 +202,4 @@ export type File = z.infer<typeof fileSchema>;
 export type Files = z.infer<typeof filesSchema>;
 export type QueryFiles = z.infer<typeof queryFilesSchema>;
 export type QueryFile = z.infer<typeof queryFileSchema>;
-export type QueryCopyFile = z.infer<typeof queryCopyFileSchema>;
+export type DataCopyFile = z.infer<typeof dataCopyFileSchema>;

@@ -46,7 +46,7 @@ const query: string = `
             id 
         }
     }`;
-const data = await api.post<Record<string,any>>(query)
+const resultData = await api.post<Record<string,any>>(query)
 ```
 
 ### Get board
@@ -65,7 +65,7 @@ const query: string = `
             permissions 
         }
     }`;
-const data = await api.post<Record<string,any>>(query)
+const resultData = await api.post<Record<string,any>>(query)
 ```
 ### Add board
 
@@ -80,7 +80,7 @@ const query: string = `
             id
         }
     }`;
-const data = await api.post<Record<string,any>>(query)
+const resultData = await api.post<Record<string,any>>(query)
 ```
 
 ### Update board
@@ -94,7 +94,7 @@ const query: string = `
     mutation {
         update_board(board_id: ${BOARD_ID}, board_attribute: name, new_value: 'Updated board name') 
       }`;
-const data = await api.post<Record<string,any>>(query)
+const resultData = await api.post<Record<string,any>>(query)
 ```
 
 ### Delete a board
@@ -111,7 +111,7 @@ const query: string = `
         name
 	}
   }`;
-const data = await api.post<Record<string,any>>(query)
+const resultData = await api.post<Record<string,any>>(query)
 ```
 
 ## References

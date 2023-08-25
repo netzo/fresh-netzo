@@ -40,11 +40,11 @@ The following examples assume you have [created an api client instance](#usage).
 Get the properties of your site.
 
 ```ts
-import type { QuerySite, Site } from 'netzo/apis/wix/mod.ts'
+import type { QuerySite, Site } from 'netzo/apis/wix/types.ts'
 
 const query: QuerySite = {}
 const result = await api['site-properties'].v4.properties.get<Site>(query)
-const data = result.properties
+const resultData = result.properties
 ```
 
 ### Find contacts
@@ -52,11 +52,11 @@ const data = result.properties
 Find visitors who have shared contact information with the site.
 
 ```ts
-import type { Contacts, QueryContacts } from 'netzo/apis/wix/mod.ts'
+import type { Contacts, QueryContacts } from 'netzo/apis/wix/types.ts'
 
 const query: QueryContacts = {}
 const result = await api.contacts.v4.contacts.get<Contacts>(query)
-const data = result.contacts
+const resultData = result.contacts
 ```
 
 ### Add contact
@@ -64,13 +64,13 @@ const data = result.contacts
 Add a new contact.
 
 ```ts
-import type { Contact, QueryAddContact } from 'netzo/apis/wix/mod.ts'
+import type { Contact, DataAddContact } from 'netzo/apis/wix/types.ts'
 
-const payload: QueryAddContact = {
+const data: DataAddContact = {
   info: { name: { first: 'John', last: 'Doe' } }
 }
-const result = await api.contacts.v4.contacts.post<Contact>(payload)
-const data = result.contact
+const result = await api.contacts.v4.contacts.post<Contact>(data)
+const resultData = result.contact
 ```
 
 ### Update contact
@@ -78,14 +78,14 @@ const data = result.contact
 Update a contact by id.
 
 ```ts
-import type { Contact, QueryUpdateContact } from 'netzo/apis/wix/mod.ts'
+import type { Contact, DataUpdateContact } from 'netzo/apis/wix/types.ts'
 
-const payload: QueryUpdateContact = {
+const data: DataUpdateContact = {
   revision: REVISION_NUMBER,
   info: { name: { first: 'Jane', last: 'Doe' } }
 }
-const result = await api.contacts.v4.contacts[CONTACT_ID].patch<Contact>(payload)
-const data = result.contact
+const result = await api.contacts.v4.contacts[CONTACT_ID].patch<Contact>(data)
+const resultData = result.contact
 ```
 
 ### Delete contact
@@ -93,7 +93,7 @@ const data = result.contact
 Delete a contact by id.
 
 ```ts
-const data = await api.contacts.v4.contacts[CONTACT_ID].delete<{}>()
+const resultData = await api.contacts.v4.contacts[CONTACT_ID].delete<{}>()
 ```
 
 ## References

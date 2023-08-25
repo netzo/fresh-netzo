@@ -30,9 +30,9 @@ The following examples assume you have [created an api client instance](#usage).
 Find all todos.
 
 ```ts
-import type { Todo } from 'netzo/apis/jsonplaceholder/mod.ts'
+import type { Todo } from 'netzo/apis/jsonplaceholder/types.ts'
 
-const data = await api.todos.get<Todo[]>()
+const resultData = await api.todos.get<Todo[]>()
 ```
 
 ### Get todo
@@ -40,9 +40,9 @@ const data = await api.todos.get<Todo[]>()
 Get todo by id.
 
 ```ts
-import type { Todo } from 'netzo/apis/jsonplaceholder/mod.ts'
+import type { Todo } from 'netzo/apis/jsonplaceholder/types.ts'
 
-const data = await api.todos[TODO_ID].get<Todo>()
+const resultData = await api.todos[TODO_ID].get<Todo>()
 ```
 
 ### Add todo
@@ -50,13 +50,13 @@ const data = await api.todos[TODO_ID].get<Todo>()
 Add a new todo.
 
 ```ts
-import type { QueryAddTodo, Todo } from 'netzo/apis/jsonplaceholder/mod.ts'
+import type { DataAddTodo, Todo } from 'netzo/apis/jsonplaceholder/types.ts'
 
-const payload: QueryAddTodo = {
+const data: DataAddTodo = {
   userId: 1,
   title: 'New task'
 }
-const data = await api.todos.post<Todo>(payload)
+const resultData = await api.todos.post<Todo>(data)
 ```
 
 ### Update todo
@@ -64,15 +64,15 @@ const data = await api.todos.post<Todo>(payload)
 Update a todo by id.
 
 ```ts
-import type { Todo } from 'netzo/apis/jsonplaceholder/mod.ts'
+import type { Todo } from 'netzo/apis/jsonplaceholder/types.ts'
 
-const payload: Todo = {
+const data: Todo = {
   userId: 1,
   title: 'Updated task',
   id: TODO_ID,
   completed: true
 }
-const data = await api.todos[TODO_ID].put<Todo>(payload)
+const resultData = await api.todos[TODO_ID].put<Todo>(data)
 ```
 
 ### Delete todo
@@ -80,7 +80,7 @@ const data = await api.todos[TODO_ID].put<Todo>(payload)
 Delete a todo by id.
 
 ```ts
-const data = await api.todos[TODO_ID].delete<{}>()
+const resultData = await api.todos[TODO_ID].delete<{}>()
 ```
 
 ## References

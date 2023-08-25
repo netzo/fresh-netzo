@@ -29,7 +29,7 @@ export const queryContactsSchema = z.object({
   properties: z.tuple([]).optional(),
 });
 
-export const queryAddOrUpdateContactSchema = z.object({
+export const dataAddOrUpdateContactSchema = z.object({
   properties: contactBaseSchema.shape.properties.omit({
     createdate: true,
     lastmodifieddate: true,
@@ -170,7 +170,7 @@ export const dealsSchema = z.object({
   }),
 });
 
-export const queryAddDealSchema = z.object({
+export const dataAddDealSchema = z.object({
   properties: z
     .object({
       amount: z.string().optional(),
@@ -213,8 +213,8 @@ export const addDealResponseSchema = dealBaseSchema.extend({
 
 export type Contacts = z.infer<typeof contactsSchema>;
 export type QueryContacts = z.infer<typeof queryContactsSchema>;
-export type QueryAddOrUpdateContact = z.infer<
-  typeof queryAddOrUpdateContactSchema
+export type DataAddOrUpdateContact = z.infer<
+  typeof dataAddOrUpdateContactSchema
 >;
 export type AddOrUpdateContactResponse = z.infer<
   typeof addOrUpdateContactResponseSchema
@@ -226,5 +226,5 @@ export type QuerySubmissions = z.infer<typeof querySubmissionsSchema>;
 export type QueryDeals = z.infer<typeof queryDealsSchema>;
 export type DealBase = z.infer<typeof dealBaseSchema>;
 export type Deals = z.infer<typeof dealsSchema>;
-export type QueryAddDeal = z.infer<typeof queryAddDealSchema>;
+export type DataAddDeal = z.infer<typeof dataAddDealSchema>;
 export type AddDealResponse = z.infer<typeof addDealResponseSchema>;

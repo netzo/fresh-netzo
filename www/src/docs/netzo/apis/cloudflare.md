@@ -38,11 +38,11 @@ The following examples assume you have [created an api client instance](#usage).
 Find all organizations the user is associated with that match the query.
 
 ```ts
-import type { Organizations, QueryOrganizations } from 'netzo/apis/cloudflare/mod.ts'
+import type { Organizations, QueryOrganizations } from 'netzo/apis/cloudflare/types.ts'
 
 const query: QueryOrganizations = {}
 const result = await api.user.organizations.get<Organizations>(query)
-const data = result.result
+const resultData = result.result
 ```
 
 ### Find zones
@@ -50,11 +50,11 @@ const data = result.result
 Find all your zones that match the query.
 
 ```ts
-import type { QueryZones, Zones } from 'netzo/apis/cloudflare/mod.ts'
+import type { QueryZones, Zones } from 'netzo/apis/cloudflare/types.ts'
 
 const query: QueryZones = {}
 const result = await api.zones.get<Zones>(query)
-const data = result.result
+const resultData = result.result
 ```
 
 ### Add zone
@@ -62,14 +62,14 @@ const data = result.result
 Add a new zone.
 
 ```ts
-import type { QueryAddZone, Zone } from 'netzo/apis/cloudflare/mod.ts'
+import type { DataAddZone, Zone } from 'netzo/apis/cloudflare/types.ts'
 
-const payload: QueryAddZone = {
+const data: DataAddZone = {
   account: { id: ZONE_ID },
   name: DOMAIN_NAME
 }
-const result = await api.zones.post<Zone>(payload)
-const data = result.result
+const result = await api.zones.post<Zone>(data)
+const resultData = result.result
 ```
 
 ### Delete zone
@@ -77,10 +77,10 @@ const data = result.result
 Delete a zone by id.
 
 ```ts
-import type { DeleteResponse } from 'netzo/apis/cloudflare/mod.ts'
+import type { DeleteResponse } from 'netzo/apis/cloudflare/types.ts'
 
 const result = await api.zones[ZONE_ID].delete<DeleteResponse>()
-const data = result.result
+const resultData = result.result
 ```
 
 ## References

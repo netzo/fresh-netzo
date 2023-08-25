@@ -39,9 +39,9 @@ The following examples assume you have [created an api client instance](#usage).
 Find records from a collection.
 
 ```ts
-import type { Record } from 'netzo/apis/restdb/mod.ts'
+import type { Record } from 'netzo/apis/restdb/types.ts'
 
-const data = await api[COLLECTION_NAME].get<Record[]>()
+const resultData = await api[COLLECTION_NAME].get<Record[]>()
 ```
 
 ### Add record
@@ -49,10 +49,10 @@ const data = await api[COLLECTION_NAME].get<Record[]>()
 Add a new record to a collection.
 
 ```ts
-import type { AddOrUpdateRecordResponse, Record } from 'netzo/apis/restdb/mod.ts'
+import type { AddOrUpdateRecordResponse, Record } from 'netzo/apis/restdb/types.ts'
 
-const payload: Record = { title: 'New title' }
-const data = await api[COLLECTION_NAME].post<AddOrUpdateRecordResponse>(payload)
+const data: Record = { title: 'New title' }
+const resultData = await api[COLLECTION_NAME].post<AddOrUpdateRecordResponse>(data)
 ```
 
 ### Update record
@@ -60,10 +60,10 @@ const data = await api[COLLECTION_NAME].post<AddOrUpdateRecordResponse>(payload)
 Update a record by id.
 
 ```ts
-import type { AddOrUpdateRecordResponse, Record } from 'netzo/apis/restdb/mod.ts'
+import type { AddOrUpdateRecordResponse, Record } from 'netzo/apis/restdb/types.ts'
 
-const payload: Record = { title: 'Updated title' }
-const data = await api[COLLECTION_NAME][RECORD_ID].patch<AddOrUpdateRecordResponse>(payload)
+const data: Record = { title: 'Updated title' }
+const resultData = await api[COLLECTION_NAME][RECORD_ID].patch<AddOrUpdateRecordResponse>(data)
 ```
 
 ### Delete record
@@ -71,10 +71,10 @@ const data = await api[COLLECTION_NAME][RECORD_ID].patch<AddOrUpdateRecordRespon
 Delete a record by id.
 
 ```ts
-import type { DeleteRecordResponse } from 'netzo/apis/restdb/mod.ts'
+import type { DeleteRecordResponse } from 'netzo/apis/restdb/types.ts'
 
 const result = await api[COLLECTION_NAME][RECORD_ID].delete<DeleteRecordResponse>()
-const data = result.result
+const resultData = result.result
 ```
 
 ## References

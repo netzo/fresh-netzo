@@ -38,11 +38,11 @@ The following examples assume you have [created an api client instance](#usage).
 Find all records that match the query.
 
 ```ts
-import type { Customers, QueryCustomers } from 'netzo/apis/chartmogul/mod.ts'
+import type { Customers, QueryCustomers } from 'netzo/apis/chartmogul/types.ts'
 
 const query: QueryCustomers = {}
 const result = await api.customers.get<Customers>(query)
-const data = result.entries
+const resultData = result.entries
 ```
 
 ### Get customer
@@ -50,9 +50,9 @@ const data = result.entries
 Get a customer by id.
 
 ```ts
-import type { Customer } from 'netzo/apis/chartmogul/mod.ts'
+import type { Customer } from 'netzo/apis/chartmogul/types.ts'
 
-const data = await api.customers[CUSTOMER_UUID].get<Customer>()
+const resultData = await api.customers[CUSTOMER_UUID].get<Customer>()
 ```
 
 ### Add customer
@@ -60,10 +60,10 @@ const data = await api.customers[CUSTOMER_UUID].get<Customer>()
 Add a new customer.
 
 ```ts
-import type { AddOrUpdateCustomerResponse, QueryAddCustomer } from 'netzo/apis/chartmogul/mod.ts'
+import type { AddOrUpdateCustomerResponse, DataAddCustomer } from 'netzo/apis/chartmogul/types.ts'
 
-const payload: QueryAddCustomer = { data_source_uuid: DATA_SOURCE_UUID, external_id: EXTERNAL_ID, email: 'example@email.com'; }
-const data = await api.customers.post<AddOrUpdateCustomerResponse>(payload)
+const data: DataAddCustomer = { data_source_uuid: DATA_SOURCE_UUID, external_id: EXTERNAL_ID, email: 'example@email.com'; }
+const resultData = await api.customers.post<AddOrUpdateCustomerResponse>(data)
 ```
 
 ### Update customer
@@ -71,10 +71,10 @@ const data = await api.customers.post<AddOrUpdateCustomerResponse>(payload)
 Update a customer by id.
 
 ```ts
-import type { AddOrUpdateCustomerResponse, QueryUpdateCustomer } from 'netzo/apis/chartmogul/mod.ts'
+import type { AddOrUpdateCustomerResponse, DataUpdateCustomer } from 'netzo/apis/chartmogul/types.ts'
 
-const payload: QueryUpdateCustomer = { email: 'updated-email@email.com' }
-const data = await api.customers[CUSTOMER_UUID].patch<AddOrUpdateCustomerResponse>(payload)
+const data: DataUpdateCustomer = { email: 'updated-email@email.com' }
+const resultData = await api.customers[CUSTOMER_UUID].patch<AddOrUpdateCustomerResponse>(data)
 ```
 
 ### Delete customer
@@ -82,7 +82,7 @@ const data = await api.customers[CUSTOMER_UUID].patch<AddOrUpdateCustomerRespons
 Delete a customer by id.
 
 ```ts
-const data = await api.customers[CUSTOMER_UUID].delete<{}>()
+const resultData = await api.customers[CUSTOMER_UUID].delete<{}>()
 ```
 
 ### Find customer subscriptions
@@ -90,11 +90,11 @@ const data = await api.customers[CUSTOMER_UUID].delete<{}>()
 Find all subscriptions that correspond to a specific customer by customer id.
 
 ```ts
-import type { Customersubscription, QueryCustomerSubscriptions } from 'netzo/apis/chartmogul/mod.ts'
+import type { Customersubscription, QueryCustomerSubscriptions } from 'netzo/apis/chartmogul/types.ts'
 
 const query: QueryCustomerSubscriptions = {}
 const result = await api.import.customers[CUSTOMER_UUID].subscriptions.get<CustomerSubscriptions>(query)
-const data = result.subscriptions
+const resultData = result.subscriptions
 ```
 
 ### Find customer invoices
@@ -102,11 +102,11 @@ const data = result.subscriptions
 Find all invoices that correspond to a specific customer by customer id.
 
 ```ts
-import type { CustomerInvoices, QueryCustomerInvoices } from 'netzo/apis/chartmogul/mod.ts'
+import type { CustomerInvoices, QueryCustomerInvoices } from 'netzo/apis/chartmogul/types.ts'
 
 const query: QueryCustomerInvoices = {}
 const result = await api.import.customers[CUSTOMER_UUID].invoices.get<CustomerInvoices>(query)
-const data = result.invoices
+const resultData = result.invoices
 ```
 
 ### Find invoices
@@ -114,11 +114,11 @@ const data = result.invoices
 Find all invoices that match the query.
 
 ```ts
-import type { Invoices, QueryInvoices } from 'netzo/apis/chartmogul/mod.ts'
+import type { Invoices, QueryInvoices } from 'netzo/apis/chartmogul/types.ts'
 
 const query: QueryInvoices = {}
 const result = await api.invoices.get<Invoices>(query)
-const data = result.invoices
+const resultData = result.invoices
 ```
 
 ### Get invoice
@@ -126,10 +126,10 @@ const data = result.invoices
 Get an invoice by id.
 
 ```ts
-import type { Invoice, QueryInvoice } from 'netzo/apis/chartmogul/mod.ts'
+import type { Invoice, QueryInvoice } from 'netzo/apis/chartmogul/types.ts'
 
 const query: QueryInvoice = {}
-const data = await api.invoices[INVOICE_UUID].get<Invoice>(query)
+const resultData = await api.invoices[INVOICE_UUID].get<Invoice>(query)
 ```
 
 ## References

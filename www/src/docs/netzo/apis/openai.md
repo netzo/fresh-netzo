@@ -36,9 +36,9 @@ The following examples assume you have [created an api client instance](#usage).
 Obtain a model response for the given chat conversation.
 
 ```ts 
-import type { ChatCompletion, QueryChatCompletion } from 'netzo/apis/openai/mod.ts'
+import type { ChatCompletion, DataChatCompletion } from 'netzo/apis/openai/types.ts'
 
-const payload: QueryChatCompletion = {
+const data: DataChatCompletion = {
     model: 'gpt-3.5-turbo',
     messages: [
       {
@@ -51,8 +51,8 @@ const payload: QueryChatCompletion = {
       }
     ]
   }
-const result = await api.chat.completions.post<ChatCompletion>(payload)
-const data = result.choices
+const result = await api.chat.completions.post<ChatCompletion>(data)
+const resultData = result.choices
  ```
 
 ## References

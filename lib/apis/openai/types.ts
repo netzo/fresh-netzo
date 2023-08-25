@@ -22,7 +22,7 @@ export const chatCompletionSchema = z.object({
   }),
 }).deepPartial();
 
-export const queryChatCompletionSchema = z.object({
+export const dataChatCompletionSchema = z.object({
   model: z.string(),
   messages: z.array(
     z.object({
@@ -62,4 +62,4 @@ export const queryChatCompletionSchema = z.object({
 //types:
 
 export type ChatCompletion = z.infer<typeof chatCompletionSchema>;
-export type QueryChatCompletion = z.infer<typeof queryChatCompletionSchema>;
+export type DataChatCompletion = z.infer<typeof dataChatCompletionSchema>;

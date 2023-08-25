@@ -39,11 +39,11 @@ The following examples assume you have [created an api client instance](#usage).
 Find all deals that match the query.
 
 ```ts
-import type { Deals, QueryGetDeals } from 'netzo/apis/pipedrive/mod.ts'
+import type { Deals, QueryGetDeals } from 'netzo/apis/pipedrive/types.ts'
 
 const query: QueryGetDeals = {}
 const result = await api.deals.get<Deals>(query)
-const data = result.data
+const resultData = result.data
 ```
 
 ### Search Deals
@@ -51,11 +51,11 @@ const data = result.data
 Find all deals that match the search criteria.
 
 ```ts
-import type { QuerySearchDeals, SearchDealsResponse } from 'netzo/apis/pipedrive/mod.ts'
+import type { QuerySearchDeals, SearchDealsResponse } from 'netzo/apis/pipedrive/types.ts'
 
 const query: QuerySearchDeals = { term: 'New Deal' }
 const result = await api.deals.search.get<SearchDealsResponse>(query)
-const data = result.data.items
+const resultData = result.data.items
 ```
 
 ### Add Deal
@@ -63,11 +63,11 @@ const data = result.data.items
 Add a new deal.
 
 ```ts
-import type { AddOrUpdateDealResponse, QueryAddDeal } from 'netzo/apis/pipedrive/mod.ts'
+import type { AddOrUpdateDealResponse, DataAddDeal } from 'netzo/apis/pipedrive/types.ts'
 
-const payload: QueryAddDeal = { title: 'New Deal', value: 100 }
-const result = await api.deals.post<AddOrUpdateDealResponse>(payload)
-const data = result.data
+const data: DataAddDeal = { title: 'New Deal', value: 100 }
+const result = await api.deals.post<AddOrUpdateDealResponse>(data)
+const resultData = result.data
 ```
 
 ### Update deal
@@ -75,11 +75,11 @@ const data = result.data
 Update a deal by id.
 
 ```ts
-import type { AddOrUpdateDealResponse, QueryUpdateDeal } from 'netzo/apis/pipedrive/mod.ts'
+import type { AddOrUpdateDealResponse, DataUpdateDeal } from 'netzo/apis/pipedrive/types.ts'
 
-const payload: QueryUpdateDeal = { title: 'Updated Title' }
-const result = await api.deals[DEAL_ID].put<AddOrUpdateDealResponse>(payload)
-const data = result.data
+const data: DataUpdateDeal = { title: 'Updated Title' }
+const result = await api.deals[DEAL_ID].put<AddOrUpdateDealResponse>(data)
+const resultData = result.data
 ```
 
 ### Delete deal
@@ -87,10 +87,10 @@ const data = result.data
 Delete a deal by id.
 
 ```ts
-import type { DeleteResponse } from 'netzo/apis/pipedrive/mod.ts'
+import type { DeleteResponse } from 'netzo/apis/pipedrive/types.ts'
 
 const result = await api.deals[DEAL_ID].delete<DeleteResponse>()
-const data = result.data
+const resultData = result.data
 ```
 
 ### Find persons
@@ -98,11 +98,11 @@ const data = result.data
 Find all persons that match the query.
 
 ```ts
-import type { Persons, QueryGetPersons } from 'netzo/apis/pipedrive/mod.ts'
+import type { Persons, QueryGetPersons } from 'netzo/apis/pipedrive/types.ts'
 
 const query: QueryGetPersons = {}
 const result = await api.persons.get<Persons>(query)
-const data = result.data
+const resultData = result.data
 ```
 
 ### Search persons
@@ -110,11 +110,11 @@ const data = result.data
 Find all persons that match the search criteria.
 
 ```ts
-import type { QuerySearchPersons, SearchPersonsResponse } from 'netzo/apis/pipedrive/mod.ts'
+import type { QuerySearchPersons, SearchPersonsResponse } from 'netzo/apis/pipedrive/types.ts'
 
 const query: QuerySearchPersons = { term: 'Smith' }
 const result = await api.persons.search.get<SearchPersonsResponse>(query)
-const data = result.data.items
+const resultData = result.data.items
 ```
 
 ### Add person
@@ -122,11 +122,11 @@ const data = result.data.items
 Add a new person.
 
 ```ts
-import type { AddOrUpdatePersonResponse, QueryAddPerson } from 'netzo/apis/pipedrive/mod.ts'
+import type { AddOrUpdatePersonResponse, DataAddPerson } from 'netzo/apis/pipedrive/types.ts'
 
-const payload: QueryAddPerson = { name: 'John Doe' }
-const result = await api.persons.post<AddOrUpdatePersonResponse>(payload)
-const data = result.data
+const data: DataAddPerson = { name: 'John Doe' }
+const result = await api.persons.post<AddOrUpdatePersonResponse>(data)
+const resultData = result.data
 ```
 
 ### Update person
@@ -134,11 +134,11 @@ const data = result.data
 Update a person by id.
 
 ```ts
-import type { AddOrUpdatePersonResponse, QueryUpdatePerson } from 'netzo/apis/pipedrive/mod.ts'
+import type { AddOrUpdatePersonResponse, DataUpdatePerson } from 'netzo/apis/pipedrive/types.ts'
 
-const payload: QueryUpdatePerson = { email: 'updated-email@email.com' }
-const result = await api.persons[PERSON_ID].put<AddOrUpdatePersonResponse>(payload)
-const data = result.data
+const data: DataUpdatePerson = { email: 'updated-email@email.com' }
+const result = await api.persons[PERSON_ID].put<AddOrUpdatePersonResponse>(data)
+const resultData = result.data
 ```
 
 ### Delete person
@@ -146,10 +146,10 @@ const data = result.data
 Delete a person by id.
 
 ```ts
-import type { DeleteResponse } from 'netzo/apis/pipedrive/mod.ts'
+import type { DeleteResponse } from 'netzo/apis/pipedrive/types.ts'
 
 const result = await api.persons[PERSON_ID].delete<DeleteResponse>()
-const data = result.data
+const resultData = result.data
 ```
 
 ## References

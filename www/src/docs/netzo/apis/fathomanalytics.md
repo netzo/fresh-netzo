@@ -36,11 +36,11 @@ The following examples assume you have [created an api client instance](#usage).
  Find all sites the API key owns.
 
 ```ts
-import type { QuerySites, Sites } from 'netzo/apis/fathomanalytics/mod.ts'
+import type { QuerySites, Sites } from 'netzo/apis/fathomanalytics/types.ts'
 
 const query: QuerySites = {}
 const result = await api.sites.get<Sites>(query)
-const data = result.data
+const resultData = result.resultData
 ```
 
 ### Get site
@@ -48,9 +48,9 @@ const data = result.data
 Get a site by id.
 
 ```ts
-import type { Site } from 'netzo/apis/fathomanalytics/mod.ts'
+import type { Site } from 'netzo/apis/fathomanalytics/types.ts'
 
-const data = await api.sites[SITE_ID].get<Site>()
+const resultData = await api.sites[SITE_ID].get<Site>()
 ```
 
 
@@ -59,10 +59,10 @@ const data = await api.sites[SITE_ID].get<Site>()
 Add a new site
 
 ```ts
-import type { QueryAddSite, Site } from 'netzo/apis/fathomanalytics/mod.ts'
+import type { DataAddSite, Site } from 'netzo/apis/fathomanalytics/types.ts'
 
-const payload: QueryAddSite = { name: 'New website' }
-const data = await api.sites.post<Site>(payload)
+const data: DataAddSite = { name: 'New website' }
+const resultData = await api.sites.post<Site>(data)
 ```
 
 ### Update site
@@ -70,10 +70,10 @@ const data = await api.sites.post<Site>(payload)
 Update a site by id
 
 ```ts
-import type { QueryUpdateSite, Site } from 'netzo/apis/fathomanalytics/mod.ts'
+import type { DataUpdateSite, Site } from 'netzo/apis/fathomanalytics/types.ts'
 
-const payload: QueryUpdateSite = { name: 'Updated website' }
-const data = await api.sites[SITE_ID].post<Site>(payload)
+const data: DataUpdateSite = { name: 'Updated website' }
+const resultData = await api.sites[SITE_ID].post<Site>(data)
 ```
 
 ### Wipe site
@@ -81,9 +81,9 @@ const data = await api.sites[SITE_ID].post<Site>(payload)
 Wipe all pageviews & event completions from a website to reset statistics.
 
 ```ts
-import type { Site } from 'netzo/apis/fathomanalytics/mod.ts'
+import type { Site } from 'netzo/apis/fathomanalytics/types.ts'
 
-const data = await api.sites[SITE_ID].data.delete<Site>()
+const resultData = await api.sites[SITE_ID].data.delete<Site>()
 ```
 
 ## References

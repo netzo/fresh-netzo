@@ -51,10 +51,10 @@ Get all rows within the specified range.
 The resultToRows function returns your data as key-value pairs, assuming the top row holds the headers. [Find out how to pass custom headers](#function-tip).
 
 ```ts
-import type { ValueRange } from 'netzo/apis/googlesheets/mod.ts'
+import type { ValueRange } from 'netzo/apis/googlesheets/types.ts'
 
 const result = await api.values[RANGE].get<ValueRange>()
-const data = result.values
+const resultData = result.values
 const rows = resultToRows(result)
 ```
 
@@ -65,11 +65,11 @@ Get one row of the spreadsheet by specifying the index.
 The example returns the first row of data, assuming the top row holds the headers. The resultToRows function  returns your data as key-value pairs. [Find out how to pass custom headers](#function-tip).
 
 ```ts
-import type { ValueRange } from 'netzo/apis/googlesheets/mod.ts'
+import type { ValueRange } from 'netzo/apis/googlesheets/types.ts'
 
 const index = 1
 const result = await api.values[RANGE].get<ValueRange>()
-const data = result.values[index]
+const resultData = result.values[index]
 const row = resultToRows(result)[index - 1]
 ```
 
@@ -80,17 +80,17 @@ Add a row to the spreadsheet.
 Be sure to keep insertDataOption as INSERT_ROWS, or existing data in your range will be overwritten.
 
 ```ts
-import type { AddValuesResponse, QueryAddOrUpdateRows, RequestAddOrUpdateValues } from 'netzo/apis/googlesheets/mod.ts'
+import type { AddValuesResponse, QueryAddOrUpdateValues, DataAddOrUpdateValues } from 'netzo/apis/googlesheets/types.ts'
 
-const query: QueryAddOrUpdateRows = {
+const query: QueryAddOrUpdateValues = {
   valueInputOption: 'USER_ENTERED',
   insertDataOption: 'INSERT_ROWS',
   includeValuesInResponse: true
 }
-const payload: RequestAddOrUpdateValues = { values: [['value1', 'value2', 'value3']] }
+const data: DataAddOrUpdateValues = { values: [['value1', 'value2', 'value3']] }
 
-const result = await api.values[`${RANGE_TO_INSERT}:append`].post<AddValuesResponse>(payload, query)
-const data = result.updates.updatedData.values
+const result = await api.values[`${RANGE_TO_INSERT}:append`].post<AddValuesResponse>(data, query)
+const resultData = result.updates.updatedData.values
 ```
 
 ### Update row
@@ -98,15 +98,15 @@ const data = result.updates.updatedData.values
 Update a row by specifying the range.
 
 ```ts
-import type { QueryAddOrUpdateRows, RequestAddOrUpdateValues, UpdateValuesResponse } from 'netzo/apis/googlesheets/mod.ts'
+import type { QueryAddOrUpdateValues, DataAddOrUpdateValues, UpdateValuesResponse } from 'netzo/apis/googlesheets/types.ts'
 
-const query: QueryAddOrUpdateRows = {
+const query: QueryAddOrUpdateValues = {
   valueInputOption: 'USER_ENTERED',
   includeValuesInResponse: true
 }
-const payload: RequestAddOrUpdateValues = { values: [['updatedValue1', 'updatedValue2', 'updatedValue3']] }
-const result = await api.values[RANGE_TO_UPDATE].put<UpdateValuesResponse>(payload, query)
-const data = result.updatedData.values
+const data: DataAddOrUpdateValues = { values: [['updatedValue1', 'updatedValue2', 'updatedValue3']] }
+const result = await api.values[RANGE_TO_UPDATE].put<UpdateValuesResponse>(data, query)
+const resultData = result.updatedData.values
 ```
 
 ### Delete row
@@ -114,9 +114,9 @@ const data = result.updatedData.values
 Delete a row by specifying the range.
 
 ```ts
-import type { DeleteValuesResponse } from 'netzo/apis/googlesheets/mod.ts'
+import type { DeleteValuesResponse } from 'netzo/apis/googlesheets/types.ts'
 
-const data = await api.values[`${RANGE_TO_DELETE}:clear`].post<DeleteValuesResponse>()
+const resultData = await api.values[`${RANGE_TO_DELETE}:clear`].post<DeleteValuesResponse>()
  ```
 
 ## References

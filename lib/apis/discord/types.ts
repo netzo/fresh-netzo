@@ -79,7 +79,7 @@ export const queryMessagesSchema = z.object({
   limit: z.number().optional(),
 });
 
-export const queryAddOrUpdateMessageSchema = z.object({
+export const dataAddOrUpdateMessageSchema = z.object({
   content: z.string().optional(),
   nonce: z.any().optional(),
   tts: z.boolean().optional(),
@@ -96,6 +96,6 @@ export const queryAddOrUpdateMessageSchema = z.object({
 export type Channel = z.infer<typeof channelSchema>;
 export type Message = z.infer<typeof messageSchema>;
 export type QueryMessages = z.infer<typeof queryMessagesSchema>;
-export type QueryAddOrUpdateMessage = z.infer<
-  typeof queryAddOrUpdateMessageSchema
+export type DataAddOrUpdateMessage = z.infer<
+  typeof dataAddOrUpdateMessageSchema
 >;

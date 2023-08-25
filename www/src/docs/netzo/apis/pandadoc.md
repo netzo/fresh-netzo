@@ -37,11 +37,11 @@ The following examples assume you have [created an api client instance](#usage).
 Find all documents that match the query.
 
 ```ts
-import type { Documents, QueryDocuments } from 'netzo/apis/pandadoc/mod.ts'
+import type { Documents, QueryDocuments } from 'netzo/apis/pandadoc/types.ts'
 
 const query: QueryDocuments = {}
 const result = await api.documents.get<Documents>(query)
-const data = result.results
+const resultData = result.results
 ```
 
 ### Get document
@@ -49,9 +49,9 @@ const data = result.results
 Get all details of a document by id.
 
 ```ts
-import type { Document } from 'netzo/apis/pandadoc/mod.ts'
+import type { Document } from 'netzo/apis/pandadoc/types.ts'
 
-const data = await api.documents[DOCUMENT_ID].details.get<Document>()
+const resultData = await api.documents[DOCUMENT_ID].details.get<Document>()
 ```
 
 ### Update document
@@ -59,15 +59,15 @@ const data = await api.documents[DOCUMENT_ID].details.get<Document>()
 Update a document by id.
 
 ```ts
-import type { QueryAddDocument } from 'netzo/apis/pandadoc/mod.ts'
+import type { DataAddDocument } from 'netzo/apis/pandadoc/types.ts'
 
-const payload: QueryAddDocument = {
+const data: DataAddDocument = {
   recipients: {
     ID: RECIPIENT_ID,
     first_name: 'John Doe'
   }
 }
-const data = await api.documents[DOCUMENT_ID].patch<{}>(payload)
+const resultData = await api.documents[DOCUMENT_ID].patch<{}>(data)
 ```
 
 ### Delete document
@@ -83,10 +83,10 @@ await api.documents[DOCUMENT_ID].delete<void>()
 Find all contacts associated with the workspace.
 
 ```ts
-import type { Contacts } from 'netzo/apis/pandadoc/mod.ts'
+import type { Contacts } from 'netzo/apis/pandadoc/types.ts'
 
 const result = await api.contacts.get<Contacts>()
-const data = result.results
+const resultData = result.results
 ```
 
 ### Add contact
@@ -94,10 +94,10 @@ const data = result.results
 Add a new contact.
 
 ```ts
-import type { Contact, QueryAddContact } from 'netzo/apis/pandadoc/mod.ts'
+import type { Contact, DataAddContact } from 'netzo/apis/pandadoc/types.ts'
 
-const payload: QueryAddContact = { email: 'email@example.com' }
-const data = await api.contacts.post<Contact>(payload)
+const data: DataAddContact = { email: 'email@example.com' }
+const resultData = await api.contacts.post<Contact>(data)
 ```
 
 ## References

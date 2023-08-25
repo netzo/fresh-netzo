@@ -222,7 +222,7 @@ export const queryDocumentsSchema = z.object({
   contact_id: z.string().optional(),
 });
 
-export const queryUpdateDocumentSchema = z.object({
+export const dataUpdateDocumentSchema = z.object({
   recipients: z
     .array(
       z.object({
@@ -261,7 +261,7 @@ export const queryUpdateDocumentSchema = z.object({
     .optional(),
 });
 
-export const queryAddContactSchema = z.object({
+export const dataAddContactSchema = z.object({
   email: z.string(),
   first_name: z.string().optional(),
   last_name: z.string().optional(),
@@ -275,7 +275,7 @@ export const queryAddContactSchema = z.object({
   postal_code: z.string().optional(),
 });
 
-export const contactSchema = queryAddContactSchema.extend({
+export const contactSchema = dataAddContactSchema.extend({
   id: z.string(),
 }).deepPartial();
 
@@ -288,7 +288,7 @@ export const contactsSchema = z.object({
 export type Document = z.infer<typeof documentSchema>;
 export type Documents = z.infer<typeof documentsSchema>;
 export type QueryDocuments = z.infer<typeof queryDocumentsSchema>;
-export type QueryUpdateDocument = z.infer<typeof queryUpdateDocumentSchema>;
-export type QueryAddContact = z.infer<typeof queryAddContactSchema>;
+export type DataUpdateDocument = z.infer<typeof dataUpdateDocumentSchema>;
+export type DataAddContact = z.infer<typeof dataAddContactSchema>;
 export type Contact = z.infer<typeof contactSchema>;
 export type Contacts = z.infer<typeof contactsSchema>;

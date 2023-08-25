@@ -36,10 +36,10 @@ The following examples assume you have [created an api client instance](#usage).
 Find all contacts that match the query.
 
 ```ts
-import type { Contact, QueryContacts } from 'netzo/apis/holded/mod.ts'
+import type { Contact, QueryContacts } from 'netzo/apis/holded/types.ts'
 
 const query: QueryContacts = {}
-const data = await api.invoicing.v1.contacts.get<Contact[]>(query)
+const resultData = await api.invoicing.v1.contacts.get<Contact[]>(query)
 ```
 
 ### Get contact
@@ -47,9 +47,9 @@ const data = await api.invoicing.v1.contacts.get<Contact[]>(query)
 Get a contact by id.
 
 ```ts
-import type { Contact } from 'netzo/apis/holded/mod.ts'
+import type { Contact } from 'netzo/apis/holded/types.ts'
 
-const data = await api.invoicing.v1.contacts[CONTACT_ID].get<Contact>()
+const resultData = await api.invoicing.v1.contacts[CONTACT_ID].get<Contact>()
 ```
 
 ### Add contact
@@ -57,10 +57,10 @@ const data = await api.invoicing.v1.contacts[CONTACT_ID].get<Contact>()
 Add a new contact.
 
 ```ts
-import type { ContactResponse, QueryAddContact } from 'netzo/apis/holded/mod.ts'
+import type { ContactResponse, DataAddContact } from 'netzo/apis/holded/types.ts'
 
-const payload: QueryAddContact = { name: 'New contact name' }
-const data = await api.invoicing.v1.contacts.post<ContactResponse>(payload)
+const data: DataAddContact = { name: 'New contact name' }
+const resultData = await api.invoicing.v1.contacts.post<ContactResponse>(data)
 ```
 
 ### Update contact
@@ -68,10 +68,10 @@ const data = await api.invoicing.v1.contacts.post<ContactResponse>(payload)
 Update a contact by id.
 
 ```ts
-import type { ContactResponse, QueryUpdateContact } from 'netzo/apis/holded/mod.ts'
+import type { ContactResponse, DataUpdateContact } from 'netzo/apis/holded/types.ts'
 
-const payload: QueryUpdateContact = { name: 'Updated contact name' }
-const data = await api.invoicing.v1.contacts[CONTACT_ID].put<ContactResponse>(payload)
+const data: DataUpdateContact = { name: 'Updated contact name' }
+const resultData = await api.invoicing.v1.contacts[CONTACT_ID].put<ContactResponse>(data)
 ```
 
 ### Delete contact
@@ -79,9 +79,9 @@ const data = await api.invoicing.v1.contacts[CONTACT_ID].put<ContactResponse>(pa
 Delete a contact by id.
 
 ```ts
-import type { ContactResponse } from 'netzo/apis/holded/mod.ts'
+import type { ContactResponse } from 'netzo/apis/holded/types.ts'
 
-const data = await api.invoicing.v1.contacts[CONTACT_ID].delete<ContactResponse>()
+const resultData = await api.invoicing.v1.contacts[CONTACT_ID].delete<ContactResponse>()
 ```
 
 - [API Documentation](https://developers.holded.com/reference/api-key)

@@ -38,7 +38,7 @@ The following examples assume you have [created an api client instance](#usage).
 Find all documents that match a query.
 
 ```ts
-import type { Documents, QueryDocuments } from 'netzo/apis/mongodbatlasdata/mod.ts'
+import type { Documents, QueryDocuments } from 'netzo/apis/mongodbatlasdata/types.ts'
 
 const query: QueryDocuments = {
   dataSource: 'mongodb-atlas',
@@ -49,7 +49,7 @@ const query: QueryDocuments = {
   }
 }
 const result = await api.action.find.post<Documents | null>(query)
-const data = result.documents
+const resultData = result.documents
 ```
 
 
@@ -58,15 +58,15 @@ const data = result.documents
 Add a document to a collection.
 
 ```ts
-import type { AddDocumentResponse, QueryAddDocument } from 'netzo/apis/mongodbatlasdata/mod.ts'
+import type { AddDocumentResponse, DataAddDocument } from 'netzo/apis/mongodbatlasdata/types.ts'
 
-const payload: QueryAddDocument = {
+const data: DataAddDocument = {
   dataSource: 'mongodb-atlas',
   database: DATABASE_NAME,
   collection: COLLECTION_NAME,
   document: { DATA_TO_ADD },
 }
-const data = await api.action.insertOne.post<AddDocumentResponse>(payload)
+const resultData = await api.action.insertOne.post<AddDocumentResponse>(data)
 ```
 
 ### Update document
@@ -74,16 +74,16 @@ const data = await api.action.insertOne.post<AddDocumentResponse>(payload)
 Update a specific document.
 
 ```ts
-import type { QueryUpdateDocument, UpdateDocumentResponse } from 'netzo/apis/mongodbatlasdata/mod.ts'
+import type { DataUpdateDocument, UpdateDocumentResponse } from 'netzo/apis/mongodbatlasdata/types.ts'
 
-const payload: QueryUpdateDocument = {
+const data: DataUpdateDocument = {
   dataSource: 'mongodb-atlas',
   database: DATABASE_NAME,
   collection: COLLECTION_NAME,
   filter: { FILTERS },
   update: { DATA_TO_UPDATE },
 }
-const data = await api.action.updateOne.post<UpdateDocumentResponse>(payload)
+const resultData = await api.action.updateOne.post<UpdateDocumentResponse>(data)
 ```
 
 ## References

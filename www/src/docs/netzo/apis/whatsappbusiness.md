@@ -39,11 +39,11 @@ The following examples assume you have [created an api client instance](#usage).
 Get information about your business profile.
 
 ```ts
-import type { Profile, QueryProfile } from 'netzo/apis/whatsappbusiness/mod.ts'
+import type { Profile, QueryProfile } from 'netzo/apis/whatsappbusiness/types.ts'
 
 const query: QueryProfile = {}
 const result = await api[PHONE_NUMBER_ID].whatsapp_business_profile.get<Profile>(query)
-const data = result.data
+const resultData = result.data
  ```
 
 ### Update business profile
@@ -51,13 +51,13 @@ const data = result.data
 Update your business profile.
 
 ```ts
-import type { QueryUpdateProfile, UpdateProfileResponse } from 'netzo/apis/whatsappbusiness/mod.ts'
+import type { UpdateProfileResponse, DataUpdateProfile } from 'netzo/apis/whatsappbusiness/types.ts'
 
-const payload: QueryUpdateProfile = {
+const data: DataUpdateProfile = {
   messaging_product: 'whatsapp',
   about: 'About my business'
 }
-const data = await api[PHONE_NUMBER_ID].whatsapp_business_profile.post<UpdateProfileResponse>(payload)
+const resultData = await api[PHONE_NUMBER_ID].whatsapp_business_profile.post<UpdateProfileResponse>(data)
  ```
 
 ## References

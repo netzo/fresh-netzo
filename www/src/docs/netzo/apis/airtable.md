@@ -37,11 +37,11 @@ The following examples assume you have [created an api client instance](#usage).
 Find all records that match the query.
 
 ```ts
-import type { QueryRecords, Records } from 'netzo/apis/airtable/mod.ts'
+import type { QueryRecords, Records } from 'netzo/apis/airtable/types.ts'
 
 const query: QueryRecords = {}
 const result = await api[DATABASE_ID][TABLE_ID_OR_NAME].get<Records>(query)
-const data = result.records
+const resultData = result.records
 ```
 
 ### Add records
@@ -49,9 +49,9 @@ const data = result.records
 Add one or multiple records.
 
 ```ts
-import type { QueryAddRecords, Records } from 'netzo/apis/airtable/mod.ts'
+import type { DataAddRecords, Records } from 'netzo/apis/airtable/types.ts'
 
-const payload: QueryRecords = {
+const data: DataRecords = {
   records: [
     {
       fields: {
@@ -62,20 +62,20 @@ const payload: QueryRecords = {
     }
   ]
 }
-const result = await api[DATABASE_ID][TABLE_ID_OR_NAME].post<Records>(payload)
-const data = result.records
+const result = await api[DATABASE_ID][TABLE_ID_OR_NAME].post<Records>(data)
+const resultData = result.records
 ```
 
 ### Update records
 
 Update one or multiple records by id.
 
-Id property of the payload is optional if upsert property is enabled.
+Id property of the data is optional if upsert property is enabled.
 
 ```ts
-import type { QueryUpdateRecords, UpdateRecordsResponse } from 'netzo/apis/airtable/mod.ts'
+import type { DataUpdateRecords, UpdateRecordsResponse } from 'netzo/apis/airtable/types.ts'
 
-const payload: QueryUpdateRecords = {
+const data: DataUpdateRecords = {
   records: [
     {
       fields: {
@@ -85,8 +85,8 @@ const payload: QueryUpdateRecords = {
     }
   ]
 }
-const result = await api[DATABASE_ID][TABLE_ID_OR_NAME].patch<UpdateRecordsResponse>(payload)
-const data = result.records
+const result = await api[DATABASE_ID][TABLE_ID_OR_NAME].patch<UpdateRecordsResponse>(data)
+const resultData = result.records
 ```
 
 ### Delete records
@@ -94,13 +94,13 @@ const data = result.records
 Delete one or multiple records by id.
 
 ```ts
-import type { QueryDeleteRecords, RecordsDeleted } from 'netzo/apis/airtable/mod.ts'
+import type { QueryDeleteRecords, RecordsDeleted } from 'netzo/apis/airtable/types.ts'
 
 const query: QueryDeleteRecords = {
   records: [RECORD_ID_1, RECORD_ID_2]
 }
 const result = await api[DATABASE_ID][TABLE_ID_OR_NAME].delete<RecordsDeleted>(query)
-const data = result.records
+const resultData = result.records
 ```
 
 ### Find databases
@@ -108,11 +108,11 @@ const data = result.records
 Find all databases the api key can access.
 
 ```ts
-import type { Databases, QueryDatabases } from 'netzo/apis/airtable/mod.ts'
+import type { Databases, QueryDatabases } from 'netzo/apis/airtable/types.ts'
 
 const query: QueryDatabases = {}
 const result = await api.meta.bases.get<Databases>(query)
-const data = result.bases
+const resultData = result.bases
 ```
 
 ### Find tables
@@ -120,11 +120,11 @@ const data = result.bases
 Find all tables in a specific database.
 
 ```ts
-import type { QueryTables, Tables } from 'netzo/apis/airtable/mod.ts'
+import type { QueryTables, Tables } from 'netzo/apis/airtable/types.ts'
 
 const query: QueryTables = {}
 const result = await api.meta.bases[DATABASE_ID].tables.get<Tables>(query)
-const data = result.tables
+const resultData = result.tables
 ```
 
 ## References

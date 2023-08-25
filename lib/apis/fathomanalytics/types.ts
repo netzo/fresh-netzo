@@ -21,7 +21,7 @@ export const querySitesSchema = z.object({
   ending_before: z.string().optional(),
 });
 
-export const queryAddSiteSchema = z.object({
+export const dataAddSiteSchema = z.object({
   name: z.string(),
   sharing: z
     .union([z.literal("none"), z.literal("private"), z.literal("public")])
@@ -29,12 +29,12 @@ export const queryAddSiteSchema = z.object({
   share_password: z.string().optional(),
 });
 
-export const queryUpdateSiteSchema = queryAddSiteSchema.deepPartial();
+export const dataUpdateSiteSchema = dataAddSiteSchema.deepPartial();
 
 //types:
 
 export type Site = z.infer<typeof siteSchema>;
 export type Sites = z.infer<typeof sitesSchema>;
 export type QuerySites = z.infer<typeof querySitesSchema>;
-export type QueryAddSite = z.infer<typeof queryAddSiteSchema>;
-export type QueryUpdateSite = z.infer<typeof queryUpdateSiteSchema>;
+export type DataAddSite = z.infer<typeof dataAddSiteSchema>;
+export type DataUpdateSite = z.infer<typeof dataUpdateSiteSchema>;

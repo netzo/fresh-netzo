@@ -37,10 +37,10 @@ The following examples assume you have [created an api client instance](#usage).
 Find all users and organizations matching the query.
 
 ```ts
-import type { QueryUsers, User } from 'netzo/apis/github/mod.ts'
+import type { QueryUsers, User } from 'netzo/apis/github/types.ts'
 
 const query: QueryUsers = {}
-const data = await api.users.get<User[]>(query)
+const resultData = await api.users.get<User[]>(query)
 ```
 
 ### Get user/organization
@@ -48,9 +48,9 @@ const data = await api.users.get<User[]>(query)
 Get a user or organization by username.
 
 ```ts
-import type { User } from 'netzo/apis/github/mod.ts'
+import type { User } from 'netzo/apis/github/types.ts'
 
-const data = await api.users[USERNAME].get<User[]>()
+const resultData = await api.users[USERNAME].get<User[]>()
 ```
 
 ### Find repositories of user
@@ -58,10 +58,10 @@ const data = await api.users[USERNAME].get<User[]>()
 Find all repositories of a given user that match the query.
 
 ```ts
-import type { QueryRepositories, Repository } from 'netzo/apis/github/mod.ts'
+import type { QueryRepositories, Repository } from 'netzo/apis/github/types.ts'
 
 const query: QueryRepositories = {}
-const data = await api.users[USERNAME].repos.get<Repository[]>(query)
+const resultData = await api.users[USERNAME].repos.get<Repository[]>(query)
 ```
 
 ### Find repositories of organization
@@ -69,10 +69,10 @@ const data = await api.users[USERNAME].repos.get<Repository[]>(query)
 Find all repositories of a given organization that match the query.
 
 ```ts
-import type { QueryRepositories, Repository } from 'netzo/apis/github/mod.ts'
+import type { QueryRepositories, Repository } from 'netzo/apis/github/types.ts'
 
 const query: QueryRepositories = {}
-const data = await api.orgs[ORG].repos.get<Repository[]>(query)
+const resultData = await api.orgs[ORG].repos.get<Repository[]>(query)
 ```
 
 ### Find issues of repository
@@ -80,10 +80,10 @@ const data = await api.orgs[ORG].repos.get<Repository[]>(query)
 Find all issues of a given organization that match the query.
 
 ```ts
-import type { Issue, QueryIssues } from 'netzo/apis/github/mod.ts'
+import type { Issue, QueryIssues } from 'netzo/apis/github/types.ts'
 
 const query: QueryIssues = {}
-const data = await api.repos[OWNER][REPO].issues.get<Issue[]>(query)
+const resultData = await api.repos[OWNER][REPO].issues.get<Issue[]>(query)
 ```
 
 ## References

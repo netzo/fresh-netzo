@@ -67,7 +67,7 @@ export const queryCustomersSchema = z.object({
   updated_at_min: z.string().optional(),
 });
 
-export const addOrUpdateCustomerSchema = z.object({
+export const dataAddOrUpdateCustomerSchema = z.object({
   customer: z
     .object({
       first_name: z.string().optional(),
@@ -1686,7 +1686,9 @@ export const queryPayoutsSchema = z.object({
 export type Customers = z.infer<typeof customersSchema>;
 export type Customer = z.infer<typeof customerSchema>;
 export type QueryCustomers = z.infer<typeof queryCustomersSchema>;
-export type AddOrUpdateCustomer = z.infer<typeof addOrUpdateCustomerSchema>;
+export type DataAddOrUpdateCustomer = z.infer<
+  typeof dataAddOrUpdateCustomerSchema
+>;
 export type AddOrUpdateCustomerResponse = z.infer<
   typeof addOrUpdateCustomerResponseSchema
 >;

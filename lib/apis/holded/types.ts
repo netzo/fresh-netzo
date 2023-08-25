@@ -87,7 +87,7 @@ export const queryContactsSchema = z.object({
   customId: z.array(z.string()).optional(),
 });
 
-export const queryAddContactSchema = z.object({
+export const dataAddContactSchema = z.object({
   CustomId: z.string().optional(),
   name: z.string().optional(),
   code: z.string().optional(),
@@ -128,7 +128,7 @@ export const contactResponseSchema = z.object({
   id: z.string(),
 }).deepPartial();
 
-export const queryUpdateContactSchema = queryAddContactSchema.omit({
+export const dataUpdateContactSchema = dataAddContactSchema.omit({
   tags: true,
   note: true,
   contacPersons: true,
@@ -141,6 +141,6 @@ export const queryUpdateContactSchema = queryAddContactSchema.omit({
 
 export type Contact = z.infer<typeof contactSchema>;
 export type QueryContacts = z.infer<typeof queryContactsSchema>;
-export type QueryAddContact = z.infer<typeof queryAddContactSchema>;
+export type DataAddContact = z.infer<typeof dataAddContactSchema>;
 export type ContactResponse = z.infer<typeof contactResponseSchema>;
-export type QueryUpdateContact = z.infer<typeof queryUpdateContactSchema>;
+export type DataUpdateContact = z.infer<typeof dataUpdateContactSchema>;

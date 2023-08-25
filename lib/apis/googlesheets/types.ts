@@ -6,7 +6,7 @@ export const valueRangeSchema = z.object({
   values: z.array(z.array(z.any())),
 }).deepPartial();
 
-export const requestAddOrUpdateValuesSchema = z.object({
+export const dataAddOrUpdateValuesSchema = z.object({
   values: z.array(z.array(z.string())),
 });
 
@@ -25,7 +25,7 @@ export const addValuesResponseSchema = z.object({
   updates: updateValuesResponseSchema,
 }).deepPartial();
 
-export const queryAddOrUpdateRowsSchema = z.object({
+export const queryAddOrUpdateValuesSchema = z.object({
   valueInputOption: z.union([z.literal("RAW"), z.literal("USER_ENTERED")]),
   insertDataOption: z
     .union([z.literal("OVERWRITE"), z.literal("INSERT_ROWS")])
@@ -51,10 +51,12 @@ export const deleteValuesResponseSchema = z.object({
 //types:
 
 export type ValueRange = z.infer<typeof valueRangeSchema>;
-export type RequestAddOrUpdateValues = z.infer<
-  typeof requestAddOrUpdateValuesSchema
+export type DataAddOrUpdateValues = z.infer<
+  typeof dataAddOrUpdateValuesSchema
 >;
 export type UpdateValuesResponse = z.infer<typeof updateValuesResponseSchema>;
 export type AddValuesResponse = z.infer<typeof addValuesResponseSchema>;
-export type QueryAddOrUpdateRows = z.infer<typeof queryAddOrUpdateRowsSchema>;
+export type QueryAddOrUpdateValues = z.infer<
+  typeof queryAddOrUpdateValuesSchema
+>;
 export type DeleteValuesResponse = z.infer<typeof deleteValuesResponseSchema>;

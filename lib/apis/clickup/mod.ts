@@ -1,15 +1,5 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
-export type {
-  List,
-  Lists,
-  QueryAddTask,
-  QueryLists,
-  QueryTasks,
-  QueryUpdateTask,
-  Task,
-  Tasks,
-} from "./types.ts";
 
 export interface ClickupOptions {
   personalApiKey: string;

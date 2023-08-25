@@ -39,11 +39,11 @@ The following examples assume you have [created an api client instance](#usage).
 Find all contacts that match the query.
 
 ```ts
-import type { Contacts, QueryContacts } from 'netzo/apis/activecampaign/mod.ts'
+import type { Contacts, QueryContacts } from 'netzo/apis/activecampaign/types.ts'
 
 const query: QueryContacts = {}
 const result = await api.contacts.get<Contacts>(query)
-const data = result.contacts
+const resultData = result.contacts
 ```
 
 ### Get contact
@@ -51,9 +51,9 @@ const data = result.contacts
 Get a contact by id.
 
 ```ts
-import type { Contact } from 'netzo/apis/activecampaign/mod.ts'
+import type { Contact } from 'netzo/apis/activecampaign/types.ts'
 
-const data = await api.contacts[CONTACT_ID].get<Contact>()
+const resultData = await api.contacts[CONTACT_ID].get<Contact>()
 ```
 
 ### Add contact
@@ -61,14 +61,14 @@ const data = await api.contacts[CONTACT_ID].get<Contact>()
 Add a new contact.
 
 ```ts
-import type { AddOrUpdateContactResponse, QueryAddContact } from 'netzo/apis/activecampaign/mod.ts'
+import type { AddOrUpdateContactResponse, DataAddContact } from 'netzo/apis/activecampaign/types.ts'
 
-const payload: QueryAddContact = {
+const data: DataAddContact = {
   contact: {
     email: 'example@email.com'
   }
 }
-const data = await api.contacts.post<AddOrUpdateContactResponse>(payload)
+const resultData = await api.contacts.post<AddOrUpdateContactResponse>(data)
 ```
 
 ### Update contact
@@ -76,14 +76,14 @@ const data = await api.contacts.post<AddOrUpdateContactResponse>(payload)
 Update a contact by id.
 
 ```ts
-import type { AddOrUpdateContactResponse, QueryUpdateContact } from 'netzo/apis/activecampaign/mod.ts'
+import type { AddOrUpdateContactResponse, DataUpdateContact } from 'netzo/apis/activecampaign/types.ts'
 
-const payload: QueryUpdateContact = {
+const data: DataUpdateContact = {
   contact: {
     email: 'updated-email@email.com'
   }
 }
-const data = await api.contacts[CONTACT_ID].put<AddOrUpdateContactResponse>(payload)
+const resultData = await api.contacts[CONTACT_ID].put<AddOrUpdateContactResponse>(data)
 ```
 
 ### Delete contact
@@ -91,7 +91,7 @@ const data = await api.contacts[CONTACT_ID].put<AddOrUpdateContactResponse>(payl
 Delete a contact by id.
 
 ```ts
-const data = await api.contacts[CONTACT_ID].delete<{}>()
+const resultData = await api.contacts[CONTACT_ID].delete<{}>()
 ```
 
 ### Find deals
@@ -99,11 +99,11 @@ const data = await api.contacts[CONTACT_ID].delete<{}>()
 Find all deals with optional filtering.
 
 ```ts
-import type { Deals, FilterDeals } from 'netzo/apis/activecampaign/mod.ts'
+import type { Deals, FilterDeals } from 'netzo/apis/activecampaign/types.ts'
 
 const query: FilterDeals = {}
 const result = await api.deals.get<Deals>(query)
-const data = result.deals
+const resultData = result.deals
 ```
 
 ### Find accounts
@@ -111,11 +111,11 @@ const data = result.deals
 Find all accounts, or specify a name in the search field.
 
 ```ts
-import type { Accounts, QueryAccounts } from 'netzo/apis/activecampaign/mod.ts'
+import type { Accounts, QueryAccounts } from 'netzo/apis/activecampaign/types.ts'
 
 const query: QueryAccounts = {}
 const result = await api.accounts.get<Accounts>(query)
-const data = result.accounts
+const resultData = result.accounts
 ```
 
 ### Find users
@@ -123,10 +123,10 @@ const data = result.accounts
 Find all users of the account.
 
 ```ts
-import type { Users } from 'netzo/apis/activecampaign/mod.ts'
+import type { Users } from 'netzo/apis/activecampaign/types.ts'
 
 const result = await api.users.get<Users>()
-const data = result.users
+const resultData = result.users
 ```
 
 ### Add user
@@ -134,15 +134,15 @@ const data = result.users
 Add a new user to the account.
 
 ```ts
-import type { AddUserResponse, QueryAddUser } from 'netzo/apis/activecampaign/mod.ts'
+import type { AddUserResponse, DataAddUser } from 'netzo/apis/activecampaign/types.ts'
 
-const payload: QueryAddUser = {
+const data: DataAddUser = {
   user: {
     username: 'jsmith'
   }
 }
-const result = await api.users.post<AddUserResponse>(payload)
-const data = result.user
+const result = await api.users.post<AddUserResponse>(data)
+const resultData = result.user
 ```
 
 ## References

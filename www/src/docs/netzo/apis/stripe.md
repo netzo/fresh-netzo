@@ -37,11 +37,11 @@ The following examples assume you have [created an api client instance](#usage).
 Find all subscriptions that match the query.
 
 ```ts
-import type { QuerySubscriptions, Subscriptions } from 'netzo/apis/stripe/mod.ts'
+import type { QuerySubscriptions, Subscriptions } from 'netzo/apis/stripe/types.ts'
 
 const query: QuerySubscriptions = {}
 const result = await api.subscriptions.get<Subscriptions>(query)
-const data = result.data
+const resultData = result.data
 ```
 
 ### Find subscription items
@@ -49,11 +49,11 @@ const data = result.data
 Find all subscription items that correspond to a specific subscription.
 
 ```ts
-import type { QuerySubscriptionItems, SubscriptionItems } from 'netzo/apis/stripe/mod.ts'
+import type { QuerySubscriptionItems, SubscriptionItems } from 'netzo/apis/stripe/types.ts'
 
 const query: QuerySubscriptionItems = { subscription: SUBSCRIPTION_ID }
 const result = await api.subscription_items.get<SubscriptionItems>(query)
-const data = result.data
+const resultData = result.data
 ```
 
 ###  Find customers
@@ -61,11 +61,11 @@ const data = result.data
 Find all customers that match the query.
 
 ```ts
-import type { Customers, QueryCustomers } from 'netzo/apis/stripe/mod.ts'
+import type { Customers, QueryCustomers } from 'netzo/apis/stripe/types.ts'
 
 const query: QueryCustomers = {}
 const result = await api.customers.get<Customers>(query)
-const data = result.data
+const resultData = result.data
 ```
 
 ### Find invoices
@@ -73,11 +73,11 @@ const data = result.data
 Find all invoices that match the query.
 
 ```ts
-import type { Invoices, QueryInvoices } from 'netzo/apis/stripe/mod.ts'
+import type { Invoices, QueryInvoices } from 'netzo/apis/stripe/types.ts'
 
 const query: QueryInvoices = {}
 const result = await api.invoices.get<Invoices>(query)
-const data = result.data
+const resultData = result.data
 ```
 
 ### Find charges
@@ -85,11 +85,11 @@ const data = result.data
 Find all charges that match the query.
 
 ```ts
-import type { Charges, QueryCharges } from 'netzo/apis/stripe/mod.ts'
+import type { Charges, QueryCharges } from 'netzo/apis/stripe/types.ts'
 
 const query: QueryCharges = {}
 const result = await api.charges.get<Charges>(query)
-const data = result.data
+const resultData = result.data
 ```
 
 ### Find plans
@@ -97,11 +97,11 @@ const data = result.data
 Find all plans that match the query.
 
 ```ts
-import type { Plans, QueryPlans } from 'netzo/apis/stripe/mod.ts'
+import type { Plans, QueryPlans } from 'netzo/apis/stripe/types.ts'
 
 const query: QueryPlans = {}
 const result = await api.plans.get<Plans>(query)
-const data = result.data
+const resultData = result.data
 ```
 
 ### Find transactions
@@ -109,11 +109,11 @@ const data = result.data
 Find all transactions that have contributed to the Stripe account balance.
 
 ```ts
-import type { QueryTransactions, Transactions } from 'netzo/apis/stripe/mod.ts'
+import type { QueryTransactions, Transactions } from 'netzo/apis/stripe/types.ts'
 
 const query: QueryTransactions = {}
 const result = await api.transactions.get<Transactions>(query)
-const data = result.data
+const resultData = result.data
 ```
 
 ## References

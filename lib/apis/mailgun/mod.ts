@@ -1,15 +1,5 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
-export type {
-  AddMemberResponse,
-  AddOrUpdateListResponse,
-  DeleteMemberResponse,
-  MailingLists,
-  QueryAddMailingList,
-  QueryAddMember,
-  QueryMailingLists,
-  QueryUpdateMailingList,
-} from "./types.ts";
 
 export interface MailgunOptions {
   apiKey: string;

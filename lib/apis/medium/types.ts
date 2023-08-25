@@ -37,7 +37,7 @@ export const postSchema = z.object({
   }),
 }).deepPartial();
 
-export const queryPostSchema = z.object({
+export const dataAddPostSchema = z.object({
   title: z.string(),
   contentFormat: z.union([z.literal("html"), z.literal("markdown")]),
   content: z.string(),
@@ -67,4 +67,4 @@ export const queryPostSchema = z.object({
 export type User = z.infer<typeof userSchema>;
 export type Publications = z.infer<typeof publicationsSchema>;
 export type Post = z.infer<typeof postSchema>;
-export type QueryPost = z.infer<typeof queryPostSchema>;
+export type DataAddPost = z.infer<typeof dataAddPostSchema>;

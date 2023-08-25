@@ -1,14 +1,6 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
 
-export type {
-  QueryAddRecords,
-  QueryDeleteRecords,
-  QueryRecords,
-  QueryUpdateRecords,
-  Records,
-} from "./types.ts";
-
 export interface GoogleappsheetOptions {
   appId: string;
   applicationAccessKey: string;

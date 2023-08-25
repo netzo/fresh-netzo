@@ -231,7 +231,7 @@ export const campaignContentSchema = z.object({
   ),
 }).deepPartial();
 
-export const queryUpdateCampaignContentSchema = z.object({
+export const dataUpdateCampaignContentSchema = z.object({
   archive: z
     .object({
       archive_type: z.string().optional(),
@@ -245,7 +245,7 @@ export const queryUpdateCampaignContentSchema = z.object({
   variate_contents: z.array(z.object({})).optional(),
 });
 
-export const queryScheduleCampaignSchema = z.object({
+export const dataScheduleCampaignSchema = z.object({
   schedule_time: z.string(),
   batch_delivery: z
     .object({
@@ -263,7 +263,7 @@ export type Campaigns = z.infer<typeof campaignsSchema>;
 export type QueryCampaigns = z.infer<typeof queryCampaignsSchema>;
 export type QueryCampaign = z.infer<typeof queryCampaignSchema>;
 export type CampaignContent = z.infer<typeof campaignContentSchema>;
-export type QueryUpdateCampaignContent = z.infer<
-  typeof queryUpdateCampaignContentSchema
+export type DataUpdateCampaignContent = z.infer<
+  typeof dataUpdateCampaignContentSchema
 >;
-export type QueryScheduleCampaign = z.infer<typeof queryScheduleCampaignSchema>;
+export type DataScheduleCampaign = z.infer<typeof dataScheduleCampaignSchema>;
