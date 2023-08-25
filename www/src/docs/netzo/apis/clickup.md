@@ -72,8 +72,8 @@ Add a new task.
 ```ts
 import type { QueryAddTask, Task } from 'netzo/apis/clickup/types.ts'
 
-const payload: QueryAddTask = { name: 'New Task' }
-const resultData = await api.list[LIST_ID].task.post<Task>(payload)
+const data: QueryAddTask = { name: 'New Task' }
+const resultData = await api.list[LIST_ID].task.post<Task>(data)
 ```
 
 ### Update task
@@ -83,8 +83,8 @@ Update a task by id.
 ```ts
 import type { QueryUpdateTask, Task } from 'netzo/apis/clickup/types.ts'
 
-const payload: QueryAddTask = { name: 'Updated Task Name' }
-const resultData = await api.task[TASK_ID].put<Task>(payload)
+const data: QueryAddTask = { name: 'Updated Task Name' }
+const resultData = await api.task[TASK_ID].put<Task>(data)
 ```
 
 ### Delete task

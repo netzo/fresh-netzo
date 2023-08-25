@@ -80,14 +80,14 @@ Add a new customer.
 ```ts
 import type { AddOrUpdateCustomer, AddOrUpdateCustomerResponse } from 'netzo/apis/shopify/types.ts'
 
-const payload: AddOrUpdateCustomer = {
+const data: AddOrUpdateCustomer = {
   customer: {
     first_name: 'John',
     last_name: 'Doe',
     email: 'example@email.com'
   }
 }
-const result = await api['customers.json'].post<AddOrUpdateCustomerResponse>(payload)
+const result = await api['customers.json'].post<AddOrUpdateCustomerResponse>(data)
 const resultData = result.customer
 ```
 
@@ -98,12 +98,12 @@ Update a customer by id.
 ```ts
 import type { AddOrUpdateCustomer, AddOrUpdateCustomerResponse } from 'netzo/apis/shopify/types.ts'
 
-const payload: AddOrUpdateCustomer = {
+const data: AddOrUpdateCustomer = {
   customer: {
     email: 'new-email@email.com'
   }
 }
-const result = await api.customers[`${CUSTOMER_ID}.json`].put<AddOrUpdateCustomerResponse>(payload)
+const result = await api.customers[`${CUSTOMER_ID}.json`].put<AddOrUpdateCustomerResponse>(data)
 const resultData = result.customer
 ```
 

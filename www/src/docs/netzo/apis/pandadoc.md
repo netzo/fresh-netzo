@@ -61,13 +61,13 @@ Update a document by id.
 ```ts
 import type { QueryAddDocument } from 'netzo/apis/pandadoc/types.ts'
 
-const payload: QueryAddDocument = {
+const data: QueryAddDocument = {
   recipients: {
     ID: RECIPIENT_ID,
     first_name: 'John Doe'
   }
 }
-const resultData = await api.documents[DOCUMENT_ID].patch<{}>(payload)
+const resultData = await api.documents[DOCUMENT_ID].patch<{}>(data)
 ```
 
 ### Delete document
@@ -96,8 +96,8 @@ Add a new contact.
 ```ts
 import type { Contact, QueryAddContact } from 'netzo/apis/pandadoc/types.ts'
 
-const payload: QueryAddContact = { email: 'email@example.com' }
-const resultData = await api.contacts.post<Contact>(payload)
+const data: QueryAddContact = { email: 'email@example.com' }
+const resultData = await api.contacts.post<Contact>(data)
 ```
 
 ## References

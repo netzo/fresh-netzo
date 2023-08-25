@@ -51,7 +51,7 @@ Add one or multiple records.
 ```ts
 import type { QueryAddRecords, Records } from 'netzo/apis/airtable/types.ts'
 
-const payload: QueryRecords = {
+const data: QueryRecords = {
   records: [
     {
       fields: {
@@ -62,7 +62,7 @@ const payload: QueryRecords = {
     }
   ]
 }
-const result = await api[DATABASE_ID][TABLE_ID_OR_NAME].post<Records>(payload)
+const result = await api[DATABASE_ID][TABLE_ID_OR_NAME].post<Records>(data)
 const resultData = result.records
 ```
 
@@ -70,12 +70,12 @@ const resultData = result.records
 
 Update one or multiple records by id.
 
-Id property of the payload is optional if upsert property is enabled.
+Id property of the data is optional if upsert property is enabled.
 
 ```ts
 import type { QueryUpdateRecords, UpdateRecordsResponse } from 'netzo/apis/airtable/types.ts'
 
-const payload: QueryUpdateRecords = {
+const data: QueryUpdateRecords = {
   records: [
     {
       fields: {
@@ -85,7 +85,7 @@ const payload: QueryUpdateRecords = {
     }
   ]
 }
-const result = await api[DATABASE_ID][TABLE_ID_OR_NAME].patch<UpdateRecordsResponse>(payload)
+const result = await api[DATABASE_ID][TABLE_ID_OR_NAME].patch<UpdateRecordsResponse>(data)
 const resultData = result.records
 ```
 

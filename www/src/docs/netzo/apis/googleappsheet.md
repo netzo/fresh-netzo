@@ -53,13 +53,13 @@ Add one or multiple rows to a table.
 ```ts
 import type { QueryAddRecords, Records } from 'netzo/apis/googleappsheet/types.ts'
 
-const payload: QueryAddRecords = {
+const data: QueryAddRecords = {
   Action: 'Add',
   Rows: [{
     FIELD: 'NEW_VALUE'
   }]
 }
-const result = await api[TABLE_NAME].Action.post<Records>(payload)
+const result = await api[TABLE_NAME].Action.post<Records>(data)
 const resultData = result.Rows
 ```
 
@@ -72,14 +72,14 @@ In the request, each row must include the key fields and values that identify th
 ```ts
 import type { QueryUpdateRecords, Records } from 'netzo/apis/googleappsheet/types.ts'
 
-const payload: QueryUpdateRecords = {
+const data: QueryUpdateRecords = {
   Action: 'Edit',
   Rows: [{
     KEY_FIELD: 'KEY_VALUE',
     FIELD: 'UPDATE_VALUE'
   }]
 }
-const result = await api[TABLE_NAME].Action.post<Records>(payload)
+const result = await api[TABLE_NAME].Action.post<Records>(data)
 const resultData = result.Rows
 ```
 

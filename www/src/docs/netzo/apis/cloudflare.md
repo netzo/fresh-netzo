@@ -64,11 +64,11 @@ Add a new zone.
 ```ts
 import type { QueryAddZone, Zone } from 'netzo/apis/cloudflare/types.ts'
 
-const payload: QueryAddZone = {
+const data: QueryAddZone = {
   account: { id: ZONE_ID },
   name: DOMAIN_NAME
 }
-const result = await api.zones.post<Zone>(payload)
+const result = await api.zones.post<Zone>(data)
 const resultData = result.result
 ```
 

@@ -61,8 +61,8 @@ Post a message to a channel.
 ```ts
 import type { Message, QueryAddOrUpdateMessage } from 'netzo/apis/discord/types.ts'
 
-const payload: QueryAddOrUpdateMessage = { content: 'New message' }
-const resultData = await api.channels[CHANNEL_ID].messages.post<Message>(payload)
+const data: QueryAddOrUpdateMessage = { content: 'New message' }
+const resultData = await api.channels[CHANNEL_ID].messages.post<Message>(data)
  ```
 
 ### Update Message
@@ -72,8 +72,8 @@ Update a message by id.
 ```ts
 import type { Message, QueryAddOrUpdateMessage } from 'netzo/apis/discord/types.ts'
 
-const payload: QueryAddOrUpdateMessage = { content: 'Updated message' }
-const resultData = await api.channels[CHANNEL_ID].messages[MESSAGE_ID].patch<Message>(payload)
+const data: QueryAddOrUpdateMessage = { content: 'Updated message' }
+const resultData = await api.channels[CHANNEL_ID].messages[MESSAGE_ID].patch<Message>(data)
 ```
 
 ## References

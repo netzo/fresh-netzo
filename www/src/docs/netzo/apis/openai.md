@@ -38,7 +38,7 @@ Obtain a model response for the given chat conversation.
 ```ts 
 import type { ChatCompletion, QueryChatCompletion } from 'netzo/apis/openai/types.ts'
 
-const payload: QueryChatCompletion = {
+const data: QueryChatCompletion = {
     model: 'gpt-3.5-turbo',
     messages: [
       {
@@ -51,7 +51,7 @@ const payload: QueryChatCompletion = {
       }
     ]
   }
-const result = await api.chat.completions.post<ChatCompletion>(payload)
+const result = await api.chat.completions.post<ChatCompletion>(data)
 const resultData = result.choices
  ```
 

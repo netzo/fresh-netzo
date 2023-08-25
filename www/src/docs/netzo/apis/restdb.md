@@ -51,8 +51,8 @@ Add a new record to a collection.
 ```ts
 import type { AddOrUpdateRecordResponse, Record } from 'netzo/apis/restdb/types.ts'
 
-const payload: Record = { title: 'New title' }
-const resultData = await api[COLLECTION_NAME].post<AddOrUpdateRecordResponse>(payload)
+const data: Record = { title: 'New title' }
+const resultData = await api[COLLECTION_NAME].post<AddOrUpdateRecordResponse>(data)
 ```
 
 ### Update record
@@ -62,8 +62,8 @@ Update a record by id.
 ```ts
 import type { AddOrUpdateRecordResponse, Record } from 'netzo/apis/restdb/types.ts'
 
-const payload: Record = { title: 'Updated title' }
-const resultData = await api[COLLECTION_NAME][RECORD_ID].patch<AddOrUpdateRecordResponse>(payload)
+const data: Record = { title: 'Updated title' }
+const resultData = await api[COLLECTION_NAME][RECORD_ID].patch<AddOrUpdateRecordResponse>(data)
 ```
 
 ### Delete record

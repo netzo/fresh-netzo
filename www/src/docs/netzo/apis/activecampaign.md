@@ -63,12 +63,12 @@ Add a new contact.
 ```ts
 import type { AddOrUpdateContactResponse, QueryAddContact } from 'netzo/apis/activecampaign/types.ts'
 
-const payload: QueryAddContact = {
+const data: QueryAddContact = {
   contact: {
     email: 'example@email.com'
   }
 }
-const resultData = await api.contacts.post<AddOrUpdateContactResponse>(payload)
+const resultData = await api.contacts.post<AddOrUpdateContactResponse>(data)
 ```
 
 ### Update contact
@@ -78,12 +78,12 @@ Update a contact by id.
 ```ts
 import type { AddOrUpdateContactResponse, QueryUpdateContact } from 'netzo/apis/activecampaign/types.ts'
 
-const payload: QueryUpdateContact = {
+const data: QueryUpdateContact = {
   contact: {
     email: 'updated-email@email.com'
   }
 }
-const resultData = await api.contacts[CONTACT_ID].put<AddOrUpdateContactResponse>(payload)
+const resultData = await api.contacts[CONTACT_ID].put<AddOrUpdateContactResponse>(data)
 ```
 
 ### Delete contact
@@ -136,12 +136,12 @@ Add a new user to the account.
 ```ts
 import type { AddUserResponse, QueryAddUser } from 'netzo/apis/activecampaign/types.ts'
 
-const payload: QueryAddUser = {
+const data: QueryAddUser = {
   user: {
     username: 'jsmith'
   }
 }
-const result = await api.users.post<AddUserResponse>(payload)
+const result = await api.users.post<AddUserResponse>(data)
 const resultData = result.user
 ```
 

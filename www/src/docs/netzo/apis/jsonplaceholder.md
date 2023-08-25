@@ -52,11 +52,11 @@ Add a new todo.
 ```ts
 import type { QueryAddTodo, Todo } from 'netzo/apis/jsonplaceholder/types.ts'
 
-const payload: QueryAddTodo = {
+const data: QueryAddTodo = {
   userId: 1,
   title: 'New task'
 }
-const resultData = await api.todos.post<Todo>(payload)
+const resultData = await api.todos.post<Todo>(data)
 ```
 
 ### Update todo
@@ -66,13 +66,13 @@ Update a todo by id.
 ```ts
 import type { Todo } from 'netzo/apis/jsonplaceholder/types.ts'
 
-const payload: Todo = {
+const data: Todo = {
   userId: 1,
   title: 'Updated task',
   id: TODO_ID,
   completed: true
 }
-const resultData = await api.todos[TODO_ID].put<Todo>(payload)
+const resultData = await api.todos[TODO_ID].put<Todo>(data)
 ```
 
 ### Delete todo

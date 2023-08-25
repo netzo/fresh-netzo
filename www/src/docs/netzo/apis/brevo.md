@@ -62,8 +62,8 @@ Add a new contact.
 ```ts
 import type { QueryAddContact } from 'netzo/apis/brevo/types.ts'
 
-const payload: QueryContact = { email: 'example@email.com' }
-const resultData = await api.contacts.post<{ id: number }>(payload)
+const data: QueryContact = { email: 'example@email.com' }
+const resultData = await api.contacts.post<{ id: number }>(data)
 ```
 
 ### Update contact
@@ -73,12 +73,12 @@ Update a contact by its unique identifier, which can be id, email or SMS attribu
 ```ts
 import type { QueryUpdateContact } from 'netzo/apis/brevo/types.ts'
 
-const payload: QueryUpdateContact = {
+const data: QueryUpdateContact = {
   attributes: {
     EMAIL: 'updated-email@email.com'
   }
 }
-await api.contacts[CONTACT_IDENTIFIER].put<void>(payload)
+await api.contacts[CONTACT_IDENTIFIER].put<void>(data)
 ```
 
 ### Find email campaigns

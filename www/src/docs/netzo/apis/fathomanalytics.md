@@ -61,8 +61,8 @@ Add a new site
 ```ts
 import type { QueryAddSite, Site } from 'netzo/apis/fathomanalytics/types.ts'
 
-const payload: QueryAddSite = { name: 'New website' }
-const resultData = await api.sites.post<Site>(payload)
+const data: QueryAddSite = { name: 'New website' }
+const resultData = await api.sites.post<Site>(data)
 ```
 
 ### Update site
@@ -72,8 +72,8 @@ Update a site by id
 ```ts
 import type { QueryUpdateSite, Site } from 'netzo/apis/fathomanalytics/types.ts'
 
-const payload: QueryUpdateSite = { name: 'Updated website' }
-const resultData = await api.sites[SITE_ID].post<Site>(payload)
+const data: QueryUpdateSite = { name: 'Updated website' }
+const resultData = await api.sites[SITE_ID].post<Site>(data)
 ```
 
 ### Wipe site

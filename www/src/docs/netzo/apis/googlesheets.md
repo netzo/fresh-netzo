@@ -87,9 +87,9 @@ const query: QueryAddOrUpdateRows = {
   insertDataOption: 'INSERT_ROWS',
   includeValuesInResponse: true
 }
-const payload: RequestAddOrUpdateValues = { values: [['value1', 'value2', 'value3']] }
+const data: RequestAddOrUpdateValues = { values: [['value1', 'value2', 'value3']] }
 
-const result = await api.values[`${RANGE_TO_INSERT}:append`].post<AddValuesResponse>(payload, query)
+const result = await api.values[`${RANGE_TO_INSERT}:append`].post<AddValuesResponse>(data, query)
 const resultData = result.updates.updatedData.values
 ```
 
@@ -104,8 +104,8 @@ const query: QueryAddOrUpdateRows = {
   valueInputOption: 'USER_ENTERED',
   includeValuesInResponse: true
 }
-const payload: RequestAddOrUpdateValues = { values: [['updatedValue1', 'updatedValue2', 'updatedValue3']] }
-const result = await api.values[RANGE_TO_UPDATE].put<UpdateValuesResponse>(payload, query)
+const data: RequestAddOrUpdateValues = { values: [['updatedValue1', 'updatedValue2', 'updatedValue3']] }
+const result = await api.values[RANGE_TO_UPDATE].put<UpdateValuesResponse>(data, query)
 const resultData = result.updatedData.values
 ```
 

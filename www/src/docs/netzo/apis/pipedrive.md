@@ -65,8 +65,8 @@ Add a new deal.
 ```ts
 import type { AddOrUpdateDealResponse, QueryAddDeal } from 'netzo/apis/pipedrive/types.ts'
 
-const payload: QueryAddDeal = { title: 'New Deal', value: 100 }
-const result = await api.deals.post<AddOrUpdateDealResponse>(payload)
+const data: QueryAddDeal = { title: 'New Deal', value: 100 }
+const result = await api.deals.post<AddOrUpdateDealResponse>(data)
 const resultData = result.data
 ```
 
@@ -77,8 +77,8 @@ Update a deal by id.
 ```ts
 import type { AddOrUpdateDealResponse, QueryUpdateDeal } from 'netzo/apis/pipedrive/types.ts'
 
-const payload: QueryUpdateDeal = { title: 'Updated Title' }
-const result = await api.deals[DEAL_ID].put<AddOrUpdateDealResponse>(payload)
+const data: QueryUpdateDeal = { title: 'Updated Title' }
+const result = await api.deals[DEAL_ID].put<AddOrUpdateDealResponse>(data)
 const resultData = result.data
 ```
 
@@ -124,8 +124,8 @@ Add a new person.
 ```ts
 import type { AddOrUpdatePersonResponse, QueryAddPerson } from 'netzo/apis/pipedrive/types.ts'
 
-const payload: QueryAddPerson = { name: 'John Doe' }
-const result = await api.persons.post<AddOrUpdatePersonResponse>(payload)
+const data: QueryAddPerson = { name: 'John Doe' }
+const result = await api.persons.post<AddOrUpdatePersonResponse>(data)
 const resultData = result.data
 ```
 
@@ -136,8 +136,8 @@ Update a person by id.
 ```ts
 import type { AddOrUpdatePersonResponse, QueryUpdatePerson } from 'netzo/apis/pipedrive/types.ts'
 
-const payload: QueryUpdatePerson = { email: 'updated-email@email.com' }
-const result = await api.persons[PERSON_ID].put<AddOrUpdatePersonResponse>(payload)
+const data: QueryUpdatePerson = { email: 'updated-email@email.com' }
+const result = await api.persons[PERSON_ID].put<AddOrUpdatePersonResponse>(data)
 const resultData = result.data
 ```
 

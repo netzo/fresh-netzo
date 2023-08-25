@@ -60,13 +60,13 @@ Add a document to a collection.
 ```ts
 import type { AddDocumentResponse, QueryAddDocument } from 'netzo/apis/mongodbatlasdata/types.ts'
 
-const payload: QueryAddDocument = {
+const data: QueryAddDocument = {
   dataSource: 'mongodb-atlas',
   database: DATABASE_NAME,
   collection: COLLECTION_NAME,
   document: { DATA_TO_ADD },
 }
-const resultData = await api.action.insertOne.post<AddDocumentResponse>(payload)
+const resultData = await api.action.insertOne.post<AddDocumentResponse>(data)
 ```
 
 ### Update document
@@ -76,14 +76,14 @@ Update a specific document.
 ```ts
 import type { QueryUpdateDocument, UpdateDocumentResponse } from 'netzo/apis/mongodbatlasdata/types.ts'
 
-const payload: QueryUpdateDocument = {
+const data: QueryUpdateDocument = {
   dataSource: 'mongodb-atlas',
   database: DATABASE_NAME,
   collection: COLLECTION_NAME,
   filter: { FILTERS },
   update: { DATA_TO_UPDATE },
 }
-const resultData = await api.action.updateOne.post<UpdateDocumentResponse>(payload)
+const resultData = await api.action.updateOne.post<UpdateDocumentResponse>(data)
 ```
 
 ## References

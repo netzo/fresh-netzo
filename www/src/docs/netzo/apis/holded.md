@@ -59,8 +59,8 @@ Add a new contact.
 ```ts
 import type { ContactResponse, QueryAddContact } from 'netzo/apis/holded/types.ts'
 
-const payload: QueryAddContact = { name: 'New contact name' }
-const resultData = await api.invoicing.v1.contacts.post<ContactResponse>(payload)
+const data: QueryAddContact = { name: 'New contact name' }
+const resultData = await api.invoicing.v1.contacts.post<ContactResponse>(data)
 ```
 
 ### Update contact
@@ -70,8 +70,8 @@ Update a contact by id.
 ```ts
 import type { ContactResponse, QueryUpdateContact } from 'netzo/apis/holded/types.ts'
 
-const payload: QueryUpdateContact = { name: 'Updated contact name' }
-const resultData = await api.invoicing.v1.contacts[CONTACT_ID].put<ContactResponse>(payload)
+const data: QueryUpdateContact = { name: 'Updated contact name' }
+const resultData = await api.invoicing.v1.contacts[CONTACT_ID].put<ContactResponse>(data)
 ```
 
 ### Delete contact

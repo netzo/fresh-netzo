@@ -51,13 +51,13 @@ Add a new contact.
 ```ts
 import type { AddOrUpdateContactResponse, QueryAddOrUpdateContact } from 'netzo/apis/hubspot/types.ts'
 
-const payload: QueryAddOrUpdateContact = {
+const data: QueryAddOrUpdateContact = {
   properties: {
     company: 'Company X',
     email: 'example@email.com'
   }
 }
-const resultData = await api.crm.v3.objects.contacts.post<AddOrUpdateContactResponse>(payload)
+const resultData = await api.crm.v3.objects.contacts.post<AddOrUpdateContactResponse>(data)
 ```
 
 ### Update contact
@@ -67,12 +67,12 @@ Update a contact by id.
 ```ts
 import type { AddOrUpdateContactResponse, QueryAddOrUpdateContact } from 'netzo/apis/hubspot/types.ts'
 
-const payload: QueryAddOrUpdateContact = {
+const data: QueryAddOrUpdateContact = {
   properties: {
     company: 'New Company Name',
   }
 }
-const resultData = await api.crm.v3.objects.contacts[CONTACT_ID].patch<AddOrUpdateContactResponse>(payload)
+const resultData = await api.crm.v3.objects.contacts[CONTACT_ID].patch<AddOrUpdateContactResponse>(data)
 ```
 
 ### Delete contact
@@ -125,13 +125,13 @@ Add a new deal.
 ```ts
 import type { AddDealResponse, QueryAddDeal } from 'netzo/apis/hubspot/types.ts'
 
-const payload: QueryAddDeal = {
+const data: QueryAddDeal = {
   properties: {
     amount: '1000.00',
     dealname: 'New deal'
   }
 }
-const resultData = await api.crm.v3.objects.deals.post<AddDealResponse>(payload)
+const resultData = await api.crm.v3.objects.deals.post<AddDealResponse>(data)
 ```
 
 ## References

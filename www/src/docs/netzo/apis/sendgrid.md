@@ -62,8 +62,8 @@ Update the name of a list.
 ```ts
 import type { QueryUpdateList, UpdateListResponse } from 'netzo/apis/sendgrid/types.ts'
 
-const payload: QueryUpdateList = { name: 'Updated list name' }
-const resultData = await api.marketing.lists[LIST_ID].patch<UpdateListResponse>(payload)
+const data: QueryUpdateList = { name: 'Updated list name' }
+const resultData = await api.marketing.lists[LIST_ID].patch<UpdateListResponse>(data)
 ```
 
 ### Add contacts to list
@@ -73,11 +73,11 @@ Add contacts to one or multiple lists.
 ```ts
 import type { AddContactsResponse, QueryAddContacts } from 'netzo/apis/sendgrid/types.ts'
 
-const payload: QueryAddContacts = {
+const data: QueryAddContacts = {
   list_ids: [LIST_ID1, LIST_ID2],
   contacts: [{ email: 'email@example.com' }]
 }
-const resultData = await api.marketing.contacts.put<AddContactsResponse>(payload)
+const resultData = await api.marketing.contacts.put<AddContactsResponse>(data)
 ```
 
 ### Send email
@@ -87,7 +87,7 @@ Send an email over the API.
 ```ts
 import type { QuerySendEmail } from 'netzo/apis/sendgrid/types.ts'
 
-const payload: QuerySendEmail = {
+const data: QuerySendEmail = {
   personalizations: [
     {
       to: [
@@ -111,7 +111,7 @@ const payload: QuerySendEmail = {
   ]
 }
 
-await api.mail.send.post<void>(payload)
+await api.mail.send.post<void>(data)
 ```
 
 ## References

@@ -50,11 +50,11 @@ Add a new mailing list.
 ```ts
 import type { AddOrUpdateListResponse, QueryAddMailingList } from  'netzo/apis/mailgun/types.ts'
 
-const payload: QueryAddMailingList = { 
+const data: QueryAddMailingList = { 
     address:'list_name@email.com', 
     name: 'Newsletter'
  }
-const result = await api.v3.lists.post<QueryAddMailingList>(payload)
+const result = await api.v3.lists.post<QueryAddMailingList>(data)
 const resultData = result.list
 ```
 
@@ -65,10 +65,10 @@ Update a mailing list by its email address.
 ```ts
 import type { AddOrUpdateListResponse, QueryUpdateMailingList } from  'netzo/apis/mailgun/types.ts'
 
-const payload: QueryUpdateMailingList = { 
+const data: QueryUpdateMailingList = { 
     name: 'Updated name'
  }
-const result = await api.v3.lists[LIST_ADDRESS].put<QueryUpdateMailingList>(payload)
+const result = await api.v3.lists[LIST_ADDRESS].put<QueryUpdateMailingList>(data)
 const resultData = result.list
 ```
 
@@ -79,10 +79,10 @@ Add a new email address to a mailing list.
 ```ts
 import type { AddMemberResponse, QueryAddMember } from  'netzo/apis/mailgun/types.ts'
 
-const payload: QueryAddMember = { 
+const data: QueryAddMember = { 
     address: 'example@email.com'
  }
-const result = await api.v3.lists[LIST_ADDRESS].members.post<QueryUpdateMailingList>(payload)
+const result = await api.v3.lists[LIST_ADDRESS].members.post<QueryUpdateMailingList>(data)
 const resultData = result.member
 ```
 

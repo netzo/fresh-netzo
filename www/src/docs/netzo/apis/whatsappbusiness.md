@@ -53,11 +53,11 @@ Update your business profile.
 ```ts
 import type { QueryUpdateProfile, UpdateProfileResponse } from 'netzo/apis/whatsappbusiness/types.ts'
 
-const payload: QueryUpdateProfile = {
+const data: QueryUpdateProfile = {
   messaging_product: 'whatsapp',
   about: 'About my business'
 }
-const resultData = await api[PHONE_NUMBER_ID].whatsapp_business_profile.post<UpdateProfileResponse>(payload)
+const resultData = await api[PHONE_NUMBER_ID].whatsapp_business_profile.post<UpdateProfileResponse>(data)
  ```
 
 ## References

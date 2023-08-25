@@ -60,12 +60,12 @@ Create a post to the authenticated user's profile.
 ```ts
 import type { Post, QueryPost } from 'netzo/apis/medium/types.ts'
 
-const payload: QueryPost = {
+const data: QueryPost = {
   title: 'New Post',
   contentFormat: 'html',
   content: '<h1>New title</h1><p>This is new post content</p>'
 }
-const result = await api.users[AUTHOR_ID].posts.post<Post>(payload)
+const result = await api.users[AUTHOR_ID].posts.post<Post>(data)
 const resultData = result.data
 ```
 

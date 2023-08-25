@@ -62,8 +62,8 @@ Add a new customer.
 ```ts
 import type { AddOrUpdateCustomerResponse, QueryAddCustomer } from 'netzo/apis/chartmogul/types.ts'
 
-const payload: QueryAddCustomer = { data_source_uuid: DATA_SOURCE_UUID, external_id: EXTERNAL_ID, email: 'example@email.com'; }
-const resultData = await api.customers.post<AddOrUpdateCustomerResponse>(payload)
+const data: QueryAddCustomer = { data_source_uuid: DATA_SOURCE_UUID, external_id: EXTERNAL_ID, email: 'example@email.com'; }
+const resultData = await api.customers.post<AddOrUpdateCustomerResponse>(data)
 ```
 
 ### Update customer
@@ -73,8 +73,8 @@ Update a customer by id.
 ```ts
 import type { AddOrUpdateCustomerResponse, QueryUpdateCustomer } from 'netzo/apis/chartmogul/types.ts'
 
-const payload: QueryUpdateCustomer = { email: 'updated-email@email.com' }
-const resultData = await api.customers[CUSTOMER_UUID].patch<AddOrUpdateCustomerResponse>(payload)
+const data: QueryUpdateCustomer = { email: 'updated-email@email.com' }
+const resultData = await api.customers[CUSTOMER_UUID].patch<AddOrUpdateCustomerResponse>(data)
 ```
 
 ### Delete customer

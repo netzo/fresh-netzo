@@ -74,8 +74,8 @@ Set the content of a campaign by id.
 ```ts
 import type { CampaignContent, QueryUpdateCampaignContent } from 'netzo/apis/mailchimpmarketing/types.ts'
 
-const payload: QueryUpdateCampaignContent = { url: 'html-source@example.com' }
-const resultData = await api.campaigns[CAMPAIGN_ID].content.put<CampaignContent>(payload)
+const data: QueryUpdateCampaignContent = { url: 'html-source@example.com' }
+const resultData = await api.campaigns[CAMPAIGN_ID].content.put<CampaignContent>(data)
 ```
 
 ### Schedule campaign
@@ -85,8 +85,8 @@ Schedule a campaign for delivery.
 ```ts
 import type { QueryScheduleCampaign } from 'netzo/apis/mailchimpmarketing/types.ts'
 
-const payload: QueryScheduleCampaign = { schedule_time: '2024-05-30T15:00' }
-const resultData = await api.campaigns[CAMPAIGN_ID].post<{}>(payload)
+const data: QueryScheduleCampaign = { schedule_time: '2024-05-30T15:00' }
+const resultData = await api.campaigns[CAMPAIGN_ID].post<{}>(data)
 ```
 
 ## References

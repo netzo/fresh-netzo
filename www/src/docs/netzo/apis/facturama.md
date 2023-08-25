@@ -51,13 +51,13 @@ Add a new product.
 ```ts
 import type { Product, QueryAddProduct } from 'netzo/apis/facturama/types.ts'
 
-const payload: QueryAddProduct = {
+const data: QueryAddProduct = {
   name: 'New Product',
   description: 'Product description',
   price: 100,
   unit: 'service'
 }
-const resultData = await api.Product.post<Product>(payload)
+const resultData = await api.Product.post<Product>(data)
 ```
 
 ### Update product
@@ -67,8 +67,8 @@ Update a product by id.
 ```ts
 import type { QueryUpdateProduct } from 'netzo/apis/facturama/types.ts'
 
-const payload: QueryUpdateProduct = { description: 'Updated description' }
-await api.Product[PRODUCT_ID].put<void>(payload)
+const data: QueryUpdateProduct = { description: 'Updated description' }
+await api.Product[PRODUCT_ID].put<void>(data)
 ```
 
 ### Delete product

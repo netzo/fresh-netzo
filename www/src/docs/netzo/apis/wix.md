@@ -66,10 +66,10 @@ Add a new contact.
 ```ts
 import type { Contact, QueryAddContact } from 'netzo/apis/wix/types.ts'
 
-const payload: QueryAddContact = {
+const data: QueryAddContact = {
   info: { name: { first: 'John', last: 'Doe' } }
 }
-const result = await api.contacts.v4.contacts.post<Contact>(payload)
+const result = await api.contacts.v4.contacts.post<Contact>(data)
 const resultData = result.contact
 ```
 
@@ -80,11 +80,11 @@ Update a contact by id.
 ```ts
 import type { Contact, QueryUpdateContact } from 'netzo/apis/wix/types.ts'
 
-const payload: QueryUpdateContact = {
+const data: QueryUpdateContact = {
   revision: REVISION_NUMBER,
   info: { name: { first: 'Jane', last: 'Doe' } }
 }
-const result = await api.contacts.v4.contacts[CONTACT_ID].patch<Contact>(payload)
+const result = await api.contacts.v4.contacts[CONTACT_ID].patch<Contact>(data)
 const resultData = result.contact
 ```
 
