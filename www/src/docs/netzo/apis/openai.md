@@ -36,7 +36,7 @@ The following examples assume you have [created an api client instance](#usage).
 Obtain a model response for the given chat conversation.
 
 ```ts 
-import type { ChatCompletion, QueryChatCompletion } from 'netzo/apis/openai/mod.ts'
+import type { ChatCompletion, QueryChatCompletion } from 'netzo/apis/openai/types.ts'
 
 const payload: QueryChatCompletion = {
     model: 'gpt-3.5-turbo',

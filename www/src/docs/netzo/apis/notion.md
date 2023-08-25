@@ -39,7 +39,7 @@ The following examples assume you have [created an api client instance](#usage).
 Find all the pages that belong to a specific database and match the query.
 
 ```ts
-import type { Pages, QueryDatabase } from 'netzo/apis/notion/mod.ts'
+import type { Pages, QueryDatabase } from 'netzo/apis/notion/types.ts'
 
 const query: QueryDatabase = {}
 const result = await api.databases[DATABASE_ID].query.post<Pages>(query)
@@ -53,7 +53,7 @@ Get a page by id.
 Property ids can be passed as query parameters to limit the search to specific properties.
 
 ```ts
-import type { Page, QueryProperties } from 'netzo/apis/notion/mod.ts'
+import type { Page, QueryProperties } from 'netzo/apis/notion/types.ts'
 
 const query: QueryProperties = {}
 const data = await api.pages[PAGE_ID].get<Page>(query)
@@ -64,7 +64,7 @@ const data = await api.pages[PAGE_ID].get<Page>(query)
 Get the content of a specific page.
 
 ```ts
-import type { Block, NotionPagination } from 'netzo/apis/notion/mod.ts'
+import type { Block, NotionPagination } from 'netzo/apis/notion/types.ts'
 
 const query: NotionPagination = {}
 const result = await api.blocks[PAGE_ID].children.get<Block>(query)
@@ -76,7 +76,7 @@ const data = result.results
 Find all users of the workplace.
 
 ```ts
-import type { NotionPagination, Users } from 'netzo/apis/notion/mod.ts'
+import type { NotionPagination, Users } from 'netzo/apis/notion/types.ts'
 
 const query: NotionPagination = {}
 const result = await api.users.get<Users>(query)

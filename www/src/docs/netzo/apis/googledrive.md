@@ -41,7 +41,7 @@ The following examples assume you have [created an api client instance](#usage).
 Find all files that match the query.
 
 ```ts
-import type { Files, QueryFiles } from 'netzo/apis/googlesheets/mod.ts'
+import type { Files, QueryFiles } from 'netzo/apis/googlesheets/types.ts'
 
 const query: QueryFiles = {}
 const result = await api.files.get<Files>(query)
@@ -53,7 +53,7 @@ const data = result.files
 Get a file by id.
 
 ```ts
-import type { File, QueryFile } from 'netzo/apis/googlesheets/mod.ts'
+import type { File, QueryFile } from 'netzo/apis/googlesheets/types.ts'
 
 const query: QueryFile = {}
 const data = await api.files[FILE_ID].get<File>(query)
@@ -64,7 +64,7 @@ const data = await api.files[FILE_ID].get<File>(query)
 Create a copy of a file and apply updates.
 
 ```ts
-import type { File, QueryCopyFile } from 'netzo/apis/googlesheets/mod.ts'
+import type { File, QueryCopyFile } from 'netzo/apis/googlesheets/types.ts'
 
 const payload: QueryCopyFile = { description: 'Copy of my file' }
 const data = await api.files[FILE_ID].copy.post<File>(payload)

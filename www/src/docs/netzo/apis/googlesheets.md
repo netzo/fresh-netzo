@@ -51,7 +51,7 @@ Get all rows within the specified range.
 The resultToRows function returns your data as key-value pairs, assuming the top row holds the headers. [Find out how to pass custom headers](#function-tip).
 
 ```ts
-import type { ValueRange } from 'netzo/apis/googlesheets/mod.ts'
+import type { ValueRange } from 'netzo/apis/googlesheets/types.ts'
 
 const result = await api.values[RANGE].get<ValueRange>()
 const data = result.values
@@ -65,7 +65,7 @@ Get one row of the spreadsheet by specifying the index.
 The example returns the first row of data, assuming the top row holds the headers. The resultToRows function  returns your data as key-value pairs. [Find out how to pass custom headers](#function-tip).
 
 ```ts
-import type { ValueRange } from 'netzo/apis/googlesheets/mod.ts'
+import type { ValueRange } from 'netzo/apis/googlesheets/types.ts'
 
 const index = 1
 const result = await api.values[RANGE].get<ValueRange>()
@@ -80,7 +80,7 @@ Add a row to the spreadsheet.
 Be sure to keep insertDataOption as INSERT_ROWS, or existing data in your range will be overwritten.
 
 ```ts
-import type { AddValuesResponse, QueryAddOrUpdateRows, RequestAddOrUpdateValues } from 'netzo/apis/googlesheets/mod.ts'
+import type { AddValuesResponse, QueryAddOrUpdateRows, RequestAddOrUpdateValues } from 'netzo/apis/googlesheets/types.ts'
 
 const query: QueryAddOrUpdateRows = {
   valueInputOption: 'USER_ENTERED',
@@ -98,7 +98,7 @@ const data = result.updates.updatedData.values
 Update a row by specifying the range.
 
 ```ts
-import type { QueryAddOrUpdateRows, RequestAddOrUpdateValues, UpdateValuesResponse } from 'netzo/apis/googlesheets/mod.ts'
+import type { QueryAddOrUpdateRows, RequestAddOrUpdateValues, UpdateValuesResponse } from 'netzo/apis/googlesheets/types.ts'
 
 const query: QueryAddOrUpdateRows = {
   valueInputOption: 'USER_ENTERED',
@@ -114,7 +114,7 @@ const data = result.updatedData.values
 Delete a row by specifying the range.
 
 ```ts
-import type { DeleteValuesResponse } from 'netzo/apis/googlesheets/mod.ts'
+import type { DeleteValuesResponse } from 'netzo/apis/googlesheets/types.ts'
 
 const data = await api.values[`${RANGE_TO_DELETE}:clear`].post<DeleteValuesResponse>()
  ```

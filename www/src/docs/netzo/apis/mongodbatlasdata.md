@@ -38,7 +38,7 @@ The following examples assume you have [created an api client instance](#usage).
 Find all documents that match a query.
 
 ```ts
-import type { Documents, QueryDocuments } from 'netzo/apis/mongodbatlasdata/mod.ts'
+import type { Documents, QueryDocuments } from 'netzo/apis/mongodbatlasdata/types.ts'
 
 const query: QueryDocuments = {
   dataSource: 'mongodb-atlas',
@@ -58,7 +58,7 @@ const data = result.documents
 Add a document to a collection.
 
 ```ts
-import type { AddDocumentResponse, QueryAddDocument } from 'netzo/apis/mongodbatlasdata/mod.ts'
+import type { AddDocumentResponse, QueryAddDocument } from 'netzo/apis/mongodbatlasdata/types.ts'
 
 const payload: QueryAddDocument = {
   dataSource: 'mongodb-atlas',
@@ -74,7 +74,7 @@ const data = await api.action.insertOne.post<AddDocumentResponse>(payload)
 Update a specific document.
 
 ```ts
-import type { QueryUpdateDocument, UpdateDocumentResponse } from 'netzo/apis/mongodbatlasdata/mod.ts'
+import type { QueryUpdateDocument, UpdateDocumentResponse } from 'netzo/apis/mongodbatlasdata/types.ts'
 
 const payload: QueryUpdateDocument = {
   dataSource: 'mongodb-atlas',

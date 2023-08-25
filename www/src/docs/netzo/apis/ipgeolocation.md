@@ -40,7 +40,7 @@ The following examples assume you have [created an api client instance](#usage).
 Get geolocation based on provided IP address.
 
 ```ts
-import type { Geolocation } from 'netzo/apis/ipgeolocation/mod.ts'
+import type { Geolocation } from 'netzo/apis/ipgeolocation/types.ts'
 
 const data = await api.ipgeo.get<Geolocation>({ ip: IP_ADDRESS })
 ```

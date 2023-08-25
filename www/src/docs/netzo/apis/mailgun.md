@@ -36,7 +36,7 @@ The following examples assume you have [created an api client instance](#usage).
 Find all mailing lists.
 
 ```ts
-import type { MailingLists, QueryMailingLists } from  'netzo/apis/mailgun/mod.ts'
+import type { MailingLists, QueryMailingLists } from  'netzo/apis/mailgun/types.ts'
 
 const query: QueryMailingLists = {}
 const result = await api.v3.lists.pages.get<MailingLists>(query)
@@ -48,7 +48,7 @@ const data = result.items
 Add a new mailing list.
 
 ```ts
-import type { AddOrUpdateListResponse, QueryAddMailingList } from  'netzo/apis/mailgun/mod.ts'
+import type { AddOrUpdateListResponse, QueryAddMailingList } from  'netzo/apis/mailgun/types.ts'
 
 const payload: QueryAddMailingList = { 
     address:'list_name@email.com', 
@@ -63,7 +63,7 @@ const data = result.list
 Update a mailing list by its email address.
 
 ```ts
-import type { AddOrUpdateListResponse, QueryUpdateMailingList } from  'netzo/apis/mailgun/mod.ts'
+import type { AddOrUpdateListResponse, QueryUpdateMailingList } from  'netzo/apis/mailgun/types.ts'
 
 const payload: QueryUpdateMailingList = { 
     name: 'Updated name'
@@ -77,7 +77,7 @@ const data = result.list
 Add a new email address to a mailing list.
 
 ```ts
-import type { AddMemberResponse, QueryAddMember } from  'netzo/apis/mailgun/mod.ts'
+import type { AddMemberResponse, QueryAddMember } from  'netzo/apis/mailgun/types.ts'
 
 const payload: QueryAddMember = { 
     address: 'example@email.com'
@@ -91,7 +91,7 @@ const data = result.member
 Remove an email from a mailing list.
 
 ```ts
-import type { DeleteMemberResponse } from  'netzo/apis/mailgun/mod.ts'
+import type { DeleteMemberResponse } from  'netzo/apis/mailgun/types.ts'
 
 const data = await api.v3.lists[LIST_ADDRESS].members[MEMBER_ADDRESS].delete<DeleteMemberResponse>()
 ```

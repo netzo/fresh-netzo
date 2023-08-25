@@ -30,7 +30,7 @@ The following examples assume you have [created an api client instance](#usage).
 Find all todos.
 
 ```ts
-import type { Todo } from 'netzo/apis/jsonplaceholder/mod.ts'
+import type { Todo } from 'netzo/apis/jsonplaceholder/types.ts'
 
 const data = await api.todos.get<Todo[]>()
 ```
@@ -40,7 +40,7 @@ const data = await api.todos.get<Todo[]>()
 Get todo by id.
 
 ```ts
-import type { Todo } from 'netzo/apis/jsonplaceholder/mod.ts'
+import type { Todo } from 'netzo/apis/jsonplaceholder/types.ts'
 
 const data = await api.todos[TODO_ID].get<Todo>()
 ```
@@ -50,7 +50,7 @@ const data = await api.todos[TODO_ID].get<Todo>()
 Add a new todo.
 
 ```ts
-import type { QueryAddTodo, Todo } from 'netzo/apis/jsonplaceholder/mod.ts'
+import type { QueryAddTodo, Todo } from 'netzo/apis/jsonplaceholder/types.ts'
 
 const payload: QueryAddTodo = {
   userId: 1,
@@ -64,7 +64,7 @@ const data = await api.todos.post<Todo>(payload)
 Update a todo by id.
 
 ```ts
-import type { Todo } from 'netzo/apis/jsonplaceholder/mod.ts'
+import type { Todo } from 'netzo/apis/jsonplaceholder/types.ts'
 
 const payload: Todo = {
   userId: 1,

@@ -36,7 +36,7 @@ The following examples assume you have [created an api client instance](#usage).
 Find all publications a user is subscribed to, writes to, or edits.
 
 ```ts
-import type { Publications } from 'netzo/apis/medium/mod.ts'
+import type { Publications } from 'netzo/apis/medium/types.ts'
 
 const result = await api.users[USER_ID].publications.get<Publications>()
 const data = result.data
@@ -47,7 +47,7 @@ const data = result.data
 Get the authenticated user's info.
 
 ```ts
-import type { User } from 'netzo/apis/medium/mod.ts'
+import type { User } from 'netzo/apis/medium/types.ts'
 
 const result = await api.me.get<User>()
 const data = result.data
@@ -58,7 +58,7 @@ const data = result.data
 Create a post to the authenticated user's profile.
 
 ```ts
-import type { Post, QueryPost } from 'netzo/apis/medium/mod.ts'
+import type { Post, QueryPost } from 'netzo/apis/medium/types.ts'
 
 const payload: QueryPost = {
   title: 'New Post',

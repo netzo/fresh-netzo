@@ -40,7 +40,7 @@ The following examples assume you have [created an api client instance](#usage).
 Find all customers that match the query.
 
 ```ts
-import type { Customers, QueryCustomers } from 'netzo/apis/shopify/mod.ts'
+import type { Customers, QueryCustomers } from 'netzo/apis/shopify/types.ts'
 
 const query: QueryCustomers = {}
 const result = await api['customers.json'].get<Customers>(query)
@@ -54,7 +54,7 @@ Get a customer by id.
 To limit the search to certain fields, specify a comma-separated list of field names.
 
 ```ts
-import type { Customer } from 'netzo/apis/shopify/mod.ts'
+import type { Customer } from 'netzo/apis/shopify/types.ts'
 
 const query: { fields: string } = {}
 const result = await api.customers[`${CUSTOMER_ID}.json`].get<Customer>(fields)
@@ -66,7 +66,7 @@ const data = result.customer
 Find all orders belonging to a specific customer.
 
 ```ts
-import type { OrderStatus, OrdersByCustomer } from 'netzo/apis/shopify/mod.ts'
+import type { OrderStatus, OrdersByCustomer } from 'netzo/apis/shopify/types.ts'
 
 const query: OrderStatus = 'any'
 const result = await api.customers[CUSTOMER_ID]['orders.json'].get<OrdersByCustomer>(query)
@@ -78,7 +78,7 @@ const data = result.orders
 Add a new customer.
 
 ```ts
-import type { AddOrUpdateCustomer, AddOrUpdateCustomerResponse } from 'netzo/apis/shopify/mod.ts'
+import type { AddOrUpdateCustomer, AddOrUpdateCustomerResponse } from 'netzo/apis/shopify/types.ts'
 
 const payload: AddOrUpdateCustomer = {
   customer: {
@@ -96,7 +96,7 @@ const data = result.customer
 Update a customer by id.
 
 ```ts
-import type { AddOrUpdateCustomer, AddOrUpdateCustomerResponse } from 'netzo/apis/shopify/mod.ts'
+import type { AddOrUpdateCustomer, AddOrUpdateCustomerResponse } from 'netzo/apis/shopify/types.ts'
 
 const payload: AddOrUpdateCustomer = {
   customer: {
@@ -112,7 +112,7 @@ const data = result.customer
 Find all orders that match the query.
 
 ```ts
-import type { Orders, QueryOrders } from 'netzo/apis/shopify/mod.ts'
+import type { Orders, QueryOrders } from 'netzo/apis/shopify/types.ts'
 
 const query: QueryOrders = {}
 const result = await api['orders.json'].get<Orders>(query)
@@ -126,7 +126,7 @@ Get an order by id.
 To limit the search to certain fields, specify a comma-separated list of field names.
 
 ```ts
-import type { Order } from 'netzo/apis/shopify/mod.ts'
+import type { Order } from 'netzo/apis/shopify/types.ts'
 
 const query: { fields: string } = {}
 const result = await api.orders[`${ORDER_ID}.json`].get<Order>(fields)
@@ -138,7 +138,7 @@ const data = result.order
 Find all products that match the query.
 
 ```ts
-import type { Products, QueryProducts } from 'netzo/apis/shopify/mod.ts'
+import type { Products, QueryProducts } from 'netzo/apis/shopify/types.ts'
 
 const query: QueryProducts = {}
 const result = await api['products.json'].get<Products>(query)
@@ -152,7 +152,7 @@ Get a product by id.
 To limit the search to certain fields, specify a comma-separated list of field names.
 
 ```ts
-import type { Product } from 'netzo/apis/shopify/mod.ts'
+import type { Product } from 'netzo/apis/shopify/types.ts'
 
 const query: { fields: string } = {}
 const result = await api.products[`${PRODUCT_ID}.json`].get<Product>(fields)
@@ -164,7 +164,7 @@ const data = result.product
 Find all payouts that match the query.
 
 ```ts
-import type { Payouts, QueryPayouts } from 'netzo/apis/shopify/mod.ts'
+import type { Payouts, QueryPayouts } from 'netzo/apis/shopify/types.ts'
 
 const query: QueryPayouts = {}
 const result = await api.shopify_payments['payouts.json'].get<Payouts>(query)

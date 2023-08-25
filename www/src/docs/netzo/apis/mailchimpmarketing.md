@@ -38,7 +38,7 @@ The following examples assume you have [created an api client instance](#usage).
 Find all campaigns that match the query.
 
 ```ts
-import type { Campaigns, QueryCampaigns } from 'netzo/apis/mailchimpmarketing/mod.ts'
+import type { Campaigns, QueryCampaigns } from 'netzo/apis/mailchimpmarketing/types.ts'
 
 const query: QueryCampaigns = {}
 const result = await api.campaigns.get<Campaigns>(query)
@@ -50,7 +50,7 @@ const data = result.campaigns
 Get a campaign by id.
 
 ```ts
-import type { Campaign, QueryCampaign } from 'netzo/apis/mailchimpmarketing/mod.ts'
+import type { Campaign, QueryCampaign } from 'netzo/apis/mailchimpmarketing/types.ts'
 
 const query: QueryCampaign = {}
 const data = await api.campaigns[CAMPAIGN_ID].get<Campaign>(query)
@@ -61,7 +61,7 @@ const data = await api.campaigns[CAMPAIGN_ID].get<Campaign>(query)
 Get the content of a campaign by id.
 
 ```ts
-import type { CampaignContent, QueryCampaign } from 'netzo/apis/mailchimpmarketing/mod.ts'
+import type { CampaignContent, QueryCampaign } from 'netzo/apis/mailchimpmarketing/types.ts'
 
 const query: QueryCampaign = {}
 const data = await api.campaigns[CAMPAIGN_ID].content.get<CampaignContent>(query)
@@ -72,7 +72,7 @@ const data = await api.campaigns[CAMPAIGN_ID].content.get<CampaignContent>(query
 Set the content of a campaign by id.
 
 ```ts
-import type { CampaignContent, QueryUpdateCampaignContent } from 'netzo/apis/mailchimpmarketing/mod.ts'
+import type { CampaignContent, QueryUpdateCampaignContent } from 'netzo/apis/mailchimpmarketing/types.ts'
 
 const payload: QueryUpdateCampaignContent = { url: 'html-source@example.com' }
 const data = await api.campaigns[CAMPAIGN_ID].content.put<CampaignContent>(payload)
@@ -83,7 +83,7 @@ const data = await api.campaigns[CAMPAIGN_ID].content.put<CampaignContent>(paylo
 Schedule a campaign for delivery.
 
 ```ts
-import type { QueryScheduleCampaign } from 'netzo/apis/mailchimpmarketing/mod.ts'
+import type { QueryScheduleCampaign } from 'netzo/apis/mailchimpmarketing/types.ts'
 
 const payload: QueryScheduleCampaign = { schedule_time: '2024-05-30T15:00' }
 const data = await api.campaigns[CAMPAIGN_ID].post<{}>(payload)

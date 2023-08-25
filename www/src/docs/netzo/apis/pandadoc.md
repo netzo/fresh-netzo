@@ -37,7 +37,7 @@ The following examples assume you have [created an api client instance](#usage).
 Find all documents that match the query.
 
 ```ts
-import type { Documents, QueryDocuments } from 'netzo/apis/pandadoc/mod.ts'
+import type { Documents, QueryDocuments } from 'netzo/apis/pandadoc/types.ts'
 
 const query: QueryDocuments = {}
 const result = await api.documents.get<Documents>(query)
@@ -49,7 +49,7 @@ const data = result.results
 Get all details of a document by id.
 
 ```ts
-import type { Document } from 'netzo/apis/pandadoc/mod.ts'
+import type { Document } from 'netzo/apis/pandadoc/types.ts'
 
 const data = await api.documents[DOCUMENT_ID].details.get<Document>()
 ```
@@ -59,7 +59,7 @@ const data = await api.documents[DOCUMENT_ID].details.get<Document>()
 Update a document by id.
 
 ```ts
-import type { QueryAddDocument } from 'netzo/apis/pandadoc/mod.ts'
+import type { QueryAddDocument } from 'netzo/apis/pandadoc/types.ts'
 
 const payload: QueryAddDocument = {
   recipients: {
@@ -83,7 +83,7 @@ await api.documents[DOCUMENT_ID].delete<void>()
 Find all contacts associated with the workspace.
 
 ```ts
-import type { Contacts } from 'netzo/apis/pandadoc/mod.ts'
+import type { Contacts } from 'netzo/apis/pandadoc/types.ts'
 
 const result = await api.contacts.get<Contacts>()
 const data = result.results
@@ -94,7 +94,7 @@ const data = result.results
 Add a new contact.
 
 ```ts
-import type { Contact, QueryAddContact } from 'netzo/apis/pandadoc/mod.ts'
+import type { Contact, QueryAddContact } from 'netzo/apis/pandadoc/types.ts'
 
 const payload: QueryAddContact = { email: 'email@example.com' }
 const data = await api.contacts.post<Contact>(payload)

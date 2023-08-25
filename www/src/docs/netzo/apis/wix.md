@@ -40,7 +40,7 @@ The following examples assume you have [created an api client instance](#usage).
 Get the properties of your site.
 
 ```ts
-import type { QuerySite, Site } from 'netzo/apis/wix/mod.ts'
+import type { QuerySite, Site } from 'netzo/apis/wix/types.ts'
 
 const query: QuerySite = {}
 const result = await api['site-properties'].v4.properties.get<Site>(query)
@@ -52,7 +52,7 @@ const data = result.properties
 Find visitors who have shared contact information with the site.
 
 ```ts
-import type { Contacts, QueryContacts } from 'netzo/apis/wix/mod.ts'
+import type { Contacts, QueryContacts } from 'netzo/apis/wix/types.ts'
 
 const query: QueryContacts = {}
 const result = await api.contacts.v4.contacts.get<Contacts>(query)
@@ -64,7 +64,7 @@ const data = result.contacts
 Add a new contact.
 
 ```ts
-import type { Contact, QueryAddContact } from 'netzo/apis/wix/mod.ts'
+import type { Contact, QueryAddContact } from 'netzo/apis/wix/types.ts'
 
 const payload: QueryAddContact = {
   info: { name: { first: 'John', last: 'Doe' } }
@@ -78,7 +78,7 @@ const data = result.contact
 Update a contact by id.
 
 ```ts
-import type { Contact, QueryUpdateContact } from 'netzo/apis/wix/mod.ts'
+import type { Contact, QueryUpdateContact } from 'netzo/apis/wix/types.ts'
 
 const payload: QueryUpdateContact = {
   revision: REVISION_NUMBER,

@@ -37,7 +37,7 @@ The following examples assume you have [created an api client instance](#usage).
 Find all your contact lists.
 
 ```ts
-import type { Lists, QueryLists } from 'netzo/apis/sendgrid/mod.ts'
+import type { Lists, QueryLists } from 'netzo/apis/sendgrid/types.ts'
 
 const query: QueryLists = {}
 const result = await api.marketing.lists.get<Lists>(query)
@@ -49,7 +49,7 @@ const data = result.result
 Get a list by id.
 
 ```ts
-import type { List, QueryList } from 'netzo/apis/sendgrid/mod.ts'
+import type { List, QueryList } from 'netzo/apis/sendgrid/types.ts'
 
 const query: QueryList = {}
 const data = await api.marketing.lists[LIST_ID].get<List>(query)
@@ -60,7 +60,7 @@ const data = await api.marketing.lists[LIST_ID].get<List>(query)
 Update the name of a list.
 
 ```ts
-import type { QueryUpdateList, UpdateListResponse } from 'netzo/apis/sendgrid/mod.ts'
+import type { QueryUpdateList, UpdateListResponse } from 'netzo/apis/sendgrid/types.ts'
 
 const payload: QueryUpdateList = { name: 'Updated list name' }
 const data = await api.marketing.lists[LIST_ID].patch<UpdateListResponse>(payload)
@@ -71,7 +71,7 @@ const data = await api.marketing.lists[LIST_ID].patch<UpdateListResponse>(payloa
 Add contacts to one or multiple lists.
 
 ```ts
-import type { AddContactsResponse, QueryAddContacts } from 'netzo/apis/sendgrid/mod.ts'
+import type { AddContactsResponse, QueryAddContacts } from 'netzo/apis/sendgrid/types.ts'
 
 const payload: QueryAddContacts = {
   list_ids: [LIST_ID1, LIST_ID2],
@@ -85,7 +85,7 @@ const data = await api.marketing.contacts.put<AddContactsResponse>(payload)
 Send an email over the API.
 
 ```ts
-import type { QuerySendEmail } from 'netzo/apis/sendgrid/mod.ts'
+import type { QuerySendEmail } from 'netzo/apis/sendgrid/types.ts'
 
 const payload: QuerySendEmail = {
   personalizations: [

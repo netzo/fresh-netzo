@@ -39,7 +39,7 @@ The following examples assume you have [created an api client instance](#usage).
 Find records in a table.
 
 ```ts
-import type { QueryRecords, Records } from 'netzo/apis/googleappsheet/mod.ts'
+import type { QueryRecords, Records } from 'netzo/apis/googleappsheet/types.ts'
 
 const query: QueryRecords = { Action: 'Find' }
 const result = await api[TABLE_NAME].Action.get<Records>(query)
@@ -51,7 +51,7 @@ const data = result.Rows
 Add one or multiple rows to a table.
 
 ```ts
-import type { QueryAddRecords, Records } from 'netzo/apis/googleappsheet/mod.ts'
+import type { QueryAddRecords, Records } from 'netzo/apis/googleappsheet/types.ts'
 
 const payload: QueryAddRecords = {
   Action: 'Add',
@@ -70,7 +70,7 @@ Update one or multiple rows.
 In the request, each row must include the key fields and values that identify the row to be updated.
 
 ```ts
-import type { QueryUpdateRecords, Records } from 'netzo/apis/googleappsheet/mod.ts'
+import type { QueryUpdateRecords, Records } from 'netzo/apis/googleappsheet/types.ts'
 
 const payload: QueryUpdateRecords = {
   Action: 'Edit',
@@ -90,7 +90,7 @@ Delete one or multiple rows.
 In the request, the row to be deleted is identified by the key fields and values specific to the app.
 
 ```ts
-import type { QueryDeleteRecords, Records } from 'netzo/apis/googleappsheet/mod.ts'
+import type { QueryDeleteRecords, Records } from 'netzo/apis/googleappsheet/types.ts'
 
 const query: QueryDeleteRecords = {
   Action: 'Delete',

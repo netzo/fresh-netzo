@@ -37,7 +37,7 @@ The following examples assume you have [created an api client instance](#usage).
 Find all contacts that match the query.
 
 ```ts
-import type { Contacts, QueryContacts } from 'netzo/apis/hubspot/mod.ts'
+import type { Contacts, QueryContacts } from 'netzo/apis/hubspot/types.ts'
 
 const query: QueryContacts = {}
 const result = await api.crm.v3.objects.contacts.get<Contacts>(query)
@@ -49,7 +49,7 @@ const data = result.results
 Add a new contact.
 
 ```ts
-import type { AddOrUpdateContactResponse, QueryAddOrUpdateContact } from 'netzo/apis/hubspot/mod.ts'
+import type { AddOrUpdateContactResponse, QueryAddOrUpdateContact } from 'netzo/apis/hubspot/types.ts'
 
 const payload: QueryAddOrUpdateContact = {
   properties: {
@@ -65,7 +65,7 @@ const data = await api.crm.v3.objects.contacts.post<AddOrUpdateContactResponse>(
 Update a contact by id.
 
 ```ts
-import type { AddOrUpdateContactResponse, QueryAddOrUpdateContact } from 'netzo/apis/hubspot/mod.ts'
+import type { AddOrUpdateContactResponse, QueryAddOrUpdateContact } from 'netzo/apis/hubspot/types.ts'
 
 const payload: QueryAddOrUpdateContact = {
   properties: {
@@ -88,7 +88,7 @@ await api.crm.v3.objects.contacts[CONTACT_ID].delete<void>()
 Find all forms that match the query.
 
 ```ts
-import type { Form, QueryForms } from 'netzo/apis/hubspot/mod.ts'
+import type { Form, QueryForms } from 'netzo/apis/hubspot/types.ts'
 
 const query: QueryForms = {}
 const data = await api.forms.v2.forms.get<Form[]>(query)
@@ -99,7 +99,7 @@ const data = await api.forms.v2.forms.get<Form[]>(query)
 Find all submissions that correspond to a specific form.
 
 ```ts
-import type { FormSubmissions, QuerySubmissions } from 'netzo/apis/hubspot/mod.ts'
+import type { FormSubmissions, QuerySubmissions } from 'netzo/apis/hubspot/types.ts'
 
 const query: QuerySubmissions = {}
 const result = await api['form-integrations'].v1.submissions.forms[FORM_ID].get<FormSubmissions>(query)
@@ -111,7 +111,7 @@ const data = result.results
 Find all deals that match the query.
 
 ```ts
-import type { Deals, QueryDeals } from 'netzo/apis/hubspot/mod.ts'
+import type { Deals, QueryDeals } from 'netzo/apis/hubspot/types.ts'
 
 const query: QueryDeals = {}
 const result = await api.crm.v3.objects.deals.get<Deals>(query)
@@ -123,7 +123,7 @@ const data = result.results
 Add a new deal.
 
 ```ts
-import type { AddDealResponse, QueryAddDeal } from 'netzo/apis/hubspot/mod.ts'
+import type { AddDealResponse, QueryAddDeal } from 'netzo/apis/hubspot/types.ts'
 
 const payload: QueryAddDeal = {
   properties: {
