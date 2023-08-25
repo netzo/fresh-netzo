@@ -1,4 +1,4 @@
-import { z } from "https://deno.land/x/zod/mod.ts";
+import { z } from "../deps.ts";
 
 export const userSchema = z.object({
   data: z.object({
