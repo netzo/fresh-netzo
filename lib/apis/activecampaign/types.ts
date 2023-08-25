@@ -1,505 +1,551 @@
-export interface Contacts {
-  scoreValues: Array<any>;
-  contacts: Array<{
-    cdate: string;
-    email: string;
-    phone: string;
-    firstName: string;
-    lastName: string;
-    orgid: string;
-    segmentio_id: string;
-    bounced_hard: string;
-    bounced_soft: string;
-    bounced_date?: string;
-    ip: string;
-    ua?: string;
-    hash: string;
-    socialdata_lastcheck?: string;
-    email_local: string;
-    email_domain: string;
-    sentcnt: string;
-    rating_tstamp?: string;
-    gravatar: string;
-    deleted: string;
-    anonymized: string;
-    udate: string;
-    deleted_at?: string;
-    scoreValues: Array<any>;
-    links: {
-      bounceLogs: string;
-      contactAutomations: string;
-      contactData: string;
-      contactGoals: string;
-      contactLists: string;
-      contactLogs: string;
-      contactTags: string;
-      contactDeals: string;
-      deals: string;
-      fieldValues: string;
-      geoIps: string;
-      notes: string;
-      organization: string;
-      plusAppend: string;
-      trackingLogs: string;
-      scoreValues: string;
-    };
-    id: string;
-    organization: any;
-    adate?: string;
-    edate?: string;
-  }>;
-  meta: {
-    total: string;
-    page_input: {
-      segmentid: number;
-      formid: number;
-      listid: number;
-      tagid: number;
-      limit: number;
-      offset: number;
-      search: any;
-      sort: any;
-      seriesid: number;
-      waitid: number;
-      status: number;
-      forceQuery: number;
-      cacheid: string;
-    };
-  };
-}
+import { z } from "https://deno.land/x/zod/mod.ts";
 
-export interface Contact {
-  contactAutomations: Array<{
-    contact: string;
-    seriesid: string;
-    startid: string;
-    status: string;
-    adddate: string;
-    remdate: any;
-    timespan: any;
-    lastblock: string;
-    lastdate: string;
-    completedElements: string;
-    totalElements: string;
-    completed: number;
-    completeValue: number;
-    links: {
-      automation: string;
-      contact: string;
-      contactGoals: string;
-    };
-    id: string;
-    automation: string;
-  }>;
-  contactLists: Array<{
-    contact: string;
-    list: string;
-    form: any;
-    seriesid: string;
-    sdate: any;
-    udate: any;
-    status: string;
-    responder: string;
-    sync: string;
-    unsubreason: any;
-    campaign: any;
-    message: any;
-    first_name: string;
-    last_name: string;
-    ip4Sub: string;
-    sourceid: string;
-    autosyncLog: any;
-    ip4_last: string;
-    ip4Unsub: string;
-    unsubscribeAutomation: any;
-    links: {
-      automation: string;
-      list: string;
-      contact: string;
-      form: string;
-      autosyncLog: string;
-      campaign: string;
-      unsubscribeAutomation: string;
-      message: string;
-    };
-    id: string;
-    automation: any;
-  }>;
-  deals: Array<{
-    owner: string;
-    contact: string;
-    organization: any;
-    group: any;
-    title: string;
-    nexttaskid: string;
-    currency: string;
-    status: string;
-    links: {
-      activities: string;
-      contact: string;
-      contactDeals: string;
-      group: string;
-      nextTask: string;
-      notes: string;
-      organization: string;
-      owner: string;
-      scoreValues: string;
-      stage: string;
-      tasks: string;
-    };
-    id: string;
-    nextTask: any;
-  }>;
-  fieldValues: Array<{
-    contact: string;
-    field: string;
-    value: any;
-    cdate: string;
-    udate: string;
-    links: {
-      owner: string;
-      field: string;
-    };
-    id: string;
-    owner: string;
-  }>;
-  geoAddresses: Array<{
-    ip4: string;
-    country2: string;
-    country: string;
-    state: string;
-    city: string;
-    zip: string;
-    area: string;
-    lat: string;
-    lon: string;
-    tz: string;
-    tstamp: string;
-    links: Array<any>;
-    id: string;
-  }>;
-  geoIps: Array<{
-    contact: string;
-    campaignid: string;
-    messageid: string;
-    geoaddrid: string;
-    ip4: string;
-    tstamp: string;
-    geoAddress: string;
-    links: {
-      geoAddress: string;
-    };
-    id: string;
-  }>;
-  contact: {
-    cdate: string;
-    email: string;
-    phone: string;
-    firstName: string;
-    lastName: string;
-    orgid: string;
-    segmentio_id: string;
-    bounced_hard: string;
-    bounced_soft: string;
-    bounced_date: any;
-    ip: string;
-    ua: any;
-    hash: string;
-    socialdata_lastcheck: any;
-    email_local: string;
-    email_domain: string;
-    sentcnt: string;
-    rating_tstamp: any;
-    gravatar: string;
-    deleted: string;
-    adate: any;
-    udate: any;
-    edate: any;
-    contactAutomations: Array<string>;
-    contactLists: Array<string>;
-    fieldValues: Array<string>;
-    geoIps: Array<string>;
-    deals: Array<string>;
-    accountContacts: Array<string>;
-    links: {
-      bounceLogs: string;
-      contactAutomations: string;
-      contactData: string;
-      contactGoals: string;
-      contactLists: string;
-      contactLogs: string;
-      contactTags: string;
-      contactDeals: string;
-      deals: string;
-      fieldValues: string;
-      geoIps: string;
-      notes: string;
-      organization: string;
-      plusAppend: string;
-      trackingLogs: string;
-      scoreValues: string;
-    };
-    id: string;
-    organization: any;
-  };
-}
+export const contactSchema = z.object({
+  contactAutomations: z.array(
+    z.object({
+      contact: z.string(),
+      seriesid: z.string(),
+      startid: z.string(),
+      status: z.string(),
+      adddate: z.string(),
+      remdate: z.any(),
+      timespan: z.any(),
+      lastblock: z.string(),
+      lastdate: z.string(),
+      completedElements: z.string(),
+      totalElements: z.string(),
+      completed: z.number(),
+      completeValue: z.number(),
+      links: z.object({
+        automation: z.string(),
+        contact: z.string(),
+        contactGoals: z.string()
+      }),
+      id: z.string(),
+      automation: z.string()
+    })
+  ),
+  contactLists: z.array(
+    z.object({
+      contact: z.string(),
+      list: z.string(),
+      form: z.any(),
+      seriesid: z.string(),
+      sdate: z.any(),
+      udate: z.any(),
+      status: z.string(),
+      responder: z.string(),
+      sync: z.string(),
+      unsubreason: z.any(),
+      campaign: z.any(),
+      message: z.any(),
+      first_name: z.string(),
+      last_name: z.string(),
+      ip4Sub: z.string(),
+      sourceid: z.string(),
+      autosyncLog: z.any(),
+      ip4_last: z.string(),
+      ip4Unsub: z.string(),
+      unsubscribeAutomation: z.any(),
+      links: z.object({
+        automation: z.string(),
+        list: z.string(),
+        contact: z.string(),
+        form: z.string(),
+        autosyncLog: z.string(),
+        campaign: z.string(),
+        unsubscribeAutomation: z.string(),
+        message: z.string()
+      }),
+      id: z.string(),
+      automation: z.any()
+    })
+  ),
+  deals: z.array(
+    z.object({
+      owner: z.string(),
+      contact: z.string(),
+      organization: z.any(),
+      group: z.any(),
+      title: z.string(),
+      nexttaskid: z.string(),
+      currency: z.string(),
+      status: z.string(),
+      links: z.object({
+        activities: z.string(),
+        contact: z.string(),
+        contactDeals: z.string(),
+        group: z.string(),
+        nextTask: z.string(),
+        notes: z.string(),
+        organization: z.string(),
+        owner: z.string(),
+        scoreValues: z.string(),
+        stage: z.string(),
+        tasks: z.string()
+      }),
+      id: z.string(),
+      nextTask: z.any()
+    })
+  ),
+  fieldValues: z.array(
+    z.object({
+      contact: z.string(),
+      field: z.string(),
+      value: z.any(),
+      cdate: z.string(),
+      udate: z.string(),
+      links: z.object({
+        owner: z.string(),
+        field: z.string()
+      }),
+      id: z.string(),
+      owner: z.string()
+    })
+  ),
+  geoAddresses: z.array(
+    z.object({
+      ip4: z.string(),
+      country2: z.string(),
+      country: z.string(),
+      state: z.string(),
+      city: z.string(),
+      zip: z.string(),
+      area: z.string(),
+      lat: z.string(),
+      lon: z.string(),
+      tz: z.string(),
+      tstamp: z.string(),
+      links: z.array(z.any()),
+      id: z.string()
+    })
+  ),
+  geoIps: z.array(
+    z.object({
+      contact: z.string(),
+      campaignid: z.string(),
+      messageid: z.string(),
+      geoaddrid: z.string(),
+      ip4: z.string(),
+      tstamp: z.string(),
+      geoAddress: z.string(),
+      links: z.object({
+        geoAddress: z.string()
+      }),
+      id: z.string()
+    })
+  ),
+  contact: z.object({
+    cdate: z.string(),
+    email: z.string(),
+    phone: z.string(),
+    firstName: z.string(),
+    lastName: z.string(),
+    orgid: z.string(),
+    segmentio_id: z.string(),
+    bounced_hard: z.string(),
+    bounced_soft: z.string(),
+    bounced_date: z.any(),
+    ip: z.string(),
+    ua: z.any(),
+    hash: z.string(),
+    socialdata_lastcheck: z.any(),
+    email_local: z.string(),
+    email_domain: z.string(),
+    sentcnt: z.string(),
+    rating_tstamp: z.any(),
+    gravatar: z.string(),
+    deleted: z.string(),
+    adate: z.any(),
+    udate: z.any(),
+    edate: z.any(),
+    contactAutomations: z.array(z.string()),
+    contactLists: z.array(z.string()),
+    fieldValues: z.array(z.string()),
+    geoIps: z.array(z.string()),
+    deals: z.array(z.string()),
+    accountContacts: z.array(z.string()),
+    links: z.object({
+      bounceLogs: z.string(),
+      contactAutomations: z.string(),
+      contactData: z.string(),
+      contactGoals: z.string(),
+      contactLists: z.string(),
+      contactLogs: z.string(),
+      contactTags: z.string(),
+      contactDeals: z.string(),
+      deals: z.string(),
+      fieldValues: z.string(),
+      geoIps: z.string(),
+      notes: z.string(),
+      organization: z.string(),
+      plusAppend: z.string(),
+      trackingLogs: z.string(),
+      scoreValues: z.string()
+    }),
+    id: z.string(),
+    organization: z.any()
+  })
+}).deepPartial()
 
-export interface QueryContacts {
-  ids?: string;
-  email?: string;
-  email_like?: string;
-  exclude?: number;
-  formid?: number;
-  id_greater?: number;
-  id_less?: number;
-  listid?: string;
-  organization?: number;
-  search?: string;
-  segmentid?: number;
-  seriesid?: number;
-  status?: number;
-  tagid?: number;
-  filters: {
-    created_before?: string;
-    updated_before?: string;
-    updated_after?: string;
-  };
-  waitid?: number;
-  orders: {
-    cdate?: string;
-    email?: string;
-    first_name?: string;
-    last_name?: string;
-    name?: string;
-    score?: string;
-  };
-  in_group_lists?: string;
-}
+export const contactsSchema = z.object({
+  scoreValues: z.array(z.any()),
+  contacts: z.array(
+    z.object({
+      cdate: z.string(),
+      email: z.string(),
+      phone: z.string(),
+      firstName: z.string(),
+      lastName: z.string(),
+      orgid: z.string(),
+      segmentio_id: z.string(),
+      bounced_hard: z.string(),
+      bounced_soft: z.string(),
+      bounced_date: z.string().optional(),
+      ip: z.string(),
+      ua: z.string().optional(),
+      hash: z.string(),
+      socialdata_lastcheck: z.string().optional(),
+      email_local: z.string(),
+      email_domain: z.string(),
+      sentcnt: z.string(),
+      rating_tstamp: z.string().optional(),
+      gravatar: z.string(),
+      deleted: z.string(),
+      anonymized: z.string(),
+      udate: z.string(),
+      deleted_at: z.string().optional(),
+      scoreValues: z.array(z.any()),
+      links: z.object({
+        bounceLogs: z.string(),
+        contactAutomations: z.string(),
+        contactData: z.string(),
+        contactGoals: z.string(),
+        contactLists: z.string(),
+        contactLogs: z.string(),
+        contactTags: z.string(),
+        contactDeals: z.string(),
+        deals: z.string(),
+        fieldValues: z.string(),
+        geoIps: z.string(),
+        notes: z.string(),
+        organization: z.string(),
+        plusAppend: z.string(),
+        trackingLogs: z.string(),
+        scoreValues: z.string()
+      }),
+      id: z.string(),
+      organization: z.any(),
+      adate: z.string().optional(),
+      edate: z.string().optional()
+    })
+  ),
+  meta: z.object({
+    total: z.string(),
+    page_input: z.object({
+      segmentid: z.number(),
+      formid: z.number(),
+      listid: z.number(),
+      tagid: z.number(),
+      limit: z.number(),
+      offset: z.number(),
+      search: z.any(),
+      sort: z.any(),
+      seriesid: z.number(),
+      waitid: z.number(),
+      status: z.number(),
+      forceQuery: z.number(),
+      cacheid: z.string()
+    })
+  })
+}).deepPartial()
 
-export interface QueryAddContact {
-  contact: {
-    email: string;
-    firstName?: string;
-    lastName?: string;
-    phone?: string;
-    fieldValues?: Array<{
-      [fieldId: string]: any;
-    }>;
-  };
-}
+export const queryContactsSchema = z.object({
+  ids: z.string().optional(),
+  email: z.string().optional(),
+  email_like: z.string().optional(),
+  exclude: z.number().optional(),
+  formid: z.number().optional(),
+  id_greater: z.number().optional(),
+  id_less: z.number().optional(),
+  listid: z.string().optional(),
+  organization: z.number().optional(),
+  search: z.string().optional(),
+  segmentid: z.number().optional(),
+  seriesid: z.number().optional(),
+  status: z.number().optional(),
+  tagid: z.number().optional(),
+  filters: z.object({
+    created_before: z.string().optional(),
+    updated_before: z.string().optional(),
+    updated_after: z.string().optional()
+  }),
+  waitid: z.number().optional(),
+  orders: z.object({
+    cdate: z.string().optional(),
+    email: z.string().optional(),
+    first_name: z.string().optional(),
+    last_name: z.string().optional(),
+    name: z.string().optional(),
+    score: z.string().optional()
+  }),
+  in_group_lists: z.string().optional()
+})
 
-export type QueryUpdateContact = Partial<QueryAddContact>;
+export const queryAddContactSchema = z.object({
+  contact: z.object({
+    email: z.string(),
+    firstName: z.string().optional(),
+    lastName: z.string().optional(),
+    phone: z.string().optional(),
+    fieldValues: z.array(z.record(z.any())).optional()
+  })
+})
 
-export interface AddOrUpdateContactResponse {
-  fieldValues: Array<{
-    contact: string;
-    field: string;
-    value: string;
-    cdate: string;
-    udate: string;
-    links: {
-      owner: string;
-      field: string;
-    };
-    id: string;
-    owner: string;
-  }>;
-  contact: {
-    email: string;
-    cdate: string;
-    udate: string;
-    orgid: string;
-    links: {
-      bounceLogs: string;
-      contactAutomations: string;
-      contactData: string;
-      contactGoals: string;
-      contactLists: string;
-      contactLogs: string;
-      contactTags: string;
-      contactDeals: string;
-      deals: string;
-      fieldValues: string;
-      geoIps: string;
-      notes: string;
-      organization: string;
-      plusAppend: string;
-      trackingLogs: string;
-      scoreValues: string;
-    };
-    id: string;
-    organization: string;
-  };
-}
+export const queryUpdateContactSchema = queryAddContactSchema.deepPartial()
 
-export interface Deals {
-  deals: Array<{
-    owner?: string;
-    contact?: string;
-    organization?: string;
-    group?: string;
-    stage?: string;
-    title: string;
-    description?: string;
-    percent?: string;
-    cdate?: string;
-    mdate?: string;
-    nextdate?: string;
-    nexttaskid?: string;
-    value?: string;
-    currency?: string;
-    winProbability?: number;
-    winProbabilityMdate?: string;
-    status?: string;
-    activitycount?: string;
-    nextdealid?: string;
-    edate?: string;
-    links?: {
-      dealActivities: string;
-      contact: string;
-      contactDeals: string;
-      group: string;
-      nextTask: string;
-      notes: string;
-      account?: string;
-      customerAccount?: string;
-      organization: string;
-      owner: string;
-      scoreValues: string;
-      stage: string;
-      tasks: string;
-      dealCustomFieldData?: string;
-    };
-    id: string;
-    isDisabled: any;
-    account?: string;
-    customerAccount?: string;
-    hash?: string;
-    nextTask?: string;
-  }>;
-  meta: {
-    currencies: {
-      USD: {
-        currency: string;
-        total: string;
-        value: string;
-      };
-    };
-    total: number;
-  };
-}
+export const addOrUpdateContactResponseSchema = z.object({
+  fieldValues: z.array(
+    z.object({
+      contact: z.string(),
+      field: z.string(),
+      value: z.string(),
+      cdate: z.string(),
+      udate: z.string(),
+      links: z.object({
+        owner: z.string(),
+        field: z.string()
+      }),
+      id: z.string(),
+      owner: z.string()
+    })
+  ),
+  contact: z.object({
+    email: z.string(),
+    cdate: z.string(),
+    udate: z.string(),
+    orgid: z.string(),
+    links: z.object({
+      bounceLogs: z.string(),
+      contactAutomations: z.string(),
+      contactData: z.string(),
+      contactGoals: z.string(),
+      contactLists: z.string(),
+      contactLogs: z.string(),
+      contactTags: z.string(),
+      contactDeals: z.string(),
+      deals: z.string(),
+      fieldValues: z.string(),
+      geoIps: z.string(),
+      notes: z.string(),
+      organization: z.string(),
+      plusAppend: z.string(),
+      trackingLogs: z.string(),
+      scoreValues: z.string()
+    }),
+    id: z.string(),
+    organization: z.string()
+  })
+}).deepPartial()
 
-export interface FilterDeals {
-  filters?: {
-    search?: string;
-    search_field?: string;
-    title?: string;
-    stage?: number;
-    group?: number;
-    status?: number;
-    owner?: number;
-    nextdate_range?: string;
-    tag?: string;
-    tasktype?: string;
-    created_before?: Date;
-    created_after?: Date;
-    updated_before?: Date;
-    updated_after?: Date;
-    organization?: number;
-    minimum_value?: number;
-    maximum_value?: number;
-    score_greater_than?: string;
-    score_less_than?: string;
-    score?: string;
-  };
-  orders?: {
-    title?: string;
-    value?: string;
-    cdate?: string;
-    contact_name?: string;
-    contact_orgname?: string;
-    next_action?: string; //CHECK
-  };
-}
+export const dealsSchema = z.object({
+  deals: z.array(
+    z.object({
+      owner: z.string().optional(),
+      contact: z.string().optional(),
+      organization: z.string().optional(),
+      group: z.string().optional(),
+      stage: z.string().optional(),
+      title: z.string(),
+      description: z.string().optional(),
+      percent: z.string().optional(),
+      cdate: z.string().optional(),
+      mdate: z.string().optional(),
+      nextdate: z.string().optional(),
+      nexttaskid: z.string().optional(),
+      value: z.string().optional(),
+      currency: z.string().optional(),
+      winProbability: z.number().optional(),
+      winProbabilityMdate: z.string().optional(),
+      status: z.string().optional(),
+      activitycount: z.string().optional(),
+      nextdealid: z.string().optional(),
+      edate: z.string().optional(),
+      links: z
+        .object({
+          dealActivities: z.string(),
+          contact: z.string(),
+          contactDeals: z.string(),
+          group: z.string(),
+          nextTask: z.string(),
+          notes: z.string(),
+          account: z.string().optional(),
+          customerAccount: z.string().optional(),
+          organization: z.string(),
+          owner: z.string(),
+          scoreValues: z.string(),
+          stage: z.string(),
+          tasks: z.string(),
+          dealCustomFieldData: z.string().optional()
+        })
+        .optional(),
+      id: z.string(),
+      isDisabled: z.any(),
+      account: z.string().optional(),
+      customerAccount: z.string().optional(),
+      hash: z.string().optional(),
+      nextTask: z.string().optional()
+    })
+  ),
+  meta: z.object({
+    currencies: z.object({
+      USD: z.object({
+        currency: z.string(),
+        total: z.string(),
+        value: z.string()
+      })
+    }),
+    total: z.number()
+  })
+}).deepPartial()
 
-export interface Accounts {
-  accounts: Array<{
-    name: string;
-    accountUrl: any;
-    createdTimestamp: string;
-    updatedTimestamp: string;
-    contactCount: string;
-    dealCount: string;
-    links: {
-      notes: string;
-      accountCustomFieldData: string;
-      accountContacts: string;
-    };
-    id: string;
-  }>;
-  meta: {
-    total: string;
-  };
-}
+export const filterDealsSchema = z.object({
+  filters: z
+    .object({
+      search: z.string().optional(),
+      search_field: z.string().optional(),
+      title: z.string().optional(),
+      stage: z.number().optional(),
+      group: z.number().optional(),
+      status: z.number().optional(),
+      owner: z.number().optional(),
+      nextdate_range: z.string().optional(),
+      tag: z.string().optional(),
+      tasktype: z.string().optional(),
+      created_before: z.date().optional(),
+      created_after: z.date().optional(),
+      updated_before: z.date().optional(),
+      updated_after: z.date().optional(),
+      organization: z.number().optional(),
+      minimum_value: z.number().optional(),
+      maximum_value: z.number().optional(),
+      score_greater_than: z.string().optional(),
+      score_less_than: z.string().optional(),
+      score: z.string().optional()
+    })
+    .optional(),
+  orders: z
+    .object({
+      title: z.string().optional(),
+      value: z.string().optional(),
+      cdate: z.string().optional(),
+      contact_name: z.string().optional(),
+      contact_orgname: z.string().optional(),
+      next_action: z.string().optional()
+    })
+    .optional()
+})
 
-export interface QueryAccounts {
-  search?: string;
-  count_deals?: boolean;
-}
+export const accountsSchema = z.object({
+  accounts: z.array(
+    z.object({
+      name: z.string(),
+      accountUrl: z.any(),
+      createdTimestamp: z.string(),
+      updatedTimestamp: z.string(),
+      contactCount: z.string(),
+      dealCount: z.string(),
+      links: z.object({
+        notes: z.string(),
+        accountCustomFieldData: z.string(),
+        accountContacts: z.string()
+      }),
+      id: z.string()
+    })
+  ),
+  meta: z.object({
+    total: z.string()
+  })
+}).deepPartial()
 
-export interface Users {
-  users: Array<{
-    username: string;
-    firstName: string;
-    lastName: string;
-    email: string;
-    phone: string;
-    signature: any;
-    links: {
-      lists: string;
-      userGroup: string;
-      dealGroupTotals: string;
-      dealGroupUsers: string;
-      configs: string;
-    };
-    id: string;
-  }>;
-  meta: {
-    total: string;
-  };
-}
+export const queryAccountsSchema = z.object({
+  search: z.string().optional(),
+  count_deals: z.boolean().optional()
+})
 
-export interface QueryAddUser {
-  user?: {
-    username?: string;
-    email?: string;
-    firstName?: string;
-    lastName?: string;
-    group?: number;
-    password?: string;
-  };
-}
+export const usersSchema = z.object({
+  users: z.array(
+    z.object({
+      username: z.string(),
+      firstName: z.string(),
+      lastName: z.string(),
+      email: z.string(),
+      phone: z.string(),
+      signature: z.any(),
+      links: z.object({
+        lists: z.string(),
+        userGroup: z.string(),
+        dealGroupTotals: z.string(),
+        dealGroupUsers: z.string(),
+        configs: z.string()
+      }),
+      id: z.string()
+    })
+  ),
+  meta: z.object({
+    total: z.string()
+  })
+}).deepPartial()
 
-export interface AddUserResponse {
-  user: {
-    username: string;
-    email: string;
-    firstName: string;
-    lastName: string;
-    lang: string;
-    localZoneid: string;
-    cdate: string;
-    udate: string;
-    links: {
-      lists: string;
-      userGroup: string;
-      dealGroupTotals: string;
-      dealGroupUsers: string;
-      configs: string;
-      dealConnection: string;
-      userConversationsPermission: string;
-      seatUser: string;
-    };
-    id: string;
-  };
-}
+export const queryAddUserSchema = z.object({
+  user: z.object({
+      username: z.string().optional(),
+      email: z.string().optional(),
+      firstName: z.string().optional(),
+      lastName: z.string().optional(),
+      group: z.number().optional(),
+      password: z.string().optional()
+    })
+    .optional()
+})
+
+export const addUserResponseSchema = z.object({
+  user: z.object({
+    username: z.string(),
+    email: z.string(),
+    firstName: z.string(),
+    lastName: z.string(),
+    lang: z.string(),
+    localZoneid: z.string(),
+    cdate: z.string(),
+    udate: z.string(),
+    links: z.object({
+      lists: z.string(),
+      userGroup: z.string(),
+      dealGroupTotals: z.string(),
+      dealGroupUsers: z.string(),
+      configs: z.string(),
+      dealConnection: z.string(),
+      userConversationsPermission: z.string(),
+      seatUser: z.string()
+    }),
+    id: z.string()
+  })
+}).deepPartial()
+
+// types:
+
+export type Contact = z.infer<typeof contactSchema>
+export type Contacts = z.infer<typeof contactsSchema>
+export type QueryContacts = z.infer<typeof queryContactsSchema>
+export type QueryAddContact = z.infer<typeof queryAddContactSchema>
+export type QueryUpdateContact = z.infer<typeof queryUpdateContactSchema>
+export type AddOrUpdateContactResponse = z.infer<typeof addOrUpdateContactResponseSchema>
+export type Deals = z.infer<typeof dealsSchema>
+export type FilterDeals = z.infer<typeof filterDealsSchema>
+export type Accounts = z.infer<typeof accountsSchema>
+export type QueryAccounts = z.infer<typeof queryAccountsSchema>
+export type Users = z.infer<typeof usersSchema>
+export type QueryAddUser = z.infer<typeof queryAddUserSchema>
+export type AddUserResponse = z.infer<typeof addUserResponseSchema>
+

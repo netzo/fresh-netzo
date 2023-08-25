@@ -1,187 +1,228 @@
-interface ContactBase {
-  properties: {
-    company: string;
-    createdate: string;
-    email: string;
-    firstname: string;
-    lastmodifieddate: string;
-    lastname: string;
-    phone: string;
-    website: string;
-  };
-}
+import { z } from "https://deno.land/x/zod/mod.ts";
 
-export interface Contacts {
-  results: ContactBase[];
-  paging: {
-    next: {
-      after: string;
-      link: string;
-    };
-  };
-}
+const contactBaseSchema = z.object({
+  properties: z.object({
+    company: z.string(),
+    createdate: z.string(),
+    email: z.string(),
+    firstname: z.string(),
+    lastmodifieddate: z.string(),
+    lastname: z.string(),
+    phone: z.string(),
+    website: z.string()
+  })
+})
 
-export interface QueryContacts {
-  limit?: number;
-  after?: string;
-  properties?: [];
-}
+export const contactsSchema = z.object({
+  results: z.array(contactBaseSchema),
+  paging: z.object({
+    next: z.object({
+      after: z.string(),
+      link: z.string()
+    })
+  })
+})
 
-export interface QueryAddOrUpdateContact {
-  properties?: Partial<
-    Omit<ContactBase["properties"], "createdate" | "lastmodifieddate">
-  >;
-}
+export const queryContactsSchema = z.object({
+  limit: z.number().optional(),
+  after: z.string().optional(),
+  properties: z.tuple([]).optional()
+})
 
-export interface AddOrUpdateContactResponse extends ContactBase {
-  id: string;
-  createdAt: string;
-  updatedAt: string;
-  archived: boolean;
-}
+export const queryAddOrUpdateContactSchema = z.object({
+  properties: contactBaseSchema.shape.properties.omit({
+    createdate: true,
+    lastmodifieddate: true
+  })
+})
 
-export interface Form {
-  portalId: number;
-  guid: string;
-  name: string;
-  action: string;
-  method: string;
-  cssClass: string;
-  redirect: string;
-  submitText: string;
-  followUpId: string;
-  notifyRecipients: string;
-  leadNurturingCampaignId: string;
-  formFieldGroups: Array<{
-    fields: Array<{
-      name: string;
-      label: string;
-      type: string;
-      fieldType: string;
-      description: string;
-      groupName: string;
-      displayOrder: number;
-      required: boolean;
-      selectedOptions: Array<any>;
-      options: Array<any>;
-      validation: {
-        name: string;
-        message: string;
-        data: string;
-        useDefaultBlockList: boolean;
-        blockedEmailAddresses: Array<any>;
-      };
-      enabled: boolean;
-      hidden: boolean;
-      defaultValue: string;
-      isSmartField: boolean;
-      unselectedLabel: string;
-      placeholder: string;
-      dependentFieldFilters: Array<any>;
-      labelHidden: boolean;
-    }>;
-    default: boolean;
-    isSmartGroup: boolean;
-    richText: {
-      content: string;
-    };
-  }>;
-  createdAt: number;
-  updatedAt: number;
-  performableHtml: string;
-  migratedFrom: string;
-  ignoreCurrentValues: boolean;
-  metaData: Array<any>;
-  deletable: boolean;
-  inlineMessage: string;
-  tmsId: string;
-  captchaEnabled: boolean;
-  campaignGuid: string;
-  cloneable: boolean;
-  editable: boolean;
-  formType: string;
-}
+export const addOrUpdateContactResponseSchema = contactBaseSchema.extend({
+  id: z.string(),
+  createdAt: z.string(),
+  updatedAt: z.string(),
+  archived: z.boolean()
+})
 
-export interface QueryForms {
-  limit?: number;
-  offset?: number;
-  formTypes?: "ALL";
-}
+export const formSchema = z.object({
+  portalId: z.number(),
+  guid: z.string(),
+  name: z.string(),
+  action: z.string(),
+  method: z.string(),
+  cssClass: z.string(),
+  redirect: z.string(),
+  submitText: z.string(),
+  followUpId: z.string(),
+  notifyRecipients: z.string(),
+  leadNurturingCampaignId: z.string(),
+  formFieldGroups: z.array(
+    z.object({
+      fields: z.array(
+        z.object({
+          name: z.string(),
+          label: z.string(),
+          type: z.string(),
+          fieldType: z.string(),
+          description: z.string(),
+          groupName: z.string(),
+          displayOrder: z.number(),
+          required: z.boolean(),
+          selectedOptions: z.array(z.any()),
+          options: z.array(z.any()),
+          validation: z.object({
+            name: z.string(),
+            message: z.string(),
+            data: z.string(),
+            useDefaultBlockList: z.boolean(),
+            blockedEmailAddresses: z.array(z.any())
+          }),
+          enabled: z.boolean(),
+          hidden: z.boolean(),
+          defaultValue: z.string(),
+          isSmartField: z.boolean(),
+          unselectedLabel: z.string(),
+          placeholder: z.string(),
+          dependentFieldFilters: z.array(z.any()),
+          labelHidden: z.boolean()
+        })
+      ),
+      default: z.boolean(),
+      isSmartGroup: z.boolean(),
+      richText: z.object({
+        content: z.string()
+      })
+    })
+  ),
+  createdAt: z.number(),
+  updatedAt: z.number(),
+  performableHtml: z.string(),
+  migratedFrom: z.string(),
+  ignoreCurrentValues: z.boolean(),
+  metaData: z.array(z.any()),
+  deletable: z.boolean(),
+  inlineMessage: z.string(),
+  tmsId: z.string(),
+  captchaEnabled: z.boolean(),
+  campaignGuid: z.string(),
+  cloneable: z.boolean(),
+  editable: z.boolean(),
+  formType: z.string()
+})
 
-export interface FormSubmissions {
-  results: Array<{
-    submittedAt: number;
-    values: Array<{
-      name: string;
-      value: string;
-    }>;
-    pageUrl?: string;
-  }>;
-  paging: {
-    next: {
-      after: string;
-      link: string;
-    };
-  };
-}
+export const queryFormsSchema = z.object({
+  limit: z.number().optional(),
+  offset: z.number().optional(),
+  formTypes: z.literal("ALL").optional()
+})
 
-export interface QuerySubmissions {
-  limit?: number;
-  after?: string;
-}
+export const formSubmissionsSchema = z.object({
+  results: z.array(
+    z.object({
+      submittedAt: z.number(),
+      values: z.array(
+        z.object({
+          name: z.string(),
+          value: z.string()
+        })
+      ),
+      pageUrl: z.string().optional()
+    })
+  ),
+  paging: z.object({
+    next: z.object({
+      after: z.string(),
+      link: z.string()
+    })
+  })
+})
 
-export interface QueryDeals {
-  limit?: number;
-  after?: string;
-  properties?: string[];
-}
+export const querySubmissionsSchema = z.object({
+  limit: z.number().optional(),
+  after: z.string().optional()
+})
 
-interface DealBase {
-  properties: {
-    amount: string;
-    closedate: string;
-    createdate: string;
-    dealname: string;
-    dealstage: string;
-    hs_lastmodifieddate: string;
-    hubspot_owner_id: string;
-    pipeline: string;
-  };
-}
+export const queryDealsSchema = z.object({
+  limit: z.number().optional(),
+  after: z.string().optional(),
+  properties: z.array(z.string()).optional()
+})
 
-export interface Deals {
-  results: DealBase[];
-  paging: {
-    next: {
-      after: string;
-      link: string;
-    };
-  };
-}
+const dealBaseSchema = z.object({
+  properties: z.object({
+    amount: z.string(),
+    closedate: z.string(),
+    createdate: z.string(),
+    dealname: z.string(),
+    dealstage: z.string(),
+    hs_lastmodifieddate: z.string(),
+    hubspot_owner_id: z.string(),
+    pipeline: z.string()
+  })
+})
 
-export interface QueryAddDeal {
-  properties?: {
-    amount?: string;
-    closedate?: string;
-    dealname?: string;
-    dealstage?: string;
-    hubspot_owner_id?: string;
-    pipeline?: string;
-  };
-  associations?: Array<{
-    to?: {
-      id?: string;
-    };
-    types?: Array<{
-      associationCategory?: string;
-      associationTypeId?: number;
-    }>;
-  }>;
-}
+export const dealsSchema = z.object({
+  results: z.array(dealBaseSchema),
+  paging: z.object({
+    next: z.object({
+      after: z.string(),
+      link: z.string()
+    })
+  })
+})
 
-export interface AddDealResponse extends DealBase {
-  id: string;
-  createdAt: string;
-  updatedAt: string;
-  archived: boolean;
-}
+export const queryAddDealSchema = z.object({
+  properties: z
+    .object({
+      amount: z.string().optional(),
+      closedate: z.string().optional(),
+      dealname: z.string().optional(),
+      dealstage: z.string().optional(),
+      hubspot_owner_id: z.string().optional(),
+      pipeline: z.string().optional()
+    })
+    .optional(),
+  associations: z
+    .array(
+      z.object({
+        to: z
+          .object({
+            id: z.string().optional()
+          })
+          .optional(),
+        types: z
+          .array(
+            z.object({
+              associationCategory: z.string().optional(),
+              associationTypeId: z.number().optional()
+            })
+          )
+          .optional()
+      })
+    )
+    .optional()
+})
+
+export const addDealResponseSchema = dealBaseSchema.extend({
+  id: z.string(),
+  createdAt: z.string(),
+  updatedAt: z.string(),
+  archived: z.boolean()
+})
+
+//types:
+
+export type Contacts = z.infer<typeof contactsSchema>
+export type QueryContacts = z.infer<typeof queryContactsSchema>
+export type QueryAddOrUpdateContact = z.infer<typeof queryAddOrUpdateContactSchema>
+export type AddOrUpdateContactResponse = z.infer<typeof addOrUpdateContactResponseSchema>
+export type Form = z.infer<typeof formSchema>
+export type QueryForms = z.infer<typeof queryFormsSchema>
+export type FormSubmissions = z.infer<typeof formSubmissionsSchema>
+export type QuerySubmissions = z.infer<typeof querySubmissionsSchema>
+export type QueryDeals = z.infer<typeof queryDealsSchema>
+export type DealBase = z.infer<typeof dealBaseSchema>
+export type Deals = z.infer<typeof dealsSchema>
+export type QueryAddDeal = z.infer<typeof queryAddDealSchema>
+export type AddDealResponse = z.infer<typeof addDealResponseSchema>
+
+
