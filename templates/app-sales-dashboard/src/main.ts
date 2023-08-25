@@ -4,16 +4,16 @@
 /// <reference lib="dom.asynciterable" />
 /// <reference lib="deno.ns" />
 
-import "std/dotenv/load.ts";
+import 'std/dotenv/load.ts'
 
-import { start } from "$fresh/server.ts";
-import manifest from "./fresh.gen.ts";
+import { unocss } from 'netzo/ui/plugins/mod.ts'
+import manifest from './fresh.gen.ts'
 
-import { unocss } from "netzo/plugins/mod.ts";
-import { presetNetzo } from "netzo/ui/unocss.ts";
+import unoConfig from './uno.config.ts'
+import { start } from '$fresh/server.ts'
 
 await start(manifest, {
   plugins: [
-    unocss({ presets: [presetNetzo()] }),
+    unocss(unoConfig),
   ],
-});
+})

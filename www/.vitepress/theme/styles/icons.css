@@ -1,0 +1,28 @@
+.i-mdi-check,
+.i-mdi-check-circle {
+  color: #49D08E;
+}
+
+.i-mdi-check-circle-outline {
+  color: var(--vp-c-secondary);
+}
+
+.i-mdi-nodejs {
+  color: #026E00;
+}
+
+.i-mdi-toolbox {
+  color: #C20002;
+}
+
+.i-mdi-package-variant-closed {
+  background: #BB8E51; /* cardboard brown */
+}
+
+.i-mdi-asterisk {
+  background: #44c47d;
+}
+
+.i-mdi-console {
+  background: var(--vp-c-text-1);
+}

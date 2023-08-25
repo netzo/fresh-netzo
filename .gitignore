@@ -2,6 +2,10 @@
 _wip
 *.options.ts
 
+# www
+www/.vitepress/cache
+www/.vitepress/dist
+
 # Logs
 logs
 *.log
@@ -83,6 +87,8 @@ web_modules/
 .env.test.local
 .env.production.local
 .env.local
+
+_fresh
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache

@@ -1,4 +1,4 @@
-import { cn } from "netzo/ui/utils/mod.ts";
+import { cn } from "netzo/ui/components/utils.ts";
 
 function Skeleton({
   className,

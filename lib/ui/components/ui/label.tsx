@@ -8,7 +8,7 @@ import {
   type Ref,
   useState,
 } from "preact/compat";
-import { cn } from "netzo/ui/utils/mod.ts";
+import { cn } from "netzo/ui/components/utils.ts";
 
 const labelVariants = cva(
   "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",

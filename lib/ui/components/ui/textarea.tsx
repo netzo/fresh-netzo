@@ -5,7 +5,7 @@ import {
   type Ref,
   useState,
 } from "preact/compat";
-import { cn } from "netzo/ui/utils/mod.ts";
+import { cn } from "netzo/ui/components/utils.ts";
 
 export interface TextareaProps
   extends JSX.HTMLAttributes<HTMLTextAreaElement> {}

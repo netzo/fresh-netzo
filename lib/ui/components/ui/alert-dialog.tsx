@@ -7,7 +7,7 @@ import {
   type Ref,
   useState,
 } from "preact/compat";
-import { cn } from "netzo/ui/utils/mod.ts";
+import { cn } from "netzo/ui/components/utils.ts";
 import { buttonVariants } from "netzo/ui/components/ui/button.tsx";
 
 const AlertDialog = AlertDialogPrimitive.Root;

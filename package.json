@@ -1,0 +1,42 @@
+{
+  "name": "@netzo/netzo",
+  "type": "module",
+  "version": "0.1.0",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "scripts": {
+    "www:dev": "vitepress dev www",
+    "www:build": "vitepress build www && tsx ./www/.vitepress/plugins/gen-feed.plugin",
+    "www:serve": "vitepress serve www",
+    "www:lint": "eslint 'www/**/*.{js,ts,vue,md}' --ignore-path .gitignore",
+    "www:lint:fix": "eslint 'www/**/*.{js,ts,vue,md}' --ignore-path .gitignore --fix"
+  },
+  "dependencies": {
+    "@formkit/vue": "^1.0.0-beta.11",
+    "@vueuse/components": "^9.6.0",
+    "@vueuse/core": "^9.6.0"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^0.31.0",
+    "@iconify/json": "^2.2.71",
+    "@mermaid-js/mermaid-mindmap": "^9.3.0",
+    "@types/eslint": "^8.37.0",
+    "@types/markdown-it": "^12.2.3",
+    "@types/node": "^18.11.9",
+    "eslint": "^8.37.0",
+    "feed": "^4.2.2",
+    "gray-matter": "^4.0.3",
+    "mermaid": "^8.14.0",
+    "sitemap": "^7.1.1",
+    "tsx": "^3.12.1",
+    "unocss": "^0.46.5",
+    "unplugin-auto-import": "^0.11.5",
+    "unplugin-vue-components": "^0.22.11",
+    "vite": "^3.2.7",
+    "vite-plugin-vue-devtools": "^0.0.5",
+    "vitepress": "^1.0.0-beta.1",
+    "vitepress-plugin-mermaid": "^2.0.10",
+    "vue": "^3.3.4"
+  }
+}

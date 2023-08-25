@@ -1,0 +1,13 @@
+{
+  "extends": "@antfu",
+  "rules": {
+    "antfu/if-newline": "off",
+    "antfu/generic-spacing": "off",
+    "vue/component-name-in-template-casing": "off",
+    "vue/multi-word-component-names": "off",
+    "vue/no-multiple-template-root": "off",
+    "no-redeclare": "off",
+    "import/named": "off",
+    "no-console": "off"
+  }
+}
