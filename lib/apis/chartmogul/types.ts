@@ -1,221 +1,257 @@
-export interface Customer {
-  id: number;
-  uuid: string;
-  external_id: string;
-  external_ids: string[];
-  data_source_uuid: string;
-  data_source_uuids: string[];
-  name: string;
-  company: string;
-  email: string;
-  status: string;
-  lead_created_at: string;
-  free_trial_started_at: string;
-  customer_since: string;
-  city: string;
-  state: string;
-  country: string;
-  zip: string;
-  attributes: {
-    tags: string[];
-    stripe: any;
-    clearbit: any;
-    custom: any;
-  };
-  address: {
-    address_zip: string;
-    city: string;
-    country: string;
-    state: string;
-  };
-  mrr: number;
-  arr: number;
-  "billing-system-url": string;
-  "chartmogul-url": string;
-  "billing-system-type": string;
-  currency: string;
-  "currency-sign": string;
-}
+import { z } from "https://deno.land/x/zod/mod.ts";
 
-export interface Customers {
-  entries: Array<Customer>;
-  has_more: boolean;
-  per_page: number;
-  page: number;
-  current_page: number;
-  total_pages: number;
-}
+export const customerSchema = z.object({
+  id: z.number(),
+  uuid: z.string(),
+  external_id: z.string(),
+  external_ids: z.array(z.string()),
+  data_source_uuid: z.string(),
+  data_source_uuids: z.array(z.string()),
+  name: z.string(),
+  company: z.string(),
+  email: z.string(),
+  status: z.string(),
+  lead_created_at: z.string(),
+  free_trial_started_at: z.string(),
+  customer_since: z.string(),
+  city: z.string(),
+  state: z.string(),
+  country: z.string(),
+  zip: z.string(),
+  attributes: z.object({
+    tags: z.array(z.string()),
+    stripe: z.any(),
+    clearbit: z.any(),
+    custom: z.any()
+  }),
+  address: z.object({
+    address_zip: z.string(),
+    city: z.string(),
+    country: z.string(),
+    state: z.string()
+  }),
+  mrr: z.number(),
+  arr: z.number(),
+  "billing-system-url": z.string(),
+  "chartmogul-url": z.string(),
+  "billing-system-type": z.string(),
+  currency: z.string(),
+  "currency-sign": z.string()
+}).deepPartial()
 
-export interface QueryCustomers {
-  data_source_uuid?: string;
-  external_id?: string;
-  status?: "Lead" | "Active" | "Past_Due" | "Cancelled";
-  system?: string;
-  page?: number;
-  per_page?: number;
-}
+export const customersSchema = z.object({
+  entries: z.array(customerSchema),
+  has_more: z.boolean(),
+  per_page: z.number(),
+  page: z.number(),
+  current_page: z.number(),
+  total_pages: z.number()
+}).deepPartial()
 
-export interface QueryAddCustomer {
-  data_source_uuid: string;
-  external_id: string;
-  name?: string;
-  email?: string;
-  company?: string;
-  country?: string;
-  state?: string;
-  city?: string;
-  zip?: string;
-  lead_created_at?: string;
-  free_trial_started_at?: string;
-  owner?: string;
-  attributes?: {
-    tags?: Array<string>;
-    custom?: Array<{
-      type: string;
-      key: string;
-      value: string;
-      source?: string;
-    }>;
-  };
-  primary_contact?: {
-    first_name?: string;
-    last_name?: string;
-    email?: string;
-    title?: string;
-    phone?: string;
-    linked_in?: string;
-    twitter?: string;
-    notes?: string;
-  };
-}
+export const queryCustomersSchema = z.object({
+  data_source_uuid: z.string().optional(),
+  external_id: z.string().optional(),
+  status: z
+    .union([
+      z.literal("Lead"),
+      z.literal("Active"),
+      z.literal("Past_Due"),
+      z.literal("Cancelled")
+    ])
+    .optional(),
+  system: z.string().optional(),
+  page: z.number().optional(),
+  per_page: z.number().optional()
+})
 
-export interface AddOrUpdateCustomerResponse {
-  id: number;
-  uuid: string;
-  external_id: string;
-  name: string;
-  email: string;
-  status: string;
-  "customer-since": any;
-  attributes: {
-    custom: {
-      [key: string]: any;
-    };
-    clearbit: {};
-    stripe: {};
-    tags: Array<string>;
-  };
-  data_source_uuid: string;
-  data_source_uuids: Array<string>;
-  external_ids: Array<string>;
-  company: string;
-  country: string;
-  state: any;
-  city: string;
-  zip: any;
-  lead_created_at: string;
-  free_trial_started_at: string;
-  address: {
-    country: string;
-    state: any;
-    city: string;
-    address_zip: any;
-  };
-  mrr: number;
-  arr: number;
-  "billing-system-url": any;
-  "chartmogul-url": string;
-  "billing-system-type": string;
-  currency: string;
-  "currency-sign": string;
-  owner: string;
-}
+export const queryAddCustomerSchema = z.object({
+  data_source_uuid: z.string(),
+  external_id: z.string(),
+  name: z.string().optional(),
+  email: z.string().optional(),
+  company: z.string().optional(),
+  country: z.string().optional(),
+  state: z.string().optional(),
+  city: z.string().optional(),
+  zip: z.string().optional(),
+  lead_created_at: z.string().optional(),
+  free_trial_started_at: z.string().optional(),
+  owner: z.string().optional(),
+  attributes: z
+    .object({
+      tags: z.array(z.string()).optional(),
+      custom: z
+        .array(
+          z.object({
+            type: z.string(),
+            key: z.string(),
+            value: z.string(),
+            source: z.string().optional()
+          })
+        )
+        .optional()
+    })
+    .optional(),
+  primary_contact: z
+    .object({
+      first_name: z.string().optional(),
+      last_name: z.string().optional(),
+      email: z.string().optional(),
+      title: z.string().optional(),
+      phone: z.string().optional(),
+      linked_in: z.string().optional(),
+      twitter: z.string().optional(),
+      notes: z.string().optional()
+    })
+    .optional()
+})
 
-export type QueryUpdateCustomer = Omit<
-  QueryAddCustomer,
-  | "data_source_uuid"
-  | "external_id"
->;
+export const addOrUpdateCustomerResponseSchema = z.object({
+  id: z.number(),
+  uuid: z.string(),
+  external_id: z.string(),
+  name: z.string(),
+  email: z.string(),
+  status: z.string(),
+  "customer-since": z.any(),
+  attributes: z.object({
+    custom: z.record(z.any()),
+    clearbit: z.object({}),
+    stripe: z.object({}),
+    tags: z.array(z.string())
+  }),
+  data_source_uuid: z.string(),
+  data_source_uuids: z.array(z.string()),
+  external_ids: z.array(z.string()),
+  company: z.string(),
+  country: z.string(),
+  state: z.any(),
+  city: z.string(),
+  zip: z.any(),
+  lead_created_at: z.string(),
+  free_trial_started_at: z.string(),
+  address: z.object({
+    country: z.string(),
+    state: z.any(),
+    city: z.string(),
+    address_zip: z.any()
+  }),
+  mrr: z.number(),
+  arr: z.number(),
+  "billing-system-url": z.any(),
+  "chartmogul-url": z.string(),
+  "billing-system-type": z.string(),
+  currency: z.string(),
+  "currency-sign": z.string(),
+  owner: z.string()
+}).deepPartial()
 
-export interface CustomerSubscriptions {
-  customer_uuid: string;
-  subscriptions: Array<{
-    uuid: string;
-    external_id: string;
-    subscription_set_external_id: string;
-    plan_uuid: string;
-    data_source_uuid: string;
-    cancellation_dates: Array<any>;
-  }>;
-  current_page: number;
-  total_pages: number;
-}
+export const queryUpdateCustomerSchema = queryAddCustomerSchema.omit({ data_source_uuid: true, external_id: true })
 
-export interface QueryCustomerSubscriptions {
-  page?: number;
-  per_page?: number;
-}
+export const customerSubscriptionsSchema = z.object({
+  customer_uuid: z.string(),
+  subscriptions: z.array(
+    z.object({
+      uuid: z.string(),
+      external_id: z.string(),
+      subscription_set_external_id: z.string(),
+      plan_uuid: z.string(),
+      data_source_uuid: z.string(),
+      cancellation_dates: z.array(z.any())
+    })
+  ),
+  current_page: z.number(),
+  total_pages: z.number()
+}).deepPartial()
 
-export interface Invoice {
-  uuid: string;
-  customer_uuid: string;
-  external_id: string;
-  date: string;
-  due_date: string;
-  currency: string;
-  line_items: Array<{
-    uuid: string;
-    external_id: any;
-    type: string;
-    subscription_uuid?: string;
-    subscription_external_id?: string;
-    subscription_set_external_id?: string;
-    plan_uuid?: string;
-    prorated?: boolean;
-    service_period_start?: string;
-    service_period_end?: string;
-    amount_in_cents: number;
-    quantity: number;
-    discount_code: string;
-    discount_amount_in_cents: number;
-    tax_amount_in_cents: number;
-    transaction_fees_in_cents: number;
-    transaction_fees_currency: string;
-    discount_description: string;
-    event_order?: number;
-    account_code: any;
-    description?: string;
-  }>;
-  transactions: Array<{
-    uuid: string;
-    external_id: any;
-    type: string;
-    date: string;
-    result: string;
-  }>;
-}
+export const queryCustomerSubscriptionsSchema = z.object({
+  page: z.number().optional(),
+  per_page: z.number().optional()
+})
 
-export interface CustomerInvoices {
-  customer_uuid: string;
-  invoices: Array<Omit<Invoice, "customer_uuid">>;
-}
+export const invoiceSchema = z.object({
+  uuid: z.string(),
+  customer_uuid: z.string(),
+  external_id: z.string(),
+  date: z.string(),
+  due_date: z.string(),
+  currency: z.string(),
+  line_items: z.array(
+    z.object({
+      uuid: z.string(),
+      external_id: z.any(),
+      type: z.string(),
+      subscription_uuid: z.string().optional(),
+      subscription_external_id: z.string().optional(),
+      subscription_set_external_id: z.string().optional(),
+      plan_uuid: z.string().optional(),
+      prorated: z.boolean().optional(),
+      service_period_start: z.string().optional(),
+      service_period_end: z.string().optional(),
+      amount_in_cents: z.number(),
+      quantity: z.number(),
+      discount_code: z.string(),
+      discount_amount_in_cents: z.number(),
+      tax_amount_in_cents: z.number(),
+      transaction_fees_in_cents: z.number(),
+      transaction_fees_currency: z.string(),
+      discount_description: z.string(),
+      event_order: z.number().optional(),
+      account_code: z.any(),
+      description: z.string().optional()
+    })
+  ),
+  transactions: z.array(
+    z.object({
+      uuid: z.string(),
+      external_id: z.any(),
+      type: z.string(),
+      date: z.string(),
+      result: z.string()
+    })
+  )
+}).deepPartial()
 
-export interface QueryCustomerInvoices {
-  page?: number;
-  per_page?: number;
-  validation_type?: "valid" | "invalid" | "all";
-}
+export const customerInvoicesSchema = z.object({
+  customer_uuid: z.string(),
+  invoices: z.array(invoiceSchema.omit({ customer_uuid: true }))
+}).deepPartial()
 
-export interface Invoices {
-  invoices: Array<Invoice>;
-  current_page: number;
-  total_pages: number;
-}
+export const queryCustomerInvoicesSchema = z.object({
+  page: z.number().optional(),
+  per_page: z.number().optional(),
+  validation_type: z
+    .union([z.literal("valid"), z.literal("invalid"), z.literal("all")])
+    .optional()
+})
 
-export interface QueryInvoices extends QueryCustomerInvoices {
-  data_source_uuid?: string;
-  customer_uuid?: string;
-  external_id?: string;
-}
+export const invoicesSchema = z.object({
+  invoices: z.array(invoiceSchema),
+  current_page: z.number(),
+  total_pages: z.number(),
+}).deepPartial()
 
-export type QueryInvoice = Pick<QueryCustomerInvoices, "validation_type">;
+export const queryInvoicesSchema = queryCustomerInvoicesSchema.extend({
+  data_source_uuid: z.string().optional(),
+  customer_uuid: z.string().optional(),
+  external_id: z.string().optional()
+})
+
+export const queryInvoiceSchema = queryCustomerInvoicesSchema.pick({ validation_type: true })
+
+//types: 
+
+export type Customer = z.infer<typeof customerSchema>
+export type Customers = z.infer<typeof customersSchema>
+export type QueryCustomers = z.infer<typeof queryCustomersSchema>
+export type QueryAddCustomer = z.infer<typeof queryAddCustomerSchema>
+export type AddOrUpdateCustomerResponse = z.infer<typeof addOrUpdateCustomerResponseSchema>
+export type QueryUpdateCustomer = z.infer<typeof queryUpdateCustomerSchema>
+export type CustomerSubscriptions = z.infer<typeof customerSubscriptionsSchema>
+export type QueryCustomerSubscriptions = z.infer<typeof queryCustomerSubscriptionsSchema>
+export type Invoice = z.infer<typeof invoiceSchema>
+export type CustomerInvoices = z.infer<typeof customerInvoicesSchema>
+export type QueryCustomerInvoices = z.infer<typeof queryCustomerInvoicesSchema>
+export type Invoices = z.infer<typeof invoicesSchema>
+export type QueryInvoices = z.infer<typeof queryInvoicesSchema>
+export type QueryInvoice = z.infer<typeof queryInvoiceSchema>

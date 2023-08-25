@@ -1,225 +1,267 @@
-export interface Campaign {
-  id: string;
-  web_id: number;
-  parent_campaign_id: string;
-  type: string;
-  create_time: string;
-  archive_url: string;
-  long_archive_url: string;
-  status: string;
-  emails_sent: number;
-  send_time: string;
-  content_type: string;
-  needs_block_refresh: boolean;
-  resendable: boolean;
-  recipients: {
-    list_id: string;
-    list_is_active: boolean;
-    list_name: string;
-    segment_text: string;
-    recipient_count: number;
-    segment_opts: {
-      saved_segment_id: number;
-      prebuilt_segment_id: string;
-      match: string;
-      conditions: Array<any>;
-    };
-  };
-  settings: {
-    subject_line: string;
-    preview_text: string;
-    title: string;
-    from_name: string;
-    reply_to: string;
-    use_conversation: boolean;
-    to_name: string;
-    folder_id: string;
-    authenticate: boolean;
-    auto_footer: boolean;
-    inline_css: boolean;
-    auto_tweet: boolean;
-    auto_fb_post: Array<string>;
-    fb_comments: boolean;
-    timewarp: boolean;
-    template_id: number;
-    drag_and_drop: boolean;
-  };
-  variate_settings: {
-    winning_combination_id: string;
-    winning_campaign_id: string;
-    winner_criteria: string;
-    wait_time: number;
-    test_size: number;
-    subject_lines: Array<string>;
-    send_times: Array<string>;
-    from_names: Array<string>;
-    reply_to_addresses: Array<string>;
-    contents: Array<string>;
-    combinations: Array<{
-      id: string;
-      subject_line: number;
-      send_time: number;
-      from_name: number;
-      reply_to: number;
-      content_description: number;
-      recipients: number;
-    }>;
-  };
-  tracking: {
-    opens: boolean;
-    html_clicks: boolean;
-    text_clicks: boolean;
-    goal_tracking: boolean;
-    ecomm360: boolean;
-    google_analytics: string;
-    clicktale: string;
-    salesforce: {
-      campaign: boolean;
-      notes: boolean;
-    };
-    capsule: {
-      notes: boolean;
-    };
-  };
-  rss_opts: {
-    feed_url: string;
-    frequency: string;
-    schedule: {
-      hour: number;
-      daily_send: {
-        sunday: boolean;
-        monday: boolean;
-        tuesday: boolean;
-        wednesday: boolean;
-        thursday: boolean;
-        friday: boolean;
-        saturday: boolean;
-      };
-      weekly_send_day: string;
-      monthly_send_date: number;
-    };
-    last_sent: string;
-    constrain_rss_img: boolean;
-  };
-  ab_split_opts: {
-    split_test: string;
-    pick_winner: string;
-    wait_units: string;
-    wait_time: number;
-    split_size: number;
-    from_name_a: string;
-    from_name_b: string;
-    reply_email_a: string;
-    reply_email_b: string;
-    subject_a: string;
-    subject_b: string;
-    send_time_a: string;
-    send_time_b: string;
-    send_time_winner: string;
-  };
-  social_card: {
-    image_url: string;
-    description: string;
-    title: string;
-  };
-  report_summary: {
-    opens: number;
-    unique_opens: number;
-    open_rate: number;
-    clicks: number;
-    subscriber_clicks: number;
-    click_rate: number;
-    ecommerce: {
-      total_orders: number;
-      total_spent: number;
-      total_revenue: number;
-    };
-  };
-  delivery_status: {
-    enabled: boolean;
-    can_cancel: boolean;
-    status: string;
-    emails_sent: number;
-    emails_canceled: number;
-  };
-  _links: Array<{
-    rel: string;
-    href: string;
-    method: string;
-    targetSchema: string;
-    schema: string;
-  }>;
-}
+import { z } from "https://deno.land/x/zod/mod.ts";
 
-export interface Campaigns {
-  campaigns: Array<Campaign>;
-  total_items: number;
-  _links: Array<{
-    rel: string;
-    href: string;
-    method: string;
-    targetSchema: string;
-    schema: string;
-  }>;
-}
+export const campaignSchema = z.object({
+  id: z.string(),
+  web_id: z.number(),
+  parent_campaign_id: z.string(),
+  type: z.string(),
+  create_time: z.string(),
+  archive_url: z.string(),
+  long_archive_url: z.string(),
+  status: z.string(),
+  emails_sent: z.number(),
+  send_time: z.string(),
+  content_type: z.string(),
+  needs_block_refresh: z.boolean(),
+  resendable: z.boolean(),
+  recipients: z.object({
+    list_id: z.string(),
+    list_is_active: z.boolean(),
+    list_name: z.string(),
+    segment_text: z.string(),
+    recipient_count: z.number(),
+    segment_opts: z.object({
+      saved_segment_id: z.number(),
+      prebuilt_segment_id: z.string(),
+      match: z.string(),
+      conditions: z.array(z.any())
+    })
+  }),
+  settings: z.object({
+    subject_line: z.string(),
+    preview_text: z.string(),
+    title: z.string(),
+    from_name: z.string(),
+    reply_to: z.string(),
+    use_conversation: z.boolean(),
+    to_name: z.string(),
+    folder_id: z.string(),
+    authenticate: z.boolean(),
+    auto_footer: z.boolean(),
+    inline_css: z.boolean(),
+    auto_tweet: z.boolean(),
+    auto_fb_post: z.array(z.string()),
+    fb_comments: z.boolean(),
+    timewarp: z.boolean(),
+    template_id: z.number(),
+    drag_and_drop: z.boolean()
+  }),
+  variate_settings: z.object({
+    winning_combination_id: z.string(),
+    winning_campaign_id: z.string(),
+    winner_criteria: z.string(),
+    wait_time: z.number(),
+    test_size: z.number(),
+    subject_lines: z.array(z.string()),
+    send_times: z.array(z.string()),
+    from_names: z.array(z.string()),
+    reply_to_addresses: z.array(z.string()),
+    contents: z.array(z.string()),
+    combinations: z.array(
+      z.object({
+        id: z.string(),
+        subject_line: z.number(),
+        send_time: z.number(),
+        from_name: z.number(),
+        reply_to: z.number(),
+        content_description: z.number(),
+        recipients: z.number()
+      })
+    )
+  }),
+  tracking: z.object({
+    opens: z.boolean(),
+    html_clicks: z.boolean(),
+    text_clicks: z.boolean(),
+    goal_tracking: z.boolean(),
+    ecomm360: z.boolean(),
+    google_analytics: z.string(),
+    clicktale: z.string(),
+    salesforce: z.object({
+      campaign: z.boolean(),
+      notes: z.boolean()
+    }),
+    capsule: z.object({
+      notes: z.boolean()
+    })
+  }),
+  rss_opts: z.object({
+    feed_url: z.string(),
+    frequency: z.string(),
+    schedule: z.object({
+      hour: z.number(),
+      daily_send: z.object({
+        sunday: z.boolean(),
+        monday: z.boolean(),
+        tuesday: z.boolean(),
+        wednesday: z.boolean(),
+        thursday: z.boolean(),
+        friday: z.boolean(),
+        saturday: z.boolean()
+      }),
+      weekly_send_day: z.string(),
+      monthly_send_date: z.number()
+    }),
+    last_sent: z.string(),
+    constrain_rss_img: z.boolean()
+  }),
+  ab_split_opts: z.object({
+    split_test: z.string(),
+    pick_winner: z.string(),
+    wait_units: z.string(),
+    wait_time: z.number(),
+    split_size: z.number(),
+    from_name_a: z.string(),
+    from_name_b: z.string(),
+    reply_email_a: z.string(),
+    reply_email_b: z.string(),
+    subject_a: z.string(),
+    subject_b: z.string(),
+    send_time_a: z.string(),
+    send_time_b: z.string(),
+    send_time_winner: z.string()
+  }),
+  social_card: z.object({
+    image_url: z.string(),
+    description: z.string(),
+    title: z.string()
+  }),
+  report_summary: z.object({
+    opens: z.number(),
+    unique_opens: z.number(),
+    open_rate: z.number(),
+    clicks: z.number(),
+    subscriber_clicks: z.number(),
+    click_rate: z.number(),
+    ecommerce: z.object({
+      total_orders: z.number(),
+      total_spent: z.number(),
+      total_revenue: z.number()
+    })
+  }),
+  delivery_status: z.object({
+    enabled: z.boolean(),
+    can_cancel: z.boolean(),
+    status: z.string(),
+    emails_sent: z.number(),
+    emails_canceled: z.number()
+  }),
+  _links: z.array(
+    z.object({
+      rel: z.string(),
+      href: z.string(),
+      method: z.string(),
+      targetSchema: z.string(),
+      schema: z.string()
+    })
+  )
+}).deepPartial()
 
-export interface QueryCampaigns {
-  fields?: string[];
-  exclude_fields?: string[];
-  count?: number;
-  offset?: number;
-  type?: "regular" | "plaintext" | "absplit" | "rss" | "variate";
-  status?: "save" | "paused" | "schedule" | "sending" | "sent";
-  before_send_time?: string;
-  since_send_time?: string;
-  before_create_time?: string;
-  since_create_time?: string;
-  list_id?: string;
-  member_id?: string;
-  sort_field?: string;
-  sort_dir?: "ASC" | "DESC";
-}
+export const campaignsSchema = z.object({
+  campaigns: z.array(campaignSchema),
+  total_items: z.number(),
+  _links: z.array(
+    z.object({
+      rel: z.string(),
+      href: z.string(),
+      method: z.string(),
+      targetSchema: z.string(),
+      schema: z.string()
+    })
+  )
+}).deepPartial()
 
-export interface QueryCampaign {
-  fields?: string[];
-  exclude_fields?: string[];
-}
+export const queryCampaignsSchema = z.object({
+  fields: z.array(z.string()).optional(),
+  exclude_fields: z.array(z.string()).optional(),
+  count: z.number().optional(),
+  offset: z.number().optional(),
+  type: z
+    .union([
+      z.literal("regular"),
+      z.literal("plaintext"),
+      z.literal("absplit"),
+      z.literal("rss"),
+      z.literal("variate")
+    ])
+    .optional(),
+  status: z
+    .union([
+      z.literal("save"),
+      z.literal("paused"),
+      z.literal("schedule"),
+      z.literal("sending"),
+      z.literal("sent")
+    ])
+    .optional(),
+  before_send_time: z.string().optional(),
+  since_send_time: z.string().optional(),
+  before_create_time: z.string().optional(),
+  since_create_time: z.string().optional(),
+  list_id: z.string().optional(),
+  member_id: z.string().optional(),
+  sort_field: z.string().optional(),
+  sort_dir: z.union([z.literal("ASC"), z.literal("DESC")]).optional()
+})
 
-export interface CampaignContent {
-  variate_contents: Array<{
-    content_label: string;
-    plain_text: string;
-    html: string;
-  }>;
-  plain_text: string;
-  html: string;
-  archive_html: string;
-  _links: Array<{
-    rel: string;
-    href: string;
-    method: string;
-    targetSchema: string;
-    schema: string;
-  }>;
-}
+export const queryCampaignSchema = z.object({
+  fields: z.array(z.string()).optional(),
+  exclude_fields: z.array(z.string()).optional()
+})
 
-export interface QueryUpdateCampaignContent {
-  archive?: {
-    archive_type?: string;
-    archive_content: string;
-  };
-  template?: {};
-  plain_text?: string;
-  html?: string;
-  url?: string;
-  variate_contents?: {}[];
-}
+export const campaignContentSchema = z.object({
+  variate_contents: z.array(
+    z.object({
+      content_label: z.string(),
+      plain_text: z.string(),
+      html: z.string()
+    })
+  ),
+  plain_text: z.string(),
+  html: z.string(),
+  archive_html: z.string(),
+  _links: z.array(
+    z.object({
+      rel: z.string(),
+      href: z.string(),
+      method: z.string(),
+      targetSchema: z.string(),
+      schema: z.string()
+    })
+  )
+}).deepPartial()
 
-export interface QueryScheduleCampaign {
-  schedule_time: string;
-  batch_delivery?: {
-    batch_delay: number;
-    batch_count: number;
-  };
-  timewarp?: boolean;
-}
+export const queryUpdateCampaignContentSchema = z.object({
+  archive: z
+    .object({
+      archive_type: z.string().optional(),
+      archive_content: z.string()
+    })
+    .optional(),
+  template: z.object({}).optional(),
+  plain_text: z.string().optional(),
+  html: z.string().optional(),
+  url: z.string().optional(),
+  variate_contents: z.array(z.object({})).optional()
+})
+
+export const queryScheduleCampaignSchema = z.object({
+  schedule_time: z.string(),
+  batch_delivery: z
+    .object({
+      batch_delay: z.number(),
+      batch_count: z.number()
+    })
+    .optional(),
+  timewarp: z.boolean().optional()
+})
+
+//types:
+
+export type Campaign = z.infer<typeof campaignSchema>
+export type Campaigns = z.infer<typeof campaignsSchema>
+export type QueryCampaigns = z.infer<typeof queryCampaignsSchema>
+export type QueryCampaign = z.infer<typeof queryCampaignSchema>
+export type CampaignContent = z.infer<typeof campaignContentSchema>
+export type QueryUpdateCampaignContent = z.infer<typeof queryUpdateCampaignContentSchema>
+export type QueryScheduleCampaign = z.infer<typeof queryScheduleCampaignSchema>

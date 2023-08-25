@@ -1,105 +1,139 @@
-interface RecordObject {
-  fields: {
-    [key: string]: any;
-  };
-  id?: string;
-}
+import { z } from "https://deno.land/x/zod/mod.ts";
 
-export interface Records {
-  records: Array<
-    RecordObject & {
-      createdTime: string;
-    }
-  >;
-}
+const recordObjectSchema = z.object({
+  fields: z.record(z.any()),
+  id: z.string().optional()
+})
 
-export interface QueryRecords {
-  timeZone?: {};
-  userLocale?: string;
-  pageSize?: number;
-  maxRecords?: number;
-  offset?: string;
-  view?: string;
-  sort?: {
-    field?: string;
-    direction?: "asc" | "desc";
-  }[];
-  filterByFormula?: string;
-  cellFormat?: "json" | "string";
-  fields?: string[];
-  returnFieldsByFieldId?: boolean;
-  recordMetaData?: string[];
-}
+export const recordsSchema = z.object({
+  records: z.array(recordObjectSchema.merge(
+    z.object({
+      createdTime: z.string()
+    }))
+  )
+}).deepPartial()
 
-export interface QueryAddRecords {
-  records: Pick<RecordObject, "fields">[];
-  returnFieldsByFieldId?: boolean;
-  typecast?: boolean;
-}
+export const queryRecordsSchema = z.object({
+  timeZone: z.object({}).optional(),
+  userLocale: z.string().optional(),
+  pageSize: z.number().optional(),
+  maxRecords: z.number().optional(),
+  offset: z.string().optional(),
+  view: z.string().optional(),
+  sort: z
+    .array(
+      z.object({
+        field: z.string().optional(),
+        direction: z.union([z.literal("asc"), z.literal("desc")]).optional()
+      })
+    )
+    .optional(),
+  filterByFormula: z.string().optional(),
+  cellFormat: z.union([z.literal("json"), z.literal("string")]).optional(),
+  fields: z.array(z.string()).optional(),
+  returnFieldsByFieldId: z.boolean().optional(),
+  recordMetaData: z.array(z.string()).optional()
+})
 
-export interface QueryUpdateRecords {
-  records: RecordObject[];
-  performUpsert?: { fieldsToMergeOn: string[] };
-  returnFieldsByFieldId?: boolean;
-  typecast?: boolean;
-}
+export const queryAddRecordsSchema = z.object({
+  records: z.array(recordObjectSchema.pick({fields: true})),
+  returnFieldsByFieldId: z.boolean().optional(),
+  typecast: z.boolean().optional()
+})
 
-export interface UpdateRecordsResponse {
-  createdRecords: string[];
-  records: RecordObject[];
-  updatedRecords: string[];
-}
+export const queryUpdateRecordsSchema = z.object({
+  records: z.array(recordObjectSchema),
+  performUpsert: z
+    .object({
+      fieldsToMergeOn: z.array(z.string())
+    })
+    .optional(),
+  returnFieldsByFieldId: z.boolean().optional(),
+  typecast: z.boolean().optional()
+})
 
-export interface QueryDeleteRecords {
-  records: string[];
-}
+export const updateRecordsResponseSchema = z.object({
+  records: z.array(recordObjectSchema),
+  createdRecords: z.array(z.string()),
+  updatedRecords: z.array(z.string())
+}).deepPartial()
 
-export interface RecordsDeleted {
-  records: Array<{
-    deleted: boolean;
-    id: string;
-  }>;
-}
+export const queryDeleteRecordsSchema = z.object({
+  records: z.array(z.string())
+})
 
-export interface Databases {
-  bases: Array<{
-    id: string;
-    name: string;
-    permissionLevel: string;
-  }>;
-  offset: string;
-}
+export const recordsDeletedSchema = z.object({
+  records: z.array(
+    z.object({
+      deleted: z.boolean(),
+      id: z.string()
+    })
+  )
+}).deepPartial()
 
-export interface QueryDatabases {
-  offset?: string;
-}
+export const databasesSchema = z.object({
+  bases: z.array(
+    z.object({
+      id: z.string(),
+      name: z.string(),
+      permissionLevel: z.string()
+    })
+  ),
+  offset: z.string()
+}).deepPartial()
 
-export interface Tables {
-  tables: Array<{
-    description?: string;
-    fields: Array<{
-      description?: string;
-      id: string;
-      name: string;
-      type: string;
-      options?: {
-        inverseLinkFieldId: string;
-        isReversed: boolean;
-        linkedTableId: string;
-        prefersSingleRecordLink: boolean;
-      };
-    }>;
-    id: string;
-    name: string;
-    primaryFieldId: string;
-    views: Array<{
-      id: string;
-      name: string;
-      type: string;
-    }>;
-  }>;
-}
+export const queryDatabasesSchema = z.object({
+  offset: z.string().optional()
+})
 
-export interface QueryTables {
-  include?: Array<string>;
-}
+export const tablesSchema = z.object({
+  tables: z.array(
+    z.object({
+      description: z.string().optional(),
+      fields: z.array(
+        z.object({
+          description: z.string().optional(),
+          id: z.string(),
+          name: z.string(),
+          type: z.string(),
+          options: z
+            .object({
+              inverseLinkFieldId: z.string(),
+              isReversed: z.boolean(),
+              linkedTableId: z.string(),
+              prefersSingleRecordLink: z.boolean()
+            })
+            .optional()
+        })
+      ),
+      id: z.string(),
+      name: z.string(),
+      primaryFieldId: z.string(),
+      views: z.array(
+        z.object({
+          id: z.string(),
+          name: z.string(),
+          type: z.string()
+        })
+      )
+    })
+  )
+}).deepPartial()
+
+export const queryTablesSchema = z.object({
+  include: z.array(z.string()).optional()
+})
+
+// types:
+
+export type Records = z.infer<typeof recordsSchema>
+export type QueryRecords = z.infer<typeof queryRecordsSchema>
+export type QueryAddRecords = z.infer<typeof queryAddRecordsSchema>
+export type QueryUpdateRecords = z.infer<typeof queryUpdateRecordsSchema>
+export type UpdateRecordsResponse = z.infer<typeof updateRecordsResponseSchema>
+export type QueryDeleteRecords = z.infer<typeof queryDeleteRecordsSchema>
+export type RecordsDeleted = z.infer<typeof recordsDeletedSchema>
+export type Databases = z.infer<typeof databasesSchema>
+export type QueryDatabases = z.infer<typeof queryDatabasesSchema>
+export type Tables = z.infer<typeof tablesSchema>
+export type QueryTables = z.infer<typeof queryTablesSchema>

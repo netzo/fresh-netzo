@@ -1,244 +1,294 @@
-export interface Document {
-  id: string;
-  name: string;
-  autonumbering_sequence_name_prefix: string;
-  date_created: string;
-  date_modified: string;
-  date_completed: string;
-  created_by: {
-    id: string;
-    email: string;
-    first_name: string;
-    last_name: string;
-    avatar: string;
-  };
-  template: {
-    id: string;
-    name: string;
-  };
-  expiration_date: any;
-  metadata: {
-    document__created_via_public_api: string;
-    my_favorite_pet: string;
-    opp_id: string;
-  };
-  tokens: Array<{
-    name: string;
-    value: string;
-  }>;
-  fields: Array<{
-    uuid: string;
-    field_id: string;
-    name: string;
-    merge_field?: string;
-    title: string;
-    placeholder?: string;
-    type: string;
-    assigned_to: {
-      id: string;
-      first_name: string;
-      last_name: string;
-      email: string;
-      recipient_type: string;
-      has_completed: boolean;
-      role: string;
-      type: string;
-    };
-    value: any;
-  }>;
-  pricing: {
-    tables: Array<{
-      id: string;
-      name: string;
-      total: string;
-      is_included_in_total: boolean;
-      summary: {
-        subtotal: string;
-        total: string;
-        discount: string;
-        tax: string;
-      };
-      items: Array<{
-        id: any;
-        sku: any;
-        qty: number;
-        name: string;
-        cost: string;
-        price: string;
-        description: string;
-        custom_fields: {
-          Fluffiness: string;
-        };
-        custom_columns: {
-          Fluffiness: string;
-        };
-        discount: any;
-        tax_first: {
-          value: string;
-          type: string;
-        };
-        tax_second: any;
-        subtotal: string;
-        options: {
-          optional: boolean;
-          optional_selected: boolean;
-        };
-        sale_price: string;
-      }>;
-      currency: string;
-      columns: Array<{
-        header?: string;
-        name: string;
-        merge_name?: string;
-        hidden: boolean;
-      }>;
-    }>;
-    total: string;
-  };
-  tags: Array<any>;
-  status: string;
-  recipients: Array<{
-    id: string;
-    first_name: string;
-    last_name: string;
-    email: string;
-    recipient_type: string;
-    has_completed: boolean;
-    role: string;
-    signing_order: number;
-    shared_link: string;
-  }>;
-  sent_by: any;
-  grand_total: {
-    amount: string;
-    currency: string;
-  };
-  linked_objects: Array<{
-    provider: string;
-    entity_type: string;
-    entity_id: string;
-  }>;
-  version: string;
-  approval_execution: {
-    next_step: string;
-    steps: Array<{
-      id: string;
-      assignee: any;
-      group: {
-        id: string;
-        name: string;
-        type: string;
-        assignees: Array<{
-          id: string;
-          user: {
-            id: string;
-            email: string;
-            first_name: string;
-            last_name: string;
-            avatar: any;
-          };
-          is_selected: boolean;
-        }>;
-      };
-      conditions: Array<{
-        relation: string;
-        type: string;
-        value: number;
-        kind: any;
-      }>;
-      approve_user: any;
-      approve_message: any;
-      reject_user: any;
-      reject_message: any;
-      is_skipped: boolean;
-      skip_reason: any;
-    }>;
-    sender: any;
-    sender_message: any;
-    skip_user: any;
-    skip_message: any;
-    is_completed: boolean;
-    is_editing_allowed: boolean;
-    is_ordering_enabled: boolean;
-  };
-}
+import { z } from "https://deno.land/x/zod/mod.ts";
 
-export interface Documents {
-  results: Array<{
-    id: string;
-    name: string;
-    status: string;
-    date_created: string;
-    date_modified: string;
-    expiration_date: any;
-    version: string;
-  }>;
-}
+export const documentSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  autonumbering_sequence_name_prefix: z.string(),
+  date_created: z.string(),
+  date_modified: z.string(),
+  date_completed: z.string(),
+  created_by: z.object({
+    id: z.string(),
+    email: z.string(),
+    first_name: z.string(),
+    last_name: z.string(),
+    avatar: z.string()
+  }),
+  template: z.object({
+    id: z.string(),
+    name: z.string()
+  }),
+  expiration_date: z.any(),
+  metadata: z.object({
+    document__created_via_public_api: z.string(),
+    my_favorite_pet: z.string(),
+    opp_id: z.string()
+  }),
+  tokens: z.array(
+    z.object({
+      name: z.string(),
+      value: z.string()
+    })
+  ),
+  fields: z.array(
+    z.object({
+      uuid: z.string(),
+      field_id: z.string(),
+      name: z.string(),
+      merge_field: z.string().optional(),
+      title: z.string(),
+      placeholder: z.string().optional(),
+      type: z.string(),
+      assigned_to: z.object({
+        id: z.string(),
+        first_name: z.string(),
+        last_name: z.string(),
+        email: z.string(),
+        recipient_type: z.string(),
+        has_completed: z.boolean(),
+        role: z.string(),
+        type: z.string()
+      }),
+      value: z.any()
+    })
+  ),
+  pricing: z.object({
+    tables: z.array(
+      z.object({
+        id: z.string(),
+        name: z.string(),
+        total: z.string(),
+        is_included_in_total: z.boolean(),
+        summary: z.object({
+          subtotal: z.string(),
+          total: z.string(),
+          discount: z.string(),
+          tax: z.string()
+        }),
+        items: z.array(
+          z.object({
+            id: z.any(),
+            sku: z.any(),
+            qty: z.number(),
+            name: z.string(),
+            cost: z.string(),
+            price: z.string(),
+            description: z.string(),
+            custom_fields: z.object({
+              Fluffiness: z.string()
+            }),
+            custom_columns: z.object({
+              Fluffiness: z.string()
+            }),
+            discount: z.any(),
+            tax_first: z.object({
+              value: z.string(),
+              type: z.string()
+            }),
+            tax_second: z.any(),
+            subtotal: z.string(),
+            options: z.object({
+              optional: z.boolean(),
+              optional_selected: z.boolean()
+            }),
+            sale_price: z.string()
+          })
+        ),
+        currency: z.string(),
+        columns: z.array(
+          z.object({
+            header: z.string().optional(),
+            name: z.string(),
+            merge_name: z.string().optional(),
+            hidden: z.boolean()
+          })
+        )
+      })
+    ),
+    total: z.string()
+  }),
+  tags: z.array(z.any()),
+  status: z.string(),
+  recipients: z.array(
+    z.object({
+      id: z.string(),
+      first_name: z.string(),
+      last_name: z.string(),
+      email: z.string(),
+      recipient_type: z.string(),
+      has_completed: z.boolean(),
+      role: z.string(),
+      signing_order: z.number(),
+      shared_link: z.string()
+    })
+  ),
+  sent_by: z.any(),
+  grand_total: z.object({
+    amount: z.string(),
+    currency: z.string()
+  }),
+  linked_objects: z.array(
+    z.object({
+      provider: z.string(),
+      entity_type: z.string(),
+      entity_id: z.string()
+    })
+  ),
+  version: z.string(),
+  approval_execution: z.object({
+    next_step: z.string(),
+    steps: z.array(
+      z.object({
+        id: z.string(),
+        assignee: z.any(),
+        group: z.object({
+          id: z.string(),
+          name: z.string(),
+          type: z.string(),
+          assignees: z.array(
+            z.object({
+              id: z.string(),
+              user: z.object({
+                id: z.string(),
+                email: z.string(),
+                first_name: z.string(),
+                last_name: z.string(),
+                avatar: z.any()
+              }),
+              is_selected: z.boolean()
+            })
+          )
+        }),
+        conditions: z.array(
+          z.object({
+            relation: z.string(),
+            type: z.string(),
+            value: z.number(),
+            kind: z.any()
+          })
+        ),
+        approve_user: z.any(),
+        approve_message: z.any(),
+        reject_user: z.any(),
+        reject_message: z.any(),
+        is_skipped: z.boolean(),
+        skip_reason: z.any()
+      })
+    ),
+    sender: z.any(),
+    sender_message: z.any(),
+    skip_user: z.any(),
+    skip_message: z.any(),
+    is_completed: z.boolean(),
+    is_editing_allowed: z.boolean(),
+    is_ordering_enabled: z.boolean()
+  })
+}).deepPartial()
 
-export interface QueryDocuments {
-  q?: string;
-  tag?: string;
-  status?: number;
-  count?: number;
-  page?: number;
-  metadata?: string;
-  deleted?: boolean;
-  id?: string;
-  template_id?: string;
-  folder_uuid?: string;
-  form_id?: string;
-  order_by?: string;
-  created_from?: string;
-  created_to?: string;
-  modified_from?: string;
-  modified_to?: string;
-  completed_from?: string;
-  completed_to?: string;
-  membership_id?: string;
-  contact_id?: string;
-}
+export const documentsSchema = z.object({
+  results: z.array(
+    z.object({
+      id: z.string(),
+      name: z.string(),
+      status: z.string(),
+      date_created: z.string(),
+      date_modified: z.string(),
+      expiration_date: z.any(),
+      version: z.string()
+    })
+  )
+}).deepPartial()
 
-export interface QueryUpdateDocument {
-  recipients?: Array<{
-    email?: string;
-    first_name?: string;
-    last_name?: string;
-    role?: string;
-    default?: boolean;
-    ID?: string;
-  }>;
-  tokens?: Array<{
-    name?: string;
-    value?: string;
-  }>;
-  fields?: Array<{
-    value?: string;
-    role?: string;
-  }>;
-  pricing_tables?: Array<{
-    name?: string;
-    sections?: string;
-  }>;
-}
+export const queryDocumentsSchema = z.object({
+  q: z.string().optional(),
+  tag: z.string().optional(),
+  status: z.number().optional(),
+  count: z.number().optional(),
+  page: z.number().optional(),
+  metadata: z.string().optional(),
+  deleted: z.boolean().optional(),
+  id: z.string().optional(),
+  template_id: z.string().optional(),
+  folder_uuid: z.string().optional(),
+  form_id: z.string().optional(),
+  order_by: z.string().optional(),
+  created_from: z.string().optional(),
+  created_to: z.string().optional(),
+  modified_from: z.string().optional(),
+  modified_to: z.string().optional(),
+  completed_from: z.string().optional(),
+  completed_to: z.string().optional(),
+  membership_id: z.string().optional(),
+  contact_id: z.string().optional()
+})
 
-export interface QueryAddContact {
-  email: string;
-  first_name?: string;
-  last_name?: string;
-  company?: string;
-  job_title?: string;
-  phone?: string;
-  country?: string;
-  state?: string;
-  street_address?: string;
-  city?: string;
-  postal_code?: string;
-}
+export const queryUpdateDocumentSchema = z.object({
+  recipients: z
+    .array(
+      z.object({
+        email: z.string().optional(),
+        first_name: z.string().optional(),
+        last_name: z.string().optional(),
+        role: z.string().optional(),
+        default: z.boolean().optional(),
+        ID: z.string().optional()
+      })
+    )
+    .optional(),
+  tokens: z
+    .array(
+      z.object({
+        name: z.string().optional(),
+        value: z.string().optional()
+      })
+    )
+    .optional(),
+  fields: z
+    .array(
+      z.object({
+        value: z.string().optional(),
+        role: z.string().optional()
+      })
+    )
+    .optional(),
+  pricing_tables: z
+    .array(
+      z.object({
+        name: z.string().optional(),
+        sections: z.string().optional()
+      })
+    )
+    .optional()
+})
 
-export interface Contact extends QueryAddContact {
-  id: string;
-}
+export const queryAddContactSchema = z.object({
+  email: z.string(),
+  first_name: z.string().optional(),
+  last_name: z.string().optional(),
+  company: z.string().optional(),
+  job_title: z.string().optional(),
+  phone: z.string().optional(),
+  country: z.string().optional(),
+  state: z.string().optional(),
+  street_address: z.string().optional(),
+  city: z.string().optional(),
+  postal_code: z.string().optional()
+})
 
-export interface Contacts {
-  results: Array<Contact>;
-}
+export const contactSchema = queryAddContactSchema.extend({
+  id: z.string()
+}).deepPartial()
+
+export const contactsSchema = z.object({
+  results: z.array(contactSchema)
+}).deepPartial()
+
+//types:
+
+export type Document = z.infer<typeof documentSchema>
+export type Documents = z.infer<typeof documentsSchema>
+export type QueryDocuments = z.infer<typeof queryDocumentsSchema>
+export type QueryUpdateDocument = z.infer<typeof queryUpdateDocumentSchema>
+export type QueryAddContact = z.infer<typeof queryAddContactSchema>
+export type Contact = z.infer<typeof contactSchema>
+export type Contacts = z.infer<typeof contactsSchema>

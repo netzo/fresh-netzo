@@ -1,579 +1,638 @@
-interface DealDetails {
-  id: number;
-  creator_user_id: {
-    id: number;
-    name: string;
-    email: string;
-    has_pic: boolean;
-    pic_hash: any;
-    active_flag: boolean;
-    value: number;
-  };
-  user_id: {
-    id: number;
-    name: string;
-    email: string;
-    has_pic: boolean;
-    pic_hash: any;
-    active_flag: boolean;
-    value: number;
-  };
-  person_id: {
-    active_flag: boolean;
-    name: string;
-    email: Array<{
-      label: string;
-      value: string;
-      primary: boolean;
-    }>;
-    phone: Array<{
-      label: string;
-      value: string;
-      primary: boolean;
-    }>;
-    value: number;
-  };
-  org_id: {
-    name: string;
-    people_count: number;
-    owner_id: number;
-    address: string;
-    active_flag: boolean;
-    cc_email: string;
-    value: number;
-  };
-  stage_id: number;
-  title: string;
-  value: number;
-  currency: string;
-  add_time: string;
-  update_time: string;
-  stage_change_time: string;
-  active: boolean;
-  deleted: boolean;
-  status: string;
-  probability: any;
-  next_activity_date: string;
-  next_activity_time: string;
-  next_activity_id: number;
-  last_activity_id: any;
-  last_activity_date: any;
-  lost_reason: any;
-  visible_to: string;
-  close_time: any;
-  pipeline_id: number;
-  won_time: string;
-  first_won_time: string;
-  lost_time: string;
-  products_count: number;
-  files_count: number;
-  notes_count: number;
-  followers_count: number;
-  email_messages_count: number;
-  activities_count: number;
-  done_activities_count: number;
-  undone_activities_count: number;
-  participants_count: number;
-  expected_close_date: string;
-  last_incoming_mail_time: string;
-  last_outgoing_mail_time: string;
-  label: string;
-  stage_order_nr: number;
-  person_name: string;
-  org_name: string;
-  next_activity_subject: string;
-  next_activity_type: string;
-  next_activity_duration: string;
-  next_activity_note: string;
-  formatted_value: string;
-  weighted_value: number;
-  formatted_weighted_value: string;
-  weighted_value_currency: string;
-  rotten_time: any;
-  owner_name: string;
-  cc_email: string;
-  org_hidden: boolean;
-  person_hidden: boolean;
-}
+import { z } from "https://deno.land/x/zod/mod.ts";
 
-interface RelatedObjectsDeal {
-  user: {
-    [key: string]: {
-      id: number;
-      name: string;
-      email: string;
-      has_pic: boolean;
-      pic_hash: any;
-      active_flag: boolean;
-    };
-  };
-  organization: {
-    [key: string]: {
-      id: number;
-      name: string;
-      people_count: number;
-      owner_id: number;
-      address: string;
-      active_flag: boolean;
-      cc_email: string;
-    };
-  };
-  person: {
-    [key: string]: {
-      active_flag: boolean;
-      id: number;
-      name: string;
-      email: Array<{
-        label: string;
-        value: string;
-        primary: boolean;
-      }>;
-      phone: Array<{
-        label: string;
-        value: string;
-        primary: boolean;
-      }>;
-      owner_id: number;
-    };
-  };
-  stage: {
-    [key: string]: {
-      id: number;
-      company_id: number;
-      order_nr: number;
-      name: string;
-      active_flag: boolean;
-      deal_probability: number;
-      pipeline_id: number;
-      rotten_flag: boolean;
-      rotten_days: any;
-      add_time: string;
-      update_time: string;
-      pipeline_name: string;
-      pipeline_deal_probability: boolean;
-    };
-  };
-  pipeline: {
-    [key: string]: {
-      id: number;
-      name: string;
-      url_title: string;
-      order_nr: number;
-      active: boolean;
-      deal_probability: boolean;
-      add_time: string;
-      update_time: string;
-    };
-  };
-}
+const dealBaseSchema = z.object({
+  id: z.number(),
+  creator_user_id: z.object({
+    id: z.number(),
+    name: z.string(),
+    email: z.string(),
+    has_pic: z.boolean(),
+    pic_hash: z.any(),
+    active_flag: z.boolean(),
+    value: z.number()
+  }),
+  user_id: z.object({
+    id: z.number(),
+    name: z.string(),
+    email: z.string(),
+    has_pic: z.boolean(),
+    pic_hash: z.any(),
+    active_flag: z.boolean(),
+    value: z.number()
+  }),
+  person_id: z.object({
+    active_flag: z.boolean(),
+    name: z.string(),
+    email: z.array(
+      z.object({
+        label: z.string(),
+        value: z.string(),
+        primary: z.boolean()
+      })
+    ),
+    phone: z.array(
+      z.object({
+        label: z.string(),
+        value: z.string(),
+        primary: z.boolean()
+      })
+    ),
+    value: z.number()
+  }),
+  org_id: z.object({
+    name: z.string(),
+    people_count: z.number(),
+    owner_id: z.number(),
+    address: z.string(),
+    active_flag: z.boolean(),
+    cc_email: z.string(),
+    value: z.number()
+  }),
+  stage_id: z.number(),
+  title: z.string(),
+  value: z.number(),
+  currency: z.string(),
+  add_time: z.string(),
+  update_time: z.string(),
+  stage_change_time: z.string(),
+  active: z.boolean(),
+  deleted: z.boolean(),
+  status: z.string(),
+  probability: z.any(),
+  next_activity_date: z.string(),
+  next_activity_time: z.string(),
+  next_activity_id: z.number(),
+  last_activity_id: z.any(),
+  last_activity_date: z.any(),
+  lost_reason: z.any(),
+  visible_to: z.string(),
+  close_time: z.any(),
+  pipeline_id: z.number(),
+  won_time: z.string(),
+  first_won_time: z.string(),
+  lost_time: z.string(),
+  products_count: z.number(),
+  files_count: z.number(),
+  notes_count: z.number(),
+  followers_count: z.number(),
+  email_messages_count: z.number(),
+  activities_count: z.number(),
+  done_activities_count: z.number(),
+  undone_activities_count: z.number(),
+  participants_count: z.number(),
+  expected_close_date: z.string(),
+  last_incoming_mail_time: z.string(),
+  last_outgoing_mail_time: z.string(),
+  label: z.string(),
+  stage_order_nr: z.number(),
+  person_name: z.string(),
+  org_name: z.string(),
+  next_activity_subject: z.string(),
+  next_activity_type: z.string(),
+  next_activity_duration: z.string(),
+  next_activity_note: z.string(),
+  formatted_value: z.string(),
+  weighted_value: z.number(),
+  formatted_weighted_value: z.string(),
+  weighted_value_currency: z.string(),
+  rotten_time: z.any(),
+  owner_name: z.string(),
+  cc_email: z.string(),
+  org_hidden: z.boolean(),
+  person_hidden: z.boolean()
+})
 
-export interface Deals {
-  success: boolean;
-  data: DealDetails[];
-  related_objects: RelatedObjectsDeal;
-  additional_data: {
-    pagination: {
-      start: number;
-      limit: number;
-      more_items_in_collection: boolean;
-      next_start: number;
-    };
-  };
-}
+const relatedObjectsDealSchema = z.object({
+  user: z.record(
+    z.object({
+      id: z.number(),
+      name: z.string(),
+      email: z.string(),
+      has_pic: z.boolean(),
+      pic_hash: z.any(),
+      active_flag: z.boolean()
+    })
+  ),
+  organization: z.record(
+    z.object({
+      id: z.number(),
+      name: z.string(),
+      people_count: z.number(),
+      owner_id: z.number(),
+      address: z.string(),
+      active_flag: z.boolean(),
+      cc_email: z.string()
+    })
+  ),
+  person: z.record(
+    z.object({
+      active_flag: z.boolean(),
+      id: z.number(),
+      name: z.string(),
+      email: z.array(
+        z.object({
+          label: z.string(),
+          value: z.string(),
+          primary: z.boolean()
+        })
+      ),
+      phone: z.array(
+        z.object({
+          label: z.string(),
+          value: z.string(),
+          primary: z.boolean()
+        })
+      ),
+      owner_id: z.number()
+    })
+  ),
+  stage: z.record(
+    z.object({
+      id: z.number(),
+      company_id: z.number(),
+      order_nr: z.number(),
+      name: z.string(),
+      active_flag: z.boolean(),
+      deal_probability: z.number(),
+      pipeline_id: z.number(),
+      rotten_flag: z.boolean(),
+      rotten_days: z.any(),
+      add_time: z.string(),
+      update_time: z.string(),
+      pipeline_name: z.string(),
+      pipeline_deal_probability: z.boolean()
+    })
+  ),
+  pipeline: z.record(
+    z.object({
+      id: z.number(),
+      name: z.string(),
+      url_title: z.string(),
+      order_nr: z.number(),
+      active: z.boolean(),
+      deal_probability: z.boolean(),
+      add_time: z.string(),
+      update_time: z.string()
+    })
+  )
+})
 
-export interface QueryGetDeals {
-  user_id?: number;
-  filter_id?: number;
-  stage_id?: number;
-  status?: "open" | "won" | "lost" | "deleted" | "all_not_deleted";
-  start?: number;
-  limit?: number;
-  sort?: string;
-  owned_by_you?: 0 | 1;
-}
+export const dealsSchema = z.object({
+  success: z.boolean(),
+  data: z.array(dealBaseSchema),
+  related_objects: relatedObjectsDealSchema,
+  additional_data: z.object({
+    pagination: z.object({
+      start: z.number(),
+      limit: z.number(),
+      more_items_in_collection: z.boolean(),
+      next_start: z.number()
+    })
+  })
+}).deepPartial()
 
-export interface SearchDealsResponse {
-  success: boolean;
-  data: {
-    items: Array<{
-      result_score: number;
-      item: {
-        id: number;
-        type: string;
-        title: string;
-        value: number;
-        currency: string;
-        status: string;
-        visible_to: number;
-        owner: {
-          id: number;
-        };
-        stage: {
-          id: number;
-          name: string;
-        };
-        person: {
-          id: number;
-          name: string;
-        };
-        organization: any;
-        custom_fields: Array<any>;
-        notes: Array<any>;
-      };
-    }>;
-  };
-  additional_data: {
-    description: string;
-    type: string;
-    properties: {
-      start: {
-        type: string;
-        description: string;
-      };
-      limit: {
-        type: string;
-        description: string;
-      };
-      more_items_in_collection: {
-        type: string;
-        description: string;
-      };
-    };
-  };
-}
+export const queryGetDealsSchema = z.object({
+  user_id: z.number().optional(),
+  filter_id: z.number().optional(),
+  stage_id: z.number().optional(),
+  status: z
+    .union([
+      z.literal("open"),
+      z.literal("won"),
+      z.literal("lost"),
+      z.literal("deleted"),
+      z.literal("all_not_deleted")
+    ])
+    .optional(),
+  start: z.number().optional(),
+  limit: z.number().optional(),
+  sort: z.string().optional(),
+  owned_by_you: z.union([z.literal(0), z.literal(1)]).optional()
+})
 
-export interface QuerySearchDeals {
-  term: string;
-  fields?: string[];
-  exact_match?: boolean;
-  person_id?: number;
-  organization_id?: number;
-  status?: "open" | "won" | "lost";
-  include_fields?: string;
-  start?: number;
-  limit?: number;
-}
+export const searchDealsResponseSchema = z.object({
+  success: z.boolean(),
+  data: z.object({
+    items: z.array(
+      z.object({
+        result_score: z.number(),
+        item: z.object({
+          id: z.number(),
+          type: z.string(),
+          title: z.string(),
+          value: z.number(),
+          currency: z.string(),
+          status: z.string(),
+          visible_to: z.number(),
+          owner: z.object({
+            id: z.number()
+          }),
+          stage: z.object({
+            id: z.number(),
+            name: z.string()
+          }),
+          person: z.object({
+            id: z.number(),
+            name: z.string()
+          }),
+          organization: z.any(),
+          custom_fields: z.array(z.any()),
+          notes: z.array(z.any())
+        })
+      })
+    )
+  }),
+  additional_data: z.object({
+    description: z.string(),
+    type: z.string(),
+    properties: z.object({
+      start: z.object({
+        type: z.string(),
+        description: z.string()
+      }),
+      limit: z.object({
+        type: z.string(),
+        description: z.string()
+      }),
+      more_items_in_collection: z.object({
+        type: z.string(),
+        description: z.string()
+      })
+    })
+  })
+}).deepPartial()
 
-export interface QueryAddDeal {
-  title: string;
-  value?: string;
-  currency?: string;
-  user_id?: number;
-  person_id?: number;
-  org_id?: number;
-  pipeline_id?: number;
-  stage_id?: number;
-  status?: "open" | "won" | "lost" | "deleted";
-  expected_close_date?: string;
-  probability?: number;
-  lost_reason?: string;
-  visible_to?: string;
-  add_time?: string;
-}
+export const querySearchDealsSchema = z.object({
+  term: z.string(),
+  fields: z.array(z.string()).optional(),
+  exact_match: z.boolean().optional(),
+  person_id: z.number().optional(),
+  organization_id: z.number().optional(),
+  status: z
+    .union([z.literal("open"), z.literal("won"), z.literal("lost")])
+    .optional(),
+  include_fields: z.string().optional(),
+  start: z.number().optional(),
+  limit: z.number().optional()
+})
 
-export interface QueryUpdateDeal
-  extends Omit<QueryAddDeal, "title" | "add_time"> {
-  title?: string;
-}
+export const queryAddDealSchema = z.object({
+  title: z.string(),
+  value: z.string().optional(),
+  currency: z.string().optional(),
+  user_id: z.number().optional(),
+  person_id: z.number().optional(),
+  org_id: z.number().optional(),
+  pipeline_id: z.number().optional(),
+  stage_id: z.number().optional(),
+  status: z
+    .union([
+      z.literal("open"),
+      z.literal("won"),
+      z.literal("lost"),
+      z.literal("deleted")
+    ])
+    .optional(),
+  expected_close_date: z.string().optional(),
+  probability: z.number().optional(),
+  lost_reason: z.string().optional(),
+  visible_to: z.string().optional(),
+  add_time: z.string().optional()
+})
 
-export interface AddOrUpdateDealResponse {
-  success: boolean;
-  data: DealDetails;
-  related_objects: RelatedObjectsDeal;
-}
+export const queryUpdateDealSchema = queryAddDealSchema.omit({ add_time: true })
 
-export interface Persons {
-  success: boolean;
-  data: Array<{
-    id: number;
-    company_id: number;
-    owner_id: {
-      id: number;
-      name: string;
-      email: string;
-      has_pic: number;
-      pic_hash: string;
-      active_flag: boolean;
-      value: number;
-    };
-    org_id: {
-      name: string;
-      people_count: number;
-      owner_id: number;
-      address: string;
-      active_flag: boolean;
-      cc_email: string;
-      value: number;
-    };
-    name: string;
-    first_name: string;
-    last_name: string;
-    open_deals_count: number;
-    related_open_deals_count: number;
-    closed_deals_count: number;
-    related_closed_deals_count: number;
-    participant_open_deals_count: number;
-    participant_closed_deals_count: number;
-    email_messages_count: number;
-    activities_count: number;
-    done_activities_count: number;
-    undone_activities_count: number;
-    files_count: number;
-    notes_count: number;
-    followers_count: number;
-    won_deals_count: number;
-    related_won_deals_count: number;
-    lost_deals_count: number;
-    related_lost_deals_count: number;
-    active_flag: boolean;
-    phone: Array<{
-      value: string;
-      primary: boolean;
-      label: string;
-    }>;
-    email: Array<{
-      value: string;
-      primary: boolean;
-      label: string;
-    }>;
-    primary_email: string;
-    first_char: string;
-    update_time: string;
-    add_time: string;
-    visible_to: string;
-    marketing_status: string;
-    picture_id: {
-      item_type: string;
-      item_id: number;
-      active_flag: boolean;
-      add_time: string;
-      update_time: string;
-      added_by_user_id: number;
-      pictures: {
-        [key: string]: string;
-      };
-      value: number;
-    };
-    next_activity_date: string;
-    next_activity_time: string;
-    next_activity_id: number;
-    last_activity_id: number;
-    last_activity_date: string;
-    last_incoming_mail_time: string;
-    last_outgoing_mail_time: string;
-    label: number;
-    org_name: string;
-    owner_name: string;
-    cc_email: string;
-  }>;
-  additional_data: {
-    pagination: {
-      start: number;
-      limit: number;
-      more_items_in_collection: boolean;
-      next_start: number;
-    };
-  };
-  related_objects: {
-    organization: {
-      [key: string]: {
-        id: number;
-        name: string;
-        people_count: number;
-        owner_id: number;
-        address: string;
-        active_flag: boolean;
-        cc_email: string;
-      };
-    };
-    user: {
-      [key: string]: {
-        id: number;
-        name: string;
-        email: string;
-        has_pic: number;
-        pic_hash: string;
-        active_flag: boolean;
-      };
-    };
-    picture: {
-      [key: string]: {
-        id: number;
-        item_type: string;
-        item_id: number;
-        active_flag: boolean;
-        add_time: string;
-        update_time: string;
-        added_by_user_id: number;
-        pictures: {
-          [key: string]: string;
-        };
-      };
-    };
-  };
-}
+export const addOrUpdateDealResponseSchema = z.object({
+  success: z.boolean(),
+  data: dealBaseSchema,
+  related_objects: relatedObjectsDealSchema
+}).deepPartial()
 
-export interface QueryGetPersons {
-  user_id?: number;
-  filter_id?: number;
-  first_char?: string;
-  start?: number;
-  limit?: number;
-  sort?: string;
-}
+export const personsSchema = z.object({
+  success: z.boolean(),
+  data: z.array(
+    z.object({
+      id: z.number(),
+      company_id: z.number(),
+      owner_id: z.object({
+        id: z.number(),
+        name: z.string(),
+        email: z.string(),
+        has_pic: z.number(),
+        pic_hash: z.string(),
+        active_flag: z.boolean(),
+        value: z.number()
+      }),
+      org_id: z.object({
+        name: z.string(),
+        people_count: z.number(),
+        owner_id: z.number(),
+        address: z.string(),
+        active_flag: z.boolean(),
+        cc_email: z.string(),
+        value: z.number()
+      }),
+      name: z.string(),
+      first_name: z.string(),
+      last_name: z.string(),
+      open_deals_count: z.number(),
+      related_open_deals_count: z.number(),
+      closed_deals_count: z.number(),
+      related_closed_deals_count: z.number(),
+      participant_open_deals_count: z.number(),
+      participant_closed_deals_count: z.number(),
+      email_messages_count: z.number(),
+      activities_count: z.number(),
+      done_activities_count: z.number(),
+      undone_activities_count: z.number(),
+      files_count: z.number(),
+      notes_count: z.number(),
+      followers_count: z.number(),
+      won_deals_count: z.number(),
+      related_won_deals_count: z.number(),
+      lost_deals_count: z.number(),
+      related_lost_deals_count: z.number(),
+      active_flag: z.boolean(),
+      phone: z.array(
+        z.object({
+          value: z.string(),
+          primary: z.boolean(),
+          label: z.string()
+        })
+      ),
+      email: z.array(
+        z.object({
+          value: z.string(),
+          primary: z.boolean(),
+          label: z.string()
+        })
+      ),
+      primary_email: z.string(),
+      first_char: z.string(),
+      update_time: z.string(),
+      add_time: z.string(),
+      visible_to: z.string(),
+      marketing_status: z.string(),
+      picture_id: z.object({
+        item_type: z.string(),
+        item_id: z.number(),
+        active_flag: z.boolean(),
+        add_time: z.string(),
+        update_time: z.string(),
+        added_by_user_id: z.number(),
+        pictures: z.record(z.string()),
+        value: z.number()
+      }),
+      next_activity_date: z.string(),
+      next_activity_time: z.string(),
+      next_activity_id: z.number(),
+      last_activity_id: z.number(),
+      last_activity_date: z.string(),
+      last_incoming_mail_time: z.string(),
+      last_outgoing_mail_time: z.string(),
+      label: z.number(),
+      org_name: z.string(),
+      owner_name: z.string(),
+      cc_email: z.string()
+    })
+  ),
+  additional_data: z.object({
+    pagination: z.object({
+      start: z.number(),
+      limit: z.number(),
+      more_items_in_collection: z.boolean(),
+      next_start: z.number()
+    })
+  }),
+  related_objects: z.object({
+    organization: z.record(
+      z.object({
+        id: z.number(),
+        name: z.string(),
+        people_count: z.number(),
+        owner_id: z.number(),
+        address: z.string(),
+        active_flag: z.boolean(),
+        cc_email: z.string()
+      })
+    ),
+    user: z.record(
+      z.object({
+        id: z.number(),
+        name: z.string(),
+        email: z.string(),
+        has_pic: z.number(),
+        pic_hash: z.string(),
+        active_flag: z.boolean()
+      })
+    ),
+    picture: z.record(
+      z.object({
+        id: z.number(),
+        item_type: z.string(),
+        item_id: z.number(),
+        active_flag: z.boolean(),
+        add_time: z.string(),
+        update_time: z.string(),
+        added_by_user_id: z.number(),
+        pictures: z.record(z.string())
+      })
+    )
+  })
+}).deepPartial()
 
-export type QuerySearchPersons = Omit<QuerySearchDeals, "person_id" | "status">;
+export const queryGetPersonsSchema = z.object({
+  user_id: z.number().optional(),
+  filter_id: z.number().optional(),
+  first_char: z.string().optional(),
+  start: z.number().optional(),
+  limit: z.number().optional(),
+  sort: z.string().optional()
+})
 
-export interface SearchPersonsResponse {
-  success: boolean;
-  data: {
-    items: Array<{
-      result_score: number;
-      item: {
-        id: number;
-        type: string;
-        name: string;
-        phones: Array<string>;
-        emails: Array<string>;
-        visible_to: number;
-        owner: {
-          id: number;
-        };
-        organization: {
-          id: number;
-          name: string;
-          address: any;
-        };
-        custom_fields: Array<any>;
-        notes: Array<any>;
-      };
-    }>;
-  };
-  additional_data: {
-    pagination: {
-      start: number;
-      limit: number;
-      more_items_in_collection: boolean;
-    };
-  };
-}
+export const querySearchPersonsSchema = querySearchDealsSchema.omit({
+  person_id: true,
+  status: true
+})
 
-export interface QueryAddPerson {
-  name: string;
-  owner_id?: number;
-  org_id?: number;
-  email?: string;
-  phone?: string;
-  visible_to?: string;
-  marketing_status?: "no_consent" | "unsubscribed" | "subscribed" | "archived";
-  add_time?: string;
-}
+export const searchPersonsResponseSchema = z.object({
+  success: z.boolean(),
+  data: z.object({
+    items: z.array(
+      z.object({
+        result_score: z.number(),
+        item: z.object({
+          id: z.number(),
+          type: z.string(),
+          name: z.string(),
+          phones: z.array(z.string()),
+          emails: z.array(z.string()),
+          visible_to: z.number(),
+          owner: z.object({
+            id: z.number()
+          }),
+          organization: z.object({
+            id: z.number(),
+            name: z.string(),
+            address: z.any()
+          }),
+          custom_fields: z.array(z.any()),
+          notes: z.array(z.any())
+        })
+      })
+    )
+  }),
+  additional_data: z.object({
+    pagination: z.object({
+      start: z.number(),
+      limit: z.number(),
+      more_items_in_collection: z.boolean()
+    })
+  })
+}).deepPartial()
 
-export interface QueryUpdatePerson extends Omit<QueryAddPerson, "name"> {
-  name?: string;
-}
+export const queryAddPersonSchema = z.object({
+  name: z.string(),
+  owner_id: z.number().optional(),
+  org_id: z.number().optional(),
+  email: z.string().optional(),
+  phone: z.string().optional(),
+  visible_to: z.string().optional(),
+  marketing_status: z
+    .union([
+      z.literal("no_consent"),
+      z.literal("unsubscribed"),
+      z.literal("subscribed"),
+      z.literal("archived")
+    ])
+    .optional(),
+  add_time: z.string().optional()
+})
 
-export interface AddOrUpdatePersonResponse {
-  success: boolean;
-  data: {
-    id: number;
-    company_id: number;
-    owner_id: {
-      id: number;
-      name: string;
-      email: string;
-      has_pic: number;
-      pic_hash: string;
-      active_flag: boolean;
-      value: number;
-    };
-    org_id: {
-      name: string;
-      people_count: number;
-      owner_id: number;
-      address: string;
-      active_flag: boolean;
-      cc_email: string;
-      value: number;
-    };
-    name: string;
-    first_name: string;
-    last_name: string;
-    open_deals_count: number;
-    related_open_deals_count: number;
-    closed_deals_count: number;
-    related_closed_deals_count: number;
-    participant_open_deals_count: number;
-    participant_closed_deals_count: number;
-    email_messages_count: number;
-    activities_count: number;
-    done_activities_count: number;
-    undone_activities_count: number;
-    files_count: number;
-    notes_count: number;
-    followers_count: number;
-    won_deals_count: number;
-    related_won_deals_count: number;
-    lost_deals_count: number;
-    related_lost_deals_count: number;
-    active_flag: boolean;
-    phone: Array<{
-      value: string;
-      primary: boolean;
-      label: string;
-    }>;
-    email: Array<{
-      value: string;
-      primary: boolean;
-      label: string;
-    }>;
-    primary_email: string;
-    first_char: string;
-    update_time: string;
-    add_time: string;
-    visible_to: string;
-    marketing_status: string;
-    picture_id: {
-      item_type: string;
-      item_id: number;
-      active_flag: boolean;
-      add_time: string;
-      update_time: string;
-      added_by_user_id: number;
-      pictures: {
-        [key: string]: string;
-      };
-      value: number;
-    };
-    next_activity_date: string;
-    next_activity_time: string;
-    next_activity_id: number;
-    last_activity_id: number;
-    last_activity_date: string;
-    last_incoming_mail_time: string;
-    last_outgoing_mail_time: string;
-    label: number;
-    org_name: string;
-    owner_name: string;
-    cc_email: string;
-  };
-  related_objects: {
-    user: {
-      [key: string]: {
-        id: number;
-        name: string;
-        email: string;
-        has_pic: number;
-        pic_hash: string;
-        active_flag: boolean;
-      };
-    };
-  };
-}
+export const queryUpdatePersonSchema = queryAddPersonSchema.partial()
 
-export interface DeleteResponse {
-  success: boolean;
-  data: {
-    id: number;
-  };
-}
+export const addOrUpdatePersonResponseSchema = z.object({
+  success: z.boolean(),
+  data: z.object({
+    id: z.number(),
+    company_id: z.number(),
+    owner_id: z.object({
+      id: z.number(),
+      name: z.string(),
+      email: z.string(),
+      has_pic: z.number(),
+      pic_hash: z.string(),
+      active_flag: z.boolean(),
+      value: z.number()
+    }),
+    org_id: z.object({
+      name: z.string(),
+      people_count: z.number(),
+      owner_id: z.number(),
+      address: z.string(),
+      active_flag: z.boolean(),
+      cc_email: z.string(),
+      value: z.number()
+    }),
+    name: z.string(),
+    first_name: z.string(),
+    last_name: z.string(),
+    open_deals_count: z.number(),
+    related_open_deals_count: z.number(),
+    closed_deals_count: z.number(),
+    related_closed_deals_count: z.number(),
+    participant_open_deals_count: z.number(),
+    participant_closed_deals_count: z.number(),
+    email_messages_count: z.number(),
+    activities_count: z.number(),
+    done_activities_count: z.number(),
+    undone_activities_count: z.number(),
+    files_count: z.number(),
+    notes_count: z.number(),
+    followers_count: z.number(),
+    won_deals_count: z.number(),
+    related_won_deals_count: z.number(),
+    lost_deals_count: z.number(),
+    related_lost_deals_count: z.number(),
+    active_flag: z.boolean(),
+    phone: z.array(
+      z.object({
+        value: z.string(),
+        primary: z.boolean(),
+        label: z.string()
+      })
+    ),
+    email: z.array(
+      z.object({
+        value: z.string(),
+        primary: z.boolean(),
+        label: z.string()
+      })
+    ),
+    primary_email: z.string(),
+    first_char: z.string(),
+    update_time: z.string(),
+    add_time: z.string(),
+    visible_to: z.string(),
+    marketing_status: z.string(),
+    picture_id: z.object({
+      item_type: z.string(),
+      item_id: z.number(),
+      active_flag: z.boolean(),
+      add_time: z.string(),
+      update_time: z.string(),
+      added_by_user_id: z.number(),
+      pictures: z.record(z.string()),
+      value: z.number()
+    }),
+    next_activity_date: z.string(),
+    next_activity_time: z.string(),
+    next_activity_id: z.number(),
+    last_activity_id: z.number(),
+    last_activity_date: z.string(),
+    last_incoming_mail_time: z.string(),
+    last_outgoing_mail_time: z.string(),
+    label: z.number(),
+    org_name: z.string(),
+    owner_name: z.string(),
+    cc_email: z.string()
+  }),
+  related_objects: z.object({
+    user: z.record(
+      z.object({
+        id: z.number(),
+        name: z.string(),
+        email: z.string(),
+        has_pic: z.number(),
+        pic_hash: z.string(),
+        active_flag: z.boolean()
+      })
+    )
+  })
+}).deepPartial()
+
+export const deleteResponseSchema = z.object({
+  success: z.boolean(),
+  data: z.object({
+    id: z.number()
+  })
+}).deepPartial()
+
+//types:
+
+export type Deals = z.infer<typeof dealsSchema>
+export type QueryGetDeals = z.infer<typeof queryGetDealsSchema>
+export type SearchDealsResponse = z.infer<typeof searchDealsResponseSchema>
+export type QuerySearchDeals = z.infer<typeof querySearchDealsSchema>
+export type QueryAddDeal  = z.infer<typeof queryAddDealSchema>
+export type QueryUpdateDeal = z.infer<typeof queryUpdateDealSchema>
+export type AddOrUpdateDealResponse = z.infer<typeof addOrUpdateDealResponseSchema>
+export type Persons = z.infer<typeof personsSchema>
+export type QueryGetPersons = z.infer<typeof queryGetPersonsSchema>
+export type QuerySearchPersons = z.infer<typeof querySearchPersonsSchema>
+export type SearchPersonsResponse = z.infer<typeof searchPersonsResponseSchema>
+export type QueryAddPerson = z.infer<typeof queryAddPersonSchema>
+export type QueryUpdatePerson = z.infer<typeof queryUpdatePersonSchema>
+export type AddOrUpdatePersonResponse = z.infer<typeof addOrUpdatePersonResponseSchema>
+export type DeleteResponse = z.infer<typeof deleteResponseSchema>
+

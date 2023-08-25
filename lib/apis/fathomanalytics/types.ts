@@ -1,28 +1,41 @@
-export interface Site {
-  id: string;
-  object: string;
-  name: string;
-  sharing: string;
-  created_at: string;
-}
+import { z } from "https://deno.land/x/zod/mod.ts";
 
-export interface Sites {
-  object: string;
-  url: string;
-  has_more: boolean;
-  data: Array<Site>;
-}
+export const siteSchema = z.object({
+  id: z.string(),
+  object: z.string(),
+  name: z.string(),
+  sharing: z.string(),
+  created_at: z.string()
+}).deepPartial()
 
-export interface QuerySites {
-  limit?: number;
-  starting_after?: string;
-  ending_before?: string;
-}
+export const sitesSchema = z.object({
+  object: z.string(),
+  url: z.string(),
+  has_more: z.boolean(),
+  data: z.array(siteSchema)
+}).deepPartial()
 
-export interface QueryAddSite {
-  name: string;
-  sharing?: "none" | "private" | "public";
-  share_password?: string;
-}
+export const querySitesSchema = z.object({
+  limit: z.number().optional(),
+  starting_after: z.string().optional(),
+  ending_before: z.string().optional()
+})
 
-export type QueryUpdateSite = Partial<QueryAddSite>;
+export const queryAddSiteSchema = z.object({
+  name: z.string(),
+  sharing: z
+    .union([z.literal("none"), z.literal("private"), z.literal("public")])
+    .optional(),
+  share_password: z.string().optional()
+})
+
+export const queryUpdateSiteSchema = queryAddSiteSchema.deepPartial()
+
+//types:
+
+export type Site = z.infer<typeof siteSchema>
+export type Sites = z.infer<typeof sitesSchema>
+export type QuerySites = z.infer<typeof querySitesSchema>
+export type QueryAddSite = z.infer<typeof queryAddSiteSchema>
+export type QueryUpdateSite = z.infer<typeof queryUpdateSiteSchema>
+

@@ -1,198 +1,205 @@
-export interface File {
-  kind: string;
-  driveId: string;
-  fileExtension: string;
-  copyRequiresWriterPermission: boolean;
-  md5Checksum: string;
-  contentHints: {
-    indexableText: string;
-    thumbnail: {
-      image: string;
-      mimeType: string;
-    };
-  };
-  writersCanShare: boolean;
-  viewedByMe: boolean;
-  mimeType: string;
-  exportLinks: {
-    [key: string]: string;
-  };
-  parents: string[];
-  thumbnailLink: string;
-  iconLink: string;
-  shared: boolean;
-  lastModifyingUser: {};
-  owners: {}[];
-  headRevisionId: string;
-  sharingUser: {};
-  webViewLink: string;
-  webContentLink: string;
-  size: string;
-  viewersCanCopyContent: boolean;
-  permissions: {}[];
-  hasThumbnail: boolean;
-  spaces: string[];
-  folderColorRgb: string;
-  id: string;
-  name: string;
-  description: string;
-  starred: boolean;
-  trashed: boolean;
-  explicitlyTrashed: boolean;
-  createdTime: string;
-  modifiedTime: string;
-  modifiedByMeTime: string;
-  viewedByMeTime: string;
-  sharedWithMeTime: string;
-  quotaBytesUsed: string;
-  version: string;
-  originalFilename: string;
-  ownedByMe: boolean;
-  fullFileExtension: string;
-  properties: {
-    [key: string]: any;
-  };
-  appProperties: {
-    [key: string]: any;
-  };
-  isAppAuthorized: boolean;
-  teamDriveId: string;
-  capabilities: {
-    canChangeViewersCanCopyContent: boolean;
-    canMoveChildrenOutOfDrive: boolean;
-    canReadDrive: boolean;
-    canEdit: boolean;
-    canCopy: boolean;
-    canComment: boolean;
-    canAddChildren: boolean;
-    canDelete: boolean;
-    canDownload: boolean;
-    canListChildren: boolean;
-    canRemoveChildren: boolean;
-    canRename: boolean;
-    canTrash: boolean;
-    canReadRevisions: boolean;
-    canReadTeamDrive: boolean;
-    canMoveTeamDriveItem: boolean;
-    canChangeCopyRequiresWriterPermission: boolean;
-    canMoveItemIntoTeamDrive: boolean;
-    canUntrash: boolean;
-    canModifyContent: boolean;
-    canMoveItemWithinTeamDrive: boolean;
-    canMoveItemOutOfTeamDrive: boolean;
-    canDeleteChildren: boolean;
-    canMoveChildrenOutOfTeamDrive: boolean;
-    canMoveChildrenWithinTeamDrive: boolean;
-    canTrashChildren: boolean;
-    canMoveItemOutOfDrive: boolean;
-    canAddMyDriveParent: boolean;
-    canRemoveMyDriveParent: boolean;
-    canMoveItemWithinDrive: boolean;
-    canShare: boolean;
-    canMoveChildrenWithinDrive: boolean;
-    canModifyContentRestriction: boolean;
-    canAddFolderFromAnotherDrive: boolean;
-    canChangeSecurityUpdateEnabled: boolean;
-    canAcceptOwnership: boolean;
-    canReadLabels: boolean;
-    canModifyLabels: boolean;
-    canModifyEditorContentRestriction: boolean;
-    canModifyOwnerContentRestriction: boolean;
-    canRemoveContentRestriction: boolean;
-  };
-  hasAugmentedPermissions: boolean;
-  trashingUser: {};
-  thumbnailVersion: string;
-  trashedTime: string;
-  modifiedByMe: boolean;
-  permissionIds: string[];
-  imageMediaMetadata: {
-    flashUsed: boolean;
-    meteringMode: string;
-    sensor: string;
-    exposureMode: string;
-    colorSpace: string;
-    whiteBalance: string;
-    width: number;
-    height: number;
-    location: {
-      latitude: number;
-      longitude: number;
-      altitude: number;
-    };
-    rotation: number;
-    time: string;
-    cameraMake: string;
-    cameraModel: string;
-    exposureTime: number;
-    aperture: number;
-    focalLength: number;
-    isoSpeed: number;
-    exposureBias: number;
-    maxApertureValue: number;
-    subjectDistance: number;
-    lens: string;
-  };
-  videoMediaMetadata: {
-    width: number;
-    height: number;
-    durationMillis: string;
-  };
-  shortcutDetails: {
-    targetId: string;
-    targetMimeType: string;
-    targetResourceKey: string;
-  };
-  contentRestrictions: {}[];
-  resourceKey: string;
-  linkShareMetadata: {
-    securityUpdateEligible: boolean;
-    securityUpdateEnabled: boolean;
-  };
-  labelInfo: {
-    labels: {}[];
-    sha1Checksum: string;
-    sha256Checksum: string;
-  };
-}
+import { z } from "https://deno.land/x/zod/mod.ts";
 
-export interface Files {
-  nextPageToken: string;
-  kind: string;
-  incompleteSearch: boolean;
-  files: File[];
-}
+export const fileSchema = z.object({
+  kind: z.string(),
+  driveId: z.string(),
+  fileExtension: z.string(),
+  copyRequiresWriterPermission: z.boolean(),
+  md5Checksum: z.string(),
+  contentHints: z.object({
+    indexableText: z.string(),
+    thumbnail: z.object({
+      image: z.string(),
+      mimeType: z.string()
+    })
+  }),
+  writersCanShare: z.boolean(),
+  viewedByMe: z.boolean(),
+  mimeType: z.string(),
+  exportLinks: z.record(z.string()),
+  parents: z.array(z.string()),
+  thumbnailLink: z.string(),
+  iconLink: z.string(),
+  shared: z.boolean(),
+  lastModifyingUser: z.object({}),
+  owners: z.array(z.object({})),
+  headRevisionId: z.string(),
+  sharingUser: z.object({}),
+  webViewLink: z.string(),
+  webContentLink: z.string(),
+  size: z.string(),
+  viewersCanCopyContent: z.boolean(),
+  permissions: z.array(z.object({})),
+  hasThumbnail: z.boolean(),
+  spaces: z.array(z.string()),
+  folderColorRgb: z.string(),
+  id: z.string(),
+  name: z.string(),
+  description: z.string(),
+  starred: z.boolean(),
+  trashed: z.boolean(),
+  explicitlyTrashed: z.boolean(),
+  createdTime: z.string(),
+  modifiedTime: z.string(),
+  modifiedByMeTime: z.string(),
+  viewedByMeTime: z.string(),
+  sharedWithMeTime: z.string(),
+  quotaBytesUsed: z.string(),
+  version: z.string(),
+  originalFilename: z.string(),
+  ownedByMe: z.boolean(),
+  fullFileExtension: z.string(),
+  properties: z.record(z.any()),
+  appProperties: z.record(z.any()),
+  isAppAuthorized: z.boolean(),
+  teamDriveId: z.string(),
+  capabilities: z.object({
+    canChangeViewersCanCopyContent: z.boolean(),
+    canMoveChildrenOutOfDrive: z.boolean(),
+    canReadDrive: z.boolean(),
+    canEdit: z.boolean(),
+    canCopy: z.boolean(),
+    canComment: z.boolean(),
+    canAddChildren: z.boolean(),
+    canDelete: z.boolean(),
+    canDownload: z.boolean(),
+    canListChildren: z.boolean(),
+    canRemoveChildren: z.boolean(),
+    canRename: z.boolean(),
+    canTrash: z.boolean(),
+    canReadRevisions: z.boolean(),
+    canReadTeamDrive: z.boolean(),
+    canMoveTeamDriveItem: z.boolean(),
+    canChangeCopyRequiresWriterPermission: z.boolean(),
+    canMoveItemIntoTeamDrive: z.boolean(),
+    canUntrash: z.boolean(),
+    canModifyContent: z.boolean(),
+    canMoveItemWithinTeamDrive: z.boolean(),
+    canMoveItemOutOfTeamDrive: z.boolean(),
+    canDeleteChildren: z.boolean(),
+    canMoveChildrenOutOfTeamDrive: z.boolean(),
+    canMoveChildrenWithinTeamDrive: z.boolean(),
+    canTrashChildren: z.boolean(),
+    canMoveItemOutOfDrive: z.boolean(),
+    canAddMyDriveParent: z.boolean(),
+    canRemoveMyDriveParent: z.boolean(),
+    canMoveItemWithinDrive: z.boolean(),
+    canShare: z.boolean(),
+    canMoveChildrenWithinDrive: z.boolean(),
+    canModifyContentRestriction: z.boolean(),
+    canAddFolderFromAnotherDrive: z.boolean(),
+    canChangeSecurityUpdateEnabled: z.boolean(),
+    canAcceptOwnership: z.boolean(),
+    canReadLabels: z.boolean(),
+    canModifyLabels: z.boolean(),
+    canModifyEditorContentRestriction: z.boolean(),
+    canModifyOwnerContentRestriction: z.boolean(),
+    canRemoveContentRestriction: z.boolean()
+  }),
+  hasAugmentedPermissions: z.boolean(),
+  trashingUser: z.object({}),
+  thumbnailVersion: z.string(),
+  trashedTime: z.string(),
+  modifiedByMe: z.boolean(),
+  permissionIds: z.array(z.string()),
+  imageMediaMetadata: z.object({
+    flashUsed: z.boolean(),
+    meteringMode: z.string(),
+    sensor: z.string(),
+    exposureMode: z.string(),
+    colorSpace: z.string(),
+    whiteBalance: z.string(),
+    width: z.number(),
+    height: z.number(),
+    location: z.object({
+      latitude: z.number(),
+      longitude: z.number(),
+      altitude: z.number()
+    }),
+    rotation: z.number(),
+    time: z.string(),
+    cameraMake: z.string(),
+    cameraModel: z.string(),
+    exposureTime: z.number(),
+    aperture: z.number(),
+    focalLength: z.number(),
+    isoSpeed: z.number(),
+    exposureBias: z.number(),
+    maxApertureValue: z.number(),
+    subjectDistance: z.number(),
+    lens: z.string()
+  }),
+  videoMediaMetadata: z.object({
+    width: z.number(),
+    height: z.number(),
+    durationMillis: z.string()
+  }),
+  shortcutDetails: z.object({
+    targetId: z.string(),
+    targetMimeType: z.string(),
+    targetResourceKey: z.string()
+  }),
+  contentRestrictions: z.array(z.object({})),
+  resourceKey: z.string(),
+  linkShareMetadata: z.object({
+    securityUpdateEligible: z.boolean(),
+    securityUpdateEnabled: z.boolean()
+  }),
+  labelInfo: z.object({
+    labels: z.array(z.object({})),
+    sha1Checksum: z.string(),
+    sha256Checksum: z.string()
+  })
+}).deepPartial()
 
-export interface QueryFiles {
-  corpora?: string;
-  driveId?: string;
-  includeItemsFromAllDrives?: boolean;
-  orderBy?:
-    | "createdTime"
-    | "folder"
-    | "modifiedByMeTime"
-    | "modifiedTime"
-    | "name"
-    | "name_natural"
-    | "quotaBytesUsed"
-    | "recency"
-    | "sharedWithMeTime"
-    | "starred"
-    | "viewedByMeTime";
-  pageSize?: number;
-  pageToken?: string;
-  q?: string;
-  spaces?: string;
-  supportsAllDrives?: boolean;
-  includePermissionsForView?: "published";
-  includeLabels?: string;
-}
+export const filesSchema = z.object({
+  nextPageToken: z.string(),
+  kind: z.string(),
+  incompleteSearch: z.boolean(),
+  files: z.array(fileSchema)
+}).deepPartial()
 
-export interface QueryFile {
-  acknowledgeAbuse?: boolean;
-  supportsAllDrives?: boolean;
-  includePermissionsForView?: "published";
-  includeLabels?: string;
-}
+export const queryFilesSchema = z.object({
+  corpora: z.string().optional(),
+  driveId: z.string().optional(),
+  includeItemsFromAllDrives: z.boolean().optional(),
+  orderBy: z
+    .union([
+      z.literal("createdTime"),
+      z.literal("folder"),
+      z.literal("modifiedByMeTime"),
+      z.literal("modifiedTime"),
+      z.literal("name"),
+      z.literal("name_natural"),
+      z.literal("quotaBytesUsed"),
+      z.literal("recency"),
+      z.literal("sharedWithMeTime"),
+      z.literal("starred"),
+      z.literal("viewedByMeTime")
+    ])
+    .optional(),
+  pageSize: z.number().optional(),
+  pageToken: z.string().optional(),
+  q: z.string().optional(),
+  spaces: z.string().optional(),
+  supportsAllDrives: z.boolean().optional(),
+  includePermissionsForView: z.literal("published").optional(),
+  includeLabels: z.string().optional()
+})
 
-export type QueryCopyFile = Partial<File>;
+export const queryFileSchema = z.object({
+  acknowledgeAbuse: z.boolean().optional(),
+  supportsAllDrives: z.boolean().optional(),
+  includePermissionsForView: z.literal("published").optional(),
+  includeLabels: z.string().optional()
+})
+
+export const queryCopyFileSchema = fileSchema.partial()
+
+//types:
+
+export type File = z.infer<typeof fileSchema>
+export type Files = z.infer<typeof filesSchema>
+export type QueryFiles = z.infer<typeof queryFilesSchema>
+export type QueryFile = z.infer<typeof queryFileSchema>
+export type QueryCopyFile = z.infer<typeof queryCopyFileSchema>
