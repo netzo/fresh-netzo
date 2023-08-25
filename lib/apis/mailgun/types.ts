@@ -1,66 +1,77 @@
-interface MailingListBase {
-  access_level: string;
-  address: string;
-  created_at: string;
-  description: string;
-  members_count: number;
-  name: string;
-}
+import { z } from "https://deno.land/x/zod/mod.ts";
 
-export interface MailingLists {
-  items: Array<MailingListBase>;
-  paging: {
-    first: string;
-    last: string;
-    next: string;
-    previous: string;
-  };
-}
+const mailingListBaseSchema = z.object({
+  access_level: z.string(),
+  address: z.string(),
+  created_at: z.string(),
+  description: z.string(),
+  members_count: z.number(),
+  name: z.string()
+})
 
-export interface QueryMailingLists {
-  limit?: number;
-}
+export const mailingListsSchema = z.object({
+  items: z.array(mailingListBaseSchema),
+  paging: z.object({
+    first: z.string(),
+    last: z.string(),
+    next: z.string(),
+    previous: z.string()
+  })
+}).deepPartial()
 
-export interface QueryAddMailingList {
-  address: string;
-  name?: string;
-  description?: string;
-  access_level?: "readonly" | "members" | "everyone";
-  reply_preference?: "list" | "sender";
-}
+export const queryMailingListsSchema = z.object({
+  limit: z.number().optional()
+})
 
-export type QueryUpdateMailingList = Partial<QueryAddMailingList>;
+export const queryAddMailingListSchema = z.object({
+  address: z.string(),
+  name: z.string().optional(),
+  description: z.string().optional(),
+  access_level: z
+    .union([z.literal("readonly"), z.literal("members"), z.literal("everyone")])
+    .optional(),
+  reply_preference: z.union([z.literal("list"), z.literal("sender")]).optional()
+})
 
-export interface AddOrUpdateListResponse {
-  message: string;
-  list: MailingListBase;
-}
+export const queryUpdateMailingListSchema = queryAddMailingListSchema.partial()
 
-export interface QueryAddMember {
-  address: string;
-  name?: string;
-  vars?: {
-    [key: string]: any;
-  };
-  subscribed?: "yes" | "no";
-  upsert?: "yes" | "no";
-}
+export const addOrUpdateListResponseSchema = z.object({
+  message: z.string(),
+  list: mailingListBaseSchema
+})
 
-export interface AddMemberResponse {
-  member: {
-    vars: {
-      [key: string]: any;
-    };
-    name: string;
-    subscribed: boolean;
-    address: string;
-  };
-  message: string;
-}
+export const queryAddMemberSchema = z.object({
+  address: z.string(),
+  name: z.string().optional(),
+  vars: z.record(z.any()).optional(),
+  subscribed: z.union([z.literal("yes"), z.literal("no")]).optional(),
+  upsert: z.union([z.literal("yes"), z.literal("no")]).optional()
+})
 
-export interface DeleteMemberResponse {
-  member: {
-    address: string;
-  };
-  message: string;
-}
+export const addMemberResponseSchema = z.object({
+  member: z.object({
+    vars: z.record(z.any()),
+    name: z.string(),
+    subscribed: z.boolean(),
+    address: z.string()
+  }),
+  message: z.string()
+})
+
+export const deleteMemberResponseSchema = z.object({
+  member: z.object({
+    address: z.string()
+  }),
+  message: z.string()
+})
+
+//types:
+
+export type MailingLists = z.infer<typeof mailingListsSchema>
+export type QueryMailingLists = z.infer<typeof queryMailingListsSchema>
+export type QueryAddMailingList = z.infer<typeof queryAddMailingListSchema>
+export type QueryUpdateMailingList = z.infer<typeof queryUpdateMailingListSchema>
+export type AddOrUpdateListResponse = z.infer<typeof addOrUpdateListResponseSchema>
+export type QueryAddMember = z.infer<typeof queryAddMemberSchema>
+export type AddMemberResponse = z.infer<typeof addMemberResponseSchema>
+export type DeleteMemberResponse = z.infer<typeof deleteMemberResponseSchema>

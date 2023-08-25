@@ -1,135 +1,158 @@
-export interface NotionPagination {
-  start_cursor?: string;
-  page_size?: number;
-}
+import { z } from "https://deno.land/x/zod/mod.ts";
 
-export interface Page {
-  object: string;
-  id: string;
-  created_time: string;
-  last_edited_time: string;
-  created_by: {
-    object: string;
-    id: string;
-  };
-  last_edited_by: {
-    object: string;
-    id: string;
-  };
-  cover: {
-    type: string;
-    external: {
-      url: string;
-    };
-  };
-  icon: {
-    type: string;
-    emoji: string;
-  };
-  properties: {
-    [key: string]: any;
-  };
-  parent: {
-    type: string;
-    database_id: string;
-  };
-  archived: boolean;
-  url: string;
-  public_url: any;
-}
+export const notionPaginationSchema = z.object({
+  start_cursor: z.string().optional(),
+  page_size: z.number().optional()
+})
 
-export interface QueryProperties {
-  filter_properties: string[];
-}
+export const pageSchema = z.object({
+  object: z.string(),
+  id: z.string(),
+  created_time: z.string(),
+  last_edited_time: z.string(),
+  created_by: z.object({
+    object: z.string(),
+    id: z.string()
+  }),
+  last_edited_by: z.object({
+    object: z.string(),
+    id: z.string()
+  }),
+  cover: z.object({
+    type: z.string(),
+    external: z.object({
+      url: z.string()
+    })
+  }),
+  icon: z.object({
+    type: z.string(),
+    emoji: z.string()
+  }),
+  properties: z.record(z.any()),
+  parent: z.object({
+    type: z.string(),
+    database_id: z.string()
+  }),
+  archived: z.boolean(),
+  url: z.string(),
+  public_url: z.any()
+}).deepPartial()
 
-export interface Pages {
-  object: string;
-  results: Page[];
-  next_cursor: any;
-  has_more: false;
-  type: string;
-  [key: string]: {}; //type value becomes the key name
-}
+export const queryPropertiesSchema = z.object({
+  filter_properties: z.array(z.string())
+})
 
-export interface Block {
-  object: string;
-  results: Array<{
-    object: string;
-    id: string;
-    parent: {
-      type: string;
-      block_id: string;
-    };
-    type: string;
-    created_time: string;
-    last_edited_time: string;
-    created_by: {
-      object: string;
-      id: string;
-    };
-    last_edited_by: {
-      object: string;
-      id: string;
-    };
-    has_children: boolean;
-    archived: boolean;
-    [key: string]: {};
-  }>;
-  next_cursor: any;
-  has_more: false;
-  type: string;
-  [key: string]: {}; //type value becomes the key name
-}
+export const pagesSchema = z.record(z.object({}).optional()).and(
+  z.object({
+    object: z.string(),
+    results: z.array(pageSchema),
+    next_cursor: z.any(),
+    has_more: z.literal(false),
+    type: z.string() //type value becomes new key
+  }).deepPartial()
+)
 
-interface UserBase {
-  object: "user";
-  id: string;
-  type: "person" | "bot";
-  name: string;
-  avatar_url: string;
-}
+export const blockSchema = z.record(z.object({}).optional()).and(
+  z.object({
+    object: z.string(),
+    results: z.array(
+      z.record(z.object({})).and(
+        z.object({
+          object: z.string(),
+          id: z.string(),
+          parent: z.object({
+            type: z.string(),
+            block_id: z.string()
+          }),
+          type: z.string(),
+          created_time: z.string(),
+          last_edited_time: z.string(),
+          created_by: z.object({
+            object: z.string(),
+            id: z.string()
+          }),
+          last_edited_by: z.object({
+            object: z.string(),
+            id: z.string()
+          }),
+          has_children: z.boolean(),
+          archived: z.boolean()
+        })
+      )
+    ),
+    next_cursor: z.any(),
+    has_more: z.literal(false),
+    type: z.string() //type value becomes new key
+  }).deepPartial()
+)
 
-interface PersonUser extends UserBase {
-  person: {
-    email: string;
-  };
-}
+const userBaseSchema = z.object({
+  object: z.literal("user"),
+  id: z.string(),
+  type: z.union([z.literal("person"), z.literal("bot")]),
+  name: z.string(),
+  avatar_url: z.string()
+})
 
-interface BotUser extends UserBase {
-  bot: {
-    owner: {
-      type: string;
-      workspace: boolean;
-    };
-    workspace_name: string;
-  };
-}
+const personUserSchema = userBaseSchema.extend({
+  person: z.object({
+    email: z.string()
+  })
+})
 
-export interface Users {
-  results: Array<PersonUser | BotUser>;
-  next_cursor: string;
-  has_more: boolean;
-}
+const botUserSchema = userBaseSchema.extend({
+  bot: z.object({
+    owner: z.object({
+      type: z.string(),
+      workspace: z.boolean()
+    }),
+    workspace_name: z.string()
+  })
+})
 
-export interface QueryDatabase extends NotionPagination {
-  filter?: {
-    property?: string;
-    checkbox?: {};
-    date?: {};
-    files?: {};
-    formula?: {};
-    multi_select?: {};
-    number?: {};
-    people?: {};
-    phone_number?: {};
-    relation?: {};
-    rich_text?: {};
-    select?: {};
-    status?: {};
-    timestamp?: {};
-  };
-  sorts?: {
-    property?: string;
-    direction?: "ascending" | "descending";
-  }[];
-}
+export const usersSchema = z.object({
+  results: z.array(z.union([personUserSchema, botUserSchema])),
+  next_cursor: z.string(),
+  has_more: z.boolean()
+})
+
+export const queryDatabaseSchema = notionPaginationSchema.extend({
+  filter: z
+    .object({
+      property: z.string().optional(),
+      checkbox: z.object({}).optional(),
+      date: z.object({}).optional(),
+      files: z.object({}).optional(),
+      formula: z.object({}).optional(),
+      multi_select: z.object({}).optional(),
+      number: z.object({}).optional(),
+      people: z.object({}).optional(),
+      phone_number: z.object({}).optional(),
+      relation: z.object({}).optional(),
+      rich_text: z.object({}).optional(),
+      select: z.object({}).optional(),
+      status: z.object({}).optional(),
+      timestamp: z.object({}).optional()
+    })
+    .optional(),
+  sorts: z
+    .array(
+      z.object({
+        property: z.string().optional(),
+        direction: z
+          .union([z.literal("ascending"), z.literal("descending")])
+          .optional()
+      })
+    )
+    .optional()
+})
+
+//types:
+
+export type NotionPagination = z.infer<typeof notionPaginationSchema>
+export type Page = z.infer<typeof pageSchema>
+export type QueryProperties = z.infer<typeof queryPropertiesSchema>
+export type Pages = z.infer<typeof pagesSchema>
+export type Block = z.infer<typeof blockSchema>
+export type Users = z.infer<typeof usersSchema>
+export type QueryDatabase = z.infer<typeof queryDatabaseSchema>

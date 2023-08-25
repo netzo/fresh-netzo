@@ -1,50 +1,63 @@
-export interface QueryDocuments {
-  dataSource: string;
-  database: string;
-  collection: string;
-  filter: {
-    text?: string;
-  };
-  projection?: {
-    status?: number;
-    text?: number;
-  };
-  sort?: {};
-  limit?: number;
-  skip?: number;
-}
+import { z } from "https://deno.land/x/zod/mod.ts";
 
-interface DocumentBase {
-  _id: string;
-  status: string;
-  text: string;
-}
+const documentBaseSchema = z.object({
+  _id: z.string(),
+  status: z.string(),
+  text: z.string()
+})
 
-export interface Documents {
-  documents: Array<DocumentBase>;
-}
+export const documentsSchema = z.object({
+  documents: z.array(documentBaseSchema)
+}).deepPartial()
 
-export interface QueryAddDocument {
-  dataSource: string;
-  database: string;
-  collection: string;
-  document: {};
-}
+export const queryDocumentsSchema = z.object({
+  dataSource: z.string(),
+  database: z.string(),
+  collection: z.string(),
+  filter: z.object({
+    text: z.string().optional()
+  }),
+  projection: z
+    .object({
+      status: z.number().optional(),
+      text: z.number().optional()
+    })
+    .optional(),
+  sort: z.object({}).optional(),
+  limit: z.number().optional(),
+  skip: z.number().optional()
+})
 
-export interface AddDocumentResponse {
-  insertedId: string;
-}
+export const queryAddDocumentSchema = z.object({
+  dataSource: z.string(),
+  database: z.string(),
+  collection: z.string(),
+  document: z.object({})
+})
 
-export interface QueryUpdateDocument {
-  dataSource: string;
-  database: string;
-  collection: string;
-  filter: {};
-  update: {};
-  upsert?: boolean;
-}
+export const addDocumentResponseSchema = z.object({
+  insertedId: z.string()
+})
 
-export interface UpdateDocumentResponse {
-  "matchedCount": number;
-  "modifiedCount": number;
-}
+export const queryUpdateDocumentSchema = z.object({
+  dataSource: z.string(),
+  database: z.string(),
+  collection: z.string(),
+  filter: z.object({}),
+  update: z.object({}),
+  upsert: z.boolean().optional()
+})
+
+export const updateDocumentResponseSchema = z.object({
+  matchedCount: z.number(),
+  modifiedCount: z.number()
+})
+
+//types:
+
+export type Documents = z.infer<typeof documentsSchema>
+export type QueryDocuments = z.infer<typeof queryDocumentsSchema>
+export type QueryAddDocument = z.infer<typeof queryAddDocumentSchema>
+export type AddDocumentResponse = z.infer<typeof addDocumentResponseSchema>
+export type QueryUpdateDocument = z.infer<typeof queryUpdateDocumentSchema>
+export type UpdateDocumentResponse = z.infer<typeof updateDocumentResponseSchema>
