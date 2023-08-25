@@ -35,8 +35,9 @@
     "unplugin-vue-components": "^0.22.11",
     "vite": "^3.2.7",
     "vite-plugin-vue-devtools": "^0.0.5",
-    "vitepress": "^1.0.0-beta.1",
+    "vitepress": "^1.0.0-rc.4",
     "vitepress-plugin-mermaid": "^2.0.10",
+    "vitepress-plugin-tabs": "^0.3.0",
     "vue": "^3.3.4"
   }
 }

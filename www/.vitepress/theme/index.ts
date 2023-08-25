@@ -1,6 +1,7 @@
 import type { App } from 'vue'
 import { h } from 'vue'
 import Theme from 'vitepress/theme'
+import { enhanceAppWithTabs } from 'vitepress-plugin-tabs/client'
 import {
   defaultConfig as formkitDefaultConfig,
   plugin as formkitPlugin,
@@ -25,6 +26,7 @@ export default {
     })
   },
   enhanceApp({ app }: { app: App }) {
+    enhanceAppWithTabs(app)
     app.component('SvgImage', SvgImage)
     app.use(formkitPlugin, formkitDefaultConfig)
   },
