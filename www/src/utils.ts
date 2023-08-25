@@ -14,7 +14,7 @@ const omit = (obj: Record<string, any>, keys: string[]) => Object.fromEntries(
  * @param dependencies {string[]} - Array of component dependencies to inject
  * @returns {Record<string, any>} - deno.json object
  */
-export const buildDenoJson = (entry: RegistryEntry) => {
+export const buildDenoJson = (entry: RegistryEntry = {}) => {
   // NOTE: registryDependencies already covered by "netzo/" in baseImports
   const { dependencies = [], registryDependencies = [] } = entry;
   const componentImports = dependencies.reduce((acc, dependency) => {
