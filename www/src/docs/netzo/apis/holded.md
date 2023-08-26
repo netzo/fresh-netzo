@@ -11,6 +11,7 @@ Holded is a business management software that helps you manage your business fro
 
 ```ts
 import { holded } from 'https://deno.land/x/netzo/apis/holded/mod.ts'
+
 const { api } = holded({
   apiKey: Deno.env.get('HOLDED_API_KEY')
 })
@@ -57,10 +58,10 @@ const resultData = await api.invoicing.v1.contacts[CONTACT_ID].get<Contact>()
 Add a new contact.
 
 ```ts
-import type { ContactResponse, DataAddContact } from 'netzo/apis/holded/types.ts'
+import type { ContactResult, DataAddContact } from 'netzo/apis/holded/types.ts'
 
 const data: DataAddContact = { name: 'New contact name' }
-const resultData = await api.invoicing.v1.contacts.post<ContactResponse>(data)
+const resultData = await api.invoicing.v1.contacts.post<ContactResult>(data)
 ```
 
 ### Update contact
@@ -68,10 +69,10 @@ const resultData = await api.invoicing.v1.contacts.post<ContactResponse>(data)
 Update a contact by id.
 
 ```ts
-import type { ContactResponse, DataUpdateContact } from 'netzo/apis/holded/types.ts'
+import type { ContactResult, DataUpdateContact } from 'netzo/apis/holded/types.ts'
 
 const data: DataUpdateContact = { name: 'Updated contact name' }
-const resultData = await api.invoicing.v1.contacts[CONTACT_ID].put<ContactResponse>(data)
+const resultData = await api.invoicing.v1.contacts[CONTACT_ID].put<ContactResult>(data)
 ```
 
 ### Delete contact
@@ -79,9 +80,9 @@ const resultData = await api.invoicing.v1.contacts[CONTACT_ID].put<ContactRespon
 Delete a contact by id.
 
 ```ts
-import type { ContactResponse } from 'netzo/apis/holded/types.ts'
+import type { ContactResult } from 'netzo/apis/holded/types.ts'
 
-const resultData = await api.invoicing.v1.contacts[CONTACT_ID].delete<ContactResponse>()
+const resultData = await api.invoicing.v1.contacts[CONTACT_ID].delete<ContactResult>()
 ```
 
 - [API Documentation](https://developers.holded.com/reference/api-key)

@@ -12,6 +12,7 @@ Google Sheets is a spreadsheet program included as part of a free, web-based sof
 
 ```ts
 import { googlesheets } from 'https://deno.land/x/netzo/apis/googlesheets/mod.ts'
+
 const {
   api,
   resultToRows
@@ -80,7 +81,7 @@ Add a row to the spreadsheet.
 Be sure to keep insertDataOption as INSERT_ROWS, or existing data in your range will be overwritten.
 
 ```ts
-import type { AddValuesResponse, QueryAddOrUpdateValues, DataAddOrUpdateValues } from 'netzo/apis/googlesheets/types.ts'
+import type { AddValuesResult, DataAddOrUpdateValues, QueryAddOrUpdateValues } from 'netzo/apis/googlesheets/types.ts'
 
 const query: QueryAddOrUpdateValues = {
   valueInputOption: 'USER_ENTERED',
@@ -89,7 +90,7 @@ const query: QueryAddOrUpdateValues = {
 }
 const data: DataAddOrUpdateValues = { values: [['value1', 'value2', 'value3']] }
 
-const result = await api.values[`${RANGE_TO_INSERT}:append`].post<AddValuesResponse>(data, query)
+const result = await api.values[`${RANGE_TO_INSERT}:append`].post<AddValuesResult>(data, query)
 const resultData = result.updates.updatedData.values
 ```
 
@@ -98,14 +99,14 @@ const resultData = result.updates.updatedData.values
 Update a row by specifying the range.
 
 ```ts
-import type { QueryAddOrUpdateValues, DataAddOrUpdateValues, UpdateValuesResponse } from 'netzo/apis/googlesheets/types.ts'
+import type { DataAddOrUpdateValues, QueryAddOrUpdateValues, UpdateValuesResult } from 'netzo/apis/googlesheets/types.ts'
 
 const query: QueryAddOrUpdateValues = {
   valueInputOption: 'USER_ENTERED',
   includeValuesInResponse: true
 }
 const data: DataAddOrUpdateValues = { values: [['updatedValue1', 'updatedValue2', 'updatedValue3']] }
-const result = await api.values[RANGE_TO_UPDATE].put<UpdateValuesResponse>(data, query)
+const result = await api.values[RANGE_TO_UPDATE].put<UpdateValuesResult>(data, query)
 const resultData = result.updatedData.values
 ```
 
@@ -114,9 +115,9 @@ const resultData = result.updatedData.values
 Delete a row by specifying the range.
 
 ```ts
-import type { DeleteValuesResponse } from 'netzo/apis/googlesheets/types.ts'
+import type { DeleteValuesResult } from 'netzo/apis/googlesheets/types.ts'
 
-const resultData = await api.values[`${RANGE_TO_DELETE}:clear`].post<DeleteValuesResponse>()
+const resultData = await api.values[`${RANGE_TO_DELETE}:clear`].post<DeleteValuesResult>()
  ```
 
 ## References

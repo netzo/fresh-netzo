@@ -2,7 +2,7 @@ import { z } from "../deps.ts";
 
 export const recordSchema = z.record(z.any());
 
-export const addOrUpdateRecordResponseSchema = z.record(z.any().optional()).and(
+export const addOrUpdateRecordResultSchema = z.record(z.any().optional()).and(
   z.object({
     _id: z.string(),
     _created: z.string(),
@@ -12,14 +12,14 @@ export const addOrUpdateRecordResponseSchema = z.record(z.any().optional()).and(
   }).optional(),
 );
 
-export const deleteRecordResponseSchema = z.object({
+export const deleteRecordResultSchema = z.object({
   result: z.array(z.string()),
 });
 
-//types:
+// types:
 
 export type Record = z.infer<typeof recordSchema>;
-export type AddOrUpdateRecordResponse = z.infer<
-  typeof addOrUpdateRecordResponseSchema
+export type AddOrUpdateRecordResult = z.infer<
+  typeof addOrUpdateRecordResultSchema
 >;
-export type DeleteRecordResponse = z.infer<typeof deleteRecordResponseSchema>;
+export type DeleteRecordResult = z.infer<typeof deleteRecordResultSchema>;

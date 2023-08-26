@@ -78,7 +78,7 @@ const resultData = result.orders
 Add a new customer.
 
 ```ts
-import type { DataAddOrUpdateCustomer, AddOrUpdateCustomerResponse } from 'netzo/apis/shopify/types.ts'
+import type { DataAddOrUpdateCustomer, AddOrUpdateCustomerResult } from 'netzo/apis/shopify/types.ts'
 
 const data: DataAddOrUpdateCustomer = {
   customer: {
@@ -87,7 +87,7 @@ const data: DataAddOrUpdateCustomer = {
     email: 'example@email.com'
   }
 }
-const result = await api['customers.json'].post<AddOrUpdateCustomerResponse>(data)
+const result = await api['customers.json'].post<AddOrUpdateCustomerResult>(data)
 const resultData = result.customer
 ```
 
@@ -96,14 +96,14 @@ const resultData = result.customer
 Update a customer by id.
 
 ```ts
-import type { DataAddOrUpdateCustomer, AddOrUpdateCustomerResponse } from 'netzo/apis/shopify/types.ts'
+import type { DataAddOrUpdateCustomer, AddOrUpdateCustomerResult } from 'netzo/apis/shopify/types.ts'
 
 const data: DataAddOrUpdateCustomer = {
   customer: {
     email: 'new-email@email.com'
   }
 }
-const result = await api.customers[`${CUSTOMER_ID}.json`].put<AddOrUpdateCustomerResponse>(data)
+const result = await api.customers[`${CUSTOMER_ID}.json`].put<AddOrUpdateCustomerResult>(data)
 const resultData = result.customer
 ```
 

@@ -4,7 +4,7 @@ export const dataUpdateListSchema = z.object({
   name: z.string(),
 });
 
-export const updateListResponseSchema = z.object({
+export const updateListResultSchema = z.object({
   id: z.string(),
   name: z.string(),
   contact_count: z.number(),
@@ -50,7 +50,7 @@ export const listSchema = z.object({
 }).deepPartial();
 
 export const listsSchema = z.object({
-  result: z.array(updateListResponseSchema),
+  result: z.array(updateListResultSchema),
   _metadata: z.object({
     prev: z.string(),
     self: z.string(),
@@ -87,7 +87,7 @@ export const dataAddContactsSchema = z.object({
   ),
 });
 
-export const addContactsResponseSchema = z.object({
+export const addContactsResultSchema = z.object({
   job_id: z.string(),
 }).deepPartial();
 
@@ -209,14 +209,14 @@ export const dataSendEmailSchema = z.object({
     .optional(),
 });
 
-//types:
+// types:
 
 export type DataUpdateList = z.infer<typeof dataUpdateListSchema>;
-export type UpdateListResponse = z.infer<typeof updateListResponseSchema>;
+export type UpdateListResult = z.infer<typeof updateListResultSchema>;
 export type List = z.infer<typeof listSchema>;
 export type Lists = z.infer<typeof listsSchema>;
 export type QueryLists = z.infer<typeof queryListsSchema>;
 export type QueryList = z.infer<typeof queryListSchema>;
 export type DataAddContacts = z.infer<typeof dataAddContactsSchema>;
-export type AddContactsResponse = z.infer<typeof addContactsResponseSchema>;
+export type AddContactsResult = z.infer<typeof addContactsResultSchema>;
 export type DataSendEmail = z.infer<typeof dataSendEmailSchema>;

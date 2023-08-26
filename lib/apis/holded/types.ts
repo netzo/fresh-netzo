@@ -122,7 +122,7 @@ export const dataAddContactSchema = z.object({
   contactPersons: z.array(z.object({})).optional(),
 });
 
-export const contactResponseSchema = z.object({
+export const contactResultSchema = z.object({
   status: z.number(),
   info: z.string(),
   id: z.string(),
@@ -137,10 +137,10 @@ export const dataUpdateContactSchema = dataAddContactSchema.omit({
   tradeName: z.string().optional(),
 });
 
-//types:
+// types:
 
 export type Contact = z.infer<typeof contactSchema>;
 export type QueryContacts = z.infer<typeof queryContactsSchema>;
 export type DataAddContact = z.infer<typeof dataAddContactSchema>;
-export type ContactResponse = z.infer<typeof contactResponseSchema>;
+export type ContactResult = z.infer<typeof contactResultSchema>;
 export type DataUpdateContact = z.infer<typeof dataUpdateContactSchema>;

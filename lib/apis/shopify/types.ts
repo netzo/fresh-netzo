@@ -93,7 +93,7 @@ export const dataAddOrUpdateCustomerSchema = z.object({
     .optional(),
 });
 
-export const addOrUpdateCustomerResponseSchema = z.object({
+export const addOrUpdateCustomerResultSchema = z.object({
   customer: customerDetailsSchema.and(
     z.object({
       email_marketing_consent: z.object({
@@ -1689,8 +1689,8 @@ export type QueryCustomers = z.infer<typeof queryCustomersSchema>;
 export type DataAddOrUpdateCustomer = z.infer<
   typeof dataAddOrUpdateCustomerSchema
 >;
-export type AddOrUpdateCustomerResponse = z.infer<
-  typeof addOrUpdateCustomerResponseSchema
+export type AddOrUpdateCustomerResult = z.infer<
+  typeof addOrUpdateCustomerResultSchema
 >;
 export type Orders = z.infer<typeof ordersSchema>;
 export type Order = z.infer<typeof orderSchema>;

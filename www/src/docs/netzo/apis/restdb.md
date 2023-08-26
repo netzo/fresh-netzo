@@ -11,6 +11,7 @@ RestDB is a cloud-hosted NoSQL database service.
 
 ```ts
 import { restdb } from 'https://deno.land/x/netzo/apis/restdb/mod.ts'
+
 const { api } = restdb({
   apiKey: Deno.env.get('RESTDB_API_KEY'),
   databaseURL: Deno.env.get('RESTDB_DATABASE_URL')
@@ -49,10 +50,10 @@ const resultData = await api[COLLECTION_NAME].get<Record[]>()
 Add a new record to a collection.
 
 ```ts
-import type { AddOrUpdateRecordResponse, Record } from 'netzo/apis/restdb/types.ts'
+import type { AddOrUpdateRecordResult, Record } from 'netzo/apis/restdb/types.ts'
 
 const data: Record = { title: 'New title' }
-const resultData = await api[COLLECTION_NAME].post<AddOrUpdateRecordResponse>(data)
+const resultData = await api[COLLECTION_NAME].post<AddOrUpdateRecordResult>(data)
 ```
 
 ### Update record
@@ -60,10 +61,10 @@ const resultData = await api[COLLECTION_NAME].post<AddOrUpdateRecordResponse>(da
 Update a record by id.
 
 ```ts
-import type { AddOrUpdateRecordResponse, Record } from 'netzo/apis/restdb/types.ts'
+import type { AddOrUpdateRecordResult, Record } from 'netzo/apis/restdb/types.ts'
 
 const data: Record = { title: 'Updated title' }
-const resultData = await api[COLLECTION_NAME][RECORD_ID].patch<AddOrUpdateRecordResponse>(data)
+const resultData = await api[COLLECTION_NAME][RECORD_ID].patch<AddOrUpdateRecordResult>(data)
 ```
 
 ### Delete record
@@ -71,9 +72,9 @@ const resultData = await api[COLLECTION_NAME][RECORD_ID].patch<AddOrUpdateRecord
 Delete a record by id.
 
 ```ts
-import type { DeleteRecordResponse } from 'netzo/apis/restdb/types.ts'
+import type { DeleteRecordResult } from 'netzo/apis/restdb/types.ts'
 
-const result = await api[COLLECTION_NAME][RECORD_ID].delete<DeleteRecordResponse>()
+const result = await api[COLLECTION_NAME][RECORD_ID].delete<DeleteRecordResult>()
 const resultData = result.result
 ```
 

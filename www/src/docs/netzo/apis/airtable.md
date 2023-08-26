@@ -73,7 +73,7 @@ Update one or multiple records by id.
 Id property of the data is optional if upsert property is enabled.
 
 ```ts
-import type { DataUpdateRecords, UpdateRecordsResponse } from 'netzo/apis/airtable/types.ts'
+import type { DataUpdateRecords, UpdateRecordsResult } from 'netzo/apis/airtable/types.ts'
 
 const data: DataUpdateRecords = {
   records: [
@@ -85,7 +85,7 @@ const data: DataUpdateRecords = {
     }
   ]
 }
-const result = await api[DATABASE_ID][TABLE_ID_OR_NAME].patch<UpdateRecordsResponse>(data)
+const result = await api[DATABASE_ID][TABLE_ID_OR_NAME].patch<UpdateRecordsResult>(data)
 const resultData = result.records
 ```
 

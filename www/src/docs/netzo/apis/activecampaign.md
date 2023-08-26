@@ -11,6 +11,7 @@ ActiveCampaign is a marketing automation platform that helps you create personal
 
 ```ts
 import { activecampaign } from 'https://deno.land/x/netzo/apis/activecampaign/mod.ts'
+
 const { api } = activecampaign({
   accountName: Deno.env.get('ACTIVECAMPAIGN_ACCOUNT_NAME'),
   apiKey: Deno.env.get('ACTIVECAMPAIGN_API_KEY'),
@@ -61,14 +62,14 @@ const resultData = await api.contacts[CONTACT_ID].get<Contact>()
 Add a new contact.
 
 ```ts
-import type { AddOrUpdateContactResponse, DataAddContact } from 'netzo/apis/activecampaign/types.ts'
+import type { AddOrUpdateContactResult, DataAddContact } from 'netzo/apis/activecampaign/types.ts'
 
 const data: DataAddContact = {
   contact: {
     email: 'example@email.com'
   }
 }
-const resultData = await api.contacts.post<AddOrUpdateContactResponse>(data)
+const resultData = await api.contacts.post<AddOrUpdateContactResult>(data)
 ```
 
 ### Update contact
@@ -76,14 +77,14 @@ const resultData = await api.contacts.post<AddOrUpdateContactResponse>(data)
 Update a contact by id.
 
 ```ts
-import type { AddOrUpdateContactResponse, DataUpdateContact } from 'netzo/apis/activecampaign/types.ts'
+import type { AddOrUpdateContactResult, DataUpdateContact } from 'netzo/apis/activecampaign/types.ts'
 
 const data: DataUpdateContact = {
   contact: {
     email: 'updated-email@email.com'
   }
 }
-const resultData = await api.contacts[CONTACT_ID].put<AddOrUpdateContactResponse>(data)
+const resultData = await api.contacts[CONTACT_ID].put<AddOrUpdateContactResult>(data)
 ```
 
 ### Delete contact
@@ -134,14 +135,14 @@ const resultData = result.users
 Add a new user to the account.
 
 ```ts
-import type { AddUserResponse, DataAddUser } from 'netzo/apis/activecampaign/types.ts'
+import type { AddUserResult, DataAddUser } from 'netzo/apis/activecampaign/types.ts'
 
 const data: DataAddUser = {
   user: {
     username: 'jsmith'
   }
 }
-const result = await api.users.post<AddUserResponse>(data)
+const result = await api.users.post<AddUserResult>(data)
 const resultData = result.user
 ```
 

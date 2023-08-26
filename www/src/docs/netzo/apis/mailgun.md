@@ -11,9 +11,10 @@ Mailgun is an email automation service that allows you to send, receive, and tra
 
 ```ts
 import { mailgun } from 'https://deno.land/x/netzo/apis/mailgun/mod.ts'
-const { api } = mailgun({ 
-    apiKey: Deno.env.get('MAILGUN_API_KEY') 
-    })
+
+const { api } = mailgun({
+  apiKey: Deno.env.get('MAILGUN_API_KEY')
+})
 ```
 
 ## Configuration
@@ -22,7 +23,7 @@ The `mailgun` factory function expects an object with the following, and returns
 
 | Param                 | Type   | Default                                        | Description                                |
 |-----------------------|--------|------------------------------------------------|--------------------------------------------|
-| `apiKey` | string | `Deno.env.get('MAILGUN_API_KEY')` | the api key to use for authentication | 
+| `apiKey` | string | `Deno.env.get('MAILGUN_API_KEY')` | the api key to use for authentication |
 
 ::: tip Refer to the [API documentation](https://documentation.mailgun.com/en/latest/api_reference.html) to get the required information.
 :::
@@ -36,7 +37,7 @@ The following examples assume you have [created an api client instance](#usage).
 Find all mailing lists.
 
 ```ts
-import type { MailingLists, QueryMailingLists } from  'netzo/apis/mailgun/types.ts'
+import type { MailingLists, QueryMailingLists } from 'netzo/apis/mailgun/types.ts'
 
 const query: QueryMailingLists = {}
 const result = await api.v3.lists.pages.get<MailingLists>(query)
@@ -48,13 +49,13 @@ const resultData = result.items
 Add a new mailing list.
 
 ```ts
-import type { AddOrUpdateListResponse, DataAddMailingList } from  'netzo/apis/mailgun/types.ts'
+import type { AddOrUpdateListResult, DataAddMailingList } from 'netzo/apis/mailgun/types.ts'
 
-const data: DataAddMailingList = { 
-    address:'list_name@email.com', 
-    name: 'Newsletter'
- }
-const result = await api.v3.lists.post<AddOrUpdateListResponse>(data)
+const data: DataAddMailingList = {
+  address: 'list_name@email.com',
+  name: 'Newsletter'
+}
+const result = await api.v3.lists.post<AddOrUpdateListResult>(data)
 const resultData = result.list
 ```
 
@@ -63,12 +64,12 @@ const resultData = result.list
 Update a mailing list by its email address.
 
 ```ts
-import type { AddOrUpdateListResponse, DataUpdateMailingList } from  'netzo/apis/mailgun/types.ts'
+import type { AddOrUpdateListResult, DataUpdateMailingList } from 'netzo/apis/mailgun/types.ts'
 
-const data: DataUpdateMailingList = { 
-    name: 'Updated name'
- }
-const result = await api.v3.lists[LIST_ADDRESS].put<AddOrUpdateListResponse>(data)
+const data: DataUpdateMailingList = {
+  name: 'Updated name'
+}
+const result = await api.v3.lists[LIST_ADDRESS].put<AddOrUpdateListResult>(data)
 const resultData = result.list
 ```
 
@@ -77,12 +78,12 @@ const resultData = result.list
 Add a new email address to a mailing list.
 
 ```ts
-import type { AddMemberResponse, DataAddMember } from  'netzo/apis/mailgun/types.ts'
+import type { AddMemberResult, DataAddMember } from 'netzo/apis/mailgun/types.ts'
 
-const data: DataAddMember = { 
-    address: 'example@email.com'
- }
-const result = await api.v3.lists[LIST_ADDRESS].members.post<AddMemberResponse>(data)
+const data: DataAddMember = {
+  address: 'example@email.com'
+}
+const result = await api.v3.lists[LIST_ADDRESS].members.post<AddMemberResult>(data)
 const resultData = result.member
 ```
 
@@ -91,9 +92,9 @@ const resultData = result.member
 Remove an email from a mailing list.
 
 ```ts
-import type { DeleteMemberResponse } from  'netzo/apis/mailgun/types.ts'
+import type { DeleteMemberResult } from 'netzo/apis/mailgun/types.ts'
 
-const resultData = await api.v3.lists[LIST_ADDRESS].members[MEMBER_ADDRESS].delete<DeleteMemberResponse>()
+const resultData = await api.v3.lists[LIST_ADDRESS].members[MEMBER_ADDRESS].delete<DeleteMemberResult>()
 ```
 
 ## References

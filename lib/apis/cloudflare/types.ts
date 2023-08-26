@@ -107,13 +107,13 @@ export const dataAddZoneSchema = z.object({
   type: z.union([z.literal("full"), z.literal("partial")]).optional(),
 });
 
-export const deleteResponseSchema = responseBaseSchema.extend({
+export const deleteResultSchema = responseBaseSchema.extend({
   result: z.object({
     id: z.string(),
   }),
 }).deepPartial();
 
-//types:
+// types:
 
 export type Organizations = z.infer<typeof organizationsSchema>;
 export type QueryOrganizations = z.infer<typeof queryOrganizationsSchema>;
@@ -121,4 +121,4 @@ export type Zones = z.infer<typeof zonesSchema>;
 export type QueryZones = z.infer<typeof queryZonesSchema>;
 export type Zone = z.infer<typeof zoneSchema>;
 export type DataAddZone = z.infer<typeof dataAddZoneSchema>;
-export type DeleteResponse = z.infer<typeof deleteResponseSchema>;
+export type DeleteResult = z.infer<typeof deleteResultSchema>;

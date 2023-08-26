@@ -10,7 +10,7 @@ export const dataAddOrUpdateValuesSchema = z.object({
   values: z.array(z.array(z.string())),
 });
 
-export const updateValuesResponseSchema = z.object({
+export const updateValuesResultSchema = z.object({
   spreadsheetId: z.string(),
   updatedRange: z.string(),
   updatedRows: z.number(),
@@ -19,10 +19,10 @@ export const updateValuesResponseSchema = z.object({
   updatedData: valueRangeSchema,
 }).deepPartial();
 
-export const addValuesResponseSchema = z.object({
+export const addValuesResultSchema = z.object({
   spreadsheetId: z.string(),
   tableRange: z.string(),
-  updates: updateValuesResponseSchema,
+  updates: updateValuesResultSchema,
 }).deepPartial();
 
 export const queryAddOrUpdateValuesSchema = z.object({
@@ -43,20 +43,20 @@ export const queryAddOrUpdateValuesSchema = z.object({
     .optional(),
 });
 
-export const deleteValuesResponseSchema = z.object({
+export const deleteValuesResultSchema = z.object({
   spreadsheetId: z.string(),
   clearedRange: z.string(),
 }).deepPartial();
 
-//types:
+// types:
 
 export type ValueRange = z.infer<typeof valueRangeSchema>;
 export type DataAddOrUpdateValues = z.infer<
   typeof dataAddOrUpdateValuesSchema
 >;
-export type UpdateValuesResponse = z.infer<typeof updateValuesResponseSchema>;
-export type AddValuesResponse = z.infer<typeof addValuesResponseSchema>;
+export type UpdateValuesResult = z.infer<typeof updateValuesResultSchema>;
+export type AddValuesResult = z.infer<typeof addValuesResultSchema>;
 export type QueryAddOrUpdateValues = z.infer<
   typeof queryAddOrUpdateValuesSchema
 >;
-export type DeleteValuesResponse = z.infer<typeof deleteValuesResponseSchema>;
+export type DeleteValuesResult = z.infer<typeof deleteValuesResultSchema>;

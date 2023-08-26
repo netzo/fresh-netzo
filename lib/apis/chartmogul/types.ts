@@ -1,41 +1,41 @@
 import { z } from "../deps.ts";
 
 export const customerSchema = z.object({
-  id: z.number(),
-  uuid: z.string(),
-  external_id: z.string(),
-  external_ids: z.array(z.string()),
-  data_source_uuid: z.string(),
-  data_source_uuids: z.array(z.string()),
-  name: z.string(),
-  company: z.string(),
-  email: z.string(),
-  status: z.string(),
-  lead_created_at: z.string(),
-  free_trial_started_at: z.string(),
-  customer_since: z.string(),
-  city: z.string(),
-  state: z.string(),
-  country: z.string(),
-  zip: z.string(),
-  attributes: z.object({
+  "id": z.number(),
+  "uuid": z.string(),
+  "external_id": z.string(),
+  "external_ids": z.array(z.string()),
+  "data_source_uuid": z.string(),
+  "data_source_uuids": z.array(z.string()),
+  "name": z.string(),
+  "company": z.string(),
+  "email": z.string(),
+  "status": z.string(),
+  "lead_created_at": z.string(),
+  "free_trial_started_at": z.string(),
+  "customer_since": z.string(),
+  "city": z.string(),
+  "state": z.string(),
+  "country": z.string(),
+  "zip": z.string(),
+  "attributes": z.object({
     tags: z.array(z.string()),
     stripe: z.any(),
     clearbit: z.any(),
     custom: z.any(),
   }),
-  address: z.object({
+  "address": z.object({
     address_zip: z.string(),
     city: z.string(),
     country: z.string(),
     state: z.string(),
   }),
-  mrr: z.number(),
-  arr: z.number(),
+  "mrr": z.number(),
+  "arr": z.number(),
   "billing-system-url": z.string(),
   "chartmogul-url": z.string(),
   "billing-system-type": z.string(),
-  currency: z.string(),
+  "currency": z.string(),
   "currency-sign": z.string(),
 }).deepPartial();
 
@@ -106,44 +106,44 @@ export const dataAddCustomerSchema = z.object({
     .optional(),
 });
 
-export const addOrUpdateCustomerResponseSchema = z.object({
-  id: z.number(),
-  uuid: z.string(),
-  external_id: z.string(),
-  name: z.string(),
-  email: z.string(),
-  status: z.string(),
+export const addOrUpdateCustomerResultSchema = z.object({
+  "id": z.number(),
+  "uuid": z.string(),
+  "external_id": z.string(),
+  "name": z.string(),
+  "email": z.string(),
+  "status": z.string(),
   "customer-since": z.any(),
-  attributes: z.object({
+  "attributes": z.object({
     custom: z.record(z.any()),
     clearbit: z.object({}),
     stripe: z.object({}),
     tags: z.array(z.string()),
   }),
-  data_source_uuid: z.string(),
-  data_source_uuids: z.array(z.string()),
-  external_ids: z.array(z.string()),
-  company: z.string(),
-  country: z.string(),
-  state: z.any(),
-  city: z.string(),
-  zip: z.any(),
-  lead_created_at: z.string(),
-  free_trial_started_at: z.string(),
-  address: z.object({
+  "data_source_uuid": z.string(),
+  "data_source_uuids": z.array(z.string()),
+  "external_ids": z.array(z.string()),
+  "company": z.string(),
+  "country": z.string(),
+  "state": z.any(),
+  "city": z.string(),
+  "zip": z.any(),
+  "lead_created_at": z.string(),
+  "free_trial_started_at": z.string(),
+  "address": z.object({
     country: z.string(),
     state: z.any(),
     city: z.string(),
     address_zip: z.any(),
   }),
-  mrr: z.number(),
-  arr: z.number(),
+  "mrr": z.number(),
+  "arr": z.number(),
   "billing-system-url": z.any(),
   "chartmogul-url": z.string(),
   "billing-system-type": z.string(),
-  currency: z.string(),
+  "currency": z.string(),
   "currency-sign": z.string(),
-  owner: z.string(),
+  "owner": z.string(),
 }).deepPartial();
 
 export const dataUpdateCustomerSchema = dataAddCustomerSchema.omit({
@@ -244,14 +244,14 @@ export const queryInvoiceSchema = queryCustomerInvoicesSchema.pick({
   validation_type: true,
 });
 
-//types:
+// types:
 
 export type Customer = z.infer<typeof customerSchema>;
 export type Customers = z.infer<typeof customersSchema>;
 export type QueryCustomers = z.infer<typeof queryCustomersSchema>;
 export type DataAddCustomer = z.infer<typeof dataAddCustomerSchema>;
-export type AddOrUpdateCustomerResponse = z.infer<
-  typeof addOrUpdateCustomerResponseSchema
+export type AddOrUpdateCustomerResult = z.infer<
+  typeof addOrUpdateCustomerResultSchema
 >;
 export type DataUpdateCustomer = z.infer<typeof dataUpdateCustomerSchema>;
 export type CustomerSubscriptions = z.infer<typeof customerSubscriptionsSchema>;

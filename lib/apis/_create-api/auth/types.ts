@@ -52,7 +52,7 @@ export interface AuthorizationOAuth2ClientCredentials {
 // This response is returned from the authorization server following the Client Credentials flow
 // Optional paramaters are marked with a "?" and represent additional information that may be returned
 // by the authorization server. Eg. Azure AD returns an "ext_expires_in" parameter
-export interface AuthorizationOAuth2AccessTokenResponse {
+export interface AuthorizationOAuth2AccessTokenResult {
   access_token: string;
   token_type: string;
   expires_in: number;

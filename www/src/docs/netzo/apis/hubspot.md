@@ -11,6 +11,7 @@ Hubspot is a full-suite of business apps including CRM, marketing, sales, custom
 
 ```ts
 import { hubspot } from 'https://deno.land/x/netzo/apis/hubspot/mod.ts'
+
 const { api } = hubspot({
   privateAppAccessToken: Deno.env.get('HUBSPOT_PRIVATE_APP_ACCESS_TOKEN')
 })
@@ -49,7 +50,7 @@ const resultData = result.results
 Add a new contact.
 
 ```ts
-import type { AddOrUpdateContactResponse, DataAddOrUpdateContact } from 'netzo/apis/hubspot/types.ts'
+import type { AddOrUpdateContactResult, DataAddOrUpdateContact } from 'netzo/apis/hubspot/types.ts'
 
 const data: DataAddOrUpdateContact = {
   properties: {
@@ -57,7 +58,7 @@ const data: DataAddOrUpdateContact = {
     email: 'example@email.com'
   }
 }
-const resultData = await api.crm.v3.objects.contacts.post<AddOrUpdateContactResponse>(data)
+const resultData = await api.crm.v3.objects.contacts.post<AddOrUpdateContactResult>(data)
 ```
 
 ### Update contact
@@ -65,14 +66,14 @@ const resultData = await api.crm.v3.objects.contacts.post<AddOrUpdateContactResp
 Update a contact by id.
 
 ```ts
-import type { AddOrUpdateContactResponse, DataAddOrUpdateContact } from 'netzo/apis/hubspot/types.ts'
+import type { AddOrUpdateContactResult, DataAddOrUpdateContact } from 'netzo/apis/hubspot/types.ts'
 
 const data: DataAddOrUpdateContact = {
   properties: {
     company: 'New Company Name',
   }
 }
-const resultData = await api.crm.v3.objects.contacts[CONTACT_ID].patch<AddOrUpdateContactResponse>(data)
+const resultData = await api.crm.v3.objects.contacts[CONTACT_ID].patch<AddOrUpdateContactResult>(data)
 ```
 
 ### Delete contact
@@ -123,7 +124,7 @@ const resultData = result.results
 Add a new deal.
 
 ```ts
-import type { AddDealResponse, DataAddDeal } from 'netzo/apis/hubspot/types.ts'
+import type { AddDealResult, DataAddDeal } from 'netzo/apis/hubspot/types.ts'
 
 const data: DataAddDeal = {
   properties: {
@@ -131,7 +132,7 @@ const data: DataAddDeal = {
     dealname: 'New deal'
   }
 }
-const resultData = await api.crm.v3.objects.deals.post<AddDealResponse>(data)
+const resultData = await api.crm.v3.objects.deals.post<AddDealResult>(data)
 ```
 
 ## References

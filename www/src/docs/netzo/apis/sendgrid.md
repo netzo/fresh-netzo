@@ -11,6 +11,7 @@ SendGrid is a cloud-based email service that provides reliable transactional ema
 
 ```ts
 import { sendgrid } from 'https://deno.land/x/netzo/apis/sendgrid/mod.ts'
+
 const { api } = sendgrid({
   apiKey: Deno.env.get('SENDGRID_API_KEY')
 })
@@ -60,10 +61,10 @@ const resultData = await api.marketing.lists[LIST_ID].get<List>(query)
 Update the name of a list.
 
 ```ts
-import type { DataUpdateList, UpdateListResponse } from 'netzo/apis/sendgrid/types.ts'
+import type { DataUpdateList, UpdateListResult } from 'netzo/apis/sendgrid/types.ts'
 
 const data: DataUpdateList = { name: 'Updated list name' }
-const resultData = await api.marketing.lists[LIST_ID].patch<UpdateListResponse>(data)
+const resultData = await api.marketing.lists[LIST_ID].patch<UpdateListResult>(data)
 ```
 
 ### Add contacts to list
@@ -71,13 +72,13 @@ const resultData = await api.marketing.lists[LIST_ID].patch<UpdateListResponse>(
 Add contacts to one or multiple lists.
 
 ```ts
-import type { AddContactsResponse, DataAddContacts } from 'netzo/apis/sendgrid/types.ts'
+import type { AddContactsResult, DataAddContacts } from 'netzo/apis/sendgrid/types.ts'
 
 const data: DataAddContacts = {
   list_ids: [LIST_ID1, LIST_ID2],
   contacts: [{ email: 'email@example.com' }]
 }
-const resultData = await api.marketing.contacts.put<AddContactsResponse>(data)
+const resultData = await api.marketing.contacts.put<AddContactsResult>(data)
 ```
 
 ### Send email

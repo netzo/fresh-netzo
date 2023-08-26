@@ -12,6 +12,7 @@ WhatsApp Business is a messaging platform for businesses to communicate with the
 
 ```ts
 import { whatsappbusiness } from 'https://deno.land/x/netzo/apis/whatsappbusiness/mod.ts'
+
 const { api } = whatsappbusiness({
   businessAccountId: Deno.env.get('WHATSAPPBUSINESS_BUSINESS_ACCOUNT_ID'),
   permanentToken: Deno.env.get('WHATSAPPBUSINESS_PERMANENT_TOKEN'),
@@ -51,13 +52,13 @@ const resultData = result.data
 Update your business profile.
 
 ```ts
-import type { UpdateProfileResponse, DataUpdateProfile } from 'netzo/apis/whatsappbusiness/types.ts'
+import type { DataUpdateProfile, UpdateProfileResult } from 'netzo/apis/whatsappbusiness/types.ts'
 
 const data: DataUpdateProfile = {
   messaging_product: 'whatsapp',
   about: 'About my business'
 }
-const resultData = await api[PHONE_NUMBER_ID].whatsapp_business_profile.post<UpdateProfileResponse>(data)
+const resultData = await api[PHONE_NUMBER_ID].whatsapp_business_profile.post<UpdateProfileResult>(data)
  ```
 
 ## References

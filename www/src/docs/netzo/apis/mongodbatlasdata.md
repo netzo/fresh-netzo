@@ -11,6 +11,7 @@ MongoDB Atlas Data is a cloud-based database service that provides all of the fe
 
 ```ts
 import { mongodbatlasdata } from 'https://deno.land/x/netzo/apis/mongodbatlasdata/mod.ts'
+
 const { api } = mongodbatlasdata({
   apiKey: Deno.env.get('MONGODBATLASDATA_API_KEY'),
   dataApiAppId: Deno.env.get('MONGODBATLASDATA_DATA_API_APP_ID')
@@ -58,7 +59,7 @@ const resultData = result.documents
 Add a document to a collection.
 
 ```ts
-import type { AddDocumentResponse, DataAddDocument } from 'netzo/apis/mongodbatlasdata/types.ts'
+import type { AddDocumentResult, DataAddDocument } from 'netzo/apis/mongodbatlasdata/types.ts'
 
 const data: DataAddDocument = {
   dataSource: 'mongodb-atlas',
@@ -66,7 +67,7 @@ const data: DataAddDocument = {
   collection: COLLECTION_NAME,
   document: { DATA_TO_ADD },
 }
-const resultData = await api.action.insertOne.post<AddDocumentResponse>(data)
+const resultData = await api.action.insertOne.post<AddDocumentResult>(data)
 ```
 
 ### Update document
@@ -74,7 +75,7 @@ const resultData = await api.action.insertOne.post<AddDocumentResponse>(data)
 Update a specific document.
 
 ```ts
-import type { DataUpdateDocument, UpdateDocumentResponse } from 'netzo/apis/mongodbatlasdata/types.ts'
+import type { DataUpdateDocument, UpdateDocumentResult } from 'netzo/apis/mongodbatlasdata/types.ts'
 
 const data: DataUpdateDocument = {
   dataSource: 'mongodb-atlas',
@@ -83,7 +84,7 @@ const data: DataUpdateDocument = {
   filter: { FILTERS },
   update: { DATA_TO_UPDATE },
 }
-const resultData = await api.action.updateOne.post<UpdateDocumentResponse>(data)
+const resultData = await api.action.updateOne.post<UpdateDocumentResult>(data)
 ```
 
 ## References

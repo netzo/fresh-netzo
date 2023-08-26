@@ -77,9 +77,9 @@ const resultData = result.result
 Delete a zone by id.
 
 ```ts
-import type { DeleteResponse } from 'netzo/apis/cloudflare/types.ts'
+import type { DeleteResult } from 'netzo/apis/cloudflare/types.ts'
 
-const result = await api.zones[ZONE_ID].delete<DeleteResponse>()
+const result = await api.zones[ZONE_ID].delete<DeleteResult>()
 const resultData = result.result
 ```
 
