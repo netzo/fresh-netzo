@@ -25,6 +25,8 @@ export const unocssConfig = {
     'i-mdi-lock-open-variant-outline',
     'i-mdi-application-import',
     'i-mdi-application-brackets-outline',
+    'i-mdi-clock-fast',
+    'i-mdi-arrow-expand',
     'i-mdi-pipe',
     'i-mdi-chart-areaspline',
     'i-mdi-brain',

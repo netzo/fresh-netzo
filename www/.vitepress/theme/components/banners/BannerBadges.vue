@@ -28,7 +28,7 @@ const items = computed(() => [
 
 <template>
   <section>
-    <div class="container flex flex-col gap-12 pt-6 pb-4 sm:flex-row sm:gap-16 sm:py-0 justify-between mx-auto">
+    <div class="container flex flex-col gap-12 pt-6 pb-4 sm:flex-row sm:gap-16 sm:py-0 justify-center mx-auto">
       <a
         v-for="(item, i) in items"
         :key="`banner-badges-${i}`"
