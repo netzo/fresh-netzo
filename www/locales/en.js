@@ -229,7 +229,7 @@ export default {
     sectionHow: {
       topic: 'How does it work?',
       title: 'The versatility of code without the headaches',
-      description: 'Say goodbye to costly, time-consuming and unmaintainable developments. Enjoy all the perks of full code control without any major efforts or maintenance requirments while building your back-office .',
+      description: 'Say goodbye to costly, time-consuming and unmaintainable developments. Enjoy all the perks of full code control without any major efforts or maintenance requirements while building your back-office .',
       items: [
         {
           topic: 'Code',
@@ -360,7 +360,7 @@ export default {
         {
           icon: 'i-mdi-nodejs',
           title: 'Full Node.js and NPM support',
-          description: 'Code with favorita libraries with full Node.js built-in modules and NPM package support.',
+          description: 'Code with your favorite libraries with Node.js built-in modules and NPM package support.',
         },
         {
           icon: 'i-fxemoji-lightningmood',
