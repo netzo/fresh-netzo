@@ -137,6 +137,7 @@ export const dataUpdateContactSchema = dataAddContactSchema.omit({
   tradeName: z.string().optional(),
 });
 
+
 // types:
 
 export type Contact = z.infer<typeof contactSchema>;
