@@ -18,7 +18,9 @@ Deno.test("discord", async (t) => {
     const resultData = await api.channels["CHANNEL_ID"].messages.get();
     assertExists(resultData);
     assertEquals(Array.isArray(resultData), true);
-  });
+  });¨
+
+  //CUD operations:
 
   // await t.step("add message", async () => {
   //   const resultData = await api.channels["CHANNEL_ID"].messages.post({

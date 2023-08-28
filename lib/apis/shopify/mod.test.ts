@@ -27,6 +27,8 @@ Deno.test("shopify", async (t) => {
     assertEquals(Array.isArray(result.orders), true);
   });
 
+  //CUD operations:
+
   // await t.step("add customer", async () => {
   //   const result = await api["customers.json"].post({
   //     customer: {

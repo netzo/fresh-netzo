@@ -20,18 +20,18 @@ Deno.test("monday", async (t) => {
     assertEquals(typeof resultData, "object");
   });
 
-  //   await t.step("get board", async () => {
-  //     const query = `
-  //     query {
-  //         boards (ids: ${"BOARD_ID"}) {
-  //             name
-  //             state
-  //             id
-  //             permissions
-  //         }
-  //     }`;
-  // const resultData = await api.post(query)
-  //     assertExists(resultData);
-  //     assertEquals(typeof resultData, "object");
-  //   });
+    await t.step("get board", async () => {
+      const query = `
+      query {
+          boards (ids: ${"BOARD_ID"}) {
+              name
+              state
+              id
+              permissions
+          }
+      }`;
+  const resultData = await api.post(query)
+      assertExists(resultData);
+      assertEquals(typeof resultData, "object");
+    });
 });
