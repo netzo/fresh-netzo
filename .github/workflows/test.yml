@@ -1,16 +1,21 @@
 name: test
-on: [push]
+
+on: [push, pull_request]
+
 jobs:
-    test-apis:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Git Checkout
-              uses: actions/checkout@v2
+  test-apis:
+    name: ${{ matrix.kind }} ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
 
-            - name: Setup Deno
-              uses: denoland/setup-deno@v1
-              with:
-                deno-version: v1.36.3
+    steps:
+      - name: Git Checkout
+        uses: actions/checkout@v2
 
-            - name: Test Jsonplaceholder
-              run: deno test --allow-env --allow-net --allow-read --allow-run lib/apis/jsonplaceholder
+      - name: Setup Deno
+        uses: denoland/setup-deno@v1
+
+      - name: Test apis/jsonplaceholder
+        run: deno test --allow-env --allow-net --allow-read --allow-run lib/apis/jsonplaceholder
