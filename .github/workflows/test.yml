@@ -1,0 +1,16 @@
+name: test
+on: [push]
+jobs:
+    test-apis:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Git Checkout
+              uses: actions/checkout@v2
+
+            - name: Setup Deno
+              uses: denoland/setup-deno@v1
+              with:
+                deno-version: v1.36.3
+
+            - name: Test Jsonplaceholder
+              run: deno test --allow-env --allow-net --allow-read --allow-run lib/apis/jsonplaceholder
