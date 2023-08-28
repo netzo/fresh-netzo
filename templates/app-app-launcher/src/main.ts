@@ -6,15 +6,8 @@
 
 import "std/dotenv/load.ts";
 
-import { flowbite, unocss } from "netzo/ui/plugins/mod.ts";
-import manifest from "./fresh.gen.ts";
-
-import unoConfig from "./uno.config.ts";
 import { start } from "$fresh/server.ts";
+import manifest from "./fresh.gen.ts";
+import config from "./fresh.config.ts";
 
-await start(manifest, {
-  plugins: [
-    unocss(unoConfig),
-    flowbite(),
-  ],
-});
+await start(manifest, config);
