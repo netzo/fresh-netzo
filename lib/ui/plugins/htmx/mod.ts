@@ -1,11 +1,11 @@
 import type { Plugin } from "../deps.ts";
 
 // deno-lint-ignore no-empty-interface
-export interface DaisyuiOptions {}
+export interface HtmxOptions {}
 
-export const daisyui = (options: DaisyuiOptions = {}): Plugin => {
+export const htmx = (options: HtmxOptions = {}): Plugin => {
   return {
-    name: "daisyui",
+    name: "htmx",
     entrypoints: { "main": import.meta.resolve("./main.ts") },
     render(ctx) {
       ctx.render();
