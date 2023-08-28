@@ -791,6 +791,13 @@ export default {
       href: '/docs/netzo/ui/plugins/flowbite',
     },
     {
+      uid: 'htmx',
+      title: 'HTMX',
+      description: 'HTMX is a javascript library that allows you to access AJAX, WebSockets and Server Sent Events directly in HTML, using attributes, so you can build modern UIs.',
+      src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/plugins/htmx.svg',
+      href: '/docs/netzo/ui/plugins/htmx',
+    },
+    {
       uid: 'netzoAppLayout',
       title: 'Netzo App Layout',
       description: 'Adds a global layout route from which all other routes inherit from.',
@@ -803,6 +810,13 @@ export default {
       description: 'Adds a middleware to protect routes with authentication based on access control settings set for the project in Netzo.',
       src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/plugins/netzoAuth.svg',
       href: '/docs/netzo/ui/plugins/netzoAuth',
+    },
+    {
+      uid: 'netzoDenoKV',
+      title: 'Netzo DenoKV',
+      description: 'Adds routes to serve a REST API for the Deno KV database of the project.',
+      src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/plugins/netzoDenoKV.svg',
+      href: '/docs/netzo/ui/plugins/netzoDenoKV',
     },
     {
       uid: 'netzoErrorPages',

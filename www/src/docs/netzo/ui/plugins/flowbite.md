@@ -30,4 +30,4 @@ interface FlowbiteOptions {
 
 ## References
 
-- [Flowbite](https://flowbite.dev/)
+- [Flowbite](https://flowbite.com/)

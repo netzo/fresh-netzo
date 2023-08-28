@@ -233,8 +233,10 @@ export const sidebarEN: DefaultTheme.Sidebar = {
               items: [
                 { text: '<code>daisyui</code>', link: '/docs/netzo/ui/plugins/daisyui' },
                 { text: '<code>flowbite</code>', link: '/docs/netzo/ui/plugins/flowbite' },
+                { text: '<code>htmx</code>', link: '/docs/netzo/ui/plugins/htmx' },
                 { text: '<code>netzoAppLayout</code>', link: '/docs/netzo/ui/plugins/netzoAppLayout' },
                 { text: '<code>netzoAuth</code>', link: '/docs/netzo/ui/plugins/netzoAuth' },
+                { text: '<code>netzoDenoKV</code>', link: '/docs/netzo/ui/plugins/netzoDenoKV' },
                 { text: '<code>netzoErrorPages</code>', link: '/docs/netzo/ui/plugins/netzoErrorPages' },
                 { text: '<code>unocss</code>', link: '/docs/netzo/ui/plugins/unocss' },
               ],

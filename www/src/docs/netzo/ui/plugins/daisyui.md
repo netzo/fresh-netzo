@@ -24,4 +24,4 @@ interface DaisyuiOptions {}
 
 ## References
 
-- [DaisyUI](https://daisyui.dev/)
+- [DaisyUI](https://daisyui.com/)
