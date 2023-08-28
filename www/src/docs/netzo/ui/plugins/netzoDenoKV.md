@@ -30,3 +30,8 @@ await start(manifest, {
 ```ts
 interface NetzoDenoKVOptions {}
 ```
+
+## References
+
+- [Deno KV](https://deno.com/kv)
+
