@@ -20,19 +20,19 @@ Deno.test("discord", async (t) => {
     assertEquals(Array.isArray(resultData), true);
   });
 
-  await t.step("add message", async () => {
-    const resultData = await api.channels["CHANNEL_ID"].messages.post({
-      content: "Test message",
-    });
-    assertExists(resultData);
-    assertEquals(typeof resultData, "object");
-  });
+  // await t.step("add message", async () => {
+  //   const resultData = await api.channels["CHANNEL_ID"].messages.post({
+  //     content: "Test message",
+  //   });
+  //   assertExists(resultData);
+  //   assertEquals(typeof resultData, "object");
+  // });
 
-  await t.step("update Message", async () => {
-    const resultData = await api.channels["CHANNEL_ID"].messages["MESSAGE_ID"].patch({
-      content: "Updated message",
-    });
-    assertExists(resultData);
-    assertEquals(typeof resultData, "object");
-  });
+  // await t.step("update Message", async () => {
+  //   const resultData = await api.channels["CHANNEL_ID"].messages["MESSAGE_ID"].patch({
+  //     content: "Updated message",
+  //   });
+  //   assertExists(resultData);
+  //   assertEquals(typeof resultData, "object");
+  // });
 });

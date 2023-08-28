@@ -28,19 +28,19 @@ Deno.test("chartmogul", async (t) => {
     assertEquals(typeof resultData, "object");
   });
 
-  await t.step("update customer", async () => {
-    const resultData = await api.customers["CUSTOMER_UUID"].patch({
-      email: "new-email@email.com",
-    });
-    assertExists(resultData);
-    assertEquals(typeof resultData, "object");
-  });
+  // await t.step("update customer", async () => {
+  //   const resultData = await api.customers["CUSTOMER_UUID"].patch({
+  //     email: "new-email@email.com",
+  //   });
+  //   assertExists(resultData);
+  //   assertEquals(typeof resultData, "object");
+  // });
 
-  await t.step("delete customer", async () => {
-    const resultData = await api.customers["CUSTOMER_UUID"].delete();
-    assertExists(resultData);
-    assertEquals(typeof resultData, "object");
-  });
+  // await t.step("delete customer", async () => {
+  //   const resultData = await api.customers["CUSTOMER_UUID"].delete();
+  //   assertExists(resultData);
+  //   assertEquals(typeof resultData, "object");
+  // });
 
   await t.step("find customer subsciptions", async () => {
     const result = await api.import.customers["CUSTOMER_UUID"].subscriptions

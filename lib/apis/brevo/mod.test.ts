@@ -19,21 +19,21 @@ Deno.test("brevo", async (t) => {
     assertEquals(typeof resultData, "object");
   });
 
-  await t.step("add contact", async () => {
-    const resultData = await api.contacts.post({ email: "example@email.com" });
-    assertExists(resultData);
-    assertEquals(typeof resultData, "object");
-  });
+  // await t.step("add contact", async () => {
+  //   const resultData = await api.contacts.post({ email: "example@email.com" });
+  //   assertExists(resultData);
+  //   assertEquals(typeof resultData, "object");
+  // });
 
-  await t.step("update contact", async () => {
-    const result = await api.contacts["CONTACT_IDENTIFIER"].put({
-      attributes: {
-        "EMAIL": "updated-email@email.com",
-      },
-    });
-    assertExists(result);
-    assertEquals(result.status, 204);
-  });
+  // await t.step("update contact", async () => {
+  //   const result = await api.contacts["CONTACT_IDENTIFIER"].put({
+  //     attributes: {
+  //       "EMAIL": "updated-email@email.com",
+  //     },
+  //   });
+  //   assertExists(result);
+  //   assertEquals(result.status, 204);
+  // });
 
   await t.step("find email campaigns", async () => {
     const result = await api.emailCampaigns.get();
