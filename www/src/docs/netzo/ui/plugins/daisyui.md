@@ -8,13 +8,23 @@
 
 ## Usage
 
-```ts
-import { daisyui } from 'netzo/ui/plugins/daisyui/mod.ts'
+Register the plugin in `fresh.config.ts` and ensure `main.ts` and `dev.ts` are receive the `config` object as shown below.
 
-await start(manifest, {
-  plugins: [daisyui()]
+::: code-group
+```ts [fresh.config.ts]
+import { daisyui } from 'netzo/ui/plugins/daisyui/mod.ts'
+import { defineConfig } from '$fresh/server.ts'
+
+export default defineConfig({
+  plugins: [daisyui()],
 })
 ```
+<<< src/main.ts
+<<< src/dev.ts
+:::
+
+::: warning Fresh configuration [must](https://fresh.deno.dev/docs/concepts/ahead-of-time-builds#migrating-existing-projects-with-plugins) be defined in `fresh.config.ts`.
+:::
 
 ## Configuration
 

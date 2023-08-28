@@ -8,13 +8,22 @@ Adds routes to serve a REST API for the [Deno KV](https://deno.com/deploy/docs/s
 
 ## Usage
 
-```ts
+Register the plugin in `fresh.config.ts` and ensure `main.ts` and `dev.ts` are receive the `config` object as shown below.
+
+::: code-group
+```ts [fresh.config.ts]
 import { netzoDenoKV } from 'netzo/ui/plugins/netzoDenoKV/mod.ts'
 
 await start(manifest, {
   plugins: [netzoDenoKV()]
 })
 ```
+<<< src/main.ts
+<<< src/dev.ts
+:::
+
+::: warning Fresh configuration [must](https://fresh.deno.dev/docs/concepts/ahead-of-time-builds#migrating-existing-projects-with-plugins) be defined in `fresh.config.ts`.
+:::
 
 ## Configuration
 
