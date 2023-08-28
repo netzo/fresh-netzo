@@ -20,11 +20,15 @@ Deno.test("googledrive", async (t) => {
     assertEquals(Array.isArray(result.files), true);
   });
 
+  //IDs required:
+
   // await t.step("get file", async () => {
   //   const resultData = await api.files["FILE_ID"].get();
   //   assertExists(resultData);
   //   assertEquals(typeof resultData, "object");
   // });
+
+  //CUD operations:
 
   // await t.step("copy file", async () => {
   //   const resultData = await api.files["FILE_ID"].copy.post({

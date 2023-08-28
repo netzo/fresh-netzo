@@ -20,6 +20,8 @@ Deno.test("pipedrive", async (t) => {
     assertEquals(Array.isArray(result.data.items), true);
   });
 
+  //CUD operations:
+
   // await t.step("add deal", async () => {
   //   const result = await api.deals.post({
   //     title: "Test Deal",
@@ -51,6 +53,8 @@ Deno.test("pipedrive", async (t) => {
     assertExists(result.data.items);
     assertEquals(Array.isArray(result.data.items), true);
   });
+
+  //CUD operations:
 
   // await t.step("add person", async () => {
   //   const result = await api.persons.post({ name: "John Doe" });

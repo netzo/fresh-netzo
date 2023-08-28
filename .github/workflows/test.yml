@@ -17,5 +17,5 @@ jobs:
       - name: Setup Deno
         uses: denoland/setup-deno@v1
 
-      - name: Test apis/jsonplaceholder
-        run: deno test --allow-env --allow-net --allow-read --allow-run lib/apis/jsonplaceholder
+      - name: Test Apis
+        run: deno test --allow-env --allow-net --allow-read --allow-run lib/apis/airtable lib/apis/jsonplaceholder lib/apis/googlesheets lib/apis/hubspot lib/apis/notion lib/apis/stripe

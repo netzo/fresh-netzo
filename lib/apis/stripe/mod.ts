@@ -23,10 +23,8 @@ export const stripe = ({
     },
     async onRequest(ctx) {
       await auth({
-        type: "apiKey",
-        in: "header",
-        name: "apiKey",
-        value: apiKey,
+        type: "bearer",
+        token: apiKey,
       }, ctx);
     },
   });
