@@ -9,17 +9,20 @@ Deno.test("stripe", async (t) => {
 
   await t.step("find subscriptions", async () => {
     const result = await api.subscriptions.get();
+    console.log(result)
     assertExists(result.data);
     assertEquals(Array.isArray(result.data), true);
   });
 
-  await t.step("find subscription items", async () => {
-    const result = await api.subscription_items.get({
-      subscription: "SUBSCRIPTION_ID",
-    });
-    assertExists(result.data);
-    assertEquals(Array.isArray(result.data), true);
-  });
+//IDs required
+
+  // await t.step("find subscription items", async () => {
+  //   const result = await api.subscription_items.get({
+  //     subscription: "SUBSCRIPTION_ID",
+  //   });
+  //   assertExists(result.data);
+  //   assertEquals(Array.isArray(result.data), true);
+  // });
 
   await t.step("find customers", async () => {
     const result = await api.customers.get();
@@ -46,7 +49,7 @@ Deno.test("stripe", async (t) => {
   });
 
   await t.step("find transactions", async () => {
-    const result = await api.transactions.get();
+    const result = await api.balance_transactions.get();
     assertExists(result.data);
     assertEquals(Array.isArray(result.data), true);
   });

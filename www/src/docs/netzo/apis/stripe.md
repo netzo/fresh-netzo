@@ -112,7 +112,7 @@ Find all transactions that have contributed to the Stripe account balance.
 import type { QueryTransactions, Transactions } from 'netzo/apis/stripe/types.ts'
 
 const query: QueryTransactions = {}
-const result = await api.transactions.get<Transactions>(query)
+const result = await api.balance_transactions.get<Transactions>(query)
 const resultData = result.data
 ```
 
