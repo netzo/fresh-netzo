@@ -9,7 +9,6 @@ Deno.test("stripe", async (t) => {
 
   await t.step("find subscriptions", async () => {
     const result = await api.subscriptions.get();
-    console.log(result)
     assertExists(result.data);
     assertEquals(Array.isArray(result.data), true);
   });
