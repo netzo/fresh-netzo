@@ -15,35 +15,35 @@ Deno.test("activecampaign", async (t) => {
   });
 
   await t.step("get contact", async () => {
-    const data = await api.contacts["CONTACT_ID"].get();
-    assertExists(data);
-    assertEquals(typeof data, "object");
+    const resultData = await api.contacts["CONTACT_ID"].get();
+    assertExists(resultData);
+    assertEquals(typeof resultData, "object");
   });
 
   await t.step("add contact", async () => {
-    const data = await api.contacts.post({
+    const resultData = await api.contacts.post({
       contact: {
         email: "example@email.com",
       },
     });
-    assertExists(data);
-    assertEquals(typeof data, "object");
+    assertExists(resultData);
+    assertEquals(typeof resultData, "object");
   });
 
   await t.step("update contact", async () => {
-    const data = await api.contacts["CONTACT_ID"].put({
+    const resultData = await api.contacts["CONTACT_ID"].put({
       contact: {
         email: "updated-email@email.com",
       },
     });
-    assertExists(data);
-    assertEquals(typeof data, "object");
+    assertExists(resultData);
+    assertEquals(typeof resultData, "object");
   });
 
   await t.step("delete contact", async () => {
-    const data = await api.contacts["CONTACT_ID"].delete();
-    assertExists(data);
-    assertEquals(typeof data, "object");
+    const resultData = await api.contacts["CONTACT_ID"].delete();
+    assertExists(resultData);
+    assertEquals(typeof resultData, "object");
   });
 
   await t.step("find deals", async () => {

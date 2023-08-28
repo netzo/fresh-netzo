@@ -13,8 +13,8 @@ Deno.test("sendgrid", async (t) => {
   });
 
   await t.step("get list", async () => {
-    const data = await api.marketing.lists["LIST_ID"].get();
-    assertExists(data);
-    assertEquals(typeof data, "object");
+    const resultData = await api.marketing.lists["LIST_ID"].get();
+    assertExists(resultData);
+    assertEquals(typeof resultData, "object");
   });
 });

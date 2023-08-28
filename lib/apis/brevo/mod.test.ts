@@ -14,15 +14,15 @@ Deno.test("brevo", async (t) => {
   });
 
   await t.step("get contact", async () => {
-    const data = await api.contacts["CONTACT_IDENTIFIER"].get();
-    assertExists(data);
-    assertEquals(typeof data, "object");
+    const resultData = await api.contacts["CONTACT_IDENTIFIER"].get();
+    assertExists(resultData);
+    assertEquals(typeof resultData, "object");
   });
 
   await t.step("add contact", async () => {
-    const data = await api.contacts.post({ email: "example@email.com" });
-    assertExists(data);
-    assertEquals(typeof data, "object");
+    const resultData = await api.contacts.post({ email: "example@email.com" });
+    assertExists(resultData);
+    assertEquals(typeof resultData, "object");
   });
 
   await t.step("update contact", async () => {

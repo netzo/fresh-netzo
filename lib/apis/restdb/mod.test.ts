@@ -8,8 +8,8 @@ Deno.test("restdb", async (t) => {
   });
 
   await t.step("find records", async () => {
-    const data = await api["COLLECTION_NAME"].get();
-    assertExists(data);
-    assertEquals(Array.isArray(data), true);
+    const resultData = await api["COLLECTION_NAME"].get();
+    assertExists(resultData);
+    assertEquals(Array.isArray(resultData), true);
   });
 });

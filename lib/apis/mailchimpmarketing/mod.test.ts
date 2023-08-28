@@ -14,14 +14,14 @@ Deno.test("mailchimpmarketing", async (t) => {
   });
 
   await t.step("get campaign", async () => {
-    const data = await api.campaigns["CAMPAIGN_ID"].get();
-    assertExists(data);
-    assertEquals(typeof data, "object");
+    const resultData = await api.campaigns["CAMPAIGN_ID"].get();
+    assertExists(resultData);
+    assertEquals(typeof resultData, "object");
   });
 
   await t.step("get campaign content", async () => {
-    const data = await api.campaigns["CAMPAIGN_ID"].content.get();
-    assertExists(data);
-    assertEquals(typeof data, "object");
+    const resultData = await api.campaigns["CAMPAIGN_ID"].content.get();
+    assertExists(resultData);
+    assertEquals(typeof resultData, "object");
   });
 });

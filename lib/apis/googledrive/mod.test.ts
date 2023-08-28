@@ -21,16 +21,16 @@ Deno.test("googledrive", async (t) => {
   });
 
   // await t.step("get file", async () => {
-  //   const data = await api.files["FILE_ID"].get();
-  //   assertExists(data);
-  //   assertEquals(typeof data, "object");
+  //   const resultData = await api.files["FILE_ID"].get();
+  //   assertExists(resultData);
+  //   assertEquals(typeof resultData, "object");
   // });
 
   // await t.step("copy file", async () => {
-  //   const data = await api.files["FILE_ID"].copy.post({
+  //   const resultData = await api.files["FILE_ID"].copy.post({
   //     description: "Test copy",
   //   });
-  //   assertExists(data);
-  //   assertEquals(typeof data, "object");
+  //   assertExists(resultData);
+  //   assertEquals(typeof resultData, "object");
   // });
 });

@@ -17,9 +17,9 @@ Deno.test("notion", async (t) => {
   });
 
   await t.step("get page", async () => {
-    const data = await api.pages["PAGE_ID"].get();
-    assertExists(data);
-    assertEquals(typeof data, "object");
+    const resultData = await api.pages["PAGE_ID"].get();
+    assertExists(resultData);
+    assertEquals(typeof resultData, "object");
   });
 
   await t.step("get page content", async () => {

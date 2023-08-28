@@ -93,8 +93,8 @@ Deno.test("googlesheets", async (t) => {
   });
 
   await t.step("delete row", async () => {
-    const data = await api.values[`${range_to_delete}:clear`].post();
-    assertExists(data);
-    assertEquals(typeof data, "object");
+    const resultData = await api.values[`${range_to_delete}:clear`].post();
+    assertExists(resultData);
+    assertEquals(typeof resultData, "object");
   });
 });

@@ -13,9 +13,9 @@ Deno.test("pandadoc", async (t) => {
   });
 
   await t.step("get document", async () => {
-    const data = await api.documents["DOCUMENT_ID"].details.get();
-    assertExists(data);
-    assertEquals(typeof data, "object");
+    const resultData = await api.documents["DOCUMENT_ID"].details.get();
+    assertExists(resultData);
+    assertEquals(typeof resultData, "object");
   });
 
   await t.step("find contacts", async () => {

@@ -14,24 +14,24 @@ Deno.test("hubspot", async (t) => {
   });
 
   await t.step("add contact", async () => {
-    const data = await api.crm.v3.objects.contacts.post({
+    const resultData = await api.crm.v3.objects.contacts.post({
       properties: {
         company: "Test company",
         email: "example@email.com",
       },
     });
-    assertExists(data);
-    assertEquals(typeof data, "object");
+    assertExists(resultData);
+    assertEquals(typeof resultData, "object");
   });
 
   await t.step("update contact", async () => {
-    const data = await api.crm.v3.objects.contacts["CONTACT_ID"].patch({
+    const resultData = await api.crm.v3.objects.contacts["CONTACT_ID"].patch({
       properties: {
         company: "New Company Name",
       },
     });
-    assertExists(data);
-    assertEquals(typeof data, "object");
+    assertExists(resultData);
+    assertEquals(typeof resultData, "object");
   });
 
   await t.step("delete contact", async () => {
@@ -41,9 +41,9 @@ Deno.test("hubspot", async (t) => {
   });
 
   await t.step("find forms", async () => {
-    const data = await api.forms.v2.forms.get();
-    assertExists(data);
-    assertEquals(Array.isArray(data), true);
+    const resultData = await api.forms.v2.forms.get();
+    assertExists(resultData);
+    assertEquals(Array.isArray(resultData), true);
   });
 
   await t.step("find submissions", async () => {
@@ -60,12 +60,12 @@ Deno.test("hubspot", async (t) => {
   });
 
   await t.step("add deal", async () => {
-    const data = await api.crm.v3.objects.deals.post({
+    const resultData = await api.crm.v3.objects.deals.post({
       properties: {
         dealname: "Test deal",
       },
     });
-    assertExists(data);
-    assertEquals(typeof data, "object");
+    assertExists(resultData);
+    assertEquals(typeof resultData, "object");
   });
 });
