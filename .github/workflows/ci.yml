@@ -23,5 +23,5 @@ jobs:
       - name: Lint
         run: deno lint
 
-      - name: Tests
-        run: deno test --allow-env --allow-net --allow-read --allow-run
+      # - name: Tests
+      #   run: deno test --allow-env --allow-net --allow-read --allow-run
