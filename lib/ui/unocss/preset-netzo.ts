@@ -1,19 +1,14 @@
 import {
-  mergeDeep,
+  // mergeDeep,
   type Preset,
-  type RuleContext,
   type UserConfig,
 } from "https://esm.sh/@unocss/core@0.55.2?bundle";
-import { presetAttributify } from "https://esm.sh/@unocss/preset-attributify@0.55.2?bundle";
 import { presetIcons } from "https://esm.sh/@unocss/preset-icons@0.55.2/browser?bundle";
 import { presetTypography } from "https://esm.sh/@unocss/preset-typography@0.55.2?bundle";
 import {
   presetUno,
   type Theme,
 } from "https://esm.sh/@unocss/preset-uno@0.55.2?bundle";
-import { theme as unoTheme } from "https://esm.sh/@unocss/preset-mini@0.55.2?bundle";
-import { parseColor } from "https://esm.sh/@unocss/preset-mini@0.55.2/utils?bundle";
-import { fonts } from "https://esm.sh/@unocss/preset-mini@0.55.2/rules?bundle";
 import { presetShadcn } from "./preset-shadcn.ts";
 
 // @unocss-include
@@ -27,7 +22,6 @@ export function presetNetzo(user: UserConfig = {}): Preset<Theme> {
     presets: [
       presetShadcn(),
       presetUno(),
-      presetAttributify(),
       presetTypography(),
       presetIcons({
         collections: {
