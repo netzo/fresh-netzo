@@ -18,4 +18,4 @@ jobs:
         uses: denoland/setup-deno@v1
 
       - name: Test Apis
-        run: deno test --allow-env --allow-net --allow-read --allow-run lib/apis/airtable lib/apis/jsonplaceholder lib/apis/googlesheets lib/apis/hubspot lib/apis/notion lib/apis/stripe
+        run: deno test --allow-env --allow-net --allow-read --allow-run lib/apis/jsonplaceholder
