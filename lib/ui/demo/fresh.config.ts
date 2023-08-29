@@ -1,5 +1,5 @@
 import { defineConfig } from "$fresh/server.ts";
-import { netzoAuth, netzoErrorPages, unocss } from "netzo/ui/plugins/mod.ts";
+import { netzoAuth, netzoErrorPages, unocss, htmx } from "netzo/ui/plugins/mod.ts";
 import unoConfig from "./uno.config.ts";
 
 export default defineConfig({
@@ -7,5 +7,6 @@ export default defineConfig({
     netzoAuth({ visibility: "public" }),
     netzoErrorPages(),
     unocss(unoConfig),
+    htmx(),
   ],
 });
