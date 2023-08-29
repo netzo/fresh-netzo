@@ -20,7 +20,7 @@ Deno.test("activecampaign", async (t) => {
     assertEquals(typeof resultData, "object");
   });
 
-//CUD operations:
+  //CUD operations:
 
   // await t.step("add contact", async () => {
   //   const resultData = await api.contacts.post({

@@ -20,8 +20,8 @@ Deno.test("monday", async (t) => {
     assertEquals(typeof resultData, "object");
   });
 
-    await t.step("get board", async () => {
-      const query = `
+  await t.step("get board", async () => {
+    const query = `
       query {
           boards (ids: ${"BOARD_ID"}) {
               name
@@ -30,8 +30,8 @@ Deno.test("monday", async (t) => {
               permissions
           }
       }`;
-  const resultData = await api.post(query)
-      assertExists(resultData);
-      assertEquals(typeof resultData, "object");
-    });
+    const resultData = await api.post(query);
+    assertExists(resultData);
+    assertEquals(typeof resultData, "object");
+  });
 });

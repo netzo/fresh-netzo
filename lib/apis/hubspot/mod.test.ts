@@ -13,7 +13,7 @@ Deno.test("hubspot", async (t) => {
     assertEquals(Array.isArray(result.results), true);
   });
 
-//CUD operations:
+  //CUD operations:
 
   // await t.step("add contact", async () => {
   //   const resultData = await api.crm.v3.objects.contacts.post({
@@ -42,8 +42,7 @@ Deno.test("hubspot", async (t) => {
   //   assertEquals(result.status, 204);
   // });
 
-
-  //forbidden: 
+  //forbidden:
 
   // await t.step("find forms", async () => {
   //   const resultData = await api.forms.v2.forms.get();

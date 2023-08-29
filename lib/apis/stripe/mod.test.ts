@@ -13,7 +13,7 @@ Deno.test("stripe", async (t) => {
     assertEquals(Array.isArray(result.data), true);
   });
 
-//IDs required
+  //IDs required
 
   // await t.step("find subscription items", async () => {
   //   const result = await api.subscription_items.get({

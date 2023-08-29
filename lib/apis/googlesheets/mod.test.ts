@@ -8,7 +8,7 @@ Deno.test("googlesheets", async (t) => {
       "GOOGLE_SERVICE_ACCOUNT_CREDENTIALS",
     )!,
     scope: ["spreadsheets"],
-    spreadsheetId: Deno.env.get("GOOGLESHEETS_SPREADSHEET_ID")!,
+    spreadsheetId: "1XmMvKGQl57ZK2B8kb05YqyNYsr1tiK1wh59OJVsNyJI",
   });
 
   const range = "Sheet1!A:D";

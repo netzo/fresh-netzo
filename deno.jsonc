@@ -1,7 +1,8 @@
 {
   "exclude": [
     "www/",
-    "templates/_wip/"
+    "templates/_wip/",
+    "_fresh"
   ],
   "lock": false,
   "tasks": {
