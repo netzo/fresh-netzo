@@ -209,8 +209,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
 
   let uploadSpinner: Spinner | null = null;
   const assets = new Map<string, string>(); // map of gitSha1 -> path
-  let neededHashes: string[] // new assets to upload (set on assetNegotiation event)
-  ;
+  let neededHashes: string[]; // new assets to upload (set on assetNegotiation event)
   let manifest: Manifest | undefined;
 
   if (opts.static) {
