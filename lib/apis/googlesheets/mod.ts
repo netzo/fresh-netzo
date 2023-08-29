@@ -46,16 +46,23 @@ export const googlesheets = ({
     },
   });
 
-  const resultToRows = (result: any, headers?: string[]) => {
+  // see https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets.values
+  interface Result {
+    range: string;
+    majorDimension: "COLUMNS" | "ROWS";
+    values: string[][];
+  }
+
+  const resultToRows = (result: Result, headers?: string[]) => {
     let keys: string[];
-    let rows: Array<[]>;
+    let rows: Result["values"];
     if (headers) {
       keys = headers;
       rows = result.values;
     } else {
       [keys, ...rows] = result.values;
     }
-    return rows.map((row: object[]) =>
+    return rows.map((row: string[]) =>
       keys.reduce(
         (acc: object, key: string, index: number) => ({
           ...acc,
