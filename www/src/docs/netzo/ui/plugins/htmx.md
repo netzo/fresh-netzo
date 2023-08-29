@@ -34,3 +34,4 @@ interface HtmxOptions {}
 ## References
 
 - [HTMX](https://htmx.org/)
+- [Introduction to HTMX](https://www.sitepoint.com/htmx-introduction/)
