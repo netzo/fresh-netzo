@@ -11,17 +11,17 @@ Note that we can import directly from `sift/` since we have registered it as a d
 ```tsx
 import { json, jsx, serve } from 'sift/mod.ts'
 
-const App = () => (
-  <div>
+function App() {
+  return <div>
     <h1>Hello World!</h1>
   </div>
-)
+}
 
-const NotFound = () => (
-  <div>
+function NotFound() {
+  return <div>
     <h1>Page not found</h1>
   </div>
-)
+}
 
 serve({
   '/': () => jsx(<App />), // server-side render a page using JSX/TSX
@@ -42,7 +42,7 @@ A `deno.jsonc` or `deno.json`  file used to configure the Deno runtime for local
 {
   "imports": {
     "@/": "./",
-    "netzo/": "https://deno.land/x/netzo@v0.2.30/",
+    "netzo/": "https://deno.land/x/netzo@v0.2.31/",
     "preact": "https://esm.sh/preact@10.17.1",
     "preact/": "https://esm.sh/preact@10.17.1/"
   }
