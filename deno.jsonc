@@ -1,5 +1,6 @@
 {
   "exclude": [
+    ".github",
     "www/",
     "templates/_wip/",
     "_fresh"
