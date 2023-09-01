@@ -1,5 +1,9 @@
 {
-  "deno.enable": true,
+  "deno.enablePaths": [
+    "lib",
+    "scripts",
+    "templates"
+  ],
   "deno.lint": true,
   "deno.codeLens.test": true,
   "editor.formatOnSave": false,

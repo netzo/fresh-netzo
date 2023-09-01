@@ -40,7 +40,9 @@ export const netzo = ({
     return result?.data?.value;
   };
 
-  const createNotification = (data: Notification["data"]): Promise<Notification> => {
+  const createNotification = (
+    data: Notification["data"],
+  ): Promise<Notification> => {
     return api.notifications.post({
       labels: [],
       readBy: [],
