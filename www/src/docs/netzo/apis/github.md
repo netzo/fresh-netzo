@@ -11,6 +11,7 @@ GitHub is a code hosting platform for version control and collaboration. It lets
 
 ```ts
 import { github } from 'https://deno.land/x/netzo/apis/github/mod.ts'
+
 const { api } = github({
   personalAccessToken: Deno.env.get('GITHUB_PERSONAL_ACCESS_TOKEN'),
 })

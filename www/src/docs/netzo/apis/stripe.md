@@ -11,6 +11,7 @@ Stripe is a payments gateway for digital transactions and online business. It is
 
 ```ts
 import { stripe } from 'https://deno.land/x/netzo/apis/stripe/mod.ts'
+
 const { api } = stripe({
   apiKey: Deno.env.get('STRIPE_API_KEY')
 })

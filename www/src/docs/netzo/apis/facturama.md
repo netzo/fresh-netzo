@@ -11,6 +11,7 @@ Facturama provides a cloud-based platform for the management of mexican electron
 
 ```ts
 import { facturama } from 'https://deno.land/x/netzo/apis/facturama/mod.ts'
+
 const { api } = facturama({
   username: Deno.env.get('FACTURAMA_USERNAME'),
   password: Deno.env.get('FACTURAMA_PASSWORD')
@@ -49,7 +50,7 @@ const resultData = await api.Product[PRODUCT_ID].get<Product>()
 Add a new product.
 
 ```ts
-import type { Product, DataAddProduct } from 'netzo/apis/facturama/types.ts'
+import type { DataAddProduct, Product } from 'netzo/apis/facturama/types.ts'
 
 const data: DataAddProduct = {
   name: 'New Product',

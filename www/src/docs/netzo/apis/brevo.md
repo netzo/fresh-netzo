@@ -11,6 +11,7 @@ Brevo is a cloud-based property management software that helps property managers
 
 ```ts
 import { brevo } from 'https://deno.land/x/netzo/apis/brevo/mod.ts'
+
 const { api } = brevo({
   apiKey: Deno.env.get('BREVO_API_KEY')
 })

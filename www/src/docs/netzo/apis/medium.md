@@ -11,6 +11,7 @@ Medium is a place to write, read, and connect. It is easy to find and follow the
 
 ```ts
 import { medium } from 'https://deno.land/x/netzo/apis/medium/mod.ts'
+
 const { api } = medium({
   accessToken: Deno.env.get('MEDIUM_ACCESS_TOKEN'),
 })
@@ -58,7 +59,7 @@ const resultData = result.data
 Create a post to the authenticated user's profile.
 
 ```ts
-import type { Post, DataAddPost } from 'netzo/apis/medium/types.ts'
+import type { DataAddPost, Post } from 'netzo/apis/medium/types.ts'
 
 const data: DataAddPost = {
   title: 'New Post',

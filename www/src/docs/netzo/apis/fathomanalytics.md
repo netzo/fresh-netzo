@@ -11,6 +11,7 @@ Fathom Analytics provides simple, useful websites stats without tracking or stor
 
 ```ts
 import { fathomanalytics } from 'https://deno.land/x/netzo/apis/fathomanalytics/mod.ts'
+
 const { api } = fathomanalytics({
   apiKey: Deno.env.get('FATHOMANALYTICS_API_KEY')
 })

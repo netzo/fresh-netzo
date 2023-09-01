@@ -11,6 +11,7 @@ Cloudflare is a web infrastructure and website security company, providing conte
 
 ```ts
 import { cloudflare } from 'https://deno.land/x/netzo/apis/cloudflare/mod.ts'
+
 const { api } = cloudflare({
   apiKey: Deno.env.get('CLOUDFLARE_API_KEY')
 })

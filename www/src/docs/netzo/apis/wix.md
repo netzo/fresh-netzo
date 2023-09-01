@@ -11,6 +11,7 @@ Wix is a website builder that allows users to create HTML5 websites and mobile s
 
 ```ts
 import { wix } from 'https://deno.land/x/netzo/apis/wix/mod.ts'
+
 const { api } = wix({
   accountId: Deno.env.get('WIX_ACCOUNT_ID'),
   siteId: Deno.env.get('WIX_SITE_ID'),

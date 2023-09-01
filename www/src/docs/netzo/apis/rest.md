@@ -11,6 +11,7 @@ This is a generic REST API client. It can be used to connect to any REST API.
 
 ```ts
 import { rest } from 'https://deno.land/x/netzo/apis/rest/mod.ts'
+
 const { api } = rest({ baseURL: 'https://api.example.com' })
 ```
 

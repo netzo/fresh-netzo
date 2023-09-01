@@ -11,6 +11,7 @@ Airtable is a smart spreadsheet and low-code platform for building collaborative
 
 ```ts
 import { airtable } from 'https://deno.land/x/netzo/apis/airtable/mod.ts'
+
 const { api } = airtable({
   personalAccessToken: Deno.env.get('AIRTABLE_PERSONAL_ACCESS_TOKEN')
 })
