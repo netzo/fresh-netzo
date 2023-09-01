@@ -113,6 +113,7 @@ export const sidebarEN: DefaultTheme.Sidebar = {
           ],
         },
         { text: 'Variables', link: '/docs/platform/variables' },
+        { text: 'Notifications', link: '/docs/platform/notifications' },
         { text: 'Templates', link: '/docs/platform/templates' },
         { text: 'Users', link: '/docs/platform/users' },
       ],
