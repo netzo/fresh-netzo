@@ -92,21 +92,21 @@ export default (options: NetzoAppLayoutOptions) => {
         </head>
         {/* see https://unocss.dev/integrations/runtime#preventing-fouc */}
         <body class="flex flex-col n-bg-base" un-cloak>
-          <header class="flex justify-between items-center py-6 px-4">
+          <header class="flex justify-between items-center py-4 px-4">
             <div class="flex">
               {/* NOTE: use dark:filter-invert (in image.class) to invert color on dark */}
               {image?.src && (
-                <img {...image} class={cn("w-auto h-14 mr-3", image.class)} />
+                <img {...image} class={cn("w-auto h-12 my-auto mr-3", image.class)} />
               )}
               <div>
-                <h1 class="text-2xl mb-1 font-semibold dark:text-white">
+                <h1 class="text-2xl font-semibold dark:text-white">
                   {title}
                 </h1>
                 <p class="text-sm dark:text-gray-300">{description}</p>
               </div>
             </div>
             <a href="https://netzo.io" target="_blank">
-              <Logo class="w-auto h-10" />
+              <Logo class="w-auto h-8" />
             </a>
           </header>
 
