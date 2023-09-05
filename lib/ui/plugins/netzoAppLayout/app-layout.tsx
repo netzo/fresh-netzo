@@ -98,8 +98,8 @@ export default (options: NetzoAppLayoutOptions) => {
               {image?.src && (
                 <img {...image} class={cn("w-auto h-12 my-auto mr-3", image.class)} />
               )}
-              <div>
-                <h1 class="text-2xl font-semibold dark:text-white">
+              <div class="grid">
+                <h1 class="my-auto text-2xl font-semibold dark:text-white">
                   {title}
                 </h1>
                 <p class="text-sm dark:text-gray-300">{description}</p>
