@@ -1,4 +1,5 @@
 // deno-lint-ignore-file no-explicit-any
+import _get from "lodash.get";
 
 export function filterObjectsByKeyValues(
   data: Record<string, any>[],
@@ -12,15 +13,12 @@ export function filterObjectsByKeyValues(
         const value = filters[key];
 
         if (key.includes(".")) {
-          const [parentKey, nestedKey] = key.split(".");
           filteredData = filteredData.filter((item) =>
-            item[parentKey][nestedKey].toLowerCase().includes(
-              value.toLowerCase(),
-            )
+            _get(item, key, '').toLowerCase().includes(value.toLowerCase())
           );
         } else {
           filteredData = filteredData.filter((item) =>
-            item[key].toLowerCase().includes(value.toLowerCase())
+            _get(item, key, '').toLowerCase().includes(value.toLowerCase())
           );
         }
       }
