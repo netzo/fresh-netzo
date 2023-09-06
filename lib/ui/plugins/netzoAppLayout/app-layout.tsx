@@ -96,7 +96,10 @@ export default (options: NetzoAppLayoutOptions) => {
             <div class="flex">
               {/* NOTE: use dark:filter-invert (in image.class) to invert color on dark */}
               {image?.src && (
-                <img {...image} class={cn("w-auto h-12 my-auto mr-3", image.class)} />
+                <img
+                  {...image}
+                  class={cn("w-auto h-12 my-auto mr-3", image.class)}
+                />
               )}
               <div class="grid">
                 <h1 class="my-auto text-2xl font-semibold dark:text-white">

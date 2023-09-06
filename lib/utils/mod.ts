@@ -14,11 +14,11 @@ export function filterObjectsByKeyValues(
 
         if (key.includes(".")) {
           filteredData = filteredData.filter((item) =>
-            _get(item, key, '').toLowerCase().includes(value.toLowerCase())
+            _get(item, key, "").toLowerCase().includes(value.toLowerCase())
           );
         } else {
           filteredData = filteredData.filter((item) =>
-            _get(item, key, '').toLowerCase().includes(value.toLowerCase())
+            _get(item, key, "").toLowerCase().includes(value.toLowerCase())
           );
         }
       }
