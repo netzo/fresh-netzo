@@ -1,3 +1,4 @@
+import "std/dotenv/load.ts";
 import { defineConfig } from "$fresh/server.ts";
 import {
   htmx,

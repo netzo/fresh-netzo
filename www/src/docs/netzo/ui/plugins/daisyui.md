@@ -13,11 +13,10 @@ Register the plugin in `fresh.config.ts` and ensure `main.ts` and `dev.ts` are r
 ::: code-group
 ```ts [fresh.config.ts]
 import { daisyui } from 'netzo/ui/plugins/daisyui/mod.ts'
-import { defineConfig } from '$fresh/server.ts'
 
-export default defineConfig({
+export default {
   plugins: [daisyui()],
-})
+}
 ```
 <<< src/main.ts
 <<< src/dev.ts
