@@ -60,7 +60,7 @@ Fresh provides the following features out of the box:
 
 > Recommended for the backend, e.g. to create (REST) APIs
 
-[Hono](https://hono.dev/) is a small, simple, and ultrafast web application framework similar to Express, without a frontend. It works on any JavaScript runtime and uses Deno's native HTTP server . It is specifically built to run on CDN Edges and allows you to construct larger applications when combined with middleware.
+[Hono](https://hono.dev/) is a small, simple, and ultrafast web application framework similar to Express, without a frontend. It works on any JavaScript runtime and uses Deno's native HTTP server. It is specifically built to run on CDN Edges and allows you to construct larger applications when combined with middleware.
 
 Hono provides the following features out of the box:
 
