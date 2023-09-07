@@ -1,4 +1,4 @@
-import { z } from "../deps.ts";
+import { z } from "https://deno.land/x/zod@v3.22.2/mod.ts";
 
 export const notionPaginationSchema = z.object({
   start_cursor: z.string().optional(),

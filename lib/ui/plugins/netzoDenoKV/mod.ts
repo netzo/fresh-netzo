@@ -1,6 +1,6 @@
 import { HandlerProps } from "https://deno.land/x/kv_api@0.0.3/fresh.ts";
 import { generateFreshHandlers } from "https://deno.land/x/kv_api@0.0.3/mod.ts";
-import type { Plugin } from "../deps.ts";
+import type { Plugin } from "$fresh/server.ts";
 
 // OPTION 1: use the resh API example at https://fresh.deno.dev/docs/examples/creating-a-crud-api
 // as a starting point but provide a generateFreshHandlers function that takes in e.g. the

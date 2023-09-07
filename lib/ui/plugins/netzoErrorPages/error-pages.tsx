@@ -1,4 +1,4 @@
-import { ErrorPageProps, UnknownPageProps } from "../deps.ts";
+import type { ErrorPageProps, UnknownPageProps } from "$fresh/server.ts";
 
 interface Props {
   code: number;

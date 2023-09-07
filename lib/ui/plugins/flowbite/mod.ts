@@ -1,4 +1,4 @@
-import { Plugin } from "../deps.ts";
+import { Plugin } from "$fresh/server.ts";
 
 export interface FlowbiteOptions {
   additionalStylesheets?: string[];

@@ -1,6 +1,6 @@
-import { JSX } from "preact";
-import { type AppProps } from "../deps.ts";
-import { type NetzoAppLayoutOptions } from "./mod.ts";
+import type { JSX } from "preact";
+import type { AppProps } from "$fresh/server.ts";
+import type { NetzoAppLayoutOptions } from "./mod.ts";
 import { cn } from "../../components/utils.ts";
 
 const Logo = (props: JSX.HTMLAttributes<SVGElement>) => (

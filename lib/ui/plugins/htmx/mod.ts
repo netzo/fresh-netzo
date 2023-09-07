@@ -1,4 +1,4 @@
-import type { Plugin } from "../deps.ts";
+import type { Plugin } from "$fresh/server.ts";
 
 // deno-lint-ignore no-empty-interface
 export interface HtmxOptions {}

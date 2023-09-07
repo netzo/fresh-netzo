@@ -1,5 +1,5 @@
 import "https://deno.land/std@0.198.0/dotenv/load.ts";
-import { assertEquals, assertExists } from "../deps.ts";
+import { assertEquals, assertExists } from "https://deno.land/std@0.97.0/testing/asserts.ts";
 import { stripe } from "./mod.ts";
 
 Deno.test("stripe", async (t) => {

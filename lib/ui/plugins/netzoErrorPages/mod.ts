@@ -1,4 +1,4 @@
-import type { Plugin } from "../deps.ts";
+import type { Plugin } from "$fresh/server.ts";
 import { ErrorPage404, ErrorPage500 } from "./error-pages.tsx";
 
 export interface NetzoErrorPagesOptions {

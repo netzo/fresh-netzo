@@ -1,4 +1,4 @@
-import { assertEquals, assertExists } from "../deps.ts";
+import { assertEquals, assertExists } from "https://deno.land/std@0.97.0/testing/asserts.ts";
 import { mongodbatlasdata } from "./mod.ts";
 
 Deno.test("mongodbatlasdata", async (t) => {

@@ -1,5 +1,5 @@
 import "https://deno.land/std@0.198.0/dotenv/load.ts";
-import { assertEquals, assertExists } from "../deps.ts";
+import { assertEquals, assertExists } from "https://deno.land/std@0.97.0/testing/asserts.ts";
 import { monday } from "./mod.ts";
 
 Deno.test("monday", async (t) => {
@@ -9,10 +9,10 @@ Deno.test("monday", async (t) => {
 
   await t.step("find boards", async () => {
     const query = `
-    query { 
-        boards (limit:5) { 
-            name 
-            id 
+    query {
+        boards (limit:5) {
+            name
+            id
         }
     }`;
     const resultData = await api.post(query);

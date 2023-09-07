@@ -1,4 +1,4 @@
-import { assertEquals, assertExists } from "../deps.ts";
+import { assertEquals, assertExists } from "https://deno.land/std@0.97.0/testing/asserts.ts";
 import { fathomanalytics } from "./mod.ts";
 
 Deno.test("fathomanalytics", async (t) => {
