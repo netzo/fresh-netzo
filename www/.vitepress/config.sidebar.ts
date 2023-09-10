@@ -105,10 +105,10 @@ export const sidebarEN: DefaultTheme.Sidebar = {
           items: [
             // { text: 'Overview', link: '/docs/platform/projects/overview' },
             { text: 'Studio', link: '/docs/platform/projects/studio' },
-            { text: 'Preview', link: '/docs/platform/projects/preview' },
-            { text: 'Deployments', link: '/docs/platform/projects/deployments' },
             { text: 'Requests', link: '/docs/platform/projects/requests' },
-            // { text: 'Logs', link: '/docs/platform/projects/logs' },
+            { text: 'Databases', link: '/docs/platform/projects/databases' },
+            { text: 'Deployments', link: '/docs/platform/projects/deployments' },
+            { text: 'Logs', link: '/docs/platform/projects/logs' },
             { text: 'Settings', link: '/docs/platform/projects/settings' },
           ],
         },
