@@ -1,5 +1,5 @@
+import { defineRoute } from "$fresh/server.ts";
 import { HandlerContext, Handlers, PageProps } from "$fresh/server.ts";
-import { Head } from "$fresh/runtime.ts";
 import InputSearch from "@/components/InputSearch.tsx";
 import templates from "@/data/templates.json" assert { type: "json" };
 import { Data } from "./[id].tsx";
@@ -24,14 +24,14 @@ export const handler: Handlers = {
   },
 };
 
-export default (props: PageProps) => {
+export default defineRoute((props: PageProps) => {
   return (
-    <>
-      <Head>
+    <html>
+      <head>
         <title>{`${meta.title} | Netzo`}</title>
         <meta name="description" content={meta.description} />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-      </Head>
+      </head>
 
       <body class="h-screen flex-col text-bg-white dark:bg-gray-900 dark:text-white">
         <header class="flex justify-between items-center py-6 px-10">
@@ -121,6 +121,6 @@ export default (props: PageProps) => {
           </div>
         </main>
       </body>
-    </>
+    </html>
   );
-};
+});

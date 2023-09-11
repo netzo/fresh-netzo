@@ -1,4 +1,4 @@
-import { Head } from "$fresh/runtime.ts";
+import { defineRoute } from "$fresh/server.ts";
 import { PageProps } from "$fresh/server.ts";
 import { Handlers } from "$fresh/server.ts";
 import { signal } from "@preact/signals";
@@ -30,14 +30,14 @@ export const handler: Handlers = {
 
 const isLoading = signal(false);
 
-export default (props: PageProps) => {
+export default defineRoute((props: PageProps) => {
   return (
-    <>
-      <Head>
+    <html>
+      <head>
         <title>{`${meta.title} | Netzo`}</title>
         <meta name="description" content={meta.description} />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-      </Head>
+      </head>
 
       <body class="flex flex-col">
         <header class="flex justify-between items-center py-6 px-10">
@@ -59,6 +59,6 @@ export default (props: PageProps) => {
           <Form />
         </main>
       </body>
-    </>
+    </html>
   );
-};
+});

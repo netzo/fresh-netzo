@@ -1,14 +1,14 @@
-import { Head } from "$fresh/runtime.ts";
+import { defineRoute } from "$fresh/server.ts";
 import Statuspage from "../islands/Statuspage.tsx";
 
-export default function Home() {
+export default defineRoute(() => {
   return (
-    <>
-      <Head>
+    <html>
+      <head>
         <title>Fresh App</title>
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-      </Head>
+      </head>
       <Statuspage />
-    </>
+    </html>
   );
-}
+});
