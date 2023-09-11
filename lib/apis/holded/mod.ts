@@ -22,6 +22,7 @@ export const holded = ({
       "accept": "application/json",
       "content-type": "application/json",
     },
+    ignoreResponseError: true,
     async onRequest(ctx) {
       await auth({
         type: "apiKey",

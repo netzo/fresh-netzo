@@ -23,6 +23,7 @@ export const restdb = ({
     headers: {
       "content-type": "application/json",
     },
+    ignoreResponseError: true,
     async onRequest(ctx) {
       await auth({
         type: "apiKey",
