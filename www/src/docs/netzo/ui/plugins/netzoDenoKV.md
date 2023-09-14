@@ -2,11 +2,13 @@
 
 # `netzoDenoKV` (soon)
 
-Adds routes to serve a REST API for the [Deno KV](https://deno.com/deploy/docs/storage) database of the project.
+Adds routes to serve a flexible RESTful API for the [Deno KV](https://deno.com/deploy/docs/storage) datastore of the project. This API makes it possible to connect other applications to your KV store in any environment that can make HTTP requests.
 
 - **labels:** `routes`, `database`, `netzo`
 
 ## Usage
+
+### Fresh
 
 Register the plugin in `fresh.config.ts` and ensure `main.ts` and `dev.ts` are receive the `config` object as shown below.
 
@@ -24,6 +26,10 @@ await start(manifest, {
 
 ::: warning Fresh configuration [must](https://fresh.deno.dev/docs/concepts/ahead-of-time-builds#migrating-existing-projects-with-plugins) be defined in `fresh.config.ts`.
 :::
+
+### Hono
+
+Coming soon.
 
 ## Configuration
 
