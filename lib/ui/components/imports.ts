@@ -96,5 +96,5 @@ export const imports = {
   "@hookform/resolvers/": "https://esm.sh/@hookform/resolvers@3.3.0/",
   "tailwind-merge": "https://esm.sh/tailwind-merge@1.14.0",
   "valibot": "https://deno.land/x/valibot@v0.11.0/mod.ts",
-  "zod": "https://esm.sh/zod@3.21.4",
+  "zod/": "https://deno.land/x/zod@v3.22.2/",
 };

@@ -1,7 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
 import { useForm } from "react-hook-form";
-import * as z from "zod";
+import * as z from "zod/mod.ts";
 
 import { cn } from "netzo/ui/components/utils.ts";
 import { Button } from "netzo/ui/components/ui/button.tsx";
