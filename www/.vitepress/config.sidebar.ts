@@ -237,7 +237,7 @@ export const sidebarEN: DefaultTheme.Sidebar = {
                 { text: '<code>htmx</code>', link: '/docs/netzo/ui/plugins/htmx' },
                 { text: '<code>netzoAppLayout</code>', link: '/docs/netzo/ui/plugins/netzoAppLayout' },
                 { text: '<code>netzoAuth</code>', link: '/docs/netzo/ui/plugins/netzoAuth' },
-                { text: '<code>netzoDenoKV</code>', link: '/docs/netzo/ui/plugins/netzoDenoKV' },
+                { text: '<code>netzoDB</code>', link: '/docs/netzo/ui/plugins/netzoDB' },
                 { text: '<code>netzoErrorPages</code>', link: '/docs/netzo/ui/plugins/netzoErrorPages' },
                 { text: '<code>unocss</code>', link: '/docs/netzo/ui/plugins/unocss' },
               ],

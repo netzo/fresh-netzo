@@ -4,7 +4,7 @@ The previous [`minimal`](/docs/examples/minimal) example but with additional (op
 
 ## 📄 `main.tsx`
 
-The `main.tsx` file is the entrypoint of your project. It is the only file that is required to be present and the one that actually gets executed (e.g. `deno run -A main.tsx`). The project's module graph will be built dynamically from this file and all its dependencies.
+The `main.tsx` file is the entrypoint of your project. It is the only file that is required to be present and the one that actually gets executed (e.g. `deno run -A --unstable main.tsx`). The project's module graph will be built dynamically from this file and all its dependencies.
 
 Note that we can import directly from `sift/` since we have registered it as a dependency in the `"imports"` field of the [`deno.json(c)`](#⚙%EF%B8%8F-deno-json-c) file.
 

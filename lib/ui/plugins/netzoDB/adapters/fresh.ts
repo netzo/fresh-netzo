@@ -1,4 +1,4 @@
-import { deleteKey, get, list, set } from "./db.ts";
+import { kvDelete, kvGet, kvList, kvSet } from "../../../../db/mod.ts";
 
 function getParts(prefix: string, requestUrl: URL) {
   const prefixParts = prefix.split("/");
@@ -23,14 +23,14 @@ export default function generateHandlers(props: HandlerProps) {
         const prefixParam = requestUrl
           .searchParams
           .get("prefix")?.split(",") || [];
-        response = await list(prefixParam);
+        response = await kvList(prefixParam);
       } else {
         const keyParam = requestUrl.searchParams.get("key")?.split(",") || [];
-        response = await get(keyParam);
+        response = await kvGet(keyParam);
       }
 
       return new Response(JSON.stringify(response), {
-        headers: { "Content-Type": "application/json" },
+        headers: { "content-type": "application/json" },
       });
     },
 
@@ -47,18 +47,18 @@ export default function generateHandlers(props: HandlerProps) {
         response = []; // TODO
       } else {
         const keyParam = requestUrl.searchParams.get("key")?.split(",") || [];
-        response = await set(keyParam, JSON.parse(await req.text()));
+        response = await kvSet(keyParam, JSON.parse(await req.text()));
       }
 
       return new Response(JSON.stringify(response), {
-        headers: { "Content-Type": "application/json" },
+        headers: { "content-type": "application/json" },
       });
     },
 
     async DELETE(req: Request) {
       const requestUrl = new URL(req.url);
       const keyParam = requestUrl.searchParams.get("key")?.split(",") || [];
-      await deleteKey(keyParam);
+      await kvDelete(keyParam);
 
       return new Response("", {
         status: 200,

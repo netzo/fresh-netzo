@@ -812,11 +812,11 @@ export default {
       href: '/docs/netzo/ui/plugins/netzoAuth',
     },
     {
-      uid: 'netzoDenoKV',
+      uid: 'netzoDB',
       title: 'Netzo DenoKV',
       description: 'Adds routes to serve a REST API for the Deno KV database of the project.',
-      src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/plugins/netzoDenoKV.svg',
-      href: '/docs/netzo/ui/plugins/netzoDenoKV',
+      src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/plugins/netzoDB.svg',
+      href: '/docs/netzo/ui/plugins/netzoDB',
     },
     {
       uid: 'netzoErrorPages',
