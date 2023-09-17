@@ -12,30 +12,29 @@ export default defineConfig({
   plugins: [
     netzoAuth({ visibility: "public" }),
     netzoDB({
-      prefix: 'db',
+      prefix: "db",
       idField: "id",
-      methods: ["find", "get", "create", "update", "patch", "delete"],
-      services: {
-        users: {
-          idField: "_id",
-          methods: ["find", "get"], // allow reading only
+      services: [
+        {
+          name: "users",
           schema: z.object({
             id: z.string(),
             name: z.string(),
             email: z.string().email(),
             password: z.string(),
             role: z.enum(["admin", "user"]),
-          })
+          }),
         },
-        companies: {
+        {
+          name: "companies",
           schema: z.object({
             id: z.string(),
             name: z.string(),
             city: z.string(),
-          })
+          }),
         },
         // ...more services
-      },
+      ],
     }),
     netzoErrorPages(),
     unocss(unoConfig),

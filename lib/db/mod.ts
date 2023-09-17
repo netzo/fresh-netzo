@@ -4,9 +4,12 @@ const kv = await Deno.openKv();
 
 // rest operations:
 
-export async function find<T = unknown>(service: string, query: Record<string, string>) {
+export async function find<T = unknown>(
+  service: string,
+  query: Record<string, string>,
+) {
   const kvEntries = await kvList<T>([service]);
-  const data = kvEntries.map(d => d.value);
+  const data = kvEntries.map((d) => d.value);
   return filterObjectsByKeyValues<T>(data, query);
 }
 
@@ -19,7 +22,11 @@ export async function create<T = unknown>(service: string, data: T) {
   return await kvSet<T>([service, id], data);
 }
 
-export async function update<T = unknown>(service: string, id: string, data: T) {
+export async function update<T = unknown>(
+  service: string,
+  id: string,
+  data: T,
+) {
   return await kvSet<T>([service, id], data);
 }
 

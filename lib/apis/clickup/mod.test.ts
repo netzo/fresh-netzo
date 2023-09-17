@@ -1,4 +1,7 @@
-import { assertEquals, assertExists } from "https://deno.land/std@0.97.0/testing/asserts.ts";
+import {
+  assertEquals,
+  assertExists,
+} from "https://deno.land/std@0.97.0/testing/asserts.ts";
 import { clickup } from "./mod.ts";
 
 Deno.test("clickup", async (t) => {
