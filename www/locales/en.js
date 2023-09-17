@@ -691,6 +691,13 @@ export default {
       href: '/docs/netzo/apis/openai',
     },
     {
+      uid: 'paddle',
+      title: 'Paddle',
+      description: 'Paddle is a SaaS platform for selling software and digital products online.',
+      src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/apis/paddle.svg',
+      href: '/docs/netzo/apis/paddle',
+    },
+    {
       uid: 'pandadoc',
       title: 'Pandadoc',
       description: 'PandaDoc is an all-in-one software that streamlines your sales workflows. Create, send, track, and eSign client-facing documents designed to win more business.',

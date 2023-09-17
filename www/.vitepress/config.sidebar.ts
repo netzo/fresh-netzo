@@ -161,6 +161,7 @@ export const sidebarEN: DefaultTheme.Sidebar = {
             { text: '<code>netzo</code>', link: '/docs/netzo/apis/netzo' },
             { text: '<code>notion</code>', link: '/docs/netzo/apis/notion' },
             { text: '<code>openai</code>', link: '/docs/netzo/apis/openai' },
+            { text: '<code>paddle</code>', link: '/docs/netzo/apis/paddle' },
             { text: '<code>pandadoc</code>', link: '/docs/netzo/apis/pandadoc' },
             { text: '<code>pipedrive</code>', link: '/docs/netzo/apis/pipedrive' },
             { text: '<code>rest</code>', link: '/docs/netzo/apis/rest' },
