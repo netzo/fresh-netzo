@@ -18,20 +18,20 @@ interface Todo {
 
 const todos = await db.find<Todo>('todos')
 const todo = await db.get<Todo>('todos', ID)
-const todo = await db.post<Todo>('todos', {
+const todo = await db.create<Todo>('todos', {
   userId: '1',
   title: 'delectus aut autem',
   completed: false,
 })
-const todo = await db.get<Todo>('todos', ID, {
+const todo = await db.update<Todo>('todos', ID, {
   userId: '2',
   title: 'delectus aut autem',
   completed: true,
 })
-const todo = await db.get<Todo>('todos', ID, {
+const todo = await db.patch<Todo>('todos', ID, {
   completed: true,
 })
-const { id } = await db.get<Todo>('todos', ID)
+const { id } = await db.remove<Todo>('todos', ID)
 ```
 
 ::: tip Use `import * as db from "netzo/db/mod.ts"` for `db.<METHOD>(...)` syntax.
@@ -70,14 +70,14 @@ If `idField` is not provided as third argument, the default `"id"` will be used.
 
 ```ts
 // [create] POST /todos
-const todo = await db.post<Todo>('todos', {
+const todo = await db.create<Todo>('todos', {
   userId: '1',
   title: 'delectus aut autem',
   completed: false,
 })
 
 // [create] POST /todos (multiple at once)
-const todo = await db.post<Todo>('todos', [
+const todo = await db.create<Todo>('todos', [
   {
     userId: 1,
     id: 1,
@@ -100,7 +100,7 @@ Completely replace a single resource.
 
 ```ts
 // [udpate] PUT /todos/:id
-const todo = await db.get<Todo>('todos', ID, {
+const todo = await db.update<Todo>('todos', ID, {
   userId: '2',
   title: 'delectus aut autem',
   completed: true,
@@ -113,7 +113,7 @@ Merge the existing data of a single resource with the new data.
 
 ```ts
 // [patch] PATCH /todos/:id
-const todo = await db.get<Todo>('todos', ID, {
+const todo = await db.patch<Todo>('todos', ID, {
   completed: true,
 })
 ```
@@ -124,5 +124,5 @@ Remove a single resource.
 
 ```ts
 // [remove] DELETE /todos/:id
-const { id } = await db.get<Todo>('todos', ID)
+const { id } = await db.remove<Todo>('todos', ID)
 ```
