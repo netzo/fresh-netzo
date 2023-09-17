@@ -1,15 +1,11 @@
 import { z } from "zod/mod.ts";
 import type { Handlers } from "$fresh/server.ts";
 import type { PluginRoute } from "$fresh/src/server/types.ts";
-import { multiSet } from "https://deno.land/x/kv_utils@1.1.1/mod.ts";
 import type { NetzoDBOptions, NetzoDBServiceOptions } from "../mod.ts";
 import * as db from "../../../../db/mod.ts";
 
-const kv = await Deno.openKv();
 const METHODS = ["find", "get", "create", "update", "patch", "remove"];
 const notAllowed = () => new Response("Method not allowed", { status: 405 });
-const notFound = (id: string) =>
-  new Response(`Not found ${id}`, { status: 404 });
 
 export const generateRoutes = (options: NetzoDBOptions) => {
   const generateHandlerConfig = (): Handlers => {
@@ -103,5 +99,6 @@ export const generateRoutes = (options: NetzoDBOptions) => {
       path: `/${options.prefix}/__config`,
       handler: generateHandlerConfig(),
     },
+    ...routes,
   ]
 };
