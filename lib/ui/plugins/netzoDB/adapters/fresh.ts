@@ -8,6 +8,16 @@ const METHODS = ["find", "get", "create", "update", "patch", "remove"];
 const notAllowed = () => new Response("Method not allowed", { status: 405 });
 
 export const generateRoutes = (options: NetzoDBOptions) => {
+  const { prefix: _, ...serviceOptionDefaults } = options;
+  options = {
+    ...options,
+    services: options.services.map(({ name, ...serviceOptions }) => ({
+      name: name.toLowerCase().replace(/\s/g, "-"), // convert to kebab-case
+      ...serviceOptionDefaults,
+      ...serviceOptions,
+    })),
+  }
+
   const generateHandlerConfig = (): Handlers => {
     return {
       GET(_req, _ctx) {

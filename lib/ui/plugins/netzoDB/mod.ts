@@ -9,8 +9,10 @@ export interface NetzoDBServiceOptions {
   schema: ZodSchema;
 }
 
-export interface NetzoDBOptions extends NetzoDBServiceOptions {
+export interface NetzoDBOptions {
   prefix: string;
+  idField?: NetzoDBServiceOptions["idField"];
+  methods?: NetzoDBServiceOptions["methods"];
   services: NetzoDBServiceOptions[];
 }
 
