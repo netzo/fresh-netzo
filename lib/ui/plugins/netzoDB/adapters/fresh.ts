@@ -12,6 +12,14 @@ const notFound = (id: string) =>
   new Response(`Not found ${id}`, { status: 404 });
 
 export const generateRoutes = (options: NetzoDBOptions) => {
+  const generateHandlerConfig = (): Handlers => {
+    return {
+      GET(_req, _ctx) {
+        return Response.json(options);
+      },
+    };
+  };
+
   const generateHandler = <T>(
     service: NetzoDBServiceOptions,
   ): Handlers<T | null> => {
@@ -73,7 +81,7 @@ export const generateRoutes = (options: NetzoDBOptions) => {
     };
   };
 
-  return options.services.flatMap(
+  const routes = options.services.flatMap(
     (service: NetzoDBServiceOptions): PluginRoute[] => {
       return [
         {
@@ -89,4 +97,11 @@ export const generateRoutes = (options: NetzoDBOptions) => {
       ];
     },
   );
+
+  return [
+    {
+      path: `/${options.prefix}/__config`,
+      handler: generateHandlerConfig(),
+    },
+  ]
 };
