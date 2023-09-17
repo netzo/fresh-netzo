@@ -174,6 +174,7 @@ export const sidebarEN: DefaultTheme.Sidebar = {
           ],
         },
         { text: '<code>cli</code>', link: '/docs/netzo/cli' },
+        { text: '<code>db</code>', link: '/docs/netzo/db' },
         {
           text: '<code>ui</code>',
           link: '/docs/netzo/ui',
