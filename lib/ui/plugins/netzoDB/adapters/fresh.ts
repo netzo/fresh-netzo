@@ -16,7 +16,7 @@ export const generateRoutes = (options: NetzoDBOptions) => {
       ...serviceOptionDefaults,
       ...serviceOptions,
     })),
-  }
+  };
 
   const generateHandlerConfig = (): Handlers => {
     return {
@@ -110,5 +110,5 @@ export const generateRoutes = (options: NetzoDBOptions) => {
       handler: generateHandlerConfig(),
     },
     ...routes,
-  ]
+  ];
 };

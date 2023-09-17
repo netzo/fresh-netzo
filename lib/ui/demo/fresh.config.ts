@@ -17,21 +17,38 @@ export default defineConfig({
       services: [
         {
           name: "users",
-          // schema: z.object({
-          //   id: z.string(),
-          //   name: z.string(),
-          //   email: z.string().email(),
-          //   password: z.string(),
-          //   role: z.enum(["admin", "user"]),
-          // }),
+          schema: z.object({
+            "id": z.number(),
+            "name": z.string(),
+            "username": z.string(),
+            "email": z.string().email(),
+            "address": z.object({
+              "street": z.string(),
+              "suite": z.string(),
+              "city": z.string(),
+              "zipcode": z.string(),
+              "geo": z.object({
+                "lat": z.string(),
+                "lng": z.string(),
+              }),
+            }),
+            "phone": z.string(),
+            "website": z.string().url(),
+            "company": z.object({
+              "name": z.string(),
+              "catchPhrase": z.string(),
+              "bs": z.string(),
+            }),
+          }),
         },
         {
           name: "todos",
-          // schema: z.object({
-          //   id: z.string(),
-          //   name: z.string(),
-          //   city: z.string(),
-          // }),
+          schema: z.object({
+            id: z.number(),
+            userId: z.number(),
+            title: z.string(),
+            completed: z.boolean(),
+          }),
         },
         // ...more services
       ],

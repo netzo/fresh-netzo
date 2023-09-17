@@ -32,7 +32,7 @@ You need to provide valid authentication information to make requests to the Net
 
 To make requests to the Netzo API, replace the `RESOURCE` placeholder with a valid one from the list above, and the `API_KEY` placeholder with a valid API key.
 
-### find
+### `find`
 
 Retrieves a list of all matching resources from the service.
 
@@ -63,7 +63,7 @@ Notice the data array returns an array of resources and is wrapped by additional
 
 </details>
 
-### get
+### `get`
 
 Retrieve a single resource from the service.
 
@@ -89,7 +89,7 @@ Notice how the resource is returned directly (no pagination).
 
 </details>
 
-### create
+### `create`
 
 Create a new resource with data or multiple resources by passing in an array as data.
 
@@ -119,7 +119,7 @@ Notice how the resource is returned directly (no pagination).
 ::: info Some resources don't support `create` for multiple entries from an array.
 :::
 
-### update
+### `update`
 
 Completely replace a single or multiple resources.
 
@@ -149,7 +149,7 @@ Notice how the resource is returned directly (no pagination).
 ::: info `update` is normally expected to replace an entire resource which is why for multiple records only `patch` is supported.
 :::
 
-### patch
+### `patch`
 
 Merge the existing data of a single or multiple resources with the new data.
 
@@ -179,7 +179,7 @@ Notice how the resource is returned directly (no pagination).
 ::: info Some resources don't support `patch` for multiple entries from an array.
 :::
 
-### remove
+### `remove`
 
 Remove a single or multiple resources.
 

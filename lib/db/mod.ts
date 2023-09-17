@@ -5,7 +5,7 @@ const kv = await Deno.openKv();
 
 export const find = async <T = unknown>(
   service: string,
-  query: Record<string, string>,
+  query: Record<string, string> = {},
 ) => {
   const iterator = kv.list<T>({ prefix: [service] });
   const data = [];

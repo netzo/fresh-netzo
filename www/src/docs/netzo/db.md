@@ -64,6 +64,10 @@ const todo = await db.get<Todo>('todos', ID)
 
 Create a new resource with data or multiple resources by passing in an array as data.
 
+::: tip `idField` defaults to `"id"` and value to `crypto.randomUUID()`
+If `idField` is not provided as third argument, the default `"id"` will be used. Each data item can specify a value at that `idField` (or the default one), and if not provided, a random UUID will be generated for it via `crypto.randomUUID()` of the Web Crypto API.
+:::
+
 ```ts
 // [create] POST /todos
 const todo = await db.post<Todo>('todos', {
@@ -87,7 +91,7 @@ const todo = await db.post<Todo>('todos', [
     completed: false
   },
   // ...
-])
+], 'id') // NOTE: idField defaults to "id" and value to crypto.randomUUID()
 ```
 
 ### `update`
