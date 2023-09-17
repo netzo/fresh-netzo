@@ -22,9 +22,10 @@ const { api } = paddle({
 
 The `paddle` factory function expects an object with the following, and returns an object with an HTTP client `api`.
 
-| Param    | Type   | Default                          | Description                           |
-|----------|--------|----------------------------------|---------------------------------------|
-| `apiKey` | string | `Deno.env.get('PADDLE_API_KEY')` | the API key to use for authentication |
+| Param     | Type   | Default                          | Description                           |
+|-----------|--------|----------------------------------|---------------------------------------|
+| `apiKey`  | string | `Deno.env.get('PADDLE_API_KEY')` | the API key to use for authentication |
+| `baseUrl` | string | `https://api.paddle.com/`        | the base URL to use for requests      |
 
 
 ::: tip Refer to the [API documentation](https://developer.paddle.com/) to get the required information.
