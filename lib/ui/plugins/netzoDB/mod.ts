@@ -1,5 +1,5 @@
 import { type ZodSchema } from "zod/mod.ts";
-import generateFreshHandlers, { generateRoutes } from "./adapters/fresh.ts";
+import { generateRoutes } from "./adapters/fresh.ts";
 import type { Plugin } from "$fresh/server.ts";
 
 export interface NetzoDBServiceOptions {
@@ -18,12 +18,6 @@ export const netzoDB = (options: NetzoDBOptions): Plugin => {
   options.prefix ??= "db";
   return {
     name: "netzoDB",
-    routes: [
-      {
-        path: "kv", // options.prefix
-        handler: generateFreshHandlers(options),
-      },
-      ...generateRoutes(options),
-    ],
+    routes: generateRoutes(options),
   };
 };

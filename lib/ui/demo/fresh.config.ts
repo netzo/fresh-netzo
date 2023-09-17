@@ -17,21 +17,21 @@ export default defineConfig({
       services: [
         {
           name: "users",
-          schema: z.object({
-            id: z.string(),
-            name: z.string(),
-            email: z.string().email(),
-            password: z.string(),
-            role: z.enum(["admin", "user"]),
-          }),
+          // schema: z.object({
+          //   id: z.string(),
+          //   name: z.string(),
+          //   email: z.string().email(),
+          //   password: z.string(),
+          //   role: z.enum(["admin", "user"]),
+          // }),
         },
         {
-          name: "companies",
-          schema: z.object({
-            id: z.string(),
-            name: z.string(),
-            city: z.string(),
-          }),
+          name: "todos",
+          // schema: z.object({
+          //   id: z.string(),
+          //   name: z.string(),
+          //   city: z.string(),
+          // }),
         },
         // ...more services
       ],
