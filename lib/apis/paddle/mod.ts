@@ -24,7 +24,7 @@ export const paddle = ({
     baseURL,
     headers: {
       "content-type": "application/json",
-      "Paddle-Version": "1"
+      "Paddle-Version": "1",
     },
     ignoreResponseError: true,
     async onRequest(ctx) {
