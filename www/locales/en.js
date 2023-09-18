@@ -813,6 +813,13 @@ export default {
       href: '/docs/netzo/apis/cloudflare',
     },
     {
+      uid: 'contpaqicomercial',
+      title: 'Contpaqi Comercial',
+      description: 'Contpaqi Comercial is a mexican billing and electronic invoicing solution.',
+      src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/apis/contpaqicomercial.svg',
+      href: '/docs/netzo/apis/contpaqicomercial',
+    },
+    {
       uid: 'discord',
       title: 'Discord',
       description: 'Discord is a voice, video and text communication service to talk and hang out with your friends and communities.',
