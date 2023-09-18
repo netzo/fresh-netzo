@@ -158,6 +158,7 @@ export const sidebarEN: DefaultTheme.Sidebar = {
             { text: '<code>chartmogul</code>', link: '/docs/netzo/apis/chartmogul' },
             { text: '<code>clickup</code>', link: '/docs/netzo/apis/clickup' },
             { text: '<code>cloudflare</code>', link: '/docs/netzo/apis/cloudflare' },
+            { text: '<code>contpaqicomercial</code>', link: '/docs/netzo/apis/contpaqicomercial' },
             { text: '<code>discord</code>', link: '/docs/netzo/apis/discord' },
             { text: '<code>facturama</code>', link: '/docs/netzo/apis/facturama' },
             { text: '<code>fathomanalytics</code>', link: '/docs/netzo/apis/fathomanalytics' },

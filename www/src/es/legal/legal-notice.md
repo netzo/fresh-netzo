@@ -41,12 +41,12 @@ Rokaware S.L. ha protegido su plataforma con las medidas de ciberseguridad sufic
 
 En el caso de que la plataforma reciba un ciberataque o su web sea manipulada por terceros no autorizados con el aprovechamiento de vulnerabilidades en los sistemas informáticos Rokaware S.L. no será responsable de los daños ocasionados.
 
-Las responsabilidades derivadas del uso del software y de la plataforma proporcionado por Rokaware S.L. podrá verlas en los [Términos y Condiciones Generales](/es/legal/main-services-agreement).
+Las responsabilidades derivadas del uso del software y de la plataforma proporcionado por Rokaware S.L. podrá verlas en los [Contrato de Servicios Principales](/es/legal/main-services-agreement).
 
 ## Protección de datos personales
 
-Rokaware S.L. es el responsable del tratamiento de datos personales recopilados y tratados en la plataforma. En cumplimiento del Reglamento General de Protección de Datos (UE, 2016/679) y la Ley Orgánica de Protección de Datos y garantía de Derechos Digitales (3/2018) podrá consultar nuestra [política de privacidad](/es/legal/privacy-policy).
+Rokaware S.L. es el responsable del tratamiento de datos personales recopilados y tratados en la plataforma. En cumplimiento del Reglamento General de Protección de Datos (UE, 2016/679) y la Ley Orgánica de Protección de Datos y garantía de Derechos Digitales (3/2018) podrá consultar nuestra [Política de Privacidad](/es/legal/privacy-policy).
 
 ## Propiedad intelectual e industrial
 
-Los contenidos prestados por Rokaware así como los contenidos vertidos en la red a través de su página web, constituyen una obra en el sentido de la legislación sobre propiedad intelectual, por lo que se hallan protegidos por las leyes y convenios internacionales aplicables en esta materia. Podrá consultar más información podrá verla en los [Términos y Condiciones Generales](/es/legal/main-services-agreement).
+Los contenidos prestados por Rokaware así como los contenidos vertidos en la red a través de su página web, constituyen una obra en el sentido de la legislación sobre propiedad intelectual, por lo que se hallan protegidos por las leyes y convenios internacionales aplicables en esta materia. Podrá consultar más información podrá verla en los [Contrato de Servicios Principales](/es/legal/main-services-agreement).
