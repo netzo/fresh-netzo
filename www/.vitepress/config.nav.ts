@@ -46,7 +46,7 @@ export const navEN: DefaultTheme.NavItem[] = [
   //     { text: '🌐 Websites', link: '/use-cases#websites-and-landing-pages' },
   //   ],
   // },
-  // { text: 'Pricing', link: '/pricing' },
+  { text: 'Pricing', link: '/pricing' },
   { text: 'Docs', link: '/docs/introduction/getting-started' },
 ]
 
