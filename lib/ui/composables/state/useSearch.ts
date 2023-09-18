@@ -1,4 +1,4 @@
-import { effect, signal } from "../deps.ts";
+import { effect, signal } from "@preact/signals";
 
 export const useSearch = <T>(items: T[] = [], keys: string[]) => {
   if (!keys) keys = Object.keys(items[0] as object);

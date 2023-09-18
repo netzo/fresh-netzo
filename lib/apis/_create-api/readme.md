@@ -50,9 +50,9 @@ you have two options:
 
 ```ts
 // GET {baseURL}/users/12 (chain syntax):
-const user = await client.users(12).get<UserResponse>();
+const user = await client.users(12).get<UserResult>();
 // GET {baseURL}/users/12 (bracket syntax):
-const user = await client.users[12].get<UserResponse>();
+const user = await client.users[12].get<UserResult>();
 ```
 
 ## Payload requests

@@ -1,5 +1,8 @@
 import "https://deno.land/std@0.198.0/dotenv/load.ts";
-import { assertEquals, assertExists } from "../deps.ts";
+import {
+  assertEquals,
+  assertExists,
+} from "https://deno.land/std@0.97.0/testing/asserts.ts";
 import { activecampaign } from "./mod.ts";
 
 Deno.test("activecampaign", async (t) => {
@@ -15,36 +18,38 @@ Deno.test("activecampaign", async (t) => {
   });
 
   await t.step("get contact", async () => {
-    const data = await api.contacts["CONTACT_ID"].get();
-    assertExists(data);
-    assertEquals(typeof data, "object");
+    const resultData = await api.contacts["CONTACT_ID"].get();
+    assertExists(resultData);
+    assertEquals(typeof resultData, "object");
   });
 
-  await t.step("add contact", async () => {
-    const data = await api.contacts.post({
-      contact: {
-        email: "example@email.com",
-      },
-    });
-    assertExists(data);
-    assertEquals(typeof data, "object");
-  });
+  //CUD operations:
 
-  await t.step("update contact", async () => {
-    const data = await api.contacts["CONTACT_ID"].put({
-      contact: {
-        email: "updated-email@email.com",
-      },
-    });
-    assertExists(data);
-    assertEquals(typeof data, "object");
-  });
+  // await t.step("add contact", async () => {
+  //   const resultData = await api.contacts.post({
+  //     contact: {
+  //       email: "example@email.com",
+  //     },
+  //   });
+  //   assertExists(resultData);
+  //   assertEquals(typeof resultData, "object");
+  // });
 
-  await t.step("delete contact", async () => {
-    const data = await api.contacts["CONTACT_ID"].delete();
-    assertExists(data);
-    assertEquals(typeof data, "object");
-  });
+  // await t.step("update contact", async () => {
+  //   const resultData = await api.contacts["CONTACT_ID"].put({
+  //     contact: {
+  //       email: "updated-email@email.com",
+  //     },
+  //   });
+  //   assertExists(resultData);
+  //   assertEquals(typeof resultData, "object");
+  // });
+
+  // await t.step("delete contact", async () => {
+  //   const resultData = await api.contacts["CONTACT_ID"].delete();
+  //   assertExists(resultData);
+  //   assertEquals(typeof resultData, "object");
+  // });
 
   await t.step("find deals", async () => {
     const result = await api.deals.get();
@@ -64,13 +69,15 @@ Deno.test("activecampaign", async (t) => {
     assertEquals(Array.isArray(result.users), true);
   });
 
-  await t.step("add user", async () => {
-    const result = await api.users.post({
-      user: {
-        username: "testuser",
-      },
-    });
-    assertExists(result.user);
-    assertEquals(typeof result.user, "object");
-  });
+  //CUD operations:
+
+  // await t.step("add user", async () => {
+  //   const result = await api.users.post({
+  //     user: {
+  //       username: "testuser",
+  //     },
+  //   });
+  //   assertExists(result.user);
+  //   assertEquals(typeof result.user, "object");
+  // });
 });

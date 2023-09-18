@@ -19,8 +19,10 @@ export const holded = ({
   const api = createApi({
     baseURL: "https://api.holded.com/api",
     headers: {
+      "accept": "application/json",
       "content-type": "application/json",
     },
+    ignoreResponseError: true,
     async onRequest(ctx) {
       await auth({
         type: "apiKey",

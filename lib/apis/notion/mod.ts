@@ -25,6 +25,7 @@ export const notion = ({
       "content-type": "application/json",
       "Notion-Version": notionVersion,
     },
+    ignoreResponseError: true,
     async onRequest(ctx) {
       await auth({
         type: "bearer",

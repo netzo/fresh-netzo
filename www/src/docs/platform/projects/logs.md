@@ -4,42 +4,7 @@
 
 ![Logs](/docs/images/projects/projects-logs.webp)
 
-## Log Types
-
-Logs are structured as follows:
-
-```ts
-interface Log {
-  _id: string
-  _type: 'log'
-  workspaceId: string
-  ref: {
-    _id: string
-    _type: 'project'
-  }
-  deployment_id: string
-  project_id: string
-  context: string
-  timestamp: string
-  event_type:
-  | 'boot'
-  | 'bootFailure'
-  | 'log'
-  | 'uncaughtException'
-  | 'memoryLimit'
-  | 'timeLimit'
-  event:
-  | BootEventPayload
-  | BootFailureEventPayload
-  | LogEventPayload
-  | UncaughtExceptionEventPayload
-  | MemoryLimitEventPayload
-  | TimeLimitEventPayload
-  execution_id: string
-  isolate_id?: string
-  region?: string
-}
-```
+<!-- ## Log Types
 
 ### `boot`
 
@@ -112,7 +77,7 @@ This event is created when the isolate's CPU execution time exceeds the configur
 
 ```ts
 interface TimeLimitEventPayload {}
-```
+``` -->
 
 
 ## Debugging Errors

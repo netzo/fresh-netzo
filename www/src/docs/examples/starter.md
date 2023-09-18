@@ -4,24 +4,24 @@ The previous [`minimal`](/docs/examples/minimal) example but with additional (op
 
 ## 📄 `main.tsx`
 
-The `main.tsx` file is the entrypoint of your project. It is the only file that is required to be present and the one that actually gets executed (e.g. `deno run -A main.tsx`). The project's module graph will be built dynamically from this file and all its dependencies.
+The `main.tsx` file is the entrypoint of your project. It is the only file that is required to be present and the one that actually gets executed (e.g. `deno run -A --unstable main.tsx`). The project's module graph will be built dynamically from this file and all its dependencies.
 
 Note that we can import directly from `sift/` since we have registered it as a dependency in the `"imports"` field of the [`deno.json(c)`](#⚙%EF%B8%8F-deno-json-c) file.
 
 ```tsx
 import { json, jsx, serve } from 'sift/mod.ts'
 
-const App = () => (
-  <div>
+function App() {
+  return <div>
     <h1>Hello World!</h1>
   </div>
-)
+}
 
-const NotFound = () => (
-  <div>
+function NotFound() {
+  return <div>
     <h1>Page not found</h1>
   </div>
-)
+}
 
 serve({
   '/': () => jsx(<App />), // server-side render a page using JSX/TSX
@@ -42,7 +42,7 @@ A `deno.jsonc` or `deno.json`  file used to configure the Deno runtime for local
 {
   "imports": {
     "@/": "./",
-    "netzo/": "https://deno.land/x/netzo@v0.2.28/",
+    "netzo/": "https://deno.land/x/netzo@v0.2.38/",
     "preact": "https://esm.sh/preact@10.17.1",
     "preact/": "https://esm.sh/preact@10.17.1/"
   }

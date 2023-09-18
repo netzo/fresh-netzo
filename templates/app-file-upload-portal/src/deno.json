@@ -2,9 +2,10 @@
   "lock": false,
   "tasks": {
     "check": "deno fmt --check && deno lint && deno check **/*.ts && deno check **/*.tsx",
-    "start": "deno run -A --watch=static/,routes/ dev.ts",
-    "build": "deno run -A dev.ts build",
-    "preview": "deno run -A main.ts",
+    "start": "deno run -A --watch=static/,routes/ --unstable dev.ts",
+    "build": "deno run -A --unstable dev.ts build",
+    "preview": "deno run -A --unstable main.ts",
+    "test": "deno test -A --no-check --unstable",
     "update": "deno run -A -r https://fresh.deno.dev/update ."
   },
   "lint": {
@@ -31,8 +32,8 @@
   },
   "imports": {
     "@/": "./",
-    "netzo/": "https://deno.land/x/netzo@v0.2.28/",
-    "$fresh/": "https://deno.land/x/fresh@1.4.2/",
+    "netzo/": "https://deno.land/x/netzo@v0.2.38/",
+    "$fresh/": "https://deno.land/x/fresh@1.4.3/",
     "preact": "https://esm.sh/preact@10.17.1",
     "preact/": "https://esm.sh/preact@10.17.1/",
     "preact-render-to-string": "https://esm.sh/*preact-render-to-string@6.2.1",

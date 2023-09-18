@@ -11,6 +11,7 @@ Cloudflare is a web infrastructure and website security company, providing conte
 
 ```ts
 import { cloudflare } from 'https://deno.land/x/netzo/apis/cloudflare/mod.ts'
+
 const { api } = cloudflare({
   apiKey: Deno.env.get('CLOUDFLARE_API_KEY')
 })
@@ -77,9 +78,9 @@ const resultData = result.result
 Delete a zone by id.
 
 ```ts
-import type { DeleteResponse } from 'netzo/apis/cloudflare/types.ts'
+import type { DeleteResult } from 'netzo/apis/cloudflare/types.ts'
 
-const result = await api.zones[ZONE_ID].delete<DeleteResponse>()
+const result = await api.zones[ZONE_ID].delete<DeleteResult>()
 const resultData = result.result
 ```
 

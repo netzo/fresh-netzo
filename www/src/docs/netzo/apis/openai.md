@@ -11,6 +11,7 @@ OpenAI is an artificial intelligence research laboratory consisting of the for-p
 
 ```ts
 import { openai } from 'https://deno.land/x/netzo/apis/openai/mod.ts'
+
 const { api } = openai({
   apiKey: Deno.env.get('OPENAI_API_KEY')
 })
@@ -35,22 +36,22 @@ The following examples assume you have [created an api client instance](#usage).
 
 Obtain a model response for the given chat conversation.
 
-```ts 
+```ts
 import type { ChatCompletion, DataChatCompletion } from 'netzo/apis/openai/types.ts'
 
 const data: DataChatCompletion = {
-    model: 'gpt-3.5-turbo',
-    messages: [
-      {
-        role: 'system',
-        content: 'You are a helpful assistant.'
-      },
-      {
-        role: 'user',
-        content: 'Hello!'
-      }
-    ]
-  }
+  model: 'gpt-3.5-turbo',
+  messages: [
+    {
+      role: 'system',
+      content: 'You are a helpful assistant.'
+    },
+    {
+      role: 'user',
+      content: 'Hello!'
+    }
+  ]
+}
 const result = await api.chat.completions.post<ChatCompletion>(data)
 const resultData = result.choices
  ```

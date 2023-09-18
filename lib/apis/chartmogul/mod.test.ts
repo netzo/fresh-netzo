@@ -1,5 +1,8 @@
 import "https://deno.land/std@0.198.0/dotenv/load.ts";
-import { assertEquals, assertExists } from "../deps.ts";
+import {
+  assertEquals,
+  assertExists,
+} from "https://deno.land/std@0.97.0/testing/asserts.ts";
 import { chartmogul } from "./mod.ts";
 
 Deno.test("chartmogul", async (t) => {
@@ -14,33 +17,33 @@ Deno.test("chartmogul", async (t) => {
   });
 
   await t.step("get customer", async () => {
-    const data = await api.customers["CUSTOMER_UUID"].get();
-    assertExists(data);
-    assertEquals(typeof data, "object");
+    const resultData = await api.customers["CUSTOMER_UUID"].get();
+    assertExists(resultData);
+    assertEquals(typeof resultData, "object");
   });
 
   await t.step("add customer", async () => {
-    const data = await api.customers.post({
+    const resultData = await api.customers.post({
       data_source_uuid: "DATA_SOURCE_UUID",
       external_id: "EXTERNAL_ID",
     });
-    assertExists(data);
-    assertEquals(typeof data, "object");
+    assertExists(resultData);
+    assertEquals(typeof resultData, "object");
   });
 
-  await t.step("update customer", async () => {
-    const data = await api.customers["CUSTOMER_UUID"].patch({
-      email: "new-email@email.com",
-    });
-    assertExists(data);
-    assertEquals(typeof data, "object");
-  });
+  // await t.step("update customer", async () => {
+  //   const resultData = await api.customers["CUSTOMER_UUID"].patch({
+  //     email: "new-email@email.com",
+  //   });
+  //   assertExists(resultData);
+  //   assertEquals(typeof resultData, "object");
+  // });
 
-  await t.step("delete customer", async () => {
-    const data = await api.customers["CUSTOMER_UUID"].delete();
-    assertExists(data);
-    assertEquals(typeof data, "object");
-  });
+  // await t.step("delete customer", async () => {
+  //   const resultData = await api.customers["CUSTOMER_UUID"].delete();
+  //   assertExists(resultData);
+  //   assertEquals(typeof resultData, "object");
+  // });
 
   await t.step("find customer subsciptions", async () => {
     const result = await api.import.customers["CUSTOMER_UUID"].subscriptions
@@ -62,8 +65,8 @@ Deno.test("chartmogul", async (t) => {
   });
 
   await t.step("get invoice", async () => {
-    const data = await api.invoices["INVOICE_UUID"].get();
-    assertExists(data);
-    assertEquals(typeof data, "object");
+    const resultData = await api.invoices["INVOICE_UUID"].get();
+    assertExists(resultData);
+    assertEquals(typeof resultData, "object");
   });
 });

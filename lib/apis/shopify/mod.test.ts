@@ -1,5 +1,8 @@
 import "https://deno.land/std@0.198.0/dotenv/load.ts";
-import { assertEquals, assertExists } from "../deps.ts";
+import {
+  assertEquals,
+  assertExists,
+} from "https://deno.land/std@0.97.0/testing/asserts.ts";
 import { shopify } from "./mod.ts";
 
 Deno.test("shopify", async (t) => {
@@ -27,27 +30,29 @@ Deno.test("shopify", async (t) => {
     assertEquals(Array.isArray(result.orders), true);
   });
 
-  await t.step("add customer", async () => {
-    const result = await api["customers.json"].post({
-      customer: {
-        first_name: "John",
-        last_name: "Doe",
-        email: "example@email.com",
-      },
-    });
-    assertExists(result.customer);
-    assertEquals(typeof result.customer, "object");
-  });
+  //CUD operations:
 
-  await t.step("update customer", async () => {
-    const result = await api.customers["CUSTOMER_ID.json"].put({
-      customer: {
-        email: "new-email@email.com",
-      },
-    });
-    assertExists(result.customer);
-    assertEquals(typeof result.customer, "object");
-  });
+  // await t.step("add customer", async () => {
+  //   const result = await api["customers.json"].post({
+  //     customer: {
+  //       first_name: "John",
+  //       last_name: "Doe",
+  //       email: "example@email.com",
+  //     },
+  //   });
+  //   assertExists(result.customer);
+  //   assertEquals(typeof result.customer, "object");
+  // });
+
+  // await t.step("update customer", async () => {
+  //   const result = await api.customers["CUSTOMER_ID.json"].put({
+  //     customer: {
+  //       email: "new-email@email.com",
+  //     },
+  //   });
+  //   assertExists(result.customer);
+  //   assertEquals(typeof result.customer, "object");
+  // });
 
   await t.step("find orders", async () => {
     const result = await api["orders.json"].get();

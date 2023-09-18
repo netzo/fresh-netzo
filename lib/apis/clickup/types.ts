@@ -1,4 +1,4 @@
-import { z } from "../deps.ts";
+import { z } from "https://deno.land/x/zod@v3.22.2/mod.ts";
 
 export const listSchema = z.object({
   id: z.string(),

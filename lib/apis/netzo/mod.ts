@@ -1,5 +1,6 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
+import type { Notification } from "./types.ts";
 
 export interface NetzoOptions {
   apiKey: string;
@@ -23,6 +24,7 @@ export const netzo = ({
     headers: {
       "content-type": "application/json",
     },
+    ignoreResponseError: true,
     async onRequest(ctx) {
       await auth({
         type: "apiKey",
@@ -39,5 +41,17 @@ export const netzo = ({
     return result?.data?.value;
   };
 
-  return { api, getVariable };
+  const createNotification = (
+    data: Notification["data"],
+  ): Promise<Notification> => {
+    return api.notifications.post({
+      labels: [],
+      readBy: [],
+      data,
+      denoDeploymentId: Deno.env.get("DENO_DEPLOYMENT_ID")!,
+      denoRegion: Deno.env.get("DENO_REGION")!,
+    });
+  };
+
+  return { api, getVariable, createNotification };
 };

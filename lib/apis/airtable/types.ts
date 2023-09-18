@@ -1,4 +1,4 @@
-import { z } from "../deps.ts";
+import { z } from "https://deno.land/x/zod@v3.22.2/mod.ts";
 
 const recordObjectSchema = z.object({
   fields: z.record(z.any()),
@@ -52,7 +52,7 @@ export const dataUpdateRecordsSchema = z.object({
   typecast: z.boolean().optional(),
 });
 
-export const updateRecordsResponseSchema = z.object({
+export const updateRecordsResultSchema = z.object({
   records: z.array(recordObjectSchema),
   createdRecords: z.array(z.string()),
   updatedRecords: z.array(z.string()),
@@ -130,7 +130,7 @@ export type Records = z.infer<typeof recordsSchema>;
 export type QueryRecords = z.infer<typeof queryRecordsSchema>;
 export type DataAddRecords = z.infer<typeof dataAddRecordsSchema>;
 export type DataUpdateRecords = z.infer<typeof dataUpdateRecordsSchema>;
-export type UpdateRecordsResponse = z.infer<typeof updateRecordsResponseSchema>;
+export type UpdateRecordsResult = z.infer<typeof updateRecordsResultSchema>;
 export type QueryDeleteRecords = z.infer<typeof queryDeleteRecordsSchema>;
 export type RecordsDeleted = z.infer<typeof recordsDeletedSchema>;
 export type Databases = z.infer<typeof databasesSchema>;

@@ -1,6 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import * as z from "zod";
+import * as z from "zod/mod.ts";
 
 import { Button } from "netzo/ui/components/ui/button.tsx";
 import {
@@ -47,7 +47,7 @@ export default () => {
             <FormItem>
               <FormLabel>Username</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input placeholder="john" {...field} />
               </FormControl>
               <FormDescription>
                 This is your public display name.

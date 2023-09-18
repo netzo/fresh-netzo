@@ -1,4 +1,4 @@
-import { z } from "../deps.ts";
+import { z } from "https://deno.land/x/zod@v3.22.2/mod.ts";
 
 const profileBaseSchema = z.object({
   about: z.string(),
@@ -21,13 +21,13 @@ export const dataUpdateProfileSchema = profileBaseSchema.partial().extend({
   messaging_product: z.string(),
 });
 
-export const updateProfileResponseSchema = z.object({
+export const updateProfileResultSchema = z.object({
   success: z.boolean(),
 });
 
-//types:
+// types:
 
 export type Profile = z.infer<typeof profileSchema>;
 export type QueryProfile = z.infer<typeof queryProfileSchema>;
 export type DataUpdateProfile = z.infer<typeof dataUpdateProfileSchema>;
-export type UpdateProfileResponse = z.infer<typeof updateProfileResponseSchema>;
+export type UpdateProfileResult = z.infer<typeof updateProfileResultSchema>;

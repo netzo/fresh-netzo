@@ -1,6 +1,6 @@
-import { JSX } from "preact";
-import type { Plugin } from "../deps.ts";
-import AppLayout from "./AppLayout.tsx";
+import type { JSX } from "preact";
+import type { Plugin } from "$fresh/server.ts";
+import AppLayout from "./app-layout.tsx";
 
 export interface NetzoAppLayoutOptions {
   title?: string;

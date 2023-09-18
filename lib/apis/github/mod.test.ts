@@ -1,5 +1,8 @@
 import "https://deno.land/std@0.198.0/dotenv/load.ts";
-import { assertEquals, assertExists } from "../deps.ts";
+import {
+  assertEquals,
+  assertExists,
+} from "https://deno.land/std@0.97.0/testing/asserts.ts";
 import { github } from "./mod.ts";
 
 Deno.test("github", async (t) => {
@@ -8,32 +11,32 @@ Deno.test("github", async (t) => {
   });
 
   await t.step("find users", async () => {
-    const data = await api.users.get();
-    assertExists(data);
-    assertEquals(Array.isArray(data), true);
+    const resultData = await api.users.get();
+    assertExists(resultData);
+    assertEquals(Array.isArray(resultData), true);
   });
 
   await t.step("get user", async () => {
-    const data = await api.users["netzo"].get();
-    assertExists(data);
-    assertEquals(typeof data, "object");
+    const resultData = await api.users["netzo"].get();
+    assertExists(resultData);
+    assertEquals(typeof resultData, "object");
   });
 
   await t.step("Find repositories of user", async () => {
-    const data = await api.users["octocat"].repos.get();
-    assertExists(data);
-    assertEquals(Array.isArray(data), true);
+    const resultData = await api.users["octocat"].repos.get();
+    assertExists(resultData);
+    assertEquals(Array.isArray(resultData), true);
   });
 
   await t.step("Find repositories of organization", async () => {
-    const data = await api.orgs["netzo"].repos.get();
-    assertExists(data);
-    assertEquals(Array.isArray(data), true);
+    const resultData = await api.orgs["netzo"].repos.get();
+    assertExists(resultData);
+    assertEquals(Array.isArray(resultData), true);
   });
 
   await t.step("Find issues of repository", async () => {
-    const data = await api.repos["octocat"]["Hello-World"].issues.get();
-    assertExists(data);
-    assertEquals(Array.isArray(data), true);
+    const resultData = await api.repos["octocat"]["Hello-World"].issues.get();
+    assertExists(resultData);
+    assertEquals(Array.isArray(resultData), true);
   });
 });

@@ -1,5 +1,5 @@
+import { defineRoute } from "$fresh/server.ts";
 import { HandlerContext, Handlers, PageProps } from "$fresh/server.ts";
-import { Head } from "$fresh/runtime.ts";
 import Mustache from "mustache";
 import { rest } from "netzo/apis/rest/mod.ts";
 import Header from "@/components/Header.tsx";
@@ -52,14 +52,14 @@ export const handler: Handlers = {
   },
 };
 
-export default function Welcome(props: PageProps<Data>) {
+export default defineRoute((props: PageProps<Data>) => {
   return (
-    <>
-      <Head>
+    <html>
+      <head>
         <title>{`${props.data.pageTitle} | Netzo`}</title>
         <meta name="description" content={props.data.description} />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-      </Head>
+      </head>
 
       <body class="grid place-items-center gap-4 max-w-2xl mx-auto text-center">
         <Header />
@@ -84,9 +84,9 @@ export default function Welcome(props: PageProps<Data>) {
 
         <Footer />
       </body>
-    </>
+    </html>
   );
-}
+});
 
 // email:
 

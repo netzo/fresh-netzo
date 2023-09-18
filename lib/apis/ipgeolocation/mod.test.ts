@@ -1,5 +1,8 @@
 import "https://deno.land/std@0.198.0/dotenv/load.ts";
-import { assertEquals, assertExists } from "../deps.ts";
+import {
+  assertEquals,
+  assertExists,
+} from "https://deno.land/std@0.97.0/testing/asserts.ts";
 import { ipgeolocation } from "./mod.ts";
 
 Deno.test("ip geolocation", async (t) => {
@@ -8,8 +11,8 @@ Deno.test("ip geolocation", async (t) => {
   });
 
   await t.step("get geolocation", async () => {
-    const data = await api.ipgeo.get({ ip: "192.168.123.132" });
-    assertExists(data);
-    assertEquals(typeof data, "object");
+    const resultData = await api.ipgeo.get({ ip: "192.168.123.132" });
+    assertExists(resultData);
+    assertEquals(typeof resultData, "object");
   });
 });

@@ -4,7 +4,7 @@ import { cn } from "netzo/ui/components/utils.ts";
 import { Button as UIButton } from "netzo/ui/components/ui/button.tsx";
 
 import Accordion from "netzo/ui/components/example/accordion.tsx";
-import AlertDialog from "netzo/ui/components/example/alert.dialog.tsx";
+import AlertDialog from "netzo/ui/components/example/alert-dialog.tsx";
 import AspectRatio from "netzo/ui/components/example/aspect-ratio.tsx";
 import Avatar from "netzo/ui/components/example/avatar.tsx";
 import Badge from "netzo/ui/components/example/badge.tsx";

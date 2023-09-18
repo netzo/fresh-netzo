@@ -1,5 +1,8 @@
 import "https://deno.land/std@0.198.0/dotenv/load.ts";
-import { assertEquals, assertExists } from "../deps.ts";
+import {
+  assertEquals,
+  assertExists,
+} from "https://deno.land/std@0.97.0/testing/asserts.ts";
 import { googlesheets } from "./mod.ts";
 
 Deno.test("googlesheets", async (t) => {
@@ -8,7 +11,7 @@ Deno.test("googlesheets", async (t) => {
       "GOOGLE_SERVICE_ACCOUNT_CREDENTIALS",
     )!,
     scope: ["spreadsheets"],
-    spreadsheetId: Deno.env.get("GOOGLESHEETS_SPREADSHEET_ID")!,
+    spreadsheetId: "1XmMvKGQl57ZK2B8kb05YqyNYsr1tiK1wh59OJVsNyJI",
   });
 
   const range = "Sheet1!A:D";
@@ -93,8 +96,8 @@ Deno.test("googlesheets", async (t) => {
   });
 
   await t.step("delete row", async () => {
-    const data = await api.values[`${range_to_delete}:clear`].post();
-    assertExists(data);
-    assertEquals(typeof data, "object");
+    const resultData = await api.values[`${range_to_delete}:clear`].post();
+    assertExists(resultData);
+    assertEquals(typeof resultData, "object");
   });
 });

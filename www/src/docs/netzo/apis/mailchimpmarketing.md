@@ -11,6 +11,7 @@ Mailchimp Marketing is an all-in-one marketing platform that helps you manage an
 
 ```ts
 import { mailchimpmarketing } from 'https://deno.land/x/netzo/apis/mailchimpmarketing/mod.ts'
+
 const { api } = mailchimpmarketing({
   marketingApiKey: Deno.env.get('MAILCHIMP_MARKETING_API_KEY'),
   dataCenter: Deno.env.get('MAILCHIMP_DATA_CENTER'),

@@ -11,6 +11,7 @@ PandaDoc is a document automation software as a service with built-in electronic
 
 ```ts
 import { pandadoc } from 'https://deno.land/x/netzo/apis/pandadoc/mod.ts'
+
 const { api } = pandadoc({
   apiKey: Deno.env.get('PANDADOC_API_KEY')
 })

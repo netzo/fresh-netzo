@@ -11,6 +11,7 @@ Pipedrive is a cloud-based sales software company and CRM tool that helps busine
 
 ```ts
 import { pipedrive } from 'https://deno.land/x/netzo/apis/pipedrive/mod.ts'
+
 const { api } = pipedrive({
   apiToken: Deno.env.get('PIPEDRIVE_API_TOKEN'),
   companyDomain: Deno.env.get('PIPEDRIVE_COMPANY_DOMAIN')
@@ -51,10 +52,10 @@ const resultData = result.data
 Find all deals that match the search criteria.
 
 ```ts
-import type { QuerySearchDeals, SearchDealsResponse } from 'netzo/apis/pipedrive/types.ts'
+import type { QuerySearchDeals, SearchDealsResult } from 'netzo/apis/pipedrive/types.ts'
 
 const query: QuerySearchDeals = { term: 'New Deal' }
-const result = await api.deals.search.get<SearchDealsResponse>(query)
+const result = await api.deals.search.get<SearchDealsResult>(query)
 const resultData = result.data.items
 ```
 
@@ -63,10 +64,10 @@ const resultData = result.data.items
 Add a new deal.
 
 ```ts
-import type { AddOrUpdateDealResponse, DataAddDeal } from 'netzo/apis/pipedrive/types.ts'
+import type { AddOrUpdateDealResult, DataAddDeal } from 'netzo/apis/pipedrive/types.ts'
 
 const data: DataAddDeal = { title: 'New Deal', value: 100 }
-const result = await api.deals.post<AddOrUpdateDealResponse>(data)
+const result = await api.deals.post<AddOrUpdateDealResult>(data)
 const resultData = result.data
 ```
 
@@ -75,10 +76,10 @@ const resultData = result.data
 Update a deal by id.
 
 ```ts
-import type { AddOrUpdateDealResponse, DataUpdateDeal } from 'netzo/apis/pipedrive/types.ts'
+import type { AddOrUpdateDealResult, DataUpdateDeal } from 'netzo/apis/pipedrive/types.ts'
 
 const data: DataUpdateDeal = { title: 'Updated Title' }
-const result = await api.deals[DEAL_ID].put<AddOrUpdateDealResponse>(data)
+const result = await api.deals[DEAL_ID].put<AddOrUpdateDealResult>(data)
 const resultData = result.data
 ```
 
@@ -87,9 +88,9 @@ const resultData = result.data
 Delete a deal by id.
 
 ```ts
-import type { DeleteResponse } from 'netzo/apis/pipedrive/types.ts'
+import type { DeleteResult } from 'netzo/apis/pipedrive/types.ts'
 
-const result = await api.deals[DEAL_ID].delete<DeleteResponse>()
+const result = await api.deals[DEAL_ID].delete<DeleteResult>()
 const resultData = result.data
 ```
 
@@ -110,10 +111,10 @@ const resultData = result.data
 Find all persons that match the search criteria.
 
 ```ts
-import type { QuerySearchPersons, SearchPersonsResponse } from 'netzo/apis/pipedrive/types.ts'
+import type { QuerySearchPersons, SearchPersonsResult } from 'netzo/apis/pipedrive/types.ts'
 
 const query: QuerySearchPersons = { term: 'Smith' }
-const result = await api.persons.search.get<SearchPersonsResponse>(query)
+const result = await api.persons.search.get<SearchPersonsResult>(query)
 const resultData = result.data.items
 ```
 
@@ -122,10 +123,10 @@ const resultData = result.data.items
 Add a new person.
 
 ```ts
-import type { AddOrUpdatePersonResponse, DataAddPerson } from 'netzo/apis/pipedrive/types.ts'
+import type { AddOrUpdatePersonResult, DataAddPerson } from 'netzo/apis/pipedrive/types.ts'
 
 const data: DataAddPerson = { name: 'John Doe' }
-const result = await api.persons.post<AddOrUpdatePersonResponse>(data)
+const result = await api.persons.post<AddOrUpdatePersonResult>(data)
 const resultData = result.data
 ```
 
@@ -134,10 +135,10 @@ const resultData = result.data
 Update a person by id.
 
 ```ts
-import type { AddOrUpdatePersonResponse, DataUpdatePerson } from 'netzo/apis/pipedrive/types.ts'
+import type { AddOrUpdatePersonResult, DataUpdatePerson } from 'netzo/apis/pipedrive/types.ts'
 
 const data: DataUpdatePerson = { email: 'updated-email@email.com' }
-const result = await api.persons[PERSON_ID].put<AddOrUpdatePersonResponse>(data)
+const result = await api.persons[PERSON_ID].put<AddOrUpdatePersonResult>(data)
 const resultData = result.data
 ```
 
@@ -146,9 +147,9 @@ const resultData = result.data
 Delete a person by id.
 
 ```ts
-import type { DeleteResponse } from 'netzo/apis/pipedrive/types.ts'
+import type { DeleteResult } from 'netzo/apis/pipedrive/types.ts'
 
-const result = await api.persons[PERSON_ID].delete<DeleteResponse>()
+const result = await api.persons[PERSON_ID].delete<DeleteResult>()
 const resultData = result.data
 ```
 

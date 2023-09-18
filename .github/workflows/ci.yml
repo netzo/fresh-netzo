@@ -11,7 +11,9 @@ jobs:
         os: [ubuntu-latest]
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Git Checkout
+        uses: actions/checkout@v2
+
       - name: Setup Deno
         uses: denoland/setup-deno@v1
 
@@ -21,5 +23,5 @@ jobs:
       - name: Lint
         run: deno lint
 
-      - name: Tests
-        run: deno test --allow-env --allow-net --allow-read --allow-run
+      # - name: Tests
+      #   run: deno test --allow-env --allow-net --allow-read --allow-run

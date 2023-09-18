@@ -1,4 +1,7 @@
-import { assertEquals, assertExists } from "../deps.ts";
+import {
+  assertEquals,
+  assertExists,
+} from "https://deno.land/std@0.97.0/testing/asserts.ts";
 import { mailchimpmarketing } from "./mod.ts";
 
 Deno.test("mailchimpmarketing", async (t) => {
@@ -14,14 +17,14 @@ Deno.test("mailchimpmarketing", async (t) => {
   });
 
   await t.step("get campaign", async () => {
-    const data = await api.campaigns["CAMPAIGN_ID"].get();
-    assertExists(data);
-    assertEquals(typeof data, "object");
+    const resultData = await api.campaigns["CAMPAIGN_ID"].get();
+    assertExists(resultData);
+    assertEquals(typeof resultData, "object");
   });
 
   await t.step("get campaign content", async () => {
-    const data = await api.campaigns["CAMPAIGN_ID"].content.get();
-    assertExists(data);
-    assertEquals(typeof data, "object");
+    const resultData = await api.campaigns["CAMPAIGN_ID"].content.get();
+    assertExists(resultData);
+    assertEquals(typeof resultData, "object");
   });
 });

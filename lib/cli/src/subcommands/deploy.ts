@@ -1,4 +1,4 @@
-import {
+import type {
   DenoDeploymentProgress,
   DenoDeploymentProgressAssetNegotiation,
   DenoDeploymentProgressError,
@@ -7,15 +7,12 @@ import {
   DenoDeploymentProgressSuccess,
   Deployment,
   DeploymentData,
-  fromFileUrl,
   Manifest,
-  netzo,
-  normalize,
   Paginated,
   Project,
   Spinner,
-  wait,
 } from "../../deps.ts";
+import { fromFileUrl, netzo, normalize, wait } from "../../deps.ts";
 import { error } from "../console.ts";
 import { parseEntrypoint } from "../utils/entrypoint.ts";
 import { walk } from "../utils/walk.ts";
@@ -147,6 +144,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
   if (opts.dryRun) {
     wait("").start().info("Performing dry run of deployment");
   }
+
   const projectSpinner = wait("Fetching project information...").start();
   const { api } = netzo({ apiKey: opts.apiKey, baseURL: opts.apiUrl });
   const { data: [project] } = await api.projects.get<Paginated<Project>>({
@@ -193,6 +191,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
     if (!path.startsWith(cwd)) {
       error("Entrypoint must be in the current working directory.");
     }
+
     const entrypoint = path.slice(cwd.length);
     url = new URL(`file:///src${entrypoint}`);
   }
@@ -203,6 +202,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
     if (!path.startsWith(cwd)) {
       error("Import map must be in the current working directory.");
     }
+
     const entrypoint = path.slice(cwd.length);
     importMapUrl = new URL(`file:///src${entrypoint}`);
   }
@@ -210,7 +210,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
   let uploadSpinner: Spinner | null = null;
   const assets = new Map<string, string>(); // map of gitSha1 -> path
   let neededHashes: string[]; // new assets to upload (set on assetNegotiation event)
-  let manifest: Manifest | undefined = undefined;
+  let manifest: Manifest | undefined;
 
   if (opts.static) {
     wait("").start().info(`Uploading all files from the current dir (${cwd})`);
@@ -303,12 +303,13 @@ async function deploy(opts: DeployOpts): Promise<void> {
             if (deploySpinner === null) {
               deploySpinner = wait("Deploying...").start();
             }
+
             const progress = seen / total * 100;
             deploySpinner.text = `Deploying... (${progress.toFixed(1)}%)`;
             break;
           }
           case "uploadComplete":
-            deploySpinner!.text = `Finishing deployment...`;
+            deploySpinner!.text = "Finishing deployment...";
             break;
           case "success": {
             const { domainMappings } = event as DenoDeploymentProgressSuccess;
@@ -318,6 +319,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
             for (const { domain } of domainMappings) {
               console.log(` - https://${domain}`);
             }
+
             // patch ALL project.files and project.deployment in netzo API:
             await api.projects[project._id].patch<Project>({
               files: projectFiles,
@@ -331,11 +333,11 @@ async function deploy(opts: DeployOpts): Promise<void> {
           case "error": {
             const { ctx } = event as DenoDeploymentProgressError;
             if (uploadSpinner) {
-              uploadSpinner.fail(`Upload failed.`);
+              uploadSpinner.fail("Upload failed.");
               uploadSpinner = null;
             }
             if (deploySpinner) {
-              deploySpinner.fail(`Deployment failed.`);
+              deploySpinner.fail("Deployment failed.");
               deploySpinner = null;
             }
             error(ctx); // exits with error code 1
@@ -351,11 +353,11 @@ async function deploy(opts: DeployOpts): Promise<void> {
   } catch (err: unknown) {
     if (err instanceof APIError) {
       if (uploadSpinner) {
-        uploadSpinner.fail(`Upload failed.`);
+        uploadSpinner.fail("Upload failed.");
         uploadSpinner = null;
       }
       if (deploySpinner) {
-        deploySpinner.fail(`Deployment failed.`);
+        deploySpinner.fail("Deployment failed.");
         deploySpinner = null;
       }
       error(err.toString());

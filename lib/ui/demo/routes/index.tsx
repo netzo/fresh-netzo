@@ -1,16 +1,16 @@
-import { Head } from "$fresh/runtime.ts";
+import { defineRoute } from "$fresh/server.ts";
 import Demo from "@/islands/Demo.tsx";
 
-export default function Home() {
+export default defineRoute(() => {
   return (
-    <>
-      <Head>
+    <html>
+      <head>
         <title>netzo/ui/components</title>
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-      </Head>
+      </head>
       <main class="p-4 mx-auto">
         <Demo />
       </main>
-    </>
+    </html>
   );
-}
+});

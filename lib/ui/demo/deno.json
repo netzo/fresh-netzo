@@ -2,9 +2,10 @@
   "lock": false,
   "tasks": {
     "check": "deno fmt --check && deno lint && deno check **/*.ts && deno check **/*.tsx",
-    "start": "deno run -A --watch=static/,routes/ dev.ts",
-    "build": "deno run -A dev.ts build",
-    "preview": "deno run -A main.ts",
+    "start": "deno run -A --watch=static/,routes/ --unstable dev.ts",
+    "build": "deno run -A --unstable dev.ts build",
+    "preview": "deno run -A --unstable main.ts",
+    "test": "deno test -A --no-check --unstable",
     "update": "deno run -A -r https://fresh.deno.dev/update ."
   },
   "lint": {
@@ -31,8 +32,8 @@
   },
   "imports": {
     "@/": "./",
-    "netzo/": "../../",
-    "$fresh/": "https://deno.land/x/fresh@1.4.2/",
+    "netzo/": "../../../../netzo/lib/",
+    "$fresh/": "https://deno.land/x/fresh@1.4.3/",
     "preact": "https://esm.sh/preact@10.17.1",
     "preact/": "https://esm.sh/preact@10.17.1/",
     "preact-render-to-string": "https://esm.sh/*preact-render-to-string@6.2.0",
@@ -82,6 +83,6 @@
     "react-datepicker": "https://esm.sh/react-datepicker@4.16.0?external=react,react-dom&target=es2022",
     "react-day-picker": "https://esm.sh/react-day-picker@8.8.0?external=react,react-dom&target=es2022",
     "tailwind-merge": "https://esm.sh/tailwind-merge@1.14.0",
-    "zod": "https://esm.sh/zod@3.21.4"
+    "zod/": "https://deno.land/x/zod@v3.22.2/"
   }
 }

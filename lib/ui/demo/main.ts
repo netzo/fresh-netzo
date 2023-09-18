@@ -3,19 +3,10 @@
 /// <reference lib="dom.iterable" />
 /// <reference lib="dom.asynciterable" />
 /// <reference lib="deno.ns" />
+/// <reference lib="deno.unstable" />
 
-import "std/dotenv/load.ts";
-
-import { netzoAuth, netzoErrorPages, unocss } from "netzo/ui/plugins/mod.ts";
-import manifest from "./fresh.gen.ts";
-
-import unoConfig from "./uno.config.ts";
 import { start } from "$fresh/server.ts";
+import manifest from "./fresh.gen.ts";
+import config from "./fresh.config.ts";
 
-await start(manifest, {
-  plugins: [
-    netzoAuth({ visibility: "public" }),
-    netzoErrorPages(),
-    unocss(unoConfig),
-  ],
-});
+await start(manifest, config);

@@ -1,12 +1,12 @@
-import { Plugin } from "../deps.ts";
+import { Plugin } from "$fresh/server.ts";
 
-export type FlowbiteOptions = {
+export interface FlowbiteOptions {
   additionalStylesheets?: string[];
   additionalScripts?: string[];
   plugins?: {
     datepicker?: boolean;
   };
-};
+}
 
 export const flowbite = (options: FlowbiteOptions = {}): Plugin => {
   if (!options.additionalScripts) options.additionalScripts = [];
@@ -25,12 +25,7 @@ export const flowbite = (options: FlowbiteOptions = {}): Plugin => {
     render(ctx) {
       ctx.render();
       return {
-        scripts: [
-          {
-            entrypoint: "main",
-            state: options,
-          },
-        ],
+        scripts: [{ entrypoint: "main", state: options }],
       };
     },
   };

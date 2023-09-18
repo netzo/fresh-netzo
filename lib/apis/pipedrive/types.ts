@@ -1,4 +1,4 @@
-import { z } from "../deps.ts";
+import { z } from "https://deno.land/x/zod@v3.22.2/mod.ts";
 
 const dealBaseSchema = z.object({
   id: z.number(),
@@ -210,7 +210,7 @@ export const queryGetDealsSchema = z.object({
   owned_by_you: z.union([z.literal(0), z.literal(1)]).optional(),
 });
 
-export const searchDealsResponseSchema = z.object({
+export const searchDealsResultSchema = z.object({
   success: z.boolean(),
   data: z.object({
     items: z.array(
@@ -304,7 +304,7 @@ export const dataUpdateDealSchema = dataAddDealSchema.omit({
   add_time: true,
 });
 
-export const addOrUpdateDealResponseSchema = z.object({
+export const addOrUpdateDealResultSchema = z.object({
   success: z.boolean(),
   data: dealBaseSchema,
   related_objects: relatedObjectsDealSchema,
@@ -457,7 +457,7 @@ export const querySearchPersonsSchema = querySearchDealsSchema.omit({
   status: true,
 });
 
-export const searchPersonsResponseSchema = z.object({
+export const searchPersonsResultSchema = z.object({
   success: z.boolean(),
   data: z.object({
     items: z.array(
@@ -513,7 +513,7 @@ export const dataAddPersonSchema = z.object({
 
 export const dataUpdatePersonSchema = dataAddPersonSchema.partial();
 
-export const addOrUpdatePersonResponseSchema = z.object({
+export const addOrUpdatePersonResultSchema = z.object({
   success: z.boolean(),
   data: z.object({
     id: z.number(),
@@ -613,31 +613,31 @@ export const addOrUpdatePersonResponseSchema = z.object({
   }),
 }).deepPartial();
 
-export const deleteResponseSchema = z.object({
+export const deleteResultSchema = z.object({
   success: z.boolean(),
   data: z.object({
     id: z.number(),
   }),
 }).deepPartial();
 
-//types:
+// types:
 
 export type Deals = z.infer<typeof dealsSchema>;
 export type QueryGetDeals = z.infer<typeof queryGetDealsSchema>;
-export type SearchDealsResponse = z.infer<typeof searchDealsResponseSchema>;
+export type SearchDealsResult = z.infer<typeof searchDealsResultSchema>;
 export type QuerySearchDeals = z.infer<typeof querySearchDealsSchema>;
 export type DataAddDeal = z.infer<typeof dataAddDealSchema>;
 export type DataUpdateDeal = z.infer<typeof dataUpdateDealSchema>;
-export type AddOrUpdateDealResponse = z.infer<
-  typeof addOrUpdateDealResponseSchema
+export type AddOrUpdateDealResult = z.infer<
+  typeof addOrUpdateDealResultSchema
 >;
 export type Persons = z.infer<typeof personsSchema>;
 export type QueryGetPersons = z.infer<typeof queryGetPersonsSchema>;
 export type QuerySearchPersons = z.infer<typeof querySearchPersonsSchema>;
-export type SearchPersonsResponse = z.infer<typeof searchPersonsResponseSchema>;
+export type SearchPersonsResult = z.infer<typeof searchPersonsResultSchema>;
 export type DataAddPerson = z.infer<typeof dataAddPersonSchema>;
 export type DataUpdatePerson = z.infer<typeof dataUpdatePersonSchema>;
-export type AddOrUpdatePersonResponse = z.infer<
-  typeof addOrUpdatePersonResponseSchema
+export type AddOrUpdatePersonResult = z.infer<
+  typeof addOrUpdatePersonResultSchema
 >;
-export type DeleteResponse = z.infer<typeof deleteResponseSchema>;
+export type DeleteResult = z.infer<typeof deleteResultSchema>;

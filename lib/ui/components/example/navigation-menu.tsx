@@ -1,6 +1,6 @@
 import { type ComponentProps, forwardRef, type Ref } from "preact/compat";
 import { cn } from "netzo/ui/components/utils.ts";
-// import { Icons } from "@/components/icons";
+
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -61,21 +61,20 @@ export default () => {
                 <NavigationMenuLink asChild>
                   <a
                     className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                    href="/"
+                    href="https://netzo.io/docs/netzo/ui"
                   >
-                    {/* <Icons.logo className="h-6 w-6" /> */}
                     <div className="mb-2 mt-4 text-lg font-medium">
-                      shadcn/ui
+                      netzo
                     </div>
                     <p className="text-sm leading-tight text-muted-foreground">
                       Beautifully designed components built with Radix UI and
-                      Tailwind CSS.
+                      UnoCSS.
                     </p>
                   </a>
                 </NavigationMenuLink>
               </li>
               <ListItem href="/docs" title="Introduction">
-                Re-usable components built using Radix UI and Tailwind CSS.
+                Re-usable components built using Radix UI and UnoCSS.
               </ListItem>
               <ListItem href="/docs/installation" title="Installation">
                 How to install dependencies and structure your app.

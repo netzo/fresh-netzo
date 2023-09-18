@@ -1,4 +1,4 @@
-import { z } from "../deps.ts";
+import { z } from "https://deno.land/x/zod@v3.22.2/mod.ts";
 
 const contactBaseSchema = z.object({
   properties: z.object({
@@ -36,7 +36,7 @@ export const dataAddOrUpdateContactSchema = z.object({
   }),
 });
 
-export const addOrUpdateContactResponseSchema = contactBaseSchema.extend({
+export const addOrUpdateContactResultSchema = contactBaseSchema.extend({
   id: z.string(),
   createdAt: z.string(),
   updatedAt: z.string(),
@@ -202,22 +202,22 @@ export const dataAddDealSchema = z.object({
     .optional(),
 });
 
-export const addDealResponseSchema = dealBaseSchema.extend({
+export const addDealResultSchema = dealBaseSchema.extend({
   id: z.string(),
   createdAt: z.string(),
   updatedAt: z.string(),
   archived: z.boolean(),
 });
 
-//types:
+// types:
 
 export type Contacts = z.infer<typeof contactsSchema>;
 export type QueryContacts = z.infer<typeof queryContactsSchema>;
 export type DataAddOrUpdateContact = z.infer<
   typeof dataAddOrUpdateContactSchema
 >;
-export type AddOrUpdateContactResponse = z.infer<
-  typeof addOrUpdateContactResponseSchema
+export type AddOrUpdateContactResult = z.infer<
+  typeof addOrUpdateContactResultSchema
 >;
 export type Form = z.infer<typeof formSchema>;
 export type QueryForms = z.infer<typeof queryFormsSchema>;
@@ -227,4 +227,4 @@ export type QueryDeals = z.infer<typeof queryDealsSchema>;
 export type DealBase = z.infer<typeof dealBaseSchema>;
 export type Deals = z.infer<typeof dealsSchema>;
 export type DataAddDeal = z.infer<typeof dataAddDealSchema>;
-export type AddDealResponse = z.infer<typeof addDealResponseSchema>;
+export type AddDealResult = z.infer<typeof addDealResultSchema>;

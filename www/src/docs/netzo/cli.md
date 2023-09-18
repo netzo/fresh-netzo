@@ -24,7 +24,7 @@ page. You can store this token in a `NETZO_API_KEY` environment variable
 ```sh [Linux / MacOS]
 export NETZO_API_KEY=...
 ```
-```psh [Windows]
+```sh [Windows]
 set NETZO_API_KEY=...
 ```
 :::

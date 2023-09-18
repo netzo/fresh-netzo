@@ -1,4 +1,4 @@
-import { Head } from "$fresh/runtime.ts";
+import { defineRoute } from "$fresh/server.ts";
 import { PageProps } from "$fresh/server.ts";
 import Shell from "../islands/Shell.tsx";
 
@@ -8,14 +8,14 @@ const meta = {
     "A sales dashboard to track performance of sales teams in real-time, and provides a variety of metrics to help make informed decisions.",
 };
 
-export default (props: PageProps) => {
+export default defineRoute(() => {
   return (
-    <>
-      <Head>
+    <html>
+      <head>
         <title>{`${meta.title} | Netzo`}</title>
         <meta name="description" content={meta.description} />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-      </Head>
+      </head>
 
       <body class="flex flex-col">
         <header class="flex justify-between items-center py-6 px-10">
@@ -37,6 +37,6 @@ export default (props: PageProps) => {
           <Shell />
         </main>
       </body>
-    </>
+    </html>
   );
-};
+});

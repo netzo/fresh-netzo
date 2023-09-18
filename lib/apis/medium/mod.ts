@@ -21,6 +21,7 @@ export const medium = ({
     headers: {
       "content-type": "application/json",
     },
+    ignoreResponseError: true,
     async onRequest(ctx) {
       await auth({
         type: "bearer",

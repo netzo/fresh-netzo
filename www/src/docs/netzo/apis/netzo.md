@@ -11,6 +11,7 @@ Netzo is a cloud-based internal app development platform, ideal for technology-d
 
 ```ts
 import { netzo } from 'https://deno.land/x/netzo/apis/netzo/mod.ts'
+
 const { api } = netzo({
   apiKey: Deno.env.get('NETZO_API_KEY')
 })

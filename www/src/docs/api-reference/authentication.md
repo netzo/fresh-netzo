@@ -9,7 +9,7 @@ The **Netzo API** currently supports the following authentication methods:
 
 To make a request, you need to create an [API key](/docs/platform/workspaces#api-keys) and provide it in either:
 
-- **`'x-api-key'` header for example `{ 'x-api-key': API_KEY }` (recommended)**
+- **`'x-api-key'` header for example `{ 'x-api-key': API_KEY }` (**recommended**)**
 
 ```sh
 curl -H "x-api-key: API_KEY" https://api.netzo.io/RESOURCE

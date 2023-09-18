@@ -11,6 +11,7 @@ JSONPlaceholder is a free online REST API that you can use whenever you need som
 
 ```ts
 import { jsonplaceholder } from 'https://deno.land/x/netzo/apis/jsonplaceholder/mod.ts'
+
 const { api } = jsonplaceholder()
 ```
 

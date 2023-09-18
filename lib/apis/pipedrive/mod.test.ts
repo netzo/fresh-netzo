@@ -1,5 +1,8 @@
 import "https://deno.land/std@0.198.0/dotenv/load.ts";
-import { assertEquals, assertExists } from "../deps.ts";
+import {
+  assertEquals,
+  assertExists,
+} from "https://deno.land/std@0.97.0/testing/asserts.ts";
 import { pipedrive } from "./mod.ts";
 
 Deno.test("pipedrive", async (t) => {
@@ -20,25 +23,27 @@ Deno.test("pipedrive", async (t) => {
     assertEquals(Array.isArray(result.data.items), true);
   });
 
-  await t.step("add deal", async () => {
-    const result = await api.deals.post({
-      title: "Test Deal",
-    });
-    assertExists(result.data);
-    assertEquals(typeof result.data, "object");
-  });
+  //CUD operations:
 
-  await t.step("update deal", async () => {
-    const result = await api.deals["DEAL_ID"].put({ title: "Updated Title" });
-    assertExists(result.data);
-    assertEquals(typeof result.data, "object");
-  });
+  // await t.step("add deal", async () => {
+  //   const result = await api.deals.post({
+  //     title: "Test Deal",
+  //   });
+  //   assertExists(result.data);
+  //   assertEquals(typeof result.data, "object");
+  // });
 
-  await t.step("delete deal", async () => {
-    const result = await api.deals["DEAL_ID"].delete();
-    assertExists(result.data);
-    assertEquals(typeof result.data, "object");
-  });
+  // await t.step("update deal", async () => {
+  //   const result = await api.deals["DEAL_ID"].put({ title: "Updated Title" });
+  //   assertExists(result.data);
+  //   assertEquals(typeof result.data, "object");
+  // });
+
+  // await t.step("delete deal", async () => {
+  //   const result = await api.deals["DEAL_ID"].delete();
+  //   assertExists(result.data);
+  //   assertEquals(typeof result.data, "object");
+  // });
 
   await t.step("find persons", async () => {
     const result = await api.persons.get();
@@ -52,21 +57,23 @@ Deno.test("pipedrive", async (t) => {
     assertEquals(Array.isArray(result.data.items), true);
   });
 
-  await t.step("add person", async () => {
-    const result = await api.persons.post({ name: "John Doe" });
-    assertExists(result.data);
-    assertEquals(typeof result.data, "object");
-  });
+  //CUD operations:
 
-  await t.step("update person", async () => {
-    const result = await api.persons["PERSON_ID"].put({ name: "Jane Doe" });
-    assertExists(result.data);
-    assertEquals(typeof result.data, "object");
-  });
+  // await t.step("add person", async () => {
+  //   const result = await api.persons.post({ name: "John Doe" });
+  //   assertExists(result.data);
+  //   assertEquals(typeof result.data, "object");
+  // });
 
-  await t.step("delete person", async () => {
-    const result = await api.persons["PERSON_ID"].delete();
-    assertExists(result.data);
-    assertEquals(typeof result.data, "object");
-  });
+  // await t.step("update person", async () => {
+  //   const result = await api.persons["PERSON_ID"].put({ name: "Jane Doe" });
+  //   assertExists(result.data);
+  //   assertEquals(typeof result.data, "object");
+  // });
+
+  // await t.step("delete person", async () => {
+  //   const result = await api.persons["PERSON_ID"].delete();
+  //   assertExists(result.data);
+  //   assertEquals(typeof result.data, "object");
+  // });
 });

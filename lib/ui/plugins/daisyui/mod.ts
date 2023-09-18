@@ -1,4 +1,4 @@
-import type { Plugin } from "../deps.ts";
+import type { Plugin } from "$fresh/server.ts";
 
 // deno-lint-ignore no-empty-interface
 export interface DaisyuiOptions {}
@@ -10,12 +10,7 @@ export const daisyui = (options: DaisyuiOptions = {}): Plugin => {
     render(ctx) {
       ctx.render();
       return {
-        scripts: [
-          {
-            entrypoint: "main",
-            state: options,
-          },
-        ],
+        scripts: [{ entrypoint: "main", state: options }],
       };
     },
   };

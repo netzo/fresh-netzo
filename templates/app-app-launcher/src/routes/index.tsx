@@ -1,4 +1,4 @@
-import { asset, Head } from "$fresh/runtime.ts";
+import { defineRoute } from "$fresh/server.ts";
 import App from "../islands/App.tsx";
 import apps from "../data/apps.json" assert { type: "json" };
 
@@ -7,14 +7,14 @@ const meta = {
   description: "Quick links for important apps and services.",
 };
 
-export default () => {
+export default defineRoute(() => {
   return (
-    <>
-      <Head>
+    <html>
+      <head>
         <title>{`${meta.title} | Netzo`}</title>
         <meta name="description" content={meta.description} />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-      </Head>
+      </head>
 
       <body class="flex-col text-bg-white dark:bg-gray-900 dark:text-white">
         <header class="flex justify-between items-center py-6 px-10">
@@ -36,6 +36,6 @@ export default () => {
           <App apps={apps} />
         </main>
       </body>
-    </>
+    </html>
   );
-};
+});

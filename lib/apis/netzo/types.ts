@@ -11,6 +11,9 @@ export type {
   Log,
   LogData,
   LogQuery,
+  Notification,
+  NotificationData,
+  NotificationQuery,
   Project,
   ProjectData,
   ProjectQuery,
@@ -32,4 +35,4 @@ export type {
   WorkspaceUser,
   WorkspaceUserData,
   WorkspaceUserQuery,
-} from "https://esm.sh/v131/@netzo/api@1.0.31/lib/client.d.ts";
+} from "https://esm.sh/v131/@netzo/api@1.0.34/lib/client.d.ts";

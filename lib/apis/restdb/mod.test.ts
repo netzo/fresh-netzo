@@ -1,4 +1,7 @@
-import { assertEquals, assertExists } from "../deps.ts";
+import {
+  assertEquals,
+  assertExists,
+} from "https://deno.land/std@0.97.0/testing/asserts.ts";
 import { restdb } from "./mod.ts";
 
 Deno.test("restdb", async (t) => {
@@ -8,8 +11,8 @@ Deno.test("restdb", async (t) => {
   });
 
   await t.step("find records", async () => {
-    const data = await api["COLLECTION_NAME"].get();
-    assertExists(data);
-    assertEquals(Array.isArray(data), true);
+    const resultData = await api["COLLECTION_NAME"].get();
+    assertExists(resultData);
+    assertEquals(Array.isArray(resultData), true);
   });
 });

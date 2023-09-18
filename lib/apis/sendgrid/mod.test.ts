@@ -1,4 +1,7 @@
-import { assertEquals, assertExists } from "../deps.ts";
+import {
+  assertEquals,
+  assertExists,
+} from "https://deno.land/std@0.97.0/testing/asserts.ts";
 import { sendgrid } from "./mod.ts";
 
 Deno.test("sendgrid", async (t) => {
@@ -13,8 +16,8 @@ Deno.test("sendgrid", async (t) => {
   });
 
   await t.step("get list", async () => {
-    const data = await api.marketing.lists["LIST_ID"].get();
-    assertExists(data);
-    assertEquals(typeof data, "object");
+    const resultData = await api.marketing.lists["LIST_ID"].get();
+    assertExists(resultData);
+    assertEquals(typeof resultData, "object");
   });
 });

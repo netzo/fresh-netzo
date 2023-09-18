@@ -1,4 +1,4 @@
-import type { MiddlewareHandler, Plugin } from "../deps.ts";
+import type { MiddlewareHandler, Plugin } from "$fresh/server.ts";
 
 export type NetzoAuthOptions = {
   visibility: "private";

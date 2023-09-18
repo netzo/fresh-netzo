@@ -1,5 +1,8 @@
 import "https://deno.land/std@0.198.0/dotenv/load.ts";
-import { assertEquals, assertExists } from "../deps.ts";
+import {
+  assertEquals,
+  assertExists,
+} from "https://deno.land/std@0.97.0/testing/asserts.ts";
 import { googledrive } from "./mod.ts";
 
 Deno.test("googledrive", async (t) => {
@@ -20,17 +23,21 @@ Deno.test("googledrive", async (t) => {
     assertEquals(Array.isArray(result.files), true);
   });
 
+  //IDs required:
+
   // await t.step("get file", async () => {
-  //   const data = await api.files["FILE_ID"].get();
-  //   assertExists(data);
-  //   assertEquals(typeof data, "object");
+  //   const resultData = await api.files["FILE_ID"].get();
+  //   assertExists(resultData);
+  //   assertEquals(typeof resultData, "object");
   // });
 
+  //CUD operations:
+
   // await t.step("copy file", async () => {
-  //   const data = await api.files["FILE_ID"].copy.post({
+  //   const resultData = await api.files["FILE_ID"].copy.post({
   //     description: "Test copy",
   //   });
-  //   assertExists(data);
-  //   assertEquals(typeof data, "object");
+  //   assertExists(resultData);
+  //   assertEquals(typeof resultData, "object");
   // });
 });

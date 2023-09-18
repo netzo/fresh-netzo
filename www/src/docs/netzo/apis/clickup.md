@@ -11,6 +11,7 @@ ClickUp is a cloud-based collaboration and project management tool suitable for 
 
 ```ts
 import { clickup } from 'https://deno.land/x/netzo/apis/clickup/mod.ts'
+
 const { api } = clickup({
   personalApiKey: Deno.env.get('CLICKUP_PERSONAL_API_KEY'),
 })

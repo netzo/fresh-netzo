@@ -12,6 +12,7 @@ Google Drive is a file storage and synchronization service that allows users to 
 
 ```ts
 import { googledrive } from 'https://deno.land/x/netzo/apis/googledrive/mod.ts'
+
 const { api } = googledrive({
   googleServiceAccountCredentials: Deno.env.get('GOOGLE_SERVICE_ACCOUNT_CREDENTIALS'),
   scope: ['drive.readonly'],
@@ -64,7 +65,7 @@ const resultData = await api.files[FILE_ID].get<File>(query)
 Create a copy of a file and apply updates.
 
 ```ts
-import type { File, DataCopyFile } from 'netzo/apis/googlesheets/types.ts'
+import type { DataCopyFile, File } from 'netzo/apis/googlesheets/types.ts'
 
 const data: DataCopyFile = { description: 'Copy of my file' }
 const resultData = await api.files[FILE_ID].copy.post<File>(data)

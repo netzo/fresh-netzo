@@ -11,6 +11,7 @@ Notion is an all-in-one workspace for your notes, tasks, wikis, and databases.
 
 ```ts
 import { notion } from 'https://deno.land/x/netzo/apis/notion/mod.ts'
+
 const { api } = notion({
   internalIntegrationToken: Deno.env.get('NOTION_INTERNAL_INTEGRATION_TOKEN'),
   notionVersion: Deno.env.get('NOTION_VERSION'),

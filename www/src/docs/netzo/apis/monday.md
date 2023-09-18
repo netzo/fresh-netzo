@@ -11,9 +11,10 @@ Monday is a cloud-based project management software that helps teams to manage t
 
 ```ts
 import { monday } from 'https://deno.land/x/netzo/apis/monday/mod.ts'
-const { api } = monday({ 
-    apiKey: Deno.env.get('MONDAY_API_KEY') 
-    })
+
+const { api } = monday({
+  apiKey: Deno.env.get('MONDAY_API_KEY')
+})
 ```
 
 ## Configuration
@@ -40,13 +41,13 @@ Specify the data you want returned in the query.
 
 ```ts
 const query: string = `
-    query { 
-        boards (limit:50) { 
-            name 
-            id 
+    query {
+        boards (limit:50) {
+            name
+            id
         }
-    }`;
-const resultData = await api.post<Record<string,any>>(query)
+    }`
+const resultData = await api.post<Record<string, any>>(query)
 ```
 
 ### Get board
@@ -57,19 +58,19 @@ Specify the data you want returned in the query.
 
 ```ts
 const query: string = `
-    query { 
-        boards (ids: ${BOARD_ID}) { 
-            name 
-            state 
-            id 
-            permissions 
+    query {
+        boards (ids: ${BOARD_ID}) {
+            name
+            state
+            id
+            permissions
         }
-    }`;
-const resultData = await api.post<Record<string,any>>(query)
+    }`
+const resultData = await api.post<Record<string, any>>(query)
 ```
 ### Add board
 
-Add a new board. 
+Add a new board.
 
 Specify the data you want returned in the query.
 
@@ -79,27 +80,27 @@ const query: string = `
         create_board (board_name: 'New board', board_kind: public) {
             id
         }
-    }`;
-const resultData = await api.post<Record<string,any>>(query)
+    }`
+const resultData = await api.post<Record<string, any>>(query)
 ```
 
 ### Update board
 
-Update a board by id. 
+Update a board by id.
 
 Specify the data you want returned in the query.
 
 ```ts
 const query: string = `
     mutation {
-        update_board(board_id: ${BOARD_ID}, board_attribute: name, new_value: 'Updated board name') 
-      }`;
-const resultData = await api.post<Record<string,any>>(query)
+        update_board(board_id: ${BOARD_ID}, board_attribute: name, new_value: 'Updated board name')
+      }`
+const resultData = await api.post<Record<string, any>>(query)
 ```
 
 ### Delete a board
 
-Delete a board by id. 
+Delete a board by id.
 
 Specify the data you want returned in the query.
 
@@ -110,11 +111,11 @@ const query: string = `
 		id
         name
 	}
-  }`;
-const resultData = await api.post<Record<string,any>>(query)
+  }`
+const resultData = await api.post<Record<string, any>>(query)
 ```
 
 ## References
 
-- [API documentation](https://developer.monday.com/api-reference/docs) 
+- [API documentation](https://developer.monday.com/api-reference/docs)
 - [Website](https://monday.com/)

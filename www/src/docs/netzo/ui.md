@@ -10,7 +10,7 @@ import en from '~/locales/en.js'
 ::: warning The `netzo/ui` module is still a work in progress.
 :::
 
-**The `netzo/ui` module is a collection of building blocks for tailor-made for the [Deno fresh](https://fresh.deno.dev/) framework (recommended).** The goal of this module is to provide everything related to UI when building custom frontends. This includes [components](/docs/netzo/ui/components), [composables](/docs/netzo/ui/components), [plugins](/docs/netzo/ui/components) and unocss-powered themes including colors, icons and typography.
+**The `netzo/ui` module is a collection of building blocks for tailor-made for the [Deno fresh](https://fresh.deno.dev/) framework (**recommended**).** The goal of this module is to provide everything related to UI when building custom frontends. This includes [components](/docs/netzo/ui/components), [composables](/docs/netzo/ui/components), [plugins](/docs/netzo/ui/components) and unocss-powered themes including colors, icons and typography.
 
 - Headless components
 - Built with Radix UI and UnoCSS

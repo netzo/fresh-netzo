@@ -1,4 +1,7 @@
-import { assertEquals, assertExists } from "../deps.ts";
+import {
+  assertEquals,
+  assertExists,
+} from "https://deno.land/std@0.97.0/testing/asserts.ts";
 import { facturama } from "./mod.ts";
 
 Deno.test("facturama", async (t) => {
@@ -8,8 +11,8 @@ Deno.test("facturama", async (t) => {
   });
 
   await t.step("get product", async () => {
-    const data = await api.Product["PRODUCT_ID"].get();
-    assertExists(data);
-    assertEquals(typeof data, "object");
+    const resultData = await api.Product["PRODUCT_ID"].get();
+    assertExists(resultData);
+    assertEquals(typeof resultData, "object");
   });
 });

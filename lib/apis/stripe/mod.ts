@@ -18,15 +18,22 @@ export const stripe = ({
 }: StripeOptions) => {
   const api = createApi({
     baseURL: "https://api.stripe.com/v1",
+    // NOTE: use new URLSearchParams() for body with []
+    // syntax for nested fields, for example:
+    // const body = new URLSearchParams({
+    //   amount: "1999", // in cents not euros
+    //   currency: "eur",
+    //   "automatic_payment_methods[enabled]": "true",
+    // })
     headers: {
-      "content-type": "application/json",
+      "accept": "application/json",
+      "content-type": "application/x-www-form-urlencoded",
     },
+    ignoreResponseError: true,
     async onRequest(ctx) {
       await auth({
-        type: "apiKey",
-        in: "header",
-        name: "apiKey",
-        value: apiKey,
+        type: "bearer",
+        token: apiKey,
       }, ctx);
     },
   });

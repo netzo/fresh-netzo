@@ -1,4 +1,4 @@
-import { z } from "../deps.ts";
+import { z } from "https://deno.land/x/zod@v3.22.2/mod.ts";
 
 const mailingListBaseSchema = z.object({
   access_level: z.string(),
@@ -36,7 +36,7 @@ export const dataAddMailingListSchema = z.object({
 
 export const dataUpdateMailingListSchema = dataAddMailingListSchema.partial();
 
-export const addOrUpdateListResponseSchema = z.object({
+export const addOrUpdateListResultSchema = z.object({
   message: z.string(),
   list: mailingListBaseSchema,
 });
@@ -49,7 +49,7 @@ export const dataAddMemberSchema = z.object({
   upsert: z.union([z.literal("yes"), z.literal("no")]).optional(),
 });
 
-export const addMemberResponseSchema = z.object({
+export const addMemberResultSchema = z.object({
   member: z.object({
     vars: z.record(z.any()),
     name: z.string(),
@@ -59,14 +59,14 @@ export const addMemberResponseSchema = z.object({
   message: z.string(),
 });
 
-export const deleteMemberResponseSchema = z.object({
+export const deleteMemberResultSchema = z.object({
   member: z.object({
     address: z.string(),
   }),
   message: z.string(),
 });
 
-//types:
+// types:
 
 export type MailingLists = z.infer<typeof mailingListsSchema>;
 export type QueryMailingLists = z.infer<typeof queryMailingListsSchema>;
@@ -74,9 +74,9 @@ export type DataAddMailingList = z.infer<typeof dataAddMailingListSchema>;
 export type DataUpdateMailingList = z.infer<
   typeof dataUpdateMailingListSchema
 >;
-export type AddOrUpdateListResponse = z.infer<
-  typeof addOrUpdateListResponseSchema
+export type AddOrUpdateListResult = z.infer<
+  typeof addOrUpdateListResultSchema
 >;
 export type DataAddMember = z.infer<typeof dataAddMemberSchema>;
-export type AddMemberResponse = z.infer<typeof addMemberResponseSchema>;
-export type DeleteMemberResponse = z.infer<typeof deleteMemberResponseSchema>;
+export type AddMemberResult = z.infer<typeof addMemberResultSchema>;
+export type DeleteMemberResult = z.infer<typeof deleteMemberResultSchema>;

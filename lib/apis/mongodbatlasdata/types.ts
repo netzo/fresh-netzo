@@ -1,4 +1,4 @@
-import { z } from "../deps.ts";
+import { z } from "https://deno.land/x/zod@v3.22.2/mod.ts";
 
 const documentBaseSchema = z.object({
   _id: z.string(),
@@ -35,7 +35,7 @@ export const dataAddDocumentSchema = z.object({
   document: z.object({}),
 });
 
-export const addDocumentResponseSchema = z.object({
+export const addDocumentResultSchema = z.object({
   insertedId: z.string(),
 });
 
@@ -48,18 +48,18 @@ export const dataUpdateDocumentSchema = z.object({
   upsert: z.boolean().optional(),
 });
 
-export const updateDocumentResponseSchema = z.object({
+export const updateDocumentResultSchema = z.object({
   matchedCount: z.number(),
   modifiedCount: z.number(),
 });
 
-//types:
+// types:
 
 export type Documents = z.infer<typeof documentsSchema>;
 export type QueryDocuments = z.infer<typeof queryDocumentsSchema>;
 export type DataAddDocument = z.infer<typeof dataAddDocumentSchema>;
-export type AddDocumentResponse = z.infer<typeof addDocumentResponseSchema>;
+export type AddDocumentResult = z.infer<typeof addDocumentResultSchema>;
 export type DataUpdateDocument = z.infer<typeof dataUpdateDocumentSchema>;
-export type UpdateDocumentResponse = z.infer<
-  typeof updateDocumentResponseSchema
+export type UpdateDocumentResult = z.infer<
+  typeof updateDocumentResultSchema
 >;

@@ -29,6 +29,7 @@ export const wix = ({
       "wix-account-id": accountId,
       "wix-site-id": siteId,
     },
+    ignoreResponseError: true,
     async onRequest(ctx) {
       await auth({
         type: "apiKey",

@@ -1,7 +1,10 @@
 {
-  "deno.enable": true,
+  "deno.enablePaths": [
+    "lib",
+    "scripts",
+    "templates"
+  ],
   "deno.lint": true,
-  "deno.importMap": "./.vscode/import_map.json",
   "deno.codeLens.test": true,
   "editor.formatOnSave": false,
   "editor.defaultFormatter": "denoland.vscode-deno",

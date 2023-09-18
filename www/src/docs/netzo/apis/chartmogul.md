@@ -11,10 +11,10 @@ ChartMogul is a subscription analytics platform, helping you to measure, underst
 
 ```ts
 import { chartmogul } from 'https://deno.land/x/netzo/apis/chartmogul/mod.ts'
+
 const { api } = chartmogul({
   apiKey: Deno.env.get('CHARTMOGUL_API_KEY')
 })
-
 ```
 
 ## Configuration
@@ -60,10 +60,10 @@ const resultData = await api.customers[CUSTOMER_UUID].get<Customer>()
 Add a new customer.
 
 ```ts
-import type { AddOrUpdateCustomerResponse, DataAddCustomer } from 'netzo/apis/chartmogul/types.ts'
+import type { AddOrUpdateCustomerResult, DataAddCustomer } from 'netzo/apis/chartmogul/types.ts'
 
 const data: DataAddCustomer = { data_source_uuid: DATA_SOURCE_UUID, external_id: EXTERNAL_ID, email: 'example@email.com'; }
-const resultData = await api.customers.post<AddOrUpdateCustomerResponse>(data)
+const resultData = await api.customers.post<AddOrUpdateCustomerResult>(data)
 ```
 
 ### Update customer
@@ -71,10 +71,10 @@ const resultData = await api.customers.post<AddOrUpdateCustomerResponse>(data)
 Update a customer by id.
 
 ```ts
-import type { AddOrUpdateCustomerResponse, DataUpdateCustomer } from 'netzo/apis/chartmogul/types.ts'
+import type { AddOrUpdateCustomerResult, DataUpdateCustomer } from 'netzo/apis/chartmogul/types.ts'
 
 const data: DataUpdateCustomer = { email: 'updated-email@email.com' }
-const resultData = await api.customers[CUSTOMER_UUID].patch<AddOrUpdateCustomerResponse>(data)
+const resultData = await api.customers[CUSTOMER_UUID].patch<AddOrUpdateCustomerResult>(data)
 ```
 
 ### Delete customer
