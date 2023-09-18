@@ -815,7 +815,7 @@ export default {
     {
       uid: 'contpaqicomercial',
       title: 'CONTPAQi Comercial',
-      description: 'Contpaqi Comercial is a widespread mexican accounting and electronic invoicing solution.',
+      description: 'Contpaqi Comercial is a widespread accounting and electronic invoicing solution in Mexico.',
       src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/apis/contpaqicomercial.svg',
       href: '/docs/netzo/apis/contpaqicomercial',
     },
