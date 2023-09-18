@@ -5,8 +5,8 @@ description: Pricing for Netzo.
 ---
 
 <script setup>
-import Pricing from './components/Pricing.vue'
-import en from '@theme/../../locales/en'
+import Pricing from './components/pricing/Pricing.vue'
+import en from '~/locales/en'
 </script>
 
 <Pricing :locale="en" />
