@@ -12,30 +12,46 @@ export default defineConfig({
   plugins: [
     netzoAuth({ visibility: "public" }),
     netzoDB({
-      prefix: 'db',
+      prefix: "db",
       idField: "id",
-      methods: ["find", "get", "create", "update", "patch", "delete"],
-      services: {
-        users: {
-          idField: "_id",
-          methods: ["find", "get"], // allow reading only
+      services: [
+        {
+          name: "users",
           schema: z.object({
-            id: z.string(),
-            name: z.string(),
-            email: z.string().email(),
-            password: z.string(),
-            role: z.enum(["admin", "user"]),
-          })
+            "id": z.number(),
+            "name": z.string(),
+            "username": z.string(),
+            "email": z.string().email(),
+            "address": z.object({
+              "street": z.string(),
+              "suite": z.string(),
+              "city": z.string(),
+              "zipcode": z.string(),
+              "geo": z.object({
+                "lat": z.string(),
+                "lng": z.string(),
+              }),
+            }),
+            "phone": z.string(),
+            "website": z.string().url(),
+            "company": z.object({
+              "name": z.string(),
+              "catchPhrase": z.string(),
+              "bs": z.string(),
+            }),
+          }),
         },
-        companies: {
+        {
+          name: "todos",
           schema: z.object({
-            id: z.string(),
-            name: z.string(),
-            city: z.string(),
-          })
+            id: z.number(),
+            userId: z.number(),
+            title: z.string(),
+            completed: z.boolean(),
+          }),
         },
         // ...more services
-      },
+      ],
     }),
     netzoErrorPages(),
     unocss(unoConfig),

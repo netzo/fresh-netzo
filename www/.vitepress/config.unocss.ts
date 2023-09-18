@@ -33,6 +33,7 @@ export const unocssConfig = {
     'i-mdi-tools',
     'i-mdi-clock',
     'i-mdi-console',
+    'i-mdi-minus',
     'i-mdi-lightbulb',
     'i-fxemoji-lightningmood',
     'i-logos-deno',

@@ -46,6 +46,7 @@ export const navEN: DefaultTheme.NavItem[] = [
   //     { text: '🌐 Websites', link: '/use-cases#websites-and-landing-pages' },
   //   ],
   // },
+  // { text: 'Pricing', link: '/pricing' },
   { text: 'Docs', link: '/docs/introduction/getting-started' },
 ]
 
@@ -94,6 +95,6 @@ export const navES: DefaultTheme.NavItem[] = [
   //     { text: '🌐 Sitios Web', link: '/use-cases#sitios-web-y-landing-pages' },
   //   ],
   // },
+  // { text: 'Precios', link: '/es/pricing' },
   { text: 'Docs', link: '/docs/introduction/getting-started' },
 ]
-

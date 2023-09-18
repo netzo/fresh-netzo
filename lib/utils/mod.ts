@@ -3,7 +3,7 @@ import _get from "https://esm.sh/lodash.get@4.4.2";
 
 export function filterObjectsByKeyValues<T = Record<string, any>>(
   data: T[],
-  filters: Record<string, any>,
+  filters: Record<string, any> = {},
 ) {
   let filteredData = data;
 

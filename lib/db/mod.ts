@@ -1,54 +1,78 @@
+import { multiSet } from "https://deno.land/x/kv_utils@1.1.1/mod.ts";
 import { filterObjectsByKeyValues } from "../utils/mod.ts";
 
 const kv = await Deno.openKv();
 
-// rest operations:
-
-export async function find<T = unknown>(service: string, query: Record<string, string>) {
-  const kvEntries = await kvList<T>([service]);
-  const data = kvEntries.map(d => d.value);
-  return filterObjectsByKeyValues<T>(data, query);
-}
-
-export async function get<T = unknown>(service: string, id: string) {
-  return await kvGet<T>([service, id]);
-}
-
-export async function create<T = unknown>(service: string, data: T) {
-  const id = crypto.randomUUID(); // e.g. "1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed"
-  return await kvSet<T>([service, id], data);
-}
-
-export async function update<T = unknown>(service: string, id: string, data: T) {
-  return await kvSet<T>([service, id], data);
-}
-
-export async function patch<T = unknown>(service: string, id: string, data: T) {
-  const currentData = await kvGet<T>([service, id]);
-  return await kvSet<T>([service, id], { ...currentData, ...data });
-}
-
-export async function remove(service: string, id: string) {
-  return await kvDelete([service, id]);
-}
-
-// kv operations:
-
-export async function kvList<T = unknown>(prefix: Array<string>) {
-  const iter = kv.list<T>({ prefix });
+export const find = async <T = unknown>(
+  service: string,
+  query: Record<string, string> = {},
+) => {
+  const iterator = kv.list<T>({ prefix: [service] });
   const data = [];
-  for await (const res of iter) data.push(res);
+  for await (const res of iterator) data.push(res.value as T);
+  return filterObjectsByKeyValues<T>(data, query);
+};
+
+export const get = async <T = unknown>(service: string, id: string) => {
+  return (await kv.get<T>([service, id])).value;
+};
+
+export const create = async <T = unknown>(
+  service: string,
+  data: T | T[],
+  idField: keyof T = "id" as keyof T,
+) => {
+  if (Array.isArray(data)) {
+    const keyValues: Map<Deno.KvKey, unknown> = new Map();
+    for (const item of data) {
+      const id = String(item[idField]) || crypto.randomUUID();
+      keyValues.set([service, id], item);
+    }
+    const result = await multiSet(keyValues);
+    if (!result.ok) throw new Error(`Failed to set keys: ${result.failedKeys}`);
+    return data;
+  } else {
+    const id = String(data[idField]) || crypto.randomUUID();
+    const key = [service, id];
+    const ok = await kv.atomic().set(key, data).commit();
+    if (!ok) throw new Error("Something went wrong.");
+    return data;
+  }
+};
+
+export const update = async <T = unknown>(
+  service: string,
+  id: string,
+  data: T,
+) => {
+  const key = [service, id];
+  const entry = await kv.get<T>(key);
+  if (!entry.value) throw new Error(`Record with id ${id} not found.`);
+  const ok = await kv.atomic().check(entry).set(key, data).commit();
+  if (!ok) throw new Error("Something went wrong.");
   return data;
-}
+};
 
-export async function kvGet<T = unknown>(key: Array<string>) {
-  return await kv.get<T>(key);
-}
+export const patch = async <T = unknown>(
+  service: string,
+  id: string,
+  data: T,
+) => {
+  const key = [service, id];
+  const entry = await kv.get<T>(key);
+  if (!entry.value) throw new Error(`Record with id ${id} not found.`);
+  data = { ...entry.value, ...data };
+  const ok = await kv.atomic().check(entry).set(key, data).commit();
+  if (!ok) throw new Error("Something went wrong.");
+  return data;
+};
 
-export async function kvSet<T = unknown>(key: Array<string>, value: T) {
-  return await kv.set(key, value);
-}
-
-export async function kvDelete(key: Array<string>) {
-  return await kv.delete(key);
-}
+export const remove = async <T = unknown>(service: string, id: string) => {
+  // return await kv.delete([service, id]);
+  const key = [service, id];
+  const entry = await kv.get<T>(key);
+  if (!entry.value) throw new Error(`Record with id ${id} not found.`);
+  const ok = await kv.atomic().check(entry).delete(key).commit();
+  if (!ok) throw new Error("Something went wrong.");
+  return id;
+};
