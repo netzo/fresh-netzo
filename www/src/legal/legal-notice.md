@@ -41,7 +41,7 @@ Rokaware S.L. has protected its platform with sufficient and generally accepted 
 
 In the event that the platform receives a cyber-attack or its website is manipulated by unauthorized third parties by exploiting vulnerabilities in computer systems, Rokaware S.L. shall not be liable for any damages caused.
 
-The responsibilities arising from the use of the software and platform provided by Rokaware S.L. can be found in the [General Terms and Conditions](/legal/terms-and-conditions).
+The responsibilities arising from the use of the software and platform provided by Rokaware S.L. can be found in the [General Terms and Conditions](/legal/main-services-agreement).
 
 ## Personal data protection
 
@@ -49,4 +49,4 @@ Rokaware S.L. is responsible for the processing of personal data collected and p
 
 ## Intellectual and industrial property
 
-The contents provided by Rokaware, as well as the contents posted on the network through its website, constitute a work within the meaning of intellectual property legislation, and are therefore protected by the laws and international conventions applicable to this matter. Further information can be found in the [General Terms and Conditions](/legal/terms-and-conditions).
+The contents provided by Rokaware, as well as the contents posted on the network through its website, constitute a work within the meaning of intellectual property legislation, and are therefore protected by the laws and international conventions applicable to this matter. Further information can be found in the [General Terms and Conditions](/legal/main-services-agreement).

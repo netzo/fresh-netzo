@@ -31,7 +31,7 @@ Before joining a voice chat channel, you should request permission from the peop
 
 ## Acceptable Use
 
-Adhere to our Acceptable Use Terms for Netzo and our Services, including community support channels, outlined in detail within our [Terms and Conditions](https://netzo.io/legal/terms-and-conditions#_7-conditions-of-acceptable-use-and-obligations).
+Adhere to our Acceptable Use Terms for Netzo and our Services, including community support channels, outlined in detail within our [Terms and Conditions](https://netzo.io/docs/legal/main-services-agreement).
 
 ## Responsabilities
 

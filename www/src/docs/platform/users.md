@@ -50,4 +50,4 @@ Additional resources such as helpful links to our website, support channels and 
 
 ![Settings legal](/docs/images/users/users-settings-legal.webp)
 
-Links to relevant legal information, including our [Terms and Conditions](https://netzo.io/legal/terms-and-conditions) and [Privacy Policy](https://netzo.io/legal/privacy-policy).
+Links to relevant legal information, including our [Terms and Conditions](https://netzo.io/legal/main-services-agreement) and [Privacy Policy](https://netzo.io/legal/privacy-policy).
