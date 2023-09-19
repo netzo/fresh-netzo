@@ -1,6 +1,8 @@
 <script setup>
 import ListItem from '@theme/components/list/ListItem.vue'
 import CardNav from '@theme/components/CardNav.vue'
+import SectionDocsCards from '@theme/components/sections/SectionDocsCards.vue'
+import en from '~/locales/en.js'
 </script>
 
 # Getting Started
@@ -65,6 +67,19 @@ This guide skips over lengthy, technical descriptions for now, the goal here is 
   text="<strongEU-based and GDPR compliant:</strong> We are based in the EU and fully compliant with GDPR. We embrace privacy and security by design."
   icon="i-emojione-flag-for-european-union"
 />
+
+## Modules
+
+<!-- NOTE: pass in 'compact' prop if using with `aside: true` -->
+<!-- NOTE: could split into H3 groups via `en.components.filter(...)` -->
+<SectionDocsCards :items="en.netzo">
+  <template #image="{ src, title }">
+    <img
+      class="mt-5 ml-4 max-w-14 max-h-14"
+      v-bind="{ src, title }"
+    >
+  </template>
+</SectionDocsCards>
 
 ## Quick Links
 

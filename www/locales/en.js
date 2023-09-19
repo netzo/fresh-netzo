@@ -934,6 +934,50 @@ export default {
       },
     ],
   },
+  netzo: [
+    {
+      uid: 'apis',
+      title: 'APIs',
+      description: 'The <code>netzo/apis</code> module exports all the API integrations currently supported. Each API integration is a function that returns a typed client for the API.',
+      src: 'https://api.iconify.design/mdi-hexagon-multiple.svg?color=%239ca3af',
+      href: '/docs/netzo/apis',
+    },
+    {
+      uid: 'cli',
+      title: 'CLI',
+      description: 'The <code>netzo/cli</code> module is a command line tool to streamline local development of projects in Netzo.',
+      src: 'https://api.iconify.design/mdi-console.svg?color=%239ca3af',
+      href: '/docs/netzo/cli',
+    },
+    {
+      uid: 'db',
+      title: 'DB',
+      description: 'The <code>netzo/db</code> module exports a set of utility functions to interact with the project\'s Deno KV datastore in a RESTful or resource-oriented manner.',
+      src: 'https://api.iconify.design/mdi-database.svg?color=%239ca3af',
+      href: '/docs/netzo/db',
+    },
+    {
+      uid: 'ui/components',
+      title: 'Components',
+      description: 'The <code>netzo/ui/components</code> module is a collection of UI components written in Preact (TSX) and built with Radix UI and UnoCSS.',
+      src: 'https://api.iconify.design/mdi-widgets.svg?color=%239ca3af',
+      href: '/docs/netzo/ui/components',
+    },
+    {
+      uid: 'ui/composables',
+      title: 'Composables',
+      description: 'The <code>netzo/ui/composables</code> module exports a set of composable functions that encapsulate common stateful logic for reuse.',
+      src: 'https://api.iconify.design/mdi-function-variant.svg?color=%239ca3af',
+      href: '/docs/netzo/ui/composables',
+    },
+    {
+      uid: 'ui/plugins',
+      title: 'Plugins',
+      description: 'The <code>netzo/ui/plugins</code> module exports all Plugins for the Fresh framework.',
+      src: 'https://api.iconify.design/mdi-extension.svg?color=%239ca3af',
+      href: '/docs/netzo/ui/plugins',
+    },
+  ].sort((a, b) => a.uid.localeCompare(b.uid)),
   apis: [
     {
       uid: 'activecampaign',
