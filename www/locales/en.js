@@ -492,7 +492,7 @@ export default {
   pricing: {
     hero: {
       topic: 'pricing',
-      title: 'A Plan for Every Organization\'s Needs',
+      title: 'Flexible Pricing that Scales with You',
       description: 'Get started with a free trial or contact us for a custom plan that suits your needs.',
     },
     plans: {

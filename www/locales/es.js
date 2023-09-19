@@ -485,7 +485,7 @@ export default {
   pricing: {
     hero: {
       topic: 'precios',
-      title: 'Precios sencillos que se adaptan a tus necesidades',
+      title: 'Precios Flexibles que se Ajustan a Ti',
       description: 'Comienza con una prueba gratuita o contáctanos para obtener un plan personalizado que se ajuste a tus necesidades.',
     },
     plans: {
