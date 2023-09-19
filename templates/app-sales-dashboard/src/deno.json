@@ -1,4 +1,5 @@
 {
+  "exclude": ["_fresh"],
   "lock": false,
   "tasks": {
     "check": "deno fmt --check && deno lint && deno check **/*.ts && deno check **/*.tsx",
@@ -14,16 +15,9 @@
         "fresh",
         "recommended"
       ]
-    },
-    "exclude": [
-      "_fresh"
-    ]
+    }
   },
-  "fmt": {
-    "exclude": [
-      "_fresh"
-    ]
-  },
+  "fmt": {},
   "compilerOptions": {
     "jsx": "react-jsx",
     "jsxFactory": "h",
