@@ -50,7 +50,7 @@ To obtain a PDF version of this Agreement, click [here](../../documents/main-ser
 
 - **2.6 Support:** The support provided by us varies depending on the subscription plan to the Services contracted by the Subscriber. The details and levels of support are specified in the corresponding subscription plan, made available to you, and may include email support, live chat, or personalized support. It is the Subscriber's responsibility to review and understand the support levels available in its subscription plan.
 
-- **2.7 Professional Services:** Netzo offers Professional Services for consulting and customized development of internal computer applications. The availability of these services depends on the subscription plan, and the services provided are subject to the terms and conditions set forth at: [https://netzo.io/es/legal/professional-services-agreement](https://netzo.io/es/legal/professional-services-agreement)
+- **2.7 Professional Services:** Netzo offers Professional Services for consulting and customized development of internal computer applications. The availability of these services depends on the subscription plan, and the services provided are subject to the terms and conditions set forth at: [https://netzo.io/es/legal/professional-services-terms](https://netzo.io/es/legal/professional-services-terms)
 
 ## 3. Use and Restrictions of the Services
 

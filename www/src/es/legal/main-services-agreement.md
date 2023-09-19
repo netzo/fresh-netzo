@@ -50,7 +50,7 @@ Para obtener una versión en PDF de este Acuerdo, haga clic [aquí](../../docume
 
 - **2.6 Soporte:** La asistencia proporcionada por nosotros varía en virtud del plan de suscripción a los Servicios contratado por el Suscriptor. Los detalles y niveles de soporte se especifican en el plan de suscripción correspondiente, puestos a Su disposición, y pueden incluir asistencia por correo electrónico, chat en vivo o soporte personalizado. Es responsabilidad del Suscriptor revisar y entender los niveles de soporte disponibles en Su plan de suscripción.
 
-- **2.7 Servicios Profesionales:** Netzo ofrece Servicios Profesionales de consultoría y desarrollo personalizado de aplicaciones informáticas internas. La disponibilidad de estos servicios dependen del plan de suscripción y los servicios profesionales proporcionados estan sujetos a los términos y condiciones establecidos en: [https://netzo.io/es/legal/professional-services-agreement](https://netzo.io/es/legal/professional-services-agreement)
+- **2.7 Servicios Profesionales:** Netzo ofrece Servicios Profesionales de consultoría y desarrollo personalizado de aplicaciones informáticas internas. La disponibilidad de estos servicios dependen del plan de suscripción y los servicios profesionales proporcionados estan sujetos a los términos y condiciones establecidos en: [https://netzo.io/es/legal/professional-services-terms](https://netzo.io/es/legal/professional-services-terms)
 
 ## 3. Uso y restricciones de los Servicios
 
@@ -277,7 +277,7 @@ Usted no podrá ceder el presente Acuerdo, salvo con el consentimiento previo y 
 
 ## 19. Información de contacto
 
-Si tiene alguna pregunta o inquietud acerca de estos términos de uso, puede ponerse en contacto con nosotros escribiendo a [help@ Netzo.io](help@ Netzo.io) o utilizando el formulario de contacto disponible en el Sitio Web.
+Si tiene alguna pregunta o inquietud acerca de estos términos de uso, puede ponerse en contacto con nosotros escribiendo a [help@netzo.io](help@netzo.io) o utilizando el formulario de contacto disponible en el Sitio Web.
 
 ## 20. Definiciones
 

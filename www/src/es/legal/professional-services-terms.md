@@ -202,4 +202,4 @@ Netzo puede incorporar material de codigo abierto para llevar a cabo la prestaci
 
 ## 17. Información de contacto
 
-Si tiene alguna pregunta o inquietud acerca de estos términos de uso, puede ponerse en contacto con nosotros escribiendo a [help@ Netzo.io](help@ Netzo.io) o utilizando el formulario de contacto disponible en el Sitio Web. -->
+Si tiene alguna pregunta o inquietud acerca de estos términos de uso, puede ponerse en contacto con nosotros escribiendo a [help@netzo.io](help@netzo.io) o utilizando el formulario de contacto disponible en el Sitio Web. -->
