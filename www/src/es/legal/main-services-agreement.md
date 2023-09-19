@@ -50,7 +50,7 @@ Para obtener una versión en PDF de este Acuerdo, haga clic [aquí](../../docume
 
 - **2.6 Soporte:** La asistencia proporcionada por nosotros varía en virtud del plan de suscripción a los Servicios contratado por el Suscriptor. Los detalles y niveles de soporte se especifican en el plan de suscripción correspondiente, puestos a Su disposición, y pueden incluir asistencia por correo electrónico, chat en vivo o soporte personalizado. Es responsabilidad del Suscriptor revisar y entender los niveles de soporte disponibles en Su plan de suscripción.
 
-- **2.7 Servicios Profesionales:** Netzo ofrece Servicios Profesionales de consultoría y desarrollo personalizado de aplicaciones informáticas internas. La disponibilidad de estos servicios dependen del plan de suscripción y los servicios profesionales proporcionados estan sujetos a los términos y condiciones establecidos en: [https://www.netzo.io/es/legal/professional-services-agreement](https://www.netzo.io/es/legal/professional-services-agreement)
+- **2.7 Servicios Profesionales:** Netzo ofrece Servicios Profesionales de consultoría y desarrollo personalizado de aplicaciones informáticas internas. La disponibilidad de estos servicios dependen del plan de suscripción y los servicios profesionales proporcionados estan sujetos a los términos y condiciones establecidos en: [https://netzo.io/es/legal/professional-services-agreement](https://netzo.io/es/legal/professional-services-agreement)
 
 ## 3. Uso y restricciones de los Servicios
 
@@ -88,7 +88,7 @@ Para obtener una versión en PDF de este Acuerdo, haga clic [aquí](../../docume
   - (f) Reportará cualquier comportamiento sospechoso o irregular que identifique.
   - (g) Asumirá la responsabilidad exclusiva de los datos personales de individuos contenidos en las aplicaciones de terceros integradas con Netzo.
   - (h) Gestionará la información personal de los individuos, incluyendo su contenido y precisión, de acuerdo con las leyes y regulaciones aplicables.
-  - (i) Utilizar los servicios de Netzo de acuerdo a nuestra política de uso “justo” (“Fair use policy) disponible en el siguiente enlace [Política de uso justo de Netzo](https://www.netzo.io/docs/legal/fair-use-policy).
+  - (i) Utilizar los servicios de Netzo de acuerdo a nuestra política de uso “justo” (“Fair use policy) disponible en el siguiente enlace [Política de uso justo de Netzo](https://netzo.io/docs/legal/fair-use-policy).
 
   El Suscriptor declara y garantiza haber realizado todos los avisos necesarios, así como contar con los derechos, consentimientos y permisos requeridos para utilizar sus Datos de Terceros con los Servicios de Netzo y otorgar a Netzo los derechos necesarios para procesar dicha información, sin infringir las leyes, derechos de terceros (incluyendo propiedad intelectual, publicidad o privacidad) o cualquier término o política de privacidad aplicable a los Servicios de terceros del Suscriptor.
 
@@ -216,7 +216,7 @@ En Netzo, nuestra prioridad es proporcionar servicios de la más alta calidad a 
 
 - **12.3 Procesamiento de Datos Personales:** En el caso del procesamiento de datos personales de los Usuarios de una Organización (Suscriptor), se celebrará un contrato de procesamiento de datos separado (DPA), cuyas cláusulas prevalecen en caso de conflicto en materia de protección de datos.
 
-- **12.4 Política de Privacidad:** La Política de privacidad de  Netzo, disponible en [https://www.netzo.io/es/legal/privacy-policy](https://www.netzo.io/es/legal/privacy-policy), proporciona información sobre el procesamiento de datos personales y forma Parte de este Acuerdo.
+- **12.4 Política de Privacidad:** La Política de privacidad de  Netzo, disponible en [https://netzo.io/es/legal/privacy-policy](https://netzo.io/es/legal/privacy-policy), proporciona información sobre el procesamiento de datos personales y forma Parte de este Acuerdo.
 
 - **12.5 Notificación de Incidentes:** En caso de sospecha de pérdida, acceso o divulgación no autorizada de la Información Confidencial, la Parte afectada debe notificar a la otra Parte de manera inmediata.
 

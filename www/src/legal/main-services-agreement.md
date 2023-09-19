@@ -1,6 +1,6 @@
 ---
 editLink: false
-lastUpdated: 18.09.2023
+lastUpdated: 19.09.2023
 ---
 
 <script setup>
@@ -50,7 +50,7 @@ To obtain a PDF version of this Agreement, click [here](../../documents/main-ser
 
 - **2.6 Support:** The support provided by us varies depending on the subscription plan to the Services contracted by the Subscriber. The details and levels of support are specified in the corresponding subscription plan, made available to you, and may include email support, live chat, or personalized support. It is the Subscriber's responsibility to review and understand the support levels available in its subscription plan.
 
-- **2.7 Professional Services:** Netzo offers Professional Services for consulting and customized development of internal computer applications. The availability of these services depends on the subscription plan, and the services provided are subject to the terms and conditions set forth at: [https://www.netzo.io/es/legal/professional-services-agreement](https://www.netzo.io/es/legal/professional-services-agreement)
+- **2.7 Professional Services:** Netzo offers Professional Services for consulting and customized development of internal computer applications. The availability of these services depends on the subscription plan, and the services provided are subject to the terms and conditions set forth at: [https://netzo.io/es/legal/professional-services-agreement](https://netzo.io/es/legal/professional-services-agreement)
 
 ## 3. Use and Restrictions of the Services
 
@@ -88,7 +88,7 @@ To obtain a PDF version of this Agreement, click [here](../../documents/main-ser
   - (f) You will report any suspicious or irregular behavior that you identify.
   - (g) You shall assume exclusive responsibility for the personal data of individuals contained in third-party applications integrated with Netzo.
   - (h) You shall manage personal information of individuals, including its content and accuracy, in accordance with applicable laws and regulations.
-  - (i) Use Netzo services in accordance with our "fair use" policy available at the following link [Netzo Fair Use Policy](https://www.netzo.io/docs/legal/fair-use-policy).
+  - (i) Use Netzo services in accordance with our "fair use" policy available at the following link [Netzo Fair Use Policy](https://netzo.io/docs/legal/fair-use-policy).
 
   The Subscriber declares and guarantees that it has made all necessary notifications, as well as having the rights, consents, and permissions required to use its Third-Party Data with Netzo Services and to grant Netzo the necessary rights to process such information, without infringing laws, third-party rights (including intellectual property, publicity, or privacy), or any applicable terms or privacy policies applicable to third-party services of the Subscriber.
 
@@ -216,7 +216,7 @@ At Netzo, our priority is to provide the highest quality services to our custome
 
 - **12.3 Processing of Personal Data:** In the case of processing personal data of Users of an Organization (Subscriber), a separate Data Processing Agreement (DPA) shall be concluded, the clauses of which prevail in case of conflict on data protection matters.
 
-- **12.4 Privacy Policy:** Netzo's Privacy Policy, available at [https://www.netzo.io/legal/privacy-policy](https://www.netzo.io/legal/privacy-policy), provides information on the processing of personal data and is part of this Agreement.
+- **12.4 Privacy Policy:** Netzo's Privacy Policy, available at [https://netzo.io/legal/privacy-policy](https://netzo.io/legal/privacy-policy), provides information on the processing of personal data and is part of this Agreement.
 
 - **12.5 Incident Notification:** In case of suspicion of loss, unauthorized access, or disclosure of Confidential Information, the affected Party must immediately notify the other Party.
 
