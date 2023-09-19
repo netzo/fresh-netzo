@@ -17,7 +17,7 @@ const { page } = useData()
 
 <u>Última actualización {{ page.frontmatter.lastUpdated }}</u>
 
-Bienvenido al Sitio web de Netzo en [https://www.netzo.io](https://www.netzo.io) (en adelante, "Sitio web"). Estos términos de uso se aplican únicamente al Sitio web y no regulan nuestros Servicios y/o productos comercializados en subdominios del Sitio web (por ejemplo, [https://www.app.netzo.io](https://www.app.netzo.io)) u otras plataformas relacionadas. Para los términos y condiciones de uso de nuestros Servicios y/o productos, por favor consulte los términos y condiciones de uso de los Servicios y/o productos correspondientes bajo el siguiente enlace [https://www.netzo.io/es/legal/main-services-agreement](https://www.netzo.io/es/legal/main-services-agreement).
+Bienvenido al Sitio web de Netzo en [https://netzo.io](https://netzo.io) (en adelante, "Sitio web"). Estos términos de uso se aplican únicamente al Sitio web y no regulan nuestros Servicios y/o productos comercializados en subdominios del Sitio web (por ejemplo, [https://app.netzo.io](https://app.netzo.io)) u otras plataformas relacionadas. Para los términos y condiciones de uso de nuestros Servicios y/o productos, por favor consulte los términos y condiciones de uso de los Servicios y/o productos correspondientes bajo el siguiente enlace [https://netzo.io/es/legal/main-services-agreement](https://netzo.io/es/legal/main-services-agreement).
 
 Para obtener una versión en PDF de estos Términos de uso, haga clic [aquí](../../documents/website-terms-of-use-es.pdf).
 
@@ -25,7 +25,7 @@ Para obtener una versión en PDF de estos Términos de uso, haga clic [aquí](..
 
 - **1.1. Uso Aceptable:** Usted acepta utilizar este Sitio web de manera ética y legal. No está permitido utilizar este Sitio web para actividades ilegales, fraudulentas o que infrinjan los derechos de terceros.
 
-- **1.2. Registro:** Algunas secciones de este Sitio web pueden requerir que esté registrado en nuestros Servicios y tenga una cuenta de usuario sujeta a los términos y condiciones disponibles en [https://www.netzo.io/es/legal/main-services-agreement](https://www.netzo.io/es/legal/main-services-agreement).
+- **1.2. Registro:** Algunas secciones de este Sitio web pueden requerir que esté registrado en nuestros Servicios y tenga una cuenta de usuario sujeta a los términos y condiciones disponibles en [https://netzo.io/es/legal/main-services-agreement](https://netzo.io/es/legal/main-services-agreement).
 
 ## 2. Propiedad intelectual
 

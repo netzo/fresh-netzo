@@ -9,12 +9,12 @@ export const legalEN = {
     { text: 'Cookie Notice', link: '/legal/cookie-notice' },
     { text: 'Privacy Policy', link: '/legal/privacy-policy' },
     {
-      text: 'Terms and Conditions',
+      text: 'Agreements and Terms',
       link: '/legal/website-terms-of-use',
       items: [
         { text: 'Website terms of use', link: '/legal/website-terms-of-use' },
         { text: 'Main Services Agreement', link: '/legal/main-services-agreement' },
-        { text: 'Professional Services Terms', link: '/legal/professional-services-terms' },
+        // { text: 'Professional Services Terms', link: '/legal/professional-services-terms' },
       ],
     }],
 }
@@ -27,12 +27,12 @@ export const legalES = {
     { text: 'Aviso de cookies', link: '/es/legal/cookie-notice' },
     { text: 'Política de privacidad', link: '/es/legal/privacy-policy' },
     {
-      text: 'Términos y condiciones',
+      text: 'Acuerdos y términos',
       link: '/es/legal/website-terms-of-use',
       items: [
         { text: 'Términos de uso del sitio web', link: '/es/legal/website-terms-of-use' },
-        { text: 'Contrato de servicios principales', link: '/es/legal/main-services-agreement' },
-        { text: 'Condiciones de servicios profesionales', link: '/es/legal/professional-services-terms' },
+        { text: 'Acuerdo de servicios principales', link: '/es/legal/main-services-agreement' },
+        { text: 'Acuerdo de servicios profesionales', link: '/es/legal/professional-services-terms' },
         // { text: 'Open Source License Disclosure', link: '/legal/open-source-license-disclosure' },
       ],
     },
