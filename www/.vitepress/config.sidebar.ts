@@ -14,7 +14,7 @@ export const legalEN = {
       items: [
         { text: 'Website terms of use', link: '/legal/website-terms-of-use' },
         { text: 'Main Services Agreement', link: '/legal/main-services-agreement' },
-        { text: 'Professional Services Terms', link: '/legal/professional-services-terms' },
+        // { text: 'Professional Services Terms', link: '/legal/professional-services-terms' },
       ],
     }],
 }
