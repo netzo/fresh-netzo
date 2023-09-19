@@ -163,6 +163,6 @@ look at other templates for further reference.
 
 ## License
 
-Copyright (c) 2022 [Netzo](https://netzo.io)
+Copyright (c) 2023 [Netzo](https://netzo.io)
 
-Licensed under the [MIT license](LICENSE)
+Licensed under the [MIT license](license)

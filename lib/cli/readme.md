@@ -58,4 +58,4 @@ To learn more about the action, checkout [action readme](./action/readme.md).
 
 The Netzo CLI is heavily inspired by
 [`deployctl`](https://github.com/denoland/deployctl) the official Deno Deploy
-CLI ([MIT License](https://github.com/denoland/deployctl/blob/main/LICENSE))
+CLI ([MIT License](https://github.com/denoland/deployctl/blob/main/license))
