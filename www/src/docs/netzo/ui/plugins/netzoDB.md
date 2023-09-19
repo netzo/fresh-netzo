@@ -12,10 +12,10 @@ Adds routes to serve a flexible RESTful API for the [Deno KV](https://deno.com/d
 
 #### Fresh
 
-Register the plugin in `fresh.config.ts` and ensure `main.ts` and `dev.ts` are receive the `config` object as shown below.
+Register the plugin in `netzo.config.ts` and ensure `main.ts` and `dev.ts` are receive the `config` object as shown below.
 
 ::: code-group
-```ts [fresh.config.ts]
+```ts [netzo.config.ts]
 import { netzoDB } from 'netzo/ui/plugins/netzoDB/mod.ts'
 
 await start(manifest, {
@@ -26,7 +26,7 @@ await start(manifest, {
 <<< src/dev.ts
 :::
 
-::: warning Fresh configuration [must](https://fresh.deno.dev/docs/concepts/ahead-of-time-builds#migrating-existing-projects-with-plugins) be defined in `fresh.config.ts`.
+::: warning Fresh configuration [must](https://fresh.deno.dev/docs/concepts/ahead-of-time-builds#migrating-existing-projects-with-plugins) be defined in `netzo.config.ts`.
 :::
 
 #### Hono
