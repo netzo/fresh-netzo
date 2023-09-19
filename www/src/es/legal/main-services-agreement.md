@@ -13,7 +13,7 @@ onMounted(async () => {
 const { page } = useData()
 </script>
 
-# Contrato de servicios principales
+# Acuerdo de servicios principales
 
 <u>Última actualización {{ page.frontmatter.lastUpdated }}</u>
 
@@ -28,7 +28,7 @@ Para obtener una versión en PDF de este Acuerdo, haga clic [aquí](../../docume
 
 - **1.1 Descripción del Acuerdo:** La persona física o jurídica cuyos datos se recogen al acceder a los Servicios y/o en una “Hoja de Pedido”, contrata con ROKAWARE, S.L (en adelante "Netzo") con CIF B-09980772 y domicilio social en Paseo de la Castellana 89, planta 8a, 28046 Madrid, España, la prestación de los Servicios de Netzo que incluyen los Servicios principales, los cuales le otorgan a usted y a cualquier Usuario que usted otorgue acceso a Su *Workspace*, acceso y uso a los Servicios principales de Netzo para crear aplicaciones informáticas para fines internos de empresa. El propósito de este Acuerdo es establecer los términos y condiciones bajo los cuales el Suscriptor puede comprar, acceder y utilizar los Servicios de Netzo asi como contratar los Servicios Profesionales descritos en una "Hoja de Pedido" u cualquier otro documento firmado o acordado entre las Partes.
 
-- **1.2 Orden de Prevalencia:** En caso de cualquier incoherencia o conflicto entre las condiciones del presente Acuerdo de Servicios y las Términos Exclusivas de cualquier "Hoja de Pedido", prevalecerán las Términos Exclusivas de la "Hoja de Pedido" u cualquier otro documento firmado o acordado entre las Partes.
+- **1.2 Orden de Prevalencia:** En caso de cualquier incoherencia o conflicto entre las condiciones del presente Acuerdo de Servicios y los Términos Exclusivos de cualquier "Hoja de Pedido", prevalecerán los Términos Exclusivos de la "Hoja de Pedido" u cualquier otro documento firmado o acordado entre las Partes.
 
 - **1.3 Idioma rector del Acuerdo:** Este Acuerdo se encuentra disponible en varios idiomas para Su conveniencia. En caso de discrepancia o conflicto entre las versiones en diferentes idiomas, la versión en español prevalecerá y regirá la interpretación y aplicación de este Acuerdo.
 
@@ -50,7 +50,7 @@ Para obtener una versión en PDF de este Acuerdo, haga clic [aquí](../../docume
 
 - **2.6 Soporte:** La asistencia proporcionada por nosotros varía en virtud del plan de suscripción a los Servicios contratado por el Suscriptor. Los detalles y niveles de soporte se especifican en el plan de suscripción correspondiente, puestos a Su disposición, y pueden incluir asistencia por correo electrónico, chat en vivo o soporte personalizado. Es responsabilidad del Suscriptor revisar y entender los niveles de soporte disponibles en Su plan de suscripción.
 
-- **2.7 Servicios Profesionales:** Netzo ofrece Servicios Profesionales de consultoría y desarrollo personalizado de aplicaciones informáticas internas. La disponibilidad de estos servicios dependen del plan de suscripción y los servicios proporcionados estan sujetos a los términos y condiciones establecidos en: [https://www. Netzo.io/es/legal/professional-services-terms](https://www. Netzo.io/es/legal/professional-services-terms)
+- **2.7 Servicios Profesionales:** Netzo ofrece Servicios Profesionales de consultoría y desarrollo personalizado de aplicaciones informáticas internas. La disponibilidad de estos servicios dependen del plan de suscripción y los servicios profesionales proporcionados estan sujetos a los términos y condiciones establecidos en: [https://www.netzo.io/es/legal/professional-services-terms](https://www.netzo.io/es/legal/professional-services-terms)
 
 ## 3. Uso y restricciones de los Servicios
 
@@ -261,7 +261,7 @@ Usted no podrá ceder el presente Acuerdo, salvo con el consentimiento previo y 
 
 ## 17. Derecho aplicable
 
-  A menos que se indique lo contrario en las Términos Exclusivas de una "Hoja de Pedido" y/o cualquier otro documento firmado entre las Partes, el presente Acuerdo, cualquier "Hoja de Pedido" y/o cualquier contrato u documento firmado entre las Partes se regirán por la legislación española vigente, teniendo la competencia para resolver cualquier controversia o conflicto que pudiera originarse los Juzgados y Tribunales de Madrid.
+  A menos que se indique lo contrario en los Términos Exclusivos de una "Hoja de Pedido" y/o cualquier otro documento firmado entre las Partes y el presente Acuerdo se regirán por la legislación española vigente, teniendo la competencia para resolver cualquier controversia o conflicto que pudiera originarse los Juzgados y Tribunales de Madrid.
 
 ## 18. Otras Disposiciones
 
@@ -289,7 +289,7 @@ Cuando se utilicen en este Acuerdo y/o cualquier "Hoja de Pedido" y demás docum
 
 - **Documentación:** se refiere a todos los manuales de usuario impresos y en línea y otros materiales técnicos relacionados con los Servicios de Suscripción y puestos a disposición del Suscriptor por Netzo, junto con todas las respectivas actualizaciones.
 
-- **Hoja de Pedido:** se refiere al documento actualmente en consideración, denominado "Hoja de Pedido", que establece las Términos Exclusivas, tarifas, plazos y demás información relevante acordados entre las Partes involucradas. Este documento formaliza el acuerdo y constituye la base legal y contractual que regula la relación entre las Partes, detallando los aspectos específicos relacionados con los Servicios contratados, así como las obligaciones y derechos involucrados. El Contrato "Hoja de Pedido" asegura un entendimiento claro y mutuo, proporcionando un marco preciso para la prestación de los Servicios y estableciendo las pautas necesarias para el cumplimiento de las Partes.
+- **Hoja de Pedido:** se refiere al documento actualmente en consideración, denominado "Hoja de Pedido", que establece los Términos Exclusivos, tarifas, plazos y demás información relevante acordados entre las Partes involucradas. Este documento formaliza el acuerdo y constituye la base legal y contractual que regula la relación entre las Partes, detallando los aspectos específicos relacionados con los Servicios contratados, así como las obligaciones y derechos involucrados. El Contrato "Hoja de Pedido" asegura un entendimiento claro y mutuo, proporcionando un marco preciso para la prestación de los Servicios y estableciendo las pautas necesarias para el cumplimiento de las Partes.
 
 - **Ley Aplicable o Legislación Aplicable:** se refiere a todas las leyes, regulaciones y convenciones locales, estatales, federales e internacionales que son aplicables en virtud del presente Contrato, incluyendo, pero no limitándose a, aquellas relacionadas con la privacidad y la transferencia de datos, las comunicaciones internacionales y la exportación de datos técnicos y personales. Esto puede incluir, entre otras, leyes como el Reglamento General de Protección de Datos (en adelante, "RGPD") y la ley 34/2002, de 11 de julio, de servicios de la sociedad de la información y de comercio electrónico, así como cualquier otra legislación relevante en la materia.
 
