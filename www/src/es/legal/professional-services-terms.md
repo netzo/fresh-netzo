@@ -19,7 +19,7 @@ const { page } = useData()
 
 Si el Suscriptor contrata con Netzo la prestación de Servicios Profesionales en relación a nuestros Servicios Principales, los cuales comprenden la creación y personalización de soluciones específicas (como aplicaciones informáticas, sistemas o herramientas) destinadas a operar dentro de la infraestructura de la Plataforma Netzo, el siguiente Acuerdo se aplicara a dichos servicios.
 
-Para obtener una versión en PDF de este Acuerdo, haga clic [aquí](../../documents/professional-services-agreement-es.pdf).
+Para obtener una versión en PDF de este Acuerdo, haga clic [aquí](../../documents/professional-services-terms-es.pdf).
 
 ## 1. Objeto del Acuerdo
 
