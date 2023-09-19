@@ -14,7 +14,7 @@ export const legalEN = {
       items: [
         { text: 'Website terms of use', link: '/legal/website-terms-of-use' },
         { text: 'Main Services Agreement', link: '/legal/main-services-agreement' },
-        // { text: 'Professional Services Terms', link: '/legal/professional-services-terms' },
+        // { text: 'Professional Services Terms', link: '/legal/professional-services-agreement' },
       ],
     }],
 }
@@ -32,7 +32,7 @@ export const legalES = {
       items: [
         { text: 'Términos de uso del sitio web', link: '/es/legal/website-terms-of-use' },
         { text: 'Acuerdo de servicios principales', link: '/es/legal/main-services-agreement' },
-        { text: 'Acuerdo de servicios profesionales', link: '/es/legal/professional-services-terms' },
+        { text: 'Acuerdo de servicios profesionales', link: '/es/legal/professional-services-agreement' },
         // { text: 'Open Source License Disclosure', link: '/legal/open-source-license-disclosure' },
       ],
     },
