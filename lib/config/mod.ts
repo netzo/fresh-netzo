@@ -1,6 +1,6 @@
 import { StartOptions } from "$fresh/server.ts";
 
-interface NetzoConfig extends StartOptions {
+export interface NetzoConfig extends StartOptions {
   project: string;
 }
 
