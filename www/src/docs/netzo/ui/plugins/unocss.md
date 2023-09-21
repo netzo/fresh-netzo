@@ -14,9 +14,15 @@ Register the plugin in `netzo.config.ts` and ensure `main.ts` and `dev.ts` are r
 ```ts [netzo.config.ts]
 import { defineNetzoConfig } from 'netzo/config/mod.ts'
 import { unocss } from 'netzo/ui/plugins/unocss/mod.ts'
+import { presetNetzo } from 'netzo/ui/unocss/preset-netzo.ts'
 
 export default defineNetzoConfig({
-  plugins: [unocss()]
+  plugins: [
+    unocss({
+      presets: [presetNetzo()]
+      // ...additional configuration
+    })
+  ]
 })
 ```
 <<< src/main.ts

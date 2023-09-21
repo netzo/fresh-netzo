@@ -50,11 +50,12 @@ Powered by [UnoCSS](https://github.com/antfu/unocss), you can use Tailwind/Windi
 The netzo theme is based on the UnoCSS `presetNetzo`. You can find all the default values and available entries in [`netzo/ui/unocss/preset-netzo.ts`](https://github.com/netzo/netzo/blob/main/lib/unocss/preset-netzo.ts). Note that the [`UserConfig`](https://unocss.dev/config) object can be passed additional properties to extend the netzo theme globally.
 
 ::: code-group
-```ts [main.ts]
+```ts [netzo.config.ts]
+import { defineNetzoConfig } from 'netzo/config/mod.ts'
 import { unocss } from 'netzo/ui/plugins/unocss/mod.ts'
 import { presetNetzo } from 'netzo/ui/unocss/preset-netzo.ts'
 
-await start(manifest, {
+export default defineNetzoConfig({
   plugins: [
     unocss({
       presets: [presetNetzo()]
@@ -63,6 +64,8 @@ await start(manifest, {
   ]
 })
 ```
+<<< ui/plugins/src/main.ts
+<<< ui/plugins/src/dev.ts
 :::
 
 ::: details Custom theme
