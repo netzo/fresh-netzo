@@ -6,8 +6,8 @@ export default {
   home: {
     hero: {
       topic: 'Diseñado para Empresas Modernas',
-      title: 'La manera más inteligente de crear herramientas internas a medida',
-      description: 'Crea fácilmente herramientas internas a medida para centralizar información, integrar sistemas y automatizar flujos de trabajo. Crea tu back-office con control, escalabilidad y adaptabilidad de crecimiento.',
+      title: 'La manera más inteligente de crear software empresarial a medida',
+      description: 'Crea software empresarial a medida fácilmente, para centralizar información, integrar sistemas y automatizar flujos de trabajo. Crea tu back-office con control, escalabilidad y adaptabilidad de crecimiento.',
       buttons: [
         {
           type: 'lets-talk',
@@ -44,7 +44,7 @@ export default {
     },
     sectionWhat: {
       topic: '¿Qué es Netzo?',
-      title: 'La plataforma integral para optimizar operaciones con herramientas a medida',
+      title: 'La plataforma integral para optimizar operaciones con software empresarial a medida',
       items: [
         {
           icon: 'i-mdi-rocket',

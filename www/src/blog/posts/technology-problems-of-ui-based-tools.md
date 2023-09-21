@@ -12,7 +12,7 @@ tags:
   - netzo
   - nocode
   - lowcode
-  - internaltools
+  - business-software
   - automations
 ---
 

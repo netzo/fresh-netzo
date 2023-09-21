@@ -1,6 +1,6 @@
 ---
 group: Announcements
-title: Netzo Beta 01 - Ship custom internal tools faster
+title: Netzo Beta 01 - Ship custom business software faster
 description: A walk through demo of Netzo
 image: /images/blog/announcements-netzo-beta-01.webp
 date: 2023-03-20
@@ -22,7 +22,7 @@ import BlogPostHero from '../BlogPostHero.vue'
 
 <BlogPostHero />
 
-**[Netzo](https://app.netzo.io) is a development platform to code and deploy custom internal tools in vanilla JS/TS, with your favorite SSR frameworks and libraries and without managing infrastructure.**
+**[Netzo](https://app.netzo.io) is a development platform to code and deploy custom business software in vanilla JS/TS, with your favorite SSR frameworks and libraries and without managing infrastructure.**
 
 ## What is Netzo?
 
@@ -35,7 +35,7 @@ In a nutshell Netzo features a:
 
 **Netzo shines whenever a full development environment and managing infrastructure are overkill.**
 
-By leveraging the power of serverless compute, Netzo allows you to build and deploy custom internal tools in minutes, liberating developers from infrastructure headaches and the DevOps burden to focus solely on value-adding solutions, leading to increased efficiency, productivity and scalability for organizations.
+By leveraging the power of serverless compute, Netzo allows you to build and deploy custom business software in minutes, liberating developers from infrastructure headaches and the DevOps burden to focus solely on value-adding solutions, leading to increased efficiency, productivity and scalability for organizations.
 
 ## What are software solutions?
 

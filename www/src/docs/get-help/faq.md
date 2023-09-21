@@ -9,7 +9,7 @@ Software solutions are software applications, both frontend interfaces and backe
 :::
 
 :::details What makes Netzo unique?
-Netzo's code-centric approach to internal tooling offers organizations a highly customizable and effective way of building software solutions and sharing them within their teams and organization. Netzo combines both frontend and backend development, enabling the programmatic building of visual interfaces and extending API functionality through modular scripts, within a single space. This offers the ability to connect to any API, process any data, automate any process, and build any interface, providing full flexibility and control over your solutions.
+Netzo's code-centric approach to business software offers organizations a highly customizable and effective way of building software solutions and sharing them within their teams and organization. Netzo combines both frontend and backend development, enabling the programmatic building of visual interfaces and extending API functionality through modular scripts, within a single space. This offers the ability to connect to any API, process any data, automate any process, and build any interface, providing full flexibility and control over your solutions.
 :::
 :::details How is Netzo different than others like Retool or Zapier?
 Netzo bundles the two key areas of development, frontend and backend. Unlike competitors, who focus solely on visual interfaces or "backend" functionality, Netzo packs both in a single application. With Netzo,s technical teams are empowered to connect any API, process any data, automate any process and build any interface, ultimately maintaining control over your integrations.
@@ -24,7 +24,7 @@ No. Software solutions are meant for teams across departments and organizations.
 Effective adoption of APIs can be challenging, as many tools are not fully utilized. Netzo addresses this issue by increasing visibility into the apps you use and their underlying functionality, making it easier to build your digital enterprise incrementally. By making it easier to discover and understand the capabilities of APIs, Netzo helps to increase their adoption and utilization within your organization.
 :::
 :::details What are the benefits of Netzo compared to other No-code/low-code Platforms?
-A code-centric approach, such as Netzo, offers greater flexibility and scalability in creating custom internal tools and automating complex workflows. Unlike UI-based no-code/low-code platforms, a code-centric approach allows for programmatic building and easy adaptation as your organization's processes evolve. Additionally, it eliminates the limitations and drawbacks that come with using a no-code/low-code platform and allows for true customization to meet the specific needs of your team.
+A code-centric approach, such as Netzo, offers greater flexibility and scalability in creating custom business software and automating complex workflows. Unlike UI-based no-code/low-code platforms, a code-centric approach allows for programmatic building and easy adaptation as your organization's processes evolve. Additionally, it eliminates the limitations and drawbacks that come with using a no-code/low-code platform and allows for true customization to meet the specific needs of your team.
 :::
 
 ::: details How does Netzo streamline DX over traditional infrastructure providers like AWS, GCP and Azure?
@@ -52,7 +52,7 @@ Netzo uses Secure Sockets Layer (SSL) to encrypt all data in transit. This means
 ## Technology
 
 :::details What programming languages does Netzo support?
-Netzo supports JavaScript (JS), TypeScript (TS), JSX, and TSX for source code. These languages are commonly used for web development and are well-suited for building custom internal tools and automating complex workflows.
+Netzo supports JavaScript (JS), TypeScript (TS), JSX, and TSX for source code. These languages are commonly used for web development and are well-suited for building custom business software and automating complex workflows.
 :::
 
 :::details What file types are supported in the Projects module?

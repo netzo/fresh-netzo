@@ -52,7 +52,7 @@ Al implementar apps empresariales a medida, las empresas pueden posicionarse par
 
 - **🚀 Lanzador de aplicaciones:** Gestiona fácilmente las apps empresariales a medida visibles para los equipos de tu empresa, aumentando la productividad y la eficiencia del flujo de trabajo.
 
-- **💻 IDE en el navegador:** Simplifica el desarrollo de herramientas personalizadas con un conjunto completo de herramientas en el navegador, implementaciones con un clic y funciones de colaboración.
+- **💻 IDE de tu elección:** Simplifica el desarrollo de software empresarial a medida desde el IDE de tu elección.
 
 - **⚡ Netzo SDK y CLI para un desarrollo acelerado:** Utiliza el SDK y el CLI de Netzo para agilizar el desarrollo, tanto a nivel local como específicamente adaptado para apps empresariales a medida.
 

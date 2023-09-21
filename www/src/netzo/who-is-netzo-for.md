@@ -32,7 +32,7 @@ icon="i-mdi-book"
 
 ## SMBs and Startups
 
-**Netzo helps agile SMBs and startups scale their operations with custom internal tools and workflow automation without breaking the bank.** SMB's can now tap into the power of full-scale development teams that were previously inaccessible, bringing unparalleled potential for growth and innovation.
+**Netzo helps agile SMBs and startups scale their operations with custom business software and workflow automation without breaking the bank.** SMB's can now tap into the power of full-scale development teams that were previously inaccessible, bringing unparalleled potential for growth and innovation.
 
 <ListItem
 text="<strong>Build  a digital back-office:</strong> Scale and streamline digital initiatives to take control of the digital journey."
@@ -57,10 +57,10 @@ icon="i-mdi-account-group"
 
 ## Enterprises
 
-**Netzo helps modern enterprises improve operational efficiency with tailored software solutions with complete adaptability to established processes.** Large enterprises require custom internal tools but often struggle with agility and flexibility.
+**Netzo helps modern enterprises improve operational efficiency with tailored software solutions with complete adaptability to established processes.** Large enterprises require custom business software but often struggle with agility and flexibility.
 
 <ListItem
-text="<strong>Streamline back-office operations:</strong> Use custom internal tools to drive business outcomes efficiently."
+text="<strong>Streamline back-office operations:</strong> Use custom business software to drive business outcomes efficiently."
 icon="i-mdi-speedometer"
 />
 <ListItem

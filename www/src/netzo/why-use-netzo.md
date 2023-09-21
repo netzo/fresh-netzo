@@ -4,7 +4,7 @@ import ListItem from '@theme/components/list/ListItem.vue'
 
 # Why use Netzo?
 
-Netzo empowers startups, SMBs, and enterprises with with a way to develop custom internal tools and automate workflows 10x faster, than with traditional methods. This allows teams to scale operations, improve efficiency, maintain agility and grow competitive edge.
+Netzo empowers startups, SMBs, and enterprises with with a way to develop custom business software and automate workflows 10x faster, than with traditional methods. This allows teams to scale operations, improve efficiency, maintain agility and grow competitive edge.
 
 
 <div style="text-align:-webkit-center; padding: 20pt">
@@ -12,7 +12,7 @@ Netzo empowers startups, SMBs, and enterprises with with a way to develop custom
 </div>
 
 <ListItem
-  text="<strong>Simpified Development:</strong> Streamline the development process and enable effortless deployment of custom internal tools, eliminating infrastructure complexities and saving time for developers."
+  text="<strong>Simpified Development:</strong> Streamline the development process and enable effortless deployment of custom business software, eliminating infrastructure complexities and saving time for developers."
   icon="i-mdi-star-four-points-outline color-primary-500"
 />
 

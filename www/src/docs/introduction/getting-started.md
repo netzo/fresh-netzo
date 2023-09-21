@@ -7,7 +7,7 @@ import en from '~/locales/en.js'
 
 # Getting Started
 
-**Netzo is a cloud-based, agile-development platform that helps businesses streamline their custom internal tools development cycles.** Designed for organization-wide productivity and collaboration, it enables developers to code, deploy and share custom internal tools faster with all teams.
+**Netzo is a cloud-based, agile-development platform that helps businesses streamline their custom business software development cycles.** Designed for organization-wide productivity and collaboration, it enables developers to code, deploy and share custom business software faster with all teams.
 
 <div class="w-full">
   <video

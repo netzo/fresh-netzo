@@ -297,7 +297,7 @@ Cuando se utilicen en este Acuerdo y/o cualquier "Hoja de Pedido" y demás docum
 
 - **Periodo (o Plazo) de Suscripción:** se refiere al período de tiempo durante el cual el Suscriptor y Sus Usuarios tienen acceso a los Servicios de Netzo. Este período establece la duración de la relación contractual entre Usted y Netzo y puede variar en su duración (p.ej. mensual o anual). Durante este período, se definen los derechos y responsabilidades de ambas Partes, incluyendo la forma en que se gestionarán las renovaciones y las cancelaciones del plan de suscripción.
 
-- **Plataforma:** se refiere al sistema, software o entorno tecnológico desarrollado por Netzo con el propósito de agilizar y facilitar la creación de herramientas informáticas. Esta plataforma proporciona un conjunto de herramientas, recursos y servicios específicamente diseñados para ayudar a los Usuarios de los Suscriptores a desarrollar herramientas informáticas personalizadas de manera eficiente y efectiva.
+- **Plataforma:** se refiere al sistema, software o entorno tecnológico desarrollado por Netzo con el propósito de agilizar y facilitar la creación de software empresarial. Esta plataforma proporciona un conjunto de herramientas, recursos y servicios específicamente diseñados para ayudar a los Usuarios de los Suscriptores a desarrollar software empresarial a medida de manera eficiente y efectiva.
 
 - **Servicios:** se refiere al conjunto de servicios ofrecidos y/o prestados por Netzo.
 

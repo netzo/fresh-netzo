@@ -6,8 +6,8 @@ export default {
   home: {
     hero: {
       topic: 'Designed for Modern Businesses',
-      title: 'The smartest way to build custom internal tools',
-      description: 'Easily build custom internal tools to centralize information, integrate systems and automate workflows. Build your back-office with full control, scalability and adaptability for growth.',
+      title: 'The smartest way to build custom business software',
+      description: 'Easily build custom business software to centralize information, integrate systems and automate workflows. Build your back-office with full control, scalability and adaptability for growth.',
       buttons: [
         {
           type: 'lets-talk',
@@ -74,7 +74,7 @@ export default {
         },
       ],
       image: {
-        alt: 'Netzo - Ship custom internal tools faster',
+        alt: 'Netzo - Ship custom business software faster',
         src: '/images/home/netzo.svg',
         class: 'mb-8 !h-600px',
       },
@@ -416,7 +416,7 @@ export default {
         },
         {
           title: 'SMBs and Startups',
-          description: 'Scale your operations with custom internal tools and workflow automation without breaking the bank.',
+          description: 'Scale your operations with custom business software and workflow automation without breaking the bank.',
           image: {
             alt: 'Startups and SMBs',
             src: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiNmZmZmZmYiIGQ9Ik0xMiAxOEg2di00aDZtOSAwdi0ybC0xLTVINGwtMSA1djJoMXY2aDEwdi02aDR2Nmgydi02bTAtMTBINHYyaDE2VjRaIi8+PC9zdmc+',
@@ -1129,7 +1129,7 @@ export default {
     {
       uid: 'netzo',
       title: 'Netzo',
-      description: 'Netzo is the smartest way to build custom internal tools and automate workflows. Build your back-office with full-code control and without managing infrastructure.',
+      description: 'Netzo is the smartest way to build custom business software and automate workflows. Build your back-office with full-code control and without managing infrastructure.',
       src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/apis/netzo.svg',
       href: '/docs/netzo/apis/netzo',
     },

@@ -1,6 +1,6 @@
 export const ogEN = {
   title: 'Netzo',
-  description: 'The smartest way to build custom internal tools. Build any custom dashboard, admin panel, internal API, workflow automation or website 10x faster. Build fast, share instantly and stay in control as you grow',
+  description: 'The smartest way to build custom business software. Build any custom dashboard, admin panel, internal API, workflow automation or website 10x faster. Build fast, share instantly and stay in control as you grow',
   image: 'https://netzo.io/images/hotlink-ok/og-image.png',
   url: 'https://netzo.io',
   author: 'Netzo',

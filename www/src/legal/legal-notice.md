@@ -22,7 +22,7 @@ In compliance with Regulation (EU) 2016/679 of the European Parliament and of th
 
 The ownership of this Web Site **"netzo.io "** as well as all subdomains (e.g. our platform **app.netzo.io**) ("Web Site" or "Platform") is held by **ROKAWARE S.L.** (hereinafter "Netzo"), a company with registered office at Paseo de la Castellana 89, planta 8va, 28046, Madrid, Spain.
 
-**Netzo** offers an all-in-one orchestration platform that enables API integration, code deployment, system automation and internal tool development, freeing developers from the burden of DevOps to focus more on code.
+**Netzo** offers an all-in-one orchestration platform that enables API integration, code deployment, system automation and business software development, freeing developers from the burden of DevOps to focus more on code.
 
 All users who browse this Website and use the Platform agree to make a correct and appropriate use of the same according to the terms established in the applicable legislation and in this legal notice, which may be subject to future modifications. For these purposes, all those who access and browse the Web Site and subdomains held by Netzo will be considered users.
 

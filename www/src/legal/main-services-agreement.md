@@ -64,7 +64,7 @@ To obtain a PDF version of this Agreement, click [here](../../documents/main-ser
 
 - **3.5 Connection Requirements:** High-speed internet connection is required for the proper functioning of the Services.
 
-- **3.6 Internal Tools Only:** Unless authorized by Netzo in an "Order Form" and/or another written document, the Subscriber may not use the Services to offer commercial services to third parties through a single *Workspace*. The Subscriber may not sublicense, sell, rent, transfer, or resell the Services to third parties unless expressly authorized by Netzo as defined above. Furthermore, the use of the API is subject to Netzo's restrictions and policies as set forth in the Documentation or communicated to the Subscriber in accordance with this Agreement.
+- **3.6 Business software Only:** Unless authorized by Netzo in an "Order Form" and/or another written document, the Subscriber may not use the Services to offer commercial services to third parties through a single *Workspace*. The Subscriber may not sublicense, sell, rent, transfer, or resell the Services to third parties unless expressly authorized by Netzo as defined above. Furthermore, the use of the API is subject to Netzo's restrictions and policies as set forth in the Documentation or communicated to the Subscriber in accordance with this Agreement.
 
 - **3.7 Restrictions on Data Uploaded to the Platform:** The Subscriber agrees that under no circumstances will it use the Platform to upload, publish, host, or transmit any data that:
    - (a) Is illegal or promotes unlawful activities according to Applicable Law.

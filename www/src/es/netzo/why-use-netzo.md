@@ -17,17 +17,17 @@ Netzo da a startups, pymes y empresas una manera de desarrollar apps empresarial
 />
 
 <ListItem
-  text="<strong>Compartir de forma segura:</strong> Garantiza el intercambio seguro de herramientas personalizadas entre equipos, facilitando la colaboración eficiente y permitiendo un acceso fluido a los recursos necesarios."
+  text="<strong>Compartir de forma segura:</strong> Garantiza el intercambio seguro de software empresarial a medida entre equipos, facilitando la colaboración eficiente y permitiendo un acceso fluido a los recursos necesarios."
   icon="i-mdi-share-variant color-primary-500"
 />
 
 <ListItem
-  text="<strong>Utilización eficiente de herramientas:</strong> Empodera a los equipos para utilizar eficientemente herramientas personalizadas, aumentando la productividad y facilitando flujos de trabajo más fluidos dentro de la organización."
+  text="<strong>Utilización eficiente de herramientas:</strong> Empodera a los equipos para utilizar eficientemente software empresarial a medida, aumentando la productividad y facilitando flujos de trabajo más fluidos dentro de la organización."
   icon="i-mdi-checkbox-marked-circle-outline color-primary-500"
 />
 
 <ListItem
-  text="<strong>Adaptabilidad a las necesidades cambiantes:</strong> Permite a los desarrolladores modificar y adaptar fácilmente las herramientas a medida que evolucionan los procesos y requisitos del negocio, garantizando flexibilidad y control en un entorno que cambia rápidamente."
+  text="<strong>Adaptabilidad a las necesidades cambiantes:</strong> Permite a los desarrolladores modificar y adaptar fácilmente las software empresarial a medida que evolucionan los procesos y requisitos del negocio, garantizando flexibilidad y control en un entorno que cambia rápidamente."
   icon="i-mdi-message-text-outline color-primary-500"
 />
 
@@ -62,7 +62,7 @@ Netzo da a startups, pymes y empresas una manera de desarrollar apps empresarial
   </article>
 </div>
 
-## Netzo frente a otras herramientas
+## Netzo frente a otras plataformas
 
 Las soluciones alternativas para construir apps empresariales a medida son costosas, limitantes y pueden implicar un mayor gasto de recursos a largo plazo, lo que lleva a las empresas a buscar un mayor control de sus apps empresariales a medida mediante el desarrollo interno. Sin embargo, el desarrollo interno requiere mucho tiempo y recursos, y exige equipos altamente capacitados. **Netzo presenta un punto intermedio viable, ofreciendo un equilibrio óptimo entre facilidad de uso y control total de código.**
 
