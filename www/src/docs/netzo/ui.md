@@ -86,10 +86,6 @@ The `presetNetzo` introduces extends the Tailwind/Windi CSS utility classes. For
 .m-1 { margin: 1px; }
 ```
 
-## Demo
-
-<iframe src='https://netzo.deno.dev' class="w-full h-80vh border-none"></iframe>
-
 ## Credits
 
 - [`shadcn/ui`](https://ui.shadcn.com/)
