@@ -16,9 +16,10 @@ Register the plugin in `netzo.config.ts` and ensure `main.ts` and `dev.ts` are r
 
 ::: code-group
 ```ts [netzo.config.ts]
+import { defineNetzoConfig } from 'netzo/config/mod.ts'
 import { netzoDB } from 'netzo/ui/plugins/netzoDB/mod.ts'
 
-await start(manifest, {
+export default defineNetzoConfig({
   plugins: [netzoDB()]
 })
 ```

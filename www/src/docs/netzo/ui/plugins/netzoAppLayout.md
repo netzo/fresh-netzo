@@ -12,9 +12,10 @@ Register the plugin in `netzo.config.ts` and ensure `main.ts` and `dev.ts` are r
 
 ::: code-group
 ```ts [netzo.config.ts]
+import { defineNetzoConfig } from 'netzo/config/mod.ts'
 import { netzoAppLayout } from 'netzo/ui/plugins/netzoAppLayout/mod.ts'
 
-await start(manifest, {
+export default defineNetzoConfig({
   plugins: [netzoAppLayout()]
 })
 ```
