@@ -49,6 +49,13 @@ const {
             <!-- <div v-if="item.type === 'subheader'" class="grid-subheader" /> -->
             <div class="grid-cell">
               <span v-if="typeof item.business === 'string'" v-html="item.business" />
+              <div v-else-if="Array.isArray(item.business)" class="flex -center">
+                <span v-html="item.business[0]" />
+                <Tooltip v-if="item.business[1]">
+                  {{ item.business[1] }}
+                </Tooltip>
+                <br>
+              </div>
               <div v-else v-bind="item.business" />
             </div>
           </template>
@@ -76,6 +83,13 @@ const {
             <!-- <div v-if="item.type === 'subheader'" class="grid-subheader" /> -->
             <div class="grid-cell">
               <span v-if="typeof item.enterprise === 'string'" v-html="item.enterprise" />
+              <div v-else-if="Array.isArray(item.business)" class="flex -center">
+                <span v-html="item.enterprise[0]" />
+                <Tooltip v-if="item.enterprise[1]">
+                  {{ item.enterprise[1] }}
+                </Tooltip>
+                <br>
+              </div>
               <div v-else v-bind="item.enterprise" />
             </div>
           </template>
@@ -102,6 +116,7 @@ section {
 
 .grid-container {
   display: grid;
+  grid-auto-rows: 1fr; /* makes all rows equal height */
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 0px 16px;
   height: 100%;
