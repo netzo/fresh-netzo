@@ -21,7 +21,7 @@ USAGE:
 
 OPTIONS:
     -h, --help       Prints help information
-    -t, --template   The UID of the template (omit to list options)
+    -t, --template   The UID of the template (omit to list all templates)
         --dry-run    Dry run the initialization process
 
 ARGS:
@@ -60,6 +60,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     // NOTE: exit directly if undefined (when cancelling/escaping prompt)
     if (args.template === undefined) Deno.exit(1);
   }
+  // in case prompt is cancelled/escaped
   if (args.template === null) {
     console.error(help);
     error("Missing template UID.");

@@ -2,6 +2,7 @@
 
 import { load, parseArgs, semverGreaterThanOrEquals } from "./deps.ts";
 import { error } from "./src/console.ts";
+import cloneSubcommand from "./src/subcommands/clone.ts";
 import initSubcommand from "./src/subcommands/init.ts";
 import deploySubcommand from "./src/subcommands/deploy.ts";
 import envSubcommand from "./src/subcommands/env.ts";
@@ -15,6 +16,9 @@ await load({ defaultsPath: "../../../cli/.env", export: true });
 const help = `netzo ${VERSION}
 Command line tool for Netzo.
 
+To clone an existing project from Netzo:
+  netzo clone
+
 To create a new project from a template:
   netzo init
 
@@ -22,6 +26,7 @@ To deploy a local project:
   netzo deploy --project=my-project ./main.ts
 
 SUBCOMMANDS:
+    clone     Clone a project from Netzo to your local machine
     init      Create a project from an existing template (see https://app.netzo.io/templates)
     deploy    Deploy a project with static files to Netzo
     env       Update project environment variables from env file to Netzo
@@ -104,6 +109,9 @@ if (Deno.isatty(Deno.stdin.rid)) {
 
 const subcommand = args._.shift();
 switch (subcommand) {
+  case "clone":
+    await cloneSubcommand(args);
+    break;
   case "init":
     await initSubcommand(args);
     break;

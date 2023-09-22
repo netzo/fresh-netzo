@@ -35,9 +35,48 @@ or pass it in the `--api-key` flag each time you run a `netzo` subcommand.
 
 The `netzo` CLI is a single executable that provides a number of subcommands. To see the full list of subcommands and options, run `netzo --help` or `netzo -h`.
 
+### `clone`
+
+The `clone` subcommand copies a project from Netzo to your local machine.
+
+```mermaid
+flowchart LR
+    A[project] -->|clone| B[local project]
+```
+
+```sh
+netzo clone [OPTIONS] [<directory>]
+```
+
+**Options:**
+
+| Option             | Description                                                   |
+|--------------------|---------------------------------------------------------------|
+| `--api-key`        | The API key to use (default: `Deno.env.get("NETZO_API_KEY")`) |
+| `--dry-run`        | Dry run the initialization process (default: `false`)         |
+| `-h`, `--help`     | Prints help information                                       |
+| `--p`, `--project` | The UID of the project to clone                               |
+
+**Arguments:**
+
+| Argument      | Description                                                            |
+|---------------|------------------------------------------------------------------------|
+| `<directory>` | The directory path to initialize project in (defaults to `--template`) |
+
+**Examples:**
+
+```sh
+# To clone an existing project from Netzo:
+netzo clone
+# To clone an existing project by UID from Netzo:
+netzo clone --project=my-project
+# To clone a project from Netzo to a custom directory:
+netzo clone path/to/directory
+```
+
 ### `init`
 
-The `init` subcommand lets you create a new project from an existing template.
+The `init` subcommand creates a new project from an existing template.
 
 ```mermaid
 flowchart LR
@@ -51,7 +90,7 @@ netzo init [OPTIONS] [<directory>]
 ::: tip Visit the [templates page](https://app.netzo.io/templates) to browse all templates.
 :::
 
-#### Options
+**Options:**
 
 | Option             | Description                                           |
 |--------------------|-------------------------------------------------------|
@@ -59,13 +98,13 @@ netzo init [OPTIONS] [<directory>]
 | `--dry-run`        | Dry run the initialization process (default: `false`) |
 | `-h`, `--help`     | Prints help information                               |
 
-#### Arguments
+**Arguments:**
 
 | Argument      | Description                                                            |
 |---------------|------------------------------------------------------------------------|
 | `<directory>` | The directory path to initialize project in (defaults to `--template`) |
 
-#### Examples
+**Examples:**
 
 ```sh
 # To create a new project from a template:
@@ -78,33 +117,20 @@ netzo init path/to/directory
 netzo init .
 ```
 
-<!-- ### `clone`
-
-The clone subcommand lets you clone an existing project from Netzo.
-
-```mermaid
-flowchart LR
-    A[remote project] -         - >|clone| B[local project]
-```
-
-```sh
-netzo clone --project=my-project
-``` -->
-
 ### `deploy`
 
-The `deploy` subcommand lets you deploy a project to Netzo.
+The `deploy` subcommand deploys a local project to Netzo.
 
 ```mermaid
 flowchart LR
-    A[local project] -->|deploy| B[remote project]
+    A[local project] -->|deploy| B[project]
 ```
 
 ```sh
 netzo deploy [OPTIONS] <entrypoint>
 ```
 
-#### Options
+**Options:**
 
 | Option             | Description                                                   |
 |--------------------|---------------------------------------------------------------|
@@ -118,13 +144,13 @@ netzo deploy [OPTIONS] <entrypoint>
 | `--prod`           | Create a `production`  (default: `false`)                     |
 | `--p`, `--project` | The UID of the project to deploy to                           |
 
-#### Arguments
+**Arguments:**
 
-| Argument       | Description                                            |
-|----------------|--------------------------------------------------------|
-| `<entrypoint>` | The file path to the entrypoint file (e.g. `main.tsx`) |
+| Argument       | Description                                           |
+|----------------|-------------------------------------------------------|
+| `<entrypoint>` | The file path to the entrypoint file (e.g. `main.ts`) |
 
-#### Examples
+**Examples:**
 
 ```sh
 # To deploy a local project:
@@ -139,18 +165,18 @@ netzo deploy --project=my-project --exclude=".env" main.tsx
 
 ### `env`
 
-The `env` subcommand lets you update the environment variables of a project from an env file to Netzo.
+The `env` subcommand pushes environment variables from an `.env` file to a project in Netzo.
 
 ```mermaid
 flowchart LR
-    A[local project] -->|env| B[remote project]
+    A[local project] -->|env| B[project]
 ```
 
 ```sh
 netzo env [OPTIONS] [<envPath>]
 ```
 
-#### Options
+**Options:**
 
 | Option             | Description                                                   |
 |--------------------|---------------------------------------------------------------|
@@ -158,13 +184,13 @@ netzo env [OPTIONS] [<envPath>]
 | `-h`, `--help`     | Prints help information                                       |
 | `--p`, `--project` | The UID of the project to update environment variables for    |
 
-#### Arguments
+**Arguments:**
 
 | Argument    | Description                                        |
 |-------------|----------------------------------------------------|
 | `<envPath>` | The file path to the env file (defaults to `.env`) |
 
-#### Examples
+**Examples:**
 
 ```sh
 # To update environment variables from default .env file:
@@ -178,7 +204,7 @@ netzo env --project=my-project ./.env.production
 
 <!-- ### `logs` (soon)
 
-The `logs` subcommand lets you stream the logs of a project in real-time.
+The `logs` subcommand streams the logs of a project in real-time.
 
 ```sh
 netzo logs --project=my-project
@@ -190,19 +216,19 @@ netzo logs --project=my-project
 netzo upgrade [OPTIONS] [<version>]
 ```
 
-#### Options
+**Options:**
 
 | Option         | Description             |
 |----------------|-------------------------|
 | `-h`, `--help` | Prints help information |
 
-#### Arguments
+**Arguments:**
 
-| Argument    | Description                                            |
-|-------------|--------------------------------------------------------|
-| `<version>` | The file path to the entrypoint file (e.g. `main.tsx`) |
+| Argument    | Description                                           |
+|-------------|-------------------------------------------------------|
+| `<version>` | The file path to the entrypoint file (e.g. `main.ts`) |
 
-#### Examples
+**Examples:**
 
 ```sh
 # To upgrade to the latest version.

@@ -1,5 +1,7 @@
 {
   "exclude": [
+    "_fresh",
+    "node_modules/",
     "action/node_modules/"
   ],
   "lock": false,
