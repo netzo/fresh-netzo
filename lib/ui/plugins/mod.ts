@@ -1,11 +1,14 @@
 import type { Plugin } from "$fresh/server.ts";
-import { type DaisyuiOptions, daisyui } from "./daisyui/mod.ts";
-import { FlowbiteOptions, flowbite } from "./flowbite/mod.ts";
-import { HtmxOptions, htmx } from "./htmx/mod.ts";
-import { NetzoAppLayoutOptions, netzoAppLayout } from "./netzoAppLayout/mod.ts";
-import { NetzoAuthOptions, netzoAuth } from "./netzoAuth/mod.ts";
-import { NetzoDBOptions, netzoDB } from "./netzoDB/mod.ts";
-import { NetzoErrorPagesOptions, netzoErrorPages } from "./netzoErrorPages/mod.ts";
+import { daisyui, type DaisyuiOptions } from "./daisyui/mod.ts";
+import { flowbite, FlowbiteOptions } from "./flowbite/mod.ts";
+import { htmx, HtmxOptions } from "./htmx/mod.ts";
+import { netzoAppLayout, NetzoAppLayoutOptions } from "./netzoAppLayout/mod.ts";
+import { netzoAuth, NetzoAuthOptions } from "./netzoAuth/mod.ts";
+import { netzoDB, NetzoDBOptions } from "./netzoDB/mod.ts";
+import {
+  netzoErrorPages,
+  NetzoErrorPagesOptions,
+} from "./netzoErrorPages/mod.ts";
 import { Config as UnocssOptions, unocss } from "./unocss/mod.ts";
 
 export interface NetzoOptions {
@@ -28,13 +31,17 @@ export const netzo = (options: NetzoOptions): Plugin[] => {
 
   if (options.htmx) plugins.push(htmx(options.htmx));
 
-  if (options.netzoAppLayout) plugins.push(netzoAppLayout(options.netzoAppLayout));
+  if (options.netzoAppLayout) {
+    plugins.push(netzoAppLayout(options.netzoAppLayout));
+  }
 
   if (options.netzoAuth) plugins.push(netzoAuth(options.netzoAuth));
 
   if (options.netzoDB) plugins.push(netzoDB(options.netzoDB));
 
-  if (options.netzoErrorPages) plugins.push(netzoErrorPages(options.netzoErrorPages));
+  if (options.netzoErrorPages) {
+    plugins.push(netzoErrorPages(options.netzoErrorPages));
+  }
 
   if (options.unocss) plugins.push(unocss(options.unocss));
 
