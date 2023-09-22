@@ -31,33 +31,6 @@ const {
           </template>
         </div>
 
-        <div class="grid-column plan-start">
-          <div class="grid-header bg-[var(--vp-c-white)] dark:bg-[var(--vp-c-black)]">
-            {{ plans.start.title }}
-            <div class="price">
-              {{ plans.start.price }}
-              <div v-if="plans.start.unit" class="pt-2 text-base">
-                {{ plans.start.unit }}
-              </div>
-            </div>
-            <div>
-              <ButtonCta :button="plans.start.button" />
-            </div>
-          </div>
-
-          <template v-for="(item, i) in items" :key="`pricing-table-items-3-${i}`">
-            <!-- <div v-if="item.type === 'subheader'" class="grid-subheader" /> -->
-            <div class="grid-cell">
-              <span v-if="typeof item.start === 'string'" v-html="item.start" />
-              <div v-else v-bind="item.start" />
-            </div>
-          </template>
-
-          <div class="grid-cell-action">
-            <ButtonCta :button="plans.start.button" />
-          </div>
-        </div>
-
         <div class="grid-column plan-business">
           <div class="grid-header bg-[var(--vp-c-white)] dark:bg-[var(--vp-c-black)]">
             {{ plans.business.title }}
@@ -119,7 +92,6 @@ const {
 <style scoped>
 section {
   --border-radius: 4px;
-  --border-width-start: 2px;
   --border-width-business: 4px;
   --border-width-enterprise: 2px;
 
@@ -130,7 +102,7 @@ section {
 
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-gap: 0px 16px;
   height: 100%;
 }
@@ -196,15 +168,6 @@ section {
 }
 
 /* plans */
-
-.plan-start {
-  border: var(--border-width-start) solid var(--vp-c-text-1);
-  border-top: none;
-}
-
-.plan-start .grid-header {
-  border-top: var(--border-width-start) solid var(--vp-c-text-1);
-}
 
 .plan-business {
   border: var(--border-width-business) solid var(--vp-c-primary);
