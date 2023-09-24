@@ -669,7 +669,7 @@ export default {
       {
         title: 'Custom domains',
         description: 'Use your own custom domains for all your Projects.',
-        business: { class: '1 (Upon request)' },
+        business: '1 (Upon request)',
         enterprise: { class: 'i-mdi-clock-outline' },
       },
       {
@@ -691,7 +691,7 @@ export default {
       },
       {
         title: 'Source control',
-        description: '',
+        description: 'Version control your code with Git, the way you already do.',
         business: { class: 'i-mdi-check' },
         enterprise: { class: 'i-mdi-check' },
       },
@@ -709,7 +709,7 @@ export default {
       },
       {
         title: 'Audit logs',
-        description: '',
+        description: 'Audit logs for compliance, security and informaction on user activity and changes.',
         business: '30 days',
         enterprise: '365 days',
       },
@@ -728,7 +728,7 @@ export default {
       },
       {
         title: 'Community support',
-        description: '',
+        description: 'Via our Discord community server.',
         business: { class: 'i-mdi-check' },
         enterprise: { class: 'i-mdi-check' },
       },
@@ -758,13 +758,13 @@ export default {
       },
       {
         title: 'Dedicated Account Manager',
-        description: '',
+        description: 'Gain access to a dedicated accoutn manager and Netzo engineering support.',
         business: { class: 'i-mdi-minus' },
         enterprise: { class: 'i-mdi-check' },
       },
       {
         title: 'Dedicated channel',
-        description: '',
+        description: 'Gain access to a dedicated channel for support and feedback via Discord.',
         business: { class: 'i-mdi-minus' },
         enterprise: { class: 'i-mdi-check' },
       },

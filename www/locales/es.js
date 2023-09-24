@@ -544,7 +544,7 @@ export default {
       {
         title: 'Solicitudes',
         description: 'Solicitudes HTTP realizadas para invocar cualquiera de los despliegues de un Proyecto.',
-        business: ['50,000 al mes', 'Contacanos para conocer precios por solicitud adicional'],
+        business: ['50k al mes', 'Contacanos para conocer precios por solicitud adicional'],
         enterprise: 'Custom',
       },
       {
@@ -662,7 +662,7 @@ export default {
       {
         title: 'Dominios personalizados',
         description: 'Utiliza tus propios dominios para todos tus Proyectos.',
-        business: { class: '1 (Bajo soliditud)' },
+        business: '1 (Bajo solicitud)',
         enterprise: { class: 'i-mdi-clock-outline' },
       },
       {
@@ -684,25 +684,25 @@ export default {
       },
       {
         title: 'Source control',
-        description: '',
+        description: 'Control de versiones con Git, de la forma que te gusta.',
         business: { class: 'i-mdi-check' },
         enterprise: { class: 'i-mdi-check' },
       },
       {
         title: 'API keys del Workspace',
-        description: 'Claves de API con alcance a todos los recursos de su Workspace.',
+        description: 'API keys con alcance a todos los recursos de su Workspace.',
         business: { class: 'i-mdi-check' },
         enterprise: { class: 'i-mdi-check' },
       },
       {
         title: 'API keys del proyecto',
-        description: 'Claves de API con alcance a proyectos individuales.',
+        description: 'API keys con alcance a proyectos individuales.',
         business: { class: 'i-mdi-minus' },
         enterprise: { class: 'i-mdi-clock-outline' },
       },
       {
         title: 'Registros de auditoría',
-        description: '',
+        description: 'Registros de auditoría para cumplimiento, seguridad e información sobre la actividad de usarios y cambios.',
         business: '30 días',
         enterprise: '365 días',
       },
@@ -719,7 +719,7 @@ export default {
       },
       {
         title: 'Soporte comunitario',
-        description: '',
+        description: 'Via nuestra comunidad en Discord.',
         business: { class: 'i-mdi-check' },
         enterprise: { class: 'i-mdi-check' },
       },
@@ -749,13 +749,13 @@ export default {
       },
       {
         title: 'Gerente de cuenta dedicado',
-        description: '',
+        description: 'Acceso a un gerente de cuenta dedicado y al soporte de ingeniera de Netzo.',
         business: { class: 'i-mdi-minus' },
         enterprise: { class: 'i-mdi-check' },
       },
       {
         title: 'Canal dedicado',
-        description: '',
+        description: 'Canal de comunicación dedicado para soporte y consultas via Discord.',
         business: { class: 'i-mdi-minus' },
         enterprise: { class: 'i-mdi-check' },
       },
