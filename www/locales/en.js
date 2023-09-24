@@ -528,7 +528,7 @@ export default {
       {
         title: 'Included Users',
         description: 'Users included in your workspace subscription plan.',
-        business: ['5', 'Contact us for aditional user pricing'],
+        business: ['5', 'Contact us for additional user pricing'],
         enterprise: 'Custom',
       },
       {
@@ -551,19 +551,19 @@ export default {
       {
         title: 'Requests',
         description: 'Requests are HTTP requests made to invoke any of a Project\'s deployments.',
-        business: ['50k per month', 'Contact us for aditional request pricing'],
+        business: ['50k per month', 'Contact us for additional request pricing'],
         enterprise: 'Custom',
       },
       {
         title: 'Database',
         description: 'Included storage capacity for all Projects in a Workspace.',
-        business: ['5GB', 'Contact us for aditional storage pricing'],
+        business: ['5GB', 'Contact us for additional storage pricing'],
         enterprise: 'Custom',
       },
       {
         title: 'Data throughput',
         description: 'Amount of data passed through all your Projects in a given month.',
-        business: ['1 GB per month', 'Contact us for aditional throughput pricing'],
+        business: ['1 GB per month', 'Contact us for additional throughput pricing'],
         enterprise: 'Custom',
       },
       {
@@ -669,7 +669,7 @@ export default {
       {
         title: 'Custom domains',
         description: 'Use your own custom domains for all your Projects.',
-        business: '1 (Upon request)',
+        business: { class: 'i-mdi-minus' },
         enterprise: { class: 'i-mdi-clock-outline' },
       },
       {
