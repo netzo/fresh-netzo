@@ -662,7 +662,7 @@ export default {
       },
       {
         title: 'Wildcard subdomains',
-        description: 'Wildcard <code>netzo.dev</code> subdomains for all your Projects.',
+        description: 'Wildcard *.netzo.dev subdomains for all your Projects.',
         business: { class: 'i-mdi-check' },
         enterprise: { class: 'i-mdi-check' },
       },

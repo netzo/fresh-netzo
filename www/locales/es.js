@@ -655,7 +655,7 @@ export default {
       },
       {
         title: 'Subdominios personalizados',
-        description: 'Subdominios aleatorios <code>netzo.dev</code> para todos tus Proyectos.',
+        description: 'Subdominios aleatorios *.netzo.dev para todos tus Proyectos.',
         business: { class: 'i-mdi-check' },
         enterprise: { class: 'i-mdi-check' },
       },
