@@ -1,6 +1,7 @@
 ---
 editLink: false
-lastUpdated: 18.09.2023
+lastUpdated: false
+updatedAt: 18.09.2023
 ---
 
 <script setup>

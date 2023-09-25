@@ -1,6 +1,7 @@
 ---
 editLink: false
-lastUpdated: 19.09.2023
+lastUpdated: false
+updatedAt: 19.09.2023
 ---
 
 <script setup>
@@ -15,7 +16,7 @@ const { page } = useData()
 
 # Acuerdo de Servicios Profesionales
 
-<u>Última actualización {{ page.frontmatter.lastUpdated }}</u>
+<u>Última actualización {{ page.frontmatter.updatedAt }}</u>
 
 Si el Suscriptor contrata con Netzo la prestación de Servicios Profesionales en relación a nuestros Servicios Principales, los cuales comprenden la creación y personalización de soluciones específicas (como aplicaciones informáticas, sistemas o herramientas) destinadas a operar dentro de la infraestructura de la Plataforma Netzo, el siguiente Acuerdo se aplicara a dichos servicios.
 

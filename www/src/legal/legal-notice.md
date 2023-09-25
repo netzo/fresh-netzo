@@ -1,6 +1,7 @@
 ---
 editLink: false
-lastUpdated: 31.01.2023
+lastUpdated: false
+updatedAt: 31.01.2023
 ---
 <script setup>
 import { onMounted } from 'vue'
@@ -14,7 +15,7 @@ const { page } = useData()
 
 # Imprint
 
-<u>Last Updated {{ page.frontmatter.lastUpdated }}</u>
+<u>Last Updated {{ page.frontmatter.updatedAt }}</u>
 
 In compliance with Regulation (EU) 2016/679 of the European Parliament and of the Council of 27 April 2016 on the protection of individuals with regard to the processing of personal data and on the free movement of such data, as well as for compliance with Article 10 of Law 34/2002 of 11 July, on information society services, our Legal Notice is set out below.
 

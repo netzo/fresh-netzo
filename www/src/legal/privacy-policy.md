@@ -1,6 +1,7 @@
 ---
 editLink: false
-lastUpdated: 25.10.2022
+lastUpdated: false
+updatedAt: 25.10.2022
 ---
 
 <script setup>
@@ -15,7 +16,7 @@ const { page } = useData()
 
 # Privacy policy
 
-<u>Last Updated {{ page.frontmatter.lastUpdated }}</u>
+<u>Last Updated {{ page.frontmatter.updatedAt }}</u>
 
 This privacy policy (hereinafter, the "Privacy Policy") applies to all personal data provided by the User to Rokaware S.L. This privacy policy is drafted and available in other languages, with the **Spanish** version prevailing over any contradiction between versions in other languages.
 

@@ -1,6 +1,7 @@
 ---
 editLink: false
-lastUpdated: 19.09.2023
+lastUpdated: false
+updatedAt: 19.09.2023
 ---
 
 <script setup>
@@ -15,7 +16,7 @@ const { page } = useData()
 
 # Acuerdo de Servicios Principales
 
-<u>Última actualización {{ page.frontmatter.lastUpdated }}</u>
+<u>Última actualización {{ page.frontmatter.updatedAt }}</u>
 
 ::: info **ESTE ACUERDO ES UN CONTRATO VINCULANTE Y RIGE EL USO Y EL ACCESO A LOS SERVICIOS DE NETZO POR PARTE DE USTED Y LOS USUARIOS EN SU *WORKSPACE*, YA SEA EN RELACIÓN CON UNA SUSCRIPCIÓN DE PAGO O UNA PRUEBA GRATUITA DE LOS SERVICIOS.**
 :::
