@@ -1,6 +1,7 @@
 ---
 editLink: false
-lastUpdated: 21.04.2023
+lastUpdated: false
+updatedAt: 21.04.2023
 title: Cookie notice
 description:
 ---
@@ -17,7 +18,7 @@ const { page } = useData()
 
 # Cookie notice
 
-<u>Last Updated {{ page.frontmatter.lastUpdated }}</u>
+<u>Last Updated {{ page.frontmatter.updatedAt }}</u>
 
 ::: warning
 BY ACCEPTING THE USE OF COOKIES, THE USER CONSENTS TO THE DOWNLOADING OF COOKIES AND/OR SIMILAR TECHNOLOGIES ON THE DEVICE IF THE CORRESPONDING OPTION IS ENABLED.

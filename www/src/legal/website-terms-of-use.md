@@ -1,6 +1,7 @@
 ---
 editLink: false
-lastUpdated: 16.09.2023
+lastUpdated: false
+updatedAt: 16.09.2023
 ---
 
 <script setup>
@@ -15,7 +16,7 @@ const { page } = useData()
 
 # Website Terms of Use
 
-<u>Last Updated {{ page.frontmatter.lastUpdated }}</u>
+<u>Last Updated {{ page.frontmatter.updatedAt }}</u>
 
 Welcome to our Website available in [https://netzo.io](https://netzo.io) (hereinafter referred to as the "Website"). These terms of use apply exclusively to the Website and do not govern our Services and/or products marketed on subdomains of the Website (e.g., [https://app.netzo.io](https://app.netzo.io)) or other related platforms. For the terms and conditions of use for our Services and/or products, please refer to the terms and conditions of use for the respective Services and/or products at the following link: [https://netzo.io/legal/main-services-agreement](https://netzo.io/legal/main-services-agreement).
 

@@ -1,6 +1,7 @@
 ---
 editLink: false
-lastUpdated: 31.01.2023
+lastUpdated: false
+updatedAt: 31.01.2023
 ---
 <script setup>
 import { onMounted } from 'vue'
@@ -14,7 +15,7 @@ const { page } = useData()
 
 # Aviso legal
 
-<u>Última actualización {{ page.frontmatter.lastUpdated }}</u>
+<u>Última actualización {{ page.frontmatter.updatedAt }}</u>
 
 En cumplimiento del Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo de 27 de abril de 2016, relativo a la protección de las personas físicas en lo que respecta al tratamiento de datos personales y a la libre circulación de estos datos, así como para el cumplimiento del artículo 10 de la Ley 34/2002, de 11 de julio, de servicios de la sociedad de la información, se expone nuestro Aviso Legal
 

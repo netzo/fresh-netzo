@@ -1,6 +1,7 @@
 ---
 editLink: false
-lastUpdated: 16.09.2023
+lastUpdated: false
+updatedAt: 16.09.2023
 ---
 
 <script setup>
@@ -15,7 +16,7 @@ const { page } = useData()
 
 # Términos de uso del Sitio web
 
-<u>Última actualización {{ page.frontmatter.lastUpdated }}</u>
+<u>Última actualización {{ page.frontmatter.updatedAt }}</u>
 
 Bienvenido al Sitio web de Netzo en [https://netzo.io](https://netzo.io) (en adelante, "Sitio web"). Estos términos de uso se aplican únicamente al Sitio web y no regulan nuestros Servicios y/o productos comercializados en subdominios del Sitio web (por ejemplo, [https://app.netzo.io](https://app.netzo.io)) u otras plataformas relacionadas. Para los términos y condiciones de uso de nuestros Servicios y/o productos, por favor consulte los términos y condiciones de uso de los Servicios y/o productos correspondientes bajo el siguiente enlace [https://netzo.io/es/legal/main-services-agreement](https://netzo.io/es/legal/main-services-agreement).
 

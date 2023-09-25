@@ -1,6 +1,7 @@
 ---
 editLink: false
-lastUpdated: 21.04.2023
+lastUpdated: false
+updatedAt: 21.04.2023
 ---
 
 <script setup>
@@ -15,7 +16,7 @@ const { page } = useData()
 
 # Aviso de cookies
 
-<u>Última actualización {{ page.frontmatter.lastUpdated }}</u>
+<u>Última actualización {{ page.frontmatter.updatedAt }}</u>
 
 ::: warning
 AL ACEPTAR EL USO DE COOKIES, EL USUARIO CONSIENTE LA DESCARGA DE LAS COOKIES Y/O TECNOLOGÍAS SIMILARES, EN EL DISPOSITIVO EN CASO DE ENCONTRASE HABILITADA LA CORRESPONDIENTE OPCIÓN.

@@ -1,6 +1,7 @@
 ---
 editLink: false
-lastUpdated: 19.09.2023
+lastUpdated: false
+updatedAt: 19.09.2023
 ---
 
 <script setup>
@@ -15,7 +16,7 @@ const { page } = useData()
 
 # Main Services Agreement
 
-<u>Last Updated {{ page.frontmatter.lastUpdated }}</u>
+<u>Last Updated {{ page.frontmatter.updatedAt }}</u>
 
 ::: info **THIS AGREEMENT IS A BINDING CONTRACT AND GOVERNS THE USE AND ACCESS TO OUR SERVICES BY YOU AND USERS IN YOUR WORKSPACE, WHETHER IN CONNECTION WITH A PAID SUBSCRIPTION OR A FREE TRIAL OF THE SERVICES**
 :::
