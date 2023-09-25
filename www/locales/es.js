@@ -662,7 +662,7 @@ export default {
       {
         title: 'Dominios personalizados',
         description: 'Utiliza tus propios dominios para todos tus Proyectos.',
-        business: '1 (Bajo solicitud)',
+        business: { class: 'i-mdi-minus' },
         enterprise: { class: 'i-mdi-clock-outline' },
       },
       {
