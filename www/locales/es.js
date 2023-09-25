@@ -491,7 +491,7 @@ export default {
     plans: {
       business: {
         title: 'Business',
-        price: 'Personalizado',
+        // price: 'Personalizado',
         // unit: 'por mes',
         button: {
           variant: 'primary',
@@ -502,7 +502,7 @@ export default {
       },
       enterprise: {
         title: 'Enterprise',
-        price: 'Personalizado',
+        // price: 'Personalizado',
         button: {
           variant: 'secondary',
           text: 'Contactanos',
