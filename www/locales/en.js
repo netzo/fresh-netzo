@@ -528,7 +528,7 @@ export default {
       {
         title: 'Included Users',
         description: 'Users included in your workspace subscription plan.',
-        business: ['5', 'Contact us for additional user pricing'],
+        business: ['5', 'Contact us for additional user pricing.'],
         enterprise: 'Custom',
       },
       {
@@ -551,19 +551,19 @@ export default {
       {
         title: 'Requests',
         description: 'Requests are HTTP requests made to invoke any of a Project\'s deployments.',
-        business: ['50k per month', 'Contact us for additional request pricing'],
+        business: ['50k per month', 'Contact us for additional request pricing.'],
         enterprise: 'Custom',
       },
       {
         title: 'Database',
         description: 'Included storage capacity for all Projects in a Workspace.',
-        business: ['5GB', 'Contact us for additional storage pricing'],
+        business: ['5GB', 'Contact us for additional storage pricing.'],
         enterprise: 'Custom',
       },
       {
         title: 'Data throughput',
         description: 'Amount of data passed through all your Projects in a given month.',
-        business: ['1 GB per month', 'Contact us for additional data throughput pricing'],
+        business: ['1 GB per month', 'Contact us for additional data throughput pricing.'],
         enterprise: 'Custom',
       },
       {
@@ -709,7 +709,7 @@ export default {
       },
       {
         title: 'Audit logs',
-        description: 'Logs on user activity and Workspace changes',
+        description: 'Logs on user activity and Workspace changes.',
         business: '30 days',
         enterprise: '365 days',
       },
@@ -740,13 +740,13 @@ export default {
       },
       {
         title: 'Standard support hours',
-        description: 'Monday to Friday from 9:00 to 19:00 (GMT+2)',
+        description: 'Monday to Friday from 9:00 to 19:00 (GMT+2).',
         business: { class: 'i-mdi-check' },
         enterprise: { class: 'i-mdi-check' },
       },
       {
         title: 'Extended support hours',
-        description: 'Saturdays from 12:00 to 18:00 (GMT+2)',
+        description: 'Saturdays from 12:00 to 18:00 (GMT+2).',
         business: { class: 'i-mdi-minus' },
         enterprise: { class: 'i-mdi-check' },
       },
@@ -808,20 +808,20 @@ export default {
           description: 'Workspaces are top-level containers that own application resources. A workspace is a private environment where you can create and deploy your projects. Each workspace has a workspace plan, and is billed accordingly.',
         },
         {
-          title: 'What is a user?',
-          description: 'Users are members of a Workspace with a user account and a pre-defined role. The amount of users that can be part of a workspace is limited by the workspace\'s plan.',
+          title: 'What is a user (internal)?',
+          description: 'Are members of a Workspace with a Netzo user account and a pre-defined role. The amount of users that can be part of a workspace is limited by the workspace\'s plan.',
+        },
+        {
+          title: 'What is a user (external)?',
+          description: 'Are end users of a Project (usually with an user interface). If you wish to know more about this feature, please get in touch.',
         },
         {
           title: 'What is a project?',
-          description: 'Projects are serverless applications deployed to Web URLs. A project contains all the code, data, and configuration files required to deploy and run your application. Additionally, all Deployments, Requests and Logs are associated to a project.',
+          description: 'Are serverless applications deployed to Web URLs. A project contains all the code, data, and configuration files required to deploy and run your application. Additionally, all Deployments, Databases, Requests and Logs are associated to a project.',
         },
         {
           title: 'What is a deployment?',
-          description: 'Deployments are the result of a successful execution of a Deployment in the Workspace. A deployment is a running instance of your app. You can create as many deployments as you need.',
-        },
-        {
-          title: 'How does Enterprise pricing work?',
-          description: 'Contact us at <a href="mailto:hello@netzo.io" target="_blank">hello@netzo.io</a> or via the live chat. We are happy to help!',
+          description: 'Are the result of a successful "build" of a Project and its deployment to a Web URL. A Deployment is a running instance of your app. You can create as many deployments as you need.',
         },
       ],
     },
