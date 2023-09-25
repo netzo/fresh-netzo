@@ -709,7 +709,7 @@ export default {
       },
       {
         title: 'Audit logs',
-        description: 'Audit logs for compliance, security and informaction on user activity and changes.',
+        description: 'Logs on user activity and Workspace changes',
         business: '30 days',
         enterprise: '365 days',
       },

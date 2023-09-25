@@ -702,7 +702,7 @@ export default {
       },
       {
         title: 'Registros de auditoría',
-        description: 'Registros de auditoría para cumplimiento, seguridad e información sobre la actividad de usarios y cambios.',
+        description: 'Logs de actividad de los usuarios y cambios del Workspace.',
         business: '30 días',
         enterprise: '365 días',
       },
