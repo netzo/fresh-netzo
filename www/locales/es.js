@@ -486,7 +486,7 @@ export default {
     hero: {
       topic: 'precios',
       title: 'Precios Flexibles que se Ajustan a Ti',
-      description: 'Contáctanos para comenzar con un plan personalizado ajustado a tus necesidades.',
+      description: 'Contáctanos para comenzar con un plan ajustado a tus necesidades.',
     },
     plans: {
       business: {
