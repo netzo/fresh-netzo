@@ -499,7 +499,7 @@ export default {
       business: {
         title: 'Business',
         price: 'Custom',
-        unit: 'per month',
+        // unit: 'per month',
         button: {
           variant: 'primary',
           text: 'Contact Sales',
@@ -533,7 +533,7 @@ export default {
       },
       {
         title: 'User limits',
-        description: 'Maximum number of users that can be part of a workspace.',
+        description: 'Maximum number of Workspace users in the subscription tier.',
         business: '20',
         enterprise: 'Unlimited',
       },
@@ -563,7 +563,7 @@ export default {
       {
         title: 'Data throughput',
         description: 'Amount of data passed through all your Projects in a given month.',
-        business: ['1 GB per month', 'Contact us for additional throughput pricing'],
+        business: ['1 GB per month', 'Contact us for additional data throughput pricing'],
         enterprise: 'Custom',
       },
       {
@@ -714,8 +714,8 @@ export default {
         enterprise: '365 days',
       },
       {
-        title: 'Single-sign on (SSO)',
-        description: '',
+        title: 'SAML and single-sign on (SSO)',
+        description: 'Use your existing identity provider to manage access to Netzo.',
         business: { class: 'i-mdi-minus' },
         enterprise: { class: 'i-mdi-clock-outline' },
       },
@@ -752,13 +752,13 @@ export default {
       },
       {
         title: 'Roadmap prioritization',
-        description: '',
+        description: 'Get early access and help us shape new features.',
         business: { class: 'i-mdi-minus' },
         enterprise: { class: 'i-mdi-check' },
       },
       {
-        title: 'Dedicated Account Manager',
-        description: 'Gain access to a dedicated accoutn manager and Netzo engineering support.',
+        title: 'Dedicated account manager',
+        description: 'Gain access to a dedicated account manager and Netzo engineering support.',
         business: { class: 'i-mdi-minus' },
         enterprise: { class: 'i-mdi-check' },
       },
@@ -769,7 +769,7 @@ export default {
         enterprise: { class: 'i-mdi-check' },
       },
       {
-        title: 'Professional Services',
+        title: 'Professional services',
         description: 'We help you build and ship custom apps, onboard and train teams, define your technical strategy, and implement best practices across your organization.',
         business: { class: 'i-mdi-minus' },
         enterprise: { class: 'i-mdi-check' },
@@ -777,6 +777,12 @@ export default {
       {
         title: 'DPA',
         description: 'DPA (Data Processing Agreement) between both Parties.',
+        business: { class: 'i-mdi-minus' },
+        enterprise: { class: 'i-mdi-check' },
+      },
+      {
+        title: 'Invoice billing',
+        description: 'Pay via invoice instead of credit card.',
         business: { class: 'i-mdi-minus' },
         enterprise: { class: 'i-mdi-check' },
       },

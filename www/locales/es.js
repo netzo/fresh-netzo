@@ -492,7 +492,7 @@ export default {
       business: {
         title: 'Business',
         price: 'Personalizado',
-        unit: 'por mes',
+        // unit: 'por mes',
         button: {
           variant: 'primary',
           text: 'Contactanos',
@@ -526,7 +526,7 @@ export default {
       },
       {
         title: 'Límite de usuarios',
-        description: 'Máximo numero de usuarios que pueden ser parte del Workspace.',
+        description: 'Máximo numero de usuarios del Workspace en la subscripción.',
         business: '20',
         enterprise: 'Ilimitado',
       },
@@ -548,7 +548,7 @@ export default {
         enterprise: 'Custom',
       },
       {
-        title: 'Base de Datos',
+        title: 'Base de datos',
         description: 'Capacidad de almacenamiento de datos incluida para todos los Proyectos del Workspace.',
         business: ['5 GB', 'Contacanos para conocer precios de almacenamiento adicional'],
         enterprise: 'Custom',
@@ -648,7 +648,7 @@ export default {
         enterprise: { class: 'i-mdi-check' },
       },
       {
-        title: 'Reversión de Despliegue',
+        title: 'Reversión de despliegue',
         description: 'Revierte a una versión anterior de tu Proyecto en un solo clic.',
         business: { class: 'i-mdi-check' },
         enterprise: { class: 'i-mdi-check' },
@@ -707,8 +707,8 @@ export default {
         enterprise: '365 días',
       },
       {
-        title: 'Single-sign on (SSO)',
-        description: '',
+        title: 'SAML y single-sign on (SSO)',
+        description: 'Usa tu proveedor de identidad (IdP) para autenticar a los usuarios de tu Workspace.',
         business: { class: 'i-mdi-minus' },
         enterprise: { class: 'i-mdi-clock-outline' },
       },
@@ -743,7 +743,7 @@ export default {
       },
       {
         title: 'Priorización en desarrollo',
-        description: '',
+        description: 'Recibe acceso temprano a nuevas funcionalidades y ayuda a darles forma.',
         business: { class: 'i-mdi-minus' },
         enterprise: { class: 'i-mdi-check' },
       },
@@ -768,6 +768,12 @@ export default {
       {
         title: 'DPA',
         description: 'Acuerdo de procesamiento de datos (DPA) entre ambas partes.',
+        business: { class: 'i-mdi-minus' },
+        enterprise: { class: 'i-mdi-check' },
+      },
+      {
+        title: 'Pago por factura',
+        description: 'Paga tras una factura en lugar de una tarjeta de crédito.',
         business: { class: 'i-mdi-minus' },
         enterprise: { class: 'i-mdi-check' },
       },
