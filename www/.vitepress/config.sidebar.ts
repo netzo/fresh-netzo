@@ -122,12 +122,12 @@ export const sidebarEN: DefaultTheme.Sidebar = {
             // { text: 'Overview', link: '/docs/platform/projects/overview' },
             { text: 'Studio', link: '/docs/platform/projects/studio' },
             { text: 'Requests', link: '/docs/platform/projects/requests' },
-            { text: 'Databases', link: '/docs/platform/projects/databases' },
             { text: 'Deployments', link: '/docs/platform/projects/deployments' },
             { text: 'Logs', link: '/docs/platform/projects/logs' },
             { text: 'Settings', link: '/docs/platform/projects/settings' },
           ],
         },
+        { text: 'Databases', link: '/docs/platform/databases' },
         { text: 'Variables', link: '/docs/platform/variables' },
         { text: 'Notifications', link: '/docs/platform/notifications' },
         { text: 'Templates', link: '/docs/platform/templates' },
@@ -192,6 +192,14 @@ export const sidebarEN: DefaultTheme.Sidebar = {
         },
         { text: '<code>cli</code>', link: '/docs/netzo/cli' },
         { text: '<code>db</code>', link: '/docs/netzo/db' },
+        {
+          text: '<code>modules</code>',
+          // link: '/docs/netzo/modules',
+          collapsed: false,
+          items: [
+            { text: '<code>auth</code>', link: '/docs/netzo/modules/auth' },
+          ],
+        },
         {
           text: '<code>ui</code>',
           link: '/docs/netzo/ui',
