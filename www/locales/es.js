@@ -486,12 +486,12 @@ export default {
     hero: {
       topic: 'precios',
       title: 'Precios Flexibles que se Ajustan a Ti',
-      description: 'Contáctanos para comenzar con un plan personalizado ajustado a tus necesidades.',
+      description: 'Contáctanos para comenzar con un plan ajustado a tus necesidades.',
     },
     plans: {
       business: {
         title: 'Business',
-        price: 'Personalizado',
+        // price: 'Personalizado',
         // unit: 'por mes',
         button: {
           variant: 'primary',
@@ -502,7 +502,7 @@ export default {
       },
       enterprise: {
         title: 'Enterprise',
-        price: 'Personalizado',
+        // price: 'Personalizado',
         button: {
           variant: 'secondary',
           text: 'Contactanos',
@@ -521,7 +521,7 @@ export default {
       {
         title: 'Usuarios incluidos',
         description: 'Son los usuarios incluidos en el plan suscripcion del Workspace.',
-        business: ['5', 'Contactanos para conocer precios por usuario adicional'],
+        business: ['5', 'Contactanos para conocer precios por usuario adicional.'],
         enterprise: 'Custom',
       },
       {
@@ -537,14 +537,14 @@ export default {
       },
       {
         title: 'Proyectos',
-        description: 'Los proyectos son aplicaciones web. Cada proyecto contiene sus propio despliegues, base de datos, logs y más.',
+        description: 'Los proyectos son aplicaciones web. Cada proyecto contiene sus propio deployments, base de datos, logs y más.',
         business: '20',
         enterprise: 'Custom',
       },
       {
         title: 'Solicitudes',
-        description: 'Solicitudes HTTP realizadas para invocar cualquiera de los despliegues de un Proyecto.',
-        business: ['50k al mes', 'Contacanos para conocer precios por solicitud adicional'],
+        description: 'Solicitudes HTTP realizadas para invocar cualquiera de los deployments de un Proyecto.',
+        business: ['50k al mes', 'Contacanos para conocer precios por solicitud adicional.'],
         enterprise: 'Custom',
       },
       {
@@ -556,7 +556,7 @@ export default {
       {
         title: 'Transferencia de datos',
         description: 'Cantidad de datos transferidos a través de todos sus Proyectos en un mes dado.',
-        business: ['1 GB al mes', 'Contacanos para conocer precios de transferencia adicional'],
+        business: ['1 GB al mes', 'Contacanos para conocer precios de transferencia adicional.'],
         enterprise: 'Custom',
       },
       {
@@ -638,11 +638,11 @@ export default {
       },
       {
         type: 'subheader',
-        title: 'Despliegues',
+        title: 'Deployments',
         description: '',
       },
       {
-        title: 'Despliegues versionados',
+        title: 'Deployments versionados',
         description: '',
         business: { class: 'i-mdi-check' },
         enterprise: { class: 'i-mdi-check' },
@@ -662,7 +662,7 @@ export default {
       {
         title: 'Dominios personalizados',
         description: 'Utiliza tus propios dominios para todos tus Proyectos.',
-        business: '1 (Bajo solicitud)',
+        business: { class: 'i-mdi-minus' },
         enterprise: { class: 'i-mdi-clock-outline' },
       },
       {
@@ -731,13 +731,13 @@ export default {
       },
       {
         title: 'Horario estándar',
-        description: 'Horario de atención de lunes a viernes de 9:00 a 19:00 (GMT+2)',
+        description: 'Horario de atención de lunes a viernes de 9:00 a 19:00 (GMT+2).',
         business: { class: 'i-mdi-check' },
         enterprise: { class: 'i-mdi-check' },
       },
       {
         title: 'Horario extendido',
-        description: 'Horario de atención sábados de 12:00 a 18:00 (GMT+2)',
+        description: 'Horario de atención sábados de 12:00 a 18:00 (GMT+2).',
         business: { class: 'i-mdi-minus' },
         enterprise: { class: 'i-mdi-check' },
       },
@@ -792,20 +792,20 @@ export default {
           description: 'Los espacios de trabajo son contenedores de nivel superior que poseen recursos de aplicación. Un Workspace es un entorno privado donde puedes crear e implementar tus proyectos. Cada Workspace tiene un plan de Workspace y se factura en consecuencia.',
         },
         {
-          title: '¿Qué es un usuario?',
-          description: 'Los usuarios son miembros de un Workspace con una cuenta de usuario y un rol predefinido. La cantidad de usuarios que pueden formar parte de un Workspace está limitada por el plan del Workspace.',
+          title: '¿Qué es un usuario (interno)?',
+          description: 'Son miembros de un Workspace con una cuenta de usuario de Netzo y un rol predefinido. La cantidad de usuarios que pueden formar parte de un Workspace está limitada por el plan del Workspace.',
+        },
+        {
+          title: '¿Qué es un usuario (externo)?',
+          description: 'Son usuarios finales de un Proyecto (usualmente con una interfaz de usuario). Ponte en contacto para conocer más sobre esta funcionalidad.',
         },
         {
           title: '¿Qué es un proyecto?',
-          description: 'Los proyectos son aplicaciones sin servidor implementadas en URL web. Un proyecto contiene todo el código, los datos y los archivos de configuración necesarios para implementar y ejecutar tu aplicación. Además, todas las implementaciones, solicitudes y registros están asociados a un proyecto.',
+          description: 'Son aplicaciones serverless, ejecutables en URLs web. Un proyecto contiene todo su código, datos y archivos de configuración necesarios para implementarse y ejecutarse. Además, todos sus Deployments, Solicitudes y Logs están asociados a usn proyecto.',
         },
         {
-          title: '¿Qué es una implementación?',
-          description: 'Las implementaciones son el resultado de una ejecución exitosa de una implementación en el Workspace. Una implementación es una instancia en ejecución de tu aplicación. Puedes crear tantas implementaciones como necesites.',
-        },
-        {
-          title: '¿Cómo funciona la facturación para empresas?',
-          description: 'Contáctanos en <a href="mailto:hello@netzo.io" target="_blank">hello@netzo.io</a> o a través del chat en vivo. ¡Estamos encantados de ayudarte!',
+          title: '¿Qué es un Deployment?',
+          description: 'Son el resultado de un "build" exitoso  de un Proyecto y su despligue a un URL web. Un Deployment es una instancia en ejecución de tu aplicación. Puedes crear tantos Deployments como necesites.',
         },
       ],
     },
