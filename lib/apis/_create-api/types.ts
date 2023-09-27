@@ -14,24 +14,30 @@ export type ResponseType = keyof ResponseMap | "json";
 export type MappedType<R extends ResponseType, JsonType = any> = R extends
   keyof ResponseMap ? ResponseMap[R] : JsonType;
 
-export type ClientMethodHandlerGET = <T = any, R extends ResponseType = "json">(
-  query?: QueryObject,
+export type ApiMethodHandlerGET<Query = QueryObject> = <
+  T = any,
+  R extends ResponseType = "json",
+>(
+  query?: Query,
   options?: Omit<FetchOptions<R>, "baseURL" | "method">,
 ) => Promise<MappedType<R, T>>;
 
-export type ClientMethodHandler = <T = any, R extends ResponseType = "json">(
-  data?: RequestInit["body"] | Record<string, any>,
-  query?: QueryObject,
+export type ApiMethodHandler<Data = never, Query = QueryObject> = <
+  T = any,
+  R extends ResponseType = "json",
+>(
+  data?: Data,
+  query?: Query,
   options?: Omit<FetchOptions<R>, "baseURL" | "method">,
 ) => Promise<MappedType<R, T>>;
 
-export type ClientBuilder = {
-  [key: string]: ClientBuilder;
-  (...segmentsOrIds: (string | number)[]): ClientBuilder;
+export type ApiBuilder = {
+  [key: string]: ApiBuilder;
+  (...segmentsOrIds: (string | number)[]): ApiBuilder;
 } & {
-  get: ClientMethodHandlerGET;
-  post: ClientMethodHandler;
-  put: ClientMethodHandler;
-  delete: ClientMethodHandler;
-  patch: ClientMethodHandler;
+  get: ApiMethodHandlerGET<FetchOptions["query"]>;
+  post: ApiMethodHandler<FetchOptions["body"], FetchOptions["query"]>;
+  put: ApiMethodHandler<FetchOptions["body"], FetchOptions["query"]>;
+  patch: ApiMethodHandler<FetchOptions["body"], FetchOptions["query"]>;
+  delete: ApiMethodHandler<FetchOptions["body"], FetchOptions["query"]>;
 };
