@@ -16,7 +16,9 @@ import { defineNetzoConfig } from 'netzo/config/mod.ts'
 import { htmx } from 'netzo/ui/plugins/htmx/mod.ts'
 
 export default defineNetzoConfig({
-  plugins: [htmx()]
+  fresh: {
+    plugins: [htmx()]
+  }
 })
 ```
 <<< src/main.ts

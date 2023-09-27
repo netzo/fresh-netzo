@@ -16,7 +16,9 @@ import { defineNetzoConfig } from 'netzo/config/mod.ts'
 import { flowbite } from 'netzo/ui/plugins/flowbite/mod.ts'
 
 export default defineNetzoConfig({
-  plugins: [flowbite()]
+  fresh: {
+    plugins: [flowbite()]
+  }
 })
 ```
 <<< src/main.ts

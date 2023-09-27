@@ -16,7 +16,9 @@ import { defineNetzoConfig } from 'netzo/config/mod.ts'
 import { netzoAuth } from 'netzo/ui/plugins/netzoAuth/mod.ts'
 
 export default defineNetzoConfig({
-  plugins: [netzoAuth({ visibility: 'private' })]
+  fresh: {
+    plugins: [netzoAuth({ visibility: 'private' })]
+  }
 })
 ```
 <<< src/main.ts

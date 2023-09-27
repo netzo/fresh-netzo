@@ -19,7 +19,9 @@ import { netzoErrorPages } from 'netzo/ui/plugins/netzoErrorPages/mod.ts'
 import { unocss } from 'netzo/ui/plugins/unocss/mod.ts'
 
 export default defineNetzoConfig({
-  plugins: [netzoErrorPages(), unocss()]
+  fresh: {
+    plugins: [netzoErrorPages(), unocss()]
+  }
 })
 ```
 <<< src/main.ts

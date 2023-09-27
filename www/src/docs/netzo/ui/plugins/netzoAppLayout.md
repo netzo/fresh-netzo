@@ -16,7 +16,9 @@ import { defineNetzoConfig } from 'netzo/config/mod.ts'
 import { netzoAppLayout } from 'netzo/ui/plugins/netzoAppLayout/mod.ts'
 
 export default defineNetzoConfig({
-  plugins: [netzoAppLayout()]
+  fresh: {
+    plugins: [netzoAppLayout()]
+  }
 })
 ```
 <<< src/main.ts

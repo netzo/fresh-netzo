@@ -20,7 +20,9 @@ import { defineNetzoConfig } from 'netzo/config/mod.ts'
 import { netzoDB } from 'netzo/ui/plugins/netzoDB/mod.ts'
 
 export default defineNetzoConfig({
-  plugins: [netzoDB()]
+  fresh: {
+    plugins: [netzoDB()]
+  }
 })
 ```
 <<< src/main.ts

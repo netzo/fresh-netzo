@@ -17,12 +17,14 @@ import { unocss } from 'netzo/ui/plugins/unocss/mod.ts'
 import { presetNetzo } from 'netzo/ui/unocss/preset-netzo.ts'
 
 export default defineNetzoConfig({
-  plugins: [
-    unocss({
-      presets: [presetNetzo()]
+  fresh: {
+    plugins: [
+      unocss({
+        presets: [presetNetzo()]
       // ...additional configuration
-    })
-  ]
+      })
+    ]
+  }
 })
 ```
 <<< src/main.ts
