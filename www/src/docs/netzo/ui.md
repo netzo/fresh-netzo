@@ -51,7 +51,7 @@ The netzo theme is based on the UnoCSS `presetNetzo`. You can find all the defau
 
 ::: code-group
 ```ts [netzo.config.ts]
-import { defineNetzoConfig } from 'netzo/config/mod.ts'
+import { defineNetzoConfig } from 'netzo/config.ts'
 import { unocss } from 'netzo/ui/plugins/unocss/mod.ts'
 import { presetNetzo } from 'netzo/ui/unocss/preset-netzo.ts'
 

@@ -12,7 +12,7 @@ Register the plugin in `netzo.config.ts` and ensure `main.ts` and `dev.ts` are r
 
 ::: code-group
 ```ts [netzo.config.ts]
-import { defineNetzoConfig } from 'netzo/config/mod.ts'
+import { defineNetzoConfig } from 'netzo/config.ts'
 import { daisyui } from 'netzo/ui/plugins/daisyui/mod.ts'
 
 export default defineNetzoConfig({

@@ -12,7 +12,7 @@ Register the plugin in `netzo.config.ts` and ensure `main.ts` and `dev.ts` are r
 
 ::: code-group
 ```ts [netzo.config.ts]
-import { defineNetzoConfig } from 'netzo/config/mod.ts'
+import { defineNetzoConfig } from 'netzo/config.ts'
 import { htmx } from 'netzo/ui/plugins/htmx/mod.ts'
 
 export default defineNetzoConfig({

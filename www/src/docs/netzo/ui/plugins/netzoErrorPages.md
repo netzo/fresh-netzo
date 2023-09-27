@@ -14,7 +14,7 @@ Note that the [`unocss`](/docs/netzo/ui/plugins/unocss) plugin must be registere
 
 ::: code-group
 ```ts [netzo.config.ts]
-import { defineNetzoConfig } from 'netzo/config/mod.ts'
+import { defineNetzoConfig } from 'netzo/config.ts'
 import { netzoErrorPages } from 'netzo/ui/plugins/netzoErrorPages/mod.ts'
 import { unocss } from 'netzo/ui/plugins/unocss/mod.ts'
 
