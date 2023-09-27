@@ -76,5 +76,3 @@ export const remove = async <T = unknown>(resource: string, id: string) => {
   if (!ok) throw new Error("Something went wrong.");
   return id;
 };
-
-
