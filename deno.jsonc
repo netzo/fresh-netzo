@@ -2,8 +2,8 @@
   "exclude": [
     ".github",
     "www/",
-    "templates/_wip/",
-    "_fresh"
+    "**/_wip/",
+    "**/_fresh/"
   ],
   "lock": false,
   "tasks": {
