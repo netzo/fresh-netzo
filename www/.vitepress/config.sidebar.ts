@@ -197,8 +197,14 @@ export const sidebarEN: DefaultTheme.Sidebar = {
           link: '/docs/netzo/modules',
           collapsed: false,
           items: [
-            { text: '<code>auth</code>', link: '/docs/netzo/modules/auth' },
-            { text: '<code>db</code>', link: '/docs/netzo/modules/db' },
+            { text: '<code>appLayout</code>', link: '/docs/netzo/modules/appLayout' },
+            { text: '<code>daisyui</code>', link: '/docs/netzo/modules/daisyui' },
+            { text: '<code>errorPages</code>', link: '/docs/netzo/modules/errorPages' },
+            { text: '<code>flowbite</code>', link: '/docs/netzo/modules/flowbite' },
+            { text: '<code>htmx</code>', link: '/docs/netzo/modules/htmx' },
+            { text: '<code>oauth</code>', link: '/docs/netzo/modules/oauth' },
+            { text: '<code>restdb</code>', link: '/docs/netzo/modules/restdb' },
+            { text: '<code>unocss</code>', link: '/docs/netzo/modules/unocss' },
           ],
         },
         {
@@ -250,21 +256,6 @@ export const sidebarEN: DefaultTheme.Sidebar = {
           ],
         },
         { text: '<code>composables</code>', link: '/docs/netzo/composables' },
-        {
-          text: '<code>plugins</code>',
-          link: '/docs/netzo/plugins',
-          collapsed: true,
-          items: [
-            { text: '<code>daisyui</code>', link: '/docs/netzo/modules/daisyui' },
-            { text: '<code>flowbite</code>', link: '/docs/netzo/modules/flowbite' },
-            { text: '<code>htmx</code>', link: '/docs/netzo/modules/htmx' },
-            { text: '<code>appLayout</code>', link: '/docs/netzo/modules/appLayout' },
-            { text: '<code>oauth</code>', link: '/docs/netzo/modules/oauth' },
-            { text: '<code>restdb</code>', link: '/docs/netzo/modules/restdb' },
-            { text: '<code>errorPages</code>', link: '/docs/netzo/modules/errorPages' },
-            { text: '<code>unocss</code>', link: '/docs/netzo/modules/unocss' },
-          ],
-        },
       ],
     },
     {

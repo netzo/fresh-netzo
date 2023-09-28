@@ -1,6 +1,6 @@
 # Modules
 
-**Modules provide essential functionality to add to your projects a plug-and-play fashion.** The Modules page will display a list of all `modules` registered in the `netzo.config` file of the project. Modules only work when deployed to Netzo, making them different to [`netzo/plugins`](/docs/netzo/plugins) which are normal [Fresh plugins](https://fresh.deno.dev/) plugins.
+**Modules provide essential functionality to add to your projects a plug-and-play fashion.** The Modules page will display a list of all `modules` registered in the `netzo.config` file of the project. Modules augment ordinary [Fresh](https://fresh.deno.dev/) plugins to integrate with Netzo to boost developer experience and simplify configuration.
 
 <!-- ![Modules](/docs/images/modules/modules-overview.webp) -->
 

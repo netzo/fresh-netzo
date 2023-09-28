@@ -310,12 +310,12 @@ export default {
           description: '<strong style="color: #0080ff"><a href="/docs/templates/apps">Plantillas</a></strong> para comenzar implementaciones a medida en segundos',
         },
         {
-          icon: 'i-mdi-hexagon-multiple',
+          icon: 'i-mdi-star-four-points',
           description: '<strong style="color: #0080ff"><a href="/docs/netzo/apis">Integraciones</a></strong> a cientos de APIS sin necediad de leer su documentacion',
         },
         {
-          icon: 'i-mdi-widgets',
-          description: '<strong style="color: #0080ff"><a href="/docs/netzo/components">Componentes UI</a></strong>, <strong style="color: #0080ff"><a href="/docs/netzo/plugins">Plugins</a></strong> y <strong style="color: #0080ff"><a href="/docs/netzo/composables">Utilidades</a></strong> para darte velocidad y simplicidad',
+          icon: 'i-mdi-hexagon-multiple',
+          description: '<strong style="color: #0080ff"><a href="/docs/netzo/components">Componentes UI</a></strong>, <strong style="color: #0080ff"><a href="/docs/netzo/modules">Módulos</a></strong> y <strong style="color: #0080ff"><a href="/docs/netzo/composables">Utilidades</a></strong> para velocidad y simplicidad',
         },
         {
           icon: 'i-mdi-bug',
