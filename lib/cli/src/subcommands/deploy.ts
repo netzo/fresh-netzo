@@ -339,9 +339,11 @@ async function deploy(opts: DeployOpts): Promise<void> {
               console.log(` - https://${domain}`);
             }
 
-            // patch ALL project.files and project.deployment in netzo API:
+            // patch ALL project.files and project.config in netzo API:
+            const { project, ...config } = netzoConfig; // overwrite with latest
             await api.projects[project._id].patch<Project>({
               files: projectFiles,
+              config // drops non-serializable props
             });
             deploySpinner!.succeed(
               `Patched project files (open in studio at https://app.netzo.io/workspaces/${project.workspaceId}/projects/${project._id}/studio)`,

@@ -1,8 +1,8 @@
 import type { JSX } from "preact";
-import type { Plugin } from "$fresh/server.ts";
+import type { NetzoModule } from "../../config.ts";
 import AppLayout from "./app-layout.tsx";
 
-export interface AppLayoutOptions {
+export interface AppLayoutOptions extends NetzoModule {
   title?: string;
   description?: string;
   favicon?: string;
@@ -14,7 +14,7 @@ export const appLayout = (
     title: "Built with Netzo",
     favicon: "/favicon.svg",
   },
-): Plugin => {
+): NetzoModule => {
   return {
     name: "appLayout",
     routes: [

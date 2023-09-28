@@ -8,22 +8,19 @@
 
 ## Usage
 
-Register the plugin in `netzo.config.ts` and ensure `main.ts` and `dev.ts` are receive the `config` object as shown below.
+Register the module in `netzo.config.ts` and ensure `main.ts` and `dev.ts` are receive the `config` object as shown below.
 
 ::: code-group
 ```ts [netzo.config.ts]
 import { defineNetzoConfig } from 'netzo/config.ts'
-import { unocss } from 'netzo/modules/unocss/mod.ts'
 import { presetNetzo } from 'netzo/modules/unocss/preset-netzo.ts'
 
 export default defineNetzoConfig({
-  fresh: {
-    plugins: [
-      unocss({
-        presets: [presetNetzo()]
+  modules: {
+    unocss: {
+      presets: [presetNetzo()]
       // ...additional configuration
-      })
-    ]
+    }
   }
 })
 ```
@@ -36,7 +33,7 @@ export default defineNetzoConfig({
 
 ## Configuration
 
-This plugin accepts the original UnoCSS [`UserConfig`](https://unocss.dev/config) object.
+This module accepts the original UnoCSS [`UserConfig`](https://unocss.dev/config) object.
 
 ```ts
 interface UnocssOptions extends UserConfig {

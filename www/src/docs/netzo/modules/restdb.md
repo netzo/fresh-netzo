@@ -12,20 +12,15 @@ Adds routes to serve a flexible RESTful API for the [Deno KV](https://deno.com/d
 
 ## Usage
 
-### Adapters
-
-#### Fresh
-
-Register the plugin in `netzo.config.ts` and ensure `main.ts` and `dev.ts` are receive the `config` object as shown below.
+Register the module in `netzo.config.ts` and ensure `main.ts` and `dev.ts` are receive the `config` object as shown below.
 
 ::: code-group
 ```ts [netzo.config.ts]
 import { defineNetzoConfig } from 'netzo/config.ts'
-import { restdb } from 'netzo/modules/restdb/mod.ts'
 
 export default defineNetzoConfig({
-  fresh: {
-    plugins: [restdb()]
+  modules: {
+    restdb: {}
   }
 })
 ```
@@ -36,13 +31,9 @@ export default defineNetzoConfig({
 ::: warning Fresh configuration [must](https://fresh.deno.dev/docs/concepts/ahead-of-time-builds#migrating-existing-projects-with-plugins) be defined in `netzo.config.ts`.
 :::
 
-#### Hono
-
-Support for [Hono](https://hono.dev/) is coming soon.
-
 ### Auth
 
-Authentication and authorization for your Deno KV data store is currently user's responsibility and can be used with existing authentication and authorization systems. This plugin might provide built-in support for this in future iterations.
+Authentication and authorization for your Deno KV data store is currently user's responsibility and can be used with existing authentication and authorization systems. This module might provide built-in support for this in future iterations.
 
 ## Configuration
 

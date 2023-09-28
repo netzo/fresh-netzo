@@ -23,7 +23,7 @@ export async function getNetzoConfigUrl() {
       }
     }
   }
-};
+}
 
 export async function assertExistsNetzoConfigMod(
   url: string,

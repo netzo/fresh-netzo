@@ -2,7 +2,7 @@ import { z } from "zod/mod.ts";
 import type { Handlers } from "$fresh/server.ts";
 import type { PluginRoute } from "$fresh/src/server/types.ts";
 import type { RestdbOptions, RestdbServiceOptions } from "../mod.ts";
-import * as db from "../../../../db/mod.ts";
+import * as db from "../../db/mod.ts";
 
 const METHODS = ["find", "get", "create", "update", "patch", "remove"];
 const notAllowed = () => new Response("Method not allowed", { status: 405 });

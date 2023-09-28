@@ -8,16 +8,15 @@
 
 ## Usage
 
-Register the plugin in `netzo.config.ts` and ensure `main.ts` and `dev.ts` are receive the `config` object as shown below.
+Register the module in `netzo.config.ts` and ensure `main.ts` and `dev.ts` are receive the `config` object as shown below.
 
 ::: code-group
 ```ts [netzo.config.ts]
 import { defineNetzoConfig } from 'netzo/config.ts'
-import { flowbite } from 'netzo/modules/flowbite/mod.ts'
 
 export default defineNetzoConfig({
-  fresh: {
-    plugins: [flowbite()]
+  modules: {
+    flowbite: {}
   }
 })
 ```

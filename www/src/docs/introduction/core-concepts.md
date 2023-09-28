@@ -32,7 +32,7 @@ You can choose to theme components however you would like. However, we strongly 
 
 Powered by [UnoCSS](https://github.com/antfu/unocss), you can use Tailwind/Windi CSS utilities to quickly customize the look and feel of components. The `presetNetzo` includes component class names with beautiful and consistent defaults which you can still easily customize.
 
-::: warning Requires the [`unocss`](/docs/netzo/modules/unocss) plugin to be registered as well.
+::: warning Requires the [`unocss`](/docs/netzo/modules/unocss) module to be registered as well.
 :::
 
 ### Theming
@@ -42,17 +42,14 @@ The netzo theme is based on the UnoCSS `presetNetzo`. You can find all the defau
 ::: code-group
 ```ts [netzo.config.ts]
 import { defineNetzoConfig } from 'netzo/config.ts'
-import { unocss } from 'netzo/modules/unocss/mod.ts'
 import { presetNetzo } from 'netzo/modules/unocss/preset-netzo.ts'
 
 export default defineNetzoConfig({
-  fresh: {
-    plugins: [
-      unocss({
-        presets: [presetNetzo()]
+  modules: {
+    unocss: {
+      presets: [presetNetzo()]
       // ...additional configuration
-      })
-    ]
+    }
   }
 })
 ```
@@ -61,7 +58,7 @@ export default defineNetzoConfig({
 :::
 
 ::: details Custom theme
-To use a custom theme you can pass a custom [`UserConfig`](https://unocss.dev/config) object to the `unocss` plugin instead. This will lose all the benefits of the `presetNetzo`. Instead, it is recommended to extend the `presetNetzo` with your own customizations.
+To use a custom theme you can pass a custom [`UserConfig`](https://unocss.dev/config) object to the `unocss` module instead. This will lose all the benefits of the `presetNetzo`. Instead, it is recommended to extend the `presetNetzo` with your own customizations.
 :::
 
 ### Usage

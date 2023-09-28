@@ -1,6 +1,6 @@
-import { Plugin } from "$fresh/server.ts";
+import type { NetzoModule } from "../../config.ts";
 
-export interface FlowbiteOptions {
+export interface FlowbiteOptions extends NetzoModule {
   additionalStylesheets?: string[];
   additionalScripts?: string[];
   plugins?: {
@@ -8,7 +8,7 @@ export interface FlowbiteOptions {
   };
 }
 
-export const flowbite = (options: FlowbiteOptions = {}): Plugin => {
+export const flowbite = (options: FlowbiteOptions = {}): NetzoModule => {
   if (!options.additionalScripts) options.additionalScripts = [];
   if (!options.additionalStylesheets) options.additionalStylesheets = [];
   if (!options.plugins) options.plugins = { datepicker: true };

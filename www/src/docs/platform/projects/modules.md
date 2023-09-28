@@ -1,6 +1,6 @@
 # Modules
 
-**Modules provide essential functionality to add to your projects a plug-and-play fashion.** The Modules page will display a list of all `modules` registered in the `netzo.config` file of the project. Modules augment ordinary [Fresh](https://fresh.deno.dev/) plugins to integrate with Netzo to boost developer experience and simplify configuration.
+**Modules provide essential functionality to add to your projects a plug-and-play fashion.** The Modules page will display a list of all `modules` registered in the `netzo.config` file of the project. Modules augment ordinary [Fresh](https://fresh.deno.dev/) plugins to better integrate with Netzo, simplify configuration and boost developer experience.
 
 <!-- ![Modules](/docs/images/modules/modules-overview.webp) -->
 
@@ -28,14 +28,14 @@ Register the module `netzo.config.(ts|js)`
 ```ts
 export default defineNetzoConfig({
   modules: {
-    auth: { /* config */ }
+    [uid]: { /* config */ }
   }
 })
 ```
 == CLI (soon)
 Run the following command in your terminal.
 ```sh
-netzo add module <moduleName>
+netzo add module <uid>
 ```
 == UI (soon)
 Coming soon...
@@ -45,22 +45,25 @@ Coming soon...
 
 Custom modules can be register in the same way in the `netzo.config` file of the project by passing the requried configuration. Doing so will allow Netzo to display the module in the Modules page.
 
-For example, to register the Fresh plugin `unocss` as a custom module in `netzo.config.(ts|js)` and make it available in the Modules page, you can do the following:
+For example, to register the Fresh plugin [`twind`](https://fresh.deno.dev/docs/examples/using-twind-v1) as a custom module in `netzo.config.(ts|js)` and make it available in the Modules page, you can do the following:
 
 ::: tabs
 == Manual
 Register the module `netzo.config.(ts|js)`
 ```ts
+import twindConfig from './twind.config.ts'
+import twindPlugin from '$fresh/plugins/twind.ts'
+
 export default defineNetzoConfig({
   modules: {
-    unocss: {
-      name: 'UnoCSS',
-      avatar: 'https://api.iconify.design/logos-unocss.svg',
-      fresh: {
-        plugins: [
-          unocss({ /* config */ })
-        ]
-      }
+    twind: {
+      name: 'Twind',
+      display: {
+        avatar: 'https://twind.dev/assets/twind-logo-animated.svg'
+      },
+      plugins: [
+        twindPlugin(twindConfig)
+      ]
     }
   }
 })

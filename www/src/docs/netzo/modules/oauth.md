@@ -12,16 +12,15 @@ Adds a middleware to protect routes with authentication based on access control 
 
 ## Usage
 
-Register the plugin in `netzo.config.ts` and ensure `main.ts` and `dev.ts` are receive the `config` object as shown below.
+Register the module in `netzo.config.ts` and ensure `main.ts` and `dev.ts` are receive the `config` object as shown below.
 
 ::: code-group
 ```ts [netzo.config.ts]
 import { defineNetzoConfig } from 'netzo/config.ts'
-import { oauth } from 'netzo/modules/oauth/mod.ts'
 
 export default defineNetzoConfig({
-  fresh: {
-    plugins: [oauth({ visibility: 'private' })]
+  modules: {
+    oauth: { visibility: 'private' }
   }
 })
 ```

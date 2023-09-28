@@ -1,14 +1,14 @@
-import type { Plugin } from "$fresh/server.ts";
+import type { NetzoModule } from "../../config.ts";
 import { ErrorPage404, ErrorPage500 } from "./error-pages.tsx";
 
-export interface ErrorPagesOptions {
+export interface ErrorPagesOptions extends NetzoModule {
   404?: boolean;
   500?: boolean;
 }
 
 export const errorPages = (
   options: ErrorPagesOptions = { "404": true, "500": true },
-): Plugin => {
+): NetzoModule => {
   return {
     name: "errorPages",
     routes: [
