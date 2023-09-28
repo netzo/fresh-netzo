@@ -23,9 +23,9 @@ const router = useRouter()
         :class="{ 'cursor-pointer': item.href }"
         @click="() => item.href && router.go(item.href)"
       >
-        <slot v-if="$slots.image || (item.display?.icon || item.display?.src)" v-bind="item" name="image">
-          <div v-if="item.display?.icon" :class="item.display?.icon" />
-          <img v-else-if="item.display?.src" class="w-full rounded-t-lg" :src="item.display.src" :alt="item.title">
+        <slot v-if="$slots.image || item.display?.icon || item.display?.src" v-bind="item" name="image">
+          <div v-if="!!item.display?.icon" :class="item.display.icon" />
+          <img v-else-if="!!item.display?.src" class="w-full rounded-t-lg" :src="item.display.src" :alt="item.title">
         </slot>
         <div class="pa-4">
           <h5

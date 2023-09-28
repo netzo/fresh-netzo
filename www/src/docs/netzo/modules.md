@@ -15,7 +15,7 @@ import en from '~/locales/en.js'
 
 Apart from the core modules listed below, you can always [create custom modules](/docs/platform/projects/modules#custom-modules) by registering them in `netzo.config`.
 
-<!-- NOTE: pass in 'compact' prop if using with `aside: true` -->
+<!-- NOTE: pass in 'compact' prop if using with `aside: false` -->
 <!-- NOTE: could split into H3 groups via `en.components.filter(...)` -->
 <SectionDocsCards :items="en.modules" compact>
   <template #image="{ src, title }">

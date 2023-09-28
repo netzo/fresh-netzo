@@ -19,7 +19,7 @@ Pick the components you need, copy and paste the code into your project and cust
 This approach gives you full ownership and control over the code, allowing you to decide how the components are built and styled. Start with some sensible defaults, then customize the components to your needs.
 :::
 
-<!-- NOTE: pass in 'compact' prop if using with `aside: true` -->
+<!-- NOTE: pass in 'compact' prop if using with `aside: false` -->
 <!-- NOTE: could split into H3 groups via `en.components.filter(...)` -->
 <SectionDocsCards :items="en.components" compact>
   <template #image="{ icon, src, title }">
