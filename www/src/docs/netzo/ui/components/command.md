@@ -1,7 +1,7 @@
 <script setup>
 import SectionDocsCards from '@theme/components/sections/SectionDocsCards.vue'
 import en from '~/locales/en.js'
-import { ui } from '~/../lib/ui/components/registry.ts'
+import { ui } from '~/../lib/components/registry.ts'
 import { buildDenoJson } from '~/src/utils.ts'
 const item = en.components.find(({ uid }) => uid === 'command')
 const entry = ui.find(i => item.uid === i.name)
@@ -43,7 +43,7 @@ import {
   CommandList,
   CommandSeparator,
   CommandShortcut,
-} from "netzo/ui/components/ui/command.tsx";
+} from 'netzo/components/ui/command.tsx'
 ```
 
 ## Examples
@@ -53,11 +53,11 @@ Working examples to copy-paste into projects under `components/ui/`.
 ### Default
 
 ::: code-group
-<<< @/../../lib/ui/components/example/command.tsx
+<<< @/../../lib/components/example/command.tsx
 :::
 
 ### Dialog
 
 ::: code-group
-<<< @/../../lib/ui/components/example/command.dialog.tsx
+<<< @/../../lib/components/example/command.dialog.tsx
 :::

@@ -1,7 +1,7 @@
 <script setup>
 import SectionDocsCards from '@theme/components/sections/SectionDocsCards.vue'
 import en from '~/locales/en.js'
-import { ui } from '~/../lib/ui/components/registry.ts'
+import { ui } from '~/../lib/components/registry.ts'
 import { buildDenoJson } from '~/src/utils.ts'
 const item = en.components.find(({ uid }) => uid === 'radio-group')
 const entry = ui.find(i => item.uid === i.name)
@@ -40,7 +40,7 @@ After [installation](#installation) components can be imported and used directly
 import {
   RadioGroup,
   RadioGroupItem,
-} from "netzo/ui/components/ui/radio-group.tsx";
+} from 'netzo/components/ui/radio-group.tsx'
 ```
 
 ## Examples
@@ -50,12 +50,12 @@ Working examples to copy-paste into projects under `components/ui/`.
 ### Default
 
 ::: code-group
-<<< @/../../lib/ui/components/example/radio-group.tsx
+<<< @/../../lib/components/example/radio-group.tsx
 :::
 
 ### Form
 
 ::: code-group
-<<< @/../../lib/ui/components/example/radio-group.form.tsx
+<<< @/../../lib/components/example/radio-group.form.tsx
 :::
 

@@ -7,11 +7,11 @@ import SectionDocsCards from '@theme/components/sections/SectionDocsCards.vue'
 import en from '~/locales/en.js'
 </script>
 
-# `netzo/ui/components`
+# `netzo/components`
 
-> [`https://deno.land/x/netzo/ui/components`](https://deno.land/x/netzo/ui/components)
+> [`https://deno.land/x/netzo/components`](https://deno.land/x/netzo/components)
 
-**The `netzo/ui/components` module is a collection of UI components written in [Preact](https://preactjs.com/) (TSX) and built with [Radix UI](https://www.radix-ui.com/) and [UnoCSS](https://unocss.dev/).** This is not a component library. It is a collection of re-usable components that you can copy and paste into your apps.
+**The `netzo/components` module is a collection of UI components written in [Preact](https://preactjs.com/) (TSX) and built with [Radix UI](https://www.radix-ui.com/) and [UnoCSS](https://unocss.dev/).** This is not a component library. It is a collection of re-usable components that you can copy and paste into your apps.
 
 Pick the components you need, copy and paste the code into your project and customize to your needs. The code is yours. Use this as a reference to customize the components to your needs. Most components and documentation takes heavy inspiration from [shadcn/ui](https://ui.shadcn.com/).
 

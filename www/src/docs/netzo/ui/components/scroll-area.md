@@ -1,7 +1,7 @@
 <script setup>
 import SectionDocsCards from '@theme/components/sections/SectionDocsCards.vue'
 import en from '~/locales/en.js'
-import { ui } from '~/../lib/ui/components/registry.ts'
+import { ui } from '~/../lib/components/registry.ts'
 import { buildDenoJson } from '~/src/utils.ts'
 const item = en.components.find(({ uid }) => uid === 'scroll-area')
 const entry = ui.find(i => item.uid === i.name)
@@ -37,7 +37,7 @@ netzo add component scroll-area
 After [installation](#installation) components can be imported and used directly.
 
 ```tsx
-import { ScrollArea } from "netzo/ui/components/ui/scroll-area.tsx";
+import { ScrollArea } from 'netzo/components/ui/scroll-area.tsx'
 ```
 
 ## Examples
@@ -47,5 +47,5 @@ Working examples to copy-paste into projects under `components/ui/`.
 ### Default
 
 ::: code-group
-<<< @/../../lib/ui/components/example/scroll-area.tsx
+<<< @/../../lib/components/example/scroll-area.tsx
 :::

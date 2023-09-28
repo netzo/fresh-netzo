@@ -1,7 +1,7 @@
 <script setup>
 import SectionDocsCards from '@theme/components/sections/SectionDocsCards.vue'
 import en from '~/locales/en.js'
-import { ui } from '~/../lib/ui/components/registry.ts'
+import { ui } from '~/../lib/components/registry.ts'
 import { buildDenoJson } from '~/src/utils.ts'
 const item = en.components.find(({ uid }) => uid === 'typography')
 const entry = ui.find(i => item.uid === i.name)
@@ -33,7 +33,7 @@ netzo add component typography
 After [installation](#installation) components can be imported and used directly.
 
 ```tsx
-import { Typography } from "netzo/ui/components/ui/typography.tsx";
+import { Typography } from 'netzo/components/ui/typography.tsx'
 ```
 
 ## Examples
@@ -43,5 +43,5 @@ Working examples to copy-paste into projects under `components/ui/`.
 ### Default
 
 ::: code-group
-<<< @/../../lib/ui/components/example/typography.tsx
+<<< @/../../lib/components/example/typography.tsx
 :::

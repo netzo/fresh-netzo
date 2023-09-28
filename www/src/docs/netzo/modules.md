@@ -11,7 +11,7 @@ import en from '~/locales/en.js'
 
 > [`https://deno.land/x/netzo/modules`](https://deno.land/x/netzo/modules)
 
-**`netzo/modules` provide essential functionality to add to your projects a plug-and-play fashion.** Modules are framework-agnostic but only work when deployed to Netzo, making them different to [`netzo/ui/plugins`](/docs/netzo/ui/plugins) which are specific to [Fresh](https://fresh.deno.dev/).
+**`netzo/modules` provide essential functionality to add to your projects a plug-and-play fashion.** Modules are framework-agnostic but only work when deployed to Netzo, making them different to [`netzo/plugins`](/docs/netzo/plugins) which are specific to [Fresh](https://fresh.deno.dev/).
 
 <!-- NOTE: pass in 'compact' prop if using with `aside: true` -->
 <!-- NOTE: could split into H3 groups via `en.components.filter(...)` -->

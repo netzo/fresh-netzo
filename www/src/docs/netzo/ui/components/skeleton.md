@@ -1,7 +1,7 @@
 <script setup>
 import SectionDocsCards from '@theme/components/sections/SectionDocsCards.vue'
 import en from '~/locales/en.js'
-import { ui } from '~/../lib/ui/components/registry.ts'
+import { ui } from '~/../lib/components/registry.ts'
 import { buildDenoJson } from '~/src/utils.ts'
 const item = en.components.find(({ uid }) => uid === 'skeleton')
 const entry = ui.find(i => item.uid === i.name)
@@ -33,7 +33,7 @@ netzo add component skeleton
 After [installation](#installation) components can be imported and used directly.
 
 ```tsx
-import { Skeleton } from "netzo/ui/components/ui/skeleton.tsx";
+import { Skeleton } from 'netzo/components/ui/skeleton.tsx'
 ```
 
 ## Examples
@@ -43,5 +43,5 @@ Working examples to copy-paste into projects under `components/ui/`.
 ### Default
 
 ::: code-group
-<<< @/../../lib/ui/components/example/skeleton.tsx
+<<< @/../../lib/components/example/skeleton.tsx
 :::

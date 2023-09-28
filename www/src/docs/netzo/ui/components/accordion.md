@@ -1,7 +1,7 @@
 <script setup>
 import SectionDocsCards from '@theme/components/sections/SectionDocsCards.vue'
 import en from '~/locales/en.js'
-import { ui } from '~/../lib/ui/components/registry.ts'
+import { ui } from '~/../lib/components/registry.ts'
 import { buildDenoJson } from '~/src/utils.ts'
 const item = en.components.find(({ uid }) => uid === 'accordion')
 const entry = ui.find(i => item.uid === i.name)
@@ -42,7 +42,7 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "netzo/ui/components/ui/accordion.tsx";
+} from 'netzo/components/ui/accordion.tsx'
 ```
 
 ## Examples
@@ -52,5 +52,5 @@ Working examples to copy-paste into projects under `components/ui/`.
 ### Default
 
 ::: code-group
-<<< @/../../lib/ui/components/example/accordion.tsx
+<<< @/../../lib/components/example/accordion.tsx
 :::

@@ -29,8 +29,8 @@ export default defineNetzoConfig({
   }
 })
 ```
-<<< ../ui/plugins/src/main.ts
-<<< ../ui/plugins/src/dev.ts
+<<< ../plugins/src/main.ts
+<<< ../plugins/src/dev.ts
 :::
 
 ::: warning Fresh configuration [must](https://fresh.deno.dev/docs/concepts/ahead-of-time-builds#migrating-existing-projects-with-plugins) be defined in `netzo.config.ts`.

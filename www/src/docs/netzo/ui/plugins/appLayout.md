@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/plugins/appLayout.svg" alt="netzo/ui/plugins/appLayout" class="mb-5 w-75px">
+<img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/plugins/appLayout.svg" alt="netzo/plugins/appLayout" class="mb-5 w-75px">
 
 # `appLayout`
 
@@ -13,7 +13,7 @@ Register the plugin in `netzo.config.ts` and ensure `main.ts` and `dev.ts` are r
 ::: code-group
 ```ts [netzo.config.ts]
 import { defineNetzoConfig } from 'netzo/config.ts'
-import { appLayout } from 'netzo/ui/plugins/appLayout/mod.ts'
+import { appLayout } from 'netzo/plugins/appLayout/mod.ts'
 
 export default defineNetzoConfig({
   fresh: {

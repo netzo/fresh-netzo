@@ -315,7 +315,7 @@ export default {
         },
         {
           icon: 'i-mdi-widgets',
-          description: '<strong style="color: #0080ff"><a href="/docs/netzo/ui/components">Componentes UI</a></strong>, <strong style="color: #0080ff"><a href="/docs/netzo/ui/plugins">Plugins</a></strong> y <strong style="color: #0080ff"><a href="/docs/netzo/ui/composables">Utilidades</a></strong> para darte velocidad y simplicidad',
+          description: '<strong style="color: #0080ff"><a href="/docs/netzo/components">Componentes UI</a></strong>, <strong style="color: #0080ff"><a href="/docs/netzo/plugins">Plugins</a></strong> y <strong style="color: #0080ff"><a href="/docs/netzo/composables">Utilidades</a></strong> para darte velocidad y simplicidad',
         },
         {
           icon: 'i-mdi-bug',

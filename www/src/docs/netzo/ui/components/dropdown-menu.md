@@ -1,7 +1,7 @@
 <script setup>
 import SectionDocsCards from '@theme/components/sections/SectionDocsCards.vue'
 import en from '~/locales/en.js'
-import { ui } from '~/../lib/ui/components/registry.ts'
+import { ui } from '~/../lib/components/registry.ts'
 import { buildDenoJson } from '~/src/utils.ts'
 const item = en.components.find(({ uid }) => uid === 'dropdown-menu')
 const entry = ui.find(i => item.uid === i.name)
@@ -53,7 +53,7 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
-} from "netzo/ui/components/ui/dropdown-menu.tsx";
+} from 'netzo/components/ui/dropdown-menu.tsx'
 ```
 
 ## Examples
@@ -63,17 +63,17 @@ Working examples to copy-paste into projects under `components/ui/`.
 ### Default
 
 ::: code-group
-<<< @/../../lib/ui/components/example/dropdown-menu.tsx
+<<< @/../../lib/components/example/dropdown-menu.tsx
 :::
 
 ### Checkboxes
 
 ::: code-group
-<<< @/../../lib/ui/components/example/dropdown-menu.checkboxes.tsx
+<<< @/../../lib/components/example/dropdown-menu.checkboxes.tsx
 :::
 
 ### Radio Group
 
 ::: code-group
-<<< @/../../lib/ui/components/example/dropdown-menu.radio-group.tsx
+<<< @/../../lib/components/example/dropdown-menu.radio-group.tsx
 :::

@@ -1,7 +1,7 @@
 <script setup>
 import SectionDocsCards from '@theme/components/sections/SectionDocsCards.vue'
 import en from '~/locales/en.js'
-import { ui } from '~/../lib/ui/components/registry.ts'
+import { ui } from '~/../lib/components/registry.ts'
 import { buildDenoJson } from '~/src/utils.ts'
 const item = en.components.find(({ uid }) => uid === 'checkbox')
 const entry = ui.find(i => item.uid === i.name)
@@ -37,7 +37,7 @@ netzo add component checkbox
 After [installation](#installation) components can be imported and used directly.
 
 ```tsx
-import { Checkbox } from "netzo/ui/components/ui/checkbox.tsx";
+import { Checkbox } from 'netzo/components/ui/checkbox.tsx'
 ```
 
 ## Examples
@@ -47,29 +47,29 @@ Working examples to copy-paste into projects under `components/ui/`.
 ### Default
 
 ::: code-group
-<<< @/../../lib/ui/components/example/checkbox.tsx
+<<< @/../../lib/components/example/checkbox.tsx
 :::
 
 ### Disabled
 
 ::: code-group
-<<< @/../../lib/ui/components/example/checkbox.disabled.tsx
+<<< @/../../lib/components/example/checkbox.disabled.tsx
 :::
 
 ### Form Multiple
 
 ::: code-group
-<<< @/../../lib/ui/components/example/checkbox.form-multiple.tsx
+<<< @/../../lib/components/example/checkbox.form-multiple.tsx
 :::
 
 ### Form Single
 
 ::: code-group
-<<< @/../../lib/ui/components/example/checkbox.form-single.tsx
+<<< @/../../lib/components/example/checkbox.form-single.tsx
 :::
 
 ### With Text
 
 ::: code-group
-<<< @/../../lib/ui/components/example/checkbox.with-text.tsx
+<<< @/../../lib/components/example/checkbox.with-text.tsx
 :::

@@ -1,7 +1,7 @@
 <script setup>
 import SectionDocsCards from '@theme/components/sections/SectionDocsCards.vue'
 import en from '~/locales/en.js'
-import { ui } from '~/../lib/ui/components/registry.ts'
+import { ui } from '~/../lib/components/registry.ts'
 import { buildDenoJson } from '~/src/utils.ts'
 const item = en.components.find(({ uid }) => uid === 'hover-card')
 const entry = ui.find(i => item.uid === i.name)
@@ -41,7 +41,7 @@ import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
-} from "netzo/ui/components/ui/hover-card.tsx";
+} from 'netzo/components/ui/hover-card.tsx'
 ```
 
 ## Examples
@@ -51,5 +51,5 @@ Working examples to copy-paste into projects under `components/ui/`.
 ### Default
 
 ::: code-group
-<<< @/../../lib/ui/components/example/hover-card.tsx
+<<< @/../../lib/components/example/hover-card.tsx
 :::

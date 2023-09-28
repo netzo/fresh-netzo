@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/plugins/flowbite.svg" alt="netzo/ui/plugins/flowbite" class="mb-5 w-75px">
+<img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/plugins/flowbite.svg" alt="netzo/plugins/flowbite" class="mb-5 w-75px">
 
 # `flowbite`
 
@@ -13,7 +13,7 @@ Register the plugin in `netzo.config.ts` and ensure `main.ts` and `dev.ts` are r
 ::: code-group
 ```ts [netzo.config.ts]
 import { defineNetzoConfig } from 'netzo/config.ts'
-import { flowbite } from 'netzo/ui/plugins/flowbite/mod.ts'
+import { flowbite } from 'netzo/plugins/flowbite/mod.ts'
 
 export default defineNetzoConfig({
   fresh: {

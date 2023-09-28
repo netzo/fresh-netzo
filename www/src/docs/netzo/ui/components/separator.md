@@ -1,7 +1,7 @@
 <script setup>
 import SectionDocsCards from '@theme/components/sections/SectionDocsCards.vue'
 import en from '~/locales/en.js'
-import { ui } from '~/../lib/ui/components/registry.ts'
+import { ui } from '~/../lib/components/registry.ts'
 import { buildDenoJson } from '~/src/utils.ts'
 const item = en.components.find(({ uid }) => uid === 'separator')
 const entry = ui.find(i => item.uid === i.name)
@@ -37,7 +37,7 @@ netzo add component separator
 After [installation](#installation) components can be imported and used directly.
 
 ```tsx
-import { Separator } from "netzo/ui/components/ui/separator.tsx";
+import { Separator } from 'netzo/components/ui/separator.tsx'
 ```
 
 ## Examples
@@ -47,5 +47,5 @@ Working examples to copy-paste into projects under `components/ui/`.
 ### Default
 
 ::: code-group
-<<< @/../../lib/ui/components/example/separator.tsx
+<<< @/../../lib/components/example/separator.tsx
 :::

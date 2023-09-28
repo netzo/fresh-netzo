@@ -1,7 +1,7 @@
 <script setup>
 import SectionDocsCards from '@theme/components/sections/SectionDocsCards.vue'
 import en from '~/locales/en.js'
-import { ui } from '~/../lib/ui/components/registry.ts'
+import { ui } from '~/../lib/components/registry.ts'
 import { buildDenoJson } from '~/src/utils.ts'
 const item = en.components.find(({ uid }) => uid === 'textarea')
 const entry = ui.find(i => item.uid === i.name)
@@ -33,7 +33,7 @@ netzo add component textarea
 After [installation](#installation) components can be imported and used directly.
 
 ```tsx
-import { Textarea } from "netzo/ui/components/ui/textarea.tsx";
+import { Textarea } from 'netzo/components/ui/textarea.tsx'
 ```
 
 ## Examples
@@ -43,36 +43,36 @@ Working examples to copy-paste into projects under `components/ui/`.
 ### Default
 
 ::: code-group
-<<< @/../../lib/ui/components/example/textarea.tsx
+<<< @/../../lib/components/example/textarea.tsx
 :::
 
 ### Disabled
 
 ::: code-group
-<<< @/../../lib/ui/components/example/textarea.disabled.tsx
+<<< @/../../lib/components/example/textarea.disabled.tsx
 :::
 
 ### Form
 
 ::: code-group
-<<< @/../../lib/ui/components/example/textarea.form.tsx
+<<< @/../../lib/components/example/textarea.form.tsx
 :::
 
 ### With Button
 
 ::: code-group
-<<< @/../../lib/ui/components/example/textarea.with-button.tsx
+<<< @/../../lib/components/example/textarea.with-button.tsx
 :::
 
 ### With Label
 
 ::: code-group
-<<< @/../../lib/ui/components/example/textarea.with-label.tsx
+<<< @/../../lib/components/example/textarea.with-label.tsx
 :::
 
 ### With Text
 
 ::: code-group
-<<< @/../../lib/ui/components/example/textarea.with-text.tsx
+<<< @/../../lib/components/example/textarea.with-text.tsx
 :::
 

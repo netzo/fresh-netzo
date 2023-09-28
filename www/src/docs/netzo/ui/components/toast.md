@@ -1,7 +1,7 @@
 <script setup>
 import SectionDocsCards from '@theme/components/sections/SectionDocsCards.vue'
 import en from '~/locales/en.js'
-import { ui } from '~/../lib/ui/components/registry.ts'
+import { ui } from '~/../lib/components/registry.ts'
 import { buildDenoJson } from '~/src/utils.ts'
 const item = en.components.find(({ uid }) => uid === 'toast')
 const entry = ui.find(i => item.uid === i.name)
@@ -47,7 +47,7 @@ import {
   ToastProvider,
   ToastTitle,
   ToastViewport,
-} from "netzo/ui/components/ui/toast.tsx";
+} from 'netzo/components/ui/toast.tsx'
 ```
 
 ## Examples
@@ -57,29 +57,29 @@ Working examples to copy-paste into projects under `components/ui/`.
 ### Default
 
 ::: code-group
-<<< @/../../lib/ui/components/example/toast.tsx
+<<< @/../../lib/components/example/toast.tsx
 :::
 
 ### Destructive
 
 ::: code-group
-<<< @/../../lib/ui/components/example/toast.destructive.tsx
+<<< @/../../lib/components/example/toast.destructive.tsx
 :::
 
 ### Simple
 
 ::: code-group
-<<< @/../../lib/ui/components/example/toast.simple.tsx
+<<< @/../../lib/components/example/toast.simple.tsx
 :::
 
 ### With Action
 
 ::: code-group
-<<< @/../../lib/ui/components/example/toast.with-action.tsx
+<<< @/../../lib/components/example/toast.with-action.tsx
 :::
 
 ### With Title
 
 ::: code-group
-<<< @/../../lib/ui/components/example/toast.with-title.tsx
+<<< @/../../lib/components/example/toast.with-title.tsx
 :::

@@ -1,7 +1,7 @@
 <script setup>
 import SectionDocsCards from '@theme/components/sections/SectionDocsCards.vue'
 import en from '~/locales/en.js'
-import { ui } from '~/../lib/ui/components/registry.ts'
+import { ui } from '~/../lib/components/registry.ts'
 import { buildDenoJson } from '~/src/utils.ts'
 const item = en.components.find(({ uid }) => uid === 'menubar')
 const entry = ui.find(i => item.uid === i.name)
@@ -51,7 +51,7 @@ import {
   MenubarSubContent,
   MenubarSubTrigger,
   MenubarTrigger,
-} from "netzo/ui/components/ui/menubar.tsx";
+} from 'netzo/components/ui/menubar.tsx'
 ```
 
 ## Examples
@@ -61,5 +61,5 @@ Working examples to copy-paste into projects under `components/ui/`.
 ### Default
 
 ::: code-group
-<<< @/../../lib/ui/components/example/menubar.tsx
+<<< @/../../lib/components/example/menubar.tsx
 :::

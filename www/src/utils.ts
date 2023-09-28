@@ -1,11 +1,15 @@
-import { baseImports, imports } from "~/../lib/ui/components/imports.ts";
+import { baseImports, imports } from '~/../lib/components/imports.ts'
 
-const select = (obj: Record<string, any>, keys: string[]) => Object.fromEntries(
-  Object.entries(obj).filter(([key]) => keys.includes(key))
-);
-const omit = (obj: Record<string, any>, keys: string[]) => Object.fromEntries(
-  Object.entries(obj).filter(([key]) => !keys.includes(key))
-);
+function select(obj: Record<string, any>, keys: string[]) {
+  return Object.fromEntries(
+    Object.entries(obj).filter(([key]) => keys.includes(key)),
+  )
+}
+function omit(obj: Record<string, any>, keys: string[]) {
+  return Object.fromEntries(
+    Object.entries(obj).filter(([key]) => !keys.includes(key)),
+  )
+}
 
 /**
  * Build the deno.json file for dynamic injection using
@@ -14,16 +18,16 @@ const omit = (obj: Record<string, any>, keys: string[]) => Object.fromEntries(
  * @param dependencies {string[]} - Array of component dependencies to inject
  * @returns {Record<string, any>} - deno.json object
  */
-export const buildDenoJson = (entry: RegistryEntry = {}) => {
+export function buildDenoJson(entry: RegistryEntry = {}) {
   // NOTE: registryDependencies already covered by "netzo/" in baseImports
-  const { dependencies = [], registryDependencies = [] } = entry;
+  const { dependencies = [], registryDependencies = [] } = entry
   const componentImports = dependencies.reduce((acc, dependency) => {
-    return { ...acc, [dependency]: `https://esm.sh/${dependency}` };
-  }, {});
+    return { ...acc, [dependency]: `https://esm.sh/${dependency}` }
+  }, {})
   return {
     imports: {
       ...baseImports,
-      ...select(imports, dependencies)
+      ...select(imports, dependencies),
     },
   }
 }

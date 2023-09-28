@@ -1,7 +1,7 @@
 <script setup>
 import SectionDocsCards from '@theme/components/sections/SectionDocsCards.vue'
 import en from '~/locales/en.js'
-import { ui } from '~/../lib/ui/components/registry.ts'
+import { ui } from '~/../lib/components/registry.ts'
 import { buildDenoJson } from '~/src/utils.ts'
 const item = en.components.find(({ uid }) => uid === 'sheet')
 const entry = ui.find(i => item.uid === i.name)
@@ -42,7 +42,7 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "netzo/ui/components/ui/sheet.tsx";
+} from 'netzo/components/ui/sheet.tsx'
 ```
 
 ## Examples
@@ -52,12 +52,12 @@ Working examples to copy-paste into projects under `components/ui/`.
 ### Default
 
 ::: code-group
-<<< @/../../lib/ui/components/example/sheet.tsx
+<<< @/../../lib/components/example/sheet.tsx
 :::
 
 ### Side
 
 ::: code-group
-<<< @/../../lib/ui/components/example/sheet.side.tsx
+<<< @/../../lib/components/example/sheet.side.tsx
 :::
 

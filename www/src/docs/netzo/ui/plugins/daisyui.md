@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/plugins/daisyui.svg" alt="netzo/ui/plugins/daisyui" class="mb-5 w-75px">
+<img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/plugins/daisyui.svg" alt="netzo/plugins/daisyui" class="mb-5 w-75px">
 
 # `daisyui`
 
@@ -13,7 +13,7 @@ Register the plugin in `netzo.config.ts` and ensure `main.ts` and `dev.ts` are r
 ::: code-group
 ```ts [netzo.config.ts]
 import { defineNetzoConfig } from 'netzo/config.ts'
-import { daisyui } from 'netzo/ui/plugins/daisyui/mod.ts'
+import { daisyui } from 'netzo/plugins/daisyui/mod.ts'
 
 export default defineNetzoConfig({
   fresh: {

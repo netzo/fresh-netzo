@@ -10,7 +10,7 @@ import en from '~/locales/en.js'
 ::: warning The `netzo/ui` module is still a work in progress.
 :::
 
-**The `netzo/ui` module is a collection of building blocks for tailor-made for the [Deno fresh](https://fresh.deno.dev/) framework (**recommended**).** The goal of this module is to provide everything related to UI when building custom frontends. This includes [components](/docs/netzo/ui/components), [composables](/docs/netzo/ui/components), [plugins](/docs/netzo/ui/components) and unocss-powered themes including colors, icons and typography.
+**The `netzo/ui` module is a collection of building blocks for tailor-made for the [Deno fresh](https://fresh.deno.dev/) framework (**recommended**).** The goal of this module is to provide everything related to UI when building custom frontends. This includes [components](/docs/netzo/components), [composables](/docs/netzo/components), [plugins](/docs/netzo/components) and unocss-powered themes including colors, icons and typography.
 
 - Headless components
 - Built with Radix UI and UnoCSS
@@ -26,7 +26,7 @@ import en from '~/locales/en.js'
 
 The styles should be separate from implementation. One of the drawback of packaging components into a component library is that the style is coupled with the implementation.
 
-[`netzo/ui/components`](/docs/netzo/ui/components) separates [(unstyled) components](#components) from [styles](#styles). The components are built using headless (unstyled) primitives from [`radix-ui`](https://www.radix-ui.com/) and can be styled however you would like, though we recommend [`unocss`](https://unocss.dev/). To ease styling, the UnoCSS `presetNetzo` can be used for beautiful and consistent defaults which you can still easily customize however you want.
+[`netzo/components`](/docs/netzo/components) separates [(unstyled) components](#components) from [styles](#styles). The components are built using headless (unstyled) primitives from [`radix-ui`](https://www.radix-ui.com/) and can be styled however you would like, though we recommend [`unocss`](https://unocss.dev/). To ease styling, the UnoCSS `presetNetzo` can be used for beautiful and consistent defaults which you can still easily customize however you want.
 
 <!-- ## Getting Started
 
@@ -42,18 +42,18 @@ You can choose to theme components however you would like. However, we strongly 
 
 Powered by [UnoCSS](https://github.com/antfu/unocss), you can use Tailwind/Windi CSS utilities to quickly customize the look and feel of components. The `presetNetzo` includes component class names with beautiful and consistent defaults which you can still easily customize.
 
-::: warning Requires the [`unocss`](/docs/netzo/ui/plugins/unocss) plugin to be registered as well.
+::: warning Requires the [`unocss`](/docs/netzo/plugins/unocss) plugin to be registered as well.
 :::
 
 ### Theming
 
-The netzo theme is based on the UnoCSS `presetNetzo`. You can find all the default values and available entries in [`netzo/ui/unocss/preset-netzo.ts`](https://github.com/netzo/netzo/blob/main/lib/unocss/preset-netzo.ts). Note that the [`UserConfig`](https://unocss.dev/config) object can be passed additional properties to extend the netzo theme globally.
+The netzo theme is based on the UnoCSS `presetNetzo`. You can find all the default values and available entries in [`netzo/plugins/unocss/preset-netzo.ts`](https://github.com/netzo/netzo/blob/main/lib/unocss/preset-netzo.ts). Note that the [`UserConfig`](https://unocss.dev/config) object can be passed additional properties to extend the netzo theme globally.
 
 ::: code-group
 ```ts [netzo.config.ts]
 import { defineNetzoConfig } from 'netzo/config.ts'
-import { unocss } from 'netzo/ui/plugins/unocss/mod.ts'
-import { presetNetzo } from 'netzo/ui/unocss/preset-netzo.ts'
+import { unocss } from 'netzo/plugins/unocss/mod.ts'
+import { presetNetzo } from 'netzo/plugins/unocss/preset-netzo.ts'
 
 export default defineNetzoConfig({
   fresh: {
@@ -66,8 +66,8 @@ export default defineNetzoConfig({
   }
 })
 ```
-<<< ui/plugins/src/main.ts
-<<< ui/plugins/src/dev.ts
+<<< plugins/src/main.ts
+<<< plugins/src/dev.ts
 :::
 
 ::: details Custom theme

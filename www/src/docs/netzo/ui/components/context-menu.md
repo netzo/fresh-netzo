@@ -1,7 +1,7 @@
 <script setup>
 import SectionDocsCards from '@theme/components/sections/SectionDocsCards.vue'
 import en from '~/locales/en.js'
-import { ui } from '~/../lib/ui/components/registry.ts'
+import { ui } from '~/../lib/components/registry.ts'
 import { buildDenoJson } from '~/src/utils.ts'
 const item = en.components.find(({ uid }) => uid === 'context-menu')
 const entry = ui.find(i => item.uid === i.name)
@@ -51,7 +51,7 @@ import {
   ContextMenuSubContent,
   ContextMenuSubTrigger,
   ContextMenuTrigger,
-} from "netzo/ui/components/ui/context-menu.tsx";
+} from 'netzo/components/ui/context-menu.tsx'
 ```
 
 ## Examples
@@ -61,5 +61,5 @@ Working examples to copy-paste into projects under `components/ui/`.
 ### Default
 
 ::: code-group
-<<< @/../../lib/ui/components/example/context-menu.tsx
+<<< @/../../lib/components/example/context-menu.tsx
 :::

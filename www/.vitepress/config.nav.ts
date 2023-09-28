@@ -34,7 +34,7 @@ export const navEN: DefaultTheme.NavItem[] = [
     items: [
       { text: 'APIs', link: '/docs/netzo/apis' },
       { text: 'Modules', link: '/docs/netzo/modules' },
-      { text: 'Plugins', link: '/docs/netzo/ui/plugins' },
+      { text: 'Plugins', link: '/docs/netzo/plugins' },
     ],
   },
   // {
@@ -84,7 +84,7 @@ export const navES: DefaultTheme.NavItem[] = [
     items: [
       { text: 'APIs', link: '/docs/netzo/apis' },
       { text: 'Módulos', link: '/docs/netzo/modules' },
-      { text: 'Plugins', link: '/docs/netzo/ui/plugins' },
+      { text: 'Plugins', link: '/docs/netzo/plugins' },
     ],
   },
   // {

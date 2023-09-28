@@ -1,7 +1,7 @@
 <script setup>
 import SectionDocsCards from '@theme/components/sections/SectionDocsCards.vue'
 import en from '~/locales/en.js'
-import { ui } from '~/../lib/ui/components/registry.ts'
+import { ui } from '~/../lib/components/registry.ts'
 import { buildDenoJson } from '~/src/utils.ts'
 const item = en.components.find(({ uid }) => uid === 'badge')
 const entry = ui.find(i => item.uid === i.name)
@@ -33,7 +33,7 @@ netzo add component badge
 After [installation](#installation) components can be imported and used directly.
 
 ```tsx
-import { Badge, badgeVariants } from "netzo/ui/components/ui/badge.tsx";
+import { Badge, badgeVariants } from 'netzo/components/ui/badge.tsx'
 ```
 
 ## Examples
@@ -43,23 +43,23 @@ Working examples to copy-paste into projects under `components/ui/`.
 ### Default
 
 ::: code-group
-<<< @/../../lib/ui/components/example/badge.tsx
+<<< @/../../lib/components/example/badge.tsx
 :::
 
 ### Destructive
 
 ::: code-group
-<<< @/../../lib/ui/components/example/badge.destructive.tsx
+<<< @/../../lib/components/example/badge.destructive.tsx
 :::
 
 ### Outline
 
 ::: code-group
-<<< @/../../lib/ui/components/example/badge.outline.tsx
+<<< @/../../lib/components/example/badge.outline.tsx
 :::
 
 ### Secondary
 
 ::: code-group
-<<< @/../../lib/ui/components/example/badge.secondary.tsx
+<<< @/../../lib/components/example/badge.secondary.tsx
 :::
