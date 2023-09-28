@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/plugins/unocss.svg" alt="netzo/plugins/unocss" class="mb-5 w-75px">
+<img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/modules/unocss.svg" alt="netzo/modules/unocss" class="mb-5 w-75px">
 
 # `unocss`
 
@@ -13,8 +13,8 @@ Register the plugin in `netzo.config.ts` and ensure `main.ts` and `dev.ts` are r
 ::: code-group
 ```ts [netzo.config.ts]
 import { defineNetzoConfig } from 'netzo/config.ts'
-import { unocss } from 'netzo/plugins/unocss/mod.ts'
-import { presetNetzo } from 'netzo/plugins/unocss/preset-netzo.ts'
+import { unocss } from 'netzo/modules/unocss/mod.ts'
+import { presetNetzo } from 'netzo/modules/unocss/preset-netzo.ts'
 
 export default defineNetzoConfig({
   fresh: {

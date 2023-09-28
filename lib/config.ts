@@ -22,7 +22,7 @@ export function defineNetzoConfig(config: NetzoConfig): NetzoConfig {
 
   if (auth?.enabled) {
     pluginsFromModules.push({
-      name: "netzoAuth",
+      name: "oauth",
       middlewares: [
         { path: "/", middleware: { handler: createHandler(auth) } },
       ],
@@ -31,7 +31,7 @@ export function defineNetzoConfig(config: NetzoConfig): NetzoConfig {
 
   if (db?.enabled) {
     pluginsFromModules.push({
-      name: "netzoDB",
+      name: "restdb",
       middlewares: [
         { path: "/", middleware: { handler: createHandler(db) } },
       ],

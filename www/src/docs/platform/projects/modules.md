@@ -47,7 +47,6 @@ Custom modules can be register in the same way in the `netzo.config` file of the
 
 For example, to register the Fresh plugin `unocss` as a custom module in `netzo.config.(ts|js)` and make it available in the Modules page, you can do the following:
 
-
 ::: tabs
 == Manual
 Register the module `netzo.config.(ts|js)`

@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/plugins/htmx.svg" alt="netzo/plugins/htmx" class="mb-5 w-75px">
+<img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/modules/htmx.svg" alt="netzo/modules/htmx" class="mb-5 w-75px">
 
 # `htmx`
 
@@ -13,7 +13,7 @@ Register the plugin in `netzo.config.ts` and ensure `main.ts` and `dev.ts` are r
 ::: code-group
 ```ts [netzo.config.ts]
 import { defineNetzoConfig } from 'netzo/config.ts'
-import { htmx } from 'netzo/plugins/htmx/mod.ts'
+import { htmx } from 'netzo/modules/htmx/mod.ts'
 
 export default defineNetzoConfig({
   fresh: {

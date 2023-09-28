@@ -1,7 +1,7 @@
 import "std/dotenv/load.ts";
 import { defineNetzoConfig } from "netzo/config.ts";
-import { netzo } from "netzo/plugins/mod.ts";
-import { unocss } from "netzo/plugins/unocss/mod.ts";
+import { netzo } from "netzo/modules/mod.ts";
+import { unocss } from "netzo/modules/unocss/mod.ts";
 import unoConfig from "./uno.config.ts";
 import { z } from "zod/mod.ts";
 

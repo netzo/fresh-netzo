@@ -1,8 +1,8 @@
-<img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/plugins/flowbite.svg" alt="netzo/plugins/flowbite" class="mb-5 w-75px">
+<img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/modules/daisyui.svg" alt="netzo/modules/daisyui" class="mb-5 w-75px">
 
-# `flowbite`
+# `daisyui`
 
-[Flowbite](https://flowbite.com) is an open-source library of over 600+ UI components, sections, and pages built with the utility classes from Tailwind CSS and designed in Figma.
+[DaisyUI](https://daisyui.com) is a component library for Tailwind CSS that allows you to easily build beautiful UIs for your web apps.
 
 - **labels:** `css`, `components`, `tailwindcss`
 
@@ -13,11 +13,11 @@ Register the plugin in `netzo.config.ts` and ensure `main.ts` and `dev.ts` are r
 ::: code-group
 ```ts [netzo.config.ts]
 import { defineNetzoConfig } from 'netzo/config.ts'
-import { flowbite } from 'netzo/plugins/flowbite/mod.ts'
+import { daisyui } from 'netzo/modules/daisyui/mod.ts'
 
 export default defineNetzoConfig({
   fresh: {
-    plugins: [flowbite()]
+    plugins: [daisyui()]
   }
 })
 ```
@@ -31,15 +31,9 @@ export default defineNetzoConfig({
 ## Configuration
 
 ```ts
-interface FlowbiteOptions {
-  additionalStylesheets?: string[]
-  additionalScripts?: string[]
-  plugins?: {
-    datepicker?: boolean
-  }
-}
+interface DaisyuiOptions {}
 ```
 
 ## References
 
-- [Flowbite](https://flowbite.com/)
+- [DaisyUI](https://daisyui.com/)

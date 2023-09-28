@@ -3,8 +3,8 @@ import { daisyui, type DaisyuiOptions } from "./daisyui/mod.ts";
 import { flowbite, FlowbiteOptions } from "./flowbite/mod.ts";
 import { htmx, HtmxOptions } from "./htmx/mod.ts";
 import { appLayout, AppLayoutOptions } from "./appLayout/mod.ts";
-import { netzoAuth, NetzoAuthOptions } from "./netzoAuth/mod.ts";
-import { netzoDB, NetzoDBOptions } from "./netzoDB/mod.ts";
+import { oauth, OauthOptions } from "./oauth/mod.ts";
+import { restdb, RestdbOptions } from "./restdb/mod.ts";
 import {
   errorPages,
   ErrorPagesOptions,
@@ -16,8 +16,8 @@ export interface NetzoOptions {
   flowbite: FlowbiteOptions;
   htmx: HtmxOptions;
   appLayout: AppLayoutOptions;
-  netzoAuth: NetzoAuthOptions;
-  netzoDB: NetzoDBOptions;
+  oauth: OauthOptions;
+  restdb: RestdbOptions;
   errorPages: ErrorPagesOptions;
   unocss: UnocssOptions;
 }
@@ -35,9 +35,9 @@ export const netzo = (options: NetzoOptions): Plugin[] => {
     plugins.push(appLayout(options.appLayout));
   }
 
-  if (options.netzoAuth) plugins.push(netzoAuth(options.netzoAuth));
+  if (options.oauth) plugins.push(oauth(options.oauth));
 
-  if (options.netzoDB) plugins.push(netzoDB(options.netzoDB));
+  if (options.restdb) plugins.push(restdb(options.restdb));
 
   if (options.errorPages) {
     plugins.push(errorPages(options.errorPages));

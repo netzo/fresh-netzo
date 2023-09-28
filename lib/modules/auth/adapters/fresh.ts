@@ -24,7 +24,7 @@ making a request to a project/deployment from any source:
 import type { MiddlewareHandler } from "$fresh/server.ts";
 
 
-export const createHandler = (options: NetzoAuthOptions): MiddlewareHandler => {
+export const createHandler = (options: OauthOptions): MiddlewareHandler => {
   return async (req, ctx) => {
     // type DestinationKind = "internal" | "static" | "route" | "notFound";
     if (["internal", "static", "notFound"].includes(ctx.destination)) {
@@ -56,7 +56,7 @@ export const createHandler = (options: NetzoAuthOptions): MiddlewareHandler => {
         if (!is.app) {
           if (!options.tokens?.length) {
             throw new Error(
-              "Missing required option 'tokens' in netzoAuth plugin",
+              "Missing required option 'tokens' in oauth plugin",
             );
           }
           if (!options.tokens.includes(token!)) {

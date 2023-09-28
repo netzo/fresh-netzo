@@ -1,13 +1,13 @@
 import { z } from "zod/mod.ts";
 import type { Handlers } from "$fresh/server.ts";
 import type { PluginRoute } from "$fresh/src/server/types.ts";
-import type { NetzoDBOptions, NetzoDBServiceOptions } from "../mod.ts";
+import type { RestdbOptions, RestdbServiceOptions } from "../mod.ts";
 import * as db from "../../../../db/mod.ts";
 
 const METHODS = ["find", "get", "create", "update", "patch", "remove"];
 const notAllowed = () => new Response("Method not allowed", { status: 405 });
 
-export const generateRoutes = (options: NetzoDBOptions) => {
+export const generateRoutes = (options: RestdbOptions) => {
   const { prefix: _, ...serviceOptionDefaults } = options;
   options = {
     ...options,
@@ -27,7 +27,7 @@ export const generateRoutes = (options: NetzoDBOptions) => {
   };
 
   const generateHandler = <T>(
-    service: NetzoDBServiceOptions,
+    service: RestdbServiceOptions,
   ): Handlers<T | null> => {
     const {
       name,
@@ -50,7 +50,7 @@ export const generateRoutes = (options: NetzoDBOptions) => {
   };
 
   const generateHandlerWithId = <T>(
-    service: NetzoDBServiceOptions,
+    service: RestdbServiceOptions,
   ): Handlers<T | null> => {
     const {
       name,
@@ -88,7 +88,7 @@ export const generateRoutes = (options: NetzoDBOptions) => {
   };
 
   const routes = options.services.flatMap(
-    (service: NetzoDBServiceOptions): PluginRoute[] => {
+    (service: RestdbServiceOptions): PluginRoute[] => {
       return [
         {
           path: `/${options.prefix}/${service.name}`,

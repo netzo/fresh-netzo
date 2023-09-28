@@ -5,8 +5,8 @@
 /// <reference lib="deno.ns" />
 /// <reference lib="deno.unstable" />
 
-import manifest from './fresh.gen.ts'
-import config from './netzo.config.ts'
+import manifest from './fresh.gen.js'
+import config from './netzo.config.js'
 import { start } from '$fresh/server.ts'
 
 await start(manifest, config.fresh)

@@ -1,7 +1,7 @@
 import type { Plugin } from "$fresh/server.ts";
 import { createHandler } from "./adapters/fresh.ts";
 
-export type NetzoAuthOptions = {
+export type OauthOptions = {
   visibility: "private";
 } | {
   visibility: "protected";
@@ -10,9 +10,9 @@ export type NetzoAuthOptions = {
   visibility: "public";
 };
 
-export const netzoAuth = (options: NetzoAuthOptions): Plugin => {
+export const oauth = (options: OauthOptions): Plugin => {
   return {
-    name: "netzoAuth",
+    name: "oauth",
     middlewares: [
       { path: "/", middleware: { handler: createHandler(options) } },
     ],

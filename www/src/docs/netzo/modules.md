@@ -11,7 +11,9 @@ import en from '~/locales/en.js'
 
 > [`https://deno.land/x/netzo/modules`](https://deno.land/x/netzo/modules)
 
-**`netzo/modules` exports all official modules to provide essential functionality to add to your projects a plug-and-play fashion.** Modules only work when deployed to Netzo, making them different to [`netzo/plugins`](/docs/netzo/plugins) which are normal [Fresh plugins](https://fresh.deno.dev/) plugins.
+**`netzo/modules` exports all official modules to provide essential functionality to add to your projects a plug-and-play fashion.** The Modules page will display a list of all `modules` registered in the `netzo.config` file of the project. Modules only work when deployed to Netzo, making them different to [`netzo/plugins`](/docs/netzo/plugins) which are normal [Fresh plugins](https://fresh.deno.dev/) plugins.
+
+Apart from the core modules listed below, you can always [create custom modules](/docs/platform/projects/modules#custom-modules) by registering them in `netzo.config`.
 
 <!-- NOTE: pass in 'compact' prop if using with `aside: true` -->
 <!-- NOTE: could split into H3 groups via `en.components.filter(...)` -->
