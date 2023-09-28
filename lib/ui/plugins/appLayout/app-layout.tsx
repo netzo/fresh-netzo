@@ -1,6 +1,6 @@
 import type { JSX } from "preact";
 import type { AppProps } from "$fresh/server.ts";
-import type { NetzoAppLayoutOptions } from "./mod.ts";
+import type { AppLayoutOptions } from "./mod.ts";
 import { cn } from "../../components/utils.ts";
 
 const Logo = (props: JSX.HTMLAttributes<SVGElement>) => (
@@ -79,7 +79,7 @@ const Logo = (props: JSX.HTMLAttributes<SVGElement>) => (
   </svg>
 );
 
-export default (options: NetzoAppLayoutOptions) => {
+export default (options: AppLayoutOptions) => {
   const { title, description, favicon, image } = options;
   return ({ Component }: AppProps) => {
     return (

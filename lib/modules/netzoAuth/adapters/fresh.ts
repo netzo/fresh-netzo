@@ -1,14 +1,3 @@
-import type { MiddlewareHandler, Plugin } from "$fresh/server.ts";
-
-export type NetzoAuthOptions = {
-  visibility: "private";
-} | {
-  visibility: "protected";
-  tokens: string[];
-} | {
-  visibility: "public";
-};
-
 /*
 The following lists the possible header combinations when
 making a request to a project/deployment from any source:
@@ -31,7 +20,11 @@ making a request to a project/deployment from any source:
   • origin: null
   • referer: null | "https://hoppscotch.io/"
 */
-const createHandler = (options: NetzoAuthOptions): MiddlewareHandler => {
+
+import type { MiddlewareHandler } from "$fresh/server.ts";
+
+
+export const createHandler = (options: NetzoAuthOptions): MiddlewareHandler => {
   return async (req, ctx) => {
     // type DestinationKind = "internal" | "static" | "route" | "notFound";
     if (["internal", "static", "notFound"].includes(ctx.destination)) {
@@ -77,14 +70,5 @@ const createHandler = (options: NetzoAuthOptions): MiddlewareHandler => {
         return await ctx.next();
       }
     }
-  };
-};
-
-export const netzoAuth = (options: NetzoAuthOptions): Plugin => {
-  return {
-    name: "netzoAuth",
-    middlewares: [
-      { path: "/", middleware: { handler: createHandler(options) } },
-    ],
   };
 };

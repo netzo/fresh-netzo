@@ -121,7 +121,7 @@ export const sidebarEN: DefaultTheme.Sidebar = {
           items: [
             // { text: 'Overview', link: '/docs/platform/projects/overview' },
             { text: 'Studio', link: '/docs/platform/projects/studio' },
-            { text: 'Databases', link: '/docs/platform/projects/databases' },
+            { text: 'Databases', link: '/docs/platform/projects/database' },
             { text: 'Requests', link: '/docs/platform/projects/requests' },
             { text: 'Deployments', link: '/docs/platform/projects/deployments' },
             { text: 'Logs', link: '/docs/platform/projects/logs' },
@@ -194,10 +194,11 @@ export const sidebarEN: DefaultTheme.Sidebar = {
         { text: '<code>db</code>', link: '/docs/netzo/db' },
         {
           text: '<code>modules</code>',
-          // link: '/docs/netzo/modules',
+          link: '/docs/netzo/modules',
           collapsed: false,
           items: [
             { text: '<code>auth</code>', link: '/docs/netzo/modules/auth' },
+            { text: '<code>db</code>', link: '/docs/netzo/modules/db' },
           ],
         },
         {
@@ -262,10 +263,10 @@ export const sidebarEN: DefaultTheme.Sidebar = {
                 { text: '<code>daisyui</code>', link: '/docs/netzo/ui/plugins/daisyui' },
                 { text: '<code>flowbite</code>', link: '/docs/netzo/ui/plugins/flowbite' },
                 { text: '<code>htmx</code>', link: '/docs/netzo/ui/plugins/htmx' },
-                { text: '<code>netzoAppLayout</code>', link: '/docs/netzo/ui/plugins/netzoAppLayout' },
-                { text: '<code>netzoAuth</code>', link: '/docs/netzo/ui/plugins/netzoAuth' },
-                { text: '<code>netzoDB</code>', link: '/docs/netzo/ui/plugins/netzoDB' },
-                { text: '<code>netzoErrorPages</code>', link: '/docs/netzo/ui/plugins/netzoErrorPages' },
+                { text: '<code>appLayout</code>', link: '/docs/netzo/ui/plugins/appLayout' },
+                { text: '<code>netzoAuth</code>', link: '/docs/netzo/modules/netzoAuth' },
+                { text: '<code>netzoDB</code>', link: '/docs/netzo/modules/netzoDB' },
+                { text: '<code>errorPages</code>', link: '/docs/netzo/ui/plugins/errorPages' },
                 { text: '<code>unocss</code>', link: '/docs/netzo/ui/plugins/unocss' },
               ],
             },

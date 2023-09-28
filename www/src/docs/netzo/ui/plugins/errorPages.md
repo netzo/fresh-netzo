@@ -1,6 +1,6 @@
-<img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/plugins/netzoErrorPages.svg" alt="netzo/ui/plugins/netzoErrorPages" class="mb-5 w-75px">
+<img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/plugins/errorPages.svg" alt="netzo/ui/plugins/errorPages" class="mb-5 w-75px">
 
-# `netzoErrorPages`
+# `errorPages`
 
 Adds routes to render a custom error page for `404: Not Found` and `500: Server Error`.
 
@@ -15,12 +15,12 @@ Note that the [`unocss`](/docs/netzo/ui/plugins/unocss) plugin must be registere
 ::: code-group
 ```ts [netzo.config.ts]
 import { defineNetzoConfig } from 'netzo/config.ts'
-import { netzoErrorPages } from 'netzo/ui/plugins/netzoErrorPages/mod.ts'
+import { errorPages } from 'netzo/ui/plugins/errorPages/mod.ts'
 import { unocss } from 'netzo/ui/plugins/unocss/mod.ts'
 
 export default defineNetzoConfig({
   fresh: {
-    plugins: [netzoErrorPages(), unocss()]
+    plugins: [errorPages(), unocss()]
   }
 })
 ```
@@ -34,7 +34,7 @@ export default defineNetzoConfig({
 ## Configuration
 
 ```ts
-interface NetzoErrorPagesOptions {
+interface ErrorPagesOptions {
   404?: boolean
   500?: boolean
 }

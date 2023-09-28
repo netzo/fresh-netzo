@@ -1,6 +1,6 @@
-<img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/plugins/netzoAppLayout.svg" alt="netzo/ui/plugins/netzoAppLayout" class="mb-5 w-75px">
+<img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/plugins/appLayout.svg" alt="netzo/ui/plugins/appLayout" class="mb-5 w-75px">
 
-# `netzoAppLayout`
+# `appLayout`
 
 Adds a global layout route from which all other routes inherit from.
 
@@ -13,11 +13,11 @@ Register the plugin in `netzo.config.ts` and ensure `main.ts` and `dev.ts` are r
 ::: code-group
 ```ts [netzo.config.ts]
 import { defineNetzoConfig } from 'netzo/config.ts'
-import { netzoAppLayout } from 'netzo/ui/plugins/netzoAppLayout/mod.ts'
+import { appLayout } from 'netzo/ui/plugins/appLayout/mod.ts'
 
 export default defineNetzoConfig({
   fresh: {
-    plugins: [netzoAppLayout()]
+    plugins: [appLayout()]
   }
 })
 ```
@@ -31,7 +31,7 @@ export default defineNetzoConfig({
 ## Configuration
 
 ```ts
-interface NetzoAppLayoutOptions {
+interface AppLayoutOptions {
   title?: string
   description?: string
   favicon?: string

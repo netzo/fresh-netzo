@@ -1,6 +1,10 @@
-<img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/plugins/netzoAuth.svg" alt="netzo/ui/plugins/netzoAuth" class="mb-5 w-75px">
+<script setup lang="ts">
+import ChipSimple from '@theme/components/ChipSimple.vue'
+</script>
 
-# `netzoAuth`
+<img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/modules/netzoAuth.svg" alt="netzo/modules/netzoAuth" class="mb-5 w-75px">
+
+# `netzoAuth` <ChipSimple chip="soon" />
 
 Adds a middleware to protect routes with authentication based on access control settings set for the project in Netzo.
 
@@ -13,7 +17,7 @@ Register the plugin in `netzo.config.ts` and ensure `main.ts` and `dev.ts` are r
 ::: code-group
 ```ts [netzo.config.ts]
 import { defineNetzoConfig } from 'netzo/config.ts'
-import { netzoAuth } from 'netzo/ui/plugins/netzoAuth/mod.ts'
+import { netzoAuth } from 'netzo/modules/netzoAuth/mod.ts'
 
 export default defineNetzoConfig({
   fresh: {
@@ -21,8 +25,8 @@ export default defineNetzoConfig({
   }
 })
 ```
-<<< src/main.ts
-<<< src/dev.ts
+<<< ../ui/plugins/src/main.ts
+<<< ../ui/plugins/src/dev.ts
 :::
 
 ::: warning Fresh configuration [must](https://fresh.deno.dev/docs/concepts/ahead-of-time-builds#migrating-existing-projects-with-plugins) be defined in `netzo.config.ts`.

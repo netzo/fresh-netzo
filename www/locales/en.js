@@ -1172,6 +1172,22 @@ export default {
       href: '/docs/netzo/apis/mailgun',
     },
   ].sort((a, b) => a.uid.localeCompare(b.uid)),
+  modules: [
+    {
+      uid: 'netzoAuth',
+      title: 'Netzo Auth',
+      description: 'Adds a middleware to protect routes with authentication based on access control settings set for the project in Netzo.',
+      src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/modules/netzoAuth.svg',
+      href: '/docs/netzo/modules/netzoAuth',
+    },
+    {
+      uid: 'netzoDB',
+      title: 'Netzo DB',
+      description: 'Adds routes to serve a REST API for the Deno KV database of the project.',
+      src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/modules/netzoDB.svg',
+      href: '/docs/netzo/modules/netzoDB',
+    },
+  ].sort((a, b) => a.uid.localeCompare(b.uid)),
   plugins: [
     {
       uid: 'dasiyui',
@@ -1195,32 +1211,18 @@ export default {
       href: '/docs/netzo/ui/plugins/htmx',
     },
     {
-      uid: 'netzoAppLayout',
-      title: 'Netzo App Layout',
+      uid: 'appLayout',
+      title: 'App Layout',
       description: 'Adds a global layout route from which all other routes inherit from.',
-      src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/plugins/netzoAppLayout.svg',
-      href: '/docs/netzo/ui/plugins/netzoAppLayout',
+      src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/plugins/appLayout.svg',
+      href: '/docs/netzo/ui/plugins/appLayout',
     },
     {
-      uid: 'netzoAuth',
-      title: 'Netzo Auth',
-      description: 'Adds a middleware to protect routes with authentication based on access control settings set for the project in Netzo.',
-      src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/plugins/netzoAuth.svg',
-      href: '/docs/netzo/ui/plugins/netzoAuth',
-    },
-    {
-      uid: 'netzoDB',
-      title: 'Netzo DenoKV',
-      description: 'Adds routes to serve a REST API for the Deno KV database of the project.',
-      src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/plugins/netzoDB.svg',
-      href: '/docs/netzo/ui/plugins/netzoDB',
-    },
-    {
-      uid: 'netzoErrorPages',
-      title: 'Netzo Error Pages',
+      uid: 'errorPages',
+      title: 'Error Pages',
       description: 'Adds routes to render a custom error page for "404: Not Found" and "500: Server Error".',
-      src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/plugins/netzoErrorPages.svg',
-      href: '/docs/netzo/ui/plugins/netzoErrorPages',
+      src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/plugins/errorPages.svg',
+      href: '/docs/netzo/ui/plugins/errorPages',
     },
     {
       uid: 'unocss',

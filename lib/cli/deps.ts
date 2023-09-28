@@ -29,6 +29,7 @@ export {
 export { Spinner, wait } from "https://deno.land/x/wait@0.1.12/mod.ts";
 
 // x/netzo/apis/netzo
+export type { NetzoConfig } from "../config.ts";
 export { netzo } from "../apis/netzo/mod.ts";
 
 // @netzo/api: cherry-pick exports to avoid esm.sh tree-shaking issues

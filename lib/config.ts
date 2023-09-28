@@ -4,26 +4,45 @@ type NetzoModuleBase = {
   enabled: boolean;
 }
 
-interface NetzoConfigBase {
+export interface NetzoConfig {
   project: string;
   modules: {
     auth?: NetzoModuleBase & {
       [k: string]: unknown;
     }
   };
+  fresh?: StartOptions; // allows using fresh.config
+  hono?: unknown; // not really required by hono
   [k: string]: unknown;
 }
 
-interface NetzoConfigFresh extends NetzoConfigBase {
-  fresh?: StartOptions; // allows using fresh.config
-}
-
-interface NetzoConfigHono extends NetzoConfigBase {
-  hono?: unknown; // not really required by hono
-}
-
-export type NetzoConfig = NetzoConfigFresh | NetzoConfigHono;
-
 export function defineNetzoConfig(config: NetzoConfig): NetzoConfig {
-  return config;
+  const { auth, db } = config.modules
+  const pluginsFromModules: NetzoConfig["fresh"]["plugins"] = [];
+
+  if (auth?.enabled) {
+    pluginsFromModules.push({
+      name: "netzoAuth",
+      middlewares: [
+        { path: "/", middleware: { handler: createHandler(auth) } },
+      ],
+    })
+  }
+
+  if (db?.enabled) {
+    pluginsFromModules.push({
+      name: "netzoDB",
+      middlewares: [
+        { path: "/", middleware: { handler: createHandler(db) } },
+      ],
+    })
+  }
+
+  return {
+    ...config,
+    plugins: [
+      ...config?.plugins,
+      ...pluginsFromModules
+    ]
+  };
 }
