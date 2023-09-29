@@ -4,10 +4,8 @@ import unoConfig from "./uno.config.ts";
 import { z } from "zod/mod.ts";
 
 export default defineNetzoConfig({
-  project: "demo",
-  configuration: {
-    entrypoint: "main.ts",
-  },
+  project: "stuck-halibut-554329",
+  entrypoint: "main.ts",
   modules: {
     errorPages: {},
     restdb: {
