@@ -9,8 +9,8 @@ export default defineNetzoConfig({
     entrypoint: "main.ts",
   },
   modules: {
-    auth: { visibility: "public" },
-    db: {
+    errorPages: {},
+    restdb: {
       prefix: "db",
       idField: "id",
       services: [
@@ -52,7 +52,7 @@ export default defineNetzoConfig({
         // ...more services
       ],
     },
-    errorPages: {},
+    oauth: { visibility: "public" },
     unocss: unoConfig,
   },
 });
