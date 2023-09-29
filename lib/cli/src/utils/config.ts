@@ -56,16 +56,12 @@ export function assertExistsNetzoConfig(
   }
 }
 
-export function assertValidNetzoConfig(config: NetzoConfig, args: Args) {
-  const { project, modules, ...netzoConfig } = config;
-  // 1) rebuild config: override and sort specific keys from config with args
-  config.project = args.project as string;
-  // config = {
-  //   project: args.project || project,
-  //   modules,
-  //   ...netzoConfig,
-  // };
+export function assertValidNetzoConfig(config: NetzoConfig, _args: Args) {
+  // IMPORTANT: config is proxified, so assignments must be done key-by-key
   try {
+    // 1) rebuild config: override and sort specific keys from config with args
+    // if (args.project) config.project = args.project;
+
     // 2) ensure required keys are present and valid
     const required = ["project"];
     required.forEach((key) => {

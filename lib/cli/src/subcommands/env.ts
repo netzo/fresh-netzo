@@ -1,8 +1,15 @@
 // from https://github.com/drollinger/deployctl
 // see https://github.com/denoland/deployctl/issues/138
 
-import { load, netzo, Paginated, Project, wait } from "../../deps.ts";
+import { load, netzo, NetzoConfig, Paginated, Project, wait } from "../../deps.ts";
 import { error } from "../console.ts";
+import {
+  assertExistsNetzoConfig,
+  assertExistsNetzoConfigMod,
+  assertValidNetzoConfig,
+  getNetzoConfigUrl,
+  updateNetzoConfig,
+} from "../utils/config.ts";
 
 const help = `netzo env
 Update project environment variables from env file to Netzo.
@@ -39,6 +46,14 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     console.log(help);
     Deno.exit(0);
   }
+
+  // enforce presence of netzo.config.ts and modify it if necessary
+  const netzoConfigUrl = await getNetzoConfigUrl();
+  const netzoConfigMod = await assertExistsNetzoConfigMod(netzoConfigUrl);
+  let netzoConfig = await assertExistsNetzoConfig(netzoConfigMod);
+  netzoConfig = assertValidNetzoConfig(netzoConfig, args);
+  await updateNetzoConfig(netzoConfigUrl, netzoConfigMod);
+
   const apiKey = args.apiKey ?? Deno.env.get("NETZO_API_KEY") ?? null;
   if (apiKey === null) {
     console.error(help);
@@ -50,6 +65,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     console.error(help);
     error("Too many positional arguments given.");
   }
+  args.project ||= netzoConfig.project;
   if (args.project === null) {
     console.error(help);
     error("Missing project UID.");
@@ -61,6 +77,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
       project: args.project,
       apiKey,
       apiUrl: args.apiUrl,
+      netzoConfig,
     } satisfies SyncEnvOpts,
   );
 }
@@ -70,6 +87,7 @@ interface SyncEnvOpts {
   project: string;
   apiKey: string;
   apiUrl?: string;
+  netzoConfig: NetzoConfig; // proxified config
 }
 
 async function syncEnv(opts: SyncEnvOpts): Promise<void> {
@@ -101,8 +119,11 @@ async function syncEnv(opts: SyncEnvOpts): Promise<void> {
 
   const syncSpinner = wait("Syncing environment variables...").start();
   try {
-    const data = { configuration: { ...project.configuration, envVars } };
-    await api.projects[project._id].patch<Project>(data);
+    // patch project.config in netzo API:
+    await api.projects[project._id].patch<Project>({
+      // drops non-serializable properties of netzo.config
+      config: { ...project.config, ...opts.netzoConfig, envVars },
+    });
   } catch (error) {
     console.error(error);
     syncSpinner.fail("Failed to sync variables.");
