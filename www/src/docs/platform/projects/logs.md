@@ -12,6 +12,8 @@ This event is created when an isolate successfully boots. Not every request
 results in a boot event, because isolates can be re-used for multiple requests.
 
 ```ts
+import type { NetzoModule } from 'netzo/config.ts'
+
 interface BootEventPayload {
   boot_time: number
 }
@@ -22,6 +24,8 @@ interface BootEventPayload {
 This event is created when an isolate fails to boot.
 
 ```ts
+import type { NetzoModule } from 'netzo/config.ts'
+
 interface BootFailureEventPayload {
   msg: string
 }
@@ -32,6 +36,8 @@ interface BootFailureEventPayload {
 This event is created when a log message is written from the isolate using the console API. The log severity level is included in the event payload and is determined by which log function is used to write the message.
 
 ```ts
+import type { NetzoModule } from 'netzo/config.ts'
+
 interface LogEventPayload {
   msg: string
   level: 'debug' | 'info' | 'warning' | 'error'
@@ -58,6 +64,8 @@ An example `log` event:
 This event is created when an uncaught exception occurs in the isolate.
 
 ```ts
+import type { NetzoModule } from 'netzo/config.ts'
+
 interface UncaughtExceptionEventPayload {
   exception: string
 }
@@ -68,6 +76,8 @@ interface UncaughtExceptionEventPayload {
 This event is created when the isolate's memory usage exceeds the configured memory limit.
 
 ```ts
+import type { NetzoModule } from 'netzo/config.ts'
+
 interface MemoryLimitEventPayload {}
 ```
 
@@ -76,6 +86,8 @@ interface MemoryLimitEventPayload {}
 This event is created when the isolate's CPU execution time exceeds the configured time limit.
 
 ```ts
+import type { NetzoModule } from 'netzo/config.ts'
+
 interface TimeLimitEventPayload {}
 ``` -->
 

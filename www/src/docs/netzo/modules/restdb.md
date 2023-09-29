@@ -38,7 +38,9 @@ Authentication and authorization for your Deno KV data store is currently user's
 ## Configuration
 
 ```ts
-interface RestdbOptions {}
+import type { NetzoModule } from 'netzo/config.ts'
+
+interface RestdbOptions extends NetzoModule {}
 ```
 
 ## Operations

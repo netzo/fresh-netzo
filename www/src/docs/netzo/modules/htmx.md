@@ -30,7 +30,9 @@ export default defineNetzoConfig({
 ## Configuration
 
 ```ts
-interface HtmxOptions {}
+import type { NetzoModule } from 'netzo/config.ts'
+
+interface HtmxOptions extends NetzoModule {}
 ```
 
 ## References

@@ -34,7 +34,9 @@ export default defineNetzoConfig({
 ## Configuration
 
 ```ts
-interface ErrorPagesOptions {
+import type { NetzoModule } from 'netzo/config.ts'
+
+interface ErrorPagesOptions extends NetzoModule {
   404?: boolean
   500?: boolean
 }

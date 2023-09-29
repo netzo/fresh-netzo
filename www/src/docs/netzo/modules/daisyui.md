@@ -30,7 +30,9 @@ export default defineNetzoConfig({
 ## Configuration
 
 ```ts
-interface DaisyuiOptions {}
+import type { NetzoModule } from 'netzo/config.ts'
+
+interface DaisyuiOptions extends NetzoModule {}
 ```
 
 ## References

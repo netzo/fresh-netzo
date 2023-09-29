@@ -34,12 +34,10 @@ export default defineNetzoConfig({
 ## Configuration
 
 ```ts
-type OauthOptions = {
-  visibility: 'private'
-} | {
-  visibility: 'protected'
-  tokens: string[]
-} | {
-  visibility: 'public'
+import type { NetzoModule } from 'netzo/config.ts'
+
+interface OauthOptions extends NetzoModule {
+  visibility: 'private' | 'protected' | 'public'
+  tokens: string[] // only for "protected" visibility
 }
 ```

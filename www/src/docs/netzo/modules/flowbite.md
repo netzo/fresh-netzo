@@ -30,7 +30,9 @@ export default defineNetzoConfig({
 ## Configuration
 
 ```ts
-interface FlowbiteOptions {
+import type { NetzoModule } from 'netzo/config.ts'
+
+interface FlowbiteOptions extends NetzoModule {
   additionalStylesheets?: string[]
   additionalScripts?: string[]
   plugins?: {
