@@ -1,17 +1,10 @@
 import type { NetzoModule } from "../../config.ts";
 import { createHandler } from "./fresh.ts";
 
-export type OauthOptions =
-  | {
-    visibility: "private";
-  }
-  | {
-    visibility: "protected";
-    tokens: string[];
-  }
-  | {
-    visibility: "public";
-  } & NetzoModule;
+export interface OauthOptions extends NetzoModule {
+  visibility: "private" | "protected" | "public";
+  tokens: string[]; // only for "protected" visibility
+}
 
 export default (options: OauthOptions): NetzoModule => {
   return {

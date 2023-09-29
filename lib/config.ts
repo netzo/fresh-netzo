@@ -1,4 +1,7 @@
-import type { Plugin, StartOptions } from "$fresh/server.ts";
+import type {
+  Plugin,
+  StartOptions,
+} from "https://deno.land/x/fresh@1.4.3/server.ts";
 import appLayout, { type AppLayoutOptions } from "./modules/appLayout/mod.ts";
 import daisyui, { type DaisyuiOptions } from "./modules/daisyui/mod.ts";
 import errorPages, {
@@ -10,11 +13,8 @@ import oauth, { type OauthOptions } from "./modules/oauth/mod.ts";
 import restdb, { type RestdbOptions } from "./modules/restdb/mod.ts";
 import unocss, { type Config as UnocssOptions } from "./modules/unocss/mod.ts";
 
-// NOTE: matches Module type from @netzo/api
-// modules bundle 1 or more fresh plugins
-export interface NetzoModule {
-  uid: string;
-  name?: string;
+// NOTE: extends Module (from @netzo/api) with Plugin
+export interface NetzoModule extends Plugin {
   description?: string;
   labels?: string[];
   display?: {
@@ -22,7 +22,6 @@ export interface NetzoModule {
     color?: string;
   };
   status?: "stable" | "alpha" | "beta" | "soon";
-  plugins: Plugin[];
 }
 
 export interface NetzoConfig extends StartOptions {
@@ -36,8 +35,7 @@ export interface NetzoConfig extends StartOptions {
     oauth?: OauthOptions;
     restdb?: RestdbOptions;
     unocss?: UnocssOptions;
-    [k: string]: NetzoModule & { [k: string]: unknown };
-  };
+  } & { [k: string]: NetzoModule };
   [k: string]: unknown;
 }
 
@@ -47,12 +45,11 @@ export function defineNetzoConfig(config: NetzoConfig): NetzoConfig {
   return {
     ...config,
     plugins: [
-      // plugins:
       ...plugins,
-      // custom module plugins:
-      ...Object.entries(modules).flatMap(([uid, mod]) => mod?.plugins ?? []),
-      // core module plugins:
-      ...([
+      ...[
+        // custom modules as plugins:
+        ...Object.entries(modules).flatMap(([_uid, mod]) => mod ?? []),
+        // core modules as plugins:
         modules?.appLayout && appLayout(modules.appLayout),
         modules?.daisyui && daisyui(modules.daisyui),
         modules?.errorPages && errorPages(modules.errorPages),
@@ -61,7 +58,7 @@ export function defineNetzoConfig(config: NetzoConfig): NetzoConfig {
         modules?.oauth && oauth(modules.oauth),
         modules?.restdb && restdb(modules.restdb),
         modules?.unocss && unocss(modules.unocss),
-      ].filter(Boolean) satisfies Plugin[]),
-    ],
+      ].filter((mod) => !!mod),
+    ] as NetzoModule[],
   };
 }

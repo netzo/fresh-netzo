@@ -56,14 +56,15 @@ import twindPlugin from '$fresh/plugins/twind.ts'
 
 export default defineNetzoConfig({
   modules: {
+    // either direct registration:
+    twind: twindPlugin(twindConfig),
+    // or passing options (e.g. to customize display in Netzo):
     twind: {
-      name: 'Twind',
+      ...twindPlugin(twindConfig),
       display: {
         avatar: 'https://twind.dev/assets/twind-logo-animated.svg'
       },
-      plugins: [
-        twindPlugin(twindConfig)
-      ]
+      labels: ['category:library', 'category:ui']
     }
   }
 })
