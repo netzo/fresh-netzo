@@ -6,7 +6,7 @@ import ChipSimple from '@theme/components/ChipSimple.vue'
 
 # `restdb` <ChipSimple chip="soon" />
 
-Adds routes to serve a flexible RESTful API for the [Deno KV](https://deno.com/deploy/docs/storage) datastore of the project. This API makes it possible to connect other applications to your KV store in any environment that can make HTTP requests.
+Adds routes to serve a REST API for the [Deno KV](https://deno.com/deploy/docs/storage) database of the project. This API makes it possible to connect other applications to your KV store in any environment that can make HTTP requests.
 
 - **labels:** `routes`, `database`, `netzo`
 

@@ -14,13 +14,6 @@ import type {
 } from "../../deps.ts";
 import { fromFileUrl, netzo, normalize, wait } from "../../deps.ts";
 import { error } from "../console.ts";
-import {
-  assertExistsNetzoConfig,
-  assertExistsNetzoConfigMod,
-  assertValidNetzoConfig,
-  getNetzoConfigUrl,
-  updateNetzoConfig,
-} from "../utils/config.ts";
 import { parseEntrypoint } from "../utils/entrypoint.ts";
 import { walk } from "../utils/walk.ts";
 import {
@@ -95,17 +88,6 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     console.log(help);
     Deno.exit(0);
   }
-
-  // enforce presence of netzo.config.ts and modify it if necessary
-  const netzoConfigUrl = await getNetzoConfigUrl();
-  const netzoConfigMod = await assertExistsNetzoConfigMod(netzoConfigUrl);
-  let netzoConfig = await assertExistsNetzoConfig(netzoConfigMod);
-  netzoConfig = assertValidNetzoConfig(netzoConfig, args);
-  await updateNetzoConfig(netzoConfigUrl, netzoConfigMod);
-
-  // console.log(netzoConfig);
-
-  Deno.exit(0); // REMOVE: prevent deployment for now
 
   const apiKey = args.apiKey ?? Deno.env.get("NETZO_API_KEY") ?? null;
   if (apiKey === null) {

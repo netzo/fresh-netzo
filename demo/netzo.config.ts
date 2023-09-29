@@ -4,7 +4,7 @@ import unoConfig from "./uno.config.ts";
 import { z } from "zod/mod.ts";
 
 export default defineNetzoConfig({
-  project: "stuck-halibut-554329",
+  project: "demo",
   configuration: {
     entrypoint: "main.ts",
   },

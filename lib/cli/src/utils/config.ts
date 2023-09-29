@@ -17,7 +17,7 @@ export async function getNetzoConfigUrl() {
       return urlJs;
     } catch (e) {
       if (e instanceof Deno.errors.NotFound) {
-        error(`Missing ${CONFIG} at ${Deno.cwd()}.`);
+        error(`Missing "${CONFIG}" at file://${Deno.cwd()}.`);
       } else {
         error(e.message);
       }
@@ -30,13 +30,10 @@ export async function assertExistsNetzoConfigMod(
 ): Promise<ProxifiedModule> {
   try {
     const mod = await loadFile(url);
-    return mod.exports.default?.$type === "function-call"
-      ? mod.exports.default.$args[0] // function wrapper (defineNetzoConfig)
-      : mod.exports.default; // bare object export
+    return mod;
   } catch {
-    const message =
-      `Make sure you default export the config object wrapped in "defineNetzoConfig" or as a bare object.`;
-    error(`Invalid ${CONFIG} at ${Deno.cwd()}. ${message}`);
+    const message = `Check that the file is valid TypeScript or JavaScript.`;
+    error(`Invalid "${CONFIG}" at file://${Deno.cwd()}. ${message}`);
   }
 }
 
@@ -44,27 +41,30 @@ export function assertExistsNetzoConfig(
   mod: ProxifiedModule,
 ): Promise<NetzoConfig> {
   try {
-    return mod.exports.default?.$type === "function-call"
-      ? mod.exports.default.$args[0] // function wrapper (defineNetzoConfig)
-      : mod.exports.default; // bare object export
+    if (mod.exports.default?.$type === "function-call") {
+      // force function wrapper (defineNetzoConfig)
+      return mod.exports.default.$args[0];
+    }
+    // disallow bare object export (mod.exports.default)
+    const message =
+      `Make sure you default export the config object wrapped in "defineNetzoConfig".`;
+    throw new Error(message);
   } catch {
     const message =
-      `Make sure you default export the config object wrapped in "defineNetzoConfig" or as a bare object.`;
-    error(`Invalid ${CONFIG} at ${Deno.cwd()}. ${message}`);
+      `Make sure to default export config wrapped in "defineNetzoConfig({...})".`;
+    error(`Invalid "${CONFIG}" at file://${Deno.cwd()}. ${message}`);
   }
 }
 
-export function assertValidNetzoConfig({
-  project,
-  modules,
-  ...netzoConfig
-}: NetzoConfig, args: Args) {
+export function assertValidNetzoConfig(config: NetzoConfig, args: Args) {
+  const { project, modules, ...netzoConfig } = config;
   // 1) rebuild config: override and sort specific keys from config with args
-  const config: NetzoConfig = {
-    project: args.project || project,
-    modules,
-    ...netzoConfig,
-  };
+  config.project = args.project as string;
+  // config = {
+  //   project: args.project || project,
+  //   modules,
+  //   ...netzoConfig,
+  // };
   try {
     // 2) ensure required keys are present and valid
     const required = ["project"];
@@ -75,7 +75,7 @@ export function assertValidNetzoConfig({
 
     return config;
   } catch {
-    error(`Invalid ${CONFIG} at ${Deno.cwd()}.`);
+    error(`Invalid "${CONFIG}" at file://${Deno.cwd()}.`);
   }
 }
 
@@ -85,6 +85,6 @@ export async function updateNetzoConfig(url: string, mod: ProxifiedModule) {
     await Deno.writeTextFile(url, code);
     return code;
   } catch {
-    error(`Failed to update ${CONFIG} at ${Deno.cwd()}.`);
+    error(`Failed to update "${CONFIG}" at file://${Deno.cwd()}.`);
   }
 }
