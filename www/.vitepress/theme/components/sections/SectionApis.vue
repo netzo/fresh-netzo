@@ -32,7 +32,7 @@ const {
           target="_blank"
           class="mx-3"
         >
-          <img v-bind="{ ...item, alt: item.alt ?? item.title, class: item.class ? `pa-3 ${item.class}` : 'pa-3' }">
+          <img v-bind="{ ...item.display, alt: item.title, class: 'pa-3' }">
         </a>
       </div>
     </div>
