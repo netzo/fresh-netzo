@@ -16,7 +16,7 @@ export interface RestdbOptions extends NetzoModule {
   services: RestdbServiceOptions[];
 }
 
-export const restdb = (options: RestdbOptions): NetzoModule => {
+export default (options: RestdbOptions): NetzoModule => {
   options.prefix ??= "db";
   return {
     name: "restdb",

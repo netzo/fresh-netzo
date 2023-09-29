@@ -6,7 +6,7 @@ export interface ErrorPagesOptions extends NetzoModule {
   500?: boolean;
 }
 
-export const errorPages = (
+export default (
   options: ErrorPagesOptions = { "404": true, "500": true },
 ): NetzoModule => {
   return {

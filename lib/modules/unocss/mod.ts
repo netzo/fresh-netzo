@@ -18,7 +18,7 @@ export const defineConfig = <T extends object = object>(config: Config<T>) => {
   return config;
 };
 
-export const unocss = (config: Config, runtime = true): NetzoModule => {
+export default (config: Config, runtime = true): NetzoModule => {
   const uno = new UnoGenerator(config);
   return {
     name: "unocss",

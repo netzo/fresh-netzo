@@ -8,7 +8,7 @@ export interface FlowbiteOptions extends NetzoModule {
   };
 }
 
-export const flowbite = (options: FlowbiteOptions = {}): NetzoModule => {
+export default (options: FlowbiteOptions = {}): NetzoModule => {
   if (!options.additionalScripts) options.additionalScripts = [];
   if (!options.additionalStylesheets) options.additionalStylesheets = [];
   if (!options.plugins) options.plugins = { datepicker: true };

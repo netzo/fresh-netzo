@@ -9,7 +9,7 @@ export interface AppLayoutOptions extends NetzoModule {
   image?: JSX.HTMLAttributes<HTMLImageElement>;
 }
 
-export const appLayout = (
+export default (
   options: AppLayoutOptions = {
     title: "Built with Netzo",
     favicon: "/favicon.svg",
