@@ -120,9 +120,11 @@ async function syncEnv(opts: SyncEnvOpts): Promise<void> {
   const syncSpinner = wait("Syncing environment variables...").start();
   try {
     // patch project.config in netzo API:
+    // TODO: use .toJSON() method instead of JSON.parse/stringify
+    // to unproxify/serialize (drops non-serializable properties)
+    const netzoConfig = JSON.parse(JSON.stringify(opts.netzoConfig));
     await api.projects[project._id].patch<Project>({
-      // drops non-serializable properties of netzo.config
-      config: { ...project.config, ...opts.netzoConfig, envVars },
+      config: { ...project.config, ...netzoConfig, envVars },
     });
   } catch (error) {
     console.error(error);

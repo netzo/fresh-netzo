@@ -1,6 +1,6 @@
-# Notifications
+# Inbox
 
-**Notifications are messages triggered by Netzo or programmatically within projects to notify users of project activity.** You can use them to notify users of project activity, such as when a new user joins a project or when a payment is received. Notifications will appear in real-time on a user's inbox where they can be viewed and dismissed.
+**The Inbox is a central place where users can view and manage notifications from their projects and from Netzo.** Notifications are messages triggered by Netzo or programmatically within projects to notify users of project activity. You can use them to notify users of project activity, such as when a new user joins a project or when a payment is received. Notifications will appear in real-time on a user's inbox where they can be viewed and dismissed.
 
 <!-- [![Notifications](/docs/images/notifications/notifications.webp)](https://app.netzo.io/notifications) -->
 
