@@ -25,8 +25,8 @@ export interface NetzoModule extends Plugin {
 }
 
 export interface NetzoConfig extends StartOptions {
-  project: string;
-  modules: {
+  project?: string;
+  modules?: {
     appLayout?: AppLayoutOptions;
     daisyui?: DaisyuiOptions;
     errorPages?: ErrorPagesOptions;

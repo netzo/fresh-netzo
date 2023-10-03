@@ -56,7 +56,7 @@ export const update = async <T = unknown>(
 export const patch = async <T = unknown>(
   resource: string,
   id: string,
-  data: T,
+  data: Partial<T>,
 ) => {
   const key = [resource, id];
   const entry = await kv.get<T>(key);

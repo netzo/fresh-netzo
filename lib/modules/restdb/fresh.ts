@@ -1,7 +1,7 @@
 import { z } from "zod/mod.ts";
 import type { Handlers } from "$fresh/server.ts";
 import type { PluginRoute } from "$fresh/src/server/types.ts";
-import type { RestdbOptions, RestdbServiceOptions } from "../mod.ts";
+import type { RestdbOptions, RestdbServiceOptions } from "./mod.ts";
 import * as db from "../../db/mod.ts";
 
 const METHODS = ["find", "get", "create", "update", "patch", "remove"];
@@ -12,8 +12,8 @@ export const generateRoutes = (options: RestdbOptions) => {
   options = {
     ...options,
     services: options.services.map(({ name, ...serviceOptions }) => ({
-      name: name.toLowerCase().replace(/\s/g, "-"), // convert to kebab-case
       ...serviceOptionDefaults,
+      name: name.toLowerCase().replace(/\s/g, "-"), // convert to kebab-case
       ...serviceOptions,
     })),
   };
