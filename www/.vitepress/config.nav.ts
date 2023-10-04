@@ -3,24 +3,24 @@ import type { DefaultTheme } from 'vitepress'
 // NOTE: regex for multiple paths with { activeMatch: `^/(docs|cookbook|examples)/` }
 // NOTE: trailing slash in links allows e.g. '/partners/index.md' instead of '/partners.md'
 export const navEN: DefaultTheme.NavItem[] = [
-  // {
-  //   text: 'Products',
-  //   items: [
-  //     { text: 'Components', link: '/products/components' },
-  //     { text: 'Database', link: '/products/database' },
-  //     // { text: 'Portals', link: '/products/portals' },
-  //     // { text: 'Embed', link: '/products/embed' },
-  //     { text: 'Workflows', link: '/products/workflows' },
-  //     {
-  //       text: 'Templates',
-  //       items: [
-  //         { text: 'Apps', link: '/docs/templates/apps' },
-  //         { text: 'APIs', link: '/docs/templates/apis' },
-  //         { text: 'Workflows', link: '/docs/templates/workflows' },
-  //       ],
-  //     },
-  //   ],
-  // },
+  {
+    text: 'Products',
+    items: [
+      { text: 'Components', link: '/docs/netzo/components' }, // TODO: '/products/components'
+      { text: 'Database', link: '/docs/platform/products/database' }, // TODO: '/products/database'
+      // { text: 'Portals', link: '/products/portals' },
+      // { text: 'Embed', link: '/products/embed' },
+      // { text: 'Workflows', link: '/products/workflows' },
+      {
+        text: 'Templates',
+        items: [
+          { text: 'Apps', link: '/docs/templates/apps' },
+          { text: 'APIs', link: '/docs/templates/apis' },
+          { text: 'Workflows', link: '/docs/templates/workflows' },
+        ],
+      },
+    ],
+  },
   {
     text: 'Integrations',
     items: [
