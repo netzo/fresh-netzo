@@ -1,5 +1,7 @@
 export const unocssConfig = {
   safelist: [
+    'i-mdi-monitor-dashboard',
+    'i-healthicons-money-bag-outline',
     'i-mdi-toolbox-outline',
     'i-mdi-head-sync-outline',
     'i-mdi-star-four-points-outline',

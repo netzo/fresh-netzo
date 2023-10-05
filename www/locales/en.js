@@ -6,8 +6,8 @@ export default {
   home: {
     hero: {
       topic: 'Designed for Modern Businesses',
-      title: 'The smartest way to build custom business software',
-      description: 'Easily build custom business software to centralize information, integrate systems and automate workflows. Build your back-office with full control, scalability and adaptability for growth.',
+      title: 'The smartest way to build business software',
+      description: 'Ship custom business solutions in record time. Netzo is the most flexible way to build and manage mission-critical internal software solutions that fit your organization\'s evolving needs.',
       buttons: [
         {
           type: 'lets-talk',
@@ -26,7 +26,7 @@ export default {
       items: [
         {
           icon: 'i-mdi-check-circle-outline',
-          title: 'Developer centric',
+          title: 'Integrate anything',
         },
         {
           icon: 'i-mdi-check-circle-outline',
@@ -34,37 +34,37 @@ export default {
         },
         {
           icon: 'i-mdi-check-circle-outline',
-          title: 'No vendor lock-in',
+          title: 'Scale effortlessly',
         },
         {
           icon: 'i-mdi-check-circle-outline',
-          title: 'Enterprise-grade security',
+          title: 'Enterprise ready',
         },
       ],
     },
     sectionWhat: {
       topic: 'What is Netzo?',
-      title: 'The comprehensive platform to streamline operations with custom tools',
+      title: 'The one-stop platform to build custom business software',
       items: [
         {
-          icon: 'i-mdi-rocket',
-          title: 'Use technology as an enabler',
-          description: 'Build tools that evolve with your business, maximizing efficiency.',
-        },
-        {
           icon: 'i-mdi-clock-fast',
-          title: 'From concept to production in hours, not months',
-          description: '10x faster development and total focus on your business logic.',
+          title: 'Ship mission-critical solutions 10x faster',
+          description: 'Focus on what\'s important and forget about the time-consuming intricacies that take upwards of 95% of development time.',
         },
         {
-          icon: 'i-mdi-arrow-expand',
-          title: 'Total control, no vendor lock-in',
-          description: 'Own the tools that give you the competitive advantage.',
+          icon: 'i-healthicons-money-bag-outline',
+          title: 'Save 1,000s on highly-skilled professionals',
+          description: 'Forget about needing highly-specialized professionals in DevOps and Infrastructure, whose salaries can exceed 60,000 EUR / year.',
         },
         {
-          icon: 'i-mdi-security',
-          title: 'Built-in security and visibility',
-          description: 'Reduce risks and information leakage with built-in security controls.',
+          icon: 'i-mdi-monitor-dashboard',
+          title: 'Seamlessly manage all your solutions',
+          description: 'Netzo centralizes and empowers non-technical users to effortlessly manage all solutions, eliminating dependency on technical teams.',
+        },
+        {
+          icon: 'i-mdi-rocket',
+          title: 'Eliminate inefficiencies that cost up to 30% of your revenue',
+          description: 'Accelerate manual operations, eliminate repetitive tasks, improve data sharing and visibility, and explore limitless possibilities with adaptable tools designed to meet your unique needs.',
         },
       ],
       buttons: [
