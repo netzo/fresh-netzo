@@ -1,6 +1,6 @@
 import { legalES } from '../.vitepress/config.sidebar'
 
-const contactanos = '<u><a href="https://calendly.com/netzo-arturoromero">Ponte en contacto</a></u>'
+const contactanos = '<u><a href="https://calendar.app.google/uHEnkfwpgYSM1ppN6">Ponte en contacto</a></u>'
 
 export default {
   home: {

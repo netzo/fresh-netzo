@@ -6,7 +6,6 @@
 const customServiceIds = {
   'Airtable': 'bUTe7YRHy-maZH',
   'Auth0': 'LLAY2EL8z',
-  'Calendly': 'KkwJ9eEkv',
   'Cloudflare': 'fLGy-OG2f',
   'Customerly': 'ma38H1WeI67i48',
   'Fathom Analytics': 'DJkOqizhU',
@@ -18,7 +17,6 @@ const customServiceIds = {
 const originalIdsModifiedServices = {
   'Airtable': 'IdaQw5cVN',
   'Auth0': '7mOrpUraa',
-  'Calendly': 'vdUe2GDtm',
   'Cloudflare': 'HklVcNiuoZX',
   'Usercentrics': 'Hk8e94jOjWX',
   'YouTube Video': 'BJz7qNsdj-7',
