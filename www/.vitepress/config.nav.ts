@@ -7,7 +7,7 @@ export const navEN: DefaultTheme.NavItem[] = [
     text: 'Products',
     items: [
       { text: 'Components', link: '/docs/netzo/components' }, // TODO: '/products/components'
-      { text: 'Database', link: '/docs/platform/products/database' }, // TODO: '/products/database'
+      { text: 'Database', link: '/docs/platform/projects/database' }, // TODO: '/products/database'
       // { text: 'Portals', link: '/products/portals' },
       // { text: 'Embed', link: '/products/embed' },
       // { text: 'Workflows', link: '/products/workflows' },
