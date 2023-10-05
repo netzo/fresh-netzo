@@ -44,7 +44,7 @@ export default {
     },
     sectionWhat: {
       topic: '¿Qué es Netzo?',
-      title: 'La plataforma integral para optimizar operaciones con software empresarial a medida',
+      title: 'La plataforma integral para crear software empresarial',
       items: [
         {
           icon: 'i-mdi-clock-fast',
