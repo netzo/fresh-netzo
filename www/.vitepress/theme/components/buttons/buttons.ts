@@ -1,4 +1,4 @@
-import { ButtonCta } from '../types'
+import type { ButtonCta } from '../types'
 import { useUsercentrics } from '../../composables/usercentrics'
 
 const { sendChatMessageOrEmail } = useUsercentrics()
@@ -26,7 +26,7 @@ export const BUTTONS = {
   'book-a-demo': {
     variant: 'secondary',
     text: 'Book a Demo',
-    href: 'https://calendly.com/netzo-arturoromero',
+    href: 'https://calendar.app.google/uHEnkfwpgYSM1ppN6',
     target: '_blank',
   },
   'learn-more': {

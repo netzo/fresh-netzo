@@ -1,6 +1,6 @@
 import { legalEN } from '../.vitepress/config.sidebar'
 
-const contactUs = '<u><a href="https://calendly.com/netzo-arturoromero">Contact us</a></u>'
+const contactUs = '<u><a href="https://calendar.app.google/uHEnkfwpgYSM1ppN6">Contact us</a></u>'
 
 export default {
   home: {
