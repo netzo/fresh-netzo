@@ -9,7 +9,7 @@ The following resources are available externally for the specified methods:
 - **General:**
   - **`templates`**: `find`, `get`, `create`
   - **`users`**: `find`, `get`, `create`, `patch`, `remove`
-  - **`workspaces`**: `find`, `get`, `create`, `patch`, `remove`
+  - **`workspaces`**: `find`, `get`, `patch`, `remove`
 - **Workspace Resources:**
   - **`api-keys`**: `find`, `get`, `create`, `patch`, `remove`
   - **`audit-logs`**: `find`, `get`, `create`

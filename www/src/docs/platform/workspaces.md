@@ -7,10 +7,11 @@
 Navigating into a Workspace will take you to the Workspace overview page. From here you can navigate to any of the following modules:
 
 - [Projects](/docs/platform/projects)
-- [Variables](/docs/platform/variables)
 - [Settings](/docs/platform/workspaces#general)
 
-## General
+## Workspace
+
+### General
 
 ![Settings general](/docs/images/workspaces/workspaces-settings-general.webp)
 
@@ -23,7 +24,7 @@ and workspace preferences like
 
 - setting a custom avatar image for the Workspace (must provide a valid image URL).
 
-## Members
+### Members
 
 ![Settings members](/docs/images/workspaces/workspaces-settings-members.webp)
 
@@ -37,21 +38,13 @@ The role will determine the permissions each member has within the Workspace. Th
 
 Here you can manage Users of the current Workspace along with their roles (e.g. `admin`, `edit`, `view`). If you have sufficient rights, you can add more Users to the workspace or choose to leave it if you are not the sole Workspace `admin`.
 
-## API keys
-
-![Settings API keys](/docs/images/workspaces/workspaces-settings-api-keys.webp)
-
-**API keys are tokens you can use to authenticate with the Netzo API.** API keys are for machines what username-password combinations are for users. <!-- API keys are scoped to the containing workspace and can be assigned certain permissions at creation (admin rights by default).  --> They can be temporarily enabled and disabled (revoked) or deleted entirely, simplifying the management of the 3rd party applications and services using them.
-
-Here you can manage, view, and create [API keys](/docs/platform/workspaces#api-keys) to authorize requests to the [Netzo API](/docs/api-reference/index). You can temporarily disable (revoke) API keys by flipping the switch off. Requests made with a disabled (revoked) API key will be blocked, returning a `401 Unauthorized` error. To re-enable an API key, simply flip the switch on again.
-
-## Audit Logs
+### Audit Logs
 
 ![Settings audit logs](/docs/images/workspaces/workspaces-settings-audit-logs.webp)
 
 **Audit Logs provide a chronological history of events documenting the activity inside a Workspace.** Audit Logs are in the form of `debug`, `info`, `warn` and `error` logs and can be exported as JSON for further analysis.
 
-## Close Workspace
+### Close Workspace
 
 ![Settings close workspace](/docs/images/workspaces/workspaces-settings-close-workspace.webp)
 
@@ -73,3 +66,23 @@ The Workspace plan determines the features and usage limits available for the Wo
 - Scale
 - Pro
 - Enterprise -->
+
+## Subscription
+
+### Usage and Limits
+
+Here you can view the current usage and limits of the Workspace. The Workspace plan determines the features and usage limits available for the Workspace.
+
+## Development
+
+### API keys
+
+![Settings API keys](/docs/images/workspaces/workspaces-settings-api-keys.webp)
+
+**API keys are tokens you can use to authenticate with the Netzo API.** API keys are for machines what username-password combinations are for users. <!-- API keys are scoped to the containing workspace and can be assigned certain permissions at creation (admin rights by default).  --> They can be temporarily enabled and disabled (revoked) or deleted entirely, simplifying the management of the 3rd party applications and services using them.
+
+Here you can manage, view, and create [API keys](/docs/platform/workspaces#api-keys) to authorize requests to the [Netzo API](/docs/api-reference/index). You can temporarily disable (revoke) API keys by flipping the switch off. Requests made with a disabled (revoked) API key will be blocked, returning a `401 Unauthorized` error. To re-enable an API key, simply flip the switch on again.
+
+### Variables
+
+**Variables are a way to store and reuse values and secrets in your code.** You can use variables in projects by adding them as environment variables and referencing them in code with `Deno.env.get("VARIABLE_NAME")`. All variables are encrypted at rest.

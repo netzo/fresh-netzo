@@ -6,9 +6,9 @@ import {
 } from "https://esm.sh/ufo@1.2.0";
 
 import type {
-  ClientBuilder,
-  ClientMethodHandler,
-  ClientMethodHandlerGET,
+  ApiBuilder,
+  ApiMethodHandler,
+  ApiMethodHandlerGET,
   ResponseType,
 } from "./types.ts";
 import { headersToObject } from "./utils.ts";
@@ -25,11 +25,11 @@ const payloadMethods: ReadonlyArray<string> = [
  */
 export function createApi<R extends ResponseType = "json">(
   defaultOptions: Omit<FetchOptions<R>, "method"> = {},
-): ClientBuilder {
+): ApiBuilder {
   // Callable internal target required to use `apply` on it
-  const internalTarget = (() => {}) as ClientBuilder;
+  const internalTarget = (() => {}) as ApiBuilder;
 
-  function p(url: string): ClientBuilder {
+  function p(url: string): ApiBuilder {
     return new Proxy(internalTarget, {
       get(_target, key: string) {
         const method = String(key).toUpperCase();
@@ -38,7 +38,7 @@ export function createApi<R extends ResponseType = "json">(
           return p(resolveURL(url, key));
         }
 
-        const handlerGET: ClientMethodHandlerGET = <
+        const handlerGET: ApiMethodHandlerGET = <
           T = unknown,
           R extends ResponseType = "json",
         >(
@@ -60,7 +60,7 @@ export function createApi<R extends ResponseType = "json">(
           return $fetch<T, R>(url, options);
         };
 
-        const handler: ClientMethodHandler = <
+        const handler: ApiMethodHandler = <
           T = unknown,
           R extends ResponseType = "json",
         >(

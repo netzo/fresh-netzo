@@ -4,36 +4,28 @@ import type { DefaultTheme } from 'vitepress'
 // NOTE: trailing slash in links allows e.g. '/partners/index.md' instead of '/partners.md'
 export const navEN: DefaultTheme.NavItem[] = [
   {
-    text: 'Netzo',
+    text: 'Products',
     items: [
+      { text: 'Components', link: '/docs/netzo/components' }, // TODO: '/products/components'
+      { text: 'Database', link: '/docs/platform/projects/database' }, // TODO: '/products/database'
+      // { text: 'Portals', link: '/products/portals' },
+      // { text: 'Embed', link: '/products/embed' },
+      // { text: 'Workflows', link: '/products/workflows' },
       {
+        text: 'Templates',
         items: [
-          { text: 'What is Netzo?', link: '/netzo/what-is-netzo' },
-          { text: 'Why use Netzo?', link: '/netzo/why-use-netzo' }],
-      },
-      {
-        text: 'Who is Netzo for?',
-        items: [
-          { text: '🧑‍💻 Developer Teams', link: '/netzo/who-is-netzo-for#developer-teams' },
-          { text: '🚀 SMBs and Startups', link: '/netzo/who-is-netzo-for#smbs-and-startups' },
-          { text: '🏢 Enterprises', link: '/netzo/who-is-netzo-for#enterprises' },
+          { text: 'Apps', link: '/docs/templates/apps' },
+          { text: 'APIs', link: '/docs/templates/apis' },
+          { text: 'Workflows', link: '/docs/templates/workflows' },
         ],
       },
-    ],
-  },
-  {
-    text: 'Templates',
-    items: [
-      { text: 'Apps', link: '/docs/templates/apps' },
-      { text: 'APIs', link: '/docs/templates/apis' },
-      { text: 'Workflows', link: '/docs/templates/workflows' },
     ],
   },
   {
     text: 'Integrations',
     items: [
       { text: 'APIs', link: '/docs/netzo/apis' },
-      { text: 'Plugins', link: '/docs/netzo/ui/plugins' },
+      { text: 'Modules', link: '/docs/netzo/modules' },
     ],
   },
   // {
@@ -82,7 +74,7 @@ export const navES: DefaultTheme.NavItem[] = [
     text: 'Integraciones',
     items: [
       { text: 'APIs', link: '/docs/netzo/apis' },
-      { text: 'Plugins', link: '/docs/netzo/ui/plugins' },
+      { text: 'Módulos', link: '/docs/netzo/modules' },
     ],
   },
   // {

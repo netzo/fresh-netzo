@@ -7,6 +7,13 @@ import {
 import { createApi } from "./mod.ts";
 import { auth } from "./auth/mod.ts";
 
+interface Todo {
+  userId: number;
+  id: number;
+  title: string;
+  completed: boolean;
+} // used to test typed results (via generics)
+
 Deno.test("createApi", async (t) => {
   const api = createApi({
     baseURL: "https://jsonplaceholder.typicode.com",
@@ -24,17 +31,17 @@ Deno.test("createApi", async (t) => {
   });
 
   await t.step("api.todos.get()", async () => {
-    const todos = await api.todos.get();
+    const todos = await api.todos.get<Todo[]>();
     assertEquals(todos?.length, 200);
   });
 
   await t.step("api.todos[1].get()", async () => {
-    const todo = await api.todos[1].get();
+    const todo = await api.todos[1].get<Todo>();
     assertEquals(todo?.id, 1);
   });
 
   await t.step("api.todos.post()", async () => {
-    const todo = await api.todos.post({
+    const todo = await api.todos.post<Todo>({
       userId: 1,
       title: "lorem ipsum",
       completed: true,
@@ -43,7 +50,7 @@ Deno.test("createApi", async (t) => {
   });
 
   await t.step("api.todos[1].put()", async () => {
-    const todo = await api.todos[1].put({
+    const todo = await api.todos[1].put<Todo>({
       userId: 1,
       id: 1,
       title: "lorem ipsum",
@@ -53,12 +60,12 @@ Deno.test("createApi", async (t) => {
   });
 
   await t.step("api.todos[1].patch()", async () => {
-    const todo = await api.todos[1].patch({ completed: true });
+    const todo = await api.todos[1].patch<Todo>({ completed: true });
     assertExists(todo);
   });
 
   await t.step("api.todos[1].delete()", async () => {
-    const todo = await api.todos[1].delete();
+    const todo = await api.todos[1].delete<Todo>();
     assertExists(todo);
   });
 });

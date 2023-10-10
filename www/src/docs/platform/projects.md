@@ -193,6 +193,20 @@ We recommend starting your package version at 1.0.0 and incrementing as follows:
 |Backward compatible new features|Minor release|Increment the middle digit and reset last digit to zero|1.1.0|
 |Changes that break backward compatibility|Major release|Increment the first digit and reset middle and last digits to zero|2.0.0| -->
 
+## Requests
+
+**Requests are HTTP requests made to invoke any of a project's deployments.** These attempts will count towards the Requests quota of the Workspace. Requests have the following properties:
+
+- **Method**: The HTTP method used to make the request. For example, `GET`, `POST`, `PUT`, `DELETE`, etc.
+- **URL**: The URL of the project.
+- **Query**: The HTTP query string sent with the request.
+- **Headers**: The HTTP headers sent with the request.
+- **Body**: The HTTP body sent with the request.
+
+:::tip Real-time event handling via WebHooks
+Projects can also be triggered in response to real-time event from applications which support WebHooks such as GitHub, WhatsApp, etc.
+:::
+
 ## Runtime Environment
 
 ### Runtime APIs

@@ -1,13 +1,13 @@
 import { legalES } from '../.vitepress/config.sidebar'
 
-const contactanos = '<u><a href="https://calendly.com/netzo-arturoromero">Ponte en contacto</a></u>'
+const contactanos = '<u><a href="https://calendar.app.google/uHEnkfwpgYSM1ppN6">Ponte en contacto</a></u>'
 
 export default {
   home: {
     hero: {
       topic: 'Diseñado para Empresas Modernas',
-      title: 'La manera más inteligente de crear software empresarial a medida',
-      description: 'Crea software empresarial a medida fácilmente, para centralizar información, integrar sistemas y automatizar flujos de trabajo. Crea tu back-office con control, escalabilidad y adaptabilidad de crecimiento.',
+      title: 'La manera más inteligente de crear software empresarial',
+      description: 'Entrega soluciones empresariales a medida en tiempo récord. Netzo es la manera más versátil para construir y administrar software interno que se adapta a las necesidades en constante evolución de tu organización.',
       buttons: [
         {
           type: 'lets-talk',
@@ -26,7 +26,7 @@ export default {
       items: [
         {
           icon: 'i-mdi-check-circle-outline',
-          title: 'Centrado en el desarrollador',
+          title: 'Integra cualquier sistema',
         },
         {
           icon: 'i-mdi-check-circle-outline',
@@ -34,11 +34,11 @@ export default {
         },
         {
           icon: 'i-mdi-check-circle-outline',
-          title: 'Sin vendor lock-in',
+          title: 'Escalabilidad sin limites',
         },
         {
           icon: 'i-mdi-check-circle-outline',
-          title: 'Código abierto',
+          title: 'Enterprise',
         },
       ],
     },
@@ -47,25 +47,26 @@ export default {
       title: 'La plataforma integral para optimizar operaciones con software empresarial a medida',
       items: [
         {
-          icon: 'i-mdi-rocket',
-          title: 'Usa la tecnología como habilitador ',
-          description: 'Crea herramientas que evolucionen con tu negocio, maximizando la eficiencia.',
-        },
-        {
           icon: 'i-mdi-clock-fast',
-          title: 'Del concepto a la producción en horas, no en meses',
-          description: 'Soluciones 10 veces más rápido y enfocate totalmente en su lógica de negocio.',
+          title: 'Entrega soluciones críticas 10x más rápido',
+          description: 'Concéntrate en lo que es importante y olvídate de las complejidades que consumen hasta el 95% del tiempo de desarrollo.',
         },
         {
-          icon: 'i-mdi-arrow-expand',
-          title: 'Control total, sin dependencia de proveedores',
-          description: 'Se el dueño de las herramientas que te dan la ventaja competitiva.',
+          icon: 'i-healthicons-money-bag-outline',
+          title: 'Ahorra 1.000s en profesionales altamente capacitados',
+          description: 'Olvídate de profesionales altamente especializados en DevOps e Infraestructura con salarios que superan los 60,000 EUR al año.',
         },
         {
-          icon: 'i-mdi-security',
-          title: 'Seguridad incorporada y completa visibilidad',
-          description: 'Reduce riesgos y fugas de información con controles de seguridad integrados.',
+          icon: 'i-mdi-monitor-dashboard',
+          title: 'Gestiona todas tus soluciones de manera simplificada',
+          description: 'Netzo centraliza y permite gestionar de forma sencilla todas las soluciones, eliminando dependencia de equipos técnicos.',
         },
+        {
+          icon: 'i-mdi-rocket',
+          title: 'Elimina ineficiencias que pueden costar hasta el 30% de tus ingresos',
+          description: 'Acelera las operaciones manuales, elimina tareas repetitivas, mejora el intercambio y visibilidad de datos y explora posibilidades ilimitadas con soluciones que satisfacen tus necesidades únicas.',
+        },
+
       ],
       buttons: [
         {
@@ -310,12 +311,12 @@ export default {
           description: '<strong style="color: #0080ff"><a href="/docs/templates/apps">Plantillas</a></strong> para comenzar implementaciones a medida en segundos',
         },
         {
-          icon: 'i-mdi-hexagon-multiple',
+          icon: 'i-mdi-star-four-points',
           description: '<strong style="color: #0080ff"><a href="/docs/netzo/apis">Integraciones</a></strong> a cientos de APIS sin necediad de leer su documentacion',
         },
         {
-          icon: 'i-mdi-widgets',
-          description: '<strong style="color: #0080ff"><a href="/docs/netzo/ui/components">Componentes UI</a></strong>, <strong style="color: #0080ff"><a href="/docs/netzo/ui/plugins">Plugins</a></strong> y <strong style="color: #0080ff"><a href="/docs/netzo/ui/composables">Utilidades</a></strong> para darte velocidad y simplicidad',
+          icon: 'i-mdi-hexagon-multiple',
+          description: '<strong style="color: #0080ff"><a href="/docs/netzo/components">Componentes UI</a></strong>, <strong style="color: #0080ff"><a href="/docs/netzo/modules">Módulos</a></strong> y <strong style="color: #0080ff"><a href="/docs/netzo/composables">Utilidades</a></strong> para velocidad y simplicidad',
         },
         {
           icon: 'i-mdi-bug',

@@ -130,6 +130,10 @@ flowchart LR
 netzo deploy [OPTIONS] <entrypoint>
 ```
 
+::: tip Set defaults for `project`, `entrypoint` in `netzo.config` to avoid passing options each time
+Note that the options and arguments passed to the CLI will take precedence over these defaults.
+:::
+
 **Options:**
 
 | Option             | Description                                                   |
@@ -175,6 +179,10 @@ flowchart LR
 ```sh
 netzo env [OPTIONS] [<envPath>]
 ```
+
+::: tip Set defaults for `project` in `netzo.config` to avoid passing options each time
+Note that the options and arguments passed to the CLI will take precedence over these defaults.
+:::
 
 **Options:**
 

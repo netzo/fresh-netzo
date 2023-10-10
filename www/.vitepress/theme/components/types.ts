@@ -41,7 +41,7 @@ export interface ListItem {
 // sections:
 
 export interface Section {
-  inverted?: Boolean // (optional) reverse flex order
+  inverted?: boolean // (optional) reverse flex order
   topic?: string
   title?: string
   description?: string
@@ -86,5 +86,16 @@ export interface CardNav {
   title: string
   description?: string
   icon: string
+  href?: string
+}
+
+export interface SectionDocCard {
+  uid: string
+  title: string
+  description: string
+  display: {
+    icon?: string // supports passing color e.g. 'mdi-home text-red-500'
+    src?: string
+  }
   href?: string
 }

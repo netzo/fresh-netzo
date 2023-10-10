@@ -8,12 +8,20 @@ import type {
   Deployment,
   DeploymentData,
   Manifest,
+  NetzoConfig,
   Paginated,
   Project,
   Spinner,
 } from "../../deps.ts";
 import { fromFileUrl, netzo, normalize, wait } from "../../deps.ts";
 import { error } from "../console.ts";
+import {
+  assertExistsNetzoConfig,
+  assertExistsNetzoConfigMod,
+  assertValidNetzoConfig,
+  getNetzoConfigUrl,
+  updateNetzoConfig,
+} from "../utils/config.ts";
 import { parseEntrypoint } from "../utils/entrypoint.ts";
 import { walk } from "../utils/walk.ts";
 import {
@@ -83,11 +91,19 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     apiKey: rawArgs["api-key"] ? String(rawArgs["api-key"]) : null,
     apiUrl: rawArgs["api-url"] ?? "https://api.netzo.io",
   };
-  const entrypoint = typeof rawArgs._[0] === "string" ? rawArgs._[0] : null;
   if (args.help) {
     console.log(help);
     Deno.exit(0);
   }
+
+  // enforce presence of netzo.config.ts and modify it if necessary
+  const netzoConfigUrl = await getNetzoConfigUrl();
+  const netzoConfigMod = await assertExistsNetzoConfigMod(netzoConfigUrl);
+  let netzoConfig = await assertExistsNetzoConfig(netzoConfigMod);
+  netzoConfig = assertValidNetzoConfig(netzoConfig, args);
+  await updateNetzoConfig(netzoConfigUrl, netzoConfigMod);
+  // Deno.exit(0); // uncomment for quick debugging
+
   const apiKey = args.apiKey ?? Deno.env.get("NETZO_API_KEY") ?? null;
   if (apiKey === null) {
     console.error(help);
@@ -95,7 +111,10 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
       "Missing API key. Set via --api-key flag or NETZO_API_KEY environment variable to avoid passing it each time.",
     );
   }
-  if (entrypoint === null) {
+  const entrypoint = typeof rawArgs._[0] === "string"
+    ? rawArgs._[0]
+    : netzoConfig.entrypoint;
+  if (!entrypoint) {
     console.error(help);
     error("No entrypoint specifier given.");
   }
@@ -103,6 +122,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     console.error(help);
     error("Too many positional arguments given.");
   }
+  args.project ||= netzoConfig.project;
   if (args.project === null) {
     console.error(help);
     error("Missing project UID.");
@@ -123,6 +143,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
       dryRun: args.dryRun,
       apiKey,
       apiUrl: args.apiUrl,
+      netzoConfig,
     } satisfies DeployOpts,
   );
 }
@@ -138,6 +159,7 @@ interface DeployOpts {
   dryRun: boolean;
   apiKey: string;
   apiUrl?: string;
+  netzoConfig: NetzoConfig; // proxified config
 }
 
 async function deploy(opts: DeployOpts): Promise<void> {
@@ -158,7 +180,9 @@ async function deploy(opts: DeployOpts): Promise<void> {
     Deno.exit(1);
   }
 
-  const { data: deployments } = await api.deployments.get({
+  const { data: deployments } = await api.deployments.get<
+    Paginated<Deployment>
+  >({
     projectId: project.uid,
   });
   if (!deployments) {
@@ -176,7 +200,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
     opts.prod = true;
   }
 
-  let url = opts.entrypoint ?? project.configuration?.entrypoint;
+  let url = opts.entrypoint ?? project.config?.entrypoint;
   const cwd = Deno.cwd();
 
   if (["http:", "https:"].includes(url.protocol)) {
@@ -196,7 +220,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
     url = new URL(`file:///src${entrypoint}`);
   }
 
-  let importMapUrl = opts.importMapUrl ?? project.configuration?.importMapURL;
+  let importMapUrl = opts.importMapUrl ?? project.config?.importMapURL;
   if (importMapUrl && importMapUrl.protocol === "file:") {
     const path = fromFileUrl(importMapUrl);
     if (!path.startsWith(cwd)) {
@@ -320,8 +344,12 @@ async function deploy(opts: DeployOpts): Promise<void> {
               console.log(` - https://${domain}`);
             }
 
-            // patch ALL project.files and project.deployment in netzo API:
+            // patch ALL project.files and project.config in netzo API:
+            // TODO: use .toJSON() method instead of JSON.parse/stringify
+            // to unproxify/serialize (drops non-serializable properties)
+            const netzoConfig = JSON.parse(JSON.stringify(opts.netzoConfig));
             await api.projects[project._id].patch<Project>({
+              config: { ...project.config, ...netzoConfig },
               files: projectFiles,
             });
             deploySpinner!.succeed(
@@ -357,7 +385,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
         uploadSpinner = null;
       }
       if (deploySpinner) {
-        deploySpinner.fail("Deployment failed.");
+        (deploySpinner as Spinner).fail("Deployment failed.");
         deploySpinner = null;
       }
       error(err.toString());

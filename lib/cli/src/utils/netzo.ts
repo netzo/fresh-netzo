@@ -123,7 +123,7 @@ export async function cloneProjectToFS(project: Project, rootDir?: string) {
   const { uid, files } = project;
 
   if (!rootDir) rootDir = `./${uid}`;
-  else if (rootDir === '.') rootDir = Deno.cwd();
+  else if (rootDir === ".") rootDir = Deno.cwd();
 
   // remove directory if it already exists
   try {
