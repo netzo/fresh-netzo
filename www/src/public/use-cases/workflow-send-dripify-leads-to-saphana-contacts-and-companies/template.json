@@ -1,0 +1,21 @@
+{
+  "uid": "workflow-send-dripify-leads-to-saphana-contacts-and-companies",
+  "status": "requested",
+  "name": "Send Dripify leads to SAP Hana contacts and companies",
+  "description": "This workflow seamlessly integrates Dripify leads with SAP Hana contacts and companies, ensuring a smooth transfer of data between the two platforms. By automating this process, it eliminates the need for manual data entry, saving time and reducing the risk of errors. Additionally, having complete control over the source code allows for customization and flexibility, enabling users to tailor the workflow to their specific needs and requirements.",
+  "labels": ["api:dripify", "api:saphana", "category:workflow"],
+  "display": {
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/www/src/public/use-cases/workflow-send-dripify-leads-to-saphana-contacts-and-companies/icon.svg"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/www/src/public/use-cases/workflow-send-dripify-leads-to-saphana-contacts-and-companies"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/www/src/public/use-cases/workflow-send-dripify-leads-to-saphana-contacts-and-companies/src/readme.md"
+    }
+  ],
+  "item": {}
+}

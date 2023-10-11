@@ -8,9 +8,9 @@ export const baseImports = {
   "@preact/signals": "https://esm.sh/*@preact/signals@1.2.1",
   "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.5.0",
   "std/": "https://deno.land/std@0.190.0/",
-  "react": "https://esm.sh/preact@10.17.1/compat",
-  "react-dom": "https://esm.sh/preact@10.17.1/compat",
-  "react/jsx-runtime": "https://esm.sh/preact@10.17.1/compat",
+  "react": "https://esm.sh/preact@10.18.1/compat",
+  "react-dom": "https://esm.sh/preact@10.18.1/compat",
+  "react/jsx-runtime": "https://esm.sh/preact@10.18.1/compat",
 };
 
 export const imports = {

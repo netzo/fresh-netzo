@@ -2,7 +2,7 @@ import { error } from "../console.ts";
 import { question } from "../../deps.ts";
 
 const help = `netzo init
-Create a new project from an existing template (see https://app.netzo.io/templates).
+Create a new project from an existing template.
 
 To create a new project from a template:
   netzo init

@@ -1,0 +1,41 @@
+{
+  "uid": "api-transactional-email-generator",
+  "status": "published",
+  "name": "Transactional Email Generator API",
+  "description": "An HTTP API to easily create and send multi language transactional emails with templates written in JSX. Easily scale your email design and delivery process with this API and send via any email delivery API.",
+  "labels": [
+    "department:operations",
+    "department:marketing",
+    "api:brevo",
+    "api:sendgrid",
+    "api:activecampaign",
+    "api:mailchimp",
+    "type:communication/email",
+    "type:productivity",
+    "category:api"
+  ],
+  "display": {
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/www/src/public/use-cases/api-transactional-email-generator/icon.svg"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/templates/api-transactional-email-generator"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/www/src/public/use-cases/api-transactional-email-generator/src/readme.md"
+    }
+  ],
+  "item": {
+    "_type": "project",
+    "src": "https://api.github.com/repos/netzo/netzo/contents/templates/api-transactional-email-generator/src",
+    "configuration": {
+      "entrypoint": "main.ts",
+      "envVars": {},
+      "permissions": {
+        "net": true
+      }
+    }
+  }
+}

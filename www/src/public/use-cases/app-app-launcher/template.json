@@ -1,0 +1,33 @@
+{
+  "uid": "app-app-launcher",
+  "status": "published",
+  "name": "App Launcher",
+  "description": "Quick links for important apps and services",
+  "labels": [
+    "category:app"
+  ],
+  "display": {
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/www/src/public/use-cases/app-app-launcher/icon.svg"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/templates/app-app-launcher"
+    },
+    {
+      "rel": "readme",
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/www/src/public/use-cases/app-app-launcher/src/readme.md"
+    }
+  ],
+  "item": {
+    "_type": "project",
+    "src": "https://api.github.com/repos/netzo/netzo/contents/templates/app-app-launcher/src",
+    "configuration": {
+      "entrypoint": "main.ts",
+      "envVars": {},
+      "permissions": {
+        "net": true
+      }
+    }
+  }
+}

@@ -74,7 +74,6 @@ export const sidebarEN: DefaultTheme.Sidebar = {
         { text: 'Getting Started', link: '/docs/introduction/getting-started' },
         { text: 'What is a Project?', link: '/docs/introduction/what-is-a-project' },
         { text: 'How to Deploy', link: '/docs/introduction/how-to-deploy' },
-        { text: 'Use Cases', link: '/docs/introduction/use-cases' },
         { text: 'Core Concepts', link: '/docs/introduction/core-concepts' },
         // { text: 'Troubleshooting', link: '/docs/introduction/troubleshooting' }
         // { text: 'Help Center', link: 'https://help.netzo.io/' },
@@ -88,6 +87,15 @@ export const sidebarEN: DefaultTheme.Sidebar = {
     //     { text: '<code>starter</code>', link: '/docs/examples/starter' },
     //   ],
     // },
+    {
+      text: 'Use Cases',
+      collapsed: true,
+      items: [
+        { text: 'Apps', link: '/docs/use-cases/apps' },
+        { text: 'APIs', link: '/docs/use-cases/apis' },
+        { text: 'Workflows', link: '/docs/use-cases/workflows' },
+      ],
+    },
     {
       text: 'Guides',
       collapsed: true,
@@ -128,17 +136,7 @@ export const sidebarEN: DefaultTheme.Sidebar = {
           ],
         },
         { text: 'Inbox', link: '/docs/platform/inbox' },
-        { text: 'Templates', link: '/docs/platform/templates' },
         { text: 'Users', link: '/docs/platform/users' },
-      ],
-    },
-    {
-      text: 'Templates',
-      collapsed: false,
-      items: [
-        { text: 'Apps', link: '/docs/templates/apps' },
-        { text: 'APIs', link: '/docs/templates/apis' },
-        { text: 'Workflows', link: '/docs/templates/workflows' },
       ],
     },
     {

@@ -1,12 +1,15 @@
 import { createWriteStream } from 'node:fs'
 import { resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
+
 import { /* DefaultTheme, */ defineConfig } from 'vitepress'
 import { withMermaid } from 'vitepress-plugin-mermaid'
 import AutoImport from 'unplugin-auto-import/vite'
 import { tabsMarkdownPlugin } from 'vitepress-plugin-tabs'
+
 // import Components from 'unplugin-vue-components/vite'
 import Unocss from 'unocss/vite'
+
 // import VueDevTools from 'vite-plugin-vue-devtools'
 import { SitemapStream } from 'sitemap'
 import { ogEN } from './config.og'

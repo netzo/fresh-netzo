@@ -25,9 +25,8 @@
 
 ## Quick Start
 
-This repository lists all officially supported templates listed on
-[here](https://app.netzo.io/templates) and used by the
-[Netzo Web Platform](https://app.netzo.io).
+This repository lists all officially supported templates used by
+[Netzo](https://app.netzo.io).
 
 We review all templates before they are published. This means that it may take
 some time before we can review your template.
@@ -127,35 +126,32 @@ look at other templates for further reference.
 
 ```json
 {
-  "uid": "app-statuspage",
+  "uid": "app-admin-panel",
   "status": "requested",
-  "name": "Statuspage",
-  "description": "A status page to track the 'up', 'down' and 'maintenance' status of (multiple) services over time.",
+  "name": "Admin Panel",
+  "description": "Basic admin panel template",
   "labels": [
     "category:app"
   ],
   "display": {
-    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/app-statuspage/icon.svg"
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/templates/app-admin-panel/icon.svg"
   },
   "links": [
     {
       "rel": "repository",
-      "href": "https://github.com/netzo/netzo/tree/main/templates/app-statuspage"
+      "href": "https://github.com/netzo/netzo/tree/main/templates/app-admin-panel"
     },
     {
       "rel": "readme",
-      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/app-statuspage/src/readme.md"
+      "href": "https://raw.githubusercontent.com/netzo/netzo/main/templates/app-admin-panel/src/readme.md"
     }
   ],
   "item": {
     "_type": "project",
-    "src": "https://api.github.com/repos/netzo/netzo/contents/templates/app-statuspage/src",
+    "src": "https://api.github.com/repos/netzo/netzo/contents/templates/app-admin-panel/src",
     "configuration": {
       "entrypoint": "main.ts",
-      "envVars": {},
-      "permissions": {
-        "net": true
-      }
+      "envVars": {}
     }
   }
 }

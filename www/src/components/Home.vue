@@ -21,7 +21,7 @@ const props = defineProps({ locale: { type: Object, required: true } })
 </script>
 
 <template>
-  <SectionHero v-bind="locale.home.hero" class="!min-h-[calc(100svh-64px)] relative">
+  <SectionHero v-bind="locale.home.hero">
     <template #bottom>
       <div class="flex flex-col md:flex-row gap-6 md:gap-8 text-start">
         <article
@@ -36,7 +36,7 @@ const props = defineProps({ locale: { type: Object, required: true } })
         </article>
       </div>
 
-      <div class="absolute bottom-0 pb-8 b-y-1px border-[var(--vp-c-divider-light)] text-center">
+      <div class="-my-8 py-8 b-y-1px border-[var(--vp-c-divider-light)] text-center">
         <div class="pb-1">
           {{ locale.home.sectionBackedBy }}
         </div>
@@ -90,7 +90,7 @@ const props = defineProps({ locale: { type: Object, required: true } })
     </Section>
   </div> -->
 
-  <div class="sections bg-accent-100 bg-opacity-30 dark:bg-opacity-15">
+  <div class="sections">
     <SectionCards
       id="section-why"
       v-bind="locale.home.sectionWhy"

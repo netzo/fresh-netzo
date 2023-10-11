@@ -7,7 +7,6 @@ const customServiceIds = {
   'Airtable': 'bUTe7YRHy-maZH',
   'Auth0': 'LLAY2EL8z',
   'Cloudflare': 'fLGy-OG2f',
-  'Customerly': 'ma38H1WeI67i48',
   'Fathom Analytics': 'DJkOqizhU',
   'Google Cloud Run': '-3EoNx5F176g3W',
   'Usercentrics': 'V5PjfrpZz',
