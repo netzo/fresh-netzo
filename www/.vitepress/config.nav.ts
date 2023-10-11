@@ -12,20 +12,20 @@ export const navEN: DefaultTheme.NavItem[] = [
       // { text: 'Embed', link: '/products/embed' },
       // { text: 'Workflows', link: '/products/workflows' },
       {
-        text: 'Templates',
+        text: 'Integrations',
         items: [
-          { text: 'Apps', link: '/docs/templates/apps' },
-          { text: 'APIs', link: '/docs/templates/apis' },
-          { text: 'Workflows', link: '/docs/templates/workflows' },
+          { text: 'APIs', link: '/docs/netzo/apis' },
+          { text: 'Modules', link: '/docs/netzo/modules' },
         ],
       },
     ],
   },
   {
-    text: 'Integrations',
+    text: 'Use Cases',
     items: [
-      { text: 'APIs', link: '/docs/netzo/apis' },
-      { text: 'Modules', link: '/docs/netzo/modules' },
+      { text: 'Apps', link: '/docs/use-cases/apps' },
+      { text: 'APIs', link: '/docs/use-cases/apis' },
+      { text: 'Workflows', link: '/docs/use-cases/workflows' },
     ],
   },
   // {
@@ -52,20 +52,20 @@ export const navES: DefaultTheme.NavItem[] = [
       // { text: 'Embeds', link: '/products/embed' },
       // { text: 'Workflows', link: '/products/workflows' },
       {
-        text: 'Templates',
+        text: 'Integraciones',
         items: [
-          { text: 'Apps', link: '/docs/templates/apps' },
-          { text: 'APIs', link: '/docs/templates/apis' },
-          { text: 'Workflows', link: '/docs/templates/workflows' },
+          { text: 'APIs', link: '/docs/netzo/apis' },
+          { text: 'Módulos', link: '/docs/netzo/modules' },
         ],
       },
     ],
   },
   {
-    text: 'Integraciones',
+    text: 'Casos de Uso',
     items: [
-      { text: 'APIs', link: '/docs/netzo/apis' },
-      { text: 'Módulos', link: '/docs/netzo/modules' },
+      { text: 'Apps', link: '/docs/use-cases/apps' },
+      { text: 'APIs', link: '/docs/use-cases/apis' },
+      { text: 'Workflows', link: '/docs/use-cases/workflows' },
     ],
   },
   // {

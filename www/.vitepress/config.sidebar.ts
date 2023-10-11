@@ -133,12 +133,12 @@ export const sidebarEN: DefaultTheme.Sidebar = {
       ],
     },
     {
-      text: 'Templates',
+      text: 'Use Cases',
       collapsed: false,
       items: [
-        { text: 'Apps', link: '/docs/templates/apps' },
-        { text: 'APIs', link: '/docs/templates/apis' },
-        { text: 'Workflows', link: '/docs/templates/workflows' },
+        { text: 'Apps', link: '/docs/use-cases/apps' },
+        { text: 'APIs', link: '/docs/use-cases/apis' },
+        { text: 'Workflows', link: '/docs/use-cases/workflows' },
       ],
     },
     {

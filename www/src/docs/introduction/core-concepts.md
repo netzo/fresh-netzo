@@ -9,7 +9,7 @@
 - Icons via CSS
 - Fully typed
 
-::: tip [Templates](/docs/templates/apps) in Netzo are built using `netzo/ui` and forking them is a great way to get started.
+::: tip Templates in Netzo are built using `netzo/ui` and forking them is a great way to get started.
 :::
 
 ## Motivation

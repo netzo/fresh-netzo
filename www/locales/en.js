@@ -117,21 +117,21 @@ export default {
           uid: 'app-know-your-customer-dashboard',
           title: 'Know-Your-Customer Dashboard',
           image: {
-            src: 'https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/app-know-your-customer-dashboard/icon.svg',
+            src: 'https://raw.githubusercontent.com/netzo/netzo/main/www/src/public/use-cases/app-know-your-customer-dashboard/icon.svg',
           },
         },
         {
           uid: 'app-sales-dashboard',
           title: 'Sales Dashboard',
           image: {
-            src: 'https://raw.githubusercontent.com/netzo/netzo/main/templates/app-sales-dashboard/icon.svg',
+            src: 'https://raw.githubusercontent.com/netzo/netzo/main/www/src/public/use-cases/app-sales-dashboard/icon.svg',
           },
         },
         {
           uid: 'workflow-capture-webhook-data-to-hubspot-resource',
           title: 'Capture Webhook data to HubSpot',
           image: {
-            src: 'https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/workflow-capture-webhook-data-to-hubspot-resource/icon.svg',
+            src: 'https://raw.githubusercontent.com/netzo/netzo/main/www/src/public/use-cases/workflow-capture-webhook-data-to-hubspot-resource/icon.svg',
           },
         },
         {
@@ -145,14 +145,14 @@ export default {
           uid: 'app-gdpr-data-export-utility',
           title: 'GDPR Data Export Utility',
           image: {
-            src: 'https://raw.githubusercontent.com/netzo/netzo/main/templates/_requested/app-gdpr-data-export-utility/icon.png',
+            src: 'https://raw.githubusercontent.com/netzo/netzo/main/www/src/public/use-cases/app-gdpr-data-export-utility/icon.png',
           },
         },
         {
           uid: 'workflow-send-waalaxy-leads-to-activecampaign-contacts-and-companies',
           title: 'Send Waalaxy leads to Active- Campaign contacts & companies',
           image: {
-            src: 'https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-send-waalaxy-leads-to-activecampaign-contacts-and-companies/icon.svg',
+            src: 'https://raw.githubusercontent.com/netzo/netzo/main/www/src/public/use-cases/workflow-send-waalaxy-leads-to-activecampaign-contacts-and-companies/icon.svg',
           },
         },
       ],
@@ -160,7 +160,7 @@ export default {
         {
           variant: 'secondary',
           text: 'See More',
-          href: '/docs/templates/apps',
+          href: '/docs/use-cases/apps',
         },
       ],
     },
@@ -285,7 +285,7 @@ export default {
     //   items: [
     //     {
     //       icon: 'i-mdi-view-dashboard-outline',
-    //       description: '<strong style="color: #0080ff"><a href="/docs/templates/apps">Templates</a></strong> to kickstart custom implementations in seconds',
+    //       description: '<strong style="color: #0080ff"><a href="/docs/use-cases/apps">Templates</a></strong> to kickstart custom implementations in seconds',
     //     },
     //     {
     //       icon: 'i-mdi-star-four-points',
@@ -808,14 +808,16 @@ export default {
           // { text: 'Portals', link: '/products/portals' },
           // { text: 'Embed', link: '/products/embed' },
           // { text: 'Workflows', link: '/products/workflows' },
+          { text: 'APIs', link: '/docs/netzo/apis' },
+          { text: 'Modules', link: '/docs/netzo/modules' },
         ],
       },
       {
-        text: 'Templates',
+        text: 'Use Cases',
         items: [
-          { text: 'Apps', link: '/docs/templates/apps' },
-          { text: 'APIs', link: '/docs/templates/apis' },
-          { text: 'Workflows', link: '/docs/templates/workflows' },
+          { text: 'Apps', link: '/docs/use-cases/apps' },
+          { text: 'APIs', link: '/docs/use-cases/apis' },
+          { text: 'Workflows', link: '/docs/use-cases/workflows' },
         ],
       },
       {
@@ -829,10 +831,6 @@ export default {
           //   text: 'Help Center',
           //   link: 'https://help.netzo.io',
           // },
-          {
-            text: 'Integrations',
-            link: '/docs/netzo/apis',
-          },
           {
             text: 'Contact',
             link: 'mailto:help@netzo.io?subject=%20How%20can%20we%20help%3F',

@@ -1,0 +1,21 @@
+{
+  "uid": "workflow-invoice-upload-portal",
+  "status": "requested",
+  "name": "E-Invoice Upload Portal",
+  "description": "An e-invoice upload portal that loads and processes mexican electronic invoices versions CFDI3.2, CDFI3.3, CFDI4.0 (PDF and XML), writes data to Google Sheets, and stores files in Google Drive. This app streamlines the invoice handling, naming and submission, increasing efficiency and accuracy.",
+  "labels": [
+    "department:accounting/finance",
+    "api:googlesheets",
+    "api:googledrive",
+    "type:productivity"
+  ],
+  "display": {
+    "avatar": "https://raw.githubusercontent.com/netzo/netzo/main/www/src/public/use-cases/workflow-invoice-upload-portal/icon.svg"
+  },
+  "links": [
+    {
+      "rel": "repository",
+      "href": "https://github.com/netzo/netzo/tree/main/templates/_requested/workflow-invoice-upload-portal"
+    }
+  ]
+}
