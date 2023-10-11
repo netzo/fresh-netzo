@@ -7,7 +7,6 @@ The following resources are available externally for the specified methods:
 - **Authentication:**
   - **`authentication`**: `create`
 - **General:**
-  - **`templates`**: `find`, `get`, `create`
   - **`users`**: `find`, `get`, `create`, `patch`, `remove`
   - **`workspaces`**: `find`, `get`, `patch`, `remove`
 - **Workspace Resources:**
