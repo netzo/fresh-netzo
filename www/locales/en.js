@@ -45,13 +45,13 @@ export default {
     sectionBackedBy: 'Backed by',
     sectionSaveTimeAndMoney: {
       topic: 'Save Time and Money',
-      title: 'Why spend millions and months creating custom business software?',
-      description: 'Replace complex internal developments with Netzo. The platform that makes building business software to streamline operations, manage data, and improve productivity faster and more economical. We make it simple so you can focus on your core business.',
+      title: 'Why spend millions and months developing business software?',
+      description: 'Optimize your operations, manage data, and increase your company\'s productivity quickly and cost-effectively by replacing complex internal developments with Netzo. The platform that streamlines and accelerates the development of business software, allowing you to focus on your core activities.',
       items: [
         {
           icon: 'i-mdi-fast-forward',
           title: 'From idea to production 10x faster',
-          description: 'No matter what you need to build, Netzo eliminates the complexities that take upwards of 95% of development time.',
+          description: 'No matter what you need to build, Netzo eliminates the time-consuming complexities that take upwards of 95% of development time.',
         },
         {
           icon: 'i-mdi-piggy-bank',
@@ -74,6 +74,7 @@ export default {
     sectionWhy: {
       topic: 'Why use Netzo?',
       title: 'Do you identify with these problems?',
+      description: 'Small issues accumulate and negatively impact your bottom line by costing you up to 30% of your revenue while also causing you to miss out on opportunities by diverting your focus from core activities.',
       items: [
         {
           icon: 'i-mdi-clock-alert text-accent-500',

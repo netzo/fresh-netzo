@@ -23,82 +23,30 @@ export default {
         alt: 'Netzo - La manera más inteligente de crear software empresarial',
         src: '/images/home/hero.svg',
       },
-      items: [
-        {
-          icon: 'i-mdi-check-circle-outline',
-          title: 'Integra cualquier sistema',
-        },
-        {
-          icon: 'i-mdi-check-circle-outline',
-          title: 'De idea a produccion en horas',
-        },
-        {
-          icon: 'i-mdi-check-circle-outline',
-          title: 'Escalabilidad sin limites',
-        },
-        {
-          icon: 'i-mdi-check-circle-outline',
-          title: 'Enterprise',
-        },
-      ],
+      // items: [
+      //   {
+      //     icon: 'i-mdi-check-circle-outline',
+      //     title: 'Integra cualquier sistema',
+      //   },
+      //   {
+      //     icon: 'i-mdi-check-circle-outline',
+      //     title: 'De idea a produccion en horas',
+      //   },
+      //   {
+      //     icon: 'i-mdi-check-circle-outline',
+      //     title: 'Escalabilidad sin limites',
+      //   },
+      //   {
+      //     icon: 'i-mdi-check-circle-outline',
+      //     title: 'Enterprise',
+      //   },
+      // ],
     },
-    sectionWhat: {
-      topic: '¿Qué es Netzo?',
-      title: 'La plataforma integral para optimizar operaciones con software empresarial a medida',
-      items: [
-        {
-          icon: 'i-mdi-clock-fast',
-          title: 'Entrega soluciones críticas 10x más rápido',
-          description: 'Concéntrate en lo que es importante y olvídate de las complejidades que consumen hasta el 95% del tiempo de desarrollo.',
-        },
-        {
-          icon: 'i-healthicons-money-bag-outline',
-          title: 'Ahorra 1.000s en profesionales altamente capacitados',
-          description: 'Olvídate de profesionales altamente especializados en DevOps e Infraestructura con salarios que superan los 60,000 EUR al año.',
-        },
-        {
-          icon: 'i-mdi-monitor-dashboard',
-          title: 'Gestiona todas tus soluciones de manera simplificada',
-          description: 'Netzo centraliza y permite gestionar de forma sencilla todas las soluciones, eliminando dependencia de equipos técnicos.',
-        },
-        {
-          icon: 'i-mdi-rocket',
-          title: 'Elimina ineficiencias que pueden costar hasta el 30% de tus ingresos',
-          description: 'Acelera las operaciones manuales, elimina tareas repetitivas, mejora el intercambio y visibilidad de datos y explora posibilidades ilimitadas con soluciones que satisfacen tus necesidades únicas.',
-        },
-
-      ],
-      buttons: [
-        {
-          type: 'lets-talk',
-          text: 'Contáctanos',
-        },
-      ],
-      image: {
-        alt: 'Netzo - La plataforma de desarrollo para apps empresariales a medida',
-        src: '/images/home/netzo.svg',
-        class: 'mb-8 !h-600px',
-        // subtitles: [
-        //   {
-        //     label: 'English',
-        //     kind: 'subtitles',
-        //     srclang: 'en',
-        //     src: '/netzo-intro-en.vtt',
-        //     default: true,
-        //   },
-        //   {
-        //     label: 'Español',
-        //     kind: 'subtitles',
-        //     srclang: 'es',
-        //     src: '/netzo-intro-es.vtt',
-        //     default: false,
-        //   },
-        // ],
-      },
-    },
-    sectionWhyNetzo: {
-      topic: '¿Por qué Netzo?',
-      title: 'Mejores soluciones diseñadas para tus procesos únicos',
+    sectionBackedBy: 'Nos apoyan',
+    sectionSaveTimeAndMoney: {
+      topic: 'Ahorra Tiempo y Dinero',
+      title: '¿Por qué gastar millones y meses desarollando software interno?',
+      description: 'Optimiza tus operaciones, gestiona datos y aumenta la productividad de tu empresa de manera rápida y económica, sustituyendo desarrollos internos complejos por Netzo. La plataforma que simplifica y agiliza el desarollo de software empresarial, permitiéndote centrarte en tu actividad principal.',
       items: [
         {
           icon: 'i-mdi-fast-forward',
@@ -182,6 +130,7 @@ export default {
     sectionWhy: {
       topic: '¿Por qué usar Netzo?',
       title: '¿Te identificas con estos problemas?',
+      description: 'Las pequeñas ineficiencias se acumulan y afectan negativamente la cuenta de resultados, llegando a costarte hasta un 30% de tus ingresos y haciéndote perder oportunidades de crecimiento al desviar tu atención de tus actividades principales.',
       items: [
         {
           icon: 'i-mdi-clock-alert text-accent-500',
