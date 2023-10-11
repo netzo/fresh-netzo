@@ -23,7 +23,7 @@ const {
       <article
         v-for="(item, i) in items"
         :key="`card-item-${i}`"
-        class="flex flex-start gap-5 pa-4 border-0 rounded-1"
+        class="mt-12 flex flex-start gap-5 pa-4 border-0 rounded-1"
       >
         <div v-if="item.icon">
           <div :class="`w-8 h-8 ${item.icon}`" />

@@ -46,7 +46,7 @@ export default {
     sectionSaveTimeAndMoney: {
       topic: 'Save Time and Money',
       title: 'Why spend millions and months developing business software?',
-      description: 'Optimize your operations, manage data, and increase your company\'s productivity quickly and cost-effectively by replacing complex internal developments with Netzo. The platform that streamlines and accelerates the development of business software, allowing you to focus on your core activities.',
+      description: 'Optimize your operations, manage data, and increase your company\'s productivity quickly and cost-effectively. Replace complex internal developments with Netzo, the platform that streamlines and accelerates the development of business software, allowing you to focus on your core activities.',
       items: [
         {
           icon: 'i-mdi-fast-forward',
@@ -167,37 +167,42 @@ export default {
     },
     sectionForModernEnterprises: {
       topic: 'For Modern Enterprises',
-      title: 'Enterprise ready. Netzo is built to scale and match your needs',
+      title: 'Engineered to scale, Netzo alligns with the demands of modern enterprises.',
       items: [
         {
           icon: 'i-mdi-arrow-expand-all',
-          title: 'Flexibility and Scalability',
-          description: 'Achieve complete flexibility and scalability, focusing on the logic of your business while maintaining control of your own code.',
+          title: 'Scales Seamlessly',
+          description: 'Our code-first approach gives you complete flexibility and control to adapt as you grow.',
+        },
+        {
+          icon: 'i-mdi-lock-open-variant-outline',
+          title: 'No Vendor Lock-in',
+          description: 'Develop using modern, open web standards, ensuring you aren\'t locked into a proprietary system.',
         },
         {
           icon: 'i-mdi-security',
-          title: 'Security by Default',
-          description: 'Netzo is designed with comprehensive security measures, ensuring the protection of your data and solutions at all times.',
+          title: 'Secure by Default',
+          description: 'Built on-top of secure technology, Netzo provides you with peace of mind and robust protection.',
         },
         {
           icon: 'i-mdi-cloud-upload',
           title: 'Instant Cloud Deployments',
-          description: 'Deploy instantly and reliably in the cloud, without the burden of managing your infrastructure.',
+          description: 'Deploy instantly in the cloud and scale at your own pace, without the heachaches of infrastructure.',
         },
-        {
-          icon: 'i-mdi-cloud-lock',
-          title: 'Role based access control (RBAC)',
-          description: 'RBAC to ensure smooth and hassle-free access.',
-        },
+        // {
+        //   icon: 'i-mdi-cloud-lock',
+        //   title: 'Role based access control (RBAC)',
+        //   description: 'RBAC to ensure smooth and hassle-free access.',
+        // },
         {
           icon: 'i-mdi-alert-box',
           title: 'Audit Logs',
-          description: 'Detailed audit logs allow you to track and monitor all activities of your solutions and users.',
+          description: 'Detailed audit logs so you can track and monitor all your Workspace activities.',
         },
         {
           icon: 'i-mdi-card-account-details-star',
           title: 'Support and Professional Services',
-          description: 'We are committed to your success. We offer support and professional services to assist you every step of the way.',
+          description: 'We offer support and professional services to assist you every step of the way.',
         },
       ],
     },
