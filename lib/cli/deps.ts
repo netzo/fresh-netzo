@@ -73,8 +73,7 @@ export type {
   Project,
   ProjectFiles,
   ProjectFilesFile,
-  Template,
-} from "https://esm.sh/@netzo/api@1.0.34";
+} from "https://esm.sh/@netzo/api@1.0.43";
 
 // socket.io-client:
 export { feathers } from "https://esm.sh/@feathersjs/feathers@5.0.6";
