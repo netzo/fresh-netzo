@@ -46,7 +46,7 @@ export default {
     sectionSaveTimeAndMoney: {
       topic: 'Ahorra Tiempo y Dinero',
       title: '¿Por qué gastar millones y meses desarollando software interno?',
-      description: 'Optimiza tus operaciones, gestiona datos y aumenta la productividad de tu empresa de manera rápida y económica, sustituyendo desarrollos internos complejos por Netzo. La plataforma que simplifica y agiliza el desarollo de software empresarial, permitiéndote centrarte en tu actividad principal.',
+      description: 'Optimiza tus operaciones, gestiona datos y aumenta la productividad de tu empresa de manera rápida y económica. Sustituye desarrollos internos complejos con Netzo, la plataforma que simplifica y agiliza el desarollo de software empresarial, permitiéndote centrarte en tu actividad principal.',
       items: [
         {
           icon: 'i-mdi-fast-forward',
@@ -70,6 +70,44 @@ export default {
           text: 'Habla con un Experto',
         },
       ],
+    },
+    sectionWhy: {
+      topic: '¿Por qué usar Netzo?',
+      title: '¿Te identificas con estos problemas?',
+      description: 'Las pequeñas ineficiencias se acumulan y afectan negativamente la cuenta de resultados, llegando a costarte hasta un 30% de tus ingresos y haciéndote perder oportunidades de crecimiento al desviar tu atención de tus actividades principales.',
+      items: [
+        {
+          icon: 'i-mdi-clock-alert text-accent-500',
+          title: 'Tareas repetitivas consumen tiempo valioso',
+        },
+        {
+          icon: 'i-mdi-chart-timeline-variant-shimmer text-accent-500',
+          title: 'Falta de acceso a datos empresariales clave',
+        },
+        {
+          icon: 'i-mdi-microsoft-excel text-accent-500',
+          title: 'Dependencia excesiva de hojas de cálculo',
+        },
+        {
+          icon: 'i-mdi-bell-alert text-accent-500',
+          title: 'Errores en datos entre sistemas y hojas de cálculo',
+        },
+        {
+          icon: 'i-mdi-emoticon-dead text-accent-500',
+          title: 'Equipo de programadores sobrecargados',
+        },
+        {
+          icon: 'i-mdi-lan-disconnect text-accent-500',
+          title: 'Dificultad en la colaboración interdepartamental',
+        },
+      ],
+      // buttons: [
+      //   {
+      //     type: 'learn-more',
+      //     text: 'Aprende más',
+      //     href: '/docs/introduction/getting-started',
+      //   },
+      // ],
     },
     sectionWhatCanYouBuild: {
       topic: '¿Qué puedes crear?',
@@ -127,77 +165,44 @@ export default {
         },
       ],
     },
-    sectionWhy: {
-      topic: '¿Por qué usar Netzo?',
-      title: '¿Te identificas con estos problemas?',
-      description: 'Las pequeñas ineficiencias se acumulan y afectan negativamente la cuenta de resultados, llegando a costarte hasta un 30% de tus ingresos y haciéndote perder oportunidades de crecimiento al desviar tu atención de tus actividades principales.',
-      items: [
-        {
-          icon: 'i-mdi-clock-alert text-accent-500',
-          title: 'Tareas repetitivas consumen tiempo valioso',
-        },
-        {
-          icon: 'i-mdi-chart-timeline-variant-shimmer text-accent-500',
-          title: 'Falta de acceso a datos empresariales clave',
-        },
-        {
-          icon: 'i-mdi-microsoft-excel text-accent-500',
-          title: 'Dependencia excesiva de hojas de cálculo',
-        },
-        {
-          icon: 'i-mdi-bell-alert text-accent-500',
-          title: 'Errores en datos entre sistemas y hojas de cálculo',
-        },
-        {
-          icon: 'i-mdi-emoticon-dead text-accent-500',
-          title: 'Equipo de programadores sobrecargados',
-        },
-        {
-          icon: 'i-mdi-lan-disconnect text-accent-500',
-          title: 'Dificultad en la colaboración interdepartamental',
-        },
-      ],
-      // buttons: [
-      //   {
-      //     type: 'learn-more',
-      //     text: 'Aprende más',
-      //     href: '/docs/introduction/getting-started',
-      //   },
-      // ],
-    },
     sectionForModernEnterprises: {
       topic: 'Para Empresas Modernas',
-      title: 'Preparado para empresas. Netzo está diseñado para crecer y adaptarse a tus necesidades',
+      title: 'Creado para empresas modernas, Netzo está diseñado para crecer y adaptarse a tus necesidades',
       items: [
         {
           icon: 'i-mdi-arrow-expand-all',
-          title: 'Flexibilidad y escalabilidad',
-          description: 'Con Netzo, obtienes flexibilidad y escalabilidad total para que te centres en la lógica de tu negocio, manteniendo control total de tu propio código.',
+          title: 'Escalabilidad total',
+          description: 'Nuestro enfoque en código te da total flexibilidad y control para adaptar las soluciones a medida que creces.',
+        },
+        {
+          icon: 'i-mdi-lock-open-variant-outline',
+          title: 'Sin Dependencia de Proveedor',
+          description: 'Desarrolla utilizando estándares web modernos y abiertos, asegurando que no te quedes encerrado en un sistema propietario.',
         },
         {
           icon: 'i-mdi-security',
-          title: 'Seguridad por default',
-          description: 'Netzo está diseñado con medidas de seguridad integrales, asegurando la protección de tus datos y soluciones en todo momento.',
+          title: 'Seguridad por Default',
+          description: 'Construido sobre tecnología segura, Netzo te proporciona tranquilidad y una sólida protección.',
         },
         {
           icon: 'i-mdi-cloud-upload',
-          title: 'Despliegues al instante en la Nube',
-          description: 'Despliega en la nube de manera instantánea y fiable, sin la carga de gestionar tu propia infraestructura.',
+          title: 'Despliega en la Nube',
+          description: 'Despliega al instante en la nube y escala a tu propio ritmo, sin gestionar infraestructura.',
         },
-        {
-          icon: 'i-mdi-cloud-lock',
-          title: 'Control de acceso basado en roles (RBAC)',
-          description: 'RBAC para garantizar seguidas, sin complicaciones ni contratiempos.',
-        },
+        // {
+        //   icon: 'i-mdi-cloud-lock',
+        //   title: 'Control de Acceso Basado en Roles (RBAC)',
+        //   description: 'RBAC para garantizar un acceso suave y sin problemas.',
+        // },
         {
           icon: 'i-mdi-alert-box',
-          title: 'Registros de auditoria',
-          description: 'Registros de auditoría detallados que te permiten rastrear y supervisar todas las actividades de tus soluciones y usuarios. ',
+          title: 'Registros de Auditoría',
+          description: 'Registros de auditoría detallados para que puedas rastrear y supervisar todas las actividades de tu espacio de trabajo.',
         },
         {
           icon: 'i-mdi-card-account-details-star',
-          title: 'Soporte y servicios profesionales',
-          description: 'Estamos comprometidos con tu éxito. Ofrecemos soporte y servicios profesionales para ayudarte en cada paso del camino.',
+          title: 'Soporte y Servicios Profesionales',
+          description: 'Ofrecemos soporte y servicios profesionales para ayudarte en cada paso del camino.',
         },
       ],
     },
