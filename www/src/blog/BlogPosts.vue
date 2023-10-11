@@ -6,27 +6,27 @@ const groups = [
   {
     title: 'Announcements',
     description: 'News and updates from the Netzo team.',
-    seeMoreUrl: '/docs/platform/templates',
+    seeMoreUrl: '',
   },
   // {
   //   title: 'Examples',
   //   description: 'Practical examples of what can be done with Netzo, and how to do it.',
-  //   seeMoreUrl: '/docs/platform/templates',
+  //   seeMoreUrl: '',
   // },
   // {
   //   title: 'Vision',
   //   description: 'Notes and open letters from the Netzo team.',
-  //   seeMoreUrl: '/docs/platform/templates',
+  //   seeMoreUrl: '',
   // },
   {
     title: 'Technology',
     description: 'Notes on current technologies, tools and trends.',
-    seeMoreUrl: '/docs/platform/templates',
+    seeMoreUrl: '',
   },
   // {
   //   title: 'Release Notes',
   //   description: 'Technical details about each release',
-  //   seeMoreUrl: '/docs/platform/templates',
+  //   seeMoreUrl: '',
   // },
 ]
 

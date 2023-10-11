@@ -27,7 +27,7 @@ To deploy a local project:
 
 SUBCOMMANDS:
     clone     Clone a project from Netzo to your local machine
-    init      Create a project from an existing template (see https://app.netzo.io/templates)
+    init      Create a project from an existing template
     deploy    Deploy a project with static files to Netzo
     env       Update project environment variables from env file to Netzo
     upgrade   Upgrade netzo to the given version (defaults to latest)

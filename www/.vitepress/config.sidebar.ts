@@ -136,7 +136,6 @@ export const sidebarEN: DefaultTheme.Sidebar = {
           ],
         },
         { text: 'Inbox', link: '/docs/platform/inbox' },
-        { text: 'Templates', link: '/docs/platform/templates' },
         { text: 'Users', link: '/docs/platform/users' },
       ],
     },

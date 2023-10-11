@@ -87,9 +87,6 @@ flowchart LR
 netzo init [OPTIONS] [<directory>]
 ```
 
-::: tip Visit the [templates page](https://app.netzo.io/templates) to browse all templates.
-:::
-
 **Options:**
 
 | Option             | Description                                           |

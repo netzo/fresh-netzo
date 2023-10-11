@@ -25,9 +25,8 @@
 
 ## Quick Start
 
-This repository lists all officially supported templates listed on
-[here](https://app.netzo.io/templates) and used by the
-[Netzo Web Platform](https://app.netzo.io).
+This repository lists all officially supported templates used by
+[Netzo](https://app.netzo.io).
 
 We review all templates before they are published. This means that it may take
 some time before we can review your template.
