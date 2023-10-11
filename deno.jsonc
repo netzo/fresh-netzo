@@ -1,9 +1,9 @@
 {
   "exclude": [
     ".github",
-    "www/",
-    "**/_wip/",
-    "**/_fresh/"
+    "_fresh",
+    "**/_fresh/*",
+    "www/"
   ],
   "lock": false,
   "tasks": {
@@ -18,12 +18,12 @@
   "imports": {
     "@/": "./",
     "netzo/": "https://deno.land/x/netzo@v0.2.44/",
-    "$fresh/": "https://deno.land/x/fresh@1.4.3/",
-    "preact": "https://esm.sh/preact@10.17.1",
-    "preact/": "https://esm.sh/preact@10.17.1/",
-    "preact-render-to-string": "https://esm.sh/*preact-render-to-string@6.2.1",
+    "$fresh/": "https://deno.land/x/fresh@1.5.0/",
+    "preact": "https://esm.sh/preact@10.18.1",
+    "preact/": "https://esm.sh/preact@10.18.1/",
+    "preact-render-to-string": "https://esm.sh/*preact-render-to-string@6.2.2",
     "@preact/signals": "https://esm.sh/*@preact/signals@1.2.1",
-    "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.4.0",
+    "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.5.0",
     "std/": "https://deno.land/std@0.190.0/"
   }
 }
