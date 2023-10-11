@@ -186,8 +186,8 @@ export default {
         },
         {
           icon: 'i-mdi-cloud-lock',
-          title: 'Single sign-on (SSO) y RBAC',
-          description: 'Autenticación SSO y control de acceso basado en roles (RBAC) para garantizar seguidas, sin complicaciones ni contratiempos.',
+          title: 'Control de acceso basado en roles (RBAC)',
+          description: 'RBAC para garantizar seguidas, sin complicaciones ni contratiempos.',
         },
         {
           icon: 'i-mdi-alert-box',
