@@ -44,30 +44,21 @@ export const navEN: DefaultTheme.NavItem[] = [
 
 export const navES: DefaultTheme.NavItem[] = [
   {
-    text: 'Netzo',
+    text: 'Productos',
     items: [
+      { text: 'Componenentes', link: '/docs/netzo/components' }, // TODO: '/products/components'
+      { text: 'Base de datos', link: '/docs/platform/projects/database' }, // TODO: '/products/database'
+      // { text: 'Portales', link: '/products/portals' },
+      // { text: 'Embeds', link: '/products/embed' },
+      // { text: 'Workflows', link: '/products/workflows' },
       {
+        text: 'Templates',
         items: [
-          { text: '¿Qué es Netzo?', link: '/es/netzo/what-is-netzo' },
-          { text: '¿Por qué usar Netzo?', link: '/es/netzo/why-use-netzo' },
+          { text: 'Apps', link: '/docs/templates/apps' },
+          { text: 'APIs', link: '/docs/templates/apis' },
+          { text: 'Workflows', link: '/docs/templates/workflows' },
         ],
       },
-      {
-        text: '¿Para quién es Netzo?',
-        items: [
-          { text: '🧑‍💻 Equipos de Desarrollo', link: '/es/netzo/who-is-netzo-for#equipos-de-desarrollo' },
-          { text: '🚀 PYMEs y Startups', link: '/es/netzo/who-is-netzo-for#pymes-y-startups' },
-          { text: '🏢 Corporaciones', link: '/es/netzo/who-is-netzo-for#corporaciones' },
-        ],
-      },
-    ],
-  },
-  {
-    text: 'Plantillas',
-    items: [
-      { text: 'Apps', link: '/docs/templates/apps' },
-      { text: 'APIs', link: '/docs/templates/apis' },
-      { text: 'Workflows', link: '/docs/templates/workflows' },
     ],
   },
   {

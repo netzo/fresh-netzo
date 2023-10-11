@@ -203,7 +203,7 @@ a[target]:hover {
 @media (min-width: 768px) {
   .container {
     /* UNCOMMENT FOR 5 COLS: grid-template-columns: repeat(5, 1fr); */
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 </style>

@@ -23,9 +23,9 @@ export const BUTTONS = {
     target: '_blank',
     icon: 'default',
   },
-  'book-a-demo': {
-    variant: 'secondary',
-    text: 'Book a Demo',
+  'book-a-call': {
+    variant: 'primary', // 'secondary',
+    text: 'Book a Call',
     href: 'https://calendar.app.google/uHEnkfwpgYSM1ppN6',
     target: '_blank',
   },

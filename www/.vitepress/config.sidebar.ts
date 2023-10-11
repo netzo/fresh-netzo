@@ -279,75 +279,11 @@ export const sidebarEN: DefaultTheme.Sidebar = {
       ],
     },
   ],
-  '/netzo/': [
-    {
-      items: [
-        { text: 'What is Netzo?', link: '/netzo/what-is-netzo' },
-        { text: 'Why use Netzo?', link: '/netzo/why-use-netzo' },
-        {
-          text: 'Who is Netzo for?',
-          items: [
-            { text: '🧑‍💻 Developer Teams', link: '/netzo/who-is-netzo-for#developer-teams' },
-            { text: '🚀 Startups and SMBs', link: '/netzo/who-is-netzo-for#smbs-and-startups' },
-            { text: '🏢 Enterprises', link: '/netzo/who-is-netzo-for#enterprises' },
-          ],
-        },
-      ],
-    },
-  ],
-  '/use-cases/': [
-    {
-      items: [
-        {
-          text: 'Use Cases',
-          items: [
-            { text: '📊 Business Intelligence', link: '/use-cases#business-intelligence-bi' },
-            { text: '💻 Admin Panels', link: '/use-cases#admin-panels-crud' },
-            { text: '🔗 APIs (REST)', link: '/use-cases#rest-apis' },
-            { text: '🤖 Workflow Automation', link: '/use-cases#workflows' },
-            { text: '🌐 Websites', link: '/use-cases#websites-and-landing-pages' },
-          ],
-        },
-      ],
-    },
-  ],
   '/legal/': [legalEN],
 }
 
 export const sidebarES: DefaultTheme.Sidebar = {
   // '/blog/': sidebarEN['/blog/'],
   // '/docs/': sidebarEN['/docs/'],
-  '/es/netzo/': [
-    {
-      items: [
-        { text: '¿Qué es Netzo?', link: '/es/netzo/what-is-netzo' },
-        { text: '¿Por qué usar Netzo?', link: '/es/netzo/why-use-netzo' },
-        {
-          text: '¿Para quién es Netzo?',
-          items: [
-            { text: '🧑‍💻 Equipos de Desarrollo', link: '/es/netzo/who-is-netzo-for#equipos-de-desarrollo' },
-            { text: '🚀 Startups y PYMEs', link: '/es/netzo/who-is-netzo-for#pymes-y-startups' },
-            { text: '🏢 Empresas', link: '/es/netzo/who-is-netzo-for#corporaciones' },
-          ],
-        },
-      ],
-    },
-  ],
-  '/es/use-cases/': [
-    {
-      items: [
-        {
-          text: 'Casos de Uso',
-          items: [
-            { text: '📊 Inteligencia de Negocios', link: '/es/use-cases#inteligencia-de-negocios-bi' },
-            { text: '💻 Cuadros de Mando', link: '/es/use-cases#cuadros-de-mando-crud' },
-            { text: '🔗 APIs (REST)', link: '/es/use-cases#apis-rest' },
-            { text: '🤖 Flujos de Trabajo', link: '/es/use-cases#flujos-de-trabajo' },
-            { text: '🌐 Sitios Web', link: '/use-cases#sitios-web-y-landing-pages' },
-          ],
-        },
-      ],
-    },
-  ],
   '/es/legal/': [legalES],
 }

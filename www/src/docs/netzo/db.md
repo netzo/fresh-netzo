@@ -77,7 +77,7 @@ const todo = await db.create<Todo>('todos', {
 })
 
 // [create] POST /todos (multiple at once)
-const todo = await db.create<Todo>('todos', [
+const todos = await db.create<Todo>('todos', [
   {
     userId: 1,
     id: 1,
