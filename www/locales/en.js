@@ -167,7 +167,7 @@ export default {
     },
     sectionForModernEnterprises: {
       topic: 'For Modern Enterprises',
-      title: 'Enterprise ready. Netzo is built to scale and match your needs',
+      title: 'Enterprise ready.<br>Netzo is built to scale and match your needs',
       items: [
         {
           icon: 'i-mdi-arrow-expand-all',
