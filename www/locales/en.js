@@ -167,7 +167,7 @@ export default {
     },
     sectionForModernEnterprises: {
       topic: 'For Modern Enterprises',
-      title: 'Engineered to scale, Netzo alligns with the demands of modern enterprises.',
+      title: 'Engineered to scale.<br>Netzo alligns with the demands of modern enterprises.',
       items: [
         {
           icon: 'i-mdi-arrow-expand-all',
