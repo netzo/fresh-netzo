@@ -45,8 +45,8 @@ export default {
     sectionBackedBy: 'Nos apoyan',
     sectionSaveTimeAndMoney: {
       topic: 'Ahorra Tiempo y Dinero',
-      title: '¿Por qué gastar millones y meses creando software interno para optimizar tus procesos?',
-      description: 'Sustituye complejos desarrollos internos con Netzo. La plataforma que agiliza la creación de software empresarial para optimizar operaciones, gestionar datos y mejorar la productividad de manera rápida y económica. Lo hacemos sencillo para que te concentres en tu actividad principal.',
+      title: '¿Por qué gastar millones y meses desarollando software interno?',
+      description: 'Optimiza tus operaciones, gestiona datos y aumenta la productividad de tu empresa de manera rápida y económica, sustituyendo desarrollos internos complejos por Netzo. La plataforma que simplifica y agiliza el desarollo de software empresarial, permitiéndote centrarte en tu actividad principal.',
       items: [
         {
           icon: 'i-mdi-fast-forward',
@@ -130,6 +130,7 @@ export default {
     sectionWhy: {
       topic: '¿Por qué usar Netzo?',
       title: '¿Te identificas con estos problemas?',
+      description: 'Las pequeñas ineficiencias se acumulan y afectan negativamente la cuenta de resultados, llegando a costarte hasta un 30% de tus ingresos y haciéndote perder oportunidades de crecimiento al desviar tu atención de tus actividades principales.',
       items: [
         {
           icon: 'i-mdi-clock-alert text-accent-500',
