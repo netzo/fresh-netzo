@@ -1,7 +1,7 @@
 ---
 layout: home
 title: Home
-description: Instantly deploy JavaScript and TypeScript to URL endpoints, connect essential APIs together, automate your business and build software solutions faster, without managing servers.
+description: Ship custom business solutions in record time. Netzo is the most flexible way to build and manage mission-critical internal software solutions that fit your organization's evolving needs.
 ---
 
 <script setup>
