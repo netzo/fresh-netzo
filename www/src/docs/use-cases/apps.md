@@ -10,9 +10,6 @@ const items = [{"uid":"app-terms-and-privacy-acceptance-monitor","title":"Terms 
 
 # Use Cases
 
-::: tip You must be signed-in and member of a workspace to fork templates.
-:::
-
 ## Apps
 
 <SectionDocsCards :items="items" />

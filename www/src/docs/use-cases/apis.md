@@ -10,9 +10,6 @@ const items = [{"uid":"api-department-metrics","title":"Department Metrics API",
 
 # Use Cases
 
-::: tip You must be signed-in and member of a workspace to fork templates.
-:::
-
 ## APIs
 
 <SectionDocsCards :items="items" />

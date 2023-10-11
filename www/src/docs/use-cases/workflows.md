@@ -10,9 +10,6 @@ const items = [{"uid":"workflow-capture-webhook-data-to-hubspot-resource","title
 
 # Use Cases
 
-::: tip You must be signed-in and member of a workspace to fork templates.
-:::
-
 ## Workflows
 
 <SectionDocsCards :items="items" />
