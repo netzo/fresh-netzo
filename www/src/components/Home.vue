@@ -90,7 +90,7 @@ const props = defineProps({ locale: { type: Object, required: true } })
     </Section>
   </div> -->
 
-  <div class="sections bg-accent-100 bg-opacity-30 dark:bg-opacity-15">
+  <div class="sections">
     <SectionCards
       id="section-why"
       v-bind="locale.home.sectionWhy"
