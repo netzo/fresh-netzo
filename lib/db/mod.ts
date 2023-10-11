@@ -1,7 +1,10 @@
 import { multiSet } from "https://deno.land/x/kv_utils@1.1.1/mod.ts";
+import { monotonicFactory } from "https://deno.land/x/ulid@v0.3.0/mod.ts";
 import { filterObjectsByKeyValues } from "../utils/mod.ts";
 
-const kv = await Deno.openKv();
+export const ulid = monotonicFactory();
+
+export const kv = await Deno.openKv();
 
 export const find = async <T = unknown>(
   resource: string,
@@ -25,14 +28,14 @@ export const create = async <T = unknown>(
   if (Array.isArray(data)) {
     const keyValues: Map<Deno.KvKey, unknown> = new Map();
     for (const item of data) {
-      const id = String(item[idField]) || crypto.randomUUID();
+      const id = String(item[idField]) || ulid();
       keyValues.set([resource, id], item);
     }
     const result = await multiSet(keyValues);
     if (!result.ok) throw new Error(`Failed to set keys: ${result.failedKeys}`);
     return data;
   } else {
-    const id = String(data[idField]) || crypto.randomUUID();
+    const id = String(data[idField]) || ulid();
     const key = [resource, id];
     const ok = await kv.atomic().set(key, data).commit();
     if (!ok) throw new Error("Something went wrong.");
