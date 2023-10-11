@@ -1,5 +1,4 @@
 import { defineRoute } from "$fresh/server.ts";
-import { HandlerContext, Handlers, PageProps } from "$fresh/server.ts";
 import InputSearch from "@/components/InputSearch.tsx";
 import templates from "@/data/templates.json" assert { type: "json" };
 import { Data } from "./[id].tsx";
@@ -10,21 +9,22 @@ const meta = {
     "An HTTP API to generate and send emails from existing templates written in JSX.",
 };
 
-export const handler: Handlers = {
-  GET(req, ctx) {
-    const url = new URL(req.url);
-    const locale = url.searchParams.get("locale") || "";
-    const query = url.searchParams.get("query") || "";
-    const filteredTemplates = templates
-      .filter((t: Data) => locale ? t.locale === locale : true)
-      .filter((t: Data) =>
-        !query && t.id.toLowerCase().includes(query?.toLowerCase())
-      );
-    return ctx.render({ templates: filteredTemplates, locale, query });
-  },
-};
+interface Props {
+  templates: Data[];
+  locale: string;
+  query: string;
+}
 
-export default defineRoute((props: PageProps) => {
+export default defineRoute(async (req, ctx) => {
+  const url = new URL(req.url);
+  const locale = url.searchParams.get("locale") || "";
+  const query = url.searchParams.get("query") || "";
+  const filteredTemplates = templates
+    .filter((t: Data) => locale ? t.locale === locale : true)
+    .filter((t: Data) =>
+      !query && t.id.toLowerCase().includes(query?.toLowerCase())
+    );
+
   return (
     <html>
       <head>
@@ -53,15 +53,15 @@ export default defineRoute((props: PageProps) => {
           <div class="w-full max-w-3xl mx-auto">
             <div class="sticky top-0 py-6 bg-white dark:bg-gray-900">
               <InputSearch
-                locale={props.data.locale}
-                query={props.data.query}
+                locale={locale}
+                query={query}
               />
             </div>
 
-            {props.data.templates?.length
+            {filteredTemplates?.length
               ? (
                 <ul class="divide-y divide-gray-200 dark:divide-gray-700">
-                  {props.data.templates!.map((template: Data) => (
+                  {filteredTemplates!.map((template: Data) => (
                     <a href={`/${template.id}`}>
                       <li class="rounded p-3 hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
                         <div class="flex items-center space-x-4">

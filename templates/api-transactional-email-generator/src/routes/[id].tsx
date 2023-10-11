@@ -1,4 +1,4 @@
-import { defineRoute } from "$fresh/server.ts";
+// TODO: import { defineRoute } from "$fresh/server.ts";
 import { HandlerContext, Handlers, PageProps } from "$fresh/server.ts";
 import Mustache from "mustache";
 import { rest } from "netzo/apis/rest/mod.ts";
@@ -52,7 +52,7 @@ export const handler: Handlers = {
   },
 };
 
-export default defineRoute((props: PageProps<Data>) => {
+export default (props: PageProps<Data>) => {
   return (
     <html>
       <head>
@@ -86,7 +86,7 @@ export default defineRoute((props: PageProps<Data>) => {
       </body>
     </html>
   );
-});
+};
 
 // email:
 
