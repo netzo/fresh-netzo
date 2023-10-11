@@ -291,7 +291,7 @@ export default {
     //   items: [
     //     {
     //       icon: 'i-mdi-view-dashboard-outline',
-    //       description: '<strong style="color: #0080ff"><a href="/docs/use-cases/apps">Templates</a></strong> to kickstart custom implementations in seconds',
+    //       description: '<strong style="color: #0080ff"><a href="/docs/use-cases/apps">Use Cases</a></strong> to kickstart custom implementations in seconds',
     //     },
     //     {
     //       icon: 'i-mdi-star-four-points',
@@ -1503,4 +1503,366 @@ export default {
       href: '/docs/netzo/components/typography',
     },
   ].sort((a, b) => a.uid.localeCompare(b.uid)),
+  templates: [
+    {
+      uid: 'app-terms-and-privacy-acceptance-monitor',
+      title: 'Terms and Privacy Policy Acceptance Monitor',
+      description: 'Monitor and track the acceptance of terms and privacy policies, providing insights and analytics based on the dataset, either from your Auth0 or your own database. Trigger email reminders to users who have not accepted the terms and privacy policies.',
+      display: {
+        src: 'https://raw.githubusercontent.com/netzo/netzo/main/www/src/public/use-cases/app-terms-and-privacy-acceptance-monitor/icon.svg',
+      },
+    },
+    {
+      uid: 'app-know-your-customer-dashboard',
+      title: 'Know-Your-Customer Dashboard',
+      description: 'Consolidate customer data from any SaaS API, database or spreadsheet for a holistic view of the customer. Enhance team productivity with all the required informationn in one place, while protecting sensitive data from unauthorized individuals.',
+      display: {
+        src: 'https://raw.githubusercontent.com/netzo/netzo/main/www/src/public/use-cases/app-know-your-customer-dashboard/icon.svg',
+      },
+    },
+    {
+      uid: 'app-custom-crm-mongodb',
+      title: 'Custom CRM on MongoDB',
+      description: 'An adaptable CRM solution designed to cater to the unique requirements of your marketing or sales team with a customizable API interface endpoints for advanced functionality, prospecting and AI integration.',
+      display: {
+        src: 'https://raw.githubusercontent.com/netzo/netzo/main/www/src/public/use-cases/app-custom-crm-mongodb/icon.svg',
+      },
+    },
+    {
+      uid: 'app-custom-crm-googlesheets',
+      title: 'Custom CRM on Google Sheets',
+      description: 'An adaptable CRM solution designed to cater to the unique requirements of your marketing or sales team with a customizable API interface endpoints for advanced functionality, prospecting and AI integration.',
+      display: {
+        src: 'https://raw.githubusercontent.com/netzo/netzo/main/www/src/public/use-cases/app-custom-crm-googlesheets/icon.svg',
+      },
+    },
+    {
+      uid: 'app-employee-directory',
+      title: 'Employee Directory',
+      description: 'A web app to quickly find employee data, skills and contact info in a convenient easily accessible interface. This app simplifies matching employees to tasks and projects. Employee data may be stored in any HR system or database and simply streamed, when required.',
+      display: {
+        src: 'https://raw.githubusercontent.com/netzo/netzo/main/www/src/public/use-cases/app-employee-directory/icon.png',
+      },
+    },
+    {
+      uid: 'app-dynamic-landing-page-generator',
+      title: 'Dynamic Landing Page Generator',
+      description: 'A dynamic landing page generator with perfect SEO score, multilanguage and multi buyer persona support from a single JSON file.',
+      display: {
+        src: 'https://raw.githubusercontent.com/netzo/netzo/main/www/src/public/use-cases/app-dynamic-landing-page-generator/icon.svg',
+      },
+    },
+    {
+      uid: 'app-cms-github',
+      title: 'Custom CMS on GitHub',
+      description: 'An intuitive content management system (CMS) to easily store and manage digital assets such as images, files, videos and audio in different formats with version control and web hosting via Github.',
+      display: {
+        src: 'https://netzo.io/images/home/admin-panels.svg',
+      },
+    },
+    {
+      uid: 'app-app-launcher',
+      title: 'App Launcher',
+      description: 'Quick links for important apps and services',
+      display: {
+        src: 'https://raw.githubusercontent.com/netzo/netzo/main/www/src/public/use-cases/app-app-launcher/icon.svg',
+      },
+    },
+    {
+      uid: 'app-sales-dashboard',
+      title: 'Sales Dashboard',
+      description: 'A sales dashboard to track performance of sales teams in real-time, and provides a variety of metrics to help make informed decisions.',
+      display: {
+        src: 'https://raw.githubusercontent.com/netzo/netzo/main/www/src/public/use-cases/app-sales-dashboard/icon.svg',
+      },
+    },
+    {
+      uid: 'app-statuspage',
+      title: 'Statuspage',
+      description: 'A status page to track the \'up\', \'down\' and \'maintenance\' status of (multiple) services over time.',
+      display: {
+        src: 'https://raw.githubusercontent.com/netzo/netzo/main/www/src/public/use-cases/app-statuspage/icon.svg',
+      },
+    },
+    {
+      uid: 'app-gdpr-data-export-utility',
+      title: 'GDPR Data Export Utility',
+      description: 'A web portal to easily retrieve data subject personal information from multiple sources and export in a standard format (PDF, JSON, CSV), to comply with GDPR requirements. Alternatively, send via email.',
+      display: {
+        src: 'https://raw.githubusercontent.com/netzo/netzo/main/www/src/public/use-cases/app-gdpr-data-export-utility/icon.png',
+      },
+    },
+    {
+      uid: 'api-department-metrics',
+      title: 'Department Metrics API',
+      description: 'Consolidate department metrics from multiple APIs and standardize, cross-check and cross-create KPIs for any departments, such as sales, marketing, operations, and more. Use you internal API to easily build Business Intelligence dashboards, reports and enhance intradepartment communications.',
+      display: {
+        src: 'https://netzo.io/images/home/apis.svg',
+      },
+    },
+    {
+      uid: 'api-internal-operations',
+      title: 'Internal Operations API',
+      description: 'Build custom business logic, operations and workflows under a single api. Execute simple to complex operations, such as sending emails, provisioning users, provisioning infrastructure, and much more via your webhooks and API calls from anywhere.',
+      display: {
+        src: 'https://netzo.io/images/home/apis.svg',
+      },
+    },
+    {
+      uid: 'api-iot-cloud-gateway',
+      title: 'IoT Cloud Gateway API',
+      description: 'An IoT cloud gateway API to collect, capture, process and route IoT field device data to your database or cloud service.',
+      display: {
+        src: 'https://netzo.io/images/home/apis.svg',
+      },
+    },
+    {
+      uid: 'workflow-capture-webhook-data-to-hubspot-resource',
+      title: 'Capture Webhook data to HubSpot resource',
+      description: 'This workflow allows you to seamlessly capture Webhook data and integrate it into your HubSpot resource, providing you with a centralized platform to manage and analyze your data effectively. By automating this process, it eliminates the need for manual data entry, saving you time and ensuring accurate data transfer. With complete control over the source code, you have the flexibility to customize and tailor the workflow to perfectly fit your unique business needs, allowing for easy adaptation and extension to any use case.',
+      display: {
+        src: 'https://raw.githubusercontent.com/netzo/netzo/main/www/src/public/use-cases/workflow-capture-webhook-data-to-hubspot-resource/icon.svg',
+      },
+    },
+    {
+      uid: 'workflow-capture-webhook-data-to-saphana-resource',
+      title: 'Capture Webhook data to SAP Hana resource',
+      description: 'This workflow enables seamless integration between webhooks and SAP Hana, allowing for real-time data capture and synchronization. By automating the process, it eliminates the need for manual data entry, reducing errors and saving time. With complete control over the source code, users can easily customize and tailor the workflow to their specific needs, ensuring a perfect fit for any use case.',
+      display: {
+        src: 'https://raw.githubusercontent.com/netzo/netzo/main/www/src/public/use-cases/workflow-capture-webhook-data-to-saphana-resource/icon.svg',
+      },
+    },
+    {
+      uid: 'workflow-send-apollo-leads-to-activecampaign-contacts-and-companies',
+      title: 'Send Apollo leads to ActiveCampaign contacts and companies',
+      description: 'This workflow seamlessly integrates Apollo leads with ActiveCampaign contacts and companies, streamlining the process of managing and nurturing leads. It eliminates the need for manual data entry and ensures that all relevant information is automatically synced, saving time and reducing the risk of errors. With complete control over the source code, users can customize and tailor the workflow to perfectly align with their unique business requirements, enabling them to adapt, extend, and fit any use case effortlessly.',
+      display: {
+        src: 'https://raw.githubusercontent.com/netzo/netzo/main/www/src/public/use-cases/workflow-send-apollo-leads-to-activecampaign-contacts-and-companies/icon.svg',
+      },
+    },
+    {
+      uid: 'workflow-send-apollo-leads-to-brevo-contacts-and-companies',
+      title: 'Send Apollo leads to Brevo contacts and companies',
+      description: 'This workflow seamlessly transfers leads generated from Apollo to Brevo contacts and companies, streamlining the process of managing and nurturing potential customers. By automating this data transfer, it eliminates the need for manual entry, saving time and reducing the risk of errors. Additionally, having complete control over the source code allows users to customize and tailor the workflow to their specific needs, ensuring it perfectly aligns with their unique use case.',
+      display: {
+        src: 'https://raw.githubusercontent.com/netzo/netzo/main/www/src/public/use-cases/workflow-send-apollo-leads-to-brevo-contacts-and-companies/icon.svg',
+      },
+    },
+    {
+      uid: 'workflow-send-apollo-leads-to-hubspot-contacts-and-companies',
+      title: 'Send Apollo leads to HubSpot contacts and companies',
+      description: 'This workflow seamlessly integrates Apollo leads with HubSpot contacts and companies, ensuring a smooth transfer of valuable customer information. By automating this process, it eliminates the need for manual data entry, saving time and reducing the risk of errors. With complete control over the source code, users can easily customize and tailor the workflow to their specific needs, making it a versatile solution for any business use case.',
+      display: {
+        src: 'https://raw.githubusercontent.com/netzo/netzo/main/www/src/public/use-cases/workflow-send-apollo-leads-to-hubspot-contacts-and-companies/icon.svg',
+      },
+    },
+    {
+      uid: 'workflow-send-apollo-leads-to-holded-contacts',
+      title: 'Send Apollo leads to Holded contacts',
+      description: 'This workflow seamlessly integrates Apollo leads with Holded contacts, ensuring a smooth transfer of valuable customer information. By automating this process, businesses can save time and effort, eliminating the need for manual data entry and reducing the risk of errors. With complete control over the source code, businesses can easily customize and tailor the workflow to their specific needs, allowing for maximum adaptability and flexibility.',
+      display: {
+        src: 'https://raw.githubusercontent.com/netzo/netzo/main/www/src/public/use-cases/workflow-send-apollo-leads-to-holded-contacts/icon.svg',
+      },
+    },
+    {
+      uid: 'workflow-send-dripify-leads-to-hubspot-contacts-and-companies',
+      title: 'Send Dripify leads to HubSpot contacts and companies',
+      description: 'This workflow seamlessly integrates Dripify leads with HubSpot contacts and companies, ensuring a smooth transfer of valuable customer data. By automating this process, businesses can save time and effort, while also gaining a comprehensive view of their leads and customers in one centralized platform. Additionally, having complete control over the source code allows for easy customization and adaptation to meet specific business needs, providing a flexible solution for any use case.',
+      display: {
+        src: 'https://raw.githubusercontent.com/netzo/netzo/main/www/src/public/use-cases/workflow-send-dripify-leads-to-hubspot-contacts-and-companies/icon.svg',
+      },
+    },
+    {
+      uid: 'workflow-send-dripify-leads-to-holded-contacts',
+      title: 'Send Dripify leads to Holded contacts',
+      description: 'This workflow seamlessly integrates Dripify leads with Holded contacts, ensuring a smooth transfer of valuable customer information. By automating this process, businesses can save time and effort, while maintaining complete control over the source code to customize and optimize the workflow according to their specific needs. This integration eliminates the hassle of manual data entry and allows for a more efficient and tailored approach to managing customer relationships.',
+      display: {
+        src: 'https://raw.githubusercontent.com/netzo/netzo/main/www/src/public/use-cases/workflow-send-dripify-leads-to-holded-contacts/icon.svg',
+      },
+    },
+    {
+      uid: 'workflow-send-dripify-leads-to-saphana-contacts-and-companies',
+      title: 'Send Dripify leads to SAP Hana contacts and companies',
+      description: 'This workflow seamlessly integrates Dripify leads with SAP Hana contacts and companies, ensuring a smooth transfer of data between the two platforms. By automating this process, it eliminates the need for manual data entry, saving time and reducing the risk of errors. Additionally, having complete control over the source code allows for customization and flexibility, enabling users to tailor the workflow to their specific needs and requirements.',
+      display: {
+        src: 'https://raw.githubusercontent.com/netzo/netzo/main/www/src/public/use-cases/workflow-send-dripify-leads-to-saphana-contacts-and-companies/icon.svg',
+      },
+    },
+    {
+      uid: 'workflow-send-dripify-leads-to-pipedrive-persons',
+      title: 'Send Dripify leads to Pipedrive persons',
+      description: 'This workflow seamlessly transfers leads from Dripify to Pipedrive, ensuring a smooth transition of potential customers into your contact and company database. By automating this process, it eliminates the need for manual data entry, saving you time and reducing the risk of errors. With complete control over the source code, you have the flexibility to customize and tailor the workflow to perfectly align with your unique business needs, allowing for effortless adaptation and extension to any use case.',
+      display: {
+        src: 'https://raw.githubusercontent.com/netzo/netzo/main/www/src/public/use-cases/workflow-send-dripify-leads-to-pipedrive-persons/icon.svg',
+      },
+    },
+    {
+      uid: 'workflow-send-apollo-leads-to-saphana-contacts-and-companies',
+      title: 'Send Apollo leads to SAP Hana contacts and companies',
+      description: 'This workflow seamlessly integrates Apollo leads with SAP Hana contacts and companies, enabling efficient data transfer and synchronization. By automating this process, it eliminates the need for manual data entry, saving time and reducing the risk of errors. Additionally, having complete control over the source code empowers users to customize and tailor the workflow to their specific needs, ensuring a perfect fit for any use case.',
+      display: {
+        src: 'https://raw.githubusercontent.com/netzo/netzo/main/www/src/public/use-cases/workflow-send-apollo-leads-to-saphana-contacts-and-companies/icon.svg',
+      },
+    },
+    {
+      uid: 'workflow-send-dripify-leads-to-activecampaign-contacts-and-companies',
+      title: 'Send Dripify leads to ActiveCampaign contacts and companies',
+      description: 'This workflow seamlessly integrates Dripify leads with ActiveCampaign contacts and companies, providing a streamlined process for managing customer data. By automating the transfer of information, it eliminates the need for manual data entry and ensures accurate and up-to-date records, saving time and reducing errors. With complete control over the source code, users have the flexibility to customize and tailor the workflow to their specific needs, making it a versatile solution for any business or use case.',
+      display: {
+        src: 'https://raw.githubusercontent.com/netzo/netzo/main/www/src/public/use-cases/workflow-send-dripify-leads-to-activecampaign-contacts-and-companies/icon.svg',
+      },
+    },
+    {
+      uid: 'workflow-send-meet-alfred-leads-to-brevo-contacts-and-companies',
+      title: 'Send Meet Alfred leads to Brevo contacts and companies',
+      description: 'This workflow seamlessly transfers leads generated through Meet Alfred to Brevo contacts and companies, streamlining the lead management process. By automating this data transfer, it eliminates the need for manual entry, saving time and reducing the risk of errors. Additionally, having complete control over the source code allows users to customize and tailor the workflow to their specific needs, ensuring it perfectly fits any use case.',
+      display: {
+        src: 'https://raw.githubusercontent.com/netzo/netzo/main/www/src/public/use-cases/workflow-send-meet-alfred-leads-to-brevo-contacts-and-companies/icon.svg',
+      },
+    },
+    {
+      uid: 'workflow-send-waalaxy-leads-to-hubspot-contacts-and-companies',
+      title: 'Send Waalaxy leads to HubSpot contacts and companies',
+      description: 'This workflow seamlessly integrates Waalaxy leads with HubSpot contacts and companies, eliminating the need for manual data entry and ensuring accurate and up-to-date information. By automating this process, users can save time and effort, allowing them to focus on nurturing leads and building meaningful relationships. Additionally, having complete control over the source code empowers users to customize and tailor the workflow to their specific needs, ensuring a perfect fit for any use case.',
+      display: {
+        src: 'https://raw.githubusercontent.com/netzo/netzo/main/www/src/public/use-cases/workflow-send-waalaxy-leads-to-hubspot-contacts-and-companies/icon.svg',
+      },
+    },
+    {
+      uid: 'workflow-send-meet-alfred-leads-to-holded-contacts',
+      title: 'Send Meet Alfred leads to Holded contacts',
+      description: 'This workflow seamlessly integrates Meet Alfred leads with Holded contacts, streamlining the lead management process. It eliminates the need for manual data entry, saving time and reducing the risk of errors. With complete control over the source code, users can easily customize and tailor the workflow to their specific needs, ensuring a perfect fit for any use case.',
+      display: {
+        src: 'https://raw.githubusercontent.com/netzo/netzo/main/www/src/public/use-cases/workflow-send-meet-alfred-leads-to-holded-contacts/icon.svg',
+      },
+    },
+    {
+      uid: 'workflow-send-meet-alfred-leads-to-activecampaign-contacts-and-companies',
+      title: 'Send Meet Alfred leads to ActiveCampaign contacts and companies',
+      description: 'This workflow seamlessly integrates Meet Alfred leads with ActiveCampaign contacts and companies, providing a streamlined process for managing and nurturing potential customers. By automating the transfer of leads, it eliminates the need for manual data entry and ensures that no valuable prospects are missed. Additionally, the complete control over the source code empowers users to customize and tailor the workflow to their specific needs, allowing for maximum adaptability and flexibility.',
+      display: {
+        src: 'https://raw.githubusercontent.com/netzo/netzo/main/www/src/public/use-cases/workflow-send-meet-alfred-leads-to-activecampaign-contacts-and-companies/icon.svg',
+      },
+    },
+    {
+      uid: 'workflow-send-meet-alfred-leads-to-pipedrive-persons',
+      title: 'Send Meet Alfred leads to Pipedrive persons',
+      description: 'This workflow seamlessly integrates Meet Alfred leads with Pipedrive persons, ensuring a smooth transfer of valuable information. It eliminates the hassle of manually inputting data, saving time and effort for sales teams. With complete control over the source code, users can easily customize and tailor the workflow to perfectly align with their unique requirements and business processes.',
+      display: {
+        src: 'https://raw.githubusercontent.com/netzo/netzo/main/www/src/public/use-cases/workflow-send-meet-alfred-leads-to-pipedrive-persons/icon.svg',
+      },
+    },
+    {
+      uid: 'workflow-send-meet-alfred-leads-to-hubspot-contacts-and-companies',
+      title: 'Send Meet Alfred leads to HubSpot contacts and companies',
+      description: 'This workflow seamlessly integrates Meet Alfred leads with HubSpot contacts and companies, providing a streamlined process for managing and nurturing potential leads. By automating the transfer of data, it eliminates the need for manual entry and ensures accurate and up-to-date information, saving time and reducing the risk of errors. With complete control over the source code, users have the flexibility to customize and tailor the workflow to their specific needs, making it a versatile solution for any use case.',
+      display: {
+        src: 'https://raw.githubusercontent.com/netzo/netzo/main/www/src/public/use-cases/workflow-send-meet-alfred-leads-to-hubspot-contacts-and-companies/icon.svg',
+      },
+    },
+    {
+      uid: 'workflow-send-waalaxy-leads-to-saphana-contacts-and-companies',
+      title: 'Send Waalaxy leads to SAP Hana contacts and companies',
+      description: 'This workflow seamlessly integrates Waalaxy leads with SAP Hana contacts and companies, eliminating the need for manual data entry and ensuring accurate and up-to-date information. By automating this process, users can save time and effort while maintaining a comprehensive and synchronized database. Additionally, having complete control over the source code allows for easy customization and tailoring to specific business needs, ensuring a perfect fit for any use case.',
+      display: {
+        src: 'https://raw.githubusercontent.com/netzo/netzo/main/www/src/public/use-cases/workflow-send-waalaxy-leads-to-saphana-contacts-and-companies/icon.svg',
+      },
+    },
+    {
+      uid: 'workflow-send-meet-alfred-leads-to-saphana-contacts-and-companies',
+      title: 'Send Meet Alfred leads to SAP Hana contacts and companies',
+      description: 'This workflow seamlessly integrates Meet Alfred leads with SAP Hana contacts and companies, ensuring a smooth transfer of data between the two platforms. By automating this process, it eliminates the need for manual data entry, saving time and reducing the risk of errors. Additionally, having complete control over the source code allows users to customize and tailor the workflow to their specific needs, making it adaptable and flexible for any use case.',
+      display: {
+        src: 'https://raw.githubusercontent.com/netzo/netzo/main/www/src/public/use-cases/workflow-send-meet-alfred-leads-to-saphana-contacts-and-companies/icon.svg',
+      },
+    },
+    {
+      uid: 'workflow-sync-pipedrive-contacts-and-companies-with-holded-contacts-and-companies',
+      title: 'Sync Pipedrive persons with Holded contacts',
+      description: 'This workflow seamlessly syncs Pipedrive persons with Holded contacts, ensuring that all customer information remains up-to-date across both platforms. By automating this process, it eliminates the need for manual data entry and reduces the risk of errors or inconsistencies. With complete control over the source code, users can easily customize and tailor the workflow to their specific needs, allowing for a truly adaptable and flexible solution.',
+      display: {
+        src: 'https://raw.githubusercontent.com/netzo/netzo/main/www/src/public/use-cases/workflow-sync-pipedrive-contacts-and-companies-with-holded-contacts-and-companies/icon.svg',
+      },
+    },
+    {
+      uid: 'workflow-capture-webhook-data-to-activecampaign-resource',
+      title: 'Capture Webhook data to ActiveCampaign resource',
+      description: 'This workflow allows you to seamlessly capture Webhook data and integrate it into your ActiveCampaign resource, providing you with a streamlined process for managing and organizing your customer data. By automating this task, you can save time and effort, ensuring that no valuable information is missed or lost. Additionally, with complete control over the source code, you have the flexibility to customize and tailor the workflow to perfectly fit your specific needs and requirements.',
+      display: {
+        src: 'https://raw.githubusercontent.com/netzo/netzo/main/www/src/public/use-cases/workflow-capture-webhook-data-to-activecampaign-resource/icon.svg',
+      },
+    },
+    {
+      uid: 'workflow-capture-webhook-data-to-brevo-resource',
+      title: 'Capture Webhook data to Brevo resource',
+      description: 'This workflow enables seamless integration of webhook data into Brevo resource, providing users with real-time updates and eliminating the need for manual data entry. It resolves the pain point of time-consuming and error-prone data transfer, allowing users to focus on more important tasks. With complete control over the source code, users can easily customize and tailor the workflow to perfectly fit their specific use case, ensuring maximum efficiency and flexibility.',
+      display: {
+        src: 'https://raw.githubusercontent.com/netzo/netzo/main/www/src/public/use-cases/workflow-capture-webhook-data-to-brevo-resource/icon.svg',
+      },
+    },
+    {
+      uid: 'workflow-capture-webhook-data-to-holded-resource',
+      title: 'Capture Webhook data to Holded resource',
+      description: 'This workflow allows you to seamlessly capture Webhook data and store it in your Holded resource, providing you with real-time updates and eliminating the need for manual data entry. By automating this process, you can save time and ensure accurate data synchronization, enabling you to focus on more important tasks. Additionally, having complete control over the source code empowers you to customize and tailor the workflow to perfectly fit your specific needs and requirements.',
+      display: {
+        src: 'https://raw.githubusercontent.com/netzo/netzo/main/www/src/public/use-cases/workflow-capture-webhook-data-to-holded-resource/icon.svg',
+      },
+    },
+    {
+      uid: 'workflow-capture-webhook-data-to-pipedrive-resource',
+      title: 'Capture Webhook data to Pipedrive resource',
+      description: 'This workflow allows you to seamlessly capture incoming Webhook data and automatically transfer it to your Pipedrive resource. It eliminates the hassle of manually inputting data, saving you time and ensuring accurate information in your CRM system. With complete control over the source code, you can easily customize and tailor the workflow to perfectly fit your specific needs and use cases.',
+      display: {
+        src: 'https://raw.githubusercontent.com/netzo/netzo/main/www/src/public/use-cases/workflow-capture-webhook-data-to-pipedrive-resource/icon.svg',
+      },
+    },
+    {
+      uid: 'workflow-send-waalaxy-leads-to-activecampaign-contacts-and-companies',
+      title: 'Send Waalaxy leads to ActiveCampaign contacts and companies',
+      description: 'This workflow seamlessly integrates Waalaxy leads with ActiveCampaign contacts and companies, eliminating the need for manual data entry and ensuring accurate and up-to-date information. By automating this process, users can save time and effort, allowing them to focus on nurturing leads and building stronger customer relationships. Additionally, with complete control over the source code, users have the flexibility to customize and tailor the workflow to their specific needs, ensuring it fits any use case perfectly.',
+      display: {
+        src: 'https://raw.githubusercontent.com/netzo/netzo/main/www/src/public/use-cases/workflow-send-waalaxy-leads-to-activecampaign-contacts-and-companies/icon.svg',
+      },
+    },
+    {
+      uid: 'workflow-send-waalaxy-leads-to-pipedrive-persons',
+      title: 'Send Waalaxy leads to Pipedrive persons',
+      description: 'This workflow seamlessly transfers leads generated through Waalaxy to Pipedrive, ensuring a smooth transition from prospecting to customer relationship management. By automating this process, it eliminates the need for manual data entry, saving time and reducing the risk of errors. Additionally, having complete control over the source code allows users to customize and tailor the workflow to their specific needs, making it adaptable and versatile for any use case.',
+      display: {
+        src: 'https://raw.githubusercontent.com/netzo/netzo/main/www/src/public/use-cases/workflow-send-waalaxy-leads-to-pipedrive-persons/icon.svg',
+      },
+    },
+    {
+      uid: 'workflow-send-waalaxy-leads-to-holded-contacts',
+      title: 'Send Waalaxy leads to Holded contacts',
+      description: 'This workflow seamlessly integrates Waalaxy leads with Holded contacts, eliminating the need for manual data entry and ensuring accurate and up-to-date information. By automating this process, users can save time and effort, allowing them to focus on more important tasks and improving overall productivity. Additionally, with complete control over the source code, users have the flexibility to customize and tailor the workflow to their specific needs, making it a versatile solution for any use case.',
+      display: {
+        src: 'https://raw.githubusercontent.com/netzo/netzo/main/www/src/public/use-cases/workflow-send-waalaxy-leads-to-holded-contacts/icon.svg',
+      },
+    },
+    {
+      uid: 'workflow-send-waalaxy-leads-to-brevo-contacts-and-companies',
+      title: 'Send Waalaxy leads to Brevo contacts and companies',
+      description: 'This workflow seamlessly transfers leads generated through Waalaxy to Brevo\'s contacts and companies, streamlining the process of managing and nurturing potential customers. By automating this data transfer, it eliminates the need for manual entry, saving time and reducing the risk of errors. Additionally, users have complete control over the source code, allowing them to customize and tailor the workflow to their specific needs, ensuring it fits any use case perfectly.',
+      display: {
+        src: 'https://raw.githubusercontent.com/netzo/netzo/main/www/src/public/use-cases/workflow-send-waalaxy-leads-to-brevo-contacts-and-companies/icon.svg',
+      },
+    },
+    {
+      uid: 'workflow-send-apollo-leads-to-pipedrive-persons',
+      title: 'Send Apollo leads to Pipedrive persons',
+      description: 'This workflow seamlessly integrates Apollo leads with Pipedrive persons, eliminating the need for manual data entry and ensuring accurate and up-to-date information. By automating this process, users can save valuable time and effort, allowing them to focus on nurturing leads and closing deals. Additionally, with complete control over the source code, users have the flexibility to customize and tailor the workflow to their specific needs, making it a versatile solution for any use case.',
+      display: {
+        src: 'https://raw.githubusercontent.com/netzo/netzo/main/www/src/public/use-cases/workflow-send-apollo-leads-to-pipedrive-persons/icon.svg',
+      },
+    },
+    {
+      uid: 'workflow-send-dripify-leads-to-brevo-contacts-and-companies',
+      title: 'Send Dripify leads to Brevo contacts and companies',
+      description: 'This workflow seamlessly transfers leads generated through Dripify to Brevo\'s contact and company database, ensuring a smooth integration between the two platforms. By automating this process, it eliminates the need for manual data entry, saving time and reducing the risk of errors. Additionally, having complete control over the source code allows users to customize and tailor the workflow to their specific needs, ensuring it perfectly fits any use case.',
+      display: {
+        src: 'https://raw.githubusercontent.com/netzo/netzo/main/www/src/public/use-cases/workflow-send-dripify-leads-to-brevo-contacts-and-companies/icon.svg',
+      },
+    },
+  ],
 }

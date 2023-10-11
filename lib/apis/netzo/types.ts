@@ -17,12 +17,6 @@ export type {
   Project,
   ProjectData,
   ProjectQuery,
-  Request,
-  RequestData,
-  RequestQuery,
-  Template,
-  TemplateData,
-  TemplateQuery,
   User,
   UserData,
   UserQuery,
@@ -35,4 +29,4 @@ export type {
   WorkspaceUser,
   WorkspaceUserData,
   WorkspaceUserQuery,
-} from "https://esm.sh/v131/@netzo/api@1.0.34/lib/client.d.ts";
+} from "https://esm.sh/v131/@netzo/api@1.0.43/lib/client.d.ts";

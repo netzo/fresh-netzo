@@ -12,7 +12,8 @@
 
 <p align="center">
   <a href="https://netzo.io"><strong>Website</strong></a> ·
-  <a href="https://netzo.io/docs/introduction/getting-started"><strong>Docs</strong></a>
+  <a href="https://netzo.io/docs/introduction/getting-started"><strong>Docs</strong></a> ·
+  <a href="https://discord.gg/tbDUpRQCTk"><strong>Community</strong></a>
 </p>
 
 <div align="center" style="margin-top: 24px;">
