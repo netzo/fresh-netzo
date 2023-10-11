@@ -1,9 +1,4 @@
 declare interface Window {
-  // mounts customerly client (see scripts in index.html)
-  customerly: {
-    load: ({ app_id: string }) => void
-    [key: string]: any
-  }
   fathom: any
   UC_UI: any
 }

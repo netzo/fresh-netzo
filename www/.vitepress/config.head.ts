@@ -6,7 +6,7 @@ export const head: HeadConfig[] = [
   // [scripts] loaded before usercentrics
   ['script', {
     type: 'text/javascript', async: 'true',
-  }, readFileSync(resolve(__dirname, './scripts/customerly-popup.js'), 'utf-8')],
+  }, readFileSync(resolve(__dirname, './scripts/chat-popup.js'), 'utf-8')],
 
   // [usercentrics] CMP (Consent Management Platform) script (loader.js)
   ['script', {
@@ -43,11 +43,6 @@ export const head: HeadConfig[] = [
     'defer': '',
   }],
   // 2) Functional services/cookies
-  ['script', {
-    'type': 'text/plain',
-    'data-usercentrics': 'Customerly',
-    'defer': '',
-  }, readFileSync(resolve(__dirname, './scripts/customerly.js'), 'utf-8')],
   ['script', {
     'type': 'text/plain',
     'data-usercentrics': 'Hotjar',
