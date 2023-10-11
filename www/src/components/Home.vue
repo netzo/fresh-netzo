@@ -133,7 +133,8 @@ const props = defineProps({ locale: { type: Object, required: true } })
   <div class="sections">
     <SectionCards
       id="section-business-benefits"
-      v-bind="locale.home.sectionForModernEnterprises"
+      v-bind="locale.home.sectionForModernEnterprises",
+      class="!text-bold"
     />
   </div>
 
