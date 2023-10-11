@@ -7,7 +7,7 @@
 ## Usage
 
 ```ts
-import * as db from 'https://deno.land/x/netzo/db/mod.ts'
+import { createDB } from 'https://deno.land/x/netzo/db/mod.ts'
 
 interface Todo {
   id: string
@@ -15,6 +15,9 @@ interface Todo {
   title: string
   completed: boolean
 }
+
+const kv = await Deno.openKv()
+const db = createDB(kv)
 
 const todos = await db.find<Todo>('todos')
 const todo = await db.get<Todo>('todos', ID)
@@ -34,7 +37,7 @@ const todo = await db.patch<Todo>('todos', ID, {
 const { id } = await db.remove<Todo>('todos', ID)
 ```
 
-::: tip Use `import * as db from "netzo/db/mod.ts"` for `db.<METHOD>(...)` syntax.
+::: tip Use `import { createDB } from "netzo/db/mod.ts"` for `db.<METHOD>(...)` syntax.
 Note that you can always use named imports to import functions invidiually.
 :::
 
@@ -77,7 +80,7 @@ const todo = await db.create<Todo>('todos', {
 })
 
 // [create] POST /todos (multiple at once)
-const todo = await db.create<Todo>('todos', [
+const todos = await db.create<Todo>('todos', [
   {
     userId: 1,
     id: 1,

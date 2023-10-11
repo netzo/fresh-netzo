@@ -14,7 +14,7 @@ const {
   <div class="w-screen py-12 px-6 text-left font-semibold bg-primary-500 text-white">
     <section class="container">
       <aside>
-        <h2 v-html="title" />
+        <h2 :class="{ '!my-auto': !items.length }" v-html="title" />
         <ul v-if="items.length" class="flex flex-col !pl-0 gap-2">
           <ListItem
             v-for="(item, i) in items"

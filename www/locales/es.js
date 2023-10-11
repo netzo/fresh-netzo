@@ -10,17 +10,17 @@ export default {
       description: 'Entrega soluciones empresariales a medida en tiempo récord. Netzo es la manera más versátil para construir y administrar software interno que se adapta a las necesidades en constante evolución de tu organización.',
       buttons: [
         {
-          type: 'lets-talk',
-          text: 'Contáctanos',
+          type: 'book-a-call',
+          text: 'Agenda una Llamada',
         },
         // {
         //   type: 'video-scroll',
         //   text: 'Ver Intro de 1 min',
-        //   href: '#section-what',
+        //   href: '#section-save-time-and-money',
         // },
       ],
       image: {
-        alt: 'Netzo: Crea y comparte aplicaciones back-office más rápido',
+        alt: 'Netzo - La manera más inteligente de crear software empresarial',
         src: '/images/home/hero.svg',
       },
       items: [
@@ -44,7 +44,7 @@ export default {
     },
     sectionWhat: {
       topic: '¿Qué es Netzo?',
-      title: 'La plataforma integral para crear software empresarial',
+      title: 'La plataforma integral para optimizar operaciones con software empresarial a medida',
       items: [
         {
           icon: 'i-mdi-clock-fast',
@@ -101,44 +101,25 @@ export default {
       title: 'Mejores soluciones diseñadas para tus procesos únicos',
       items: [
         {
-          icon: 'i-mdi-head-lightbulb-outline',
-          title: 'Aumenta tu ventaja competitiva ',
-          description: 'Innova más rápido con menos esfuerzo y gana ventaja competitiva sobre tus competidores.',
+          icon: 'i-mdi-fast-forward',
+          title: 'De idea to producción 10x más rápido',
+          description: 'No importa lo que necesites crear, Netzo elimina las complejidades que consumen hasta 95% del tiempo de desarrollo.',
         },
         {
-          icon: 'i-bx-timer',
-          title: 'Gana velocidad iterativa ',
-          description: 'Itera con velocidad y objetivos claros entre tus desarrolladores y estrategia de negocio.',
+          icon: 'i-mdi-piggy-bank',
+          title: 'Menos costoso que crear desde cero',
+          description: 'Ya sea construyendo un panel de control o automatizando un flujo de trabajo, ahorra en mantenimiento, personal e imprevistos.',
         },
         {
-          icon: 'i-mdi-account-group-outline',
-          title: 'Colaboración y adopción interdepartamental ',
-          description: 'Colabora y fomenta la retroalimentación entre equipos y desarrolladores e itera continuamente.',
+          icon: 'i-mdi-chart-gantt',
+          title: 'Adopta metodologías Ágiles de forma sencilla',
+          description: 'Adáptate e itera rápidamente para mantener tus soluciones siempre alineadas con tus procesos y necesidades en constante evolución.',
         },
+      ],
+      buttons: [
         {
-          icon: 'i-tabler-packages',
-          title: 'Orchestra tus datos',
-          description: 'Centraliza los datos de todos tus sistemas, y gana visibilidad cruzando cuaquier dato con otro.',
-        },
-        {
-          icon: 'i-ic-baseline-hub',
-          title: 'Centraliza tus operaciones',
-          description: 'Obten visibilidad sobre tus operaciones y supervisa de cerca tus procesos críticos.',
-        },
-        {
-          icon: 'i-mdi-lock-open-variant-outline',
-          title: 'Elimina tu dependencia a proveedores',
-          description: 'Vuelvete dueño de tus soluciones y evita el resago tecnológico.',
-        },
-        {
-          icon: 'i-mdi-security',
-          title: 'Elimina riesgos de seguridad',
-          description: 'Manten la seguridad de la información con controles incorporados y capacidades de auditoría de código manteniendo una escalabilidad total.',
-        },
-        {
-          icon: 'i-emojione-flag-for-european-union',
-          title: 'Soporte local y cumplimiento RGPD',
-          description: 'Base en Madrid e impulsados por la seguridad por diseño',
+          type: 'book-a-call',
+          text: 'Habla con un Experto',
         },
       ],
     },
@@ -200,232 +181,280 @@ export default {
     },
     sectionWhy: {
       topic: '¿Por qué usar Netzo?',
-      title: 'La ineficiencia mata a las empresas',
+      title: '¿Te identificas con estos problemas?',
       items: [
         {
-          title: 'Pérdida de ingresos y crecimiento lento',
-          description: 'Las ineficiencias les cuestan a las empresas hasta un 30% de sus ingresos y limitan el potencial de crecimiento.',
+          icon: 'i-mdi-clock-alert text-accent-500',
+          title: 'Tareas repetitivas consumen tiempo valioso',
         },
         {
-          title: 'Oportunidades perdidas',
-          description: 'Las ideas innovadoras quedan sepultadas en el backlog, lo que lleva a oportunidades perdidas para el crecimiento y la mejora.',
+          icon: 'i-mdi-chart-timeline-variant-shimmer text-accent-500',
+          title: 'Falta de acceso a datos empresariales clave',
         },
         {
-          title: 'Incapacidad para adaptarse y escalar',
-          description: 'Las empresas lentas luchan por adaptarse a las cambiantes condiciones del mercado y arriesgan su ventaja competitiva.',
+          icon: 'i-mdi-microsoft-excel text-accent-500',
+          title: 'Dependencia excesiva de hojas de cálculo',
+        },
+        {
+          icon: 'i-mdi-bell-alert text-accent-500',
+          title: 'Errores en datos entre sistemas y hojas de cálculo',
+        },
+        {
+          icon: 'i-mdi-emoticon-dead text-accent-500',
+          title: 'Equipo de programadores sobrecargados',
+        },
+        {
+          icon: 'i-mdi-lan-disconnect text-accent-500',
+          title: 'Dificultad en la colaboración interdepartamental',
         },
       ],
-      buttons: [
+      // buttons: [
+      //   {
+      //     type: 'learn-more',
+      //     text: 'Aprende más',
+      //     href: '/docs/introduction/getting-started',
+      //   },
+      // ],
+    },
+    sectionForModernEnterprises: {
+      topic: 'Para Empresas Modernas',
+      title: 'Preparado para empresas. Netzo está diseñado para crecer y adaptarse a tus necesidades',
+      items: [
         {
-          type: 'learn-more',
-          text: 'Más información',
-          href: '/es/netzo/why-use-netzo',
+          icon: 'i-mdi-arrow-expand-all',
+          title: 'Flexibilidad y escalabilidad',
+          description: 'Con Netzo, obtienes flexibilidad y escalabilidad total para que te centres en la lógica de tu negocio, manteniendo control total de tu propio código.',
+        },
+        {
+          icon: 'i-mdi-security',
+          title: 'Seguridad por default',
+          description: 'Netzo está diseñado con medidas de seguridad integrales, asegurando la protección de tus datos y soluciones en todo momento.',
+        },
+        {
+          icon: 'i-mdi-cloud-upload',
+          title: 'Despliegues al instante en la Nube',
+          description: 'Despliega en la nube de manera instantánea y fiable, sin la carga de gestionar tu propia infraestructura.',
+        },
+        {
+          icon: 'i-mdi-cloud-lock',
+          title: 'Single sign-on (SSO) y RBAC',
+          description: 'Autenticación SSO y control de acceso basado en roles (RBAC) para garantizar seguidas, sin complicaciones ni contratiempos.',
+        },
+        {
+          icon: 'i-mdi-alert-box',
+          title: 'Registros de auditoria',
+          description: 'Registros de auditoría detallados que te permiten rastrear y supervisar todas las actividades de tus soluciones y usuarios. ',
+        },
+        {
+          icon: 'i-mdi-card-account-details-star',
+          title: 'Soporte y servicios profesionales',
+          description: 'Estamos comprometidos con tu éxito. Ofrecemos soporte y servicios profesionales para ayudarte en cada paso del camino.',
         },
       ],
     },
-    sectionHow: {
-      topic: '¿Cómo funciona?',
-      title: 'La versatilidad del código sin los dolores de cabeza',
-      description: 'Di adiós a los desarrollos costosos, tediosos e inmantenibles. Disfruta todos los beneficios de desarrollar con código sin los grandes esfuerzos ni requisitos de mantenimiento al crear tu back-office.',
-      items: [
-        {
-          topic: 'Programa',
-          title: 'Máxima flexibilidad para los desarrolladores via <code>JS</code>/<code>TS</code>',
-          description: 'Crea aplicaciones back-office con confianza y flexibilidad. Construye interfaces con <code>JSX</code>/<code>TSX</code>, crea APIs internas (HTTP) y automatiza flujos de trabajos con control total sobre tus scripts.',
-          image: {
-            alt: 'Cree cualquier cosa en JS/TS',
-            src: '/images/home/1-code.svg',
-            isGIF: true,
-          },
-          items: [
-            {
-              icon: 'i-mdi-code-braces',
-              title: 'Programa en línea o localmente a través del CLI de Netzo',
-            },
-            {
-              icon: 'i-mdi-bug',
-              title: 'Depura rápidamente con registros, métricas y seguimiento de errores',
-            },
-            {
-              icon: 'i-mdi-api',
-              title: 'Integra cualquier API, base de datos o importa tus bibliotecas favoritas a través de URLs',
-            },
-          ],
-        },
-        {
-          topic: 'Despliega',
-          title: 'Entrega soluciones más rápido e itera a tu ritmo',
-          description: 'Implementa, realiza cambios y da mantenimiento a tus apps con facilidad. Elimina cargas innecesarias y concéntrate en lo que realmente importa: impulsar tu negocio.',
-          image: {
-            alt: 'Implemente al instante sin el DevOps',
-            src: '/images/home/2-deploy.svg',
-            isGIF: true,
-          },
-          items: [
-            {
-              icon: 'i-ic-baseline-hub',
-              title: 'Centraliza los esfuerzos del equipo, impulsa la adopción y evita el trabajo duplicado',
-            },
-            {
-              icon: 'i-mdi-git',
-              title: 'Desarrollo continuo, control de versiones y soporte de entorno',
-            },
-            {
-              icon: 'i-mdi-finance',
-              title: 'Analíticas incorporadas para información en tiempo real',
-            },
-          ],
-        },
-        {
-          topic: 'Comparte',
-          title: 'Potencia la colaboración y aumenta la productividad',
-          description: 'Facilita la colaboración y fomenta los ciclos de retroalimentación entre tus equipos y desarrolladores. Crea y comparte apps personalizadas con confianza y sin necesidad de equipos técnicos extensos.',
-          image: {
-            alt: 'Potencia la colaboración y aumenta la productividad',
-            src: '/images/home/3-share.svg',
-            isGIF: true,
-          },
-          items: [
-            {
-              icon: 'i-mdi-share-variant',
-              title: 'Comparte al instante y de forma segura con grupos y permisos',
-            },
-            {
-              icon: 'i-mdi-police-badge',
-              title: 'Registros de auditoría para cumplimiento, seguridad e información sobre el uso',
-            },
-            {
-              icon: 'i-ic-outline-feedback',
-              title: 'Adápta tus apps más rápido con solicitudes de funcionalidad y retroalimentación de los usuarios',
-            },
-          ],
-        },
-      ],
-    },
-    sectionHowIsNetzoDifferentForDevelopers: {
-      topic: 'Centrado en el desarrollador',
-      title: 'Superpoderes para los desarrolladores',
-      items: [
-        {
-          icon: 'i-mdi-view-dashboard-outline',
-          description: '<strong style="color: #0080ff"><a href="/docs/templates/apps">Plantillas</a></strong> para comenzar implementaciones a medida en segundos',
-        },
-        {
-          icon: 'i-mdi-star-four-points',
-          description: '<strong style="color: #0080ff"><a href="/docs/netzo/apis">Integraciones</a></strong> a cientos de APIS sin necediad de leer su documentacion',
-        },
-        {
-          icon: 'i-mdi-hexagon-multiple',
-          description: '<strong style="color: #0080ff"><a href="/docs/netzo/components">Componentes UI</a></strong>, <strong style="color: #0080ff"><a href="/docs/netzo/modules">Módulos</a></strong> y <strong style="color: #0080ff"><a href="/docs/netzo/composables">Utilidades</a></strong> para velocidad y simplicidad',
-        },
-        {
-          icon: 'i-mdi-bug',
-          description: '<strong style="color: #0080ff"><a href="/docs/platform/projects/logs">Logs</a></strong> y métricas para observabilidad y control en tiempo real',
-        },
-        {
-          icon: 'i-mdi-send-clock',
-          description: '<strong style="color: #0080ff"><a href="">Tareas Cron</a></strong> recurrentes programadas',
-        },
-        {
-          icon: 'i-mdi-database-lock',
-          description: '<strong style="color: #0080ff"><a href="">Base de datos KV</a></strong> incorporada (proximamente)',
-        },
-        {
-          icon: 'i-mdi-microsoft-visual-studio-code',
-          description: '<strong style="color: #0080ff"><a href="/docs/netzo/cli">CLI</a></strong> que habilita el desarrollo local',
-        },
-        {
-          icon: 'i-mdi-git',
-          description: '<strong style="color: #0080ff"><a href="">Soporte de Git</a></strong> para gestión de versiones',
-        },
-        {
-          icon: 'i-mdi-rocket-launch',
-          description: '<strong style="color: #0080ff">Despliega en un solo click</strong> sin configuración ni DevOps',
-        },
-      ],
-    },
-    sectionHowIsNetzoDifferent: {
-      topic: '¿Cómo es diferente Netzo?',
-      title: 'Obten la ventaja competitiva con tecnología de punta',
-      items: [
-        {
-          icon: 'i-logos-deno',
-          title: 'Impulsado por Deno',
-          description: 'Construido sobre la próxima generación de JavaScript y TypeScript que mejora tu experiencia de desarrollo (DX).',
-        },
-        {
-          icon: 'i-mdi-nodejs',
-          title: 'Soporte completo para Node.js y NPM',
-          description: 'Programa con tus librerías favoritas de Node.js con soporte completo de los módulos integrados de Node.js y los paquetes de NPM.',
-        },
-        {
-          icon: 'i-fxemoji-lightningmood',
-          title: 'Sin servidor',
-          description: 'Implementa tu código instantáneamente a nivel global sin necesidad de provisionar ni gestionar infraestructura.',
-        },
-        {
-          icon: 'i-logos-typescript-icon',
-          title: 'TypeScript nativo',
-          description: 'Utiliza TypeScript sin necesidad de compilaciones o configuraciones complejas. Disfruta de autocompletado y seguridad de tipos.',
-        },
-        {
-          icon: 'i-mdi-package-variant-closed',
-          // title: 'Importa desde URL de <s><code style='opacity: 0.7; color: red;'>NPM</code></s>',
-          title: 'Importaciones desde URL y portabilidad mejorada',
-          description: 'Olvídate de <code>node_modules</code>. Importa código directamente desde URLs con versiones sin necesidad de instalación.',
-        },
-        {
-          icon: 'i-mdi-asterisk',
-          title: 'Secretos gestionados',
-          description: 'Mantén los secretos seguros a través de una capa adicional de seguridad y reutilízalos rápidamente al programar.',
-        },
-        {
-          icon: 'i-mdi-console',
-          title: 'Programa localmente a través de la interfaz de línea de comandos (CLI) de Netzo',
-          description: 'Programa en tu IDE favorito y despliega en la nube utilizando <code>netzo/cli</code> sin necesidad de configuración o herramientas adicionales.',
-        },
-        {
-          icon: 'i-mdi-toolbox',
-          title: 'Toolbox integrado de componentes y utilidades',
-          description: 'Importa desde <code>netzo</code>, una caja de herramientas de componentes y utilidades creada para multiplicar por 10 tu experiencia de desarrollo (DX) al desarrollar apps empresariales a medida.',
-        },
-      ],
-    },
-    sectionWhoIsNetzoFor: {
-      topic: '¿Para quién es Netzo?',
-      title: 'Un hub central para equipos en empresas técnológicas',
-      image: {
-        alt: '¿Para quién es Netzo?',
-        src: '/images/home/code-deploy-share-feedback.svg',
-        class: 'mb-8',
-      },
-      items: [
-        {
-          title: 'Equipos de Desarrolladores',
-          description: 'Programa, despliega y comparte cualquier cosa al instante, con control total y sin manejar infraestructura.',
-          image: {
-            alt: 'Equipos de Desarrolladores',
-            src: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiNmZmZmZmYiIGQ9Ik0xMiA1LjVBMy41IDMuNSAwIDAgMSAxNS41IDlhMy41IDMuNSAwIDAgMS0zLjUgMy41QTMuNSAzLjUgMCAwIDEgOC41IDlBMy41IDMuNSAwIDAgMSAxMiA1LjVNNSA4Yy41NiAwIDEuMDguMTUgMS41My40MmMtLjE1IDEuNDMuMjcgMi44NSAxLjEzIDMuOTZDNy4xNiAxMy4zNCA2LjE2IDE0IDUgMTRhMyAzIDAgMCAxLTMtM2EzIDMgMCAwIDEgMy0zbTE0IDBhMyAzIDAgMCAxIDMgM2EzIDMgMCAwIDEtMyAzYy0xLjE2IDAtMi4xNi0uNjYtMi42Ni0xLjYyYTUuNTM2IDUuNTM2IDAgMCAwIDEuMTMtMy45NmMuNDUtLjI3Ljk3LS40MiAxLjUzLS40Mk01LjUgMTguMjVjMC0yLjA3IDIuOTEtMy43NSA2LjUtMy43NXM2LjUgMS42OCA2LjUgMy43NVYyMGgtMTN2LTEuNzVNMCAyMHYtMS41YzAtMS4zOSAxLjg5LTIuNTYgNC40NS0yLjljLS41OS42OC0uOTUgMS42Mi0uOTUgMi42NVYyMEgwbTI0IDBoLTMuNXYtMS43NWMwLTEuMDMtLjM2LTEuOTctLjk1LTIuNjVjMi41Ni4zNCA0LjQ1IDEuNTEgNC40NSAyLjlWMjBaIi8+PC9zdmc+',
-          },
-        },
-        {
-          title: 'PYMEs y Startups',
-          description: 'Escala tus operaciones con aplicaciones back-office y automatización de procesos en un solo lugar, sin invertir una fortuna.',
-          image: {
-            alt: 'PYMEs y Startups',
-            src: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiNmZmZmZmYiIGQ9Ik0xMiAxOEg2di00aDZtOSAwdi0ybC0xLTVINGwtMSA1djJoMXY2aDEwdi02aDR2Nmgydi02bTAtMTBINHYyaDE2VjRaIi8+PC9zdmc+',
-          },
-        },
-        {
-          title: 'Corporaciones',
-          description: 'Mejora la eficiencia operativa con aplicaciones back-office a medida y con 100% de adaptabilidad a los procesoss establecidos.',
-          image: {
-            alt: 'Corporaciones',
-            src: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiNmZmZmZmYiIGQ9Ik01IDN2MThoNnYtMy41aDJWMjFoNlYzSDVtMiAyaDJ2Mkg3VjVtNCAwaDJ2MmgtMlY1bTQgMGgydjJoLTJWNU03IDloMnYySDdWOW00IDBoMnYyaC0yVjltNCAwaDJ2MmgtMlY5bS04IDRoMnYySDd2LTJtNCAwaDJ2MmgtMnYtMm00IDBoMnYyaC0ydi0ybS04IDRoMnYySDd2LTJtOCAwaDJ2MmgtMnYtMloiLz48L3N2Zz4=',
-          },
-        },
-      ],
-    },
+    // sectionHow: {
+    //   topic: '¿Cómo funciona?',
+    //   title: 'La versatilidad del código sin los dolores de cabeza',
+    //   description: 'Di adiós a los desarrollos costosos, tediosos e inmantenibles. Disfruta todos los beneficios de desarrollar con código sin los grandes esfuerzos ni requisitos de mantenimiento al crear tu back-office.',
+    //   items: [
+    //     {
+    //       topic: 'Programa',
+    //       title: 'Máxima flexibilidad para los desarrolladores via <code>JS</code>/<code>TS</code>',
+    //       description: 'Crea aplicaciones back-office con confianza y flexibilidad. Construye interfaces con <code>JSX</code>/<code>TSX</code>, crea APIs internas (HTTP) y automatiza flujos de trabajos con control total sobre tus scripts.',
+    //       image: {
+    //         alt: 'Cree cualquier cosa en JS/TS',
+    //         src: '/images/home/1-code.svg',
+    //         isGIF: true,
+    //       },
+    //       items: [
+    //         {
+    //           icon: 'i-mdi-code-braces',
+    //           title: 'Programa en línea o localmente a través del CLI de Netzo',
+    //         },
+    //         {
+    //           icon: 'i-mdi-bug',
+    //           title: 'Depura rápidamente con registros, métricas y seguimiento de errores',
+    //         },
+    //         {
+    //           icon: 'i-mdi-api',
+    //           title: 'Integra cualquier API, base de datos o importa tus bibliotecas favoritas a través de URLs',
+    //         },
+    //       ],
+    //     },
+    //     {
+    //       topic: 'Despliega',
+    //       title: 'Entrega soluciones más rápido e itera a tu ritmo',
+    //       description: 'Implementa, realiza cambios y da mantenimiento a tus apps con facilidad. Elimina cargas innecesarias y concéntrate en lo que realmente importa: impulsar tu negocio.',
+    //       image: {
+    //         alt: 'Implemente al instante sin el DevOps',
+    //         src: '/images/home/2-deploy.svg',
+    //         isGIF: true,
+    //       },
+    //       items: [
+    //         {
+    //           icon: 'i-ic-baseline-hub',
+    //           title: 'Centraliza los esfuerzos del equipo, impulsa la adopción y evita el trabajo duplicado',
+    //         },
+    //         {
+    //           icon: 'i-mdi-git',
+    //           title: 'Desarrollo continuo, control de versiones y soporte de entorno',
+    //         },
+    //         {
+    //           icon: 'i-mdi-finance',
+    //           title: 'Analíticas incorporadas para información en tiempo real',
+    //         },
+    //       ],
+    //     },
+    //     {
+    //       topic: 'Comparte',
+    //       title: 'Potencia la colaboración y aumenta la productividad',
+    //       description: 'Facilita la colaboración y fomenta los ciclos de retroalimentación entre tus equipos y desarrolladores. Crea y comparte apps personalizadas con confianza y sin necesidad de equipos técnicos extensos.',
+    //       image: {
+    //         alt: 'Potencia la colaboración y aumenta la productividad',
+    //         src: '/images/home/3-share.svg',
+    //         isGIF: true,
+    //       },
+    //       items: [
+    //         {
+    //           icon: 'i-mdi-share-variant',
+    //           title: 'Comparte al instante y de forma segura con grupos y permisos',
+    //         },
+    //         {
+    //           icon: 'i-mdi-police-badge',
+    //           title: 'Registros de auditoría para cumplimiento, seguridad e información sobre el uso',
+    //         },
+    //         {
+    //           icon: 'i-ic-outline-feedback',
+    //           title: 'Adápta tus apps más rápido con solicitudes de funcionalidad y retroalimentación de los usuarios',
+    //         },
+    //       ],
+    //     },
+    //   ],
+    // },
+    // sectionHowIsNetzoDifferentForDevelopers: {
+    //   topic: 'Centrado en el desarrollador',
+    //   title: 'Superpoderes para los desarrolladores',
+    //   items: [
+    //     {
+    //       icon: 'i-mdi-view-dashboard-outline',
+    //       description: '<strong style="color: #0080ff"><a href="/docs/templates/apps">Plantillas</a></strong> para comenzar implementaciones a medida en segundos',
+    //     },
+    //     {
+    //       icon: 'i-mdi-star-four-points',
+    //       description: '<strong style="color: #0080ff"><a href="/docs/netzo/apis">Integraciones</a></strong> a cientos de APIS sin necediad de leer su documentacion',
+    //     },
+    //     {
+    //       icon: 'i-mdi-hexagon-multiple',
+    //       description: '<strong style="color: #0080ff"><a href="/docs/netzo/components">Componentes UI</a></strong>, <strong style="color: #0080ff"><a href="/docs/netzo/modules">Módulos</a></strong> y <strong style="color: #0080ff"><a href="/docs/netzo/composables">Utilidades</a></strong> para velocidad y simplicidad',
+    //     },
+    //     {
+    //       icon: 'i-mdi-bug',
+    //       description: '<strong style="color: #0080ff"><a href="/docs/platform/projects/logs">Logs</a></strong> y métricas para observabilidad y control en tiempo real',
+    //     },
+    //     {
+    //       icon: 'i-mdi-send-clock',
+    //       description: '<strong style="color: #0080ff"><a href="">Tareas Cron</a></strong> recurrentes programadas',
+    //     },
+    //     {
+    //       icon: 'i-mdi-database-lock',
+    //       description: '<strong style="color: #0080ff"><a href="">Base de datos KV</a></strong> incorporada (proximamente)',
+    //     },
+    //     {
+    //       icon: 'i-mdi-microsoft-visual-studio-code',
+    //       description: '<strong style="color: #0080ff"><a href="/docs/netzo/cli">CLI</a></strong> que habilita el desarrollo local',
+    //     },
+    //     {
+    //       icon: 'i-mdi-git',
+    //       description: '<strong style="color: #0080ff"><a href="">Soporte de Git</a></strong> para gestión de versiones',
+    //     },
+    //     {
+    //       icon: 'i-mdi-rocket-launch',
+    //       description: '<strong style="color: #0080ff">Despliega en un solo click</strong> sin configuración ni DevOps',
+    //     },
+    //   ],
+    // },
+    // sectionHowIsNetzoDifferent: {
+    //   topic: '¿Cómo es diferente Netzo?',
+    //   title: 'Obten la ventaja competitiva con tecnología de punta',
+    //   items: [
+    //     {
+    //       icon: 'i-logos-deno',
+    //       title: 'Impulsado por Deno',
+    //       description: 'Construido sobre la próxima generación de JavaScript y TypeScript que mejora tu experiencia de desarrollo (DX).',
+    //     },
+    //     {
+    //       icon: 'i-mdi-nodejs',
+    //       title: 'Soporte completo para Node.js y NPM',
+    //       description: 'Programa con tus librerías favoritas de Node.js con soporte completo de los módulos integrados de Node.js y los paquetes de NPM.',
+    //     },
+    //     {
+    //       icon: 'i-fxemoji-lightningmood',
+    //       title: 'Sin servidor',
+    //       description: 'Implementa tu código instantáneamente a nivel global sin necesidad de provisionar ni gestionar infraestructura.',
+    //     },
+    //     {
+    //       icon: 'i-logos-typescript-icon',
+    //       title: 'TypeScript nativo',
+    //       description: 'Utiliza TypeScript sin necesidad de compilaciones o configuraciones complejas. Disfruta de autocompletado y seguridad de tipos.',
+    //     },
+    //     {
+    //       icon: 'i-mdi-package-variant-closed',
+    //       // title: 'Importa desde URL de <s><code style='opacity: 0.7; color: red;'>NPM</code></s>',
+    //       title: 'Importaciones desde URL y portabilidad mejorada',
+    //       description: 'Olvídate de <code>node_modules</code>. Importa código directamente desde URLs con versiones sin necesidad de instalación.',
+    //     },
+    //     {
+    //       icon: 'i-mdi-asterisk',
+    //       title: 'Secretos gestionados',
+    //       description: 'Mantén los secretos seguros a través de una capa adicional de seguridad y reutilízalos rápidamente al programar.',
+    //     },
+    //     {
+    //       icon: 'i-mdi-console',
+    //       title: 'Programa localmente a través de la interfaz de línea de comandos (CLI) de Netzo',
+    //       description: 'Programa en tu IDE favorito y despliega en la nube utilizando <code>netzo/cli</code> sin necesidad de configuración o herramientas adicionales.',
+    //     },
+    //     {
+    //       icon: 'i-mdi-toolbox',
+    //       title: 'Toolbox integrado de componentes y utilidades',
+    //       description: 'Importa desde <code>netzo</code>, una caja de herramientas de componentes y utilidades creada para multiplicar por 10 tu experiencia de desarrollo (DX) al desarrollar apps empresariales a medida.',
+    //     },
+    //   ],
+    // },
+    // sectionWhoIsNetzoFor: {
+    //   topic: '¿Para quién es Netzo?',
+    //   title: 'Un hub central para equipos en empresas técnológicas',
+    //   image: {
+    //     alt: '¿Para quién es Netzo?',
+    //     src: '/images/home/code-deploy-share-feedback.svg',
+    //     class: 'mb-8',
+    //   },
+    //   items: [
+    //     {
+    //       title: 'Equipos de Desarrolladores',
+    //       description: 'Programa, despliega y comparte cualquier cosa al instante, con control total y sin manejar infraestructura.',
+    //       image: {
+    //         alt: 'Equipos de Desarrolladores',
+    //         src: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiNmZmZmZmYiIGQ9Ik0xMiA1LjVBMy41IDMuNSAwIDAgMSAxNS41IDlhMy41IDMuNSAwIDAgMS0zLjUgMy41QTMuNSAzLjUgMCAwIDEgOC41IDlBMy41IDMuNSAwIDAgMSAxMiA1LjVNNSA4Yy41NiAwIDEuMDguMTUgMS41My40MmMtLjE1IDEuNDMuMjcgMi44NSAxLjEzIDMuOTZDNy4xNiAxMy4zNCA2LjE2IDE0IDUgMTRhMyAzIDAgMCAxLTMtM2EzIDMgMCAwIDEgMy0zbTE0IDBhMyAzIDAgMCAxIDMgM2EzIDMgMCAwIDEtMyAzYy0xLjE2IDAtMi4xNi0uNjYtMi42Ni0xLjYyYTUuNTM2IDUuNTM2IDAgMCAwIDEuMTMtMy45NmMuNDUtLjI3Ljk3LS40MiAxLjUzLS40Mk01LjUgMTguMjVjMC0yLjA3IDIuOTEtMy43NSA2LjUtMy43NXM2LjUgMS42OCA2LjUgMy43NVYyMGgtMTN2LTEuNzVNMCAyMHYtMS41YzAtMS4zOSAxLjg5LTIuNTYgNC40NS0yLjljLS41OS42OC0uOTUgMS42Mi0uOTUgMi42NVYyMEgwbTI0IDBoLTMuNXYtMS43NWMwLTEuMDMtLjM2LTEuOTctLjk1LTIuNjVjMi41Ni4zNCA0LjQ1IDEuNTEgNC40NSAyLjlWMjBaIi8+PC9zdmc+',
+    //       },
+    //     },
+    //     {
+    //       title: 'PYMEs y Startups',
+    //       description: 'Escala tus operaciones con aplicaciones back-office y automatización de procesos en un solo lugar, sin invertir una fortuna.',
+    //       image: {
+    //         alt: 'PYMEs y Startups',
+    //         src: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiNmZmZmZmYiIGQ9Ik0xMiAxOEg2di00aDZtOSAwdi0ybC0xLTVINGwtMSA1djJoMXY2aDEwdi02aDR2Nmgydi02bTAtMTBINHYyaDE2VjRaIi8+PC9zdmc+',
+    //       },
+    //     },
+    //     {
+    //       title: 'Corporaciones',
+    //       description: 'Mejora la eficiencia operativa con aplicaciones back-office a medida y con 100% de adaptabilidad a los procesoss establecidos.',
+    //       image: {
+    //         alt: 'Corporaciones',
+    //         src: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiNmZmZmZmYiIGQ9Ik01IDN2MThoNnYtMy41aDJWMjFoNlYzSDVtMiAyaDJ2Mkg3VjVtNCAwaDJ2MmgtMlY1bTQgMGgydjJoLTJWNU03IDloMnYySDdWOW00IDBoMnYyaC0yVjltNCAwaDJ2MmgtMlY5bS04IDRoMnYySDd2LTJtNCAwaDJ2MmgtMnYtMm00IDBoMnYyaC0ydi0ybS04IDRoMnYySDd2LTJtOCAwaDJ2MmgtMnYtMloiLz48L3N2Zz4=',
+    //       },
+    //     },
+    //   ],
+    // },
     // sectionQuote: {
     //   name: 'Guillermo Rauch',
     //   title: 'CEO de Vercel',
@@ -439,15 +468,15 @@ export default {
     // },
     sectionBannerCta: {
       title: '¿Listo para empezar?',
-      items: [
-        { text: 'Crea tu back-office digital con control total' },
-        { text: 'Implementa e itera rápidamente, sin complicaciones' },
-        { text: 'Comparte con tu equipo y haz crecer tu negocio' },
-      ],
+      // items: [
+      //   { text: 'Crea tu back-office digital con control total' },
+      //   { text: 'Implementa e itera rápidamente, sin complicaciones' },
+      //   { text: 'Comparte con tu equipo y haz crecer tu negocio' },
+      // ],
       buttons: [
         {
-          type: 'lets-talk',
-          text: 'Contáctanos',
+          type: 'book-a-call',
+          text: 'Agenda una Llamada',
         },
       ],
     },
@@ -468,8 +497,8 @@ export default {
         description: 'Por favor, completa el formulario a continuación y nos pondremos en contacto lo antes posible.',
         buttons: [
           {
-            type: 'book-a-slot',
-            text: 'Reserva una demo',
+            type: 'book-a-call',
+            text: 'Agenda una Llamada',
           },
         ],
       },
@@ -814,11 +843,21 @@ export default {
   footer: {
     items: [
       {
-        text: 'Soluciones',
+        text: 'Productos',
         items: [
-          { text: '¿Qué es Netzo?', link: '/es/netzo/what-is-netzo' },
-          { text: '¿Por qué usar Netzo?', link: '/es/netzo/why-use-netzo' },
-          { text: '¿Para quién es Netzo?', link: '/es/netzo/who-is-netzo-for' },
+          { text: 'Componenentes', link: '/docs/netzo/components' }, // TODO: '/products/components'
+          { text: 'Base de datos', link: '/docs/platform/projects/database' }, // TODO: '/products/database'
+          // { text: 'Portales', link: '/products/portals' },
+          // { text: 'Embeds', link: '/products/embed' },
+          // { text: 'Workflows', link: '/products/workflows' },
+        ],
+      },
+      {
+        text: 'Plantillas',
+        items: [
+          { text: 'Apps', link: '/docs/templates/apps' },
+          { text: 'APIs', link: '/docs/templates/apis' },
+          { text: 'Workflows', link: '/docs/templates/workflows' },
         ],
       },
       {
@@ -832,10 +871,6 @@ export default {
           //   text: 'Centro de Ayuda',
           //   link: 'https://help.netzo.io',
           // },
-          {
-            text: 'Plantillas',
-            link: 'https://app.netzo.io/templates',
-          },
           {
             text: 'Integraciones',
             link: '/docs/netzo/apis',

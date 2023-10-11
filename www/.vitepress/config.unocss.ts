@@ -1,7 +1,7 @@
 export const unocssConfig = {
   safelist: [
     'i-mdi-monitor-dashboard',
-    'i-healthicons-money-bag-outline',
+    'i-mdi-piggy-bank',
     'i-mdi-toolbox-outline',
     'i-mdi-head-sync-outline',
     'i-mdi-star-four-points-outline',
@@ -124,5 +124,18 @@ export const unocssConfig = {
     'i-mdi-view-gallery-outline',
     'i-mdi-picture-in-picture-bottom-right',
     'i-mdi-view-headline',
+    'i-mdi-arrow-expand-all',
+    'i-mdi-cloud-upload',
+    'i-mdi-cloud-lock',
+    'i-mdi-card-account-details-star',
+    'i-mdi-lan-disconnect',
+    'i-mdi-emoticon-dead',
+    'i-mdi-bell-alert',
+    'i-mdi-microsoft-excel',
+    'i-mdi-chart-timeline-variant-shimmer',
+    'i-mdi-clock-alert',
+    'i-mdi-play-speed',
+    'i-mdi-fast-forward',
+    'i-mdi-chart-gantt',
   ],
 }

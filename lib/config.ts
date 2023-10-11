@@ -1,7 +1,7 @@
 import type {
   Plugin,
   StartOptions,
-} from "https://deno.land/x/fresh@1.4.3/server.ts";
+} from "https://deno.land/x/fresh@1.5.0/server.ts";
 import appLayout, { type AppLayoutOptions } from "./modules/appLayout/mod.ts";
 import daisyui, { type DaisyuiOptions } from "./modules/daisyui/mod.ts";
 import errorPages, {
