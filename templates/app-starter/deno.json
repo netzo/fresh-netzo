@@ -1,0 +1,40 @@
+{
+  "exclude": ["_fresh", "**/_fresh/*"],
+  "lock": false,
+  "tasks": {
+    "check": "deno fmt --check && deno lint && deno check **/*.ts && deno check **/*.tsx",
+    "start": "deno run -A --unstable --watch=static/,routes/ dev.ts",
+    "build": "deno run -A --unstable dev.ts build",
+    "preview": "deno run -A --unstable main.ts",
+    "test": "deno test -A --unstable --no-check",
+    "update": "deno run -A -r https://fresh.deno.dev/update ."
+  },
+  "lint": { "rules": { "tags": ["fresh", "recommended"] } },
+  "fmt": {},
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxFactory": "h",
+    "jsxFragmentFactory": "Fragment",
+    "jsxImportSource": "preact"
+  },
+  "imports": {
+    "@/": "./",
+    "netzo/": "https://deno.land/x/netzo@v0.2.46/",
+    "$fresh/": "https://deno.land/x/fresh@1.5.1/",
+    "preact": "https://esm.sh/preact@10.18.1",
+    "preact/": "https://esm.sh/preact@10.18.1/",
+    "preact-render-to-string": "https://esm.sh/*preact-render-to-string@6.2.2",
+    "@preact/signals": "https://esm.sh/*@preact/signals@1.2.1",
+    "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.5.0",
+    "std/": "https://deno.land/std@0.190.0/",
+    "class-variance-authority": "https://esm.sh/class-variance-authority@0.7.0",
+    "clsx": "https://esm.sh/clsx@2.0.0",
+    "cmdk": "https://esm.sh/cmdk@0.2.0?external=react,react-dom&target=es2022",
+    "date-fns": "https://esm.sh/date-fns@2.30.0",
+    "lucide-react": "https://esm.sh/lucide-react@0.263.1?external=react,react-dom&target=es2022",
+    "react-datepicker": "https://esm.sh/react-datepicker@4.16.0?external=react,react-dom&target=es2022",
+    "react-day-picker": "https://esm.sh/react-day-picker@8.8.0?external=react,react-dom&target=es2022",
+    "tailwind-merge": "https://esm.sh/tailwind-merge@1.14.0",
+    "zod/": "https://deno.land/x/zod@v3.22.2/"
+  }
+}
