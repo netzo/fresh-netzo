@@ -105,7 +105,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
   // Deno.exit(0); // uncomment for quick debugging
 
   const apiKey = args.apiKey ?? Deno.env.get("NETZO_API_KEY") ?? null;
-  if (apiKey === null) {
+  if ([null, "NETZO_API_KEY"].includes(apiKey)) {
     console.error(help);
     error(
       "Missing API key. Set via --api-key flag or NETZO_API_KEY environment variable to avoid passing it each time.",
