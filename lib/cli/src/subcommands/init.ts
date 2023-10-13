@@ -81,7 +81,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
       "--allow-sys",
       "--no-check",
       `npm:giget@1.1.2`,
-      `gh:netzo/netzo/templates/${args.template}/src`,
+      `gh:netzo/netzo/templates/${args.template}`,
       directory,
       "--force", // clone to existing directory even if exists
     ],

@@ -5,6 +5,8 @@
 /// <reference lib="deno.ns" />
 /// <reference lib="deno.unstable" />
 
+import "$std/dotenv/load.ts";
+
 import { start } from "$fresh/server.ts";
 import manifest from "./fresh.gen.ts";
 import config from "./netzo.config.ts";
