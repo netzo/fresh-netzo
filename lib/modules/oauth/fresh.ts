@@ -22,6 +22,7 @@ making a request to a project/deployment from any source:
 */
 
 import type { MiddlewareHandler } from "$fresh/server.ts";
+import { OauthOptions } from "@/lib/modules/oauth/mod.ts";
 
 export const createHandler = (options: OauthOptions): MiddlewareHandler => {
   return async (req, ctx) => {

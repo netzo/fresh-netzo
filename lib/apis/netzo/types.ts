@@ -29,4 +29,4 @@ export type {
   WorkspaceUser,
   WorkspaceUserData,
   WorkspaceUserQuery,
-} from "https://esm.sh/v131/@netzo/api@1.0.43/lib/client.d.ts";
+} from "https://esm.sh/v131/@netzo/api@1.0.44/lib/client.d.ts";
