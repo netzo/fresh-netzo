@@ -4,20 +4,29 @@ import type { DefaultTheme } from 'vitepress'
 // NOTE: trailing slash in links allows e.g. '/partners/index.md' instead of '/partners.md'
 export const navEN: DefaultTheme.NavItem[] = [
   {
-    text: 'Products',
+    text: 'Productos',
     items: [
-      { text: 'Components', link: '/docs/netzo/components' }, // TODO: '/products/components'
-      { text: 'Database', link: '/docs/platform/projects/database' }, // TODO: '/products/database'
-      // { text: 'Portals', link: '/products/portals' },
-      // { text: 'Embed', link: '/products/embed' },
-      // { text: 'Workflows', link: '/products/workflows' },
+      { text: 'App Launcher', link: '/docs/platform/home' },
+      { text: 'Inbox', link: '/docs/platform/inbox' },
       {
-        text: 'Integrations',
+        text: '', // 'Projects',
         items: [
-          { text: 'APIs', link: '/docs/netzo/apis' },
-          { text: 'Modules', link: '/docs/netzo/modules' },
+          { text: 'Authentication', link: '/products/authentication' },
+          { text: 'Database', link: '/products/database' },
+          { text: 'Storage' },
+          { text: 'Workflows' },
+          { text: 'Analytics' },
         ],
       },
+    ],
+  },
+  {
+    text: 'Developer',
+    items: [
+      { text: 'APIs', link: '/docs/netzo/apis' },
+      { text: 'CLI', link: '/docs/netzo/cli' },
+      { text: 'Components', link: '/docs/netzo/components' },
+      { text: 'Modules', link: '/docs/netzo/modules' },
     ],
   },
   {
@@ -44,20 +53,29 @@ export const navEN: DefaultTheme.NavItem[] = [
 
 export const navES: DefaultTheme.NavItem[] = [
   {
-    text: 'Productos',
+    text: 'Products',
     items: [
-      { text: 'Componenentes', link: '/docs/netzo/components' }, // TODO: '/products/components'
-      { text: 'Base de datos', link: '/docs/platform/projects/database' }, // TODO: '/products/database'
-      // { text: 'Portales', link: '/products/portals' },
-      // { text: 'Embeds', link: '/products/embed' },
-      // { text: 'Workflows', link: '/products/workflows' },
+      { text: 'App Launcher', link: '/docs/platform/home' },
+      { text: 'Inbox', link: '/docs/platform/inbox' },
       {
-        text: 'Integraciones',
+        text: '', // 'projects',
         items: [
-          { text: 'APIs', link: '/docs/netzo/apis' },
-          { text: 'Módulos', link: '/docs/netzo/modules' },
+          { text: 'Autenticación', link: '/es/productos/authentication' },
+          { text: 'Base de datos', link: '/es/productos/database' },
+          { text: 'Alacenamiento' },
+          { text: 'Workflows' },
+          { text: 'Analiticas' },
         ],
       },
+    ],
+  },
+  {
+    text: 'Desarrollador',
+    items: [
+      { text: 'APIs', link: '/docs/netzo/apis' },
+      { text: 'CLI', link: '/docs/netzo/cli' },
+      { text: 'Componentes', link: '/docs/netzo/components' },
+      { text: 'Módulos', link: '/docs/netzo/modules' },
     ],
   },
   {

@@ -16,7 +16,7 @@ const {
 
 <template>
   <section class="!text-center">
-    <div class="container">
+    <div class="container-wider">
       <div class="flex justify-center items-center w-full">
         <h3 v-if="topic" v-html="topic" />
         <ChipSimple v-if="chip" :chip="chip" />

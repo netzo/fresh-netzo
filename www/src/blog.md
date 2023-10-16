@@ -7,6 +7,7 @@ description: Updates, tips & opinions from the Netzo team.
 <script setup>
 import { computed, onMounted } from 'vue'
 import { useRoute } from 'vitepress'
+import locale from '@theme/../../locales/en'
 import Blog from './blog/Blog.vue'
 import Footer from '@theme/components/Footer.vue'
 
@@ -19,4 +20,4 @@ const isNotFound = computed(() => route.component === NotFound)
 
 <!-- <NewsLetter /> -->
 
-<Footer />
+<Footer v-bind="locale.footer" />

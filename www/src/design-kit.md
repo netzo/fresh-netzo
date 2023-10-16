@@ -4,6 +4,7 @@ title: Design Kit
 ---
 
 <script setup>
+import locale from '@theme/../../locales/en'
 import DesignKit from './design-kit/DesignKit.vue'
 import Footer from '@theme/components/Footer.vue'
 </script>
@@ -12,5 +13,5 @@ import Footer from '@theme/components/Footer.vue'
 
 <!-- <NewsLetter /> -->
 
-<Footer />
+<Footer v-bind="locale.footer" />
 
