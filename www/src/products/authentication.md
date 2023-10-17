@@ -1,11 +1,11 @@
 ---
 layout: home
 title: Authentication | Products
-description: Improve customer engagement with secure portals
+description: Managed customer portals
 hero:
   name: Authentication
-  text: Improve customer engagement with secure portals
-  tagline: Eliminate the hassle of managing users and authentication. Focus on delivering apps for customers, vendors, partners, and suppliers.
+  text: Improve workflows with portals
+  tagline: Eliminate the hassle of managing users and authentication. Create beautiful portals that improve engagement with customers, vendors, partners, and suppliers.
   image:
     src: /images/products/authentication.jpeg
     alt: App Launcher

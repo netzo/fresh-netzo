@@ -4,8 +4,8 @@ title: Autenticación | Productos
 description: Mejora las interacciones con tus clientes a través de portales
 hero:
   name: Autenticación
-  text: Mejora las interacciones con tus clientes mediante portales
-  tagline: Olvídate de las molestias de gestionar usuarios y autenticación. Crea portales para clientes, proveedores, socios y colaboradores.
+  text: Mejora los flujos con portales
+  tagline: Olvidate de la molestias de gestionar usuarios y autenticación. Crea portales atractivos que mejoran la interacción con clientes, proveedores, socios y colaboradores.
   # image:
   #   src: /images/products/authentication.jpeg
   #   alt: App Launcher

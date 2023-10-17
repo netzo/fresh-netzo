@@ -57,8 +57,8 @@ export const navES: DefaultTheme.NavItem[] = [
   {
     text: 'Productos',
     items: [
-      { text: 'App Launcher', link: '/es/products/app-launcher' },
-      { text: 'Inbox', link: '/docs/platform/inbox' },
+      // { text: 'App Launcher', link: '/es/products/app-launcher' },
+      // { text: 'Inbox', link: '/docs/platform/inbox' },
       {
         text: '', // 'projects',
         items: [
