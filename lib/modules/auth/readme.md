@@ -17,13 +17,13 @@ can add the Fresh plugin to your project. This automatically handles
    import { start } from "$fresh/server.ts";
    import {
      createGitHubOAuthConfig,
-     kvOAuthPlugin,
+     netzoAuthPlugin,
    } from "https://deno.land/x/deno_kv_oauth@$VERSION/mod.ts";
    import manifest from "./fresh.gen.ts";
 
    await start(manifest, {
      plugins: [
-       kvOAuthPlugin(createGitHubOAuthConfig()),
+       netzoAuthPlugin(createGitHubOAuthConfig()),
      ],
    });
    ```

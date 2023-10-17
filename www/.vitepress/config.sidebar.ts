@@ -246,7 +246,7 @@ export const sidebarEN: DefaultTheme.Sidebar = {
             { text: '<code>errorPages</code>', link: '/docs/netzo/modules/errorPages' },
             { text: '<code>flowbite</code>', link: '/docs/netzo/modules/flowbite' },
             { text: '<code>htmx</code>', link: '/docs/netzo/modules/htmx' },
-            { text: '<code>oauth</code>', link: '/docs/netzo/modules/oauth' },
+            { text: '<code>oauth</code>', link: '/docs/netzo/modules/auth' },
             { text: '<code>restdb</code>', link: '/docs/netzo/modules/restdb' },
             { text: '<code>unocss</code>', link: '/docs/netzo/modules/unocss' },
           ],

@@ -1194,8 +1194,8 @@ export default {
       title: 'OAuth',
       description: 'Adds a middleware to protect routes with authentication based on access control settings set for the project in Netzo.',
       labels: ['category:auth'],
-      display: { src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/modules/oauth.svg' },
-      href: '/docs/netzo/modules/oauth',
+      display: { src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/modules/auth.svg' },
+      href: '/docs/netzo/modules/auth',
     },
     {
       uid: 'restdb',

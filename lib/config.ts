@@ -9,7 +9,7 @@ import errorPages, {
 } from "./modules/errorPages/mod.ts";
 import flowbite, { type FlowbiteOptions } from "./modules/flowbite/mod.ts";
 import htmx, { type HtmxOptions } from "./modules/htmx/mod.ts";
-import oauth, { type OauthOptions } from "./modules/oauth/mod.ts";
+import auth, { type AuthOptions } from "./modules/auth/mod.ts";
 import restdb, { type RestdbOptions } from "./modules/restdb/mod.ts";
 import unocss, { type Config as UnocssOptions } from "./modules/unocss/mod.ts";
 
@@ -32,7 +32,7 @@ export interface NetzoConfig extends StartOptions {
     errorPages?: ErrorPagesOptions;
     flowbite?: FlowbiteOptions;
     htmx?: HtmxOptions;
-    oauth?: OauthOptions;
+    auth?: AuthOptions;
     restdb?: RestdbOptions;
     unocss?: UnocssOptions;
   } & { [k: string]: NetzoModule };
@@ -55,7 +55,7 @@ export function defineNetzoConfig(config: NetzoConfig): NetzoConfig {
         modules?.errorPages && errorPages(modules.errorPages),
         modules?.flowbite && flowbite(modules.flowbite),
         modules?.htmx && htmx(modules.htmx),
-        modules?.oauth && oauth(modules.oauth),
+        modules?.auth && auth(modules.auth),
         modules?.restdb && restdb(modules.restdb),
         modules?.unocss && unocss(modules.unocss),
       ].filter((mod) => !!mod),
