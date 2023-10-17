@@ -4,18 +4,19 @@ import type { DefaultTheme } from 'vitepress'
 // NOTE: trailing slash in links allows e.g. '/partners/index.md' instead of '/partners.md'
 export const navEN: DefaultTheme.NavItem[] = [
   {
-    text: 'Productos',
+    text: 'Products',
     items: [
-      { text: 'App Launcher', link: '/docs/platform/home' },
-      { text: 'Inbox', link: '/docs/platform/inbox' },
+      // { text: 'App Launcher', link: '/products/app-launcher' },
+      // { text: 'Inbox', link: '/docs/platform/inbox' },
       {
         text: '', // 'Projects',
         items: [
+          { text: 'Embeds' },
           { text: 'Authentication', link: '/products/authentication' },
           { text: 'Database', link: '/products/database' },
-          { text: 'Storage' },
-          { text: 'Workflows' },
-          { text: 'Analytics' },
+          { text: 'Storage (soon)', link: '/' },
+          { text: 'Workflows (soon)', link: '/' },
+          { text: 'Analytics (soon)', link: '/' },
         ],
       },
     ],
@@ -29,6 +30,7 @@ export const navEN: DefaultTheme.NavItem[] = [
       { text: 'Modules', link: '/docs/netzo/modules' },
     ],
   },
+  // { text: 'Enterprise', link: '' },
   {
     text: 'Use Cases',
     items: [
@@ -53,18 +55,18 @@ export const navEN: DefaultTheme.NavItem[] = [
 
 export const navES: DefaultTheme.NavItem[] = [
   {
-    text: 'Products',
+    text: 'Productos',
     items: [
-      { text: 'App Launcher', link: '/docs/platform/home' },
+      { text: 'App Launcher', link: '/es/products/app-launcher' },
       { text: 'Inbox', link: '/docs/platform/inbox' },
       {
         text: '', // 'projects',
         items: [
-          { text: 'Autenticación', link: '/es/productos/authentication' },
-          { text: 'Base de datos', link: '/es/productos/database' },
-          { text: 'Alacenamiento' },
-          { text: 'Workflows' },
-          { text: 'Analiticas' },
+          // { text: 'Autenticación', link: '/es/products/authentication' },
+          // { text: 'Base de datos', link: '/es/products/database' },
+          { text: 'Alacenamiento (soon)', link: '/' },
+          { text: 'Workflows (soon)', link: '/' },
+          { text: 'Analiticas', link: '/' },
         ],
       },
     ],
@@ -78,6 +80,7 @@ export const navES: DefaultTheme.NavItem[] = [
       { text: 'Módulos', link: '/docs/netzo/modules' },
     ],
   },
+  // { text: 'Enterprise', link: '/' },
   {
     text: 'Casos de Uso',
     items: [
