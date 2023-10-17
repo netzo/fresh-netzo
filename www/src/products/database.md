@@ -12,7 +12,7 @@ hero:
       link: https://calendar.app.google/uHEnkfwpgYSM1ppN6
     - theme: alt
       text: Learn More
-      link: /docs/platform/projects/authentication
+      link: /docs/platform/projects/database
 
 features:
   - icon: 🔒

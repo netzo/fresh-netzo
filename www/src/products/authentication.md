@@ -6,9 +6,9 @@ hero:
   name: Authentication
   text: Improve customer engagement with secure portals
   tagline: Eliminate the hassle of managing users and authentication. Focus on delivering apps for customers, vendors, partners, and suppliers.
-  # image:
-  #   src: /images/products/authentication.jpeg
-  #   alt: App Launcher
+  image:
+    src: /images/products/authentication.jpeg
+    alt: App Launcher
   actions:
     - theme: brand
       text: Book a Call

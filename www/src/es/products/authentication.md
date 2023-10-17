@@ -9,13 +9,13 @@ hero:
   # image:
   #   src: /images/products/authentication.jpeg
   #   alt: App Launcher
-actions:
-  - theme: brand
-    text: Agendar una llamada
-    link: https://calendar.app.google/uHEnkfwpgYSM1ppN6
-  - theme: alt
-    text: Saber más
-    link: /docs/platform/projects/authentication
+  actions:
+    - theme: brand
+      text: Agendar una Llamada
+      link: https://calendar.app.google/uHEnkfwpgYSM1ppN6
+    - theme: alt
+      text: Saber Más
+      link: /docs/platform/projects/authentication
 
 features:
   - icon: ⚡

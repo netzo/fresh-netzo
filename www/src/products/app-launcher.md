@@ -1,11 +1,11 @@
 ---
 layout: home
 title: App Launcher | Products
-description: Ship custom business solutions fast. Netzo is the most flexible way to build and manage mission-critical internal software solutions that fit your organization's evolving needs.
+description: Seamless app distribution within your organization with one-click, secure sharing and user management.
 hero:
   name: App Launcher
-  text: Ship custom business solutions fast
-  tagline: Netzo is the most flexible way to build and manage mission-critical internal software solutions that fit your organization's evolving needs.
+  text: Ship apps to your team fast
+  tagline: Simple, flexible, and fast. Securely share apps with your teams in one-click.
   image:
     src: /images/home/3-share.svg
     alt: App Launcher
@@ -19,9 +19,14 @@ hero:
 
 features:
   - icon: 🛠️
-    title: Lorem ipsum
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque elit, tristique quis tempus id, ultrices in ligula. Nam vel justo cursus, faucibus lorem eget, egestas eros.
-
+    title: User and role management
+    details: Set permissions for users to limit access to applications with programmatic control.
+  - icon: 🛠️
+    title: Centralize access
+    details: Promote efficient teamwork by ensuring your workforce has the right tools, easily accessible.
+  - icon: 🛠️
+    title: Boost Collaboration and Productivity
+    details: Foster collaboration with quick, secure access to essential apps. Netzo's App Launcher promotes efficient teamwork, making it easier for your teams to work together and boost productivity.
 ---
 
 <script setup>

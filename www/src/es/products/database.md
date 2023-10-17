@@ -7,8 +7,12 @@ hero:
   text: Simplifica la Gestión de tus Datos
   tagline: Bases de datos dedicadas y escalables, sin necesidad de configuración, para cada aplicación que construyas en Netzo.
   actions:
-    - text: Reservar una Llamada
-    - text: Obtener Más Información
+    - theme: brand
+      text: Agendar una Llamada
+      link: https://calendar.app.google/uHEnkfwpgYSM1ppN6
+    - theme: alt
+      text: Saber Más
+      link: /docs/platform/projects/database
 
 features:
   - icon: 🔒

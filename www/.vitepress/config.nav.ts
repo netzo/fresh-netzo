@@ -11,10 +11,10 @@ export const navEN: DefaultTheme.NavItem[] = [
       {
         text: '', // 'Projects',
         items: [
-          { text: 'Embeds' },
+          // { text: 'Embeds' },
           { text: 'Authentication', link: '/products/authentication' },
           { text: 'Database', link: '/products/database' },
-          { text: 'Storage (soon)', link: '/' },
+          { text: 'Storage (soon)', link: '/products/storage' },
           { text: 'Workflows (soon)', link: '/' },
           { text: 'Analytics (soon)', link: '/' },
         ],
@@ -62,9 +62,9 @@ export const navES: DefaultTheme.NavItem[] = [
       {
         text: '', // 'projects',
         items: [
-          // { text: 'Autenticación', link: '/es/products/authentication' },
-          // { text: 'Base de datos', link: '/es/products/database' },
-          { text: 'Alacenamiento (soon)', link: '/' },
+          { text: 'Autenticación', link: '/es/products/authentication' },
+          { text: 'Base de datos', link: '/es/products/database' },
+          { text: 'Alacenamiento (soon)', link: '/es/products/storage' },
           { text: 'Workflows (soon)', link: '/' },
           { text: 'Analiticas', link: '/' },
         ],
