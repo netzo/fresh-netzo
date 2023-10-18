@@ -6,10 +6,17 @@ export const navEN: DefaultTheme.NavItem[] = [
   {
     text: 'Products',
     items: [
-      // { text: 'App Launcher', link: '/products/app-launcher' },
-      // { text: 'Inbox', link: '/docs/platform/inbox' },
       {
-        text: '', // 'Projects',
+        text: 'Platform', // 'Projects',
+        items: [
+          // { text: 'Embeds' },
+          { text: 'Apps', link: '/products/apps' },
+          { text: 'Inbox', link: '/products/inbox' },
+          { text: 'Projects', link: '/products/projects' },
+        ],
+      },
+      {
+        text: 'Projects', // 'Projects',
         items: [
           // { text: 'Embeds' },
           { text: 'Authentication', link: '/products/authentication' },
@@ -57,10 +64,17 @@ export const navES: DefaultTheme.NavItem[] = [
   {
     text: 'Productos',
     items: [
-      // { text: 'App Launcher', link: '/es/products/app-launcher' },
-      // { text: 'Inbox', link: '/docs/platform/inbox' },
       {
-        text: '', // 'projects',
+        text: 'Plataforma', // 'Projects',
+        items: [
+          // { text: 'Embeds' },
+          { text: 'Apps', link: '/es/products/apps' },
+          { text: 'Inbox', link: '/es/products/inbox' },
+          { text: 'Proyectos', link: '/es/products/projects' },
+        ],
+      },
+      {
+        text: 'Proyectos', // 'projects',
         items: [
           { text: 'Autenticación', link: '/es/products/authentication' },
           { text: 'Base de datos', link: '/es/products/database' },

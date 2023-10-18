@@ -4,7 +4,7 @@ title: Database | Products
 description: Fully Managed, Built-In Database
 hero:
   name: Database
-  text: Simplify Your Data Management
+  text: Simplify your data management
   tagline: Config free, dedicated and scalable databases for every app you build in Netzo.
   actions:
     - theme: brand
