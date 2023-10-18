@@ -35,45 +35,6 @@ or pass it in the `--api-key` flag each time you run a `netzo` subcommand.
 
 The `netzo` CLI is a single executable that provides a number of subcommands. To see the full list of subcommands and options, run `netzo --help` or `netzo -h`.
 
-### `clone`
-
-The `clone` subcommand copies a project from Netzo to your local machine.
-
-```mermaid
-flowchart LR
-    A[project] -->|clone| B[local project]
-```
-
-```sh
-netzo clone [OPTIONS] [<directory>]
-```
-
-**Options:**
-
-| Option             | Description                                                   |
-|--------------------|---------------------------------------------------------------|
-| `--api-key`        | The API key to use (default: `Deno.env.get("NETZO_API_KEY")`) |
-| `--dry-run`        | Dry run the initialization process (default: `false`)         |
-| `-h`, `--help`     | Prints help information                                       |
-| `--p`, `--project` | The UID of the project to clone                               |
-
-**Arguments:**
-
-| Argument      | Description                                                            |
-|---------------|------------------------------------------------------------------------|
-| `<directory>` | The directory path to initialize project in (defaults to `--template`) |
-
-**Examples:**
-
-```sh
-# To clone an existing project from Netzo:
-netzo clone
-# To clone an existing project by UID from Netzo:
-netzo clone --project=my-project
-# To clone a project from Netzo to a custom directory:
-netzo clone path/to/directory
-```
-
 ### `init`
 
 The `init` subcommand creates a new project from an existing template.
@@ -112,6 +73,45 @@ netzo init --template=starter-app
 netzo init path/to/directory
 # To create a new project from a template in the current working directory:
 netzo init .
+```
+
+### `clone`
+
+The `clone` subcommand copies a project from Netzo to your local machine.
+
+```mermaid
+flowchart LR
+    A[project] -->|clone| B[local project]
+```
+
+```sh
+netzo clone [OPTIONS] [<directory>]
+```
+
+**Options:**
+
+| Option             | Description                                                   |
+|--------------------|---------------------------------------------------------------|
+| `--api-key`        | The API key to use (default: `Deno.env.get("NETZO_API_KEY")`) |
+| `--dry-run`        | Dry run the initialization process (default: `false`)         |
+| `-h`, `--help`     | Prints help information                                       |
+| `--p`, `--project` | The UID of the project to clone                               |
+
+**Arguments:**
+
+| Argument      | Description                                                            |
+|---------------|------------------------------------------------------------------------|
+| `<directory>` | The directory path to initialize project in (defaults to `--template`) |
+
+**Examples:**
+
+```sh
+# To clone an existing project from Netzo:
+netzo clone
+# To clone an existing project by UID from Netzo:
+netzo clone --project=my-project
+# To clone a project from Netzo to a custom directory:
+netzo clone path/to/directory
 ```
 
 ### `deploy`
