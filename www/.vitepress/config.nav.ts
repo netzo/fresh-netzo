@@ -94,7 +94,7 @@ export const navES: DefaultTheme.NavItem[] = [
       { text: 'APIs', link: '/docs/netzo/apis' },
       { text: 'CLI', link: '/docs/netzo/cli' },
       { text: 'Componentes', link: '/docs/netzo/components' },
-      { text: 'Módulos', link: '/docs/netzo/modules' },
+      { text: 'Plugins', link: '/docs/netzo/plugins' },
     ],
   },
   // { text: 'Enterprise', link: '/' },
