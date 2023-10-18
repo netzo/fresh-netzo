@@ -5,12 +5,13 @@ import { Button } from "netzo/components/ui/button.tsx";
 import { Input } from "netzo/components/ui/input.tsx";
 import { Label } from "netzo/components/ui/label.tsx";
 
+// deno-lint-ignore no-empty-interface
 interface UserAuthFormProps extends JSX.HTMLAttributes<HTMLDivElement> {}
 
 export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  async function onSubmit(event: Event) {
+  function onSubmit(event: Event) {
     event.preventDefault();
     setIsLoading(true);
 
