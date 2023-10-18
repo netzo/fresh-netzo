@@ -39,7 +39,6 @@ can add the Fresh plugin to your project. This automatically handles
 > [Fresh + Deno KV OAuth demo](https://github.com/denoland/fresh-deno-kv-oauth-demo)
 > for an example and
 > [Fresh's plugin documentation](https://fresh.deno.dev/docs/concepts/plugins)
-> for more information on plugins.
-See
-[Fresh's documentation](https://fresh.deno.dev/docs/examples/using-deno-kv-oauth)
-on how to get started with the Deno KV OAuth Fresh plugin.
+> for more information on plugins. See
+> [Fresh's documentation](https://fresh.deno.dev/docs/examples/using-deno-kv-oauth)
+> on how to get started with the Deno KV OAuth Fresh plugin.

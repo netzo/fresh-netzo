@@ -2,9 +2,9 @@
 import ChipSimple from '@theme/components/ChipSimple.vue'
 </script>
 
-<img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/modules/restdb.svg" alt="netzo/modules/restdb" class="mb-5 w-75px">
+<img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/database.svg" alt="netzo/database" class="mb-5 w-75px">
 
-# `restdb` <ChipSimple chip="soon" />
+# `database` <ChipSimple chip="soon" />
 
 Adds routes to serve a REST API for the [Deno KV](https://deno.com/deploy/docs/storage) database of the project. This API makes it possible to connect other applications to your KV store in any environment that can make HTTP requests.
 
@@ -20,12 +20,12 @@ import { defineNetzoConfig } from 'netzo/config.ts'
 
 export default defineNetzoConfig({
   modules: {
-    restdb: {}
+    database: { /* ... */ }
   }
 })
 ```
-<<< ../modules/src/main.ts
-<<< ../modules/src/dev.ts
+<<< ./plugins/src/main.ts
+<<< ./plugins/src/dev.ts
 :::
 
 ::: warning Fresh configuration [must](https://fresh.deno.dev/docs/concepts/ahead-of-time-builds#migrating-existing-projects-with-plugins) be defined in `netzo.config.ts`.
@@ -40,7 +40,7 @@ Authentication and authorization for your Deno KV data store is currently user's
 ```ts
 import type { NetzoModule } from 'netzo/config.ts'
 
-interface RestdbOptions extends NetzoModule {}
+interface DatabaseOptions extends NetzoModule {}
 ```
 
 ## Operations

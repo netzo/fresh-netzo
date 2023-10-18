@@ -185,6 +185,7 @@ export const sidebarEN: DefaultTheme.Sidebar = {
             { text: '<code>wix</code>', link: '/docs/netzo/apis/wix' },
           ],
         },
+        { text: '<code>authentication</code>', link: '/docs/netzo/authentication' },
         { text: '<code>cli</code>', link: '/docs/netzo/cli' },
         {
           text: '<code>components</code>',
@@ -235,7 +236,7 @@ export const sidebarEN: DefaultTheme.Sidebar = {
           ],
         },
         { text: '<code>composables</code>', link: '/docs/netzo/composables' },
-        { text: '<code>db</code>', link: '/docs/netzo/db' },
+        { text: '<code>database</code>', link: '/docs/netzo/database' },
         {
           text: '<code>modules</code>',
           link: '/docs/netzo/modules',
@@ -243,8 +244,6 @@ export const sidebarEN: DefaultTheme.Sidebar = {
           items: [
             { text: '<code>appLayout</code>', link: '/docs/netzo/modules/appLayout' },
             { text: '<code>errorPages</code>', link: '/docs/netzo/modules/errorPages' },
-            { text: '<code>auth</code>', link: '/docs/netzo/modules/auth' },
-            { text: '<code>restdb</code>', link: '/docs/netzo/modules/restdb' },
             { text: '<code>unocss</code>', link: '/docs/netzo/modules/unocss' },
           ],
         },

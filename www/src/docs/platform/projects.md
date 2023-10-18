@@ -5,7 +5,7 @@
 ![Projects](/docs/images/projects/projects-overview.webp)
 
 ::: tip Listen to HTTP requests
-Note that to make a project invokable at its edge URL, its entrypoint must register an HTTP server to listen to and respond to incoming HTTP requests. Otherwise, a project can still be used as a [module](#modules) to export code meant to be imported imported by other projects via their URL.
+Note that to make a project invokable at its edge URL, its entrypoint must register an HTTP server to listen to and respond to incoming HTTP requests.
 :::
 
 ## Creating Projects

@@ -1,8 +1,11 @@
 import { z } from "zod/mod.ts";
 import type { Handlers } from "$fresh/server.ts";
 import type { PluginRoute } from "$fresh/src/server/types.ts";
-import type { RestdbOptions, RestdbServiceOptions } from "./mod.ts";
-import { createDB } from "../../db/mod.ts";
+import type {
+  DatabaseOptions,
+  DatabaseServiceOptions,
+} from "../database/mod.ts";
+import { createDB } from "../db/mod.ts";
 
 const kv = await Deno.openKv();
 const db = createDB(kv);
@@ -10,7 +13,7 @@ const db = createDB(kv);
 const METHODS = ["find", "get", "create", "update", "patch", "remove"];
 const notAllowed = () => new Response("Method not allowed", { status: 405 });
 
-export const generateRoutes = (options: RestdbOptions) => {
+export const generateRoutes = (options: DatabaseOptions) => {
   const { prefix: _, ...serviceOptionDefaults } = options;
   options = {
     ...options,
@@ -30,7 +33,7 @@ export const generateRoutes = (options: RestdbOptions) => {
   };
 
   const generateHandler = <T>(
-    service: RestdbServiceOptions,
+    service: DatabaseServiceOptions,
   ): Handlers<T | null> => {
     const {
       name,
@@ -53,7 +56,7 @@ export const generateRoutes = (options: RestdbOptions) => {
   };
 
   const generateHandlerWithId = <T>(
-    service: RestdbServiceOptions,
+    service: DatabaseServiceOptions,
   ): Handlers<T | null> => {
     const {
       name,
@@ -91,7 +94,7 @@ export const generateRoutes = (options: RestdbOptions) => {
   };
 
   const routes = options.services.flatMap(
-    (service: RestdbServiceOptions): PluginRoute[] => {
+    (service: DatabaseServiceOptions): PluginRoute[] => {
       return [
         {
           path: `/${options.prefix}/${service.name}`,

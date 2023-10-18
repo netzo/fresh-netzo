@@ -1,10 +1,10 @@
-<img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/modules/appLayout.svg" alt="netzo/modules/appLayout" class="mb-5 w-75px">
+<img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/plugins/appLayout.svg" alt="netzo/plugins/appLayout" class="mb-5 w-75px">
 
 # `appLayout`
 
 Adds a global layout route from which all other routes inherit from.
 
-- **labels:** `middleware`, `auth`, `netzo`
+- **labels:** `middleware`, `netzo`
 
 ## Usage
 
@@ -13,11 +13,12 @@ Register the module in `netzo.config.ts` and ensure `main.ts` and `dev.ts` are r
 ::: code-group
 ```ts [netzo.config.ts]
 import { defineNetzoConfig } from 'netzo/config.ts'
+import appLayout from 'netzo/plugins/appLayout/mod.ts'
 
 export default defineNetzoConfig({
-  modules: {
-    appLayout: {}
-  }
+  plugins: [
+    appLayout()
+  ]
 })
 ```
 <<< src/main.ts

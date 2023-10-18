@@ -299,7 +299,7 @@ export default {
     //     },
     //     {
     //       icon: 'i-mdi-hexagon-multiple',
-    //       description: '<strong style="color: #0080ff"><a href="/docs/netzo/components">Componentes UI</a></strong>, <strong style="color: #0080ff"><a href="/docs/netzo/modules">Módulos</a></strong> y <strong style="color: #0080ff"><a href="/docs/netzo/composables">Utilidades</a></strong> para velocidad y simplicidad',
+    //       description: '<strong style="color: #0080ff"><a href="/docs/netzo/components">Componentes UI</a></strong>, <strong style="color: #0080ff"><a href="/docs/netzo/plugins">Módulos</a></strong> y <strong style="color: #0080ff"><a href="/docs/netzo/composables">Utilidades</a></strong> para velocidad y simplicidad',
     //     },
     //     {
     //       icon: 'i-mdi-bug',
@@ -805,7 +805,7 @@ export default {
           // { text: 'Embeds', link: '/products/embed' },
           // { text: 'Workflows', link: '/products/workflows' },
           { text: 'APIs', link: '/docs/netzo/apis' },
-          { text: 'Módulos', link: '/docs/netzo/modules' },
+          { text: 'Módulos', link: '/docs/netzo/plugins' },
         ],
       },
       {

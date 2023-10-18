@@ -1,6 +1,7 @@
 {
   "exclude": [
     ".github",
+    ".vitepress",
     "_fresh",
     "**/_fresh/*",
     "www/"

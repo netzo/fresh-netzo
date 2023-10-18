@@ -43,7 +43,7 @@ export interface AuthState {
  * ```ts
  * // main.ts
  * import { start } from "$fresh/server.ts";
- * import { createGitHubOAuthConfig, netzoAuthPlugin } from "https://deno.land/x/netzo@$VERSION/auth/mod.ts";
+ * import { createGitHubOAuthConfig, netzoAuthPlugin } from "https://deno.land/x/netzo@$VERSION/authentication/mod.ts";
  * import manifest from "./fresh.gen.ts";
  *
  * await start(manifest, {
@@ -64,33 +64,36 @@ export function netzoAuthPlugin(
         path: "/",
         middleware: {
           handler: async (
-          request: Request,
-          ctx: MiddlewareHandlerContext<AuthState>,
-        ) => {
-          const url = new URL(request.url);
-          const sessionId = getSessionId(request) as string | undefined;
-          const isAuthenticated = sessionId !== undefined;
-          if (!isAuthenticated) {
-            console.debug("[auth] User is not logged in, redirecting to /auth");
-            return Response.redirect("http://localhost:8000/auth");
-          }
-          else if (isAuthenticated && ["/auth"].includes(url.pathname)) {
-            console.debug("[auth] User is already logged in, redirecting to /");
-            return Response.redirect("http://localhost:8000/");
-          }
-          ctx.state = { sessionId, isAuthenticated } as AuthState;
-          console.log(ctx.state)
-          const response = await ctx.next();
-          return response;
-        }
-       }
-       },
+            request: Request,
+            ctx: MiddlewareHandlerContext<AuthState>,
+          ) => {
+            const url = new URL(request.url);
+            const sessionId = getSessionId(request) as string | undefined;
+            const isAuthenticated = sessionId !== undefined;
+            if (!isAuthenticated) {
+              console.debug(
+                "[auth] User is not logged in, redirecting to /auth",
+              );
+              return Response.redirect("http://localhost:8000/auth");
+            } else if (isAuthenticated && ["/auth"].includes(url.pathname)) {
+              console.debug(
+                "[auth] User is already logged in, redirecting to /",
+              );
+              return Response.redirect("http://localhost:8000/");
+            }
+            ctx.state = { sessionId, isAuthenticated } as AuthState;
+            console.log(ctx.state);
+            const response = await ctx.next();
+            return response;
+          },
+        },
+      },
     ],
     routes: [
       {
         path: options?.signInPath ?? "/oauth/signin",
         handler: async (req) => {
-          const response = await signIn(req, oauthConfig)
+          const response = await signIn(req, oauthConfig);
           console.log("/oauth/signin", response);
           return response;
         },
@@ -99,7 +102,10 @@ export function netzoAuthPlugin(
         path: options?.callbackPath ?? "/oauth/callback",
         handler: async (req) => {
           // Return object also includes `tokens` and `sessionId` properties.
-          const { response, tokens, sessionId } = await handleCallback(req, oauthConfig);
+          const { response, tokens, sessionId } = await handleCallback(
+            req,
+            oauthConfig,
+          );
           console.log("/oauth/callback", response);
           return response;
         },
