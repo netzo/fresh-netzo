@@ -22,9 +22,9 @@ making a request to a project/deployment from any source:
 */
 
 import type { MiddlewareHandler } from "$fresh/server.ts";
-import { OauthOptions } from "@/lib/modules/oauth/mod.ts";
+import { AuthOptions } from "netzo/modules/auth/mod.ts";
 
-export const createHandler = (options: OauthOptions): MiddlewareHandler => {
+export const createHandler = (options: AuthOptions): MiddlewareHandler => {
   return async (req, ctx) => {
     // type DestinationKind = "internal" | "static" | "route" | "notFound";
     if (["internal", "static", "notFound"].includes(ctx.destination)) {
@@ -56,7 +56,7 @@ export const createHandler = (options: OauthOptions): MiddlewareHandler => {
         if (!is.app) {
           if (!options.tokens?.length) {
             throw new Error(
-              "Missing required option 'tokens' in oauth plugin",
+              "Missing required option 'tokens' in auth plugin",
             );
           }
           if (!options.tokens.includes(token!)) {

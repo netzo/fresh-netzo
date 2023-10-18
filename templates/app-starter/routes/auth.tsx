@@ -5,10 +5,10 @@ import { UserAuthForm } from "@/islands/user-auth-form.tsx"
 import { AuthState } from "netzo/modules/auth/fresh.plugin.ts";
 
 export default defineRoute<AuthState>((request, ctx) => {
-  const { sessionId, isAuthenticated } = ctx.state;
-  // if (!isAuthenticated) {
-  //   console.debug("[auth] User is not logged in, redirecting to /auth");
-  //   return Response.redirect("http://localhost:8000/auth");
+  const { sessionId , isAuthenticated} = ctx.state;
+  // if (isAuthenticated) {
+  //   console.debug("[auth] User is already logged in, redirecting to /");
+  //   return Response.redirect("http://localhost:8000/");
   // }
   return (
     <html className="h-full">
@@ -33,7 +33,7 @@ export default defineRoute<AuthState>((request, ctx) => {
         />
       </div>
       <div className="container relative hidden h-full flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
-      <a
+        <a
           href={isAuthenticated ? "/oauth/signout" : "/oauth/signin"}
           className={cn(
             buttonVariants({ variant: "ghost" }),

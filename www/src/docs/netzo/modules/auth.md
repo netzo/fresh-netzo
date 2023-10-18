@@ -2,9 +2,9 @@
 import ChipSimple from '@theme/components/ChipSimple.vue'
 </script>
 
-<img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/modules/oauth.svg" alt="netzo/modules/oauth" class="mb-5 w-75px">
+<img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/modules/auth.svg" alt="netzo/modules/auth" class="mb-5 w-75px">
 
-# `oauth` <ChipSimple chip="soon" />
+# `auth` <ChipSimple chip="soon" />
 
 Adds a middleware to protect routes with authentication based on access control settings set for the project in Netzo.
 
@@ -20,7 +20,7 @@ import { defineNetzoConfig } from 'netzo/config.ts'
 
 export default defineNetzoConfig({
   modules: {
-    oauth: { visibility: 'private' }
+    auth: { visibility: 'private' }
   }
 })
 ```
@@ -36,7 +36,7 @@ export default defineNetzoConfig({
 ```ts
 import type { NetzoModule } from 'netzo/config.ts'
 
-interface OauthOptions extends NetzoModule {
+interface AuthOptions extends NetzoModule {
   visibility: 'private' | 'protected' | 'public'
   tokens: string[] // only for "protected" visibility
 }
