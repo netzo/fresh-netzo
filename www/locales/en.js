@@ -1166,8 +1166,8 @@ export default {
       href: '/docs/netzo/modules/errorPages',
     },
     {
-      uid: 'oauth',
-      title: 'OAuth',
+      uid: 'auth',
+      title: 'Auth',
       description: 'Adds a middleware to protect routes with authentication based on access control settings set for the project in Netzo.',
       labels: ['category:auth'],
       display: { src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/modules/auth.svg' },
