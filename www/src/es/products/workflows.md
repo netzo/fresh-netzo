@@ -1,11 +1,11 @@
 ---
 layout: home
 title: Automatizaciones | Productos
-description: Mejora las interacciones con tus clientes a través de portales
+description: Automatiza cualquier tarea
 hero:
-  name: Autenticación
-  text: Mejora los flujos con portales
-  tagline: Olvidate de la molestias de gestionar usuarios y autenticación. Crea portales atractivos que mejoran la interacción con clientes, proveedores, socios y colaboradores.
+  name: Automatizaciones
+  text: Automatiza el trabajo de poco valor
+  tagline: Automatiza tareas y procesos con tan solo unas lineas de codigo. Desbloquea la eficiencia y productividad en toda tu organización.
   # image:
   #   src: /images/products/authentication.jpeg
   #   alt: App Launcher
@@ -18,13 +18,18 @@ hero:
       # link: /docs/platform/projects/authentication
 
 features:
-  - icon: ⚡
-    title: Construye portales rápidamente
-    details: Crea fácilmente portales para clientes, socios y proveedores con páginas de registro, autenticación y más.
-  - icon: 🗝️
-    title: Integraciones de proveedores en un clic
-    details: Habilita opciones de inicio de sesión social de principales proveedores como Google, Auth0, GitHub y GitLab con un solo clic.
-
+  - icon: 🚀
+    title: Personalización infinita, es código
+    details: Personaliza la lógica de tu flujo de trabajo según tus necesidades exactas utilizando <code style="color:#0080ff;">JavaScript</code> y <code style="color:#0080ff;">TypeScript</code> con soporte de bibliotecas de código abierto.
+  - icon: ⏰
+    title: Programar tareas recurrentes
+    details: Automatiza tareas y procesos en un horario establecido con facilidad.
+  - icon: 🔌
+    title: Disparar tareas desde webhooks
+    details: Ejecuta tareas cuando se desencadenan eventos externos de otros sistemas.
+  - icon: 🔍
+    title: Seguir el rendimiento fácilmente
+    details: Monitoriza y sigue errores, latencia y el rendimiento de tus automatizaciones en tiempo real.
 ---
 
 <script setup>

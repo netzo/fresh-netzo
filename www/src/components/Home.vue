@@ -7,7 +7,7 @@ import Section from '@theme/components/sections/Section.vue'
 import SectionCards from '@theme/components/sections/SectionCards.vue'
 import SectionHero from '@theme/components/sections/SectionHero.vue'
 
-// import SectionQuote from '@theme/components/sections/SectionQuote.vue'
+import SectionQuote from '@theme/components/sections/SectionQuote.vue'
 import BannerBadges from '@theme/components/banners/BannerBadges.vue'
 
 // import BannerSimple from '@theme/components/banners/BannerSimple.vue'
