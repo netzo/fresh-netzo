@@ -6,10 +6,8 @@ import { AuthState } from "netzo/authentication/fresh.plugin.ts";
 
 export default defineRoute<AuthState>((request, ctx) => {
   const { sessionId, isAuthenticated } = ctx.state;
-  // if (!isAuthenticated) {
-  //   console.debug("[auth] User is not logged in, redirecting to /auth");
-  //   return Response.redirect("http://localhost:8000/auth");
-  // }
+  console.debug("index", { sessionId, isAuthenticated })
+
   return (
     <html className="h-full">
       <head>
@@ -34,13 +32,13 @@ export default defineRoute<AuthState>((request, ctx) => {
         </div>
         <div className="container relative hidden h-full flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
           <a
-            href={isAuthenticated ? "/oauth/signout" : "/oauth/signin"}
+            href="/oauth/signout"
             className={cn(
               buttonVariants({ variant: "ghost" }),
               "absolute right-4 top-4 md:right-8 md:top-8",
             )}
           >
-            {isAuthenticated ? "Logout" : "Login"}
+            Logout
           </a>
           <div className="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
             <div className="absolute inset-0 bg-zinc-900" />

@@ -1,7 +1,7 @@
 import type { JSX } from "preact";
 import { useState } from "preact/compat";
 import { cn } from "netzo/components/utils.ts";
-import { Button } from "netzo/components/ui/button.tsx";
+import { Button, buttonVariants } from "netzo/components/ui/button.tsx";
 import { Input } from "netzo/components/ui/input.tsx";
 import { Label } from "netzo/components/ui/label.tsx";
 
@@ -56,16 +56,24 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
           </span>
         </div>
       </div>
-      <Button
+      {/* <Button
         variant="outline"
-        type="button"
-        disabled={isLoading}
+        type="link"
         href="/oauth/signin"
       >
         {isLoading
           ? <div className="i-svg-spinners-180-ring mr-2 h-4 w-4" />
           : <div className="i-mdi-github mr-2 h-4 w-4" />} Github
-      </Button>
+      </Button> */}
+      <a
+            disabled={isLoading}
+            href="/oauth/signin"
+            className={cn(buttonVariants({ variant: "outline" }))}
+          >
+            {isLoading
+          ? <div className="i-svg-spinners-180-ring mr-2 h-4 w-4" />
+          : <div className="i-mdi-github mr-2 h-4 w-4" />} Github
+          </a>
     </div>
   );
 }
