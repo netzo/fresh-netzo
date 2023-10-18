@@ -856,13 +856,20 @@ export default {
       },
     ],
   },
-  netzo: [
+  modules: [
     {
       uid: 'apis',
       title: 'APIs',
       description: 'The <code>netzo/apis</code> module exports all the API integrations currently supported. Each API integration is a function that returns a typed client for the API.',
       display: { src: 'https://api.iconify.design/mdi-star-four-points.svg?color=%239ca3af' },
       href: '/docs/netzo/apis',
+    },
+    {
+      uid: 'authentication',
+      title: 'Authentication',
+      description: 'The <code>netzo/authentication</code> module exports a set of utility functions to authenticate users in your projects.',
+      display: { src: 'https://api.iconify.design/mdi-account-lock.svg?color=%239ca3af' },
+      href: '/docs/netzo/authentication',
     },
     {
       uid: 'cli',
@@ -872,11 +879,11 @@ export default {
       href: '/docs/netzo/cli',
     },
     {
-      uid: 'db',
-      title: 'DB',
-      description: 'The <code>netzo/db</code> module exports a set of utility functions to interact with the project\'s Deno KV datastore in a RESTful or resource-oriented manner.',
+      uid: 'database',
+      title: 'Database',
+      description: 'The <code>netzo/database</code> module exports a set of utility functions to interact with the project\'s datastore.',
       display: { src: 'https://api.iconify.design/mdi-database.svg?color=%239ca3af' },
-      href: '/docs/netzo/db',
+      href: '/docs/netzo/database',
     },
     {
       uid: 'components',

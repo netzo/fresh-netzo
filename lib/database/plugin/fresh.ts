@@ -1,14 +1,11 @@
 import { z } from "zod/mod.ts";
 import type { Handlers } from "$fresh/server.ts";
 import type { PluginRoute } from "$fresh/src/server/types.ts";
-import type {
-  DatabaseOptions,
-  DatabaseServiceOptions,
-} from "../database/mod.ts";
-import { createDB } from "../db/mod.ts";
+import type { DatabaseOptions, DatabaseServiceOptions } from "./mod.ts";
+import { createDatabase } from "../mod.ts";
 
 const kv = await Deno.openKv();
-const db = createDB(kv);
+const db = createDatabase(kv);
 
 const METHODS = ["find", "get", "create", "update", "patch", "remove"];
 const notAllowed = () => new Response("Method not allowed", { status: 405 });

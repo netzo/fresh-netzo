@@ -24,7 +24,9 @@ making a request to a project/deployment from any source:
 import type { MiddlewareHandler } from "$fresh/server.ts";
 import { AuthenticationOptions } from "netzo/authentication/mod.ts";
 
-export const createHandler = (options: AuthenticationOptions): MiddlewareHandler => {
+export const createHandler = (
+  options: AuthenticationOptions,
+): MiddlewareHandler => {
   return async (req, ctx) => {
     // type DestinationKind = "internal" | "static" | "route" | "notFound";
     if (["internal", "static", "notFound"].includes(ctx.destination)) {

@@ -33,7 +33,7 @@ export default defineNetzoConfig({
 ```ts
 import type { NetzoModule } from 'netzo/config.ts'
 
-interface AppLayoutOptions extends NetzoModule {
+interface AppLayoutOptions {
   title?: string
   description?: string
   favicon?: string

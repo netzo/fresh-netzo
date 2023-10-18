@@ -72,7 +72,7 @@ This guide skips over lengthy, technical descriptions for now, the goal here is 
 
 <!-- NOTE: pass in 'compact' prop if using with `aside: false` -->
 <!-- NOTE: could split into H3 groups via `en.components.filter(...)` -->
-<SectionDocsCards :items="en.netzo">
+<SectionDocsCards :items="en.modules">
   <template #image="{ src, title }">
     <img
       class="mt-5 ml-4 max-w-14 max-h-14"

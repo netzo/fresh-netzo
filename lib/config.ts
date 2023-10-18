@@ -1,9 +1,11 @@
 import type {
   Plugin,
-  StartOptions,
+  FreshConfig,
 } from "https://deno.land/x/fresh@1.5.1/server.ts";
-import authentication, { type AuthenticationOptions } from "./authentication/mod.ts";
-import database, { type DatabaseOptions } from "./database/mod.ts";
+import authentication, {
+  type AuthenticationOptions,
+} from "./authentication/mod.ts";
+import database, { type DatabaseOptions } from "./database/plugin/mod.ts";
 
 // NOTE: extends Module (from @netzo/api) with Plugin
 export interface NetzoModule extends Plugin {
@@ -16,7 +18,7 @@ export interface NetzoModule extends Plugin {
   status?: "stable" | "alpha" | "beta" | "soon";
 }
 
-export interface NetzoConfig extends StartOptions {
+export interface NetzoConfig extends FreshConfig {
   project?: string;
   modules?: {
     authentication?: AuthenticationOptions;

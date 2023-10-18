@@ -1,16 +1,29 @@
-<script setup lang="ts">
-import ChipSimple from '@theme/components/ChipSimple.vue'
-</script>
+# `netzo/database`
 
-<img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/database.svg" alt="netzo/database" class="mb-5 w-75px">
+> [`https://deno.land/x/netzo/database`](https://deno.land/x/netzo/database)
 
-# `database` <ChipSimple chip="soon" />
-
-Adds routes to serve a REST API for the [Deno KV](https://deno.com/deploy/docs/storage) database of the project. This API makes it possible to connect other applications to your KV store in any environment that can make HTTP requests.
-
-- **labels:** `routes`, `database`, `netzo`
+**The `netzo/database` module exports a set of utility functions to interact with the project's Deno KV datastore in a RESTful or resource-oriented manner.** In essence, the module exports the functions `find`, `get`, `create`, `update`, `patch` and `remove` to make it easier to perform CRUD operations on resources (much like database tables), abstracting away the simple but lower-level Deno KV API.
 
 ## Usage
+
+```ts
+import { createDatabase } from 'https://deno.land/x/netzo/database/mod.ts'
+
+const kv = await Deno.openKv()
+const db = createDatabase(kv)
+```
+
+### Auth
+
+Authentication and authorization for your Deno KV data store is currently user's responsibility and can be used with existing authentication and authorization systems. This module might provide built-in support for this in future iterations.
+
+## Configuration
+
+```ts
+import type { NetzoModule } from 'netzo/config.ts'
+
+interface DatabaseOptions extends NetzoModule {}
+```
 
 Register the module in `netzo.config.ts` and ensure `main.ts` and `dev.ts` are receive the `config` object as shown below.
 
@@ -31,21 +44,7 @@ export default defineNetzoConfig({
 ::: warning Fresh configuration [must](https://fresh.deno.dev/docs/concepts/ahead-of-time-builds#migrating-existing-projects-with-plugins) be defined in `netzo.config.ts`.
 :::
 
-### Auth
-
-Authentication and authorization for your Deno KV data store is currently user's responsibility and can be used with existing authentication and authorization systems. This module might provide built-in support for this in future iterations.
-
-## Configuration
-
-```ts
-import type { NetzoModule } from 'netzo/config.ts'
-
-interface DatabaseOptions extends NetzoModule {}
-```
-
 ## Operations
-
-### REST
 
 | Operation  | HTTP Method | Path                | Deno KV Operation |
 |------------|-------------|---------------------|-------------------|
@@ -56,260 +55,87 @@ interface DatabaseOptions extends NetzoModule {}
 | **patch**  | `PATCH`     | `/db/:resource/:id` | [set](#set)       |
 | **remove** | `DELETE`    | `/db/:resource/:id` | [delete](#delete) |
 
-#### find
+### `find`
 
-Execute a find operation.
+Retrieves a list of all matching resources from the service.
 
-Example request:
-
+```ts
+// [find] GET /todos
+const todos = await db.find<Todo>('todos')
 ```
-GET /db/users?filter[username]=john&sort=-username&limit=10&offset=0
+
+### `get`
+
+Retrieve a single resource from the service.
+
+```ts
+// [get] GET /todos/:id
+const todo = await db.get<Todo>('todos', ID)
 ```
 
-Example response (`application/json`):
+### `create`
 
-```
-[
+Create a new resource with data or multiple resources by passing in an array as data.
+
+::: tip `idField` defaults to `"id"` and value to `crypto.randomUUID()`
+If `idField` is not provided as third argument, the default `"id"` will be used. Each data item can specify a value at that `idField` (or the default one), and if not provided, a random UUID will be generated for it via `crypto.randomUUID()` of the Web Crypto API.
+:::
+
+```ts
+// [create] POST /todos
+const todo = await db.create<Todo>('todos', {
+  userId: '1',
+  title: 'delectus aut autem',
+  completed: false,
+})
+
+// [create] POST /todos (multiple at once)
+const todos = await db.create<Todo>('todos', [
   {
-    "id": "123",
-    "username": "john",
-    "admin": true
+    userId: 1,
+    id: 1,
+    title: 'delectus aut autem',
+    completed: false
   },
   {
-    "id": "456",
-    "username": "adam",
-    "admin": false
+    userId: 1,
+    id: 2,
+    title: 'quis ut nam facilis et officia qui',
+    completed: false
   },
-  {
-    "id": "789",
-    "username": "will",
-    "admin": false
-  }
-]
+  // ...
+], 'id') // NOTE: idField defaults to "id" and value to crypto.randomUUID()
 ```
 
-#### get
+### `update`
 
-Execute a get operation.
+Completely replace a single resource.
 
-Example request:
-
-```
-GET /db/users/123
-```
-
-Example response (`application/json`):
-
-```
-{
-  "id": "123",
-  "username": "john",
-  "admin": true
-}
+```ts
+// [udpate] PUT /todos/:id
+const todo = await db.update<Todo>('todos', ID, {
+  userId: '2',
+  title: 'delectus aut autem',
+  completed: true,
+})
 ```
 
-#### create
+### `patch`
 
-Execute a create operation.
+Merge the existing data of a single resource with the new data.
 
-Example request:
-
-```
-POST /db/users
-Body:
-{
-  "username": "john",
-  "admin": true
-}
+```ts
+// [patch] PATCH /todos/:id
+const todo = await db.patch<Todo>('todos', ID, {
+  completed: true,
+})
 ```
 
-Example response (`application/json`):
+### `remove`
 
+Remove a single resource.
+
+```ts
+// [remove] DELETE /todos/:id
+const { id } = await db.remove<Todo>('todos', ID)
 ```
-{
-  "id": "123",
-  "username": "john",
-  "admin": true
-}
-```
-
-#### update
-
-Execute an update operation.
-
-Example request:
-
-```
-PUT /db/users/123
-Body:
-{
-  "username": "john",
-  "admin": true
-}
-```
-
-Example response (`application/json`):
-
-```
-{
-  "id": "123",
-  "username": "john",
-  "admin": true
-}
-```
-
-#### patch
-
-Execute a patch operation.
-
-Example request:
-
-```
-PATCH /db/users/123
-Body:
-{
-  "username": "john",
-  "admin": true
-}
-```
-
-Example response (`application/json`):
-
-```
-{
-  "id": "123",
-  "username": "john",
-  "admin": true
-}
-```
-
-#### remove
-
-Execute a remove operation.
-
-Example request:
-
-```
-DELETE /db/users/123
-```
-
-Successful response returns 200 OK with no body.
-
-<!-- ### KV
-
-| Operation  | HTTP Method | Path       | Deno KV Operation |
-|------------|-------------|------------|-------------------|
-| **list**   | `GET`       | `/kv/list` | [list](#list)     |
-| **get**    | `GET`       | `/kv`      | [get](#get)       |
-| **set**    | `POST`      | `/kv`      | [set](#set)       |
-| **delete** | `DELETE`    | `/kv`      | [delete](#delete) |
-| **sum**    | `POST`      | `/kv/sum`  | [sum](#sum)       |
-| **min**    | `POST`      | `/kv/min`  | [min](#min)       |
-| **max**    | `POST`      | `/kv/max`  | [max](#max)       |
-
-#### list
-
-Execute a [list operation](https://deno.com/manual/runtime/kv/operations#list).
-
-Example request:
-
-```
-GET /kv/list?prefix=users&start=users,john
-```
-
-Example response (`application/json`):
-
-```
-[
-  {
-    "key": ["users", "john"],
-    "value": {
-      "username": "john",
-      "admin": true
-    },
-    "versionstamp": "000001"
-  }
-]
-```
-
-#### get
-
-Execute a [get operation](https://deno.com/manual/runtime/kv/operations#get).
-
-Example request:
-
-```
-GET /kv?key=users,john
-```
-
-Example response (`application/json`):
-
-```
-{
-  "key": ["users", "john"],
-  "value": {
-    "username": "john",
-    "admin": true
-  },
-  "versionstamp": "000001"
-}
-```
-
-#### set
-
-Execute a [set operation](https://deno.com/manual/runtime/kv/operations#set).
-
-Example request:
-
-```
-POST /kv?key=users,john
-Body:
-{
-  "username": "john",
-  "admin": true
-}
-```
-
-Example response (`application/json`):
-
-```
-{
-	"ok": true,
-	"versionstamp": "00000000000000010000"
-}
-```
-
-#### delete
-
-Execute a [delete operation](https://deno.com/manual/runtime/kv/operations#delete).
-
-Example request:
-
-```
-DELETE /kv?key=users,john
-```
-
-Successful response returns 200 OK with no body.
-
-#### sum
-
-Execute a [sum operation](https://deno.com/manual/runtime/kv/operations#sum).
-
-TODO
-
-#### min
-
-Execute a [min operation](https://deno.com/manual/runtime/kv/operations#min).
-
-TODO
-
-#### max
-
-Execute a [max operation](https://deno.com/manual/runtime/kv/operations#max).
-
-TODO -->
-
-## References
-
-- [Deno KV](https://deno.com/kv)
-
