@@ -1,14 +1,14 @@
 ---
 layout: home
-title: App Launcher | Products
+title: Apps | Products
 description: Seamless app distribution within your organization with one-click, secure sharing and user management.
 hero:
-  name: App Launcher
+  name: Apps
   text: Ship apps to your team fast
-  tagline: Simple, flexible, and fast. Securely share apps with your teams in one-click.
+  tagline: Simple, flexible, and fast. Securely share apps in the Apps dashboard with your teams in one-click.
   image:
     src: /images/home/3-share.svg
-    alt: App Launcher
+    alt: Apps
   actions:
     - theme: brand
       text: Book a Call
@@ -26,7 +26,7 @@ features:
     details: Promote efficient teamwork by ensuring your workforce has the right tools, easily accessible.
   - icon: 🛠️
     title: Boost Collaboration and Productivity
-    details: Foster collaboration with quick, secure access to essential apps. Netzo's App Launcher promotes efficient teamwork, making it easier for your teams to work together and boost productivity.
+    details: Foster collaboration with quick, secure access to essential apps. Netzo's Apps module promotes efficient teamwork, making it easier for your teams to work together and boost productivity.
 ---
 
 <script setup>
