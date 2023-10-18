@@ -4,7 +4,7 @@
 
 ![Workspaces](/docs/images/workspaces/workspaces-overview.webp)
 
-Navigating into a Workspace will take you to the Workspace overview page. From here you can navigate to any of the following modules:
+Navigating into a Workspace will take you to the Workspace overview page. From here you can navigate to any of the following pages:
 
 - [Projects](/docs/platform/projects)
 - [Settings](/docs/platform/workspaces#general)

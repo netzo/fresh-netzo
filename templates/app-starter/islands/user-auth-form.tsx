@@ -1,22 +1,23 @@
-import type { JSX } from "preact"
-import { useState } from "preact/compat"
-import { cn } from "netzo/components/utils.ts"
-import { Button } from "netzo/components/ui/button.tsx"
-import { Input } from "netzo/components/ui/input.tsx"
-import { Label } from "netzo/components/ui/label.tsx"
+import type { JSX } from "preact";
+import { useState } from "preact/compat";
+import { cn } from "netzo/components/utils.ts";
+import { Button } from "netzo/components/ui/button.tsx";
+import { Input } from "netzo/components/ui/input.tsx";
+import { Label } from "netzo/components/ui/label.tsx";
 
+// deno-lint-ignore no-empty-interface
 interface UserAuthFormProps extends JSX.HTMLAttributes<HTMLDivElement> {}
 
 export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
-  const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  async function onSubmit(event: Event) {
-    event.preventDefault()
-    setIsLoading(true)
+  function onSubmit(event: Event) {
+    event.preventDefault();
+    setIsLoading(true);
 
     setTimeout(() => {
-      setIsLoading(false)
-    }, 3000)
+      setIsLoading(false);
+    }, 3000);
   }
 
   return (
@@ -61,13 +62,10 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
         disabled={isLoading}
         href="/oauth/signin"
       >
-        {isLoading ? (
-          <div className="i-svg-spinners-180-ring mr-2 h-4 w-4" />
-        ) : (
-          <div className="i-mdi-github mr-2 h-4 w-4" />
-        )}{" "}
-        Github
+        {isLoading
+          ? <div className="i-svg-spinners-180-ring mr-2 h-4 w-4" />
+          : <div className="i-mdi-github mr-2 h-4 w-4" />} Github
       </Button>
     </div>
-  )
+  );
 }

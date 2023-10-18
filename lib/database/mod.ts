@@ -6,8 +6,7 @@ export const ulid = monotonicFactory();
 
 export const kv = await Deno.openKv();
 
-export const createDB = (kv: Deno.Kv) => {
-
+export const createDatabase = (kv: Deno.Kv) => {
   const find = async <T = unknown>(
     resource: string,
     query: Record<string, string> = {},
@@ -34,7 +33,9 @@ export const createDB = (kv: Deno.Kv) => {
         keyValues.set([resource, id], item);
       }
       const result = await multiSet(keyValues);
-      if (!result.ok) throw new Error(`Failed to set keys: ${result.failedKeys}`);
+      if (!result.ok) {
+        throw new Error(`Failed to set keys: ${result.failedKeys}`);
+      }
       return data;
     } else {
       const id = String(data[idField]) || ulid();
@@ -90,4 +91,4 @@ export const createDB = (kv: Deno.Kv) => {
     patch,
     remove,
   };
-}
+};

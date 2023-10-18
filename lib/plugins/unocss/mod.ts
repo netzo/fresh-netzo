@@ -2,7 +2,7 @@ import {
   UnoGenerator,
   type UserConfig,
 } from "https://esm.sh/@unocss/core@0.55.1";
-import type { NetzoModule } from "../../config.ts";
+import type { Plugin } from "https://deno.land/x/fresh@1.5.1/server.ts";
 
 // inline reset from https://esm.sh/@unocss/reset@0.54.2/tailwind.css
 const unoResetCSS = `/* reset */
@@ -18,7 +18,7 @@ export const defineConfig = <T extends object = object>(config: Config<T>) => {
   return config;
 };
 
-export default (config: Config, runtime = true): NetzoModule => {
+export default (config: Config, runtime = true): Plugin => {
   const uno = new UnoGenerator(config);
   return {
     name: "unocss",

@@ -299,7 +299,7 @@ export default {
     //     },
     //     {
     //       icon: 'i-mdi-hexagon-multiple',
-    //       description: '<strong style="color: #0080ff"><a href="/docs/netzo/components">UI components</a></strong>, <strong style="color: #0080ff"><a href="/docs/netzo/modules">Modules</a></strong> and <strong style="color: #0080ff"><a href="/docs/netzo/composables">Utilities</a></strong> for speed and simplicity',
+    //       description: '<strong style="color: #0080ff"><a href="/docs/netzo/components">UI components</a></strong>, <strong style="color: #0080ff"><a href="/docs/netzo/plugins">Plugins</a></strong> and <strong style="color: #0080ff"><a href="/docs/netzo/composables">Utilities</a></strong> for speed and simplicity',
     //     },
     //     {
     //       icon: 'i-mdi-bug',
@@ -815,7 +815,7 @@ export default {
           // { text: 'Embed', link: '/products/embed' },
           // { text: 'Workflows', link: '/products/workflows' },
           { text: 'APIs', link: '/docs/netzo/apis' },
-          { text: 'Modules', link: '/docs/netzo/modules' },
+          { text: 'Plugins', link: '/docs/netzo/plugins' },
         ],
       },
       {
@@ -856,13 +856,20 @@ export default {
       },
     ],
   },
-  netzo: [
+  modules: [
     {
       uid: 'apis',
       title: 'APIs',
       description: 'The <code>netzo/apis</code> module exports all the API integrations currently supported. Each API integration is a function that returns a typed client for the API.',
       display: { src: 'https://api.iconify.design/mdi-star-four-points.svg?color=%239ca3af' },
       href: '/docs/netzo/apis',
+    },
+    {
+      uid: 'authentication',
+      title: 'Authentication',
+      description: 'The <code>netzo/authentication</code> module exports a set of utility functions to authenticate users in your projects.',
+      display: { src: 'https://api.iconify.design/mdi-account-lock.svg?color=%239ca3af' },
+      href: '/docs/netzo/authentication',
     },
     {
       uid: 'cli',
@@ -872,11 +879,11 @@ export default {
       href: '/docs/netzo/cli',
     },
     {
-      uid: 'db',
-      title: 'DB',
-      description: 'The <code>netzo/db</code> module exports a set of utility functions to interact with the project\'s Deno KV datastore in a RESTful or resource-oriented manner.',
+      uid: 'database',
+      title: 'Database',
+      description: 'The <code>netzo/database</code> module exports a set of utility functions to interact with the project\'s datastore.',
       display: { src: 'https://api.iconify.design/mdi-database.svg?color=%239ca3af' },
-      href: '/docs/netzo/db',
+      href: '/docs/netzo/database',
     },
     {
       uid: 'components',
@@ -893,11 +900,11 @@ export default {
       href: '/docs/netzo/composables',
     },
     {
-      uid: 'modules',
-      title: 'Modules',
-      description: 'The <code>netzo/modules</code> module exports all official Modules o add to your projects a plug-and-play fashion.',
+      uid: 'plugins',
+      title: 'Plugins',
+      description: 'The <code>netzo/plugin</code> module exports all official Plugins to essential functionality to your projects in a plug-and-play fashion.',
       display: { src: 'https://api.iconify.design/mdi-extension.svg?color=%239ca3af' },
-      href: '/docs/netzo/modules',
+      href: '/docs/netzo/plugins',
     },
   ].sort((a, b) => a.uid.localeCompare(b.uid)),
   apis: [
@@ -1148,46 +1155,30 @@ export default {
     },
   ].sort((a, b) => a.uid.localeCompare(b.uid)),
   // categories: Analytics, CMS, CSS, Database, Devtools, Ecommerce, Extensions, Fonts, Images, Libraries, Monitoring, Payment, Performance, Request, Security, SEO, UI
-  modules: [
+  plugins: [
     {
       uid: 'appLayout',
       title: 'App Layout',
       description: 'Adds a global layout route from which all other routes inherit from.',
       labels: ['category:ui'],
-      display: { src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/modules/appLayout.svg' },
-      href: '/docs/netzo/modules/appLayout',
+      display: { src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/plugins/appLayout.svg' },
+      href: '/docs/netzo/plugins/appLayout',
     },
     {
       uid: 'errorPages',
       title: 'Error Pages',
       description: 'Adds routes to render a custom error page for "404: Not Found" and "500: Server Error".',
       labels: ['category:ui'],
-      display: { src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/modules/errorPages.svg' },
-      href: '/docs/netzo/modules/errorPages',
-    },
-    {
-      uid: 'auth',
-      title: 'Auth',
-      description: 'Adds a middleware to protect routes with authentication based on access control settings set for the project in Netzo.',
-      labels: ['category:auth'],
-      display: { src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/modules/auth.svg' },
-      href: '/docs/netzo/modules/auth',
-    },
-    {
-      uid: 'restdb',
-      title: 'REST DB',
-      description: 'Adds routes to serve a REST API for the Deno KV database of the project.',
-      labels: ['category:database'],
-      display: { src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/modules/restdb.svg' },
-      href: '/docs/netzo/modules/restdb',
+      display: { src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/plugins/errorPages.svg' },
+      href: '/docs/netzo/plugins/errorPages',
     },
     {
       uid: 'unocss',
       title: 'UnoCSS',
       description: 'UnoCSS is an instant, on-demand atomic CSS engine. It generates atomic CSS classes on the fly based on the classes and attributes used in your project.',
       labels: ['category:library', 'category:ui'],
-      display: { src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/modules/unocss.svg' },
-      href: '/docs/netzo/modules/unocss',
+      display: { src: 'https://raw.githubusercontent.com/netzo/netzo/main/assets/plugins/unocss.svg' },
+      href: '/docs/netzo/plugins/unocss',
     },
   ].sort((a, b) => a.uid.localeCompare(b.uid)),
   components: [

@@ -1,7 +1,14 @@
 // from https://github.com/drollinger/deployctl
 // see https://github.com/denoland/deployctl/issues/138
 
-import { load, netzo, NetzoConfig, Paginated, Project, wait } from "../../deps.ts";
+import {
+  load,
+  netzo,
+  NetzoConfig,
+  Paginated,
+  Project,
+  wait,
+} from "../../deps.ts";
 import { error } from "../console.ts";
 import {
   assertExistsNetzoConfig,

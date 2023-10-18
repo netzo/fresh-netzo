@@ -1,6 +1,6 @@
 # Core Concepts
 
-**Netzo provides a collection of building blocks for tailor-made for the [Deno fresh](https://fresh.deno.dev/) framework (**recommended**).** The goal is to provide everything related to UI when building custom frontends. This includes [components](/docs/netzo/components), [composables](/docs/netzo/composables), [modules](/docs/netzo/modules) and unocss-powered themes including colors, icons and typography.
+**Netzo provides a collection of building blocks for tailor-made for the [Deno fresh](https://fresh.deno.dev/) framework (**recommended**).** The goal is to provide everything related to UI when building custom frontends. This includes [components](/docs/netzo/components), [composables](/docs/netzo/composables), [plugins](/docs/netzo/plugins) and unocss-powered themes including colors, icons and typography.
 
 - Headless components
 - Built with Radix UI and UnoCSS
@@ -32,29 +32,30 @@ You can choose to theme components however you would like. However, we strongly 
 
 Powered by [UnoCSS](https://github.com/antfu/unocss), you can use Tailwind/Windi CSS utilities to quickly customize the look and feel of components. The `presetNetzo` includes component class names with beautiful and consistent defaults which you can still easily customize.
 
-::: warning Requires the [`unocss`](/docs/netzo/modules/unocss) module to be registered as well.
+::: warning Requires the [`unocss`](/docs/netzo/plugins/unocss) module to be registered as well.
 :::
 
 ### Theming
 
-The netzo theme is based on the UnoCSS `presetNetzo`. You can find all the default values and available entries in [`netzo/modules/unocss/preset-netzo.ts`](https://github.com/netzo/netzo/blob/main/lib/unocss/preset-netzo.ts). Note that the [`UserConfig`](https://unocss.dev/config) object can be passed additional properties to extend the netzo theme globally.
+The netzo theme is based on the UnoCSS `presetNetzo`. You can find all the default values and available entries in [`netzo/plugins/unocss/preset-netzo.ts`](https://github.com/netzo/netzo/blob/main/lib/unocss/preset-netzo.ts). Note that the [`UserConfig`](https://unocss.dev/config) object can be passed additional properties to extend the netzo theme globally.
 
 ::: code-group
 ```ts [netzo.config.ts]
 import { defineNetzoConfig } from 'netzo/config.ts'
-import { presetNetzo } from 'netzo/modules/unocss/preset-netzo.ts'
+import unocss from 'netzo/plugins/unocss/mod.ts'
+import { presetNetzo } from 'netzo/plugins/unocss/preset-netzo.ts'
 
 export default defineNetzoConfig({
-  modules: {
-    unocss: {
+  plugins: [
+    unocss({
       presets: [presetNetzo()]
       // ...additional configuration
-    }
-  }
+    })
+  ]
 })
 ```
-<<< ../netzo/modules/src/main.ts
-<<< ../netzo/modules/src/dev.ts
+<<< ../netzo/plugins/src/main.ts
+<<< ../netzo/plugins/src/dev.ts
 :::
 
 ::: details Custom theme
