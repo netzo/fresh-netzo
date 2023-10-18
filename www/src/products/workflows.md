@@ -1,7 +1,7 @@
 ---
 layout: home
 title: Workflows | Products
-description: Managed customer portals
+description: Automate any task
 hero:
   name: Workflows
   text: Automate anything in a few lines of code
@@ -18,24 +18,19 @@ hero:
       # link: /docs/platform/projects/authentication
 
 features:
-  - icon: ⚡
-    title: Build portals fast
-    details: Effortlessly create customer, partner, and vendor portals with out of the box sign-up pages, authentication and more.
-  - icon: 🗝️
-    title: One-click provider integrations
-    details: Enable social login options from leading providers like Google, Auth0, GitHub, and GitLab in one-click.
-  - icon: 👥
-    title: Streamlined user management
-    details: Manage users and roles seamlessly in a intuitive, user friendly UI.
-  - icon:  🔒
-    title: Data Safety
-    details: User data is stored within the portals integrated database ensure security and giving you full control.
-  - icon: 📜
-    title: Easy policy linking
-    details: Ensure compliance by directly linking your policies to the sign-up page in the configuration.
-  - icon: ✉️
-    title: Personalized email flows
-    details: Customize and manage email communications efficiently such as sign up, password update and more easily.
+  - icon: 🚀
+    title: Customize endlessly, it's code
+    details: Customize workflow logic to your exact needs using <code style="color:#0080ff;">JavaScript</code> and <code style="color:#0080ff;">TypeScript</code> with open-source library support.
+  - icon: ⏰
+    title: Schedule recurring tasks
+    details: Automate tasks and processes on a set schedule with ease.
+  - icon: 🔌
+    title: Trigger tasks from webhooks
+    details: Execute tasks when triggered by external events from other systems.
+  - icon: 🔍
+    title: Easily track performance
+    details: Easily monitor and track errors, latency, and workflow performance in real-time.
+
 ---
 
 <script setup>

@@ -13,6 +13,7 @@ export const navEN: DefaultTheme.NavItem[] = [
           { text: 'Apps', link: '/products/apps' },
           { text: 'Inbox', link: '/products/inbox' },
           { text: 'Projects', link: '/products/projects' },
+          { text: 'Storage (soon)', link: '/products/storage' },
         ],
       },
       {
@@ -21,8 +22,7 @@ export const navEN: DefaultTheme.NavItem[] = [
           // { text: 'Embeds' },
           { text: 'Authentication', link: '/products/authentication' },
           { text: 'Database', link: '/products/database' },
-          { text: 'Storage (soon)', link: '/products/storage' },
-          { text: 'Workflows (soon)', link: '/' },
+          { text: 'Workflows (soon)', link: '/products/workflows' },
           { text: 'Analytics (soon)', link: '/' },
         ],
       },
@@ -71,6 +71,7 @@ export const navES: DefaultTheme.NavItem[] = [
           { text: 'Apps', link: '/es/products/apps' },
           { text: 'Inbox', link: '/es/products/inbox' },
           { text: 'Proyectos', link: '/es/products/projects' },
+          { text: 'Alacenamiento (soon)', link: '/es/products/storage' },
         ],
       },
       {
@@ -78,8 +79,7 @@ export const navES: DefaultTheme.NavItem[] = [
         items: [
           { text: 'Autenticación', link: '/es/products/authentication' },
           { text: 'Base de datos', link: '/es/products/database' },
-          { text: 'Alacenamiento (soon)', link: '/es/products/storage' },
-          { text: 'Workflows (soon)', link: '/' },
+          { text: 'Workflows (soon)', link: '/es/products/workflows' },
           { text: 'Analiticas', link: '/' },
         ],
       },
