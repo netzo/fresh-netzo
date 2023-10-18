@@ -6,7 +6,6 @@ import { AuthState } from "netzo/authentication/fresh.plugin.ts";
 
 export default defineRoute<AuthState>((request, ctx) => {
   const { sessionId, isAuthenticated } = ctx.state;
-  console.debug("auth", { sessionId, isAuthenticated })
 
   return (
     <html className="h-full">

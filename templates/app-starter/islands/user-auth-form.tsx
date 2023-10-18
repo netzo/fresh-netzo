@@ -56,7 +56,8 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
           </span>
         </div>
       </div>
-      {/* <Button
+      {
+        /* <Button
         variant="outline"
         type="link"
         href="/oauth/signin"
@@ -64,16 +65,17 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
         {isLoading
           ? <div className="i-svg-spinners-180-ring mr-2 h-4 w-4" />
           : <div className="i-mdi-github mr-2 h-4 w-4" />} Github
-      </Button> */}
+      </Button> */
+      }
       <a
-            disabled={isLoading}
-            href="/oauth/signin"
-            className={cn(buttonVariants({ variant: "outline" }))}
-          >
-            {isLoading
+        disabled={isLoading}
+        href="/oauth/signin"
+        className={cn(buttonVariants({ variant: "outline" }))}
+      >
+        {isLoading
           ? <div className="i-svg-spinners-180-ring mr-2 h-4 w-4" />
           : <div className="i-mdi-github mr-2 h-4 w-4" />} Github
-          </a>
+      </a>
     </div>
   );
 }
