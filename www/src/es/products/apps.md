@@ -20,13 +20,13 @@ hero:
 features:
   - icon: 🔒
     title: Gestión de usuarios y roles
-    detalles: Establece permisos para los usuarios para limitar el acceso a las aplicaciones con control programático.
-  - icono: 🏢
+    details: Establece permisos para los usuarios para limitar el acceso a las aplicaciones con control programático.
+  - icon: 🏢
     title: Centraliza el acceso a aplicaciones criticas
-    detalles: Fomenta el trabajo en equipo eficiente asegurándote de que tu personal tenga las herramientas adecuadas, con fácil acceso.
+    details: Fomenta el trabajo en equipo eficiente asegurándote de que tu personal tenga las herramientas adecuadas, con fácil acceso.
   - icon: 🚀
     title: Impulsa la colaboración y la productividad
-    detalles: Fomenta la colaboración con un acceso rápido y seguro a aplicaciones esenciales. El módulo de aplicaciones de Netzo promueve un trabajo en equipo eficiente, facilitando la colaboración entre tus equipos y aumentando la productividad.
+    details: Fomenta la colaboración con un acceso rápido y seguro a aplicaciones esenciales. El módulo de aplicaciones de Netzo promueve un trabajo en equipo eficiente, facilitando la colaboración entre tus equipos y aumentando la productividad.
 
 ---
 
