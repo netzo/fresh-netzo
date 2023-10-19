@@ -68,21 +68,27 @@ export function netzoAuthPlugin(
             ctx: MiddlewareHandlerContext<AuthState>,
           ) => {
             const url = new URL(request.url);
+            const skipDestination = !["route"].includes(ctx.destination);
+            const skipRoute = url.pathname.startsWith("/oauth");
+            if (skipDestination || skipRoute) return await ctx.next();
+
+            // check auth state
             const sessionId = getSessionId(request) as string | undefined;
             const isAuthenticated = sessionId !== undefined;
-            if (!isAuthenticated) {
-              console.debug(
-                "[auth] User is not logged in, redirecting to /auth",
-              );
-              return Response.redirect("http://localhost:8000/auth");
+
+            // redirect to /auth if not authenticated or to / if authenticated
+            if (!isAuthenticated && !["/auth"].includes(url.pathname)) {
+              // console.debug("[auth] User logged out, redirecting to /auth");
+              url.pathname = "/auth";
+              return Response.redirect(url.href, 302);
             } else if (isAuthenticated && ["/auth"].includes(url.pathname)) {
-              console.debug(
-                "[auth] User is already logged in, redirecting to /",
-              );
-              return Response.redirect("http://localhost:8000/");
+              // console.debug("[auth] User logged in, redirecting to /");
+              url.pathname = "/";
+              return Response.redirect(url.href, 302);
             }
+
+            // pass auth state to routes/middleware
             ctx.state = { sessionId, isAuthenticated } as AuthState;
-            console.log(ctx.state);
             const response = await ctx.next();
             return response;
           },
