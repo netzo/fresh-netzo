@@ -19,11 +19,11 @@ Netzo will inject a set of default environment variables to the project at runti
 
 ## Runtime Environments
 
-Netzo supports three runtime environments for projects. `production` and `preview` environments will share the same environment variables which can be set directly in the project settings in Netzo. For `development` you have the option of loading them from a `.env` file or passing them as command line arguments.
+Netzo supports three runtime environments for projects. `production` and `preview` environments will share the same environment variables which can be set directly in the project settings in Netzo. For `development` netzo will auto-inject environment variables set for the project's `development` environment (provided you have a valid `netzo.config` file). You also have the option of loading them from a `.env` file or passing them as command line arguments, however, this is more work and managing all 3 environments from within netzo is recommended.
 
 - **Production:** `https://{uid}.deno.dev`
 - **Preview:** `https://{uid}-{deploymentId}.deno.dev`
-- **Local:** `https://localhost:PORT`
+- **Development:** `https://localhost:PORT`
 
 ## Deno.env.get()
 

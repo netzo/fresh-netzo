@@ -19,7 +19,7 @@ import {
 } from "../utils/config.ts";
 
 const help = `netzo env
-Update project environment variables from env file to Netzo.
+Push project environment variables from env file to Netzo.
 
 USAGE:
     netzo env [OPTIONS] [<envPath>]
