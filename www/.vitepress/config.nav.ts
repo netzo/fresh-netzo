@@ -74,7 +74,7 @@ export const navES: DefaultTheme.NavItem[] = [
           { text: 'Apps', link: '/es/products/apps' },
           { text: 'Inbox', link: '/es/products/inbox' },
           { text: 'Proyectos', link: '/es/products/projects' },
-          { text: 'Alacenamiento (soon)', link: '/es/products/storage' },
+          { text: 'Alacenamiento (próx.)', link: '/es/products/storage' },
         ],
       },
       {
@@ -82,8 +82,8 @@ export const navES: DefaultTheme.NavItem[] = [
         items: [
           { text: 'Autenticación', link: '/es/products/authentication' },
           { text: 'Base de datos', link: '/es/products/database' },
-          { text: 'Workflows (soon)', link: '/es/products/workflows' },
-          { text: 'Analiticas (soon)', link: '/es/products/analytics' },
+          { text: 'Automatizaciones (próx.)', link: '/es/products/workflows' },
+          { text: 'Analiticas (próx.)', link: '/es/products/analytics' },
         ],
       },
     ],
