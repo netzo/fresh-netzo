@@ -22,13 +22,13 @@ features:
     title: Personalización infinita, es código
     details: Personaliza la lógica de tu flujo de trabajo según tus necesidades exactas utilizando <code style="color:#0080ff;">JavaScript</code> y <code style="color:#0080ff;">TypeScript</code> con soporte de bibliotecas de código abierto.
   - icon: ⏰
-    title: Programar tareas recurrentes
+    title: Programa tareas recurrentes
     details: Automatiza tareas y procesos en un horario establecido con facilidad.
   - icon: 🔌
-    title: Disparar tareas desde webhooks
+    title: Ejecuta tareas desde webhooks
     details: Ejecuta tareas cuando se desencadenan eventos externos de otros sistemas.
   - icon: 🔍
-    title: Seguir el rendimiento fácilmente
+    title: Monitorea el rendimiento fácilmente
     details: Monitoriza y sigue errores, latencia y el rendimiento de tus automatizaciones en tiempo real.
 ---
 
