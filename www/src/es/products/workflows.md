@@ -4,7 +4,7 @@ title: Automatizaciones | Productos
 description: Automatiza cualquier tarea
 hero:
   name: Automatizaciones
-  text: Automatiza el trabajo de poco valor
+  text: Automatiza el trabajo repetitivo
   tagline: Automatiza tareas y procesos con tan solo unas lineas de codigo. Desbloquea la eficiencia y productividad en toda tu organización.
   # image:
   #   src: /images/products/authentication.jpeg
