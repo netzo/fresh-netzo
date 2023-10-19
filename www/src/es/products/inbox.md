@@ -4,30 +4,32 @@ title: Inbox | Productos
 description:
 hero:
   name: Inbox
-  text: Un buzón para todas las notificaciones de tus apps
-  tagline: Unifica y optimiza la comunicación, notificaciones y alertas con nuestro módulo de buzón centralizado y gestionado para todas tus aplicaciones.
+  text: Un solo lugar, todas tus notificaciones
+  tagline: Unifica y optimiza la comunicación, notificaciones y alertas en un buzón centralizado y gestionado por nosotros para todas tus aplicaciones.
   # image:
   #   src: /images/home/3-share.svg
   #   alt: Inbox
   actions:
     - theme: brand
-      text: Book a Call
+      text: Agendar una Llamada
       link: https://calendar.app.google/uHEnkfwpgYSM1ppN6
     - theme: alt
-      text: Learn More
+      text: Saber Más
       link: /docs/platform/inbox
 
 features:
   - icon: ✉️
-    title: Simplifica notificaciones en tus aplicaciones
-    details: Di adiós a la molestia de construir y mantener módulos de notificación propensos a errores. Integra fácilmente notificaciones en tus aplicaciones con tan solo una línea de código.
-  - icon: 🎯
-    title: Filtros personalizables
-    details: Empodera a los usuarios para personalizar sus preferencias de notificación con opciones avanzadas de filtrado y priorización.
+    title: Agrega notificaciones con una línea de código
+    details: No construyas y mantengas módulos de notificaciones propensos a errores. Agrega notificaciones en todas tus apps con una línea de código.
   - icon: 🛎️
-    title: No te pierdas nada
-    details: Notificaciones predeterminadas integradas para nuevas versiones disponibles, ejecución o fallo de flujos de trabajo, y más, al instante, sin necesidad de trabajo de desarrollo.
-
+    title: Mantente siempre al día
+    details: Notificaciones predeterminadas al desplegar nuevas versiones, al ejecutar o fallar automatizaciones, y mucho más, sin necesidad de desarrollo adicional.
+  - icon: 🔍
+    title: Filtra y busca notificaciones
+    details: Ayuda a tu equipo a no perderse nunca notificaciones importantes con opciones avanzadas de filtrado y priorización.
+  - icon: 🚨
+    title: Reacciona al instante ante problemas
+    details: Crea notificaciones personalizadas de alerta en tus aplicaciones y automatizaciones para reaccionar rápidamente cuando surgan problemas.
 ---
 
 <script setup>

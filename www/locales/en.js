@@ -809,13 +809,14 @@ export default {
       {
         text: 'Products',
         items: [
-          { text: 'Components', link: '/docs/netzo/components' }, // TODO: '/products/components'
-          { text: 'Database', link: '/docs/platform/projects/database' }, // TODO: '/products/database'
-          // { text: 'Portals', link: '/products/portals' },
-          // { text: 'Embed', link: '/products/embed' },
-          // { text: 'Workflows', link: '/products/workflows' },
-          { text: 'APIs', link: '/docs/netzo/apis' },
-          { text: 'Plugins', link: '/docs/netzo/plugins' },
+          { text: 'Apps', link: '/products/apps' },
+          { text: 'Inbox', link: '/products/inbox' },
+          { text: 'Projects', link: '/products/projects' },
+          { text: 'Storage', link: '/products/storage' },
+          { text: 'Authentication', link: '/products/authentication' },
+          { text: 'Database', link: '/products/database' },
+          { text: 'Workflows', link: '/products/workflows' },
+          { text: 'Analytics', link: '/products/analytics' },
         ],
       },
       {

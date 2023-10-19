@@ -28,7 +28,7 @@ features:
 
   - icon: ⚡
     title: Fast and dependable
-    details: Enterprise-level scalability and state of the art tech no ensure lightning fast performance.
+    details: Enterprise-level scalability and state of the art tech to ensure lightning fast performance.
 
   - icon: 📲
     title: Integrate natively with all your apps

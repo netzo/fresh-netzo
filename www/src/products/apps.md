@@ -5,7 +5,7 @@ description: Seamless app distribution within your organization with one-click, 
 hero:
   name: Apps
   text: Ship apps to your team fast
-  tagline: Simple, flexible, and fast. Securely share apps in the Apps dashboard with your teams in one-click.
+  tagline: Securely share apps in the Apps dashboard with teams and individuals in one-click.
   image:
     src: /images/home/3-share.svg
     alt: Apps
@@ -18,15 +18,25 @@ hero:
       link: /docs/platform/home
 
 features:
-  - icon: 🛠️
-    title: User and role management
-    details: Set permissions for users to limit access to applications with programmatic control.
-  - icon: 🛠️
-    title: Centralize access
-    details: Promote efficient teamwork by ensuring your workforce has the right tools, easily accessible.
-  - icon: 🛠️
-    title: Boost Collaboration and Productivity
-    details: Foster collaboration with quick, secure access to essential apps. Netzo's Apps module promotes efficient teamwork, making it easier for your teams to work together and boost productivity.
+  - icon: 🚀
+    title: Share instantly
+    details: Grant user access with a single click. Once granted, applications appear instantly on users' dashboards in the form of tiles.
+  - icon: 🔑
+    title: Manage users and role easily
+    details: Easily configure user permissions and control access to your applications with precision.
+  - icon: 🌐
+    title: Centralize access to tools
+    details: Netzo's Apps module allows users to easily access all their authorized applications from a single dashboard.
+  - icon: 🏷️
+    title: Tag and filter apps
+    details: Label your apps with custom tags, making it simple for end users to filter applications in the Apps module based on their tags.
+  - icon: 📈
+    title: Measure performance in real-time
+    details: Gain immediate insights into application performance metrics, allowing you to analyze data quickly and make improvements fast.
+  - icon:  📢
+    title: Collect feedback (coming soon)
+    details: Enable your users to provide direct feedback to developers and managers right from the Apps dashboard, contributing to app improvement and faster iteration cycles.
+
 ---
 
 <script setup>

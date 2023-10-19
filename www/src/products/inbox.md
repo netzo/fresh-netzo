@@ -4,8 +4,8 @@ title: Inbox | Products
 description: Get all app notifications in one place
 hero:
   name: Inbox
-  text: One-stop Inbox for app notifications
-  tagline: Seamlessly consolidate and streamline communication, notifications, and alerts with our centralized, managed inbox module for all your apps.
+  text: Get all notifications in one place
+  tagline: Consolidate and streamline communications, notifications, and alerts in a centralized, managed inbox for all your apps.
   # image:
   #   src: /images/home/3-share.svg
   #   alt: Inbox
@@ -19,14 +19,17 @@ hero:
 
 features:
   - icon: ✉️
-    title: Streamline notifications in your apps
-    details: Say goodbye to the hassle of building and maintaining error-prone notification modules. Easily integrate notifications into your apps with just a single line of code,
-  - icon: 🎯
-    title: Customizable filters
-    details: Empower users to tailor their notification preferences with advanced filtering and prioritization options.
+    title: Add notifications in one line of code
+    details: Stop building and maintaining error-prone notification modules. Add notifications to all your apps in a single line of code.
   - icon: 🛎️
-    title: Never miss out on anything
+    title: Always stay updated
     details: Built in default notifications when new versions are available, when workflows run or fail, and more instantly, without the development work.
+  - icon: 🔍
+    title: Filter and search notifications
+    details: Help your team never miss out on important notifications with advanced filtering and prioritization options.
+  - icon: 🚨
+    title: React instantly to problems
+    details: Build custom alert notifications into your apps and workflows and react swiftly when problems arise.
 ---
 
 <script setup>

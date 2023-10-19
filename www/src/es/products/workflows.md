@@ -4,7 +4,7 @@ title: Automatizaciones | Productos
 description: Automatiza cualquier tarea
 hero:
   name: Automatizaciones
-  text: Automatiza el trabajo de poco valor
+  text: Toma un respiro de tareas repetitivas
   tagline: Automatiza tareas y procesos con tan solo unas lineas de codigo. Desbloquea la eficiencia y productividad en toda tu organización.
   # image:
   #   src: /images/products/authentication.jpeg
@@ -22,13 +22,13 @@ features:
     title: Personalización infinita, es código
     details: Personaliza la lógica de tu flujo de trabajo según tus necesidades exactas utilizando <code style="color:#0080ff;">JavaScript</code> y <code style="color:#0080ff;">TypeScript</code> con soporte de bibliotecas de código abierto.
   - icon: ⏰
-    title: Programar tareas recurrentes
+    title: Programa tareas recurrentes
     details: Automatiza tareas y procesos en un horario establecido con facilidad.
   - icon: 🔌
-    title: Disparar tareas desde webhooks
+    title: Ejecuta tareas desde webhooks
     details: Ejecuta tareas cuando se desencadenan eventos externos de otros sistemas.
   - icon: 🔍
-    title: Seguir el rendimiento fácilmente
+    title: Monitorea el rendimiento fácilmente
     details: Monitoriza y sigue errores, latencia y el rendimiento de tus automatizaciones en tiempo real.
 ---
 
