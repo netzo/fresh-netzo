@@ -18,13 +18,13 @@ hero:
       link: /docs/platform/home
 
 features:
-  - icon: 🛠️
+  - icon: 🔒
     title: User and role management
     details: Set permissions for users to limit access to applications with programmatic control.
-  - icon: 🛠️
+  - icon: 🏢
     title: Centralize access
     details: Promote efficient teamwork by ensuring your workforce has the right tools, easily accessible.
-  - icon: 🛠️
+  - icon: 🚀
     title: Boost Collaboration and Productivity
     details: Foster collaboration with quick, secure access to essential apps. Netzo's Apps module promotes efficient teamwork, making it easier for your teams to work together and boost productivity.
 ---

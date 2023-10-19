@@ -1,26 +1,32 @@
 ---
 layout: home
-title: App Launcher | Productos
-description: Despliega soluciones de negocio personalizadas rapido. Netzo es la forma más flexible de construir y gestionar soluciones de software internas críticas para la misión que se adapten a las necesidades cambiantes de su organización.
+title: Apps | Productos
+description: Distribución al instante de aplicaciones dentro de tu organización, de forma segura.
 hero:
-  name: App Launcher
-  text: Despliega soluciones de negocio rapido.
-  tagline: Netzo es la forma más flexible de construir y gestionar soluciones de software internas críticas para la misión que se adapten a las necesidades cambiantes de su organización.
+  name: Apps
+  text: Comparte aplicaciones con tu equipo rápidamente
+  tagline: Sencillo, flexible y rápido. Comparte aplicaciones de forma segura en el panel de Aplicaciones con tus equipos en un solo clic.
   image:
     src: /images/home/3-share.svg
     alt: App Launcher
   actions:
     - theme: brand
-      text: Book a Call
+      text: Agendar una Llamada
       link: https://calendar.app.google/uHEnkfwpgYSM1ppN6
     - theme: alt
-      text: Learn More
+      text: Saber Más
       link: /docs/platform/home
 
 features:
-  - icon: 🛠️
-    title: Lorem ipsum
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque elit, tristique quis tempus id, ultrices in ligula. Nam vel justo cursus, faucibus lorem eget, egestas eros.
+  - icon: 🔒
+    title: Gestión de usuarios y roles
+    detalles: Establece permisos para los usuarios para limitar el acceso a las aplicaciones con control programático.
+  - icono: 🏢
+    title: Centraliza el acceso a aplicaciones criticas
+    detalles: Fomenta el trabajo en equipo eficiente asegurándote de que tu personal tenga las herramientas adecuadas, con fácil acceso.
+  - icon: 🚀
+    title: Impulsa la colaboración y la productividad
+    detalles: Fomenta la colaboración con un acceso rápido y seguro a aplicaciones esenciales. El módulo de aplicaciones de Netzo promueve un trabajo en equipo eficiente, facilitando la colaboración entre tus equipos y aumentando la productividad.
 
 ---
 
