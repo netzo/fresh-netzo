@@ -25,7 +25,7 @@ features:
   title: Administra usuarios y roles fácilmente
   details: Configura fácilmente los permisos de usuario y controla el acceso a tus aplicaciones con precisión.
 - icon: 🌐
-  title: Centralizar acceso a herramientas
+  title: Centraliza el acceso a herramientas
   details: El módulo de Apps de Netzo permite a los usuarios acceder fácilmente a todas sus aplicaciones desde un solo panel.
 - icon: 🏷️
   title: Etiqueta y filtrar aplicaciones
