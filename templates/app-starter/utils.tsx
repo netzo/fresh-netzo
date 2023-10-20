@@ -1,4 +1,4 @@
-import { googlesheets } from "https://deno.land/x/netzo@v0.2.49/apis/googlesheets/mod.ts";
+import { googlesheets } from "https://deno.land/x/netzo@v0.2.50/apis/googlesheets/mod.ts";
 import { JSONtoCSV } from "https://deno.land/x/data_format_converter@v1.2.0/mod.ts";
 import _get from "lodash.get";
 import { Checkbox } from "netzo/components/ui/checkbox.tsx";

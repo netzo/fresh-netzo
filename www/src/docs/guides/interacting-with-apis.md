@@ -9,7 +9,7 @@ The following basic examples show how to work with APIs.
 An example of connecting to a custom API, in this case the JSONPlaceholder API.
 
 ```jsx
-import { rest } from 'https://deno.land/x/netzo@v0.2.49/apis/rest/mod.ts'
+import { rest } from 'https://deno.land/x/netzo@v0.2.50/apis/rest/mod.ts'
 
 const api = rest({
   baseURL: 'https://jsonplaceholder.typicode.com',
@@ -24,7 +24,7 @@ const data = await api.sales.get({ start: Date.now() })
 An example of connecting to an existing API, in this case the JSONPlaceholder API.
 
 ```jsx
-import { jsonplaceholder } from 'https://deno.land/x/netzo@v0.2.49/apis/jsonplaceholder/mod.ts'
+import { jsonplaceholder } from 'https://deno.land/x/netzo@v0.2.50/apis/jsonplaceholder/mod.ts'
 
 const { api } = jsonplaceholder()
 
