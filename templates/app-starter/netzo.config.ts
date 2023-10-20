@@ -6,12 +6,8 @@ import errorPages from "netzo/plugins/errorPages/mod.ts";
 import twindPlugin from "$fresh/plugins/twindv1.ts";
 import twindConfig from "./twind.config.ts";
 
-// replace these with your oauth credentials:
-Deno.env.set("GITHUB_CLIENT_ID", "a05e7d546dc9ff966421")
-Deno.env.set("GITHUB_CLIENT_SECRET", "8af9e7ea7ea196b9371b98a4d93b745fc677ffeb")
-
 export default defineNetzoConfig({
-  project: "PROJECT_UID",
+  project: "sheer-marlin-436696",
   visibility: { level: "public" },
   plugins: [
     errorPages(),
