@@ -57,7 +57,6 @@ export async function defineNetzoConfig(
     $limit: 1,
   });
   if (project) setEnvVars(project.config.env.development.envVars);
-  console.log(project);
   const visibilityOptions = deepMerge<VisibilityOptions>(
     visibility,
     project?.visibility ?? {},

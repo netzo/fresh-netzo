@@ -2,10 +2,10 @@ import { defineRoute } from "$fresh/server.ts";
 import { cn } from "../components/utils.ts";
 import { buttonVariants } from "../components/ui/button.tsx";
 import { AuthForm } from "./auth-form.tsx";
-import { AuthenticationState } from "../authentication/fresh.ts";
+import { AuthenticationState } from "./fresh.ts";
 
 export default defineRoute<AuthenticationState>((request, ctx) => {
-  const { sessionId, isAuthenticated } = ctx.state;
+  const { sessionId, isAuthenticated, options } = ctx.state;
 
   return (
     <html className="h-full">

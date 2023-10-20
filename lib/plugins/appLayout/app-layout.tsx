@@ -1,6 +1,6 @@
 import type { JSX } from "preact";
-import type { AppProps } from "$fresh/server.ts";
-import type { AppLayoutOptions } from "./mod.ts";
+import { buttonVariants } from "netzo/components/ui/button.tsx";
+import type { AppLayoutState } from "./mod.ts";
 import { cn } from "../../components/utils.ts";
 
 const Logo = (props: JSX.HTMLAttributes<SVGElement>) => (
@@ -79,45 +79,54 @@ const Logo = (props: JSX.HTMLAttributes<SVGElement>) => (
   </svg>
 );
 
-export default (options: AppLayoutOptions) => {
+export default (props: AppLayoutState) => {
+  const { sessionId, isAuthenticated, options } = props;
   const { title, description, favicon, image } = options;
-  return ({ Component }: AppProps) => {
-    return (
-      <html>
-        <head>
-          <meta charSet="utf-8" />
-          <title>{title}</title>
-          <meta name="description" content={description} />
-          <link rel="icon" type="image/svg+xml" href={favicon} />
-        </head>
-        {/* see https://unocss.dev/integrations/runtime#preventing-fouc */}
-        <body class="flex flex-col n-bg-base" un-cloak>
-          <header class="flex justify-between items-center py-4 px-4">
-            <div class="flex">
-              {/* NOTE: use dark:filter-invert (in image.class) to invert color on dark */}
-              {image?.src && (
-                <img
-                  {...image}
-                  class={cn("w-auto h-12 my-auto mr-3", image.class)}
-                />
-              )}
-              <div class="grid">
-                <h1 class="my-auto text-2xl font-semibold dark:text-white">
-                  {title}
-                </h1>
-                <p class="text-sm dark:text-gray-300">{description}</p>
-              </div>
-            </div>
-            <a href="https://netzo.io" target="_blank">
-              <Logo class="w-auto h-8" />
-            </a>
-          </header>
 
-          <main class="flex-1 overflow-x-hidden">
-            <Component />
-          </main>
-        </body>
-      </html>
-    );
-  };
+  return (
+    <html>
+      <head>
+        <meta charSet="utf-8" />
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <link rel="icon" type="image/svg+xml" href={favicon} />
+      </head>
+      {/* see https://unocss.dev/integrations/runtime#preventing-fouc */}
+      <body class="flex flex-col n-bg-base" un-cloak>
+        <header class="flex justify-between items-center py-4 px-4">
+          <div class="flex">
+            {/* NOTE: use dark:filter-invert (in image.class) to invert color on dark */}
+            {image?.src && (
+              <img
+                {...image}
+                class={cn("w-auto h-12 my-auto mr-3", image.class)}
+              />
+            )}
+            <div class="grid">
+              <h1 class="my-auto text-2xl font-semibold dark:text-white">
+                {title}
+              </h1>
+              <p class="text-sm dark:text-gray-300">{description}</p>
+            </div>
+          </div>
+          <a href="https://netzo.io" target="_blank">
+            {/* <Logo class="w-auto h-8" /> */}
+            <a
+              href={isAuthenticated ? "/oauth/signout" : "/oauth/signin"}
+              className={cn(
+                buttonVariants({ variant: "ghost" }),
+                "absolute right-4 top-4 md:right-8 md:top-8",
+              )}
+            >
+              {isAuthenticated ? "Logout" : "Login"}
+            </a>
+          </a>
+        </header>
+
+        <main class="flex-1 overflow-x-hidden">
+          <ctx.Component />
+        </main>
+      </body>
+    </html>
+  );
 };

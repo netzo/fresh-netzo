@@ -1,5 +1,5 @@
 import type { JSX } from "preact";
-import { useState } from "preact/compat";
+import { useSignal } from "@preact/signals";
 import { cn } from "../components/utils.ts";
 import { Button, buttonVariants } from "../components/ui/button.tsx";
 import { Input } from "../components/ui/input.tsx";
@@ -9,14 +9,14 @@ import { Label } from "../components/ui/label.tsx";
 interface AuthFormProps extends JSX.HTMLAttributes<HTMLDivElement> {}
 
 export function AuthForm({ className, ...props }: AuthFormProps) {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const isLoading = useSignal<boolean>(false);
 
   function onSubmit(event: Event) {
     event.preventDefault();
-    setIsLoading(true);
+    isLoading.value = true;
 
     setTimeout(() => {
-      setIsLoading(false);
+      isLoading.value = false;
     }, 3000);
   }
 
@@ -35,11 +35,13 @@ export function AuthForm({ className, ...props }: AuthFormProps) {
               autoCapitalize="none"
               autoComplete="email"
               autoCorrect="off"
-              disabled={isLoading}
+              disabled={isLoading.value}
             />
           </div>
-          <Button disabled={isLoading}>
-            {isLoading && <IconSpinner className="mr-2 h-4 w-4 animate-spin" />}
+          <Button disabled={isLoading.value}>
+            {isLoading.value && (
+              <IconSpinner className="mr-2 h-4 w-4 animate-spin" />
+            )}
             Sign In with Email
           </Button>
         </div>
@@ -55,11 +57,11 @@ export function AuthForm({ className, ...props }: AuthFormProps) {
         </div>
       </div>
       <a
-        disabled={isLoading}
+        disabled={isLoading.value}
         href="/oauth/signin"
         className={cn(buttonVariants({ variant: "outline" }))}
       >
-        {isLoading
+        {isLoading.value
           ? <IconSpinner className="mr-2 h-4 w-4 animate-spin" />
           : <IconGithub className="mr-2 h-4 w-4" />} Github
       </a>

@@ -4,6 +4,8 @@ import { signIn } from "https://deno.land/x/deno_kv_oauth@v0.9.1/lib/sign_in.ts"
 import { handleCallback } from "https://deno.land/x/deno_kv_oauth@v0.9.1/lib/handle_callback.ts";
 import { signOut } from "https://deno.land/x/deno_kv_oauth@v0.9.1/lib/sign_out.ts";
 import { getSessionId } from "https://deno.land/x/deno_kv_oauth@v0.9.1/lib/get_session_id.ts";
+import { NetzoConfig } from "../config.ts";
+import Auth from "./auth.tsx";
 
 export interface AuthenticationOptions extends OAuth2ClientConfig {
   /**
@@ -27,6 +29,7 @@ export interface AuthenticationOptions extends OAuth2ClientConfig {
 }
 
 export interface AuthenticationState {
+  options: NetzoConfig;
   sessionId: string;
   isAuthenticated: boolean;
 }
@@ -86,14 +89,15 @@ export const authenticationPlugin = (
             }
 
             // pass auth state to routes/middleware
-            ctx.state = { options, sessionId: sessionId as string, isAuthenticated };
+            ctx.state = {
+              options,
+              sessionId: sessionId as string,
+              isAuthenticated,
+            };
             const response = await ctx.next();
             return response;
           },
         },
-        routes: [
-          { path: "/auth", component: Auth }
-        ],
       },
     ],
     routes: [
@@ -101,7 +105,7 @@ export const authenticationPlugin = (
         path: options?.signInPath ?? "/oauth/signin",
         handler: async (req) => {
           const response = await signIn(req, options);
-          console.log("/oauth/signin", response);
+          // console.debug("/oauth/signin", response);
           return response;
         },
       },
@@ -113,7 +117,7 @@ export const authenticationPlugin = (
             req,
             options,
           );
-          console.log("/oauth/callback", response);
+          // console.debug("/oauth/callback", response);
           return response;
         },
       },
@@ -121,9 +125,13 @@ export const authenticationPlugin = (
         path: options?.signOutPath ?? "/oauth/signout",
         handler: async (req) => {
           const response = await signOut(req, options);
-          console.log("/oauth/signout", response);
+          // console.debug("/oauth/signout", response);
           return response;
         },
+      },
+      {
+        path: "/auth",
+        component: Auth,
       },
     ],
   };
