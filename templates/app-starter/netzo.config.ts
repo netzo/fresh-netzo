@@ -11,7 +11,11 @@ export default defineNetzoConfig({
   visibility: { level: "public" },
   plugins: [
     errorPages(),
-    authenticationPlugin(createGitHubOAuthConfig()),
+    // replace these with your oauth credentials:
+    authenticationPlugin(createGitHubOAuthConfig({
+      clientId: "a05e7d546dc9ff966421",
+      clientSecret: "8af9e7ea7ea196b9371b98a4d93b745fc677ffeb"
+    })),
     twindPlugin(twindConfig),
   ],
 });
