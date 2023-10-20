@@ -4,7 +4,7 @@
 
 import * as $0 from "./routes/auth.tsx";
 import * as $1 from "./routes/index.tsx";
-import * as $$0 from "./islands/user-auth-form.tsx";
+import * as $$0 from "./islands/auth-form.tsx";
 
 const manifest = {
   routes: {

@@ -6,9 +6,9 @@ import { Input } from "netzo/components/ui/input.tsx";
 import { Label } from "netzo/components/ui/label.tsx";
 
 // deno-lint-ignore no-empty-interface
-interface UserAuthFormProps extends JSX.HTMLAttributes<HTMLDivElement> {}
+interface AuthFormProps extends JSX.HTMLAttributes<HTMLDivElement> {}
 
-export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
+export function AuthForm({ className, ...props }: AuthFormProps) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   function onSubmit(event: Event) {

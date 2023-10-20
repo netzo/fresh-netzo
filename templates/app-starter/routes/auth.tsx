@@ -1,7 +1,7 @@
 import { defineRoute } from "$fresh/server.ts";
 import { cn } from "netzo/components/utils.ts";
 import { buttonVariants } from "netzo/components/ui/button.tsx";
-import { UserAuthForm } from "@/islands/user-auth-form.tsx";
+import { AuthForm } from "../islands/auth-form.tsx";
 import { AuthenticationState } from "netzo/authentication/fresh.ts";
 
 export default defineRoute<AuthenticationState>((request, ctx) => {
@@ -77,7 +77,7 @@ export default defineRoute<AuthenticationState>((request, ctx) => {
                   Enter your email below to create your account
                 </p>
               </div>
-              <UserAuthForm />
+              <AuthForm />
               <p className="px-8 text-center text-sm text-muted-foreground">
                 By clicking continue, you agree to our{" "}
                 <a

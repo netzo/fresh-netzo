@@ -86,11 +86,14 @@ export const authenticationPlugin = (
             }
 
             // pass auth state to routes/middleware
-            ctx.state = { sessionId: sessionId as string, isAuthenticated };
+            ctx.state = { options, sessionId: sessionId as string, isAuthenticated };
             const response = await ctx.next();
             return response;
           },
         },
+        routes: [
+          { path: "/auth", component: Auth }
+        ],
       },
     ],
     routes: [

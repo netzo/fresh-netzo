@@ -1,5 +1,10 @@
 import { blue, bold, green, red, yellow } from "../deps.ts";
 
+export const LOGS = {
+  missingApiKey:
+    "Missing API key. Set via --api-key flag or NETZO_API_KEY environment variable to avoid passing it each time.",
+} as const;
+
 export function printSuccess(message: string) {
   console.log(green(`${bold("success")}: ${message}`));
 }

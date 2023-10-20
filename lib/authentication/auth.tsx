@@ -1,8 +1,8 @@
 import { defineRoute } from "$fresh/server.ts";
-import { cn } from "netzo/components/utils.ts";
-import { buttonVariants } from "netzo/components/ui/button.tsx";
-import { AuthForm } from "../islands/auth-form.tsx";
-import { AuthenticationState } from "netzo/authentication/fresh.ts";
+import { cn } from "../components/utils.ts";
+import { buttonVariants } from "../components/ui/button.tsx";
+import { AuthForm } from "./auth-form.tsx";
+import { AuthenticationState } from "../authentication/fresh.ts";
 
 export default defineRoute<AuthenticationState>((request, ctx) => {
   const { sessionId, isAuthenticated } = ctx.state;
@@ -31,13 +31,13 @@ export default defineRoute<AuthenticationState>((request, ctx) => {
         </div>
         <div className="container relative hidden h-full flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
           <a
-            href="/oauth/signout"
+            href="/oauth/signin"
             className={cn(
               buttonVariants({ variant: "ghost" }),
               "absolute right-4 top-4 md:right-8 md:top-8",
             )}
           >
-            Logout
+            Login
           </a>
           <div className="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
             <div className="absolute inset-0 bg-zinc-900" />

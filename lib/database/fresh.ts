@@ -25,11 +25,11 @@ export const generateRoutes = (options: DatabaseOptions) => {
   const { prefix: _, ...serviceOptionDefaults } = options;
   options = {
     ...options,
-    services: options.services.map(({ name, ...serviceOptions }) => ({
+    services: options?.services?.map(({ name, ...serviceOptions }) => ({
       ...serviceOptionDefaults,
       name: name.toLowerCase().replace(/\s/g, "-"), // convert to kebab-case
       ...serviceOptions,
-    })),
+    })) ?? [],
   };
 
   const generateHandlerConfig = (): Handlers => {
@@ -101,22 +101,20 @@ export const generateRoutes = (options: DatabaseOptions) => {
     };
   };
 
-
   const routes = options.services.flatMap((
-    service: DatabaseServiceOptions
-    ): PluginRoute[] => {
-      return [
-        {
-          path: `/${options.prefix}/${service.name}`,
-          handler: generateHandler(service),
-        },
-        {
-          path: `/${options.prefix}/${service.name}/:id`,
-          handler: generateHandlerWithId(service),
-        },
-      ];
-    },
-  );
+    service: DatabaseServiceOptions,
+  ): PluginRoute[] => {
+    return [
+      {
+        path: `/${options.prefix}/${service.name}`,
+        handler: generateHandler(service),
+      },
+      {
+        path: `/${options.prefix}/${service.name}/:id`,
+        handler: generateHandlerWithId(service),
+      },
+    ];
+  });
 
   return [
     {
