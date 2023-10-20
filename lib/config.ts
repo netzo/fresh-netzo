@@ -47,9 +47,9 @@ export async function defineNetzoConfig(
   // and https://github.com/netzo/netzo/issues/44
   const { api } = netzo({
     apiKey: NETZO_API_KEY,
-    baseURL: Deno.env.get("DENO_REGION")
-      ? "https://api.netzo.io"
-      : "http://localhost:4321",
+    // baseURL: Deno.env.get("DENO_REGION")
+    //   ? "https://api.netzo.io"
+    //   : "http://localhost:4321",
   });
   // project includes config.env.development.envVars resolved with variables
   const { data: [project] } = await api.projects.get<Project>({
