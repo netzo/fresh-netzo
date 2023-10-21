@@ -30,7 +30,8 @@ export default defineLayout((req, ctx) => {
   return (
     <html className="overflow-x-hidden">
       <head>
-        <meta charSet="utf-8" />
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>{meta.title}</title>
         <meta name="description" content={meta.description} />
         <link rel="icon" type="image/svg+xml" href={meta.favicon} />

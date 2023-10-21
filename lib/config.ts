@@ -1,4 +1,4 @@
-import type { FreshConfig } from "https://deno.land/x/fresh@1.5.1/server.ts";
+import type { FreshConfig } from "https://deno.land/x/fresh@1.5.2/server.ts";
 import { deepMerge } from "https://deno.land/std@0.204.0/collections/deep_merge.ts";
 import { netzo } from "https://deno.land/x/netzo@v0.2.50/apis/netzo/mod.ts";
 import { error, LOGS } from "./cli/src/console.ts";
