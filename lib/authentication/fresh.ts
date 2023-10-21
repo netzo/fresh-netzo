@@ -4,10 +4,9 @@ import { signIn } from "https://deno.land/x/deno_kv_oauth@v0.9.1/lib/sign_in.ts"
 import { handleCallback } from "https://deno.land/x/deno_kv_oauth@v0.9.1/lib/handle_callback.ts";
 import { signOut } from "https://deno.land/x/deno_kv_oauth@v0.9.1/lib/sign_out.ts";
 import { getSessionId } from "https://deno.land/x/deno_kv_oauth@v0.9.1/lib/get_session_id.ts";
-import { NetzoConfig } from "../config.ts";
 import Auth from "./auth.tsx";
 
-export interface AuthenticationOptions extends OAuth2ClientConfig {
+export type AuthenticationOptions = {
   /**
    * Sign-in page path
    *
@@ -26,34 +25,34 @@ export interface AuthenticationOptions extends OAuth2ClientConfig {
    * @default {"/oauth/signout"}
    */
   signOutPath?: string;
+  /**
+   * OAuth2 client configuration
+   */
+  providers: {
+    custom?: OAuth2ClientConfig;
+    google?: OAuth2ClientConfig;
+    azure?: OAuth2ClientConfig;
+    github?: OAuth2ClientConfig;
+    gitlab?: OAuth2ClientConfig;
+    auth0?: OAuth2ClientConfig;
+    okta?: OAuth2ClientConfig;
+  }
 }
 
 export interface AuthenticationState {
-  options: NetzoConfig;
+  options: AuthenticationOptions;
   sessionId: string;
   isAuthenticated: boolean;
 }
 
 /**
- * Creates a basic plugin for the [Fresh]{@link https://fresh.deno.dev/} web framework.
+ * A plugin for the [Fresh]{@link https://fresh.deno.dev/} web framework.
  *
  * This creates handlers for the following routes:
  * - `GET /oauth/signin` for the sign-in page
  * - `GET /oauth/callback` for the callback page
  * - `GET /oauth/signout` for the sign-out page
- *
- * ```ts
- * // main.ts
- * import { start } from "$fresh/server.ts";
- * import { createGitHubOAuthConfig, authenticationPlugin } from "https://deno.land/x/netzo@$VERSION/authentication/mod.ts";
- * import manifest from "./fresh.gen.ts";
- *
- * await start(manifest, {
- *   plugins: [
- *     authenticationPlugin(createGitHubOAuthConfig())
- *   ]
- * });
- * ```
+ * - `GET /auth` for the authentication page
  */
 export const authenticationPlugin = (
   options: AuthenticationOptions,

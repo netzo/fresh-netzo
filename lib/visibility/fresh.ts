@@ -1,7 +1,9 @@
 import type { MiddlewareHandler, Plugin } from "$fresh/server.ts";
 
-export interface VisibilityOptions {
-  level: "private" | "protected" | "public";
+export type VisibilityOptions = {
+  level: "private" | "public";
+} |  {
+  level: "protected";
   tokens?: string[]; // only for "protected" visibility
 }
 

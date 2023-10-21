@@ -2,13 +2,13 @@ import type { Handlers, Plugin } from "$fresh/server.ts";
 import type { PluginRoute } from "$fresh/src/server/types.ts";
 import { createDatabase } from "./mod.ts";
 
-export interface DatabaseServiceOptions {
+export type DatabaseServiceOptions = {
   name: string; // automatically converted to kebab-case
   idField?: string;
   methods?: Array<"find" | "get" | "create" | "update" | "patch" | "delete">;
 }
 
-export interface DatabaseOptions {
+export type DatabaseOptions = {
   prefix: string;
   idField?: DatabaseServiceOptions["idField"];
   methods?: DatabaseServiceOptions["methods"];

@@ -73,7 +73,9 @@ export const columns: ColumnDef<Wind>[] = [
           const { id, name } = row.original;
           return (
             <a
-              href={`https://${Deno.env.get('NETZO_PROJECT')}.netzo.dev/wind/${id}`}
+              href={`https://${
+                Deno.env.get("NETZO_PROJECT")
+              }.netzo.dev/wind/${id}`}
               target="_blank"
               className="text-center font-medium text-blue-500 hover:text-blue-600 hover:underline"
             >

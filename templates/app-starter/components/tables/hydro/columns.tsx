@@ -73,7 +73,9 @@ export const columns: ColumnDef<Hydro>[] = [
           const { id, name } = row.original;
           return (
             <a
-              href={`https://${Deno.env.get('NETZO_PROJECT')}.netzo.dev/hydro/${id}`}
+              href={`https://${
+                Deno.env.get("NETZO_PROJECT")
+              }.netzo.dev/hydro/${id}`}
               target="_blank"
               className="text-center font-medium text-blue-500 hover:text-blue-600 hover:underline"
             >

@@ -22,7 +22,11 @@ import { OAUTH_COOKIE_NAME } from "https://deno.land/x/deno_kv_oauth@v0.9.1/lib/
 import type { Handler } from "$fresh/server.ts";
 
 Deno.test("authenticationPlugin() works with default values", () => {
-  const plugin = authenticationPlugin(randomOAuthConfig());
+  const plugin = authenticationPlugin({
+    providers: {
+      custom: randomOAuthConfig(),
+    },
+  });
   assertNotEquals(plugin.routes, undefined);
   assert(plugin.routes!.every((route) => route.handler !== undefined));
   assertArrayIncludes(plugin.routes!.map((route) => route.path), [
@@ -36,10 +40,11 @@ Deno.test("authenticationPlugin() works with defined values", () => {
   const signInPath = "/signin";
   const callbackPath = "/callback";
   const signOutPath = "/signout";
-  const plugin = authenticationPlugin(randomOAuthConfig(), {
+  const plugin = authenticationPlugin({
     signInPath,
     callbackPath,
     signOutPath,
+    providers: { custom: randomOAuthConfig() },
   });
   assertNotEquals(plugin.routes, undefined);
   assert(plugin.routes!.every((route) => route.handler !== undefined));
@@ -52,7 +57,9 @@ Deno.test("authenticationPlugin() works with defined values", () => {
 
 Deno.test("authenticationPlugin() correctly handles the sign-in path", async () => {
   const request = new Request("http://example.com/oauth/signin");
-  const plugin = authenticationPlugin(randomOAuthConfig());
+  const plugin = authenticationPlugin({
+    providers: { custom: randomOAuthConfig() },
+  });
   const handler = plugin.routes!.find((route) =>
     route.path === "/oauth/signin"
   )!.handler as Handler<undefined, undefined>;
@@ -85,7 +92,9 @@ Deno.test("authenticationPlugin() correctly handles the callback path", async ()
       headers: { cookie: `${OAUTH_COOKIE_NAME}=${oauthSessionId}` },
     },
   );
-  const plugin = authenticationPlugin(randomOAuthConfig());
+  const plugin = authenticationPlugin({
+    providers: { custom: randomOAuthConfig() },
+  });
   const handler = plugin.routes!.find((route) =>
     route.path === "/oauth/callback"
   )!.handler as Handler<undefined, undefined>;
@@ -104,7 +113,9 @@ Deno.test("authenticationPlugin() correctly handles the callback path", async ()
 
 Deno.test("authenticationPlugin() correctly handles the sign-out path", async () => {
   const request = new Request("http://example.com/oauth/signout");
-  const plugin = authenticationPlugin(randomOAuthConfig());
+  const plugin = authenticationPlugin({
+    providers: { custom: randomOAuthConfig() },
+  });
   const handler = plugin.routes!.find((route) =>
     route.path === "/oauth/signout"
   )!.handler as Handler<undefined, undefined>;

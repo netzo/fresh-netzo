@@ -11,7 +11,11 @@ export default defineNetzoConfig({
   visibility: { level: "public" },
   plugins: [
     errorPages(),
-    authenticationPlugin(createGitHubOAuthConfig()),
+    authenticationPlugin({
+      providers: {
+        github: createGitHubOAuthConfig()
+      }
+    }),
     twindPlugin(twindConfig),
   ],
 });
