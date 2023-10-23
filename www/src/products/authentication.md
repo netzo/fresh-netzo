@@ -7,7 +7,7 @@ hero:
   text: Improve workflows with portals
   tagline: Eliminate the hassle of managing users and authentication. Create beautiful portals that improve engagement with customers, vendors, partners, and suppliers.
   image:
-    src: /images/products/authentication.jpeg
+    src: /images/products/authentication.svg
     alt: App Launcher
   actions:
     - theme: brand
