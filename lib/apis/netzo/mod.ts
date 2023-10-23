@@ -17,7 +17,7 @@ export interface NetzoOptions {
  */
 export const netzo = ({
   apiKey = Deno.env.get("NETZO_API_KEY")!,
-  baseURL = "https://api.netzo.io",
+  baseURL = Deno.env.get("NETZO_API_URL") || "https://api.netzo.io",
 }: NetzoOptions) => {
   const api = createApi({
     baseURL,

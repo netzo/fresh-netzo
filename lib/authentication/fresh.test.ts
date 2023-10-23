@@ -1,5 +1,5 @@
 // Copyright 2023 the Deno authors. All rights reserved. MIT license.
-import { netzoAuthPlugin } from "./fresh.plugin.ts";
+import { authenticationPlugin } from "./fresh.ts";
 import {
   assert,
   assertArrayIncludes,
@@ -7,19 +7,26 @@ import {
   assertRejects,
   returnsNext,
   stub,
-} from "../dev_deps.ts";
+} from "https://deno.land/x/deno_kv_oauth@v0.9.1/dev_deps.ts";
 import {
   assertRedirect,
   randomOAuthConfig,
   randomOAuthSession,
   randomTokensBody,
-} from "./_test_utils.ts";
-import { getAndDeleteOAuthSession, setOAuthSession } from "./_kv.ts";
-import { OAUTH_COOKIE_NAME } from "./_http.ts";
+} from "https://deno.land/x/deno_kv_oauth@v0.9.1/lib/_test_utils.ts";
+import {
+  getAndDeleteOAuthSession,
+  setOAuthSession,
+} from "https://deno.land/x/deno_kv_oauth@v0.9.1/lib/_kv.ts";
+import { OAUTH_COOKIE_NAME } from "https://deno.land/x/deno_kv_oauth@v0.9.1/lib/_http.ts";
 import type { Handler } from "$fresh/server.ts";
 
-Deno.test("netzoAuthPlugin() works with default values", () => {
-  const plugin = netzoAuthPlugin(randomOAuthConfig());
+Deno.test("authenticationPlugin() works with default values", () => {
+  const plugin = authenticationPlugin({
+    providers: {
+      custom: randomOAuthConfig(),
+    },
+  });
   assertNotEquals(plugin.routes, undefined);
   assert(plugin.routes!.every((route) => route.handler !== undefined));
   assertArrayIncludes(plugin.routes!.map((route) => route.path), [
@@ -29,14 +36,15 @@ Deno.test("netzoAuthPlugin() works with default values", () => {
   ]);
 });
 
-Deno.test("netzoAuthPlugin() works with defined values", () => {
+Deno.test("authenticationPlugin() works with defined values", () => {
   const signInPath = "/signin";
   const callbackPath = "/callback";
   const signOutPath = "/signout";
-  const plugin = netzoAuthPlugin(randomOAuthConfig(), {
+  const plugin = authenticationPlugin({
     signInPath,
     callbackPath,
     signOutPath,
+    providers: { custom: randomOAuthConfig() },
   });
   assertNotEquals(plugin.routes, undefined);
   assert(plugin.routes!.every((route) => route.handler !== undefined));
@@ -47,9 +55,11 @@ Deno.test("netzoAuthPlugin() works with defined values", () => {
   ]);
 });
 
-Deno.test("netzoAuthPlugin() correctly handles the sign-in path", async () => {
+Deno.test("authenticationPlugin() correctly handles the sign-in path", async () => {
   const request = new Request("http://example.com/oauth/signin");
-  const plugin = netzoAuthPlugin(randomOAuthConfig());
+  const plugin = authenticationPlugin({
+    providers: { custom: randomOAuthConfig() },
+  });
   const handler = plugin.routes!.find((route) =>
     route.path === "/oauth/signin"
   )!.handler as Handler<undefined, undefined>;
@@ -59,7 +69,7 @@ Deno.test("netzoAuthPlugin() correctly handles the sign-in path", async () => {
   assertRedirect(response);
 });
 
-Deno.test("netzoAuthPlugin() correctly handles the callback path", async () => {
+Deno.test("authenticationPlugin() correctly handles the callback path", async () => {
   const fetchStub = stub(
     window,
     "fetch",
@@ -82,7 +92,9 @@ Deno.test("netzoAuthPlugin() correctly handles the callback path", async () => {
       headers: { cookie: `${OAUTH_COOKIE_NAME}=${oauthSessionId}` },
     },
   );
-  const plugin = netzoAuthPlugin(randomOAuthConfig());
+  const plugin = authenticationPlugin({
+    providers: { custom: randomOAuthConfig() },
+  });
   const handler = plugin.routes!.find((route) =>
     route.path === "/oauth/callback"
   )!.handler as Handler<undefined, undefined>;
@@ -99,9 +111,11 @@ Deno.test("netzoAuthPlugin() correctly handles the callback path", async () => {
   );
 });
 
-Deno.test("netzoAuthPlugin() correctly handles the sign-out path", async () => {
+Deno.test("authenticationPlugin() correctly handles the sign-out path", async () => {
   const request = new Request("http://example.com/oauth/signout");
-  const plugin = netzoAuthPlugin(randomOAuthConfig());
+  const plugin = authenticationPlugin({
+    providers: { custom: randomOAuthConfig() },
+  });
   const handler = plugin.routes!.find((route) =>
     route.path === "/oauth/signout"
   )!.handler as Handler<undefined, undefined>;

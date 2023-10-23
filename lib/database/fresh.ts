@@ -1,8 +1,19 @@
-import { z } from "zod/mod.ts";
-import type { Handlers } from "$fresh/server.ts";
+import type { Handlers, Plugin } from "$fresh/server.ts";
 import type { PluginRoute } from "$fresh/src/server/types.ts";
-import type { DatabaseOptions, DatabaseServiceOptions } from "./mod.ts";
-import { createDatabase } from "../mod.ts";
+import { createDatabase } from "./mod.ts";
+
+export type DatabaseServiceOptions = {
+  name: string; // automatically converted to kebab-case
+  idField?: string;
+  methods?: Array<"find" | "get" | "create" | "update" | "patch" | "delete">;
+}
+
+export type DatabaseOptions = {
+  prefix: string;
+  idField?: DatabaseServiceOptions["idField"];
+  methods?: DatabaseServiceOptions["methods"];
+  services: DatabaseServiceOptions[];
+}
 
 const kv = await Deno.openKv();
 const db = createDatabase(kv);
@@ -14,11 +25,11 @@ export const generateRoutes = (options: DatabaseOptions) => {
   const { prefix: _, ...serviceOptionDefaults } = options;
   options = {
     ...options,
-    services: options.services.map(({ name, ...serviceOptions }) => ({
+    services: options?.services?.map(({ name, ...serviceOptions }) => ({
       ...serviceOptionDefaults,
       name: name.toLowerCase().replace(/\s/g, "-"), // convert to kebab-case
       ...serviceOptions,
-    })),
+    })) ?? [],
   };
 
   const generateHandlerConfig = (): Handlers => {
@@ -29,7 +40,7 @@ export const generateRoutes = (options: DatabaseOptions) => {
     };
   };
 
-  const generateHandler = <T>(
+  const generateHandler = <T = unknown>(
     service: DatabaseServiceOptions,
   ): Handlers<T | null> => {
     const {
@@ -52,7 +63,7 @@ export const generateRoutes = (options: DatabaseOptions) => {
     };
   };
 
-  const generateHandlerWithId = <T>(
+  const generateHandlerWithId = <T = unknown>(
     service: DatabaseServiceOptions,
   ): Handlers<T | null> => {
     const {
@@ -90,22 +101,20 @@ export const generateRoutes = (options: DatabaseOptions) => {
     };
   };
 
-  const routes = options.services.flatMap(
-    (service: DatabaseServiceOptions): PluginRoute[] => {
-      return [
-        {
-          path: `/${options.prefix}/${service.name}`,
-          handler: generateHandler<z.infer<typeof service.schema>>(service),
-        },
-        {
-          path: `/${options.prefix}/${service.name}/:id`,
-          handler: generateHandlerWithId<z.infer<typeof service.schema>>(
-            service,
-          ),
-        },
-      ];
-    },
-  );
+  const routes = options.services.flatMap((
+    service: DatabaseServiceOptions,
+  ): PluginRoute[] => {
+    return [
+      {
+        path: `/${options.prefix}/${service.name}`,
+        handler: generateHandler(service),
+      },
+      {
+        path: `/${options.prefix}/${service.name}/:id`,
+        handler: generateHandlerWithId(service),
+      },
+    ];
+  });
 
   return [
     {
@@ -114,4 +123,12 @@ export const generateRoutes = (options: DatabaseOptions) => {
     },
     ...routes,
   ];
+};
+
+export const databasePlugin = (options: DatabaseOptions): Plugin => {
+  options.prefix ??= "db";
+  return {
+    name: "database",
+    routes: generateRoutes(options),
+  };
 };

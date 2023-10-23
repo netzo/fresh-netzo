@@ -1,76 +1,137 @@
-/*
-The following lists the possible header combinations when
-making a request to a project/deployment from any source:
+import type { MiddlewareHandlerContext, Plugin } from "$fresh/server.ts";
+import type { OAuth2ClientConfig } from "https://deno.land/x/deno_kv_oauth@v0.9.1/deps.ts";
+import { signIn } from "https://deno.land/x/deno_kv_oauth@v0.9.1/lib/sign_in.ts";
+import { handleCallback } from "https://deno.land/x/deno_kv_oauth@v0.9.1/lib/handle_callback.ts";
+import { signOut } from "https://deno.land/x/deno_kv_oauth@v0.9.1/lib/sign_out.ts";
+import { getSessionId } from "https://deno.land/x/deno_kv_oauth@v0.9.1/lib/get_session_id.ts";
+import Auth from "./auth.tsx";
 
-[app] allow all requests coming from app.netzo.io
-  [app:iframe] allow embedding as <iframe src /> in app (e.g. in /projects/:uid page)
-    • host: "app-launcher-fresh-131374.netzo.io"
-    • origin: null
-    • referer: "https://app.netzo.io/"
-  [app:anchor-tag] allow navigating from an <a href /> (e.g. "open in new tab")
-    • host: "app-launcher-fresh-131374.netzo.io"
-    • origin: null
-    • referer: "https://app.netzo.io/"
-  [app:fetch] allow invoking from app (e.g. in /workspace/:workspaceId/projects/:id/requests page)
-    • host: "6486ed1c1d0eaf9d649719ec.netzo.io" (NOTE: sends request to {deploymentId}.netzo.io for better latency)
-    • origin: "https://app.netzo.io"
-    • referer: "https://app.netzo.io/"
-[external] from external HTTP clients (e.g. browser tab, curl, postman, hoppscotch)
-  • host: "app-launcher-fresh-131374.netzo.io"
-  • origin: null
-  • referer: null | "https://hoppscotch.io/"
-*/
+export type AuthenticationOptions = {
+  /**
+   * Sign-in page path
+   *
+   * @default {"/oauth/signin"}
+   */
+  signInPath?: string;
+  /**
+   * Callback page path
+   *
+   * @default {"/oauth/callback"}
+   */
+  callbackPath?: string;
+  /**
+   * Sign-out page path
+   *
+   * @default {"/oauth/signout"}
+   */
+  signOutPath?: string;
+  /**
+   * OAuth2 client configuration
+   */
+  providers: {
+    custom?: OAuth2ClientConfig;
+    google?: OAuth2ClientConfig;
+    azure?: OAuth2ClientConfig;
+    github?: OAuth2ClientConfig;
+    gitlab?: OAuth2ClientConfig;
+    auth0?: OAuth2ClientConfig;
+    okta?: OAuth2ClientConfig;
+  }
+}
 
-import type { MiddlewareHandler } from "$fresh/server.ts";
-import { AuthenticationOptions } from "netzo/authentication/mod.ts";
+export interface AuthenticationState {
+  options: AuthenticationOptions;
+  sessionId: string;
+  isAuthenticated: boolean;
+}
 
-export const createHandler = (
+/**
+ * A plugin for the [Fresh]{@link https://fresh.deno.dev/} web framework.
+ *
+ * This creates handlers for the following routes:
+ * - `GET /oauth/signin` for the sign-in page
+ * - `GET /oauth/callback` for the callback page
+ * - `GET /oauth/signout` for the sign-out page
+ * - `GET /auth` for the authentication page
+ */
+export const authenticationPlugin = (
   options: AuthenticationOptions,
-): MiddlewareHandler => {
-  return async (req, ctx) => {
-    // type DestinationKind = "internal" | "static" | "route" | "notFound";
-    if (["internal", "static", "notFound"].includes(ctx.destination)) {
-      return await ctx.next();
-    }
+): Plugin => {
+  return {
+    name: "kv-oauth",
+    middlewares: [
+      {
+        path: "/",
+        middleware: {
+          handler: async (
+            request: Request,
+            ctx: MiddlewareHandlerContext<AuthenticationState>,
+          ) => {
+            const url = new URL(request.url);
+            const skipDestination = !["route"].includes(ctx.destination);
+            const skipRoute = url.pathname.startsWith("/oauth");
+            if (skipDestination || skipRoute) return await ctx.next();
 
-    const url = new URL(req.url);
-    const token = req.headers.get("x-token") ?? url.searchParams.get("token");
+            // check auth state
+            const sessionId = getSessionId(request) as string | undefined;
+            const isAuthenticated = sessionId !== undefined;
 
-    // const host = req.headers.get("host"); // e.g. my-project-906698.netzo.io
-    const origin = req.headers.get("origin"); // e.g. https://my-project-906698.netzo.io
-    const referer = req.headers.get("referer"); // SOMETIMES SET e.g. https://app.netzo.io/some-path
+            // redirect to /auth if not authenticated or to / if authenticated
+            if (!isAuthenticated && !["/auth"].includes(url.pathname)) {
+              // console.debug("[auth] User logged out, redirecting to /auth");
+              url.pathname = "/auth";
+              return Response.redirect(url.href, 302);
+            } else if (isAuthenticated && ["/auth"].includes(url.pathname)) {
+              // console.debug("[auth] User logged in, redirecting to /");
+              url.pathname = "/";
+              return Response.redirect(url.href, 302);
+            }
 
-    // simple heuristics to determine source of request:
-    const isApp = (url: string) =>
-      !!url && new URL(url).host.endsWith("netzo.io");
-    const is = { app: isApp(origin!) || isApp(referer!) };
-
-    // console.debug({ destination: ctx.destination, options, origin, referer, is });
-
-    switch (options.visibility) {
-      case "private": {
-        if (!is.app) {
-          throw new Error("Private deployments cannot be accessed externally");
-        }
-        return await ctx.next();
-      }
-      case "protected": {
-        if (!is.app) {
-          if (!options.tokens?.length) {
-            throw new Error(
-              "Missing required option 'tokens' in auth plugin",
-            );
-          }
-          if (!options.tokens.includes(token!)) {
-            throw new Error("Protected deployments require a valid token");
-          }
-        }
-        return await ctx.next();
-      }
-      case "public":
-      default: {
-        return await ctx.next();
-      }
-    }
+            // pass auth state to routes/middleware
+            ctx.state = {
+              options,
+              sessionId: sessionId as string,
+              isAuthenticated,
+            };
+            const response = await ctx.next();
+            return response;
+          },
+        },
+      },
+    ],
+    routes: [
+      {
+        path: options?.signInPath ?? "/oauth/signin",
+        handler: async (req) => {
+          const response = await signIn(req, options);
+          // console.debug("/oauth/signin", response);
+          return response;
+        },
+      },
+      {
+        path: options?.callbackPath ?? "/oauth/callback",
+        handler: async (req) => {
+          // Return object also includes `tokens` and `sessionId` properties.
+          const { response, tokens, sessionId } = await handleCallback(
+            req,
+            options,
+          );
+          // console.debug("/oauth/callback", response);
+          return response;
+        },
+      },
+      {
+        path: options?.signOutPath ?? "/oauth/signout",
+        handler: async (req) => {
+          const response = await signOut(req, options);
+          // console.debug("/oauth/signout", response);
+          return response;
+        },
+      },
+      {
+        path: "/auth",
+        component: Auth,
+      },
+    ],
   };
 };

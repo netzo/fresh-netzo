@@ -19,9 +19,7 @@ Register the module in `netzo.config.ts` and ensure `main.ts` and `dev.ts` are r
 import { defineNetzoConfig } from 'netzo/config.ts'
 
 export default defineNetzoConfig({
-  modules: {
-    authentication: { /* ... */ }
-  }
+  authentication: { /* ... */ }
 })
 ```
 <<< ./plugins/src/main.ts
@@ -34,9 +32,7 @@ export default defineNetzoConfig({
 ## Configuration
 
 ```ts
-import type { NetzoModule } from 'netzo/config.ts'
-
-interface AuthenticationOptions extends NetzoModule {
+interface AuthenticationOptions {
   visibility: 'private' | 'protected' | 'public'
   tokens: string[] // only for "protected" visibility
 }

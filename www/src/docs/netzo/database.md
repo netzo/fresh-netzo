@@ -20,9 +20,7 @@ Authentication and authorization for your Deno KV data store is currently user's
 ## Configuration
 
 ```ts
-import type { NetzoModule } from 'netzo/config.ts'
-
-interface DatabaseOptions extends NetzoModule {}
+interface DatabaseOptions {}
 ```
 
 Register the module in `netzo.config.ts` and ensure `main.ts` and `dev.ts` are receive the `config` object as shown below.
@@ -32,9 +30,7 @@ Register the module in `netzo.config.ts` and ensure `main.ts` and `dev.ts` are r
 import { defineNetzoConfig } from 'netzo/config.ts'
 
 export default defineNetzoConfig({
-  modules: {
-    database: { /* ... */ }
-  }
+  database: { /* ... */ }
 })
 ```
 <<< ./plugins/src/main.ts

@@ -31,8 +31,6 @@ export default defineNetzoConfig({
 ## Configuration
 
 ```ts
-import type { NetzoModule } from 'netzo/config.ts'
-
 interface AppLayoutOptions {
   title?: string
   description?: string

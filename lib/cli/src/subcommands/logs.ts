@@ -1,5 +1,5 @@
 import { netzo, Paginated, Project, wait } from "../../deps.ts";
-import { error } from "../console.ts";
+import { error, LOGS } from "../console.ts";
 import { APIError, DenoAPI } from "../utils/api.ts";
 
 const help = `netzo logs
@@ -54,9 +54,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
   const apiKey = args.apiKey ?? Deno.env.get("NETZO_API_KEY") ?? null;
   if ([null, "NETZO_API_KEY"].includes(apiKey)) {
     console.error(help);
-    error(
-      "Missing API key. Set via --api-key flag or NETZO_API_KEY environment variable to avoid passing it each time.",
-    );
+    error(LOGS.missingApiKey);
   }
   if (args.project === null) {
     console.error(help);

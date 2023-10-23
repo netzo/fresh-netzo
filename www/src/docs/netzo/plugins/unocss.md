@@ -37,8 +37,6 @@ export default defineNetzoConfig({
 This module accepts the original UnoCSS [`UserConfig`](https://unocss.dev/config) object.
 
 ```ts
-import type { NetzoModule } from 'netzo/config.ts'
-
 interface UnocssOptions extends UserConfig {
   // see https://unocss.dev/config
 }
