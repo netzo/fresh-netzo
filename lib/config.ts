@@ -5,12 +5,12 @@ import { error, LOGS } from "./cli/src/console.ts";
 import {
   type VisibilityOptions,
   visibilityPlugin,
-} from "./visibility/fresh.ts";
+} from "./visibility/plugin.ts";
 import {
   type AuthenticationOptions,
   authenticationPlugin,
-} from "./authentication/fresh.ts";
-import { type DatabaseOptions, databasePlugin } from "./database/fresh.ts";
+} from "./authentication/plugin.ts";
+import { type DatabaseOptions, databasePlugin } from "./database/plugin.ts";
 import { setEnvVars } from "./utils/mod.ts";
 import { Project } from "netzo/cli/deps.ts";
 
@@ -28,6 +28,7 @@ export async function defineNetzoConfig(
   const NETZO_ENV = Deno.env.get("DENO_REGION") ? "production" : "development";
   const NETZO_API_KEY = Deno.env.get("NETZO_API_KEY");
   if (!NETZO_API_KEY) error(LOGS.missingApiKey);
+  const NETZO_API_URL = Deno.env.get("NETZO_API_URL");
   const {
     project: NETZO_PROJECT = Deno.env.get("NETZO_PROJECT")!,
     visibility = {
@@ -41,20 +42,20 @@ export async function defineNetzoConfig(
   Deno.env.set("NETZO_ENV", NETZO_ENV);
   Deno.env.set("NETZO_PROJECT", NETZO_PROJECT);
   Deno.env.set("NETZO_API_KEY", NETZO_API_KEY);
+  Deno.env.set("NETZO_API_URL", NETZO_API_URL || "https://api.netzo.io");
 
   // TODO: inject project.config.envVarsLocal here
   // see https://github.com/netzo/app/issues/396
   // and https://github.com/netzo/netzo/issues/44
-  const { api } = netzo({ apiKey: NETZO_API_KEY });
+  const { api } = netzo({ apiKey: NETZO_API_KEY, baseURL: NETZO_API_URL });
   // project includes config.env.development.envVars resolved with variables
   const project = await api.projects.get<Project>({
     uid: NETZO_PROJECT,
     $limit: 1,
   }).then((result) => result?.data?.[0]);
-  if (project) {
-    const { envVars, variables } = project.config.env.development ?? {};
-    setEnvVars({ ...envVars, ...variables });
-  }
+  if (!project) error(LOGS.notFoundProject);
+  const { envVars, variables } = project.config.env.development ?? {};
+  setEnvVars({ ...envVars, ...variables });
   const visibilityOptions = deepMerge<VisibilityOptions>(
     visibility,
     project?.visibility ?? {},
@@ -67,10 +68,6 @@ export async function defineNetzoConfig(
     database,
     project?.config?.database ?? {},
   );
-
-  console.log("TOKEN", Deno.env.get("TOKEN"));
-  console.log("FOO", Deno.env.get("FOO"));
-  console.log("LOCAL", Deno.env.get("LOCAL"));
 
   return {
     ...config,

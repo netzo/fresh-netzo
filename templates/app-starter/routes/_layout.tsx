@@ -28,7 +28,7 @@ export default defineLayout((req, ctx) => {
   const { sessionId, isAuthenticated, options } = ctx.state;
 
   return (
-    <html className="overflow-x-hidden">
+    <html className="w-[100dvw] h-[100dvh]">
       <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -64,7 +64,7 @@ export default defineLayout((req, ctx) => {
                 <a href="https://netzo.io" target="_blank">
                   {/* <Logo class="w-auto h-8" /> */}
                   <a
-                    href={isAuthenticated ? "/oauth/signout" : "/oauth/signin"}
+                    href={isAuthenticated ? "/auth/signout" : "/auth/signin"}
                     className={cn(
                       buttonVariants({ variant: "ghost" }),
                       "absolute right-4 top-4 md:right-8 md:top-8",

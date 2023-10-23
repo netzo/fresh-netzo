@@ -3,6 +3,8 @@ import { blue, bold, green, red, yellow } from "../deps.ts";
 export const LOGS = {
   missingApiKey:
     "Missing API key. Set via --api-key flag or NETZO_API_KEY environment variable to avoid passing it each time.",
+  notFoundProject:
+    "Project not found. Check the project UID and make sure your API key has access to the project.",
 } as const;
 
 export function printSuccess(message: string) {

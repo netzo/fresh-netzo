@@ -16,6 +16,14 @@
     "cov": "deno coverage ./cov/ --lcov --exclude='test.ts|testdata' > cov.lcov"
     // run template in development: "deno task --cwd=templates/fresh/src dev"
   },
+  "lint": { "rules": { "tags": ["fresh", "recommended"] } },
+  "fmt": {},
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxFactory": "h",
+    "jsxFragmentFactory": "Fragment",
+    "jsxImportSource": "preact"
+  },
   "imports": {
     "@/": "./",
     "netzo/": "./lib/",
