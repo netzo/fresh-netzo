@@ -6,9 +6,9 @@ hero:
   name: Autenticación
   text: Mejora los flujos con portales
   tagline: Olvidate de la molestias de gestionar usuarios y autenticación. Crea portales atractivos que mejoran la interacción con clientes, proveedores, socios y colaboradores.
-  # image:
-  #   src: /images/products/authentication.jpeg
-  #   alt: App Launcher
+  image:
+    src: /images/products/authentication.svg
+    alt: Netzo Authentication Module
   actions:
     - theme: brand
       text: Agendar una Llamada
