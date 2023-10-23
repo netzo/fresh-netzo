@@ -32,7 +32,7 @@ const route = useRoute()
 
 const text = computed(() => {
   if (!classList.includes('nav-bar-cta')) return _text
-  return route.path.startsWith('/es') ? 'Contáctos' : 'Contact Us'
+  return route.path.startsWith('/es') ? 'Contáctanos' : 'Contact Us'
 })
 </script>
 
