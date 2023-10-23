@@ -50,7 +50,7 @@ export default {
       items: [
         {
           icon: 'i-mdi-fast-forward',
-          title: 'De idea to producción 10x más rápido',
+          title: 'De idea a producción 10x más rápido',
           description: 'No importa lo que necesites crear, Netzo elimina las complejidades que consumen hasta 95% del tiempo de desarrollo.',
         },
         {
@@ -60,7 +60,7 @@ export default {
         },
         {
           icon: 'i-mdi-chart-gantt',
-          title: 'Adopta metodologías Ágiles de forma sencilla',
+          title: 'Adopta metodologías agiles de forma sencilla',
           description: 'Adáptate e itera rápidamente para mantener tus soluciones siempre alineadas con tus procesos y necesidades en constante evolución.',
         },
       ],

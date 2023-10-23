@@ -5,13 +5,13 @@ description:
 hero:
   name: Inbox
   text: Un solo lugar, todas tus notificaciones
-  tagline: Unifica y optimiza la comunicación, notificaciones y alertas en un buzón centralizado y gestionado por nosotros para todas tus aplicaciones.
+  tagline: Vista en tiempo real de todas las notificaciones de tus aplicaciones. Agrega notificaciones a tus aplicaciones y recíbelas en Netzo para mantener el control.
   # image:
   #   src: /images/home/3-share.svg
   #   alt: Inbox
   actions:
     - theme: brand
-      text: Agendar una Llamada
+      text: Agenda una Llamada
       link: https://calendar.app.google/uHEnkfwpgYSM1ppN6
     - theme: alt
       text: Saber Más

@@ -4,8 +4,8 @@ title: Inbox | Products
 description: Get all app notifications in one place
 hero:
   name: Inbox
-  text: Get all notifications in one place
-  tagline: Consolidate and streamline communications, notifications, and alerts in a centralized, managed inbox for all your apps.
+  text: Never miss a notification again
+  tagline: Real-time view of all your app notifications. Add notifications to your apps and receive them in Netzo to stay in control.
   # image:
   #   src: /images/home/3-share.svg
   #   alt: Inbox
@@ -25,8 +25,8 @@ features:
     title: Always stay updated
     details: Built in default notifications when new versions are available, when workflows run or fail, and more instantly, without the development work.
   - icon: 🔍
-    title: Filter and search notifications
-    details: Help your team never miss out on important notifications with advanced filtering and prioritization options.
+    title: Shortcuts, filters, instant preview and more
+    details: Help your team never miss out on important notifications with advanced filtering, shortcuts and instant message previews.
   - icon: 🚨
     title: React instantly to problems
     details: Build custom alert notifications into your apps and workflows and react swiftly when problems arise.
