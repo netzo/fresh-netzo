@@ -4,13 +4,13 @@ import { netzo } from "https://deno.land/x/netzo@v0.2.50/apis/netzo/mod.ts";
 import { error, LOGS } from "./cli/src/console.ts";
 import {
   type VisibilityOptions,
-  visibilityPlugin,
+  visibilityPlugins,
 } from "./visibility/plugin.ts";
 import {
   type AuthenticationOptions,
-  authenticationPlugin,
+  authenticationPlugins,
 } from "./authentication/plugin.ts";
-import { type DatabaseOptions, databasePlugin } from "./database/plugin.ts";
+import { type DatabaseOptions, databasePlugins } from "./database/plugin.ts";
 import { setEnvVars } from "./utils/mod.ts";
 import { Project } from "netzo/cli/deps.ts";
 
@@ -73,9 +73,9 @@ export async function defineNetzoConfig(
     ...config,
     plugins: [
       ...[
-        visibilityPlugin(visibilityOptions),
-        authenticationPlugin(authenticationOptions),
-        databasePlugin(databaseOptions),
+        ...visibilityPlugins(visibilityOptions),
+        ...authenticationPlugins(authenticationOptions),
+        ...databasePlugins(databaseOptions),
       ].filter((mod) => !!mod),
       ...plugins, // eventual overrides to netzo modules
     ],

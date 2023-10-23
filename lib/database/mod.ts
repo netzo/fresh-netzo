@@ -6,14 +6,12 @@ export * from "./plugin.ts";
 
 export const ulid = monotonicFactory();
 
-export const kv = await Deno.openKv();
-
 /**
  * Creates a database object that can be used to perform CRUD operations on a Deno KV store.
  * @param kv - The Deno KV store to use.
  * @returns An object with methods for performing CRUD operations on the KV store.
  */
-export const createDatabase = (kv: Deno.Kv) => {
+export function createDatabase(kv: Deno.Kv) {
   /**
    * Finds objects in the KV store that match the specified query.
    * @param resource - The name of the resource to search for.
@@ -137,4 +135,4 @@ export const createDatabase = (kv: Deno.Kv) => {
     patch,
     remove,
   };
-};
+}

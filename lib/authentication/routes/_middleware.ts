@@ -46,7 +46,7 @@
 // Copyright 2023 the Deno authors. All rights reserved. MIT license.
 import { MiddlewareHandlerContext } from "$fresh/server.ts";
 import { getSessionId } from "deno_kv_oauth/mod.ts";
-import { redirect } from "netzo/authentication/utils/redirect.ts";
+import { redirect } from "netzo/authentication/utils/http.ts";
 import { Status } from "std/http/http_status.ts";
 import {
   getUserBySession,
@@ -76,10 +76,10 @@ async function setState(req: Request, ctx: MiddlewareHandlerContext<State>) {
   const sessionId = await getSessionId(req);
   ctx.state.sessionId = sessionId;
 
-  if (sessionId) {
-    const user = await getUserBySession(sessionId);
-    // ctx.state.hasNotifications = await ifUserHasNotifications(user!.login);
-  }
+  // if (sessionId) {
+  //   const user = await getUserBySession(sessionId);
+  //   ctx.state.hasNotifications = await ifUserHasNotifications(user!.login);
+  // }
 
   return await ctx.next();
 }

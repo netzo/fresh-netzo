@@ -5,7 +5,7 @@ import presetAutoprefix from "https://esm.sh/@twind/preset-autoprefix@1.0.7";
 
 export default {
   ...defineConfig({
-    presets: [presetTailwind() as Preset, presetAutoprefix()],
+    presets: [presetTailwind() as Preset, presetAutoprefix() as Preset],
     // from https://ui.shadcn.com/docs/installation/manual#configure-tailwindconfigjs
     darkMode: "class",
     content: ["app/**/*.{ts,tsx}", "components/**/*.{ts,tsx}"],

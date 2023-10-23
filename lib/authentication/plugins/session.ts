@@ -6,6 +6,7 @@ import { getUserBySession } from "netzo/authentication/utils/db.ts";
 import type { User } from "netzo/authentication/utils/db.ts";
 import { createHttpError } from "std/http/http_errors.ts";
 import { Status } from "std/http/http_status.ts";
+import { AuthenticationOptions } from "netzo/authentication/plugin.ts";
 
 export interface State {
   sessionUser?: User;
@@ -62,28 +63,26 @@ async function ensureSignedIn(
  * @see {@link https://fresh.deno.dev/docs/concepts/plugins|Plugins documentation}
  * for more information on Fresh's plugin functionality.
  */
-export default {
-  name: "session",
-  middlewares: [
-    {
-      path: "/",
-      middleware: { handler: setSessionState },
-    },
-    {
-      path: "/account",
-      middleware: { handler: ensureSignedIn },
-    },
-    {
-      path: "/dashboard",
-      middleware: { handler: ensureSignedIn },
-    },
-    {
-      path: "/api/me",
-      middleware: { handler: ensureSignedIn },
-    },
-    {
-      path: "/api/vote",
-      middleware: { handler: ensureSignedIn },
-    },
-  ],
-} as Plugin<State>;
+export default (_options: AuthenticationOptions): Plugin => {
+  return {
+    name: "session",
+    middlewares: [
+      {
+        path: "/",
+        middleware: { handler: setSessionState },
+      },
+      {
+        path: "/account",
+        middleware: { handler: ensureSignedIn },
+      },
+      {
+        path: "/dashboard",
+        middleware: { handler: ensureSignedIn },
+      },
+      {
+        path: "/api/me",
+        middleware: { handler: ensureSignedIn },
+      },
+    ],
+  } as Plugin<State>;
+};

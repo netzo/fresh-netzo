@@ -38,67 +38,69 @@ export interface VisibilityState {
  * A fresh plugin that registers middleware to handle
  * visibility of projects based on the `visibility` option.
  */
-export const visibilityPlugin = (options: VisibilityOptions): Plugin => {
-  return {
-    name: "visibility-plugin",
-    middlewares: [
-      {
-        path: "/",
-        middleware: {
-          handler: async (req, ctx) => {
-            if (!Deno.env.get("DENO_REGION")) return await ctx.next(); // skip in development
+export const visibilityPlugins = (options: VisibilityOptions): Plugin[] => {
+  return [
+    {
+      name: "visibility-plugin",
+      middlewares: [
+        {
+          path: "/",
+          middleware: {
+            handler: async (req, ctx) => {
+              if (!Deno.env.get("DENO_REGION")) return await ctx.next(); // skip in development
 
-            if (!["route"].includes(ctx.destination)) return await ctx.next();
+              if (!["route"].includes(ctx.destination)) return await ctx.next();
 
-            const url = new URL(req.url);
-            const token = req.headers.get("x-token") ??
-              url.searchParams.get("token");
+              const url = new URL(req.url);
+              const token = req.headers.get("x-token") ??
+                url.searchParams.get("token");
 
-            // const host = req.headers.get("host"); // e.g. my-project-906698.netzo.io
-            const origin = req.headers.get("origin"); // e.g. https://my-project-906698.netzo.io
-            const referer = req.headers.get("referer"); // SOMETIMES SET e.g. https://app.netzo.io/some-path
+              // const host = req.headers.get("host"); // e.g. my-project-906698.netzo.io
+              const origin = req.headers.get("origin"); // e.g. https://my-project-906698.netzo.io
+              const referer = req.headers.get("referer"); // SOMETIMES SET e.g. https://app.netzo.io/some-path
 
-            // simple heuristics to determine source of request:
-            const isApp = (url: string) =>
-              !!url && new URL(url).host.endsWith("netzo.io");
-            const is = { app: isApp(origin!) || isApp(referer!) };
+              // simple heuristics to determine source of request:
+              const isApp = (url: string) =>
+                !!url && new URL(url).host.endsWith("netzo.io");
+              const is = { app: isApp(origin!) || isApp(referer!) };
 
-            // console.debug({ destination: ctx.destination, options, origin, referer, is });
+              // console.debug({ destination: ctx.destination, options, origin, referer, is });
 
-            ctx.state = { options };
+              ctx.state = { options };
 
-            switch (options.level) {
-              case "private": {
-                if (!is.app) {
-                  throw new Error(
-                    "Private deployments cannot be accessed externally",
-                  );
-                }
-                return await ctx.next();
-              }
-              case "protected": {
-                if (!is.app) {
-                  if (!options.tokens?.length) {
+              switch (options.level) {
+                case "private": {
+                  if (!is.app) {
                     throw new Error(
-                      "Missing required option 'tokens' in auth plugin",
+                      "Private deployments cannot be accessed externally",
                     );
                   }
-                  if (!options.tokens.includes(token!)) {
-                    throw new Error(
-                      "Protected deployments require a valid token",
-                    );
-                  }
+                  return await ctx.next();
                 }
-                return await ctx.next();
+                case "protected": {
+                  if (!is.app) {
+                    if (!options.tokens?.length) {
+                      throw new Error(
+                        "Missing required option 'tokens' in auth plugin",
+                      );
+                    }
+                    if (!options.tokens.includes(token!)) {
+                      throw new Error(
+                        "Protected deployments require a valid token",
+                      );
+                    }
+                  }
+                  return await ctx.next();
+                }
+                case "public":
+                default: {
+                  return await ctx.next();
+                }
               }
-              case "public":
-              default: {
-                return await ctx.next();
-              }
-            }
+            },
           },
         },
-      },
-    ],
-  };
+      ],
+    },
+  ];
 };

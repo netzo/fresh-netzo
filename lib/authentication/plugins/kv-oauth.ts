@@ -1,18 +1,16 @@
 // Copyright 2023 the Deno authors. All rights reserved. MIT license.
 import type { Plugin } from "$fresh/server.ts";
-import {
-  createGitHubOAuthConfig,
-  handleCallback,
-  signIn,
-  signOut,
-} from "deno_kv_oauth/mod.ts";
+import { handleCallback, signIn, signOut } from "deno_kv_oauth/mod.ts";
+import { AuthenticationOptions } from "netzo/authentication/plugin.ts";
 import {
   createUser,
   getUser,
   updateUserSession,
   type User,
-} from "netzo/authentication/utils/db.ts";
-import { getGitHubUser } from "netzo/authentication/utils/github.ts";
+} from "../utils/db.ts";
+import { getGitHubUser } from "../utils/github.ts";
+import { handler } from "../routes/_middleware.ts";
+import Auth from "../routes/auth.tsx";
 
 // Exported for mocking and spying in e2e tests
 export const _internals = { handleCallback };
@@ -20,46 +18,62 @@ export const _internals = { handleCallback };
 /**
  * This custom plugin centralizes all authentication logic using the
  * {@link https://deno.land/x/deno_kv_oauth|Deno KV OAuth} module.
- *
- * The implementation is based off Deno KV OAuth's own
- * {@link https://deno.land/x/deno_kv_oauth/src/fresh_plugin.ts?source|Fresh plugin}
- * implementation.
  */
-export default {
-  name: "kv-oauth",
-  routes: [
-    {
-      path: "/auth/signin",
-      handler: async (req) => await signIn(req, createGitHubOAuthConfig()),
-    },
-    {
-      path: "/auth/callback",
-      handler: async (req) => {
-        const { response, tokens, sessionId } = await _internals.handleCallback(
-          req,
-          createGitHubOAuthConfig(),
-        );
-
-        const githubUser = await getGitHubUser(tokens.accessToken);
-        const user = await getUser(githubUser.login);
-
-        if (user === null) {
-          const user: User = {
-            login: githubUser.login,
-            sessionId,
-            isSubscribed: false,
-          };
-          await createUser(user);
-        } else {
-          await updateUserSession(user, sessionId);
-        }
-
-        return response;
+export default (options: AuthenticationOptions): Plugin => {
+  return {
+    name: "kv-oauth",
+    middlewares: [
+      { path: "/", middleware: { handler } },
+    ],
+    routes: [
+      {
+        path: "/auth",
+        handler: (_req, ctx) => {
+          return ctx.render();
+        },
+        component: Auth,
       },
-    },
-    {
-      path: "/auth/signout",
-      handler: signOut,
-    },
-  ],
-} as Plugin;
+      {
+        path: `/auth/signin`,
+        handler: async (req, _ctx) => {
+          const response = await signIn(req, options?.oauth2);
+          console.debug(`/auth/signin`, response);
+          return response;
+        },
+      },
+      {
+        path: `/auth/callback`,
+        handler: async (req, _ctx) => {
+          const { response, tokens, sessionId } = await handleCallback(
+            req,
+            options?.oauth2,
+          );
+          console.debug(`/auth/callback`, response);
+          const githubUser = await getGitHubUser(tokens.accessToken);
+          const user = await getUser(githubUser.login);
+
+          if (user === null) {
+            const user: User = {
+              login: githubUser.login,
+              sessionId,
+              role: "admin",
+            };
+            await createUser(user);
+          } else {
+            await updateUserSession(user, sessionId);
+          }
+
+          return response;
+        },
+      },
+      {
+        path: `/auth/signout`,
+        handler: async (req, _ctx) => {
+          const response = await signOut(req);
+          console.debug(`/auth/signout`, response);
+          return response;
+        },
+      },
+    ],
+  } as Plugin;
+};

@@ -4,6 +4,7 @@ import type { State } from "@/plugins/session.ts";
 import { Status } from "$fresh/server.ts";
 import { errors, isHttpError } from "std/http/http_errors.ts";
 import { redirect } from "netzo/authentication/utils/http.ts";
+import { AuthenticationOptions } from "netzo/authentication/plugin.ts";
 
 /**
  * Returns the converted HTTP error response from the given error. If the error
@@ -42,35 +43,37 @@ export function toErrorResponse(error: any) {
     : new Response(error.message, { status: Status.InternalServerError });
 }
 
-export default {
-  name: "error-handling",
-  middlewares: [
-    {
-      path: "/",
-      middleware: {
-        async handler(_req, ctx) {
-          try {
-            return await ctx.next();
-          } catch (error) {
-            if (error instanceof errors.Unauthorized) {
-              return redirect("/auth/signin");
+export default (_options: AuthenticationOptions): Plugin => {
+  return {
+    name: "error-handling",
+    middlewares: [
+      {
+        path: "/",
+        middleware: {
+          async handler(_req, ctx) {
+            try {
+              return await ctx.next();
+            } catch (error) {
+              if (error instanceof errors.Unauthorized) {
+                return redirect("/auth/signin");
+              }
+              throw error;
             }
-            throw error;
-          }
+          },
         },
       },
-    },
-    {
-      path: "/api",
-      middleware: {
-        async handler(_req, ctx) {
-          try {
-            return await ctx.next();
-          } catch (error) {
-            return toErrorResponse(error);
-          }
+      {
+        path: "/api",
+        middleware: {
+          async handler(_req, ctx) {
+            try {
+              return await ctx.next();
+            } catch (error) {
+              return toErrorResponse(error);
+            }
+          },
         },
       },
-    },
-  ],
-} as Plugin<State>;
+    ],
+  } as Plugin<State>;
+};

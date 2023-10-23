@@ -18,7 +18,16 @@ export interface DatabaseState {
   options: DatabaseOptions;
 }
 
-const kv = await Deno.openKv();
+const DENO_KV_PATH_KEY = "DENO_KV_PATH";
+
+const path = (await Deno.permissions.query({
+    name: "env",
+    variable: DENO_KV_PATH_KEY,
+  })).state === "granted"
+  ? Deno.env.get(DENO_KV_PATH_KEY)
+  : undefined;
+
+const kv = await Deno.openKv(path);
 const db = createDatabase(kv);
 
 const METHODS = ["find", "get", "create", "update", "patch", "remove"];
@@ -36,72 +45,74 @@ const notAllowed = () => new Response("Method not allowed", { status: 405 });
  * - `PATCH /db/[resource]/[id]` patch a record of a resource by id
  * - `DELETE /db/[resource]/[id]` delete a record of a resource by id
  */
-export const databasePlugin = (options: DatabaseOptions): Plugin => {
-  return {
-    name: "database-plugin",
-    middlewares: [
-      {
-        path: "/db",
-        middleware: {
-          handler: async (req, ctx) => {
-            if (!["route"].includes(ctx.destination)) return await ctx.next();
-            const methods = METHODS; // TODO: get methods from ctx.state.options
-            if (!methods.includes(req.method)) return notAllowed();
-            return await ctx.next();
+export const databasePlugins = (options: DatabaseOptions): Plugin[] => {
+  return [
+    {
+      name: "database-plugin",
+      middlewares: [
+        {
+          path: "/db",
+          middleware: {
+            handler: async (req, ctx) => {
+              if (!["route"].includes(ctx.destination)) return await ctx.next();
+              const methods = METHODS; // TODO: get methods from ctx.state.options
+              if (!methods.includes(req.method)) return notAllowed();
+              return await ctx.next();
+            },
           },
         },
-      },
-    ],
-    routes: [
-      {
-        path: `/db/[resource]`,
-        handler: {
-          async GET(_req, ctx) {
-            const { resource } = ctx.params;
-            const result = await db.find(resource, {});
-            ctx.state = { options };
-            return Response.json(result);
-          },
-          async POST(req, ctx) {
-            const { resource } = ctx.params;
-            const data = await parseBody(req);
-            const result = await db.create(resource, data, "id");
-            ctx.state = { options };
-            return Response.json(result);
-          },
-        },
-      },
-      {
-        path: `/db/[resource]/[id]`,
-        handler: {
-          async GET(_req, ctx) {
-            const { resource, id } = ctx.params;
-            const result = await db.get(resource, id);
-            ctx.state = { options };
-            return Response.json(result);
-          },
-          async PUT(req, ctx) {
-            const { resource, id } = ctx.params;
-            const data = await parseBody(req);
-            const result = await db.update(resource, id, data);
-            ctx.state = { options };
-            return Response.json(result);
-          },
-          async PATCH(req, ctx) {
-            const { resource, id } = ctx.params;
-            const data = await parseBody(req);
-            const result = await db.patch(resource, id, data);
-            ctx.state = { options };
-            return Response.json(result);
-          },
-          async DELETE(_req, ctx) {
-            const { resource, id } = ctx.params;
-            await db.remove(resource, id);
-            ctx.state = { options };
-            return Response.json({ id });
+      ],
+      routes: [
+        {
+          path: `/db/[resource]`,
+          handler: {
+            async GET(_req, ctx) {
+              const { resource } = ctx.params;
+              const result = await db.find(resource, {});
+              ctx.state = { options };
+              return Response.json(result);
+            },
+            async POST(req, ctx) {
+              const { resource } = ctx.params;
+              const data = await parseBody(req);
+              const result = await db.create(resource, data, "id");
+              ctx.state = { options };
+              return Response.json(result);
+            },
           },
         },
-      },
-    ],
-  };
+        {
+          path: `/db/[resource]/[id]`,
+          handler: {
+            async GET(_req, ctx) {
+              const { resource, id } = ctx.params;
+              const result = await db.get(resource, id);
+              ctx.state = { options };
+              return Response.json(result);
+            },
+            async PUT(req, ctx) {
+              const { resource, id } = ctx.params;
+              const data = await parseBody(req);
+              const result = await db.update(resource, id, data);
+              ctx.state = { options };
+              return Response.json(result);
+            },
+            async PATCH(req, ctx) {
+              const { resource, id } = ctx.params;
+              const data = await parseBody(req);
+              const result = await db.patch(resource, id, data);
+              ctx.state = { options };
+              return Response.json(result);
+            },
+            async DELETE(_req, ctx) {
+              const { resource, id } = ctx.params;
+              await db.remove(resource, id);
+              ctx.state = { options };
+              return Response.json({ id });
+            },
+          },
+        },
+      ],
+    },
+  ];
 };

@@ -6,7 +6,6 @@ import {
   createItem,
   createUser,
   createVote,
-  getAreVotedByUser,
   getItem,
   getUser,
   getUserBySession,
@@ -63,7 +62,7 @@ Deno.test("[auth/db] user", async () => {
   assertEquals(await getUser(user.login), user);
   assertEquals(await getUserBySession(user.sessionId), user);
 
-  const subscribedUser: User = { ...user, isSubscribed: true };
+  const subscribedUser: User = { ...user, role: "admin" };
   await updateUser(subscribedUser);
   assertEquals(await getUser(subscribedUser.login), subscribedUser);
   assertEquals(
@@ -112,29 +111,8 @@ Deno.test("[auth/db] votes", async () => {
   await createVote(vote);
   item.score++;
 
-  assertEquals(await collectValues(listItemsVotedByUser(user.login)), [item]);
+  assertEquals(await collectValues(listItemsVotedByUser(user.login)), [
+    item,
+  ]);
   await assertRejects(async () => await createVote(vote));
-});
-
-Deno.test("[auth/db] getAreVotedByUser()", async () => {
-  const item = randomItem();
-  const user = randomUser();
-  const vote = {
-    itemId: item.id,
-    userLogin: user.login,
-    createdAt: new Date(),
-  };
-
-  assertEquals(await getItem(item.id), null);
-  assertEquals(await getUser(user.login), null);
-  assertEquals(await getAreVotedByUser([item], user.login), [false]);
-
-  await createItem(item);
-  await createUser(user);
-  await createVote(vote);
-  item.score++;
-
-  assertEquals(await getItem(item.id), item);
-  assertEquals(await getUser(user.login), user);
-  assertEquals(await getAreVotedByUser([item], user.login), [true]);
 });
