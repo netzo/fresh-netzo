@@ -6,7 +6,7 @@ hero:
   name: Base de Datos
   text: Simplifica la Gestión de tus Datos
   tagline: Bases de datos dedicadas y escalables, sin necesidad de configuración, para cada aplicación que construyas en Netzo.
-    image:
+  image:
     src: /images/products/databases.svg
     alt: Netzo Databases
   actions:
