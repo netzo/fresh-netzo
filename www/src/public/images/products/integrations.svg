@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600">
+   <style>
+    .icon-container {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      grid-gap: 10px;
+      max-width: 600px;
+      height: auto;
+      text-align: center;
+    }
+
+    .icon-box img {
+      width: 60px;
+      height: 60px;
+      max-width: 100%;
+      height: auto;
+      transition: transform 0.3s ease;
+    }
+
+    .icon-box img:hover {
+      transform: scale(1.1);
+    }
+  </style>
+  <foreignObject width="100%" height="100%">
+    <div xmlns="http://www.w3.org/1999/xhtml" class="icon-container">
+      <div class="icon-box">
+        <img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/apis/activecampaign.svg"
+          title="ActiveCampaign" alt="ActiveCampaign" loading="lazy" class="rounded-xl"
+          style="max-width: 100%; height: auto; width: 60px; height: 60px; padding: 20px" />
+      </div>
+      <div class="icon-box">
+        <img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/apis/airtable.svg" title="Airtable"
+          alt="Airtable" loading="lazy" class="rounded-xl"
+          style="max-width: 100%; height: auto; width: 60px; height: 60px; padding: 20px" />
+      </div>
+      <div class="icon-box">
+        <img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/apis/awss3.svg" title="AWS S3" alt="AWS S3"
+          loading="lazy" class="rounded-xl"
+          style="max-width: 100%; height: auto; width: 60px; height: 60px; padding: 20px" />
+      </div>
+      <div class="icon-box">
+        <img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/apis/cloudflare.svg" title="Cloudflare"
+          alt="Cloudflare" loading="lazy" class="rounded-xl"
+          style="max-width: 100%; height: auto; width: 60px; height: 60px; padding: 20px" />
+      </div>
+      <div class="icon-box">
+        <img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/apis/awsredshift.svg" title="AWS RedShift"
+          alt="AWS RedShift" loading="lazy" class="rounded-xl"
+          style="max-width: 100%; height: auto; width: 60px; height: 60px; padding: 20px" />
+      </div>
+      <div class="icon-box">
+        <img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/apis/github.svg" title="GitHub" alt="GitHub"
+          loading="lazy" class="rounded-xl"
+          style="max-width: 100%; height: auto; width: 60px; height: 60px; padding: 20px" />
+      </div>
+      <div class="icon-box">
+        <img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/apis/googlesheets.svg" title="Google Sheets"
+          alt="Google Sheets" loading="lazy" class="rounded-xl"
+          style="max-width: 100%; height: auto; width: 60px; height: 60px; padding: 20px" />
+      </div>
+      <div class="icon-box">
+        <img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/apis/holded.svg" title="Holded" alt="Holded"
+          loading="lazy" class="rounded-xl"
+          style="max-width: 100%; height: auto; width: 60px; height: 60px; padding: 20px" />
+      </div>
+      <div class="icon-box">
+        <img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/apis/mailchimp.svg"
+          title="Mailchimp Marketing" alt="Mailchimp Marketing" loading="lazy" class="rounded-xl"
+          style="max-width: 100%; height: auto; width: 60px; height: 60px; padding: 20px" />
+      </div>
+      <div class="icon-box">
+        <img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/apis/mailgun.svg" title="Mailgun"
+          alt="Mailgun" loading="lazy" class="rounded-xl"
+          style="max-width: 100%; height: auto; width: 60px; height: 60px; padding: 20px" />
+      </div>
+      <div class="icon-box">
+        <img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/apis/mongodbatlasdata.svg" title="MongoDB"
+          alt="MongoDB" loading="lazy" class="rounded-xl"
+          style="max-width: 100%; height: auto; width: 60px; height: 60px; padding: 20px" />
+      </div>
+      <div class="icon-box">
+        <img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/apis/openai.svg" title="OpenAI" alt="OpenAI"
+          loading="lazy" class="rounded-xl"
+          style="max-width: 100%; height: auto; width: 60px; height: 60px; padding: 20px" />
+      </div>
+      <div class="icon-box">
+        <img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/apis/pipedrive.svg" title="Pipedrive"
+          alt="Pipedrive" loading="lazy" class="rounded-xl"
+          style="max-width: 100%; height: auto; width: 60px; height: 60px; padding: 20px" />
+      </div>
+      <div class="icon-box">
+        <img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/apis/postgres.svg" title="Postgres"
+          alt="Postgres" loading="lazy" class="rounded-xl"
+          style="max-width: 100%; height: auto; width: 60px; height: 60px; padding: 20px" />
+      </div>
+      <div class="icon-box">
+        <img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/apis/saphana.svg" title="SAP HANA"
+          alt="SAP HANA" loading="lazy" class="rounded-xl"
+          style="max-width: 100%; height: auto; width: 60px; height: 60px; padding: 20px" />
+      </div>
+      <div class="icon-box">
+        <img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/apis/sendgrid.svg" title="Sendgrid"
+          alt="Sendgrid" loading="lazy" class="rounded-xl"
+          style="max-width: 100%; height: auto; width: 60px; height: 60px; padding: 20px" />
+      </div>
+      <div class="icon-box">
+        <img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/apis/shopify.svg" title="Shopify"
+          alt="Shopify" loading="lazy" class="rounded-xl"
+          style="max-width: 100%; height: auto; width: 60px; height: 60px; padding: 20px" />
+      </div>
+      <div class="icon-box">
+        <img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/apis/snowflake.svg" title="Snowflake"
+          alt="Snowflake" loading="lazy" class="rounded-xl"
+          style="max-width: 100%; height: auto; width: 60px; height: 60px; padding: 20px" />
+      </div>
+      <div class="icon-box">
+        <img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/apis/twilio.svg" title="Twilio" alt="Twilio"
+          loading="lazy" class="rounded-xl"
+          style="max-width: 100%; height: auto; width: 60px; height: 60px; padding: 20px" />
+      </div>
+      <div class="icon-box">
+        <img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/apis/rest.svg" title="REST" alt="REST"
+          loading="lazy" class="rounded-xl"
+          style="max-width: 100%; height: auto; width: 60px; height: 60px; padding: 20px" />
+      </div>
+  </foreignObject>
+</svg>

@@ -11,7 +11,7 @@ hero:
   #   alt: App Launcher
   actions:
     - theme: brand
-      text: Agendar una Llamada
+      text: Agenda una Llamada
       link: https://calendar.app.google/uHEnkfwpgYSM1ppN6
     - theme: alt
       text: Próximamente
