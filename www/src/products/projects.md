@@ -6,9 +6,9 @@ hero:
   name: Projects
   text: Serverless apps that automatically scale
   tagline: "Build fast, deploy instantly with zero limitations: Netzo is built with flexibility in mind, so you can build whatever you need - zero restrictions."
-  # image:
-  #   src: /images/home/3-share.svg
-  #   alt: Inbox
+  image:
+    src: /images/products/projects.svg
+    alt: Inbox
   actions:
     - theme: brand
       text: Book a Call

@@ -6,7 +6,9 @@ hero:
   name: Proyectos
   text: Apps que escalan automáticamente
   tagline: "Construye rápido, despliega al instante, sin limitaciones: Netzo está diseñado con flexibilidad en mente, por lo que puedes construir lo que necesites - sin restricciones."
-
+  image:
+      src: /images/products/projects.svg
+      alt: Inbox
   actions:
     - theme: brand
       text: Agenda una Llamada
@@ -14,7 +16,6 @@ hero:
     - theme: alt
       text: Conoce Más
       link: /docs/platform/projects
-
 features:
   - icon: 🛠️
     title: Desarrollo rápido con código
