@@ -66,7 +66,7 @@ export function AuthForm(props: AuthenticationPageProps) {
             },
           }?.[uid]!;
 
-          const href = `/auth/signin`;
+          const href = `/oauth/signin`;
 
           return (
             <a

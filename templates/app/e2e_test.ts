@@ -1,4 +1,3 @@
-// Copyright 2023 the Deno authors. All rights reserved. MIT license.
 import { createHandler, Status } from "$fresh/server.ts";
 import manifest from "@/fresh.gen.ts";
 import {
@@ -8,7 +7,7 @@ import {
   type Item,
   randomItem,
   randomUser,
-} from "@/utils/db.ts";
+} from "netzo/authentication/utils/db.ts";
 import {
   assert,
   assertArrayIncludes,
@@ -18,8 +17,8 @@ import {
   assertStringIncludes,
 } from "std/assert/mod.ts";
 import { isRedirectStatus } from "std/http/http_status.ts";
-import options from "./netzo.config.ts";
-import { _internals } from "./plugins/kv_oauth.ts";
+import options from "@/netzo.config.ts";
+import { _internals } from "netzo/authentication/plugins/kv-oauth.ts";
 
 /**
  * These tests are end-to-end tests, which follow this rule-set:
@@ -81,7 +80,7 @@ Deno.test("[e2e] GET /", async () => {
   assertHtml(resp);
 });
 
-Deno.test("[e2e] GET /auth/callback", async (test) => {
+Deno.test("[e2e] GET /oauth/callback", async (test) => {
   const login = crypto.randomUUID();
   const sessionId = crypto.randomUUID();
 
@@ -116,9 +115,9 @@ Deno.test("[e2e] GET /auth/callback", async (test) => {
   });
 });
 
-Deno.test("[e2e] GET /auth/signin", async () => {
+Deno.test("[e2e] GET /oauth/signin", async () => {
   const resp = await handler(
-    new Request("http://localhost/auth/signin"),
+    new Request("http://localhost/oauth/signin"),
   );
 
   assertRedirect(
@@ -127,9 +126,9 @@ Deno.test("[e2e] GET /auth/signin", async () => {
   );
 });
 
-Deno.test("[e2e] GET /auth/signout", async () => {
+Deno.test("[e2e] GET /oauth/signout", async () => {
   const resp = await handler(
-    new Request("http://localhost/auth/signout"),
+    new Request("http://localhost/oauth/signout"),
   );
 
   assertRedirect(resp, "/");
@@ -143,7 +142,7 @@ Deno.test("[e2e] GET /dashboard", async (test) => {
   await test.step("redirects to sign-in page if the session user is not signed in", async () => {
     const resp = await handler(new Request(url));
 
-    assertRedirect(resp, "/auth/signin");
+    assertRedirect(resp, "/oauth/signin");
   });
 
   await test.step("redirects to `/dashboard/stats` when the session user is signed in", async () => {
@@ -165,7 +164,7 @@ Deno.test("[e2e] GET /dashboard/stats", async (test) => {
   await test.step("redirects to sign-in page if the session user is not signed in", async () => {
     const resp = await handler(new Request(url));
 
-    assertRedirect(resp, "/auth/signin");
+    assertRedirect(resp, "/oauth/signin");
   });
 
   await test.step("renders dashboard stats chart for a user who is signed in", async () => {
@@ -189,7 +188,7 @@ Deno.test("[e2e] GET /dashboard/users", async (test) => {
   await test.step("redirects to sign-in if the session user is not signed in", async () => {
     const resp = await handler(new Request(url));
 
-    assertRedirect(resp, "/auth/signin");
+    assertRedirect(resp, "/oauth/signin");
   });
 
   await test.step("renders dashboard stats table for a user who is signed in", async () => {
@@ -312,7 +311,7 @@ Deno.test("[e2e] GET /account", async (test) => {
   await test.step("redirects to sign-in page if the session user is not signed in", async () => {
     const resp = await handler(new Request(url));
 
-    assertRedirect(resp, "/auth/signin");
+    assertRedirect(resp, "/oauth/signin");
   });
 
   await test.step("serves a web page for signed-in free user", async () => {

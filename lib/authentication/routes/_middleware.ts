@@ -14,7 +14,7 @@
 // ) {
 //   const url = new URL(req.url);
 //   const skipDestination = !["route"].includes(ctx.destination);
-//   const skipRoute = url.pathname.startsWith("/auth/"); // only /auth/:provider/...
+//   const skipRoute = url.pathname.startsWith("/oauth/");
 //   if (skipDestination || skipRoute) return await ctx.next();
 
 //   // check auth state
@@ -43,7 +43,6 @@
 //   return await ctx.next();
 // }
 
-// Copyright 2023 the Deno authors. All rights reserved. MIT license.
 import { MiddlewareHandlerContext } from "$fresh/server.ts";
 import { getSessionId } from "deno_kv_oauth/mod.ts";
 import { redirect } from "netzo/authentication/utils/http.ts";

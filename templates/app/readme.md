@@ -47,7 +47,7 @@ To get started:
    [**New OAuth Application** page](https://github.com/settings/applications/new).
 1. Set **Application name** to your desired application name. E.g. `ACME, Inc`.
 1. Set **Homepage URL** to `http://localhost:8000`.
-1. Set **Authorization callback URL** to `http://localhost:8000/auth/callback`.
+1. Set **Authorization callback URL** to `http://localhost:8000/oauth/callback`.
 1. Click **Register application**.
 1. Copy the **Client ID** value to the `.env` file:
    ```bash
@@ -105,7 +105,7 @@ This section assumes that a
 1. Set the **Homepage URL** to your production URL. E.g.
    `https://{uid}.deno.dev`.
 1. Set the **Authorization callback URL** to your production URL with the
-   `/auth/callback` path. E.g. `https://{uid}.deno.dev/auth/callback`.
+   `/oauth/callback` path. E.g. `https://{uid}.deno.dev/oauth/callback`.
 1. Copy all the environment variables in your `.env` file to your production
    environment.
 
@@ -114,7 +114,8 @@ This section assumes that a
 1. Clone this repository for your project.
 1. Sign into [Netzo](https://app.netzo.io).
 1. Deploy using the Netzo CLI `netzo deploy` subcommand.
-1. Once the deployment is complete, go to **Project > Settings** and add the production environmental variables.
+1. Once the deployment is complete, go to **Project > Settings** and add the
+   production environmental variables.
 
 You should now be able to visit your newly deployed SaaS.
 
@@ -222,12 +223,12 @@ Example 1:
     {
       "login": "51chengxu",
       "sessionId": "9a6745a1-3a46-45c8-a265-c7469ff73678",
-      "isSubscribed": false,
+      "isSubscribed": false
     },
     {
       "login": "AiridasSal",
       "sessionId": "adb25cac-9be7-494f-864b-8f05b80f7168",
-      "isSubscribed": false,
+      "isSubscribed": false
     },
     {
       "login": "ArkhamCookie",
@@ -249,12 +250,12 @@ Example 2 (using `cursor` field from page 1):
     {
       "login": "EthanThatOneKid",
       "sessionId": "ae7425c1-7932-412a-9956-e456787d557f",
-      "isSubscribed": false,
+      "isSubscribed": false
     },
     {
       "login": "Fleury99",
       "sessionId": "2e4920a3-f386-43e1-8c0d-61b5e0edfc0d",
-      "isSubscribed": false,
+      "isSubscribed": false
     },
     {
       "login": "FriendlyUser",

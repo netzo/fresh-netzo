@@ -1,4 +1,3 @@
-// Copyright 2023 the Deno authors. All rights reserved. MIT license.
 // Copied from std/_tools/check_license.ts
 
 import { walk } from "std/fs/walk.ts";

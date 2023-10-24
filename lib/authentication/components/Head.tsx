@@ -1,4 +1,3 @@
-// Copyright 2023 the Deno authors. All rights reserved. MIT license.
 import { Head as _Head } from "$fresh/runtime.ts";
 import Meta, { type MetaProps } from "./Meta.tsx";
 import {

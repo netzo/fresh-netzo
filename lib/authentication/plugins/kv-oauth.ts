@@ -1,4 +1,3 @@
-// Copyright 2023 the Deno authors. All rights reserved. MIT license.
 import type { Plugin } from "$fresh/server.ts";
 import { handleCallback, signIn, signOut } from "deno_kv_oauth/mod.ts";
 import { AuthenticationOptions } from "netzo/authentication/plugin.ts";
@@ -34,21 +33,21 @@ export default (options: AuthenticationOptions): Plugin => {
         component: Auth,
       },
       {
-        path: `/auth/signin`,
+        path: `/oauth/signin`,
         handler: async (req, _ctx) => {
           const response = await signIn(req, options?.oauth2);
-          console.debug(`/auth/signin`, response);
+          console.debug(`/oauth/signin`, response);
           return response;
         },
       },
       {
-        path: `/auth/callback`,
+        path: `/oauth/callback`,
         handler: async (req, _ctx) => {
           const { response, tokens, sessionId } = await handleCallback(
             req,
             options?.oauth2,
           );
-          console.debug(`/auth/callback`, response);
+          console.debug(`/oauth/callback`, response);
           const githubUser = await getGitHubUser(tokens.accessToken);
           const user = await getUser(githubUser.login);
 
@@ -67,10 +66,10 @@ export default (options: AuthenticationOptions): Plugin => {
         },
       },
       {
-        path: `/auth/signout`,
+        path: `/oauth/signout`,
         handler: async (req, _ctx) => {
           const response = await signOut(req);
-          console.debug(`/auth/signout`, response);
+          console.debug(`/oauth/signout`, response);
           return response;
         },
       },

@@ -1,6 +1,5 @@
-// Copyright 2023 the Deno authors. All rights reserved. MIT license.
 import { ErrorPageProps } from "$fresh/server.ts";
-import { HEADING_STYLES, LINK_STYLES } from "@/utils/constants.ts";
+import { HEADING_STYLES, LINK_STYLES } from "netzo/authentication/utils/constants.ts";
 
 export default function Error500Page(props: ErrorPageProps) {
   return (

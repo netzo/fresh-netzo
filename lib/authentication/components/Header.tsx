@@ -1,4 +1,3 @@
-// Copyright 2023 the Deno authors. All rights reserved. MIT license.
 import {
   ACTIVE_ANCESTOR_LINK_STYLES,
   ACTIVE_LINK_STYLES,
@@ -6,8 +5,8 @@ import {
   SITE_BAR_STYLES,
   SITE_NAME,
 } from "netzo/authentication/utils/constants.ts";
-import IconX from "tabler_icons_tsx/x.tsx";
-import IconMenu from "tabler_icons_tsx/menu-2.tsx";
+import { Cross1Icon } from "@radix-ui/react-icons";
+import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { cx } from "@twind/core";
 import { User } from "netzo/authentication/utils/db.ts";
 
@@ -53,8 +52,8 @@ export default function Header(props: HeaderProps) {
             id="nav-toggle-label"
             htmlFor="nav-toggle"
           >
-            <IconMenu class="w-6 h-6" />
-            <IconX class="hidden w-6 h-6" />
+            <HamburgerMenuIcon class="w-6 h-6" />
+            <Cross1Icon class="hidden w-6 h-6" />
           </label>
         </div>
       </div>
@@ -88,7 +87,7 @@ export default function Header(props: HeaderProps) {
             </a>
           )
           : (
-            <a href="/auth/signin" class={cx(LINK_STYLES, NAV_ITEM)}>
+            <a href="/oauth/signin" class={cx(LINK_STYLES, NAV_ITEM)}>
               Sign in
             </a>
           )}

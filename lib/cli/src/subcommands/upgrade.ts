@@ -1,5 +1,5 @@
 import { error } from "../console.ts";
-import { semverGreaterThanOrEquals, semverValid } from "../../deps.ts";
+import { semverGreaterThanOrEquals, isSemVer } from "../../deps.ts";
 import { VERSION } from "../version.ts";
 
 const help = `netzo upgrade
@@ -41,7 +41,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     console.error(help);
     error("Too many positional arguments given.");
   }
-  if (version && !semverValid(version)) {
+  if (version && !isSemVer(version)) {
     error(`The provided version is invalid.`);
   }
 

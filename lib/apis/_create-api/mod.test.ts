@@ -1,9 +1,9 @@
 // TODO: implement tests from https://github.com/johannschopplich/unrested/blob/main/test/index.test.ts
-import "https://deno.land/std@0.198.0/dotenv/load.ts";
+import "https://deno.land/std@0.204.0/dotenv/load.ts";
 import {
   assertEquals,
   assertExists,
-} from "https://deno.land/std@0.97.0/testing/asserts.ts";
+} from "https://deno.land/std@0.204.0/testing/asserts.ts";
 import { createApi } from "./mod.ts";
 import { auth } from "./auth/mod.ts";
 

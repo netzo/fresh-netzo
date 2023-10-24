@@ -1,4 +1,3 @@
-// Copyright 2023 the Deno authors. All rights reserved. MIT license.
 import { authenticationPlugin } from "./plugin.ts";
 import {
   assert,
@@ -26,16 +25,16 @@ Deno.test("authenticationPlugin() works with default values", () => {
   assertNotEquals(plugin.routes, undefined);
   assert(plugin.routes!.every((route) => route.handler !== undefined));
   assertArrayIncludes(plugin.routes!.map((route) => route.path), [
-    "/auth/signin",
-    "/auth/callback",
-    "/auth/signout",
+    "/oauth/signin",
+    "/oauth/callback",
+    "/oauth/signout",
   ]);
 });
 
 Deno.test("authenticationPlugin() correctly handles the sign-in path", async () => {
-  const request = new Request("http://example.com/auth/signin");
+  const request = new Request("http://example.com/oauth/signin");
   const plugin = authenticationPlugin({ oauth2: randomOAuthConfig() });
-  const handler = plugin.routes!.find((route) => route.path === "/auth/signin")!
+  const handler = plugin.routes!.find((route) => route.path === "/oauth/signin")!
     .handler as Handler<undefined, undefined>;
   // @ts-ignore Trust me
   const response = await handler(request);
@@ -61,14 +60,14 @@ Deno.test("authenticationPlugin() correctly handles the callback path", async ()
     state: oauthSession.state,
   });
   const request = new Request(
-    `http://example.com/auth/callback?${searchParams}`,
+    `http://example.com/oauth/callback?${searchParams}`,
     {
       headers: { cookie: `${OAUTH_COOKIE_NAME}=${oauthSessionId}` },
     },
   );
   const plugin = authenticationPlugin({ oauth2: randomOAuthConfig() });
   const handler = plugin.routes!.find((route) =>
-    route.path === "/auth/callback"
+    route.path === "/oauth/callback"
   )!.handler as Handler<undefined, undefined>;
   // @ts-ignore Trust me
   const response = await handler(request);
@@ -84,10 +83,10 @@ Deno.test("authenticationPlugin() correctly handles the callback path", async ()
 });
 
 Deno.test("authenticationPlugin() correctly handles the sign-out path", async () => {
-  const request = new Request("http://example.com/auth/signout");
+  const request = new Request("http://example.com/oauth/signout");
   const plugin = authenticationPlugin({ oauth2: randomOAuthConfig() });
   const handler = plugin.routes!.find((route) =>
-    route.path === "/auth/signout"
+    route.path === "/oauth/signout"
   )!.handler as Handler<undefined, undefined>;
   // @ts-ignore Trust me
   const response = await handler(request);

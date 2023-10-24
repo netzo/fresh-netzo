@@ -1,4 +1,3 @@
-// Copyright 2023 the Deno authors. All rights reserved. MIT license.
 import { ulid } from "netzo/database/mod.ts";
 
 const kv = await Deno.openKv();

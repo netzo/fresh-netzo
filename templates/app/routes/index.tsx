@@ -1,6 +1,5 @@
-// Copyright 2023 the Deno authors. All rights reserved. MIT license.
-import type { State } from "@/plugins/session.ts";
-import Head from "@/components/Head.tsx";
+import type { State } from "netzo/authentication/plugins/session.ts";
+import Head from "netzo/authentication/components/Head.tsx";
 import { defineRoute } from "$fresh/server.ts";
 
 export default defineRoute<State>((_req, ctx) => {

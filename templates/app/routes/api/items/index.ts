@@ -1,7 +1,5 @@
-// Copyright 2023 the Deno authors. All rights reserved. MIT license.
-
-import { collectValues, listItems } from "@/utils/db.ts";
-import { getCursor } from "@/utils/http.ts";
+import { collectValues, listItems } from "netzo/authentication/utils/db.ts";
+import { getCursor } from "netzo/authentication/utils/http.ts";
 import type { Handlers } from "$fresh/server.ts";
 
 export const handler: Handlers = {

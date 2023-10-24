@@ -1,4 +1,3 @@
-// Copyright 2023 the Deno authors. All rights reserved. MIT license.
 import { assertRejects } from "std/assert/assert_rejects.ts";
 import { getGitHubUser } from "./github.ts";
 import { returnsNext, stub } from "std/testing/mock.ts";

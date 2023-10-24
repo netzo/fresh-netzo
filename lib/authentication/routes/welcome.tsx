@@ -1,4 +1,3 @@
-// Copyright 2023 the Deno authors. All rights reserved. MIT license.
 import { defineRoute } from "$fresh/src/server/defines.ts";
 import Head from "netzo/authentication/components/Head.tsx";
 import { isGitHubSetup } from "netzo/authentication/utils/github.ts";

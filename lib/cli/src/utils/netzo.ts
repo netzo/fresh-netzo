@@ -1,4 +1,4 @@
-import { ensureDir } from "https://deno.land/std@0.202.0/fs/mod.ts";
+import { ensureDir } from "https://deno.land/std@0.204.0/fs/mod.ts";
 import {
   feathers,
   io,

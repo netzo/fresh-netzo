@@ -1,4 +1,3 @@
-// Copyright 2023 the Deno authors. All rights reserved. MIT license.
 import type { Plugin } from "$fresh/server.ts";
 import type { State } from "@/plugins/session.ts";
 import { Status } from "$fresh/server.ts";
@@ -55,7 +54,7 @@ export default (_options: AuthenticationOptions): Plugin => {
               return await ctx.next();
             } catch (error) {
               if (error instanceof errors.Unauthorized) {
-                return redirect("/auth/signin");
+                return redirect("/oauth/signin");
               }
               throw error;
             }

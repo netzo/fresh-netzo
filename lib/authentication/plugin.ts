@@ -17,9 +17,9 @@ export type AuthenticationOptions = {
  * a configurable sign-in page.
  *
  * - `GET /auth` for the authentication page
- * - `GET /auth/signin` for the sign-in page
- * - `GET /auth/callback` for the callback page
- * - `GET /auth/signout` for the sign-out page
+ * - `GET /oauth/signin` for the sign-in page
+ * - `GET /oauth/callback` for the callback page
+ * - `GET /oauth/signout` for the sign-out page
  */
 export const authenticationPlugins = (
   options: AuthenticationOptions,

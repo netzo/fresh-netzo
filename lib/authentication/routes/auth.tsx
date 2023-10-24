@@ -1,6 +1,6 @@
 import type { JSX } from "preact";
 import { PageProps } from "$fresh/server.ts";
-import { AuthForm } from "../components/auth-form.tsx";
+import { AuthForm } from "../components/AuthForm.tsx";
 import { AuthenticationState } from "../plugin.ts";
 import { cn } from "netzo/components/utils.ts";
 import { buttonVariants } from "netzo/components/ui/button.tsx";

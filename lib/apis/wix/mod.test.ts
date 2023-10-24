@@ -1,7 +1,7 @@
 import {
   assertEquals,
   assertExists,
-} from "https://deno.land/std@0.97.0/testing/asserts.ts";
+} from "https://deno.land/std@0.204.0/testing/asserts.ts";
 import { wix } from "./mod.ts";
 
 Deno.test("wix", async (t) => {

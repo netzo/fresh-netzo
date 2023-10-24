@@ -113,7 +113,7 @@ export default (props: AppLayoutState) => {
           <a href="https://netzo.io" target="_blank">
             {/* <Logo className="w-auto h-8" /> */}
             <a
-              href={isAuthenticated ? "/auth/signout" : "/auth/signin"}
+              href={isAuthenticated ? "/oauth/signout" : "/oauth/signin"}
               className={cn(
                 buttonVariants({ variant: "ghost" }),
                 "absolute right-4 top-4 md:right-8 md:top-8",

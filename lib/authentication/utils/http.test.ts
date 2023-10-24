@@ -1,4 +1,3 @@
-// Copyright 2023 the Deno authors. All rights reserved. MIT license.
 import { returnsNext, stub } from "std/testing/mock.ts";
 import { fetchValues, getCursor, redirect } from "./http.ts";
 import { assert, assertEquals, assertRejects } from "std/assert/mod.ts";

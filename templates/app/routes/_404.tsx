@@ -1,5 +1,4 @@
-// Copyright 2023 the Deno authors. All rights reserved. MIT license.
-import { HEADING_STYLES, LINK_STYLES } from "@/utils/constants.ts";
+import { HEADING_STYLES, LINK_STYLES } from "netzo/authentication/utils/constants.ts";
 
 export default function NotFoundPage() {
   return (

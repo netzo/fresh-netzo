@@ -61,17 +61,17 @@ export default defineLayout((req, ctx) => {
                     <p class="text-sm dark:text-gray-300">{meta.description}</p>
                   </div>
                 </div>
-                <a href="https://netzo.io" target="_blank">
-                  {/* <Logo class="w-auto h-8" /> */}
-                  <a
-                    href={isAuthenticated ? "/auth/signout" : "/auth/signin"}
-                    className={cn(
-                      buttonVariants({ variant: "ghost" }),
-                      "absolute right-4 top-4 md:right-8 md:top-8",
-                    )}
-                  >
-                    {isAuthenticated ? "Logout" : "Login"}
-                  </a>
+                {/* <a href="https://netzo.io" target="_blank">
+                  <Logo class="w-auto h-8" />
+                </a> */}
+                <a
+                  href={isAuthenticated ? "/oauth/signout" : "/oauth/signin"}
+                  className={cn(
+                    buttonVariants({ variant: "ghost" }),
+                    "absolute right-4 top-4 md:right-8 md:top-8",
+                  )}
+                >
+                  {isAuthenticated ? "Logout" : "Login"}
                 </a>
               </header>
               <div className="px-4 flex items-center w-full overflow-x-auto h-12">

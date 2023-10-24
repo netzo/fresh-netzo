@@ -1,4 +1,3 @@
-// Copyright 2023 the Deno authors. All rights reserved. MIT license.
 import type { Plugin } from "$fresh/server.ts";
 import { AuthenticationOptions } from "netzo/authentication/plugin.ts";
 

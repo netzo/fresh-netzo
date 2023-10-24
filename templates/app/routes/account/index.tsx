@@ -1,9 +1,8 @@
-// Copyright 2023 the Deno authors. All rights reserved. MIT license.
 import { defineRoute } from "$fresh/server.ts";
-import type { SignedInState } from "@/plugins/session.ts";
-import { BUTTON_STYLES, LINK_STYLES } from "@/utils/constants.ts";
-import Head from "@/components/Head.tsx";
-import GitHubAvatarImg from "@/components/GitHubAvatarImg.tsx";
+import type { SignedInState } from "netzo/authentication/plugins/session.ts";
+import { BUTTON_STYLES, LINK_STYLES } from "netzo/authentication/utils/constants.ts";
+import Head from "netzo/authentication/components/Head.tsx";
+import GitHubAvatarImg from "netzo/authentication/components/GitHubAvatarImg.tsx";
 
 export default defineRoute<SignedInState>((_req, ctx) => {
   const { sessionUser } = ctx.state;
@@ -39,7 +38,7 @@ export default defineRoute<SignedInState>((_req, ctx) => {
           </li>
         </ul>
         <a
-          href="/auth/signout?success_url=/"
+          href="/oauth/signout?success_url=/"
           class={`${BUTTON_STYLES} block text-center`}
         >
           Sign out

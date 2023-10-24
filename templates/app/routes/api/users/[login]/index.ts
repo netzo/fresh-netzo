@@ -1,6 +1,5 @@
-// Copyright 2023 the Deno authors. All rights reserved. MIT license.
 import { type Handlers, Status } from "$fresh/server.ts";
-import { getUser } from "@/utils/db.ts";
+import { getUser } from "netzo/authentication/utils/db.ts";
 import { createHttpError } from "std/http/http_errors.ts";
 
 export const handler: Handlers = {

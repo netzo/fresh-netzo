@@ -1,7 +1,6 @@
-// Copyright 2023 the Deno authors. All rights reserved. MIT license.
-import Header from "@/components/Header.tsx";
-import Footer from "@/components/Footer.tsx";
-import type { State } from "@/plugins/session.ts";
+import Header from "netzo/authentication/components/Header.tsx";
+import Footer from "netzo/authentication/components/Footer.tsx";
+import type { State } from "netzo/authentication/plugins/session.ts";
 import { defineApp } from "$fresh/server.ts";
 
 export default defineApp<State>((_, ctx) => {

@@ -1,10 +1,9 @@
-// Copyright 2023 the Deno authors. All rights reserved. MIT license.
-import type { State } from "@/plugins/session.ts";
-import { getUser } from "@/utils/db.ts";
-import IconBrandGithub from "tabler_icons_tsx/brand-github.tsx";
-import { LINK_STYLES } from "@/utils/constants.ts";
-import Head from "@/components/Head.tsx";
-import GitHubAvatarImg from "@/components/GitHubAvatarImg.tsx";
+import type { State } from "netzo/authentication/plugins/session.ts";
+import { getUser } from "netzo/authentication/utils/db.ts";
+import { GitHubLogoIcon } from "@radix-ui/react-icons";
+import { LINK_STYLES } from "netzo/authentication/utils/constants.ts";
+import Head from "netzo/authentication/components/Head.tsx";
+import GitHubAvatarImg from "netzo/authentication/components/GitHubAvatarImg.tsx";
 import { defineRoute } from "$fresh/server.ts";
 
 interface UserProfileProps {
@@ -27,7 +26,7 @@ function UserProfile(props: UserProfileProps) {
           class={LINK_STYLES}
           target="_blank"
         >
-          <IconBrandGithub class="w-6" />
+          <GitHubLogoIcon class="w-6" />
         </a>
       </div>
     </div>

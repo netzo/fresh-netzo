@@ -1,4 +1,3 @@
-// Copyright 2023 the Deno authors. All rights reserved. MIT license.
 import { createHttpError } from "std/http/http_errors.ts";
 import { createGitHubOAuthConfig } from "deno_kv_oauth/mod.ts";
 

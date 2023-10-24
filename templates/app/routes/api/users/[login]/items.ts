@@ -1,7 +1,6 @@
-// Copyright 2023 the Deno authors. All rights reserved. MIT license.
 import type { Handlers } from "$fresh/server.ts";
-import { collectValues, getUser, listItemsByUser } from "@/utils/db.ts";
-import { getCursor } from "@/utils/http.ts";
+import { collectValues, getUser, listItemsByUser } from "netzo/authentication/utils/db.ts";
+import { getCursor } from "netzo/authentication/utils/http.ts";
 import { Status } from "std/http/http_status.ts";
 import { createHttpError } from "std/http/http_errors.ts";
 

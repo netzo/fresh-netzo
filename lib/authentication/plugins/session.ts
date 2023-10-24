@@ -1,4 +1,3 @@
-// Copyright 2023 the Deno authors. All rights reserved. MIT license.
 import { Plugin } from "$fresh/server.ts";
 import type { MiddlewareHandlerContext } from "$fresh/server.ts";
 import { getSessionId } from "deno_kv_oauth/mod.ts";

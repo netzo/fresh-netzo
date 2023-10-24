@@ -1,4 +1,3 @@
-// Copyright 2023 the Deno authors. All rights reserved. MIT license.
 export interface GitHubAvatarImgProps {
   /** The GitHub user's username */
   login: string;

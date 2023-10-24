@@ -1,7 +1,7 @@
 import {
   assertEquals,
   assertExists,
-} from "https://deno.land/std@0.97.0/testing/asserts.ts";
+} from "https://deno.land/std@0.204.0/testing/asserts.ts";
 import { sendgrid } from "./mod.ts";
 
 Deno.test("sendgrid", async (t) => {
