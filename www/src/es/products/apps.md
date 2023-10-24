@@ -7,14 +7,14 @@ hero:
   text: Comparte al instante
   tagline: Comparte aplicaciones de manera segura con tus equipos y usuarios en un solo clic.
   image:
-    src: /images/home/3-share.svg
+    src: /images/products/app-launcher.svg
     alt: App Launcher
   actions:
     - theme: brand
-      text: Agendar una Llamada
+      text: Agenda una Llamada
       link: https://calendar.app.google/uHEnkfwpgYSM1ppN6
     - theme: alt
-      text: Saber Más
+      text: Conoce Más
       link: /docs/platform/home
 
 features:

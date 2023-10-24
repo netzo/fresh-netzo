@@ -74,7 +74,7 @@ export const navES: DefaultTheme.NavItem[] = [
           { text: 'Apps', link: '/es/products/apps' },
           { text: 'Inbox', link: '/es/products/inbox' },
           { text: 'Proyectos', link: '/es/products/projects' },
-          { text: 'Alacenamiento (próx.)', link: '/es/products/storage' },
+          { text: 'Almacenamiento (próx.)', link: '/es/products/storage' },
         ],
       },
       {

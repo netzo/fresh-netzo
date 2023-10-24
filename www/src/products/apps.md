@@ -7,7 +7,7 @@ hero:
   text: Ship apps to your team fast
   tagline: Securely share apps in the Apps dashboard with teams and individuals in one-click.
   image:
-    src: /images/home/3-share.svg
+    src: /images/products/app-launcher.svg
     alt: Apps
   actions:
     - theme: brand
