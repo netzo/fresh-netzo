@@ -802,11 +802,11 @@ export default {
           { text: 'Apps', link: '/es/products/apps' },
           { text: 'Inbox', link: '/es/products/inbox' },
           { text: 'Proyectos', link: '/es/products/projects' },
-          { text: 'Almacenamiento', link: '/es/products/storage' },
-          { text: 'Autenticación', link: '/es/products/authentication' },
+          { text: 'Almacenamiento (próx.)', link: '/es/products/storage' },
+          { text: 'Auth', link: '/es/products/auth' },
           { text: 'Base de datos', link: '/es/products/database' },
-          { text: 'Automatizaciones', link: '/es/products/workflows' },
-          { text: 'Análiticas', link: '/es/products/analytics' },
+          { text: 'Workflows (próx.)', link: '/es/products/workflows' },
+          { text: 'Análiticas (próx.)', link: '/es/products/analytics' },
         ],
       },
       {
@@ -814,7 +814,7 @@ export default {
         items: [
           { text: 'Apps', link: '/docs/use-cases/apps' },
           { text: 'APIs', link: '/docs/use-cases/apis' },
-          { text: 'Automatizaciones', link: '/docs/use-cases/workflows' },
+          { text: 'Workflows', link: '/docs/use-cases/workflows' },
         ],
       },
       {

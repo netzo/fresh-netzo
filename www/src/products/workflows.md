@@ -7,7 +7,7 @@ hero:
   text: Automate anything in a few lines of code
   tagline: Effortlessly automate tasks and processes with on-demand cloud compute. Unlock efficiency and productivity across your organization.
   # image:
-  #   src: /images/products/authentication.jpeg
+  #   src: /images/products/auth.jpeg
   #   alt: App Launcher
   actions:
     - theme: brand
@@ -15,7 +15,7 @@ hero:
       link: https://calendar.app.google/uHEnkfwpgYSM1ppN6
     - theme: alt
       text: Coming soon
-      # link: /docs/platform/projects/authentication
+      # link: /docs/platform/projects/auth
 
 features:
   - icon: 🚀

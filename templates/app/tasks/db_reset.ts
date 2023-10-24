@@ -1,4 +1,4 @@
-import { kv } from "netzo/authentication/utils/db.ts";
+import { kv } from "netzo/auth/utils/db.ts";
 
 if (!confirm("WARNING: The database will be reset. Continue?")) Deno.exit();
 

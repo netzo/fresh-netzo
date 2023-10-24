@@ -7,9 +7,8 @@ export const navEN: DefaultTheme.NavItem[] = [
     text: 'Products',
     items: [
       {
-        text: 'Platform', // 'Projects',
+        text: 'Platform', // '',
         items: [
-          // { text: 'Embeds' },
           { text: 'Apps', link: '/products/apps' },
           { text: 'Inbox', link: '/products/inbox' },
           { text: 'Projects', link: '/products/projects' },
@@ -19,8 +18,7 @@ export const navEN: DefaultTheme.NavItem[] = [
       {
         text: 'Projects', // 'Projects',
         items: [
-          // { text: 'Embeds' },
-          { text: 'Authentication', link: '/products/authentication' },
+          { text: 'Auth', link: '/products/auth' },
           { text: 'Database', link: '/products/database' },
           { text: 'Workflows (soon)', link: '/products/workflows' },
           { text: 'Analytics (soon)', link: '/products/analytics' },
@@ -32,7 +30,7 @@ export const navEN: DefaultTheme.NavItem[] = [
     text: 'Developer',
     items: [
       { text: 'APIs', link: '/docs/netzo/apis' },
-      { text: 'Authentication', link: '/docs/netzo/authentication' },
+      { text: 'Auth', link: '/docs/netzo/auth' },
       { text: 'CLI', link: '/docs/netzo/cli' },
       { text: 'Components', link: '/docs/netzo/components' },
       { text: 'Composables', link: '/docs/netzo/composables' },
@@ -68,9 +66,8 @@ export const navES: DefaultTheme.NavItem[] = [
     text: 'Productos',
     items: [
       {
-        text: 'Plataforma', // 'Projects',
+        text: 'Plataforma', // '',
         items: [
-          // { text: 'Embeds' },
           { text: 'Apps', link: '/es/products/apps' },
           { text: 'Inbox', link: '/es/products/inbox' },
           { text: 'Proyectos', link: '/es/products/projects' },
@@ -78,9 +75,9 @@ export const navES: DefaultTheme.NavItem[] = [
         ],
       },
       {
-        text: 'Proyectos', // 'projects',
+        text: 'Proyectos', // 'Projects',
         items: [
-          { text: 'Autenticación', link: '/es/products/authentication' },
+          { text: 'Auth', link: '/es/products/auth' },
           { text: 'Base de datos', link: '/es/products/database' },
           { text: 'Automatizaciones (próx.)', link: '/es/products/workflows' },
           { text: 'Analiticas (próx.)', link: '/es/products/analytics' },

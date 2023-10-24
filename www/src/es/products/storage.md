@@ -13,7 +13,7 @@ hero:
       link: https://calendar.app.google/uHEnkfwpgYSM1ppN6
     - theme: alt
       text: Próximamente
-      # link: /docs/platform/projects/authentication
+      # link: /docs/platform/projects/auth
 
 features:
   - icon: 📁

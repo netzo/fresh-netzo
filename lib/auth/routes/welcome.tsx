@@ -5,7 +5,7 @@ import { isGitHubSetup } from "netzo/auth/utils/github.ts";
 function SetupInstruction() {
   return (
     <div class="bg-green-50 dark:(bg-gray-900 border border-green-800) rounded-xl max-w-screen-sm mx-auto p-8 space-y-2">
-      <h1 class="text-2xl font-medium">Welcome to SaaSKit!</h1>
+      <h1 class="text-2xl font-medium">Welcome to Netzo!</h1>
 
       <p class="text-gray-600 dark:text-gray-400">
         To enable user login, you need to configure the GitHub OAuth application
@@ -14,7 +14,7 @@ function SetupInstruction() {
 
       <p>
         <a
-          href="https://github.com/denoland/saaskit#get-started-locally"
+          href="https://netzo.io/docs/netzo/cli"
           class="inline-flex gap-2 text-green-600 dark:text-green-400 hover:underline cursor-pointer"
         >
           Get started locally guide &#8250;
@@ -22,7 +22,7 @@ function SetupInstruction() {
       </p>
       <p>
         <a
-          href="https://github.com/denoland/saaskit#deploy-to-production"
+          href="https://netzo.io/docs/netzo/cli"
           class="inline-flex gap-2 text-green-600 dark:text-green-400 hover:underline cursor-pointer"
         >
           Deploy to production guide &#8250;

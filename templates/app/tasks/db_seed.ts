@@ -1,5 +1,5 @@
 // Description: Seeds the kv db with Hacker News stories
-import { createItem, createUser } from "netzo/authentication/utils/db.ts";
+import { createItem, createUser } from "netzo/auth/utils/db.ts";
 import { ulid } from "std/ulid/mod.ts";
 
 // Reference: https://github.com/HackerNews/API

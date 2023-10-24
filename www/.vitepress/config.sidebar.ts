@@ -128,7 +128,7 @@ export const sidebarEN: DefaultTheme.Sidebar = {
           link: '/docs/platform/projects',
           items: [
             // { text: 'Overview', link: '/docs/platform/projects/overview' },
-            { text: 'Authentication', link: '/docs/platform/projects/authentication' },
+            { text: 'Auth', link: '/docs/platform/projects/auth' },
             { text: 'Database', link: '/docs/platform/projects/database' },
             { text: 'Deployments', link: '/docs/platform/projects/deployments' },
             { text: 'Logs', link: '/docs/platform/projects/logs' },
@@ -184,7 +184,7 @@ export const sidebarEN: DefaultTheme.Sidebar = {
             { text: '<code>wix</code>', link: '/docs/netzo/apis/wix' },
           ],
         },
-        { text: '<code>authentication</code>', link: '/docs/netzo/authentication' },
+        { text: '<code>authentication</code>', link: '/docs/netzo/auth' },
         { text: '<code>cli</code>', link: '/docs/netzo/cli' },
         {
           text: '<code>components</code>',
@@ -253,7 +253,7 @@ export const sidebarEN: DefaultTheme.Sidebar = {
       link: '/docs/api-reference/index',
       collapsed: true,
       items: [
-        { text: 'Authentication', link: '/docs/api-reference/authentication' },
+        { text: 'Auth', link: '/docs/api-reference/authentication' },
         { text: 'Reference', link: 'https://api.netzo.io/docs/' },
       ],
     },

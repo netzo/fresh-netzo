@@ -11,7 +11,7 @@ import en from '~/locales/en.js'
 
 > [`https://deno.land/x/netzo/plugins`](https://deno.land/x/netzo/plugins)
 
-**`netzo/plugins` exports all official plugins to provide essential functionality to add to your projects a plug-and-play fashion.** The Plugins page will display a list of all `plugins` registered in the `netzo.config` file of the project. Plugins augment ordinary [Fresh](https://fresh.deno.dev/) plugins to better integrate with Netzo, simplify configuration and boost developer experience.
+**`netzo/plugins` exports all official plugins to provide essential functionality to add to your projects a plug-and-play fashion.** The Plugins page will display a list of all `plugins` registered in the `netzo.config` file of the project.
 
 Apart from the core plugins listed below, you can always [create custom plugins](#custom-plugins) by registering them in `netzo.config`.
 

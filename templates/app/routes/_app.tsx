@@ -1,6 +1,6 @@
-import Header from "netzo/authentication/components/Header.tsx";
-import Footer from "netzo/authentication/components/Footer.tsx";
-import type { State } from "netzo/authentication/plugins/session.ts";
+import Header from "netzo/auth/components/Header.tsx";
+import Footer from "netzo/auth/components/Footer.tsx";
+import type { State } from "netzo/auth/plugins/session.ts";
 import { defineApp } from "$fresh/server.ts";
 
 export default defineApp<State>((_, ctx) => {

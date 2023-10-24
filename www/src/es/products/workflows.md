@@ -7,7 +7,7 @@ hero:
   text: Toma un respiro de tareas repetitivas
   tagline: Automatiza tareas y procesos con tan solo unas lineas de codigo. Desbloquea la eficiencia y productividad en toda tu organización.
   # image:
-  #   src: /images/products/authentication.jpeg
+  #   src: /images/products/auth.jpeg
   #   alt: App Launcher
   actions:
     - theme: brand
@@ -15,7 +15,7 @@ hero:
       link: https://calendar.app.google/uHEnkfwpgYSM1ppN6
     - theme: alt
       text: Próximamente
-      # link: /docs/platform/projects/authentication
+      # link: /docs/platform/projects/auth
 
 features:
   - icon: 🚀

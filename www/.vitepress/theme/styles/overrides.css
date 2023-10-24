@@ -34,6 +34,11 @@
   background-color: var(--vp-c-bg) !important;
 }
 
+.VPSidebar {
+  background-color: var(--vp-c-bg) !important;
+  /* border-right: 1px solid var(--vp-c-bg-soft) !important; */
+}
+
 /* hero (from yaml) */
 
 .VPHero div.container {

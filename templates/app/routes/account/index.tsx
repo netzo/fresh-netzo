@@ -1,8 +1,8 @@
 import { defineRoute } from "$fresh/server.ts";
-import type { SignedInState } from "netzo/authentication/plugins/session.ts";
-import { BUTTON_STYLES, LINK_STYLES } from "netzo/authentication/utils/constants.ts";
-import Head from "netzo/authentication/components/Head.tsx";
-import GitHubAvatarImg from "netzo/authentication/components/GitHubAvatarImg.tsx";
+import type { SignedInState } from "netzo/auth/plugins/session.ts";
+import { BUTTON_STYLES, LINK_STYLES } from "netzo/auth/utils/constants.ts";
+import Head from "netzo/auth/components/Head.tsx";
+import GitHubAvatarImg from "netzo/auth/components/GitHubAvatarImg.tsx";
 
 export default defineRoute<SignedInState>((_req, ctx) => {
   const { sessionUser } = ctx.state;

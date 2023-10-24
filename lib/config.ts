@@ -7,9 +7,9 @@ import {
   visibilityPlugins,
 } from "./visibility/plugin.ts";
 import {
-  type AuthenticationOptions,
-  authenticationPlugins,
-} from "./authentication/plugin.ts";
+  type AuthOptions,
+  authPlugins,
+} from "./auth/plugin.ts";
 import { type DatabaseOptions, databasePlugins } from "./database/plugin.ts";
 import { setEnvVars } from "./utils/mod.ts";
 import { Project } from "netzo/cli/deps.ts";
@@ -17,7 +17,7 @@ import { Project } from "netzo/cli/deps.ts";
 export interface NetzoConfig extends FreshConfig {
   project: string;
   visibility?: VisibilityOptions;
-  authentication?: AuthenticationOptions;
+  auth?: AuthOptions;
   database?: DatabaseOptions;
   [k: string]: unknown;
 }
@@ -34,7 +34,7 @@ export async function defineNetzoConfig(
     visibility = {
       level: ["development"].includes(NETZO_ENV) ? "private" : "public",
     },
-    authentication = {},
+    auth = {},
     database = {},
     plugins = [],
   } = config;
@@ -60,9 +60,9 @@ export async function defineNetzoConfig(
     visibility,
     project?.visibility ?? {},
   );
-  const authenticationOptions = deepMerge<AuthenticationOptions>(
-    authentication,
-    project?.config?.authentication ?? {},
+  const authOptions = deepMerge<AuthOptions>(
+    auth,
+    project?.config?.auth ?? {},
   );
   const databaseOptions = deepMerge<DatabaseOptions>(
     database,
@@ -74,7 +74,7 @@ export async function defineNetzoConfig(
     plugins: [
       ...[
         ...visibilityPlugins(visibilityOptions),
-        ...authenticationPlugins(authenticationOptions),
+        ...authPlugins(authOptions),
         ...databasePlugins(databaseOptions),
       ].filter((mod) => !!mod),
       ...plugins, // eventual overrides to netzo modules

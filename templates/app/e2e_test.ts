@@ -7,7 +7,7 @@ import {
   type Item,
   randomItem,
   randomUser,
-} from "netzo/authentication/utils/db.ts";
+} from "netzo/auth/utils/db.ts";
 import {
   assert,
   assertArrayIncludes,
@@ -18,7 +18,7 @@ import {
 } from "std/assert/mod.ts";
 import { isRedirectStatus } from "std/http/http_status.ts";
 import options from "@/netzo.config.ts";
-import { _internals } from "netzo/authentication/plugins/kv-oauth.ts";
+import { _internals } from "netzo/auth/plugins/kv-oauth.ts";
 
 /**
  * These tests are end-to-end tests, which follow this rule-set:

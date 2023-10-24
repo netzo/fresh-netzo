@@ -1,5 +1,5 @@
-import type { State } from "netzo/authentication/plugins/session.ts";
-import Head from "netzo/authentication/components/Head.tsx";
+import type { State } from "netzo/auth/plugins/session.ts";
+import Head from "netzo/auth/components/Head.tsx";
 import { defineRoute } from "$fresh/server.ts";
 
 export default defineRoute<State>((_req, ctx) => {
