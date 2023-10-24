@@ -1,6 +1,6 @@
 # Core Concepts
 
-**Netzo provides a collection of building blocks for tailor-made for the [Deno fresh](https://fresh.deno.dev/) framework (**recommended**).** The goal is to provide everything related to UI when building custom frontends. This includes [components](/docs/netzo/components), [composables](/docs/netzo/composables), [plugins](/docs/netzo/plugins) and unocss-powered themes including colors, icons and typography.
+**Netzo provides a collection of building blocks for tailor-made for the [Deno fresh](https://fresh.deno.dev/) framework (**recommended**).** The goal is to provide everything related to UI when building custom frontends. This includes [components](/docs/netzo/components), [plugins](/docs/netzo/plugins), utils and unocss-powered themes including colors, icons and typography.
 
 - Headless components
 - Built with Radix UI and UnoCSS

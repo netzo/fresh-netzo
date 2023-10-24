@@ -33,7 +33,6 @@ export const navEN: DefaultTheme.NavItem[] = [
       { text: 'Auth', link: '/docs/netzo/auth' },
       { text: 'CLI', link: '/docs/netzo/cli' },
       { text: 'Components', link: '/docs/netzo/components' },
-      { text: 'Composables', link: '/docs/netzo/composables' },
       { text: 'Database', link: '/docs/netzo/database' },
       { text: 'Plugins', link: '/docs/netzo/plugins' },
     ],
@@ -89,8 +88,10 @@ export const navES: DefaultTheme.NavItem[] = [
     text: 'Desarrollador',
     items: [
       { text: 'APIs', link: '/docs/netzo/apis' },
+      { text: 'Auth', link: '/docs/netzo/auth' },
       { text: 'CLI', link: '/docs/netzo/cli' },
       { text: 'Componentes', link: '/docs/netzo/components' },
+      { text: 'Base de Datos', link: '/docs/netzo/database' },
       { text: 'Plugins', link: '/docs/netzo/plugins' },
     ],
   },

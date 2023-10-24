@@ -234,7 +234,6 @@ export const sidebarEN: DefaultTheme.Sidebar = {
             { text: '<code>typography</code>', link: '/docs/netzo/components/typography' },
           ],
         },
-        { text: '<code>composables</code>', link: '/docs/netzo/composables' },
         { text: '<code>database</code>', link: '/docs/netzo/database' },
         {
           text: '<code>plugins</code>',

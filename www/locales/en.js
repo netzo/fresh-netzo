@@ -299,7 +299,7 @@ export default {
     //     },
     //     {
     //       icon: 'i-mdi-hexagon-multiple',
-    //       description: '<strong style="color: #0080ff"><a href="/docs/netzo/components">UI components</a></strong>, <strong style="color: #0080ff"><a href="/docs/netzo/plugins">Plugins</a></strong> and <strong style="color: #0080ff"><a href="/docs/netzo/composables">Utilities</a></strong> for speed and simplicity',
+    //       description: '<strong style="color: #0080ff"><a href="/docs/netzo/components">UI components</a></strong>, <strong style="color: #0080ff"><a href="/docs/netzo/plugins">Plugins</a></strong> and <strong style="color: #0080ff"><a href="/docs/netzo/utils">Utilities</a></strong> for speed and simplicity',
     //     },
     //     {
     //       icon: 'i-mdi-bug',
@@ -894,19 +894,19 @@ export default {
       href: '/docs/netzo/components',
     },
     {
-      uid: 'composables',
-      title: 'Composables',
-      description: 'The <code>netzo/composables</code> module exports a set of composable functions that encapsulate common stateful logic for reuse.',
-      display: { src: 'https://api.iconify.design/mdi-function-variant.svg?color=%239ca3af' },
-      href: '/docs/netzo/composables',
-    },
-    {
       uid: 'plugins',
       title: 'Plugins',
       description: 'The <code>netzo/plugin</code> module exports all official Plugins to essential functionality to your projects in a plug-and-play fashion.',
       display: { src: 'https://api.iconify.design/mdi-extension.svg?color=%239ca3af' },
       href: '/docs/netzo/plugins',
     },
+    // {
+    //   uid: 'utils',
+    //   title: 'Utils',
+    //   description: 'The <code>netzo/utils</code> module exports a set of utilities for common functionality.',
+    //   display: { src: 'https://api.iconify.design/mdi-function-variant.svg?color=%239ca3af' },
+    //   href: '/docs/netzo/utils',
+    // },
   ].sort((a, b) => a.uid.localeCompare(b.uid)),
   apis: [
     {
