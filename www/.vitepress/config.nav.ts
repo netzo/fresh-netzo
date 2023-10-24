@@ -21,7 +21,7 @@ export const navEN: DefaultTheme.NavItem[] = [
           { text: 'Auth', link: '/products/auth' },
           { text: 'Database', link: '/products/database' },
           { text: 'Workflows (soon)', link: '/products/workflows' },
-          { text: 'Analytics (soon)', link: '/products/analytics' },
+          // { text: 'Analytics (soon)', link: '/products/analytics' },
         ],
       },
     ],
