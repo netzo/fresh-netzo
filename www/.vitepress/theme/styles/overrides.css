@@ -33,3 +33,59 @@
 .dark .VPFooter {
   background-color: var(--vp-c-bg) !important;
 }
+
+/* hero (from yaml) */
+
+.VPHero div.container {
+  /* max-width: 1440px; */ /* same as .container-wide */
+  gap: 50px !important;
+}
+
+@media (min-width: 960px) {
+  .VPHero div.container {
+    /* max-width: 1440px; */ /* same as .container-wide */
+    gap: 50px !important;
+  }
+}
+
+.VPHero h1.name {
+  font-size: 44px;
+  line-height: 1.2;
+}
+
+.VPHero p.text {
+  font-size: 44px;
+  line-height: 1.2;
+}
+
+.VPHero p.tagline {
+  font-size: 20px;
+}
+
+.VPHero div.actions {
+  padding-top: 24px;
+  gap: 6px 8px;
+}
+
+.VPHero a.VPButton,
+.VPHero button.VPButton {
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  border: 0 !important;
+  border-radius: 4px !important;
+}
+
+.VPHero .VPImage {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* features (from yaml) */
+
+.VPFeatures .VPFeature {
+  background-color: inherit !important;
+}
+
+.VPFeatures .VPFeature div.icon {
+  background-color: inherit !important;
+}
