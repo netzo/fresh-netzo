@@ -896,7 +896,7 @@ export default {
     {
       uid: 'plugins',
       title: 'Plugins',
-      description: 'The <code>netzo/plugin</code> module exports all official Plugins to essential functionality to your projects in a plug-and-play fashion.',
+      description: 'The <code>netzo/plugins</code> module exports all official Plugins to essential functionality to your projects in a plug-and-play fashion.',
       display: { src: 'https://api.iconify.design/mdi-extension.svg?color=%239ca3af' },
       href: '/docs/netzo/plugins',
     },

@@ -184,7 +184,7 @@ export const sidebarEN: DefaultTheme.Sidebar = {
             { text: '<code>wix</code>', link: '/docs/netzo/apis/wix' },
           ],
         },
-        { text: '<code>authentication</code>', link: '/docs/netzo/auth' },
+        { text: '<code>auth</code>', link: '/docs/netzo/auth' },
         { text: '<code>cli</code>', link: '/docs/netzo/cli' },
         {
           text: '<code>components</code>',
