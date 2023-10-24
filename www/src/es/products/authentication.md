@@ -8,7 +8,7 @@ hero:
   tagline: Olvidate de la molestias de gestionar usuarios y autenticación. Crea portales atractivos que mejoran la interacción con clientes, proveedores, socios y colaboradores.
   image:
     src: /images/products/authentication.svg
-    alt: Netzo Authentication Module
+    alt: Netzo Authentication
   actions:
     - theme: brand
       text: Agenda una Llamada

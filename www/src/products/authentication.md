@@ -8,7 +8,7 @@ hero:
   tagline: Eliminate the hassle of managing users and authentication. Create beautiful portals that improve engagement with customers, vendors, partners, and suppliers.
   image:
     src: /images/products/authentication.svg
-    alt: Netzo Authentication Module
+    alt: Netzo Authentication
   actions:
     - theme: brand
       text: Book a Call

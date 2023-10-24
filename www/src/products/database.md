@@ -6,6 +6,9 @@ hero:
   name: Database
   text: Simplify your data management
   tagline: Config free, dedicated and scalable databases for every app you build in Netzo.
+  image:
+    src: /images/products/databases.svg
+    alt: Netzo Databases
   actions:
     - theme: brand
       text: Book a Call
