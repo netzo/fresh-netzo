@@ -1,15 +1,14 @@
 import type { JSX } from "preact";
 import { PageProps } from "$fresh/server.ts";
 import { AuthForm } from "../components/AuthForm.tsx";
-import { AuthState } from "../plugin.ts";
+import { NetzoState } from "netzo/config.ts";
 import { cn } from "netzo/components/utils.ts";
 import { buttonVariants } from "netzo/components/ui/button.tsx";
 
-export type AuthPageProps = PageProps<unknown, AuthState>;
+export type AuthPageProps = PageProps<unknown, NetzoState>;
 
 export default (props: AuthPageProps) => {
-  const { sessionId, isAuthenticated, options } = props.state;
-  const { title, description, favicon, image } = options?.meta ?? {};
+  const { title, description, favicon, image } = props.state?.meta ?? {};
   return (
     <div className="h-[100dvh] w-[100dvw] flex flex-col bg-muted">
       <header className="flex justify-between items-center p-4">

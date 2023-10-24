@@ -3,7 +3,7 @@ import type { State } from "@/plugins/session.ts";
 import { Status } from "$fresh/server.ts";
 import { errors, isHttpError } from "std/http/http_errors.ts";
 import { redirect } from "netzo/auth/utils/http.ts";
-import { AuthOptions } from "netzo/auth/plugin.ts";
+import { NetzoConfig } from "netzo/config.ts";
 
 /**
  * Returns the converted HTTP error response from the given error. If the error
@@ -42,7 +42,7 @@ export function toErrorResponse(error: any) {
     : new Response(error.message, { status: Status.InternalServerError });
 }
 
-export default (_options: AuthOptions): Plugin => {
+export default (_config: NetzoConfig): Plugin => {
   return {
     name: "error-handling",
     middlewares: [

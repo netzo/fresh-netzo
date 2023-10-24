@@ -1,9 +1,9 @@
 import type { Plugin } from "$fresh/server.ts";
 import { isGitHubSetup } from "netzo/auth/utils/github.ts";
 import { redirect } from "netzo/auth/utils/http.ts";
-import { AuthOptions } from "netzo/auth/plugin.ts";
+import { NetzoConfig } from "netzo/config.ts";
 
-export default (_options: AuthOptions): Plugin => {
+export default (_config: NetzoConfig): Plugin => {
   return {
     name: "welcome",
     middlewares: [{

@@ -1,7 +1,7 @@
 import type { Plugin } from "$fresh/server.ts";
-import { AuthOptions } from "netzo/auth/plugin.ts";
+import { NetzoConfig } from "netzo/config.ts";
 
-export default (_options: AuthOptions): Plugin => {
+export default (_config: NetzoConfig): Plugin => {
   return {
     name: "security-headers",
     middlewares: [
@@ -10,7 +10,7 @@ export default (_options: AuthOptions): Plugin => {
         middleware: {
           handler: async (req, ctx) => {
             if (
-              ctx.destination !== "route" ||
+              !["route"].includes(ctx.destination) ||
               new URL(req.url).pathname.startsWith("/api")
             ) return await ctx.next();
 

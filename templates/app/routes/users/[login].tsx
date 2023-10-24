@@ -1,4 +1,4 @@
-import type { State } from "netzo/auth/plugins/session.ts";
+import type { AuthState } from "netzo/auth/plugins/session.ts";
 import { getUser } from "netzo/auth/utils/db.ts";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { LINK_STYLES } from "netzo/auth/utils/constants.ts";
@@ -33,13 +33,13 @@ function UserProfile(props: UserProfileProps) {
   );
 }
 
-export default defineRoute<State>(
+export default defineRoute<AuthState>(
   async (_req, ctx) => {
     const { login } = ctx.params;
     const user = await getUser(login);
     if (user === null) return await ctx.renderNotFound();
 
-    const isSignedIn = ctx.state.sessionUser !== undefined;
+    const isSignedIn = ctx.state.auth.sessionUser !== undefined;
     const endpoint = `/api/users/${login}/items`;
 
     return (

@@ -5,26 +5,35 @@ import { error, LOGS } from "./cli/src/console.ts";
 import {
   type VisibilityOptions,
   visibilityPlugins,
+  VisibilityState,
 } from "./visibility/plugin.ts";
 import {
   type AuthOptions,
   authPlugins,
+  AuthState,
 } from "./auth/plugin.ts";
-import { type DatabaseOptions, databasePlugins } from "./database/plugin.ts";
+import { type DatabaseOptions, databasePlugins, DatabaseState } from "./database/plugin.ts";
 import { setEnvVars } from "./utils/mod.ts";
 import { Project } from "netzo/cli/deps.ts";
 
 export interface NetzoConfig extends FreshConfig {
   project: string;
-  visibility?: VisibilityOptions;
-  auth?: AuthOptions;
-  database?: DatabaseOptions;
+  visibility: VisibilityOptions;
+  auth: AuthOptions;
+  database: DatabaseOptions;
   [k: string]: unknown;
 }
 
+export interface NetzoState {
+  config: NetzoConfig;
+  visibility: VisibilityState;
+  auth: AuthState;
+  database: DatabaseState;
+}
+
 export async function defineNetzoConfig(
-  config: NetzoConfig,
-): Promise<NetzoConfig> {
+  partialConfig: NetzoConfig,
+): Promise<Required<NetzoConfig>> {
   const NETZO_ENV = Deno.env.get("DENO_REGION") ? "production" : "development";
   const NETZO_API_KEY = Deno.env.get("NETZO_API_KEY");
   if (!NETZO_API_KEY) error(LOGS.missingApiKey);
@@ -37,45 +46,49 @@ export async function defineNetzoConfig(
     auth = {},
     database = {},
     plugins = [],
-  } = config;
+  } = partialConfig;
 
   Deno.env.set("NETZO_ENV", NETZO_ENV);
   Deno.env.set("NETZO_PROJECT", NETZO_PROJECT);
   Deno.env.set("NETZO_API_KEY", NETZO_API_KEY);
   Deno.env.set("NETZO_API_URL", NETZO_API_URL || "https://api.netzo.io");
 
-  // TODO: inject project.config.envVarsLocal here
-  // see https://github.com/netzo/app/issues/396
-  // and https://github.com/netzo/netzo/issues/44
   const { api } = netzo({ apiKey: NETZO_API_KEY, baseURL: NETZO_API_URL });
+
   // project includes config.env.development.envVars resolved with variables
   const project = await api.projects.get<Project>({
     uid: NETZO_PROJECT,
     $limit: 1,
   }).then((result) => result?.data?.[0]);
   if (!project) error(LOGS.notFoundProject);
-  const { envVars, variables } = project.config.env.development ?? {};
+
+  const { envVars, variables } = project.partialConfig.env.development ?? {};
   setEnvVars({ ...envVars, ...variables });
-  const visibilityOptions = deepMerge<VisibilityOptions>(
-    visibility,
-    project?.visibility ?? {},
-  );
-  const authOptions = deepMerge<AuthOptions>(
-    auth,
-    project?.config?.auth ?? {},
-  );
-  const databaseOptions = deepMerge<DatabaseOptions>(
-    database,
-    project?.config?.database ?? {},
-  );
+
+  const config: NetzoConfig = {
+    ...partialConfig,
+    project: NETZO_PROJECT,
+    visibility: deepMerge<VisibilityOptions>(
+      visibility,
+      project?.visibility ?? {},
+    )!,
+    auth: deepMerge<AuthOptions>(
+      auth,
+      project?.config?.auth ?? {},
+    )!,
+    database: deepMerge<DatabaseOptions>(
+      database,
+      project?.config?.database ?? {},
+    )!
+  };
 
   return {
     ...config,
     plugins: [
       ...[
-        ...visibilityPlugins(visibilityOptions),
-        ...authPlugins(authOptions),
-        ...databasePlugins(databaseOptions),
+        ...visibilityPlugins(config),
+        ...authPlugins(config),
+        ...databasePlugins(config),
       ].filter((mod) => !!mod),
       ...plugins, // eventual overrides to netzo modules
     ],

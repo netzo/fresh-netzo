@@ -1,9 +1,9 @@
-import type { State } from "netzo/auth/plugins/session.ts";
+import type { AuthState } from "netzo/auth/plugins/session.ts";
 import Head from "netzo/auth/components/Head.tsx";
 import { defineRoute } from "$fresh/server.ts";
 
-export default defineRoute<State>((_req, ctx) => {
-  const isSignedIn = ctx.state.sessionUser !== undefined;
+export default defineRoute<AuthState>((_req, ctx) => {
+  const isSignedIn = ctx.state.auth.sessionUser !== undefined;
   const endpoint = "/api/items";
 
   return (

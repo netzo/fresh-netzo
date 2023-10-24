@@ -1,4 +1,5 @@
 import type { Plugin } from "$fresh/server.ts";
+import type { NetzoConfig } from "netzo/config.ts";
 
 /*
 The following lists the possible header combinations when
@@ -30,15 +31,14 @@ export type VisibilityOptions = {
   tokens?: string[]; // only for "protected" visibility
 };
 
-export interface VisibilityState {
-  options: VisibilityOptions;
-}
+// deno-lint-ignore no-empty-interface
+export interface VisibilityState {}
 
 /**
  * A fresh plugin that registers middleware to handle
  * visibility of projects based on the `visibility` option.
  */
-export const visibilityPlugins = (options: VisibilityOptions): Plugin[] => {
+export const visibilityPlugins = (config: NetzoConfig): Plugin[] => {
   return [
     {
       name: "visibility-plugin",
@@ -50,6 +50,9 @@ export const visibilityPlugins = (options: VisibilityOptions): Plugin[] => {
               if (!Deno.env.get("DENO_REGION")) return await ctx.next(); // skip in development
 
               if (!["route"].includes(ctx.destination)) return await ctx.next();
+
+              const { level } = config.visibility!;
+              const { tokens } = config.visibility! as Extract<VisibilityOptions, { level: "protected" }>;
 
               const url = new URL(req.url);
               const token = req.headers.get("x-token") ??
@@ -64,11 +67,11 @@ export const visibilityPlugins = (options: VisibilityOptions): Plugin[] => {
                 !!url && new URL(url).host.endsWith("netzo.io");
               const is = { app: isApp(origin!) || isApp(referer!) };
 
-              // console.debug({ destination: ctx.destination, options, origin, referer, is });
+              // console.debug({ destination: ctx.destination, origin, referer, is });
 
-              ctx.state = { options };
+              ctx.state = { config };
 
-              switch (options.level) {
+              switch (level) {
                 case "private": {
                   if (!is.app) {
                     throw new Error(
@@ -79,12 +82,12 @@ export const visibilityPlugins = (options: VisibilityOptions): Plugin[] => {
                 }
                 case "protected": {
                   if (!is.app) {
-                    if (!options.tokens?.length) {
+                    if (!tokens?.length) {
                       throw new Error(
                         "Missing required option 'tokens' in auth plugin",
                       );
                     }
-                    if (!options.tokens.includes(token!)) {
+                    if (!tokens.includes(token!)) {
                       throw new Error(
                         "Protected deployments require a valid token",
                       );

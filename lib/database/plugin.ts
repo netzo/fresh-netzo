@@ -1,6 +1,7 @@
 import type { Plugin } from "$fresh/server.ts";
+import type { NetzoConfig } from "netzo/config.ts";
 import { createDatabase } from "./mod.ts";
-import { parseBody } from "netzo/database/utils.ts";
+import { parseRequestBody } from "netzo/utils/mod.ts";
 
 export type DatabaseServiceOptions = {
   name: string; // automatically converted to kebab-case
@@ -14,9 +15,8 @@ export type DatabaseOptions = {
   services: DatabaseServiceOptions[];
 };
 
-export interface DatabaseState {
-  options: DatabaseOptions;
-}
+// deno-lint-ignore no-empty-interface
+export interface DatabaseState {}
 
 const DENO_KV_PATH_KEY = "DENO_KV_PATH";
 
@@ -45,7 +45,7 @@ const notAllowed = () => new Response("Method not allowed", { status: 405 });
  * - `PATCH /db/[resource]/[id]` patch a record of a resource by id
  * - `DELETE /db/[resource]/[id]` delete a record of a resource by id
  */
-export const databasePlugins = (options: DatabaseOptions): Plugin[] => {
+export const databasePlugins = (_config: NetzoConfig): Plugin[] => {
   return [
     {
       name: "database-plugin",
@@ -55,7 +55,7 @@ export const databasePlugins = (options: DatabaseOptions): Plugin[] => {
           middleware: {
             handler: async (req, ctx) => {
               if (!["route"].includes(ctx.destination)) return await ctx.next();
-              const methods = METHODS; // TODO: get methods from ctx.state.options
+              const methods = METHODS; // TODO: get methods from ctx.state.database
               if (!methods.includes(req.method)) return notAllowed();
               return await ctx.next();
             },
@@ -69,14 +69,12 @@ export const databasePlugins = (options: DatabaseOptions): Plugin[] => {
             async GET(_req, ctx) {
               const { resource } = ctx.params;
               const result = await db.find(resource, {});
-              ctx.state = { options };
               return Response.json(result);
             },
             async POST(req, ctx) {
               const { resource } = ctx.params;
-              const data = await parseBody(req);
+              const data = await parseRequestBody(req);
               const result = await db.create(resource, data, "id");
-              ctx.state = { options };
               return Response.json(result);
             },
           },
@@ -87,27 +85,23 @@ export const databasePlugins = (options: DatabaseOptions): Plugin[] => {
             async GET(_req, ctx) {
               const { resource, id } = ctx.params;
               const result = await db.get(resource, id);
-              ctx.state = { options };
               return Response.json(result);
             },
             async PUT(req, ctx) {
               const { resource, id } = ctx.params;
-              const data = await parseBody(req);
+              const data = await parseRequestBody(req);
               const result = await db.update(resource, id, data);
-              ctx.state = { options };
               return Response.json(result);
             },
             async PATCH(req, ctx) {
               const { resource, id } = ctx.params;
-              const data = await parseBody(req);
+              const data = await parseRequestBody(req);
               const result = await db.patch(resource, id, data);
-              ctx.state = { options };
               return Response.json(result);
             },
             async DELETE(_req, ctx) {
               const { resource, id } = ctx.params;
               await db.remove(resource, id);
-              ctx.state = { options };
               return Response.json({ id });
             },
           },
