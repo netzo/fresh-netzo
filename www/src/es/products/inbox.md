@@ -6,9 +6,9 @@ hero:
   name: Inbox
   text: Un solo lugar, todas tus notificaciones
   tagline: Vista en tiempo real de todas las notificaciones de tus aplicaciones. Agrega notificaciones a tus aplicaciones y recíbelas en Netzo para mantener el control.
-  # image:
-  #   src: /images/home/3-share.svg
-  #   alt: Inbox
+  image:
+    src: /images/products/inbox.svg
+    alt: Netzo Inbox
   actions:
     - theme: brand
       text: Agenda una Llamada

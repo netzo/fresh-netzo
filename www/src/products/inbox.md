@@ -6,9 +6,9 @@ hero:
   name: Inbox
   text: Never miss a notification again
   tagline: Real-time view of all your app notifications. Add notifications to your apps and receive them in Netzo to stay in control.
-  # image:
-  #   src: /images/home/3-share.svg
-  #   alt: Inbox
+  image:
+    src: /images/products/inbox.svg
+    alt: Netzo Inbox
   actions:
     - theme: brand
       text: Book a Call
