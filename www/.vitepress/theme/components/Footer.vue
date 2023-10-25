@@ -33,7 +33,7 @@ const {
 </script>
 
 <template>
-  <footer>
+  <footer id="footer">
     <div class="container">
       <div v-for="(item, i) in items" :key="`footer-items-${i}`" class="footer-items">
         <h2 v-if="item.text" class="text" v-html="item.text" />
