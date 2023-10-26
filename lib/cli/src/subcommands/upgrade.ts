@@ -1,5 +1,5 @@
 import { error } from "../console.ts";
-import { semverGreaterThanOrEquals, isSemVer } from "../../deps.ts";
+import { isSemVer, semverGreaterThanOrEquals } from "../../deps.ts";
 import { VERSION } from "../version.ts";
 
 const help = `netzo upgrade
@@ -23,7 +23,7 @@ ARGS:
     <version>    The version to upgrade to (defaults to latest)
 `;
 
-export interface Args {
+export type Args = {
   help: boolean;
 }
 

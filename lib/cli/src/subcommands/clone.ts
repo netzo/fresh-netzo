@@ -27,7 +27,7 @@ ARGS:
     <directory>               The directory path to clone project to (defaults to --project)
 `;
 
-export interface Args {
+export type Args = {
   help: boolean;
   project: string | null;
   dryRun: boolean;

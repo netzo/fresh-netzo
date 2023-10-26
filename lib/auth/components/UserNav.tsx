@@ -19,7 +19,7 @@ import type { HeaderProps } from "netzo/auth/components/Header.tsx";
 
 export function UserNav(props: HeaderProps) {
   if (!props.sessionUser) return undefined;
-  return (<div>{props.sessionUser}</div>)
+  return <div>{props.sessionUser}</div>;
   // return (
   //   <DropdownMenu>
   //     <DropdownMenuTrigger asChild>

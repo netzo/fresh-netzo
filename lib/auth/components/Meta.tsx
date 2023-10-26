@@ -1,4 +1,4 @@
-export interface MetaProps {
+export type MetaProps = {
   /** Title of the current page */
   title: string;
   /** Description of the current page */
@@ -7,7 +7,7 @@ export interface MetaProps {
   href: string;
   /** URL of the cover image */
   imageUrl: string;
-}
+};
 
 export default function Meta(props: MetaProps) {
   return (

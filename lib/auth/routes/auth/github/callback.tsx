@@ -13,10 +13,10 @@ import {
   getRedirectUrlCookie,
 } from "netzo/auth/utils/redirect.ts";
 
-interface GitHubUser {
+type GitHubUser = {
   login: string;
   email: string;
-}
+};
 
 async function getGitHubUser(accessToken: string): Promise<GitHubUser> {
   const response = await fetch("https://api.github.com/user", {

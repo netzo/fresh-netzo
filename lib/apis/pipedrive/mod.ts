@@ -1,10 +1,10 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
 
-export interface PipeDriveOptions {
+export type PipeDriveOptions = {
   apiToken: string;
   companyDomain: string;
-}
+};
 
 /**
  * SDK constructor function for the Pipedrive API

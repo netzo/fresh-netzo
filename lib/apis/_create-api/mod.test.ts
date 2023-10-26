@@ -7,12 +7,12 @@ import {
 import { createApi } from "./mod.ts";
 import { auth } from "./auth/mod.ts";
 
-interface Todo {
+type Todo = {
   userId: number;
   id: number;
   title: string;
   completed: boolean;
-} // used to test typed results (via generics)
+}; // used to test typed results (via generics)
 
 Deno.test("createApi", async (t) => {
   const api = createApi({

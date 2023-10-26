@@ -1,6 +1,6 @@
 import type { ErrorPageProps, UnknownPageProps } from "$fresh/server.ts";
 
-interface Props {
+type Props = {
   code: number;
   name: string;
   children: preact.ComponentChildren;

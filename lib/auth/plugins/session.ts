@@ -12,7 +12,10 @@ export function assertSignedIn(state: NetzoState) {
   }
 }
 
-async function setSessionState(req: Request, ctx: MiddlewareHandlerContext<NetzoState>) {
+async function setSessionState(
+  req: Request,
+  ctx: MiddlewareHandlerContext<NetzoState>,
+) {
   if (!["route"].includes(ctx.destination)) return await ctx.next();
 
   const sessionId = await getSessionId(req);
@@ -46,7 +49,7 @@ export async function ensureSignedIn(
   if (url.pathname.startsWith("/oauth/")) return await ctx.next();
 
   // check auth state
-  const {sessionId } = ctx.state.auth;
+  const { sessionId } = ctx.state.auth;
   const isAuthenticated = sessionId !== undefined;
 
   console.log({ isAuthenticated, sessionId });

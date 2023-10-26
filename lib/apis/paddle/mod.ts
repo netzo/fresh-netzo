@@ -2,10 +2,10 @@ import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
 // TODO: import type { } from "./types.ts";
 
-export interface PaddleOptions {
+export type PaddleOptions = {
   apiKey: string;
   baseURL?: string;
-}
+};
 
 /**
  * SDK constructor function for the Paddle API

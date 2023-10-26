@@ -1,7 +1,7 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
 
-export interface GooglesheetsOptions {
+export type GooglesheetsOptions = {
   googleServiceAccountCredentials: string;
   scope?: Array<
     | "drive"
@@ -11,7 +11,7 @@ export interface GooglesheetsOptions {
     | "spreadsheets.readonly"
   >;
   spreadsheetId: string;
-}
+};
 
 /**
  * SDK constructor function for the Google Sheets API
@@ -48,11 +48,11 @@ export const googlesheets = ({
   });
 
   // see https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets.values
-  interface Result {
+  type Result = {
     range: string;
     majorDimension: "COLUMNS" | "ROWS";
     values: string[][];
-  }
+  };
 
   const resultToRows = (result: Result, headers?: string[]) => {
     let keys: string[];

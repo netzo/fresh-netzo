@@ -1,10 +1,10 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
 
-export interface WhatsappBusinessOptions {
+export type WhatsappBusinessOptions = {
   businessAccountId: string;
   permanentToken: string;
-}
+};
 
 /**
  * SDK constructor function for the WhatsApp Business API

@@ -64,7 +64,7 @@ ARGS:
     <entrypoint>                  The file path to the entrypoint file (e.g. main.tsx)
 `;
 
-export interface Args {
+export type Args = {
   help: boolean;
   static: boolean;
   prod: boolean;
@@ -146,7 +146,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
   );
 }
 
-interface DeployOpts {
+type DeployOpts = {
   entrypoint: URL;
   importMapUrl: URL | null;
   static: boolean;

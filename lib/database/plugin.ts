@@ -15,8 +15,7 @@ export type DatabaseOptions = {
   services: DatabaseServiceOptions[];
 };
 
-// deno-lint-ignore no-empty-interface
-export interface DatabaseState {}
+export type DatabaseState = {}
 
 const DENO_KV_PATH_KEY = "DENO_KV_PATH";
 

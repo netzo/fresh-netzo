@@ -1,9 +1,9 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
 
-export interface FathomAnalyticsOptions {
+export type FathomAnalyticsOptions = {
   apiKey: string;
-}
+};
 
 /**
  * SDK constructor function for the Fathom Analytics API

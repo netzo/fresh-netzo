@@ -33,7 +33,7 @@ ARGS:
     <envPath>                     The file path to the env file (defaults to .env)
 `;
 
-export interface Args {
+export type Args = {
   help: boolean;
   project: string | null;
   apiKey: string | null;
@@ -87,7 +87,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
   );
 }
 
-interface SyncEnvOpts {
+type SyncEnvOpts = {
   envPath: string;
   project: string;
   apiKey: string;

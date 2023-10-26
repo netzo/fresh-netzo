@@ -1,11 +1,11 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
 
-export interface WixOptions {
+export type WixOptions = {
   accountId: string;
   siteId: string;
   apiKey: string;
-}
+};
 
 /**
  * SDK constructor function for the Wix API

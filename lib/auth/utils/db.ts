@@ -26,14 +26,14 @@ export async function collectValues<T>(iter: Deno.KvListIterator<T>) {
 }
 
 // Item
-export interface Item {
+export type Item = {
   // Uses ULID
   id: string;
   userLogin: string;
   title: string;
   url: string;
   score: number;
-}
+};
 
 /** For testing */
 export function randomItem(): Item {
@@ -142,10 +142,10 @@ export function listItemsByUser(
 }
 
 // Vote
-export interface Vote {
+export type Vote = {
   itemId: string;
   userLogin: string;
-}
+};
 
 /**
  * Creates a vote in the database. Throws if the given item or user doesn't
@@ -219,7 +219,7 @@ export function listItemsVotedByUser(userLogin: string) {
 }
 
 // User
-export interface User {
+export type User = {
   // AKA username
   login: string;
   sessionId: string;
@@ -228,7 +228,7 @@ export interface User {
    * @default {false}
    */
   isSubscribed: boolean;
-}
+};
 
 /** For testing */
 export function randomUser(): User {

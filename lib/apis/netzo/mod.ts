@@ -2,10 +2,10 @@ import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
 import type { Notification } from "./types.ts";
 
-export interface NetzoOptions {
+export type NetzoOptions = {
   apiKey: string;
   baseURL?: string;
-}
+};
 
 /**
  * SDK constructor function for the Netzo API

@@ -1,12 +1,12 @@
 import { SITE_BAR_STYLES, SITE_NAME } from "netzo/auth/utils/constants.ts";
 
-export interface FooterProps {
+export type FooterProps = {
   /**
    * URL of the current page. This is used for highlighting the currently
    * active page in navigation.
    */
   url: URL;
-}
+};
 
 export default function Footer(props: FooterProps) {
   return (

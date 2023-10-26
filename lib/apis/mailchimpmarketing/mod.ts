@@ -1,10 +1,10 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
 
-export interface MailchimpOptions {
+export type MailchimpOptions = {
   marketingApiKey: string;
   dataCenter: string;
-}
+};
 
 /**
  * SDK constructor function for the Mailchimp API

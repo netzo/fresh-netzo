@@ -14,11 +14,11 @@ export type AuthOptions = {
   oauth2: OAuth2ClientConfig;
 };
 
-export interface AuthState extends MetaProps {
+export type AuthState = MetaProps & {
   sessionId?: string;
   sessionUser?: User;
   isAuthenticated?: boolean;
-}
+};
 
 /**
  * A fresh plugin that registers middleware and handlers to

@@ -27,7 +27,7 @@ OPTIONS:
         --api-key      The API key to use (defaults to NETZO_API_KEY environment variable)
 `;
 
-export interface Args {
+export type Args = {
   help: boolean;
   prod: boolean;
   deployment: string | null;
@@ -76,7 +76,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
   await logs(opts);
 }
 
-interface LogsOpts {
+type LogsOpts = {
   project: string;
   deploymentId: string | null;
   prod: boolean;

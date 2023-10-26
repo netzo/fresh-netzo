@@ -1,7 +1,7 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
 
-export interface GoogledriveOptions {
+export type GoogledriveOptions = {
   googleServiceAccountCredentials: string;
   scope?: Array<
     | "drive"
@@ -13,7 +13,7 @@ export interface GoogledriveOptions {
     | "drive.readonly"
     | "drive.scripts"
   >;
-}
+};
 
 /**
  * SDK constructor function for the Google Drive API

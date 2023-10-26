@@ -6,7 +6,7 @@ import {
 } from "https://esm.sh/ufo@1.2.0";
 
 import type {
-  ApiBuilder,
+  ApiClient,
   ApiMethodHandler,
   ApiMethodHandlerGET,
   ResponseType,
@@ -25,11 +25,11 @@ const payloadMethods: ReadonlyArray<string> = [
  */
 export function createApi<R extends ResponseType = "json">(
   defaultOptions: Omit<FetchOptions<R>, "method"> = {},
-): ApiBuilder {
+): ApiClient {
   // Callable internal target required to use `apply` on it
-  const internalTarget = (() => {}) as ApiBuilder;
+  const internalTarget = (() => {}) as ApiClient;
 
-  function p(url: string): ApiBuilder {
+  function p(url: string): ApiClient {
     return new Proxy(internalTarget, {
       get(_target, key: string) {
         const method = String(key).toUpperCase();

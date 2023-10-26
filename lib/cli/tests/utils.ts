@@ -1,4 +1,4 @@
-export interface Permissions {
+export type Permissions = {
   net: boolean;
   read: boolean;
   write: boolean;
@@ -41,7 +41,7 @@ export function netzo(
   }).spawn();
 }
 
-export interface TestOptions {
+export type TestOptions = {
   args: string[];
   name?: string;
   permissions?: Permissions;

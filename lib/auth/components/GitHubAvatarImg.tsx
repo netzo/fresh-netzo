@@ -1,11 +1,11 @@
-export interface GitHubAvatarImgProps {
+export type GitHubAvatarImgProps = {
   /** The GitHub user's username */
   login: string;
   /** The height and width (1:1 ratio) of the image, in pixels */
   size: number;
   /** Additional classes */
   class?: string;
-}
+};
 
 export default function GitHubAvatarImg(props: GitHubAvatarImgProps) {
   return (

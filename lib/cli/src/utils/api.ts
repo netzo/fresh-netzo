@@ -12,7 +12,7 @@ import type {
   Project,
 } from "../../deps.ts";
 
-export interface RequestOptions {
+export type RequestOptions = {
   method?: string;
   body?: unknown;
 }

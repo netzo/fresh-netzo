@@ -1,9 +1,6 @@
 import type { Handlers } from "$fresh/server.ts";
 import type { NetzoState } from "netzo/config.ts";
-import {
-  redirect,
-  setRedirectUrlCookie,
-} from "netzo/auth/utils/redirect.ts";
+import { redirect, setRedirectUrlCookie } from "netzo/auth/utils/redirect.ts";
 import { signIn } from "deno_kv_oauth/mod.ts";
 import { oauth2Client } from "netzo/auth/utils/oauth2_client.ts";
 

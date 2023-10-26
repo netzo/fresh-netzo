@@ -1,10 +1,10 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
 
-export interface GoogleappsheetOptions {
+export type GoogleappsheetOptions = {
   appId: string;
   applicationAccessKey: string;
-}
+};
 
 /**
  * SDK constructor function for the Google Appsheet API

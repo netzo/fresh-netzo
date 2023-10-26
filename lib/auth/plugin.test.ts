@@ -34,7 +34,9 @@ Deno.test("authPlugin() works with default values", () => {
 Deno.test("authPlugin() correctly handles the sign-in path", async () => {
   const request = new Request("http://example.com/oauth/signin");
   const plugin = authPlugin({ oauth2: randomOAuthConfig() });
-  const handler = plugin.routes!.find((route) => route.path === "/oauth/signin")!
+  const handler = plugin.routes!.find((route) =>
+    route.path === "/oauth/signin"
+  )!
     .handler as Handler<undefined, undefined>;
   // @ts-ignore Trust me
   const response = await handler(request);

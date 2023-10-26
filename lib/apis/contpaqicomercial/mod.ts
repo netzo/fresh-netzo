@@ -1,10 +1,10 @@
 import { createApi } from "../_create-api/mod.js";
 import { auth } from "../_create-api/auth/mod.js";
 
-export interface ContpaqiComercialOptions {
+export type ContpaqiComercialOptions = {
   apiKey: string;
   companyRfc: string;
-}
+};
 
 /**
  * SDK constructor function for the ContpaqiComercial API

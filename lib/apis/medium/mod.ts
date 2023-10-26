@@ -1,9 +1,9 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
 
-export interface MediumOptions {
+export type MediumOptions = {
   accessToken: string;
-}
+};
 
 /**
  * SDK constructor function for the Medium API

@@ -11,7 +11,7 @@ import { cx } from "@twind/core";
 import { User } from "netzo/auth/utils/db.ts";
 import { UserNav } from "@/islands/UserNav.tsx";
 
-export interface HeaderProps {
+export type HeaderProps = {
   /** Currently signed-in user */
   sessionUser?: User;
   /**
@@ -19,7 +19,7 @@ export interface HeaderProps {
    * active page in navigation.
    */
   url: URL;
-}
+};
 
 export default function Header(props: HeaderProps) {
   const NAV_ITEM = "text-gray-500 px-3 py-4 sm:py-2";

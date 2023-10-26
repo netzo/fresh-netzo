@@ -4,11 +4,11 @@ import type { QueryObject } from "https://esm.sh/ufo@1.2.0";
 
 export type { FetchContext, FetchOptions };
 
-export interface ResponseMap {
+export type ResponseMap = {
   blob: Blob;
   text: string;
   arrayBuffer: ArrayBuffer;
-}
+};
 
 export type ResponseType = keyof ResponseMap | "json";
 export type MappedType<R extends ResponseType, JsonType = any> = R extends
@@ -31,9 +31,9 @@ export type ApiMethodHandler<Data = never, Query = QueryObject> = <
   options?: Omit<FetchOptions<R>, "baseURL" | "method">,
 ) => Promise<MappedType<R, T>>;
 
-export type ApiBuilder = {
-  [key: string]: ApiBuilder;
-  (...segmentsOrIds: (string | number)[]): ApiBuilder;
+export type ApiClient = {
+  [key: string]: ApiClient;
+  (...segmentsOrIds: (string | number)[]): ApiClient;
 } & {
   get: ApiMethodHandlerGET<FetchOptions["query"]>;
   post: ApiMethodHandler<FetchOptions["body"], FetchOptions["query"]>;

@@ -3,14 +3,14 @@ import type { Plugin } from "https://deno.land/x/fresh@1.5.2/server.ts";
 import { NetzoConfig } from "../../config.ts";
 import AppLayout from "./app-layout.tsx";
 
-export interface AppLayoutOptions {
+export type AppLayoutOptions = {
   title?: string;
   description?: string;
   favicon?: string;
   image?: JSX.HTMLAttributes<HTMLImageElement>;
 }
 
-export interface AppLayoutState {
+export type AppLayoutState = {
   options: NetzoConfig;
   sessionId: string;
   isAuthenticated: boolean;

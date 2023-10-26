@@ -16,7 +16,7 @@ import {
   IconSpinner,
 } from "./icons.tsx";
 
-// export interface AuthFormProps extends JSX.HTMLAttributes<HTMLDivElement> {}
+// export type AuthFormProps = JSX.HTMLAttributes<HTMLDivElement> & {}
 
 export function AuthForm(props: AuthPageProps) {
   const { providers = {} } = props.state?.options ?? {};

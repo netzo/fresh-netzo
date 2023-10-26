@@ -31,8 +31,7 @@ export type VisibilityOptions = {
   tokens?: string[]; // only for "protected" visibility
 };
 
-// deno-lint-ignore no-empty-interface
-export interface VisibilityState {}
+export type VisibilityState = {}
 
 /**
  * A fresh plugin that registers middleware to handle
@@ -52,7 +51,10 @@ export const visibilityPlugins = (config: NetzoConfig): Plugin[] => {
               if (!["route"].includes(ctx.destination)) return await ctx.next();
 
               const { level } = config.visibility!;
-              const { tokens } = config.visibility! as Extract<VisibilityOptions, { level: "protected" }>;
+              const { tokens } = config.visibility! as Extract<
+                VisibilityOptions,
+                { level: "protected" }
+              >;
 
               const url = new URL(req.url);
               const token = req.headers.get("x-token") ??

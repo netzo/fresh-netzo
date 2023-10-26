@@ -1,9 +1,6 @@
 import { Head as _Head } from "$fresh/runtime.ts";
 import Meta, { type MetaProps } from "./Meta.tsx";
-import {
-  SITE_DESCRIPTION,
-  SITE_NAME,
-} from "netzo/auth/utils/constants.ts";
+import { SITE_DESCRIPTION, SITE_NAME } from "netzo/auth/utils/constants.ts";
 import { ComponentChildren } from "preact";
 
 export type HeadProps =

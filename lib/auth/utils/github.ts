@@ -10,10 +10,10 @@ export function isGitHubSetup() {
   }
 }
 
-interface GitHubUser {
+type GitHubUser = {
   login: string;
   email: string;
-}
+};
 
 /**
  * Returns the GitHub profile information of the user with the given access

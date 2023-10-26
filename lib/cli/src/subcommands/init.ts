@@ -28,7 +28,7 @@ ARGS:
     <directory>      The directory path to initialize project in (defaults to --template)
 `;
 
-export interface Args {
+export type Args = {
   help: boolean;
   template: string | null;
   dryRun: boolean;

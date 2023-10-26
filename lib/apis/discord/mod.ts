@@ -1,10 +1,10 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
 
-export interface DiscordOptions {
+export type DiscordOptions = {
   tokenType: string;
   token: string;
-}
+};
 
 /**
  * SDK constructor function for the Discord API

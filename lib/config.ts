@@ -7,16 +7,16 @@ import {
   visibilityPlugins,
   VisibilityState,
 } from "./visibility/plugin.ts";
+import { type AuthOptions, authPlugins, AuthState } from "./auth/plugin.ts";
 import {
-  type AuthOptions,
-  authPlugins,
-  AuthState,
-} from "./auth/plugin.ts";
-import { type DatabaseOptions, databasePlugins, DatabaseState } from "./database/plugin.ts";
+  type DatabaseOptions,
+  databasePlugins,
+  DatabaseState,
+} from "./database/plugin.ts";
 import { setEnvVars } from "./utils/mod.ts";
 import { Project } from "netzo/cli/deps.ts";
 
-export interface NetzoConfig extends FreshConfig {
+export type NetzoConfig = FreshConfig & {
   project: string;
   visibility: VisibilityOptions;
   auth: AuthOptions;
@@ -24,7 +24,7 @@ export interface NetzoConfig extends FreshConfig {
   [k: string]: unknown;
 }
 
-export interface NetzoState {
+export type NetzoState = {
   config: NetzoConfig;
   visibility: VisibilityState;
   auth: AuthState;
@@ -79,7 +79,7 @@ export async function defineNetzoConfig(
     database: deepMerge<DatabaseOptions>(
       database,
       project?.config?.database ?? {},
-    )!
+    )!,
   };
 
   return {
