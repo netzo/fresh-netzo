@@ -13,7 +13,7 @@ export const navEN: DefaultTheme.NavItem[] = [
           { text: 'Apps', link: '/products/apps' },
           { text: 'Inbox', link: '/products/inbox' },
           { text: 'Projects', link: '/products/projects' },
-          { text: 'Storage (soon)', link: '/products/storage' },
+          // { text: 'Storage (soon)', link: '/products/storage' },
         ],
       },
       {
@@ -59,7 +59,7 @@ export const navEN: DefaultTheme.NavItem[] = [
   //     { text: '🌐 Websites', link: '/use-cases#websites-and-landing-pages' },
   //   ],
   // },
-  { text: 'Pricing', link: '/pricing' },
+  // { text: 'Pricing', link: '/pricing' },
   { text: 'Docs', link: '/docs/introduction/getting-started' },
 ]
 
@@ -74,7 +74,7 @@ export const navES: DefaultTheme.NavItem[] = [
           { text: 'Apps', link: '/es/products/apps' },
           { text: 'Inbox', link: '/es/products/inbox' },
           { text: 'Proyectos', link: '/es/products/projects' },
-          { text: 'Almacenamiento (próx.)', link: '/es/products/storage' },
+          // { text: 'Almacenamiento (próx.)', link: '/es/products/storage' },
         ],
       },
       {
@@ -83,7 +83,7 @@ export const navES: DefaultTheme.NavItem[] = [
           { text: 'Autenticación', link: '/es/products/authentication' },
           { text: 'Base de datos', link: '/es/products/database' },
           { text: 'Automatizaciones (próx.)', link: '/es/products/workflows' },
-          { text: 'Analiticas (próx.)', link: '/es/products/analytics' },
+          // { text: 'Analiticas (próx.)', link: '/es/products/analytics' },
         ],
       },
     ],
