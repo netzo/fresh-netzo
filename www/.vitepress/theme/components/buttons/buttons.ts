@@ -8,13 +8,14 @@ export const BUTTONS = {
   'nav-bar-cta': {
     variant: 'primary',
     text: 'Let\'s Talk',
-    onClick: () => sendChatMessageOrEmail(),
+    href: 'https://api.netzo.io/oauth/auth0?redirect=/',
+    // onClick: () => sendChatMessageOrEmail(),
     class: 'nav-bar-cta', // used to style the button
   },
   'lets-talk': {
     variant: 'primary',
     text: 'Let\'s Talk',
-    onClick: () => sendChatMessageOrEmail(),
+    // onClick: () => sendChatMessageOrEmail(),
   },
   'try-for-free': {
     variant: 'primary',
