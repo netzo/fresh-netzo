@@ -2,7 +2,7 @@ import {
   UnoGenerator,
   type UserConfig,
 } from "https://esm.sh/@unocss/core@0.55.1";
-import type { Plugin } from "https://deno.land/x/fresh@1.5.3/server.ts";
+import type { Plugin } from "https://deno.land/x/fresh@1.5.2/server.ts";
 
 // inline reset from https://esm.sh/@unocss/reset@0.54.2/tailwind.css
 const unoResetCSS = `/* reset */

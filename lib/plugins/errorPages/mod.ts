@@ -1,4 +1,4 @@
-import type { Plugin } from "https://deno.land/x/fresh@1.5.3/server.ts";
+import type { Plugin } from "https://deno.land/x/fresh@1.5.2/server.ts";
 import { ErrorPage404, ErrorPage500 } from "./error-pages.tsx";
 
 export type ErrorPagesOptions = {

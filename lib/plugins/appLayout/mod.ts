@@ -1,5 +1,5 @@
 import type { JSX } from "preact";
-import type { Plugin } from "https://deno.land/x/fresh@1.5.3/server.ts";
+import type { Plugin } from "https://deno.land/x/fresh@1.5.2/server.ts";
 import { NetzoConfig } from "../../config.ts";
 import AppLayout from "./app-layout.tsx";
 
