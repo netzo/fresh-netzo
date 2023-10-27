@@ -1,6 +1,6 @@
 import type { FreshConfig } from "https://deno.land/x/fresh@1.5.2/server.ts";
 import { deepMerge } from "https://deno.land/std@0.204.0/collections/deep_merge.ts";
-import { netzo } from "https://deno.land/x/netzo@0.2.52/apis/netzo/mod.ts";
+import { netzo } from "https://deno.land/x/netzo@0.2.53/apis/netzo/mod.ts";
 import { error, LOGS } from "./cli/src/console.ts";
 import {
   type VisibilityOptions,
