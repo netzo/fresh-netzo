@@ -167,6 +167,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
 
   const projectSpinner = wait("Fetching project information...").start();
   const { api } = netzo({ apiKey: opts.apiKey, baseURL: opts.apiUrl });
+  console.log(opts.project)
   const { data: [project] } = await api.projects.get<Paginated<Project>>({
     uid: opts.project,
     $limit: 1,
@@ -342,16 +343,15 @@ async function deploy(opts: DeployOpts): Promise<void> {
               console.log(` - https://${domain}`);
             }
 
-            // patch ALL project.files and project.config in netzo API:
+            // patch project.config in netzo API:
             // TODO: use .toJSON() method instead of JSON.parse/stringify
             // to unproxify/serialize (drops non-serializable properties)
             const netzoConfig = JSON.parse(JSON.stringify(opts.netzoConfig));
             await api.projects[project._id].patch<Project>({
               config: { ...project.config, ...netzoConfig },
-              files: projectFiles,
             });
             deploySpinner!.succeed(
-              `Patched project files (open in studio at https://app.netzo.io/workspaces/${project.workspaceId}/projects/${project._id}/studio)`,
+              `Open project in netzo at https://app.netzo.io/workspaces/${project.workspaceId}/projects/${project._id}`,
             );
             Deno.exit(0); // exits with success code 0
             break;

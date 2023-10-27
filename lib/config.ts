@@ -1,4 +1,4 @@
-import type { FreshConfig } from "https://deno.land/x/fresh@1.5.2/server.ts";
+import type { FreshConfig } from "https://deno.land/x/fresh@1.5.3/server.ts";
 import { deepMerge } from "https://deno.land/std@0.204.0/collections/deep_merge.ts";
 import { netzo } from "https://deno.land/x/netzo@v0.2.50/apis/netzo/mod.ts";
 import { error, LOGS } from "./cli/src/console.ts";
@@ -62,7 +62,7 @@ export async function defineNetzoConfig(
   }).then((result) => result?.data?.[0]);
   if (!project) error(LOGS.notFoundProject);
 
-  const { envVars, variables } = project.partialConfig.env.development ?? {};
+  const { envVars, variables } = project.config?.env?.development ?? {};
   setEnvVars({ ...envVars, ...variables });
 
   const config: NetzoConfig = {
