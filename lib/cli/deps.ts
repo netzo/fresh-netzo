@@ -23,6 +23,7 @@ export { config } from "https://deno.land/x/dotenv@v3.2.0/mod.ts";
 export {
   gte as semverGreaterThanOrEquals,
   isSemVer,
+  parse,
 } from "https://deno.land/std@0.204.0/semver/mod.ts";
 
 // x/wait

@@ -4,7 +4,7 @@ type Props = {
   code: number;
   name: string;
   children: preact.ComponentChildren;
-}
+};
 
 const ErrorPage = (props: Props) => {
   return (

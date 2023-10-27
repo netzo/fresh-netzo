@@ -12,7 +12,7 @@ const unoResetCSS = `/* reset */
 export type Config<T extends object = object> = UserConfig<T> & {
   /** The import.meta.url of the module defining these options. */
   selfURL: string;
-}
+};
 
 export const defineConfig = <T extends object = object>(config: Config<T>) => {
   return config;

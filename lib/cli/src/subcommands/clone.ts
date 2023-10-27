@@ -33,7 +33,7 @@ export type Args = {
   dryRun: boolean;
   apiKey: string | null;
   apiUrl?: string;
-}
+};
 
 // deno-lint-ignore no-explicit-any
 export default async function (rawArgs: Record<string, any>): Promise<void> {

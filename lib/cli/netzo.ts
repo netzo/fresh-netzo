@@ -1,6 +1,6 @@
 #!/usr/bin/env -S deno run --allow-read --allow-write --allow-env --allow-net --allow-run
 
-import { load, parseArgs, semverGreaterThanOrEquals } from "./deps.ts";
+import { load, parse, parseArgs, semverGreaterThanOrEquals } from "./deps.ts";
 import { error } from "./src/console.ts";
 import cloneSubcommand from "./src/subcommands/clone.ts";
 import initSubcommand from "./src/subcommands/init.ts";
@@ -33,7 +33,12 @@ SUBCOMMANDS:
     upgrade   Upgrade netzo to the given version (defaults to latest)
 `;
 
-if (!semverGreaterThanOrEquals(Deno.version.deno, MINIMUM_DENO_VERSION)) {
+if (
+  !semverGreaterThanOrEquals(
+    parse(Deno.version.deno),
+    parse(MINIMUM_DENO_VERSION),
+  )
+) {
   error(
     `The Deno version you are using is too old. Please update to Deno ${MINIMUM_DENO_VERSION} or later. To do this run \`deno upgrade\`.`,
   );
@@ -95,7 +100,7 @@ if (Deno.isatty(Deno.stdin.rid)) {
   // If latestVersion is set we need to inform the user about a new release.
   if (
     latestVersion &&
-    !(semverGreaterThanOrEquals(VERSION, latestVersion.toString()))
+    !(semverGreaterThanOrEquals(parse(VERSION), latestVersion.toString()))
   ) {
     console.log(
       [

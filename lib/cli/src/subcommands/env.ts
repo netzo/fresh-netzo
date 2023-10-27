@@ -38,7 +38,7 @@ export type Args = {
   project: string | null;
   apiKey: string | null;
   apiUrl?: string;
-}
+};
 
 // deno-lint-ignore no-explicit-any
 export default async function (rawArgs: Record<string, any>): Promise<void> {
@@ -93,7 +93,7 @@ type SyncEnvOpts = {
   apiKey: string;
   apiUrl?: string;
   netzoConfig: NetzoConfig; // proxified config
-}
+};
 
 async function syncEnv(opts: SyncEnvOpts): Promise<void> {
   const projectSpinner = wait("Fetching project information...").start();

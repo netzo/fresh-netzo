@@ -8,13 +8,13 @@ export type AppLayoutOptions = {
   description?: string;
   favicon?: string;
   image?: JSX.HTMLAttributes<HTMLImageElement>;
-}
+};
 
 export type AppLayoutState = {
   options: NetzoConfig;
   sessionId: string;
   isAuthenticated: boolean;
-}
+};
 
 export default (
   options: AppLayoutOptions = {

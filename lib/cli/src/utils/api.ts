@@ -15,7 +15,7 @@ import type {
 export type RequestOptions = {
   method?: string;
   body?: unknown;
-}
+};
 
 export class APIError extends Error {
   code: string;

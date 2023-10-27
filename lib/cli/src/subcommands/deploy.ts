@@ -75,7 +75,7 @@ export type Args = {
   dryRun: boolean;
   apiKey: string | null;
   apiUrl?: string;
-}
+};
 
 // deno-lint-ignore no-explicit-any
 export default async function (rawArgs: Record<string, any>): Promise<void> {
@@ -158,7 +158,7 @@ type DeployOpts = {
   apiKey: string;
   apiUrl?: string;
   netzoConfig: NetzoConfig; // proxified config
-}
+};
 
 async function deploy(opts: DeployOpts): Promise<void> {
   if (opts.dryRun) {
@@ -167,7 +167,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
 
   const projectSpinner = wait("Fetching project information...").start();
   const { api } = netzo({ apiKey: opts.apiKey, baseURL: opts.apiUrl });
-  console.log(opts.project)
+  console.log(opts.project);
   const { data: [project] } = await api.projects.get<Paginated<Project>>({
     uid: opts.project,
     $limit: 1,

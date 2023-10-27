@@ -4,7 +4,7 @@ export type Permissions = {
   write: boolean;
   env: boolean;
   run: boolean;
-}
+};
 
 export function netzo(
   args: string[],
@@ -45,7 +45,7 @@ export type TestOptions = {
   args: string[];
   name?: string;
   permissions?: Permissions;
-}
+};
 
 export function test(
   opts: TestOptions,

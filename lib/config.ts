@@ -1,6 +1,6 @@
 import type { FreshConfig } from "https://deno.land/x/fresh@1.5.2/server.ts";
 import { deepMerge } from "https://deno.land/std@0.204.0/collections/deep_merge.ts";
-import { netzo } from "https://deno.land/x/netzo@0.2.51/apis/netzo/mod.ts";
+import { netzo } from "https://deno.land/x/netzo@0.2.52/apis/netzo/mod.ts";
 import { error, LOGS } from "./cli/src/console.ts";
 import {
   type VisibilityOptions,
@@ -22,14 +22,14 @@ export type NetzoConfig = FreshConfig & {
   auth: AuthOptions;
   database: DatabaseOptions;
   [k: string]: unknown;
-}
+};
 
 export type NetzoState = {
   config: NetzoConfig;
   visibility: VisibilityState;
   auth: AuthState;
   database: DatabaseState;
-}
+};
 
 export async function defineNetzoConfig(
   partialConfig: NetzoConfig,

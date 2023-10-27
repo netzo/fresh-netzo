@@ -4,7 +4,7 @@ import { ErrorPage404, ErrorPage500 } from "./error-pages.tsx";
 export type ErrorPagesOptions = {
   404?: boolean;
   500?: boolean;
-}
+};
 
 export default (
   options: ErrorPagesOptions = { "404": true, "500": true },

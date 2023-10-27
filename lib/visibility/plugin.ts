@@ -31,7 +31,7 @@ export type VisibilityOptions = {
   tokens?: string[]; // only for "protected" visibility
 };
 
-export type VisibilityState = {}
+export type VisibilityState = {};
 
 /**
  * A fresh plugin that registers middleware to handle

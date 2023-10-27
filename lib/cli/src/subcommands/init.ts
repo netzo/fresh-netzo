@@ -32,7 +32,7 @@ export type Args = {
   help: boolean;
   template: string | null;
   dryRun: boolean;
-}
+};
 
 // deno-lint-ignore no-explicit-any
 export default async function (rawArgs: Record<string, any>): Promise<void> {

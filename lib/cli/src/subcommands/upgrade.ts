@@ -25,7 +25,7 @@ ARGS:
 
 export type Args = {
   help: boolean;
-}
+};
 
 // deno-lint-ignore no-explicit-any
 export default async function (rawArgs: Record<string, any>): Promise<void> {

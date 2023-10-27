@@ -34,7 +34,7 @@ export type Args = {
   project: string | null;
   apiKey: string | null;
   apiUrl?: string;
-}
+};
 
 // deno-lint-ignore no-explicit-any
 export default async function (rawArgs: Record<string, any>): Promise<void> {
@@ -82,7 +82,7 @@ type LogsOpts = {
   prod: boolean;
   apiKey: string;
   apiUrl?: string;
-}
+};
 
 async function logs(opts: LogsOpts): Promise<void> {
   if (opts.prod && opts.deploymentId) {
