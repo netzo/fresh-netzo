@@ -32,7 +32,7 @@ export type NetzoState = {
 };
 
 export async function defineNetzoConfig(
-  partialConfig: NetzoConfig,
+  partialConfig: Partial<NetzoConfig>,
 ): Promise<Required<NetzoConfig>> {
   const NETZO_ENV = Deno.env.get("DENO_REGION") ? "production" : "development";
   const NETZO_API_KEY = Deno.env.get("NETZO_API_KEY");
