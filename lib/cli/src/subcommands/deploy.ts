@@ -89,7 +89,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     include: rawArgs.include?.split(","),
     dryRun: !!rawArgs["dry-run"],
     apiKey: rawArgs["api-key"] ? String(rawArgs["api-key"]) : null,
-    apiUrl: rawArgs["api-url"] ?? "https://api.netzo.io",
+    apiUrl: rawArgs["api-url"] ?? Deno.env.get("NETZO_API_URL") ?? "https://api.netzo.io",
   };
   if (args.help) {
     console.log(help);
@@ -167,14 +167,13 @@ async function deploy(opts: DeployOpts): Promise<void> {
 
   const projectSpinner = wait("Fetching project information...").start();
   const { api } = netzo({ apiKey: opts.apiKey, baseURL: opts.apiUrl });
-  console.log(opts.project);
-  const { data: [project] } = await api.projects.get<Paginated<Project>>({
+  const project = (await api.projects.get<Paginated<Project>>({
     uid: opts.project,
     $limit: 1,
-  });
+  }))?.data?.[0];
   if (!project) {
     projectSpinner.fail(
-      "Project not found. Check your API key and project UID.",
+      `Project "${opts.project}" not found. Ensure the API key is valid for this project.`,
     );
     Deno.exit(1);
   }
