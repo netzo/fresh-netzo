@@ -17,11 +17,10 @@ export default {
         //   type: 'video-scroll',
         //   text: 'Watch 1 min Intro',
         //   href: '#section-save-time-and-money',
-        // },
       ],
       image: {
         alt: 'Netzo - The smartest way to build business software',
-        src: '/images/home/hero.svg',
+        src: '/images/products/hero.svg',
       },
       // items: [
       //   {

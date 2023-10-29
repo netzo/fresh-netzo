@@ -21,7 +21,7 @@ export default {
       ],
       image: {
         alt: 'Netzo - La manera más inteligente de crear software empresarial',
-        src: '/images/home/hero.svg',
+        src: '/images/products/hero.svg',
       },
       // items: [
       //   {
