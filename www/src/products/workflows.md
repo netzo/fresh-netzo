@@ -6,9 +6,9 @@ hero:
   name: Workflows
   text: Automate anything in a few lines of code
   tagline: Effortlessly automate tasks and processes with on-demand cloud compute. Unlock efficiency and productivity across your organization.
-  # image:
-  #   src: /images/products/auth.jpeg
-  #   alt: App Launcher
+  image:
+    src: /images/products/workflows.svg
+    alt: Netzo Workflows
   actions:
     - theme: brand
       text: Book a Call

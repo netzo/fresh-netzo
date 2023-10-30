@@ -6,9 +6,9 @@ hero:
   name: Automatizaciones
   text: Toma un respiro de tareas repetitivas
   tagline: Automatiza tareas y procesos con tan solo unas lineas de codigo. Desbloquea la eficiencia y productividad en toda tu organización.
-  # image:
-  #   src: /images/products/auth.jpeg
-  #   alt: App Launcher
+  image:
+    src: /images/products/workflows.svg
+    alt: Netzo Workflows
   actions:
     - theme: brand
       text: Agenda una Llamada
