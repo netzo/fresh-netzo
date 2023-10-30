@@ -20,7 +20,7 @@ export default {
       ],
       image: {
         alt: 'Netzo - The smartest way to build business software',
-        src: '/images/products/hero.svg',
+        src: '/images/home/hero.svg',
       },
       // items: [
       //   {
