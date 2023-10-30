@@ -5,4 +5,4 @@ import config from "./netzo.config.ts";
 
 import "$std/dotenv/load.ts";
 
-await dev(import.meta.url, "./main.ts", config);
+await dev(import.meta.url, "./main.ts", await config);

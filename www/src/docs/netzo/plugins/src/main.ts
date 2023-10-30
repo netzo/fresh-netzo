@@ -9,4 +9,4 @@ import manifest from './fresh.gen.js'
 import config from './netzo.config.js'
 import { start } from '$fresh/server.ts'
 
-await start(manifest, config)
+await start(manifest, await config)
