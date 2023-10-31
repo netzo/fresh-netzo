@@ -89,7 +89,8 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     include: rawArgs.include?.split(","),
     dryRun: !!rawArgs["dry-run"],
     apiKey: rawArgs["api-key"] ? String(rawArgs["api-key"]) : null,
-    apiUrl: rawArgs["api-url"] ?? Deno.env.get("NETZO_API_URL") ?? "https://api.netzo.io",
+    apiUrl: rawArgs["api-url"] ?? Deno.env.get("NETZO_API_URL") ??
+      "https://api.netzo.io",
   };
   if (args.help) {
     console.log(help);
@@ -334,24 +335,14 @@ async function deploy(opts: DeployOpts): Promise<void> {
             deploySpinner!.text = "Finishing deployment...";
             break;
           case "success": {
-            const { domainMappings } = event as DenoDeploymentProgressSuccess;
+            const { id, /* domainMappings */ } = event as DenoDeploymentProgressSuccess;
             const deploymentKind = opts.prod ? "Production" : "Preview";
             deploySpinner!.succeed(`${deploymentKind} deployment complete.`);
             console.log("\nView at:");
-            for (const { domain } of domainMappings) {
-              console.log(` - https://${domain}`);
-            }
-
-            // patch project.config in netzo API:
-            // TODO: use .toJSON() method instead of JSON.parse/stringify
-            // to unproxify/serialize (drops non-serializable properties)
-            const netzoConfig = JSON.parse(JSON.stringify(opts.netzoConfig));
-            await api.projects[project._id].patch<Project>({
-              config: { ...project.config, ...netzoConfig },
-            });
-            deploySpinner!.succeed(
-              `Open project in netzo at https://app.netzo.io/workspaces/${project.workspaceId}/projects/${project._id}`,
-            );
+            console.log(` - preview: https://app.netzo.io/workspaces/${project.workspaceId}/projects/${project._id}/deployments/${id}`);
+            // for (const { domain } of domainMappings) {
+            //   console.log(` - https://${domain}`);
+            // }
             Deno.exit(0); // exits with success code 0
             break;
           }

@@ -100,7 +100,10 @@ if (Deno.isatty(Deno.stdin.rid)) {
   // If latestVersion is set we need to inform the user about a new release.
   if (
     latestVersion &&
-    !(semverGreaterThanOrEquals(parse(VERSION), parse(latestVersion.toString())))
+    !(semverGreaterThanOrEquals(
+      parse(VERSION),
+      parse(latestVersion.toString()),
+    ))
   ) {
     console.log(
       [

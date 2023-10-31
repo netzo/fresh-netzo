@@ -33,7 +33,7 @@ export default defineNetzoConfig({
 
 ```ts
 interface AuthOptions {
-  visibility: 'private' | 'protected' | 'public'
-  tokens: string[] // only for "protected" visibility
+  // email: EmailClientConfig;
+  oauth2: OAuth2ClientConfig
 }
 ```

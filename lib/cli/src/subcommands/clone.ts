@@ -42,7 +42,8 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     project: rawArgs.project ? String(rawArgs.project) : null,
     dryRun: !!rawArgs["dry-run"],
     apiKey: rawArgs["api-key"] ? String(rawArgs["api-key"]) : null,
-    apiUrl: rawArgs["api-url"] ?? Deno.env.get("NETZO_API_URL") ?? "https://api.netzo.io",
+    apiUrl: rawArgs["api-url"] ?? Deno.env.get("NETZO_API_URL") ??
+      "https://api.netzo.io",
   };
 
   if (args.help) {
