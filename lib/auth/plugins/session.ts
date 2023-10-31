@@ -4,9 +4,9 @@ import { getSessionId } from "deno_kv_oauth/mod.ts";
 import { getUserBySession } from "netzo/auth/utils/db.ts";
 import { createHttpError } from "std/http/http_errors.ts";
 import { Status } from "std/http/http_status.ts";
-import { NetzoConfig, NetzoState } from "netzo/config/mod.ts";
+import { AuthState } from "../plugin.ts";
 
-export function assertSignedIn(state: NetzoState) {
+export function assertSignedIn(state: AuthState) {
   if (state.auth.sessionUser === undefined) {
     throw createHttpError(Status.Unauthorized, "User must be signed in");
   }
@@ -14,7 +14,7 @@ export function assertSignedIn(state: NetzoState) {
 
 async function setSessionState(
   req: Request,
-  ctx: MiddlewareHandlerContext<NetzoState>,
+  ctx: MiddlewareHandlerContext<AuthState>,
 ) {
   if (!["route"].includes(ctx.destination)) return await ctx.next();
 
@@ -33,7 +33,7 @@ async function setSessionState(
 
 // async function ensureSignedIn(
 //   _req: Request,
-//   ctx: MiddlewareHandlerContext<NetzoState>,
+//   ctx: MiddlewareHandlerContext<AuthState>,
 // ) {
 //   assertSignedIn(ctx.state);
 //   return await ctx.next();
@@ -41,7 +41,7 @@ async function setSessionState(
 
 export async function ensureSignedIn(
   req: Request,
-  ctx: MiddlewareHandlerContext<NetzoState>,
+  ctx: MiddlewareHandlerContext<AuthState>,
 ) {
   const url = new URL(req.url);
   if (!["route"].includes(ctx.destination)) return await ctx.next();
@@ -82,7 +82,7 @@ export async function ensureSignedIn(
  * @see {@link https://fresh.deno.dev/docs/concepts/plugins|Plugins documentation}
  * for more information on Fresh's plugin functionality.
  */
-export default (_config: NetzoConfig): Plugin => {
+export default (): Plugin => {
   return {
     name: "session",
     middlewares: [
@@ -95,5 +95,5 @@ export default (_config: NetzoConfig): Plugin => {
         middleware: { handler: ensureSignedIn },
       },
     ],
-  } as Plugin<NetzoState>;
+  } as Plugin<AuthState>;
 };

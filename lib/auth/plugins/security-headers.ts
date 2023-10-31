@@ -1,7 +1,6 @@
 import type { Plugin } from "$fresh/server.ts";
-import { NetzoConfig } from "netzo/config/mod.ts";
 
-export default (_config: NetzoConfig): Plugin => {
+export default (): Plugin => {
   return {
     name: "security-headers",
     middlewares: [

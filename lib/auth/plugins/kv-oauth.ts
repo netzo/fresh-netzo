@@ -1,6 +1,5 @@
 import type { Plugin } from "$fresh/server.ts";
 import { handleCallback, signIn, signOut } from "deno_kv_oauth/mod.ts";
-import { NetzoConfig } from "netzo/config/mod.ts";
 import {
   createUser,
   getUser,
@@ -9,6 +8,7 @@ import {
 } from "../utils/db.ts";
 import { getGitHubUser } from "../utils/github.ts";
 import Auth from "../routes/auth.tsx";
+import type { AuthOptions } from "../plugin.ts";
 
 // Exported for mocking and spying in e2e tests
 export const _internals = { handleCallback };
@@ -17,7 +17,7 @@ export const _internals = { handleCallback };
  * This custom plugin centralizes all authentication logic using the
  * {@link https://deno.land/x/deno_kv_oauth|Deno KV OAuth} module.
  */
-export default (config: NetzoConfig): Plugin => {
+export default (options: AuthOptions): Plugin => {
   return {
     name: "kv-oauth",
     routes: [
@@ -30,7 +30,7 @@ export default (config: NetzoConfig): Plugin => {
       },
       {
         path: `/oauth/signin`,
-        handler: async (req, _ctx) => {
+        handler: async (req, ctx) => {
           const response = await signIn(req, config.auth.oauth2);
           console.debug(`/oauth/signin`, response);
           return response;
@@ -38,7 +38,7 @@ export default (config: NetzoConfig): Plugin => {
       },
       {
         path: `/oauth/callback`,
-        handler: async (req, _ctx) => {
+        handler: async (req, ctx) => {
           const { response, tokens, sessionId } = await handleCallback(
             req,
             config.auth.oauth2,

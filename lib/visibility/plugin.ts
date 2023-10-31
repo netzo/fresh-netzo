@@ -1,5 +1,4 @@
 import type { Plugin } from "$fresh/server.ts";
-import type { NetzoConfig } from "netzo/config/mod.ts";
 
 /*
 The following lists the possible header combinations when
@@ -40,52 +39,50 @@ export type VisibilityState = {
  * A fresh plugin that registers middleware to handle
  * visibility of projects based on the `visibility` option.
  */
-export const visibilityPlugins = (): Plugin[] => {
-  return [
-    {
-      name: "visibility-plugin",
-      middlewares: [
-        {
-          path: "/",
-          middleware: {
-            handler: async (req, ctx) => {
-              if (!Deno.env.get("DENO_REGION")) return await ctx.next(); // skip in development
+export const visibilityPlugin = (): Plugin[] => {
+  return {
+    name: "visibility-plugin",
+    middlewares: [
+      {
+        path: "/",
+        middleware: {
+          handler: async (req, ctx) => {
+            if (Deno.env.get("NETZO_ENV") === "development") return await ctx.next();
 
-              if (!["route"].includes(ctx.destination)) return await ctx.next();
+            if (!["route"].includes(ctx.destination)) return await ctx.next();
 
-              const { level } = ctx.state.config.visibility!;
+            const { level } = ctx.state.config.visibility!;
 
-              // const host = req.headers.get("host"); // e.g. my-project-906698.netzo.io
-              const origin = req.headers.get("origin"); // e.g. https://my-project-906698.netzo.io
-              const referer = req.headers.get("referer"); // SOMETIMES SET e.g. https://app.netzo.io/some-path
+            // const host = req.headers.get("host"); // e.g. my-project-906698.netzo.io
+            const origin = req.headers.get("origin"); // e.g. https://my-project-906698.netzo.io
+            const referer = req.headers.get("referer"); // SOMETIMES SET e.g. https://app.netzo.io/some-path
 
-              // simple heuristics to determine source of request:
-              const assertIsApp = (url: string) =>
-                !!url && new URL(url).host.endsWith("netzo.io");
-              const isApp = assertIsApp(origin!) || assertIsApp(referer!);
+            // simple heuristics to determine source of request:
+            const assertIsApp = (url: string) =>
+              !!url && new URL(url).host.endsWith("netzo.io");
+            const isApp = assertIsApp(origin!) || assertIsApp(referer!);
 
-              ctx.state.visibility = { origin, referer, isApp };
+            ctx.state.visibility = { origin, referer, isApp };
 
-              // console.debug({ destination: ctx.destination, origin, referer, isApp });
+            // console.debug({ destination: ctx.destination, origin, referer, isApp });
 
-              switch (level) {
-                case "private": {
-                  if (!isApp) {
-                    throw new Error(
-                      "Private deployments cannot be accessed externally",
-                    );
-                  }
-                  return await ctx.next();
+            switch (level) {
+              case "private": {
+                if (!isApp) {
+                  throw new Error(
+                    "Private deployments cannot be accessed externally",
+                  );
                 }
-                case "public":
-                default: {
-                  return await ctx.next();
-                }
+                return await ctx.next();
               }
-            },
+              case "public":
+              default: {
+                return await ctx.next();
+              }
+            }
           },
         },
-      ],
-    },
-  ];
+      },
+    ],
+  };
 };

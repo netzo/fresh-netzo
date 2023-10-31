@@ -1,6 +1,5 @@
 import type { Plugin } from "$fresh/server.ts";
 import type { OAuth2ClientConfig } from "deno_kv_oauth/mod.ts";
-import type { NetzoConfig } from "netzo/config/mod.ts";
 import type { MetaProps } from "netzo/auth/components/Meta.tsx";
 import { type User } from "netzo/auth/utils/db.ts";
 import kvOAuthPlugin from "./plugins/kv-oauth.ts";
@@ -30,12 +29,12 @@ export type AuthState = MetaProps & {
  * - `GET /oauth/callback` for the callback page
  * - `GET /oauth/signout` for the sign-out page
  */
-export const authPlugins = (config: NetzoConfig): Plugin[] => {
+export const authPlugins = (options: DatabaseOptions): Plugin[] => {
   return [
-    welcomePlugin(config),
-    kvOAuthPlugin(config),
-    sessionPlugin(config),
-    errorHandling(config),
-    securityHeaders(config),
+    welcomePlugin(options),
+    kvOAuthPlugin(options),
+    sessionPlugin(options),
+    errorHandling(options),
+    securityHeaders(options),
   ];
 };
