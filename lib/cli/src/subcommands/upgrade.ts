@@ -1,5 +1,5 @@
 import { error } from "../console.ts";
-import { parse, isSemVer, semverGreaterThanOrEquals } from "../../deps.ts";
+import { isSemVer, parse, semverGreaterThanOrEquals } from "../../deps.ts";
 import { VERSION } from "../version.ts";
 
 const help = `netzo upgrade

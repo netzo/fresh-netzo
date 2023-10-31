@@ -2,7 +2,7 @@ import type {
   FreshConfig,
   Plugin,
 } from "https://deno.land/x/fresh@1.5.2/server.ts";
-import { netzo } from "https://deno.land/x/netzo@0.2.56/apis/netzo/mod.ts";
+import { netzo } from "https://deno.land/x/netzo@0.2.57/apis/netzo/mod.ts";
 import { error, LOGS } from "./cli/src/console.ts";
 import {
   type VisibilityOptions,

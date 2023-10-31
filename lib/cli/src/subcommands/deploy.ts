@@ -335,11 +335,17 @@ async function deploy(opts: DeployOpts): Promise<void> {
             deploySpinner!.text = "Finishing deployment...";
             break;
           case "success": {
-            const { id, /* domainMappings */ } = event as DenoDeploymentProgressSuccess;
+            const { id /* domainMappings */ } =
+              event as DenoDeploymentProgressSuccess;
             const deploymentKind = opts.prod ? "Production" : "Preview";
+            const appUrl = opts.apiUrl.startsWith("http://")
+              ? "http://localhost:1234"
+              : "https://app.netzo.io";
             deploySpinner!.succeed(`${deploymentKind} deployment complete.`);
             console.log("\nView at:");
-            console.log(` - preview: ${opts.apiUrl}/workspaces/${project.workspaceId}/projects/${project._id}/deployments/${id}`);
+            console.log(
+              ` - preview: ${appUrl}/workspaces/${project.workspaceId}/projects/${project._id}/deployments/${id}`,
+            );
             // for (const { domain } of domainMappings) {
             //   console.log(` - https://${domain}`);
             // }
