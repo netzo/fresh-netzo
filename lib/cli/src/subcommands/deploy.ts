@@ -339,7 +339,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
             const deploymentKind = opts.prod ? "Production" : "Preview";
             deploySpinner!.succeed(`${deploymentKind} deployment complete.`);
             console.log("\nView at:");
-            console.log(` - preview: https://app.netzo.io/workspaces/${project.workspaceId}/projects/${project._id}/deployments/${id}`);
+            console.log(` - preview: ${opts.apiUrl}/workspaces/${project.workspaceId}/projects/${project._id}/deployments/${id}`);
             // for (const { domain } of domainMappings) {
             //   console.log(` - https://${domain}`);
             // }
