@@ -1,60 +1,66 @@
-import type { Plugin } from "$fresh/server.ts";
-import type { NetzoConfig } from "netzo/config.ts";
+import type {
+  FreshConfig,
+  Plugin,
+} from "https://deno.land/x/fresh@1.5.2/server.ts";
+import {  type VisibilityOptions,  VisibilityState} from "../visibility/plugin.ts";
+import { type AuthOptions, AuthState } from "../auth/plugin.ts";
+import {  type DatabaseOptions,  DatabaseState } from "../database/plugin.ts";
 
-export type VisibilityOptions = {
-  level: "private" | "public";
+export type NetzoConfig = FreshConfig & {
+  project: string;
+  entrypoint?: string;
+  // modules:
+  visibility: VisibilityOptions;
+  auth: AuthOptions;
+  database: DatabaseOptions;
+  [k: string]: unknown;
 };
 
-export type VisibilityState = {};
+export type NetzoState = {
+  config: NetzoConfig;
+  kv: Deno.Kv;
+  // modules:
+  visibility?: VisibilityState;
+  auth?: AuthState;
+  database?: DatabaseState;
+};
 
 /**
- * A fresh plugin that registers middleware to handle
- * visibility of projects based on the `visibility` option.
+ * A fresh plugin that registers middleware to set the
+ * ctx.state.config property (once) on each request.
  */
-export const visibilityPlugins = (): Plugin[] => {
-  return [
-    {
-      name: "visibility-plugin",
-      middlewares: [
-        {
-          path: "/",
-          middleware: {
-            handler: async (req, ctx) => {
-              if (!Deno.env.get("DENO_REGION")) return await ctx.next(); // skip in development
+export const configPlugin = (config: NetzoConfig): Plugin<NetzoState> => {
+  return {
+    name: "netzo",
+    middlewares: [
+      {
+        path: "/",
+        middleware: {
+          handler: async (_req, ctx) => {
+            if (!["route"].includes(ctx.destination)) return await ctx.next();
 
-              if (!["route"].includes(ctx.destination)) return await ctx.next();
+            // TODO: connect to specific KV namespace by project.databases[0].databaseId
+            // e.g. await Deno.openKv("https://api.deno.com/databases/{databaseID}/connect");
+            const kv = await Deno.openKv();
 
-              const { level } = ctx.state.config.visibility!;
+            const [visibility, auth, database] = await kv.getMany([
+              ["netzo", "visibility", "config"],
+              ["netzo", "auth", "config"],
+              ["netzo", "database", "config"],
+            ]);
 
-              // const host = req.headers.get("host"); // e.g. my-project-906698.netzo.io
-              const origin = req.headers.get("origin"); // e.g. https://my-project-906698.netzo.io
-              const referer = req.headers.get("referer"); // SOMETIMES SET e.g. https://app.netzo.io/some-path
+            ctx.state = {
+              config,
+              kv,
+              visibility: visibility?.value ?? undefined,
+              auth: auth?.value ?? undefined,
+              database: database?.value ?? undefined,
+            } as NetzoState;
 
-              // simple heuristics to determine source of request:
-              const isApp = (url: string) =>
-                !!url && new URL(url).host.endsWith("netzo.io");
-              const is = { app: isApp(origin!) || isApp(referer!) };
-
-              // console.debug({ destination: ctx.destination, origin, referer, is });
-
-              switch (level) {
-                case "private": {
-                  if (!is.app) {
-                    throw new Error(
-                      "Private deployments cannot be accessed externally",
-                    );
-                  }
-                  return await ctx.next();
-                }
-                case "public":
-                default: {
-                  return await ctx.next();
-                }
-              }
-            },
+            return await ctx.next();
           },
         },
-      ],
-    },
-  ];
+      },
+    ],
+  };
 };

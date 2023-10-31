@@ -16,7 +16,7 @@ Register the module in `netzo.config.ts` and ensure `main.ts` and `dev.ts` are r
 
 ::: code-group
 ```ts [netzo.config.ts]
-import { defineNetzoConfig } from 'netzo/config.ts'
+import { defineNetzoConfig } from 'netzo/config/mod.ts'
 
 export default defineNetzoConfig({
   auth: { /* ... */ }

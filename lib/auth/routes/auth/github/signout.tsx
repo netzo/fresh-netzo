@@ -1,5 +1,5 @@
 import type { Handlers } from "$fresh/server.ts";
-import type { NetzoState } from "netzo/config.ts";
+import type { NetzoState } from "netzo/config/mod.ts";
 import { deleteUserBySession } from "../../../utils/db.ts";
 import { signOut } from "deno_kv_oauth/mod.ts";
 

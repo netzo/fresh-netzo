@@ -3,7 +3,7 @@ import type { State } from "@/plugins/session.ts";
 import { Status } from "$fresh/server.ts";
 import { errors, isHttpError } from "std/http/http_errors.ts";
 import { redirect } from "netzo/auth/utils/http.ts";
-import { NetzoConfig } from "netzo/config.ts";
+import { NetzoConfig } from "netzo/config/mod.ts";
 
 /**
  * Returns the converted HTTP error response from the given error. If the error

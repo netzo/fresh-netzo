@@ -1,5 +1,5 @@
 import type { Plugin } from "$fresh/server.ts";
-import { NetzoConfig } from "netzo/config.ts";
+import { NetzoConfig } from "netzo/config/mod.ts";
 
 export default (_config: NetzoConfig): Plugin => {
   return {

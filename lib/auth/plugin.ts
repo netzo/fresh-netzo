@@ -1,6 +1,6 @@
 import type { Plugin } from "$fresh/server.ts";
 import type { OAuth2ClientConfig } from "deno_kv_oauth/mod.ts";
-import type { NetzoConfig } from "netzo/config.ts";
+import type { NetzoConfig } from "netzo/config/mod.ts";
 import type { MetaProps } from "netzo/auth/components/Meta.tsx";
 import { type User } from "netzo/auth/utils/db.ts";
 import kvOAuthPlugin from "./plugins/kv-oauth.ts";

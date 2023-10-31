@@ -1,5 +1,5 @@
 import type { Plugin } from "$fresh/server.ts";
-import type { NetzoConfig } from "netzo/config.ts";
+import type { NetzoConfig } from "netzo/config/mod.ts";
 import { createDatabase } from "./mod.ts";
 import { parseRequestBody } from "netzo/utils/mod.ts";
 

@@ -1,5 +1,5 @@
 import type { Plugin } from "$fresh/server.ts";
-import type { NetzoConfig } from "netzo/config.ts";
+import type { NetzoConfig } from "netzo/config/mod.ts";
 
 /*
 The following lists the possible header combinations when
@@ -28,7 +28,13 @@ export type VisibilityOptions = {
   level: "private" | "public";
 };
 
-export type VisibilityState = {};
+export type VisibilityState = {
+  visibility: {
+    origin: string | null;
+    referer: string | null;
+    isApp: boolean;
+  };
+};
 
 /**
  * A fresh plugin that registers middleware to handle
@@ -54,15 +60,17 @@ export const visibilityPlugins = (): Plugin[] => {
               const referer = req.headers.get("referer"); // SOMETIMES SET e.g. https://app.netzo.io/some-path
 
               // simple heuristics to determine source of request:
-              const isApp = (url: string) =>
+              const assertIsApp = (url: string) =>
                 !!url && new URL(url).host.endsWith("netzo.io");
-              const is = { app: isApp(origin!) || isApp(referer!) };
+              const isApp = assertIsApp(origin!) || assertIsApp(referer!);
 
-              // console.debug({ destination: ctx.destination, origin, referer, is });
+              ctx.state.visibility = { origin, referer, isApp };
+
+              // console.debug({ destination: ctx.destination, origin, referer, isApp });
 
               switch (level) {
                 case "private": {
-                  if (!is.app) {
+                  if (!isApp) {
                     throw new Error(
                       "Private deployments cannot be accessed externally",
                     );

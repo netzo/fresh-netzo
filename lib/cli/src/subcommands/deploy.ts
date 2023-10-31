@@ -344,7 +344,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
             deploySpinner!.succeed(`${deploymentKind} deployment complete.`);
             console.log("\nView at:");
             console.log(
-              ` - preview: ${appUrl}/workspaces/${project.workspaceId}/projects/${project._id}/deployments/${id}`,
+              ` - ${appUrl}/workspaces/${project.workspaceId}/projects/${project._id}/deployments/${id}`,
             );
             // for (const { domain } of domainMappings) {
             //   console.log(` - https://${domain}`);

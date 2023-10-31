@@ -1,6 +1,6 @@
 import type { Plugin } from "$fresh/server.ts";
 import { handleCallback, signIn, signOut } from "deno_kv_oauth/mod.ts";
-import { NetzoConfig } from "netzo/config.ts";
+import { NetzoConfig } from "netzo/config/mod.ts";
 import {
   createUser,
   getUser,
