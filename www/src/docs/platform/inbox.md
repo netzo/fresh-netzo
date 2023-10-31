@@ -35,7 +35,10 @@ const notification = await api.notifications.post({
     title: 'Payment successful',
     body: `A payment for ${amount} was received from ${payer}.`,
   },
-  // the following are required and MUST be set manually:
+  // the following are required and MUST be set manually,
+  // otherwise the request will fail due to invalid body
+  env: Deno.env.get('NETZO_ENV')!,
+  projectId: Deno.env.get('NETZO_PROJECT_ID')!,
   denoDeploymentId: Deno.env.get('DENO_DEPLOYMENT_ID')!,
   denoRegion: Deno.env.get('DENO_REGION')!,
 })

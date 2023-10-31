@@ -1,7 +1,4 @@
-import type { FreshConfig } from "https://deno.land/x/fresh@1.5.2/server.ts";
-import {  type VisibilityOptions,  VisibilityState} from "../visibility/plugin.ts";
-import { type AuthOptions, AuthState } from "../auth/plugin.ts";
-import {  type DatabaseOptions,  DatabaseState } from "../database/plugin.ts";
+import type { Plugin, FreshConfig } from "$fresh/server.ts";
 
 export type NetzoConfig = FreshConfig & {
   project: string;
@@ -12,17 +9,13 @@ export type NetzoConfig = FreshConfig & {
 export type NetzoState = {
   config: NetzoConfig;
   kv: Deno.Kv;
-  // modules:
-  visibility?: VisibilityState;
-  auth?: AuthState;
-  database?: DatabaseState;
 };
 
 /**
  * A fresh plugin that registers middleware to set the
  * ctx.state.config property (once) on each request.
  */
-export const configPlugin = (config: NetzoConfig) => {
+export const configPlugin = (config: NetzoConfig): Plugin => {
   return {
     name: "netzo",
     middlewares: [
