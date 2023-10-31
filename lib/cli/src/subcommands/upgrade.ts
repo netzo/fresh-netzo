@@ -1,5 +1,5 @@
 import { error } from "../console.ts";
-import { isSemVer, semverGreaterThanOrEquals } from "../../deps.ts";
+import { parse, isSemVer, semverGreaterThanOrEquals } from "../../deps.ts";
 import { VERSION } from "../version.ts";
 
 const help = `netzo upgrade
@@ -54,7 +54,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     );
   }
 
-  if (!version && semverGreaterThanOrEquals(VERSION, latest)) {
+  if (!version && semverGreaterThanOrEquals(parse(VERSION), parse(latest))) {
     console.log("You're using the latest version.");
     Deno.exit();
   } else {
