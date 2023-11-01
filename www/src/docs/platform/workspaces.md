@@ -31,12 +31,12 @@ and workspace preferences like
 **Members of a Workspace are users accounts with access to the Workspace.** Each member can have any of the following user roles:
 
 - `admin`
-- `edit`
-- `view`
+- `developer`
+- `user`
 
 The role will determine the permissions each member has within the Workspace. The [Members page](/docs/platform/workspaces#members) under Workspace settings gives an overview of all members of a Workspace.
 
-Here you can manage Users of the current Workspace along with their roles (e.g. `admin`, `edit`, `view`). If you have sufficient rights, you can add more Users to the workspace or choose to leave it if you are not the sole Workspace `admin`.
+Here you can manage Users of the current Workspace along with their roles (e.g. `admin`, `developer`, `user`). If you have sufficient rights, you can add more Users to the workspace or choose to leave it if you are not the sole Workspace `admin`.
 
 ### Audit Logs
 
