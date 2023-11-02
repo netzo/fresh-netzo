@@ -1,0 +1,13 @@
+{
+  "lock": false,
+  "tasks": {
+    "check": "deno fmt --check && deno lint && deno check **/*.ts && deno check **/*.tsx",
+    "start": "deno run -A --unstable --watch=static/,routes/ dev.ts",
+    "test": "deno test -A --unstable --no-check"
+  },
+  "imports": {
+    "@/": "./",
+    "netzo/": "https://deno.land/x/netzo@0.2.62/",
+    "std/": "https://deno.land/std@0.204.0/"
+  }
+}

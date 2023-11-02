@@ -1,7 +1,7 @@
 import type { Plugin, FreshConfig } from "$fresh/server.ts";
 
 export type NetzoConfig = FreshConfig & {
-  project: string;
+  project?: string;
   entrypoint?: string;
   [k: string]: unknown;
 };

@@ -1,5 +1,5 @@
 [
-  "https://raw.githubusercontent.com/netzo/netzo/main/templates/app-starter/template.json",
-  "https://raw.githubusercontent.com/netzo/netzo/main/templates/api-starter/template.json",
-  "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow-starter/template.json"
+  "https://raw.githubusercontent.com/netzo/netzo/main/templates/app/template.json",
+  "https://raw.githubusercontent.com/netzo/netzo/main/templates/minimal/template.json",
+  "https://raw.githubusercontent.com/netzo/netzo/main/templates/workflow/template.json"
 ]
