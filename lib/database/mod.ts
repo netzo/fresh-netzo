@@ -18,7 +18,7 @@ export function createDatabase(kv: Deno.Kv) {
    * @param query - An object containing key-value pairs to filter the results by.
    * @returns An array of objects that match the specified query.
    */
-  const find = async <T = unknown>(
+  const find = async <T>(
     resource: string,
     query: Record<string, string> = {},
   ) => {
@@ -34,7 +34,7 @@ export function createDatabase(kv: Deno.Kv) {
    * @param id - The ID of the object to get.
    * @returns The object with the specified ID.
    */
-  const get = async <T = unknown>(resource: string, id: string) => {
+  const get = async <T>(resource: string, id: string) => {
     return (await kv.get<T>([resource, id])).value;
   };
 
@@ -45,15 +45,15 @@ export function createDatabase(kv: Deno.Kv) {
    * @param idField - The name of the field to use as the ID for the objects.
    * @returns The created object or array of objects.
    */
-  const create = async <T = unknown>(
+  const create = async <T>(
     resource: string,
-    data: T | T[],
+    data: T,
     idField: keyof T = "id" as keyof T,
   ) => {
     if (Array.isArray(data)) {
       const keyValues: Map<Deno.KvKey, unknown> = new Map();
       for (const item of data) {
-        const id = String(item[idField]) || ulid();
+        const id = (data?.[idField] ?? ulid()) as Deno.KvKeyPart;
         keyValues.set([resource, id], item);
       }
       const result = await multiSet(keyValues);
@@ -62,7 +62,7 @@ export function createDatabase(kv: Deno.Kv) {
       }
       return data;
     } else {
-      const id = String(data[idField]) || ulid();
+      const id = (data?.[idField] ?? ulid()) as Deno.KvKeyPart;
       const key = [resource, id];
       const ok = await kv.atomic().set(key, data).commit();
       if (!ok) throw new Error("Something went wrong.");
@@ -77,7 +77,7 @@ export function createDatabase(kv: Deno.Kv) {
    * @param data - The updated data for the object.
    * @returns The updated object.
    */
-  const update = async <T = unknown>(
+  const update = async <T>(
     resource: string,
     id: string,
     data: T,
@@ -97,7 +97,7 @@ export function createDatabase(kv: Deno.Kv) {
    * @param data - The partial data to patch the object with.
    * @returns The patched object.
    */
-  const patch = async <T = unknown>(
+  const patch = async <T>(
     resource: string,
     id: string,
     data: Partial<T>,
@@ -117,7 +117,7 @@ export function createDatabase(kv: Deno.Kv) {
    * @param id - The ID of the object to remove.
    * @returns The ID of the removed object.
    */
-  const remove = async <T = unknown>(resource: string, id: string) => {
+  const remove = async <T>(resource: string, id: string) => {
     // return await kv.delete([resource, id]);
     const key = [resource, id];
     const entry = await kv.get<T>(key);
