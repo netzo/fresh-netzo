@@ -75,7 +75,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     console.error(help);
     error("Too many positional arguments given.");
   }
-  args.project ||= netzoConfig.project;
+  args.project ||= netzoConfig.project!;
   if (args.project === null) {
     console.error(help);
     error("Missing project UID.");
@@ -129,12 +129,13 @@ async function syncEnv(opts: SyncEnvOpts): Promise<void> {
 
   const syncSpinner = wait("Syncing environment variables...").start();
   try {
-    // patch project.config in netzo API:
-    // TODO: use .toJSON() method instead of JSON.parse/stringify
+    // NOTE: could use .toJSON() method instead of JSON.parse/stringify
     // to unproxify/serialize (drops non-serializable properties)
-    const netzoConfig = JSON.parse(JSON.stringify(opts.netzoConfig));
-    await api.projects[project._id].patch<Project>({
-      config: { ...project.config, ...netzoConfig, envVars },
+    // const netzoConfig = JSON.parse(JSON.stringify(opts.netzoConfig));
+
+    // patch project.env in netzo API:
+    await api.projects[project._id as string].patch<Project>({
+      env: { ...project.env, development: envVars },
     });
   } catch (error) {
     console.error(error);
