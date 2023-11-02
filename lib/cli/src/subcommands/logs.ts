@@ -38,22 +38,26 @@ export type Args = {
 
 // deno-lint-ignore no-explicit-any
 export default async function (rawArgs: Record<string, any>): Promise<void> {
+  const {
+    NETZO_PROJECT = null,
+    NETZO_API_KEY = null,
+    NETZO_API_URL = "https://api.netzo.io",
+  } = Deno.env.toObject();
+
   const args: Args = {
     help: !!rawArgs.help,
     prod: !!rawArgs.prod,
     deployment: rawArgs.deployment ? String(rawArgs.deployment) : null,
-    project: rawArgs.project ? String(rawArgs.project) : null,
-    apiKey: rawArgs["api-key"] ? String(rawArgs["api-key"]) : null,
-    apiUrl: rawArgs["api-url"] ?? Deno.env.get("NETZO_API_URL") ??
-      "https://api.netzo.io",
+    project: rawArgs.project ? String(rawArgs.project) : NETZO_PROJECT,
+    apiKey: rawArgs["api-key"] ? String(rawArgs["api-key"]) : NETZO_API_KEY,
+    apiUrl: rawArgs["api-url"] ?? NETZO_API_URL,
   };
 
   if (args.help) {
     console.log(help);
     Deno.exit(0);
   }
-  const apiKey = args.apiKey ?? Deno.env.get("NETZO_API_KEY") ?? null;
-  if ([null, "NETZO_API_KEY"].includes(apiKey)) {
+  if ([null, "NETZO_API_KEY"].includes(args.apiKey)) {
     console.error(help);
     error(LOGS.missingApiKey);
   }
@@ -70,8 +74,8 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     project: args.project,
     deploymentId: args.deployment,
     prod: args.prod,
-    apiKey,
-    apiUrl: args.apiUrl,
+    apiKey: args.apiKey!,
+    apiUrl: args.apiUrl!,
   };
 
   await logs(opts);
@@ -82,7 +86,7 @@ type LogsOpts = {
   deploymentId: string | null;
   prod: boolean;
   apiKey: string;
-  apiUrl?: string;
+  apiUrl: string;
 };
 
 async function logs(opts: LogsOpts): Promise<void> {

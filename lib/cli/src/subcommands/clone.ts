@@ -37,21 +37,25 @@ export type Args = {
 
 // deno-lint-ignore no-explicit-any
 export default async function (rawArgs: Record<string, any>): Promise<void> {
+  const {
+    NETZO_PROJECT = null,
+    NETZO_API_KEY = null,
+    NETZO_API_URL = "https://api.netzo.io",
+  } = Deno.env.toObject();
+
   const args: Args = {
     help: !!rawArgs.help,
-    project: rawArgs.project ? String(rawArgs.project) : null,
+    project: rawArgs.project ? String(rawArgs.project) : NETZO_PROJECT,
     dryRun: !!rawArgs["dry-run"],
-    apiKey: rawArgs["api-key"] ? String(rawArgs["api-key"]) : null,
-    apiUrl: rawArgs["api-url"] ?? Deno.env.get("NETZO_API_URL") ??
-      "https://api.netzo.io",
+    apiKey: rawArgs["api-key"] ? String(rawArgs["api-key"]) : NETZO_API_KEY,
+    apiUrl: rawArgs["api-url"] ?? NETZO_API_URL,
   };
 
   if (args.help) {
     console.log(help);
     Deno.exit(0);
   }
-  const apiKey = args.apiKey ?? Deno.env.get("NETZO_API_KEY") ?? null;
-  if ([null, "NETZO_API_KEY"].includes(apiKey)) {
+  if ([null, "NETZO_API_KEY"].includes(args.apiKey)) {
     console.error(help);
     error(LOGS.missingApiKey);
   }
@@ -60,7 +64,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     error("Too many positional arguments given.");
   }
 
-  const { api } = netzo({ apiKey, baseURL: args.apiUrl });
+  const { api } = netzo({ apiKey: args.apiKey!, baseURL: args.apiUrl });
   let project: Project | undefined = undefined;
   if (args.project === null) {
     // TODO: limit maxes at 100 so implement pagination

@@ -30,10 +30,10 @@ export {
 export { Spinner, wait } from "https://deno.land/x/wait@0.1.12/mod.ts";
 
 // x/netzo/apis/netzo
-export type { NetzoConfig } from "../config.ts";
+export type { NetzoConfig } from "../config/mod.ts";
 export { netzo } from "../apis/netzo/mod.ts";
 
-// @netzo/api: cherry-pick exports to avoid esm.sh tree-shaking issues
+// @netzo/api: cherry-pick exports to avoid tree-shaking issues
 export type {
   DenoDeploymentProgress,
   DenoDeploymentProgressAssetNegotiation,
@@ -65,9 +65,9 @@ export type {
   Project,
   ProjectFiles,
   ProjectFilesFile,
-} from "https://esm.sh/@netzo/api@1.0.46";
+} from "npm:@netzo/api@1.0.46";
 
 // socket.io-client:
-export { feathers } from "https://esm.sh/@feathersjs/feathers@5.0.6";
-export { default as socketio } from "https://esm.sh/@feathersjs/socketio-client@5.0.6";
-export { default as io } from "https://esm.sh/socket.io-client@4.7.1";
+export { feathers } from "npm:@feathersjs/feathers@5.0.6";
+export { default as socketio } from "npm:@feathersjs/socketio-client@5.0.6";
+export { default as io } from "npm:socket.io-client@4.7.1";

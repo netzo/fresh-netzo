@@ -79,18 +79,23 @@ export type Args = {
 
 // deno-lint-ignore no-explicit-any
 export default async function (rawArgs: Record<string, any>): Promise<void> {
+  const {
+    NETZO_PROJECT = null,
+    NETZO_API_KEY = null,
+    NETZO_API_URL = "https://api.netzo.io",
+  } = Deno.env.toObject();
+
   const args: Args = {
     help: !!rawArgs.help,
     static: !rawArgs["no-static"], // negate the flag
     prod: !!rawArgs.prod,
-    project: rawArgs.project ? String(rawArgs.project) : null,
+    project: rawArgs.project ? String(rawArgs.project) : NETZO_PROJECT,
     importMap: rawArgs["import-map"] ? String(rawArgs["import-map"]) : null,
     exclude: rawArgs.exclude?.split(","),
     include: rawArgs.include?.split(","),
     dryRun: !!rawArgs["dry-run"],
-    apiKey: rawArgs["api-key"] ? String(rawArgs["api-key"]) : null,
-    apiUrl: rawArgs["api-url"] ?? Deno.env.get("NETZO_API_URL") ??
-      "https://api.netzo.io",
+    apiKey: rawArgs["api-key"] ? String(rawArgs["api-key"]) : NETZO_API_KEY,
+    apiUrl: rawArgs["api-url"] ?? NETZO_API_URL,
   };
   if (args.help) {
     console.log(help);
@@ -105,8 +110,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
   await updateNetzoConfig(netzoConfigUrl, netzoConfigMod);
   // Deno.exit(0); // uncomment for quick debugging
 
-  const apiKey = args.apiKey ?? Deno.env.get("NETZO_API_KEY") ?? null;
-  if ([null, "NETZO_API_KEY"].includes(apiKey)) {
+  if ([null, "NETZO_API_KEY"].includes(args.apiKey)) {
     console.error(help);
     error(LOGS.missingApiKey);
   }
@@ -140,8 +144,8 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
       include: args.include?.map((pattern) => normalize(pattern)),
       exclude: args.exclude?.map((pattern) => normalize(pattern)),
       dryRun: args.dryRun,
-      apiKey,
-      apiUrl: args.apiUrl,
+      apiKey: args.apiKey!,
+      apiUrl: args.apiUrl!,
       netzoConfig,
     } satisfies DeployOpts,
   );
@@ -157,7 +161,7 @@ type DeployOpts = {
   project: string;
   dryRun: boolean;
   apiKey: string;
-  apiUrl?: string;
+  apiUrl: string;
   netzoConfig: NetzoConfig; // proxified config
 };
 
@@ -290,7 +294,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
 
     app.service("deployments").on(
       "progress",
-      async (event: DenoDeploymentProgress) => {
+      (event: DenoDeploymentProgress) => {
         switch (event.type) {
           case "assetNegotiation": {
             neededHashes =
