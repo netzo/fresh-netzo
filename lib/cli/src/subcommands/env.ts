@@ -135,7 +135,10 @@ async function syncEnv(opts: SyncEnvOpts): Promise<void> {
 
     // patch project.env in netzo API:
     await api.projects[project._id as string].patch<Project>({
-      env: { ...project.env, development: envVars },
+      env: {
+        ...project.env,
+        development: { ...project.env.development, ...envVars },
+       },
     });
   } catch (error) {
     console.error(error);
