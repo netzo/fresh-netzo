@@ -20,7 +20,7 @@ export async function defineNetzoConfig(
 
   const { api } = netzo({ apiKey: NETZO_API_KEY, baseURL: NETZO_API_URL });
 
-  // project includes config.env.development.envVars resolved with variables
+  // project includes config.envVars.development resolved with variables
   const project = await api.projects.get<Project>({
     uid: NETZO_PROJECT,
     $limit: 1,
@@ -33,8 +33,8 @@ export async function defineNetzoConfig(
   Deno.env.set("NETZO_API_KEY", NETZO_API_KEY);
   Deno.env.set("NETZO_API_URL", NETZO_API_URL || "https://api.netzo.io");
 
-  const { envVars, variables } = project?.env?.development ?? {};
-  setEnvVars({ ...envVars, ...variables });
+  const envVars = project?.envVars?.development ?? {};
+  setEnvVars(envVars);
 
   const config: NetzoConfig = {
     ...partialConfig as NetzoConfig,
