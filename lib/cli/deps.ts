@@ -65,7 +65,7 @@ export type {
   Project,
   ProjectFiles,
   ProjectFilesFile,
-} from "npm:@netzo/api@1.0.46";
+} from "npm:@netzo/api@1.0.49";
 
 // socket.io-client:
 export { feathers } from "npm:@feathersjs/feathers@5.0.6";
