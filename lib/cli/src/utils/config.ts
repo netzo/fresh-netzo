@@ -60,13 +60,13 @@ export function assertValidNetzoConfig(config: NetzoConfig, args: Args) {
   // IMPORTANT: config is proxified, so assignments must be done key-by-key
   try {
     // 1) rebuild config: override and sort specific keys from config with args
-    if (args.project) config.project = args.project;
+    // DISABLED: if (args.project) config.project = args.project;
 
     // 2) ensure required keys are present and valid
     const required = ["project"];
     required.forEach((key) => {
       const message = `Missing "${key}" property in ${CONFIG}`;
-      if (!config[key]) throw new Error(message);
+      if (!config[key] && !args.project) throw new Error(message);
     });
 
     return config;
