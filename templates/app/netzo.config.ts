@@ -1,4 +1,3 @@
-import "std/dotenv/load.ts";
 import { defineNetzoConfig } from "netzo/config/mod.ts";
 import { authPlugins } from "netzo/auth/plugin.ts";
 import { createGitHubOAuthConfig } from "deno_kv_oauth/mod.ts";

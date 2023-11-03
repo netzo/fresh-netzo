@@ -1,6 +1,6 @@
 #!/usr/bin/env -S deno run --allow-read --allow-write --allow-env --allow-net --allow-run
 
-import { load, parse, parseArgs, semverGreaterThanOrEquals } from "./deps.ts";
+import { parse, parseArgs, semverGreaterThanOrEquals } from "./deps.ts";
 import { error } from "./src/console.ts";
 import initSubcommand from "./src/subcommands/init.ts";
 import deploySubcommand from "./src/subcommands/deploy.ts";
@@ -9,8 +9,8 @@ import upgradeSubcommand from "./src/subcommands/upgrade.ts";
 import { MINIMUM_DENO_VERSION, VERSION } from "./src/version.ts";
 import { fetchReleases, getConfigPaths } from "./src/utils/info.ts";
 
-// relative path to load when calling netzo deploy from templates/{uid}/src/
-await load({ defaultsPath: "../../../cli/.env", export: true });
+// ensure .env is loaded (even if not using --env)
+import "https://deno.land/std@0.205.0/dotenv/load.ts";
 
 const help = `netzo ${VERSION}
 Command line tool for Netzo.

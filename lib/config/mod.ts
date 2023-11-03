@@ -1,7 +1,7 @@
 import { netzo } from "../apis/netzo/mod.ts";
 import { error, LOGS } from "../cli/src/console.ts";
 import { setEnvVars } from "../utils/mod.ts";
-import { Project } from "netzo/cli/deps.ts";
+import { Paginated, Project } from "netzo/cli/deps.ts";
 import { type NetzoConfig, configPlugin } from "./plugin.ts";
 
 export * from "./plugin.ts";
@@ -22,10 +22,11 @@ export async function defineNetzoConfig(
   const { api } = netzo({ apiKey: NETZO_API_KEY, baseURL: NETZO_API_URL });
 
   // project includes config.envVars.development resolved with variables
-  const project = await api.projects.get<Project>({
+  const result = await api.projects.get<Paginated<Project>>({
     uid: NETZO_PROJECT,
     $limit: 1,
-  }).then((result) => result?.data?.[0]);
+  })
+  const project = result?.data?.[0] as Project;
   if (!project) error(LOGS.notFoundProject);
 
   Deno.env.set("NETZO_ENV", NETZO_ENV);
