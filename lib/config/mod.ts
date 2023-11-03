@@ -2,44 +2,42 @@ import { netzo } from "../apis/netzo/mod.ts";
 import { error, LOGS } from "../cli/src/console.ts";
 import { setEnvVars } from "../utils/mod.ts";
 import { Paginated, Project } from "netzo/cli/deps.ts";
-import { type NetzoConfig, configPlugin } from "./plugin.ts";
+import { configPlugin, type NetzoConfig } from "../plugins/config/mod.ts";
 
-export * from "./plugin.ts";
+if (import.meta.main) await defineNetzoConfig({}) // allow running as script
 
 export async function defineNetzoConfig(
   partialConfig: Partial<NetzoConfig>,
 ): Promise<Required<NetzoConfig>> {
   const NETZO_ENV = Deno.env.get("DENO_REGION") ? "production" : "development";
-  const NETZO_API_KEY = Deno.env.get("NETZO_API_KEY");
-  if (!NETZO_API_KEY) error(LOGS.missingApiKey);
-  const NETZO_API_URL = Deno.env.get("NETZO_API_URL") || "https://api.netzo.io";
-  const NETZO_APP_URL = Deno.env.get("NETZO_APP_URL") || "https://app.netzo.io";
   const {
     project: NETZO_PROJECT = Deno.env.get("NETZO_PROJECT")!,
     plugins = [],
   } = partialConfig;
 
-  const { api } = netzo({ apiKey: NETZO_API_KEY, baseURL: NETZO_API_URL });
-
-  // project includes config.envVars.development resolved with variables
-  const result = await api.projects.get<Paginated<Project>>({
-    uid: NETZO_PROJECT,
-    $limit: 1,
-  })
-  const project = result?.data?.[0] as Project;
-  if (!project) error(LOGS.notFoundProject);
-
   Deno.env.set("NETZO_ENV", NETZO_ENV);
   Deno.env.set("NETZO_PROJECT", NETZO_PROJECT);
-  Deno.env.set("NETZO_PROJECT_ID", project._id);
-  Deno.env.set("NETZO_API_KEY", NETZO_API_KEY);
-  Deno.env.set("NETZO_API_URL", NETZO_API_URL);
-  Deno.env.set("NETZO_APP_URL", NETZO_APP_URL);
 
-  console.log(`Open in netzo at ${NETZO_APP_URL}/workspaces/${project.workspaceId}/projects/${project._id}`)
+  if (["development"].includes(NETZO_ENV)) {
+    const apiKey = Deno.env.get("NETZO_API_KEY");
+    if (!apiKey) error(LOGS.missingApiKey);
 
-  const envVars = project?.envVars?.development ?? {};
-  setEnvVars(envVars);
+    const { api } = netzo({ apiKey, baseURL: Deno.env.get("NETZO_API_URL") });
+
+    const result = await api.projects.get<Paginated<Project>>({
+      uid: NETZO_PROJECT,
+      $limit: 1,
+    });
+    const project = result?.data?.[0] as Project;
+    if (!project) error(LOGS.notFoundProject);
+
+    if (project?.envVars?.development) setEnvVars(project.envVars.development);
+
+    const appUrl = Deno.env.get("NETZO_APP_URL") ?? "https://app.netzo.io";
+    console.log(
+      `Open in netzo at ${appUrl}/workspaces/${project.workspaceId}/projects/${project._id}`,
+    );
+  }
 
   const config: NetzoConfig = {
     ...partialConfig as NetzoConfig,

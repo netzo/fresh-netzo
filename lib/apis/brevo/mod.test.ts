@@ -5,7 +5,7 @@ import {
 } from "https://deno.land/std@0.204.0/testing/asserts.ts";
 import { brevo } from "./mod.ts";
 
-Deno.test("brevo", async (t) => {
+Deno.test("[apis] brevo", async (t) => {
   const { api } = brevo({
     apiKey: Deno.env.get("BREVO_API_KEY")!,
   });

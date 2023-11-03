@@ -5,7 +5,7 @@ import {
 } from "https://deno.land/std@0.204.0/testing/asserts.ts";
 import { monday } from "./mod.ts";
 
-Deno.test("monday", async (t) => {
+Deno.test("[apis] monday", async (t) => {
   const { api } = monday({
     apiKey: Deno.env.get("MONDAY_API_KEY")!,
   });

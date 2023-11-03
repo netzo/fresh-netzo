@@ -5,7 +5,7 @@ import {
 } from "https://deno.land/std@0.204.0/testing/asserts.ts";
 import { stripe } from "./mod.ts";
 
-Deno.test("stripe", async (t) => {
+Deno.test("[apis] stripe", async (t) => {
   const { api } = stripe({
     apiKey: Deno.env.get("STRIPE_API_KEY")!,
   });

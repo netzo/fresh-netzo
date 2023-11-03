@@ -4,7 +4,7 @@ import {
 } from "https://deno.land/std@0.204.0/testing/asserts.ts";
 import { medium } from "./mod.ts";
 
-Deno.test("medium", async (t) => {
+Deno.test("[apis] medium", async (t) => {
   const { api } = medium({
     accessToken: Deno.env.get("MEDIUM_ACCESS_TOKEN"),
   });

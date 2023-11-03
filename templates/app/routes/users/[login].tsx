@@ -1,9 +1,9 @@
-import type { AuthState } from "netzo/auth/plugins/session.ts";
-import { getUser } from "netzo/auth/utils/db.ts";
+import type { AuthState } from "netzo/plugins/auth/plugins/session.ts";
+import { getUser } from "netzo/plugins/auth/utils/db.ts";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
-import { LINK_STYLES } from "netzo/auth/utils/constants.ts";
-import Head from "netzo/auth/components/Head.tsx";
-import GitHubAvatarImg from "netzo/auth/components/GitHubAvatarImg.tsx";
+import { LINK_STYLES } from "netzo/plugins/auth/utils/constants.ts";
+import Head from "netzo/plugins/auth/components/Head.tsx";
+import GitHubAvatarImg from "netzo/plugins/auth/components/GitHubAvatarImg.tsx";
 import { defineRoute } from "$fresh/server.ts";
 
 interface UserProfileProps {

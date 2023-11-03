@@ -5,7 +5,7 @@ import {
 } from "https://deno.land/std@0.204.0/testing/asserts.ts";
 import { github } from "./mod.ts";
 
-Deno.test("github", async (t) => {
+Deno.test("[apis] github", async (t) => {
   const { api } = github({
     personalAccessToken: Deno.env.get("GITHUB_PERSONAL_ACCESS_TOKEN")!,
   });

@@ -5,7 +5,7 @@ import {
 } from "https://deno.land/std@0.204.0/testing/asserts.ts";
 import { googlesheets } from "./mod.ts";
 
-Deno.test("googlesheets", async (t) => {
+Deno.test("[apis] googlesheets", async (t) => {
   const { api, resultToRows } = googlesheets({
     googleServiceAccountCredentials: Deno.env.get(
       "GOOGLE_SERVICE_ACCOUNT_CREDENTIALS",

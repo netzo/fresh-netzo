@@ -4,7 +4,7 @@ import {
 } from "https://deno.land/std@0.204.0/testing/asserts.ts";
 import { holded } from "./mod.ts";
 
-Deno.test("holded", async (t) => {
+Deno.test("[apis] holded", async (t) => {
   const { api } = holded({
     apiKey: Deno.env.get("HOLDED_API_KEY"),
   });

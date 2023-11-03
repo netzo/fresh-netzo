@@ -4,7 +4,7 @@ import {
 } from "https://deno.land/std@0.204.0/testing/asserts.ts";
 import { pandadoc } from "./mod.ts";
 
-Deno.test("pandadoc", async (t) => {
+Deno.test("[apis] pandadoc", async (t) => {
   const { api } = pandadoc({
     apiKey: Deno.env.get("PANDADOC_API_KEY"),
   });

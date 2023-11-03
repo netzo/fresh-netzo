@@ -5,7 +5,7 @@ import {
 } from "https://deno.land/std@0.204.0/testing/asserts.ts";
 import { notion } from "./mod.ts";
 
-Deno.test("notion", async (t) => {
+Deno.test("[apis] notion", async (t) => {
   const { api } = notion({
     internalIntegrationToken: Deno.env.get(
       "NOTION_INTERNAL_INTEGRATION_TOKEN",

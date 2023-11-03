@@ -4,7 +4,7 @@ import {
 } from "https://deno.land/std@0.204.0/testing/asserts.ts";
 import { clickup } from "./mod.ts";
 
-Deno.test("clickup", async (t) => {
+Deno.test("[apis] clickup", async (t) => {
   const { api } = clickup({
     personalApiKey: Deno.env.get("CLICKUP_PERSONAL_API_KEY"),
   });

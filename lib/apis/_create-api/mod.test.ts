@@ -14,7 +14,7 @@ type Todo = {
   completed: boolean;
 }; // used to test typed results (via generics)
 
-Deno.test("createApi", async (t) => {
+Deno.test("[apis] createApi", async (t) => {
   const api = createApi({
     baseURL: "https://jsonplaceholder.typicode.com",
     headers: {

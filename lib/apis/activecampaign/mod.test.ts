@@ -5,7 +5,7 @@ import {
 } from "https://deno.land/std@0.204.0/testing/asserts.ts";
 import { activecampaign } from "./mod.ts";
 
-Deno.test("activecampaign", async (t) => {
+Deno.test("[apis] activecampaign", async (t) => {
   const { api } = activecampaign({
     accountName: Deno.env.get("ACTIVECAMPAIGN_ACCOUNT_NAME")!,
     apiKey: Deno.env.get("ACTIVECAMPAIGN_API_KEY")!,

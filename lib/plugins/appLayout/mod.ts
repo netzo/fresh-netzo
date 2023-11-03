@@ -1,6 +1,6 @@
 import type { JSX } from "preact";
 import type { Plugin } from "$fresh/server.ts";
-import { NetzoConfig } from "../../config.ts";
+import { NetzoConfig } from "../../config/mod.ts";
 import AppLayout from "./app-layout.tsx";
 
 export type AppLayoutOptions = {
@@ -30,7 +30,6 @@ export default (
         handler: async (req, ctx) => {
           return ctx.render(AppLayout(options));
         },
-        //  component: AppLayout(options) },
       },
     ],
   };

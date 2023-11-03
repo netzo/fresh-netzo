@@ -4,7 +4,7 @@ import {
 } from "https://deno.land/std@0.204.0/testing/asserts.ts";
 import { mongodbatlasdata } from "./mod.ts";
 
-Deno.test("mongodbatlasdata", async (t) => {
+Deno.test("[apis] mongodbatlasdata", async (t) => {
   const { api } = mongodbatlasdata({
     apiKey: Deno.env.get("MONGODBATLASDATA_API_KEY"),
     dataApiAppId: Deno.env.get("MONGODBATLASDATA_DATA_API_APP_ID"),

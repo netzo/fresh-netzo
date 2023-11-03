@@ -1,5 +1,5 @@
 import { defineNetzoConfig } from "netzo/config/mod.ts";
-import { authPlugins } from "netzo/auth/plugin.ts";
+import { authPlugins } from "netzo/plugins/auth/mod.ts";
 import { createGitHubOAuthConfig } from "deno_kv_oauth/mod.ts";
 import errorPages from "netzo/plugins/errorPages/mod.ts";
 import twindPlugin from "$fresh/plugins/twindv1.ts";

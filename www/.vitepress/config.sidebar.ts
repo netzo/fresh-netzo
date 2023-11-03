@@ -184,7 +184,6 @@ export const sidebarEN: DefaultTheme.Sidebar = {
             { text: '<code>wix</code>', link: '/docs/netzo/apis/wix' },
           ],
         },
-        { text: '<code>auth</code>', link: '/docs/netzo/auth' },
         { text: '<code>cli</code>', link: '/docs/netzo/cli' },
         {
           text: '<code>components</code>',
@@ -234,13 +233,14 @@ export const sidebarEN: DefaultTheme.Sidebar = {
             { text: '<code>typography</code>', link: '/docs/netzo/components/typography' },
           ],
         },
-        { text: '<code>database</code>', link: '/docs/netzo/database' },
         {
           text: '<code>plugins</code>',
           link: '/docs/netzo/plugins',
           collapsed: false,
           items: [
+            { text: '<code>auth</code>', link: '/docs/netzo/plugins/auth' },
             { text: '<code>appLayout</code>', link: '/docs/netzo/plugins/appLayout' },
+            { text: '<code>database</code>', link: '/docs/netzo/plugins/database' },
             { text: '<code>errorPages</code>', link: '/docs/netzo/plugins/errorPages' },
             { text: '<code>unocss</code>', link: '/docs/netzo/plugins/unocss' },
           ],

@@ -7,7 +7,7 @@
  * deno task db:dump > backup.json
  * ```
  */
-import { kv } from "netzo/auth/utils/db.ts";
+import { kv } from "netzo/plugins/auth/utils/db.ts";
 
 // https://github.com/GoogleChromeLabs/jsbi/issues/30#issuecomment-521460510
 function replacer(_key: unknown, value: unknown) {

@@ -5,7 +5,7 @@ import {
 } from "https://deno.land/std@0.204.0/testing/asserts.ts";
 import { cloudflare } from "./mod.ts";
 
-Deno.test("cloudfare", async (t) => {
+Deno.test("[apis] cloudfare", async (t) => {
   const { api } = cloudflare({
     apiKey: Deno.env.get("CLOUDFLARE_API_KEY")!,
   });

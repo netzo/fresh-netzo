@@ -4,7 +4,7 @@ import {
 } from "https://deno.land/std@0.204.0/testing/asserts.ts";
 import { wix } from "./mod.ts";
 
-Deno.test("wix", async (t) => {
+Deno.test("[apis] wix", async (t) => {
   const { api } = wix({
     accountId: Deno.env.get("WIX_ACCOUNT_ID"),
     siteId: Deno.env.get("WIX_SITE_ID"),

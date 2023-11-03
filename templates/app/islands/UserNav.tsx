@@ -14,7 +14,7 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "netzo/components/ui/dropdown-menu.tsx";
-import type { HeaderProps } from "netzo/auth/components/Header.tsx";
+import type { HeaderProps } from "netzo/plugins/auth/components/Header.tsx";
 
 const getInitials = (sessionUser: HeaderProps["sessionUser"]) => {
   const { name, login, email } = sessionUser;

@@ -4,7 +4,7 @@ import {
 } from "https://deno.land/std@0.204.0/testing/asserts.ts";
 import { sendgrid } from "./mod.ts";
 
-Deno.test("sendgrid", async (t) => {
+Deno.test("[apis] sendgrid", async (t) => {
   const { api } = sendgrid({
     apiKey: Deno.env.get("SENDGRID_API_KEY"),
   });

@@ -4,7 +4,7 @@ import {
 } from "https://deno.land/std@0.204.0/testing/asserts.ts";
 import { fathomanalytics } from "./mod.ts";
 
-Deno.test("fathomanalytics", async (t) => {
+Deno.test("[apis] fathomanalytics", async (t) => {
   const { api } = fathomanalytics({
     apiKey: Deno.env.get("FATHOMANALYTICS_API_KEY"),
   });

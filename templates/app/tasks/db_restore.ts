@@ -7,7 +7,7 @@
  * deno task db:restore backup.json
  * ```
  */
-import { kv } from "netzo/auth/utils/db.ts";
+import { kv } from "netzo/plugins/auth/utils/db.ts";
 
 interface StoredKvU64 {
   value: string;
