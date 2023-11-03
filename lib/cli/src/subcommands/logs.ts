@@ -34,6 +34,7 @@ export type Args = {
   project: string | null;
   apiKey: string | null;
   apiUrl?: string;
+  appUrl?: string;
 };
 
 // deno-lint-ignore no-explicit-any
@@ -42,6 +43,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     NETZO_PROJECT = null,
     NETZO_API_KEY = null,
     NETZO_API_URL = "https://api.netzo.io",
+    NETZO_APP_URL = "https://app.netzo.io",
   } = Deno.env.toObject();
 
   const args: Args = {
@@ -51,6 +53,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     project: rawArgs.project ? String(rawArgs.project) : NETZO_PROJECT,
     apiKey: rawArgs["api-key"] ? String(rawArgs["api-key"]) : NETZO_API_KEY,
     apiUrl: rawArgs["api-url"] ?? NETZO_API_URL,
+    appUrl: rawArgs["app-url"] ?? NETZO_APP_URL,
   };
 
   if (args.help) {
@@ -76,6 +79,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     prod: args.prod,
     apiKey: args.apiKey!,
     apiUrl: args.apiUrl!,
+    appUrl: args.apiUrl!,
   };
 
   await logs(opts);
@@ -87,6 +91,7 @@ type LogsOpts = {
   prod: boolean;
   apiKey: string;
   apiUrl: string;
+  appUrl: string;
 };
 
 async function logs(opts: LogsOpts): Promise<void> {

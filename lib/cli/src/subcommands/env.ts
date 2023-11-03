@@ -38,6 +38,7 @@ export type Args = {
   project: string | null;
   apiKey: string | null;
   apiUrl?: string;
+  appUrl?: string;
 };
 
 // deno-lint-ignore no-explicit-any
@@ -46,6 +47,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     NETZO_PROJECT = null,
     NETZO_API_KEY = null,
     NETZO_API_URL = "https://api.netzo.io",
+    NETZO_APP_URL = "https://app.netzo.io",
   } = Deno.env.toObject();
 
   const args: Args = {
@@ -53,6 +55,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     project: rawArgs.project ? String(rawArgs.project) : NETZO_PROJECT,
     apiKey: rawArgs["api-key"] ? String(rawArgs["api-key"]) : NETZO_API_KEY,
     apiUrl: rawArgs["api-url"] ?? NETZO_API_URL,
+    appUrl: rawArgs["app-url"] ?? NETZO_APP_URL,
   };
   const envPath = typeof rawArgs._[0] === "string" ? rawArgs._[0] : ".env";
   if (args.help) {
@@ -87,6 +90,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
       project: args.project,
       apiKey: args.apiKey!,
       apiUrl: args.apiUrl!,
+      appUrl: args.appUrl!,
       netzoConfig,
     } satisfies SyncEnvOpts,
   );
@@ -97,6 +101,7 @@ type SyncEnvOpts = {
   project: string;
   apiKey: string;
   apiUrl: string;
+  appUrl: string;
   netzoConfig: NetzoConfig; // proxified config
 };
 
@@ -138,7 +143,7 @@ async function syncEnv(opts: SyncEnvOpts): Promise<void> {
       env: {
         ...project.env,
         development: { ...project.env.development, ...envVars },
-       },
+      },
     });
   } catch (error) {
     console.error(error);

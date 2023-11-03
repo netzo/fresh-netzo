@@ -33,6 +33,7 @@ export type Args = {
   dryRun: boolean;
   apiKey: string | null;
   apiUrl?: string;
+  appUrl?: string;
 };
 
 // deno-lint-ignore no-explicit-any
@@ -41,6 +42,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     NETZO_PROJECT = null,
     NETZO_API_KEY = null,
     NETZO_API_URL = "https://api.netzo.io",
+    NETZO_APP_URL = "https://app.netzo.io",
   } = Deno.env.toObject();
 
   const args: Args = {
@@ -49,6 +51,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     dryRun: !!rawArgs["dry-run"],
     apiKey: rawArgs["api-key"] ? String(rawArgs["api-key"]) : NETZO_API_KEY,
     apiUrl: rawArgs["api-url"] ?? NETZO_API_URL,
+    appUrl: rawArgs["app-url"] ?? NETZO_APP_URL,
   };
 
   if (args.help) {
@@ -79,10 +82,11 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     // NOTE: exit directly if undefined (when cancelling/escaping prompt)
     if (args.project === undefined) Deno.exit(1);
   } else {
-    project = (await api.projects.get({
+    const result = await api.projects.get({
       uid: args.project,
       $limit: 1,
-    })).data[0];
+    });
+    project = result.data[0] as Project;
   }
   // in case prompt is cancelled/escaped
   if (args.project === null) {
@@ -91,7 +95,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
   }
 
   // NOTE: fetch again via "get" (not "find") to get populated project.files
-  project = await api.projects[project!._id].get();
+  project = await api.projects[project._id as string].get();
 
   const directory = typeof rawArgs._[0] === "string"
     ? rawArgs._[0]

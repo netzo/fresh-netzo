@@ -75,6 +75,7 @@ export type Args = {
   dryRun: boolean;
   apiKey: string | null;
   apiUrl?: string;
+  appUrl?: string;
 };
 
 // deno-lint-ignore no-explicit-any
@@ -83,6 +84,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     NETZO_PROJECT = null,
     NETZO_API_KEY = null,
     NETZO_API_URL = "https://api.netzo.io",
+    NETZO_APP_URL = "https://app.netzo.io",
   } = Deno.env.toObject();
 
   const args: Args = {
@@ -96,6 +98,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     dryRun: !!rawArgs["dry-run"],
     apiKey: rawArgs["api-key"] ? String(rawArgs["api-key"]) : NETZO_API_KEY,
     apiUrl: rawArgs["api-url"] ?? NETZO_API_URL,
+    appUrl: rawArgs["app-url"] ?? NETZO_APP_URL,
   };
   if (args.help) {
     console.log(help);
@@ -146,6 +149,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
       dryRun: args.dryRun,
       apiKey: args.apiKey!,
       apiUrl: args.apiUrl!,
+      appUrl: args.appUrl!,
       netzoConfig,
     } satisfies DeployOpts,
   );
@@ -162,6 +166,7 @@ type DeployOpts = {
   dryRun: boolean;
   apiKey: string;
   apiUrl: string;
+  appUrl: string;
   netzoConfig: NetzoConfig; // proxified config
 };
 
@@ -342,13 +347,10 @@ async function deploy(opts: DeployOpts): Promise<void> {
             const { id /* domainMappings */ } =
               event as DenoDeploymentProgressSuccess;
             const deploymentKind = opts.prod ? "Production" : "Preview";
-            const appUrl = opts.apiUrl.startsWith("http://")
-              ? "http://localhost:1234"
-              : "https://app.netzo.io";
             deploySpinner!.succeed(`${deploymentKind} deployment complete.`);
             console.log("\nView at:");
             console.log(
-              ` - ${appUrl}/workspaces/${project.workspaceId}/projects/${project._id}/deployments/${id}`,
+              ` - ${opts.appUrl}/workspaces/${project.workspaceId}/projects/${project._id}/deployments/${id}`,
             );
             // for (const { domain } of domainMappings) {
             //   console.log(` - https://${domain}`);

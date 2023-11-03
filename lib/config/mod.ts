@@ -12,8 +12,8 @@ export async function defineNetzoConfig(
   const NETZO_ENV = Deno.env.get("DENO_REGION") ? "production" : "development";
   const NETZO_API_KEY = Deno.env.get("NETZO_API_KEY");
   if (!NETZO_API_KEY) error(LOGS.missingApiKey);
-  const NETZO_APP_URL = Deno.env.get("NETZO_APP_URL") || "https://app.netzo.io";
   const NETZO_API_URL = Deno.env.get("NETZO_API_URL") || "https://api.netzo.io";
+  const NETZO_APP_URL = Deno.env.get("NETZO_APP_URL") || "https://app.netzo.io";
   const {
     project: NETZO_PROJECT = Deno.env.get("NETZO_PROJECT")!,
     plugins = [],
@@ -32,8 +32,8 @@ export async function defineNetzoConfig(
   Deno.env.set("NETZO_PROJECT", NETZO_PROJECT);
   Deno.env.set("NETZO_PROJECT_ID", project._id);
   Deno.env.set("NETZO_API_KEY", NETZO_API_KEY);
-  Deno.env.set("NETZO_APP_URL", NETZO_APP_URL);
   Deno.env.set("NETZO_API_URL", NETZO_API_URL);
+  Deno.env.set("NETZO_APP_URL", NETZO_APP_URL);
 
   console.log(`Open in netzo at ${NETZO_APP_URL}/workspaces/${project.workspaceId}/projects/${project._id}`)
 
