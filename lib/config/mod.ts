@@ -61,7 +61,7 @@ export async function defineNetzoConfig(
   return {
     ...config,
     plugins: [
-      ...plugins, // eventual overrides to netzo modules
+      ...plugins,
     ],
   };
 }

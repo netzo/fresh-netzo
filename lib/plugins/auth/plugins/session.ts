@@ -7,7 +7,7 @@ import { Status } from "std/http/http_status.ts";
 import { AuthState } from "../mod.ts";
 
 export function assertSignedIn(state: AuthState) {
-  if (state.auth.sessionUser === undefined) {
+  if (state.auth?.sessionUser === undefined) {
     throw createHttpError(Status.Unauthorized, "User must be signed in");
   }
 }
@@ -19,6 +19,7 @@ async function setSessionState(
   if (!["route"].includes(ctx.destination)) return await ctx.next();
 
   const sessionId = await getSessionId(req);
+  console.log(ctx.state)
   ctx.state.auth = { sessionId, sessionUser: undefined }; // reset each request (before next())
 
   if (sessionId === undefined) return await ctx.next();
