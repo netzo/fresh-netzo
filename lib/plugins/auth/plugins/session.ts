@@ -82,7 +82,7 @@ export async function ensureSignedIn(
  * @see {@link https://fresh.deno.dev/docs/concepts/plugins|Plugins documentation}
  * for more information on Fresh's plugin functionality.
  */
-export default (): Plugin => {
+export const session = (): Plugin => {
   return {
     name: "session",
     middlewares: [

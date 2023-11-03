@@ -39,7 +39,7 @@ export type VisibilityState = {
  * A fresh plugin that registers middleware to handle
  * visibility of projects based on the `visibility` option.
  */
-export const visibilityPlugin = (): Plugin[] => {
+export const visibility = (options: VisibilityOptions): Plugin[] => {
   return {
     name: "visibility-plugin",
     middlewares: [

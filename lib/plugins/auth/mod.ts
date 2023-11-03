@@ -2,11 +2,11 @@ import type { Plugin } from "$fresh/server.ts";
 import type { OAuth2ClientConfig } from "deno_kv_oauth/mod.ts";
 import type { MetaProps } from "netzo/plugins/auth/components/Meta.tsx";
 import { type User } from "netzo/plugins/auth/utils/db.ts";
-import kvOAuthPlugin from "./plugins/kv-oauth.ts";
-import sessionPlugin from "./plugins/session.ts";
-import errorHandling from "./plugins/error-handling.ts";
-import securityHeaders from "./plugins/security-headers.ts";
-import welcomePlugin from "./plugins/welcome.ts";
+import { kvOAuth } from "./plugins/kv-oauth.ts";
+import { session } from "./plugins/session.ts";
+import { errorHandling } from "./plugins/error-handling.ts";
+import { securityHeaders } from "./plugins/security-headers.ts";
+import { welcome } from "./plugins/welcome.ts";
 
 export type AuthOptions = {
   // email: EmailClientConfig;
@@ -29,11 +29,11 @@ export type AuthState = MetaProps & {
  * - `GET /oauth/callback` for the callback page
  * - `GET /oauth/signout` for the sign-out page
  */
-export const authPlugins = (options: DatabaseOptions): Plugin[] => {
+export const auth = (options: AuthOptions): Plugin[] => {
   return [
-    welcomePlugin(options),
-    kvOAuthPlugin(options),
-    sessionPlugin(options),
+    welcome(options),
+    kvOAuth(options),
+    session(options),
     errorHandling(options),
     securityHeaders(options),
   ];

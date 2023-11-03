@@ -42,7 +42,7 @@ The netzo theme is based on the UnoCSS `presetNetzo`. You can find all the defau
 ::: code-group
 ```ts [netzo.config.ts]
 import { defineNetzoConfig } from 'netzo/config/mod.ts'
-import unocss from 'netzo/plugins/unocss/mod.ts'
+import { unocss } from 'netzo/plugins/unocss/mod.ts'
 import { presetNetzo } from 'netzo/plugins/unocss/preset-netzo.ts'
 
 export default defineNetzoConfig({

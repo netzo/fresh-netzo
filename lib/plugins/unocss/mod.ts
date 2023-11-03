@@ -18,7 +18,7 @@ export const defineConfig = <T extends object = object>(config: Config<T>) => {
   return config;
 };
 
-export default (config: Config, runtime = true): Plugin => {
+export const unocss = (config: Config, runtime = true): Plugin => {
   const uno = new UnoGenerator(config);
   return {
     name: "unocss",

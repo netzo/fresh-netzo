@@ -8,7 +8,7 @@ import AutoImport from 'unplugin-auto-import/vite'
 import { tabsMarkdownPlugin } from 'vitepress-plugin-tabs'
 
 // import Components from 'unplugin-vue-components/vite'
-import Unocss from 'unocss/vite'
+import { unocss } from 'unocss/vite'
 
 // import VueDevTools from 'vite-plugin-vue-devtools'
 import { SitemapStream } from 'sitemap'

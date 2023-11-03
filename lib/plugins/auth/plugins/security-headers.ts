@@ -1,6 +1,6 @@
 import type { Plugin } from "$fresh/server.ts";
 
-export default (): Plugin => {
+export const securityHeaders = (): Plugin => {
   return {
     name: "security-headers",
     middlewares: [

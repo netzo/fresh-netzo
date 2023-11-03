@@ -17,7 +17,7 @@ export const _internals = { handleCallback };
  * This custom plugin centralizes all authentication logic using the
  * {@link https://deno.land/x/deno_kv_oauth|Deno KV OAuth} module.
  */
-export default (options: AuthOptions): Plugin => {
+export const kvOauth = (options: AuthOptions): Plugin => {
   return {
     name: "kv-oauth",
     routes: [

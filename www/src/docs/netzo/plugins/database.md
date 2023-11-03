@@ -9,7 +9,7 @@
 ## Usage
 
 ```ts
-import { createDatabase } from 'https://deno.land/x/netzo/db.ts'
+import { createDatabase } from 'https://deno.land/x/netzo/db/mod.ts'
 
 const kv = await Deno.openKv()
 const db = createDatabase(kv)

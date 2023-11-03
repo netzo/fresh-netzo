@@ -43,7 +43,7 @@ const notAllowed = () => new Response("Method not allowed", { status: 405 });
  * - `PATCH /db/[resource]/[id]` patch a record of a resource by id
  * - `DELETE /db/[resource]/[id]` delete a record of a resource by id
  */
-export const databasePlugin = (_options: DatabaseOptions): Plugin => {
+export const database = (_options: DatabaseOptions): Plugin => {
   return {
     name: "database-plugin",
     middlewares: [

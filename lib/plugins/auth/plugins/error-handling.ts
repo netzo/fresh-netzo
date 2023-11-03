@@ -41,7 +41,7 @@ export function toErrorResponse(error: any) {
     : new Response(error.message, { status: Status.InternalServerError });
 }
 
-export default (): Plugin => {
+export const errorHandling = (): Plugin => {
   return {
     name: "error-handling",
     middlewares: [

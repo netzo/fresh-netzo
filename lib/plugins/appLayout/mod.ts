@@ -1,6 +1,5 @@
 import type { JSX } from "preact";
 import type { Plugin } from "$fresh/server.ts";
-import { NetzoConfig } from "../../config/mod.ts";
 import AppLayout from "./app-layout.tsx";
 
 export type AppLayoutOptions = {
@@ -11,12 +10,11 @@ export type AppLayoutOptions = {
 };
 
 export type AppLayoutState = {
-  options: NetzoConfig;
   sessionId: string;
   isAuthenticated: boolean;
 };
 
-export default (
+export const appLayout = (
   options: AppLayoutOptions = {
     title: "Built with Netzo",
     favicon: "/favicon.svg",
@@ -27,7 +25,7 @@ export default (
     routes: [
       {
         path: "/_app",
-        handler: async (req, ctx) => {
+        handler: (_req, ctx) => {
           return ctx.render(AppLayout(options));
         },
       },

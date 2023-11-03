@@ -2,7 +2,7 @@ import type { Plugin } from "$fresh/server.ts";
 import { isGitHubSetup } from "netzo/plugins/auth/utils/github.ts";
 import { redirect } from "netzo/plugins/auth/utils/http.ts";
 
-export default (): Plugin => {
+export const welcome = (): Plugin => {
   return {
     name: "welcome",
     middlewares: [{

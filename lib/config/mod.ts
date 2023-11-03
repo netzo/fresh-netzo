@@ -1,8 +1,19 @@
+import type { FreshConfig } from "https​://deno.land/x/fresh​@1.5.2/server.ts";
 import { netzo } from "../apis/netzo/mod.ts";
 import { error, LOGS } from "../cli/src/console.ts";
 import { setEnvVars } from "../utils/mod.ts";
 import { Paginated, Project } from "netzo/cli/deps.ts";
-import { configPlugin, type NetzoConfig } from "../plugins/config/mod.ts";
+
+export type NetzoConfig = FreshConfig & {
+  project?: string;
+  entrypoint?: string;
+  [k: string]: unknown;
+};
+
+export type NetzoState = {
+  config: NetzoConfig;
+  kv: Deno.Kv;
+};
 
 if (import.meta.main) await defineNetzoConfig({}) // allow running as script
 
@@ -47,7 +58,6 @@ export async function defineNetzoConfig(
   return {
     ...config,
     plugins: [
-      configPlugin(config), // must run first to set ctx.state to NetzoState
       ...plugins, // eventual overrides to netzo modules
     ],
   };

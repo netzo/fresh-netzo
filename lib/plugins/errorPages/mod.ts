@@ -6,7 +6,7 @@ export type ErrorPagesOptions = {
   500?: boolean;
 };
 
-export default (
+export const errorPages = (
   options: ErrorPagesOptions = { "404": true, "500": true },
 ): Plugin => {
   return {
