@@ -177,10 +177,11 @@ async function deploy(opts: DeployOpts): Promise<void> {
 
   const projectSpinner = wait("Fetching project information...").start();
   const { api } = netzo({ apiKey: opts.apiKey, baseURL: opts.apiUrl });
-  const project = (await api.projects.get<Paginated<Project>>({
+  const result = await api.projects.get<Paginated<Project>>({
     uid: opts.project,
     $limit: 1,
-  }))?.data?.[0];
+  });
+  const project = result?.data?.[0] as Project;
   if (!project) {
     projectSpinner.fail(
       `Project "${opts.project}" not found. Ensure the API key is valid for this project.`,
