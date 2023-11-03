@@ -3,7 +3,7 @@ import {
   type ManifestEntry,
   ManifestEntryDirectory,
 } from "../../deps.ts";
-import { printWarning } from "../console.ts";
+import { logWarning } from "../console.ts";
 
 /** Calculate git object hash, like `git hash-object` does. */
 export async function calculateGitSha1(bytes: Uint8Array) {
@@ -59,7 +59,7 @@ function include(
       "mpeg",
     ].includes(path?.split(".").pop()!)
   ) {
-    printWarning(
+    logWarning(
       `Skipping ${path} because it is a binary file (not yet supported)\n`,
     ); // requires newline "\n" to avoid being swallowed by the spinner
     return false;

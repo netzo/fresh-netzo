@@ -1,11 +1,11 @@
 import { defineRoute } from "$fresh/server.ts";
-import type { SignedInState } from "netzo/plugins/auth/plugins/session.ts";
+import type { AuthState } from "netzo/plugins/auth/mod.ts";
 import { BUTTON_STYLES, LINK_STYLES } from "netzo/plugins/auth/utils/constants.ts";
 import Head from "netzo/plugins/auth/components/Head.tsx";
 import GitHubAvatarImg from "netzo/plugins/auth/components/GitHubAvatarImg.tsx";
 
-export default defineRoute<SignedInState>((_req, ctx) => {
-  const { sessionUser } = ctx.state;
+export default defineRoute<Required<AuthState>>((_req, ctx) => {
+  const { sessionUser } = ctx.state.auth;
 
   return (
     <>

@@ -1,32 +1,86 @@
-import { Options } from "$fresh/plugins/twindv1.ts";
-import { defineConfig, Preset } from "@twind/core";
-// twind preset
-import presetTailWind from "twind-preset-tailwind/base";
-import * as colors from "twind-preset-tailwind/colors";
-import ext from "twind-preset-ext";
+import { defineConfig, Preset } from "https://esm.sh/@twind/core@1.1.3";
+import presetTailwind from "https://esm.sh/@twind/preset-tailwind@1.1.4";
+import presetAutoprefix from "https://esm.sh/@twind/preset-autoprefix@1.0.7";
+// import * as fontFamily from "https://esm.sh/twind@1.0.7/fonts";
 
-/** @todo Remove the need for type-assertions */
 export default {
-  selfURL: import.meta.url,
-  // <BaseTheme, Preset<any>[]>
   ...defineConfig({
-    presets: [
-      /**
-       * Note: `presetAutoprefix()` was removed as it seemed to make no visual or functional difference to the website.
-       * If styling issues re-occur in the future, try adding `presetAutoprefix()` back here.
-       * @see {@link https://github.com/denoland/saaskit/pull/282}
-       */
-      presetTailWind({
-        colors: {
-          // This line is required. Otherwise, if removed, the values of other colors with be removed.
-          ...colors,
-          // Modify primary and secondary colors according to your color-scheme
-          primary: "#be185d",
-          secondary: "#4338ca",
+    presets: [presetTailwind() as Preset, presetAutoprefix() as Preset],
+    // from https://ui.shadcn.com/docs/installation/manual#configure-tailwindconfigjs
+    darkMode: "class",
+    theme: {
+      container: {
+        center: true,
+        padding: "2rem",
+        screens: {
+          "2xl": "1400px",
         },
-        // deno-lint-ignore no-explicit-any
-      }) as Preset<any>,
-      ext() as Preset,
-    ],
+      },
+      extend: {
+        colors: {
+          border: "hsl(var(--border))",
+          input: "hsl(var(--input))",
+          ring: "hsl(var(--ring))",
+          background: "hsl(var(--background))",
+          foreground: "hsl(var(--foreground))",
+          primary: {
+            DEFAULT: "hsl(var(--primary))",
+            foreground: "hsl(var(--primary-foreground))",
+          },
+          secondary: {
+            DEFAULT: "hsl(var(--secondary))",
+            foreground: "hsl(var(--secondary-foreground))",
+          },
+          destructive: {
+            DEFAULT: "hsl(var(--destructive))",
+            foreground: "hsl(var(--destructive-foreground))",
+          },
+          muted: {
+            DEFAULT: "hsl(var(--muted))",
+            foreground: "hsl(var(--muted-foreground))",
+          },
+          accent: {
+            DEFAULT: "hsl(var(--accent))",
+            foreground: "hsl(var(--accent-foreground))",
+          },
+          popover: {
+            DEFAULT: "hsl(var(--popover))",
+            foreground: "hsl(var(--popover-foreground))",
+          },
+          card: {
+            DEFAULT: "hsl(var(--card))",
+            foreground: "hsl(var(--card-foreground))",
+          },
+        },
+        borderRadius: {
+          lg: `var(--radius)`,
+          md: `calc(var(--radius) - 2px)`,
+          sm: "calc(var(--radius) - 4px)",
+        },
+        // fontFamily: {
+        //   sans: ["var(--font-sans)", ...fontFamily.sans],
+        // },
+        fontFamily: {
+          sans: ["Graphik", "sans-serif"],
+          serif: ["Merriweather", "serif"],
+        },
+        keyframes: {
+          "accordion-down": {
+            from: { height: 0 },
+            to: { height: "var(--radix-accordion-content-height)" },
+          },
+          "accordion-up": {
+            from: { height: "var(--radix-accordion-content-height)" },
+            to: { height: 0 },
+          },
+        },
+        animation: {
+          "accordion-down": "accordion-down 0.2s ease-out",
+          "accordion-up": "accordion-up 0.2s ease-out",
+        },
+      },
+    },
+    // plugins: [require("tailwindcss-animate")],
   }),
-} as Options;
+  selfURL: import.meta.url,
+};

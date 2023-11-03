@@ -8,7 +8,6 @@ export default {
     presets: [presetTailwind() as Preset, presetAutoprefix() as Preset],
     // from https://ui.shadcn.com/docs/installation/manual#configure-tailwindconfigjs
     darkMode: "class",
-    content: ["app/**/*.{ts,tsx}", "components/**/*.{ts,tsx}"],
     theme: {
       container: {
         center: true,

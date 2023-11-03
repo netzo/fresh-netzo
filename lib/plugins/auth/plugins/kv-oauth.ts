@@ -30,20 +30,20 @@ export const kvOAuth = (options: AuthOptions): Plugin => {
       },
       {
         path: `/oauth/signin`,
-        handler: async (req, ctx) => {
-          const response = await signIn(req, config.auth.oauth2);
-          console.debug(`/oauth/signin`, response);
+        handler: async (req, _ctx) => {
+          const response = await signIn(req, options.oauth2);
+          // console.debug(`/oauth/signin`, response);
           return response;
         },
       },
       {
         path: `/oauth/callback`,
-        handler: async (req, ctx) => {
+        handler: async (req, _ctx) => {
           const { response, tokens, sessionId } = await handleCallback(
             req,
-            config.auth.oauth2,
+            options.oauth2,
           );
-          console.debug(`/oauth/callback`, response);
+          // console.debug(`/oauth/callback`, response);
           const githubUser = await getGitHubUser(tokens.accessToken);
           const user = await getUser(githubUser.login);
 
@@ -65,7 +65,7 @@ export const kvOAuth = (options: AuthOptions): Plugin => {
         path: `/oauth/signout`,
         handler: async (req, _ctx) => {
           const response = await signOut(req);
-          console.debug(`/oauth/signout`, response);
+          // console.debug(`/oauth/signout`, response);
           return response;
         },
       },

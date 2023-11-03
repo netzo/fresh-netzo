@@ -1,4 +1,4 @@
-import type { AuthState } from "netzo/plugins/auth/plugins/session.ts";
+import type { AuthState } from "netzo/plugins/auth/mod.ts";
 import Head from "netzo/plugins/auth/components/Head.tsx";
 import { defineRoute } from "$fresh/server.ts";
 

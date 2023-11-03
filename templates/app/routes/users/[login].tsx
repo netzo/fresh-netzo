@@ -1,4 +1,4 @@
-import type { AuthState } from "netzo/plugins/auth/plugins/session.ts";
+import type { AuthState } from "netzo/plugins/auth/mod.ts";
 import { getUser } from "netzo/plugins/auth/utils/db.ts";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { LINK_STYLES } from "netzo/plugins/auth/utils/constants.ts";
