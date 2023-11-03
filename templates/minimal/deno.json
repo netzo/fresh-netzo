@@ -2,8 +2,8 @@
   "lock": false,
   "tasks": {
     "check": "deno fmt --check && deno lint && deno check **/*.ts && deno check **/*.tsx",
-    "start": "deno run -A --unstable --watch main.ts",
-    "test": "deno test -A --unstable --no-check"
+    "start": "deno run -A --unstable --env --watch main.ts",
+    "test": "deno test -A --unstable --env --no-check"
   },
   "imports": {
     "@/": "./",

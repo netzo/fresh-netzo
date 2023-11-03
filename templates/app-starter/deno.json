@@ -3,10 +3,10 @@
   "lock": false,
   "tasks": {
     "check": "deno fmt --check && deno lint && deno check **/*.ts && deno check **/*.tsx",
-    "start": "deno run -A --unstable --watch=static/,routes/ dev.ts",
-    "build": "deno run -A --unstable dev.ts build",
-    "preview": "deno run -A --unstable main.ts",
-    "test": "deno test -A --unstable --no-check",
+    "start": "deno run -A --unstable --env --watch=static/,routes/ dev.ts",
+    "build": "deno run -A --unstable --env dev.ts build",
+    "preview": "deno run -A --unstable --env main.ts",
+    "test": "deno test -A --unstable --env --no-check",
     "update": "deno run -A -r https://fresh.deno.dev/update ."
   },
   "lint": { "rules": { "tags": ["fresh", "recommended"] } },
