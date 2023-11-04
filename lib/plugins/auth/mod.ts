@@ -5,7 +5,6 @@ import { type User } from "netzo/plugins/auth/utils/db.ts";
 import { kvOAuth } from "./plugins/kv-oauth.ts";
 import { session } from "./plugins/session.ts";
 import { errorHandling } from "./plugins/error-handling.ts";
-import { securityHeaders } from "./plugins/security-headers.ts";
 import { welcome } from "./plugins/welcome.ts";
 
 export type AuthOptions = {
@@ -35,6 +34,5 @@ export const auth = (options: AuthOptions): Plugin[] => {
     kvOAuth(options),
     session(options),
     errorHandling(options),
-    securityHeaders(options),
   ];
 };

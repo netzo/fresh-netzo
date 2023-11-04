@@ -19,7 +19,6 @@ async function setSessionState(
   if (!["route"].includes(ctx.destination)) return await ctx.next();
 
   const sessionId = await getSessionId(req);
-  console.log(ctx.state)
   ctx.state.auth = { sessionId, sessionUser: undefined }; // reset each request (before next())
 
   if (sessionId === undefined) return await ctx.next();
