@@ -3,6 +3,9 @@ import { netzo } from "../apis/netzo/mod.ts";
 import { log, LOGS, logWarning } from "../cli/src/console.ts";
 import { setEnvVars } from "../utils/mod.ts";
 import { Paginated, Project } from "netzo/cli/deps.ts";
+import { AuthState } from "netzo/plugins/auth/mod.ts";
+import { DatabaseState } from "netzo/plugins/database/mod.ts";
+import { VisibilityState } from "netzo/plugins/visibility/mod.ts";
 
 export type NetzoConfig = FreshConfig & {
   project?: string;
@@ -13,9 +16,19 @@ export type NetzoConfig = FreshConfig & {
 export type NetzoState = {
   config: NetzoConfig;
   kv: Deno.Kv;
+  auth?: AuthState;
+  database?: DatabaseState;
+  visibility?: VisibilityState;
 };
 
 if (import.meta.main) await defineNetzoConfig({}); // allow running as script
+
+// WORKAROUND: until resolution of https://github.com/denoland/fresh/issues/1773#issuecomment-1763502518
+const origConsoleError = console.error;
+console.error = (msg) => {
+  if (typeof msg === "string" && msg.includes("Improper nesting of table")) return;
+  origConsoleError(msg);
+};
 
 export async function defineNetzoConfig(
   partialConfig: Partial<NetzoConfig>,

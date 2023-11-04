@@ -2,6 +2,7 @@ import { defineLayout } from "$fresh/server.ts";
 import { Separator } from "netzo/components/ui/separator.tsx";
 import { cn } from "netzo/components/utils.ts";
 import { buttonVariants } from "netzo/components/ui/button.tsx";
+import { NetzoState } from "netzo/config/mod.ts";
 
 const tabs = [
   { name: "Hidráulica", href: "/hydro" },
@@ -23,9 +24,10 @@ const meta = {
   },
 };
 
-export default defineLayout((req, ctx) => {
+export default defineLayout<NetzoState>((req, ctx) => {
   const url = new URL(req.url);
-  const { sessionId, isAuthenticated, options } = ctx.state;
+  console.log("STATE", ctx.state)
+  const { sessionId, isAuthenticated, options } = ctx.state?.auth;
 
   return (
     <html className="w-[100dvw] h-[100dvh]">

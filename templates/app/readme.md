@@ -1,14 +1,7 @@
-# Deno SaaSKit
+# Netzo App Template
 
-[![Discord Chat](https://img.shields.io/discord/684898665143206084?logo=discord&style=social)](https://discord.gg/deno)
-[![CI](https://github.com/denoland/saaskit/actions/workflows/ci.yml/badge.svg)](https://github.com/denoland/saaskit/actions/workflows/ci.yml)
-[![codecov](https://codecov.io/gh/denoland/saaskit/branch/main/graph/badge.svg?token=77F8TYTP13)](https://codecov.io/gh/denoland/saaskit)
-
-[Deno SaaSKit](https://deno.com/saaskit) is an open-sourced, highly performant
-template for building your SaaS quickly and easily.
-
-> Note: this project is in beta. Design, workflows, and user accounts are
-> subject to change.
+An open-sourced, highly performant
+template to get you started building [Netzo](https://netzo.io) apps.
 
 ## Features
 

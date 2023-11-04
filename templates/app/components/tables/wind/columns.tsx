@@ -1,3 +1,4 @@
+import { IS_BROWSER } from "$fresh/runtime.ts";
 import type { ColumnDef } from "@tanstack/react-table";
 import { Badge } from "netzo/components/ui/badge.tsx";
 import { Checkbox } from "netzo/components/ui/checkbox.tsx";
@@ -71,11 +72,10 @@ export const columns: ColumnDef<Wind>[] = [
         header: renderHeader("Nombre"),
         cell: ({ row }) => {
           const { id, name } = row.original;
+          const baseURL = IS_BROWSER ? '' : Deno.env.get("NETZO_PROJECT")
           return (
             <a
-              href={`https://${
-                Deno.env.get("NETZO_PROJECT")
-              }.netzo.dev/wind/${id}`}
+              href={`${baseURL}.netzo.dev/wind/${id}`}
               target="_blank"
               className="text-center font-medium text-blue-500 hover:text-blue-600 hover:underline"
             >

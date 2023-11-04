@@ -14,7 +14,6 @@ import {
   assertEquals,
   assertInstanceOf,
   assertNotEquals,
-  assertStringIncludes,
 } from "std/assert/mod.ts";
 import { isRedirectStatus } from "std/http/http_status.ts";
 import options from "@/netzo.config.ts";
@@ -116,76 +115,6 @@ Deno.test("[e2e] GET /oauth/signout", async () => {
   );
 
   assertRedirect(resp, "/");
-});
-
-Deno.test("[e2e] GET /dashboard", async (test) => {
-  const url = "http://localhost/dashboard";
-  const user = randomUser();
-  await createUser(user);
-
-  await test.step("redirects to sign-in page if the session user is not signed in", async () => {
-    const resp = await handler(new Request(url));
-
-    assertRedirect(resp, "/oauth/signin");
-  });
-
-  await test.step("redirects to `/dashboard/stats` when the session user is signed in", async () => {
-    const resp = await handler(
-      new Request(url, {
-        headers: { cookie: "site-session=" + user.sessionId },
-      }),
-    );
-
-    assertRedirect(resp, "/dashboard/stats");
-  });
-});
-
-Deno.test("[e2e] GET /dashboard/stats", async (test) => {
-  const url = "http://localhost/dashboard/stats";
-  const user = randomUser();
-  await createUser(user);
-
-  await test.step("redirects to sign-in page if the session user is not signed in", async () => {
-    const resp = await handler(new Request(url));
-
-    assertRedirect(resp, "/oauth/signin");
-  });
-
-  await test.step("renders dashboard stats chart for a user who is signed in", async () => {
-    const resp = await handler(
-      new Request(url, {
-        headers: { cookie: "site-session=" + user.sessionId },
-      }),
-    );
-
-    assertEquals(resp.status, Status.OK);
-    assertHtml(resp);
-    assertStringIncludes(await resp.text(), "<!--frsh-chart_default");
-  });
-});
-
-Deno.test("[e2e] GET /dashboard/users", async (test) => {
-  const url = "http://localhost/dashboard/users";
-  const user = randomUser();
-  await createUser(user);
-
-  await test.step("redirects to sign-in if the session user is not signed in", async () => {
-    const resp = await handler(new Request(url));
-
-    assertRedirect(resp, "/oauth/signin");
-  });
-
-  await test.step("renders dashboard stats table for a user who is signed in", async () => {
-    const resp = await handler(
-      new Request(url, {
-        headers: { cookie: "site-session=" + user.sessionId },
-      }),
-    );
-
-    assertEquals(resp.status, Status.OK);
-    assertHtml(resp);
-    assertStringIncludes(await resp.text(), "<!--frsh-userstable_default");
-  });
 });
 
 Deno.test("[e2e] GET /api/items", async () => {

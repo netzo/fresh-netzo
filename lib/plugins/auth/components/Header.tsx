@@ -41,7 +41,7 @@ export default function Header(props: HeaderProps) {
           <img
             height="48"
             width="48"
-            src="/logo.webp"
+            src="/logo.svg"
             alt={SITE_NAME + " logo"}
             class="h-12 w-12"
           />
