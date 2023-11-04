@@ -6,7 +6,7 @@ import {
   updateUserSession,
   type User,
 } from "../utils/db.ts";
-import { getGitHubUser } from "../utils/github.ts";
+import { getGitHubUser } from "../utils/providers/github.ts";
 import Auth from "../routes/auth.tsx";
 import type { AuthOptions } from "../mod.ts";
 
@@ -31,8 +31,9 @@ export const kvOAuth = (options: AuthOptions): Plugin => {
       {
         path: `/oauth/signin`,
         handler: async (req, _ctx) => {
+          console.log(options);
           const response = await signIn(req, options.oauth2);
-          // console.debug(`/oauth/signin`, response);
+          console.debug(`/oauth/signin`, response);
           return response;
         },
       },
@@ -43,7 +44,7 @@ export const kvOAuth = (options: AuthOptions): Plugin => {
             req,
             options.oauth2,
           );
-          // console.debug(`/oauth/callback`, response);
+          console.debug(`/oauth/callback`, response);
           const githubUser = await getGitHubUser(tokens.accessToken);
           const user = await getUser(githubUser.login);
 
@@ -65,7 +66,7 @@ export const kvOAuth = (options: AuthOptions): Plugin => {
         path: `/oauth/signout`,
         handler: async (req, _ctx) => {
           const response = await signOut(req);
-          // console.debug(`/oauth/signout`, response);
+          console.debug(`/oauth/signout`, response);
           return response;
         },
       },

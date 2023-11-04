@@ -1,5 +1,5 @@
 import type { Plugin } from "$fresh/server.ts";
-import { isGitHubSetup } from "netzo/plugins/auth/utils/github.ts";
+import { isGitHubSetup } from "../utils/providers/github.ts";
 import { redirect } from "netzo/plugins/auth/utils/http.ts";
 
 export const welcome = (): Plugin => {

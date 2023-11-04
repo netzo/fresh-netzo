@@ -1,6 +1,6 @@
 import type { FreshConfig } from "https​://deno.land/x/fresh​@1.5.2/server.ts";
 import { netzo } from "../apis/netzo/mod.ts";
-import { logWarning, log, LOGS } from "../cli/src/console.ts";
+import { log, LOGS, logWarning } from "../cli/src/console.ts";
 import { setEnvVars } from "../utils/mod.ts";
 import { Paginated, Project } from "netzo/cli/deps.ts";
 
@@ -43,7 +43,7 @@ export async function defineNetzoConfig(
       $limit: 1,
     });
     const project = result?.data?.[0] as Project;
-    if (project) logWarning(LOGS.notFoundProject);
+    if (!project) logWarning(LOGS.notFoundProject);
 
     if (project?.envVars?.development) setEnvVars(project.envVars.development);
 

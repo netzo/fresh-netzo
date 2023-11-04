@@ -1,6 +1,6 @@
 import { defineRoute } from "$fresh/src/server/defines.ts";
 import Head from "netzo/plugins/auth/components/Head.tsx";
-import { isGitHubSetup } from "netzo/plugins/auth/utils/github.ts";
+import { isGitHubSetup } from "netzo/plugins/auth/utils/providers/github.ts";
 
 function SetupInstruction() {
   return (

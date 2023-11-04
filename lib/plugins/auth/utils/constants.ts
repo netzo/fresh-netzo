@@ -1,5 +1,5 @@
-export const SITE_NAME = "Deno Hunt (Beta)";
-export const SITE_DESCRIPTION = "Discover new Deno projects. Share your own.";
+export const SITE_NAME = "Netzo";
+export const SITE_DESCRIPTION = "Built with Netzo";
 
 /**
  * These are base styles for some elements. This approach is chosen as it avoids more complex alternatives:

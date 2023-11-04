@@ -23,7 +23,7 @@ type GitHubUser = {
  *
  * @example
  * ```ts
- * import { getGitHubUser } from "netzo/plugins/auth/utils/github.ts";
+ * import { getGitHubUser } from "netzo/plugins/auth/utils/providers/github.ts";
  *
  * const user = await getGitHubUser("<access token>");
  * user.login; // Returns "octocat"

@@ -11,7 +11,6 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "netzo/components/ui/dropdown-menu.tsx";
 import type { HeaderProps } from "netzo/plugins/auth/components/Header.tsx";
@@ -54,9 +53,10 @@ export function UserNav(props: HeaderProps) {
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem href="/oauth/signout">
-          Log out
-          <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+        <DropdownMenuItem>
+          <a href="/oauth/signout" class="w-full">
+            Log out
+          </a>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

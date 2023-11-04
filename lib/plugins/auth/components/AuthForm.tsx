@@ -1,5 +1,6 @@
 import { useSignal } from "@preact/signals";
 import type { OAuth2ClientConfig } from "deno_kv_oauth/deps.ts";
+import type { OAuth2ClientConfig } from "deno_kv_oauth/deps.ts";
 import type { AuthPageProps } from "../routes/auth.tsx";
 import { cn } from "netzo/components/utils.ts";
 import { Button, buttonVariants } from "netzo/components/ui/button.tsx";
@@ -15,11 +16,13 @@ import {
   IconOkta,
   IconSpinner,
 } from "./icons.tsx";
+import { isGitHubSetup } from "../utils/providers/github.ts";
 
 // export type AuthFormProps = JSX.HTMLAttributes<HTMLDivElement> & {}
 
 export function AuthForm(props: AuthPageProps) {
-  const { providers = {} } = props.state?.options ?? {};
+  console.log("props", props);
+  const { oauth2 = {} } = props.state?.options ?? {};
   const isLoading = useSignal<boolean>(false);
 
   function onSubmit(event: Event) {
@@ -32,55 +35,64 @@ export function AuthForm(props: AuthPageProps) {
   }
 
   const Buttons = () => {
+    const getButtonProps = () => {
+      if (false) {
+        return {
+          icon: <IconCustom className="mr-2 h-4 w-4" />,
+          name: "OAuth",
+        };
+      } else if (false) {
+        return {
+          icon: <IconGoogle className="mr-2 h-4 w-4" />,
+          name: "Google",
+        };
+      } else if (false) {
+        return {
+          icon: <IconAzure className="mr-2 h-4 w-4" />,
+          name: "Azure",
+        };
+      } else if (isGitHubSetup()) {
+        return {
+          icon: <IconGithub className="mr-2 h-4 w-4" />,
+          name: "GitHub",
+        };
+      } else if (false) {
+        return {
+          icon: <IconGitlab className="mr-2 h-4 w-4" />,
+          name: "GitLab",
+        };
+      } else if (false) {
+        return {
+          icon: <IconAuth0 className="mr-2 h-4 w-4" />,
+          name: "Auth0",
+        };
+      } else if (false) {
+        return {
+          icon: <IconOkta className="mr-2 h-4 w-4" />,
+          name: "Okta",
+        };
+      } else {
+        return {
+          icon: <IconCustom className="mr-2 h-4 w-4" />,
+          name: "OAuth",
+        };
+      }
+    };
+
+    const props = getButtonProps();
+
+    const href = `/oauth/signin`;
+
     return (
-      <>
-        {Object.entries(providers).map(([uid, options]) => {
-          const props = {
-            custom: {
-              icon: <IconCustom className="mr-2 h-4 w-4" />,
-              name: "OAuth",
-            },
-            google: {
-              icon: <IconGoogle className="mr-2 h-4 w-4" />,
-              name: "Google",
-            },
-            azure: {
-              icon: <IconAzure className="mr-2 h-4 w-4" />,
-              name: "Azure",
-            },
-            github: {
-              icon: <IconGithub className="mr-2 h-4 w-4" />,
-              name: "GitHub",
-            },
-            gitlab: {
-              icon: <IconGitlab className="mr-2 h-4 w-4" />,
-              name: "GitLab",
-            },
-            auth0: {
-              icon: <IconAuth0 className="mr-2 h-4 w-4" />,
-              name: "Auth0",
-            },
-            okta: {
-              icon: <IconOkta className="mr-2 h-4 w-4" />,
-              name: "Okta",
-            },
-          }?.[uid]!;
-
-          const href = `/oauth/signin`;
-
-          return (
-            <a
-              disabled={isLoading.value}
-              href={href}
-              className={cn(buttonVariants({ variant: "outline" }))}
-            >
-              {isLoading.value
-                ? <IconSpinner className="mr-2 h-4 w-4 animate-spin" />
-                : props.icon} {props.name}
-            </a>
-          );
-        })}
-      </>
+      <a
+        disabled={isLoading.value}
+        href={href}
+        className={cn(buttonVariants({ variant: "outline" }))}
+      >
+        {isLoading.value
+          ? <IconSpinner className="mr-2 h-4 w-4 animate-spin" />
+          : props.icon} {props.name}
+      </a>
     );
   };
 
@@ -97,8 +109,7 @@ export function AuthForm(props: AuthPageProps) {
         }
       </div>
       <div className="grid gap-6" {...props}>
-        {
-          /* <form onSubmit={onSubmit}>
+        <form onSubmit={onSubmit}>
           <div className="grid gap-2">
             <div className="grid gap-1">
               <Label className="sr-only" htmlFor="email">
@@ -114,17 +125,15 @@ export function AuthForm(props: AuthPageProps) {
                 disabled={isLoading.value}
               />
             </div>
-            <Button disabled={isLoading.value}>
+            <Button variant="default" disabled={isLoading.value}>
               {isLoading.value && (
                 <IconSpinner className="mr-2 h-4 w-4 animate-spin" />
               )}
               Sign In with Email
             </Button>
           </div>
-        </form> */
-        }
-        {
-          /* <div className="relative">
+        </form>
+        <div className="relative">
           <div className="absolute inset-0 flex items-center">
             <span className="w-full border-t" />
           </div>
@@ -133,8 +142,7 @@ export function AuthForm(props: AuthPageProps) {
               Or continue with
             </span>
           </div>
-        </div> */
-        }
+        </div>
 
         <Buttons />
       </div>
