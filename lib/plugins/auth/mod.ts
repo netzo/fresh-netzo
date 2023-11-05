@@ -1,33 +1,27 @@
 import type { Plugin } from "$fresh/server.ts";
 import type { OAuth2ClientConfig } from "deno_kv_oauth/mod.ts";
-import type { MetaProps } from "netzo/plugins/auth/components/Meta.tsx";
 import { type User } from "netzo/plugins/auth/utils/db.ts";
 import { kvOAuth } from "./plugins/kv-oauth.ts";
 import { session } from "./plugins/session.ts";
 import { errorHandling } from "./plugins/error-handling.ts";
-import { welcome } from "./plugins/welcome.ts";
 
 export * from "deno_kv_oauth/mod.ts";
 
 export type AuthOptions = {
   // email: EmailClientConfig;
   oauth2: OAuth2ClientConfig;
+  color?: string;
+  logo?: string;
+  caption?: {
+    text: string;
+    url: string;
+  };
 };
 
-export type AuthState = MetaProps & {
+export type AuthState = {
   sessionId?: string;
   sessionUser?: User;
   options: AuthOptions;
-  config: {
-    branding?: {
-      color: string;
-      logo: string;
-    };
-    footer?: {
-      text: string;
-      link: string;
-    };
-  }
 };
 
 /**
@@ -42,7 +36,18 @@ export type AuthState = MetaProps & {
  */
 export const auth = (options: AuthOptions): Plugin[] => {
   return [
-    welcome(),
+    {
+      name: "auth",
+      middlewares: [{
+        path: "/",
+        middleware: {
+          handler: async (_req, ctx) => {
+            ctx.state.auth = { options };
+            return await ctx.next();
+          },
+        },
+      }],
+    } as Plugin,
     kvOAuth(options),
     session(),
     errorHandling(),

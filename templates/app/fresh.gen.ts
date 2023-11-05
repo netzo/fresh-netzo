@@ -21,8 +21,9 @@ import * as $15 from "./routes/invoices/[id].tsx";
 import * as $16 from "./routes/invoices/index.tsx";
 import * as $$0 from "./islands/Clients.tsx";
 import * as $$1 from "./islands/Contacts.tsx";
-import * as $$2 from "./islands/Invoices.tsx";
-import * as $$3 from "./islands/UserNav.tsx";
+import * as $$2 from "./islands/Header.tsx";
+import * as $$3 from "./islands/Invoices.tsx";
+import * as $$4 from "./islands/UserNav.tsx";
 
 const manifest = {
   routes: {
@@ -47,8 +48,9 @@ const manifest = {
   islands: {
     "./islands/Clients.tsx": $$0,
     "./islands/Contacts.tsx": $$1,
-    "./islands/Invoices.tsx": $$2,
-    "./islands/UserNav.tsx": $$3,
+    "./islands/Header.tsx": $$2,
+    "./islands/Invoices.tsx": $$3,
+    "./islands/UserNav.tsx": $$4,
   },
   baseUrl: import.meta.url,
 };

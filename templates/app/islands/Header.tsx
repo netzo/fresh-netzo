@@ -1,4 +1,8 @@
+import type { JSX } from "preact";
 import {
+  LINK_STYLES,
+  ACTIVE_ANCESTOR_LINK_STYLES,
+  NAV_ITEM,
   SITE_BAR_STYLES,
   SITE_NAME,
 } from "netzo/plugins/auth/utils/constants.ts";
@@ -6,7 +10,11 @@ import { Cross1Icon } from "@radix-ui/react-icons";
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { cx } from "@twind/core";
 import { User } from "netzo/plugins/auth/utils/db.ts";
-import { UserNav } from "./UserNav.tsx";
+import { UserNav } from "netzo/plugins/auth/components/UserNav.tsx";
+
+export type HeaderNavItemProps = JSX.HTMLAttributes<HTMLAnchorElement> & {
+  text: string;
+};
 
 export type HeaderProps = {
   /** Currently signed-in user */
@@ -16,9 +24,10 @@ export type HeaderProps = {
    * active page in navigation.
    */
   url: URL;
+  nav?: HeaderNavItemProps[];
 };
 
-export default function Header(props: HeaderProps) {
+export default (props: HeaderProps) => {
   const NAV_ITEM = "text-gray-500 px-3 py-4 sm:py-2";
   return (
     <header
@@ -66,7 +75,21 @@ export default function Header(props: HeaderProps) {
       </script>
       <nav
         class={"hidden flex-col gap-x-4 divide-y divide-solid sm:(flex items-center flex-row divide-y-0)"}
-      >
+        >
+        {props.sessionUser && props.nav?.map((item) => (
+          <a
+            {...item}
+            class={cx(
+              LINK_STYLES,
+              ACTIVE_ANCESTOR_LINK_STYLES,
+              NAV_ITEM,
+              item.class,
+              item.className,
+            )}
+          >
+            {item.text}
+          </a>
+        ))}
         <UserNav {...props} />
       </nav>
     </header>

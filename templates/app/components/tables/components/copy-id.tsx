@@ -16,7 +16,9 @@ export function CopyId({ id }: CopyIdProps) {
   return (
     <CopyIcon
       onClick={handleCopy}
-      className={isCopied.value ? 'mx-2 text-blue-500' : 'mx-2 text-gray-500 cursor-pointer'}
+      className={isCopied.value
+        ? "mx-2 text-blue-500"
+        : "mx-2 text-gray-500 cursor-pointer"}
     />
   );
 }

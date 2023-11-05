@@ -1,10 +1,10 @@
+import { ComponentChildren } from "preact";
 import { Head as _Head } from "$fresh/runtime.ts";
-import Meta, { type MetaProps } from "./Meta.tsx";
 import {
   SITE_DESCRIPTION,
   SITE_NAME,
 } from "netzo/plugins/auth/utils/constants.ts";
-import { ComponentChildren } from "preact";
+import Meta, { type MetaProps } from "./Meta.tsx";
 
 export type HeadProps =
   & Partial<Omit<MetaProps, "href">>

@@ -89,7 +89,7 @@ export function FormAdmin({ data, ids }: FormAdminProps) {
                   {aliases.name}
                 </FormLabel>
                 <FormControl>
-                  <Input {...field}  />
+                  <Input {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

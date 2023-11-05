@@ -255,12 +255,3 @@ Deno.test("[e2e] GET /account", async (test) => {
     assertHtml(resp);
   });
 });
-
-Deno.test("[e2e] GET /welcome", async () => {
-  Deno.env.delete("GITHUB_CLIENT_ID");
-
-  const req = new Request("http://localhost/");
-  const resp = await handler(req);
-
-  assertRedirect(resp, "/welcome");
-});
