@@ -1,7 +1,7 @@
 # Netzo App Template
 
-An open-sourced, highly performant
-template to get you started building [Netzo](https://netzo.io) apps.
+An open-sourced, highly performant template to get you started building
+[Netzo](https://netzo.io) apps.
 
 ## Features
 

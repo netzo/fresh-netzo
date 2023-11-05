@@ -12,8 +12,6 @@ export const contactSchema = z.object({
   createdAt: z.string(),
   updatedAt: z.string(),
   name: z.string(),
-  firstName: z.string(),
-  lastName: z.string(),
   avatar: z.string(),
   email: z.string().email({
     message: "Invalid email format",

@@ -70,7 +70,11 @@ export function FormAdmin({ data, ids }: FormAdminProps) {
               <FormItem>
                 <FormLabel>{aliases.id}</FormLabel>
                 <FormControl>
-                  <Input placeholder="Created automatically" disabled {...field} />
+                  <Input
+                    placeholder="Created automatically"
+                    disabled
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -85,60 +89,7 @@ export function FormAdmin({ data, ids }: FormAdminProps) {
                   {aliases.name}
                 </FormLabel>
                 <FormControl>
-                  <Input
-                    disabled
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="firstName"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>
-                  {aliases.firstName}
-                </FormLabel>
-                <FormControl>
-                  <Input
-                    onChange={(!ids)
-                      ? (form.setValue(
-                        "name",
-                        `${form.getValues("firstName") || ""} ${
-                          form.getValues("lastName") || ""
-                        }`,
-                      ))
-                      : undefined}
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="lastName"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>
-                  {aliases.lastName}
-                </FormLabel>
-                <FormControl>
-                  <Input
-                    onChange={(!ids)
-                      ? (form.setValue(
-                        "name",
-                        `${form.getValues("firstName") || ""} ${
-                          form.getValues("lastName") || ""
-                        }`,
-                      ))
-                      : undefined}
-                    {...field}
-                  />
+                  <Input {...field}  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -171,16 +122,16 @@ export function FormAdmin({ data, ids }: FormAdminProps) {
               </FormItem>
             )}
           />
-           <fieldset className="border border-solid border-gray-400 rounded p-3">
-           <legend>Notifications</legend>
-          <FormField
+          <fieldset className="border border-solid border-gray-400 rounded p-3">
+            <legend>Notifications</legend>
+            <FormField
               control={form.control}
               name="notifications.new"
               render={({ field }) => (
                 <FormItem className="flex flex-row items-center justify-between pb-2">
                   <div className="space-y-0.5">
                     <FormLabel className="text-sm">
-                    {aliases.notifications.new}
+                      {aliases.notifications.new}
                     </FormLabel>
                   </div>
                   <FormControl>
@@ -198,7 +149,9 @@ export function FormAdmin({ data, ids }: FormAdminProps) {
               render={({ field }) => (
                 <FormItem className="flex flex-row items-center justify-between pb-2">
                   <div className="space-y-0.5">
-                    <FormLabel className="text-sm">{aliases.notifications.promotions}</FormLabel>
+                    <FormLabel className="text-sm">
+                      {aliases.notifications.promotions}
+                    </FormLabel>
                   </div>
                   <FormControl>
                     <Switch
@@ -215,7 +168,9 @@ export function FormAdmin({ data, ids }: FormAdminProps) {
               render={({ field }) => (
                 <FormItem className="flex flex-row items-center justify-between pb-2">
                   <div className="space-y-0.5">
-                    <FormLabel className="text-sm">{aliases.notifications.marketing}</FormLabel>
+                    <FormLabel className="text-sm">
+                      {aliases.notifications.marketing}
+                    </FormLabel>
                   </div>
                   <FormControl>
                     <Switch
@@ -226,9 +181,9 @@ export function FormAdmin({ data, ids }: FormAdminProps) {
                 </FormItem>
               )}
             />
-</fieldset>
+          </fieldset>
 
-<FormField
+          <FormField
             control={form.control}
             name="clientId"
             render={({ field }) => (
@@ -255,7 +210,7 @@ export function FormAdmin({ data, ids }: FormAdminProps) {
               </FormItem>
             )}
           />
- <FormField
+          <FormField
             control={form.control}
             name="avatar"
             render={({ field }) => (
@@ -275,7 +230,11 @@ export function FormAdmin({ data, ids }: FormAdminProps) {
               <FormItem>
                 <FormLabel>{aliases.createdAt}</FormLabel>
                 <FormControl>
-                  <Input placeholder="Created automatically" disabled {...field} />
+                  <Input
+                    placeholder="Created automatically"
+                    disabled
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -288,7 +247,11 @@ export function FormAdmin({ data, ids }: FormAdminProps) {
               <FormItem>
                 <FormLabel>{aliases.updatedAt}</FormLabel>
                 <FormControl>
-                  <Input placeholder="Created automatically" disabled {...field} />
+                  <Input
+                    placeholder="Created automatically"
+                    disabled
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>

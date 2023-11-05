@@ -1,6 +1,6 @@
 export const clients = [
   {
-    id: "1",
+    id: "01HEG8XFYVMQK2QT9EX2TVHN7K",
     createdAt: "2023-10-20",
     updatedAt: "2023-10-20",
     name: "ABC Inc.",
@@ -23,7 +23,7 @@ export const clients = [
     },
   },
   {
-    id: "2",
+    id: "01HEG8XFZ8XHFTEM5K4E2ARWXB",
     createdAt: "2022-12-19T15:03:00.000Z",
     updatedAt: "2023-10-09T14:00:00.000Z",
     name: "XYZ Corp.",
@@ -46,7 +46,7 @@ export const clients = [
     },
   },
   {
-    id: "3",
+    id: "01HEG8XFZ8XHFTEM5K4E2ARWXC",
     createdAt: "2022-10-19T13:03:00.000Z",
     updatedAt: "2023-10-19T13:03:00.000Z",
     name: "LMN Ltd.",

@@ -1,25 +1,22 @@
 import { CopyIcon } from "@radix-ui/react-icons";
-import { useState } from "preact/hooks";
+import { useSignal } from "@preact/signals";
 
 interface CopyIdProps {
   id: string;
 }
 
 export function CopyId({ id }: CopyIdProps) {
-  const [isCopied, setIsCopied] = useState(false);
+  const isCopied = useSignal(false);
   const handleCopy = () => {
     navigator.clipboard.writeText(id);
-    setIsCopied(true);
-    setTimeout(() => {
-      setIsCopied(false);
-    }, 1000);
+    isCopied.value = true;
+    setTimeout(() => isCopied.value = false, 500);
   };
 
   return (
-    <div className="float-right text-gray-400 mx-2">
-      {isCopied
-        ? <p className="text-xs">ID copied</p>
-        : <CopyIcon onClick={handleCopy} className="cursor-pointer" />}
-    </div>
+    <CopyIcon
+      onClick={handleCopy}
+      className={isCopied.value ? 'mx-2 text-blue-500' : 'mx-2 text-gray-500 cursor-pointer'}
+    />
   );
 }

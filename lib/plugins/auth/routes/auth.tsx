@@ -1,13 +1,12 @@
 import { PageProps, RouteConfig } from "$fresh/server.ts";
 import { AuthForm } from "../components/AuthForm.tsx";
 import { NetzoState } from "netzo/config/mod.ts";
-import { cn } from "netzo/components/utils.ts";
 
 export type AuthPageProps = PageProps<unknown, NetzoState>;
 
-export const config: RouteConfig = {
-  skipInheritedLayouts: true, // Skip already inherited layouts
-};
+// export const config: RouteConfig = {
+//   skipInheritedLayouts: true, // Skip already inherited layouts
+// };
 
 export default (props: AuthPageProps) => {
   const { title, description, favicon, image } = props.state?.meta ?? {};

@@ -7,10 +7,10 @@ import { db } from "@/db.ts";
 
 const dbSeed = async () => {
   const createPromises = [
-    db.create("clients", clients),
-    db.create("contacts", contacts),
-    db.create("invoices", invoices)
-  ]
+    db.create("clients", clients, "id"),
+    db.create("contacts", contacts, "id"),
+    db.create("invoices", invoices, "id"),
+  ];
 
   try {
     await Promise.all(createPromises);
@@ -18,6 +18,6 @@ const dbSeed = async () => {
   } catch (error) {
     console.error("Error seeding Database:", error);
   }
-}
+};
 
 if (import.meta.main) dbSeed();

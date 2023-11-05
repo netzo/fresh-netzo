@@ -56,9 +56,9 @@ export const columns: ColumnDef<Contact>[] = [
           const initials = `${first[0]}${last[0]}`?.toUpperCase();
           return (
             <Avatar className="h-9 w-9">
-            <AvatarImage src={avatar} />
-            <AvatarFallback>{initials}</AvatarFallback>
-          </Avatar>
+              <AvatarImage src={avatar} />
+              <AvatarFallback>{initials}</AvatarFallback>
+            </Avatar>
           );
         },
       },
@@ -68,27 +68,17 @@ export const columns: ColumnDef<Contact>[] = [
         cell: ({ row }) => {
           const { id, name } = row.original;
           return (
-            <>
-              <CopyId id={id} />
+            <div className="flex">
               <a
                 href={`/contacts/${id}`}
-                className="text-center font-medium text-blue-500 hover:text-blue-600 hover:underline"
+                className="whitespace-nowrap text-center font-medium text-blue-500 hover:text-blue-600 hover:underline"
               >
                 {name}
               </a>
-            </>
+              <CopyId id={id} />
+            </div>
           );
         },
-      },
-      {
-        accessorKey: "firstName",
-        header: renderHeader(aliases.firstName),
-        cell: renderCell(),
-      },
-      {
-        accessorKey: "lastName",
-        header: renderHeader(aliases.lastName),
-        cell: renderCell(),
       },
       {
         accessorKey: "clientId",
@@ -99,7 +89,7 @@ export const columns: ColumnDef<Contact>[] = [
             <a
               href={`/clients/${clientId}`}
               target="_blank"
-              className="text-center font-medium text-blue-500 hover:text-blue-600 hover:underline"
+              className="whitespace-nowrap text-center font-medium text-blue-500 hover:text-blue-600 hover:underline"
             >
               {client?.name ? client.name : clientId}
             </a>

@@ -48,15 +48,15 @@ export const columns: ColumnDef<Invoice>[] = [
         cell: ({ row }) => {
           const { id, invoiceNumber } = row.original;
           return (
-            <>
-              <CopyId id={id} />
+            <div className="flex">
               <a
                 href={`/invoices/${id}`}
-                className="text-center font-medium text-blue-500 hover:text-blue-600 hover:underline"
+                className="whitespace-nowrap text-center font-medium text-blue-500 hover:text-blue-600 hover:underline"
               >
-                {invoiceNumber}
+                {name}
               </a>
-            </>
+              <CopyId id={id} />
+            </div>
           );
         },
       },
@@ -105,7 +105,7 @@ export const columns: ColumnDef<Invoice>[] = [
             <a
               href={`/clients/${clientId}`}
               target="_blank"
-              className="text-center font-medium text-blue-500 hover:text-blue-600 hover:underline"
+              className="whitespace-nowrap text-center font-medium text-blue-500 hover:text-blue-600 hover:underline"
             >
               {client?.name ? client.name : clientId}
             </a>

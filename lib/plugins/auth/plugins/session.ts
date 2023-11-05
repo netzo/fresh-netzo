@@ -51,8 +51,6 @@ export async function ensureSignedIn(
   const { sessionId } = ctx.state.auth;
   const isAuthenticated = sessionId !== undefined;
 
-  console.log({ isAuthenticated, sessionId });
-
   // redirect to /auth if not authenticated or to / if authenticated
   if (url.pathname !== "/auth" && !isAuthenticated) {
     console.debug("[auth] User logged out, redirecting to /auth");

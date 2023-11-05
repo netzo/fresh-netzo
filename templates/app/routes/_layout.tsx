@@ -21,7 +21,7 @@ const tabs: Tab[] = [
   { name: "Invoices", href: "/invoices" },
 ];
 
-const Nav = (props: { tabs: Tab[], url: URL }) => (
+const Nav = (props: { tabs: Tab[]; url: URL }) => (
   <nav className="px-4 flex flex-wrap h-12 items-center">
     {props.tabs.map((tab) => (
       tab.separator
@@ -58,7 +58,7 @@ export default defineLayout<AuthState>((req, ctx) => {
 
       <ctx.Component />
 
-      <Footer url={ctx.url} />
+      <Footer />
     </div>
   );
 });

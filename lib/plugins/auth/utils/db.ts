@@ -220,14 +220,9 @@ export function listItemsVotedByUser(userLogin: string) {
 
 // User
 export type User = {
-  // AKA username
-  login: string;
+  login: string; // AKA username
   sessionId: string;
-  /**
-   * Whether the user is subscribed to the "Premium Plan".
-   * @default {false}
-   */
-  isSubscribed: boolean;
+  role: string;
 };
 
 /** For testing */
@@ -235,7 +230,7 @@ export function randomUser(): User {
   return {
     login: crypto.randomUUID(),
     sessionId: crypto.randomUUID(),
-    isSubscribed: false,
+    role: ["admin", "editor", "viewer"][Math.floor(Math.random() * 3)],
   };
 }
 
@@ -250,7 +245,6 @@ export function randomUser(): User {
  * await createUser({
  *   login: "john",
  *   sessionId: crypto.randomUUID(),
- *   isSubscribed: false,
  * });
  * ```
  */
@@ -278,7 +272,7 @@ export async function createUser(user: User) {
  * await updateUser({
  *   login: "john",
  *   sessionId: crypto.randomUUID(),
- *   isSubscribed: false,
+ *   role: "admin",
  * });
  * ```
  */
@@ -304,7 +298,7 @@ export async function updateUser(user: User) {
  * await updateUserSession({
  *   login: "john",
  *   sessionId: "xxx",
- *   isSubscribed: false,
+ *   role: "admin",
  * }, "yyy");
  * ```
  */
@@ -334,7 +328,7 @@ export async function updateUserSession(user: User, sessionId: string) {
  * const user = await getUser("jack");
  * user?.login; // Returns "jack"
  * user?.sessionId; // Returns "xxx"
- * user?.isSubscribed; // Returns false
+ * user?.role; // Returns "admin"
  * ```
  */
 export async function getUser(login: string) {
@@ -356,7 +350,7 @@ export async function getUser(login: string) {
  * const user = await getUserBySession("xxx");
  * user?.login; // Returns "jack"
  * user?.sessionId; // Returns "xxx"
- * user?.isSubscribed; // Returns false
+ * user?.role; // Returns "admin"
  * ```
  */
 export async function getUserBySession(sessionId: string) {
@@ -380,7 +374,7 @@ export async function getUserBySession(sessionId: string) {
  * for await (const entry of listUsers()) {
  *   entry.value.login; // Returns "jack"
  *   entry.value.sessionId; // Returns "xxx"
- *   entry.value.isSubscribed; // Returns false
+ *   entry.value.role; // Returns "admin"
  * }
  * ```
  */

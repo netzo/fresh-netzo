@@ -1,4 +1,7 @@
-import { HEADING_STYLES, LINK_STYLES } from "netzo/plugins/auth/utils/constants.ts";
+import {
+  HEADING_STYLES,
+  LINK_STYLES,
+} from "netzo/plugins/auth/utils/constants.ts";
 
 export default function NotFoundPage() {
   return (

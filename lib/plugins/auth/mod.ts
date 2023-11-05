@@ -7,6 +7,8 @@ import { session } from "./plugins/session.ts";
 import { errorHandling } from "./plugins/error-handling.ts";
 import { welcome } from "./plugins/welcome.ts";
 
+export * from "deno_kv_oauth/mod.ts";
+
 export type AuthOptions = {
   // email: EmailClientConfig;
   oauth2: OAuth2ClientConfig;
@@ -15,11 +17,10 @@ export type AuthOptions = {
 export type AuthState = MetaProps & {
   sessionId?: string;
   sessionUser?: User;
-  isAuthenticated?: boolean;
   options: AuthOptions;
   config: {
     branding: {
-      title: string;
+      color: string;
       logo: string;
     };
   }
@@ -37,9 +38,9 @@ export type AuthState = MetaProps & {
  */
 export const auth = (options: AuthOptions): Plugin[] => {
   return [
-    welcome(options),
+    welcome(),
     kvOAuth(options),
-    session(options),
-    errorHandling(options),
+    session(),
+    errorHandling(),
   ];
 };

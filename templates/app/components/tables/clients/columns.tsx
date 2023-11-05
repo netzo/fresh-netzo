@@ -47,17 +47,15 @@ export const columns: ColumnDef<Client>[] = [
         cell: ({ row }) => {
           const { id, name } = row.original;
           return (
-            <>
+            <div className="flex">
+              <a
+                href={`/clients/${id}`}
+                className="whitespace-nowrap text-center font-medium text-blue-500 hover:text-blue-600 hover:underline"
+              >
+                {name}
+              </a>
               <CopyId id={id} />
-              <div className="mx-5">
-                <a
-                  href={`/clients/${id}`}
-                  className="text-center font-medium text-blue-500 hover:text-blue-600 hover:underline"
-                >
-                  {name}
-                </a>
-              </div>
-            </>
+            </div>
           );
         },
       },

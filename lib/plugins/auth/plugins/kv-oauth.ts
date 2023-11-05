@@ -31,7 +31,6 @@ export const kvOAuth = (options: AuthOptions): Plugin => {
       {
         path: `/oauth/signin`,
         handler: async (req, _ctx) => {
-          console.log(options);
           const response = await signIn(req, options.oauth2);
           console.debug(`/oauth/signin`, response);
           return response;
