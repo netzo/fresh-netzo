@@ -50,10 +50,10 @@ export function createDatabase(kv: Deno.Kv) {
   ) => {
     if (Array.isArray(data)) {
       const keyValues: Map<Deno.KvKey, unknown> = new Map();
-      for (const item of data) {
-        const id = (data?.[idField] ?? ulid()) as Deno.KvKeyPart;
-        keyValues.set([resource, id], item);
-      }
+      data.forEach((value, i) => {
+        const id = (value?.[idField] ?? ulid()) as Deno.KvKeyPart;
+        keyValues.set([resource, id], { [idField]: id, ...value });
+      });
       const result = await multiSet(keyValues);
       if (!result.ok) {
         throw new Error(`Failed to set keys: ${result.failedKeys}`);
@@ -62,6 +62,7 @@ export function createDatabase(kv: Deno.Kv) {
     } else {
       const id = (data?.[idField] ?? ulid()) as Deno.KvKeyPart;
       const key = [resource, id];
+      data = { [idField]: id, ...data };
       const ok = await kv.atomic().set(key, data).commit();
       if (!ok) throw new Error("Something went wrong.");
       return data;
