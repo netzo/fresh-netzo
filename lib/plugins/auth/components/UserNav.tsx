@@ -15,7 +15,7 @@ import {
 } from "netzo/components/ui/dropdown-menu.tsx";
 import type { HeaderProps } from "netzo/plugins/auth/components/Header.tsx";
 
-const getInitials = (sessionUser: HeaderProps["sessionUser"]) => {
+export const getInitials = (sessionUser: HeaderProps["sessionUser"]) => {
   const { name, login, email } = sessionUser;
   if (name) {
     const [first, last] = name.split(" ");

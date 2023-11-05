@@ -1,7 +1,4 @@
 import {
-  ACTIVE_ANCESTOR_LINK_STYLES,
-  ACTIVE_LINK_STYLES,
-  LINK_STYLES,
   SITE_BAR_STYLES,
   SITE_NAME,
 } from "netzo/plugins/auth/utils/constants.ts";
@@ -39,11 +36,9 @@ export default function Header(props: HeaderProps) {
       <div class="flex justify-between items-center">
         <a href="/" class="shrink-0">
           <img
-            height="48"
-            width="48"
             src="/logo.svg"
             alt={SITE_NAME + " logo"}
-            class="h-12 w-12"
+            class="h-8"
           />
         </a>
         <div class="flex gap-4 items-center">
@@ -72,26 +67,6 @@ export default function Header(props: HeaderProps) {
       <nav
         class={"hidden flex-col gap-x-4 divide-y divide-solid sm:(flex items-center flex-row divide-y-0)"}
       >
-        <a
-          href="/dashboard"
-          class={cx(LINK_STYLES, ACTIVE_ANCESTOR_LINK_STYLES, NAV_ITEM)}
-        >
-          Dashboard
-        </a>
-        {props.sessionUser
-          ? (
-            <a
-              href="/account"
-              class={cx(LINK_STYLES, ACTIVE_LINK_STYLES, NAV_ITEM)}
-            >
-              Account
-            </a>
-          )
-          : (
-            <a href="/oauth/signin" class={cx(LINK_STYLES, NAV_ITEM)}>
-              Sign in
-            </a>
-          )}
         <UserNav {...props} />
       </nav>
     </header>

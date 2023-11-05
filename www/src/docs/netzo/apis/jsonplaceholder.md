@@ -4,7 +4,7 @@
 
 JSONPlaceholder is a free online REST API that you can use whenever you need some fake data.
 
-- **labels:** `development`, `testing`, `mocking`, `fake-data`
+- **labels:** `development`, `testing`, `mocking`, `data`
 - **authentication:** `none`
 
 ## Usage

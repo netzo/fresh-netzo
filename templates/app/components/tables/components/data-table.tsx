@@ -39,17 +39,18 @@ export interface DataTableProps<TData, TValue> {
       title: string;
       options: { label: string; value: string }[];
     }[];
-    button?: {
-      text: string;
-      onClick: () => void;
-    };
+    resource: string;
   };
+  SheetCreateComponent?: any;
+  SheetBulkUpdateComponent?: any;
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
   options,
+  SheetCreateComponent,
+  SheetBulkUpdateComponent,
 }: DataTableProps<TData, TValue>) {
   const [rowSelection, setRowSelection] = useState({});
   const [columnVisibility, setColumnVisibility] = useState<
@@ -87,7 +88,12 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="space-y-4">
-      <DataTableToolbar table={table} options={options} />
+      <DataTableToolbar
+        table={table}
+        options={options}
+        SheetCreateComponent={SheetCreateComponent}
+        SheetBulkUpdateComponent={SheetBulkUpdateComponent}
+      />
       <div className="rounded-md border">
         <Table>
           <TableHeader>

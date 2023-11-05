@@ -71,7 +71,7 @@ export const database = (_options: DatabaseOptions): Plugin => {
           async POST(req, ctx) {
             const { resource } = ctx.params;
             const data = await parseRequestBody(req);
-            const result = await db.create(resource, data, "id");
+            const result = await db.create(resource, data);
             return Response.json(result);
           },
         },

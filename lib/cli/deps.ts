@@ -5,7 +5,7 @@ export {
   normalize,
   resolve,
   toFileUrl,
-} from "https://deno.land/std@0.204.0/path/mod.ts";
+} from "https://deno.land/std@0.205.0/path/mod.ts";
 export {
   blue,
   bold,
@@ -13,11 +13,11 @@ export {
   red,
   white,
   yellow,
-} from "https://deno.land/std@0.204.0/fmt/colors.ts";
-export { parse as parseArgs } from "https://deno.land/std@0.204.0/flags/mod.ts";
-export { TextLineStream } from "https://deno.land/std@0.204.0/streams/text_line_stream.ts";
+} from "https://deno.land/std@0.205.0/fmt/colors.ts";
+export { parse as parseArgs } from "https://deno.land/std@0.205.0/flags/mod.ts";
+export { TextLineStream } from "https://deno.land/std@0.205.0/streams/text_line_stream.ts";
 export { default as question } from "https://deno.land/x/question@0.0.2/mod.ts";
-export { load } from "https://deno.land/std@0.204.0/dotenv/mod.ts";
+export { load } from "https://deno.land/std@0.205.0/dotenv/mod.ts";
 export { config } from "https://deno.land/x/dotenv@v3.2.0/mod.ts";
 
 // x/semver
@@ -25,7 +25,7 @@ export {
   gte as semverGreaterThanOrEquals,
   isSemVer,
   parse,
-} from "https://deno.land/std@0.204.0/semver/mod.ts";
+} from "https://deno.land/std@0.205.0/semver/mod.ts";
 
 // x/wait
 export { Spinner, wait } from "https://deno.land/x/wait@0.1.12/mod.ts";
@@ -66,9 +66,9 @@ export type {
   Project,
   ProjectFiles,
   ProjectFilesFile,
-} from "npm:@netzo/api@1.0.49";
+} from 'https://esm.sh/@netzo/api@1.0.49/lib/client.d.ts'
 
 // socket.io-client:
-export { feathers } from "npm:@feathersjs/feathers@5.0.6";
-export { default as socketio } from "npm:@feathersjs/socketio-client@5.0.6";
-export { default as io } from "npm:socket.io-client@4.7.1";
+export { feathers } from 'https://esm.sh/@feathersjs/feathers@5.0.6'
+export { default as socketio } from 'https://esm.sh/@feathersjs/socketio-client@5.0.6'
+export { default as io } from 'https://esm.sh/socket.io-client@4.7.1'

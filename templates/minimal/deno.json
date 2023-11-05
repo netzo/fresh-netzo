@@ -8,6 +8,6 @@
   "imports": {
     "@/": "./",
     "netzo/": "https://deno.land/x/netzo@0.2.75/",
-    "std/": "https://deno.land/std@0.204.0/"
+    "std/": "https://deno.land/std@0.205.0/"
   }
 }

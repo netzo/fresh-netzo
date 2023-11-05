@@ -7,7 +7,7 @@ export const baseImports = {
   "preact-render-to-string": "https://esm.sh/*preact-render-to-string@6.2.2",
   "@preact/signals": "https://esm.sh/*@preact/signals@1.2.1",
   "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.5.0",
-  "std/": "https://deno.land/std@0.204.0/",
+  "std/": "https://deno.land/std@0.205.0/",
   "react": "https://esm.sh/preact@10.18.1/compat",
   "react-dom": "https://esm.sh/preact@10.18.1/compat",
   "react/jsx-runtime": "https://esm.sh/preact@10.18.1/compat",

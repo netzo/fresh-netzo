@@ -52,14 +52,22 @@ export const toMxn = (num: number) =>
   });
 
 export const toDate = (date: string) =>
-  new Date(date).toLocaleDateString("es-ES", {
+  new Date(date).toLocaleDateString("en-GB", {
     year: "numeric",
-    month: "short",
+    month: "numeric",
     day: "numeric",
   });
 
-// render:
+export const toDateTime = (dateTime: string) =>
+  new Date(dateTime).toLocaleString("en-GB", {
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
 
+// render:
 export const renderHeader = (title: string) => ({ column }) => {
   return <DataTableColumnHeader column={column} title={title} />;
 };
@@ -77,9 +85,9 @@ export const renderCell =
 
 export const renderCellCheckbox = () => ({ column, row }) => {
   const stringValue = _get(row.original, column.id.replaceAll("_", "."));
-  const value = ["TRUE", "true"].includes(stringValue)
+  const value = ["TRUE", "true", true].includes(stringValue)
     ? true
-    : ["FALSE", "false"].includes(stringValue)
+    : ["FALSE", "false", false].includes(stringValue)
     ? false
     : undefined;
   return (
@@ -93,3 +101,66 @@ export const renderCellCheckbox = () => ({ column, row }) => {
     />
   );
 };
+
+export const renderFormCheckbox = (value: string | boolean) => {
+  if (typeof value === "boolean") {
+    return value;
+  } else {
+    const boolValue = ["TRUE", "true"].includes(value)
+      ? true
+      : ["FALSE", "false"].includes(value)
+      ? false
+      : undefined;
+    return boolValue;
+  }
+};
+
+export const getQueryParams = (url: URL): Record<string, string | never> => {
+  const query = url.searchParams;
+  const queryObject: Record<string, string> = {};
+  for (const p of query) {
+    queryObject[p[0]] = p[1];
+  }
+  return queryObject;
+};
+
+export async function handleFormSubmit<TData>(
+  destination: string,
+  inputValues: TData,
+  data?: TData,
+  ids?: string[],
+) {
+  let result;
+  if (data) {
+    console.log("updateData PUT");
+    result = await updatePut(
+      destination,
+      inputValues,
+      data.id,
+    );
+  } else if (ids) {
+    console.log("Update multiple - PATCH");
+    const promises = ids.map((id) => {
+      updatePatch(
+        destination,
+        inputValues,
+        id,
+      );
+    });
+    result = await Promise.all(promises);
+  } else {
+    console.log("Create new");
+    result = await create(
+      destination,
+      inputValues,
+    );
+  }
+
+  if (result) {
+    window.alert("Saved");
+    return window.location.reload();
+  } else {
+    window.alert("Error");
+    return;
+  }
+}
