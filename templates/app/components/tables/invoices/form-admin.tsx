@@ -314,7 +314,7 @@ export function FormAdmin({ data, ids }: FormAdminProps) {
                 Reset
               </Button>
             )}
-            <Button type="submit">Guardar</Button>
+            <Button type="submit">Update</Button>
           </div>
         </form>
       </Form>

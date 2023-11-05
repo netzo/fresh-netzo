@@ -12,13 +12,9 @@ import {
   deleteRedirectUrlCookie,
   getRedirectUrlCookie,
 } from "netzo/plugins/auth/utils/redirect.ts";
+import type { UserGitHub } from "../../../utils/providers/github.ts";
 
-type GitHubUser = {
-  login: string;
-  email: string;
-};
-
-async function getGitHubUser(accessToken: string): Promise<GitHubUser> {
+async function getGitHubUser(accessToken: string): Promise<UserGitHub> {
   const response = await fetch("https://api.github.com/user", {
     headers: { authorization: `Bearer ${accessToken}` },
   });
@@ -26,7 +22,7 @@ async function getGitHubUser(accessToken: string): Promise<GitHubUser> {
     await response.body?.cancel();
     throw new Error();
   }
-  return await response.json() as GitHubUser;
+  return await response.json() as UserGitHub;
 }
 
 export default async function CallbackPage(req: Request) {

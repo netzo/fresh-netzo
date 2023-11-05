@@ -34,7 +34,7 @@ export function SheetBulkUpdate(
               Edit {selectedRows.length} rows
             </SheetTitle>
             <SheetDescription>
-              <div className="text-xs text-center bg-yellow-100 bg-opacity-30 rounded-lg my-2 p-2">
+              <div className="text-xs font-semibold text-yellow-900 bg-yellow-200 bg-opacity-30 rounded-lg my-2 p-2">
                 Edited fields will be applied to all selected rows.
               </div>
             </SheetDescription>

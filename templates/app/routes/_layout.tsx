@@ -47,6 +47,8 @@ const Nav = (props: { tabs: Tab[]; url: URL }) => (
 export default defineLayout<AuthState>((req, ctx) => {
   const url = new URL(req.url);
 
+  console.log("ctx.state", ctx.state)
+
   return (
     <div class="w-full h-full flex flex-col">
       <Header

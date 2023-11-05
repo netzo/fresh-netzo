@@ -6,7 +6,7 @@ import { Cross1Icon } from "@radix-ui/react-icons";
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { cx } from "@twind/core";
 import { User } from "netzo/plugins/auth/utils/db.ts";
-import { UserNav } from "@/islands/UserNav.tsx";
+import { UserNav } from "./UserNav.tsx";
 
 export type HeaderProps = {
   /** Currently signed-in user */

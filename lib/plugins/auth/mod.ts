@@ -19,9 +19,13 @@ export type AuthState = MetaProps & {
   sessionUser?: User;
   options: AuthOptions;
   config: {
-    branding: {
+    branding?: {
       color: string;
       logo: string;
+    };
+    footer?: {
+      text: string;
+      link: string;
     };
   }
 };
