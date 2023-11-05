@@ -14,7 +14,7 @@ import type {
   Spinner,
 } from "../../deps.ts";
 import { fromFileUrl, netzo, normalize, wait } from "../../deps.ts";
-import { error, LOGS } from "../console.ts";
+import { error, LOGS } from "../../../utils/console.ts";
 import {
   assertExistsNetzoConfig,
   assertExistsNetzoConfigMod,

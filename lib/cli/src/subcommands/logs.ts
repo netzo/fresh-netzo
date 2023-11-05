@@ -1,5 +1,5 @@
 import { netzo, Paginated, Project, wait } from "../../deps.ts";
-import { error, LOGS } from "../console.ts";
+import { error, LOGS } from "../../../utils/console.ts";
 import { APIError, DenoAPI } from "../utils/api.ts";
 
 const help = `netzo logs

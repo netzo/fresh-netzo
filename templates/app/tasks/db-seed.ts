@@ -1,10 +1,7 @@
-import { createDatabase } from "netzo/db/mod.ts";
 import { clients } from "@/data/clients.ts";
 import { contacts } from "@/data/contacts.ts";
 import { invoices } from "@/data/invoices.ts";
-
-const kv = await Deno.openKv();
-const db = createDatabase(kv);
+import { db } from "@/db.ts";
 
 //Seed a local KV from fake data files.
 

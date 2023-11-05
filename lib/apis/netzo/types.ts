@@ -29,4 +29,4 @@ export type {
   Project,
   ProjectFiles,
   ProjectFilesFile,
-} from "npm:@netzo/api@1.0.49";
+} from "https://esm.sh/@netzo/api@1.0.49/lib/client.d.ts";

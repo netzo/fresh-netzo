@@ -1,9 +1,6 @@
-import { createDatabase } from "netzo/db/mod.ts";
 import { Handlers } from "$fresh/server.ts";
 import { Client } from "@/components/tables/clients/data/schema.ts";
-
-const kv = await Deno.openKv();
-const db = createDatabase(kv);
+import { db } from "@/db.ts";
 
 export const handler: Handlers<Client | null> = {
   async GET(req, ctx) {

@@ -1,22 +1,13 @@
-import {
-  SITE_BAR_STYLES,
-  SITE_NAME,
-} from "netzo/plugins/auth/utils/constants.ts";
-
-export type FooterProps = {
-  /**
-   * URL of the current page. This is used for highlighting the currently
-   * active page in navigation.
-   */
-  url: URL;
-};
-
-export default function Footer(props: FooterProps) {
+export default function Footer() {
   return (
-    <footer
-      class={`${SITE_BAR_STYLES} flex-col md:flex-row mt-8 mx-auto`}
-    >
-      <a href="https://netzo.io" target="_blank">Built with Netzo</a>
+    <footer className="flex justify-center items-center p-4">
+      <a
+        href="https://netzo.io"
+        target="_blank"
+        className="text-sm text-muted-foreground hover:text-primary"
+      >
+        Built with Netzo
+      </a>
     </footer>
   );
 }

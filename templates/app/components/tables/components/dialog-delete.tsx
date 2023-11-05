@@ -13,7 +13,6 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "netzo/components/ui/alert-dialog.tsx";
-import { db } from "@/db.ts";
 
 interface DialogDeleteProps<TData> {
   options: DataTableProps<TData, unknown>["options"];
@@ -24,6 +23,7 @@ export function DialogDelete(
   { options, selectedRows }: DialogDeleteProps<TData>,
 ) {
   const handleDelete = async () => {
+    const { db } = await import("@/db.ts"); // avoid Deno not defined in browser
     const deletePromises = selectedRows.map((row) => {
       db.remove(options.resource, row.original.id);
     });

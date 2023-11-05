@@ -1,7 +1,7 @@
 #!/usr/bin/env -S deno run --allow-read --allow-write --allow-env --allow-net --allow-run
 
 import { parse, parseArgs, semverGreaterThanOrEquals } from "./deps.ts";
-import { error } from "./src/console.ts";
+import { error } from "../utils/console.ts";
 import initSubcommand from "./src/subcommands/init.ts";
 import deploySubcommand from "./src/subcommands/deploy.ts";
 import envSubcommand from "./src/subcommands/env.ts";

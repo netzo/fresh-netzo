@@ -1,6 +1,6 @@
 import { generateCode, loadFile, type ProxifiedModule } from "npm:magicast";
 import type { NetzoConfig } from "../../deps.ts";
-import { error } from "../console.ts";
+import { error } from "../../../utils/console.ts";
 import { Args as ArgsDeploy } from "../subcommands/deploy.ts";
 import { Args as ArgsEnv } from "../subcommands/env.ts";
 

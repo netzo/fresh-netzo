@@ -1,8 +1,8 @@
 import type { FreshConfig } from "https​://deno.land/x/fresh​@1.5.2/server.ts";
 import { netzo } from "../apis/netzo/mod.ts";
-import { log, LOGS, logWarning } from "../cli/src/console.ts";
+import { log, LOGS, logWarning } from "../utils/console.ts";
 import { setEnvVars } from "../utils/mod.ts";
-import { Paginated, Project } from "netzo/cli/deps.ts";
+import { Paginated, Project } from "https://esm.sh/@netzo/api@1.0.49/lib/client.d.ts";
 import { AuthState } from "netzo/plugins/auth/mod.ts";
 import { DatabaseState } from "netzo/plugins/database/mod.ts";
 import { VisibilityState } from "netzo/plugins/visibility/mod.ts";

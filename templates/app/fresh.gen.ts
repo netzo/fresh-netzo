@@ -17,9 +17,8 @@ import * as $11 from "./routes/clients/[id].tsx";
 import * as $12 from "./routes/clients/index.tsx";
 import * as $13 from "./routes/contacts/[id].tsx";
 import * as $14 from "./routes/contacts/index.tsx";
-import * as $15 from "./routes/index.tsx";
-import * as $16 from "./routes/invoices/[id].tsx";
-import * as $17 from "./routes/invoices/index.tsx";
+import * as $15 from "./routes/invoices/[id].tsx";
+import * as $16 from "./routes/invoices/index.tsx";
 import * as $$0 from "./islands/Clients.tsx";
 import * as $$1 from "./islands/Contacts.tsx";
 import * as $$2 from "./islands/Invoices.tsx";
@@ -42,9 +41,8 @@ const manifest = {
     "./routes/clients/index.tsx": $12,
     "./routes/contacts/[id].tsx": $13,
     "./routes/contacts/index.tsx": $14,
-    "./routes/index.tsx": $15,
-    "./routes/invoices/[id].tsx": $16,
-    "./routes/invoices/index.tsx": $17,
+    "./routes/invoices/[id].tsx": $15,
+    "./routes/invoices/index.tsx": $16,
   },
   islands: {
     "./islands/Clients.tsx": $$0,

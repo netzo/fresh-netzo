@@ -16,6 +16,13 @@ export type AuthState = MetaProps & {
   sessionId?: string;
   sessionUser?: User;
   isAuthenticated?: boolean;
+  options: AuthOptions;
+  config: {
+    branding: {
+      title: string;
+      logo: string;
+    };
+  }
 };
 
 /**

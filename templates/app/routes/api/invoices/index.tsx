@@ -4,9 +4,7 @@ import { Handlers } from "$fresh/server.ts";
 import { Invoice } from "@/components/tables/invoices/data/schema.ts";
 import { Client } from "@/components/tables/clients/data/schema.ts";
 import { getQueryParams } from "@/utils.tsx";
-
-const kv = await Deno.openKv();
-const db = createDatabase(kv);
+import { db } from "@/db.ts";
 
 export const handler: Handlers<Invoice | null> = {
   async GET(req, _ctx) {

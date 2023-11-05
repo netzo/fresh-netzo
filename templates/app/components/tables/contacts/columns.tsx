@@ -52,7 +52,6 @@ export const columns: ColumnDef<Contact>[] = [
         header: renderHeader(aliases.avatar),
         cell: ({ row }) => {
           const { name, avatar } = row.original;
-          console.log(row.original)
           const [first, last] = name.split(" ");
           const initials = `${first[0]}${last[0]}`?.toUpperCase();
           return (

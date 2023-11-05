@@ -1,4 +1,11 @@
-import { blue, bold, green, red, white, yellow } from "../deps.ts";
+import {
+  blue,
+  bold,
+  green,
+  red,
+  white,
+  yellow,
+} from "https://deno.land/std@0.205.0/fmt/colors.ts";
 
 export const LOGS = {
   missingApiKey:
