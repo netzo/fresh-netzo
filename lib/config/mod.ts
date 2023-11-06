@@ -47,7 +47,9 @@ export async function defineNetzoConfig(
   Deno.env.set("NETZO_ENV", NETZO_ENV);
   Deno.env.set("NETZO_PROJECT", NETZO_PROJECT);
 
-  if (["development"].includes(NETZO_ENV)) {
+  const isTaskBuild = Deno.args[0] === "build";
+
+  if (["development"].includes(NETZO_ENV) && !isTaskBuild) {
     const apiKey = Deno.env.get("NETZO_API_KEY");
     if (!apiKey) {
       logWarning(LOGS.missingApiKey);
