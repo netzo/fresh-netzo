@@ -25,7 +25,7 @@ export function AuthForm(props: AuthState) {
     title,
     description,
     color,
-    backgorundColor,
+    backgroundColor,
     logo,
   } = props.options;
   const isLoading = useSignal<boolean>(false);
@@ -107,7 +107,7 @@ export function AuthForm(props: AuthState) {
         {logo && (
           <img
             src={logo}
-            className={cn("w-auto h-16 mb-2")}
+            className={cn("max-w-16 max-h-16 mb-4 mx-auto")}
           />
         )}
         {title && (
@@ -143,7 +143,7 @@ export function AuthForm(props: AuthState) {
                 <Button
                   variant="default"
                   disabled={isLoading.value}
-                  class={`bg-[${color}]`}
+                  className={`bg-[${color}]`}
                 >
                   {isLoading.value && (
                     <IconSpinner className="mr-2 h-4 w-4 animate-spin" />
