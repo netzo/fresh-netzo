@@ -2,7 +2,7 @@ import { defineRoute } from "$fresh/server.ts";
 import { EditForm } from "@/islands/Contacts.tsx";
 import { Separator } from "netzo/components/ui/separator.tsx";
 import { Contact } from "@/components/tables/contacts/data/schema.ts";
-import { db } from "@/db.ts";
+import { db } from "@/utils/db.ts";
 
 export default defineRoute(async (req, ctx) => {
   const { id } = ctx.params;

@@ -1,7 +1,7 @@
 import { clients } from "@/data/clients.ts";
 import { contacts } from "@/data/contacts.ts";
 import { invoices } from "@/data/invoices.ts";
-import { db } from "@/db.ts";
+import { db } from "@/utils/db.ts";
 
 //Seed a local KV from fake data files.
 

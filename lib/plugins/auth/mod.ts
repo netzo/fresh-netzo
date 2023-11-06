@@ -10,7 +10,10 @@ export * from "deno_kv_oauth/mod.ts";
 export type AuthOptions = {
   // email: EmailClientConfig;
   oauth2: OAuth2ClientConfig;
+  title?: string;
+  description?: string;
   color?: string;
+  backgroundColor?: string;
   logo?: string;
   caption?: {
     text: string;
@@ -38,15 +41,17 @@ export const auth = (options: AuthOptions): Plugin[] => {
   return [
     {
       name: "auth",
-      middlewares: [{
-        path: "/",
-        middleware: {
-          handler: async (_req, ctx) => {
-            ctx.state.auth = { options };
-            return await ctx.next();
+      middlewares: [
+        {
+          path: "/",
+          middleware: {
+            handler: async (_req, ctx) => {
+              ctx.state.auth = { options };
+              return await ctx.next();
+            },
           },
-        },
-      }],
+        }
+    ],
     } as Plugin,
     kvOAuth(options),
     session(),

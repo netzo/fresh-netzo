@@ -1,14 +1,14 @@
 import { defineRoute } from "$fresh/server.ts";
-import { EditForm } from "@/islands/Clients.tsx";
+import { EditForm } from "@/islands/Invoices.tsx";
 import { Separator } from "netzo/components/ui/separator.tsx";
-import { Client } from "@/components/tables/clients/data/schema.ts";
-import { db, kv } from "@/db.ts";
+import { Invoice } from "@/components/tables/invoices/data/schema.ts";
+import { db } from "@/utils/db.ts";
 
 export default defineRoute(async (req, ctx) => {
   const { id } = ctx.params;
-  const dataKv = await kv.get<Client>(["clients", id]);
-  const data = await db.get<Client>("clients", id);
-  console.log(id, dataKv, data);
+
+  const data = await db.get<Invoice>("invoices", id);
+
   if (!data) return ctx.renderNotFound();
 
   return (

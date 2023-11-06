@@ -1,7 +1,7 @@
 import { Handlers } from "$fresh/server.ts";
 import { Contact } from "@/components/tables/contacts/data/schema.ts";
 import { Client } from "@/components/tables/clients/data/schema.ts";
-import { db } from "@/db.ts";
+import { db } from "@/utils/db.ts";
 
 export const handler: Handlers<Contact | null> = {
   async GET(req, ctx) {

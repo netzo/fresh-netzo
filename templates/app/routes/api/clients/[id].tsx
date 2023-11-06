@@ -1,6 +1,6 @@
 import { Handlers } from "$fresh/server.ts";
 import { Client } from "@/components/tables/clients/data/schema.ts";
-import { db } from "@/db.ts";
+import { db } from "@/utils/db.ts";
 
 export const handler: Handlers<Client | null> = {
   async GET(req, ctx) {

@@ -1,11 +1,9 @@
 import type { JSX } from "preact";
 import {
-  LINK_STYLES,
   ACTIVE_ANCESTOR_LINK_STYLES,
-  NAV_ITEM,
+  LINK_STYLES,
   SITE_BAR_STYLES,
-  SITE_NAME,
-} from "netzo/plugins/auth/utils/constants.ts";
+} from "@/utils/constants.ts";
 import { Cross1Icon } from "@radix-ui/react-icons";
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { cx } from "@twind/core";
@@ -44,11 +42,7 @@ export default (props: HeaderProps) => {
 
       <div class="flex justify-between items-center">
         <a href="/" class="shrink-0">
-          <img
-            src="/logo.svg"
-            alt={SITE_NAME + " logo"}
-            class="h-8"
-          />
+          <img src="/logo.svg" alt="Logo" class="h-8" />
         </a>
         <div class="flex gap-4 items-center">
           <label
@@ -66,6 +60,7 @@ export default (props: HeaderProps) => {
         {`
           const navToggleLabel = document.getElementById('nav-toggle-label');
           navToggleLabel.addEventListener('keydown', () => {
+            console.log('keydown');
             if (event.code === 'Space' || event.code === 'Enter') {
               navToggleLabel.click();
               event.preventDefault();
@@ -74,8 +69,8 @@ export default (props: HeaderProps) => {
         `}
       </script>
       <nav
-        class={"hidden flex-col gap-x-4 divide-y divide-solid sm:(flex items-center flex-row divide-y-0)"}
-        >
+        class={"hidden flex-col gap-x-4 divide-y divide-solid sm:flex sm:items-center sm:flex-row sm:divide-y-0"}
+      >
         {props.sessionUser && props.nav?.map((item) => (
           <a
             {...item}
@@ -83,8 +78,6 @@ export default (props: HeaderProps) => {
               LINK_STYLES,
               ACTIVE_ANCESTOR_LINK_STYLES,
               NAV_ITEM,
-              item.class,
-              item.className,
             )}
           >
             {item.text}
@@ -94,4 +87,4 @@ export default (props: HeaderProps) => {
       </nav>
     </header>
   );
-}
+};

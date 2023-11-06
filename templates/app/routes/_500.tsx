@@ -1,8 +1,5 @@
 import { ErrorPageProps } from "$fresh/server.ts";
-import {
-  HEADING_STYLES,
-  LINK_STYLES,
-} from "netzo/plugins/auth/utils/constants.ts";
+import { HEADING_STYLES, LINK_STYLES } from "@/utils/constants.ts";
 
 export default function Error500Page(props: ErrorPageProps) {
   return (

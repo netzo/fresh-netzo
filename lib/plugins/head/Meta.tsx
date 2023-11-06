@@ -1,15 +1,6 @@
-export type MetaProps = {
-  /** Title of the current page */
-  title: string;
-  /** Description of the current page */
-  description: string;
-  /** URL of the current page */
-  href: string;
-  /** URL of the cover image */
-  imageUrl: string;
-};
+import type { HeadOptions } from "./mod.ts";
 
-export default function Meta(props: MetaProps) {
+export default (props: HeadOptions) => {
   return (
     <>
       {/* HTML Meta Tags */}

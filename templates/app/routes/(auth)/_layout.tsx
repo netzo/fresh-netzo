@@ -17,11 +17,9 @@ export default defineLayout<AuthState>((req, ctx) => {
   return (
     <div class="w-full h-full flex flex-col">
       <Header
-        {...{
-          url,
-          sessionUser: ctx.state.auth?.sessionUser,
-          nav: ctx.state.auth?.sessionUser && nav,
-        }}
+        url={url}
+        sessionUser={ctx.state.auth?.sessionUser}
+        nav={ctx.state.auth?.sessionUser && nav}
       />
 
       <ctx.Component />

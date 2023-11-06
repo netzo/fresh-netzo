@@ -23,7 +23,7 @@ export function DialogDelete(
   { options, selectedRows }: DialogDeleteProps<TData>,
 ) {
   const handleDelete = async () => {
-    const { db } = await import("@/db.ts"); // avoid Deno not defined in browser
+    const { db } = await import("@/utils/db.ts"); // avoid Deno not defined in browser
     const deletePromises = selectedRows.map((row) => {
       db.remove(options.resource, row.original.id);
     });
