@@ -51,7 +51,7 @@ export function test(
   opts: TestOptions,
   fn: (proc: Deno.ChildProcess) => void | Promise<void>,
 ) {
-  const name = opts.name ?? ["netzo", ...opts.args].join(" ");
+  const name = opts.name ?? [...opts.args].join(" ");
   Deno.test(name, async () => {
     const proc = netzo(opts.args, opts.permissions);
     await fn(proc);

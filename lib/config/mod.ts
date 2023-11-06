@@ -2,7 +2,10 @@ import type { FreshConfig } from "https​://deno.land/x/fresh​@1.5.2/server.t
 import { netzo } from "../apis/netzo/mod.ts";
 import { log, LOGS, logWarning } from "../utils/console.ts";
 import { setEnvVars } from "../utils/mod.ts";
-import { Paginated, Project } from "https://esm.sh/@netzo/api@1.0.49/lib/client.d.ts";
+import {
+  Paginated,
+  Project,
+} from "https://esm.sh/@netzo/api@1.0.49/lib/client.d.ts";
 import { AuthState } from "netzo/plugins/auth/mod.ts";
 import { DatabaseState } from "netzo/plugins/database/mod.ts";
 import { VisibilityState } from "netzo/plugins/visibility/mod.ts";
@@ -26,7 +29,9 @@ if (import.meta.main) await defineNetzoConfig({}); // allow running as script
 // WORKAROUND: until resolution of https://github.com/denoland/fresh/issues/1773#issuecomment-1763502518
 const origConsoleError = console.error;
 console.error = (msg) => {
-  if (typeof msg === "string" && msg.includes("Improper nesting of table")) return;
+  if (typeof msg === "string" && msg.includes("Improper nesting of table")) {
+    return;
+  }
   origConsoleError(msg);
 };
 

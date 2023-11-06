@@ -29,4 +29,4 @@ export default (props: HeadOptions) => {
       <meta name="twitter:image" content={props.imageUrl} />
     </>
   );
-}
+};

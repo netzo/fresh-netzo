@@ -1,5 +1,6 @@
 import type { Plugin } from "$fresh/server.ts";
 import type { OAuth2ClientConfig } from "deno_kv_oauth/mod.ts";
+import { deepMerge } from "std/collections/deep_merge.ts";
 import { type User } from "netzo/plugins/auth/utils/db.ts";
 import { kvOAuth } from "./plugins/kv-oauth.ts";
 import { session } from "./plugins/session.ts";
@@ -7,8 +8,10 @@ import { errorHandling } from "./plugins/error-handling.ts";
 
 export * from "deno_kv_oauth/mod.ts";
 
+const kv = await Deno.openKv();
+
 export type AuthOptions = {
-  // email: EmailClientConfig;
+  email: {}; // TODO: EmailClientConfig;
   oauth2: OAuth2ClientConfig;
   title?: string;
   description?: string;
@@ -46,12 +49,14 @@ export const auth = (options: AuthOptions): Plugin[] => {
           path: "/",
           middleware: {
             handler: async (_req, ctx) => {
+              const { value: config } = await kv.get(["auth", "config"]);
+              options = config ? deepMerge(options, config) : options;
               ctx.state.auth = { options };
               return await ctx.next();
             },
           },
-        }
-    ],
+        },
+      ],
     } as Plugin,
     kvOAuth(options),
     session(),

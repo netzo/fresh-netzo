@@ -10,13 +10,8 @@ export default defineNetzoConfig({
   project: "sheer-marlin-436696",
   plugins: [
     ...auth({
+      email: {},
       oauth2: createGitHubOAuthConfig(),
-      color: "#A5A5A5",
-      logo: "https://netzo.io/images/netzo-logo-grayscale-light.svg",
-      caption: {
-        text: "Terms of Service",
-        url: "https://placeholder.com/terms",
-      },
     }),
     head({
       title: "CRM",

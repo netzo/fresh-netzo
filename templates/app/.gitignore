@@ -1,4 +1,5 @@
 .env
+.production.env
 *.DS_Store
 cov/
 cov.lcov

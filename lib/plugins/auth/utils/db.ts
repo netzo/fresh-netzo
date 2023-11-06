@@ -163,7 +163,7 @@ export type Vote = {
  */
 export async function createVote(vote: Vote) {
   const itemKey = ["items", vote.itemId];
-  const userKey = ["users", vote.userLogin];
+  const userKey = ["auth", "users", vote.userLogin];
   const [itemRes, userRes] = await kv.getMany<[Item, User]>([itemKey, userKey]);
   const item = itemRes.value;
   const user = userRes.value;
@@ -249,8 +249,8 @@ export function randomUser(): User {
  * ```
  */
 export async function createUser(user: User) {
-  const usersKey = ["users", user.login];
-  const usersBySessionKey = ["users_by_session", user.sessionId];
+  const usersKey = ["auth", "users", user.login];
+  const usersBySessionKey = ["auth", "usersBySession", user.sessionId];
 
   const atomicOp = kv.atomic()
     .check({ key: usersKey, versionstamp: null })
@@ -277,8 +277,8 @@ export async function createUser(user: User) {
  * ```
  */
 export async function updateUser(user: User) {
-  const usersKey = ["users", user.login];
-  const usersBySessionKey = ["users_by_session", user.sessionId];
+  const usersKey = ["auth", "users", user.login];
+  const usersBySessionKey = ["auth", "usersBySession", user.sessionId];
 
   const atomicOp = kv.atomic()
     .set(usersKey, user)
@@ -303,9 +303,9 @@ export async function updateUser(user: User) {
  * ```
  */
 export async function updateUserSession(user: User, sessionId: string) {
-  const userKey = ["users", user.login];
-  const oldUserBySessionKey = ["users_by_session", user.sessionId];
-  const newUserBySessionKey = ["users_by_session", sessionId];
+  const userKey = ["auth", "users", user.login];
+  const oldUserBySessionKey = ["auth", "usersBySession", user.sessionId];
+  const newUserBySessionKey = ["auth", "usersBySession", sessionId];
   const newUser: User = { ...user, sessionId };
 
   const atomicOp = kv.atomic()
@@ -332,7 +332,7 @@ export async function updateUserSession(user: User, sessionId: string) {
  * ```
  */
 export async function getUser(login: string) {
-  const res = await kv.get<User>(["users", login]);
+  const res = await kv.get<User>(["auth", "users", login]);
   return res.value;
 }
 
@@ -354,7 +354,7 @@ export async function getUser(login: string) {
  * ```
  */
 export async function getUserBySession(sessionId: string) {
-  const key = ["users_by_session", sessionId];
+  const key = ["auth", "usersBySession", sessionId];
   const eventualRes = await kv.get<User>(key, {
     consistency: "eventual",
   });
@@ -379,7 +379,7 @@ export async function getUserBySession(sessionId: string) {
  * ```
  */
 export function listUsers(options?: Deno.KvListOptions) {
-  return kv.list<User>({ prefix: ["users"] }, options);
+  return kv.list<User>({ prefix: ["auth", "users"] }, options);
 }
 
 /**

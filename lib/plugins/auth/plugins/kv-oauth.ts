@@ -46,7 +46,6 @@ export const kvOAuth = (options: AuthOptions): Plugin => {
           console.debug(`/oauth/callback`, response);
           const githubUser = await getGitHubUser(tokens.accessToken);
           const user = await getUser(githubUser.login);
-          console.log({ githubUser })
 
           if (user === null) {
             const user: User = {

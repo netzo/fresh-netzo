@@ -19,12 +19,12 @@ export const getInitials = (sessionUser: HeaderProps["sessionUser"]) => {
   const { name, login, email } = sessionUser;
   if (name) {
     const [first, last] = name.split(" ");
-  return `${first[0]}${last[0]}`?.toUpperCase();
+    return `${first[0]}${last[0]}`?.toUpperCase();
   } else if (login) {
     return login[0]?.toUpperCase();
   }
   return email[0]?.toUpperCase();
-}
+};
 
 export function UserNav(props: HeaderProps) {
   if (!props.sessionUser) return undefined;
@@ -45,10 +45,10 @@ export function UserNav(props: HeaderProps) {
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
             <p className="text-sm font-medium leading-none">
-            {props.sessionUser.login}
+              {props.sessionUser.login}
             </p>
             <p className="text-xs leading-none text-muted-foreground">
-            {props.sessionUser?.email}
+              {props.sessionUser?.email}
             </p>
           </div>
         </DropdownMenuLabel>

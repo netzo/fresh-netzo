@@ -58,9 +58,9 @@ export type {
   Project,
   ProjectFiles,
   ProjectFilesFile,
-} from 'https://esm.sh/@netzo/api@1.0.49/lib/client.d.ts'
+} from "https://esm.sh/@netzo/api@1.0.49/lib/client.d.ts";
 
 // socket.io-client:
-export { feathers } from 'https://esm.sh/@feathersjs/feathers@5.0.6'
-export { default as socketio } from 'https://esm.sh/@feathersjs/socketio-client@5.0.6'
-export { default as io } from 'https://esm.sh/socket.io-client@4.7.1'
+export { feathers } from "https://esm.sh/@feathersjs/feathers@5.0.6";
+export { default as socketio } from "https://esm.sh/@feathersjs/socketio-client@5.0.6";
+export { default as io } from "https://esm.sh/socket.io-client@4.7.1";

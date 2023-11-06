@@ -32,7 +32,7 @@ export const head = (options: HeadOptions): Plugin => {
             return await ctx.next();
           },
         },
-      }
+      },
     ],
     routes: [
       {
