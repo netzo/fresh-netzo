@@ -48,11 +48,13 @@ export const kvOAuth = (options: AuthOptions): Plugin => {
           const user = await getUser(githubUser.login);
 
           if (user === null) {
-            const user: User = {
+            const user = {
               login: githubUser.login,
               sessionId,
+              name: githubUser.name,
+              email: githubUser.email,
               role: "admin",
-            };
+            } as User;
             await createUser(user);
           } else {
             await updateUserSession(user, sessionId);

@@ -2,7 +2,6 @@ import {
   createUser,
   deleteUserBySession,
   getUser,
-  newUserProps,
   updateUser,
   type User,
 } from "../../../utils/db.ts";
@@ -38,11 +37,13 @@ export default async function CallbackPage(req: Request) {
 
   const user = await getUser(githubUser.login);
   if (!user) {
-    const user: User = {
+    const user = {
       login: githubUser.login,
       sessionId,
-      ...newUserProps(),
-    };
+      name: githubUser.name,
+      email: githubUser.email,
+      role: "admin",
+    } as User;
     await createUser(user);
   } else {
     await deleteUserBySession(sessionId);

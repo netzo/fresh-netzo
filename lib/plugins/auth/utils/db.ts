@@ -25,7 +25,8 @@ export async function collectValues<T>(iter: Deno.KvListIterator<T>) {
   return values;
 }
 
-// Item
+// items:
+
 export type Item = {
   // Uses ULID
   id: string;
@@ -141,88 +142,17 @@ export function listItemsByUser(
   return kv.list<Item>({ prefix: ["items_by_user", userLogin] }, options);
 }
 
-// Vote
-export type Vote = {
-  itemId: string;
-  userLogin: string;
-};
+// users:
 
-/**
- * Creates a vote in the database. Throws if the given item or user doesn't
- * exist or the vote already exists. The item's score is incremented by 1.
- *
- * @example
- * ```ts
- * import { createVote } from "netzo/plugins/auth/utils/db.ts";
- *
- * await createVote({
- *   itemId: "01H9YD2RVCYTBVJEYEJEV5D1S1",
- *   userLogin: "pedro",
- * });
- * ```
- */
-export async function createVote(vote: Vote) {
-  const itemKey = ["items", vote.itemId];
-  const userKey = ["auth", "users", vote.userLogin];
-  const [itemRes, userRes] = await kv.getMany<[Item, User]>([itemKey, userKey]);
-  const item = itemRes.value;
-  const user = userRes.value;
-  if (item === null) throw new Deno.errors.NotFound("Item not found");
-  if (user === null) throw new Deno.errors.NotFound("User not found");
-
-  const itemVotedByUserKey = [
-    "items_voted_by_user",
-    vote.userLogin,
-    vote.itemId,
-  ];
-  const userVotedForItemKey = [
-    "users_voted_for_item",
-    vote.itemId,
-    vote.userLogin,
-  ];
-  const itemByUserKey = ["items_by_user", item.userLogin, item.id];
-
-  item.score++;
-
-  const res = await kv.atomic()
-    .check(itemRes)
-    .check(userRes)
-    .check({ key: itemVotedByUserKey, versionstamp: null })
-    .check({ key: userVotedForItemKey, versionstamp: null })
-    .set(itemKey, item)
-    .set(itemByUserKey, item)
-    .set(itemVotedByUserKey, item)
-    .set(userVotedForItemKey, user)
-    .commit();
-
-  if (!res.ok) throw new Error("Failed to create vote");
-}
-
-/**
- * Returns a {@linkcode Deno.KvListIterator} which can be used to iterate over
- * the items voted by a given user in the database, in chronological order.
- *
- * @example
- * ```ts
- * import { listItemsVotedByUser } from "netzo/plugins/auth/utils/db.ts";
- *
- * for await (const entry of listItemsVotedByUser("john")) {
- *   entry.value.id; // Returns "01H9YD2RVCYTBVJEYEJEV5D1S1"
- *   entry.value.userLogin; // Returns "pedro"
- *   entry.key; // Returns ["items_voted_by_user", "01H9YD2RVCYTBVJEYEJEV5D1S1", "pedro"]
- *   entry.versionstamp; // Returns "00000000000000010000"
- * }
- * ```
- */
-export function listItemsVotedByUser(userLogin: string) {
-  return kv.list<Item>({ prefix: ["items_voted_by_user", userLogin] });
-}
-
-// User
 export type User = {
+  id: string;
   login: string; // AKA username
   sessionId: string;
+  name: string;
+  email: string;
   role: string;
+  createdAt: string;
+  updatedAt: string;
 };
 
 /** For testing */
@@ -230,7 +160,11 @@ export function randomUser(): User {
   return {
     login: crypto.randomUUID(),
     sessionId: crypto.randomUUID(),
+    name: 'First Last',
+    email: `firs.last@example.com`,
     role: ["admin", "editor", "viewer"][Math.floor(Math.random() * 3)],
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
   };
 }
 
@@ -249,6 +183,8 @@ export function randomUser(): User {
  * ```
  */
 export async function createUser(user: User) {
+  user.createdAt = new Date().toISOString();
+  user.updatedAt = user.createdAt;
   const usersKey = ["auth", "users", user.login];
   const usersBySessionKey = ["auth", "usersBySession", user.sessionId];
 
@@ -277,6 +213,7 @@ export async function createUser(user: User) {
  * ```
  */
 export async function updateUser(user: User) {
+  user.updatedAt = new Date().toISOString();
   const usersKey = ["auth", "users", user.login];
   const usersBySessionKey = ["auth", "usersBySession", user.sessionId];
 
@@ -303,6 +240,7 @@ export async function updateUser(user: User) {
  * ```
  */
 export async function updateUserSession(user: User, sessionId: string) {
+  user.updatedAt = new Date().toISOString();
   const userKey = ["auth", "users", user.login];
   const oldUserBySessionKey = ["auth", "usersBySession", user.sessionId];
   const newUserBySessionKey = ["auth", "usersBySession", sessionId];
@@ -380,37 +318,4 @@ export async function getUserBySession(sessionId: string) {
  */
 export function listUsers(options?: Deno.KvListOptions) {
   return kv.list<User>({ prefix: ["auth", "users"] }, options);
-}
-
-/**
- * Returns a boolean array indicating whether the given items have been voted
- * for by the given user in the database.
- *
- * @example
- * ```ts
- * import { getAreVotedByUser } from "netzo/plugins/auth/utils/db.ts";
- *
- * const items = [
- *   {
- *     id: "01H9YD2RVCYTBVJEYEJEV5D1S1",
- *     userLogin: "jack",
- *     title: "Jack voted for this",
- *     url: "http://example.com",
- *     score: 1,
- *   },
- *   {
- *     id: "01H9YD2RVCYTBVJEYEJEV5D1S2",
- *     userLogin: "jill",
- *     title: "Jack didn't vote for this",
- *     url: "http://youtube.com",
- *     score: 0,
- *   }
- * ];
- * await getAreVotedByUser(items, "jack"); // Returns [true, false]
- * ```
- */
-export async function getAreVotedByUser(items: Item[], userLogin: string) {
-  const votedItems = await collectValues(listItemsVotedByUser(userLogin));
-  const votedItemsIds = votedItems.map((item) => item.id);
-  return items.map((item) => votedItemsIds.includes(item.id));
 }
