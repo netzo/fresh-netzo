@@ -54,7 +54,6 @@ export function FormAdmin({ data, ids }: FormAdminProps) {
   function onSubmit(inputValues: Invoice) {
     //delete joined data to avoid saving it in database
     delete inputValues.client;
-    console.log(inputValues);
 
     handleFormSubmit(
       "invoices",

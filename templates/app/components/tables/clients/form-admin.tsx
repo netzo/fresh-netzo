@@ -41,7 +41,6 @@ export function FormAdmin({ data, ids }: FormAdminProps) {
 
   function onSubmit(inputValues: Client) {
     delete inputValues.client;
-    console.log(inputValues);
 
     handleFormSubmit(
       "clients",

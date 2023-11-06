@@ -3,6 +3,7 @@ import { handleCallback, signIn, signOut } from "deno_kv_oauth/mod.ts";
 import {
   createUser,
   getUser,
+  updateUser,
   updateUserSession,
   type User,
 } from "../utils/db.ts";
@@ -32,7 +33,6 @@ export const kvOAuth = (options: AuthOptions): Plugin => {
         path: `/oauth/signin`,
         handler: async (req, _ctx) => {
           const response = await signIn(req, options.oauth2);
-          console.debug(`/oauth/signin`, response);
           return response;
         },
       },
@@ -43,21 +43,23 @@ export const kvOAuth = (options: AuthOptions): Plugin => {
             req,
             options.oauth2,
           );
-          console.debug(`/oauth/callback`, response);
           const githubUser = await getGitHubUser(tokens.accessToken);
-          const user = await getUser(githubUser.login);
+          const currentUser = await getUser(githubUser.login);
 
-          if (user === null) {
-            const user = {
-              login: githubUser.login,
-              sessionId,
-              name: githubUser.name,
-              email: githubUser.email,
-              role: "admin",
-            } as User;
+          const user = {
+            login: githubUser.login,
+            sessionId,
+            name: githubUser.name,
+            email: githubUser.email,
+            avatar: githubUser.avatar_url,
+            role: "admin",
+          } as User;
+
+          if (currentUser === null) {
             await createUser(user);
           } else {
-            await updateUserSession(user, sessionId);
+            await updateUser({ ...user, ...currentUser });
+            await updateUserSession({ ...user, ...currentUser }, sessionId);
           }
 
           return response;
@@ -67,7 +69,6 @@ export const kvOAuth = (options: AuthOptions): Plugin => {
         path: `/oauth/signout`,
         handler: async (req, _ctx) => {
           const response = await signOut(req);
-          console.debug(`/oauth/signout`, response);
           return response;
         },
       },

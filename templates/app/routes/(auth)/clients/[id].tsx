@@ -8,7 +8,7 @@ export default defineRoute(async (req, ctx) => {
   const { id } = ctx.params;
   const dataKv = await kv.get<Client>(["clients", id]);
   const data = await db.get<Client>("clients", id);
-  console.log(id, dataKv, data);
+
   if (!data) return ctx.renderNotFound();
 
   return (

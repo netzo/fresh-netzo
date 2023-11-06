@@ -50,7 +50,6 @@ export function FormAdmin({ data, ids }: FormAdminProps) {
   function onSubmit(inputValues: Contact) {
     //delete joined data to avoid saving it in database
     delete inputValues.client;
-    console.log(inputValues);
     handleFormSubmit(
       "contacts",
       inputValues,

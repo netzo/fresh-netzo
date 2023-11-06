@@ -12,8 +12,6 @@ const nav: HeaderNavItemProps[] = [
 export default defineLayout<AuthState>((req, ctx) => {
   const url = new URL(req.url);
 
-  console.log("ctx.state", ctx.state);
-
   return (
     <div class="w-full h-full flex flex-col">
       <Header
