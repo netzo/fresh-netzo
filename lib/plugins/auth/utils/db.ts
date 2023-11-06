@@ -183,6 +183,7 @@ export function randomUser(): User {
  * ```
  */
 export async function createUser(user: User) {
+  user.id = ulid();
   user.createdAt = new Date().toISOString();
   user.updatedAt = user.createdAt;
   const usersKey = ["auth", "users", user.login];
@@ -213,7 +214,7 @@ export async function createUser(user: User) {
  * ```
  */
 export async function updateUser(user: User) {
-  user.updatedAt = new Date().toISOString();
+  user.updatedAt ||= new Date().toISOString();
   const usersKey = ["auth", "users", user.login];
   const usersBySessionKey = ["auth", "usersBySession", user.sessionId];
 
