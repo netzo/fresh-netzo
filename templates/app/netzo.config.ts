@@ -1,5 +1,6 @@
 import { defineNetzoConfig } from "netzo/config/mod.ts";
 import { auth } from "netzo/plugins/auth/mod.ts";
+import { api } from "netzo/plugins/api/mod.ts";
 import { createGitHubOAuthConfig } from "deno_kv_oauth/mod.ts";
 import { errorPages } from "netzo/plugins/errorPages/mod.ts";
 import twindPlugin from "$fresh/plugins/twindv1.ts";
@@ -12,6 +13,7 @@ export default defineNetzoConfig({
       email: {},
       oauth2: createGitHubOAuthConfig(),
     }),
+    api(),
     errorPages(),
     twindPlugin(twindConfig),
   ],

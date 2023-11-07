@@ -2,13 +2,13 @@
 // This file SHOULD be checked into source version control.
 // This file is automatically updated during development when running `dev.ts`.
 
-import * as $0 from "./routes/(auth)/_layout.tsx";
-import * as $1 from "./routes/(auth)/clients/[id].tsx";
-import * as $2 from "./routes/(auth)/clients/index.tsx";
-import * as $3 from "./routes/(auth)/contacts/[id].tsx";
-import * as $4 from "./routes/(auth)/contacts/index.tsx";
-import * as $5 from "./routes/(auth)/invoices/[id].tsx";
-import * as $6 from "./routes/(auth)/invoices/index.tsx";
+import * as $0 from "./routes/(app)/_layout.tsx";
+import * as $1 from "./routes/(app)/clients/[id].tsx";
+import * as $2 from "./routes/(app)/clients/index.tsx";
+import * as $3 from "./routes/(app)/contacts/[id].tsx";
+import * as $4 from "./routes/(app)/contacts/index.tsx";
+import * as $5 from "./routes/(app)/invoices/[id].tsx";
+import * as $6 from "./routes/(app)/invoices/index.tsx";
 import * as $7 from "./routes/_404.tsx";
 import * as $8 from "./routes/_500.tsx";
 import * as $9 from "./routes/_app.tsx";
@@ -27,13 +27,13 @@ import * as $$4 from "./islands/UserNav.tsx";
 
 const manifest = {
   routes: {
-    "./routes/(auth)/_layout.tsx": $0,
-    "./routes/(auth)/clients/[id].tsx": $1,
-    "./routes/(auth)/clients/index.tsx": $2,
-    "./routes/(auth)/contacts/[id].tsx": $3,
-    "./routes/(auth)/contacts/index.tsx": $4,
-    "./routes/(auth)/invoices/[id].tsx": $5,
-    "./routes/(auth)/invoices/index.tsx": $6,
+    "./routes/(app)/_layout.tsx": $0,
+    "./routes/(app)/clients/[id].tsx": $1,
+    "./routes/(app)/clients/index.tsx": $2,
+    "./routes/(app)/contacts/[id].tsx": $3,
+    "./routes/(app)/contacts/index.tsx": $4,
+    "./routes/(app)/invoices/[id].tsx": $5,
+    "./routes/(app)/invoices/index.tsx": $6,
     "./routes/_404.tsx": $7,
     "./routes/_500.tsx": $8,
     "./routes/_app.tsx": $9,

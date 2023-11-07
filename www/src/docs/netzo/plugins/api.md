@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/plugins/database.svg" alt="netzo/database" class="mb-5 w-75px">
+<img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/plugins/api.svg" alt="netzo/database" class="mb-5 w-75px">
 
 # `netzo/database`
 
@@ -22,7 +22,7 @@ Authentication and authorization for your Deno KV data store is currently user's
 ## Configuration
 
 ```ts
-interface DatabaseOptions {}
+interface ApiOptions {}
 ```
 
 Register the module in `netzo.config.ts` and ensure `main.ts` and `dev.ts` are receive the `config` object as shown below.
@@ -32,7 +32,7 @@ Register the module in `netzo.config.ts` and ensure `main.ts` and `dev.ts` are r
 import { defineNetzoConfig } from 'netzo/config/mod.ts'
 
 export default defineNetzoConfig({
-  database: { /* ... */ }
+  api: { /* ... */ }
 })
 ```
 <<< ./plugins/src/main.ts

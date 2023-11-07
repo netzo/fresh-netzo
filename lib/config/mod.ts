@@ -7,7 +7,7 @@ import {
   Project,
 } from "https://esm.sh/@netzo/api@1.0.49/lib/client.d.ts";
 import { AuthState } from "netzo/plugins/auth/mod.ts";
-import { DatabaseState } from "netzo/plugins/database/mod.ts";
+import { DatabaseState } from "netzo/plugins/api/mod.ts";
 import { VisibilityState } from "netzo/plugins/visibility/mod.ts";
 
 export type NetzoConfig = FreshConfig & {

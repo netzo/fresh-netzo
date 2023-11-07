@@ -1,52 +1,16 @@
 import type { Plugin } from "$fresh/server.ts";
-import type { State } from "@/plugins/session.ts";
-import { Status } from "$fresh/server.ts";
-import { errors, isHttpError } from "std/http/http_errors.ts";
+import { errors } from "std/http/http_errors.ts";
 import { redirect } from "netzo/plugins/auth/utils/http.ts";
+import type { NetzoState as _NetzoState } from "../../../config/mod.ts";
 
-/**
- * Returns the converted HTTP error response from the given error. If the error
- * is an instance of {@linkcode Deno.errors.NotFound}, a HTTP 404 Not Found
- * error response is returned. This is done to translate errors thrown from
- * logic that's separated by concerns.
- *
- * If the error is a HTTP-flavored error, the corresponding HTTP error response
- * is returned.
- *
- * If the error is a generic error, a HTTP 500 Internal Server error response
- * is returned.
- *
- * @see {@link https://deno.land/std/http/http_errors.ts}
- *
- * @example
- * ```ts
- * import { toErrorResponse } from "@/plugins/error_handling.ts";
- * import { errors } from "std/http/http_errors.ts";
- *
- * const resp = toErrorResponse(new errors.NotFound("User not found"));
- * resp.status; // Returns 404
- * await resp.text(); // Returns "User not found"
- * ```
- */
-// deno-lint-ignore no-explicit-any
-export function toErrorResponse(error: any) {
-  if (error instanceof Deno.errors.NotFound) {
-    return new Response(error.message, { status: Status.NotFound });
-  }
-  return isHttpError(error)
-    ? new Response(error.message, {
-      status: error.status,
-      headers: error.headers,
-    })
-    : new Response(error.message, { status: Status.InternalServerError });
-}
+type NetzoState = Required<Pick<_NetzoState, 'auth'>> & _NetzoState
 
-export const errorHandling = (): Plugin => {
+export const errorHandling = (): Plugin<NetzoState> => {
   return {
     name: "error-handling",
     middlewares: [
       {
-        path: "/",
+        path: "/(app)",
         middleware: {
           async handler(_req, ctx) {
             try {
@@ -60,18 +24,6 @@ export const errorHandling = (): Plugin => {
           },
         },
       },
-      {
-        path: "/api",
-        middleware: {
-          async handler(_req, ctx) {
-            try {
-              return await ctx.next();
-            } catch (error) {
-              return toErrorResponse(error);
-            }
-          },
-        },
-      },
     ],
-  } as Plugin<State>;
+  };
 };

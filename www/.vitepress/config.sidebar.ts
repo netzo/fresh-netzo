@@ -240,7 +240,7 @@ export const sidebarEN: DefaultTheme.Sidebar = {
           items: [
             { text: '<code>auth</code>', link: '/docs/netzo/plugins/auth' },
             { text: '<code>appLayout</code>', link: '/docs/netzo/plugins/appLayout' },
-            { text: '<code>database</code>', link: '/docs/netzo/plugins/database' },
+            { text: '<code>database</code>', link: '/docs/netzo/plugins/api' },
             { text: '<code>errorPages</code>', link: '/docs/netzo/plugins/errorPages' },
             { text: '<code>unocss</code>', link: '/docs/netzo/plugins/unocss' },
           ],

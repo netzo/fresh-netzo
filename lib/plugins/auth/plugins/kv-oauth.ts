@@ -10,6 +10,9 @@ import {
 import { getGitHubUser } from "../utils/providers/github.ts";
 import Auth from "../routes/auth.tsx";
 import type { AuthOptions } from "../mod.ts";
+import type { NetzoState as _NetzoState } from "../../../config/mod.ts";
+
+type NetzoState = Required<Pick<_NetzoState, 'auth'>> & _NetzoState
 
 // Exported for mocking and spying in e2e tests
 export const _internals = { handleCallback };
@@ -18,7 +21,7 @@ export const _internals = { handleCallback };
  * This custom plugin centralizes all authentication logic using the
  * {@link https://deno.land/x/deno_kv_oauth|Deno KV OAuth} module.
  */
-export const kvOAuth = (options: AuthOptions): Plugin => {
+export const kvOAuth = (options: AuthOptions): Plugin<NetzoState> => {
   return {
     name: "kv-oauth",
     routes: [
@@ -73,5 +76,5 @@ export const kvOAuth = (options: AuthOptions): Plugin => {
         },
       },
     ],
-  } as Plugin;
+  };
 };

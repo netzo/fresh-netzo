@@ -127,6 +127,7 @@ export function createDatabase(kv: Deno.Kv) {
   };
 
   return {
+    kv,
     find,
     get,
     create,

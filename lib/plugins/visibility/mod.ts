@@ -41,7 +41,7 @@ export type VisibilityState = {
  */
 export const visibility = (options: VisibilityOptions): Plugin[] => {
   return {
-    name: "visibility-plugin",
+    name: "visibility",
     middlewares: [
       {
         path: "/",
