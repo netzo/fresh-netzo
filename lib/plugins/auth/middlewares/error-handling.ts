@@ -8,7 +8,7 @@ type NetzoState = Required<Pick<_NetzoState, 'auth'>> & _NetzoState
 export const errorHandlingMiddlewares = (): Required<Plugin<NetzoState>>['middlewares'] => {
   return [
     {
-      path: "/(app)",
+      path: "/",
       middleware: {
         async handler(_req, ctx) {
           try {

@@ -24,7 +24,6 @@ import * as $$1 from "./islands/Contacts.tsx";
 import * as $$2 from "./islands/Header.tsx";
 import * as $$3 from "./islands/Invoices.tsx";
 import * as $$4 from "./islands/UserNav.tsx";
-
 import { Manifest } from "$fresh/server.ts";
 
 const manifest = {

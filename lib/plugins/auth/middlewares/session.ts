@@ -86,11 +86,11 @@ export async function ensureSignedIn(
 export const sessionMiddlewares = (): Required<Plugin<NetzoState>>['middlewares'] => {
   return [
     {
-      path: "/(app)",
+      path: "/",
       middleware: { handler: setSessionState },
     },
     {
-      path: "/(app)",
+      path: "/",
       middleware: { handler: ensureSignedIn },
     },
   ];
