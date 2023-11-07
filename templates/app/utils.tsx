@@ -1,23 +1,6 @@
-import { JSONtoCSV } from "https://deno.land/x/data_format_converter@v1.2.0/mod.ts";
 import _get from "lodash.get";
 import { Checkbox } from "netzo/components/ui/checkbox.tsx";
 import { DataTableColumnHeader } from "@/components/tables/components/data-table-column-header.tsx";
-
-export function downloadJSONAsCSV(data: unknown, filename: string) {
-  // convert data which is an object[] to have the format of json
-  const json = [
-    Object.keys(data[0]), // first row is the header
-    ...data.map((item: unknown) => Object.values(item)), // rest are values
-  ];
-  const dataStr = "data:text/json;charset=utf-8," +
-    encodeURIComponent(JSONtoCSV(json));
-  const downloadAnchorNode = document.createElement("a");
-  downloadAnchorNode.setAttribute("href", dataStr);
-  downloadAnchorNode.setAttribute("download", filename + ".csv");
-  document.body.appendChild(downloadAnchorNode); // required for firefox
-  downloadAnchorNode.click();
-  downloadAnchorNode.remove();
-}
 
 export const toInteger = (num: number) =>
   Math.round(Number(num)).toLocaleString("es-ES");

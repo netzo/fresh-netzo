@@ -1,6 +1,30 @@
-import type { HeadOptions } from "./mod.ts";
+import type { ComponentChildren } from "preact";
+import { Head as _Head } from "$fresh/runtime.ts";
 
-export default (props: HeadOptions) => {
+export type HeadOptions = {
+  title?: string;
+  description?: string;
+  href?: string;
+  favicon?: string;
+  image?: string;
+  children?: ComponentChildren;
+};
+
+export const Head = (props: HeadOptions) => {
+  return (
+    <_Head>
+      <Meta
+        title={props.title}
+        description={props.description}
+        href={props.href}
+        image={props.image}
+      />
+      {props.children}
+    </_Head>
+  );
+};
+
+export const Meta = (props: HeadOptions) => {
   return (
     <>
       {/* HTML Meta Tags */}
@@ -10,7 +34,7 @@ export default (props: HeadOptions) => {
       {/* Google / Search Engine Tags */}
       <meta itemProp="name" content={props.title} />
       <meta itemProp="description" content={props.description} />
-      {props.imageUrl && <meta itemProp="image" content={props.imageUrl} />}
+      {props.image && <meta itemProp="image" content={props.image} />}
 
       {/* Facebook Meta Tags */}
       <meta property="og:type" content="website" />
@@ -19,14 +43,15 @@ export default (props: HeadOptions) => {
       <meta property="og:type" content="website" />
       <meta property="og:title" content={props.title} />
       <meta property="og:description" content={props.description} />
-      <meta property="og:url" content={props.href} />
-      <meta property="og:image" content={props.imageUrl} />
+      {/* <meta property="og:url" content={props.href} /> */}
+      <meta property="og:image" content={props.image} />
 
       {/* Twitter Meta Tags */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={props.title} />
       <meta name="twitter:description" content={props.description} />
-      <meta name="twitter:image" content={props.imageUrl} />
+      <meta name="twitter:image" content={props.image} />
     </>
   );
 };
+
