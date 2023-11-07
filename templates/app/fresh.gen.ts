@@ -25,6 +25,8 @@ import * as $$2 from "./islands/Header.tsx";
 import * as $$3 from "./islands/Invoices.tsx";
 import * as $$4 from "./islands/UserNav.tsx";
 
+import { Manifest } from "$fresh/server.ts";
+
 const manifest = {
   routes: {
     "./routes/(app)/_layout.tsx": $0,
@@ -53,6 +55,6 @@ const manifest = {
     "./islands/UserNav.tsx": $$4,
   },
   baseUrl: import.meta.url,
-};
+} satisfies Manifest;
 
 export default manifest;

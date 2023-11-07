@@ -4,12 +4,14 @@
 
 import * as $0 from "./routes/index.ts";
 
+import { Manifest } from "$fresh/server.ts";
+
 const manifest = {
   routes: {
     "./routes/index.ts": $0,
   },
   islands: {},
   baseUrl: import.meta.url,
-};
+} satisfies Manifest;
 
 export default manifest;
