@@ -1,4 +1,4 @@
-import type { FreshConfig } from "https​://deno.land/x/fresh​@1.5.2/server.ts";
+import type { FreshConfig } from "https​://deno.land/x/fresh​@1.5.3/server.ts";
 import { netzo } from "../apis/netzo/mod.ts";
 import { log, LOGS, logWarning } from "../utils/console.ts";
 import { setEnvVars } from "../utils/mod.ts";

@@ -1,18 +1,16 @@
-import { defineRoute } from "$fresh/server.ts";
+import { PageProps } from "$fresh/server.ts";
 import { AuthForm } from "../components/AuthForm.tsx";
 import { NetzoState } from "netzo/config/mod.ts";
-import { cn } from "netzo/components/utils.ts";
 
-export default defineRoute<NetzoState>((req, ctx) => {
-  const { options = {} } = ctx.state?.auth ?? {};
+export default (props: PageProps<unknown, NetzoState>) => {
   const {
-    title = "Sign In",
-    description,
-    color = "primary",
+    // title = "Sign In",
+    // description,
+    // color = "primary",
     backgroundColor = "muted",
-    logo,
+    // logo,
     caption,
-  } = options;
+  } = props.state.auth!.options;
 
   return (
     <main
@@ -20,7 +18,7 @@ export default defineRoute<NetzoState>((req, ctx) => {
     >
       <section className="flex-1 grid place-items-center p-4">
         <div className="grid gap-6 w-full xs:w-[350px] max-w-[350px]">
-          <AuthForm {...ctx.state.auth} />
+          <AuthForm {...props.state.auth} />
 
           {caption && (
             <p className="px-8 text-center text-sm text-muted-foreground">
@@ -48,4 +46,4 @@ export default defineRoute<NetzoState>((req, ctx) => {
       </footer>
     </main>
   );
-});
+};

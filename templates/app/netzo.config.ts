@@ -9,7 +9,7 @@ import twindConfig from "./twind.config.ts";
 export default defineNetzoConfig({
   project: "sheer-marlin-436696",
   plugins: [
-    ...auth({
+    auth({
       email: {},
       oauth2: createGitHubOAuthConfig(),
     }),

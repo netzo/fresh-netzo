@@ -1,4 +1,5 @@
 import type { Plugin } from "$fresh/server.ts";
+import type { NetzoState } from "netzo/config/mod.ts";
 import { ErrorPage404, ErrorPage500 } from "./error-pages.tsx";
 
 export type ErrorPagesOptions = {
@@ -8,7 +9,7 @@ export type ErrorPagesOptions = {
 
 export const errorPages = (
   options: ErrorPagesOptions = { "404": true, "500": true },
-): Plugin => {
+): Plugin<NetzoState> => {
   return {
     name: "errorPages",
     routes: [

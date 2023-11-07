@@ -1,11 +1,11 @@
 import { assertRejects } from "std/assert/assert_rejects.ts";
-import { getGitHubUser } from "./github.ts";
+import { getUserGithub } from "./github.ts";
 import { returnsNext, stub } from "std/testing/mock.ts";
 import { errors } from "std/http/http_errors.ts";
 import { assertEquals } from "std/assert/assert_equals.ts";
 import { Status } from "deno_kv_oauth/deps.ts";
 
-Deno.test("[plugins/auth/utils/providers/github] getGitHubUser()", async (test) => {
+Deno.test("[plugins/auth/utils/providers/github] getUserGithub()", async (test) => {
   await test.step("rejects on error message", async () => {
     const message = crypto.randomUUID();
     const fetchStub = stub(
@@ -18,7 +18,7 @@ Deno.test("[plugins/auth/utils/providers/github] getGitHubUser()", async (test) 
       ]),
     );
     await assertRejects(
-      async () => await getGitHubUser(crypto.randomUUID()),
+      async () => await getUserGithub(crypto.randomUUID()),
       errors.BadRequest,
       message,
     );
@@ -32,7 +32,7 @@ Deno.test("[plugins/auth/utils/providers/github] getGitHubUser()", async (test) 
       "fetch",
       returnsNext([Promise.resolve(Response.json(body))]),
     );
-    assertEquals(await getGitHubUser(crypto.randomUUID()), body);
+    assertEquals(await getUserGithub(crypto.randomUUID()), body);
     fetchStub.restore();
   });
 });

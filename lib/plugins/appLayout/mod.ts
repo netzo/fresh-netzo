@@ -1,5 +1,6 @@
 import type { JSX } from "preact";
 import type { Plugin } from "$fresh/server.ts";
+import type { NetzoState } from "netzo/config/mod.ts";
 import AppLayout from "./app-layout.tsx";
 
 export type AppLayoutOptions = {
@@ -19,7 +20,7 @@ export const appLayout = (
     title: "Built with Netzo",
     favicon: "/favicon.svg",
   },
-): Plugin => {
+): Plugin<NetzoState> => {
   return {
     name: "appLayout",
     routes: [

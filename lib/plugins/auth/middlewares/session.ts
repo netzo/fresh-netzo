@@ -72,31 +72,26 @@ export async function ensureSignedIn(
 }
 
 /**
- * Adds middleware to the defined routes that ensures the client is signed-in
- * before proceeding. The {@linkcode ensureSignedIn} middleware throws an error
- * equivalent to the
+ * Middleware that ensures the client is signed-in before proceeding.
+ * The {@linkcode ensureSignedIn} middleware throws an error equivalent to the
  * {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401|HTTP 401 Unauthorized}
  * error if `ctx.state.auth.sessionUser` is `undefined`.
  *
  * The thrown error is then handled by {@linkcode handleWebPageErrors}, or
- * {@linkcode handleRestApiErrors}, if the request is made to a REST API
- * endpoint.
+ * {@linkcode handleRestApiErrors}, if the request is made to a REST API endpoint.
  *
  * @see {@link https://fresh.deno.dev/docs/concepts/plugins|Plugins documentation}
  * for more information on Fresh's plugin functionality.
  */
-export const session = (): Plugin<NetzoState> => {
-  return {
-    name: "session",
-    middlewares: [
-      {
-        path: "/(app)",
-        middleware: { handler: setSessionState },
-      },
-      {
-        path: "/(app)",
-        middleware: { handler: ensureSignedIn },
-      },
-    ],
-  };
+export const sessionMiddlewares = (): Required<Plugin<NetzoState>>['middlewares'] => {
+  return [
+    {
+      path: "/(app)",
+      middleware: { handler: setSessionState },
+    },
+    {
+      path: "/(app)",
+      middleware: { handler: ensureSignedIn },
+    },
+  ];
 };

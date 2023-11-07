@@ -10,7 +10,7 @@ export function isGitHubSetup() {
   }
 }
 
-export type UserGitHub = {
+export type UserGithub = {
   login: string;
   id: number;
   node_id: string;
@@ -29,14 +29,14 @@ export type UserGitHub = {
   received_events_url: string;
   type: string;
   site_admin: boolean;
-  name: any;
+  name: unknown;
   company: string;
   blog: string;
   location: string;
-  email: any;
-  hireable: any;
+  email: unknown;
+  hireable: unknown;
   bio: string;
-  twitter_username: any;
+  twitter_username: unknown;
   public_repos: number;
   public_gists: number;
   followers: number;
@@ -53,14 +53,14 @@ export type UserGitHub = {
  *
  * @example
  * ```ts
- * import { getGitHubUser } from "netzo/plugins/auth/utils/providers/github.ts";
+ * import { getUserGithub } from "netzo/plugins/auth/utils/providers/github.ts";
  *
- * const user = await getGitHubUser("<access token>");
+ * const user = await getUserGithub("<access token>");
  * user.login; // Returns "octocat"
  * user.email; // Returns "octocat@github.com"
  * ```
  */
-export async function getGitHubUser(accessToken: string) {
+export async function getUserGithub(accessToken: string) {
   const resp = await fetch("https://api.github.com/user", {
     headers: { authorization: `Bearer ${accessToken}` },
   });
@@ -68,5 +68,5 @@ export async function getGitHubUser(accessToken: string) {
     const { message } = await resp.json();
     throw createHttpError(resp.status, message);
   }
-  return await resp.json() as Promise<UserGitHub>;
+  return await resp.json() as Promise<UserGithub>;
 }

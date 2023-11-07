@@ -1,10 +1,11 @@
 import type { Plugin } from "$fresh/server.ts";
 import type { OAuth2ClientConfig } from "deno_kv_oauth/mod.ts";
 import { deepMerge } from "std/collections/deep_merge.ts";
+import type { NetzoState } from "netzo/config/mod.ts";
 import { type User } from "netzo/plugins/auth/utils/db.ts";
-import { kvOAuth } from "./plugins/kv-oauth.ts";
-import { session } from "./plugins/session.ts";
-import { errorHandling } from "./plugins/error-handling.ts";
+import { sessionMiddlewares } from "./middlewares/session.ts";
+import { errorHandlingMiddlewares } from "./middlewares/error-handling.ts";
+import { routes } from "./routes/mod.ts";
 
 export * from "deno_kv_oauth/mod.ts";
 
@@ -40,26 +41,29 @@ export type AuthState = {
  * - `GET /oauth/callback` for the callback page
  * - `GET /oauth/signout` for the sign-out page
  */
-export const auth = (options: AuthOptions): Plugin[] => {
-  return [
-    {
-      name: "auth",
-      middlewares: [
-        {
-          path: "/",
-          middleware: {
-            handler: async (_req, ctx) => {
-              const { value: config } = await kv.get(["auth", "config"]);
-              options = config ? deepMerge(options, config) : options;
-              ctx.state.auth = { options };
-              return await ctx.next();
-            },
+export const auth = (options: AuthOptions): Plugin<NetzoState> => {
+  // kvOAuth(options),
+  // session(),
+  // errorHandling(),
+  return {
+    name: "auth",
+    middlewares: [
+      {
+        path: "/",
+        middleware: {
+          handler: async (_req, ctx) => {
+            const { value: config } = await kv.get(["auth", "config"]);
+            options = config ? deepMerge(options, config) : options;
+            ctx.state.auth = { options };
+            return await ctx.next();
           },
         },
-      ],
-    } as Plugin,
-    kvOAuth(options),
-    session(),
-    errorHandling(),
-  ];
+      },
+      ...sessionMiddlewares(),
+      ...errorHandlingMiddlewares()!,
+    ],
+    routes: [
+      ...routes(options)
+    ]
+  }
 };
