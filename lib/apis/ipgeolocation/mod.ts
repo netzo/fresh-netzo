@@ -8,7 +8,7 @@ export type IpGeolocationOptions = {
 /**
  * SDK constructor function for the Ip Geolocation API
  *
- * @see https://netzo.io/docs/netzo/apis/ipgeolocation
+ * @see https://netzo.io/docs/framework/apis/ipgeolocation
  *
  * @param {string} apiKey - the API key to use for authentication
  * @returns {object} - an object of multiple utilities for the API

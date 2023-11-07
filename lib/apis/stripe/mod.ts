@@ -8,7 +8,7 @@ export type StripeOptions = {
 /**
  * SDK constructor function for the Stripe API
  *
- * @see https://netzo.io/docs/netzo/apis/stripe
+ * @see https://netzo.io/docs/framework/apis/stripe
  *
  * @param {string} apiKey - the API key to use for authentication
  * @returns {object} - an object of multiple utilities for the API

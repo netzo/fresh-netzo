@@ -10,7 +10,7 @@ Adds routes to render a custom error page for `404: Not Found` and `500: Server 
 
 Register the module in `netzo.config.ts` and ensure `main.ts` and `dev.ts` are receive the `config` object as shown below.
 
-::: warning Requires the [`unocss`](/docs/netzo/plugins/unocss) module to be registered as well.
+::: warning Requires the [`unocss`](/docs/framework/plugins/unocss) module to be registered as well.
 :::
 
 ::: code-group

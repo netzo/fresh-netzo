@@ -31,8 +31,8 @@ const { api } = jsonplaceholder()
 const users = await api.users.get()
 ```
 
-You can visit the [`apis`](/docs/netzo/apis) page to see a list of all the APIs that are currently supported.
+You can visit the [`apis`](/docs/framework/apis) page to see a list of all the APIs that are currently supported.
 
 ::: tip API configuration options
-Note that different APIs might require different configuration options (see [here](/docs/netzo/apis) for more information).
+Note that different APIs might require different configuration options (see [here](/docs/framework/apis) for more information).
 :::

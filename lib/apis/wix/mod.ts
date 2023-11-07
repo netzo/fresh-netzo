@@ -10,7 +10,7 @@ export type WixOptions = {
 /**
  * SDK constructor function for the Wix API
  *
- * @see https://netzo.io/docs/netzo/apis/wix
+ * @see https://netzo.io/docs/framework/apis/wix
  *
  * @param {string} accountId - the account id to construct the request headers
  * @param {string} siteId - the site id to construct the request headers

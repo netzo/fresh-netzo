@@ -16,7 +16,7 @@ export type GooglesheetsOptions = {
 /**
  * SDK constructor function for the Google Sheets API
  *
- * @see https://netzo.io/docs/netzo/apis/googlesheets
+ * @see https://netzo.io/docs/framework/apis/googlesheets
  *
  * @param {string} googleServiceAccountCredentials - the Google Service Account Credentials to use for authentication
  * @param {string} scope - the scope to use for authentication (default: ['spreadsheets.readonly'])

@@ -9,7 +9,7 @@ flowchart LR
     A[local project] -->|deploy| B[remote project]
 ```
 
-The recommended way to deploy projects is from the command line via the [netzo/cli](/docs/netzo/cli) command-line tool. This approach is great for developers who want to use their own editor and development environment. The CLI is also great for CI/CD pipelines.
+The recommended way to deploy projects is from the command line via the [netzo/cli](/docs/framework/cli) command-line tool. This approach is great for developers who want to use their own editor and development environment. The CLI is also great for CI/CD pipelines.
 
 - **IDE:** use your preffered editor (e.g. [VSCode](https://code.visualstudio.com))
 - **Hot Reload:** preview your changes instantly with `deno run --watch`
@@ -38,7 +38,7 @@ project UID.
 netzo deploy --project=my-project <entrypoint>
 ```
 
-See the [`netzo/cli`](/docs/netzo/cli) page for more details.
+See the [`netzo/cli`](/docs/framework/cli) page for more details.
 
 ## Deploy via UI
 
@@ -52,7 +52,7 @@ The easiest way to deploy simple projects and prototypes is via the editor in [a
 See the [Creating Projects](/docs/platform/projects#creating-projects) page for more details.
 
 ::: warning
-The in-app editor in [app.netzo.io](https://app.netzo.io) is currently in alpha and may have bugs that affect the development experience. We thus recommend taking advantage of traditional local development in the IDE of your choice and use the [netzo/cli](/docs/netzo/cli) command-line tool for deployment.
+The in-app editor in [app.netzo.io](https://app.netzo.io) is currently in alpha and may have bugs that affect the development experience. We thus recommend taking advantage of traditional local development in the IDE of your choice and use the [netzo/cli](/docs/framework/cli) command-line tool for deployment.
 :::
 
 <!-- ## Deploy with Github integration (soon)

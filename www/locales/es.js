@@ -295,11 +295,11 @@ export default {
     //     },
     //     {
     //       icon: 'i-mdi-star-four-points',
-    //       description: '<strong style="color: #0080ff"><a href="/docs/netzo/apis">Integraciones</a></strong> a cientos de APIS sin necediad de leer su documentacion',
+    //       description: '<strong style="color: #0080ff"><a href="/docs/framework/apis">Integraciones</a></strong> a cientos de APIS sin necediad de leer su documentacion',
     //     },
     //     {
     //       icon: 'i-mdi-hexagon-multiple',
-    //       description: '<strong style="color: #0080ff"><a href="/docs/netzo/components">Componentes UI</a></strong>, <strong style="color: #0080ff"><a href="/docs/netzo/plugins">Módulos</a></strong> y <strong style="color: #0080ff"><a href="/docs/netzo/utils">Utilidades</a></strong> para velocidad y simplicidad',
+    //       description: '<strong style="color: #0080ff"><a href="/docs/framework/components">Componentes UI</a></strong>, <strong style="color: #0080ff"><a href="/docs/framework/plugins">Módulos</a></strong> y <strong style="color: #0080ff"><a href="/docs/framework/utils">Utilidades</a></strong> para velocidad y simplicidad',
     //     },
     //     {
     //       icon: 'i-mdi-bug',
@@ -315,7 +315,7 @@ export default {
     //     },
     //     {
     //       icon: 'i-mdi-microsoft-visual-studio-code',
-    //       description: '<strong style="color: #0080ff"><a href="/docs/netzo/cli">CLI</a></strong> que habilita el desarrollo local',
+    //       description: '<strong style="color: #0080ff"><a href="/docs/framework/cli">CLI</a></strong> que habilita el desarrollo local',
     //     },
     //     {
     //       icon: 'i-mdi-git',

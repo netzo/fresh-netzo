@@ -8,7 +8,7 @@ export type HubspotOptions = {
 /**
  * SDK constructor function for the Hubspot API
  *
- * @see https://netzo.io/docs/netzo/apis/hubspot
+ * @see https://netzo.io/docs/framework/apis/hubspot
  *
  * @param {string} privateAppAccessToken - the token to use for authentication
  * @returns {object} - an object of multiple utilities for the API

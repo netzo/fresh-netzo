@@ -18,7 +18,7 @@ export type GoogledriveOptions = {
 /**
  * SDK constructor function for the Google Drive API
  *
- * @see https://netzo.io/docs/netzo/apis/googledrive
+ * @see https://netzo.io/docs/framework/apis/googledrive
  *
  * @param {string} googleServiceAccountCredentials - the Google Service Account Credentials to use for authentication
  * @param {string} scope - the scope to use for authentication (default: ['drive.readonly'])

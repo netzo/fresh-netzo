@@ -1,6 +1,6 @@
 # Core Concepts
 
-**Netzo provides a collection of building blocks for tailor-made for the [Deno fresh](https://fresh.deno.dev/) framework (**recommended**).** The goal is to provide everything related to UI when building custom frontends. This includes [components](/docs/netzo/components), [plugins](/docs/netzo/plugins), utils and unocss-powered themes including colors, icons and typography.
+**Netzo provides a collection of building blocks for tailor-made for the [Deno fresh](https://fresh.deno.dev/) framework (**recommended**).** The goal is to provide everything related to UI when building custom frontends. This includes [components](/docs/framework/components), [plugins](/docs/framework/plugins), utils and unocss-powered themes including colors, icons and typography.
 
 - Headless components
 - Built with Radix UI and UnoCSS
@@ -16,7 +16,7 @@
 
 The styles should be separate from implementation. One of the drawback of packaging components into a component library is that the style is coupled with the implementation.
 
-[`netzo/components`](/docs/netzo/components) separates [(unstyled) components](#components) from [styles](#styles). The components are built using headless (unstyled) primitives from [`radix-ui`](https://www.radix-ui.com/) and can be styled however you would like, though we recommend [`unocss`](https://unocss.dev/). To ease styling, the UnoCSS `presetNetzo` can be used for beautiful and consistent defaults which you can still easily customize however you want.
+[`netzo/components`](/docs/framework/components) separates [(unstyled) components](#components) from [styles](#styles). The components are built using headless (unstyled) primitives from [`radix-ui`](https://www.radix-ui.com/) and can be styled however you would like, though we recommend [`unocss`](https://unocss.dev/). To ease styling, the UnoCSS `presetNetzo` can be used for beautiful and consistent defaults which you can still easily customize however you want.
 
 <!-- ## Getting Started
 
@@ -32,7 +32,7 @@ You can choose to theme components however you would like. However, we strongly 
 
 Powered by [UnoCSS](https://github.com/antfu/unocss), you can use Tailwind/Windi CSS utilities to quickly customize the look and feel of components. The `presetNetzo` includes component class names with beautiful and consistent defaults which you can still easily customize.
 
-::: warning Requires the [`unocss`](/docs/netzo/plugins/unocss) module to be registered as well.
+::: warning Requires the [`unocss`](/docs/framework/plugins/unocss) module to be registered as well.
 :::
 
 ### Theming

@@ -8,7 +8,7 @@ export type MailgunOptions = {
 /**
  * SDK constructor function for the Mailgun API
  *
- * @see https://netzo.io/docs/netzo/apis/mailgun
+ * @see https://netzo.io/docs/framework/apis/mailgun
  *
  * @param {string} apiKey - the API key to use for authentication
  * @returns {object} - an object of multiple utilities for the API

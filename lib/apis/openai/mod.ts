@@ -8,7 +8,7 @@ export type OpenAIOptions = {
 /**
  * SDK constructor function for the OpenAI API
  *
- * @see https://netzo.io/docs/netzo/apis/openai
+ * @see https://netzo.io/docs/framework/apis/openai
  *
  * @param {string} apiKey - the API key to use for authentication
  * @returns {object} - an object of multiple utilities for the API

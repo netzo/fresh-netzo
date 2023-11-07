@@ -8,7 +8,7 @@ export type SendgridOptions = {
 /**
  * SDK constructor function for the Sendgrid API
  *
- * @see https://netzo.io/docs/netzo/apis/sendgrid
+ * @see https://netzo.io/docs/framework/apis/sendgrid
  *
  * @param {string} apiKey - the API key to use for authentication
  * @returns {object} - an object of multiple utilities for the API

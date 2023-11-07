@@ -42,7 +42,7 @@ with `uid` being a unique identifier for the plugin.
 
 ### Core Plugins
 
-Core plugins are maintained by the Netzo team and are listed under [`netzo/plugins`](/docs/netzo/plugins). All core plugins provide sensible defaults to simplify configuration and are modular by design, ensuring they work together seamlessly.
+Core plugins are maintained by the Netzo team and are listed under [`netzo/plugins`](/docs/framework/plugins). All core plugins provide sensible defaults to simplify configuration and are modular by design, ensuring they work together seamlessly.
 
 ::: tabs
 == Manual
