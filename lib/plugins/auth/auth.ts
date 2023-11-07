@@ -1,4 +1,5 @@
-import type { Plugin } from "$fresh/server.ts";
+import type { HandlerContext } from "$fresh/server.ts";
+import type { PluginRoute } from "$fresh/src/server/types.ts";
 import { handleCallback, signIn, signOut } from "deno_kv_oauth/mod.ts";
 import {
   createUser,
@@ -6,34 +7,28 @@ import {
   updateUser,
   updateUserSession,
   type User,
-} from "../utils/db.ts";
-import { getUserGithub } from "../utils/providers/github.ts";
-import Auth from "../routes/auth.tsx";
-import type { AuthOptions } from "../mod.ts";
-import type { NetzoState as _NetzoState } from "../../../config/mod.ts";
+} from "./utils/db.ts";
+import { getUserGithub } from "./utils/providers/github.ts";
+import Auth from "./auth.tsx";
+import type { AuthOptions } from "./mod.ts";
 
-type NetzoState = Required<Pick<_NetzoState, 'auth'>> & _NetzoState
-
-// Exported for mocking and spying in e2e tests
-export const _internals = { handleCallback };
-
-export const routes = (options: AuthOptions): Required<Plugin<NetzoState>>['routes'] => {
+export const authRoutes = (options: AuthOptions): PluginRoute[] => {
   return [
     {
       path: "/auth",
-      handler: (_req, ctx) => ctx.render(),
+      handler: (_req: Request, ctx: HandlerContext) => ctx.render(),
       component: Auth,
     },
     {
       path: `/oauth/signin`,
-      handler: async (req, _ctx) => {
+      handler: async (req: Request, _ctx: HandlerContext) => {
         const response = await signIn(req, options.oauth2);
         return response;
       },
     },
     {
       path: `/oauth/callback`,
-      handler: async (req, _ctx) => {
+      handler: async (req: Request, _ctx: HandlerContext) => {
         const { response, tokens, sessionId } = await handleCallback(
           req,
           options.oauth2,
@@ -48,7 +43,7 @@ export const routes = (options: AuthOptions): Required<Plugin<NetzoState>>['rout
           email: userGithub.email,
           avatar: userGithub.avatar_url,
           role: "admin",
-        } as User;
+        } as unknown as User;
 
         if (userCurrent === null) {
           await createUser(user);
@@ -62,7 +57,7 @@ export const routes = (options: AuthOptions): Required<Plugin<NetzoState>>['rout
     },
     {
       path: `/oauth/signout`,
-      handler: async (req, _ctx) => {
+      handler: async (req: Request, _ctx: HandlerContext) => {
         const response = await signOut(req);
         return response;
       },

@@ -25,6 +25,7 @@ export type {
   ManifestEntryDirectory,
   ManifestEntryFile,
   ManifestEntrySymlink,
+  Notification,
   Paginated,
   Project,
   ProjectFiles,

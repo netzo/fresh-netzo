@@ -17,7 +17,6 @@ import {
 } from "std/assert/mod.ts";
 import { isRedirectStatus } from "std/http/http_status.ts";
 import options from "@/netzo.config.ts";
-import { _internals } from "netzo/plugins/auth/plugins/kv-oauth.ts";
 
 /**
  * These tests are end-to-end tests, which follow this rule-set:

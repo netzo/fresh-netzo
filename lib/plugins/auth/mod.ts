@@ -3,9 +3,9 @@ import type { OAuth2ClientConfig } from "deno_kv_oauth/mod.ts";
 import { deepMerge } from "std/collections/deep_merge.ts";
 import type { NetzoState } from "netzo/config/mod.ts";
 import { type User } from "netzo/plugins/auth/utils/db.ts";
-import { sessionMiddlewares } from "./middlewares/session.ts";
-import { errorHandlingMiddlewares } from "./middlewares/error-handling.ts";
-import { routes } from "./routes/mod.ts";
+import { sessionMiddlewares } from "./session.ts";
+import { errorHandlingMiddlewares } from "./error-handling.ts";
+import { authRoutes } from "./auth.ts";
 
 export * from "deno_kv_oauth/mod.ts";
 
@@ -25,6 +25,8 @@ export type AuthOptions = {
   };
 };
 
+export type NetzoStateAuth = Required<Pick<NetzoState, 'auth'>> & NetzoState
+
 export type AuthState = {
   sessionId?: string;
   sessionUser?: User;
@@ -41,10 +43,7 @@ export type AuthState = {
  * - `GET /oauth/callback` for the callback page
  * - `GET /oauth/signout` for the sign-out page
  */
-export const auth = (options: AuthOptions): Plugin<NetzoState> => {
-  // kvOAuth(options),
-  // session(),
-  // errorHandling(),
+export const auth = (options: AuthOptions): Plugin<NetzoStateAuth> => {
   return {
     name: "auth",
     middlewares: [
@@ -59,11 +58,11 @@ export const auth = (options: AuthOptions): Plugin<NetzoState> => {
           },
         },
       },
-      ...sessionMiddlewares(),
-      ...errorHandlingMiddlewares()!,
+      ...sessionMiddlewares,
+      ...errorHandlingMiddlewares,
     ],
     routes: [
-      ...routes(options)
+      ...authRoutes(options)
     ]
   }
 };

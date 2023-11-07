@@ -1,8 +1,8 @@
 import { PageProps } from "$fresh/server.ts";
-import { AuthForm } from "../components/AuthForm.tsx";
-import { NetzoState } from "netzo/config/mod.ts";
+import { AuthForm } from "./components/AuthForm.tsx";
+import type { NetzoStateAuth } from "./mod.ts";
 
-export default (props: PageProps<unknown, NetzoState>) => {
+export default (props: PageProps<unknown, NetzoStateAuth>) => {
   const {
     // title = "Sign In",
     // description,
