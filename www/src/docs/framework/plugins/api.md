@@ -9,7 +9,7 @@
 ## Usage
 
 ```ts
-import { createDatabase } from 'https://deno.land/x/netzo/db/mod.ts'
+import { createDatabase } from 'https://deno.land/x/netzo/database/mod.ts'
 
 const kv = await Deno.openKv()
 const db = createDatabase(kv)
@@ -44,14 +44,14 @@ export default defineNetzoConfig({
 
 ## Operations
 
-| Operation  | HTTP Method | Path                | Deno KV Operation |
-|------------|-------------|---------------------|-------------------|
-| **find**   | `GET`       | `/db/:resource`     | [list](#list)     |
-| **get**    | `GET`       | `/db/:resource/:id` | [get](#get)       |
-| **create** | `POST`      | `/db/:resource`     | [set](#set)       |
-| **update** | `PUT`       | `/db/:resource/:id` | [set](#set)       |
-| **patch**  | `PATCH`     | `/db/:resource/:id` | [set](#set)       |
-| **remove** | `DELETE`    | `/db/:resource/:id` | [delete](#delete) |
+| Operation  | HTTP Method | Path                 | Deno KV Operation |
+|------------|-------------|----------------------|-------------------|
+| **find**   | `GET`       | `/api/:resource`     | [list](#list)     |
+| **get**    | `GET`       | `/api/:resource/:id` | [get](#get)       |
+| **create** | `POST`      | `/api/:resource`     | [set](#set)       |
+| **update** | `PUT`       | `/api/:resource/:id` | [set](#set)       |
+| **patch**  | `PATCH`     | `/api/:resource/:id` | [set](#set)       |
+| **remove** | `DELETE`    | `/api/:resource/:id` | [delete](#delete) |
 
 ### `find`
 

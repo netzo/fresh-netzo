@@ -1,4 +1,4 @@
-import { createDatabase, ulid } from "netzo/db/mod.ts";
+import { createDatabase, ulid } from "netzo/database/mod.ts";
 import { filterObjectsByKeyValues } from "netzo/utils/mod.ts";
 import { Handlers } from "$fresh/server.ts";
 import { Invoice } from "@/components/tables/invoices/data/schema.ts";

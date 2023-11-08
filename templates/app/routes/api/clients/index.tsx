@@ -1,5 +1,5 @@
 // import { zValidator } from "@hono/zod-validator";
-import { ulid } from "netzo/db/mod.ts";
+import { ulid } from "netzo/database/mod.ts";
 import { filterObjectsByKeyValues } from "netzo/utils/mod.ts";
 import { Handlers } from "$fresh/server.ts";
 import { Client } from "@/components/tables/clients/data/schema.ts";

@@ -1,4 +1,4 @@
-import { ulid } from "../../../db/mod.ts";
+import { ulid } from "../../../database/mod.ts";
 
 const kv = await Deno.openKv();
 // TODO: const db = createDatabase(kv);

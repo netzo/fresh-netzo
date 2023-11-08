@@ -3,7 +3,7 @@ import { Status } from "$fresh/server.ts";
 import { isHttpError } from "std/http/http_errors.ts";
 import type { NetzoState } from "netzo/config/mod.ts";
 import { parseRequestBody } from "netzo/utils/mod.ts";
-import { createDatabase } from "../../db/mod.ts";
+import { createDatabase } from "../../database/mod.ts";
 
 export type DatabaseServiceOptions = {
   path: string; // automatically converted to kebab-case
