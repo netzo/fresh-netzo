@@ -1,6 +1,6 @@
 <div align="center" style="padding-top: 12px;">
   <a href="https://netzo.io" target="_blank">
-    <img style="background: transparent; height: 96px;" src="https://netzo.io/images/netzo-symbol-light.svg" alt="Netzo logo" />
+    <img style="background: transparent; height: 96px;" src="https://netzo.io/assets/design-kit/netzo-symbol-light.svg" alt="Netzo logo" />
   </a>
 </div>
 
