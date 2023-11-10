@@ -1,4 +1,4 @@
-import { authPlugin } from "./mod.ts";
+import { portals } from "./mod.ts";
 import {
   assert,
   assertArrayIncludes,
@@ -20,8 +20,8 @@ import {
 import { OAUTH_COOKIE_NAME } from "deno_kv_oauth/lib/_http.ts";
 import type { Handler } from "$fresh/server.ts";
 
-Deno.test("[plugins/auth] authPlugin() works with default values", () => {
-  const plugin = authPlugin({ oauth2: randomOAuthConfig() });
+Deno.test("[plugins/portals] portals() works with default values", () => {
+  const plugin = portals({ oauth2: randomOAuthConfig() });
   assertNotEquals(plugin.routes, undefined);
   assert(plugin.routes!.every((route) => route.handler !== undefined));
   assertArrayIncludes(plugin.routes!.map((route) => route.path), [
@@ -31,9 +31,9 @@ Deno.test("[plugins/auth] authPlugin() works with default values", () => {
   ]);
 });
 
-Deno.test("[plugins/auth] authPlugin() correctly handles the sign-in path", async () => {
+Deno.test("[plugins/portals] portals() correctly handles the sign-in path", async () => {
   const request = new Request("http://example.com/oauth/signin");
-  const plugin = authPlugin({ oauth2: randomOAuthConfig() });
+  const plugin = portals({ oauth2: randomOAuthConfig() });
   const handler = plugin.routes!.find((route) =>
     route.path === "/oauth/signin"
   )!
@@ -44,7 +44,7 @@ Deno.test("[plugins/auth] authPlugin() correctly handles the sign-in path", asyn
   assertRedirect(response);
 });
 
-Deno.test("[plugins/auth] authPlugin() correctly handles the callback path", async () => {
+Deno.test("[plugins/portals] portals() correctly handles the callback path", async () => {
   const fetchStub = stub(
     window,
     "fetch",
@@ -67,7 +67,7 @@ Deno.test("[plugins/auth] authPlugin() correctly handles the callback path", asy
       headers: { cookie: `${OAUTH_COOKIE_NAME}=${oauthSessionId}` },
     },
   );
-  const plugin = authPlugin({ oauth2: randomOAuthConfig() });
+  const plugin = portals({ oauth2: randomOAuthConfig() });
   const handler = plugin.routes!.find((route) =>
     route.path === "/oauth/callback"
   )!.handler as Handler<undefined, undefined>;
@@ -84,9 +84,9 @@ Deno.test("[plugins/auth] authPlugin() correctly handles the callback path", asy
   );
 });
 
-Deno.test("[plugins/auth] authPlugin() correctly handles the sign-out path", async () => {
+Deno.test("[plugins/portals] portals() correctly handles the sign-out path", async () => {
   const request = new Request("http://example.com/oauth/signout");
-  const plugin = authPlugin({ oauth2: randomOAuthConfig() });
+  const plugin = portals({ oauth2: randomOAuthConfig() });
   const handler = plugin.routes!.find((route) =>
     route.path === "/oauth/signout"
   )!.handler as Handler<undefined, undefined>;

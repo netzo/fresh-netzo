@@ -1,21 +1,21 @@
 ---
 layout: home
-title: Auth | Products
+title: Portals | Products
 description: Managed customer portals
 hero:
-  name: Auth
+  name: Portals
   text: Improve workflows with portals
-  tagline: Eliminate the hassle of managing users and authentication. Create beautiful portals that improve engagement with customers, vendors, partners, and suppliers.
+  tagline: Eliminate the hassle of managing users and portalsentication. Create beautiful portals that improve engagement with customers, vendors, partners, and suppliers.
   image:
-    src: /images/products/auth.svg
-    alt: Netzo Auth
+    src: /images/products/portals.svg
+    alt: Netzo Portals
   actions:
     - theme: brand
       text: Book a Call
       link: https://calendar.app.google/uHEnkfwpgYSM1ppN6
     - theme: alt
       text: Learn More
-      link: /docs/platform/projects/auth
+      link: /docs/platform/projects/portals
 
 features:
   - icon: ⚡

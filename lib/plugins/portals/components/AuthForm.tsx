@@ -1,5 +1,5 @@
 import { useSignal } from "@preact/signals";
-import type { AuthState } from "netzo/plugins/auth/mod.ts";
+import type { AuthState } from "netzo/plugins/portals/mod.ts";
 import { cn } from "netzo/components/utils.ts";
 import { Button, buttonVariants } from "netzo/components/ui/button.tsx";
 import { Input } from "netzo/components/ui/input.tsx";

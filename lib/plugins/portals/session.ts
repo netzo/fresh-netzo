@@ -1,26 +1,26 @@
 import type { MiddlewareHandlerContext } from "$fresh/server.ts";
 import type { PluginMiddleware } from "$fresh/src/server/types.ts";
 import { getSessionId } from "deno_kv_oauth/mod.ts";
-import { getUserBySession } from "netzo/plugins/auth/utils/db.ts";
+import { getUserBySession } from "netzo/plugins/portals/utils/db.ts";
 import { createHttpError } from "std/http/http_errors.ts";
 import { Status } from "std/http/http_status.ts";
-import type { NetzoStateAuth } from "./mod.ts";
+import type { NetzoStatePortals } from "./mod.ts";
 
-export function assertSignedIn(state: NetzoStateAuth) {
-  if (state.auth?.sessionUser === undefined) {
+export function assertSignedIn(state: NetzoStatePortals) {
+  if (state.portals?.sessionUser === undefined) {
     throw createHttpError(Status.Unauthorized, "User must be signed in");
   }
 }
 
 async function setSessionState(
   req: Request,
-  ctx: MiddlewareHandlerContext<NetzoStateAuth>,
+  ctx: MiddlewareHandlerContext<NetzoStatePortals>,
 ) {
   if (!["route"].includes(ctx.destination)) return await ctx.next();
 
   const sessionId = await getSessionId(req);
-  ctx.state.auth = {
-    ...ctx.state.auth,
+  ctx.state.portals = {
+    ...ctx.state.portals,
     sessionId,
     sessionUser: undefined, // reset each request (before next())
   };
@@ -29,14 +29,14 @@ async function setSessionState(
   const user = await getUserBySession(sessionId);
   if (!user) return await ctx.next();
 
-  ctx.state.auth.sessionUser = user;
+  ctx.state.portals.sessionUser = user;
 
   return await ctx.next();
 }
 
 // async function ensureSignedIn(
 //   _req: Request,
-//   ctx: MiddlewareHandlerContext<NetzoStateAuth>,
+//   ctx: MiddlewareHandlerContext<NetzoStatePortals>,
 // ) {
 //   assertSignedIn(ctx.state);
 //   return await ctx.next();
@@ -44,24 +44,24 @@ async function setSessionState(
 
 export async function ensureSignedIn(
   req: Request,
-  ctx: MiddlewareHandlerContext<NetzoStateAuth>,
+  ctx: MiddlewareHandlerContext<NetzoStatePortals>,
 ) {
   const url = new URL(req.url);
   if (!["route"].includes(ctx.destination)) return await ctx.next();
 
   if (url.pathname.startsWith("/oauth/")) return await ctx.next();
 
-  // check auth state
-  const { sessionId } = ctx.state.auth;
+  // check portals state
+  const { sessionId } = ctx.state.portals;
   const isAuthenticated = sessionId !== undefined;
 
   // redirect to /auth if not authenticated or to / if authenticated
   if (url.pathname !== "/auth" && !isAuthenticated) {
-    console.debug("[auth] User logged out, redirecting to /auth");
+    console.debug("[portals] User logged out, redirecting to /auth");
     url.pathname = "/auth";
     return Response.redirect(url.href, 302);
   } else if (url.pathname === "/auth" && isAuthenticated) {
-    console.debug("[auth] User logged in, redirecting to /");
+    console.debug("[portals] User logged in, redirecting to /");
     url.pathname = "/";
     return Response.redirect(url.href, 302);
   }
@@ -73,7 +73,7 @@ export async function ensureSignedIn(
  * Middleware that ensures the client is signed-in before proceeding.
  * The {@linkcode ensureSignedIn} middleware throws an error equivalent to the
  * {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401|HTTP 401 Unauthorized}
- * error if `ctx.state.auth.sessionUser` is `undefined`.
+ * error if `ctx.state.portals.sessionUser` is `undefined`.
  *
  * The thrown error is then handled by {@linkcode handleWebPageErrors}, or
  * {@linkcode handleRestApiErrors}, if the request is made to a REST API endpoint.
@@ -81,7 +81,7 @@ export async function ensureSignedIn(
  * @see {@link https://fresh.deno.dev/docs/concepts/plugins|Plugins documentation}
  * for more information on Fresh's plugin functionality.
  */
-export const sessionMiddlewares: PluginMiddleware<NetzoStateAuth>[] = [
+export const sessionMiddlewares: PluginMiddleware<NetzoStatePortals>[] = [
   {
     path: "/",
     middleware: { handler: setSessionState },

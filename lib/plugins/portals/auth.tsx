@@ -1,8 +1,8 @@
 import { PageProps } from "$fresh/server.ts";
 import { AuthForm } from "./components/AuthForm.tsx";
-import type { NetzoStateAuth } from "./mod.ts";
+import type { NetzoStatePortals } from "./mod.ts";
 
-export default (props: PageProps<unknown, NetzoStateAuth>) => {
+export default (props: PageProps<unknown, NetzoStatePortals>) => {
   const {
     // title = "Sign In",
     // description,
@@ -10,7 +10,7 @@ export default (props: PageProps<unknown, NetzoStateAuth>) => {
     backgroundColor = "muted",
     // logo,
     caption,
-  } = props.state.auth!.options;
+  } = props.state.portals!.options;
 
   return (
     <main
@@ -18,7 +18,7 @@ export default (props: PageProps<unknown, NetzoStateAuth>) => {
     >
       <section className="flex-1 grid place-items-center p-4">
         <div className="grid gap-6 w-full xs:w-[350px] max-w-[350px]">
-          <AuthForm {...props.state.auth} />
+          <AuthForm {...props.state.portals} />
 
           {caption && (
             <p className="px-8 text-center text-sm text-muted-foreground">

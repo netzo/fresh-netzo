@@ -2,9 +2,9 @@
 import ChipSimple from '@theme/components/ChipSimple.vue'
 </script>
 
-<img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/plugins/auth.svg" alt="netzo/auth" class="mb-5 w-75px">
+<img src="https://raw.githubusercontent.com/netzo/netzo/main/assets/plugins/portals.svg" alt="netzo/auth" class="mb-5 w-75px">
 
-# `auth` <ChipSimple chip="soon" />
+# `portals` <ChipSimple chip="soon" />
 
 Adds a middleware to protect routes with authentication based on access control settings set for the project in Netzo.
 
@@ -17,9 +17,12 @@ Register the module in `netzo.config.ts` and ensure `main.ts` and `dev.ts` are r
 ::: code-group
 ```ts [netzo.config.ts]
 import { defineNetzoConfig } from 'netzo/config/mod.ts'
+import { portals } from 'netzo/plugins/portals/mod.ts'
 
 export default defineNetzoConfig({
-  auth: { /* ... */ }
+  plugins: [
+    portals({ /* ... */ })
+  ]
 })
 ```
 <<< ./plugins/src/main.ts

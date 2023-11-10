@@ -19,7 +19,7 @@ import {
   type User,
 } from "./db.ts";
 
-Deno.test("[plugins/auth/utils/db] items", async () => {
+Deno.test("[plugins/portals/utils/db] items", async () => {
   const user = randomUser();
   const item1: Item = {
     ...randomItem(),
@@ -50,7 +50,7 @@ Deno.test("[plugins/auth/utils/db] items", async () => {
   ]);
 });
 
-Deno.test("[plugins/auth/utils/db] user", async () => {
+Deno.test("[plugins/portals/utils/db] user", async () => {
   const user = randomUser();
 
   assertEquals(await getUser(user.login), null);
@@ -84,7 +84,7 @@ Deno.test("[plugins/auth/utils/db] user", async () => {
   );
 });
 
-Deno.test("[plugins/auth/utils/db] votes", async () => {
+Deno.test("[plugins/portals/utils/db] votes", async () => {
   const item = randomItem();
   const user = randomUser();
   const vote = {

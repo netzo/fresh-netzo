@@ -803,7 +803,7 @@ export default {
           { text: 'Inbox', link: '/es/products/inbox' },
           { text: 'Proyectos', link: '/es/products/projects' },
           { text: 'Almacenamiento (próx.)', link: '/es/products/storage' },
-          { text: 'Auth', link: '/es/products/auth' },
+          { text: 'Portales', link: '/es/products/portals' },
           { text: 'Base de datos', link: '/es/products/database' },
           { text: 'Workflows (próx.)', link: '/es/products/workflows' },
           { text: 'Análiticas (próx.)', link: '/es/products/analytics' },

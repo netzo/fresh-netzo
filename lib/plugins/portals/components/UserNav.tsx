@@ -13,7 +13,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "netzo/components/ui/dropdown-menu.tsx";
-import type { HeaderProps } from "netzo/plugins/auth/components/Header.tsx";
+import type { HeaderProps } from "netzo/plugins/portals/components/Header.tsx";
 
 export const getInitials = (sessionUser: HeaderProps["sessionUser"]) => {
   const { name, login, email } = sessionUser;

@@ -1,4 +1,4 @@
 export {
   getInitials,
   UserNav,
-} from "netzo/plugins/auth/components/UserNav.tsx";
+} from "netzo/plugins/portals/components/UserNav.tsx";

@@ -812,7 +812,7 @@ export default {
           { text: 'Inbox', link: '/products/inbox' },
           { text: 'Projects', link: '/products/projects' },
           { text: 'Storage (soon)', link: '/products/storage' },
-          { text: 'Auth', link: '/products/auth' },
+          { text: 'Portals', link: '/products/portals' },
           { text: 'Database', link: '/products/database' },
           { text: 'Workflows (soon)', link: '/products/workflows' },
           { text: 'Analytics (soon)', link: '/products/analytics' },
@@ -869,7 +869,7 @@ export default {
       title: 'Auth',
       description: 'The <code>netzo/auth</code> module exports a set of utility functions to authenticate users in your projects.',
       display: { src: 'https://api.iconify.design/mdi-account-lock.svg?color=%239ca3af' },
-      href: '/docs/framework/auth',
+      href: '/docs/framework/portals',
     },
     {
       uid: 'cli',

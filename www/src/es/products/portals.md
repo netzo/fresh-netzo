@@ -1,21 +1,21 @@
 ---
 layout: home
-title: Auth | Productos
+title: Portales | Productos
 description: Mejora las interacciones con tus clientes a través de portales
 hero:
-  name: Auth
+  name: Portales
   text: Mejora los flujos con portales
   tagline: Olvidate de la molestias de gestionar usuarios y autenticación. Crea portales atractivos que mejoran la interacción con clientes, proveedores, socios y colaboradores.
   image:
-    src: /images/products/auth.svg
-    alt: Netzo Auth
+    src: /images/products/portals.svg
+    alt: Netzo Portales
   actions:
     - theme: brand
       text: Agenda una Llamada
       link: https://calendar.app.google/uHEnkfwpgYSM1ppN6
     - theme: alt
       text: Conoce Más
-      link: /docs/platform/projects/auth
+      link: /docs/platform/projects/portals
 
 features:
   - icon: ⚡

@@ -128,7 +128,7 @@ export const sidebarEN: DefaultTheme.Sidebar = {
           link: '/docs/platform/projects',
           items: [
             // { text: 'Overview', link: '/docs/platform/projects/overview' },
-            { text: 'Auth', link: '/docs/platform/projects/auth' },
+            { text: 'Auth', link: '/docs/platform/projects/portals' },
             { text: 'Database', link: '/docs/platform/projects/database' },
             { text: 'Deployments', link: '/docs/platform/projects/deployments' },
             { text: 'Logs', link: '/docs/platform/projects/logs' },
@@ -238,7 +238,7 @@ export const sidebarEN: DefaultTheme.Sidebar = {
           link: '/docs/framework/plugins',
           collapsed: false,
           items: [
-            { text: '<code>auth</code>', link: '/docs/framework/plugins/auth' },
+            { text: '<code>auth</code>', link: '/docs/framework/plugins/portals' },
             { text: '<code>appLayout</code>', link: '/docs/framework/plugins/appLayout' },
             { text: '<code>database</code>', link: '/docs/framework/plugins/api' },
             { text: '<code>errorPages</code>', link: '/docs/framework/plugins/errorPages' },

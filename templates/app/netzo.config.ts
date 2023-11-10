@@ -1,5 +1,5 @@
 import { defineNetzoConfig } from "netzo/config/mod.ts";
-import { auth } from "netzo/plugins/auth/mod.ts";
+import { auth } from "netzo/plugins/portals/mod.ts";
 import { api } from "netzo/plugins/api/mod.ts";
 import { createGitHubOAuthConfig } from "deno_kv_oauth/mod.ts";
 import { errorPages } from "netzo/plugins/errorPages/mod.ts";

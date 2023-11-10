@@ -1,6 +1,6 @@
 import { defineLayout } from "$fresh/server.ts";
-import type { AuthState } from "netzo/plugins/auth/mod.ts";
-import Footer from "netzo/plugins/auth/components/Footer.tsx";
+import type { AuthState } from "netzo/plugins/portals/mod.ts";
+import Footer from "netzo/plugins/portals/components/Footer.tsx";
 import Header, { type HeaderNavItemProps } from "@/islands/Header.tsx";
 
 const nav: HeaderNavItemProps[] = [
@@ -16,8 +16,8 @@ export default defineLayout<AuthState>((req, ctx) => {
     <div class="w-full h-full flex flex-col">
       <Header
         url={url}
-        sessionUser={ctx.state.auth?.sessionUser}
-        nav={ctx.state.auth?.sessionUser && nav}
+        sessionUser={ctx.state.portals?.sessionUser}
+        nav={ctx.state.portals?.sessionUser && nav}
       />
 
       <ctx.Component />

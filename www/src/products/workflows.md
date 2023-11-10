@@ -15,7 +15,7 @@ hero:
       link: https://calendar.app.google/uHEnkfwpgYSM1ppN6
     - theme: alt
       text: Coming soon
-      # link: /docs/platform/projects/auth
+      # link: /docs/platform/projects/portals
 
 features:
   - icon: 🚀

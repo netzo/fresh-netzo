@@ -2,16 +2,16 @@ import type { Plugin } from "$fresh/server.ts";
 import type { OAuth2ClientConfig } from "deno_kv_oauth/mod.ts";
 import { deepMerge } from "std/collections/deep_merge.ts";
 import type { NetzoState } from "netzo/config/mod.ts";
-import { type User } from "netzo/plugins/auth/utils/db.ts";
+import { type User } from "netzo/plugins/portals/utils/db.ts";
 import { sessionMiddlewares } from "./session.ts";
 import { errorHandlingMiddlewares } from "./error-handling.ts";
-import { authRoutes } from "./auth.ts";
+import { portalsRoutes } from "./portals.ts";
 
 export * from "deno_kv_oauth/mod.ts";
 
 const kv = await Deno.openKv();
 
-export type AuthOptions = {
+export type PortalsOptions = {
   email: {}; // TODO: EmailClientConfig;
   oauth2: OAuth2ClientConfig;
   title?: string;
@@ -25,12 +25,12 @@ export type AuthOptions = {
   };
 };
 
-export type NetzoStateAuth = Required<Pick<NetzoState, 'auth'>> & NetzoState
+export type NetzoStatePortals = Required<Pick<NetzoState, 'portals'>> & NetzoState
 
-export type AuthState = {
+export type PortalsState = {
   sessionId?: string;
   sessionUser?: User;
-  options: AuthOptions;
+  options: PortalsOptions;
 };
 
 /**
@@ -43,17 +43,17 @@ export type AuthState = {
  * - `GET /oauth/callback` for the callback page
  * - `GET /oauth/signout` for the sign-out page
  */
-export const auth = (options: AuthOptions): Plugin<NetzoStateAuth> => {
+export const portals = (options: PortalsOptions): Plugin<NetzoStatePortals> => {
   return {
-    name: "auth",
+    name: "portals",
     middlewares: [
       {
         path: "/",
         middleware: {
           handler: async (_req, ctx) => {
-            const { value: config } = await kv.get(["auth", "config"]);
+            const { value: config } = await kv.get(["portals", "config"]);
             options = config ? deepMerge(options, config) : options;
-            ctx.state.auth = { options };
+            ctx.state.portals = { options };
             return await ctx.next();
           },
         },
@@ -62,7 +62,7 @@ export const auth = (options: AuthOptions): Plugin<NetzoStateAuth> => {
       ...errorHandlingMiddlewares,
     ],
     routes: [
-      ...authRoutes(options)
+      ...portalsRoutes(options)
     ]
   }
 };

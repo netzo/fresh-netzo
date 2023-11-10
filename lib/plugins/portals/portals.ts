@@ -10,9 +10,9 @@ import {
 } from "./utils/db.ts";
 import { getUserGithub } from "./utils/providers/github.ts";
 import Auth from "./auth.tsx";
-import type { AuthOptions } from "./mod.ts";
+import type { PortalsOptions } from "./mod.ts";
 
-export const authRoutes = (options: AuthOptions): PluginRoute[] => {
+export const portalsRoutes = (options: PortalsOptions): PluginRoute[] => {
   return [
     {
       path: "/auth",

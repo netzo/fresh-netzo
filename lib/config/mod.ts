@@ -6,7 +6,7 @@ import {
   Paginated,
   Project,
 } from "https://esm.sh/@netzo/api@1.0.49/lib/client.d.ts";
-import { AuthState } from "netzo/plugins/auth/mod.ts";
+import { AuthState } from "netzo/plugins/portals/mod.ts";
 import { DatabaseState } from "netzo/plugins/api/mod.ts";
 import { VisibilityState } from "netzo/plugins/visibility/mod.ts";
 

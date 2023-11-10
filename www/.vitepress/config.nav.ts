@@ -18,7 +18,7 @@ export const navEN: DefaultTheme.NavItem[] = [
       {
         text: 'Projects', // 'Projects',
         items: [
-          { text: 'Auth', link: '/products/auth' },
+          { text: 'Portals', link: '/products/portals' },
           { text: 'Database', link: '/products/database' },
           { text: 'Workflows (soon)', link: '/products/workflows' },
           // { text: 'Analytics (soon)', link: '/products/analytics' },
@@ -30,7 +30,7 @@ export const navEN: DefaultTheme.NavItem[] = [
     text: 'Developer',
     items: [
       { text: 'APIs', link: '/docs/framework/apis' },
-      { text: 'Auth', link: '/docs/framework/auth' },
+      { text: 'Portals', link: '/docs/framework/portals' },
       { text: 'CLI', link: '/docs/framework/cli' },
       { text: 'Components', link: '/docs/framework/components' },
       { text: 'Database', link: '/docs/framework/database' },
@@ -76,7 +76,7 @@ export const navES: DefaultTheme.NavItem[] = [
       {
         text: 'Proyectos', // 'Projects',
         items: [
-          { text: 'Auth', link: '/es/products/auth' },
+          { text: 'Auth', link: '/es/products/portals' },
           { text: 'Base de datos', link: '/es/products/database' },
           { text: 'Automatizaciones (próx.)', link: '/es/products/workflows' },
           // { text: 'Analiticas (próx.)', link: '/es/products/analytics' },
@@ -88,7 +88,7 @@ export const navES: DefaultTheme.NavItem[] = [
     text: 'Desarrollador',
     items: [
       { text: 'APIs', link: '/docs/framework/apis' },
-      { text: 'Auth', link: '/docs/framework/auth' },
+      { text: 'Auth', link: '/docs/framework/portals' },
       { text: 'CLI', link: '/docs/framework/cli' },
       { text: 'Componentes', link: '/docs/framework/components' },
       { text: 'Base de Datos', link: '/docs/framework/database' },
