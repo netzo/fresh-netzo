@@ -38,7 +38,7 @@ A HTTP server that renders a HTML page on the server with JSX (using `preact`).
 
 ::: code-group
 ```tsx [main.tsx]
-import { renderToString } from 'https://esm.sh/*preact-render-to-string@6.2.1?deps=preact@10.18.11'
+import { renderToString } from 'https://esm.sh/*preact-render-to-string@6.2.1?deps=preact@10.19.11'
 
 function handler(_req: Request): Response {
   const page = (
