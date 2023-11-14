@@ -238,7 +238,7 @@ export const sidebarEN: DefaultTheme.Sidebar = {
           link: '/docs/framework/plugins',
           collapsed: false,
           items: [
-            { text: '<code>auth</code>', link: '/docs/framework/plugins/portals' },
+            { text: '<code>portals</code>', link: '/docs/framework/plugins/portals' },
             { text: '<code>appLayout</code>', link: '/docs/framework/plugins/appLayout' },
             { text: '<code>database</code>', link: '/docs/framework/plugins/api' },
             { text: '<code>errorPages</code>', link: '/docs/framework/plugins/errorPages' },

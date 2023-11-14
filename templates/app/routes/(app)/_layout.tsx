@@ -1,5 +1,5 @@
 import { defineLayout } from "$fresh/server.ts";
-import type { AuthState } from "netzo/plugins/portals/mod.ts";
+import type { PortalsState } from "netzo/plugins/portals/mod.ts";
 import Footer from "netzo/plugins/portals/components/Footer.tsx";
 import Header, { type HeaderNavItemProps } from "@/islands/Header.tsx";
 
@@ -9,7 +9,7 @@ const nav: HeaderNavItemProps[] = [
   { text: "Invoices", href: "/invoices" },
 ];
 
-export default defineLayout<AuthState>((req, ctx) => {
+export default defineLayout<PortalsState>((req, ctx) => {
   const url = new URL(req.url);
 
   return (

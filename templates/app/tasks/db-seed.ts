@@ -7,12 +7,12 @@ import { kv, db } from "@/utils/db.ts";
 
 const dbSeed = async () => {
   const createPromises = [
-    kv.set(["auth", "config"], {
+    kv.set(["portals", "config"], {
       title: "CRM",
       description: "A CRM built with Netzo",
       color: "#171717",
       backgroundColor: "#F5F5F5",
-      logo: "https://netzo.io/assets/design-kit/netzo-symbol-grayscale-light.svg",
+      logo: "https://netzo.io/logos/netzo-symbol-grayscale-light.svg",
       caption: {
         text: "Main Services Agreement",
         url: "https://netzo.io/legal/agreements-and-terms/main-services-agreement",

@@ -865,9 +865,9 @@ export default {
       href: '/docs/framework/apis',
     },
     {
-      uid: 'auth',
-      title: 'Auth',
-      description: 'The <code>netzo/auth</code> module exports a set of utility functions to authenticate users in your projects.',
+      uid: 'portals',
+      title: 'APortalsuth',
+      description: 'The <code>netzo/portals</code> module exports a set of utility functions to authenticate users in your projects.',
       display: { src: 'https://api.iconify.design/mdi-account-lock.svg?color=%239ca3af' },
       href: '/docs/framework/portals',
     },
