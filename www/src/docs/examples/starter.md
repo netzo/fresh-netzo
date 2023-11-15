@@ -42,7 +42,7 @@ A `deno.jsonc` or `deno.json`  file used to configure the Deno runtime for local
 {
   "imports": {
     "@/": "./",
-    "netzo/": "https://deno.land/x/netzo@0.2.83/",
+    "netzo/": "https://deno.land/x/netzo@0.2.84/",
     "preact": "https://esm.sh/preact@10.19.1",
     "preact/": "https://esm.sh/preact@10.19.1/"
   }
