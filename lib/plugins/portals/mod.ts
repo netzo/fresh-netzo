@@ -25,7 +25,9 @@ export type PortalsOptions = {
   };
 };
 
-export type NetzoStatePortals = Required<Pick<NetzoState, 'portals'>> & NetzoState
+export type NetzoStatePortals =
+  & Required<Pick<NetzoState, "portals">>
+  & NetzoState;
 
 export type PortalsState = {
   sessionId?: string;
@@ -62,7 +64,7 @@ export const portals = (options: PortalsOptions): Plugin<NetzoStatePortals> => {
       ...errorHandlingMiddlewares,
     ],
     routes: [
-      ...portalsRoutes(options)
-    ]
-  }
+      ...portalsRoutes(options),
+    ],
+  };
 };

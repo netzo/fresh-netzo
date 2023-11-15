@@ -37,7 +37,7 @@ const db = createDatabase(kv);
 const METHODS = ["find", "get", "create", "update", "patch", "remove"];
 const ERRORS = {
   notAllowed: () => new Response("Method not allowed", { status: 405 }),
-}
+};
 
 /**
  * A fresh plugin that registers middleware and handlers to
@@ -86,7 +86,7 @@ export const api = (options?: ApiOptions): Plugin<NetzoState> => {
             const { resource } = ctx.params;
             const data = await parseRequestBody(req);
             const result = await db.create(resource, data, idField);
-            console.log("result", result)
+            console.log("result", result);
             return Response.json(result);
           },
         },

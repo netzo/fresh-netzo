@@ -160,7 +160,7 @@ export function randomUser(): User {
   return {
     login: crypto.randomUUID(),
     sessionId: crypto.randomUUID(),
-    name: 'First Last',
+    name: "First Last",
     email: `firs.last@example.com`,
     role: ["admin", "editor", "viewer"][Math.floor(Math.random() * 3)],
     createdAt: new Date().toISOString(),

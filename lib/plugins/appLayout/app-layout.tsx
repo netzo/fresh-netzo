@@ -34,15 +34,15 @@ export default (props: AppLayoutState) => {
               <p className="text-sm dark:text-gray-300">{description}</p>
             </div>
           </div>
-            <a
-              href={isAuthenticated ? "/oauth/signout" : "/oauth/signin"}
-              className={cn(
-                buttonVariants({ variant: "ghost" }),
-                "absolute right-4 top-4 md:right-8 md:top-8",
-              )}
-            >
-              {isAuthenticated ? "Logout" : "Login"}
-            </a>
+          <a
+            href={isAuthenticated ? "/oauth/signout" : "/oauth/signin"}
+            className={cn(
+              buttonVariants({ variant: "ghost" }),
+              "absolute right-4 top-4 md:right-8 md:top-8",
+            )}
+          >
+            {isAuthenticated ? "Logout" : "Login"}
+          </a>
         </header>
 
         <main className="flex-1 overflow-x-hidden">

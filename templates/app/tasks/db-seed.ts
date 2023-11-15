@@ -1,7 +1,7 @@
 import { clients } from "@/data/clients.ts";
 import { contacts } from "@/data/contacts.ts";
 import { invoices } from "@/data/invoices.ts";
-import { kv, db } from "@/utils/db.ts";
+import { db, kv } from "@/utils/db.ts";
 
 //Seed a local KV from fake data files.
 
@@ -15,7 +15,8 @@ const dbSeed = async () => {
       logo: "https://netzo.io/logos/netzo-symbol-grayscale-light.svg",
       caption: {
         text: "Main Services Agreement",
-        url: "https://netzo.io/legal/agreements-and-terms/main-services-agreement",
+        url:
+          "https://netzo.io/legal/agreements-and-terms/main-services-agreement",
       },
     }),
     db.create("clients", clients, "id"),
