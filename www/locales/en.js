@@ -1524,7 +1524,7 @@ export default {
       title: 'Custom CMS on GitHub',
       description: 'An intuitive content management system (CMS) to easily store and manage digital assets such as images, files, videos and audio in different formats with version control and web hosting via Github.',
       display: {
-        src: 'https://netzo.io/images/home/admin-panels.svg',
+        src: 'https://netzo.io/logos/home/admin-panels.svg',
       },
     },
     {
@@ -1564,7 +1564,7 @@ export default {
       title: 'Department Metrics API',
       description: 'Consolidate department metrics from multiple APIs and standardize, cross-check and cross-create KPIs for any departments, such as sales, marketing, operations, and more. Use you internal API to easily build Business Intelligence dashboards, reports and enhance intradepartment communications.',
       display: {
-        src: 'https://netzo.io/images/home/apis.svg',
+        src: 'https://netzo.io/logos/home/apis.svg',
       },
     },
     {
@@ -1572,7 +1572,7 @@ export default {
       title: 'Internal Operations API',
       description: 'Build custom business logic, operations and workflows under a single api. Execute simple to complex operations, such as sending emails, provisioning users, provisioning infrastructure, and much more via your webhooks and API calls from anywhere.',
       display: {
-        src: 'https://netzo.io/images/home/apis.svg',
+        src: 'https://netzo.io/logos/home/apis.svg',
       },
     },
     {
@@ -1580,7 +1580,7 @@ export default {
       title: 'IoT Cloud Gateway API',
       description: 'An IoT cloud gateway API to collect, capture, process and route IoT field device data to your database or cloud service.',
       display: {
-        src: 'https://netzo.io/images/home/apis.svg',
+        src: 'https://netzo.io/logos/home/apis.svg',
       },
     },
     {

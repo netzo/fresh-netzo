@@ -5,7 +5,7 @@ import type { NetzoState } from "netzo/config/mod.ts";
 import { parseRequestBody } from "netzo/utils/mod.ts";
 import { createDatabase } from "../../database/mod.ts";
 
-export type DatabaseServiceOptions = {
+export type ApiServiceOptions = {
   path: string; // automatically converted to kebab-case
   idField?: string;
   methods?: Array<"find" | "get" | "create" | "update" | "patch" | "remove">;
@@ -13,12 +13,12 @@ export type DatabaseServiceOptions = {
 
 export type ApiOptions = {
   path?: string;
-  idField?: DatabaseServiceOptions["idField"];
-  methods?: DatabaseServiceOptions["methods"];
-  // TODO: services: DatabaseServiceOptions[];
+  idField?: ApiServiceOptions["idField"];
+  methods?: ApiServiceOptions["methods"];
+  // TODO: services: ApiServiceOptions[];
 };
 
-export type DatabaseState = {
+export type ApiState = {
   options: ApiOptions;
 };
 
@@ -34,7 +34,7 @@ const path = (await Deno.permissions.query({
 const kv = await Deno.openKv(path);
 const db = createDatabase(kv);
 
-const METHODS = ["find", "get", "create", "update", "patch", "remove"];
+const METHODS = ["find", "get", "create", "update", "patch", "remove"] as ApiOptions['methods'];
 const ERRORS = {
   notAllowed: () => new Response("Method not allowed", { status: 405 }),
 };
@@ -62,7 +62,7 @@ export const api = (options?: ApiOptions): Plugin<NetzoState> => {
           handler: async (_req, ctx) => {
             try {
               if (!["route"].includes(ctx.destination)) return await ctx.next();
-              ctx.state.database = { options };
+              ctx.state.api = { options: { path, idField, methods } };
               return await ctx.next();
             } catch (error) {
               return toErrorResponse(error);
@@ -76,13 +76,13 @@ export const api = (options?: ApiOptions): Plugin<NetzoState> => {
         path: `${path}/[resource]`,
         handler: {
           async GET(_req, ctx) {
-            if (!methods.includes("find")) return ERRORS.notAllowed();
+            if (!methods!.includes("find")) return ERRORS.notAllowed();
             const { resource } = ctx.params;
             const result = await db.find(resource, {});
             return Response.json(result);
           },
           async POST(req, ctx) {
-            if (!methods.includes("create")) return ERRORS.notAllowed();
+            if (!methods!.includes("create")) return ERRORS.notAllowed();
             const { resource } = ctx.params;
             const data = await parseRequestBody(req);
             const result = await db.create(resource, data, idField);
@@ -95,27 +95,27 @@ export const api = (options?: ApiOptions): Plugin<NetzoState> => {
         path: `${path}/[resource]/[id]`,
         handler: {
           async GET(_req, ctx) {
-            if (!methods.includes("get")) return ERRORS.notAllowed();
+            if (!methods!.includes("get")) return ERRORS.notAllowed();
             const { resource, id } = ctx.params;
             const result = await db.get(resource, id);
             return Response.json(result);
           },
           async PUT(req, ctx) {
-            if (!methods.includes("update")) return ERRORS.notAllowed();
+            if (!methods!.includes("update")) return ERRORS.notAllowed();
             const { resource, id } = ctx.params;
             const data = await parseRequestBody(req);
             const result = await db.update(resource, id, data);
             return Response.json(result);
           },
           async PATCH(req, ctx) {
-            if (!methods.includes("patch")) return ERRORS.notAllowed();
+            if (!methods!.includes("patch")) return ERRORS.notAllowed();
             const { resource, id } = ctx.params;
             const data = await parseRequestBody(req);
             const result = await db.patch(resource, id, data);
             return Response.json(result);
           },
           async DELETE(_req, ctx) {
-            if (!methods.includes("remove")) return ERRORS.notAllowed();
+            if (!methods!.includes("remove")) return ERRORS.notAllowed();
             const { resource, id } = ctx.params;
             await db.remove(resource, id);
             return Response.json({ id });

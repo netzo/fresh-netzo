@@ -7,7 +7,7 @@ import {
   Project,
 } from "https://esm.sh/@netzo/api@1.0.49/lib/client.d.ts";
 import { PortalsState } from "netzo/plugins/portals/mod.ts";
-import { DatabaseState } from "netzo/plugins/api/mod.ts";
+import { ApiState } from "netzo/plugins/api/mod.ts";
 import { VisibilityState } from "netzo/plugins/visibility/mod.ts";
 
 export type NetzoConfig = FreshConfig & {
@@ -19,8 +19,8 @@ export type NetzoConfig = FreshConfig & {
 export type NetzoState = {
   config: NetzoConfig;
   kv: Deno.Kv;
+  api?: ApiState;
   portals?: PortalsState;
-  database?: DatabaseState;
   visibility?: VisibilityState;
 };
 
@@ -50,7 +50,7 @@ export async function defineNetzoConfig(
   const isTaskBuild = Deno.args[0] === "build";
 
   if (["development"].includes(NETZO_ENV) && !isTaskBuild) {
-    const apiKey = Deno.env.get("NETZO_API_KEY");
+    const apiKey = Deno.env.get("NETZO_API_KEY")!;
     if (!apiKey) {
       logWarning(LOGS.missingApiKey);
       logWarning(LOGS.skippingLoadingOfEnvVars);

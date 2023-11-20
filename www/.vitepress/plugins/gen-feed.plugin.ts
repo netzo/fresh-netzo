@@ -13,7 +13,7 @@ const feed = new Feed({
   description: 'The official blog for Netzo',
   link: url,
   language: 'en',
-  image: 'https://netzo.io/images/netzo-symbol-light.png',
+  image: 'https://netzo.io/logos/netzo-symbol-light.png',
   favicon: 'https://netzo.io/favicon.svg',
   copyright: `Copyright © ${new Date().getFullYear()} Netzo`,
 })

@@ -68,7 +68,7 @@ const buttons = [
 
       <div v-for="group in groupedPosts" :key="group.name" class="item">
         <BlogPostsItem :group="group" />
-        <div class="gh-card gh-large" data-repo="net" data-image="https://netzo.io/images/blog/all-in-one-orchestration-solution.webm" />
+        <div class="gh-card gh-large" data-repo="net" data-image="https://netzo.io/logos/blog/all-in-one-orchestration-solution.webm" />
       </div>
     </div>
   </div>
