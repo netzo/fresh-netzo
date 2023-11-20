@@ -24,8 +24,8 @@ export function AuthForm(props: PortalsState) {
     oauth2,
     title,
     description,
-    color,
-    backgroundColor,
+    color = "hsl(var(--primary))",
+    // backgroundColor = "muted",
     logo,
   } = props.options;
   const isLoading = useSignal<boolean>(false);

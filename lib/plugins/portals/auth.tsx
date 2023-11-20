@@ -7,7 +7,7 @@ export default (props: PageProps<unknown, NetzoStatePortals>) => {
     // title = "Sign In",
     // description,
     // color = "primary",
-    backgroundColor = "muted",
+    backgroundColor = "hsl(var(--muted))",
     // logo,
     caption,
   } = props.state.portals!.options;
