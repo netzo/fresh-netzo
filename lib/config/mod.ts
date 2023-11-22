@@ -22,6 +22,7 @@ export type NetzoState = {
   api?: ApiState;
   portals?: PortalsState;
   visibility?: VisibilityState;
+  [k: string]: unknown;
 };
 
 if (import.meta.main) await defineNetzoConfig({}); // allow running as script

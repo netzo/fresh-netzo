@@ -23,11 +23,13 @@ export function filterObjectsByKeyValues<T = Record<string, any>>(
 
         if (key.includes(".")) {
           filteredData = filteredData.filter((item) =>
-            _get(item, key, "").toLowerCase().includes(value.toLowerCase())
+            value &&
+            _get(item, key, "")?.toLowerCase().includes(value?.toLowerCase())
           );
         } else {
           filteredData = filteredData.filter((item) =>
-            _get(item, key, "").toLowerCase().includes(value.toLowerCase())
+            value &&
+            _get(item, key, "")?.toLowerCase().includes(value?.toLowerCase())
           );
         }
       }

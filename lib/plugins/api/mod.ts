@@ -34,7 +34,14 @@ const path = (await Deno.permissions.query({
 const kv = await Deno.openKv(path);
 const db = createDatabase(kv);
 
-const METHODS = ["find", "get", "create", "update", "patch", "remove"] as ApiOptions['methods'];
+const METHODS = [
+  "find",
+  "get",
+  "create",
+  "update",
+  "patch",
+  "remove",
+] as ApiOptions["methods"];
 const ERRORS = {
   notAllowed: () => new Response("Method not allowed", { status: 405 }),
 };

@@ -60,7 +60,7 @@ function include(
     ].includes(path?.split(".").pop()!)
   ) {
     logWarning(
-      `Skipping ${path} because it is a binary file (not yet supported)\n`,
+      `Skipping ${path} because it is a binary file (not yet supported)`,
     ); // requires newline "\n" to avoid being swallowed by the spinner
     return false;
   }

@@ -1,5 +1,6 @@
 import { defineNetzoConfig } from "netzo/config/mod.ts";
 import { api } from "netzo/plugins/api/mod.ts";
+import { bindSignal } from "netzo/plugins/bindSignal/mod.ts";
 import { errorPages } from "netzo/plugins/errorPages/mod.ts";
 import { loader } from "netzo/plugins/loader/mod.ts";
 import { portals } from "netzo/plugins/portals/mod.ts";
@@ -11,6 +12,7 @@ export default defineNetzoConfig({
   project: "sheer-marlin-436696",
   plugins: [
     api(),
+    bindSignal(),
     errorPages(),
     loader(),
     portals({
