@@ -1,3 +1,4 @@
+// see https://github.com/nesterow/tailored#preloader-plugin
 import { Plugin } from "$fresh/server.ts";
 import type { NetzoState } from "netzo/config/mod.ts";
 
@@ -13,7 +14,7 @@ const ANIMATION = "loader 12s ease infinite";
 export const loader = ({
   color = "linear-gradient(to right, #000000 0%, #434343 51%, #000000 100%)",
   height = "4px",
-} = {}): Plugin<NetzoState> => {
+}: LoaderOptions = {}): Plugin<NetzoState> => {
   const main = `data:application/javascript,
   export default function(_) {
     const loader = document.getElementById("__loader");
@@ -34,7 +35,7 @@ export const loader = ({
   `;
   return {
     name: "loader",
-    entrypoints: { "main": main },
+    entrypoints: { main },
     render(ctx) {
       ctx.render();
       const cssText = `
@@ -68,4 +69,4 @@ export const loader = ({
       };
     },
   };
-}
+};
