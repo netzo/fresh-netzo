@@ -32,4 +32,4 @@ export type {
   DenoDatabase,
   // domains:
   DenoDomain,
-} from "https://esm.sh/@netzo/api@1.0.49/lib/client.d.ts";
+} from "https://esm.sh/@netzo/api@1.0.50/lib/client.d.ts";
