@@ -3,10 +3,6 @@ import { Plugin } from "$fresh/server.ts";
 import type { NetzoState } from "netzo/config/mod.ts";
 import { setup } from "./shared.ts";
 
-export type BindSignalOptions = {};
-
-export type BindSignalState = {};
-
 /**
  * A fresh plugin for two-way binding of signals to DOM elements via the `bind:value` attribute.
  * @example
@@ -15,7 +11,7 @@ export type BindSignalState = {};
  *     return (
  *       <div>
  *         <h1>Preact signal bind demo</h1>
- *         <label for="input">Some text&nbsp;</label>
+ *         <label for="input">Some text</label>
  *         <input id="input" bind:value={signal} />
  *       <p>Input value: {signal}</p>
  *      </div>

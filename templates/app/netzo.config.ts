@@ -10,6 +10,10 @@ import twindConfig from "./twind.config.ts";
 
 export default defineNetzoConfig({
   project: "sheer-marlin-436696",
+  database: {
+    development: "655f12528750d8da7e73c327",
+    production: "655f12528750d8da7e73c327",
+  },
   plugins: [
     api(),
     bindSignal(),
