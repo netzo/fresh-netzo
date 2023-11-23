@@ -1,10 +1,10 @@
 import type {
-  DenoDeploymentProgress,
-  DenoDeploymentProgressAssetNegotiation,
-  DenoDeploymentProgressError,
-  DenoDeploymentProgressLoad,
-  DenoDeploymentProgressStaticFile,
-  DenoDeploymentProgressSuccess,
+  DenoProjectDeploymentProgress,
+  DenoProjectDeploymentProgressAssetNegotiation,
+  DenoProjectDeploymentProgressError,
+  DenoProjectDeploymentProgressLoad,
+  DenoProjectDeploymentProgressStaticFile,
+  DenoProjectDeploymentProgressSuccess,
   Deployment,
   DeploymentData,
   Manifest,
@@ -300,11 +300,12 @@ async function deploy(opts: DeployOpts): Promise<void> {
 
     app.service("deployments").on(
       "progress",
-      (event: DenoDeploymentProgress) => {
+      (event: DenoProjectDeploymentProgress) => {
         switch (event.type) {
           case "assetNegotiation": {
             neededHashes =
-              (event as DenoDeploymentProgressAssetNegotiation).neededHashes;
+              (event as DenoProjectDeploymentProgressAssetNegotiation)
+                .neededHashes;
             const s = neededHashes.length === 1 ? "" : "s";
             if (neededHashes.length === 0) {
               uploadSpinner!.succeed("No new assets to upload.");
@@ -317,7 +318,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
           }
           case "staticFile": {
             const { currentBytes, totalBytes } =
-              event as DenoDeploymentProgressStaticFile;
+              event as DenoProjectDeploymentProgressStaticFile;
             const percentage = (currentBytes / totalBytes) * 100;
             const s = neededHashes.length === 1 ? "" : "s";
             const message = `Uploading ${neededHashes.length} asset${s}...`;
@@ -325,7 +326,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
             break;
           }
           case "load": {
-            const { seen, total } = event as DenoDeploymentProgressLoad;
+            const { seen, total } = event as DenoProjectDeploymentProgressLoad;
             if (uploadSpinner) {
               const s = neededHashes.length === 1 ? "" : "s";
               uploadSpinner.succeed(
@@ -346,7 +347,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
             break;
           case "success": {
             const { id /* domainMappings */ } =
-              event as DenoDeploymentProgressSuccess;
+              event as DenoProjectDeploymentProgressSuccess;
             const deploymentKind = opts.prod ? "Production" : "Preview";
             deploySpinner!.succeed(`${deploymentKind} deployment complete.`);
             console.log("\nView at:");
@@ -360,7 +361,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
             break;
           }
           case "error": {
-            const { ctx } = event as DenoDeploymentProgressError;
+            const { ctx } = event as DenoProjectDeploymentProgressError;
             if (uploadSpinner) {
               uploadSpinner.fail("Upload failed.");
               uploadSpinner = null;
@@ -375,7 +376,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
       },
     );
 
-    // create denoDeployment via Netzo API (accepts/returns `application/json`)
+    // create denoDeploymentId via Netzo API (accepts/returns `application/json`)
     await api.deployments.post<Deployment>(data);
     // IMPORTANT: stop listening on first 'success' event (api sends 2 somehow)
     app.service("deployments").removeAllListeners("progress");

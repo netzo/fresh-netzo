@@ -28,36 +28,39 @@ export { netzo } from "../apis/netzo/mod.ts";
 
 // @netzo/api: cherry-pick exports to avoid tree-shaking issues
 export type {
-  DenoDeploymentProgress,
-  DenoDeploymentProgressAssetNegotiation,
-  DenoDeploymentProgressError,
-  DenoDeploymentProgressLoad,
-  DenoDeploymentProgressStaticFile,
-  DenoDeploymentProgressSuccess,
-  DenoDeploymentProgressUploadComplete,
-  DenoLog,
-  DenoLogMessage,
-  DenoLogPing,
-  DenoLogReady,
-  DenoOrganization,
-  DenoProject,
-  DenoProjectAnalytics,
-  DenoProjectDeploymentRequestGitHubActions,
-  DenoProjectDeploymentRequestPush,
-  DenoProjectDeploymentsResult,
-  DenoProjectDeploymentsSummary,
-  DenoProjectDomain,
+  Project,
   Deployment,
-  DeploymentData,
-  Manifest,
-  ManifestEntry,
+  // manifest:
   ManifestEntryDirectory,
   ManifestEntryFile,
   ManifestEntrySymlink,
-  Paginated,
-  Project,
-  ProjectFiles,
-  ProjectFilesFile,
+  ManifestEntry,
+  Manifest,
+  // logs:
+  DenoLogReady,
+  DenoLogPing,
+  DenoLogMessage,
+  DenoLog,
+  // organizations:
+  DenoOrganization,
+  // projects:
+  DenoProjectDeploymentSummary,
+  DenoProjectDeploymentResult,
+  DenoProjectDeploymentProgressAssetNegotiation,
+  DenoProjectDeploymentProgressStaticFile,
+  DenoProjectDeploymentProgressLoad,
+  DenoProjectDeploymentProgressUploadComplete,
+  DenoProjectDeploymentProgressSuccess,
+  DenoProjectDeploymentProgressError,
+  DenoProjectDeploymentProgress,
+  DenoProjectDeploymentBuildLog,
+  DenoProjectDeploymentAppLog,
+  DenoProjectAnalytics,
+  DenoProject,
+  // databases:
+  DenoDatabase,
+  // domains:
+  DenoDomain,
 } from "https://esm.sh/@netzo/api@1.0.49/lib/client.d.ts";
 
 // socket.io-client:

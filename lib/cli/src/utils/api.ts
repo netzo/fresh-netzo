@@ -1,16 +1,10 @@
 import {
-  DenoProjectDeploymentsResult,
+  DenoProjectDeploymentResult,
   Manifest,
   TextLineStream,
 } from "../../deps.ts";
 
-import type {
-  DenoDeploymentProgress,
-  DenoLog,
-  DenoProjectDeploymentRequestGitHubActions,
-  DenoProjectDeploymentRequestPush,
-  Project,
-} from "../../deps.ts";
+import type { DenoLog, Project } from "../../deps.ts";
 
 export type RequestOptions = {
   method?: string;
@@ -114,7 +108,7 @@ export class DenoAPI {
     }
   }
 
-  async getDeployments(uid: string): Promise<DenoProjectDeploymentsResult> {
+  async getDeployments(uid: string): Promise<DenoProjectDeploymentResult> {
     try {
       return await this.#requestJson(`/projects/${uid}/deployments`);
     } catch (err) {
@@ -139,37 +133,5 @@ export class DenoAPI {
       method: "POST",
       body: manifest,
     });
-  }
-
-  pushDeploy(
-    uid: string,
-    request: DenoProjectDeploymentRequestPush,
-    files: Uint8Array[],
-  ): AsyncIterable<DenoDeploymentProgress> {
-    const form = new FormData();
-    form.append("request", JSON.stringify(request));
-    for (const bytes of files) {
-      form.append("file", new Blob([bytes]));
-    }
-    return this.#requestStream(
-      `/projects/${uid}/deployment_with_assets`,
-      { method: "POST", body: form },
-    );
-  }
-
-  gitHubActionsDeploy(
-    uid: string,
-    request: DenoProjectDeploymentRequestGitHubActions,
-    files: Uint8Array[],
-  ): AsyncIterable<DenoDeploymentProgress> {
-    const form = new FormData();
-    form.append("request", JSON.stringify(request));
-    for (const bytes of files) {
-      form.append("file", new Blob([bytes]));
-    }
-    return this.#requestStream(
-      `/projects/${uid}/deployment_github_actions`,
-      { method: "POST", body: form },
-    );
   }
 }
