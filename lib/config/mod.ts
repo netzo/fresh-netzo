@@ -13,6 +13,13 @@ import { VisibilityState } from "netzo/plugins/visibility/mod.ts";
 export type NetzoConfig = FreshConfig & {
   project?: string;
   entrypoint?: string;
+  importMap?: string;
+  denoLock?: string;
+  database?: string | {
+    development?: string;
+    // preview?: string;
+    production?: string;
+  };
   [k: string]: unknown;
 };
 

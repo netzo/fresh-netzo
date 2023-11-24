@@ -1,13 +1,12 @@
 import type {
-  DenoProjectDeploymentProgress,
-  DenoProjectDeploymentProgressAssetNegotiation,
-  DenoProjectDeploymentProgressError,
-  DenoProjectDeploymentProgressLoad,
-  DenoProjectDeploymentProgressStaticFile,
-  DenoProjectDeploymentProgressSuccess,
+  DenoProjectDeploymentAppLog,
+  DenoProjectDeploymentBuildLog,
+  DenoProjectDeploymentResult,
+  DenoProjectDeploymentSummary,
   Deployment,
   DeploymentData,
   Manifest,
+  ManifestEntry,
   NetzoConfig,
   Paginated,
   Project,
@@ -25,9 +24,9 @@ import {
 import { parseEntrypoint } from "../utils/entrypoint.ts";
 import { walk } from "../utils/walk.ts";
 import {
-  buildProjectFilesFromManifest,
+  buildAssetsFromManifest,
   createClient,
-  readDecodeAndAddFileContentsToProjectFiles,
+  readDecodeAndAddFileContentToAssets,
 } from "../utils/netzo.ts";
 import { APIError } from "../utils/api.ts";
 
@@ -53,9 +52,11 @@ OPTIONS:
         --exclude=<PATTERNS>      Exclude files that match this pattern
         --include=<PATTERNS>      Only upload files that match this pattern
         --import-map=<FILE>       Use import map file
+        --deno-lock=<FILE>        Use deno lock file
     -h, --help                    Prints help information
         --no-static               Don't include the files in the CWD as static files
         --prod                    Create a production deployment (default is preview deployment)
+        --description=<TEXT>      A description of the deployment (like a git commit message)
     -p, --project=<PROJECT_UID>   The UID of the project to deploy to
         --dry-run                 Dry run the deployment process
         --api-key=<API_KEY>       The API key to use (defaults to NETZO_API_KEY environment variable)
@@ -68,10 +69,12 @@ export type Args = {
   help: boolean;
   static: boolean;
   prod: boolean;
+  description: string | null;
   exclude?: string[];
   include?: string[];
   project: string | null;
   importMap: string | null;
+  denoLock: string | null;
   dryRun: boolean;
   apiKey: string | null;
   apiUrl?: string;
@@ -91,8 +94,10 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     help: !!rawArgs.help,
     static: !rawArgs["no-static"], // negate the flag
     prod: !!rawArgs.prod,
+    description: rawArgs.description ? String(rawArgs.description) : null,
     project: rawArgs.project ? String(rawArgs.project) : NETZO_PROJECT,
     importMap: rawArgs["import-map"] ? String(rawArgs["import-map"]) : null,
+    denoLock: rawArgs["deno-lock"] ? String(rawArgs["deno-lock"]) : null,
     exclude: rawArgs.exclude?.split(","),
     include: rawArgs.include?.split(","),
     dryRun: !!rawArgs["dry-run"],
@@ -141,8 +146,13 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
         ? null
         : await parseEntrypoint(args.importMap, undefined, "import map")
           .catch((e) => error(e)),
+      denoLockUrl: args.denoLock === null
+        ? null
+        : await parseEntrypoint(args.denoLock, undefined, "deno lock")
+          .catch((e) => error(e)),
       static: args.static,
       prod: args.prod,
+      description: args.description,
       project: args.project,
       include: args.include?.map((pattern) => normalize(pattern)),
       exclude: args.exclude?.map((pattern) => normalize(pattern)),
@@ -158,8 +168,10 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
 type DeployOpts = {
   entrypoint: URL;
   importMapUrl: URL | null;
+  denoLockUrl: URL | null;
   static: boolean;
   prod: boolean;
+  description: string | null;
   exclude?: string[];
   include?: string[];
   project: string;
@@ -175,7 +187,9 @@ async function deploy(opts: DeployOpts): Promise<void> {
     wait("").start().info("Performing dry run of deployment");
   }
 
-  const projectSpinner = wait("Fetching project information...").start();
+  const projectSpinner = wait(
+    `Fetching project '${opts.project}' information...`,
+  ).start();
   const { api } = netzo({ apiKey: opts.apiKey, baseURL: opts.apiUrl });
   const result = await api.projects.get<Paginated<Project>>({
     uid: opts.project,
@@ -192,7 +206,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
   const { data: deployments } = await api.deployments.get<
     Paginated<Deployment>
   >({
-    projectId: project.uid,
+    projectId: project.denoId,
   });
   if (!deployments) {
     // e.g. if projectId is invalid or API key lacks permissions the
@@ -209,75 +223,75 @@ async function deploy(opts: DeployOpts): Promise<void> {
     opts.prod = true;
   }
 
-  let url = opts.entrypoint ?? project.config?.entrypoint;
+  let entryPointUrl = opts.entrypoint ?? project.config?.entrypoint;
   const cwd = Deno.cwd();
 
-  if (["http:", "https:"].includes(url.protocol)) {
+  if (["http:", "https:"].includes(entryPointUrl.protocol)) {
     // TODO: support remote entrypoints like deployctl. Note that this
     // might not apply to netzo though, since deno deploy only really
     // uses remote deployments to deploy single-file playground projects,
     // and `netzo deploy` is really meant to deploy from local -> remote.
     projectSpinner.fail("Remote entrypoints (http/https) are not supported.");
     Deno.exit(1);
-  } else if (url.protocol === "file:") {
-    const path = fromFileUrl(url);
+  } else if (entryPointUrl.protocol === "file:") {
+    const path = fromFileUrl(entryPointUrl);
     if (!path.startsWith(cwd)) {
       error("Entrypoint must be in the current working directory.");
     }
-
     const entrypoint = path.slice(cwd.length);
-    url = new URL(`file:///src${entrypoint}`);
+    entryPointUrl = new URL(`file:///src${entrypoint}`);
   }
 
-  let importMapUrl = opts.importMapUrl ?? project.config?.importMapURL;
+  let importMapUrl = opts.importMapUrl ?? project.config?.importMap;
   if (importMapUrl && importMapUrl.protocol === "file:") {
     const path = fromFileUrl(importMapUrl);
     if (!path.startsWith(cwd)) {
       error("Import map must be in the current working directory.");
     }
-
-    const entrypoint = path.slice(cwd.length);
-    importMapUrl = new URL(`file:///src${entrypoint}`);
+    const importMap = path.slice(cwd.length);
+    importMapUrl = new URL(`file:///src${importMap}`);
   }
 
-  let uploadSpinner: Spinner | null = null;
-  const assets = new Map<string, string>(); // map of gitSha1 -> path
-  let neededHashes: string[]; // new assets to upload (set on assetNegotiation event)
+  let denoLockUrl = opts.denoLockUrl ?? project.config?.denoLock;
+  if (denoLockUrl && denoLockUrl.protocol === "file:") {
+    const path = fromFileUrl(denoLockUrl);
+    if (!path.startsWith(cwd)) {
+      error("Import map must be in the current working directory.");
+    }
+    const denoLock = path.slice(cwd.length);
+    denoLockUrl = new URL(`file:///src${denoLock}`);
+  }
+
+  // NOTE: asset negotiation handled automatically by Sunhosting API
+  const assetsMap = new Map<string, string>(); // map of gitSha1 -> path
   let manifest: Manifest | undefined;
 
   if (opts.static) {
     wait("").start().info(`Uploading all files from the current dir (${cwd})`);
     const assetSpinner = wait("Finding static assets...").start();
-    const entries = await walk(cwd, cwd, assets, {
+    const entries = await walk(cwd, cwd, assetsMap, {
       include: opts.include,
       exclude: opts.exclude,
     });
-    const s = assets.size === 1 ? "" : "s";
-    assetSpinner.succeed(`Found ${assets.size} asset${s}.`);
-
-    // NOTE: asset negotiation done in API so we handle it with custom
-    // progress event of type 'assetNegotiation' after creating deployment
-    uploadSpinner = wait("Determining assets to upload...").start();
-
+    const s = assetsMap.size === 1 ? "" : "s";
+    assetSpinner.succeed(`Found ${assetsMap.size} asset${s}.`);
     manifest = { entries };
   }
 
-  if (opts.dryRun) {
-    uploadSpinner?.succeed(uploadSpinner?.text);
-    return;
-  }
+  if (opts.dryRun) return;
 
-  const projectFilesWithoutContents = await buildProjectFilesFromManifest(
-    manifest,
-  );
-  const projectFiles = await readDecodeAndAddFileContentsToProjectFiles(
-    projectFilesWithoutContents,
+  const assetsWithoutContent = await buildAssetsFromManifest(manifest);
+  const assets = await readDecodeAndAddFileContentToAssets(
+    assetsWithoutContent,
   );
 
   const data: DeploymentData = {
-    projectId: project.uid,
-    url: url.href, // e.g. file:///src/main.ts
-    importMapUrl: importMapUrl?.href ?? null,
+    projectId: project.denoId,
+    production: opts.prod,
+    // deno:
+    entryPointUrl: entryPointUrl.href, // e.g. main.ts
+    importMapUrl: importMapUrl?.href || null,
+    denoLockUrl: importMapUrl?.href || null, // TODO: support deno.lock
     // configures automatic JSX runtime for preact by default
     // see https://deno.com/manual@v1.34.3/advanced/jsx_dom/jsx#using-jsx-import-source-in-a-configuration-file
     compilerOptions: {
@@ -286,8 +300,10 @@ async function deploy(opts: DeployOpts): Promise<void> {
       jsxFragmentFactory: "Fragment",
       jsxImportSource: "preact",
     },
-    production: opts.prod,
-    files: projectFiles,
+    assets,
+    envVars: project.envVars.production, // TODO: pass dynamic project.envVars[environment]
+    // DISABLED: databases: project.databases, // IMPORTANT: passing empty object throws API error
+    description: opts.description || null,
   };
 
   let deploySpinner: Spinner | null = null;
@@ -300,77 +316,45 @@ async function deploy(opts: DeployOpts): Promise<void> {
 
     app.service("deployments").on(
       "progress",
-      (event: DenoProjectDeploymentProgress) => {
-        switch (event.type) {
-          case "assetNegotiation": {
-            neededHashes =
-              (event as DenoProjectDeploymentProgressAssetNegotiation)
-                .neededHashes;
-            const s = neededHashes.length === 1 ? "" : "s";
-            if (neededHashes.length === 0) {
-              uploadSpinner!.succeed("No new assets to upload.");
-              uploadSpinner = null;
-            } else {
-              uploadSpinner!.text =
-                `${neededHashes.length} new asset${s} to upload.`;
-            }
-            break;
+      ({ level, message }: DenoProjectDeploymentBuildLog) => {
+        console.debug(`[${level}] ${message}`);
+        let type = level; // "info" | "error"
+        if (["info"].includes(type)) {
+          // TODO: if (SOME CONDITION) type = "upload"
+          if (message.startsWith("Downloaded")) type = "download";
+          if (message.startsWith("Packaging complete")) type = "done";
+          if (message.startsWith("Deployed to")) type = "success";
+        } else if (["error"].includes(type)) {
+          if (deploySpinner) {
+            deploySpinner.fail("Deployment failed.");
+            deploySpinner = null;
           }
-          case "staticFile": {
-            const { currentBytes, totalBytes } =
-              event as DenoProjectDeploymentProgressStaticFile;
-            const percentage = (currentBytes / totalBytes) * 100;
-            const s = neededHashes.length === 1 ? "" : "s";
-            const message = `Uploading ${neededHashes.length} asset${s}...`;
-            uploadSpinner!.text = `${message}... (${percentage.toFixed(1)}%)`;
-            break;
-          }
-          case "load": {
-            const { seen, total } = event as DenoProjectDeploymentProgressLoad;
-            if (uploadSpinner) {
-              const s = neededHashes.length === 1 ? "" : "s";
-              uploadSpinner.succeed(
-                `Uploaded ${neededHashes.length} new asset${s}.`,
-              );
-              uploadSpinner = null;
-            }
-            if (deploySpinner === null) {
-              deploySpinner = wait("Deploying...").start();
-            }
+          error(message); // exits with error code 1
+        }
 
-            const progress = seen / total * 100;
-            deploySpinner.text = `Deploying... (${progress.toFixed(1)}%)`;
+        switch (type) {
+          case "download": {
+            deploySpinner ??= wait("Deploying...").start();
+            deploySpinner?.info(message);
             break;
           }
-          case "uploadComplete":
-            deploySpinner!.text = "Finishing deployment...";
+          case "done": {
+            deploySpinner?.info(message);
             break;
+          }
           case "success": {
-            const { id /* domainMappings */ } =
-              event as DenoProjectDeploymentProgressSuccess;
+            deploySpinner?.succeed(message);
+            const domain = message.split(" ").pop();
+            const id = domain?.split(".")?.[0]?.split("-")?.pop();
             const deploymentKind = opts.prod ? "Production" : "Preview";
+            deploySpinner!.text = "Finishing deployment...";
             deploySpinner!.succeed(`${deploymentKind} deployment complete.`);
-            console.log("\nView at:");
-            console.log(
-              ` - ${opts.appUrl}/workspaces/${project.workspaceId}/projects/${project._id}/deployments/${id}`,
+            const url = new URL(
+              `/workspaces/${project.workspaceId}/projects/${project._id}/deployments/${id}`,
+              opts.appUrl,
             );
-            // for (const { domain } of domainMappings) {
-            //   console.log(` - https://${domain}`);
-            // }
+            console.log(`\nView at: ${url.href}`);
             Deno.exit(0); // exits with success code 0
-            break;
-          }
-          case "error": {
-            const { ctx } = event as DenoProjectDeploymentProgressError;
-            if (uploadSpinner) {
-              uploadSpinner.fail("Upload failed.");
-              uploadSpinner = null;
-            }
-            if (deploySpinner) {
-              deploySpinner.fail("Deployment failed.");
-              deploySpinner = null;
-            }
-            error(ctx); // exits with error code 1
           }
         }
       },
@@ -382,10 +366,6 @@ async function deploy(opts: DeployOpts): Promise<void> {
     app.service("deployments").removeAllListeners("progress");
   } catch (err: unknown) {
     if (err instanceof APIError) {
-      if (uploadSpinner) {
-        uploadSpinner.fail("Upload failed.");
-        uploadSpinner = null;
-      }
       if (deploySpinner) {
         (deploySpinner as Spinner).fail("Deployment failed.");
         deploySpinner = null;

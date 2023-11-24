@@ -4,7 +4,7 @@ import {
   TextLineStream,
 } from "../../deps.ts";
 
-import type { DenoLog, Project } from "../../deps.ts";
+import type { DenoProjectDeploymentAppLog, Project } from "../../deps.ts";
 
 export type RequestOptions = {
   method?: string;
@@ -119,7 +119,10 @@ export class DenoAPI {
     }
   }
 
-  getLogs(uid: string, deploymentId: string): AsyncIterable<DenoLog> {
+  getLogs(
+    uid: string,
+    deploymentId: string,
+  ): AsyncIterable<DenoProjectDeploymentAppLog> {
     return this.#requestStream(
       `/projects/${uid}/deployments/${deploymentId}/logs/`,
     );
