@@ -21,6 +21,15 @@ export default defineNetzoConfig({
     portals({
       email: {},
       oauth2: createGitHubOAuthConfig(),
+      // NOTE: only links should be added here, everything else comes from UI in Netzo
+      // logo: "https://deno.land/logo.svg",
+      // header: {},
+      // navigation: [
+      //   { name: "Home", href: "/" },
+      //   { name: "About", href: "/about" },
+      //   { name: "Contact", href: "/contact" },
+      // ],
+      // footer: {},
     }),
     twindPlugin(twindConfig),
   ],

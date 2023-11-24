@@ -1,12 +1,8 @@
 import type {
-  DenoProjectDeploymentAppLog,
   DenoProjectDeploymentBuildLog,
-  DenoProjectDeploymentResult,
-  DenoProjectDeploymentSummary,
   Deployment,
   DeploymentData,
   Manifest,
-  ManifestEntry,
   NetzoConfig,
   Paginated,
   Project,
@@ -317,44 +313,45 @@ async function deploy(opts: DeployOpts): Promise<void> {
     app.service("deployments").on(
       "progress",
       ({ level, message }: DenoProjectDeploymentBuildLog) => {
-        console.debug(`[${level}] ${message}`);
+        deploySpinner ??= wait("Deploying...").start();
         let type = level; // "info" | "error"
         if (["info"].includes(type)) {
           // TODO: if (SOME CONDITION) type = "upload"
           if (message.startsWith("Downloaded")) type = "download";
           if (message.startsWith("Packaging complete")) type = "done";
           if (message.startsWith("Deployed to")) type = "success";
-        } else if (["error"].includes(type)) {
-          if (deploySpinner) {
-            deploySpinner.fail("Deployment failed.");
-            deploySpinner = null;
-          }
-          error(message); // exits with error code 1
         }
 
         switch (type) {
           case "download": {
-            deploySpinner ??= wait("Deploying...").start();
-            deploySpinner?.info(message);
-            break;
+            deploySpinner.text = message;
+            return;
           }
           case "done": {
-            deploySpinner?.info(message);
-            break;
+            deploySpinner.succeed(message);
+            deploySpinner.text = `Finishing deployment...`;
+            return;
           }
           case "success": {
             deploySpinner?.succeed(message);
             const domain = message.split(" ").pop();
             const id = domain?.split(".")?.[0]?.split("-")?.pop();
             const deploymentKind = opts.prod ? "Production" : "Preview";
-            deploySpinner!.text = "Finishing deployment...";
             deploySpinner!.succeed(`${deploymentKind} deployment complete.`);
             const url = new URL(
               `/workspaces/${project.workspaceId}/projects/${project._id}/deployments/${id}`,
               opts.appUrl,
             );
             console.log(`\nView at: ${url.href}`);
-            Deno.exit(0); // exits with success code 0
+            deploySpinner = null;
+            return Deno.exit(0); // exits with success code 0
+          }
+          case "error": {
+            if (deploySpinner) {
+              deploySpinner.fail("Deployment failed.\n");
+              deploySpinner = null;
+            }
+            return error(message, false); // exits with error code 1
           }
         }
       },
@@ -363,6 +360,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
     // create denoDeploymentId via Netzo API (accepts/returns `application/json`)
     await api.deployments.post<Deployment>(data);
     // IMPORTANT: stop listening on first 'success' event (api sends 2 somehow)
+    console.log('STOP LISTENING')
     app.service("deployments").removeAllListeners("progress");
   } catch (err: unknown) {
     if (err instanceof APIError) {
