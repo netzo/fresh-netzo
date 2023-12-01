@@ -1,6 +1,6 @@
-import { MiddlewareHandlerContext } from "$fresh/server.ts";
+import { RouteContext } from "$fresh/server.ts";
 
-export async function handler(req: Request, ctx: MiddlewareHandlerContext) {
+export async function handler(req: Request, ctx: RouteContext) {
   if (["notFound"].includes(ctx.destination)) {
     const url = new URL(req.url);
     url.pathname = "/clients";

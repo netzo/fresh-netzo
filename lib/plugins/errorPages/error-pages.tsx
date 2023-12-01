@@ -1,4 +1,4 @@
-import type { ErrorPageProps, UnknownPageProps } from "$fresh/server.ts";
+import type { PageProps } from "$fresh/server.ts";
 
 type Props = {
   code: number;
@@ -28,7 +28,7 @@ const ErrorPage = (props: Props) => {
   );
 };
 
-export const ErrorPage404 = ({ url }: UnknownPageProps) => {
+export const ErrorPage404 = ({ url }: PageProps) => {
   return (
     <ErrorPage code={404} name="Not Found">
       No matching route for <code class="font-mono">{url.pathname}</code>
@@ -36,7 +36,7 @@ export const ErrorPage404 = ({ url }: UnknownPageProps) => {
   );
 };
 
-export const ErrorPage500 = ({ error }: ErrorPageProps) => {
+export const ErrorPage500 = ({ error }: PageProps) => {
   return (
     <ErrorPage code={500} name="Server Error">
       {(error as Error).message}

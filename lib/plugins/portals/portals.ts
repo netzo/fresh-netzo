@@ -1,4 +1,3 @@
-import type { HandlerContext } from "$fresh/server.ts";
 import type { PluginRoute } from "$fresh/src/server/types.ts";
 import { handleCallback, signIn, signOut } from "deno_kv_oauth/mod.ts";
 import {
@@ -16,19 +15,19 @@ export const portalsRoutes = (options: PortalsOptions): PluginRoute[] => {
   return [
     {
       path: "/auth",
-      handler: (_req: Request, ctx: HandlerContext) => ctx.render(),
+      handler: (_req, ctx) => ctx.render(),
       component: Auth,
     },
     {
       path: `/oauth/signin`,
-      handler: async (req: Request, _ctx: HandlerContext) => {
+      handler: async (req, _ctx) => {
         const response = await signIn(req, options.oauth2);
         return response;
       },
     },
     {
       path: `/oauth/callback`,
-      handler: async (req: Request, _ctx: HandlerContext) => {
+      handler: async (req, _ctx) => {
         const { response, tokens, sessionId } = await handleCallback(
           req,
           options.oauth2,
@@ -57,7 +56,7 @@ export const portalsRoutes = (options: PortalsOptions): PluginRoute[] => {
     },
     {
       path: `/oauth/signout`,
-      handler: async (req: Request, _ctx: HandlerContext) => {
+      handler: async (req, _ctx) => {
         const response = await signOut(req);
         return response;
       },
