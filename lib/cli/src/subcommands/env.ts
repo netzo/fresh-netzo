@@ -4,19 +4,11 @@
 import {
   load,
   netzo,
-  NetzoConfig,
   Paginated,
   Project,
   wait,
 } from "../../deps.ts";
 import { error, LOGS } from "../../../utils/console.ts";
-import {
-  assertExistsNetzoConfig,
-  assertExistsNetzoConfigMod,
-  assertValidNetzoConfig,
-  getNetzoConfigUrl,
-  updateNetzoConfig,
-} from "../utils/config.ts";
 
 const help = `netzo env
 Push project environment variables from env file to Netzo.
@@ -63,13 +55,6 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     Deno.exit(0);
   }
 
-  // enforce presence of netzo.config.ts and modify it if necessary
-  const netzoConfigUrl = await getNetzoConfigUrl();
-  const netzoConfigMod = await assertExistsNetzoConfigMod(netzoConfigUrl);
-  let netzoConfig = await assertExistsNetzoConfig(netzoConfigMod);
-  netzoConfig = assertValidNetzoConfig(netzoConfig, args);
-  await updateNetzoConfig(netzoConfigUrl, netzoConfigMod);
-
   if ([null, "NETZO_API_KEY"].includes(args.apiKey)) {
     console.error(help);
     error(LOGS.missingApiKey);
@@ -78,7 +63,6 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     console.error(help);
     error("Too many positional arguments given.");
   }
-  args.project ||= netzoConfig.project!;
   if (args.project === null) {
     console.error(help);
     error("Missing project UID.");
@@ -91,7 +75,6 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
       apiKey: args.apiKey!,
       apiUrl: args.apiUrl!,
       appUrl: args.appUrl!,
-      netzoConfig,
     } satisfies SyncEnvOpts,
   );
 }
@@ -102,7 +85,6 @@ type SyncEnvOpts = {
   apiKey: string;
   apiUrl: string;
   appUrl: string;
-  netzoConfig: NetzoConfig; // proxified config
 };
 
 async function syncEnv(opts: SyncEnvOpts): Promise<void> {
@@ -134,10 +116,6 @@ async function syncEnv(opts: SyncEnvOpts): Promise<void> {
 
   const syncSpinner = wait("Syncing environment variables...").start();
   try {
-    // NOTE: could use .toJSON() method instead of JSON.parse/stringify
-    // to unproxify/serialize (drops non-serializable properties)
-    // const netzoConfig = JSON.parse(JSON.stringify(opts.netzoConfig));
-
     // patch project.env in netzo API:
     await api.projects[project._id as string].patch<Project>({
       env: {

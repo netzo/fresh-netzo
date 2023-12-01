@@ -1,5 +1,5 @@
-import { generateCode, loadFile, type ProxifiedModule } from "npm:magicast";
-import type { NetzoConfig } from "../../deps.ts";
+import { loadFile, type ProxifiedModule } from "npm:magicast";
+import type { NetzoConfig } from "../../../config/mod.ts";
 import { error } from "../../../utils/console.ts";
 import { Args as ArgsDeploy } from "../subcommands/deploy.ts";
 import { Args as ArgsEnv } from "../subcommands/env.ts";
@@ -56,34 +56,5 @@ export function assertExistsNetzoConfig(
     const message =
       `Make sure to default export config wrapped in "defineNetzoConfig({...})".`;
     error(`Invalid "${CONFIG}" at file://${Deno.cwd()}. ${message}`);
-  }
-}
-
-export function assertValidNetzoConfig(config: NetzoConfig, args: Args) {
-  // IMPORTANT: config is proxified, so assignments must be done key-by-key
-  try {
-    // 1) rebuild config: override and sort specific keys from config with args
-    // DISABLED: if (args.project) config.project = args.project;
-
-    // 2) ensure required keys are present and valid
-    const required = ["project"];
-    required.forEach((key) => {
-      const message = `Missing "${key}" property in ${CONFIG}`;
-      if (!config[key] && !args.project) throw new Error(message);
-    });
-
-    return config;
-  } catch {
-    error(`Invalid "${CONFIG}" at file://${Deno.cwd()}.`);
-  }
-}
-
-export async function updateNetzoConfig(url: string, mod: ProxifiedModule) {
-  try {
-    const { code } = generateCode(mod);
-    await Deno.writeTextFile(url, code);
-    return code;
-  } catch {
-    error(`Failed to update "${CONFIG}" at file://${Deno.cwd()}.`);
   }
 }

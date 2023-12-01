@@ -3,20 +3,12 @@ import type {
   Deployment,
   DeploymentData,
   Manifest,
-  NetzoConfig,
   Paginated,
   Project,
   Spinner,
 } from "../../deps.ts";
 import { fromFileUrl, netzo, normalize, wait } from "../../deps.ts";
 import { error, LOGS } from "../../../utils/console.ts";
-import {
-  assertExistsNetzoConfig,
-  assertExistsNetzoConfigMod,
-  assertValidNetzoConfig,
-  getNetzoConfigUrl,
-  updateNetzoConfig,
-} from "../utils/config.ts";
 import { parseEntrypoint } from "../utils/entrypoint.ts";
 import { walk } from "../utils/walk.ts";
 import {
@@ -106,21 +98,11 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     Deno.exit(0);
   }
 
-  // enforce presence of netzo.config.ts and modify it if necessary
-  const netzoConfigUrl = await getNetzoConfigUrl();
-  const netzoConfigMod = await assertExistsNetzoConfigMod(netzoConfigUrl);
-  let netzoConfig = await assertExistsNetzoConfig(netzoConfigMod);
-  netzoConfig = assertValidNetzoConfig(netzoConfig, args);
-  await updateNetzoConfig(netzoConfigUrl, netzoConfigMod);
-  // Deno.exit(0); // uncomment for quick debugging
-
   if ([null, "NETZO_API_KEY"].includes(args.apiKey)) {
     console.error(help);
     error(LOGS.missingApiKey);
   }
-  const entrypoint = typeof rawArgs._[0] === "string"
-    ? rawArgs._[0]
-    : netzoConfig.entrypoint;
+  const entrypoint = typeof rawArgs._[0] === "string" && rawArgs._[0];
   if (!entrypoint) {
     console.error(help);
     error("No entrypoint specifier given.");
@@ -129,7 +111,6 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     console.error(help);
     error("Too many positional arguments given.");
   }
-  args.project ||= netzoConfig.project;
   if (args.project === null) {
     console.error(help);
     error("Missing project UID.");
@@ -156,7 +137,6 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
       apiKey: args.apiKey!,
       apiUrl: args.apiUrl!,
       appUrl: args.appUrl!,
-      netzoConfig,
     } satisfies DeployOpts,
   );
 }
@@ -175,7 +155,6 @@ type DeployOpts = {
   apiKey: string;
   apiUrl: string;
   appUrl: string;
-  netzoConfig: NetzoConfig; // proxified config
 };
 
 async function deploy(opts: DeployOpts): Promise<void> {
@@ -282,12 +261,11 @@ async function deploy(opts: DeployOpts): Promise<void> {
   );
 
   const data: DeploymentData = {
-    projectId: project.denoId,
     production: opts.prod,
     // deno:
     entryPointUrl: entryPointUrl.href, // e.g. main.ts
     importMapUrl: importMapUrl?.href || null,
-    denoLockUrl: importMapUrl?.href || null, // TODO: support deno.lock
+    denoLockUrl: denoLockUrl?.href || null,
     // configures automatic JSX runtime for preact by default
     // see https://deno.com/manual@v1.34.3/advanced/jsx_dom/jsx#using-jsx-import-source-in-a-configuration-file
     compilerOptions: {
@@ -297,8 +275,8 @@ async function deploy(opts: DeployOpts): Promise<void> {
       jsxImportSource: "preact",
     },
     assets,
-    envVars: project.envVars.production, // TODO: pass dynamic project.envVars[environment]
-    // DISABLED: databases: project.databases, // IMPORTANT: passing empty object throws API error
+    envVars: {}, // set by netzo on deployment (project.envVars[env] empty for security)
+    databases: undefined, // undefined since {} throws API error
     description: opts.description || null,
   };
 
@@ -351,7 +329,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
               deploySpinner.fail("Deployment failed.\n");
               deploySpinner = null;
             }
-            return error(message, false); // exits with error code 1
+            return error(message); // exits with error code 1
           }
 
             // app.service("deployments").removeAllListeners("progress"); // avoid memory leak
@@ -359,7 +337,9 @@ async function deploy(opts: DeployOpts): Promise<void> {
       },
     );
 
-    const _denoDeployment = await api.deployments.post<Deployment>(data);
+    const _denoDeployment = await api.deployments.post<Deployment>(data, {
+      projectId: project._id,
+    });
   } catch (err: unknown) {
     if (err instanceof APIError) {
       if (deploySpinner) {
