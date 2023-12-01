@@ -7,7 +7,6 @@ export {
   toFileUrl,
 } from "https://deno.land/std@0.205.0/path/mod.ts";
 export { parse as parseArgs } from "https://deno.land/std@0.205.0/flags/mod.ts";
-export { TextLineStream } from "https://deno.land/std@0.205.0/streams/text_line_stream.ts";
 export { default as question } from "https://deno.land/x/question@0.0.2/mod.ts";
 export { load } from "https://deno.land/std@0.205.0/dotenv/mod.ts";
 export { config } from "https://deno.land/x/dotenv@v3.2.0/mod.ts";
@@ -49,6 +48,7 @@ export type {
   ManifestEntrySymlink,
   Paginated,
   Project,
+  ProjectAssetsFile,
 } from "https://esm.sh/@netzo/api@1.0.51/lib/client.d.ts";
 
 // socket.io-client:
