@@ -2,57 +2,58 @@
 // This file SHOULD be checked into source version control.
 // This file is automatically updated during development when running `dev.ts`.
 
-import * as $0 from "./routes/(app)/_layout.tsx";
-import * as $1 from "./routes/(app)/clients/[id].tsx";
-import * as $2 from "./routes/(app)/clients/index.tsx";
-import * as $3 from "./routes/(app)/contacts/[id].tsx";
-import * as $4 from "./routes/(app)/contacts/index.tsx";
-import * as $5 from "./routes/(app)/invoices/[id].tsx";
-import * as $6 from "./routes/(app)/invoices/index.tsx";
-import * as $7 from "./routes/_404.tsx";
-import * as $8 from "./routes/_500.tsx";
-import * as $9 from "./routes/_app.tsx";
-import * as $10 from "./routes/_middleware.ts";
-import * as $11 from "./routes/api/clients/[id].tsx";
-import * as $12 from "./routes/api/clients/index.tsx";
-import * as $13 from "./routes/api/contacts/[id].tsx";
-import * as $14 from "./routes/api/contacts/index.tsx";
-import * as $15 from "./routes/api/invoices/[id].tsx";
-import * as $16 from "./routes/api/invoices/index.tsx";
-import * as $$0 from "./islands/Clients.tsx";
-import * as $$1 from "./islands/Contacts.tsx";
-import * as $$2 from "./islands/Header.tsx";
-import * as $$3 from "./islands/Invoices.tsx";
-import * as $$4 from "./islands/UserNav.tsx";
+import * as $_app_layout from "./routes/(app)/_layout.tsx";
+import * as $_app_clients_id_ from "./routes/(app)/clients/[id].tsx";
+import * as $_app_clients_index from "./routes/(app)/clients/index.tsx";
+import * as $_app_contacts_id_ from "./routes/(app)/contacts/[id].tsx";
+import * as $_app_contacts_index from "./routes/(app)/contacts/index.tsx";
+import * as $_app_invoices_id_ from "./routes/(app)/invoices/[id].tsx";
+import * as $_app_invoices_index from "./routes/(app)/invoices/index.tsx";
+import * as $_404 from "./routes/_404.tsx";
+import * as $_500 from "./routes/_500.tsx";
+import * as $_app from "./routes/_app.tsx";
+import * as $_middleware from "./routes/_middleware.ts";
+import * as $api_clients_id_ from "./routes/api/clients/[id].tsx";
+import * as $api_clients_index from "./routes/api/clients/index.tsx";
+import * as $api_contacts_id_ from "./routes/api/contacts/[id].tsx";
+import * as $api_contacts_index from "./routes/api/contacts/index.tsx";
+import * as $api_invoices_id_ from "./routes/api/invoices/[id].tsx";
+import * as $api_invoices_index from "./routes/api/invoices/index.tsx";
+import * as $Clients from "./islands/Clients.tsx";
+import * as $Contacts from "./islands/Contacts.tsx";
+import * as $Header from "./islands/Header.tsx";
+import * as $Invoices from "./islands/Invoices.tsx";
+import * as $UserNav from "./islands/UserNav.tsx";
+import { type Manifest } from "$fresh/server.ts";
 
 const manifest = {
   routes: {
-    "./routes/(app)/_layout.tsx": $0,
-    "./routes/(app)/clients/[id].tsx": $1,
-    "./routes/(app)/clients/index.tsx": $2,
-    "./routes/(app)/contacts/[id].tsx": $3,
-    "./routes/(app)/contacts/index.tsx": $4,
-    "./routes/(app)/invoices/[id].tsx": $5,
-    "./routes/(app)/invoices/index.tsx": $6,
-    "./routes/_404.tsx": $7,
-    "./routes/_500.tsx": $8,
-    "./routes/_app.tsx": $9,
-    "./routes/_middleware.ts": $10,
-    "./routes/api/clients/[id].tsx": $11,
-    "./routes/api/clients/index.tsx": $12,
-    "./routes/api/contacts/[id].tsx": $13,
-    "./routes/api/contacts/index.tsx": $14,
-    "./routes/api/invoices/[id].tsx": $15,
-    "./routes/api/invoices/index.tsx": $16,
+    "./routes/(app)/_layout.tsx": $_app_layout,
+    "./routes/(app)/clients/[id].tsx": $_app_clients_id_,
+    "./routes/(app)/clients/index.tsx": $_app_clients_index,
+    "./routes/(app)/contacts/[id].tsx": $_app_contacts_id_,
+    "./routes/(app)/contacts/index.tsx": $_app_contacts_index,
+    "./routes/(app)/invoices/[id].tsx": $_app_invoices_id_,
+    "./routes/(app)/invoices/index.tsx": $_app_invoices_index,
+    "./routes/_404.tsx": $_404,
+    "./routes/_500.tsx": $_500,
+    "./routes/_app.tsx": $_app,
+    "./routes/_middleware.ts": $_middleware,
+    "./routes/api/clients/[id].tsx": $api_clients_id_,
+    "./routes/api/clients/index.tsx": $api_clients_index,
+    "./routes/api/contacts/[id].tsx": $api_contacts_id_,
+    "./routes/api/contacts/index.tsx": $api_contacts_index,
+    "./routes/api/invoices/[id].tsx": $api_invoices_id_,
+    "./routes/api/invoices/index.tsx": $api_invoices_index,
   },
   islands: {
-    "./islands/Clients.tsx": $$0,
-    "./islands/Contacts.tsx": $$1,
-    "./islands/Header.tsx": $$2,
-    "./islands/Invoices.tsx": $$3,
-    "./islands/UserNav.tsx": $$4,
+    "./islands/Clients.tsx": $Clients,
+    "./islands/Contacts.tsx": $Contacts,
+    "./islands/Header.tsx": $Header,
+    "./islands/Invoices.tsx": $Invoices,
+    "./islands/UserNav.tsx": $UserNav,
   },
   baseUrl: import.meta.url,
-};
+} satisfies Manifest;
 
 export default manifest;
