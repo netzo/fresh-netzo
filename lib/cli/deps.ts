@@ -41,12 +41,14 @@ export type {
   DenoProjectDeploymentAppLog,
   DenoProjectDeploymentBuildLog,
   Deployment,
+  DeploymentData,
   // manifest:
   Manifest,
   ManifestEntry,
   ManifestEntryDirectory,
   ManifestEntryFile,
   ManifestEntrySymlink,
+  Paginated,
   Project,
 } from "https://esm.sh/@netzo/api@1.0.51/lib/client.d.ts";
 
