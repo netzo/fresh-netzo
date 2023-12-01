@@ -18,7 +18,7 @@ import {
   setOAuthSession,
 } from "deno_kv_oauth/lib/_kv.ts";
 import { OAUTH_COOKIE_NAME } from "deno_kv_oauth/lib/_http.ts";
-import type { Handler } from "$fresh/server.ts";
+import type { Handler } from "$fresh/src/server/mod.ts";
 
 Deno.test("[plugins/portals] portals() works with default values", () => {
   const plugin = portals({ oauth2: randomOAuthConfig() });

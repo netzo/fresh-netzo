@@ -1,4 +1,4 @@
-import { PageProps } from "$fresh/server.ts";
+import { PageProps } from "$fresh/src/server/mod.ts";
 import { AuthForm } from "./components/AuthForm.tsx";
 import type { NetzoStatePortals } from "./mod.ts";
 

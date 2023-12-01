@@ -1,7 +1,6 @@
 import { returnsNext, stub } from "std/testing/mock.ts";
 import { fetchValues, getCursor, redirect } from "./http.ts";
 import { assert, assertEquals, assertRejects } from "std/assert/mod.ts";
-import { Status } from "$fresh/server.ts";
 import { Item, randomItem } from "./db.ts";
 
 Deno.test("[plugins/portals/utils/http] redirect() defaults", () => {
@@ -32,7 +31,7 @@ Deno.test("[plugins/portals/utils/http] getCursor()", () => {
 
 Deno.test("[plugins/portals/utils/http] fetchValues()", async () => {
   const resp1 = Promise.resolve(
-    new Response(null, { status: Status.NotFound }),
+    new Response(null, { status: 404 }),
   );
   const resp2Body = {
     values: [randomItem(), randomItem()],

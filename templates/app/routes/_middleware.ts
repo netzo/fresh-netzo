@@ -1,4 +1,4 @@
-import { RouteContext } from "$fresh/server.ts";
+import { RouteContext } from "$fresh/src/server/mod.ts";
 
 export async function handler(req: Request, ctx: RouteContext) {
   if (["notFound"].includes(ctx.destination)) {

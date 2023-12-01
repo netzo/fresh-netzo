@@ -1,5 +1,5 @@
 import type { ComponentChildren } from "preact";
-import { Head as _Head } from "$fresh/runtime.ts";
+import { Head as _Head } from "$fresh/src/runtime/head.ts";
 
 export type HeadOptions = {
   title?: string;

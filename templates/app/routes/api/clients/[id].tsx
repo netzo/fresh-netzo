@@ -1,4 +1,4 @@
-import { Handlers } from "$fresh/server.ts";
+import { Handlers } from "$fresh/src/server/mod.ts";
 import { Client } from "@/components/tables/clients/data/schema.ts";
 import { db } from "@/utils/db.ts";
 

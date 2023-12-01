@@ -1,4 +1,4 @@
-import { defineLayout } from "$fresh/server.ts";
+import { defineLayout } from "$fresh/src/server/mod.ts";
 import type { PortalsState } from "netzo/plugins/portals/mod.ts";
 import Footer from "netzo/plugins/portals/components/Footer.tsx";
 import Header, { type HeaderNavItemProps } from "@/islands/Header.tsx";

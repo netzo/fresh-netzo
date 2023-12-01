@@ -1,4 +1,4 @@
-import type { Plugin } from "$fresh/server.ts";
+import type { Plugin } from "$fresh/src/server/mod.ts";
 
 /*
 The following lists the possible header combinations when

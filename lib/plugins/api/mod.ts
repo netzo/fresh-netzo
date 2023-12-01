@@ -1,5 +1,4 @@
-import type { Plugin } from "$fresh/server.ts";
-import { Status } from "$fresh/server.ts";
+import type { Plugin } from "$fresh/src/server/mod.ts";
 import { isHttpError } from "std/http/http_errors.ts";
 import type { NetzoState } from "netzo/config/mod.ts";
 import { parseRequestBody } from "netzo/utils/mod.ts";
@@ -160,12 +159,12 @@ export const api = (options?: ApiOptions): Plugin<NetzoState> => {
 // deno-lint-ignore no-explicit-any
 export function toErrorResponse(error: any) {
   if (error instanceof Deno.errors.NotFound) {
-    return new Response(error.message, { status: Status.NotFound });
+    return new Response(error.message, { status: 404 });
   }
   return isHttpError(error)
     ? new Response(error.message, {
       status: error.status,
       headers: error.headers,
     })
-    : new Response(error.message, { status: Status.InternalServerError });
+    : new Response(error.message, { status: 500 });
 }

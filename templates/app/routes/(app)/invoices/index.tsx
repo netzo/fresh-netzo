@@ -1,4 +1,4 @@
-import { defineRoute } from "$fresh/server.ts";
+import { defineRoute } from "$fresh/src/server/mod.ts";
 import { getOptions } from "@/components/tables/invoices/data/options.tsx";
 import { Table } from "@/islands/Invoices.tsx";
 import { Invoice } from "@/components/tables/invoices/data/schema.ts";

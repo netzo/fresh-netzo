@@ -1,6 +1,6 @@
 import { createDatabase, ulid } from "netzo/database/mod.ts";
 import { filterObjectsByKeyValues } from "netzo/utils/mod.ts";
-import { Handlers } from "$fresh/server.ts";
+import { Handlers } from "$fresh/src/server/mod.ts";
 import { Invoice } from "@/components/tables/invoices/data/schema.ts";
 import { Client } from "@/components/tables/clients/data/schema.ts";
 import { getQueryParams } from "@/utils.tsx";

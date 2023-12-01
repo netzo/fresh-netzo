@@ -1,4 +1,4 @@
-import { createHandler, Status } from "$fresh/server.ts";
+import { createHandler, Status } from "$fresh/src/server/mod.ts";
 import manifest from "@/fresh.gen.ts";
 import {
   createItem,

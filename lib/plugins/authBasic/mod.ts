@@ -1,4 +1,4 @@
-import { Plugin } from "$fresh/server.ts";
+import { Plugin } from "$fresh/src/server/mod.ts";
 import type { NetzoState } from "netzo/config/mod.ts";
 
 export type AuthBasicOptions = {

@@ -1,4 +1,4 @@
-import { IS_BROWSER } from "$fresh/runtime.ts";
+import { IS_BROWSER } from "$fresh/src/runtime/utils.ts";
 import { effect, signal } from "@preact/signals";
 import { Switch } from "netzo/components/ui/switch.tsx";
 import { Label } from "netzo/components/ui/label.tsx";

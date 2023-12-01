@@ -1,4 +1,4 @@
-import type { Plugin } from "$fresh/server.ts";
+import type { Plugin } from "$fresh/src/server/mod.ts";
 import type { OAuth2ClientConfig } from "deno_kv_oauth/mod.ts";
 import { deepMerge } from "std/collections/deep_merge.ts";
 import type { NetzoState } from "netzo/config/mod.ts";

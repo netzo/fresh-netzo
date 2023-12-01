@@ -12,7 +12,7 @@ export const LOGS = {
     "Missing API key. Set via --api-key flag or NETZO_API_KEY environment variable.",
   skippingLoadingOfEnvVars:
     `Skipping loading of "development" environment variables.`,
-  notFoundProject: "Project not found. Check the project UID and API key.",
+  notFoundProject: "Project not found. Check the project ID and API key.",
 } as const;
 
 export function log(message: string) {

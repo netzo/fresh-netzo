@@ -1,4 +1,4 @@
-import type { RouteContext } from "$fresh/server.ts";
+import type { RouteContext } from "$fresh/src/server/mod.ts";
 import type { PluginMiddleware } from "$fresh/src/server/types.ts";
 import { getSessionId } from "deno_kv_oauth/mod.ts";
 import { getUserBySession } from "netzo/plugins/portals/utils/db.ts";

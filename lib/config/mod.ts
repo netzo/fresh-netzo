@@ -1,4 +1,4 @@
-import type { FreshConfig } from "$fresh/server.ts";
+import type { FreshConfig } from "$fresh/src/server/mod.ts";
 import { netzo } from "../apis/netzo/mod.ts";
 import { log, LOGS, logWarning } from "../utils/console.ts";
 import { setEnvVars } from "../utils/mod.ts";
@@ -66,11 +66,7 @@ export async function defineNetzoConfig(
 
     const { api } = netzo({ apiKey, baseURL: Deno.env.get("NETZO_API_URL") });
 
-    const result = await api.projects.get<Paginated<Project>>({
-      uid: NETZO_PROJECT,
-      $limit: 1,
-    });
-    const project = result?.data?.[0] as Project;
+    const project = await api.projects[NETZO_PROJECT].get<Project>();
     if (!project) logWarning(LOGS.notFoundProject);
 
     if (project?.envVars?.development) setEnvVars(project.envVars.development);

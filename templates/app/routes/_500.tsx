@@ -1,4 +1,4 @@
-import { PageProps } from "$fresh/server.ts";
+import { PageProps } from "$fresh/src/server/mod.ts";
 import { HEADING_STYLES, LINK_STYLES } from "@/utils/constants.ts";
 
 export default function Error500Page(props: PageProps) {

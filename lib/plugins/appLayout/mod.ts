@@ -1,5 +1,5 @@
 import type { JSX } from "preact";
-import type { Plugin } from "$fresh/server.ts";
+import type { Plugin } from "$fresh/src/server/mod.ts";
 import type { NetzoState } from "netzo/config/mod.ts";
 import AppLayout from "./app-layout.tsx";
 

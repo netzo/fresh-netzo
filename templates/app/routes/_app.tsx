@@ -1,4 +1,4 @@
-import { defineApp } from "$fresh/server.ts";
+import { defineApp } from "$fresh/src/server/mod.ts";
 import { NetzoState } from "netzo/config/mod.ts";
 import { Head, type HeadOptions } from "netzo/components/head.tsx";
 

@@ -2,7 +2,7 @@ import {
   UnoGenerator,
   type UserConfig,
 } from "https://esm.sh/@unocss/core@0.55.1";
-import type { Plugin } from "$fresh/server.ts";
+import type { Plugin } from "$fresh/src/server/mod.ts";
 import type { NetzoState } from "netzo/config/mod.ts";
 
 // inline reset from https://esm.sh/@unocss/reset@0.54.2/tailwind.css

@@ -1,4 +1,4 @@
-import type { PageProps } from "$fresh/server.ts";
+import type { PageProps } from "$fresh/src/server/mod.ts";
 
 type Props = {
   code: number;
