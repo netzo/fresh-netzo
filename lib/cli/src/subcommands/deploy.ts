@@ -22,16 +22,16 @@ const help = `netzo deploy
 Deploy a project with static files to Netzo.
 
 To deploy a local project
-  netzo deploy --project=my-project main.ts
+  netzo deploy --project=<PROJECT_ID> main.ts
 
 To deploy a local project and mark it as production:
-  netzo deploy --project=my-project --prod main.ts
+  netzo deploy --project=<PROJECT_ID> --prod main.ts
 
 To deploy a local project without static files:
-  netzo deploy --project=my-project --no-static main.ts
+  netzo deploy --project=<PROJECT_ID> --no-static main.ts
 
 To ignore the node_modules directory while deploying:
-  netzo deploy --project=my-project --exclude=node_modules main.tsx
+  netzo deploy --project=<PROJECT_ID> --exclude=node_modules main.tsx
 
 USAGE:
     netzo deploy [OPTIONS] <entrypoint>

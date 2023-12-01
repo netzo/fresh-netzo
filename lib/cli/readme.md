@@ -17,7 +17,7 @@ page. Store this API key in a `NETZO_API_KEY` environment variable, or pass it
 to `netzo` with the `--api-key` flag.
 
 ```shell
-netzo deploy --project=my-project ./examples/hello.ts
+netzo deploy --project=<PROJECT_ID> ./examples/hello.ts
 ```
 
 View the help:
@@ -48,7 +48,7 @@ jobs:
       - name: Deploy to Netzo
         uses: netzo/github-action@v1
         with:
-          project: my-project # the name of the project on Netzo
+          project: <PROJECT_ID> # the ID of the project on Netzo
           entrypoint: main.ts # the entrypoint to deploy
 ```
 
