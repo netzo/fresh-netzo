@@ -1,13 +1,7 @@
 // from https://github.com/drollinger/deployctl
 // see https://github.com/denoland/deployctl/issues/138
 
-import {
-  load,
-  netzo,
-  Paginated,
-  Project,
-  wait,
-} from "../../deps.ts";
+import { load, netzo, Paginated, Project, wait } from "../../deps.ts";
 import { error, LOGS } from "../../../utils/console.ts";
 
 const help = `netzo env
@@ -17,12 +11,12 @@ USAGE:
     netzo env [OPTIONS] [<envPath>]
 
 OPTIONS:
-    -h, --help                    Prints help information
-    -p, --project=<PROJECT_UID>   The project to update environment variables for
-        --api-key=<API_KEY>       The API key to use (defaults to NETZO_API_KEY environment variable)
+    -h, --help                   Prints help information
+    -p, --project=<PROJECT_ID>   The ID of the project to update environment variables for
+        --api-key=<API_KEY>      The API key to use (defaults to NETZO_API_KEY environment variable)
 
 ARGS:
-    <envPath>                     The file path to the env file (defaults to .env)
+    <envPath>                    The file path to the env file (defaults to .env)
 `;
 
 export type Args = {
@@ -65,7 +59,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
   }
   if (args.project === null) {
     console.error(help);
-    error("Missing project UID.");
+    error("Missing project ID.");
   }
 
   await syncEnv(
@@ -90,10 +84,7 @@ type SyncEnvOpts = {
 async function syncEnv(opts: SyncEnvOpts): Promise<void> {
   const projectSpinner = wait("Fetching project information...").start();
   const { api } = netzo({ apiKey: opts.apiKey, baseURL: opts.apiUrl });
-  const { data: [project] } = await api.projects.get<Paginated<Project>>({
-    uid: opts.project,
-    $limit: 1,
-  });
+  const project = await api.projects[opts.project].get<Paginated<Project>>();
   if (project === null) {
     projectSpinner.fail("Project not found.");
     Deno.exit(1);

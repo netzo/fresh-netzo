@@ -37,20 +37,20 @@ USAGE:
     netzo deploy [OPTIONS] <entrypoint>
 
 OPTIONS:
-        --exclude=<PATTERNS>      Exclude files that match this pattern
-        --include=<PATTERNS>      Only upload files that match this pattern
-        --import-map=<FILE>       Use import map file
-        --deno-lock=<FILE>        Use deno lock file
-    -h, --help                    Prints help information
-        --no-static               Don't include the files in the CWD as static files
-        --prod                    Create a production deployment (default is preview deployment)
-        --description=<TEXT>      A description of the deployment (like a git commit message)
-    -p, --project=<PROJECT_UID>   The UID of the project to deploy to
-        --dry-run                 Dry run the deployment process
-        --api-key=<API_KEY>       The API key to use (defaults to NETZO_API_KEY environment variable)
+        --exclude=<PATTERNS>     Exclude files that match this pattern
+        --include=<PATTERNS>     Only upload files that match this pattern
+        --import-map=<FILE>      Use import map file
+        --deno-lock=<FILE>       Use deno lock file
+    -h, --help                   Prints help information
+        --no-static              Don't include the files in the CWD as static files
+        --prod                   Create a production deployment (default is preview deployment)
+        --description=<TEXT>     A description of the deployment (like a git commit message)
+    -p, --project=<PROJECT_ID>   The ID of the project to deploy to
+        --dry-run                Dry run the deployment process
+        --api-key=<API_KEY>      The API key to use (defaults to NETZO_API_KEY environment variable)
 
 ARGS:
-    <entrypoint>                  The file path to the entrypoint file (e.g. main.tsx)
+    <entrypoint>                 The file path to the entrypoint file (e.g. main.tsx)
 `;
 
 export type Args = {
@@ -113,7 +113,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
   }
   if (args.project === null) {
     console.error(help);
-    error("Missing project UID.");
+    error("Missing project ID.");
   }
 
   await deploy(
@@ -166,11 +166,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
     `Fetching project '${opts.project}' information...`,
   ).start();
   const { api } = netzo({ apiKey: opts.apiKey, baseURL: opts.apiUrl });
-  const result = await api.projects.get<Paginated<Project>>({
-    uid: opts.project,
-    $limit: 1,
-  });
-  const project = result?.data?.[0] as Project;
+  const project = await api.projects[opts.project].get<Paginated<Project>>();
   if (!project) {
     projectSpinner.fail(
       `Project "${opts.project}" not found. Ensure the API key is valid for this project.`,
@@ -189,7 +185,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
     projectSpinner.fail("Project deployments details not found.");
     Deno.exit(1);
   }
-  projectSpinner.succeed(`Project: ${project.uid}`);
+  projectSpinner.succeed(`Project: ${project.name}`);
 
   if (deployments.length === 0) {
     wait("").start().info(
