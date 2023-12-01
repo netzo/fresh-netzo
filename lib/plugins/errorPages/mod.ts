@@ -8,13 +8,17 @@ export type ErrorPagesOptions = {
 };
 
 export const errorPages = (
-  options: ErrorPagesOptions = { "404": true, "500": true },
+  options: ErrorPagesOptions,
 ): Plugin<NetzoState> => {
   return {
     name: "errorPages",
     routes: [
-      ...(options[404] ? [{ path: "/_404", component: ErrorPage404 }] : []),
-      ...(options[500] ? [{ path: "/_500", component: ErrorPage500 }] : []),
+      ...(options[404] === false
+        ? []
+        : [{ path: "/_404", component: ErrorPage404 }]),
+      ...(options[500] === false
+        ? []
+        : [{ path: "/_500", component: ErrorPage500 }]),
     ],
   };
 };

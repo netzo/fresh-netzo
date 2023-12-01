@@ -336,8 +336,8 @@ async function deploy(opts: DeployOpts): Promise<void> {
             deploySpinner?.succeed(message);
             const domain = message.split(" ").pop();
             const id = domain?.split(".")?.[0]?.split("-")?.pop();
-            const deploymentKind = opts.prod ? "Production" : "Preview";
-            deploySpinner!.succeed(`${deploymentKind} deployment complete.`);
+            // const deploymentKind = opts.prod ? "Production" : "Preview";
+            // deploySpinner!.succeed(`${deploymentKind} deployment complete.`);
             const url = new URL(
               `/workspaces/${project.workspaceId}/projects/${project._id}/deployments/${id}`,
               opts.appUrl,
@@ -353,15 +353,13 @@ async function deploy(opts: DeployOpts): Promise<void> {
             }
             return error(message, false); // exits with error code 1
           }
+
+            // app.service("deployments").removeAllListeners("progress"); // avoid memory leak
         }
       },
     );
 
-    // create denoDeploymentId via Netzo API (accepts/returns `application/json`)
-    await api.deployments.post<Deployment>(data);
-    // IMPORTANT: stop listening on first 'success' event (api sends 2 somehow)
-    console.log('STOP LISTENING')
-    app.service("deployments").removeAllListeners("progress");
+    const _denoDeployment = await api.deployments.post<Deployment>(data);
   } catch (err: unknown) {
     if (err instanceof APIError) {
       if (deploySpinner) {

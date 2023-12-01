@@ -5,7 +5,7 @@ import { setEnvVars } from "../utils/mod.ts";
 import {
   Paginated,
   Project,
-} from "https://esm.sh/@netzo/api@1.0.50/lib/client.d.ts";
+} from "https://esm.sh/@netzo/api@1.0.51/lib/client.d.ts";
 import { PortalsState } from "netzo/plugins/portals/mod.ts";
 import { ApiState } from "netzo/plugins/api/mod.ts";
 import { VisibilityState } from "netzo/plugins/visibility/mod.ts";

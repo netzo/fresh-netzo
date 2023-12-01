@@ -40,8 +40,6 @@ export type {
   // projects/deployments:
   DenoProjectDeploymentAppLog,
   DenoProjectDeploymentBuildLog,
-  DenoProjectDeploymentResult,
-  DenoProjectDeploymentSummary,
   Deployment,
   // manifest:
   Manifest,
@@ -50,7 +48,7 @@ export type {
   ManifestEntryFile,
   ManifestEntrySymlink,
   Project,
-} from "https://esm.sh/@netzo/api@1.0.50/lib/client.d.ts";
+} from "https://esm.sh/@netzo/api@1.0.51/lib/client.d.ts";
 
 // socket.io-client:
 export { feathers } from "https://esm.sh/@feathersjs/feathers@5.0.6";

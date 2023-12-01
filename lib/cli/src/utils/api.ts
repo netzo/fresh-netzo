@@ -1,10 +1,10 @@
-import {
-  DenoProjectDeploymentResult,
+import type {
+  DenoProjectDeploymentAppLog,
+  Deployment,
   Manifest,
+  Project,
   TextLineStream,
 } from "../../deps.ts";
-
-import type { DenoProjectDeploymentAppLog, Project } from "../../deps.ts";
 
 export type RequestOptions = {
   method?: string;
@@ -108,7 +108,7 @@ export class DenoAPI {
     }
   }
 
-  async getDeployments(uid: string): Promise<DenoProjectDeploymentResult> {
+  async getDeployments(uid: string): Promise<Deployment[]> {
     try {
       return await this.#requestJson(`/projects/${uid}/deployments`);
     } catch (err) {
