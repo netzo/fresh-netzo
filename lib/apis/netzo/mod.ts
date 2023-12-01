@@ -50,8 +50,6 @@ export const netzo = ({
       data,
       env: Deno.env.get("NETZO_ENV")!,
       projectId: Deno.env.get("NETZO_PROJECT_ID")!,
-      denoRegion: Deno.env.get("DENO_REGION")!,
-      denoDeploymentId: Deno.env.get("DENO_DEPLOYMENT_ID")!,
     });
   };
 
