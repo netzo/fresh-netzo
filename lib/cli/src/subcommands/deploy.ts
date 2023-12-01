@@ -174,7 +174,9 @@ async function deploy(opts: DeployOpts): Promise<void> {
     Deno.exit(1);
   }
 
-  const { data: deployments } = await api.deployments.get<Paginated<Deployment>>({
+  const { data: deployments } = await api.deployments.get<
+    Paginated<Deployment>
+  >({
     projectId: project.denoId,
   });
   if (!deployments) {
