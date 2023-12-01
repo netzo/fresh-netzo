@@ -28,37 +28,27 @@ export { netzo } from "../apis/netzo/mod.ts";
 
 // @netzo/api: cherry-pick exports to avoid tree-shaking issues
 export type {
-  DenoDeploymentProgress,
-  DenoDeploymentProgressAssetNegotiation,
-  DenoDeploymentProgressError,
-  DenoDeploymentProgressLoad,
-  DenoDeploymentProgressStaticFile,
-  DenoDeploymentProgressSuccess,
-  DenoDeploymentProgressUploadComplete,
-  DenoLog,
-  DenoLogMessage,
-  DenoLogPing,
-  DenoLogReady,
+  // databases:
+  DenoDatabase,
+  // domains:
+  DenoDomain,
+  // organizations:
   DenoOrganization,
+  // projects:
   DenoProject,
   DenoProjectAnalytics,
-  DenoProjectDeploymentRequestGitHubActions,
-  DenoProjectDeploymentRequestPush,
-  DenoProjectDeploymentsResult,
-  DenoProjectDeploymentsSummary,
-  DenoProjectDomain,
+  // projects/deployments:
+  DenoProjectDeploymentAppLog,
+  DenoProjectDeploymentBuildLog,
   Deployment,
-  DeploymentData,
+  // manifest:
   Manifest,
   ManifestEntry,
   ManifestEntryDirectory,
   ManifestEntryFile,
   ManifestEntrySymlink,
-  Paginated,
   Project,
-  ProjectFiles,
-  ProjectFilesFile,
-} from "https://esm.sh/@netzo/api@1.0.49/lib/client.d.ts";
+} from "https://esm.sh/@netzo/api@1.0.51/lib/client.d.ts";
 
 // socket.io-client:
 export { feathers } from "https://esm.sh/@feathersjs/feathers@5.0.6";

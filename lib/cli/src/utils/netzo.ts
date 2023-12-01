@@ -4,7 +4,7 @@ import {
   Manifest,
   ManifestEntryFile,
   Project,
-  ProjectFilesFile,
+  ProjectAssetsFile,
   socketio,
 } from "../../deps.ts";
 
@@ -23,25 +23,25 @@ export const createClient = async ({
  * Build flat manifest (project.files) from nested manifest
  *
  * USAGE:
- * const projectFilesWithoutContents = await buildProjectFilesFromManifest(manifest)
+ * const projectAssetsWithoutContent = await buildAssetsFromManifest(manifest)
  * @param manifest {Manifest} - a nested manifest with entries
- * @returns {Omit<Project['files'], 'contents'>} - a flat manifest of file entries
+ * @returns {Omit<Project['files'], 'content'>} - a flat manifest of file entries
  */
-export function buildProjectFilesFromManifest(
+export function buildAssetsFromManifest(
   manifest: Manifest = { entries: {} },
-): Omit<Project["files"], "contents"> {
-  const filesWithoutContents: Record<string, ManifestEntryFile> = {};
+): Omit<Project["files"], "content"> {
+  const filesWithoutContent: Record<string, ManifestEntryFile> = {};
 
   // deno-lint-ignore no-explicit-any
   function walk(obj: any, path: string) {
     if (obj.kind === "file") {
       const fileEntry: ManifestEntryFile = {
         kind: obj.kind,
-        contents: obj.contents, // might not exists
+        content: obj.content, // might not exists
         gitSha1: obj.gitSha1,
         size: obj.size,
       };
-      filesWithoutContents[path] = fileEntry;
+      filesWithoutContent[path] = fileEntry;
     } else if (typeof obj === "object") {
       for (const key in obj) {
         // deno-lint-ignore no-prototype-builtins
@@ -63,30 +63,34 @@ export function buildProjectFilesFromManifest(
 
   walk(manifest.entries, "");
 
-  return filesWithoutContents;
+  return filesWithoutContent;
 }
 
 /**
- * Add 'contents' field for each file entry by reading
- * and decoding file contents from disk.
+ * Add 'content' field for each file entry by reading
+ * and decoding file content from disk.
  *
  * USAGE:
- * const projectFiles = await readDecodeAndAddFileContentsToProjectFiles(manifest)
- * @param filesWithoutContents {Omit<Project['files'], 'contents'>} - a flat manifest of file entries without the 'contents' field
+ * const projectAssets = await readDecodeAndAddFileContentToAssets(manifest)
+ * @param filesWithoutContent {Omit<Project['files'], 'content'>} - a flat manifest of file entries without the 'content' field
  * @returns {Project['files']} - a flat manifest of file entries
  */
-export async function readDecodeAndAddFileContentsToProjectFiles(
-  filesWithoutContents: Omit<Project["files"], "contents">,
+export async function readDecodeAndAddFileContentToAssets(
+  filesWithoutContent: Omit<Project["files"], "content">,
 ): Promise<Project["files"]> {
   return Object.fromEntries(
     await Promise.all(
-      Object.entries(filesWithoutContents).map(
+      Object.entries(filesWithoutContent).map(
         async ([path, file]) => {
-          const { kind, gitSha1, size } = file as ProjectFilesFile;
+          const { kind, gitSha1, size } = file as ProjectAssetsFile;
           // const bytes: Uint8Array = await Deno.readFile(path)
-          // const contents: string = new TextDecoder().decode(bytes)
-          const contents: string = await Deno.readTextFile(path);
-          return [path, { kind, contents, gitSha1, size }];
+          // const content: string = new TextDecoder().decode(bytes)
+          const content: string = await Deno.readTextFile(path);
+          return [path, {
+            kind,
+            content,
+            encoding: "utf-8", /* gitSha1, size */
+          }];
         },
       ),
     ),

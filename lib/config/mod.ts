@@ -5,7 +5,7 @@ import { setEnvVars } from "../utils/mod.ts";
 import {
   Paginated,
   Project,
-} from "https://esm.sh/@netzo/api@1.0.49/lib/client.d.ts";
+} from "https://esm.sh/@netzo/api@1.0.51/lib/client.d.ts";
 import { PortalsState } from "netzo/plugins/portals/mod.ts";
 import { ApiState } from "netzo/plugins/api/mod.ts";
 import { VisibilityState } from "netzo/plugins/visibility/mod.ts";
@@ -13,6 +13,13 @@ import { VisibilityState } from "netzo/plugins/visibility/mod.ts";
 export type NetzoConfig = FreshConfig & {
   project?: string;
   entrypoint?: string;
+  importMap?: string;
+  denoLock?: string;
+  database?: string | {
+    development?: string;
+    // preview?: string;
+    production?: string;
+  };
   [k: string]: unknown;
 };
 

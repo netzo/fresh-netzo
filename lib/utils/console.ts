@@ -15,27 +15,27 @@ export const LOGS = {
   notFoundProject: "Project not found. Check the project UID and API key.",
 } as const;
 
-export function log(message: string) {
-  console.log(white(`${bold("[netzo]")} ${message}`));
+export function log(message: string, prefix = true) {
+  console.log(white(prefix ? `${bold("[netzo]")} ${message}` : message));
 }
 
-export function logInfo(message: string) {
-  console.info(blue(`${bold("[netzo]")} ${message}`));
+export function logInfo(message: string, prefix = true) {
+  console.info(blue(prefix ? `${bold("[netzo]")} ${message}` : message));
 }
 
-export function logSuccess(message: string) {
-  console.log(green(`${bold("[netzo]")} ${message}`));
+export function logSuccess(message: string, prefix = true) {
+  console.log(green(prefix ? `${bold("[netzo]")} ${message}` : message));
 }
 
-export function logWarning(message: string) {
-  console.warn(yellow(`${bold("[netzo]")} ${message}`));
+export function logWarning(message: string, prefix = true) {
+  console.warn(yellow(prefix ? `${bold("[netzo]")} ${message}` : message));
 }
 
-export function logError(message: string) {
-  console.error(red(`${bold("[netzo]")} ${message}`));
+export function logError(message: string, prefix = true) {
+  console.error(red(prefix ? `${bold("[netzo]")} ${message}` : message));
 }
 
-export function error(message: string): never {
-  logError(message);
+export function error(message: string, prefix = true): never {
+  logError(message, prefix);
   Deno.exit(1);
 }

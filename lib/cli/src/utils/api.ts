@@ -1,15 +1,9 @@
-import {
-  DenoProjectDeploymentsResult,
-  Manifest,
-  TextLineStream,
-} from "../../deps.ts";
-
 import type {
-  DenoDeploymentProgress,
-  DenoLog,
-  DenoProjectDeploymentRequestGitHubActions,
-  DenoProjectDeploymentRequestPush,
+  DenoProjectDeploymentAppLog,
+  Deployment,
+  Manifest,
   Project,
+  TextLineStream,
 } from "../../deps.ts";
 
 export type RequestOptions = {
@@ -114,7 +108,7 @@ export class DenoAPI {
     }
   }
 
-  async getDeployments(uid: string): Promise<DenoProjectDeploymentsResult> {
+  async getDeployments(uid: string): Promise<Deployment[]> {
     try {
       return await this.#requestJson(`/projects/${uid}/deployments`);
     } catch (err) {
@@ -125,7 +119,10 @@ export class DenoAPI {
     }
   }
 
-  getLogs(uid: string, deploymentId: string): AsyncIterable<DenoLog> {
+  getLogs(
+    uid: string,
+    deploymentId: string,
+  ): AsyncIterable<DenoProjectDeploymentAppLog> {
     return this.#requestStream(
       `/projects/${uid}/deployments/${deploymentId}/logs/`,
     );
@@ -139,37 +136,5 @@ export class DenoAPI {
       method: "POST",
       body: manifest,
     });
-  }
-
-  pushDeploy(
-    uid: string,
-    request: DenoProjectDeploymentRequestPush,
-    files: Uint8Array[],
-  ): AsyncIterable<DenoDeploymentProgress> {
-    const form = new FormData();
-    form.append("request", JSON.stringify(request));
-    for (const bytes of files) {
-      form.append("file", new Blob([bytes]));
-    }
-    return this.#requestStream(
-      `/projects/${uid}/deployment_with_assets`,
-      { method: "POST", body: form },
-    );
-  }
-
-  gitHubActionsDeploy(
-    uid: string,
-    request: DenoProjectDeploymentRequestGitHubActions,
-    files: Uint8Array[],
-  ): AsyncIterable<DenoDeploymentProgress> {
-    const form = new FormData();
-    form.append("request", JSON.stringify(request));
-    for (const bytes of files) {
-      form.append("file", new Blob([bytes]));
-    }
-    return this.#requestStream(
-      `/projects/${uid}/deployment_github_actions`,
-      { method: "POST", body: form },
-    );
   }
 }

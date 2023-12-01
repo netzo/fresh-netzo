@@ -13,6 +13,7 @@ import { DataTableViewOptions } from "./data-table-view-options.tsx";
 import { DataTableFacetedFilter } from "./data-table-faceted-filter.tsx";
 import { DataTableProps } from "./data-table.tsx";
 import { DialogDelete } from "@/components/tables/components/dialog-delete.tsx";
+
 interface DataTableToolbarProps<TData> {
   table: Table<TData>;
   options: DataTableProps<TData, unknown>["options"];
@@ -32,14 +33,14 @@ export function DataTableToolbar<TData>({
   );
   return (
     <div className="flex items-center justify-between">
-      <div className="flex flex-1 items-center space-x-2">
+      <div className="flex items-center flex-1 space-x-2">
         <Button
           variant="outline"
           size="sm"
           onClick={() => window.location.reload()}
           className="h-8 px-2 lg:px-3"
         >
-          <ReloadIcon className="mr-2 h-4 w-4" />
+          <ReloadIcon className="w-4 h-4 mr-2" />
           Refresh
         </Button>
         {options.search && (
@@ -73,7 +74,7 @@ export function DataTableToolbar<TData>({
             className="h-8 px-2 lg:px-3"
           >
             Reset
-            <Cross2Icon className="ml-2 h-4 w-4" />
+            <Cross2Icon className="w-4 h-4 ml-2" />
           </Button>
         )}
       </div>
@@ -97,8 +98,8 @@ export function DataTableToolbar<TData>({
                       selectedRows[0].original.id
                     }`}
                   >
-                    <Button className="ml-3 h-8 px-2 lg:px-3">
-                      <Pencil1Icon className="mr-2 h-4 w-4" /> Edit selected
+                    <Button className="h-8 px-2 ml-3 lg:px-3">
+                      <Pencil1Icon className="w-4 h-4 mr-2" /> Edit selected
                     </Button>
                   </a>
                 </>

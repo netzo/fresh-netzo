@@ -1,33 +1,22 @@
 export type {
-  DenoDeploymentProgress,
-  DenoDeploymentProgressAssetNegotiation,
-  DenoDeploymentProgressError,
-  DenoDeploymentProgressLoad,
-  DenoDeploymentProgressStaticFile,
-  DenoDeploymentProgressSuccess,
-  DenoDeploymentProgressUploadComplete,
-  DenoLog,
-  DenoLogMessage,
-  DenoLogPing,
-  DenoLogReady,
+  // databases:
+  DenoDatabase,
+  // domains:
+  DenoDomain,
+  // organizations:
   DenoOrganization,
+  // projects:
   DenoProject,
   DenoProjectAnalytics,
-  DenoProjectDeploymentRequestGitHubActions,
-  DenoProjectDeploymentRequestPush,
-  DenoProjectDeploymentsResult,
-  DenoProjectDeploymentsSummary,
-  DenoProjectDomain,
+  // projects/deployments:
+  DenoProjectDeploymentAppLog,
+  DenoProjectDeploymentBuildLog,
   Deployment,
-  DeploymentData,
+  // manifest:
   Manifest,
   ManifestEntry,
   ManifestEntryDirectory,
   ManifestEntryFile,
   ManifestEntrySymlink,
-  Notification,
-  Paginated,
   Project,
-  ProjectFiles,
-  ProjectFilesFile,
-} from "https://esm.sh/@netzo/api@1.0.49/lib/client.d.ts";
+} from "https://esm.sh/@netzo/api@1.0.51/lib/client.d.ts";

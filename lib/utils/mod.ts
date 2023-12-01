@@ -19,18 +19,16 @@ export function filterObjectsByKeyValues<T = Record<string, any>>(
   if (Object.keys(filters).length > 0) {
     for (const key in filters) {
       if (filters[key]) {
-        const value = filters[key];
+        const value = filters?.[key];
 
-        if (key.includes(".")) {
-          filteredData = filteredData.filter((item) =>
-            value &&
-            _get(item, key, "")?.toLowerCase().includes(value?.toLowerCase())
-          );
-        } else {
-          filteredData = filteredData.filter((item) =>
-            value &&
-            _get(item, key, "")?.toLowerCase().includes(value?.toLowerCase())
-          );
+        if (["string", "number", "boolean"].includes(typeof value)) {
+          filteredData = filteredData.filter((item) => {
+            const itemValue = _get(item, key, "") as string;
+            const itemValueString = itemValue?.toString();
+            return itemValue?.toLowerCase().includes(
+              itemValueString?.toLowerCase(),
+            );
+          });
         }
       }
     }
