@@ -166,7 +166,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
     `Fetching project '${opts.project}' information...`,
   ).start();
   const { api } = netzo({ apiKey: opts.apiKey, baseURL: opts.apiUrl });
-  const project = await api.projects[opts.project].get<Paginated<Project>>();
+  const project = await api.projects[opts.project].get<Project>();
   if (!project) {
     projectSpinner.fail(
       `Project "${opts.project}" not found. Ensure the API key is valid for this project.`,
@@ -174,9 +174,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
     Deno.exit(1);
   }
 
-  const { data: deployments } = await api.deployments.get<
-    Paginated<Deployment>
-  >({
+  const { data: deployments } = await api.deployments.get<Paginated<Deployment>>({
     projectId: project.denoId,
   });
   if (!deployments) {

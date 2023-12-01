@@ -1,7 +1,7 @@
 // from https://github.com/drollinger/deployctl
 // see https://github.com/denoland/deployctl/issues/138
 
-import { load, netzo, Paginated, Project, wait } from "../../deps.ts";
+import { load, netzo, Project, wait } from "../../deps.ts";
 import { error, LOGS } from "../../../utils/console.ts";
 
 const help = `netzo env
@@ -84,7 +84,7 @@ type SyncEnvOpts = {
 async function syncEnv(opts: SyncEnvOpts): Promise<void> {
   const projectSpinner = wait("Fetching project information...").start();
   const { api } = netzo({ apiKey: opts.apiKey, baseURL: opts.apiUrl });
-  const project = await api.projects[opts.project].get<Paginated<Project>>();
+  const project = await api.projects[opts.project].get<Project>();
   if (project === null) {
     projectSpinner.fail("Project not found.");
     Deno.exit(1);
