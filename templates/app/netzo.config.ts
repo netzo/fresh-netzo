@@ -5,7 +5,8 @@ import { errorPages } from "netzo/plugins/errorPages/mod.ts";
 // import { loader } from "netzo/plugins/loader/mod.ts";
 import { portals } from "netzo/plugins/portals/mod.ts";
 import { createGitHubOAuthConfig } from "deno_kv_oauth/mod.ts";
-import tailwind from "$fresh/plugins/tailwind.ts";
+import { unocss } from "netzo/plugins/unocss/mod.ts";
+import unocssConfig from "./uno.config.ts";
 
 export default defineNetzoConfig({
   database: {
@@ -30,6 +31,6 @@ export default defineNetzoConfig({
       // ],
       // footer: {},
     }),
-    tailwind(),
+    unocss(unocssConfig),
   ],
 });

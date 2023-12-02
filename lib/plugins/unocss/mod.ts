@@ -88,9 +88,9 @@ export function installPreactHook(classes: Set<string>) {
 }
 
 /** UnoCSS plugin - automatically generates CSS utility classes */
-export default function unocss(
-  { config, aot = true, ssr = false, csr = false }: UnoCssPluginOptions = {},
-): Plugin {
+export const unocss = (
+  { config, aot = true, ssr = true, csr = true }: UnoCssPluginOptions = {},
+): Plugin => {
   // A uno.config.ts file is required in the project directory if a config object is not provided,
   // or to use the browser runtime
   const configURL = new URL("./uno.config.ts", Deno.mainModule);
