@@ -40,7 +40,7 @@ export default (props: PageProps<unknown, NetzoStatePortals>) => {
           <img
             src="https://netzo.io/logos/built-with-netzo-light.svg"
             alt="Built with Netzo"
-            class="h-[42px]"
+            class="h-[36px]"
           />
         </a>
       </footer>

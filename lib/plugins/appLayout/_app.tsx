@@ -8,7 +8,7 @@ export default (props: AppLayoutState) => {
   const { title, description, favicon, image } = options;
 
   return (
-    <html className="w-[100dvw] h-[100dvh]">
+    <html className="h-full">
       <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -18,7 +18,7 @@ export default (props: AppLayoutState) => {
       </head>
       {/* see https://unocss.dev/integrations/runtime#preventing-fouc */}
       <body className="flex flex-col n-bg-base" un-cloak>
-        <header className="flex justify-between items-center py-4 px-4">
+        <header className="flex items-center justify-between px-4 py-4">
           <div className="flex">
             {/* NOTE: use dark:filter-invert (in image.class) to invert color on dark */}
             {image?.src && (

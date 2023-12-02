@@ -126,7 +126,7 @@ export const unocss = (
 
     async renderAsync(ctx) {
       // Link to CSS file, if AOT mode is enabled
-      const cssLinks = aot ? [{ url: "/uno.css" }] : [];
+      const links = aot ? [{ rel: "stylesheet", href: "/uno.css" }] : [];
 
       // Add entrypoint, if CSR mode is enabled
       const scripts = csr ? [{ entrypoint: "main", state: {} }] : [];
@@ -151,7 +151,7 @@ export const unocss = (
         await ctx.renderAsync();
       }
 
-      return { scripts, styles, cssLinks };
+      return { scripts, styles, links };
     },
 
     async buildStart({ build: { outDir } }) {
