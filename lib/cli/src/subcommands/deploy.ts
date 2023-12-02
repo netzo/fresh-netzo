@@ -272,7 +272,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
     },
     assets,
     envVars: {}, // set by netzo on deployment (project.envVars[env] empty for security)
-    databases: undefined, // undefined since {} throws API error
+    databases: undefined,  // set by netzo on deployment (from project.databaseId)
     description: opts.description || null,
   };
 

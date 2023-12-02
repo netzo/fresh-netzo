@@ -9,10 +9,6 @@ import { unocss } from "netzo/plugins/unocss/mod.ts";
 import unocssConfig from "./uno.config.ts";
 
 export default defineNetzoConfig({
-  database: {
-    development: "655f12528750d8da7e73c327",
-    production: "655f12528750d8da7e73c327",
-  },
   plugins: [
     api(),
     // bindSignal(),

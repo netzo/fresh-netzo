@@ -19,4 +19,4 @@ export type {
   ManifestEntryFile,
   ManifestEntrySymlink,
   Project,
-} from "https://esm.sh/@netzo/api@1.0.51/lib/client.d.ts";
+} from "https://esm.sh/@netzo/api@1.0.52/lib/client.d.ts";

@@ -14,7 +14,7 @@ export default (props: AppLayoutState) => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>{title}</title>
         <meta name="description" content={description} />
-        <link rel="icon" type="image/svg+xml" href={favicon} />
+        <link rel="icon" href={favicon} />
       </head>
       {/* see https://unocss.dev/integrations/runtime#preventing-fouc */}
       <body className="flex flex-col n-bg-base" un-cloak>

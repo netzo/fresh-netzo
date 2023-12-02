@@ -2,10 +2,7 @@ import type { FreshConfig } from "$fresh/src/server/mod.ts";
 import { netzo } from "../apis/netzo/mod.ts";
 import { log, LOGS, logWarning } from "../utils/console.ts";
 import { setEnvVars } from "../utils/mod.ts";
-import {
-  Paginated,
-  Project,
-} from "https://esm.sh/@netzo/api@1.0.51/lib/client.d.ts";
+import { Project } from "https://esm.sh/@netzo/api@1.0.52/lib/client.d.ts";
 import { PortalsState } from "netzo/plugins/portals/mod.ts";
 import { ApiState } from "netzo/plugins/api/mod.ts";
 import { VisibilityState } from "netzo/plugins/visibility/mod.ts";
@@ -54,6 +51,8 @@ export async function defineNetzoConfig(
 
   Deno.env.set("NETZO_ENV", NETZO_ENV);
   Deno.env.set("NETZO_PROJECT", NETZO_PROJECT);
+
+  console.log(Deno.args)
 
   const isTaskBuild = Deno.args[0] === "build";
 
