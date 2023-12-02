@@ -6,7 +6,7 @@ import {
 } from "@/utils/constants.ts";
 import { Cross1Icon } from "@radix-ui/react-icons";
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
-import { cx } from "@twind/core";
+import { clsx } from "clsx";
 import { User } from "netzo/plugins/portals/utils/db.ts";
 import { UserNav } from "netzo/plugins/portals/components/UserNav.tsx";
 
@@ -29,7 +29,7 @@ export default (props: HeaderProps) => {
   const NAV_ITEM = "text-gray-500 px-3 py-4 sm:py-2";
   return (
     <header
-      class={cx(
+      class={clsx(
         SITE_BAR_STYLES,
         "flex-col sm:flex-row",
       )}
@@ -74,7 +74,7 @@ export default (props: HeaderProps) => {
         {props.sessionUser && props.nav?.map((item) => (
           <a
             {...item}
-            class={cx(
+            class={clsx(
               LINK_STYLES,
               ACTIVE_ANCESTOR_LINK_STYLES,
               NAV_ITEM,

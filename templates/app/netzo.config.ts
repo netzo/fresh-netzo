@@ -5,8 +5,7 @@ import { errorPages } from "netzo/plugins/errorPages/mod.ts";
 // import { loader } from "netzo/plugins/loader/mod.ts";
 import { portals } from "netzo/plugins/portals/mod.ts";
 import { createGitHubOAuthConfig } from "deno_kv_oauth/mod.ts";
-import twindPlugin from "$fresh/plugins/twindv1.ts";
-import twindConfig from "./twind.config.ts";
+import tailwind from "$fresh/plugins/tailwind.ts";
 
 export default defineNetzoConfig({
   database: {
@@ -31,6 +30,6 @@ export default defineNetzoConfig({
       // ],
       // footer: {},
     }),
-    twindPlugin(twindConfig),
+    tailwind(),
   ],
 });
