@@ -1,6 +1,6 @@
-import { RouteContext } from "$fresh/src/server/mod.ts";
+import { FreshContext } from "$fresh/src/server/mod.ts";
 
-export async function handler(req: Request, ctx: RouteContext) {
+export async function handler(req: Request, ctx: FreshContext) {
   if (["notFound"].includes(ctx.destination)) {
     const url = new URL(req.url);
     url.pathname = "/clients";

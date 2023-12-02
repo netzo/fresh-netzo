@@ -1,4 +1,4 @@
-import type { RouteContext } from "$fresh/src/server/mod.ts";
+import type { FreshContext } from "$fresh/src/server/mod.ts";
 import type { PluginMiddleware } from "$fresh/src/server/types.ts";
 import { getSessionId } from "deno_kv_oauth/mod.ts";
 import { getUserBySession } from "netzo/plugins/portals/utils/db.ts";
@@ -14,7 +14,7 @@ export function assertSignedIn(state: NetzoStatePortals) {
 
 async function setSessionState(
   req: Request,
-  ctx: RouteContext<NetzoStatePortals>,
+  ctx: FreshContext<NetzoStatePortals>,
 ) {
   if (!["route"].includes(ctx.destination)) return await ctx.next();
 
@@ -36,7 +36,7 @@ async function setSessionState(
 
 // async function ensureSignedIn(
 //   _req: Request,
-//   ctx: RouteContext<NetzoStatePortals>,
+//   ctx: FreshContext<NetzoStatePortals>,
 // ) {
 //   assertSignedIn(ctx.state);
 //   return await ctx.next();
@@ -44,7 +44,7 @@ async function setSessionState(
 
 export async function ensureSignedIn(
   req: Request,
-  ctx: RouteContext<NetzoStatePortals>,
+  ctx: FreshContext<NetzoStatePortals>,
 ) {
   const url = new URL(req.url);
   if (!["route"].includes(ctx.destination)) return await ctx.next();
