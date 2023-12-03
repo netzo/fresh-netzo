@@ -28,18 +28,16 @@ export type VisibilityOptions = {
 };
 
 export type VisibilityState = {
-  visibility: {
-    origin: string | null;
-    referer: string | null;
-    isApp: boolean;
-  };
+  origin: string | null;
+  referer: string | null;
+  isApp: boolean;
 };
 
 /**
  * A fresh plugin that registers middleware to handle
  * visibility of projects based on the `visibility` option.
  */
-export const visibility = (options: VisibilityOptions): Plugin[] => {
+export const visibility = (options: VisibilityOptions): Plugin => {
   return {
     name: "visibility",
     middlewares: [
@@ -53,7 +51,7 @@ export const visibility = (options: VisibilityOptions): Plugin[] => {
 
             if (!["route"].includes(ctx.destination)) return await ctx.next();
 
-            const { level } = ctx.state.config.visibility!;
+            const { level = "private" } = options ?? {};
 
             // const host = req.headers.get("host"); // e.g. my-project-906698.netzo.io
             const origin = req.headers.get("origin"); // e.g. https://my-project-906698.netzo.io
@@ -65,8 +63,6 @@ export const visibility = (options: VisibilityOptions): Plugin[] => {
             const isApp = assertIsApp(origin!) || assertIsApp(referer!);
 
             ctx.state.visibility = { origin, referer, isApp };
-
-            // console.debug({ destination: ctx.destination, origin, referer, isApp });
 
             switch (level) {
               case "private": {

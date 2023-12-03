@@ -1,7 +1,6 @@
 import type { Plugin } from "$fresh/src/server/mod.ts";
 import type { OAuth2ClientConfig } from "deno_kv_oauth/mod.ts";
 import { deepMerge } from "std/collections/deep_merge.ts";
-import type { NetzoState } from "netzo/config/mod.ts";
 import { type User } from "netzo/plugins/portals/utils/db.ts";
 import { sessionMiddlewares } from "./session.ts";
 import { errorHandlingMiddlewares } from "./error-handling.ts";
@@ -25,10 +24,6 @@ export type PortalsOptions = {
   };
 };
 
-export type NetzoStatePortals =
-  & Required<Pick<NetzoState, "portals">>
-  & NetzoState;
-
 export type PortalsState = {
   sessionId?: string;
   sessionUser?: User;
@@ -45,7 +40,7 @@ export type PortalsState = {
  * - `GET /oauth/callback` for the callback page
  * - `GET /oauth/signout` for the sign-out page
  */
-export const portals = (options: PortalsOptions): Plugin<NetzoStatePortals> => {
+export const portals = (options: PortalsOptions): Plugin => {
   return {
     name: "portals",
     middlewares: [

@@ -1,8 +1,7 @@
 import type { Plugin } from "$fresh/src/server/mod.ts";
-import type { NetzoState } from "netzo/config/mod.ts";
 import { ErrorPage404, ErrorPage500 } from "./error-pages.tsx";
 
-export const errorPages = (): Plugin<NetzoState> => {
+export const errorPages = (): Plugin => {
   return {
     name: "errorPages",
     routes: [

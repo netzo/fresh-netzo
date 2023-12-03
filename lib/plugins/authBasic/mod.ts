@@ -1,5 +1,4 @@
 import { Plugin } from "$fresh/src/server/mod.ts";
-import type { NetzoState } from "netzo/config/mod.ts";
 
 export type AuthBasicOptions = {
   path: string;
@@ -8,7 +7,7 @@ export type AuthBasicOptions = {
   realm?: string;
 };
 
-export const authBasic = (options: AuthBasicOptions): Plugin<NetzoState> => {
+export const authBasic = (options: AuthBasicOptions): Plugin => {
   const {
     username = Deno.env.get("BASIC_AUTH_USERNAME"),
     password = Deno.env.get("BASIC_AUTH_PASSWORD"),

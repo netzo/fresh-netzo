@@ -1,8 +1,8 @@
 import { PageProps } from "$fresh/src/server/mod.ts";
 import { AuthForm } from "./components/AuthForm.tsx";
-import type { NetzoStatePortals } from "./mod.ts";
+import type { PortalsState } from "./mod.ts";
 
-export default (props: PageProps<unknown, NetzoStatePortals>) => {
+export default (props: PageProps<unknown, PortalsState>) => {
   const {
     // title = "Sign In",
     // description,

@@ -1,6 +1,5 @@
 import type { Plugin } from "$fresh/src/server/mod.ts";
 import { isHttpError } from "std/http/http_errors.ts";
-import type { NetzoState } from "netzo/config/mod.ts";
 import { parseRequestBody } from "netzo/utils/mod.ts";
 import { createDatabase } from "../../database/mod.ts";
 
@@ -57,7 +56,7 @@ const ERRORS = {
  * - `PATCH /api/[resource]/[id]` patch a record of a resource by id
  * - `DELETE /api/[resource]/[id]` remove a record of a resource by id
  */
-export const api = (options?: ApiOptions): Plugin<NetzoState> => {
+export const api = (options?: ApiOptions): Plugin => {
   const { path = "/api", idField = "id", methods = METHODS } = options ?? {};
   return {
     name: "api",

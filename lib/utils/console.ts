@@ -10,6 +10,8 @@ import {
 export const LOGS = {
   missingApiKey:
     "Missing API key. Set via --api-key flag or NETZO_API_KEY environment variable.",
+  missingProjectId:
+    "Missing project ID. Set via --project flag or NETZO_PROJECT_ID environment variable.",
   skippingLoadingOfEnvVars:
     `Skipping loading of "development" environment variables.`,
   notFoundProject: "Project not found. Check the project ID and API key.",

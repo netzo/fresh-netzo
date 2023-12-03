@@ -5,12 +5,7 @@ import {
 } from "https://esm.sh/@unocss/core@0.56.5";
 import type { Theme } from "https://esm.sh/@unocss/preset-uno@0.56.5";
 import { Plugin, type PluginRenderStyleTag } from "$fresh/src/server/mod.ts";
-import {
-  dirname,
-  fromFileUrl,
-  join,
-  walk,
-} from "$fresh/src/server/deps.ts";
+import { dirname, fromFileUrl, join, walk } from "$fresh/src/server/deps.ts";
 import { exists } from "std/fs/exists.ts";
 
 type PreactOptions = typeof preactOptions & { __b?: (vnode: VNode) => void };
@@ -183,4 +178,4 @@ export const unocss = (
       );
     },
   };
-}
+};

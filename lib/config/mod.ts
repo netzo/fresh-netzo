@@ -1,6 +1,6 @@
 import type { FreshConfig } from "$fresh/src/server/mod.ts";
 import { netzo } from "../apis/netzo/mod.ts";
-import { log, LOGS, logWarning } from "../utils/console.ts";
+import { error, log, LOGS, logWarning } from "../utils/console.ts";
 import { setEnvVars } from "../utils/mod.ts";
 import { Project } from "https://esm.sh/@netzo/api@1.0.52/lib/client.d.ts";
 import { PortalsState } from "netzo/plugins/portals/mod.ts";
@@ -45,14 +45,14 @@ export async function defineNetzoConfig(
 ): Promise<Required<NetzoConfig>> {
   const NETZO_ENV = Deno.env.get("DENO_REGION") ? "production" : "development";
   const {
-    project: NETZO_PROJECT = Deno.env.get("NETZO_PROJECT")!,
+    project: NETZO_PROJECT_ID = Deno.env.get("NETZO_PROJECT_ID")!,
     plugins = [],
   } = partialConfig;
 
-  Deno.env.set("NETZO_ENV", NETZO_ENV);
-  Deno.env.set("NETZO_PROJECT", NETZO_PROJECT);
+  // if (!NETZO_PROJECT_ID) error(LOGS.missingProjectId);
 
-  console.log(Deno.args)
+  Deno.env.set("NETZO_ENV", NETZO_ENV);
+  Deno.env.set("NETZO_PROJECT_ID", NETZO_PROJECT_ID);
 
   const isTaskBuild = Deno.args[0] === "build";
 
@@ -65,7 +65,7 @@ export async function defineNetzoConfig(
 
     const { api } = netzo({ apiKey, baseURL: Deno.env.get("NETZO_API_URL") });
 
-    const project = await api.projects[NETZO_PROJECT].get<Project>();
+    const project = await api.projects[NETZO_PROJECT_ID].get<Project>();
     if (!project) logWarning(LOGS.notFoundProject);
 
     if (project?.envVars?.development) setEnvVars(project.envVars.development);
@@ -78,7 +78,7 @@ export async function defineNetzoConfig(
 
   const config: NetzoConfig = {
     ...partialConfig as NetzoConfig,
-    project: NETZO_PROJECT,
+    project: NETZO_PROJECT_ID,
   };
 
   return {

@@ -1,6 +1,5 @@
 // see https://github.com/netzo/netzo/issues/38
 import { Plugin } from "$fresh/src/server/mod.ts";
-import type { NetzoState } from "netzo/config/mod.ts";
 import { setup } from "./shared.ts";
 
 /**
@@ -18,7 +17,7 @@ import { setup } from "./shared.ts";
  *   );
  * }
  */
-export const bindSignal = (): Plugin<NetzoState> => {
+export const bindSignal = (): Plugin => {
   setup();
   const url = new URL("./main.ts", import.meta.url).href;
   const main = `data:application/javascript,import hydrate from "${url}";
