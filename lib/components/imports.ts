@@ -1,7 +1,7 @@
 export const baseImports = {
   "@/": "./",
   "netzo/": "https://deno.land/x/netzo@0.2.94/",
-  "$fresh/": "https://raw.githubusercontent.com/denoland/fresh/993f1020b6528452ca0df4e8b492fd09eaa63811/",
+  "$fresh/": "https://raw.githubusercontent.com/denoland/fresh/c8844ad98cd40edce5b82cfb3fc13122eb848756/",
   "preact": "https://esm.sh/preact@10.19.2",
   "preact/": "https://esm.sh/preact@10.19.2/",
   "preact-render-to-string": "https://esm.sh/*preact-render-to-string@6.2.2",
