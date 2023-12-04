@@ -80,8 +80,6 @@ export async function defineNetzoConfig(
     portal: project?.portal ?? {},
   };
 
-  // console.log(config)
-
   return {
     ...partialConfig,
     plugins: [
@@ -92,9 +90,10 @@ export async function defineNetzoConfig(
             path: "/",
             middleware: {
               handler: (_req, ctx) => {
-                Object.entries(state).forEach(([key, value]) => {
-                  ctx.state[key] ??= value
-                });
+                // Object.entries(state).forEach(([key, value]) => {
+                //   ctx.state[key] ??= value
+                // });
+                ctx.state = state;
                 return ctx.next();
               },
             },

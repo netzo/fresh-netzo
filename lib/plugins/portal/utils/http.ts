@@ -51,9 +51,9 @@ export function getCursor(url: URL) {
  * @example
  * ```ts
  * import { fetchValues } from "netzo/plugins/portal/utils/http.ts";
- * import type { Item } from "netzo/plugins/portal/utils/db.ts";
+ * import type { User } from "netzo/plugins/portal/utils/db.ts";
  *
- * const body = await fetchValues<Item>("https://hunt.deno.land/api/items", "12345");
+ * const body = await fetchValues<User>("https://hunt.deno.land/api/users", "12345");
  * body.values[0].id; // Returns "13f34b7e-5563-4001-98ed-9ee04d7af717"
  * body.values[0].url; // Returns "http://example.com"
  * body.cursor; // Returns "12346"

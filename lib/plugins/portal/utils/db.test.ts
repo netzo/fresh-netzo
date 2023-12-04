@@ -2,53 +2,15 @@ import { assertEquals, assertRejects } from "std/assert/mod.ts";
 import { ulid } from "std/ulid/mod.ts";
 import {
   collectValues,
-  createItem,
   createUser,
   createVote,
-  getItem,
   getUser,
   getUserBySession,
-  type Item,
-  listItems,
-  listItemsByUser,
-  listItemsVotedByUser,
-  randomItem,
   randomUser,
   updateUser,
   updateUserSession,
   type User,
 } from "./db.ts";
-
-Deno.test("[plugins/portal/utils/db] items", async () => {
-  const user = randomUser();
-  const item1: Item = {
-    ...randomItem(),
-    id: ulid(),
-    userLogin: user.login,
-  };
-  const item2: Item = {
-    ...randomItem(),
-    id: ulid(Date.now() + 1_000),
-    userLogin: user.login,
-  };
-
-  assertEquals(await getItem(item1.id), null);
-  assertEquals(await getItem(item2.id), null);
-  assertEquals(await collectValues(listItems()), []);
-  assertEquals(await collectValues(listItemsByUser(user.login)), []);
-
-  await createItem(item1);
-  await createItem(item2);
-  await assertRejects(async () => await createItem(item1));
-
-  assertEquals(await getItem(item1.id), item1);
-  assertEquals(await getItem(item2.id), item2);
-  assertEquals(await collectValues(listItems()), [item1, item2]);
-  assertEquals(await collectValues(listItemsByUser(user.login)), [
-    item1,
-    item2,
-  ]);
-});
 
 Deno.test("[plugins/portal/utils/db] user", async () => {
   const user = randomUser();
@@ -82,36 +44,4 @@ Deno.test("[plugins/portal/utils/db] user", async () => {
     Error,
     "Failed to update user session",
   );
-});
-
-Deno.test("[plugins/portal/utils/db] votes", async () => {
-  const item = randomItem();
-  const user = randomUser();
-  const vote = {
-    itemId: item.id,
-    userLogin: user.login,
-    createdAt: new Date(),
-  };
-
-  assertEquals(await collectValues(listItemsVotedByUser(user.login)), []);
-
-  await assertRejects(
-    async () => await createVote(vote),
-    Deno.errors.NotFound,
-    "Item not found",
-  );
-  await createItem(item);
-  await assertRejects(
-    async () => await createVote(vote),
-    Deno.errors.NotFound,
-    "User not found",
-  );
-  await createUser(user);
-  await createVote(vote);
-  item.score++;
-
-  assertEquals(await collectValues(listItemsVotedByUser(user.login)), [
-    item,
-  ]);
-  await assertRejects(async () => await createVote(vote));
 });

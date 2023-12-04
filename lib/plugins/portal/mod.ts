@@ -1,14 +1,11 @@
 import type { Plugin } from "$fresh/src/server/mod.ts";
 import type { OAuth2ClientConfig } from "deno_kv_oauth/mod.ts";
-import { deepMerge } from "std/collections/deep_merge.ts";
 import { type User } from "netzo/plugins/portal/utils/db.ts";
 import { sessionMiddlewares } from "./session.ts";
 import { errorHandlingMiddlewares } from "./error-handling.ts";
 import { portalRoutes } from "./portal.ts";
 
 export * from "deno_kv_oauth/mod.ts";
-
-const kv = await Deno.openKv();
 
 export type PortalOptions = {
   email: {}; // TODO: EmailClientConfig;
@@ -24,7 +21,6 @@ export type PortalOptions = {
 export type PortalState = {
   sessionId?: string;
   sessionUser?: User;
-  options: PortalOptions;
 };
 
 /**
@@ -41,17 +37,6 @@ export const portal = (options: PortalOptions): Plugin => {
   return {
     name: "portal",
     middlewares: [
-      {
-        path: "/",
-        middleware: {
-          handler: async (_req, ctx) => {
-            const { value: config } = await kv.get(["portal", "config"]);
-            options = config ? deepMerge(options, config) : options;
-            ctx.state.portal = { options };
-            return await ctx.next();
-          },
-        },
-      },
       ...sessionMiddlewares,
       ...errorHandlingMiddlewares,
     ],

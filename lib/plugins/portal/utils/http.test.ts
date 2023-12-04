@@ -1,7 +1,7 @@
 import { returnsNext, stub } from "std/testing/mock.ts";
 import { fetchValues, getCursor, redirect } from "./http.ts";
 import { assert, assertEquals, assertRejects } from "std/assert/mod.ts";
-import { Item, randomItem } from "./db.ts";
+import { User, randomUser } from "./db.ts";
 
 Deno.test("[plugins/portal/utils/http] redirect() defaults", () => {
   const location = "/hello-there";
@@ -34,7 +34,7 @@ Deno.test("[plugins/portal/utils/http] fetchValues()", async () => {
     new Response(null, { status: 404 }),
   );
   const resp2Body = {
-    values: [randomItem(), randomItem()],
+    values: [randomUser(), randomUser()],
     cursor: crypto.randomUUID(),
   };
   const resp2Cursor = crypto.randomUUID();
@@ -51,7 +51,7 @@ Deno.test("[plugins/portal/utils/http] fetchValues()", async () => {
     `Request failed: GET ${endpoint}`,
   );
   assertEquals(
-    await fetchValues<Item>(endpoint + "/api/items", resp2Cursor),
+    await fetchValues<User>(endpoint + "/api/users", resp2Cursor),
     resp2Body,
   );
 

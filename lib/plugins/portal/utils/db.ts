@@ -9,137 +9,23 @@ const kv = await Deno.openKv();
  *
  * @example
  * ```ts
- * import { collectValues, listItems, type Item } from "netzo/plugins/portal/utils/db.ts";
+ * import { collectValues, listUsers, type User } from "netzo/plugins/portal/utils/db.ts";
  *
- * const items = await collectValues<Item>(listItems());
- * items[0].id; // Returns "01H9YD2RVCYTBVJEYEJEV5D1S1";
- * items[0].userLogin; // Returns "snoop"
- * items[0].title; // Returns "example-title"
- * items[0].url; // Returns "http://example.com"
- * items[0].score; // Returns 420
+ * const users = await collectValues<User>(listUsers());
+ * users[0].id; // Returns "01H9YD2RVCYTBVJEYEJEV5D1S1";
+ * users[0].login; // Returns "snoop"
+ * users[0].sessionId; // Returns "xxx"
+ * users[0].name; // Returns "Snoop Dogg"
+ * users[0].email; // Returns "snoop.dogg@example"
+ * users[0].role; // Returns "admin"
+ * users[0].createdAt; // Returns "2021-08-31T00:00:00.000Z"
+ * users[0].updatedAt; // Returns "2021-08-31T00:00:00.000Z"
  * ```
  */
 export async function collectValues<T>(iter: Deno.KvListIterator<T>) {
   const values = [];
   for await (const { value } of iter) values.push(value);
   return values;
-}
-
-// items:
-
-export type Item = {
-  // Uses ULID
-  id: string;
-  userLogin: string;
-  title: string;
-  url: string;
-  score: number;
-};
-
-/** For testing */
-export function randomItem(): Item {
-  return {
-    id: ulid(),
-    userLogin: crypto.randomUUID(),
-    title: crypto.randomUUID(),
-    url: `http://${crypto.randomUUID()}.com`,
-    score: 0,
-  };
-}
-
-/**
- * Creates a new item in the database. Throws if the item already exists in
- * one of the indexes.
- *
- * @example
- * ```ts
- * import { createItem } from "netzo/plugins/portal/utils/db.ts";
- * import { ulid } from "std/ulid/mod.ts";
- *
- * await createItem({
- *   id: ulid(),
- *   userLogin: "john_doe",
- *   title: "example-title",
- *   url: "https://example.com",
- *   score: 0,
- * });
- * ```
- */
-export async function createItem(item: Item) {
-  const itemsKey = ["items", item.id];
-  const itemsByUserKey = ["items_by_user", item.userLogin, item.id];
-
-  const res = await kv.atomic()
-    .check({ key: itemsKey, versionstamp: null })
-    .check({ key: itemsByUserKey, versionstamp: null })
-    .set(itemsKey, item)
-    .set(itemsByUserKey, item)
-    .commit();
-
-  if (!res.ok) throw new Error("Failed to create item");
-}
-
-/**
- * Gets the item with the given ID from the database.
- *
- * @example
- * ```ts
- * import { getItem } from "netzo/plugins/portal/utils/db.ts";
- *
- * const item = await getItem("01H9YD2RVCYTBVJEYEJEV5D1S1");
- * item?.id; // Returns "01H9YD2RVCYTBVJEYEJEV5D1S1";
- * item?.userLogin; // Returns "snoop"
- * item?.title; // Returns "example-title"
- * item?.url; // Returns "http://example.com"
- * item?.score; // Returns 420
- * ```
- */
-export async function getItem(id: string) {
-  const res = await kv.get<Item>(["items", id]);
-  return res.value;
-}
-
-/**
- * Returns a {@linkcode Deno.KvListIterator} which can be used to iterate over
- * the items in the database, in chronological order.
- *
- * @example
- * ```ts
- * import { listItems } from "netzo/plugins/portal/utils/db.ts";
- *
- * for await (const entry of listItems()) {
- *   entry.value.id; // Returns "01H9YD2RVCYTBVJEYEJEV5D1S1"
- *   entry.value.userLogin; // Returns "pedro"
- *   entry.key; // Returns ["items_voted_by_user", "01H9YD2RVCYTBVJEYEJEV5D1S1", "pedro"]
- *   entry.versionstamp; // Returns "00000000000000010000"
- * }
- * ```
- */
-export function listItems(options?: Deno.KvListOptions) {
-  return kv.list<Item>({ prefix: ["items"] }, options);
-}
-
-/**
- * Returns a {@linkcode Deno.KvListIterator} which can be used to iterate over
- * the items by a given user in the database, in chronological order.
- *
- * @example
- * ```ts
- * import { listItemsByUser } from "netzo/plugins/portal/utils/db.ts";
- *
- * for await (const entry of listItemsByUser("pedro")) {
- *   entry.value.id; // Returns "01H9YD2RVCYTBVJEYEJEV5D1S1"
- *   entry.value.userLogin; // Returns "pedro"
- *   entry.key; // Returns ["items_voted_by_user", "01H9YD2RVCYTBVJEYEJEV5D1S1", "pedro"]
- *   entry.versionstamp; // Returns "00000000000000010000"
- * }
- * ```
- */
-export function listItemsByUser(
-  userLogin: string,
-  options?: Deno.KvListOptions,
-) {
-  return kv.list<Item>({ prefix: ["items_by_user", userLogin] }, options);
 }
 
 // users:

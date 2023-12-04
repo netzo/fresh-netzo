@@ -1,7 +1,7 @@
 import { defineConfig } from "netzo/plugins/unocss/mod.ts";
-import presetUno from "@unocss/preset-uno";
+import { presetNetzo } from "netzo/plugins/unocss/preset-netzo.ts";
 
 export default defineConfig({
-  presets: [presetUno()],
+  presets: [presetNetzo()],
   selfURL: import.meta.url,
 });

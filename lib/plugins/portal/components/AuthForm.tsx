@@ -21,7 +21,7 @@ import { isGitHubSetup } from "../utils/providers/github.ts";
 export function AuthForm(props: PortalState) {
   const {
     email,
-    oauth2,
+    oauth2 = {},
     title,
     description,
     color = "hsl(var(--primary))",
