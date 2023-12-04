@@ -1,5 +1,5 @@
 import { useSignal } from "@preact/signals";
-import type { PortalsState } from "netzo/plugins/portals/mod.ts";
+import type { PortalState } from "netzo/plugins/portal/mod.ts";
 import { cn } from "netzo/components/utils.ts";
 import { Button, buttonVariants } from "netzo/components/ui/button.tsx";
 import { Input } from "netzo/components/ui/input.tsx";
@@ -18,7 +18,7 @@ import { isGitHubSetup } from "../utils/providers/github.ts";
 
 // export type AuthFormProps = JSX.HTMLAttributes<HTMLDivElement> & {}
 
-export function AuthForm(props: PortalsState) {
+export function AuthForm(props: PortalState) {
   const {
     email,
     oauth2,
@@ -27,7 +27,7 @@ export function AuthForm(props: PortalsState) {
     color = "hsl(var(--primary))",
     // backgroundColor = "muted",
     logo,
-  } = props.options;
+  } = props;
   const isLoading = useSignal<boolean>(false);
 
   function onSubmit(event: Event) {

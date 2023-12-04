@@ -7,8 +7,8 @@ import {
 import { Cross1Icon } from "@radix-ui/react-icons";
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { clsx } from "clsx";
-import { User } from "netzo/plugins/portals/utils/db.ts";
-import { UserNav } from "netzo/plugins/portals/components/UserNav.tsx";
+import { User } from "netzo/plugins/portal/utils/db.ts";
+import { UserNav } from "netzo/plugins/portal/components/UserNav.tsx";
 
 export type HeaderNavItemProps = JSX.HTMLAttributes<HTMLAnchorElement> & {
   text: string;

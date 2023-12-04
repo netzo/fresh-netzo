@@ -7,7 +7,7 @@ import {
   type Item,
   randomItem,
   randomUser,
-} from "netzo/plugins/portals/utils/db.ts";
+} from "netzo/plugins/portal/utils/db.ts";
 import {
   assert,
   assertArrayIncludes,

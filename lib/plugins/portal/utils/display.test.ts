@@ -2,13 +2,13 @@ import { formatCurrency, pluralize, timeAgo } from "./display.ts";
 import { DAY, HOUR, MINUTE, SECOND } from "std/datetime/constants.ts";
 import { assertEquals, assertThrows } from "std/assert/mod.ts";
 
-Deno.test("[plugins/portals/utils/display] pluralize()", () => {
+Deno.test("[plugins/portal/utils/display] pluralize()", () => {
   assertEquals(pluralize(0, "item"), "0 items");
   assertEquals(pluralize(1, "item"), "1 item");
   assertEquals(pluralize(2, "item"), "2 items");
 });
 
-Deno.test("[plugins/portals/utils/display] timeAgo()", () => {
+Deno.test("[plugins/portal/utils/display] timeAgo()", () => {
   assertEquals(timeAgo(new Date(Date.now())), "just now");
   assertEquals(timeAgo(new Date(Date.now() - SECOND * 30)), "30 seconds ago");
   assertEquals(timeAgo(new Date(Date.now() - MINUTE)), "1 minute ago");
@@ -30,6 +30,6 @@ Deno.test("[plugins/portals/utils/display] timeAgo()", () => {
   );
 });
 
-Deno.test("[plugins/portals/utils/display] formatCurrency()", () => {
+Deno.test("[plugins/portal/utils/display] formatCurrency()", () => {
   assertEquals(formatCurrency(5, "USD"), "$5");
 });

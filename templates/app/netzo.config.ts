@@ -3,7 +3,7 @@ import { api } from "netzo/plugins/api/mod.ts";
 // import { bindSignal } from "netzo/plugins/bindSignal/mod.ts";
 import { errorPages } from "netzo/plugins/errorPages/mod.ts";
 // import { loader } from "netzo/plugins/loader/mod.ts";
-import { portals } from "netzo/plugins/portals/mod.ts";
+import { portal } from "netzo/plugins/portal/mod.ts";
 import { createGitHubOAuthConfig } from "deno_kv_oauth/mod.ts";
 import { unocss } from "netzo/plugins/unocss/mod.ts";
 import unocssConfig from "./uno.config.ts";
@@ -14,7 +14,7 @@ export default defineNetzoConfig({
     // bindSignal(),
     errorPages(),
     // loader(),
-    portals({
+    portal({
       email: {},
       oauth2: createGitHubOAuthConfig(),
       // NOTE: only links should be added here, everything else comes from UI in Netzo

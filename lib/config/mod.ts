@@ -1,14 +1,13 @@
 import type { FreshConfig } from "$fresh/src/server/mod.ts";
 import { netzo } from "../apis/netzo/mod.ts";
-import { error, log, LOGS, logWarning } from "../utils/console.ts";
+import { error, log, LOGS } from "../utils/console.ts";
 import { setEnvVars } from "../utils/mod.ts";
 import { Project } from "https://esm.sh/@netzo/api@1.0.52/lib/client.d.ts";
 import { AccessState } from "netzo/plugins/access/mod.ts";
 import { ApiState } from "netzo/plugins/api/mod.ts";
-import { PortalsState } from "netzo/plugins/portals/mod.ts";
+import { PortalState } from "netzo/plugins/portal/mod.ts";
 
 export type NetzoConfig = FreshConfig & {
-  project?: string;
   entrypoint?: string;
   importMap?: string;
   denoLock?: string;
@@ -21,11 +20,10 @@ export type NetzoConfig = FreshConfig & {
 };
 
 export type NetzoState = {
-  config: NetzoConfig;
   kv: Deno.Kv;
   access?: AccessState;
   api?: ApiState;
-  portals?: PortalsState;
+  portal?: PortalState;
   [k: string]: unknown;
 };
 
@@ -43,47 +41,66 @@ console.error = (msg) => {
 export async function defineNetzoConfig(
   partialConfig: Partial<NetzoConfig>,
 ): Promise<Required<NetzoConfig>> {
-  const NETZO_ENV = Deno.env.get("DENO_REGION") ? "production" : "development";
-  const {
-    project: NETZO_PROJECT_ID = Deno.env.get("NETZO_PROJECT_ID")!,
-    plugins = [],
-  } = partialConfig;
+  if (Deno.args[0] === "build") return partialConfig as Required<NetzoConfig>;
 
-  // if (!NETZO_PROJECT_ID) error(LOGS.missingProjectId);
+  const {
+    NETZO_ENV = Deno.env.get("DENO_REGION") ? "production" : "development",
+    NETZO_PROJECT_ID,
+    NETZO_API_KEY,
+    NETZO_API_URL,
+  } = Deno.env.toObject();
+  const { plugins = [] } = partialConfig;
+
+  if (!NETZO_PROJECT_ID) error(LOGS.missingProjectId);
+  if (!NETZO_API_KEY) error(LOGS.missingApiKey);
 
   Deno.env.set("NETZO_ENV", NETZO_ENV);
   Deno.env.set("NETZO_PROJECT_ID", NETZO_PROJECT_ID);
+  Deno.env.set("NETZO_API_KEY", NETZO_API_KEY);
+  Deno.env.set("NETZO_API_URL", NETZO_API_URL);
 
-  const isTaskBuild = Deno.args[0] === "build";
+  const { api } = netzo({ apiKey: NETZO_API_KEY, baseURL: NETZO_API_URL });
 
-  if (["development"].includes(NETZO_ENV) && !isTaskBuild) {
-    const apiKey = Deno.env.get("NETZO_API_KEY")!;
-    if (!apiKey) {
-      logWarning(LOGS.missingApiKey);
-      logWarning(LOGS.skippingLoadingOfEnvVars);
-    }
+  const project = await api.projects[NETZO_PROJECT_ID].get<Project>();
+  if (!project) error(LOGS.notFoundProject);
 
-    const { api } = netzo({ apiKey, baseURL: Deno.env.get("NETZO_API_URL") });
-
-    const project = await api.projects[NETZO_PROJECT_ID].get<Project>();
-    if (!project) logWarning(LOGS.notFoundProject);
-
-    if (project?.envVars?.development) setEnvVars(project.envVars.development);
-
-    const appUrl = Deno.env.get("NETZO_APP_URL") ?? "https://app.netzo.io";
-    log(
-      `Open in netzo at ${appUrl}/workspaces/${project.workspaceId}/projects/${project._id}`,
-    );
+  if (["development"].includes(NETZO_ENV)) {
+    setEnvVars(project.envVars?.development ?? {});
   }
 
-  const config: NetzoConfig = {
-    ...partialConfig as NetzoConfig,
-    project: NETZO_PROJECT_ID,
+  const appUrl = Deno.env.get("NETZO_APP_URL") ?? "https://app.netzo.io";
+  log(
+    `Open in netzo at ${appUrl}/workspaces/${project.workspaceId}/projects/${project._id}`,
+  );
+
+  const state: NetzoState = {
+    kv: await Deno.openKv(),
+    access: project?.access ?? {},
+    api: project?.api ?? {},
+    portal: project?.portal ?? {},
   };
 
+  // console.log(config)
+
   return {
-    ...config,
+    ...partialConfig,
     plugins: [
+      {
+        name: "config",
+        middlewares: [
+          {
+            path: "/",
+            middleware: {
+              handler: (_req, ctx) => {
+                Object.entries(state).forEach(([key, value]) => {
+                  ctx.state[key] ??= value
+                });
+                return ctx.next();
+              },
+            },
+          },
+        ],
+      },
       ...plugins,
     ],
   };

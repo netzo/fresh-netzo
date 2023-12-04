@@ -10,7 +10,7 @@ export default defineRoute<NetzoState>((_req, ctx) => {
     backgroundColor = "hsl(var(--muted))",
     // logo,
     caption,
-  } = ctx.state.portals!.options;
+  } = ctx.state.portal;
 
   return (
     <main
@@ -18,12 +18,12 @@ export default defineRoute<NetzoState>((_req, ctx) => {
     >
       <section className="grid flex-1 p-4 place-items-center">
         <div className="grid gap-6 w-full xs:w-[350px] max-w-[350px]">
-          <AuthForm {...ctx.state.portals} />
+          <AuthForm {...ctx.state.portal} />
 
           {caption && (
             <p
               className="px-8 text-sm text-center text-muted-foreground"
-              dangerouslySetInnerHTML={caption}
+              dangerouslySetInnerHTML={{ __html: caption }}
             />
           )}
         </div>

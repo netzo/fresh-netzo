@@ -7,7 +7,7 @@ import { db, kv } from "@/utils/db.ts";
 
 const dbSeed = async () => {
   const createPromises = [
-    kv.set(["portals", "config"], {
+    kv.set(["portal", "config"], {
       title: "CRM",
       description: "A CRM built with Netzo",
       color: "#171717",

@@ -3,7 +3,7 @@ import { fetchValues, getCursor, redirect } from "./http.ts";
 import { assert, assertEquals, assertRejects } from "std/assert/mod.ts";
 import { Item, randomItem } from "./db.ts";
 
-Deno.test("[plugins/portals/utils/http] redirect() defaults", () => {
+Deno.test("[plugins/portal/utils/http] redirect() defaults", () => {
   const location = "/hello-there";
 
   const resp = redirect(location);
@@ -13,7 +13,7 @@ Deno.test("[plugins/portals/utils/http] redirect() defaults", () => {
   assertEquals(resp.status, 303);
 });
 
-Deno.test("[plugins/portals/utils/http] redirect()", () => {
+Deno.test("[plugins/portal/utils/http] redirect()", () => {
   const location = "/hello-there";
   const status = 302;
 
@@ -24,12 +24,12 @@ Deno.test("[plugins/portals/utils/http] redirect()", () => {
   assertEquals(resp.status, status);
 });
 
-Deno.test("[plugins/portals/utils/http] getCursor()", () => {
+Deno.test("[plugins/portal/utils/http] getCursor()", () => {
   assertEquals(getCursor(new URL("http://example.com")), "");
   assertEquals(getCursor(new URL("http://example.com?cursor=here")), "here");
 });
 
-Deno.test("[plugins/portals/utils/http] fetchValues()", async () => {
+Deno.test("[plugins/portal/utils/http] fetchValues()", async () => {
   const resp1 = Promise.resolve(
     new Response(null, { status: 404 }),
   );

@@ -1,9 +1,9 @@
 import type { PluginMiddleware } from "$fresh/src/server/types.ts";
 import { errors } from "std/http/http_errors.ts";
-import { redirect } from "netzo/plugins/portals/utils/http.ts";
-import type { PortalsState } from "./mod.ts";
+import { redirect } from "netzo/plugins/portal/utils/http.ts";
+import type { PortalState } from "./mod.ts";
 
-export const errorHandlingMiddlewares: PluginMiddleware<PortalsState>[] = [
+export const errorHandlingMiddlewares: PluginMiddleware<PortalState>[] = [
   {
     path: "/",
     middleware: {

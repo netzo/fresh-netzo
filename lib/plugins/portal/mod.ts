@@ -1,16 +1,16 @@
 import type { Plugin } from "$fresh/src/server/mod.ts";
 import type { OAuth2ClientConfig } from "deno_kv_oauth/mod.ts";
 import { deepMerge } from "std/collections/deep_merge.ts";
-import { type User } from "netzo/plugins/portals/utils/db.ts";
+import { type User } from "netzo/plugins/portal/utils/db.ts";
 import { sessionMiddlewares } from "./session.ts";
 import { errorHandlingMiddlewares } from "./error-handling.ts";
-import { portalsRoutes } from "./portals.ts";
+import { portalRoutes } from "./portal.ts";
 
 export * from "deno_kv_oauth/mod.ts";
 
 const kv = await Deno.openKv();
 
-export type PortalsOptions = {
+export type PortalOptions = {
   email: {}; // TODO: EmailClientConfig;
   oauth2: OAuth2ClientConfig;
   title?: string;
@@ -21,10 +21,10 @@ export type PortalsOptions = {
   caption?: string;
 };
 
-export type PortalsState = {
+export type PortalState = {
   sessionId?: string;
   sessionUser?: User;
-  options: PortalsOptions;
+  options: PortalOptions;
 };
 
 /**
@@ -37,17 +37,17 @@ export type PortalsState = {
  * - `GET /oauth/callback` for the callback page
  * - `GET /oauth/signout` for the sign-out page
  */
-export const portals = (options: PortalsOptions): Plugin => {
+export const portal = (options: PortalOptions): Plugin => {
   return {
-    name: "portals",
+    name: "portal",
     middlewares: [
       {
         path: "/",
         middleware: {
           handler: async (_req, ctx) => {
-            const { value: config } = await kv.get(["portals", "config"]);
+            const { value: config } = await kv.get(["portal", "config"]);
             options = config ? deepMerge(options, config) : options;
-            ctx.state.portals = { options };
+            ctx.state.portal = { options };
             return await ctx.next();
           },
         },
@@ -56,7 +56,7 @@ export const portals = (options: PortalsOptions): Plugin => {
       ...errorHandlingMiddlewares,
     ],
     routes: [
-      ...portalsRoutes(options),
+      ...portalRoutes(options),
     ],
   };
 };

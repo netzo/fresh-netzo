@@ -9,7 +9,7 @@ const kv = await Deno.openKv();
  *
  * @example
  * ```ts
- * import { collectValues, listItems, type Item } from "netzo/plugins/portals/utils/db.ts";
+ * import { collectValues, listItems, type Item } from "netzo/plugins/portal/utils/db.ts";
  *
  * const items = await collectValues<Item>(listItems());
  * items[0].id; // Returns "01H9YD2RVCYTBVJEYEJEV5D1S1";
@@ -53,7 +53,7 @@ export function randomItem(): Item {
  *
  * @example
  * ```ts
- * import { createItem } from "netzo/plugins/portals/utils/db.ts";
+ * import { createItem } from "netzo/plugins/portal/utils/db.ts";
  * import { ulid } from "std/ulid/mod.ts";
  *
  * await createItem({
@@ -84,7 +84,7 @@ export async function createItem(item: Item) {
  *
  * @example
  * ```ts
- * import { getItem } from "netzo/plugins/portals/utils/db.ts";
+ * import { getItem } from "netzo/plugins/portal/utils/db.ts";
  *
  * const item = await getItem("01H9YD2RVCYTBVJEYEJEV5D1S1");
  * item?.id; // Returns "01H9YD2RVCYTBVJEYEJEV5D1S1";
@@ -105,7 +105,7 @@ export async function getItem(id: string) {
  *
  * @example
  * ```ts
- * import { listItems } from "netzo/plugins/portals/utils/db.ts";
+ * import { listItems } from "netzo/plugins/portal/utils/db.ts";
  *
  * for await (const entry of listItems()) {
  *   entry.value.id; // Returns "01H9YD2RVCYTBVJEYEJEV5D1S1"
@@ -125,7 +125,7 @@ export function listItems(options?: Deno.KvListOptions) {
  *
  * @example
  * ```ts
- * import { listItemsByUser } from "netzo/plugins/portals/utils/db.ts";
+ * import { listItemsByUser } from "netzo/plugins/portal/utils/db.ts";
  *
  * for await (const entry of listItemsByUser("pedro")) {
  *   entry.value.id; // Returns "01H9YD2RVCYTBVJEYEJEV5D1S1"
@@ -174,7 +174,7 @@ export function randomUser(): User {
  *
  * @example
  * ```ts
- * import { createUser } from "netzo/plugins/portals/utils/db.ts";
+ * import { createUser } from "netzo/plugins/portal/utils/db.ts";
  *
  * await createUser({
  *   login: "john",
@@ -186,8 +186,8 @@ export async function createUser(user: User) {
   user.id = ulid();
   user.createdAt = new Date().toISOString();
   user.updatedAt = user.createdAt;
-  const usersKey = ["portals", "users", user.login];
-  const usersBySessionKey = ["portals", "usersBySession", user.sessionId];
+  const usersKey = ["portal", "users", user.login];
+  const usersBySessionKey = ["portal", "usersBySession", user.sessionId];
 
   const atomicOp = kv.atomic()
     .check({ key: usersKey, versionstamp: null })
@@ -204,7 +204,7 @@ export async function createUser(user: User) {
  *
  * @example
  * ```ts
- * import { updateUser } from "netzo/plugins/portals/utils/db.ts";
+ * import { updateUser } from "netzo/plugins/portal/utils/db.ts";
  *
  * await updateUser({
  *   login: "john",
@@ -215,8 +215,8 @@ export async function createUser(user: User) {
  */
 export async function updateUser(user: User) {
   user.updatedAt ||= new Date().toISOString();
-  const usersKey = ["portals", "users", user.login];
-  const usersBySessionKey = ["portals", "usersBySession", user.sessionId];
+  const usersKey = ["portal", "users", user.login];
+  const usersBySessionKey = ["portal", "usersBySession", user.sessionId];
 
   const atomicOp = kv.atomic()
     .set(usersKey, user)
@@ -231,7 +231,7 @@ export async function updateUser(user: User) {
  *
  * @example
  * ```ts
- * import { updateUserSession } from "netzo/plugins/portals/utils/db.ts";
+ * import { updateUserSession } from "netzo/plugins/portal/utils/db.ts";
  *
  * await updateUserSession({
  *   login: "john",
@@ -242,9 +242,9 @@ export async function updateUser(user: User) {
  */
 export async function updateUserSession(user: User, sessionId: string) {
   user.updatedAt = new Date().toISOString();
-  const userKey = ["portals", "users", user.login];
-  const oldUserBySessionKey = ["portals", "usersBySession", user.sessionId];
-  const newUserBySessionKey = ["portals", "usersBySession", sessionId];
+  const userKey = ["portal", "users", user.login];
+  const oldUserBySessionKey = ["portal", "usersBySession", user.sessionId];
+  const newUserBySessionKey = ["portal", "usersBySession", sessionId];
   const newUser: User = { ...user, sessionId };
 
   const atomicOp = kv.atomic()
@@ -262,7 +262,7 @@ export async function updateUserSession(user: User, sessionId: string) {
  *
  * @example
  * ```ts
- * import { getUser } from "netzo/plugins/portals/utils/db.ts";
+ * import { getUser } from "netzo/plugins/portal/utils/db.ts";
  *
  * const user = await getUser("jack");
  * user?.login; // Returns "jack"
@@ -271,7 +271,7 @@ export async function updateUserSession(user: User, sessionId: string) {
  * ```
  */
 export async function getUser(login: string) {
-  const res = await kv.get<User>(["portals", "users", login]);
+  const res = await kv.get<User>(["portal", "users", login]);
   return res.value;
 }
 
@@ -284,7 +284,7 @@ export async function getUser(login: string) {
  *
  * @example
  * ```ts
- * import { getUserBySession } from "netzo/plugins/portals/utils/db.ts";
+ * import { getUserBySession } from "netzo/plugins/portal/utils/db.ts";
  *
  * const user = await getUserBySession("xxx");
  * user?.login; // Returns "jack"
@@ -293,7 +293,7 @@ export async function getUser(login: string) {
  * ```
  */
 export async function getUserBySession(sessionId: string) {
-  const key = ["portals", "usersBySession", sessionId];
+  const key = ["portal", "usersBySession", sessionId];
   const eventualRes = await kv.get<User>(key, {
     consistency: "eventual",
   });
@@ -308,7 +308,7 @@ export async function getUserBySession(sessionId: string) {
  *
  * @example
  * ```ts
- * import { listUsers } from "netzo/plugins/portals/utils/db.ts";
+ * import { listUsers } from "netzo/plugins/portal/utils/db.ts";
  *
  * for await (const entry of listUsers()) {
  *   entry.value.login; // Returns "jack"
@@ -318,5 +318,5 @@ export async function getUserBySession(sessionId: string) {
  * ```
  */
 export function listUsers(options?: Deno.KvListOptions) {
-  return kv.list<User>({ prefix: ["portals", "users"] }, options);
+  return kv.list<User>({ prefix: ["portal", "users"] }, options);
 }
