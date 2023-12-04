@@ -3,9 +3,9 @@ import { netzo } from "../apis/netzo/mod.ts";
 import { error, log, LOGS, logWarning } from "../utils/console.ts";
 import { setEnvVars } from "../utils/mod.ts";
 import { Project } from "https://esm.sh/@netzo/api@1.0.52/lib/client.d.ts";
-import { PortalsState } from "netzo/plugins/portals/mod.ts";
+import { AccessState } from "netzo/plugins/access/mod.ts";
 import { ApiState } from "netzo/plugins/api/mod.ts";
-import { VisibilityState } from "netzo/plugins/visibility/mod.ts";
+import { PortalsState } from "netzo/plugins/portals/mod.ts";
 
 export type NetzoConfig = FreshConfig & {
   project?: string;
@@ -23,9 +23,9 @@ export type NetzoConfig = FreshConfig & {
 export type NetzoState = {
   config: NetzoConfig;
   kv: Deno.Kv;
+  access?: AccessState;
   api?: ApiState;
   portals?: PortalsState;
-  visibility?: VisibilityState;
   [k: string]: unknown;
 };
 

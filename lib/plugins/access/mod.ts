@@ -23,11 +23,11 @@ making a request to a project/deployment from any source:
   • referer: null | "https://hoppscotch.io/"
 */
 
-export type VisibilityOptions = {
+export type AccessOptions = {
   level: "private" | "public";
 };
 
-export type VisibilityState = {
+export type AccessState = {
   origin: string | null;
   referer: string | null;
   isApp: boolean;
@@ -35,11 +35,11 @@ export type VisibilityState = {
 
 /**
  * A fresh plugin that registers middleware to handle
- * visibility of projects based on the `visibility` option.
+ * access of projects based on the `access` option.
  */
-export const visibility = (options: VisibilityOptions): Plugin => {
+export const access = (options: AccessOptions): Plugin => {
   return {
-    name: "visibility",
+    name: "access",
     middlewares: [
       {
         path: "/",
@@ -62,7 +62,7 @@ export const visibility = (options: VisibilityOptions): Plugin => {
               !!url && new URL(url).host.endsWith("netzo.io");
             const isApp = assertIsApp(origin!) || assertIsApp(referer!);
 
-            ctx.state.visibility = { origin, referer, isApp };
+            ctx.state.access = { origin, referer, isApp };
 
             switch (level) {
               case "private": {
