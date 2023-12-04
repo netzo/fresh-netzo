@@ -1,4 +1,5 @@
-import type { PageProps } from "$fresh/src/server/mod.ts";
+import { defineRoute } from "$fresh/src/server/mod.ts";
+import type { NetzoState } from "../../config/mod.ts";
 
 type Props = {
   code: number;
@@ -28,18 +29,18 @@ const ErrorPage = (props: Props) => {
   );
 };
 
-export const ErrorPage404 = ({ url }: PageProps) => {
+export const ErrorPage404 = defineRoute<NetzoState>((_req, { url }) => {
   return (
     <ErrorPage code={404} name="Not Found">
       No matching route for <code class="font-mono">{url.pathname}</code>
     </ErrorPage>
   );
-};
+});
 
-export const ErrorPage500 = ({ error }: PageProps) => {
+export const ErrorPage500 = defineRoute<NetzoState>((_req, { error }) => {
   return (
     <ErrorPage code={500} name="Server Error">
       {(error as Error).message}
     </ErrorPage>
   );
-};
+});

@@ -1,8 +1,8 @@
-import { PageProps } from "$fresh/src/server/mod.ts";
+import { defineRoute } from "$fresh/src/server/mod.ts";
 import { AuthForm } from "./components/AuthForm.tsx";
-import type { PortalsState } from "./mod.ts";
+import type { NetzoState } from "../../config/mod.ts";
 
-export default (props: PageProps<unknown, PortalsState>) => {
+export default defineRoute<NetzoState>((_req, ctx) => {
   const {
     // title = "Sign In",
     // description,
@@ -10,7 +10,7 @@ export default (props: PageProps<unknown, PortalsState>) => {
     backgroundColor = "hsl(var(--muted))",
     // logo,
     caption,
-  } = props.state.portals!.options;
+  } = ctx.state.portals!.options;
 
   return (
     <main
@@ -18,19 +18,13 @@ export default (props: PageProps<unknown, PortalsState>) => {
     >
       <section className="grid flex-1 p-4 place-items-center">
         <div className="grid gap-6 w-full xs:w-[350px] max-w-[350px]">
-          <AuthForm {...props.state.portals} />
+          <AuthForm {...ctx.state.portals} />
 
           {caption && (
-            <p className="px-8 text-sm text-center text-muted-foreground">
-              Continuing means you agree to the{"  "}
-              <a
-                href={caption.url}
-                target="_blank"
-                className="underline underline-offset-4 hover:text-primary"
-              >
-                {caption.text}
-              </a>.
-            </p>
+            <p
+              className="px-8 text-sm text-center text-muted-foreground"
+              dangerouslySetInnerHTML={caption}
+            />
           )}
         </div>
       </section>
@@ -46,4 +40,4 @@ export default (props: PageProps<unknown, PortalsState>) => {
       </footer>
     </main>
   );
-};
+});

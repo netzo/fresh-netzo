@@ -20,9 +20,7 @@ export const appLayout = (options: AppLayoutOptions): Plugin => {
     routes: [
       {
         path: "/_app",
-        handler: (_req, ctx) => {
-          return ctx.render(AppLayout(options));
-        },
+        component: AppLayout,
       },
     ],
   };

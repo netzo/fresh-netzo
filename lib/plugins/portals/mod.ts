@@ -18,10 +18,7 @@ export type PortalsOptions = {
   color?: string;
   backgroundColor?: string;
   logo?: string;
-  caption?: {
-    text: string;
-    url: string;
-  };
+  caption?: string;
 };
 
 export type PortalsState = {

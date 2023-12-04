@@ -43,42 +43,42 @@ export function AuthForm(props: PortalsState) {
     const getButtonProps = () => {
       if (false) {
         return {
-          icon: <IconCustom className="mr-2 h-4 w-4" />,
+          icon: <IconCustom className="w-4 h-4 mr-2" />,
           name: "OAuth",
         };
       } else if (false) {
         return {
-          icon: <IconGoogle className="mr-2 h-4 w-4" />,
+          icon: <IconGoogle className="w-4 h-4 mr-2" />,
           name: "Google",
         };
       } else if (false) {
         return {
-          icon: <IconAzure className="mr-2 h-4 w-4" />,
+          icon: <IconAzure className="w-4 h-4 mr-2" />,
           name: "Azure",
         };
       } else if (isGitHubSetup()) {
         return {
-          icon: <IconGithub className="mr-2 h-4 w-4" />,
+          icon: <IconGithub className="w-4 h-4 mr-2" />,
           name: "GitHub",
         };
       } else if (false) {
         return {
-          icon: <IconGitlab className="mr-2 h-4 w-4" />,
+          icon: <IconGitlab className="w-4 h-4 mr-2" />,
           name: "GitLab",
         };
       } else if (false) {
         return {
-          icon: <IconAuth0 className="mr-2 h-4 w-4" />,
+          icon: <IconAuth0 className="w-4 h-4 mr-2" />,
           name: "Auth0",
         };
       } else if (false) {
         return {
-          icon: <IconOkta className="mr-2 h-4 w-4" />,
+          icon: <IconOkta className="w-4 h-4 mr-2" />,
           name: "Okta",
         };
       } else {
         return {
-          icon: <IconCustom className="mr-2 h-4 w-4" />,
+          icon: <IconCustom className="w-4 h-4 mr-2" />,
           name: "OAuth",
         };
       }
@@ -95,7 +95,7 @@ export function AuthForm(props: PortalsState) {
         className={cn(buttonVariants({ variant: "outline" }))}
       >
         {isLoading.value
-          ? <IconSpinner className="mr-2 h-4 w-4 animate-spin" />
+          ? <IconSpinner className="w-4 h-4 mr-2 animate-spin" />
           : props.icon} {props.name}
       </a>
     );
@@ -146,7 +146,7 @@ export function AuthForm(props: PortalsState) {
                   className={`bg-[${color}]`}
                 >
                   {isLoading.value && (
-                    <IconSpinner className="mr-2 h-4 w-4 animate-spin" />
+                    <IconSpinner className="w-4 h-4 mr-2 animate-spin" />
                   )}
                   Sign In with Email
                 </Button>

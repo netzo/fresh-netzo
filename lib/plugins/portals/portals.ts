@@ -15,7 +15,6 @@ export const portalsRoutes = (options: PortalsOptions): PluginRoute[] => {
   return [
     {
       path: "/auth",
-      handler: (_req, ctx) => ctx.render(),
       component: Auth,
     },
     {

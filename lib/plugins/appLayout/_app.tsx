@@ -1,10 +1,10 @@
-import type { JSX } from "preact";
+import { defineApp } from "$fresh/src/server/mod.ts";
 import { buttonVariants } from "netzo/components/ui/button.tsx";
-import type { AppLayoutState } from "./mod.ts";
+import type { NetzoState } from "../../config/mod.ts";
 import { cn } from "../../components/utils.ts";
 
-export default (props: AppLayoutState) => {
-  const { sessionId, isAuthenticated, options } = props;
+export default defineApp<NetzoState>((_req, ctx) => {
+  const { sessionId, isAuthenticated, options } = ctx.state;
   const { title, description, favicon, image } = options;
 
   return (
@@ -51,4 +51,4 @@ export default (props: AppLayoutState) => {
       </body>
     </html>
   );
-};
+});
