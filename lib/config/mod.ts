@@ -1,3 +1,5 @@
+// uses std/dotenv instead of --env flag so "netzo <COMMAND>" works as well
+import "https://deno.land/std@0.208.0/dotenv/load.ts";
 import type { FreshConfig } from "$fresh/src/server/mod.ts";
 import { netzo } from "../apis/netzo/mod.ts";
 import { error, log, LOGS } from "../utils/console.ts";
@@ -47,7 +49,7 @@ export async function defineNetzoConfig(
     NETZO_ENV = Deno.env.get("DENO_REGION") ? "production" : "development",
     NETZO_PROJECT_ID,
     NETZO_API_KEY,
-    NETZO_API_URL,
+    NETZO_API_URL = "https://api.netzo.io",
   } = Deno.env.toObject();
   const { plugins = [] } = partialConfig;
 
