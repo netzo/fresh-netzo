@@ -1,7 +1,7 @@
 import { returnsNext, stub } from "std/testing/mock.ts";
 import { fetchValues, getCursor, redirect } from "./http.ts";
 import { assert, assertEquals, assertRejects } from "std/assert/mod.ts";
-import { User, randomUser } from "./db.ts";
+import { randomUser, User } from "./db.ts";
 
 Deno.test("[plugins/portal/utils/http] redirect() defaults", () => {
   const location = "/hello-there";

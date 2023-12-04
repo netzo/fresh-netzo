@@ -30,7 +30,7 @@ export type Args = {
 // deno-lint-ignore no-explicit-any
 export default async function (rawArgs: Record<string, any>): Promise<void> {
   const {
-    NETZO_PROJECT = null,
+    NETZO_PROJECT_ID = null,
     NETZO_API_KEY = null,
     NETZO_API_URL = "https://api.netzo.io",
     NETZO_APP_URL = "https://app.netzo.io",
@@ -38,7 +38,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
 
   const args: Args = {
     help: !!rawArgs.help,
-    project: rawArgs.project ? String(rawArgs.project) : NETZO_PROJECT,
+    project: rawArgs.project ? String(rawArgs.project) : NETZO_PROJECT_ID,
     apiKey: rawArgs["api-key"] ? String(rawArgs["api-key"]) : NETZO_API_KEY,
     apiUrl: rawArgs["api-url"] ?? NETZO_API_URL,
     appUrl: rawArgs["app-url"] ?? NETZO_APP_URL,

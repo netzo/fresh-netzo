@@ -10,7 +10,7 @@ import { MINIMUM_DENO_VERSION, VERSION } from "./src/version.ts";
 import { fetchReleases, getConfigPaths } from "./src/utils/info.ts";
 
 // ensure .env is loaded (even if not using --env)
-import "https://deno.land/std@0.205.0/dotenv/load.ts";
+import "https://deno.land/std@0.208.0/dotenv/load.ts";
 
 const help = `netzo ${VERSION}
 Command line tool for Netzo.

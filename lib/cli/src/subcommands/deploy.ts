@@ -72,7 +72,7 @@ export type Args = {
 // deno-lint-ignore no-explicit-any
 export default async function (rawArgs: Record<string, any>): Promise<void> {
   const {
-    NETZO_PROJECT = null,
+    NETZO_PROJECT_ID = null,
     NETZO_API_KEY = null,
     NETZO_API_URL = "https://api.netzo.io",
     NETZO_APP_URL = "https://app.netzo.io",
@@ -83,7 +83,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     static: !rawArgs["no-static"], // negate the flag
     prod: !!rawArgs.prod,
     description: rawArgs.description ? String(rawArgs.description) : null,
-    project: rawArgs.project ? String(rawArgs.project) : NETZO_PROJECT,
+    project: rawArgs.project ? String(rawArgs.project) : NETZO_PROJECT_ID,
     importMap: rawArgs["import-map"] ? String(rawArgs["import-map"]) : null,
     denoLock: rawArgs["deno-lock"] ? String(rawArgs["deno-lock"]) : null,
     exclude: rawArgs.exclude?.split(","),
