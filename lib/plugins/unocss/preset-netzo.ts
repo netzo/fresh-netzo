@@ -9,7 +9,7 @@ import {
   presetUno,
   type Theme,
 } from "https://esm.sh/@unocss/preset-uno@0.55.2?bundle";
-import { presetShadcn } from "./preset-shadcn.ts";
+import { presetShadcn } from "./preset-shadcn/mod.ts";
 
 // @unocss-include
 

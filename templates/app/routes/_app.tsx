@@ -14,7 +14,6 @@ export default defineApp<NetzoState>((req, ctx) => {
     <html className="w-full h-full overflow-x-hidden">
       <head>
         {/* <Head {...head} href={ctx.url.href} /> */}
-        <link rel="stylesheet" href="/styles.css" />
       </head>
       <body className="w-full h-full overflow-x-hidden">
         <ctx.Component />
