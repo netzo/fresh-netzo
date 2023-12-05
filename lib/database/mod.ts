@@ -1,5 +1,5 @@
 import { multiSet } from "https://deno.land/x/kv_utils@1.1.1/mod.ts";
-import { monotonicFactory } from "https://deno.land/x/ulid@v0.3.1/mod.ts";
+import { monotonicFactory } from "https://deno.land/x/ulid@v0.3.0/mod.ts";
 import { filterObjectsByKeyValues } from "../utils/mod.ts";
 
 export const ulid = monotonicFactory();
