@@ -24,8 +24,11 @@ Deploy a project with static files to Netzo.
 To deploy a local project
   netzo deploy --project=<PROJECT_ID> main.ts
 
+To deploy a local project after running a build task:
+  netzo deploy --project=<PROJECT_ID> --build main.
+
 To deploy a local project and mark it as production:
-  netzo deploy --project=<PROJECT_ID> --prod main.ts
+  netzo deploy --project=<PROJECT_ID> --prod main.
 
 To deploy a local project without static files:
   netzo deploy --project=<PROJECT_ID> --no-static main.ts
@@ -43,6 +46,7 @@ OPTIONS:
         --deno-lock=<FILE>       Use deno lock file
     -h, --help                   Prints help information
         --no-static              Don't include the files in the CWD as static files
+        --build                  Runs custom build task (via "deno task build") before deploying
         --prod                   Create a production deployment (default is preview deployment)
         --description=<TEXT>     A description of the deployment (like a git commit message)
     -p, --project=<PROJECT_ID>   The ID of the project to deploy to
@@ -56,6 +60,7 @@ ARGS:
 export type Args = {
   help: boolean;
   static: boolean;
+  build: boolean;
   prod: boolean;
   description: string | null;
   exclude?: string[];
@@ -81,6 +86,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
   const args: Args = {
     help: !!rawArgs.help,
     static: !rawArgs["no-static"], // negate the flag
+    build: !!rawArgs.build,
     prod: !!rawArgs.prod,
     description: rawArgs.description ? String(rawArgs.description) : null,
     project: rawArgs.project ? String(rawArgs.project) : NETZO_PROJECT_ID,
@@ -116,6 +122,14 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     error("Missing project ID.");
   }
 
+  if (args.build) {
+    const process = new Deno.Command(Deno.execPath(), {
+      args: ["task", "build"],
+    }).spawn();
+    const { success } = await process.status;
+    if (!success) error(LOGS.buildFailed);
+  }
+
   await deploy(
     {
       entrypoint: await parseEntrypoint(entrypoint).catch((e) => error(e)),
@@ -128,6 +142,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
         : await parseEntrypoint(args.denoLock, undefined, "deno lock")
           .catch((e) => error(e)),
       static: args.static,
+      build: args.build,
       prod: args.prod,
       description: args.description,
       project: args.project,
@@ -146,6 +161,7 @@ type DeployOpts = {
   importMapUrl: URL | null;
   denoLockUrl: URL | null;
   static: boolean;
+  build: boolean;
   prod: boolean;
   description: string | null;
   exclude?: string[];

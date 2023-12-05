@@ -12,6 +12,7 @@ export const LOGS = {
     "Missing API key. Set via --api-key flag or NETZO_API_KEY environment variable.",
   missingProjectId:
     "Missing project ID. Set via --project flag or NETZO_PROJECT_ID environment variable.",
+  buildFailed: "Build failed. Fix issues or try running without --build.",
   skippingLoadingOfEnvVars:
     `Skipping loading of "development" environment variables.`,
   notFoundProject: "Project not found. Check the project ID and API key.",
