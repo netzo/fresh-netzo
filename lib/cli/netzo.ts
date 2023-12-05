@@ -47,6 +47,7 @@ const args = parseArgs(Deno.args, {
   },
   boolean: [
     "help",
+    "build",
     "prod",
     "static",
     "version",
