@@ -6,8 +6,8 @@ import { presetIcons } from "https://esm.sh/@unocss/preset-icons@0.58.0/browser?
 import { presetTypography } from "https://esm.sh/@unocss/preset-typography@0.58.0?target=esnext";
 import {
   presetUno,
-  type Theme,
   type PresetUnoOptions,
+  type Theme,
 } from "https://esm.sh/@unocss/preset-uno@0.58.0?target=esnext";
 import { presetShadcn } from "./preset-shadcn/mod.ts";
 import type { PresetShadcnOptions } from "./preset-shadcn/types.ts";
@@ -25,7 +25,9 @@ export type PresetNetzoOptions = PresetUnoOptions & {
   radius?: PresetShadcnOptions["radius"];
 };
 
-export function presetNetzo(options: PresetNetzoOptions = {}): PresetOrFactory<Theme> | PresetOrFactory<Theme>[] {
+export function presetNetzo(
+  options: PresetNetzoOptions = {},
+): PresetOrFactory<Theme> | PresetOrFactory<Theme>[] {
   return {
     ...options,
 
@@ -64,7 +66,6 @@ export function presetNetzo(options: PresetNetzoOptions = {}): PresetOrFactory<T
         `,
       },
     ],
-
     // NOTE: build step required for transformers (see @unocss/unocss#1673)
     // transformers: [transformerDirectives(), transformerVariantGroup()],
   };

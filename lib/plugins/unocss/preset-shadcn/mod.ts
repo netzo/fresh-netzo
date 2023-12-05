@@ -322,7 +322,6 @@ export function presetShadcn(
         sm: "calc(var(--radius) - 4px)",
       },
     },
-
     // NOTE: build step required for transformers (see @unocss/unocss#1673)
     // transformers: [transformerDirectives(), transformerVariantGroup()],
   };

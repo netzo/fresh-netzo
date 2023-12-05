@@ -6,6 +6,6 @@ export default defineConfig({
     presetNetzo({
       color: "zinc",
       radius: 0.5,
-    })
+    }),
   ],
 });

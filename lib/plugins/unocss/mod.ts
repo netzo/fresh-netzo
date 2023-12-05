@@ -7,6 +7,7 @@ import type { Theme } from "https://esm.sh/@unocss/preset-uno@0.58.0?target=esne
 import { Plugin, type PluginRenderStyleTag } from "$fresh/src/server/mod.ts";
 import { dirname, fromFileUrl, join, walk } from "$fresh/src/server/deps.ts";
 import { exists } from "std/fs/exists.ts";
+import presetNetzo from "./preset-netzo.ts";
 
 type PreactOptions = typeof preactOptions & { __b?: (vnode: VNode) => void };
 
@@ -82,7 +83,14 @@ export function installPreactHook(classes: Set<string>) {
 
 /** UnoCSS plugin - automatically generates CSS utility classes */
 export const unocss = (
-  { config, aot = true, ssr = true, csr = true }: UnocssOptions = {},
+  {
+    config = {
+      presets: [presetNetzo({ color: "zinc", radius: 0.5 })],
+    },
+    aot = true,
+    ssr = true,
+    csr = true,
+  }: UnocssOptions = {},
 ): Plugin => {
   // A uno.config.ts file is required in the project directory if a config object is not provided,
   // or to use the browser runtime
