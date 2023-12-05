@@ -28,7 +28,7 @@ To deploy a local project after running a build task:
   netzo deploy --project=<PROJECT_ID> --build main.
 
 To deploy a local project and mark it as production:
-  netzo deploy --project=<PROJECT_ID> --prod main.
+  netzo deploy --project=<PROJECT_ID> --production main.
 
 To deploy a local project without static files:
   netzo deploy --project=<PROJECT_ID> --no-static main.ts
@@ -47,7 +47,7 @@ OPTIONS:
     -h, --help                   Prints help information
         --no-static              Don't include the files in the CWD as static files
         --build                  Runs custom build task (via "deno task build") before deploying
-        --prod                   Create a production deployment (default is preview deployment)
+        --production                   Create a production deployment (default is preview deployment)
         --description=<TEXT>     A description of the deployment (like a git commit message)
     -p, --project=<PROJECT_ID>   The ID of the project to deploy to
         --dry-run                Dry run the deployment process
@@ -61,7 +61,7 @@ export type Args = {
   help: boolean;
   static: boolean;
   build: boolean;
-  prod: boolean;
+  production: boolean;
   description: string | null;
   exclude?: string[];
   include?: string[];
@@ -87,7 +87,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     help: !!rawArgs.help,
     static: !rawArgs["no-static"], // negate the flag
     build: !!rawArgs.build,
-    prod: !!rawArgs.prod,
+    production: !!rawArgs.production,
     description: rawArgs.description ? String(rawArgs.description) : null,
     project: rawArgs.project ? String(rawArgs.project) : NETZO_PROJECT_ID,
     importMap: rawArgs["import-map"] ? String(rawArgs["import-map"]) : null,
@@ -143,7 +143,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
           .catch((e) => error(e)),
       static: args.static,
       build: args.build,
-      prod: args.prod,
+      production: args.production,
       description: args.description,
       project: args.project,
       include: args.include?.map((pattern) => normalize(pattern)),
@@ -162,7 +162,7 @@ type DeployOpts = {
   denoLockUrl: URL | null;
   static: boolean;
   build: boolean;
-  prod: boolean;
+  production: boolean;
   description: string | null;
   exclude?: string[];
   include?: string[];
@@ -205,9 +205,9 @@ async function deploy(opts: DeployOpts): Promise<void> {
 
   if (deployments.length === 0) {
     wait("").start().info(
-      "Empty project detected, automatically pushing initial deployment to production (use --prod for further updates).",
+      "Empty project detected, automatically pushing initial deployment to production (use --production for further updates).",
     );
-    opts.prod = true;
+    opts.production = true;
   }
 
   let entryPointUrl = opts.entrypoint ?? project.config?.entrypoint;
@@ -273,7 +273,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
   );
 
   const data: DeploymentData = {
-    production: opts.prod,
+    production: opts.production,
     // deno:
     entryPointUrl: entryPointUrl.href, // e.g. main.ts
     importMapUrl: importMapUrl?.href || null,
@@ -326,7 +326,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
             deploySpinner?.succeed(message);
             const domain = message.split(" ").pop();
             const id = domain?.split(".")?.[0]?.split("-")?.pop();
-            // const deploymentKind = opts.prod ? "Production" : "Preview";
+            // const deploymentKind = opts.production ? "Production" : "Preview";
             // deploySpinner!.succeed(`${deploymentKind} deployment complete.`);
             const url = new URL(
               `/workspaces/${project.workspaceId}/projects/${project._id}/deployments/${id}`,

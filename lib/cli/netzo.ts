@@ -47,18 +47,19 @@ const args = parseArgs(Deno.args, {
   },
   boolean: [
     "help",
-    "build",
-    "prod",
     "static",
+    "build",
+    "production",
     "version",
     "dry-run",
   ],
   string: [
     "project",
     "api-key",
-    "include",
     "exclude",
+    "include",
     "import-map",
+    "deno-lock",
     "deployment",
   ],
   default: {
