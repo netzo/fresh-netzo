@@ -6,7 +6,6 @@ import { errorPages } from "netzo/plugins/errorPages/mod.ts";
 import { portal } from "netzo/plugins/portal/mod.ts";
 import { createGitHubOAuthConfig } from "deno_kv_oauth/mod.ts";
 import { unocss } from "netzo/plugins/unocss/mod.ts";
-import unocssConfig from "./uno.config.ts";
 
 export default defineNetzoConfig({
   plugins: [
@@ -27,6 +26,6 @@ export default defineNetzoConfig({
       // ],
       // footer: {},
     }),
-    unocss(unocssConfig),
+    unocss(),
   ],
 });

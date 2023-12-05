@@ -1,16 +1,17 @@
+// from https://github.com/hyoban/unocss-preset-shadcn/blob/main/src/index.ts
 import type {
   Preset,
   VariantContext,
   VariantObject,
-} from "https://esm.sh/@unocss/core@0.55.2?bundle";
+} from "https://esm.sh/@unocss/core@0.58.0?target=esnext";
 import type {
   PresetMiniOptions,
   Theme,
-} from "https://esm.sh/@unocss/preset-mini@0.55.2?bundle";
+} from "https://esm.sh/@unocss/preset-mini@0.58.0?target=esnext";
 import {
   h,
   variantGetParameter,
-} from "https://esm.sh/@unocss/preset-mini@0.55.2/utils?bundle";
+} from "https://esm.sh/@unocss/preset-mini@0.58.0/utils?target=esnext";
 import { generateCSSVars } from "./generate.ts";
 
 export type PresetShadcnOptions = PresetMiniOptions;
@@ -46,10 +47,11 @@ const handleMatchRem = (v: string, defaultVal = "full") =>
 export function presetShadcn(
   options: PresetShadcnOptions = {},
 ): Preset<Theme> {
-  const { color = "zinc", radius = 0.5 } = options
+  const { color = "zinc", radius = 0.5 } = options;
 
   return {
     name: "unocss-preset-shadcn",
+
     preflights: [
       {
         getCSS: () => `
@@ -58,7 +60,9 @@ export function presetShadcn(
           @keyframes shadcn-enter { from{ opacity: var(--un-enter-opacity, 1); transform: translate3d(var(--un-enter-translate-x, 0), var(--un-enter-translate-y, 0), 0) scale3d(var(--un-enter-scale, 1), var(--un-enter-scale, 1), var(--un-enter-scale, 1)) rotate(var(--un-enter-rotate, 0)) } }
           @keyframes shadcn-exit { to{ opacity: var(--un-exit-opacity, 1); transform: translate3d(var(--un-exit-translate-x, 0), var(--un-exit-translate-y, 0), 0) scale3d(var(--un-exit-scale, 1), var(--un-exit-scale, 1), var(--un-exit-scale, 1)) rotate(var(--un-exit-rotate, 0)) } }
 
-          ${generateCSSVars(color, radius)}
+          @layer base {
+            ${generateCSSVars(color, radius)}
+          }
 
           * {
             border-color: hsl(var(--border));
@@ -149,10 +153,24 @@ export function presetShadcn(
           .text-card {
             color: hsl(var(--card-foreground));
           }
+
+          /* WORKAROUND: set !important to --radius CSS variables since othwerwise
+          the client-generated ones e.g. ".rounded-lg" will take precedence */
+          .rounded-lg {
+            border-radius: var(--radius) !important;
+          }
+          .rounded-md {
+            border-radius: calc(var(--radius) - 2px) !important;
+          }
+          .rounded-sm {
+            border-radius: calc(var(--radius) - 4px) !important;
+          }
         `,
       },
     ],
+
     variants: [variantGroupDataAttribute.match],
+
     rules: [
       [
         "accordion-down",
@@ -261,6 +279,7 @@ export function presetShadcn(
         ([, d]) => ({ "--un-exit-translate-x": handleMatchRem(d) }),
       ],
     ],
+
     theme: {
       colors: {
         border: "hsl(var(--border))",
@@ -303,6 +322,9 @@ export function presetShadcn(
         sm: "calc(var(--radius) - 4px)",
       },
     },
+
+    // NOTE: build step required for transformers (see @unocss/unocss#1673)
+    // transformers: [transformerDirectives(), transformerVariantGroup()],
   };
 }
 

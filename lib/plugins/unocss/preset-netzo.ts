@@ -1,26 +1,41 @@
 import {
   // mergeDeep,
-  type Preset,
-  type UserConfig,
-} from "https://esm.sh/@unocss/core@0.55.2?bundle";
-import { presetIcons } from "https://esm.sh/@unocss/preset-icons@0.55.2/browser?bundle";
-import { presetTypography } from "https://esm.sh/@unocss/preset-typography@0.55.2?bundle";
+  type PresetOrFactory,
+} from "https://esm.sh/@unocss/core@0.58.0?target=esnext";
+import { presetIcons } from "https://esm.sh/@unocss/preset-icons@0.58.0/browser?target=esnext";
+import { presetTypography } from "https://esm.sh/@unocss/preset-typography@0.58.0?target=esnext";
 import {
   presetUno,
   type Theme,
-} from "https://esm.sh/@unocss/preset-uno@0.55.2?bundle";
+  type PresetUnoOptions,
+} from "https://esm.sh/@unocss/preset-uno@0.58.0?target=esnext";
 import { presetShadcn } from "./preset-shadcn/mod.ts";
+import type { PresetShadcnOptions } from "./preset-shadcn/types.ts";
 
 // @unocss-include
 
-export function presetNetzo(user: UserConfig = {}): Preset<Theme> {
+export type PresetNetzoOptions = PresetUnoOptions & {
+  /**
+   * @default 'zinc'
+   */
+  color?: PresetShadcnOptions["color"];
+  /**
+   * @default 0.5
+   */
+  radius?: PresetShadcnOptions["radius"];
+};
+
+export function presetNetzo(options: PresetNetzoOptions = {}): PresetOrFactory<Theme> | PresetOrFactory<Theme>[] {
   return {
-    ...user,
+    ...options,
 
     name: "unocss-preset-netzo",
 
     presets: [
-      presetShadcn(),
+      presetShadcn({
+        color: options?.color,
+        radius: options?.radius,
+      }),
       presetUno(),
       presetTypography(),
       presetIcons({
@@ -37,8 +52,7 @@ export function presetNetzo(user: UserConfig = {}): Preset<Theme> {
           "vertical-align": "middle",
         },
       }),
-      ...(user.presets ?? []),
-    ] as UserConfig["presets"],
+    ],
 
     preflights: [
       {
@@ -47,47 +61,10 @@ export function presetNetzo(user: UserConfig = {}): Preset<Theme> {
           [un-cloak] {
             display: none !important;
           }
-
-          :root {
-            --nui-c-context: 125,125,125;
-          }
-
-          html {
-            background-color: #ffffff;
-          }
-
-          html.dark {
-            color-scheme: dark;
-            background-color: #151515;
-            color: #ffffff;
-          }
-
-          ::selection {
-            background: #8884;
-          }
-
-          /* Color Mode transition */
-          ::view-transition-old(root),
-          ::view-transition-new(root) {
-            animation: none;
-            mix-blend-mode: normal;
-          }
-          ::view-transition-old(root) {
-            z-index: 1;
-          }
-          ::view-transition-new(root) {
-            z-index: 2147483646;
-          }
-          .dark::view-transition-old(root) {
-            z-index: 2147483646;
-          }
-          .dark::view-transition-new(root) {
-            z-index: 1;
-          }
         `,
       },
-      ...(user.preflights ?? []),
     ],
+
     // NOTE: build step required for transformers (see @unocss/unocss#1673)
     // transformers: [transformerDirectives(), transformerVariantGroup()],
   };
