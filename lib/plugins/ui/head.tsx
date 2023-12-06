@@ -13,6 +13,8 @@ export type HeadOptions = {
 export const Head = (props: HeadOptions) => {
   return (
     <_Head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <Meta
         title={props.title}
         description={props.description}
@@ -30,6 +32,7 @@ export const Meta = (props: HeadOptions) => {
       {/* HTML Meta Tags */}
       <title>{props.title}</title>
       <meta name="description" content={props.description} />
+      <link rel="icon" href={props.favicon} />
 
       {/* Google / Search Engine Tags */}
       <meta itemProp="name" content={props.title} />

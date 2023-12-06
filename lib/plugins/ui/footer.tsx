@@ -1,4 +1,6 @@
-export default function Footer() {
+import type { UIOptions } from "./mod.ts";
+
+export const Footer = (props: UIOptions["footer"]) => {
   return (
     <footer className="flex items-center justify-center p-4">
       <a href="https://netzo.io/" target="_blank">
@@ -10,4 +12,4 @@ export default function Footer() {
       </a>
     </footer>
   );
-}
+};

@@ -1,14 +1,8 @@
 import type { JSX } from "preact";
-import {
-  ACTIVE_ANCESTOR_LINK_STYLES,
-  LINK_STYLES,
-  SITE_BAR_STYLES,
-} from "@/utils/constants.ts";
 import { Cross1Icon } from "@radix-ui/react-icons";
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
-import { clsx } from "clsx";
 import { User } from "netzo/plugins/portal/utils/db.ts";
-import { UserNav } from "netzo/plugins/portal/components/UserNav.tsx";
+import { UserNav } from "./user-nav.tsx";
 
 export type HeaderNavItemProps = JSX.HTMLAttributes<HTMLAnchorElement> & {
   text: string;
@@ -26,14 +20,8 @@ export type HeaderProps = {
 };
 
 export default (props: HeaderProps) => {
-  const NAV_ITEM = "text-gray-500 px-3 py-4 sm:py-2";
   return (
-    <header
-      class={clsx(
-        SITE_BAR_STYLES,
-        "flex-col sm:flex-row",
-      )}
-    >
+    <header class="flex justify-between p-4 gap-4 flex-col sm:flex-row">
       <input
         type="checkbox"
         id="nav-toggle"
@@ -71,18 +59,6 @@ export default (props: HeaderProps) => {
       <nav
         class={"hidden flex-col gap-x-4 divide-y divide-solid sm:flex sm:items-center sm:flex-row sm:divide-y-0"}
       >
-        {props.sessionUser && props.nav?.map((item) => (
-          <a
-            {...item}
-            class={clsx(
-              LINK_STYLES,
-              ACTIVE_ANCESTOR_LINK_STYLES,
-              NAV_ITEM,
-            )}
-          >
-            {item.text}
-          </a>
-        ))}
         <UserNav {...props} />
       </nav>
     </header>

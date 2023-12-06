@@ -1,5 +1,5 @@
 import { defineRoute } from "$fresh/src/server/mod.ts";
-import { AuthForm } from "./components/AuthForm.tsx";
+import { AuthForm } from "./islands/auth-form.tsx";
 import type { NetzoState } from "../../config/mod.ts";
 
 export default defineRoute<NetzoState>((_req, ctx) => {

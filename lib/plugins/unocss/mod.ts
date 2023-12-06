@@ -7,6 +7,9 @@ import type { Theme } from "https://esm.sh/@unocss/preset-uno@0.58.0?target=esne
 import { Plugin, type PluginRenderStyleTag } from "$fresh/src/server/mod.ts";
 import { dirname, fromFileUrl, join, walk } from "$fresh/src/server/deps.ts";
 import { exists } from "std/fs/exists.ts";
+import presetNetzo, {
+  PresetNetzoOptions,
+} from "netzo/plugins/unocss/preset-netzo.ts";
 
 type PreactOptions = typeof preactOptions & { __b?: (vnode: VNode) => void };
 
@@ -184,3 +187,11 @@ export const unocss = (
     },
   };
 };
+
+export const createUnocss = (options: PresetNetzoOptions = {}) =>
+  unocss({
+    config: defineConfig({ presets: [presetNetzo(options)] }),
+    aot: options.aot,
+    ssr: options.ssr,
+    csr: options.csr,
+  });

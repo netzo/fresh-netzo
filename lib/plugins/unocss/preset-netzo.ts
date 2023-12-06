@@ -56,17 +56,7 @@ export function presetNetzo(
       }),
     ],
 
-    preflights: [
-      {
-        getCSS: ({ theme: _ }) => `
-          /* see https://unocss.dev/integrations/runtime#preventing-fouc */
-          [un-cloak] {
-            display: none !important;
-          }
-        `,
-      },
-    ],
-
+    preflights: [],
     // NOTE: build step required for transformers (see @unocss/unocss#1673)
     // transformers: [transformerDirectives(), transformerVariantGroup()],
   };

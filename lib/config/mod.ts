@@ -1,11 +1,11 @@
 import type { FreshConfig } from "$fresh/src/server/mod.ts";
-import { netzo } from "../apis/netzo/mod.ts";
-import { error, log, LOGS } from "../utils/console.ts";
-import { setEnvVars } from "../utils/mod.ts";
 import { Project } from "https://esm.sh/@netzo/api@1.0.52/lib/client.d.ts";
 import { AccessState } from "netzo/plugins/access/mod.ts";
 import { ApiState } from "netzo/plugins/api/mod.ts";
 import { PortalState } from "netzo/plugins/portal/mod.ts";
+import { netzo } from "../apis/netzo/mod.ts";
+import { error, log, LOGS } from "../utils/console.ts";
+import { setEnvVars } from "../utils/mod.ts";
 
 export type NetzoConfig = FreshConfig & {
   entrypoint?: string;
@@ -24,6 +24,30 @@ export type NetzoState = {
   access?: AccessState;
   api?: ApiState;
   portal?: PortalState;
+  ui?: {
+    head: {
+      title: string;
+      description: string;
+      favicon: string;
+    };
+    theme: {
+      color: string;
+      radius: number;
+    };
+    nav: {
+      logo: string;
+      items: {
+        icon?: string;
+        title: string;
+        href: string;
+        children?: {
+          icon?: string;
+          title: string;
+          href: string;
+        }[];
+      }[];
+    };
+  };
   [k: string]: unknown;
 };
 
@@ -80,6 +104,7 @@ export async function defineNetzoConfig(
     access: project?.access ?? {},
     api: project?.api ?? {},
     portal: project?.portal ?? {},
+    ui: project?.ui ?? {},
   };
 
   return {
@@ -102,7 +127,14 @@ export async function defineNetzoConfig(
           },
         ],
       },
+      ...(state.ui ? await createPluginUI(state) : []),
       ...plugins,
     ],
   };
+}
+
+async function createPluginUI(state: NetzoState) {
+  const { unocss } = await import("netzo/plugins/unocss/mod.ts");
+  const { presetNetzo } = await import("netzo/plugins/unocss/preset-netzo.ts");
+  return [unocss({ config: { presets: [presetNetzo(state.ui.theme)] } })];
 }

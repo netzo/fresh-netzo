@@ -43,5 +43,11 @@ export const portal = (options: PortalOptions): Plugin => {
     routes: [
       ...portalRoutes(options),
     ],
+    islands: {
+      baseLocation: import.meta.url,
+      paths: [
+        "./islands/auth-form.tsx",
+      ],
+    },
   };
 };

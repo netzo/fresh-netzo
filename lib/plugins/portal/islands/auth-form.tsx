@@ -13,7 +13,7 @@ import {
   IconGoogle,
   IconOkta,
   IconSpinner,
-} from "./icons.tsx";
+} from "../components/icons.tsx";
 import { isGitHubSetup } from "../utils/providers/github.ts";
 
 // export type AuthFormProps = JSX.HTMLAttributes<HTMLDivElement> & {}
