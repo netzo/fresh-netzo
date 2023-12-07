@@ -1,20 +1,15 @@
 import { cn } from "netzo/components/utils.ts";
 import type { User } from "netzo/plugins/portal/utils/db.ts";
-import { UIOptions } from "./mod.ts";
-import { NavItem, NavItemHeader, NavItemUser } from "./islands/nav-item.tsx";
+import { UiOptions } from "../mod.ts";
+import { NavItem, NavItemHeader, NavItemUser } from "../islands/nav-item.tsx";
 
-export type NavProps =
-  & React.HTMLAttributes<HTMLDivElement>
-  & UIOptions["nav"]
-  & {
-    sessionUser?: User;
-  };
-
-export const Nav = ({ className, ...props }: NavProps) => {
+export const Nav = ({ className, ...props }: UiOptions["nav"]) => {
   return (
     <div
       className={cn(
-        "h-full hidden lg:flex lg:flex-col lg:border-r lg:border-[hsl(var(--border))]",
+        "h-full hidden lg:flex lg:flex-col",
+        "bg-[hsl(var(--secondary))]",
+        "lg:border-r lg:border-[hsl(var(--border))]",
         className,
       )}
     >
@@ -28,7 +23,9 @@ export const Nav = ({ className, ...props }: NavProps) => {
           </div>
         ))}
       </div>
-      <NavItemUser sessionUser={props?.sessionUser} />
+      <div className="px-3 py-2">
+        <NavItemUser sessionUser={props?.sessionUser} />
+      </div>
     </div>
   );
 };

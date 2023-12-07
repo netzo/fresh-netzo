@@ -1,33 +1,14 @@
 import type { Plugin } from "$fresh/src/server/mod.ts";
 import { isHttpError } from "std/http/http_errors.ts";
 import { parseRequestBody } from "netzo/utils/mod.ts";
+import type { Project } from "../../config/mod.ts";
 import { createDatabase } from "../../database/mod.ts";
 
-export type ApiServiceOptions = {
-  path: string; // automatically converted to kebab-case
-  idField?: string;
-  methods?: Array<"find" | "get" | "create" | "update" | "patch" | "remove">;
-};
+export type ApiOptions = Project["api"];
 
-export type ApiOptions = {
-  path?: string;
-  idField?: ApiServiceOptions["idField"];
-  methods?: ApiServiceOptions["methods"];
-  // TODO: services: ApiServiceOptions[];
-};
+export type ApiState = {};
 
-export type ApiState = {
-  options: ApiOptions;
-};
-
-const DENO_KV_PATH_KEY = "DENO_KV_PATH";
-
-const path = (await Deno.permissions.query({
-    name: "env",
-    variable: DENO_KV_PATH_KEY,
-  })).state === "granted"
-  ? Deno.env.get(DENO_KV_PATH_KEY)
-  : undefined;
+const path =  Deno.env.get("DENO_KV_PATH");
 
 const kv = await Deno.openKv(path);
 const db = createDatabase(kv);

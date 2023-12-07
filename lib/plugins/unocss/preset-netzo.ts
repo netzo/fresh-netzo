@@ -55,23 +55,6 @@ export function presetNetzo(
         },
       }),
     ],
-
-    preflights: [
-      {
-        getCSS: () => `
-          /* Give links pointing to the current page a green color */
-          a[aria-current="page"] {
-            color: hsl(var(--primary));
-            background-color: hsl(var(--muted));
-          }
-
-          /* Color all ancestor links of the current page the color peachpuff */
-          a[aria-current="ancestor"] {
-            color: hsl(var(--primary));
-          }
-        `,
-      },
-    ],
     // NOTE: build step required for transformers (see @unocss/unocss#1673)
     // transformers: [transformerDirectives(), transformerVariantGroup()],
   };

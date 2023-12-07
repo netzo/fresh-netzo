@@ -1,30 +1,35 @@
+import { cn } from "netzo/components/utils.ts";
 import type { User } from "netzo/plugins/portal/utils/db.ts";
-import { NavItemUser } from "./nav-item.tsx";
-import { UIOptions } from "../mod.ts";
+import { UiOptions } from "../mod.ts";
 
-export type HeaderProps = UIOptions["header"] & {
-  sessionUser?: User;
-  url: URL;
-};
-
-export default (props: HeaderProps) => {
+export default ({ className, ...props }: UiOptions["header"]) => {
   return (
-    <header className="flex items-center justify-between px-4 py-4 space-y-2">
-      {/* NOTE: use dark:filter-invert (in image.class) to invert color on dark */}
-      {props?.image && (
-        <img src={props?.image} class="w-auto h-12 my-auto mr-3" />
+    <header
+      className={cn(
+        "flex items-center justify-between px-4 py-4 space-y-2 bg-[hsl(var(--background))]",
+        className,
       )}
-      <div>
-        {props?.title && (
-          <h1 className="text-2xl font-bold tracking-tight">
-            {props?.title}
-          </h1>
+    >
+      <div className="flex items-center">
+        {/* NOTE: use dark:filter-invert to invert color on dark */}
+        {props?.image && (
+          <img
+            src={props?.image}
+            class="w-auto h-10 my-auto mr-4"
+          />
         )}
-        {props?.description && (
-          <p className="text-sm text-muted-foreground">
-            {props?.description}
-          </p>
-        )}
+        <div>
+          {props?.title && (
+            <h1 className="text-2xl font-bold tracking-tight">
+              {props?.title}
+            </h1>
+          )}
+          {props?.description && (
+            <p className="text-sm text-muted-foreground">
+              {props?.description}
+            </p>
+          )}
+        </div>
       </div>
 
       {/* CENTER CONTENT HERE */}

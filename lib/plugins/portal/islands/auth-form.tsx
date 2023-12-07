@@ -24,8 +24,8 @@ export function AuthForm(props: PortalState) {
     oauth2 = {},
     title,
     description,
-    color = "hsl(var(--primary))",
-    // backgroundColor = "muted",
+    color,
+    backgroundColor,
     logo,
   } = props;
   const isLoading = useSignal<boolean>(false);
@@ -140,11 +140,7 @@ export function AuthForm(props: PortalState) {
                     disabled={isLoading.value}
                   />
                 </div>
-                <Button
-                  variant="default"
-                  disabled={isLoading.value}
-                  className={`bg-[${color}]`}
-                >
+                <Button variant="default" disabled={isLoading.value}>
                   {isLoading.value && (
                     <IconSpinner className="w-4 h-4 mr-2 animate-spin" />
                   )}
@@ -153,13 +149,11 @@ export function AuthForm(props: PortalState) {
               </div>
             </form>
             <div className="relative">
-              {
-                /* <div className="absolute inset-0 flex items-center">
-                  <span className="w-full border-t" />
-                </div> */
-              }
+              <div className="absolute inset-0 flex items-center">
+                <span className="w-full border-t" />
+              </div>
               <div className="relative flex justify-center text-xs uppercase">
-                <span className="px-2 text-muted-foreground">
+                <span className="px-2 bg-[hsl(var(--background))]">
                   Or continue with
                 </span>
               </div>

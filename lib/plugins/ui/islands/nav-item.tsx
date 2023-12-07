@@ -6,9 +6,9 @@ import {
   AvatarImage,
 } from "netzo/components/ui/avatar.tsx";
 import type { User } from "netzo/plugins/portal/utils/db.ts";
-import type { UIOptions } from "../mod.ts";
+import type { UiOptions } from "../mod.ts";
 
-type NavItemProps = UIOptions["nav"]["items"][number];
+type NavItemProps = UiOptions["nav"]["items"][number];
 
 type NavItemUserProps = {
   sessionUser: User;
@@ -34,6 +34,8 @@ export function NavItem(item: NavItemProps) {
         className={cn(
           buttonVariants({ variant: "ghost" }),
           `justify-start w-full`,
+          `hover:text-[hsl(var(--primary))]`,
+          `aria-[current='page']:text-[hsl(var(--primary))]`,
         )}
       >
         {item.icon && <NavItemIcon {...item} />}
@@ -65,6 +67,7 @@ export function NavItemUser(props: NavItemUserProps) {
   return (
     <a
       href="/oauth/signout"
+      title="Sign out"
       className={cn(
         buttonVariants({ variant: "ghost" }),
         `h-12 px-3 py-2 flex items-center w-full hover:cursor-pointer`,
@@ -77,7 +80,7 @@ export function NavItemUser(props: NavItemUserProps) {
         />
         <AvatarFallback>{getInitials(props.sessionUser)}</AvatarFallback>
       </Avatar>
-      <div className="ml-4 space-y-1">
+      <div className="w-full ml-4 space-y-1">
         {props.sessionUser?.login && (
           <p className="text-sm font-medium leading-none">
             {props.sessionUser?.login}
@@ -89,7 +92,7 @@ export function NavItemUser(props: NavItemUserProps) {
           </p>
         )}
       </div>
-      <div className="ml-auto font-medium">Logout</div>
+      <div className="i-mdi-logout" />
     </a>
   );
 }

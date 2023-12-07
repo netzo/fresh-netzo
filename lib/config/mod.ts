@@ -1,11 +1,15 @@
 import type { FreshConfig } from "$fresh/src/server/mod.ts";
-import { Project } from "https://esm.sh/@netzo/api@1.0.52/lib/client.d.ts";
+import type { Project } from "https://esm.sh/@netzo/api@1.0.52/lib/client.d.ts";
+import replace from "https://esm.sh/object-replace-mustache@1.0.2";
 import { AccessState } from "netzo/plugins/access/mod.ts";
-import { ApiState } from "netzo/plugins/api/mod.ts";
+// import { ApiState } from "netzo/plugins/api/mod.ts";
 import { PortalState } from "netzo/plugins/portal/mod.ts";
+import { UiState } from "netzo/plugins/ui/mod.ts";
 import { netzo } from "../apis/netzo/mod.ts";
 import { error, log, LOGS } from "../utils/console.ts";
 import { setEnvVars } from "../utils/mod.ts";
+
+export type { Project };
 
 export type NetzoConfig = FreshConfig & {
   entrypoint?: string;
@@ -22,32 +26,9 @@ export type NetzoConfig = FreshConfig & {
 export type NetzoState = {
   kv: Deno.Kv;
   access?: AccessState;
-  api?: ApiState;
+  // api?: ApiState;
   portal?: PortalState;
-  ui?: {
-    head: {
-      title: string;
-      description: string;
-      favicon: string;
-    };
-    theme: {
-      color: string;
-      radius: number;
-    };
-    nav: {
-      logo: string;
-      items: {
-        icon?: string;
-        title: string;
-        href: string;
-        children?: {
-          icon?: string;
-          title: string;
-          href: string;
-        }[];
-      }[];
-    };
-  };
+  ui?: UiState;
   [k: string]: unknown;
 };
 
@@ -99,13 +80,17 @@ export async function defineNetzoConfig(
     `Open in netzo at ${appUrl}/workspaces/${project.workspaceId}/projects/${project._id}`,
   );
 
-  const state: NetzoState = {
+  let state: NetzoState = {
     kv: await Deno.openKv(),
     access: project?.access ?? {},
     api: project?.api ?? {},
     portal: project?.portal ?? {},
     ui: project?.ui ?? {},
   };
+
+  state = replace(state, { project });
+
+  console.log(state);
 
   return {
     ...partialConfig,

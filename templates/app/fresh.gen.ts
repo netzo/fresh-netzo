@@ -9,8 +9,6 @@ import * as $_ui_contacts_id_ from "./routes/(ui)/contacts/[id].tsx";
 import * as $_ui_contacts_index from "./routes/(ui)/contacts/index.tsx";
 import * as $_ui_invoices_id_ from "./routes/(ui)/invoices/[id].tsx";
 import * as $_ui_invoices_index from "./routes/(ui)/invoices/index.tsx";
-import * as $_404 from "./routes/_404.tsx";
-import * as $_500 from "./routes/_500.tsx";
 import * as $_middleware from "./routes/_middleware.ts";
 import * as $api_clients_id_ from "./routes/api/clients/[id].tsx";
 import * as $api_clients_index from "./routes/api/clients/index.tsx";
@@ -32,8 +30,6 @@ const manifest = {
     "./routes/(ui)/contacts/index.tsx": $_ui_contacts_index,
     "./routes/(ui)/invoices/[id].tsx": $_ui_invoices_id_,
     "./routes/(ui)/invoices/index.tsx": $_ui_invoices_index,
-    "./routes/_404.tsx": $_404,
-    "./routes/_500.tsx": $_500,
     "./routes/_middleware.ts": $_middleware,
     "./routes/api/clients/[id].tsx": $api_clients_id_,
     "./routes/api/clients/index.tsx": $api_clients_index,

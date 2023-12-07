@@ -1,16 +1,10 @@
-import type { ComponentChildren } from "preact";
+import { ComponentChildren } from "preact";
 import { Head as _Head } from "$fresh/src/runtime/head.ts";
+import type { UiOptions } from "../mod.ts";
 
-export type HeadOptions = {
-  title?: string;
-  description?: string;
-  href?: string;
-  favicon?: string;
-  image?: string;
-  children?: ComponentChildren;
-};
-
-export const Head = (props: HeadOptions) => {
+export const Head = (
+  props: UiOptions["head"] & { href: string; children?: ComponentChildren },
+) => {
   return (
     <_Head>
       <meta charset="utf-8" />
@@ -21,18 +15,18 @@ export const Head = (props: HeadOptions) => {
         href={props.href}
         image={props.image}
       />
-      {props.children}
+      {/* {props.children} */}
     </_Head>
   );
 };
 
-export const Meta = (props: HeadOptions) => {
+export const Meta = (props: UiOptions["head"]) => {
   return (
     <>
       {/* HTML Meta Tags */}
       <title>{props.title}</title>
       <meta name="description" content={props.description} />
-      <link rel="icon" href={props.favicon} />
+      <link rel="icon" href={props.favicon ?? "/favicon.svg"} />
 
       {/* Google / Search Engine Tags */}
       <meta itemProp="name" content={props.title} />

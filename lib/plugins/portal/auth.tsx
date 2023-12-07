@@ -1,4 +1,4 @@
-import { defineRoute, type RouteConfig } from "$fresh/src/server/mod.ts";
+import { defineRoute } from "$fresh/src/server/mod.ts";
 import { AuthForm } from "./islands/auth-form.tsx";
 import type { NetzoState } from "../../config/mod.ts";
 
@@ -9,8 +9,8 @@ export default defineRoute<NetzoState>((_req, ctx) => {
   const {
     // title = "Sign In",
     // description,
-    // color = "primary",
-    backgroundColor = "hsl(var(--muted))",
+    // color,
+    backgroundColor,
     // logo,
     caption,
   } = ctx.state.portal;

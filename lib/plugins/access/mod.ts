@@ -1,4 +1,5 @@
 import type { Plugin } from "$fresh/src/server/mod.ts";
+import type { Project } from "../../config/mod.ts";
 
 /*
 The following lists the possible header combinations when
@@ -23,9 +24,7 @@ making a request to a project/deployment from any source:
   • referer: null | "https://hoppscotch.io/"
 */
 
-export type AccessOptions = {
-  level: "private" | "public";
-};
+export type AccessOptions = Project["access"];
 
 export type AccessState = {
   origin: string | null;
