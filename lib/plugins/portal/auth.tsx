@@ -1,6 +1,9 @@
-import { defineRoute } from "$fresh/src/server/mod.ts";
+import { defineRoute, type RouteConfig } from "$fresh/src/server/mod.ts";
 import { AuthForm } from "./islands/auth-form.tsx";
 import type { NetzoState } from "../../config/mod.ts";
+
+// FIXME: not working for plugin-injected routes
+// export const config: RouteConfig = { skipAppWrapper: true };
 
 export default defineRoute<NetzoState>((_req, ctx) => {
   const {
@@ -13,31 +16,19 @@ export default defineRoute<NetzoState>((_req, ctx) => {
   } = ctx.state.portal;
 
   return (
-    <main
-      className={`h-[100dvh] w-[100dvw] flex flex-col bg-[${backgroundColor}]`}
+    <div
+      className={`h-full w-full grid place-items-center p-4 bg-[${backgroundColor}]`}
     >
-      <section className="grid flex-1 p-4 place-items-center">
-        <div className="grid gap-6 w-full xs:w-[350px] max-w-[350px]">
-          <AuthForm {...ctx.state.portal} />
+      <div className="grid gap-6 w-full xs:w-[350px] max-w-[350px]">
+        <AuthForm {...ctx.state.portal} />
 
-          {caption && (
-            <p
-              className="px-8 text-sm text-center text-muted-foreground"
-              dangerouslySetInnerHTML={{ __html: caption }}
-            />
-          )}
-        </div>
-      </section>
-
-      <footer className="flex items-center justify-center p-4">
-        <a href="https://netzo.io/" target="_blank">
-          <img
-            src="https://netzo.io/logos/built-with-netzo-light.svg"
-            alt="Built with Netzo"
-            class="h-[36px]"
+        {caption && (
+          <p
+            className="px-8 text-sm text-center text-muted-foreground"
+            dangerouslySetInnerHTML={{ __html: caption }}
           />
-        </a>
-      </footer>
-    </main>
+        )}
+      </div>
+    </div>
   );
 });

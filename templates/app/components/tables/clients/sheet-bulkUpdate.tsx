@@ -24,8 +24,8 @@ export function SheetBulkUpdate(
     <>
       <Sheet>
         <SheetTrigger asChild>
-          <Button className="ml-3 h-8 px-2 lg:px-3">
-            <Pencil1Icon className="mr-2 h-4 w-4" /> Edit selected
+          <Button className="h-8 px-2 ml-3 lg:px-3">
+            <Pencil1Icon className="w-4 h-4 mr-2" /> Edit
           </Button>
         </SheetTrigger>
         <SheetContent className="overflow-auto">
@@ -34,7 +34,7 @@ export function SheetBulkUpdate(
               Edit {selectedRows.length} rows
             </SheetTitle>
             <SheetDescription>
-              <div className="text-xs font-semibold text-yellow-900 bg-yellow-200 bg-opacity-30 rounded-lg my-2 p-2">
+              <div className="p-2 my-2 text-xs font-semibold text-yellow-900 bg-yellow-200 rounded-lg bg-opacity-30">
                 Edited fields will be applied to all selected rows.
               </div>
             </SheetDescription>

@@ -31,7 +31,7 @@
   "imports": {
     "@/": "./",
     "netzo/": "./lib/",
-    "$fresh/": "https://raw.githubusercontent.com/denoland/fresh/c8844ad98cd40edce5b82cfb3fc13122eb848756/",
+    "$fresh/": "https://deno.land/x/fresh@1.6.1/",
     "preact": "https://esm.sh/preact@10.19.2",
     "preact/": "https://esm.sh/preact@10.19.2/",
     "preact-render-to-string": "https://esm.sh/*preact-render-to-string@6.2.2",

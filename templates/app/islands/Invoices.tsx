@@ -6,7 +6,7 @@ import { FormAdmin } from "@/components/tables/invoices/form-admin.tsx";
 
 export function Table({ data, options }) {
   return (
-    <div className="h-full overflow-x-auto p-4">
+    <div className="h-full p-4">
       <DataTable
         columns={columns}
         data={data}

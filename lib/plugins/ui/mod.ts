@@ -22,7 +22,7 @@ export const ui = (options?: UIOptions): Plugin => {
       baseLocation: import.meta.url,
       paths: [
         "./islands/header.tsx",
-        "./islands/user-nav.tsx",
+        "./islands/nav-item.tsx",
       ],
     },
   };

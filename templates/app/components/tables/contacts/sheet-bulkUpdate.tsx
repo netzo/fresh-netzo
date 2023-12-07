@@ -25,7 +25,7 @@ export function SheetBulkUpdate(
       <Sheet>
         <SheetTrigger asChild>
           <Button className="ml-3 h-8 px-2 lg:px-3">
-            <Pencil1Icon className="mr-2 h-4 w-4" /> Edit selected
+            <Pencil1Icon className="mr-2 h-4 w-4" /> Edit
           </Button>
         </SheetTrigger>
         <SheetContent className="overflow-auto">

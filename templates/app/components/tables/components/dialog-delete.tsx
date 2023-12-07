@@ -43,10 +43,10 @@ export function DialogDelete(
       <AlertDialogTrigger asChild>
         <Button
           variant="destructive"
-          className="ml-3 h-8 px-2 lg:px-3"
+          className="h-8 px-2 ml-3 lg:px-3"
         >
-          <TrashIcon className="mr-2 h-4 w-4" />
-          Eliminar selección
+          <TrashIcon className="w-4 h-4 mr-2" />
+          Delete
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
@@ -63,7 +63,7 @@ export function DialogDelete(
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
           <AlertDialogAction
-            className="bg-red-600 text-white"
+            className="text-white bg-red-600"
             onClick={handleDelete}
           >
             Confirm

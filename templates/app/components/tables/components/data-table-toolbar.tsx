@@ -99,7 +99,7 @@ export function DataTableToolbar<TData>({
                     }`}
                   >
                     <Button className="h-8 px-2 ml-3 lg:px-3">
-                      <Pencil1Icon className="w-4 h-4 mr-2" /> Edit selected
+                      <Pencil1Icon className="w-4 h-4 mr-2" /> Edit
                     </Button>
                   </a>
                 </>
