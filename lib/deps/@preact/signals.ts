@@ -1,1 +1,2 @@
-export * from "npm:@preact/signals@1.2.1";
+// NOTE: esm.sh required for aliasing react to preact
+export * from "https://esm.sh/*@preact/signals@1.2.1";
