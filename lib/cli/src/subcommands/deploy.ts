@@ -286,7 +286,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
       jsx: "react-jsx",
       jsxFactory: "h",
       jsxFragmentFactory: "Fragment",
-      jsxImportSource: "../../../deps/preact.ts",
+      jsxImportSource: "preact",
     },
     assets,
     envVars: {}, // set by netzo on deployment (project.envVars[env] empty for security)
