@@ -44,9 +44,9 @@ export const access = (options: AccessOptions): Plugin => {
         path: "/",
         middleware: {
           handler: async (req, ctx) => {
-            if (Deno.env.get("NETZO_ENV") === "development") {
-              return await ctx.next();
-            }
+            // if (Deno.env.get("NETZO_ENV") === "development") {
+            //   return await ctx.next();
+            // }
 
             if (!["route"].includes(ctx.destination)) return await ctx.next();
 
@@ -63,12 +63,44 @@ export const access = (options: AccessOptions): Plugin => {
 
             ctx.state.access = { origin, referer, isApp };
 
+            console.log({ level, origin, referer, isApp, options })
+
             switch (level) {
               case "private": {
                 if (!isApp) {
+                  const {
+                    NETZO_PROJECT_UID,
+                    NETZO_APP_URL,
+                  } = Deno.env.toObject();
+                  const url = `${NETZO_APP_URL}/projects/${NETZO_PROJECT_UID}`;
+                  return Response.redirect(url, 302);
+                  // throw new Error(
+                  //   "Private deployments cannot be accessed externally",
+                  // );
+                }
+                return await ctx.next();
+              }
+              case "protected": {
+                const {
+                  username = Deno.env.get("BASIC_AUTH_USERNAME"),
+                  password = Deno.env.get("BASIC_AUTH_PASSWORD"),
+                  realm = Deno.env.get("BASIC_AUTH_REALM") ?? "Netzo App",
+                } = options;
+                if (!username || !password) {
                   throw new Error(
-                    "Private deployments cannot be accessed externally",
+                    "BASIC_AUTH_USERNAME and BASIC_AUTH_PASSWORD must be set",
                   );
+                }
+
+                // NOTE: logout by navigating to another page to force browser to trigger
+                // basic auth prompt again e.g. by navigating to http://log:out@localhost:8000/
+
+                const credentials = `Basic ${btoa(`${username}:${password}`)}`;
+                if (req.headers.get("Authorization") !== credentials) {
+                  const headers = {
+                    "WWW-Authenticate": `Basic realm="${realm}"`,
+                  };
+                  return new Response("Unauthorized", { status: 401, headers });
                 }
                 return await ctx.next();
               }

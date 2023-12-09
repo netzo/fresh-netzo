@@ -1,6 +1,8 @@
 import type { Plugin } from "$fresh/src/server/mod.ts";
 import type { Project } from "../../config/mod.ts";
-import _App from "./_app.tsx";
+import _App from "./routes/_app.tsx";
+import _404 from "./routes/_404.tsx";
+import _500 from "./routes/_500.tsx";
 
 export type UiOptions = Project["ui"];
 
@@ -10,10 +12,15 @@ export const ui = (options?: UiOptions): Plugin => {
   return {
     name: "ui",
     routes: [
-      {
-        path: "/_app",
-        component: _App,
-      },
+      ...(options?.pages?._app?.enabled
+        ? [{ path: "/_app", component: _App }]
+        : []),
+      ...(options?.pages?._404?.enabled
+        ? [{ path: "/_404", component: _404 }]
+        : []),
+      ...(options?.pages?._500?.enabled
+        ? [{ path: "/_500", component: _500 }]
+        : []),
     ],
     islands: {
       baseLocation: import.meta.url,

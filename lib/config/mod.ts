@@ -6,7 +6,7 @@ import { AccessState } from "netzo/plugins/access/mod.ts";
 import { PortalState } from "netzo/plugins/portal/mod.ts";
 import { UiState } from "netzo/plugins/ui/mod.ts";
 import { netzo } from "../apis/netzo/mod.ts";
-import { error, log, LOGS } from "../utils/console.ts";
+import { log, logInfo, LOGS } from "../utils/console.ts";
 import { setEnvVars } from "../utils/mod.ts";
 
 export type { Project };
@@ -29,6 +29,7 @@ export type NetzoState = {
   // api?: ApiState;
   portal?: PortalState;
   ui?: UiState;
+  plugins?: Project["plugins"];
   [k: string]: unknown;
 };
 
@@ -57,28 +58,25 @@ export async function defineNetzoConfig(
   } = Deno.env.toObject();
   const { plugins = [] } = partialConfig;
 
-  if (!NETZO_PROJECT_ID) error(LOGS.missingProjectId);
-  if (!NETZO_API_KEY) error(LOGS.missingApiKey);
-
-  Deno.env.set("NETZO_ENV", NETZO_ENV);
-  Deno.env.set("NETZO_PROJECT_ID", NETZO_PROJECT_ID);
-  Deno.env.set("NETZO_API_KEY", NETZO_API_KEY);
-  Deno.env.set("NETZO_API_URL", NETZO_API_URL);
-  Deno.env.set("NETZO_APP_URL", NETZO_APP_URL);
+  if (!NETZO_PROJECT_ID) throw new Error(LOGS.missingProjectId);
+  if (!NETZO_API_KEY) throw new Error(LOGS.missingApiKey);
 
   const { api } = netzo({ apiKey: NETZO_API_KEY, baseURL: NETZO_API_URL });
 
   const project = await api.projects[NETZO_PROJECT_ID].get<Project>();
-  if (!project) error(LOGS.notFoundProject);
+  if (!project) throw new Error(LOGS.notFoundProject);
+
+  Deno.env.set("NETZO_ENV", NETZO_ENV);
+  Deno.env.set("NETZO_PROJECT_ID", NETZO_PROJECT_ID);
+  Deno.env.set("NETZO_PROJECT_UID", project.uid);
+  Deno.env.set("NETZO_API_KEY", NETZO_API_KEY);
+  Deno.env.set("NETZO_API_URL", NETZO_API_URL);
+  Deno.env.set("NETZO_APP_URL", NETZO_APP_URL);
 
   if (["development"].includes(NETZO_ENV)) {
     setEnvVars(project.envVars?.development ?? {});
   }
-
   const appUrl = Deno.env.get("NETZO_APP_URL") ?? "https://app.netzo.io";
-  log(
-    `Open in netzo at ${appUrl}/workspaces/${project.workspaceId}/projects/${project._id}`,
-  );
 
   let state: NetzoState = {
     kv: await Deno.openKv(),
@@ -90,7 +88,19 @@ export async function defineNetzoConfig(
 
   state = replace(state, { project });
 
-  console.log(state);
+  // console.log(state);
+
+  const netzoPlugins = await createPlugins(state);
+
+  logInfo(
+    `Initialized ${plugins.length} plugins: ${
+      plugins.map((p) => p.name).join(", ")
+    }`,
+  );
+
+  log(
+    `Open in netzo at ${appUrl}/workspaces/${project.workspaceId}/projects/${project._id}`,
+  );
 
   return {
     ...partialConfig,
@@ -112,14 +122,42 @@ export async function defineNetzoConfig(
           },
         ],
       },
-      ...(state.ui ? await createPluginUI(state) : []),
-      ...plugins,
+      ...netzoPlugins!,
+      ...plugins!,
     ],
   };
 }
 
-async function createPluginUI(state: NetzoState) {
-  const { unocss } = await import("netzo/plugins/unocss/mod.ts");
-  const { presetNetzo } = await import("netzo/plugins/unocss/preset-netzo.ts");
-  return [unocss({ config: { presets: [presetNetzo(state.ui.theme)] } })];
+async function createPlugins(state: NetzoState) {
+  const plugins = (await Promise.all(
+    Object.entries(state).map(async ([key, options]) => {
+      switch (key) {
+        case "access": {
+          const mod = await import("../plugins/access/mod.ts");
+          return mod.access(options);
+        }
+        case "api": {
+          const mod = await import("../plugins/api/mod.ts");
+          return mod.api(options);
+        }
+        case "portal": {
+          const mod = await import("../plugins/portal/mod.ts");
+          return mod.portal(options);
+        }
+        case "ui": {
+          const mod = await import("../plugins/ui/mod.ts");
+          const { unocss } = await import("../plugins/unocss/mod.ts");
+          const { presetNetzo } = await import(
+            "../plugins/unocss/preset-netzo.ts"
+          );
+          return [
+            mod.ui(options),
+            unocss({ config: { presets: [presetNetzo(options.theme)] } }),
+          ];
+        }
+      }
+    }),
+  )).flat().filter((plugin) => !!plugin?.name);
+
+  return plugins;
 }

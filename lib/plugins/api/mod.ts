@@ -8,7 +8,7 @@ export type ApiOptions = Project["api"];
 
 export type ApiState = {};
 
-const path =  Deno.env.get("DENO_KV_PATH");
+const path = Deno.env.get("DENO_KV_PATH");
 
 const kv = await Deno.openKv(path);
 const db = createDatabase(kv);

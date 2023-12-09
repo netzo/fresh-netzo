@@ -1,11 +1,11 @@
 import { defineApp } from "$fresh/src/server/mod.ts";
 import { Partial } from "$fresh/src/runtime/Partial.tsx";
 import { cn } from "netzo/components/utils.ts";
-import type { NetzoState } from "../../config/mod.ts";
-import { Nav } from "./components/nav.tsx";
-import { Footer } from "./components/footer.tsx";
-import { Head } from "./components/head.tsx";
-import Header from "./islands/header.tsx";
+import type { NetzoState } from "../../../config/mod.ts";
+import { Nav } from "../components/nav.tsx";
+import { Footer } from "../components/footer.tsx";
+import { Head } from "../components/head.tsx";
+import Header from "../islands/header.tsx";
 
 export default defineApp<NetzoState>((_req, ctx) => {
   const { portal: { sessionId } = {}, ui = {} } = ctx.state;

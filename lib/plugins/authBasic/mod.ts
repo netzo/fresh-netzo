@@ -17,25 +17,25 @@ export const authBasic = (options: AuthBasicOptions): Plugin => {
     throw new Error("BASIC_AUTH_USERNAME and BASIC_AUTH_PASSWORD must be set");
   }
 
+  // NOTE: logout by navigating to another page to force browser to trigger
+  // basic auth prompt again e.g. by navigating to http://log:out@localhost:8000/
+
   return {
     name: "authBasic",
     middlewares: [
       {
+        path: options.path,
         middleware: {
           handler: async (req, ctx) => {
-            if (
-              req.headers.get("Authorization") !==
-                `Basic ${btoa(`${username}:${password}`)}`
-            ) {
-              const headers = new Headers({
-                "WWW-Authenticate": `Basic realm="${realm}"`,
-              });
+            const credentials = `Basic ${btoa(`${username}:${password}`)}`;
+            console.log(credentials === req.headers.get("Authorization"));
+            if (req.headers.get("Authorization") !== credentials) {
+              const headers = { "WWW-Authenticate": `Basic realm="${realm}"` };
               return new Response("Unauthorized", { status: 401, headers });
             }
             return await ctx.next();
           },
         },
-        path: options.path,
       },
     ],
   };

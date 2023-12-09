@@ -39,6 +39,8 @@ export function logError(message: string) {
 }
 
 export function error(message: string): never {
+  // IMPORTANT: cannot use at runtime because Deno.exit is not allowed in Deploy/Subhosting
+  if (Deno.env.get('DENO_REGION')) throw new Error(message);
   logError(message);
   Deno.exit(1);
 }

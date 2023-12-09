@@ -54,12 +54,10 @@ export function NavItemHeader(item: NavItemProps) {
 }
 
 export function NavItemIcon(item: NavItemProps) {
-  return (
-    <img
-      src={item.icon}
-      className="w-4 h-4 mr-2"
-    />
-  );
+  console.log(item.icon);
+  return item.icon.startsWith("http")
+    ? <img src={item.icon} className="w-4 h-4 mr-2" />
+    : <div className={cn(item.icon, `w-4 h-4 mr-2`)} />;
 }
 
 export function NavItemUser(props: NavItemUserProps) {
