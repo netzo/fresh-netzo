@@ -18,7 +18,7 @@ import {
   CommandShortcut,
 } from "netzo/components/ui/command.tsx";
 
-import { useEffect, useState } from "preact/compat";
+import { useEffect, useState } from "netzo/deps/preact/compat.ts";
 
 export default () => {
   const [open, setOpen] = useState(false);

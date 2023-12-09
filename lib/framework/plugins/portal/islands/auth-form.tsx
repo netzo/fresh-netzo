@@ -1,4 +1,4 @@
-import { useSignal } from "@preact/signals";
+import { useSignal } from "netzo/deps/@preact/signals.ts";
 import type { PortalState } from "netzo/framework/plugins/portal/mod.ts";
 import { cn } from "netzo/components/utils.ts";
 import { Button, buttonVariants } from "netzo/components/ui/button.tsx";

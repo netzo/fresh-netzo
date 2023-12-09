@@ -1,5 +1,5 @@
-import type { Plugin } from "$fresh/src/server/mod.ts";
-import { isHttpError } from "std/http/http_errors.ts";
+import type { Plugin } from "netzo/deps/$fresh/src/server/mod.ts";
+import { isHttpError } from "netzo/deps/std/http/http_errors.ts";
 import { parseRequestBody } from "netzo/framework/utils/mod.ts";
 import type { Project } from "../../framework/mod.ts";
 import { createDatabase } from "../../database/mod.ts";
@@ -129,7 +129,7 @@ export const api = (options?: ApiOptions): Plugin => {
  * @example
  * ```ts
  * import { toErrorResponse } from "@/plugins/error_handling.ts";
- * import { errors } from "std/http/http_errors.ts";
+ * import { errors } from "netzo/deps/std/http/http_errors.ts";
  *
  * const resp = toErrorResponse(new errors.NotFound("User not found"));
  * resp.status; // Returns 404

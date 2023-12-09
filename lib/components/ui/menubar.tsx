@@ -5,13 +5,13 @@ import {
 } from "@radix-ui/react-icons";
 import * as MenubarPrimitive from "@radix-ui/react-menubar";
 
-import type { JSX } from "preact";
+import type { JSX } from "netzo/deps/preact.ts";
 import {
   type ComponentProps,
   forwardRef,
   type Ref,
   useState,
-} from "preact/compat";
+} from "netzo/deps/preact/compat.ts";
 import { cn } from "netzo/components/utils.ts";
 
 const MenubarMenu = MenubarPrimitive.Menu;

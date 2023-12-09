@@ -1,4 +1,4 @@
-import { difference } from "std/datetime/difference.ts";
+import { difference } from "netzo/deps/std/datetime/difference.ts";
 
 /**
  * Returns a pluralized string for the given amount and unit.
@@ -21,7 +21,7 @@ export function pluralize(amount: number, unit: string) {
  * @example
  * ```ts
  * import { timeAgo } from "netzo/framework/plugins/portal/utils/display.ts";
- * import { SECOND, MINUTE, HOUR } from "std/datetime/constants.ts";
+ * import { SECOND, MINUTE, HOUR } from "netzo/deps/std/datetime/constants.ts";
  *
  * timeAgo(new Date()); // Returns "just now"
  * timeAgo(new Date(Date.now() - 3 * HOUR)); // Returns "3 hours ago"

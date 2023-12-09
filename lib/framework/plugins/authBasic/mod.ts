@@ -1,4 +1,4 @@
-import { Plugin } from "$fresh/src/server/mod.ts";
+import { Plugin } from "netzo/deps/$fresh/src/server/mod.ts";
 
 export type AuthBasicOptions = {
   path: string;

@@ -1,7 +1,7 @@
 import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";
 import { DayPicker } from "react-day-picker";
 
-import { type ComponentProps } from "preact/compat";
+import { type ComponentProps } from "netzo/deps/preact/compat.ts";
 import { cn } from "netzo/components/utils.ts";
 import { buttonVariants } from "netzo/components/ui/button.tsx";
 

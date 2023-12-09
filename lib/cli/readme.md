@@ -6,7 +6,7 @@
 ## Install
 
 ```shell
-deno install -Arf https://deno.land/x/netzo/cli/netzo.ts
+deno install -Arf https://deno.land/x/netzo/cli/app.netzo.ts
 ```
 
 ## Usage

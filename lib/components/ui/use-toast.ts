@@ -5,8 +5,8 @@ import type {
   ToastProps,
 } from "netzo/components/ui/toast.tsx";
 
-import type { VNode } from "preact";
-import { useEffect, useState } from "preact/compat";
+import type { VNode } from "netzo/deps/preact.ts";
+import { useEffect, useState } from "netzo/deps/preact/compat.ts";
 
 const TOAST_LIMIT = 1;
 const TOAST_REMOVE_DELAY = 1000000;

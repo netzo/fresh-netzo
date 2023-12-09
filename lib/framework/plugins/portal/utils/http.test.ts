@@ -1,6 +1,10 @@
-import { returnsNext, stub } from "std/testing/mock.ts";
+import { returnsNext, stub } from "netzo/deps/std/testing/mock.ts";
 import { fetchValues, getCursor, redirect } from "./http.ts";
-import { assert, assertEquals, assertRejects } from "std/assert/mod.ts";
+import {
+  assert,
+  assertEquals,
+  assertRejects,
+} from "netzo/deps/std/assert/mod.ts";
 import { randomUser, User } from "./db.ts";
 
 Deno.test("[plugins/portal/utils/http] redirect() defaults", () => {

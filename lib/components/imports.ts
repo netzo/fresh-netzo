@@ -4,7 +4,6 @@ export const baseImports = {
   "$fresh/": "https://deno.land/x/fresh@1.6.1/",
   "preact": "https://esm.sh/preact@10.19.2",
   "preact/": "https://esm.sh/preact@10.19.2/",
-  "preact-render-to-string": "https://esm.sh/*preact-render-to-string@6.2.2",
   "@preact/signals": "https://esm.sh/*@preact/signals@1.2.1",
   "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.5.0",
   "std/": "https://deno.land/std@0.205.0/",

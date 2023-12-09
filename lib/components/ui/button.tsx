@@ -1,13 +1,13 @@
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 
-import type { JSX } from "preact";
+import type { JSX } from "netzo/deps/preact.ts";
 import {
   type ComponentProps,
   forwardRef,
   type Ref,
   useState,
-} from "preact/compat";
+} from "netzo/deps/preact/compat.ts";
 import { cn } from "netzo/components/utils.ts";
 
 // WORKAROUND: `bg-opacity-90` instead of `bg-primary/90`, `bg-secondary-80`

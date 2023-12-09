@@ -1,9 +1,9 @@
-import type { FreshContext } from "$fresh/src/server/mod.ts";
-import type { PluginMiddleware } from "$fresh/src/server/types.ts";
+import type { FreshContext } from "netzo/deps/$fresh/src/server/mod.ts";
+import type { PluginMiddleware } from "netzo/deps/$fresh/src/server/types.ts";
 import { getSessionId } from "deno_kv_oauth/mod.ts";
 import { getUserBySession } from "netzo/framework/plugins/portal/utils/db.ts";
-import { createHttpError } from "std/http/http_errors.ts";
-import { Status } from "std/http/http_status.ts";
+import { createHttpError } from "netzo/deps/std/http/http_errors.ts";
+import { Status } from "netzo/deps/std/http/http_status.ts";
 import type { NetzoState } from "../../framework/mod.ts";
 
 export function assertSignedIn(state: NetzoState) {

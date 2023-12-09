@@ -1,5 +1,5 @@
-import { Fragment } from "preact";
-import { Head } from "$fresh/src/runtime/head.ts";
+import { Fragment } from "netzo/deps/preact.ts";
+import { Head } from "netzo/deps/$fresh/src/runtime/head.ts";
 
 export default function ButtonToggleTheme() {
   function changeTheme() {

@@ -8,7 +8,7 @@
   "tasks": {
     "test": "deno test -A --parallel --unstable tests/ src/",
     "build-action": "deno bundle ./src/utils/mod.ts > ./action/deps.js",
-    "install": "deno install -Arf https://deno.land/x/netzo/cli/netzo.ts",
-    "install:dev": "deno install -Arf -n netzo-dev netzo.ts"
+    "install": "deno install -Arf https://deno.land/x/netzo/cli/app.netzo.ts",
+    "install:dev": "deno install -Arf -n netzo-dev app.netzo.ts"
   }
 }

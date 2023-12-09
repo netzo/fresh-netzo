@@ -1,7 +1,7 @@
 import { CalendarIcon } from "@radix-ui/react-icons";
 import { addDays, format } from "date-fns";
 
-import { useState } from "preact/hooks";
+import { useState } from "netzo/deps/preact/hooks.ts";
 import { cn } from "netzo/components/utils.ts";
 import { Button } from "netzo/components/ui/button.tsx";
 import { Calendar } from "netzo/components/ui/calendar.tsx";

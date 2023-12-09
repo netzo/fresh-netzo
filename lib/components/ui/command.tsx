@@ -2,13 +2,13 @@ import { DialogProps } from "@radix-ui/react-dialog";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import { Command as CommandPrimitive } from "cmdk";
 
-import type { JSX } from "preact";
+import type { JSX } from "netzo/deps/preact.ts";
 import {
   type ComponentProps,
   forwardRef,
   type Ref,
   useState,
-} from "preact/compat";
+} from "netzo/deps/preact/compat.ts";
 import { cn } from "netzo/components/utils.ts";
 import { Dialog, DialogContent } from "netzo/components/ui/dialog.tsx";
 

@@ -1,4 +1,4 @@
-import type { Plugin } from "$fresh/src/server/mod.ts";
+import type { Plugin } from "netzo/deps/$fresh/src/server/mod.ts";
 import type { Project } from "../../framework/mod.ts";
 
 /*

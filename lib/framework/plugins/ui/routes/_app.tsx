@@ -1,5 +1,5 @@
-import { defineApp } from "$fresh/src/server/mod.ts";
-import { Partial } from "$fresh/src/runtime/Partial.tsx";
+import { defineApp } from "netzo/deps/$fresh/src/server/mod.ts";
+import { Partial } from "netzo/deps/$fresh/src/runtime/Partial.tsx";
 import { cn } from "netzo/components/utils.ts";
 import type { NetzoState } from "../../../framework/mod.ts";
 import { Nav } from "../components/nav.tsx";

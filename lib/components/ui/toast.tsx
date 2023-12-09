@@ -2,13 +2,13 @@ import { Cross2Icon } from "@radix-ui/react-icons";
 import * as ToastPrimitives from "@radix-ui/react-toast";
 import { cva, type VariantProps } from "class-variance-authority";
 
-import type { VNode } from "preact";
+import type { VNode } from "netzo/deps/preact.ts";
 import {
   type ComponentProps,
   forwardRef,
   type Ref,
   useState,
-} from "preact/compat";
+} from "netzo/deps/preact/compat.ts";
 import { cn } from "netzo/components/utils.ts";
 
 const ToastProvider = ToastPrimitives.Provider;

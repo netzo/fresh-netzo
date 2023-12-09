@@ -1,5 +1,5 @@
-import { options, VNode } from "preact";
-import { Signal } from "@preact/signals";
+import { options, VNode } from "netzo/deps/preact.ts";
+import { Signal } from "netzo/deps/@preact/signals.ts";
 
 // Add `bind:value` to JSX types
 declare global {

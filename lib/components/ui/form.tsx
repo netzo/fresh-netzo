@@ -11,7 +11,7 @@ import {
 
 import { Label } from "netzo/components/ui/label.tsx";
 
-import type { JSX } from "preact";
+import type { JSX } from "netzo/deps/preact.ts";
 import {
   type ComponentProps,
   createContext,
@@ -20,7 +20,7 @@ import {
   useContext,
   useId,
   useState,
-} from "preact/compat";
+} from "netzo/deps/preact/compat.ts";
 import { cn } from "netzo/components/utils.ts";
 
 const Form = FormProvider;

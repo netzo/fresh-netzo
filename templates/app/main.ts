@@ -7,6 +7,6 @@
 
 import { start } from "$fresh/src/server/mod.ts";
 import manifest from "@/fresh.gen.ts";
-import config from "@/netzo.config.ts";
+import config from "./app.netzo.ts";
 
 await start(manifest, await config);

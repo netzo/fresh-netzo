@@ -1,5 +1,5 @@
 import { Progress } from "netzo/components/ui/progress.tsx";
-import { useEffect, useState } from "preact/compat";
+import { useEffect, useState } from "netzo/deps/preact/compat.ts";
 
 export default () => {
   const [progress, setProgress] = useState(13);

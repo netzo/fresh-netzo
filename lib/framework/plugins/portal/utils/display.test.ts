@@ -1,6 +1,11 @@
 import { formatCurrency, pluralize, timeAgo } from "./display.ts";
-import { DAY, HOUR, MINUTE, SECOND } from "std/datetime/constants.ts";
-import { assertEquals, assertThrows } from "std/assert/mod.ts";
+import {
+  DAY,
+  HOUR,
+  MINUTE,
+  SECOND,
+} from "netzo/deps/std/datetime/constants.ts";
+import { assertEquals, assertThrows } from "netzo/deps/std/assert/mod.ts";
 
 Deno.test("[plugins/portal/utils/display] pluralize()", () => {
   assertEquals(pluralize(0, "item"), "0 items");

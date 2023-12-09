@@ -1,4 +1,4 @@
-import { RedirectStatus, Status } from "std/http/http_status.ts";
+import { RedirectStatus, Status } from "netzo/deps/std/http/http_status.ts";
 
 /**
  * Returns a response that redirects the client to the given location (URL).

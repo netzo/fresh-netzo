@@ -15,7 +15,7 @@ import {
   buildAssetsFromManifest,
   createClient,
   readDecodeAndAddFileContentToAssets,
-} from "../utils/netzo.ts";
+} from "../utils/app.netzo.ts";
 import { APIError } from "../utils/api.ts";
 
 const help = `netzo deploy
@@ -284,7 +284,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
       jsx: "react-jsx",
       jsxFactory: "h",
       jsxFragmentFactory: "Fragment",
-      jsxImportSource: "preact",
+      jsxImportSource: "netzo/deps/preact.ts",
     },
     assets,
     envVars: {}, // set by netzo on deployment (project.envVars[env] empty for security)

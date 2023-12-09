@@ -1,4 +1,4 @@
-import { createHttpError } from "std/http/http_errors.ts";
+import { createHttpError } from "netzo/deps/std/http/http_errors.ts";
 import { createGitHubOAuthConfig } from "deno_kv_oauth/mod.ts";
 
 export function isGitHubSetup() {

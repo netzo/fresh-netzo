@@ -1,4 +1,4 @@
-import { useEffect, useState } from "preact/hooks";
+import { useEffect, useState } from "netzo/deps/preact/hooks.ts";
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 import {
   Sheet,

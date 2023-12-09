@@ -1,5 +1,5 @@
-import { assertEquals, assertRejects } from "std/assert/mod.ts";
-import { ulid } from "std/ulid/mod.ts";
+import { assertEquals, assertRejects } from "netzo/deps/std/assert/mod.ts";
+import { ulid } from "netzo/deps/std/ulid/mod.ts";
 import {
   collectValues,
   createUser,

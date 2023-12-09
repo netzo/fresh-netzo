@@ -27,7 +27,7 @@ export function netzo(
   if (permissions?.env) deno.push("--allow-env");
   if (permissions?.run) deno.push("--allow-run");
 
-  deno.push(new URL("../netzo.ts", import.meta.url).toString());
+  deno.push(new URL("../app.netzo.ts", import.meta.url).toString());
 
   const cmd = Deno.build.os == "linux"
     ? ["bash", "-c", [...deno, ...args].join(" ")]

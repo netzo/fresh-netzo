@@ -1,4 +1,4 @@
-import { defineRoute } from "$fresh/src/server/mod.ts";
+import { defineRoute } from "netzo/deps/$fresh/src/server/mod.ts";
 import { AuthForm } from "./islands/auth-form.tsx";
 import type { NetzoState } from "../../framework/mod.ts";
 

@@ -1,6 +1,6 @@
 import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
 
-import { useState } from "preact/hooks";
+import { useState } from "netzo/deps/preact/hooks.ts";
 import { cn } from "netzo/components/utils.ts";
 import { Button } from "netzo/components/ui/button.tsx";
 import {

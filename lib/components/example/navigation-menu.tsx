@@ -1,4 +1,8 @@
-import { type ComponentProps, forwardRef, type Ref } from "preact/compat";
+import {
+  type ComponentProps,
+  forwardRef,
+  type Ref,
+} from "netzo/deps/preact/compat.ts";
 import { cn } from "netzo/components/utils.ts";
 
 import {

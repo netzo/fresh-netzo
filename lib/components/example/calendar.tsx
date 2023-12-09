@@ -1,4 +1,4 @@
-import { useState } from "preact/hooks";
+import { useState } from "netzo/deps/preact/hooks.ts";
 import { Calendar } from "netzo/components/ui/calendar.tsx";
 
 export default () => {

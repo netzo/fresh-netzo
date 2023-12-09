@@ -16,7 +16,7 @@ import {
   VisibilityState,
 } from "@tanstack/react-table";
 
-import { useState } from "preact/hooks";
+import { useState } from "netzo/deps/preact/hooks.ts";
 import { Button } from "netzo/components/ui/button.tsx";
 import { Checkbox } from "netzo/components/ui/checkbox.tsx";
 import {

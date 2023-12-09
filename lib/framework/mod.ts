@@ -1,4 +1,4 @@
-import type { FreshConfig } from "$fresh/src/server/mod.ts";
+import type { FreshConfig } from "netzo/deps/$fresh/src/server/mod.ts";
 import type { Project } from "https://esm.sh/@netzo/api@1.0.52/lib/client.d.ts";
 import replace from "https://esm.sh/object-replace-mustache@1.0.2";
 import { AccessState } from "netzo/framework/plugins/access/mod.ts";
@@ -12,7 +12,7 @@ import { bindSignal } from "netzo/framework/plugins/bindSignal/mod.ts";
 
 export type { Project };
 
-export type NetzoConfig = FreshConfig & {
+export type AppConfig = FreshConfig & {
   entrypoint?: string;
   importMap?: string;
   denoLock?: string;
@@ -29,7 +29,7 @@ export type NetzoState = {
   [k: string]: unknown;
 };
 
-if (import.meta.main) await defineNetzoConfig({}); // allow running as script
+if (import.meta.main) await createApp({}); // allow running as script
 
 // WORKAROUND: until resolution of https://github.com/denoland/fresh/issues/1773#issuecomment-1763502518
 const origConsoleError = console.error;
@@ -40,10 +40,10 @@ console.error = (msg) => {
   origConsoleError(msg);
 };
 
-export async function defineNetzoConfig(
-  partialConfig: Partial<NetzoConfig>,
-): Promise<Required<NetzoConfig>> {
-  if (Deno.args[0] === "build") return partialConfig as Required<NetzoConfig>;
+export async function createApp(
+  partialConfig: Partial<AppConfig>,
+): Promise<Required<AppConfig>> {
+  if (Deno.args[0] === "build") return partialConfig as Required<AppConfig>;
 
   const {
     NETZO_ENV = Deno.env.get("DENO_REGION") ? "production" : "development",
@@ -68,9 +68,12 @@ export async function defineNetzoConfig(
   Deno.env.set("NETZO_API_KEY", NETZO_API_KEY);
   Deno.env.set("NETZO_API_URL", NETZO_API_URL);
   Deno.env.set("NETZO_APP_URL", NETZO_APP_URL);
-  Deno.env.set("NETZO_DATABASE_IDS", JSON.stringify({
-    default: project.databaseId
-  }));
+  Deno.env.set(
+    "NETZO_DATABASE_IDS",
+    JSON.stringify({
+      default: project.databaseId,
+    }),
+  );
 
   if (["development"].includes(NETZO_ENV)) {
     setEnvVars(project.envVars?.development ?? {});
@@ -133,22 +136,22 @@ async function createPlugins(state: NetzoState): Promise<Plugin[]> {
     Object.entries(state).map(async ([key, options]) => {
       switch (key) {
         case "access": {
-          const mod = await import("../plugins/access/mod.ts");
+          const mod = await import("./plugins/access/mod.ts");
           return mod.access(options);
         }
         case "api": {
-          const mod = await import("../plugins/api/mod.ts");
+          const mod = await import("./plugins/api/mod.ts");
           return mod.api(options);
         }
         case "portal": {
-          const mod = await import("../plugins/portal/mod.ts");
+          const mod = await import("./plugins/portal/mod.ts");
           return mod.portal(options);
         }
         case "ui": {
-          const mod = await import("../plugins/ui/mod.ts");
-          const { unocss } = await import("../plugins/unocss/mod.ts");
+          const mod = await import("./plugins/ui/mod.ts");
+          const { unocss } = await import("./plugins/unocss/mod.ts");
           const { presetNetzo } = await import(
-            "../plugins/unocss/preset-netzo.ts"
+            "./plugins/unocss/preset-app.netzo.ts"
           );
           return [
             mod.ui(options),

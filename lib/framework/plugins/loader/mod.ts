@@ -1,5 +1,5 @@
 // see https://github.com/nesterow/tailored#preloader-plugin
-import { Plugin } from "$fresh/src/server/mod.ts";
+import { Plugin } from "netzo/deps/$fresh/src/server/mod.ts";
 
 export type LoaderOptions = {
   color?: string;
