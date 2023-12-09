@@ -44,9 +44,9 @@ export const access = (options: AccessOptions): Plugin => {
         path: "/",
         middleware: {
           handler: async (req, ctx) => {
-            // if (Deno.env.get("NETZO_ENV") === "development") {
-            //   return await ctx.next();
-            // }
+            if (Deno.env.get("NETZO_ENV") === "development") {
+              return await ctx.next();
+            }
 
             if (!["route"].includes(ctx.destination)) return await ctx.next();
 

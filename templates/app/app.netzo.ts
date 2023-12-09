@@ -11,6 +11,34 @@ import {
 // import unoConfig from "./uno.config.ts";
 
 export default createApp({
+  access: { level: "private", userIds: [], username: "", password: "" },
+  portal: {
+    email: {},
+    oauth2: {},
+    title: "",
+    description: "",
+    color: null,
+    backgroundColor: null,
+    logo: "",
+    caption: "",
+    users: [],
+  },
+  ui: {
+    layout: {
+      nav: { items: [] },
+      header: { title: "", description: "", image: "" },
+      footer: {
+        innerHTML: '<a href="https://netzo.io/" target="_blank">\n  \n</a>',
+      },
+    },
+    theme: { color: "red", radius: 1 },
+    pages: {
+      _app: { enabled: true },
+      _404: { enabled: true },
+      _500: { enabled: true },
+    },
+    head: { title: "", description: "", favicon: "", image: "" },
+  },
   plugins: [
     // authBasic({
     //   path: "/",

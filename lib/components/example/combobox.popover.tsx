@@ -8,11 +8,7 @@ import {
   CommandItem,
   CommandList,
 } from "../ui/command.tsx";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "../ui/popover.tsx";
+import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover.tsx";
 
 type Status = {
   value: string;

@@ -1,6 +1,7 @@
 import type { FreshConfig } from "../deps/$fresh/src/server/mod.ts";
 import type { Project } from "https://esm.sh/@netzo/api@1.0.52/lib/client.d.ts";
 import replace from "https://esm.sh/object-replace-mustache@1.0.2";
+import { deepMerge } from "../deps/std/collections/deep_merge.ts";
 import { AccessState } from "../framework/plugins/access/mod.ts";
 // import { ApiState } from "../framework/plugins/api/mod.ts";
 import { PortalState } from "../framework/plugins/portal/mod.ts";
@@ -80,17 +81,18 @@ export async function createApp(
   }
   const appUrl = Deno.env.get("NETZO_APP_URL") ?? "https://app.netzo.io";
 
-  let state: NetzoState = {
+  const { access, portal, ui } = project.app ?? {};
+
+  let state: NetzoState = deepMerge({
     kv: await Deno.openKv(),
-    access: project?.access ?? {},
-    api: project?.api ?? {},
-    portal: project?.portal ?? {},
-    ui: project?.ui ?? {},
-  };
+    access,
+    portal,
+    ui,
+  }, partialConfig); // NOTE: developer config takes precedence for better DX
 
   state = replace(state, { project });
 
-  // console.log(state);
+  logInfo(`Merged remote and local app configuratitions`);
 
   const netzoPlugins = await createPlugins(state);
 
@@ -114,9 +116,6 @@ export async function createApp(
             path: "/",
             middleware: {
               handler: (_req, ctx) => {
-                // Object.entries(state).forEach(([key, value]) => {
-                //   ctx.state[key] ??= value
-                // });
                 ctx.state = state;
                 return ctx.next();
               },
@@ -131,7 +130,13 @@ export async function createApp(
   };
 }
 
+/**
+ * An internal utility to bundle plugins based on app configuration.
+ * @param state {NetzoState} - the app configuration
+ * @returns {Promise<Plugin[]>} - the bundled plugins
+ */
 async function createPlugins(state: NetzoState): Promise<Plugin[]> {
+  // NOTE: async plugin initialization is parallelized for better performance
   const plugins = (await Promise.all(
     Object.entries(state).map(async ([key, options]) => {
       switch (key) {

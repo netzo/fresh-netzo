@@ -10,11 +10,7 @@ import {
   CommandInput,
   CommandItem,
 } from "../ui/command.tsx";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "../ui/popover.tsx";
+import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover.tsx";
 
 const frameworks = [
   {

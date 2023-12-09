@@ -1,8 +1,4 @@
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "../ui/avatar.tsx";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar.tsx";
 
 export default () => {
   return (

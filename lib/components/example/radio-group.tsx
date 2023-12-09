@@ -1,8 +1,5 @@
 import { Label } from "../ui/label.tsx";
-import {
-  RadioGroup,
-  RadioGroupItem,
-} from "../ui/radio-group.tsx";
+import { RadioGroup, RadioGroupItem } from "../ui/radio-group.tsx";
 
 export default () => {
   return (

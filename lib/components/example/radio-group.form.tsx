@@ -11,10 +11,7 @@ import {
   FormLabel,
   FormMessage,
 } from "../ui/form.tsx";
-import {
-  RadioGroup,
-  RadioGroupItem,
-} from "../ui/radio-group.tsx";
+import { RadioGroup, RadioGroupItem } from "../ui/radio-group.tsx";
 import { toast } from "../ui/use-toast.ts";
 
 const FormSchema = z.object({

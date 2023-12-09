@@ -1,10 +1,6 @@
 import { CalendarIcon } from "../../deps/@radix-ui/react-icons.ts";
 
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "../ui/avatar.tsx";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar.tsx";
 import { Button } from "../ui/button.tsx";
 import {
   HoverCard,

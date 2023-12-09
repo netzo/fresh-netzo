@@ -1,10 +1,6 @@
 import { RocketIcon } from "../../deps/@radix-ui/react-icons.ts";
 
-import {
-  Alert,
-  AlertDescription,
-  AlertTitle,
-} from "../ui/alert.tsx";
+import { Alert, AlertDescription, AlertTitle } from "../ui/alert.tsx";
 
 export default () => {
   return (

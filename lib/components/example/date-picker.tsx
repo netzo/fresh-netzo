@@ -5,11 +5,7 @@ import { useState } from "../../deps/preact/hooks.ts";
 import { cn } from "../utils.ts";
 import { Button } from "../ui/button.tsx";
 import { Calendar } from "../ui/calendar.tsx";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "../ui/popover.tsx";
+import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover.tsx";
 
 export default () => {
   const [date, setDate] = useState<Date>();
