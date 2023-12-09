@@ -7,7 +7,9 @@ import type {
   Project,
 } from "../../../deps/@netzo/api/mod.ts";
 export { Spinner } from "../../../deps/wait/mod.ts";
-import { fromFileUrl, netzo, normalize, wait } from "../../../std/path/mod.ts";
+import { fromFileUrl, normalize } from "../../../deps/std/path/mod.ts";
+import { wait } from "../../../deps/wait/mod.ts";
+import { netzo } from "../../../apis/netzo/mod.ts";
 import { error, LOGS } from "../../../framework/utils/console.ts";
 import { parseEntrypoint } from "../utils/entrypoint.ts";
 import { walk } from "../utils/walk.ts";

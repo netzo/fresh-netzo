@@ -1,11 +1,11 @@
 // from https://github.com/drollinger/deployctl
 // see https://github.com/denoland/deployctl/issues/138
 
-import { load } from ../../../deps/std/dotenv/mod";
-import type { Project } from ../../../deps/@netzo/api/mod.ts";
-export { wait } from ../../../deps/wait/mod.ts";
-import { netzo } from ../../../apis/netzo/mod.ts";
-import { error, LOGS } from ../../../framework/utils/console.ts";
+import { load } from "../../../deps/std/dotenv/mod.ts";
+import type { Project } from "../../../deps/@netzo/api/mod.ts";
+export { wait } from "../../../deps/wait/mod.ts";
+import { netzo } from "../../../apis/netzo/mod.ts";
+import { error, LOGS } from "../../../framework/utils/console.ts";
 
 const help = `netzo env
 Push project environment variables from env file to Netzo.

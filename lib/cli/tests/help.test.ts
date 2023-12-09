@@ -3,7 +3,7 @@ import {
   assert,
   assertEquals,
   assertStringIncludes,
-} from ../../deps/std/testing/asserts.ts";
+} from "../../deps/std/testing/asserts.ts";
 import { output, test } from "./utils.ts";
 
 test({ args: [] }, async (proc) => {

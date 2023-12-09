@@ -1,12 +1,12 @@
-import { io } from ../../../deps/socket.io-client.ts";
-import { feathers } from ../../../deps/@feathersjs/feathers.ts";
-import { socketio } from ../../../deps/@feathersjs/socketio-client.ts";
+import { io } from "../../../deps/socket.io-client.ts";
+import { feathers } from "../../../deps/@feathersjs/feathers.ts";
+import { socketio } from "../../../deps/@feathersjs/socketio-client.ts";
 import {
   Manifest,
   ManifestEntryFile,
   Project,
   ProjectAssetsFile,
-} from ../../../deps/@netzo/api/mod.ts";
+} from "../../../deps/@netzo/api/mod.ts";
 
 export const createClient = async ({
   apiKey = Deno.env.get("NETZO_API_KEY")!,

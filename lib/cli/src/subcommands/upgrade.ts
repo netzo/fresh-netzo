@@ -1,9 +1,9 @@
-import { error } from ../../../framework/utils/console.ts";
+import { error } from "../../../framework/utils/console.ts";
 import {
   isSemVer,
   parse,
   semverGreaterThanOrEquals,
-} from ../../../deps/std/semver/mod.ts";
+} from "../../../deps/semver/mod.ts";
 import { VERSION } from "../version.ts";
 
 const help = `netzo upgrade
