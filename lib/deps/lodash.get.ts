@@ -1,1 +1,1 @@
-export { default as _get } from "https://esm.sh/lodash.get@4.4.2";
+export { default as _get } from "npm:lodash.get@4.4.2";

@@ -23,4 +23,4 @@ export type {
   Paginated,
   Project,
   ProjectAssetsFile,
-} from "https://esm.sh/@netzo/api@1.0.52/lib/client.d.ts";
+} from "npm:/@netzo/api@1.0.52/lib/client.d.ts";

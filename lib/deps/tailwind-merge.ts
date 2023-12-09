@@ -1,1 +1,1 @@
-export * from "https://esm.sh/tailwind-merge@1.14.0";
+export * from "npm:tailwind-merge@1.14.0";

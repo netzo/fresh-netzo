@@ -1,1 +1,1 @@
-export { feathers } from "https://esm.sh/@feathersjs/feathers@5.0.6";
+export { feathers } from "npm:@feathersjs/feathers@5.0.6";

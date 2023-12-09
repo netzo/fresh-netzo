@@ -1,1 +1,1 @@
-export { default as io } from "https://esm.sh/socket.io-client@4.7.1";
+export { default as io } from "npm:socket.io-client@4.7.1";
