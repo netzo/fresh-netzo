@@ -1,22 +1,22 @@
-import { CalendarIcon } from "netzo/deps/@radix-ui/react-icons.ts";
-import { addDays, format } from "netzo/deps/date-fns.ts";
+import { CalendarIcon } from "../../deps/@radix-ui/react-icons.ts";
+import { addDays, format } from "../../deps/date-fns.ts";
 
-import { useState } from "netzo/deps/preact/hooks.ts";
-import { cn } from "netzo/components/utils.ts";
-import { Button } from "netzo/components/ui/button.tsx";
-import { Calendar } from "netzo/components/ui/calendar.tsx";
+import { useState } from "../../deps/preact/hooks.ts";
+import { cn } from "../utils.ts";
+import { Button } from "../ui/button.tsx";
+import { Calendar } from "../ui/calendar.tsx";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "netzo/components/ui/popover.tsx";
+} from "../ui/popover.tsx";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "netzo/components/ui/select.tsx";
+} from "../ui/select.tsx";
 
 export default () => {
   const [date, setDate] = useState<Date>();

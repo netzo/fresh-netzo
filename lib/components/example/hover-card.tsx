@@ -1,16 +1,16 @@
-import { CalendarIcon } from "netzo/deps/@radix-ui/react-icons.ts";
+import { CalendarIcon } from "../../deps/@radix-ui/react-icons.ts";
 
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "netzo/components/ui/avatar.tsx";
-import { Button } from "netzo/components/ui/button.tsx";
+} from "../ui/avatar.tsx";
+import { Button } from "../ui/button.tsx";
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
-} from "netzo/components/ui/hover-card.tsx";
+} from "../ui/hover-card.tsx";
 
 export default () => {
   return (

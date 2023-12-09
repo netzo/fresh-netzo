@@ -1,5 +1,5 @@
-import { createHttpError } from "netzo/deps/std/http/http_errors.ts";
-import { createGitHubOAuthConfig } from "netzo/deps/deno_kv_oauth/mod.ts";
+import { createHttpError } from "../../../../../deps/std/http/http_errors.ts";
+import { createGitHubOAuthConfig } from "../../../../../deps/deno_kv_oauth/mod.ts";
 
 export function isGitHubSetup() {
   try {
@@ -53,7 +53,7 @@ export type UserGithub = {
  *
  * @example
  * ```ts
- * import { getUserGithub } from "netzo/framework/plugins/portal/utils/providers/github.ts";
+ * import { getUserGithub } from "../../../../../framework/plugins/portal/utils/providers/github.ts";
  *
  * const user = await getUserGithub("<access token>");
  * user.login; // Returns "octocat"

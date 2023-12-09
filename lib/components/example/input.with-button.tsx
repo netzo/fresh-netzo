@@ -1,5 +1,5 @@
-import { Button } from "netzo/components/ui/button.tsx";
-import { Input } from "netzo/components/ui/input.tsx";
+import { Button } from "../ui/button.tsx";
+import { Input } from "../ui/input.tsx";
 
 export default () => {
   return (

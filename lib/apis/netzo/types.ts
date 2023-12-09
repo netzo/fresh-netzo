@@ -19,4 +19,4 @@ export type {
   ManifestEntryFile,
   ManifestEntrySymlink,
   Project,
-} from "netzo/deps/@netzo/api/mod.ts";
+} from "../../deps/@netzo/api/mod.ts";

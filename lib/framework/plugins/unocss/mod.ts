@@ -1,4 +1,4 @@
-import { JSX, options as preactOptions, VNode } from "netzo/deps/preact.ts";
+import { JSX, options as preactOptions, VNode } from "../../../deps/preact.ts";
 import {
   UnoGenerator,
   type UserConfig,
@@ -7,17 +7,17 @@ import type { Theme } from "https://esm.sh/@unocss/preset-uno@0.58.0?target=esne
 import {
   Plugin,
   type PluginRenderStyleTag,
-} from "netzo/deps/$fresh/src/server/mod.ts";
+} from "../../../deps/$fresh/src/server/mod.ts";
 import {
   dirname,
   fromFileUrl,
   join,
   walk,
-} from "netzo/deps/$fresh/src/server/deps.ts";
-import { exists } from "netzo/deps/std/fs/exists.ts";
+} from "../../../deps/$fresh/src/server/deps.ts";
+import { exists } from "../../../deps/std/fs/exists.ts";
 import presetNetzo, {
   PresetNetzoOptions,
-} from "netzo/framework/plugins/unocss/preset-netzo.ts";
+} from "../../../framework/plugins/unocss/preset-netzo.ts";
 
 type PreactOptions = typeof preactOptions & { __b?: (vnode: VNode) => void };
 

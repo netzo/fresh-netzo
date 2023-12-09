@@ -5,10 +5,10 @@ import type {
   Manifest,
   Paginated,
   Project,
-  Spinner,
-} from "../../deps.ts";
-import { fromFileUrl, netzo, normalize, wait } from "../../deps.ts";
-import { error, LOGS } from "netzo/framework/utils/console.ts";
+} from "../../../deps/@netzo/api/mod.ts";
+export { Spinner } from "../../../deps/wait/mod.ts";
+import { fromFileUrl, netzo, normalize, wait } from "../../../std/path/mod.ts";
+import { error, LOGS } from "../../../framework/utils/console.ts";
 import { parseEntrypoint } from "../utils/entrypoint.ts";
 import { walk } from "../utils/walk.ts";
 import {
@@ -284,7 +284,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
       jsx: "react-jsx",
       jsxFactory: "h",
       jsxFragmentFactory: "Fragment",
-      jsxImportSource: "netzo/deps/preact.ts",
+      jsxImportSource: "../../../deps/preact.ts",
     },
     assets,
     envVars: {}, // set by netzo on deployment (project.envVars[env] empty for security)

@@ -1,9 +1,9 @@
-import { useSignal } from "netzo/deps/@preact/signals.ts";
-import type { PortalState } from "netzo/framework/plugins/portal/mod.ts";
-import { cn } from "netzo/components/utils.ts";
-import { Button, buttonVariants } from "netzo/components/ui/button.tsx";
-import { Input } from "netzo/components/ui/input.tsx";
-import { Label } from "netzo/components/ui/label.tsx";
+import { useSignal } from "../../../../deps/@preact/signals.ts";
+import type { PortalState } from "../../../../framework/plugins/portal/mod.ts";
+import { cn } from "../../../../components/utils.ts";
+import { Button, buttonVariants } from "../../../../components/ui/button.tsx";
+import { Input } from "../../../../components/ui/input.tsx";
+import { Label } from "../../../../components/ui/label.tsx";
 import {
   IconAuth0,
   IconAzure,

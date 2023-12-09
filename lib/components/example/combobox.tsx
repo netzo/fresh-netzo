@@ -1,20 +1,20 @@
-import { CaretSortIcon, CheckIcon } from "netzo/deps/@radix-ui/react-icons.ts";
+import { CaretSortIcon, CheckIcon } from "../../deps/@radix-ui/react-icons.ts";
 
-import { useState } from "netzo/deps/preact/hooks.ts";
-import { cn } from "netzo/components/utils.ts";
-import { Button } from "netzo/components/ui/button.tsx";
+import { useState } from "../../deps/preact/hooks.ts";
+import { cn } from "../utils.ts";
+import { Button } from "../ui/button.tsx";
 import {
   Command,
   CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandItem,
-} from "netzo/components/ui/command.tsx";
+} from "../ui/command.tsx";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "netzo/components/ui/popover.tsx";
+} from "../ui/popover.tsx";
 
 const frameworks = [
   {

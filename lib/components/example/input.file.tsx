@@ -1,5 +1,5 @@
-import { Input } from "netzo/components/ui/input.tsx";
-import { Label } from "netzo/components/ui/label.tsx";
+import { Input } from "../ui/input.tsx";
+import { Label } from "../ui/label.tsx";
 
 export default () => {
   return (

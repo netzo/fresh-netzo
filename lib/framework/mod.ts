@@ -1,14 +1,14 @@
-import type { FreshConfig } from "netzo/deps/$fresh/src/server/mod.ts";
+import type { FreshConfig } from "../deps/$fresh/src/server/mod.ts";
 import type { Project } from "https://esm.sh/@netzo/api@1.0.52/lib/client.d.ts";
 import replace from "https://esm.sh/object-replace-mustache@1.0.2";
-import { AccessState } from "netzo/framework/plugins/access/mod.ts";
-// import { ApiState } from "netzo/framework/plugins/api/mod.ts";
-import { PortalState } from "netzo/framework/plugins/portal/mod.ts";
-import { UiState } from "netzo/framework/plugins/ui/mod.ts";
+import { AccessState } from "../framework/plugins/access/mod.ts";
+// import { ApiState } from "../framework/plugins/api/mod.ts";
+import { PortalState } from "../framework/plugins/portal/mod.ts";
+import { UiState } from "../framework/plugins/ui/mod.ts";
 import { netzo } from "../apis/netzo/mod.ts";
 import { log, logInfo, LOGS } from "../framework/utils/console.ts";
 import { setEnvVars } from "../framework/utils/mod.ts";
-import { bindSignal } from "netzo/framework/plugins/bindSignal/mod.ts";
+import { bindSignal } from "../framework/plugins/bindSignal/mod.ts";
 
 export type { Project };
 

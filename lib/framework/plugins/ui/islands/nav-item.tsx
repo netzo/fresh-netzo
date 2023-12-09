@@ -1,11 +1,11 @@
-import { cn } from "netzo/components/utils.ts";
-import { buttonVariants } from "netzo/components/ui/button.tsx";
+import { cn } from "../../../../components/utils.ts";
+import { buttonVariants } from "../../../../components/ui/button.tsx";
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "netzo/components/ui/avatar.tsx";
-import type { User } from "netzo/framework/plugins/portal/utils/db.ts";
+} from "../../../../components/ui/avatar.tsx";
+import type { User } from "../../../../framework/plugins/portal/utils/db.ts";
 import type { UiOptions } from "../mod.ts";
 
 type NavItemProps = UiOptions["nav"]["items"][number];

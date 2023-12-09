@@ -1,14 +1,14 @@
-import * as AlertDialogPrimitive from "netzo/deps/@radix-ui/react-alert-dialog.ts";
+import * as AlertDialogPrimitive from "../../deps/@radix-ui/react-alert-dialog.ts";
 
-import type { JSX } from "netzo/deps/preact.ts";
+import type { JSX } from "../../deps/preact.ts";
 import {
   type ComponentProps,
   forwardRef,
   type Ref,
   useState,
-} from "netzo/deps/preact/compat.ts";
-import { cn } from "netzo/components/utils.ts";
-import { buttonVariants } from "netzo/components/ui/button.tsx";
+} from "../../deps/preact/compat.ts";
+import { cn } from "../utils.ts";
+import { buttonVariants } from "../ui/button.tsx";
 
 const AlertDialog = AlertDialogPrimitive.Root;
 

@@ -1,8 +1,8 @@
-import { BellIcon, CheckIcon } from "netzo/deps/@radix-ui/react-icons.ts";
+import { BellIcon, CheckIcon } from "../../deps/@radix-ui/react-icons.ts";
 
-import { type ComponentProps } from "netzo/deps/preact/compat.ts";
-import { cn } from "netzo/components/utils.ts";
-import { Button } from "netzo/components/ui/button.tsx";
+import { type ComponentProps } from "../../deps/preact/compat.ts";
+import { cn } from "../utils.ts";
+import { Button } from "../ui/button.tsx";
 import {
   Card,
   CardContent,
@@ -10,9 +10,9 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "netzo/components/ui/card.tsx";
-import { Separator } from "netzo/components/ui/separator.tsx";
-import { Switch } from "netzo/components/ui/switch.tsx";
+} from "../ui/card.tsx";
+import { Separator } from "../ui/separator.tsx";
+import { Switch } from "../ui/switch.tsx";
 
 const notifications = [
   {

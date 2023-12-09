@@ -5,7 +5,7 @@ import {
   GearIcon,
   PersonIcon,
   RocketIcon,
-} from "netzo/deps/@radix-ui/react-icons.ts";
+} from "../../deps/@radix-ui/react-icons.ts";
 
 import {
   CommandDialog,
@@ -16,9 +16,9 @@ import {
   CommandList,
   CommandSeparator,
   CommandShortcut,
-} from "netzo/components/ui/command.tsx";
+} from "../ui/command.tsx";
 
-import { useEffect, useState } from "netzo/deps/preact/compat.ts";
+import { useEffect, useState } from "../../deps/preact/compat.ts";
 
 export default () => {
   const [open, setOpen] = useState(false);

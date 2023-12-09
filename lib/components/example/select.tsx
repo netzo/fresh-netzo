@@ -6,7 +6,7 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "netzo/components/ui/select.tsx";
+} from "../ui/select.tsx";
 
 export default () => {
   return (

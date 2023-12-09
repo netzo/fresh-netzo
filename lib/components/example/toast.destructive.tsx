@@ -1,6 +1,6 @@
-import { Button } from "netzo/components/ui/button.tsx";
-import { ToastAction } from "netzo/components/ui/toast.tsx";
-import { useToast } from "netzo/components/ui/use-toast.ts";
+import { Button } from "../ui/button.tsx";
+import { ToastAction } from "../ui/toast.tsx";
+import { useToast } from "../ui/use-toast.ts";
 
 export default () => {
   const { toast } = useToast();

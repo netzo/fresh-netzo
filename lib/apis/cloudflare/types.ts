@@ -1,4 +1,4 @@
-import { z } from "netzo/deps/zod/mod.ts";
+import { z } from "../../deps/zod/mod.ts";
 
 const responseBaseSchema = z.object({
   errors: z.array(z.any()),

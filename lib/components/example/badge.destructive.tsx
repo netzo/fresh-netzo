@@ -1,4 +1,4 @@
-import { Badge } from "netzo/components/ui/badge.tsx";
+import { Badge } from "../ui/badge.tsx";
 
 export default () => {
   return <Badge variant="destructive">Destructive</Badge>;

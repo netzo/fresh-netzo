@@ -1,4 +1,4 @@
-import { AspectRatio } from "netzo/components/ui/aspect-ratio.tsx";
+import { AspectRatio } from "../ui/aspect-ratio.tsx";
 
 export default () => {
   return (

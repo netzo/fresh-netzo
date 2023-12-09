@@ -1,16 +1,16 @@
-import { DialogProps } from "netzo/deps/@radix-ui/react-dialog.ts";
-import { MagnifyingGlassIcon } from "netzo/deps/@radix-ui/react-icons.ts";
-import { Command as CommandPrimitive } from "netzo/deps/cmdk.ts";
+import { DialogProps } from "../../deps/@radix-ui/react-dialog.ts";
+import { MagnifyingGlassIcon } from "../../deps/@radix-ui/react-icons.ts";
+import { Command as CommandPrimitive } from "../../deps/cmdk.ts";
 
-import type { JSX } from "netzo/deps/preact.ts";
+import type { JSX } from "../../deps/preact.ts";
 import {
   type ComponentProps,
   forwardRef,
   type Ref,
   useState,
-} from "netzo/deps/preact/compat.ts";
-import { cn } from "netzo/components/utils.ts";
-import { Dialog, DialogContent } from "netzo/components/ui/dialog.tsx";
+} from "../../deps/preact/compat.ts";
+import { cn } from "../utils.ts";
+import { Dialog, DialogContent } from "../ui/dialog.tsx";
 
 const Command = forwardRef<
   Ref<typeof CommandPrimitive>,

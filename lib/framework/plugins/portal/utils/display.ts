@@ -1,11 +1,11 @@
-import { difference } from "netzo/deps/std/datetime/difference.ts";
+import { difference } from "../../../../deps/std/datetime/difference.ts";
 
 /**
  * Returns a pluralized string for the given amount and unit.
  *
  * @example
  * ```ts
- * import { pluralize } from "netzo/framework/plugins/portal/utils/display.ts";
+ * import { pluralize } from "../../../../framework/plugins/portal/utils/display.ts";
  *
  * pluralize(0, "meow"); // Returns "0 meows"
  * pluralize(1, "meow"); // Returns "1 meow"
@@ -20,8 +20,8 @@ export function pluralize(amount: number, unit: string) {
  *
  * @example
  * ```ts
- * import { timeAgo } from "netzo/framework/plugins/portal/utils/display.ts";
- * import { SECOND, MINUTE, HOUR } from "netzo/deps/std/datetime/constants.ts";
+ * import { timeAgo } from "../../../../framework/plugins/portal/utils/display.ts";
+ * import { SECOND, MINUTE, HOUR } from "../../../../deps/std/datetime/constants.ts";
  *
  * timeAgo(new Date()); // Returns "just now"
  * timeAgo(new Date(Date.now() - 3 * HOUR)); // Returns "3 hours ago"
@@ -60,7 +60,7 @@ export function timeAgo(date: Date) {
  *
  * @example
  * ```ts
- * import { formatCurrency } from "netzo/framework/plugins/portal/utils/display.ts";
+ * import { formatCurrency } from "../../../../framework/plugins/portal/utils/display.ts";
  *
  * formatCurrency(5, "USD"); // Returns "$5"
  * ```

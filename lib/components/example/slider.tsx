@@ -1,6 +1,6 @@
-import { type ComponentProps } from "netzo/deps/preact/compat.ts";
-import { cn } from "netzo/components/utils.ts";
-import { Slider } from "netzo/components/ui/slider.tsx";
+import { type ComponentProps } from "../../deps/preact/compat.ts";
+import { cn } from "../utils.ts";
+import { Slider } from "../ui/slider.tsx";
 
 type SliderProps = ComponentProps<typeof Slider>;
 

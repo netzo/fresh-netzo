@@ -1,4 +1,4 @@
-import { Button } from "netzo/components/ui/button.tsx";
+import { Button } from "../ui/button.tsx";
 import {
   Dialog,
   DialogContent,
@@ -7,9 +7,9 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "netzo/components/ui/dialog.tsx";
-import { Input } from "netzo/components/ui/input.tsx";
-import { Label } from "netzo/components/ui/label.tsx";
+} from "../ui/dialog.tsx";
+import { Input } from "../ui/input.tsx";
+import { Label } from "../ui/label.tsx";
 
 export default () => {
   return (

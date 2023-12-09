@@ -1,6 +1,7 @@
 #!/usr/bin/env -S deno run --allow-read --allow-write --allow-env --allow-net --allow-run
 
-import { parse, parseArgs, semverGreaterThanOrEquals } from "./deps.ts";
+import { parseArgs } from "../deps/std/flags/mod.ts";
+import { parse, semverGreaterThanOrEquals } from "../deps/std/semver/mod.ts";
 import { error } from "../framework/utils/console.ts";
 import initSubcommand from "./src/subcommands/init.ts";
 import deploySubcommand from "./src/subcommands/deploy.ts";
@@ -106,7 +107,7 @@ if (Deno.isatty(Deno.stdin.rid)) {
       [
         `A new release of netzo CLI is available: ${VERSION} -> ${latestVersion}`,
         "To upgrade, run `netzo upgrade`",
-        `https://github.com/netzo/github-action/releases/tag/${latestVersion}\n`,
+        `https://github.com/../github-action/releases/tag/${latestVersion}\n`,
       ].join("\n"),
     );
   }

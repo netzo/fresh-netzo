@@ -1,7 +1,7 @@
-import { DotsHorizontalIcon } from "netzo/deps/@radix-ui/react-icons.ts";
+import { DotsHorizontalIcon } from "../../deps/@radix-ui/react-icons.ts";
 
-import { useState } from "netzo/deps/preact/hooks.ts";
-import { Button } from "netzo/components/ui/button.tsx";
+import { useState } from "../../deps/preact/hooks.ts";
+import { Button } from "../ui/button.tsx";
 import {
   Command,
   CommandEmpty,
@@ -9,7 +9,7 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "netzo/components/ui/command.tsx";
+} from "../ui/command.tsx";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -22,7 +22,7 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
-} from "netzo/components/ui/dropdown-menu.tsx";
+} from "../ui/dropdown-menu.tsx";
 
 const labels = [
   "feature",

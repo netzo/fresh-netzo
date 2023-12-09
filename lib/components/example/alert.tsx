@@ -1,10 +1,10 @@
-import { RocketIcon } from "netzo/deps/@radix-ui/react-icons.ts";
+import { RocketIcon } from "../../deps/@radix-ui/react-icons.ts";
 
 import {
   Alert,
   AlertDescription,
   AlertTitle,
-} from "netzo/components/ui/alert.tsx";
+} from "../ui/alert.tsx";
 
 export default () => {
   return (

@@ -1,14 +1,14 @@
-import { CheckIcon } from "netzo/deps/@radix-ui/react-icons.ts";
-import * as RadioGroupPrimitive from "netzo/deps/@radix-ui/react-radio-group.ts";
+import { CheckIcon } from "../../deps/@radix-ui/react-icons.ts";
+import * as RadioGroupPrimitive from "../../deps/@radix-ui/react-radio-group.ts";
 
-import type { JSX } from "netzo/deps/preact.ts";
+import type { JSX } from "../../deps/preact.ts";
 import {
   type ComponentProps,
   forwardRef,
   type Ref,
   useState,
-} from "netzo/deps/preact/compat.ts";
-import { cn } from "netzo/components/utils.ts";
+} from "../../deps/preact/compat.ts";
+import { cn } from "../utils.ts";
 
 const RadioGroup = forwardRef<
   Ref<typeof RadioGroupPrimitive.Root>,

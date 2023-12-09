@@ -1,14 +1,14 @@
-import * as TogglePrimitive from "netzo/deps/@radix-ui/react-toggle.ts";
-import { cva, type VariantProps } from "netzo/deps/class-variance-authority.ts";
+import * as TogglePrimitive from "../../deps/@radix-ui/react-toggle.ts";
+import { cva, type VariantProps } from "../../deps/class-variance-authority.ts";
 
-import type { JSX } from "netzo/deps/preact.ts";
+import type { JSX } from "../../deps/preact.ts";
 import {
   type ComponentProps,
   forwardRef,
   type Ref,
   useState,
-} from "netzo/deps/preact/compat.ts";
-import { cn } from "netzo/components/utils.ts";
+} from "../../deps/preact/compat.ts";
+import { cn } from "../utils.ts";
 
 const toggleVariants = cva(
   "inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors hover:bg-muted hover:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground",

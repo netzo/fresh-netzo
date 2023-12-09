@@ -1,4 +1,4 @@
-import { cn } from "netzo/components/utils.ts";
+import { cn } from "../utils.ts";
 
 function Skeleton({
   className,

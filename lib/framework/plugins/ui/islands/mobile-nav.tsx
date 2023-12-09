@@ -1,10 +1,10 @@
-import { useEffect, useState } from "netzo/deps/preact/hooks.ts";
-import { HamburgerMenuIcon } from "netzo/deps/@radix-ui/react-icons.ts";
+import { useEffect, useState } from "../../../../deps/preact/hooks.ts";
+import { HamburgerMenuIcon } from "../../../../deps/@radix-ui/react-icons.ts";
 import {
   Sheet,
   SheetContent,
   SheetTrigger,
-} from "netzo/components/ui/sheet.tsx";
+} from "../../../../components/ui/sheet.tsx";
 import { Nav } from "./nav.tsx";
 import { NavItems } from "./nav.tsx";
 

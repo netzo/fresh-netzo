@@ -1,6 +1,6 @@
-import { FontItalicIcon } from "netzo/deps/@radix-ui/react-icons.ts";
+import { FontItalicIcon } from "../../deps/@radix-ui/react-icons.ts";
 
-import { Toggle } from "netzo/components/ui/toggle.tsx";
+import { Toggle } from "../ui/toggle.tsx";
 
 export default () => {
   return (

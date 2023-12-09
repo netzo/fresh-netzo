@@ -1,8 +1,8 @@
-import { Label } from "netzo/components/ui/label.tsx";
+import { Label } from "../ui/label.tsx";
 import {
   RadioGroup,
   RadioGroupItem,
-} from "netzo/components/ui/radio-group.tsx";
+} from "../ui/radio-group.tsx";
 
 export default () => {
   return (

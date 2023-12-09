@@ -1,5 +1,5 @@
-import type { Plugin } from "netzo/deps/$fresh/src/server/mod.ts";
-import type { Project } from "netzo/framework/mod.ts";
+import type { Plugin } from "../../../deps/$fresh/src/server/mod.ts";
+import type { Project } from "../../../framework/mod.ts";
 
 /*
 The following lists the possible header combinations when

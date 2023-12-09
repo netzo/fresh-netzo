@@ -8,8 +8,8 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "netzo/components/ui/alert-dialog.tsx";
-import { Button } from "netzo/components/ui/button.tsx";
+} from "../ui/alert-dialog.tsx";
+import { Button } from "../ui/button.tsx";
 
 export default () => {
   return (

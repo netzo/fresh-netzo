@@ -1,15 +1,15 @@
-import * as SheetPrimitive from "netzo/deps/@radix-ui/react-dialog.ts";
-import { Cross2Icon } from "netzo/deps/@radix-ui/react-icons.ts";
-import { cva, type VariantProps } from "netzo/deps/class-variance-authority.ts";
+import * as SheetPrimitive from "../../deps/@radix-ui/react-dialog.ts";
+import { Cross2Icon } from "../../deps/@radix-ui/react-icons.ts";
+import { cva, type VariantProps } from "../../deps/class-variance-authority.ts";
 
-import type { JSX } from "netzo/deps/preact.ts";
+import type { JSX } from "../../deps/preact.ts";
 import {
   type ComponentProps,
   forwardRef,
   type Ref,
   useState,
-} from "netzo/deps/preact/compat.ts";
-import { cn } from "netzo/components/utils.ts";
+} from "../../deps/preact/compat.ts";
+import { cn } from "../utils.ts";
 
 const Sheet = SheetPrimitive.Root;
 

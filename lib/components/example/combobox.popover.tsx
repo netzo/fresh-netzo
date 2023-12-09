@@ -1,5 +1,5 @@
-import { useState } from "netzo/deps/preact/hooks.ts";
-import { Button } from "netzo/components/ui/button.tsx";
+import { useState } from "../../deps/preact/hooks.ts";
+import { Button } from "../ui/button.tsx";
 import {
   Command,
   CommandEmpty,
@@ -7,12 +7,12 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "netzo/components/ui/command.tsx";
+} from "../ui/command.tsx";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "netzo/components/ui/popover.tsx";
+} from "../ui/popover.tsx";
 
 type Status = {
   value: string;

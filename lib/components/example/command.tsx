@@ -5,7 +5,7 @@ import {
   GearIcon,
   PersonIcon,
   RocketIcon,
-} from "netzo/deps/@radix-ui/react-icons.ts";
+} from "../../deps/@radix-ui/react-icons.ts";
 
 import {
   Command,
@@ -16,7 +16,7 @@ import {
   CommandList,
   CommandSeparator,
   CommandShortcut,
-} from "netzo/components/ui/command.tsx";
+} from "../ui/command.tsx";
 
 export default () => {
   return (

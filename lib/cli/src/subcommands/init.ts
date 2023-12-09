@@ -1,5 +1,5 @@
-import { error } from "netzo/framework/utils/console.ts";
-import { question } from "../../deps.ts";
+import { error } from ../../../framework/utils/console.ts";
+import { question } from ../../../deps/question/mod.ts";
 
 const help = `netzo init
 Create a new project from an existing template.

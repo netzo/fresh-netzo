@@ -1,4 +1,4 @@
-import { cn } from "netzo/components/utils.ts";
+import { cn } from "../../../../components/utils.ts";
 import type { UiOptions } from "../mod.ts";
 
 export const Footer = ({ className, ...props }: UiOptions["footer"]) => {

@@ -1,13 +1,13 @@
-import { cva, type VariantProps } from "netzo/deps/class-variance-authority.ts";
+import { cva, type VariantProps } from "../../deps/class-variance-authority.ts";
 
-import type { JSX } from "netzo/deps/preact.ts";
+import type { JSX } from "../../deps/preact.ts";
 import {
   type ComponentProps,
   forwardRef,
   type Ref,
   useState,
-} from "netzo/deps/preact/compat.ts";
-import { cn } from "netzo/components/utils.ts";
+} from "../../deps/preact/compat.ts";
+import { cn } from "../utils.ts";
 
 const alertVariants = cva(
   "relative w-full rounded-lg border px-4 py-3 text-sm [&>svg~*]:pl-7 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground",

@@ -1,4 +1,4 @@
-import { Button } from "netzo/components/ui/button.tsx";
+import { Button } from "../ui/button.tsx";
 
 export default () => {
   return <Button variant="link">Link</Button>;

@@ -1,14 +1,14 @@
-import * as AccordionPrimitive from "netzo/deps/@radix-ui/react-accordion.ts";
-import { ChevronDownIcon } from "netzo/deps/@radix-ui/react-icons.ts";
+import * as AccordionPrimitive from "../../deps/@radix-ui/react-accordion.ts";
+import { ChevronDownIcon } from "../../deps/@radix-ui/react-icons.ts";
 
-import type { JSX } from "netzo/deps/preact.ts";
+import type { JSX } from "../../deps/preact.ts";
 import {
   type ComponentProps,
   forwardRef,
   type Ref,
   useState,
-} from "netzo/deps/preact/compat.ts";
-import { cn } from "netzo/components/utils.ts";
+} from "../../deps/preact/compat.ts";
+import { cn } from "../utils.ts";
 
 const Accordion = AccordionPrimitive.Root;
 
@@ -38,7 +38,7 @@ const AccordionTrigger = forwardRef<
       {...props}
     >
       {children}
-      <ChevronDownIcon className="h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-200" />
+      <ChevronDownIcon className="w-4 h-4 transition-transform duration-200 shrink-0 text-muted-foreground" />
     </AccordionPrimitive.Trigger>
   </AccordionPrimitive.Header>
 ));
@@ -56,7 +56,7 @@ const AccordionContent = forwardRef<
     )}
     {...props}
   >
-    <div className="pb-4 pt-0">{children}</div>
+    <div className="pt-0 pb-4">{children}</div>
   </AccordionPrimitive.Content>
 ));
 AccordionContent.displayName = AccordionPrimitive.Content.displayName;

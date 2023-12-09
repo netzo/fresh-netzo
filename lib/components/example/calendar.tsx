@@ -1,5 +1,5 @@
-import { useState } from "netzo/deps/preact/hooks.ts";
-import { Calendar } from "netzo/components/ui/calendar.tsx";
+import { useState } from "../../deps/preact/hooks.ts";
+import { Calendar } from "../ui/calendar.tsx";
 
 export default () => {
   const [date, setDate] = useState<Date | undefined>(new Date());

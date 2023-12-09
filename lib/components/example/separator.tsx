@@ -1,4 +1,4 @@
-import { Separator } from "netzo/components/ui/separator.tsx";
+import { Separator } from "../ui/separator.tsx";
 
 export default () => {
   return (

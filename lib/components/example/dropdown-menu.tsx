@@ -1,4 +1,4 @@
-import { Button } from "netzo/components/ui/button.tsx";
+import { Button } from "../ui/button.tsx";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,7 +12,7 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
-} from "netzo/components/ui/dropdown-menu.tsx";
+} from "../ui/dropdown-menu.tsx";
 
 export default () => {
   return (

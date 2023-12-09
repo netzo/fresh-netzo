@@ -6,7 +6,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "netzo/components/ui/table.tsx";
+} from "../ui/table.tsx";
 
 const invoices = [
   {

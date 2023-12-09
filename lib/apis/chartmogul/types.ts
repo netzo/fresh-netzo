@@ -1,4 +1,4 @@
-import { z } from "netzo/deps/zod/mod.ts";
+import { z } from "../../deps/zod/mod.ts";
 
 export const customerSchema = z.object({
   "id": z.number(),

@@ -1,9 +1,9 @@
-import { assertRejects } from "netzo/deps/std/assert/assert_rejects.ts";
+import { assertRejects } from "../../../../../deps/std/assert/assert_rejects.ts";
 import { getUserGithub } from "./github.ts";
-import { returnsNext, stub } from "netzo/deps/std/testing/mock.ts";
-import { errors } from "netzo/deps/std/http/http_errors.ts";
-import { assertEquals } from "netzo/deps/std/assert/assert_equals.ts";
-import { Status } from "netzo/deps/deno_kv_oauth/deps.ts";
+import { returnsNext, stub } from "../../../../../deps/std/testing/mock.ts";
+import { errors } from "../../../../../deps/std/http/http_errors.ts";
+import { assertEquals } from "../../../../../deps/std/assert/assert_equals.ts";
+import { Status } from "../../../../../deps/deno_kv_oauth/deps.ts";
 
 Deno.test("[plugins/portal/utils/providers/github] getUserGithub()", async (test) => {
   await test.step("rejects on error message", async () => {

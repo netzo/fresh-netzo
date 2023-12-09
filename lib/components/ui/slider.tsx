@@ -1,13 +1,13 @@
-import * as SliderPrimitive from "netzo/deps/@radix-ui/react-slider.ts";
+import * as SliderPrimitive from "../../deps/@radix-ui/react-slider.ts";
 
-import type { JSX } from "netzo/deps/preact.ts";
+import type { JSX } from "../../deps/preact.ts";
 import {
   type ComponentProps,
   forwardRef,
   type Ref,
   useState,
-} from "netzo/deps/preact/compat.ts";
-import { cn } from "netzo/components/utils.ts";
+} from "../../deps/preact/compat.ts";
+import { cn } from "../utils.ts";
 
 const Slider = forwardRef<
   Ref<typeof SliderPrimitive.Root>,

@@ -1,5 +1,5 @@
-import { Label } from "netzo/components/ui/label.tsx";
-import { Switch } from "netzo/components/ui/switch.tsx";
+import { Label } from "../ui/label.tsx";
+import { Switch } from "../ui/switch.tsx";
 
 export default () => {
   return (

@@ -1,9 +1,9 @@
-import { zodResolver } from "netzo/deps/@hookform/resolvers/zod.ts";
-import { useForm } from "netzo/deps/react-hook-form.ts";
-import * as z from "netzo/deps/zod/mod.ts";
+import { zodResolver } from "../../deps/@hookform/resolvers/zod.ts";
+import { useForm } from "../../deps/react-hook-form.ts";
+import * as z from "../../deps/zod/mod.ts";
 
-import { Button } from "netzo/components/ui/button.tsx";
-import { Checkbox } from "netzo/components/ui/checkbox.tsx";
+import { Button } from "../ui/button.tsx";
+import { Checkbox } from "../ui/checkbox.tsx";
 import {
   Form,
   FormControl,
@@ -11,8 +11,8 @@ import {
   FormField,
   FormItem,
   FormLabel,
-} from "netzo/components/ui/form.tsx";
-import { toast } from "netzo/components/ui/use-toast.ts";
+} from "../ui/form.tsx";
+import { toast } from "../ui/use-toast.ts";
 
 const FormSchema = z.object({
   mobile: z.boolean().default(false).optional(),

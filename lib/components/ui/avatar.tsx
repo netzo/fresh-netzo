@@ -1,13 +1,13 @@
-import * as AvatarPrimitive from "netzo/deps/@radix-ui/react-avatar.ts";
+import * as AvatarPrimitive from "../../deps/@radix-ui/react-avatar.ts";
 
-import type { JSX } from "netzo/deps/preact.ts";
+import type { JSX } from "../../deps/preact.ts";
 import {
   type ComponentProps,
   forwardRef,
   type Ref,
   useState,
-} from "netzo/deps/preact/compat.ts";
-import { cn } from "netzo/components/utils.ts";
+} from "../../deps/preact/compat.ts";
+import { cn } from "../utils.ts";
 
 const Avatar = forwardRef<
   Ref<typeof AvatarPrimitive.Root>,

@@ -2,7 +2,7 @@ import {
   CaretSortIcon,
   ChevronDownIcon,
   DotsHorizontalIcon,
-} from "netzo/deps/@radix-ui/react-icons.ts";
+} from "../../deps/@radix-ui/react-icons.ts";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -16,9 +16,9 @@ import {
   VisibilityState,
 } from "@tanstack/react-table";
 
-import { useState } from "netzo/deps/preact/hooks.ts";
-import { Button } from "netzo/components/ui/button.tsx";
-import { Checkbox } from "netzo/components/ui/checkbox.tsx";
+import { useState } from "../../deps/preact/hooks.ts";
+import { Button } from "../ui/button.tsx";
+import { Checkbox } from "../ui/checkbox.tsx";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -27,8 +27,8 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "netzo/components/ui/dropdown-menu.tsx";
-import { Input } from "netzo/components/ui/input.tsx";
+} from "../ui/dropdown-menu.tsx";
+import { Input } from "../ui/input.tsx";
 import {
   Table,
   TableBody,
@@ -36,7 +36,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "netzo/components/ui/table.tsx";
+} from "../ui/table.tsx";
 
 const data: Payment[] = [
   {

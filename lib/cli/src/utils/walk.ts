@@ -1,9 +1,9 @@
+import { join } from ../../../deps/std/path/mod.ts";
 import {
-  join,
   type ManifestEntry,
   ManifestEntryDirectory,
-} from "../../deps.ts";
-import { logWarning } from "netzo/framework/utils/console.ts";
+} from ../../../deps/@netzo/api/mod.ts";
+import { logWarning } from ../../../framework/utils/console.ts";
 
 /** Calculate git object hash, like `git hash-object` does. */
 export async function calculateGitSha1(bytes: Uint8Array) {

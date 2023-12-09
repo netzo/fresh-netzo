@@ -12,7 +12,7 @@ import {
   MenubarSubContent,
   MenubarSubTrigger,
   MenubarTrigger,
-} from "netzo/components/ui/menubar.tsx";
+} from "../ui/menubar.tsx";
 
 export default () => {
   return (

@@ -1,7 +1,7 @@
-import { IS_BROWSER } from "netzo/deps/$fresh/src/runtime/utils.ts";
-import { effect, signal } from "netzo/deps/@preact/signals.ts";
-import { Switch } from "netzo/components/ui/switch.tsx";
-import { Label } from "netzo/components/ui/label.tsx";
+import { IS_BROWSER } from "../../deps/$fresh/src/runtime/utils.ts";
+import { effect, signal } from "../../deps/@preact/signals.ts";
+import { Switch } from "../ui/switch.tsx";
+import { Label } from "../ui/label.tsx";
 
 export type Theme = "light" | "dark";
 

@@ -1,5 +1,5 @@
 // deno-lint-ignore-file no-explicit-any
-import { _get } from "netzo/deps/lodash.get.ts";
+import { _get } from "../../deps/lodash.get.ts";
 import { logInfo } from "./console.ts";
 
 export function setEnvVars(envVars: Record<string, any>) {

@@ -1,4 +1,4 @@
-import { z } from "netzo/deps/zod/mod.ts";
+import { z } from "../../deps/zod/mod.ts";
 
 export const notionPaginationSchema = z.object({
   start_cursor: z.string().optional(),

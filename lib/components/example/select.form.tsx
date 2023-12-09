@@ -1,8 +1,8 @@
-import { zodResolver } from "netzo/deps/@hookform/resolvers/zod.ts";
-import { useForm } from "netzo/deps/react-hook-form.ts";
-import * as z from "netzo/deps/zod/mod.ts";
+import { zodResolver } from "../../deps/@hookform/resolvers/zod.ts";
+import { useForm } from "../../deps/react-hook-form.ts";
+import * as z from "../../deps/zod/mod.ts";
 
-import { Button } from "netzo/components/ui/button.tsx";
+import { Button } from "../ui/button.tsx";
 import {
   Form,
   FormControl,
@@ -11,15 +11,15 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "netzo/components/ui/form.tsx";
+} from "../ui/form.tsx";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "netzo/components/ui/select.tsx";
-import { toast } from "netzo/components/ui/use-toast.ts";
+} from "../ui/select.tsx";
+import { toast } from "../ui/use-toast.ts";
 
 const FormSchema = z.object({
   email: z

@@ -1,5 +1,9 @@
 import "https://deno.land/std@0.205.0/dotenv/load.ts";
-import { assert, assertEquals, assertStringIncludes } from "./deps.ts";
+import {
+  assert,
+  assertEquals,
+  assertStringIncludes,
+} from ../../deps/std/testing/asserts.ts";
 import { output, test } from "./utils.ts";
 
 test({ args: [] }, async (proc) => {

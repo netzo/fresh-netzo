@@ -1,15 +1,15 @@
-import { ChevronDownIcon } from "netzo/deps/@radix-ui/react-icons.ts";
-import * as NavigationMenuPrimitive from "netzo/deps/@radix-ui/react-navigation-menu.ts";
-import { cva } from "netzo/deps/class-variance-authority.ts";
+import { ChevronDownIcon } from "../../deps/@radix-ui/react-icons.ts";
+import * as NavigationMenuPrimitive from "../../deps/@radix-ui/react-navigation-menu.ts";
+import { cva } from "../../deps/class-variance-authority.ts";
 
-import type { JSX } from "netzo/deps/preact.ts";
+import type { JSX } from "../../deps/preact.ts";
 import {
   type ComponentProps,
   forwardRef,
   type Ref,
   useState,
-} from "netzo/deps/preact/compat.ts";
-import { cn } from "netzo/components/utils.ts";
+} from "../../deps/preact/compat.ts";
+import { cn } from "../utils.ts";
 
 const NavigationMenu = forwardRef<
   Ref<typeof NavigationMenuPrimitive.Root>,

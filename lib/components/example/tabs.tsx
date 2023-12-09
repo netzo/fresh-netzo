@@ -1,4 +1,4 @@
-import { Button } from "netzo/components/ui/button.tsx";
+import { Button } from "../ui/button.tsx";
 import {
   Card,
   CardContent,
@@ -6,15 +6,15 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "netzo/components/ui/card.tsx";
-import { Input } from "netzo/components/ui/input.tsx";
-import { Label } from "netzo/components/ui/label.tsx";
+} from "../ui/card.tsx";
+import { Input } from "../ui/input.tsx";
+import { Label } from "../ui/label.tsx";
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
-} from "netzo/components/ui/tabs.tsx";
+} from "../ui/tabs.tsx";
 
 export default () => {
   return (

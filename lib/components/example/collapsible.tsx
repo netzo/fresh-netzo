@@ -1,12 +1,12 @@
-import { CaretSortIcon } from "netzo/deps/@radix-ui/react-icons.ts";
+import { CaretSortIcon } from "../../deps/@radix-ui/react-icons.ts";
 
-import { useState } from "netzo/deps/preact/hooks.ts";
-import { Button } from "netzo/components/ui/button.tsx";
+import { useState } from "../../deps/preact/hooks.ts";
+import { Button } from "../ui/button.tsx";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "netzo/components/ui/collapsible.tsx";
+} from "../ui/collapsible.tsx";
 
 export default () => {
   const [isOpen, setIsOpen] = useState(false);

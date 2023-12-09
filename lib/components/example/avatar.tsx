@@ -2,7 +2,7 @@ import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "netzo/components/ui/avatar.tsx";
+} from "../ui/avatar.tsx";
 
 export default () => {
   return (

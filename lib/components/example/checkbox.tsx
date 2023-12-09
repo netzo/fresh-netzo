@@ -1,4 +1,4 @@
-import { Checkbox } from "netzo/components/ui/checkbox.tsx";
+import { Checkbox } from "../ui/checkbox.tsx";
 
 export default () => {
   return (

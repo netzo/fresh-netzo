@@ -1,4 +1,4 @@
-import { Skeleton } from "netzo/components/ui/skeleton.tsx";
+import { Skeleton } from "../ui/skeleton.tsx";
 
 export default () => {
   return (

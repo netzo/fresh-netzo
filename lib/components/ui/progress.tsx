@@ -1,13 +1,13 @@
-import * as ProgressPrimitive from "netzo/deps/@radix-ui/react-progress.ts";
+import * as ProgressPrimitive from "../../deps/@radix-ui/react-progress.ts";
 
-import type { JSX } from "netzo/deps/preact.ts";
+import type { JSX } from "../../deps/preact.ts";
 import {
   type ComponentProps,
   forwardRef,
   type Ref,
   useState,
-} from "netzo/deps/preact/compat.ts";
-import { cn } from "netzo/components/utils.ts";
+} from "../../deps/preact/compat.ts";
+import { cn } from "../utils.ts";
 
 const Progress = forwardRef<
   Ref<typeof ProgressPrimitive.Root>,

@@ -1,5 +1,5 @@
-import { useState } from "netzo/deps/preact/hooks.ts";
-import { Button } from "netzo/components/ui/button.tsx";
+import { useState } from "../../deps/preact/hooks.ts";
+import { Button } from "../ui/button.tsx";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -8,7 +8,7 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "netzo/components/ui/dropdown-menu.tsx";
+} from "../ui/dropdown-menu.tsx";
 
 export default () => {
   const [position, setPosition] = useState("bottom");

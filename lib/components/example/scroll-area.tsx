@@ -1,5 +1,5 @@
-import { ScrollArea } from "netzo/components/ui/scroll-area.tsx";
-import { Separator } from "netzo/components/ui/separator.tsx";
+import { ScrollArea } from "../ui/scroll-area.tsx";
+import { Separator } from "../ui/separator.tsx";
 
 const tags = Array.from({ length: 50 }).map(
   (_, i, a) => `v1.2.0-beta.${a.length - i}`,

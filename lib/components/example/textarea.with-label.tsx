@@ -1,5 +1,5 @@
-import { Label } from "netzo/components/ui/label.tsx";
-import { Textarea } from "netzo/components/ui/textarea.tsx";
+import { Label } from "../ui/label.tsx";
+import { Textarea } from "../ui/textarea.tsx";
 
 export default () => {
   return (

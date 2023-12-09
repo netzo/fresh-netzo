@@ -1,6 +1,6 @@
-import { Button } from "netzo/components/ui/button.tsx";
-import { Input } from "netzo/components/ui/input.tsx";
-import { Label } from "netzo/components/ui/label.tsx";
+import { Button } from "../ui/button.tsx";
+import { Input } from "../ui/input.tsx";
+import { Label } from "../ui/label.tsx";
 import {
   Sheet,
   SheetClose,
@@ -10,7 +10,7 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "netzo/components/ui/sheet.tsx";
+} from "../ui/sheet.tsx";
 
 const SHEET_SIDES = ["top", "right", "bottom", "left"] as const;
 

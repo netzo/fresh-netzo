@@ -1,4 +1,4 @@
-import { z } from "netzo/deps/zod/mod.ts";
+import { z } from "../../deps/zod/mod.ts";
 
 const documentBaseSchema = z.object({
   _id: z.string(),

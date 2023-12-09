@@ -1,9 +1,9 @@
-import type { PluginRoute } from "netzo/deps/$fresh/src/server/types.ts";
+import type { PluginRoute } from "../../../deps/$fresh/src/server/types.ts";
 import {
   handleCallback,
   signIn,
   signOut,
-} from "netzo/deps/deno_kv_oauth/mod.ts";
+} from "../../../deps/deno_kv_oauth/mod.ts";
 import {
   createUser,
   getUser,

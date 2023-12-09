@@ -1,12 +1,12 @@
-import { zodResolver } from "netzo/deps/@hookform/resolvers/zod.ts";
-import { CalendarIcon } from "netzo/deps/@radix-ui/react-icons.ts";
-import { format } from "netzo/deps/date-fns.ts";
-import { useForm } from "netzo/deps/react-hook-form.ts";
-import * as z from "netzo/deps/zod/mod.ts";
+import { zodResolver } from "../../deps/@hookform/resolvers/zod.ts";
+import { CalendarIcon } from "../../deps/@radix-ui/react-icons.ts";
+import { format } from "../../deps/date-fns.ts";
+import { useForm } from "../../deps/react-hook-form.ts";
+import * as z from "../../deps/zod/mod.ts";
 
-import { cn } from "netzo/components/utils.ts";
-import { Button } from "netzo/components/ui/button.tsx";
-import { Calendar } from "netzo/components/ui/calendar.tsx";
+import { cn } from "../utils.ts";
+import { Button } from "../ui/button.tsx";
+import { Calendar } from "../ui/calendar.tsx";
 import {
   Form,
   FormControl,
@@ -15,13 +15,13 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "netzo/components/ui/form.tsx";
+} from "../ui/form.tsx";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "netzo/components/ui/popover.tsx";
-import { toast } from "netzo/components/ui/use-toast.ts";
+} from "../ui/popover.tsx";
+import { toast } from "../ui/use-toast.ts";
 
 const FormSchema = z.object({
   dob: z.date({

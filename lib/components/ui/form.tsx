@@ -1,5 +1,5 @@
-import * as LabelPrimitive from "netzo/deps/@radix-ui/react-label.ts";
-import { Slot } from "netzo/deps/@radix-ui/react-slot.ts";
+import * as LabelPrimitive from "../../deps/@radix-ui/react-label.ts";
+import { Slot } from "../../deps/@radix-ui/react-slot.ts";
 import {
   Controller,
   ControllerProps,
@@ -7,11 +7,11 @@ import {
   FieldValues,
   FormProvider,
   useFormContext,
-} from "netzo/deps/react-hook-form.ts";
+} from "../../deps/react-hook-form.ts";
 
-import { Label } from "netzo/components/ui/label.tsx";
+import { Label } from "../ui/label.tsx";
 
-import type { JSX } from "netzo/deps/preact.ts";
+import type { JSX } from "../../deps/preact.ts";
 import {
   type ComponentProps,
   createContext,
@@ -20,8 +20,8 @@ import {
   useContext,
   useId,
   useState,
-} from "netzo/deps/preact/compat.ts";
-import { cn } from "netzo/components/utils.ts";
+} from "../../deps/preact/compat.ts";
+import { cn } from "../utils.ts";
 
 const Form = FormProvider;
 

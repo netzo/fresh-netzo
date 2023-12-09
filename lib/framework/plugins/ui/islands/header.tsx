@@ -1,5 +1,5 @@
-import { cn } from "netzo/components/utils.ts";
-import type { User } from "netzo/framework/plugins/portal/utils/db.ts";
+import { cn } from "../../../../components/utils.ts";
+import type { User } from "../../../../framework/plugins/portal/utils/db.ts";
 import { UiOptions } from "../mod.ts";
 
 export default ({ className, ...props }: UiOptions["header"]) => {

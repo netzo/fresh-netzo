@@ -5,8 +5,8 @@ import {
   ToastProvider,
   ToastTitle,
   ToastViewport,
-} from "netzo/components/ui/toast.tsx";
-import { useToast } from "netzo/components/ui/use-toast.ts";
+} from "../ui/toast.tsx";
+import { useToast } from "../ui/use-toast.ts";
 
 export function Toaster() {
   const { toasts } = useToast();

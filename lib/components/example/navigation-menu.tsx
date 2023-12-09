@@ -2,8 +2,8 @@ import {
   type ComponentProps,
   forwardRef,
   type Ref,
-} from "netzo/deps/preact/compat.ts";
-import { cn } from "netzo/components/utils.ts";
+} from "../../deps/preact/compat.ts";
+import { cn } from "../utils.ts";
 
 import {
   NavigationMenu,
@@ -13,7 +13,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-} from "netzo/components/ui/navigation-menu.tsx";
+} from "../ui/navigation-menu.tsx";
 
 const components: { title: string; href: string; description: string }[] = [
   {

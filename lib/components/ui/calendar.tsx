@@ -1,12 +1,12 @@
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
-} from "netzo/deps/@radix-ui/react-icons.ts";
-import { DayPicker } from "netzo/deps/react-day-picker.ts";
+} from "../../deps/@radix-ui/react-icons.ts";
+import { DayPicker } from "../../deps/react-day-picker.ts";
 
-import { type ComponentProps } from "netzo/deps/preact/compat.ts";
-import { cn } from "netzo/components/utils.ts";
-import { buttonVariants } from "netzo/components/ui/button.tsx";
+import { type ComponentProps } from "../../deps/preact/compat.ts";
+import { cn } from "../utils.ts";
+import { buttonVariants } from "../ui/button.tsx";
 
 export type CalendarProps = ComponentProps<typeof DayPicker>;
 

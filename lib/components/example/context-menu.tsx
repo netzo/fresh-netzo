@@ -12,7 +12,7 @@ import {
   ContextMenuSubContent,
   ContextMenuSubTrigger,
   ContextMenuTrigger,
-} from "netzo/components/ui/context-menu.tsx";
+} from "../ui/context-menu.tsx";
 
 export default () => {
   return (

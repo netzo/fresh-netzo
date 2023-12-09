@@ -1,4 +1,4 @@
-// @netzo/api: cherry-pick exports to avoid tree-shaking issues
+// cherry-pick exports to avoid tree-shaking issues
 export type {
   // databases:
   DenoDatabase,

@@ -1,4 +1,4 @@
-import { ulid } from "netzo/database/mod.ts";
+import { ulid } from "../../../../database/mod.ts";
 
 const kv = await Deno.openKv();
 // TODO: const db = createDatabase(kv);
@@ -9,7 +9,7 @@ const kv = await Deno.openKv();
  *
  * @example
  * ```ts
- * import { collectValues, listUsers, type User } from "netzo/framework/plugins/portal/utils/db.ts";
+ * import { collectValues, listUsers, type User } from "../../../../framework/plugins/portal/utils/db.ts";
  *
  * const users = await collectValues<User>(listUsers());
  * users[0].id; // Returns "01H9YD2RVCYTBVJEYEJEV5D1S1";
@@ -61,7 +61,7 @@ export function randomUser(): User {
  *
  * @example
  * ```ts
- * import { createUser } from "netzo/framework/plugins/portal/utils/db.ts";
+ * import { createUser } from "../../../../framework/plugins/portal/utils/db.ts";
  *
  * await createUser({
  *   login: "john",
@@ -91,7 +91,7 @@ export async function createUser(user: User) {
  *
  * @example
  * ```ts
- * import { updateUser } from "netzo/framework/plugins/portal/utils/db.ts";
+ * import { updateUser } from "../../../../framework/plugins/portal/utils/db.ts";
  *
  * await updateUser({
  *   login: "john",
@@ -118,7 +118,7 @@ export async function updateUser(user: User) {
  *
  * @example
  * ```ts
- * import { updateUserSession } from "netzo/framework/plugins/portal/utils/db.ts";
+ * import { updateUserSession } from "../../../../framework/plugins/portal/utils/db.ts";
  *
  * await updateUserSession({
  *   login: "john",
@@ -149,7 +149,7 @@ export async function updateUserSession(user: User, sessionId: string) {
  *
  * @example
  * ```ts
- * import { getUser } from "netzo/framework/plugins/portal/utils/db.ts";
+ * import { getUser } from "../../../../framework/plugins/portal/utils/db.ts";
  *
  * const user = await getUser("jack");
  * user?.login; // Returns "jack"
@@ -171,7 +171,7 @@ export async function getUser(login: string) {
  *
  * @example
  * ```ts
- * import { getUserBySession } from "netzo/framework/plugins/portal/utils/db.ts";
+ * import { getUserBySession } from "../../../../framework/plugins/portal/utils/db.ts";
  *
  * const user = await getUserBySession("xxx");
  * user?.login; // Returns "jack"
@@ -195,7 +195,7 @@ export async function getUserBySession(sessionId: string) {
  *
  * @example
  * ```ts
- * import { listUsers } from "netzo/framework/plugins/portal/utils/db.ts";
+ * import { listUsers } from "../../../../framework/plugins/portal/utils/db.ts";
  *
  * for await (const entry of listUsers()) {
  *   entry.value.login; // Returns "jack"

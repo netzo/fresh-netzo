@@ -6,19 +6,19 @@ import {
   assertRejects,
   returnsNext,
   stub,
-} from "netzo/deps/deno_kv_oauth/dev_deps.ts";
+} from "../../../deps/deno_kv_oauth/dev_deps.ts";
 import {
   assertRedirect,
   randomOAuthConfig,
   randomOAuthSession,
   randomTokensBody,
-} from "netzo/deps/deno_kv_oauth/lib/_test_utils.ts";
+} from "../../../deps/deno_kv_oauth/lib/_test_utils.ts";
 import {
   getAndDeleteOAuthSession,
   setOAuthSession,
-} from "netzo/deps/deno_kv_oauth/lib/_kv.ts";
-import { OAUTH_COOKIE_NAME } from "netzo/deps/deno_kv_oauth/lib/_http.ts";
-import type { Handler } from "netzo/deps/$fresh/src/server/mod.ts";
+} from "../../../deps/deno_kv_oauth/lib/_kv.ts";
+import { OAUTH_COOKIE_NAME } from "../../../deps/deno_kv_oauth/lib/_http.ts";
+import type { Handler } from "../../../deps/$fresh/src/server/mod.ts";
 
 Deno.test("[plugins/portal] portal() works with default values", () => {
   const plugin = portal({ oauth2: randomOAuthConfig() });

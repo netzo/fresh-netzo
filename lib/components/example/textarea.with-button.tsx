@@ -1,5 +1,5 @@
-import { Button } from "netzo/components/ui/button.tsx";
-import { Textarea } from "netzo/components/ui/textarea.tsx";
+import { Button } from "../ui/button.tsx";
+import { Textarea } from "../ui/textarea.tsx";
 
 export default () => {
   return (

@@ -1,4 +1,4 @@
-import { z } from "netzo/deps/zod/mod.ts";
+import { z } from "../../deps/zod/mod.ts";
 
 const recordObjectSchema = z.object({
   fields: z.record(z.any()),

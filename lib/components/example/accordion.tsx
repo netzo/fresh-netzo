@@ -3,7 +3,7 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "netzo/components/ui/accordion.tsx";
+} from "../ui/accordion.tsx";
 
 export default () => {
   return (

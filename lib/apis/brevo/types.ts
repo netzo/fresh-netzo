@@ -1,4 +1,4 @@
-import { z } from "netzo/deps/zod/mod.ts";
+import { z } from "../../deps/zod/mod.ts";
 
 const brevoPaginationSchema = z.object({
   limit: z.number().optional(),

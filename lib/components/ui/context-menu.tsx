@@ -1,18 +1,18 @@
-import * as ContextMenuPrimitive from "netzo/deps/@radix-ui/react-context-menu.ts";
+import * as ContextMenuPrimitive from "../../deps/@radix-ui/react-context-menu.ts";
 import {
   CheckIcon,
   ChevronRightIcon,
   DotFilledIcon,
-} from "netzo/deps/@radix-ui/react-icons.ts";
+} from "../../deps/@radix-ui/react-icons.ts";
 
-import type { JSX } from "netzo/deps/preact.ts";
+import type { JSX } from "../../deps/preact.ts";
 import {
   type ComponentProps,
   forwardRef,
   type Ref,
   useState,
-} from "netzo/deps/preact/compat.ts";
-import { cn } from "netzo/components/utils.ts";
+} from "../../deps/preact/compat.ts";
+import { cn } from "../utils.ts";
 
 const ContextMenu = ContextMenuPrimitive.Root;
 

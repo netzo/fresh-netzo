@@ -1,5 +1,5 @@
-import { ComponentChildren } from "netzo/deps/preact.ts";
-import { Head as _Head } from "netzo/deps/$fresh/src/runtime/head.ts";
+import { ComponentChildren } from "../../../../deps/preact.ts";
+import { Head as _Head } from "../../../../deps/$fresh/src/runtime/head.ts";
 import type { UiOptions } from "../mod.ts";
 
 export const Head = (

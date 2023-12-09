@@ -1,10 +1,10 @@
-import { Button } from "netzo/components/ui/button.tsx";
+import { Button } from "../ui/button.tsx";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "netzo/components/ui/tooltip.tsx";
+} from "../ui/tooltip.tsx";
 
 export default () => {
   return (

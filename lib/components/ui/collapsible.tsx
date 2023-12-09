@@ -1,4 +1,4 @@
-import * as CollapsiblePrimitive from "netzo/deps/@radix-ui/react-collapsible.ts";
+import * as CollapsiblePrimitive from "../../deps/@radix-ui/react-collapsible.ts";
 
 const Collapsible = CollapsiblePrimitive.Root;
 

@@ -1,13 +1,13 @@
-import * as TabsPrimitive from "netzo/deps/@radix-ui/react-tabs.ts";
+import * as TabsPrimitive from "../../deps/@radix-ui/react-tabs.ts";
 
-import type { JSX } from "netzo/deps/preact.ts";
+import type { JSX } from "../../deps/preact.ts";
 import {
   type ComponentProps,
   forwardRef,
   type Ref,
   useState,
-} from "netzo/deps/preact/compat.ts";
-import { cn } from "netzo/components/utils.ts";
+} from "../../deps/preact/compat.ts";
+import { cn } from "../utils.ts";
 
 const Tabs = TabsPrimitive.Root;
 

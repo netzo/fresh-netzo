@@ -4,8 +4,8 @@ import {
   HOUR,
   MINUTE,
   SECOND,
-} from "netzo/deps/std/datetime/constants.ts";
-import { assertEquals, assertThrows } from "netzo/deps/std/assert/mod.ts";
+} from "../../../../deps/std/datetime/constants.ts";
+import { assertEquals, assertThrows } from "../../../../deps/std/assert/mod.ts";
 
 Deno.test("[plugins/portal/utils/display] pluralize()", () => {
   assertEquals(pluralize(0, "item"), "0 items");

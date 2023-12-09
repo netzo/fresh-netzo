@@ -1,6 +1,6 @@
-import { ReloadIcon } from "netzo/deps/@radix-ui/react-icons.ts";
+import { ReloadIcon } from "../../deps/@radix-ui/react-icons.ts";
 
-import { Button } from "netzo/components/ui/button.tsx";
+import { Button } from "../ui/button.tsx";
 
 export default () => {
   return (

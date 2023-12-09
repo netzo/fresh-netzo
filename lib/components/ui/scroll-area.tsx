@@ -1,13 +1,13 @@
-import * as ScrollAreaPrimitive from "netzo/deps/@radix-ui/react-scroll-area.ts";
+import * as ScrollAreaPrimitive from "../../deps/@radix-ui/react-scroll-area.ts";
 
-import type { JSX } from "netzo/deps/preact.ts";
+import type { JSX } from "../../deps/preact.ts";
 import {
   type ComponentProps,
   forwardRef,
   type Ref,
   useState,
-} from "netzo/deps/preact/compat.ts";
-import { cn } from "netzo/components/utils.ts";
+} from "../../deps/preact/compat.ts";
+import { cn } from "../utils.ts";
 
 const ScrollArea = forwardRef<
   Ref<typeof ScrollAreaPrimitive.Root>,
