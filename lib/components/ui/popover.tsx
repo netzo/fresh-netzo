@@ -1,4 +1,4 @@
-import * as PopoverPrimitive from "@radix-ui/react-popover";
+import * as PopoverPrimitive from "netzo/deps/@radix-ui/react-popover.ts";
 
 import type { JSX } from "netzo/deps/preact.ts";
 import {

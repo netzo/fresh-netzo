@@ -1,4 +1,4 @@
-import * as HoverCardPrimitive from "@radix-ui/react-hover-card";
+import * as HoverCardPrimitive from "netzo/deps/@radix-ui/react-hover-card.ts";
 
 import type { JSX } from "netzo/deps/preact.ts";
 import {

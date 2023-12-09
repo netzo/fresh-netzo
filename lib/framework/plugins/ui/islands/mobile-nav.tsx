@@ -1,5 +1,5 @@
 import { useEffect, useState } from "netzo/deps/preact/hooks.ts";
-import { HamburgerMenuIcon } from "@radix-ui/react-icons";
+import { HamburgerMenuIcon } from "netzo/deps/@radix-ui/react-icons.ts";
 import {
   Sheet,
   SheetContent,

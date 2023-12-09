@@ -1,6 +1,6 @@
-import { CalendarIcon } from "@radix-ui/react-icons";
-import { addDays, format } from "date-fns";
-import { DateRange } from "react-day-picker";
+import { CalendarIcon } from "netzo/deps/@radix-ui/react-icons.ts";
+import { addDays, format } from "netzo/deps/date-fns.ts";
+import { DateRange } from "netzo/deps/react-day-picker.ts";
 
 import { useState } from "netzo/deps/preact/hooks.ts";
 import { cn } from "netzo/components/utils.ts";

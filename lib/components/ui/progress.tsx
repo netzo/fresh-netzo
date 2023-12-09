@@ -1,4 +1,4 @@
-import * as ProgressPrimitive from "@radix-ui/react-progress";
+import * as ProgressPrimitive from "netzo/deps/@radix-ui/react-progress.ts";
 
 import type { JSX } from "netzo/deps/preact.ts";
 import {

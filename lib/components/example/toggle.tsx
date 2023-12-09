@@ -1,4 +1,4 @@
-import { FontBoldIcon } from "@radix-ui/react-icons";
+import { FontBoldIcon } from "netzo/deps/@radix-ui/react-icons.ts";
 
 import { Toggle } from "netzo/components/ui/toggle.tsx";
 

@@ -1,4 +1,4 @@
-import { cva, type VariantProps } from "class-variance-authority";
+import { cva, type VariantProps } from "netzo/deps/class-variance-authority.ts";
 
 import { cn } from "netzo/components/utils.ts";
 

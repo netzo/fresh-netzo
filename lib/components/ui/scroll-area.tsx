@@ -1,4 +1,4 @@
-import * as ScrollAreaPrimitive from "@radix-ui/react-scroll-area";
+import * as ScrollAreaPrimitive from "netzo/deps/@radix-ui/react-scroll-area.ts";
 
 import type { JSX } from "netzo/deps/preact.ts";
 import {

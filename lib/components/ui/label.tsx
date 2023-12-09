@@ -1,5 +1,5 @@
-import * as LabelPrimitive from "@radix-ui/react-label";
-import { cva, type VariantProps } from "class-variance-authority";
+import * as LabelPrimitive from "netzo/deps/@radix-ui/react-label.ts";
+import { cva, type VariantProps } from "netzo/deps/class-variance-authority.ts";
 
 import type { JSX } from "netzo/deps/preact.ts";
 import {

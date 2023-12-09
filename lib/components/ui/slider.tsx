@@ -1,4 +1,4 @@
-import * as SliderPrimitive from "@radix-ui/react-slider";
+import * as SliderPrimitive from "netzo/deps/@radix-ui/react-slider.ts";
 
 import type { JSX } from "netzo/deps/preact.ts";
 import {

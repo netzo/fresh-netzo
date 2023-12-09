@@ -1,8 +1,8 @@
-import { zodResolver } from "@hookform/resolvers/zod";
-import { CalendarIcon } from "@radix-ui/react-icons";
-import { format } from "date-fns";
-import { useForm } from "react-hook-form";
-import * as z from "zod/mod.ts";
+import { zodResolver } from "netzo/deps/@hookform/resolvers/zod.ts";
+import { CalendarIcon } from "netzo/deps/@radix-ui/react-icons.ts";
+import { format } from "netzo/deps/date-fns.ts";
+import { useForm } from "netzo/deps/react-hook-form.ts";
+import * as z from "netzo/deps/zod/mod.ts";
 
 import { cn } from "netzo/components/utils.ts";
 import { Button } from "netzo/components/ui/button.tsx";

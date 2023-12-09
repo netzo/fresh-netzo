@@ -1,6 +1,6 @@
-import { DialogProps } from "@radix-ui/react-dialog";
-import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
-import { Command as CommandPrimitive } from "cmdk";
+import { DialogProps } from "netzo/deps/@radix-ui/react-dialog.ts";
+import { MagnifyingGlassIcon } from "netzo/deps/@radix-ui/react-icons.ts";
+import { Command as CommandPrimitive } from "netzo/deps/cmdk.ts";
 
 import type { JSX } from "netzo/deps/preact.ts";
 import {

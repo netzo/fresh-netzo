@@ -1,4 +1,4 @@
-import { ExclamationTriangleIcon } from "@radix-ui/react-icons";
+import { ExclamationTriangleIcon } from "netzo/deps/@radix-ui/react-icons.ts";
 
 import {
   Alert,
@@ -9,7 +9,7 @@ import {
 export default () => {
   return (
     <Alert variant="destructive">
-      <ExclamationTriangleIcon className="h-4 w-4" />
+      <ExclamationTriangleIcon className="w-4 h-4" />
       <AlertTitle>Error</AlertTitle>
       <AlertDescription>
         Your session has expired. Please log in again.

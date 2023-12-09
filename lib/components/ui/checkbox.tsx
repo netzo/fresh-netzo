@@ -1,5 +1,5 @@
-import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
-import { CheckIcon } from "@radix-ui/react-icons";
+import * as CheckboxPrimitive from "netzo/deps/@radix-ui/react-checkbox.ts";
+import { CheckIcon } from "netzo/deps/@radix-ui/react-icons.ts";
 
 import type { JSX } from "netzo/deps/preact.ts";
 import {

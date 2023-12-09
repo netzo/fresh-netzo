@@ -1,4 +1,4 @@
-import { z } from "zod/mod.ts";
+import { z } from "netzo/deps/zod/mod.ts";
 import { clientSchema } from "@/components/tables/clients/data/schema.ts";
 
 export const invoiceSchema = z.object({

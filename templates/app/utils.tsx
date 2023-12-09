@@ -1,4 +1,4 @@
-import _get from "lodash.get";
+import { _get } from "netzo/deps/lodash.get.ts";
 import { Checkbox } from "netzo/components/ui/checkbox.tsx";
 import { DataTableColumnHeader } from "@/components/tables/components/data-table-column-header.tsx";
 

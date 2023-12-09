@@ -2,8 +2,8 @@ import {
   CheckIcon,
   ChevronRightIcon,
   DotFilledIcon,
-} from "@radix-ui/react-icons";
-import * as MenubarPrimitive from "@radix-ui/react-menubar";
+} from "netzo/deps/@radix-ui/react-icons.ts";
+import * as MenubarPrimitive from "netzo/deps/@radix-ui/react-menubar.ts";
 
 import type { JSX } from "netzo/deps/preact.ts";
 import {

@@ -1,4 +1,4 @@
-import { CalendarIcon } from "@radix-ui/react-icons";
+import { CalendarIcon } from "netzo/deps/@radix-ui/react-icons.ts";
 
 import {
   Avatar,

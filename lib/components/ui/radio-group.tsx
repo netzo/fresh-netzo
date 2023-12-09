@@ -1,5 +1,5 @@
-import { CheckIcon } from "@radix-ui/react-icons";
-import * as RadioGroupPrimitive from "@radix-ui/react-radio-group";
+import { CheckIcon } from "netzo/deps/@radix-ui/react-icons.ts";
+import * as RadioGroupPrimitive from "netzo/deps/@radix-ui/react-radio-group.ts";
 
 import type { JSX } from "netzo/deps/preact.ts";
 import {

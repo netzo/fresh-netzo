@@ -1,6 +1,6 @@
-import { Cross2Icon } from "@radix-ui/react-icons";
-import * as ToastPrimitives from "@radix-ui/react-toast";
-import { cva, type VariantProps } from "class-variance-authority";
+import { Cross2Icon } from "netzo/deps/@radix-ui/react-icons.ts";
+import * as ToastPrimitives from "netzo/deps/@radix-ui/react-toast.ts";
+import { cva, type VariantProps } from "netzo/deps/class-variance-authority.ts";
 
 import type { VNode } from "netzo/deps/preact.ts";
 import {

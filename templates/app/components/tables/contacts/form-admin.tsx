@@ -1,6 +1,6 @@
 import { useState } from "preact/hooks";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "netzo/deps/react-hook-form.ts";
+import { zodResolver } from "netzo/deps/@hookform/resolvers/zod.ts";
 import { Button } from "netzo/components/ui/button.tsx";
 import { Input } from "netzo/components/ui/input.tsx";
 import { Checkbox } from "netzo/components/ui/checkbox.tsx";

@@ -1,4 +1,4 @@
-import { DotsHorizontalIcon } from "@radix-ui/react-icons";
+import { DotsHorizontalIcon } from "netzo/deps/@radix-ui/react-icons.ts";
 
 import { useState } from "netzo/deps/preact/hooks.ts";
 import { Button } from "netzo/components/ui/button.tsx";

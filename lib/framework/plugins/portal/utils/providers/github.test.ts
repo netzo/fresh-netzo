@@ -3,7 +3,7 @@ import { getUserGithub } from "./github.ts";
 import { returnsNext, stub } from "netzo/deps/std/testing/mock.ts";
 import { errors } from "netzo/deps/std/http/http_errors.ts";
 import { assertEquals } from "netzo/deps/std/assert/assert_equals.ts";
-import { Status } from "deno_kv_oauth/deps.ts";
+import { Status } from "netzo/deps/deno_kv_oauth/deps.ts";
 
 Deno.test("[plugins/portal/utils/providers/github] getUserGithub()", async (test) => {
   await test.step("rejects on error message", async () => {

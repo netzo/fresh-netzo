@@ -1,4 +1,4 @@
-import { RocketIcon } from "@radix-ui/react-icons";
+import { RocketIcon } from "netzo/deps/@radix-ui/react-icons.ts";
 
 import {
   Alert,

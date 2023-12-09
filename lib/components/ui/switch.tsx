@@ -1,4 +1,4 @@
-import * as SwitchPrimitives from "@radix-ui/react-switch";
+import * as SwitchPrimitives from "netzo/deps/@radix-ui/react-switch.ts";
 
 import type { JSX } from "netzo/deps/preact.ts";
 import {

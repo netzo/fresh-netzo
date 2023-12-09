@@ -1,6 +1,6 @@
-import * as SheetPrimitive from "@radix-ui/react-dialog";
-import { Cross2Icon } from "@radix-ui/react-icons";
-import { cva, type VariantProps } from "class-variance-authority";
+import * as SheetPrimitive from "netzo/deps/@radix-ui/react-dialog.ts";
+import { Cross2Icon } from "netzo/deps/@radix-ui/react-icons.ts";
+import { cva, type VariantProps } from "netzo/deps/class-variance-authority.ts";
 
 import type { JSX } from "netzo/deps/preact.ts";
 import {

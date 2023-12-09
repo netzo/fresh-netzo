@@ -1,5 +1,5 @@
-import * as DialogPrimitive from "@radix-ui/react-dialog";
-import { Cross2Icon } from "@radix-ui/react-icons";
+import * as DialogPrimitive from "netzo/deps/@radix-ui/react-dialog.ts";
+import { Cross2Icon } from "netzo/deps/@radix-ui/react-icons.ts";
 
 import type { JSX } from "netzo/deps/preact.ts";
 import {

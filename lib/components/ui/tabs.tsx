@@ -1,4 +1,4 @@
-import * as TabsPrimitive from "@radix-ui/react-tabs";
+import * as TabsPrimitive from "netzo/deps/@radix-ui/react-tabs.ts";
 
 import type { JSX } from "netzo/deps/preact.ts";
 import {

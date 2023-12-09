@@ -1,5 +1,5 @@
-import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
-import * as SelectPrimitive from "@radix-ui/react-select";
+import { CaretSortIcon, CheckIcon } from "netzo/deps/@radix-ui/react-icons.ts";
+import * as SelectPrimitive from "netzo/deps/@radix-ui/react-select.ts";
 
 import type { JSX } from "netzo/deps/preact.ts";
 import {

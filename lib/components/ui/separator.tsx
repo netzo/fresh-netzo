@@ -1,4 +1,4 @@
-import * as SeparatorPrimitive from "@radix-ui/react-separator";
+import * as SeparatorPrimitive from "netzo/deps/@radix-ui/react-separator.ts";
 
 import type { JSX } from "netzo/deps/preact.ts";
 import {

@@ -1,6 +1,6 @@
-import { ChevronDownIcon } from "@radix-ui/react-icons";
-import * as NavigationMenuPrimitive from "@radix-ui/react-navigation-menu";
-import { cva } from "class-variance-authority";
+import { ChevronDownIcon } from "netzo/deps/@radix-ui/react-icons.ts";
+import * as NavigationMenuPrimitive from "netzo/deps/@radix-ui/react-navigation-menu.ts";
+import { cva } from "netzo/deps/class-variance-authority.ts";
 
 import type { JSX } from "netzo/deps/preact.ts";
 import {

@@ -1,4 +1,4 @@
-import * as AlertDialogPrimitive from "@radix-ui/react-alert-dialog";
+import * as AlertDialogPrimitive from "netzo/deps/@radix-ui/react-alert-dialog.ts";
 
 import type { JSX } from "netzo/deps/preact.ts";
 import {

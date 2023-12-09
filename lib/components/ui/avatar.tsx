@@ -1,4 +1,4 @@
-import * as AvatarPrimitive from "@radix-ui/react-avatar";
+import * as AvatarPrimitive from "netzo/deps/@radix-ui/react-avatar.ts";
 
 import type { JSX } from "netzo/deps/preact.ts";
 import {

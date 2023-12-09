@@ -1,4 +1,4 @@
-import { z } from "https://deno.land/x/zod@v3.22.2/mod.ts";
+import { z } from "netzo/deps/zod/mod.ts";
 
 const mailingListBaseSchema = z.object({
   access_level: z.string(),

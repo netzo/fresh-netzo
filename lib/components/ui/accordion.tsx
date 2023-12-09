@@ -1,5 +1,5 @@
-import * as AccordionPrimitive from "@radix-ui/react-accordion";
-import { ChevronDownIcon } from "@radix-ui/react-icons";
+import * as AccordionPrimitive from "netzo/deps/@radix-ui/react-accordion.ts";
+import { ChevronDownIcon } from "netzo/deps/@radix-ui/react-icons.ts";
 
 import type { JSX } from "netzo/deps/preact.ts";
 import {

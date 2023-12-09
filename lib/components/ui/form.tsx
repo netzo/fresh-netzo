@@ -1,5 +1,5 @@
-import * as LabelPrimitive from "@radix-ui/react-label";
-import { Slot } from "@radix-ui/react-slot";
+import * as LabelPrimitive from "netzo/deps/@radix-ui/react-label.ts";
+import { Slot } from "netzo/deps/@radix-ui/react-slot.ts";
 import {
   Controller,
   ControllerProps,
@@ -7,7 +7,7 @@ import {
   FieldValues,
   FormProvider,
   useFormContext,
-} from "react-hook-form";
+} from "netzo/deps/react-hook-form.ts";
 
 import { Label } from "netzo/components/ui/label.tsx";
 

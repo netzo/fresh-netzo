@@ -1,4 +1,4 @@
-import { z } from "zod/mod.ts";
+import { z } from "netzo/deps/zod/mod.ts";
 
 const addressSchema = z.object({
   streetAddress: z.string(),

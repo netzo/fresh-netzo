@@ -1,4 +1,4 @@
-import { BellIcon, CheckIcon } from "@radix-ui/react-icons";
+import { BellIcon, CheckIcon } from "netzo/deps/@radix-ui/react-icons.ts";
 
 import { type ComponentProps } from "netzo/deps/preact/compat.ts";
 import { cn } from "netzo/components/utils.ts";

@@ -1,11 +1,11 @@
 import type { Plugin } from "netzo/deps/$fresh/src/server/mod.ts";
-import type { OAuth2ClientConfig } from "deno_kv_oauth/mod.ts";
+import type { OAuth2ClientConfig } from "netzo/deps/deno_kv_oauth/mod.ts";
 import { type User } from "netzo/framework/plugins/portal/utils/db.ts";
 import { sessionMiddlewares } from "./session.ts";
 import { errorHandlingMiddlewares } from "./error-handling.ts";
 import { portalRoutes } from "./portal.ts";
 
-export * from "deno_kv_oauth/mod.ts";
+export * from "netzo/deps/deno_kv_oauth/mod.ts";
 
 export type PortalOptions = {
   email: {}; // TODO: EmailClientConfig;

@@ -1,9 +1,9 @@
-import * as ContextMenuPrimitive from "@radix-ui/react-context-menu";
+import * as ContextMenuPrimitive from "netzo/deps/@radix-ui/react-context-menu.ts";
 import {
   CheckIcon,
   ChevronRightIcon,
   DotFilledIcon,
-} from "@radix-ui/react-icons";
+} from "netzo/deps/@radix-ui/react-icons.ts";
 
 import type { JSX } from "netzo/deps/preact.ts";
 import {

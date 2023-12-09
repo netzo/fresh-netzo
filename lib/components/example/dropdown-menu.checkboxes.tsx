@@ -1,4 +1,4 @@
-import { DropdownMenuCheckboxItemProps } from "@radix-ui/react-dropdown-menu";
+import { DropdownMenuCheckboxItemProps } from "netzo/deps/@radix-ui/react-dropdown-menu.ts";
 
 import { useState } from "netzo/deps/preact/hooks.ts";
 import { Button } from "netzo/components/ui/button.tsx";

@@ -1,9 +1,9 @@
-import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
+import * as DropdownMenuPrimitive from "netzo/deps/@radix-ui/react-dropdown-menu.ts";
 import {
   CheckIcon,
   ChevronRightIcon,
   DotFilledIcon,
-} from "@radix-ui/react-icons";
+} from "netzo/deps/@radix-ui/react-icons.ts";
 
 import type { JSX } from "netzo/deps/preact.ts";
 import {

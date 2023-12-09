@@ -1,4 +1,4 @@
-import * as TooltipPrimitive from "@radix-ui/react-tooltip";
+import * as TooltipPrimitive from "netzo/deps/@radix-ui/react-tooltip.ts";
 
 import type { JSX } from "netzo/deps/preact.ts";
 import {

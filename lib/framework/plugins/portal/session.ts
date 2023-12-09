@@ -1,6 +1,6 @@
 import type { FreshContext } from "netzo/deps/$fresh/src/server/mod.ts";
 import type { PluginMiddleware } from "netzo/deps/$fresh/src/server/types.ts";
-import { getSessionId } from "deno_kv_oauth/mod.ts";
+import { getSessionId } from "netzo/deps/deno_kv_oauth/mod.ts";
 import { getUserBySession } from "netzo/framework/plugins/portal/utils/db.ts";
 import { createHttpError } from "netzo/deps/std/http/http_errors.ts";
 import { Status } from "netzo/deps/std/http/http_status.ts";
