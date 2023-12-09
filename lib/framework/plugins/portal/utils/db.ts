@@ -1,4 +1,4 @@
-import { ulid } from "../../../database/mod.ts";
+import { ulid } from "netzo/database/mod.ts";
 
 const kv = await Deno.openKv();
 // TODO: const db = createDatabase(kv);

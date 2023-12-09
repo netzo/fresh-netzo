@@ -151,7 +151,7 @@ async function createPlugins(state: NetzoState): Promise<Plugin[]> {
           const mod = await import("./plugins/ui/mod.ts");
           const { unocss } = await import("./plugins/unocss/mod.ts");
           const { presetNetzo } = await import(
-            "./plugins/unocss/preset-app.netzo.ts"
+            "./plugins/unocss/preset-netzo.ts"
           );
           return [
             mod.ui(options),

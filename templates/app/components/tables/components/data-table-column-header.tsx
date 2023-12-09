@@ -3,8 +3,8 @@ import {
   ArrowDownIcon,
   ArrowUpIcon,
   CaretSortIcon,
-} from "@radix-ui/react-icons";
-import { Column } from "@tanstack/react-table";
+} from "netzo/deps/@radix-ui/react-icons.ts";
+import { Column } from "netzo/deps/@tanstack/react-table.ts";
 
 import { cn } from "netzo/components/utils.ts";
 import { Button } from "netzo/components/ui/button.tsx";

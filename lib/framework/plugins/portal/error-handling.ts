@@ -1,7 +1,7 @@
 import type { PluginMiddleware } from "netzo/deps/$fresh/src/server/types.ts";
 import { errors } from "netzo/deps/std/http/http_errors.ts";
 import { redirect } from "netzo/framework/plugins/portal/utils/http.ts";
-import type { NetzoState } from "../../framework/mod.ts";
+import type { NetzoState } from "netzo/framework/mod.ts";
 
 export const errorHandlingMiddlewares: PluginMiddleware<NetzoState>[] = [
   {

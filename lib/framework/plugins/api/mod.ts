@@ -1,8 +1,8 @@
 import type { Plugin } from "netzo/deps/$fresh/src/server/mod.ts";
 import { isHttpError } from "netzo/deps/std/http/http_errors.ts";
 import { parseRequestBody } from "netzo/framework/utils/mod.ts";
-import type { Project } from "../../framework/mod.ts";
-import { createDatabase } from "../../database/mod.ts";
+import type { Project } from "netzo/framework/mod.ts";
+import { createDatabase } from "netzo/database/mod.ts";
 
 export type ApiOptions = Project["api"];
 

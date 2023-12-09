@@ -1,1 +1,1 @@
-export * from "npm:/@hookform/resolvers@3.3.0/zod/src/zod.ts";
+export * from "https://esm.sh/@hookform/resolvers@3.3.0/zod.js";

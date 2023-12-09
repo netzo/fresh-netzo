@@ -1,4 +1,4 @@
-import { error } from "../../../framework/utils/console.ts";
+import { error } from "netzo/framework/utils/console.ts";
 import { isSemVer, parse, semverGreaterThanOrEquals } from "../../deps.ts";
 import { VERSION } from "../version.ts";
 

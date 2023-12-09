@@ -8,14 +8,14 @@ import type {
   Spinner,
 } from "../../deps.ts";
 import { fromFileUrl, netzo, normalize, wait } from "../../deps.ts";
-import { error, LOGS } from "../../../framework/utils/console.ts";
+import { error, LOGS } from "netzo/framework/utils/console.ts";
 import { parseEntrypoint } from "../utils/entrypoint.ts";
 import { walk } from "../utils/walk.ts";
 import {
   buildAssetsFromManifest,
   createClient,
   readDecodeAndAddFileContentToAssets,
-} from "../utils/app.netzo.ts";
+} from "../utils/netzo.ts";
 import { APIError } from "../utils/api.ts";
 
 const help = `netzo deploy

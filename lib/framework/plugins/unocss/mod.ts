@@ -17,7 +17,7 @@ import {
 import { exists } from "netzo/deps/std/fs/exists.ts";
 import presetNetzo, {
   PresetNetzoOptions,
-} from "netzo/framework/plugins/unocss/preset-app.netzo.ts";
+} from "netzo/framework/plugins/unocss/preset-netzo.ts";
 
 type PreactOptions = typeof preactOptions & { __b?: (vnode: VNode) => void };
 

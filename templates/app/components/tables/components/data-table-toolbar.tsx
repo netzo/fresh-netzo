@@ -4,8 +4,8 @@ import {
   PlusIcon,
   ReloadIcon,
   TrashIcon,
-} from "@radix-ui/react-icons";
-import { Table } from "@tanstack/react-table";
+} from "netzo/deps/@radix-ui/react-icons.ts";
+import { Table } from "netzo/deps/@tanstack/react-table.ts";
 
 import { Button } from "netzo/components/ui/button.tsx";
 import { Input } from "netzo/components/ui/input.tsx";

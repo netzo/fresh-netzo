@@ -1,6 +1,6 @@
-import { DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
-import { MixerHorizontalIcon } from "@radix-ui/react-icons";
-import { Table } from "@tanstack/react-table";
+import { DropdownMenuTrigger } from "netzo/deps/@radix-ui/react-dropdown-menu.ts";
+import { MixerHorizontalIcon } from "netzo/deps/@radix-ui/react-icons.ts";
+import { Table } from "netzo/deps/@tanstack/react-table.ts";
 
 import { Button } from "netzo/components/ui/button.tsx";
 import {

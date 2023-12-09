@@ -1,6 +1,6 @@
 import { DataTableProps } from "@/components/tables/components/data-table.tsx";
-import { Table } from "@tanstack/react-table";
-import { TrashIcon } from "@radix-ui/react-icons";
+import { Table } from "netzo/deps/@tanstack/react-table.ts";
+import { TrashIcon } from "netzo/deps/@radix-ui/react-icons.ts";
 import { Button } from "netzo/components/ui/button.tsx";
 import {
   AlertDialog,

@@ -1,5 +1,5 @@
 import { Button } from "netzo/components/ui/button.tsx";
-import { Pencil1Icon } from "@radix-ui/react-icons";
+import { Pencil1Icon } from "netzo/deps/@radix-ui/react-icons.ts";
 import {
   Sheet,
   SheetClose,

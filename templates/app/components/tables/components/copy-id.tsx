@@ -1,4 +1,4 @@
-import { CopyIcon } from "@radix-ui/react-icons";
+import { CopyIcon } from "netzo/deps/@radix-ui/react-icons.ts";
 import { useSignal } from "@preact/signals";
 
 interface CopyIdProps {

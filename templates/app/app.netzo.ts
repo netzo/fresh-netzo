@@ -3,8 +3,10 @@ import { createApp } from "netzo/framework/mod.ts";
 import { ui } from "netzo/framework/plugins/ui/mod.ts";
 import { api } from "netzo/framework/plugins/api/mod.ts";
 import { bindSignal } from "netzo/framework/plugins/bindSignal/mod.ts";
-import { portal } from "netzo/framework/plugins/portal/mod.ts";
-import { createGitHubOAuthConfig } from "deno_kv_oauth/mod.ts";
+import {
+  createGitHubOAuthConfig,
+  portal,
+} from "netzo/framework/plugins/portal/mod.ts";
 // import { unocss } from "netzo/framework/plugins/unocss/mod.ts";
 // import unoConfig from "./uno.config.ts";
 
@@ -26,17 +28,3 @@ export default createApp({
     // unocss({ config: unoConfig }),
   ],
 });
-
-// app.netzo.ts
-import { createNetzoApp } from "netzo/framework.ts";
-
-await createNetzoApp();
-
-async function createNetzoApp(developerConfig) {
-  const config = await getConfigFromProject();
-
-  return {
-    ...developerConfig,
-    ...config,
-  };
-}

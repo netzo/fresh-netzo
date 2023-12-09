@@ -1,4 +1,4 @@
-import { PlusIcon } from "@radix-ui/react-icons";
+import { PlusIcon } from "netzo/deps/@radix-ui/react-icons.ts";
 import { Button } from "netzo/components/ui/button.tsx";
 import {
   Sheet,

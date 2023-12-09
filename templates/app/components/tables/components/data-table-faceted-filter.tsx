@@ -1,6 +1,9 @@
 import type { ComponentType } from "preact";
-import { CheckIcon, PlusCircledIcon } from "@radix-ui/react-icons";
-import { Column } from "@tanstack/react-table";
+import {
+  CheckIcon,
+  PlusCircledIcon,
+} from "netzo/deps/@radix-ui/react-icons.ts";
+import { Column } from "netzo/deps/@tanstack/react-table.ts";
 
 import { cn } from "netzo/components/utils.ts";
 import { Badge } from "netzo/components/ui/badge.tsx";

@@ -12,7 +12,7 @@ import {
   SortingState,
   useReactTable,
   VisibilityState,
-} from "@tanstack/react-table";
+} from "netzo/deps/@tanstack/react-table.ts";
 
 import {
   Table,
@@ -94,7 +94,7 @@ export function DataTable<TData, TValue>({
         SheetCreateComponent={SheetCreateComponent}
         SheetBulkUpdateComponent={SheetBulkUpdateComponent}
       />
-      <div className="rounded-md border">
+      <div className="border rounded-md">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -104,7 +104,7 @@ export function DataTable<TData, TValue>({
                     <TableHead
                       key={header.id}
                       colSpan={header.colSpan}
-                      className="border-r text-center"
+                      className="text-center border-r"
                     >
                       {header.isPlaceholder ? null : flexRender(
                         header.column.columnDef.header,

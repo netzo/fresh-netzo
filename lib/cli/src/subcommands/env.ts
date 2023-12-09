@@ -2,7 +2,7 @@
 // see https://github.com/denoland/deployctl/issues/138
 
 import { load, netzo, Project, wait } from "../../deps.ts";
-import { error, LOGS } from "../../../framework/utils/console.ts";
+import { error, LOGS } from "netzo/framework/utils/console.ts";
 
 const help = `netzo env
 Push project environment variables from env file to Netzo.

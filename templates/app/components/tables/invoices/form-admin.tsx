@@ -31,7 +31,7 @@ import {
   FormMessage,
 } from "netzo/components/ui/form.tsx";
 
-import { CalendarIcon } from "@radix-ui/react-icons";
+import { CalendarIcon } from "netzo/deps/@radix-ui/react-icons.ts";
 import { format } from "netzo/deps/date-fns.ts";
 import { cn } from "netzo/components/utils.ts";
 import { Calendar } from "netzo/components/ui/calendar.tsx";

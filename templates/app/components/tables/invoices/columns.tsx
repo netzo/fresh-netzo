@@ -1,4 +1,4 @@
-import type { ColumnDef } from "@tanstack/react-table";
+import type { ColumnDef } from "netzo/deps/@tanstack/react-table.ts";
 import { Checkbox } from "netzo/components/ui/checkbox.tsx";
 import { Badge } from "netzo/components/ui/badge.tsx";
 import { Invoice } from "@/components/tables/invoices/data/schema.ts";

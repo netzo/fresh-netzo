@@ -4,7 +4,7 @@ import { getSessionId } from "netzo/deps/deno_kv_oauth/mod.ts";
 import { getUserBySession } from "netzo/framework/plugins/portal/utils/db.ts";
 import { createHttpError } from "netzo/deps/std/http/http_errors.ts";
 import { Status } from "netzo/deps/std/http/http_status.ts";
-import type { NetzoState } from "../../framework/mod.ts";
+import type { NetzoState } from "netzo/framework/mod.ts";
 
 export function assertSignedIn(state: NetzoState) {
   if (state.portal?.sessionUser === undefined) {

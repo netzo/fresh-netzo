@@ -1,5 +1,5 @@
 import type { Plugin } from "netzo/deps/$fresh/src/server/mod.ts";
-import type { Project } from "../../framework/mod.ts";
+import type { Project } from "netzo/framework/mod.ts";
 import _App from "./routes/_app.tsx";
 import _404 from "./routes/_404.tsx";
 import _500 from "./routes/_500.tsx";
