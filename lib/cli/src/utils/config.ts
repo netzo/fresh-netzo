@@ -1,6 +1,6 @@
 import { loadFile, type ProxifiedModule } from "npm:magicast";
-import type { NetzoConfig } from "../../../config/mod.ts";
-import { error } from "../../../utils/console.ts";
+import type { NetzoConfig } from "../../../framework/mod.ts";
+import { error } from "../../../framework/utils/console.ts";
 import { Args as ArgsDeploy } from "../subcommands/deploy.ts";
 import { Args as ArgsEnv } from "../subcommands/env.ts";
 

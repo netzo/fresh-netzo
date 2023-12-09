@@ -1,12 +1,11 @@
-import { defineNetzoConfig } from "netzo/config/mod.ts";
-// import { authBasic } from "netzo/plugins/authBasic/mod.ts";
-import { ui } from "netzo/plugins/ui/mod.ts";
-import { api } from "netzo/plugins/api/mod.ts";
-// import { bindSignal } from "netzo/plugins/bindSignal/mod.ts";
-// import { loader } from "netzo/plugins/loader/mod.ts";
-import { portal } from "netzo/plugins/portal/mod.ts";
+import { defineNetzoConfig } from "netzo/framework/mod.ts";
+// import { authBasic } from "netzo/framework/plugins/authBasic/mod.ts";
+import { ui } from "netzo/framework/plugins/ui/mod.ts";
+import { api } from "netzo/framework/plugins/api/mod.ts";
+import { bindSignal } from "netzo/framework/plugins/bindSignal/mod.ts";
+import { portal } from "netzo/framework/plugins/portal/mod.ts";
 import { createGitHubOAuthConfig } from "deno_kv_oauth/mod.ts";
-// import { unocss } from "netzo/plugins/unocss/mod.ts";
+// import { unocss } from "netzo/framework/plugins/unocss/mod.ts";
 // import unoConfig from "./uno.config.ts";
 
 export default defineNetzoConfig({
@@ -19,8 +18,7 @@ export default defineNetzoConfig({
     // }),
     // ui(),
     api(),
-    // bindSignal(),
-    // loader(),
+    bindSignal(),
     portal({
       email: {},
       oauth2: createGitHubOAuthConfig(),
@@ -28,3 +26,38 @@ export default defineNetzoConfig({
     // unocss({ config: unoConfig }),
   ],
 });
+
+
+
+
+
+
+
+
+
+// netzo.ts
+import { createNetzoApp } from "netzo/framework.ts";
+
+await createNetzoApp()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+async function createNetzoApp(developerConfig) {
+  const config = await getConfigFromProject();
+
+  return {
+    ...developerConfig,
+    ...config,
+  }
+}

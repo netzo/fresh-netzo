@@ -3,7 +3,7 @@ import {
   type ManifestEntry,
   ManifestEntryDirectory,
 } from "../../deps.ts";
-import { logWarning } from "../../../utils/console.ts";
+import { logWarning } from "../../../framework/utils/console.ts";
 
 /** Calculate git object hash, like `git hash-object` does. */
 export async function calculateGitSha1(bytes: Uint8Array) {
