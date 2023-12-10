@@ -9,6 +9,8 @@ import { netzo } from "../apis/netzo/mod.ts";
 import { log, logInfo, LOGS } from "../framework/utils/console.ts";
 import { setEnvVars } from "../framework/utils/mod.ts";
 import { bindSignal } from "../framework/plugins/bindSignal/mod.ts";
+import { APP_CONFIG } from "./defaults.ts";
+import { createClient } from "../cli/src/utils/netzo.ts";
 
 export type { Project };
 
@@ -83,24 +85,42 @@ export async function createApp(
 
   const { auth, layout, theme, pages, api: _api } = project.app ?? {};
 
-  let state: NetzoState = deepMerge({
+  // 1) merge defaults and remote config
+  let state: NetzoState = deepMerge(APP_CONFIG, {
     kv: await Deno.openKv(), // pass kv instance to plugins (prevent multiple connections)
     auth,
     api: _api,
     layout,
     theme,
     pages,
-  }, partialConfig); // NOTE: developer config takes precedence for better DX
-
-  state = replace(state, { project }); // render values with mustache placeholders
+  });
+  // 2) merge local config (local config takes precedence for better DX)
+  state = deepMerge(state, partialConfig);
+  // 3) render values with mustache placeholders
+  state = replace(state, { project });
 
   logInfo(`Merged remote and local app configuratitions`);
 
   const netzoPlugins = await createPluginsForModules(state);
 
+  // [hot-reload] listen for updates to app configuration of project and restart server
+  const app = await createClient({
+    apiKey: NETZO_API_KEY,
+    baseURL: NETZO_API_URL,
+  });
+  app.service("projects").on("patched", (project: Project) => {
+    console.log(project);
+    console.log("Project app configuration updated");
+  });
+  logInfo(`Listening for updates to app configuration of project...`);
+
   log(
     `\nOpen in netzo at ${appUrl}/workspaces/${project.workspaceId}/projects/${project._id}`,
   );
+
+  addEventListener("hmr", (e) => {
+    console.log("HMR triggered", a, e.detail.path);
+  });
 
   return {
     ...partialConfig,
@@ -192,11 +212,13 @@ async function createPluginsForModules(state: NetzoState): Promise<Plugin[]> {
   // deduplicate plugins by name (uses includes(searchElement, fromIndex))
   const names = pluginsWithDuplicates.map(({ name }) => name);
   const plugins = pluginsWithDuplicates.filter(
-    ({ name }, i) => !names.includes(name, i + 1)
+    ({ name }, i) => !names.includes(name, i + 1),
   );
-  logInfo(`Plugins: ${plugins.map(
-    ({ name }) => `${!!state[name]?.enabled ? '✅' : '❌'} ${name}`).join(" | ")}`
-  );
+  logInfo(`Plugins: ${
+    plugins.map(
+      ({ name }) => `${!!state[name]?.enabled ? "✅" : "❌"} ${name}`,
+    ).join(" | ")
+  }`);
 
   return plugins;
 }

@@ -1,3 +1,4 @@
+import { ComponentChildren } from "../../../../deps/preact.ts";
 import { useSignal } from "../../../../deps/@preact/signals.ts";
 import type { AuthState } from "../../../../framework/plugins/auth/mod.ts";
 import { cn } from "../../../../components/utils.ts";
@@ -16,22 +17,9 @@ import {
 } from "../components/icons.tsx";
 import { isGitHubSetup } from "../utils/providers/github.ts";
 
-export type AuthFormProps = JSX.HTMLAttributes<HTMLDivElement> & {
-  email: Project["auth"]["email"];
-  oauth2: Project["auth"]["oauth2"];
-  title: string;
-  description: string;
-  logo: string;
-};
+export type AuthFormProps = JSX.HTMLAttributes<HTMLDivElement> & NetzoState;
 
-export function AuthForm(props: AuthFormProps) {
-  const {
-    email,
-    oauth2 = {},
-    title,
-    description,
-    logo,
-  } = props;
+const ButtonEmail = (props: ComponentChildren) => {
   const isLoading = useSignal<boolean>(false);
 
   function onSubmit(event: Event) {
@@ -43,67 +31,64 @@ export function AuthForm(props: AuthFormProps) {
     }, 3000);
   }
 
-  const Buttons = () => {
-    const getButtonProps = () => {
-      if (false) {
-        return {
-          icon: <IconCustom className="w-4 h-4 mr-2" />,
-          name: "OAuth",
-        };
-      } else if (false) {
-        return {
-          icon: <IconGoogle className="w-4 h-4 mr-2" />,
-          name: "Google",
-        };
-      } else if (false) {
-        return {
-          icon: <IconAzure className="w-4 h-4 mr-2" />,
-          name: "Azure",
-        };
-      } else if (isGitHubSetup()) {
-        return {
-          icon: <IconGithub className="w-4 h-4 mr-2" />,
-          name: "GitHub",
-        };
-      } else if (false) {
-        return {
-          icon: <IconGitlab className="w-4 h-4 mr-2" />,
-          name: "GitLab",
-        };
-      } else if (false) {
-        return {
-          icon: <IconAuth0 className="w-4 h-4 mr-2" />,
-          name: "Auth0",
-        };
-      } else if (false) {
-        return {
-          icon: <IconOkta className="w-4 h-4 mr-2" />,
-          name: "Okta",
-        };
-      } else {
-        return {
-          icon: <IconCustom className="w-4 h-4 mr-2" />,
-          name: "OAuth",
-        };
-      }
-    };
+  return (
+    <>
+      <form onSubmit={onSubmit}>
+        <div className="grid gap-2">
+          <div className="grid gap-1">
+            <Label className="sr-only" htmlFor="email">
+              Email
+            </Label>
+            <Input
+              id="email"
+              placeholder="name@example.com"
+              type="email"
+              autoCapitalize="none"
+              autoComplete="email"
+              autoCorrect="off"
+              disabled={isLoading.value}
+            />
+          </div>
+          <Button variant="default" disabled={isLoading.value}>
+            {isLoading.value && (
+              <IconSpinner className="w-4 h-4 mr-2 animate-spin" />
+            )}
+            Sign In with Email
+          </Button>
+        </div>
+      </form>
+      <div className="relative">
+        <div className="absolute inset-0 flex items-center">
+          <span className="w-full border-t" />
+        </div>
+        <div className="relative flex justify-center text-xs uppercase">
+          <span className="px-2 bg-[hsl(var(--background))]">
+            Or continue with
+          </span>
+        </div>
+      </div>
+    </>
+  );
+};
 
-    const props = getButtonProps();
+const ButtonOAuth2 = (props: ComponentChildren & { text: string, href: string }) => {
+  const { href = `/oauth/signin` } = props;
 
-    const href = `/oauth/signin`;
+  return (
+    <a
+      disabled={isLoading.value}
+      href={href}
+      className={cn(buttonVariants({ variant: "outline" }))}
+    >
+      {isLoading.value
+        ? <IconSpinner className="w-4 h-4 mr-2 animate-spin" />
+        : props.children} {props.text}
+    </a>
+  );
+};
 
-    return (
-      <a
-        disabled={isLoading.value}
-        href={href}
-        className={cn(buttonVariants({ variant: "outline" }))}
-      >
-        {isLoading.value
-          ? <IconSpinner className="w-4 h-4 mr-2 animate-spin" />
-          : props.icon} {props.name}
-      </a>
-    );
-  };
+export function AuthForm(props: NetzoState) {
+  const { logo, auth } = props;
 
   return (
     <>
@@ -114,58 +99,26 @@ export function AuthForm(props: AuthFormProps) {
             className={cn("max-w-16 max-h-16 mb-4 mx-auto")}
           />
         )}
-        {title && (
+        {auth?.title && (
           <h1 className="text-2xl font-semibold tracking-tight">
-            {title}
+            {auth.title}
           </h1>
         )}
-        {description && (
+        {auth?.description && (
           <p className="text-sm text-muted-foreground">
-            {description}
+            {auth.description}
           </p>
         )}
       </div>
       <div className="grid gap-6">
-        {email && (
-          <>
-            <form onSubmit={onSubmit}>
-              <div className="grid gap-2">
-                <div className="grid gap-1">
-                  <Label className="sr-only" htmlFor="email">
-                    Email
-                  </Label>
-                  <Input
-                    id="email"
-                    placeholder="name@example.com"
-                    type="email"
-                    autoCapitalize="none"
-                    autoComplete="email"
-                    autoCorrect="off"
-                    disabled={isLoading.value}
-                  />
-                </div>
-                <Button variant="default" disabled={isLoading.value}>
-                  {isLoading.value && (
-                    <IconSpinner className="w-4 h-4 mr-2 animate-spin" />
-                  )}
-                  Sign In with Email
-                </Button>
-              </div>
-            </form>
-            <div className="relative">
-              <div className="absolute inset-0 flex items-center">
-                <span className="w-full border-t" />
-              </div>
-              <div className="relative flex justify-center text-xs uppercase">
-                <span className="px-2 bg-[hsl(var(--background))]">
-                  Or continue with
-                </span>
-              </div>
-            </div>
-          </>
+        {!!auth?.providers?.email?.enabled && <ButtonEmail />}
+
+        {!!auth?.providers?.google?.enabled && (
+          <Button text="Sign In with Google">
+            <IconGoogle className="w-4 h-4 mr-2" />
+          </Button>
         )}
 
-        {oauth2 && <Buttons />}
       </div>
     </>
   );

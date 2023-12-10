@@ -22,7 +22,7 @@ export default defineApp<NetzoState>((_req, ctx) => {
       <head>
         <Head {...{ title, description, favicon, image, href: ctx.url.href }} />
       </head>
-      {sessionId
+      {ctx.state.auth?.sessionId
         ? (
           <body
             f-client-nav
@@ -61,7 +61,7 @@ export default defineApp<NetzoState>((_req, ctx) => {
                 </Partial>
               </main>
 
-              <Footer className="sticky bottom-0" {...footer} />
+              <Footer className="sticky bottom-0" {...layout.footer} />
             </div>
           </body>
         )}

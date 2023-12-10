@@ -6,28 +6,17 @@ import type { NetzoState } from "../../../framework/mod.ts";
 // export const config: RouteConfig = { skipAppWrapper: true };
 
 export default defineRoute<NetzoState>((_req, ctx) => {
-  const {
-    auth: {
-      title = "Sign In",
-      description,
-      color,
-      backgroundColor,
-      // logo,
-      caption,
-    },
-  } = ctx.state;
-
   return (
     <div
-      className={`h-full w-full grid place-items-center p-4 bg-[${backgroundColor}]`}
+      className={`h-full w-full grid place-items-center p-4 bg-[hsl(var(--background))]`}
     >
       <div className="grid gap-6 w-full xs:w-[350px] max-w-[350px]">
-        <AuthForm {...ctx.state.auth} />
+        <AuthForm {...ctx.state} />
 
-        {caption && (
+        {ctx.state.auth?.caption && (
           <p
             className="px-8 text-sm text-center text-muted-foreground"
-            dangerouslySetInnerHTML={{ __html: caption }}
+            dangerouslySetInnerHTML={{ __html: ctx.state.auth.caption }}
           />
         )}
       </div>

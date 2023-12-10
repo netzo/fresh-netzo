@@ -13,9 +13,6 @@ export type AuthOptions = {
   oauth2: OAuth2ClientConfig;
   title?: string;
   description?: string;
-  color?: string;
-  backgroundColor?: string;
-  logo?: string;
   caption?: string;
 };
 
