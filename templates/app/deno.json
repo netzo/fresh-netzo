@@ -10,7 +10,7 @@
     "db:seed": "deno run -A --allow-net --unstable --env tasks/db-seed.ts",
     "db:migrate": "deno run -A --allow-net --unstable --env tasks/db-migrate.ts",
     "db:reset": "deno run -A --unstable --env tasks/db-reset.ts",
-    "start": "deno run -A --unstable --env --unstable-hmr dev.ts",
+    "start": "deno run -A --unstable --env --watch=static/,routes/ dev.ts",
     "test": "DENO_KV_PATH=:memory: GITHUB_CLIENT_ID=xxx GITHUB_CLIENT_SECRET=xxx deno test -A --unstable --env --parallel --coverage=./cov --doc",
     "check:types": "deno check **/*.ts && deno check **/*.tsx",
     "ok": "deno fmt --check && deno lint && deno task check:license --check && deno task check:types && deno task test",

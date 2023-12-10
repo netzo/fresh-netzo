@@ -85,7 +85,6 @@ export const APP_CONFIG: AppConfig = {
   },
   pages: {
     enabled: true,
-    _app: { enabled: true },
     _404: { enabled: true },
     _500: { enabled: true },
   },

@@ -18,17 +18,16 @@ import { exists } from "../../../deps/std/fs/exists.ts";
 import { defineConfig, unocss } from "./plugins/unocss.ts";
 import presetNetzo, { PresetNetzoOptions } from "./plugins/preset-netzo.ts";
 
+export type ThemeOptions = UnocssOptions & PresetNetzoOptions;
+
 /**
  * Plugin for theming via UnoCSS which automatically generates CSS utility classes
  */
-export const theme = (options: PresetNetzoOptions = {}): Plugin => {
+export const theme = (options: ThemeOptions = {}): Plugin => {
+  let { config, aot, ssr, csr, color, radius } = options;
+  config ??= defineConfig({ presets: [presetNetzo({ color, radius })] });
   return {
-    ...unocss({
-      config: defineConfig({ presets: [presetNetzo(options)] }),
-      aot: options.aot,
-      ssr: options.ssr,
-      csr: options.csr,
-    }),
+    ...unocss({ config, aot, ssr, csr }),
     name: "theme", // override unocss().name
   };
 };
