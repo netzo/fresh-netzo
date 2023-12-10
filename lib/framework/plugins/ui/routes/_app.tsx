@@ -8,7 +8,7 @@ import { Head } from "../components/head.tsx";
 import Header from "../islands/header.tsx";
 
 export default defineApp<NetzoState>((_req, ctx) => {
-  const { portal: { sessionId } = {}, ui = {} } = ctx.state;
+  const { auth: { sessionId } = {}, ui = {} } = ctx.state;
   const { head, layout: { header, nav, footer } } = ui;
 
   return (
@@ -25,7 +25,7 @@ export default defineApp<NetzoState>((_req, ctx) => {
               "bg-[hsl(var(--background))]",
             )}
           >
-            <Nav {...nav} sessionUser={ctx.state.portal?.sessionUser} />
+            <Nav {...nav} sessionUser={ctx.state.auth?.sessionUser} />
 
             <div className="flex flex-col w-full h-full overflow-x-hidden">
               <Header {...header} />

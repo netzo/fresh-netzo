@@ -1,13 +1,13 @@
 import type { FreshContext } from "../../../deps/$fresh/src/server/mod.ts";
 import type { PluginMiddleware } from "../../../deps/$fresh/src/server/types.ts";
 import { getSessionId } from "../../../deps/deno_kv_oauth/mod.ts";
-import { getUserBySession } from "../../../framework/plugins/portal/utils/db.ts";
+import { getUserBySession } from "../../../framework/plugins/auth/utils/db.ts";
 import { createHttpError } from "../../../deps/std/http/http_errors.ts";
 import { Status } from "../../../deps/std/http/http_status.ts";
 import type { NetzoState } from "../../../framework/mod.ts";
 
 export function assertSignedIn(state: NetzoState) {
-  if (state.portal?.sessionUser === undefined) {
+  if (state.auth?.sessionUser === undefined) {
     throw createHttpError(Status.Unauthorized, "User must be signed in");
   }
 }
@@ -19,8 +19,8 @@ async function setSessionState(
   if (!["route"].includes(ctx.destination)) return await ctx.next();
 
   const sessionId = await getSessionId(req);
-  ctx.state.portal = {
-    ...ctx.state.portal,
+  ctx.state.auth = {
+    ...ctx.state.auth,
     sessionId,
     sessionUser: undefined, // reset each request (before next())
   };
@@ -29,7 +29,7 @@ async function setSessionState(
   const user = await getUserBySession(sessionId);
   if (!user) return await ctx.next();
 
-  ctx.state.portal.sessionUser = user;
+  ctx.state.auth.sessionUser = user;
 
   return await ctx.next();
 }
@@ -51,17 +51,17 @@ export async function ensureSignedIn(
 
   if (url.pathname.startsWith("/oauth/")) return await ctx.next();
 
-  // check portal state
-  const { sessionId } = ctx.state.portal;
+  // check auth state
+  const { sessionId } = ctx.state.auth;
   const isAuthenticated = sessionId !== undefined;
 
   // redirect to /auth if not authenticated or to / if authenticated
   if (url.pathname !== "/auth" && !isAuthenticated) {
-    console.debug("[portal] User logged out, redirecting to /auth");
+    console.debug("[auth] User logged out, redirecting to /auth");
     url.pathname = "/auth";
     return Response.redirect(url.href, 302);
   } else if (url.pathname === "/auth" && isAuthenticated) {
-    console.debug("[portal] User logged in, redirecting to /");
+    console.debug("[auth] User logged in, redirecting to /");
     url.pathname = "/";
     return Response.redirect(url.href, 302);
   }
@@ -73,7 +73,7 @@ export async function ensureSignedIn(
  * Middleware that ensures the client is signed-in before proceeding.
  * The {@linkcode ensureSignedIn} middleware throws an error equivalent to the
  * {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401|HTTP 401 Unauthorized}
- * error if `ctx.state.portal.sessionUser` is `undefined`.
+ * error if `ctx.state.auth.sessionUser` is `undefined`.
  *
  * The thrown error is then handled by {@linkcode handleWebPageErrors}, or
  * {@linkcode handleRestApiErrors}, if the request is made to a REST API endpoint.

@@ -9,7 +9,7 @@ const kv = await Deno.openKv();
  *
  * @example
  * ```ts
- * import { collectValues, listUsers, type User } from "../../../../framework/plugins/portal/utils/db.ts";
+ * import { collectValues, listUsers, type User } from "../../../../framework/plugins/auth/utils/db.ts";
  *
  * const users = await collectValues<User>(listUsers());
  * users[0].id; // Returns "01H9YD2RVCYTBVJEYEJEV5D1S1";
@@ -61,7 +61,7 @@ export function randomUser(): User {
  *
  * @example
  * ```ts
- * import { createUser } from "../../../../framework/plugins/portal/utils/db.ts";
+ * import { createUser } from "../../../../framework/plugins/auth/utils/db.ts";
  *
  * await createUser({
  *   login: "john",
@@ -73,8 +73,8 @@ export async function createUser(user: User) {
   user.id = ulid();
   user.createdAt = new Date().toISOString();
   user.updatedAt = user.createdAt;
-  const usersKey = ["portal", "users", user.login];
-  const usersBySessionKey = ["portal", "usersBySession", user.sessionId];
+  const usersKey = ["auth", "users", user.login];
+  const usersBySessionKey = ["auth", "usersBySession", user.sessionId];
 
   const atomicOp = kv.atomic()
     .check({ key: usersKey, versionstamp: null })
@@ -91,7 +91,7 @@ export async function createUser(user: User) {
  *
  * @example
  * ```ts
- * import { updateUser } from "../../../../framework/plugins/portal/utils/db.ts";
+ * import { updateUser } from "../../../../framework/plugins/auth/utils/db.ts";
  *
  * await updateUser({
  *   login: "john",
@@ -102,8 +102,8 @@ export async function createUser(user: User) {
  */
 export async function updateUser(user: User) {
   user.updatedAt ||= new Date().toISOString();
-  const usersKey = ["portal", "users", user.login];
-  const usersBySessionKey = ["portal", "usersBySession", user.sessionId];
+  const usersKey = ["auth", "users", user.login];
+  const usersBySessionKey = ["auth", "usersBySession", user.sessionId];
 
   const atomicOp = kv.atomic()
     .set(usersKey, user)
@@ -118,7 +118,7 @@ export async function updateUser(user: User) {
  *
  * @example
  * ```ts
- * import { updateUserSession } from "../../../../framework/plugins/portal/utils/db.ts";
+ * import { updateUserSession } from "../../../../framework/plugins/auth/utils/db.ts";
  *
  * await updateUserSession({
  *   login: "john",
@@ -129,9 +129,9 @@ export async function updateUser(user: User) {
  */
 export async function updateUserSession(user: User, sessionId: string) {
   user.updatedAt = new Date().toISOString();
-  const userKey = ["portal", "users", user.login];
-  const oldUserBySessionKey = ["portal", "usersBySession", user.sessionId];
-  const newUserBySessionKey = ["portal", "usersBySession", sessionId];
+  const userKey = ["auth", "users", user.login];
+  const oldUserBySessionKey = ["auth", "usersBySession", user.sessionId];
+  const newUserBySessionKey = ["auth", "usersBySession", sessionId];
   const newUser: User = { ...user, sessionId };
 
   const atomicOp = kv.atomic()
@@ -149,7 +149,7 @@ export async function updateUserSession(user: User, sessionId: string) {
  *
  * @example
  * ```ts
- * import { getUser } from "../../../../framework/plugins/portal/utils/db.ts";
+ * import { getUser } from "../../../../framework/plugins/auth/utils/db.ts";
  *
  * const user = await getUser("jack");
  * user?.login; // Returns "jack"
@@ -158,7 +158,7 @@ export async function updateUserSession(user: User, sessionId: string) {
  * ```
  */
 export async function getUser(login: string) {
-  const res = await kv.get<User>(["portal", "users", login]);
+  const res = await kv.get<User>(["auth", "users", login]);
   return res.value;
 }
 
@@ -171,7 +171,7 @@ export async function getUser(login: string) {
  *
  * @example
  * ```ts
- * import { getUserBySession } from "../../../../framework/plugins/portal/utils/db.ts";
+ * import { getUserBySession } from "../../../../framework/plugins/auth/utils/db.ts";
  *
  * const user = await getUserBySession("xxx");
  * user?.login; // Returns "jack"
@@ -180,7 +180,7 @@ export async function getUser(login: string) {
  * ```
  */
 export async function getUserBySession(sessionId: string) {
-  const key = ["portal", "usersBySession", sessionId];
+  const key = ["auth", "usersBySession", sessionId];
   const eventualRes = await kv.get<User>(key, {
     consistency: "eventual",
   });
@@ -195,7 +195,7 @@ export async function getUserBySession(sessionId: string) {
  *
  * @example
  * ```ts
- * import { listUsers } from "../../../../framework/plugins/portal/utils/db.ts";
+ * import { listUsers } from "../../../../framework/plugins/auth/utils/db.ts";
  *
  * for await (const entry of listUsers()) {
  *   entry.value.login; // Returns "jack"
@@ -205,5 +205,5 @@ export async function getUserBySession(sessionId: string) {
  * ```
  */
 export function listUsers(options?: Deno.KvListOptions) {
-  return kv.list<User>({ prefix: ["portal", "users"] }, options);
+  return kv.list<User>({ prefix: ["auth", "users"] }, options);
 }

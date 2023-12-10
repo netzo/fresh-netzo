@@ -53,7 +53,7 @@ export type UserGithub = {
  *
  * @example
  * ```ts
- * import { getUserGithub } from "../../../../../framework/plugins/portal/utils/providers/github.ts";
+ * import { getUserGithub } from "../../../../../framework/plugins/auth/utils/providers/github.ts";
  *
  * const user = await getUserGithub("<access token>");
  * user.login; // Returns "octocat"

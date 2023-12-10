@@ -1,5 +1,5 @@
 import { useSignal } from "../../../../deps/@preact/signals.ts";
-import type { PortalState } from "../../../../framework/plugins/portal/mod.ts";
+import type { AuthState } from "../../../../framework/plugins/auth/mod.ts";
 import { cn } from "../../../../components/utils.ts";
 import { Button, buttonVariants } from "../../../../components/ui/button.tsx";
 import { Input } from "../../../../components/ui/input.tsx";
@@ -18,7 +18,7 @@ import { isGitHubSetup } from "../utils/providers/github.ts";
 
 // export type AuthFormProps = JSX.HTMLAttributes<HTMLDivElement> & {}
 
-export function AuthForm(props: PortalState) {
+export function AuthForm(props: AuthState) {
   const {
     email,
     oauth2 = {},

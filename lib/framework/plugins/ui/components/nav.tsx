@@ -1,5 +1,5 @@
 import { cn } from "../../../../components/utils.ts";
-import type { User } from "../../../../framework/plugins/portal/utils/db.ts";
+import type { User } from "../../../../framework/plugins/auth/utils/db.ts";
 import { UiOptions } from "../mod.ts";
 import { NavItem, NavItemHeader, NavItemUser } from "../islands/nav-item.tsx";
 

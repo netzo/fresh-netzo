@@ -5,7 +5,7 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "../../../../components/ui/avatar.tsx";
-import type { User } from "../../../../framework/plugins/portal/utils/db.ts";
+import type { User } from "../../../../framework/plugins/auth/utils/db.ts";
 import type { UiOptions } from "../mod.ts";
 
 type NavItemProps = UiOptions["nav"]["items"][number];

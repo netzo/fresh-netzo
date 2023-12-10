@@ -5,7 +5,7 @@ import { difference } from "../../../../deps/std/datetime/difference.ts";
  *
  * @example
  * ```ts
- * import { pluralize } from "../../../../framework/plugins/portal/utils/display.ts";
+ * import { pluralize } from "../../../../framework/plugins/auth/utils/display.ts";
  *
  * pluralize(0, "meow"); // Returns "0 meows"
  * pluralize(1, "meow"); // Returns "1 meow"
@@ -20,7 +20,7 @@ export function pluralize(amount: number, unit: string) {
  *
  * @example
  * ```ts
- * import { timeAgo } from "../../../../framework/plugins/portal/utils/display.ts";
+ * import { timeAgo } from "../../../../framework/plugins/auth/utils/display.ts";
  * import { SECOND, MINUTE, HOUR } from "../../../../deps/std/datetime/constants.ts";
  *
  * timeAgo(new Date()); // Returns "just now"
@@ -60,7 +60,7 @@ export function timeAgo(date: Date) {
  *
  * @example
  * ```ts
- * import { formatCurrency } from "../../../../framework/plugins/portal/utils/display.ts";
+ * import { formatCurrency } from "../../../../framework/plugins/auth/utils/display.ts";
  *
  * formatCurrency(5, "USD"); // Returns "$5"
  * ```

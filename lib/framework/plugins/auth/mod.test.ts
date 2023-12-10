@@ -1,4 +1,4 @@
-import { portal } from "./mod.ts";
+import { auth } from "./mod.ts";
 import {
   assert,
   assertArrayIncludes,
@@ -20,8 +20,8 @@ import {
 import { OAUTH_COOKIE_NAME } from "../../../deps/deno_kv_oauth/lib/_http.ts";
 import type { Handler } from "../../../deps/$fresh/src/server/mod.ts";
 
-Deno.test("[plugins/portal] portal() works with default values", () => {
-  const plugin = portal({ oauth2: randomOAuthConfig() });
+Deno.test("[plugins/auth] auth() works with default values", () => {
+  const plugin = auth({ oauth2: randomOAuthConfig() });
   assertNotEquals(plugin.routes, undefined);
   assert(plugin.routes!.every((route) => route.handler !== undefined));
   assertArrayIncludes(plugin.routes!.map((route) => route.path), [
@@ -31,9 +31,9 @@ Deno.test("[plugins/portal] portal() works with default values", () => {
   ]);
 });
 
-Deno.test("[plugins/portal] portal() correctly handles the sign-in path", async () => {
+Deno.test("[plugins/auth] auth() correctly handles the sign-in path", async () => {
   const request = new Request("http://example.com/oauth/signin");
-  const plugin = portal({ oauth2: randomOAuthConfig() });
+  const plugin = auth({ oauth2: randomOAuthConfig() });
   const handler = plugin.routes!.find((route) =>
     route.path === "/oauth/signin"
   )!
@@ -44,7 +44,7 @@ Deno.test("[plugins/portal] portal() correctly handles the sign-in path", async 
   assertRedirect(response);
 });
 
-Deno.test("[plugins/portal] portal() correctly handles the callback path", async () => {
+Deno.test("[plugins/auth] auth() correctly handles the callback path", async () => {
   const fetchStub = stub(
     window,
     "fetch",
@@ -67,7 +67,7 @@ Deno.test("[plugins/portal] portal() correctly handles the callback path", async
       headers: { cookie: `${OAUTH_COOKIE_NAME}=${oauthSessionId}` },
     },
   );
-  const plugin = portal({ oauth2: randomOAuthConfig() });
+  const plugin = auth({ oauth2: randomOAuthConfig() });
   const handler = plugin.routes!.find((route) =>
     route.path === "/oauth/callback"
   )!.handler as Handler<undefined, undefined>;
@@ -84,9 +84,9 @@ Deno.test("[plugins/portal] portal() correctly handles the callback path", async
   );
 });
 
-Deno.test("[plugins/portal] portal() correctly handles the sign-out path", async () => {
+Deno.test("[plugins/auth] auth() correctly handles the sign-out path", async () => {
   const request = new Request("http://example.com/oauth/signout");
-  const plugin = portal({ oauth2: randomOAuthConfig() });
+  const plugin = auth({ oauth2: randomOAuthConfig() });
   const handler = plugin.routes!.find((route) =>
     route.path === "/oauth/signout"
   )!.handler as Handler<undefined, undefined>;

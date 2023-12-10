@@ -1,13 +1,14 @@
 import type { Plugin } from "../../../deps/$fresh/src/server/mod.ts";
 import type { OAuth2ClientConfig } from "../../../deps/deno_kv_oauth/mod.ts";
-import { type User } from "../../../framework/plugins/portal/utils/db.ts";
+import { type User } from "../../../framework/plugins/auth/utils/db.ts";
+import { internalMiddlewares } from "./internal.ts";
 import { sessionMiddlewares } from "./session.ts";
 import { errorHandlingMiddlewares } from "./error-handling.ts";
-import { portalRoutes } from "./portal.ts";
+import { authRoutes } from "./auth.ts";
 
 export * from "../../../deps/deno_kv_oauth/mod.ts";
 
-export type PortalOptions = {
+export type AuthOptions = {
   email: {}; // TODO: EmailClientConfig;
   oauth2: OAuth2ClientConfig;
   title?: string;
@@ -18,7 +19,7 @@ export type PortalOptions = {
   caption?: string;
 };
 
-export type PortalState = {
+export type AuthState = {
   sessionId?: string;
   sessionUser?: User;
 };
@@ -33,15 +34,16 @@ export type PortalState = {
  * - `GET /oauth/callback` for the callback page
  * - `GET /oauth/signout` for the sign-out page
  */
-export const portal = (options: PortalOptions): Plugin => {
+export const auth = (options: AuthOptions): Plugin => {
   return {
-    name: "portal",
+    name: "auth",
     middlewares: [
+      ...internalMiddlewares,
       ...sessionMiddlewares,
       ...errorHandlingMiddlewares,
     ],
     routes: [
-      ...portalRoutes(options),
+      ...authRoutes(options),
     ],
     islands: {
       baseLocation: import.meta.url,

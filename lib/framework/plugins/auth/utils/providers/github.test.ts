@@ -5,7 +5,7 @@ import { errors } from "../../../../../deps/std/http/http_errors.ts";
 import { assertEquals } from "../../../../../deps/std/assert/assert_equals.ts";
 import { Status } from "../../../../../deps/deno_kv_oauth/deps.ts";
 
-Deno.test("[plugins/portal/utils/providers/github] getUserGithub()", async (test) => {
+Deno.test("[plugins/auth/utils/providers/github] getUserGithub()", async (test) => {
   await test.step("rejects on error message", async () => {
     const message = crypto.randomUUID();
     const fetchStub = stub(

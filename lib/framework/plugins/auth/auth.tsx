@@ -13,14 +13,14 @@ export default defineRoute<NetzoState>((_req, ctx) => {
     backgroundColor,
     // logo,
     caption,
-  } = ctx.state.portal;
+  } = ctx.state.auth;
 
   return (
     <div
       className={`h-full w-full grid place-items-center p-4 bg-[${backgroundColor}]`}
     >
       <div className="grid gap-6 w-full xs:w-[350px] max-w-[350px]">
-        <AuthForm {...ctx.state.portal} />
+        <AuthForm {...ctx.state.auth} />
 
         {caption && (
           <p

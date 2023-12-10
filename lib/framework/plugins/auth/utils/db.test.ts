@@ -15,7 +15,7 @@ import {
   type User,
 } from "./db.ts";
 
-Deno.test("[plugins/portal/utils/db] user", async () => {
+Deno.test("[plugins/auth/utils/db] user", async () => {
   const user = randomUser();
 
   assertEquals(await getUser(user.login), null);

@@ -4,7 +4,7 @@ import replace from "https://esm.sh/object-replace-mustache@1.0.2";
 import { deepMerge } from "../deps/std/collections/deep_merge.ts";
 import { AccessState } from "../framework/plugins/access/mod.ts";
 // import { ApiState } from "../framework/plugins/api/mod.ts";
-import { PortalState } from "../framework/plugins/portal/mod.ts";
+import { AuthState } from "../framework/plugins/auth/mod.ts";
 import { UiState } from "../framework/plugins/ui/mod.ts";
 import { netzo } from "../apis/netzo/mod.ts";
 import { log, logInfo, LOGS } from "../framework/utils/console.ts";
@@ -24,7 +24,7 @@ export type NetzoState = {
   kv: Deno.Kv;
   access?: AccessState;
   // api?: ApiState;
-  portal?: PortalState;
+  auth?: AuthState;
   ui?: UiState;
   plugins?: Project["plugins"];
   [k: string]: unknown;
@@ -81,12 +81,12 @@ export async function createApp(
   }
   const appUrl = Deno.env.get("NETZO_APP_URL") ?? "https://app.netzo.io";
 
-  const { access, portal, ui } = project.app ?? {};
+  const { access, auth, ui } = project.app ?? {};
 
   let state: NetzoState = deepMerge({
     kv: await Deno.openKv(),
     access,
-    portal,
+    auth,
     ui,
   }, partialConfig); // NOTE: developer config takes precedence for better DX
 
@@ -148,9 +148,9 @@ async function createPlugins(state: NetzoState): Promise<Plugin[]> {
           const mod = await import("./plugins/api/mod.ts");
           return mod.api(options);
         }
-        case "portal": {
-          const mod = await import("./plugins/portal/mod.ts");
-          return mod.portal(options);
+        case "auth": {
+          const mod = await import("./plugins/auth/mod.ts");
+          return mod.auth(options);
         }
         case "ui": {
           const mod = await import("./plugins/ui/mod.ts");
