@@ -15,7 +15,7 @@ netzo upgrade
 To upgrade to specific version:
 netzo upgrade 1.2.3
 
-The version is downloaded from https://deno.land/x/netzo/cli/app.netzo.ts
+The version is downloaded from https://deno.land/x/netzo/cli/netzo.ts
 
 USAGE:
     netzo upgrade [OPTIONS] [<version>]
@@ -74,7 +74,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
         "-f",
         `https://deno.land/x/netzo@${
           version ? version : latest
-        }/cli/app.netzo.ts`,
+        }/cli/netzo.ts`,
       ],
     }).spawn();
     await process.status;
