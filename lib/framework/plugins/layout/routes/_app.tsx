@@ -8,13 +8,19 @@ import { Head } from "../components/head.tsx";
 import Header from "../islands/header.tsx";
 
 export default defineApp<NetzoState>((_req, ctx) => {
-  const { auth: { sessionId } = {}, ui = {} } = ctx.state;
-  const { head, layout: { header, nav, footer } } = ui;
+  const {
+    title,
+    description,
+    favicon,
+    image,
+    auth: { sessionId } = {},
+    layout,
+  } = ctx.state;
 
   return (
     <html className="h-full overflow-hidden">
       <head>
-        <Head {...head} href={ctx.url.href} />
+        <Head {...{ title, description, favicon, image, href: ctx.url.href }} />
       </head>
       {sessionId
         ? (
@@ -25,10 +31,10 @@ export default defineApp<NetzoState>((_req, ctx) => {
               "bg-[hsl(var(--background))]",
             )}
           >
-            <Nav {...nav} sessionUser={ctx.state.auth?.sessionUser} />
+            <Nav {...layout.nav} sessionUser={ctx.state.auth?.sessionUser} />
 
             <div className="flex flex-col w-full h-full overflow-x-hidden">
-              <Header {...header} />
+              <Header {...layout.header} />
 
               <main className="flex-1">
                 <Partial name="main">
@@ -36,7 +42,7 @@ export default defineApp<NetzoState>((_req, ctx) => {
                 </Partial>
               </main>
 
-              <Footer className="sticky bottom-0" {...footer} />
+              <Footer className="sticky bottom-0" {...layout.footer} />
             </div>
           </body>
         )

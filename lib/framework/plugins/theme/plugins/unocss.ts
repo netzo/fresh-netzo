@@ -1,4 +1,8 @@
-import { JSX, options as preactOptions, VNode } from "../../../deps/preact.ts";
+import {
+  JSX,
+  options as preactOptions,
+  VNode,
+} from "../../../../deps/preact.ts";
 import {
   UnoGenerator,
   type UserConfig,
@@ -7,17 +11,15 @@ import type { Theme } from "https://esm.sh/@unocss/preset-uno@0.58.0?target=esne
 import {
   Plugin,
   type PluginRenderStyleTag,
-} from "../../../deps/$fresh/src/server/mod.ts";
+} from "../../../../deps/$fresh/src/server/mod.ts";
 import {
   dirname,
   fromFileUrl,
   join,
   walk,
-} from "../../../deps/$fresh/src/server/deps.ts";
-import { exists } from "../../../deps/std/fs/exists.ts";
-import presetNetzo, {
-  PresetNetzoOptions,
-} from "../../../framework/plugins/unocss/preset-netzo.ts";
+} from "../../../../deps/$fresh/src/server/deps.ts";
+import { exists } from "../../../../deps/std/fs/exists.ts";
+import presetNetzo, { PresetNetzoOptions } from "./preset-netzo.ts";
 
 type PreactOptions = typeof preactOptions & { __b?: (vnode: VNode) => void };
 
@@ -91,7 +93,9 @@ export function installPreactHook(classes: Set<string>) {
   };
 }
 
-/** UnoCSS plugin - automatically generates CSS utility classes */
+/**
+ * Plugin to automatically generates CSS utility classes
+ */
 export const unocss = (
   {
     config,
@@ -195,11 +199,3 @@ export const unocss = (
     },
   };
 };
-
-export const createUnocss = (options: PresetNetzoOptions = {}) =>
-  unocss({
-    config: defineConfig({ presets: [presetNetzo(options)] }),
-    aot: options.aot,
-    ssr: options.ssr,
-    csr: options.csr,
-  });

@@ -7,13 +7,15 @@ import type { NetzoState } from "../../../framework/mod.ts";
 
 export default defineRoute<NetzoState>((_req, ctx) => {
   const {
-    // title = "Sign In",
-    // description,
-    // color,
-    backgroundColor,
-    // logo,
-    caption,
-  } = ctx.state.auth;
+    auth: {
+      title = "Sign In",
+      description,
+      color,
+      backgroundColor,
+      // logo,
+      caption,
+    },
+  } = ctx.state;
 
   return (
     <div

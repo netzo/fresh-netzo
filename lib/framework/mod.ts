@@ -2,10 +2,9 @@ import type { FreshConfig } from "../deps/$fresh/src/server/mod.ts";
 import type { Project } from "https://esm.sh/@netzo/api@1.0.52/lib/client.d.ts";
 import replace from "https://esm.sh/object-replace-mustache@1.0.2";
 import { deepMerge } from "../deps/std/collections/deep_merge.ts";
-import { AccessState } from "../framework/plugins/access/mod.ts";
-// import { ApiState } from "../framework/plugins/api/mod.ts";
 import { AuthState } from "../framework/plugins/auth/mod.ts";
-import { UiState } from "../framework/plugins/ui/mod.ts";
+import { ApiState } from "../framework/plugins/api/mod.ts";
+import { LayoutState } from "../framework/plugins/layout/mod.ts";
 import { netzo } from "../apis/netzo/mod.ts";
 import { log, logInfo, LOGS } from "../framework/utils/console.ts";
 import { setEnvVars } from "../framework/utils/mod.ts";
@@ -22,10 +21,11 @@ export type AppConfig = FreshConfig & {
 
 export type NetzoState = {
   kv: Deno.Kv;
-  access?: AccessState;
-  // api?: ApiState;
   auth?: AuthState;
-  ui?: UiState;
+  api?: ApiState;
+  layout?: LayoutState;
+  theme?: ThemeState;
+  pages?: PagesState;
   plugins?: Project["plugins"];
   [k: string]: unknown;
 };
@@ -42,7 +42,7 @@ console.error = (msg) => {
 };
 
 export async function createApp(
-  partialConfig: Partial<AppConfig>,
+  partialConfig: Partial<AppConfig> = {},
 ): Promise<Required<AppConfig>> {
   if (Deno.args[0] === "build") return partialConfig as Required<AppConfig>;
 
@@ -53,7 +53,7 @@ export async function createApp(
     NETZO_API_URL = "https://api.netzo.io",
     NETZO_APP_URL = "https://app.netzo.io",
   } = Deno.env.toObject();
-  const { plugins = [] } = partialConfig;
+  const { plugins = [] } = partialConfig ?? {};
 
   if (!NETZO_PROJECT_ID) throw new Error(LOGS.missingProjectId);
   if (!NETZO_API_KEY) throw new Error(LOGS.missingApiKey);
@@ -81,29 +81,25 @@ export async function createApp(
   }
   const appUrl = Deno.env.get("NETZO_APP_URL") ?? "https://app.netzo.io";
 
-  const { access, auth, ui } = project.app ?? {};
+  const { auth, layout, theme, pages, api: _api } = project.app ?? {};
 
   let state: NetzoState = deepMerge({
-    kv: await Deno.openKv(),
-    access,
+    kv: await Deno.openKv(), // pass kv instance to plugins (prevent multiple connections)
     auth,
-    ui,
+    api: _api,
+    layout,
+    theme,
+    pages,
   }, partialConfig); // NOTE: developer config takes precedence for better DX
 
-  state = replace(state, { project });
+  state = replace(state, { project }); // render values with mustache placeholders
 
   logInfo(`Merged remote and local app configuratitions`);
 
-  const netzoPlugins = await createPlugins(state);
-
-  logInfo(
-    `Initialized ${plugins.length} plugins: ${
-      plugins.map((p) => p.name).join(", ")
-    }`,
-  );
+  const netzoPlugins = await createPluginsForModules(state);
 
   log(
-    `Open in netzo at ${appUrl}/workspaces/${project.workspaceId}/projects/${project._id}`,
+    `\nOpen in netzo at ${appUrl}/workspaces/${project.workspaceId}/projects/${project._id}`,
   );
 
   return {
@@ -135,37 +131,72 @@ export async function createApp(
  * @param state {NetzoState} - the app configuration
  * @returns {Promise<Plugin[]>} - the bundled plugins
  */
-async function createPlugins(state: NetzoState): Promise<Plugin[]> {
+async function createPluginsForModules(state: NetzoState): Promise<Plugin[]> {
   // NOTE: async plugin initialization is parallelized for better performance
-  const plugins = (await Promise.all(
+  const pluginsWithDuplicates = (await Promise.all(
     Object.entries(state).map(async ([key, options]) => {
+      if (!options?.enabled) return; // skip disabled plugins
       switch (key) {
-        case "access": {
-          const mod = await import("./plugins/access/mod.ts");
-          return mod.access(options);
-        }
-        case "api": {
-          const mod = await import("./plugins/api/mod.ts");
-          return mod.api(options);
+        case "kv": {
+          return;
         }
         case "auth": {
           const mod = await import("./plugins/auth/mod.ts");
           return mod.auth(options);
         }
-        case "ui": {
-          const mod = await import("./plugins/ui/mod.ts");
-          const { unocss } = await import("./plugins/unocss/mod.ts");
+        case "api": {
+          const mod = await import("./plugins/api/mod.ts");
+          return mod.api(options);
+        }
+        case "layout": {
+          const mod = await import("./plugins/layout/mod.ts");
+          const { theme } = await import("./plugins/theme/mod.ts");
           const { presetNetzo } = await import(
-            "./plugins/unocss/preset-netzo.ts"
+            "./plugins/theme/plugins/preset-netzo.ts"
           );
           return [
-            mod.ui(options),
-            unocss({ config: { presets: [presetNetzo(options.theme)] } }),
+            mod.layout(options),
+            theme(options.theme),
           ];
+        }
+        case "theme": {
+          // TODO: const mod = await import("./plugins/theme/mod.ts");
+          const { theme } = await import("./plugins/theme/mod.ts");
+          const { presetNetzo } = await import(
+            "./plugins/theme/plugins/preset-netzo.ts"
+          );
+          return [
+            // TODO: mod.theme(options),
+            theme(options.theme),
+          ];
+        }
+        case "pages": {
+          const mod = await import("./plugins/pages/mod.ts");
+          const { theme } = await import("./plugins/theme/mod.ts");
+          const { presetNetzo } = await import(
+            "./plugins/theme/plugins/preset-netzo.ts"
+          );
+          return [
+            mod.pages(options),
+            theme(options.theme),
+          ];
+        }
+        case "api": {
+          const mod = await import("./plugins/api/mod.ts");
+          return mod.api(options);
         }
       }
     }),
   )).flat().filter((plugin) => !!plugin?.name);
+
+  // deduplicate plugins by name (uses includes(searchElement, fromIndex))
+  const names = pluginsWithDuplicates.map(({ name }) => name);
+  const plugins = pluginsWithDuplicates.filter(
+    ({ name }, i) => !names.includes(name, i + 1)
+  );
+  logInfo(`Plugins: ${plugins.map(
+    ({ name }) => `${!!state[name]?.enabled ? '✅' : '❌'} ${name}`).join(" | ")}`
+  );
 
   return plugins;
 }

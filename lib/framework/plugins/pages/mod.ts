@@ -1,20 +1,16 @@
 import type { Plugin } from "../../../deps/$fresh/src/server/mod.ts";
 import type { Project } from "../../../framework/mod.ts";
-import _App from "./routes/_app.tsx";
 import _404 from "./routes/_404.tsx";
 import _500 from "./routes/_500.tsx";
 
-export type UiOptions = Project["ui"];
+export type PagesOptions = Project["pages"];
 
-export type UiState = {};
+export type PagesState = {};
 
-export const ui = (options?: UiOptions): Plugin => {
+export const pages = (options?: PagesOptions): Plugin => {
   return {
-    name: "ui",
+    name: "pages",
     routes: [
-      ...(options?.pages?._app?.enabled
-        ? [{ path: "/_app", component: _App }]
-        : []),
       ...(options?.pages?._404?.enabled
         ? [{ path: "/_404", component: _404 }]
         : []),
@@ -22,12 +18,5 @@ export const ui = (options?: UiOptions): Plugin => {
         ? [{ path: "/_500", component: _500 }]
         : []),
     ],
-    islands: {
-      baseLocation: import.meta.url,
-      paths: [
-        "./islands/header.tsx",
-        "./islands/nav-item.tsx",
-      ],
-    },
   };
 };

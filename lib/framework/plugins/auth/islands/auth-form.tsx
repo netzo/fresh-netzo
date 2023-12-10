@@ -16,16 +16,20 @@ import {
 } from "../components/icons.tsx";
 import { isGitHubSetup } from "../utils/providers/github.ts";
 
-// export type AuthFormProps = JSX.HTMLAttributes<HTMLDivElement> & {}
+export type AuthFormProps = JSX.HTMLAttributes<HTMLDivElement> & {
+  email: Project["auth"]["email"];
+  oauth2: Project["auth"]["oauth2"];
+  title: string;
+  description: string;
+  logo: string;
+};
 
-export function AuthForm(props: AuthState) {
+export function AuthForm(props: AuthFormProps) {
   const {
     email,
     oauth2 = {},
     title,
     description,
-    color,
-    backgroundColor,
     logo,
   } = props;
   const isLoading = useSignal<boolean>(false);

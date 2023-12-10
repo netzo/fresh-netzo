@@ -72,9 +72,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
         "--allow-run",
         "--no-check",
         "-f",
-        `https://deno.land/x/netzo@${
-          version ? version : latest
-        }/cli/netzo.ts`,
+        `https://deno.land/x/netzo@${version ? version : latest}/cli/netzo.ts`,
       ],
     }).spawn();
     await process.status;
