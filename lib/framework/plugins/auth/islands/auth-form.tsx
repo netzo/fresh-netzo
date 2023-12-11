@@ -52,9 +52,11 @@ const ButtonOAuth2 = (
 export function AuthForm(props: NetzoState) {
   const { logo, auth } = props.config;
 
-  const hasEnabledOauth2Providers = Object.entries(auth?.providers ?? {}).some(
+  const hasEmail = !!auth?.providers?.email?.enabled;
+  const hasOAuth2 = Object.entries(auth?.providers ?? {}).some(
     ([key, value]) => !["email"].includes(key) && !!value.enabled,
   );
+  const showDivider = hasEmail && hasOAuth2;
 
   return (
     <>
@@ -83,7 +85,7 @@ export function AuthForm(props: NetzoState) {
           </form>
         )}
 
-        {hasEnabledOauth2Providers && (
+        {showDivider && (
           <div className="relative">
             <div className="absolute inset-0 flex items-center">
               <span className="w-full border-t" />

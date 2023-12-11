@@ -15,7 +15,7 @@ export const PROJECT_CONFIG: AppConfig = {
     caption:
       'By signing in you agree to the <a href="/" target="_blank">Terms of Service</a> and <a href="/" target="_blank">Privacy Policy</a>',
     providers: {
-      email: { enabled: true },
+      email: { enabled: false },
       google: {
         enabled: false,
         clientId: "{{project.envVars.development.GOOGLE_CLIENT_ID}}",
