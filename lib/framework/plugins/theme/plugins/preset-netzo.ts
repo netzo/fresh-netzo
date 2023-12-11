@@ -28,7 +28,6 @@ export type PresetNetzoOptions = PresetUnoOptions & {
 export function presetNetzo(
   options: PresetNetzoOptions = {},
 ): PresetOrFactory<Theme> | PresetOrFactory<Theme>[] {
-  console.log(options);
   return {
     ...options,
 

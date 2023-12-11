@@ -19,7 +19,6 @@ import {
   walk,
 } from "../../../../deps/$fresh/src/server/deps.ts";
 import { exists } from "../../../../deps/std/fs/exists.ts";
-import presetNetzo, { PresetNetzoOptions } from "./preset-netzo.ts";
 
 type PreactOptions = typeof preactOptions & { __b?: (vnode: VNode) => void };
 
@@ -41,7 +40,7 @@ export type UnocssOptions = {
    * Explicit UnoCSS config object, alternative to `uno.config.ts` file.
    * Not supported for the client runtime in CSR mode.
    */
-  config?: UserConfig;
+  config?: UserConfig<Theme>;
   /**
    * Enable AOT mode - run UnoCSS to extract styles during the build task.
    * Enabled by default.

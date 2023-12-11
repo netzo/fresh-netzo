@@ -1,5 +1,5 @@
 import { ulid } from "../../../../database/mod.ts";
-
+import type { OAuthProvider } from "../routes/[provider].ts";
 const kv = await Deno.openKv();
 // TODO: const db = createDatabase(kv);
 
@@ -18,6 +18,7 @@ const kv = await Deno.openKv();
  * users[0].name; // Returns "Snoop Dogg"
  * users[0].email; // Returns "snoop.dogg@example"
  * users[0].role; // Returns "admin"
+ * users[0].provider; // Returns "github"
  * users[0].createdAt; // Returns "2021-08-31T00:00:00.000Z"
  * users[0].updatedAt; // Returns "2021-08-31T00:00:00.000Z"
  * ```
@@ -38,22 +39,10 @@ export type User = {
   email: string;
   avatar: string;
   role: string;
+  provider: OAuthProvider;
   createdAt: string;
   updatedAt: string;
 };
-
-/** For testing */
-export function randomUser(): User {
-  return {
-    login: crypto.randomUUID(),
-    sessionId: crypto.randomUUID(),
-    name: "First Last",
-    email: `firs.last@example.com`,
-    role: ["admin", "editor", "viewer"][Math.floor(Math.random() * 3)],
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  };
-}
 
 /**
  * Creates a new user in the database. Throws if the user or user session
@@ -155,6 +144,7 @@ export async function updateUserSession(user: User, sessionId: string) {
  * user?.login; // Returns "jack"
  * user?.sessionId; // Returns "xxx"
  * user?.role; // Returns "admin"
+ * user?.provider; // Returns "github"
  * ```
  */
 export async function getUser(login: string) {
@@ -177,6 +167,7 @@ export async function getUser(login: string) {
  * user?.login; // Returns "jack"
  * user?.sessionId; // Returns "xxx"
  * user?.role; // Returns "admin"
+ * user?.provider; // Returns "github"
  * ```
  */
 export async function getUserBySession(sessionId: string) {
@@ -201,6 +192,7 @@ export async function getUserBySession(sessionId: string) {
  *   entry.value.login; // Returns "jack"
  *   entry.value.sessionId; // Returns "xxx"
  *   entry.value.role; // Returns "admin"
+ *   entry.value.provider; // Returns "github"
  * }
  * ```
  */

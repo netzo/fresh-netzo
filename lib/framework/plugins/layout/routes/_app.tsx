@@ -42,7 +42,6 @@ export default defineApp<NetzoState>((_req, ctx) => {
         )
         : (
           <body
-            f-client-nav
             className={cn(
               "h-full overflow-x-hidden",
               "bg-[hsl(var(--background))]",
@@ -50,9 +49,7 @@ export default defineApp<NetzoState>((_req, ctx) => {
           >
             <div className="flex flex-col w-full h-full overflow-x-hidden">
               <main className="flex-1">
-                <Partial name="main">
-                  <ctx.Component />
-                </Partial>
+                <ctx.Component />
               </main>
 
               <Footer className="sticky bottom-0" {...layout.footer} />

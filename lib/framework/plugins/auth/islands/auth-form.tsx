@@ -24,10 +24,7 @@ const ButtonEmail = () => {
           autoCorrect="off"
         />
       </div>
-      <Button
-        variant="default"
-        class={cn("bg-[hsl(var(--background))]")}
-      >
+      <Button variant="default" type="submit">
         Sign In with Email
       </Button>
     </div>
@@ -42,11 +39,9 @@ const ButtonOAuth2 = (
     children: ComponentChildren;
   },
 ) => {
-  const { href = `/oauth/signin` } = props;
-
   return (
     <a
-      href={href}
+      href={props.href}
       className={cn(buttonVariants({ variant: "outline" }))}
     >
       {props.children} {props.text}
@@ -56,8 +51,6 @@ const ButtonOAuth2 = (
 
 export function AuthForm(props: NetzoState) {
   const { logo, auth } = props.config;
-
-  console.log(props.config.theme);
 
   const hasEnabledOauth2Providers = Object.entries(auth?.providers ?? {}).some(
     ([key, value]) => !["email"].includes(key) && !!value.enabled,
@@ -104,42 +97,36 @@ export function AuthForm(props: NetzoState) {
         )}
 
         {!!auth?.providers?.google?.enabled && (
-          <ButtonOAuth2 text="Sign In with Google" href="/oauth/google">
+          <ButtonOAuth2 text="Sign In with Google" href="/auth/google/signin">
             <div className="mr-4 w-20px h-20px logos-google-icon" />
           </ButtonOAuth2>
         )}
 
-        {!!auth?.providers?.azure?.enabled && (
-          <ButtonOAuth2 text="Sign In with Azure" href="/oauth/azure">
-            <div className="mr-4 w-20px h-20px logos-microsoft-icon" />
-          </ButtonOAuth2>
-        )}
-
         {!!auth?.providers?.github?.enabled && (
-          <ButtonOAuth2 text="Sign In with GitHub" href="/oauth/github">
+          <ButtonOAuth2 text="Sign In with GitHub" href="/auth/github/signin">
             <div className="mr-4 w-20px h-20px mdi-github" />
           </ButtonOAuth2>
         )}
 
         {!!auth?.providers?.gitlab?.enabled && (
-          <ButtonOAuth2 text="Sign In with GitLab" href="/oauth/gitlab">
+          <ButtonOAuth2 text="Sign In with GitLab" href="/auth/gitlab/signin">
             <div className="mr-4 w-20px h-20px mdi-gitlab" />
           </ButtonOAuth2>
         )}
 
         {!!auth?.providers?.auth0?.enabled && (
-          <ButtonOAuth2 text="Sign In with Auth0" href="/oauth/auth0">
+          <ButtonOAuth2 text="Sign In with Auth0" href="/auth/auth0/signin">
             <div className="mr-4 w-20px h-20px simple-icons-auth0" />
           </ButtonOAuth2>
         )}
         {!!auth?.providers?.okta?.enabled && (
-          <ButtonOAuth2 text="Sign In with Okta" href="/oauth/okta">
+          <ButtonOAuth2 text="Sign In with Okta" href="/auth/okta/signin">
             <div className="mr-4 w-20px h-20px simple-icons-okta" />
           </ButtonOAuth2>
         )}
 
         {!!auth?.providers?.oauth2?.enabled && (
-          <ButtonOAuth2 text="Sign In with Custom" href="/oauth/oauth2">
+          <ButtonOAuth2 text="Sign In with Custom" href="/auth/oauth2/signin">
             <div className="mr-4 w-20px h-20px mdi-code-json" />
           </ButtonOAuth2>
         )}

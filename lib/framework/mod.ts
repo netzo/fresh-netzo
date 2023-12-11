@@ -1,5 +1,5 @@
 import type { FreshConfig } from "../deps/$fresh/src/server/mod.ts";
-import type { Project } from "https://esm.sh/v135/@netzo/api@1.0.52/lib/client.d.ts";
+import type { Project } from "../deps/@netzo/api/mod.ts";
 import replace from "https://esm.sh/v135/object-replace-mustache@1.0.2";
 import { deepMerge } from "../deps/std/collections/deep_merge.ts";
 import { AuthState } from "../framework/plugins/auth/mod.ts";
@@ -145,7 +145,7 @@ async function createPluginsForModules(state: NetzoState): Promise<Plugin[]> {
   const PLUGINS = ["kv", "auth", "api", "layout", "theme", "pages", "devtools"];
   const pluginsWithDuplicates = (await Promise.all(
     PLUGINS.map(async (name) => {
-      if (!state.config[name]?.enabled) return; // skip disabled plugins
+      if (!state.config?.[name]?.enabled) return; // skip disabled plugins
       switch (name) {
         case "kv": {
           return;

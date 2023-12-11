@@ -1,9 +1,9 @@
 import { ComponentChildren } from "../../../../deps/preact.ts";
 import { Head as _Head } from "../../../../deps/$fresh/src/runtime/head.ts";
-import type { UiOptions } from "../mod.ts";
+import type { LayoutOptions } from "../mod.ts";
 
 export const Head = (
-  props: UiOptions["head"] & { href: string; children?: ComponentChildren },
+  props: LayoutOptions["head"] & { href: string; children?: ComponentChildren },
 ) => {
   return (
     <_Head>
@@ -20,7 +20,7 @@ export const Head = (
   );
 };
 
-export const Meta = (props: UiOptions["head"]) => {
+export const Meta = (props: LayoutOptions["head"]) => {
   return (
     <>
       {/* HTML Meta Tags */}

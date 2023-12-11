@@ -1,8 +1,8 @@
 import { cn } from "../../../../components/utils.ts";
 import type { User } from "../../../../framework/plugins/auth/utils/db.ts";
-import { UiOptions } from "../mod.ts";
+import { LayoutOptions } from "../mod.ts";
 
-export default ({ className, ...props }: UiOptions["header"]) => {
+export default ({ className, ...props }: LayoutOptions["header"]) => {
   return (
     <header
       className={cn(

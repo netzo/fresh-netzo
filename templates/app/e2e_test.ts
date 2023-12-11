@@ -62,7 +62,7 @@ Deno.test("[e2e] GET /", async () => {
   assertHtml(resp);
 });
 
-Deno.test("[e2e] GET /oauth/callback", async (test) => {
+Deno.test("[e2e] GET /auth/github/callback", async (test) => {
   const login = crypto.randomUUID();
   const sessionId = crypto.randomUUID();
 
@@ -97,20 +97,20 @@ Deno.test("[e2e] GET /oauth/callback", async (test) => {
   });
 });
 
-Deno.test("[e2e] GET /oauth/signin", async () => {
+Deno.test("[e2e] GET /auth/github/signin", async () => {
   const resp = await handler(
-    new Request("http://localhost/oauth/signin"),
+    new Request("http://localhost/auth/github/signin"),
   );
 
   assertRedirect(
     resp,
-    "https://github.com/login/oauth/authorize",
+    "https://github.com/login/auth/github/authorize",
   );
 });
 
-Deno.test("[e2e] GET /oauth/signout", async () => {
+Deno.test("[e2e] GET /auth/signout", async () => {
   const resp = await handler(
-    new Request("http://localhost/oauth/signout"),
+    new Request("http://localhost/auth/signout"),
   );
 
   assertRedirect(resp, "/");
@@ -223,7 +223,7 @@ Deno.test("[e2e] GET /account", async (test) => {
   await test.step("redirects to sign-in page if the session user is not signed in", async () => {
     const resp = await handler(new Request(url));
 
-    assertRedirect(resp, "/oauth/signin");
+    assertRedirect(resp, "/auth/github/signin");
   });
 
   await test.step("serves a web page for signed-in free user", async () => {

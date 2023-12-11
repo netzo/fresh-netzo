@@ -1,6 +1,6 @@
-import { defineRoute } from "../../../deps/$fresh/src/server/mod.ts";
-import { AuthForm } from "./islands/auth-form.tsx";
-import type { NetzoState } from "../../../framework/mod.ts";
+import { defineRoute } from "../../../../../deps/$fresh/src/server/mod.ts";
+import { AuthForm } from "../../islands/auth-form.tsx";
+import type { NetzoState } from "../../../../../framework/mod.ts";
 
 // FIXME: not working for plugin-injected routes
 // export const config: RouteConfig = { skipAppWrapper: true };

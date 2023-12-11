@@ -1,7 +1,7 @@
 import { cn } from "../../../../components/utils.ts";
-import type { UiOptions } from "../mod.ts";
+import type { LayoutOptions } from "../mod.ts";
 
-export const Footer = ({ className, ...props }: UiOptions["footer"]) => {
+export const Footer = ({ className, ...props }: LayoutOptions["footer"]) => {
   return (
     <footer
       className={cn(

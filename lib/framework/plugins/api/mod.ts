@@ -72,7 +72,6 @@ export const api = (options?: ApiOptions): Plugin => {
             const { resource } = ctx.params;
             const data = await parseRequestBody(req);
             const result = await db.create(resource, data, idField);
-            console.log("result", result);
             return Response.json(result);
           },
         },
