@@ -1,6 +1,8 @@
 import type { Plugin } from "../../../deps/$fresh/src/server/mod.ts";
 import type { Project } from "../../../framework/mod.ts";
 import _App from "./routes/_app.tsx";
+import _404 from "./routes/_404.tsx";
+import _500 from "./routes/_500.tsx";
 
 export type LayoutOptions = Project["config"]["layout"];
 
@@ -12,6 +14,8 @@ export const layout = (_options?: LayoutOptions): Plugin => {
     name: "layout",
     routes: [
       { path: "/_app", component: _App },
+      { path: "/_404", component: _404 },
+      { path: "/_500", component: _500 },
     ],
     islands: {
       baseLocation: import.meta.url,

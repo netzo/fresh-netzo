@@ -83,11 +83,6 @@ export const PROJECT_CONFIG: AppConfig = {
     color: "slate",
     radius: 0.5,
   },
-  pages: {
-    enabled: true,
-    _404: { enabled: true },
-    _500: { enabled: true },
-  },
   api: {
     enabled: true,
     path: "",

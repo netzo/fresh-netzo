@@ -5,7 +5,6 @@ import { deepMerge } from "../deps/std/collections/deep_merge.ts";
 import { AuthState } from "../framework/plugins/auth/mod.ts";
 import { LayoutState } from "../framework/plugins/layout/mod.ts";
 import { ThemeState } from "../framework/plugins/theme/mod.ts";
-import { PagesState } from "../framework/plugins/pages/mod.ts";
 import { ApiState } from "../framework/plugins/api/mod.ts";
 import { DevtoolsState } from "../framework/plugins/devtools/mod.ts";
 import { netzo } from "../apis/netzo/mod.ts";
@@ -24,7 +23,6 @@ export type NetzoState = {
   auth?: AuthState;
   layout?: LayoutState;
   theme?: ThemeState;
-  pages?: PagesState;
   api?: ApiState;
   devtools?: DevtoolsState;
   [k: string]: unknown;
@@ -76,9 +74,9 @@ export async function createApp(
     }),
   );
 
-  if (["development"].includes(NETZO_ENV)) {
-    setEnvVars(project.envVars?.development ?? {});
-  }
+  const DEV = ["development"].includes(NETZO_ENV)
+
+  if (DEV) setEnvVars(project.envVars?.development ?? {});
   const appUrl = Deno.env.get("NETZO_APP_URL") ?? "https://app.netzo.io";
 
   // 1) merge defaults and remote config
@@ -90,27 +88,31 @@ export async function createApp(
   // 4) build state (pass single kv instance to plugins for performance)
   const state: NetzoState = { kv: await Deno.openKv(), config };
 
-  logInfo(`Merged remote and local app configuratitions`);
+  if (DEV) logInfo(`Merged remote and local app configuratitions`);
 
   const netzoPlugins = await createPluginsForModules(state);
 
   // [live-reload] listen for "project:patched" events and restart server
-  const app = await createClient({
-    apiKey: NETZO_API_KEY,
-    baseURL: NETZO_API_URL,
-  });
-  const main = Deno.mainModule.replace("file://", "").replace("/.dev.ts", "");
-  app.service("projects").on("patched", async (_project: Project) => {
-    log("✨ App configuration updated, restarting server...");
-    // trigger reload without modifying file using touch
-    const process = new Deno.Command("touch", { args: [main] }).spawn();
-    await process.status;
-  });
-  logInfo(`Listening for updates of app configuration...`);
+  // NOTE: this is only available in development mode since in production,
+  // Spawning subprocesses is not allowed on Deno Deploy (throws PermissionDenied)
+  if (DEV) {
+    const app = await createClient({
+      apiKey: NETZO_API_KEY,
+      baseURL: NETZO_API_URL,
+    });
+    const main = Deno.mainModule.replace("file://", "").replace("/.dev.ts", "");
+    app.service("projects").on("patched", async (_project: Project) => {
+      log("✨ App configuration updated, restarting server...");
+      // trigger reload without modifying file using touch
+      const process = new Deno.Command("touch", { args: [main] }).spawn();
+      await process.status;
+    });
+    logInfo(`Listening for updates of app configuration...`);
 
-  log(
-    `\nOpen in netzo at ${appUrl}/workspaces/${project.workspaceId}/projects/${project._id}`,
-  );
+    log(
+      `\nOpen in netzo at ${appUrl}/workspaces/${project.workspaceId}/projects/${project._id}`,
+    );
+  }
 
   return {
     ...partialConfig,
@@ -142,7 +144,7 @@ export async function createApp(
  */
 async function createPluginsForModules(state: NetzoState): Promise<Plugin[]> {
   // NOTE: async plugin initialization is parallelized for better performance
-  const PLUGINS = ["kv", "auth", "api", "layout", "theme", "pages", "devtools"];
+  const PLUGINS = ["kv", "auth", "api", "layout", "theme", "devtools"];
   const pluginsWithDuplicates = (await Promise.all(
     PLUGINS.map(async (name) => {
       if (!state.config?.[name]?.enabled) return; // skip disabled plugins
@@ -165,14 +167,6 @@ async function createPluginsForModules(state: NetzoState): Promise<Plugin[]> {
         case "theme": {
           const mod = await import("./plugins/theme/mod.ts");
           return [mod.theme(state.config[name])];
-        }
-        case "pages": {
-          const mod = await import("./plugins/pages/mod.ts");
-          const { theme } = await import("./plugins/theme/mod.ts");
-          return [
-            mod.pages(state.config[name]),
-            theme(state.config.theme),
-          ];
         }
         case "api": {
           const mod = await import("./plugins/api/mod.ts");
