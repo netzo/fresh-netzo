@@ -35,10 +35,10 @@ const ButtonOAuth2 = (
   props: {
     text: string;
     href: string;
-    // TODO: disabled: boolean; // use e.g. isGitHubSetup() utils for this
     children: ComponentChildren;
   },
 ) => {
+  // TODO: disabled: boolean; // use e.g. isGitHubSetup() utils for this
   return (
     <a
       href={props.href}

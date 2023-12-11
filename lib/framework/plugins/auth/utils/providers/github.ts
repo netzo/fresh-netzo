@@ -1,5 +1,6 @@
 import { createHttpError } from "../../../../../deps/std/http/http_errors.ts";
 import { createGitHubOAuthConfig } from "../../../../../deps/deno_kv_oauth/mod.ts";
+import type { PartialUserFromProvider } from "../db.ts";
 
 export function isGitHubSetup() {
   try {
@@ -45,22 +46,9 @@ export type UserGithub = {
   updated_at: string;
 };
 
-/**
- * Returns the GitHub profile information of the user with the given access
- * token.
- *
- * @see {@link https://docs.github.com/en/rest/users/users?apiVersion=2022-11-28#get-the-authenticated-user}
- *
- * @example
- * ```ts
- * import { getUserGithub } from "../../../../../framework/plugins/auth/utils/providers/github.ts";
- *
- * const user = await getUserGithub("<access token>");
- * user.login; // Returns "octocat"
- * user.email; // Returns "octocat@github.com"
- * ```
- */
-export async function getUserGithub(accessToken: string) {
+export async function getUserGithub(
+  accessToken: string,
+): Promise<PartialUserFromProvider> {
   const resp = await fetch("https://api.github.com/user", {
     headers: { authorization: `Bearer ${accessToken}` },
   });
@@ -68,5 +56,12 @@ export async function getUserGithub(accessToken: string) {
     const { message } = await resp.json();
     throw createHttpError(resp.status, message);
   }
-  return await resp.json() as Promise<UserGithub>;
+  const userGithub: UserGithub = await resp.json();
+  return {
+    authId: userGithub.login,
+    name: userGithub.name as string,
+    email: userGithub.email as string,
+    avatar: userGithub.avatar_url,
+    provider: "github",
+  };
 }

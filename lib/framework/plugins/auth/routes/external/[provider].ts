@@ -1,15 +1,10 @@
 import type { PluginRoute } from "../../../../../deps/$fresh/src/server/types.ts";
 import {
-  createAuth0OAuthConfig,
-  createGitHubOAuthConfig,
-  createGitLabOAuthConfig,
-  createGoogleOAuthConfig,
-  createOktaOAuthConfig,
   handleCallback,
   signIn,
   signOut,
 } from "../../../../../deps/deno_kv_oauth/mod.ts";
-import type { AuthOptions, OAuth2ClientConfig } from "../../mod.ts";
+import type { Project } from "../../../../mod.ts";
 import {
   createUser,
   getUser,
@@ -17,65 +12,15 @@ import {
   updateUserSession,
   type User,
 } from "./../../utils/db.ts";
-import { getUserGithub } from "../../utils/providers/github.ts";
-
-export type OAuthProvider =
-  | "google"
-  | "github"
-  | "gitlab"
-  | "auth2"
-  | "okta"
-  | "oauth2";
-
-const assertEnvVar = (name: string, value: string) => {
-  value ||= Deno.env.get(name);
-  if (!value) throw new Error(`Missing environment variable ${name}`);
-  Deno.env.set(name, value);
-};
-
-const getOAuthConfig = (
-  provider: OAuthProvider,
-  options: AuthOptions["providers"][OAuthProvider],
-) => {
-  switch (provider) {
-    case "google": {
-      assertEnvVar("GOOGLE_CLIENT_ID", options.clientId);
-      assertEnvVar("GOOGLE_CLIENT_SECRET", options.clientSecret);
-      return createGoogleOAuthConfig(options);
-    }
-    case "github": {
-      assertEnvVar("GITHUB_CLIENT_ID", options.clientId);
-      assertEnvVar("GITHUB_CLIENT_SECRET", options.clientSecret);
-      return createGitHubOAuthConfig();
-    }
-    case "gitlab": {
-      assertEnvVar("GITLAB_CLIENT_ID", options.clientId);
-      assertEnvVar("GITLAB_CLIENT_SECRET", options.clientSecret);
-      return createGitLabOAuthConfig(options);
-    }
-    case "auth2": {
-      assertEnvVar("CUSTOM_CLIENT_ID", options.clientId);
-      assertEnvVar("CUSTOM_CLIENT_SECRET", options.clientSecret);
-      return createAuth0OAuthConfig(options);
-    }
-    case "okta": {
-      assertEnvVar("OKTA_CLIENT_ID", options.clientId);
-      assertEnvVar("OKTA_CLIENT_SECRET", options.clientSecret);
-      return createOktaOAuthConfig(options);
-    }
-    case "oauth2": {
-      assertEnvVar("CUSTOM_CLIENT_ID", options.clientId);
-      assertEnvVar("CUSTOM_CLIENT_SECRET", options.clientSecret);
-      return options satisfies OAuth2ClientConfig;
-    }
-    default:
-      throw new Error(`Provider ${provider} not supported`);
-  }
-};
+import {
+  getOAuthConfig,
+  getUserByProvider,
+  type OAuthProvider,
+} from "../../utils/providers/mod.ts";
 
 export const getRoutesByProvider = (
   provider: OAuthProvider,
-  options: AuthOptions["providers"][OAuthProvider],
+  options: Project["providers"][OAuthProvider],
 ): PluginRoute[] => [
   {
     path: `/auth/${provider}/signin`,
@@ -93,17 +38,21 @@ export const getRoutesByProvider = (
         req,
         oAuthConfig,
       );
-      const userGithub = await getUserGithub(tokens.accessToken);
-      const userCurrent = await getUser(userGithub.login);
+
+      const userProvider = await getUserByProvider(
+        provider,
+        tokens.accessToken,
+      );
+      const userCurrent = await getUser(userProvider.authId);
 
       const user = {
-        login: userGithub.login,
         sessionId,
-        name: userGithub.name,
-        email: userGithub.email,
-        avatar: userGithub.avatar_url,
+        authId: userProvider.authId,
+        name: userProvider.name,
+        email: userProvider.email,
+        avatar: userProvider.avatar,
+        provider: userProvider.provider,
         role: "admin",
-        provider,
       } as unknown as User;
 
       if (userCurrent === null) {

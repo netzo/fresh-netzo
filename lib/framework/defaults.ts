@@ -48,20 +48,20 @@ export const PROJECT_CONFIG: AppConfig = {
         domain: "{{project.envVars.development.OKTA_DOMAIN}}",
         redirectUri: "/auth/okta/callback",
       },
-      oauth2: {
-        enabled: false,
-        clientId: "{{project.envVars.development.OAUTH2_CLIENT_ID}}",
-        clientSecret: "{{project.envVars.development.OAUTH2_CLIENT_SECRET}}",
-        authorizationEndpointUri: "https://custom.com/auth/oauth2/authorize",
-        tokenUri: "https://custom.com/oauth/token",
-        redirectUri: "/auth/oauth2/callback",
-      },
     },
   },
   layout: {
     enabled: true,
     nav: {
-      items: [],
+      items: [
+        {
+          text: "Overview",
+          items: [
+            { icon: "mdi-home", text: "Home", href: "/" },
+            { icon: "mdi-web", text: "Website", href: "https://netzo.io/" },
+          ],
+        },
+      ],
     },
     header: {
       title: "{{project.name}}",

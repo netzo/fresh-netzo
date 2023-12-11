@@ -13,7 +13,7 @@ const kv = await Deno.openKv();
  *
  * const users = await collectValues<User>(listUsers());
  * users[0].id; // Returns "01H9YD2RVCYTBVJEYEJEV5D1S1";
- * users[0].login; // Returns "snoop"
+ * users[0].authId; // Returns "auth0|xxx"
  * users[0].sessionId; // Returns "xxx"
  * users[0].name; // Returns "Snoop Dogg"
  * users[0].email; // Returns "snoop.dogg@example"
@@ -33,7 +33,7 @@ export async function collectValues<T>(iter: Deno.KvListIterator<T>) {
 
 export type User = {
   id: string;
-  login: string; // AKA username
+  authId: string; // id from auth provider
   sessionId: string;
   name: string;
   email: string;
@@ -44,6 +44,11 @@ export type User = {
   updatedAt: string;
 };
 
+export type PartialUserFromProvider = Pick<
+  User,
+  "authId" | "name" | "email" | "avatar" | "provider"
+>;
+
 /**
  * Creates a new user in the database. Throws if the user or user session
  * already exists.
@@ -53,7 +58,7 @@ export type User = {
  * import { createUser } from "../../../../framework/plugins/auth/utils/db.ts";
  *
  * await createUser({
- *   login: "john",
+ *   authId: "auth0|xxx",
  *   sessionId: crypto.randomUUID(),
  * });
  * ```
@@ -62,7 +67,7 @@ export async function createUser(user: User) {
   user.id = ulid();
   user.createdAt = new Date().toISOString();
   user.updatedAt = user.createdAt;
-  const usersKey = ["users", user.login];
+  const usersKey = ["users", user.authId];
   const usersBySessionKey = ["usersBySession", user.sessionId];
 
   const atomicOp = kv.atomic()
@@ -83,7 +88,7 @@ export async function createUser(user: User) {
  * import { updateUser } from "../../../../framework/plugins/auth/utils/db.ts";
  *
  * await updateUser({
- *   login: "john",
+ *   authId: "auth0|xxx",
  *   sessionId: crypto.randomUUID(),
  *   role: "admin",
  * });
@@ -91,7 +96,7 @@ export async function createUser(user: User) {
  */
 export async function updateUser(user: User) {
   user.updatedAt ||= new Date().toISOString();
-  const usersKey = ["users", user.login];
+  const usersKey = ["users", user.authId];
   const usersBySessionKey = ["usersBySession", user.sessionId];
 
   const atomicOp = kv.atomic()
@@ -110,7 +115,7 @@ export async function updateUser(user: User) {
  * import { updateUserSession } from "../../../../framework/plugins/auth/utils/db.ts";
  *
  * await updateUserSession({
- *   login: "john",
+ *   authId: "auth0|xxx",
  *   sessionId: "xxx",
  *   role: "admin",
  * }, "yyy");
@@ -118,7 +123,7 @@ export async function updateUser(user: User) {
  */
 export async function updateUserSession(user: User, sessionId: string) {
   user.updatedAt = new Date().toISOString();
-  const userKey = ["users", user.login];
+  const userKey = ["users", user.authId];
   const oldUserBySessionKey = ["usersBySession", user.sessionId];
   const newUserBySessionKey = ["usersBySession", sessionId];
   const newUser: User = { ...user, sessionId };
@@ -134,21 +139,21 @@ export async function updateUserSession(user: User, sessionId: string) {
 }
 
 /**
- * Gets the user with the given login from the database.
+ * Gets the user with the given authId from the database.
  *
  * @example
  * ```ts
  * import { getUser } from "../../../../framework/plugins/auth/utils/db.ts";
  *
  * const user = await getUser("jack");
- * user?.login; // Returns "jack"
+ * user?.authId; // Returns "auth0|xxx"
  * user?.sessionId; // Returns "xxx"
  * user?.role; // Returns "admin"
  * user?.provider; // Returns "github"
  * ```
  */
-export async function getUser(login: string) {
-  const res = await kv.get<User>(["users", login]);
+export async function getUser(authId: string) {
+  const res = await kv.get<User>(["users", authId]);
   return res.value;
 }
 
@@ -164,7 +169,7 @@ export async function getUser(login: string) {
  * import { getUserBySession } from "../../../../framework/plugins/auth/utils/db.ts";
  *
  * const user = await getUserBySession("xxx");
- * user?.login; // Returns "jack"
+ * user?.authId; // Returns "auth0|xxx"
  * user?.sessionId; // Returns "xxx"
  * user?.role; // Returns "admin"
  * user?.provider; // Returns "github"
@@ -189,7 +194,7 @@ export async function getUserBySession(sessionId: string) {
  * import { listUsers } from "../../../../framework/plugins/auth/utils/db.ts";
  *
  * for await (const entry of listUsers()) {
- *   entry.value.login; // Returns "jack"
+ *   entry.value.authId; // Returns "auth0|xxx"
  *   entry.value.sessionId; // Returns "xxx"
  *   entry.value.role; // Returns "admin"
  *   entry.value.provider; // Returns "github"
