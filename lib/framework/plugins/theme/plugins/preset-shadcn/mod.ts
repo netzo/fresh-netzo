@@ -3,15 +3,15 @@ import type {
   Preset,
   VariantContext,
   VariantObject,
-} from "https://esm.sh/@unocss/core@0.58.0?target=esnext";
+} from "https://esm.sh/v135/@unocss/core@0.58.0?target=esnext";
 import type {
   PresetMiniOptions,
   Theme,
-} from "https://esm.sh/@unocss/preset-mini@0.58.0?target=esnext";
+} from "https://esm.sh/v135/@unocss/preset-mini@0.58.0?target=esnext";
 import {
   h,
   variantGetParameter,
-} from "https://esm.sh/@unocss/preset-mini@0.58.0/utils?target=esnext";
+} from "https://esm.sh/v135/@unocss/preset-mini@0.58.0/utils?target=esnext";
 import { generateCSSVars } from "./generate.ts";
 
 export type PresetShadcnOptions = PresetMiniOptions;

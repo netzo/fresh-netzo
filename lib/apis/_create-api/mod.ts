@@ -1,9 +1,9 @@
-import { $fetch, type FetchOptions } from "https://esm.sh/ofetch@1.1.1";
+import { $fetch, type FetchOptions } from "https://esm.sh/v135/ofetch@1.1.1";
 import {
   type QueryObject,
   resolveURL,
   withQuery,
-} from "https://esm.sh/ufo@1.2.0";
+} from "https://esm.sh/v135/ufo@1.2.0";
 
 import type {
   ApiClient,

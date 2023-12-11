@@ -1,6 +1,6 @@
 import type { FreshConfig } from "../deps/$fresh/src/server/mod.ts";
-import type { Project } from "https://esm.sh/@netzo/api@1.0.52/lib/client.d.ts";
-import replace from "https://esm.sh/object-replace-mustache@1.0.2";
+import type { Project } from "https://esm.sh/v135/@netzo/api@1.0.52/lib/client.d.ts";
+import replace from "https://esm.sh/v135/object-replace-mustache@1.0.2";
 import { deepMerge } from "../deps/std/collections/deep_merge.ts";
 import { AuthState } from "../framework/plugins/auth/mod.ts";
 import { LayoutState } from "../framework/plugins/layout/mod.ts";

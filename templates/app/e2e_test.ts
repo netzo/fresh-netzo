@@ -1,5 +1,5 @@
 import { createHandler, Status } from "$fresh/src/server/mod.ts";
-import manifest from "@/fresh.gen.ts";
+import manifest from "./fresh.gen.ts";
 import {
   createItem,
   createUser,

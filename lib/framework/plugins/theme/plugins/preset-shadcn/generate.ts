@@ -1,4 +1,4 @@
-import { mergeDeep } from "https://esm.sh/@unocss/core@0.58.0?target=esnext";
+import { mergeDeep } from "https://esm.sh/v135/@unocss/core@0.58.0?target=esnext";
 
 import { themeCSSVarKeys, themes } from "./themes.ts";
 
