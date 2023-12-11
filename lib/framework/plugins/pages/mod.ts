@@ -3,7 +3,7 @@ import type { Project } from "../../../framework/mod.ts";
 import _404 from "./routes/_404.tsx";
 import _500 from "./routes/_500.tsx";
 
-export type PagesOptions = Project["pages"];
+export type PagesOptions = Project["config"]["pages"];
 
 export type PagesState = {};
 

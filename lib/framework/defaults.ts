@@ -95,4 +95,7 @@ export const APP_CONFIG: AppConfig = {
     methods: ["find", "get", "create", "update", "patch", "remove"],
     services: [],
   },
+  devtools: {
+    bindSignal: { enabled: true },
+  },
 };

@@ -1,94 +1,62 @@
-import { ComponentChildren } from "../../../../deps/preact.ts";
-import { useSignal } from "../../../../deps/@preact/signals.ts";
-import type { AuthState } from "../../../../framework/plugins/auth/mod.ts";
+import type { ComponentChildren, JSX } from "../../../../deps/preact.ts";
+import type { NetzoState } from "../../../../framework/mod.ts";
 import { cn } from "../../../../components/utils.ts";
 import { Button, buttonVariants } from "../../../../components/ui/button.tsx";
 import { Input } from "../../../../components/ui/input.tsx";
 import { Label } from "../../../../components/ui/label.tsx";
-import {
-  IconAuth0,
-  IconAzure,
-  IconCustom,
-  IconGithub,
-  IconGitlab,
-  IconGoogle,
-  IconOkta,
-  IconSpinner,
-} from "../components/icons.tsx";
-import { isGitHubSetup } from "../utils/providers/github.ts";
+// TODO: import { isGitHubSetup } from "../utils/providers/github.ts";
 
 export type AuthFormProps = JSX.HTMLAttributes<HTMLDivElement> & NetzoState;
 
-const ButtonEmail = (props: ComponentChildren) => {
-  const isLoading = useSignal<boolean>(false);
-
-  function onSubmit(event: Event) {
-    event.preventDefault();
-    isLoading.value = true;
-
-    setTimeout(() => {
-      isLoading.value = false;
-    }, 3000);
-  }
-
+const ButtonEmail = () => {
   return (
-    <>
-      <form onSubmit={onSubmit}>
-        <div className="grid gap-2">
-          <div className="grid gap-1">
-            <Label className="sr-only" htmlFor="email">
-              Email
-            </Label>
-            <Input
-              id="email"
-              placeholder="name@example.com"
-              type="email"
-              autoCapitalize="none"
-              autoComplete="email"
-              autoCorrect="off"
-              disabled={isLoading.value}
-            />
-          </div>
-          <Button variant="default" disabled={isLoading.value}>
-            {isLoading.value && (
-              <IconSpinner className="w-4 h-4 mr-2 animate-spin" />
-            )}
-            Sign In with Email
-          </Button>
-        </div>
-      </form>
-      <div className="relative">
-        <div className="absolute inset-0 flex items-center">
-          <span className="w-full border-t" />
-        </div>
-        <div className="relative flex justify-center text-xs uppercase">
-          <span className="px-2 bg-[hsl(var(--background))]">
-            Or continue with
-          </span>
-        </div>
+    <div className="grid gap-2">
+      <div className="grid gap-1">
+        <Label className="sr-only" htmlFor="email">
+          Email
+        </Label>
+        <Input
+          id="email"
+          placeholder="name@example.com"
+          type="email"
+          autoCapitalize="none"
+          autoComplete="email"
+          autoCorrect="off"
+        />
       </div>
-    </>
+      <Button variant="default">
+        Sign In with Email
+      </Button>
+    </div>
   );
 };
 
-const ButtonOAuth2 = (props: ComponentChildren & { text: string, href: string }) => {
+const ButtonOAuth2 = (
+  props: {
+    text: string;
+    href: string;
+    // TODO: disabled: boolean; // use e.g. isGitHubSetup() utils for this
+    children: ComponentChildren;
+  },
+) => {
   const { href = `/oauth/signin` } = props;
 
   return (
     <a
-      disabled={isLoading.value}
       href={href}
       className={cn(buttonVariants({ variant: "outline" }))}
     >
-      {isLoading.value
-        ? <IconSpinner className="w-4 h-4 mr-2 animate-spin" />
-        : props.children} {props.text}
+      {props.children} {props.text}
     </a>
   );
 };
 
 export function AuthForm(props: NetzoState) {
-  const { logo, auth } = props;
+  const { logo, auth } = props.config;
+
+  const hasEnabledOauth2Providers = Object.entries(auth?.providers ?? {}).some(
+    ([key, value]) => !["email"].includes(key) && !!value.enabled,
+  );
 
   return (
     <>
@@ -111,14 +79,65 @@ export function AuthForm(props: NetzoState) {
         )}
       </div>
       <div className="grid gap-6">
-        {!!auth?.providers?.email?.enabled && <ButtonEmail />}
-
-        {!!auth?.providers?.google?.enabled && (
-          <Button text="Sign In with Google">
-            <IconGoogle className="w-4 h-4 mr-2" />
-          </Button>
+        {!!auth?.providers?.email?.enabled && (
+          <form method="POST" action="/auth/email">
+            <ButtonEmail />
+          </form>
         )}
 
+        {hasEnabledOauth2Providers && (
+          <div className="relative">
+            <div className="absolute inset-0 flex items-center">
+              <span className="w-full border-t" />
+            </div>
+            <div className="relative flex justify-center text-xs uppercase">
+              <span className="px-2 bg-[hsl(var(--background))]">
+                Or continue with
+              </span>
+            </div>
+          </div>
+        )}
+
+        {!!auth?.providers?.google?.enabled && (
+          <ButtonOAuth2 text="Sign In with Google" href="/oauth/google">
+            <div className="mr-4 w-20px h-20px logos-google-icon" />
+          </ButtonOAuth2>
+        )}
+
+        {!!auth?.providers?.azure?.enabled && (
+          <ButtonOAuth2 text="Sign In with Azure" href="/oauth/azure">
+            <div className="mr-4 w-20px h-20px logos-microsoft-icon" />
+          </ButtonOAuth2>
+        )}
+
+        {!!auth?.providers?.github?.enabled && (
+          <ButtonOAuth2 text="Sign In with GitHub" href="/oauth/github">
+            <div className="mr-4 w-20px h-20px mdi-github" />
+          </ButtonOAuth2>
+        )}
+
+        {!!auth?.providers?.gitlab?.enabled && (
+          <ButtonOAuth2 text="Sign In with GitLab" href="/oauth/gitlab">
+            <div className="mr-4 w-20px h-20px mdi-gitlab" />
+          </ButtonOAuth2>
+        )}
+
+        {!!auth?.providers?.auth0?.enabled && (
+          <ButtonOAuth2 text="Sign In with Auth0" href="/oauth/auth0">
+            <div className="mr-4 w-20px h-20px simple-icons-auth0" />
+          </ButtonOAuth2>
+        )}
+        {!!auth?.providers?.okta?.enabled && (
+          <ButtonOAuth2 text="Sign In with Okta" href="/oauth/okta">
+            <div className="mr-4 w-20px h-20px simple-icons-okta" />
+          </ButtonOAuth2>
+        )}
+
+        {!!auth?.providers?.oauth2?.enabled && (
+          <ButtonOAuth2 text="Sign In with Custom" href="/oauth/oauth2">
+            <div className="mr-4 w-20px h-20px mdi-code-json" />
+          </ButtonOAuth2>
+        )}
       </div>
     </>
   );

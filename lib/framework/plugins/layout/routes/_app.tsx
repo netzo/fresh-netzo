@@ -8,21 +8,15 @@ import { Head } from "../components/head.tsx";
 import Header from "../islands/header.tsx";
 
 export default defineApp<NetzoState>((_req, ctx) => {
-  const {
-    title,
-    description,
-    favicon,
-    image,
-    auth: { sessionId } = {},
-    layout,
-  } = ctx.state;
+  const { title, description, favicon, image, layout } = ctx.state.config;
+  const { sessionId, sessionUser } = ctx.state.auth ?? {};
 
   return (
     <html className="h-full overflow-hidden">
       <head>
         <Head {...{ title, description, favicon, image, href: ctx.url.href }} />
       </head>
-      {ctx.state.auth?.sessionId
+      {sessionId
         ? (
           <body
             f-client-nav
@@ -31,7 +25,7 @@ export default defineApp<NetzoState>((_req, ctx) => {
               "bg-[hsl(var(--background))]",
             )}
           >
-            <Nav {...layout.nav} sessionUser={ctx.state.auth?.sessionUser} />
+            <Nav {...layout.nav} sessionUser={sessionUser} />
 
             <div className="flex flex-col w-full h-full overflow-x-hidden">
               <Header {...layout.header} />

@@ -32,7 +32,7 @@ export const internalMiddlewares: PluginMiddleware<NetzoState>[] = [
           !!url && new URL(url).host.endsWith("netzo.io");
         const isApp = assertIsApp(origin!) || assertIsApp(referer!);
 
-        ctx.state.auth = { origin, referer, isApp };
+        ctx.state.auth = { ...ctx.state.auth, origin, referer, isApp };
 
         switch (level) {
           case "internal": {

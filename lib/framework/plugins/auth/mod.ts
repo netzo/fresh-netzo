@@ -1,5 +1,6 @@
 import type { Plugin } from "../../../deps/$fresh/src/server/mod.ts";
 import type { OAuth2ClientConfig } from "../../../deps/deno_kv_oauth/mod.ts";
+import type { Project } from "../../../framework/mod.ts";
 import { type User } from "../../../framework/plugins/auth/utils/db.ts";
 import { internalMiddlewares } from "./internal.ts";
 import { sessionMiddlewares } from "./session.ts";
@@ -8,15 +9,14 @@ import { authRoutes } from "./auth.ts";
 
 export * from "../../../deps/deno_kv_oauth/mod.ts";
 
-export type AuthOptions = {
-  email: {}; // TODO: EmailClientConfig;
-  oauth2: OAuth2ClientConfig;
-  title?: string;
-  description?: string;
-  caption?: string;
-};
+export type AuthOptions = Project["config"]["auth"];
 
 export type AuthState = {
+  // internal:
+  origin?: string;
+  referer?: string;
+  isApp?: boolean;
+  // external/session:
   sessionId?: string;
   sessionUser?: User;
 };

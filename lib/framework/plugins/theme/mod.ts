@@ -15,19 +15,19 @@ import {
   walk,
 } from "../../../deps/$fresh/src/server/deps.ts";
 import { exists } from "../../../deps/std/fs/exists.ts";
+import type { Project } from "../../../framework/mod.ts";
 import { defineConfig, unocss } from "./plugins/unocss.ts";
 import presetNetzo, { PresetNetzoOptions } from "./plugins/preset-netzo.ts";
 
-export type ThemeOptions = UnocssOptions & PresetNetzoOptions;
+export type ThemeOptions = Project["config"]["theme"] & PresetNetzoOptions;
 
-/**
- * Plugin for theming via UnoCSS which automatically generates CSS utility classes
- */
+export type ThemeState = {};
+
 export const theme = (options: ThemeOptions = {}): Plugin => {
   let { config, aot, ssr, csr, color, radius } = options;
   config ??= defineConfig({ presets: [presetNetzo({ color, radius })] });
   return {
     ...unocss({ config, aot, ssr, csr }),
-    name: "theme", // override unocss().name
+    name: "theme",
   };
 };

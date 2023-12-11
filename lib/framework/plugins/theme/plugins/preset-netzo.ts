@@ -46,6 +46,14 @@ export function presetNetzo(
             import("https://esm.sh/@iconify-json/mdi/icons.json", {
               assert: { type: "json" },
             }).then((i) => i.default),
+          logos: () =>
+            import("https://esm.sh/@iconify-json/logos/icons.json", {
+              assert: { type: "json" },
+            }).then((i) => i.default),
+          "simple-icons": () =>
+            import("https://esm.sh/@iconify-json/simple-icons/icons.json", {
+              assert: { type: "json" },
+            }).then((i) => i.default),
         },
         prefix: ["i-", ""],
         scale: 1.2,

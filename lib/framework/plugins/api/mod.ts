@@ -1,10 +1,10 @@
 import type { Plugin } from "../../../deps/$fresh/src/server/mod.ts";
 import { isHttpError } from "../../../deps/std/http/http_errors.ts";
-import { parseRequestBody } from "../../../framework/utils/mod.ts";
 import type { Project } from "../../../framework/mod.ts";
+import { parseRequestBody } from "../../../framework/utils/mod.ts";
 import { createDatabase } from "../../../database/mod.ts";
 
-export type ApiOptions = Project["api"];
+export type ApiOptions = Project["config"]["api"];
 
 export type ApiState = {};
 
@@ -48,7 +48,6 @@ export const api = (options?: ApiOptions): Plugin => {
           handler: async (_req, ctx) => {
             try {
               if (!["route"].includes(ctx.destination)) return await ctx.next();
-              ctx.state.api = { options: { path, idField, methods } };
               return await ctx.next();
             } catch (error) {
               return toErrorResponse(error);

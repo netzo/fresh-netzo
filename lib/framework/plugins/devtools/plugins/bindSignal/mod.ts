@@ -1,5 +1,5 @@
 // see https://github.com/netzo/netzo/issues/38
-import { Plugin } from "../../../deps/$fresh/src/server/mod.ts";
+import { Plugin } from "../../../../../deps/$fresh/src/server/mod.ts";
 import { setup } from "./shared.ts";
 
 /**

@@ -2,7 +2,7 @@ import type { Plugin } from "../../../deps/$fresh/src/server/mod.ts";
 import type { Project } from "../../../framework/mod.ts";
 import _App from "./routes/_app.tsx";
 
-export type LayoutOptions = Project["layout"];
+export type LayoutOptions = Project["config"]["layout"];
 
 export type LayoutState = {};
 

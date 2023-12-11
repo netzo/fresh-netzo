@@ -3,32 +3,30 @@ import type { Project } from "https://esm.sh/@netzo/api@1.0.52/lib/client.d.ts";
 import replace from "https://esm.sh/object-replace-mustache@1.0.2";
 import { deepMerge } from "../deps/std/collections/deep_merge.ts";
 import { AuthState } from "../framework/plugins/auth/mod.ts";
-import { ApiState } from "../framework/plugins/api/mod.ts";
 import { LayoutState } from "../framework/plugins/layout/mod.ts";
+import { ThemeState } from "../framework/plugins/theme/mod.ts";
+import { PagesState } from "../framework/plugins/pages/mod.ts";
+import { ApiState } from "../framework/plugins/api/mod.ts";
+import { DevtoolsState } from "../framework/plugins/devtools/mod.ts";
 import { netzo } from "../apis/netzo/mod.ts";
 import { log, logInfo, LOGS } from "../framework/utils/console.ts";
 import { setEnvVars } from "../framework/utils/mod.ts";
-import { bindSignal } from "../framework/plugins/bindSignal/mod.ts";
 import { APP_CONFIG } from "./defaults.ts";
 import { createClient } from "../cli/src/utils/netzo.ts";
 
 export type { Project };
 
-export type AppConfig = FreshConfig & {
-  entrypoint?: string;
-  importMap?: string;
-  denoLock?: string;
-  [k: string]: unknown;
-};
+export type AppConfig = FreshConfig & Project["config"];
 
 export type NetzoState = {
   kv: Deno.Kv;
+  config: Project["config"];
   auth?: AuthState;
-  api?: ApiState;
   layout?: LayoutState;
   theme?: ThemeState;
   pages?: PagesState;
-  plugins?: Project["plugins"];
+  api?: ApiState;
+  devtools?: DevtoolsState;
   [k: string]: unknown;
 };
 
@@ -83,19 +81,13 @@ export async function createApp(
   }
   const appUrl = Deno.env.get("NETZO_APP_URL") ?? "https://app.netzo.io";
 
-  const { auth, layout, theme, pages, api: _api } = project.app ?? {};
-
   // 1) merge defaults and remote config
   let state: NetzoState = deepMerge(APP_CONFIG, {
     kv: await Deno.openKv(), // pass kv instance to plugins (prevent multiple connections)
-    auth,
-    api: _api,
-    layout,
-    theme,
-    pages,
+    config: project.config,
   });
   // 2) merge local config (local config takes precedence for better DX)
-  state = deepMerge(state, partialConfig);
+  state = deepMerge(state, partialConfig as NetzoState);
   // 3) render values with mustache placeholders
   state = replace(state, { project });
 
@@ -103,24 +95,23 @@ export async function createApp(
 
   const netzoPlugins = await createPluginsForModules(state);
 
-  // [hot-reload] listen for updates to app configuration of project and restart server
+  // [live-reload] listen for "project:patched" events and restart server
   const app = await createClient({
     apiKey: NETZO_API_KEY,
     baseURL: NETZO_API_URL,
   });
-  app.service("projects").on("patched", (project: Project) => {
-    console.log(project);
-    console.log("Project app configuration updated");
+  const main = Deno.mainModule.replace("file://", "").replace("/.dev.ts", "");
+  app.service("projects").on("patched", async (_project: Project) => {
+    log("✨ App configuration updated, restarting server...");
+    // trigger reload without modifying file using touch
+    const process =  new Deno.Command("touch",{ args: [main] }).spawn();
+    await process.status;
   });
-  logInfo(`Listening for updates to app configuration of project...`);
+  logInfo(`Listening for updates of app configuration...`);
 
   log(
     `\nOpen in netzo at ${appUrl}/workspaces/${project.workspaceId}/projects/${project._id}`,
   );
-
-  addEventListener("hmr", (e) => {
-    console.log("HMR triggered", a, e.detail.path);
-  });
 
   return {
     ...partialConfig,
@@ -139,7 +130,6 @@ export async function createApp(
           },
         ],
       },
-      bindSignal(),
       ...netzoPlugins,
       ...plugins,
     ],
@@ -180,14 +170,12 @@ async function createPluginsForModules(state: NetzoState): Promise<Plugin[]> {
           ];
         }
         case "theme": {
-          // TODO: const mod = await import("./plugins/theme/mod.ts");
-          const { theme } = await import("./plugins/theme/mod.ts");
+          const mod = await import("./plugins/theme/mod.ts");
           const { presetNetzo } = await import(
             "./plugins/theme/plugins/preset-netzo.ts"
           );
           return [
-            // TODO: mod.theme(options),
-            theme(options.theme),
+            mod.theme(options),
           ];
         }
         case "pages": {
@@ -204,6 +192,12 @@ async function createPluginsForModules(state: NetzoState): Promise<Plugin[]> {
         case "api": {
           const mod = await import("./plugins/api/mod.ts");
           return mod.api(options);
+        }
+        case "devtools": {
+          const mod = await import("./plugins/devtools/mod.ts");
+          return [
+            mod.devtools(options),
+          ];
         }
       }
     }),
