@@ -4,9 +4,10 @@ import _App from "./routes/_app.tsx";
 
 export type LayoutOptions = Project["config"]["layout"];
 
+// deno-lint-ignore ban-types
 export type LayoutState = {};
 
-export const layout = (options?: LayoutOptions): Plugin => {
+export const layout = (_options?: LayoutOptions): Plugin => {
   return {
     name: "layout",
     routes: [

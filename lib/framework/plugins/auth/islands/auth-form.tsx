@@ -24,7 +24,10 @@ const ButtonEmail = () => {
           autoCorrect="off"
         />
       </div>
-      <Button variant="default">
+      <Button
+        variant="default"
+        class={cn("bg-[hsl(var(--background))]")}
+      >
         Sign In with Email
       </Button>
     </div>
@@ -53,6 +56,8 @@ const ButtonOAuth2 = (
 
 export function AuthForm(props: NetzoState) {
   const { logo, auth } = props.config;
+
+  console.log(props.config.theme);
 
   const hasEnabledOauth2Providers = Object.entries(auth?.providers ?? {}).some(
     ([key, value]) => !["email"].includes(key) && !!value.enabled,

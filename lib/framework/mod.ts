@@ -11,7 +11,7 @@ import { DevtoolsState } from "../framework/plugins/devtools/mod.ts";
 import { netzo } from "../apis/netzo/mod.ts";
 import { log, logInfo, LOGS } from "../framework/utils/console.ts";
 import { setEnvVars } from "../framework/utils/mod.ts";
-import { APP_CONFIG } from "./defaults.ts";
+import { PROJECT_CONFIG } from "./defaults.ts";
 import { createClient } from "../cli/src/utils/netzo.ts";
 
 export type { Project };
@@ -82,14 +82,13 @@ export async function createApp(
   const appUrl = Deno.env.get("NETZO_APP_URL") ?? "https://app.netzo.io";
 
   // 1) merge defaults and remote config
-  let state: NetzoState = deepMerge(APP_CONFIG, {
-    kv: await Deno.openKv(), // pass kv instance to plugins (prevent multiple connections)
-    config: project.config,
-  });
+  let config = deepMerge({ config: PROJECT_CONFIG }, project.config);
   // 2) merge local config (local config takes precedence for better DX)
-  state = deepMerge(state, partialConfig as NetzoState);
+  config = deepMerge(config, partialConfig as NetzoState);
   // 3) render values with mustache placeholders
-  state = replace(state, { project });
+  config = replace(config, { project });
+  // 4) build state (pass single kv instance to plugins for performance)
+  const state: NetzoState = { kv: await Deno.openKv(), config };
 
   logInfo(`Merged remote and local app configuratitions`);
 
@@ -104,7 +103,7 @@ export async function createApp(
   app.service("projects").on("patched", async (_project: Project) => {
     log("✨ App configuration updated, restarting server...");
     // trigger reload without modifying file using touch
-    const process =  new Deno.Command("touch",{ args: [main] }).spawn();
+    const process = new Deno.Command("touch", { args: [main] }).spawn();
     await process.status;
   });
   logInfo(`Listening for updates of app configuration...`);
@@ -143,61 +142,45 @@ export async function createApp(
  */
 async function createPluginsForModules(state: NetzoState): Promise<Plugin[]> {
   // NOTE: async plugin initialization is parallelized for better performance
+  const PLUGINS = ["kv", "auth", "api", "layout", "theme", "pages", "devtools"];
   const pluginsWithDuplicates = (await Promise.all(
-    Object.entries(state).map(async ([key, options]) => {
-      if (!options?.enabled) return; // skip disabled plugins
-      switch (key) {
+    PLUGINS.map(async (name) => {
+      if (!state.config[name]?.enabled) return; // skip disabled plugins
+      switch (name) {
         case "kv": {
           return;
         }
         case "auth": {
           const mod = await import("./plugins/auth/mod.ts");
-          return mod.auth(options);
-        }
-        case "api": {
-          const mod = await import("./plugins/api/mod.ts");
-          return mod.api(options);
+          return [mod.auth(state.config[name])];
         }
         case "layout": {
           const mod = await import("./plugins/layout/mod.ts");
           const { theme } = await import("./plugins/theme/mod.ts");
-          const { presetNetzo } = await import(
-            "./plugins/theme/plugins/preset-netzo.ts"
-          );
           return [
-            mod.layout(options),
-            theme(options.theme),
+            mod.layout(state.config[name]),
+            theme(state.config.theme),
           ];
         }
         case "theme": {
           const mod = await import("./plugins/theme/mod.ts");
-          const { presetNetzo } = await import(
-            "./plugins/theme/plugins/preset-netzo.ts"
-          );
-          return [
-            mod.theme(options),
-          ];
+          return [mod.theme(state.config[name])];
         }
         case "pages": {
           const mod = await import("./plugins/pages/mod.ts");
           const { theme } = await import("./plugins/theme/mod.ts");
-          const { presetNetzo } = await import(
-            "./plugins/theme/plugins/preset-netzo.ts"
-          );
           return [
-            mod.pages(options),
-            theme(options.theme),
+            mod.pages(state.config[name]),
+            theme(state.config.theme),
           ];
         }
         case "api": {
           const mod = await import("./plugins/api/mod.ts");
-          return mod.api(options);
+          return [mod.api(state.config[name])];
         }
         case "devtools": {
           const mod = await import("./plugins/devtools/mod.ts");
-          return [
-            mod.devtools(options),
-          ];
+          return [mod.devtools(state.config[name])];
         }
       }
     }),
@@ -210,7 +193,7 @@ async function createPluginsForModules(state: NetzoState): Promise<Plugin[]> {
   );
   logInfo(`Plugins: ${
     plugins.map(
-      ({ name }) => `${!!state[name]?.enabled ? "✅" : "❌"} ${name}`,
+      ({ name }) => `${!!state.config[name]?.enabled ? "✅" : "❌"} ${name}`,
     ).join(" | ")
   }`);
 

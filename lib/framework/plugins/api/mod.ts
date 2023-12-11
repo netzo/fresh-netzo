@@ -6,6 +6,7 @@ import { createDatabase } from "../../../database/mod.ts";
 
 export type ApiOptions = Project["config"]["api"];
 
+// deno-lint-ignore ban-types
 export type ApiState = {};
 
 const path = Deno.env.get("DENO_KV_PATH");

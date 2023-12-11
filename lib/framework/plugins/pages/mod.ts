@@ -5,6 +5,7 @@ import _500 from "./routes/_500.tsx";
 
 export type PagesOptions = Project["config"]["pages"];
 
+// deno-lint-ignore ban-types
 export type PagesState = {};
 
 export const pages = (options?: PagesOptions): Plugin => {

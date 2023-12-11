@@ -1,6 +1,6 @@
 import type { AppConfig } from "./mod.ts";
 
-export const APP_CONFIG: AppConfig = {
+export const PROJECT_CONFIG: AppConfig = {
   title: "{{project.name}}",
   description: "{{project.description}}",
   logo: "{{project.avatar}}",

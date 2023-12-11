@@ -28,6 +28,7 @@ export type PresetNetzoOptions = PresetUnoOptions & {
 export function presetNetzo(
   options: PresetNetzoOptions = {},
 ): PresetOrFactory<Theme> | PresetOrFactory<Theme>[] {
+  console.log(options);
   return {
     ...options,
 
@@ -51,9 +52,12 @@ export function presetNetzo(
               assert: { type: "json" },
             }).then((i) => i.default),
           "simple-icons": () =>
-            import("https://esm.sh/v135/@iconify-json/simple-icons/icons.json", {
-              assert: { type: "json" },
-            }).then((i) => i.default),
+            import(
+              "https://esm.sh/v135/@iconify-json/simple-icons/icons.json",
+              {
+                assert: { type: "json" },
+              }
+            ).then((i) => i.default),
         },
         prefix: ["i-", ""],
         scale: 1.2,
