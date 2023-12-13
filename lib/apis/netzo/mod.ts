@@ -13,6 +13,7 @@ export type NetzoOptions = {
  * @see https://netzo.io/docs/framework/apis/netzo
  *
  * @param {string} apiKey - the API key to use for authentication
+ * @param {string} baseURL - (internal) the base URL to use for the API
  * @returns {object} - an object of multiple utilities for the API
  */
 export const netzo = ({
@@ -36,11 +37,6 @@ export const netzo = ({
     },
   });
 
-  const getVariable = async (uid: string): Promise<string> => {
-    const result = await api.variables.get({ uid });
-    return result?.data?.value;
-  };
-
   const createNotification = (
     data: Notification["data"],
   ): Promise<Notification> => {
@@ -53,5 +49,5 @@ export const netzo = ({
     });
   };
 
-  return { api, getVariable, createNotification };
+  return { api, createNotification };
 };
