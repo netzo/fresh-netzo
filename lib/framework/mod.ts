@@ -7,7 +7,7 @@ import { LayoutState } from "../framework/plugins/layout/mod.ts";
 import { ThemeState } from "../framework/plugins/theme/mod.ts";
 import { ApiState } from "../framework/plugins/api/mod.ts";
 import { DevtoolsState } from "../framework/plugins/devtools/mod.ts";
-import { netzo } from "../apis/netzo/mod.ts";
+import { Netzo } from "../core/mod.ts";
 import { log, logInfo, LOGS } from "../framework/utils/console.ts";
 import { setEnvVars } from "../framework/utils/mod.ts";
 import { PROJECT_CONFIG } from "./defaults.ts";
@@ -19,7 +19,9 @@ export type AppConfig = FreshConfig & Project["config"];
 
 export type NetzoState = {
   kv: Deno.Kv;
+  netzo: ReturnType<typeof Netzo>;
   config: Project["config"];
+  // injected by plugins:
   auth?: AuthState;
   layout?: LayoutState;
   theme?: ThemeState;
@@ -28,7 +30,7 @@ export type NetzoState = {
   [k: string]: unknown;
 };
 
-if (import.meta.main) await createApp({}); // allow running as script
+if (import.meta.main) await createApp(); // allow running as script
 
 // WORKAROUND: until resolution of https://github.com/denoland/fresh/issues/1773#issuecomment-1763502518
 const origConsoleError = console.error;
@@ -56,9 +58,9 @@ export async function createApp(
   if (!NETZO_PROJECT_ID) throw new Error(LOGS.missingProjectId);
   if (!NETZO_API_KEY) throw new Error(LOGS.missingApiKey);
 
-  const { api } = netzo({ apiKey: NETZO_API_KEY, baseURL: NETZO_API_URL });
+  const netzo = Netzo({ apiKey: NETZO_API_KEY, baseURL: NETZO_API_URL });
 
-  const project = await api.projects[NETZO_PROJECT_ID].get<Project>();
+  const project = await netzo.api.projects[NETZO_PROJECT_ID].get<Project>();
   if (!project) throw new Error(LOGS.notFoundProject);
 
   Deno.env.set("NETZO_ENV", NETZO_ENV);
@@ -86,7 +88,7 @@ export async function createApp(
   // 3) render values with mustache placeholders
   config = replace(config, { project });
   // 4) build state (pass single kv instance to plugins for performance)
-  const state: NetzoState = { kv: await Deno.openKv(), config };
+  const state: NetzoState = { kv: await Deno.openKv(), netzo, config };
 
   if (DEV) logInfo(`Merged remote and local app configuratitions`);
 

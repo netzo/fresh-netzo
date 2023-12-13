@@ -8,7 +8,6 @@ export type CronParams = Parameters<typeof Deno.cron>
 export const createCron = (_api: ApiClient): typeof Deno.cron => {
   return Deno.cron = new Proxy(Deno.cron, {
     apply(target, thisArg, argArray: CronParams) {
-      console.log({ target, argArray })
       const [name, schedule, opt1, opt2] = argArray
       let options: CronOptions | undefined
       let fn: CronFn
@@ -24,12 +23,11 @@ export const createCron = (_api: ApiClient): typeof Deno.cron => {
 
       async function run(): Promise<void> {
         // const data = { name, schedule, options }
-        console.log(`Running cron ${name} on schedule ${schedule}`, options)
-        console.time(name)
-        // api.crons.post(data) // do not await
+        console.time(`[cron] ${name}`)
+        // TODO: api.crons.post(data) // do not await
         await fn()
-        // api.crons.delete(data) // do not await
-        console.timeEnd(name)
+        // TODO: api.crons.delete(data) // do not await
+        console.timeEnd(`[cron] ${name}`)
       }
 
       return target.call(thisArg, name, schedule, options || {}, run)

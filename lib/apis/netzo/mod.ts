@@ -1,6 +1,5 @@
 import { createApi } from "../_create-api/mod.ts";
 import { auth } from "../_create-api/auth/mod.ts";
-import type { Notification } from "./types.ts";
 
 export type NetzoOptions = {
   apiKey: string;
@@ -37,17 +36,5 @@ export const netzo = ({
     },
   });
 
-  const createNotification = (
-    data: Notification["data"],
-  ): Promise<Notification> => {
-    return api.notifications.post({
-      labels: [],
-      readBy: [],
-      data,
-      env: Deno.env.get("NETZO_ENV")!,
-      projectId: Deno.env.get("NETZO_PROJECT_ID")!,
-    });
-  };
-
-  return { api, createNotification };
+  return { api };
 };

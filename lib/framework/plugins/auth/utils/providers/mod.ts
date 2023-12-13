@@ -5,7 +5,7 @@ import {
   createGoogleOAuthConfig,
   createOktaOAuthConfig,
 } from "../../../../../deps/deno_kv_oauth/mod.ts";
-import type { Project } from "../../../../../mod.ts";
+import { Project } from "../../../../../deps/@netzo/api/mod.ts";
 import { type PartialUserFromProvider } from "../db.ts";
 import { getUserGoogle, isGoogleSetup } from "./google.ts";
 import { getUserGithub, isGitHubSetup } from "./github.ts";
