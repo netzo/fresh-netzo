@@ -1,5 +1,6 @@
 import { netzo as createApi } from "../apis/netzo/mod.ts";
 import { createCron } from "./cron.ts";
+import { createDatabase } from "./database.ts";
 import { createNotification } from "./notification.ts";
 
 export type NetzoOptions = {
@@ -22,7 +23,9 @@ export const Netzo = ({
 
   const cron = createCron(api);
 
+  const db = createDatabase();
+
   const notification = createNotification(api);
 
-  return { api, cron, notification };
+  return { api, cron, db, notification };
 };
