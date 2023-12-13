@@ -146,7 +146,7 @@ export async function createApp(
 export const start = async (config: AppConfig) => {
   if (Deno.args.includes("dev")) {
     const { default: dev } = await import("$fresh/dev.ts");
-    await dev(Deno.mainModule, "./app.netzo.ts", config);
+    await dev(Deno.mainModule, "./netzo.ts", config);
   } else {
     const manifestURL = new URL("./fresh.gen.ts", Deno.mainModule).href;
     const { default: manifest } = await import(manifestURL);

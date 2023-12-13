@@ -16,7 +16,7 @@ import {
   assertNotEquals,
 } from "std/assert/mod.ts";
 import { isRedirectStatus } from "std/http/http_status.ts";
-import options from "./app.netzo.ts";
+import options from "./netzo.ts";
 
 /**
  * These tests are end-to-end tests, which follow this rule-set:

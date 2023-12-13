@@ -1,10 +1,6 @@
 import type { AppConfig } from "./mod.ts";
 
 export const PROJECT_CONFIG: AppConfig = {
-  title: "{{project.name}}",
-  description: "{{project.description}}",
-  favicon: "/favicon.svg",
-  image: "{{project.avatar}}",
   auth: {
     enabled: true,
     level: "internal",
@@ -48,6 +44,12 @@ export const PROJECT_CONFIG: AppConfig = {
         redirectUri: "/auth/okta/callback",
       },
     },
+  },
+  head: {
+    title: "{{project.name}}",
+    description: "{{project.description}}",
+    favicon: "/favicon.svg",
+    image: "{{project.avatar}}",
   },
   layout: {
     enabled: true,
