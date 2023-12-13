@@ -1,4 +1,4 @@
-import type { Plugin } from "../../../deps/$fresh/src/server/mod.ts";
+import type { Plugin } from "../../../deps/$fresh/server.ts";
 import type { Project } from "../../../framework/mod.ts";
 import { type User } from "../../../framework/plugins/auth/utils/db.ts";
 import { internalMiddlewares } from "./middlewares/internal.ts";

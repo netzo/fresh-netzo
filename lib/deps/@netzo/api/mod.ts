@@ -20,9 +20,9 @@ export type {
   ManifestEntryDirectory,
   ManifestEntryFile,
   ManifestEntrySymlink,
+  // notifications:
+  Notification,
   Paginated,
   Project,
   ProjectAssetsFile,
-  // notifications:
-  Notification,
 } from "npm:/@netzo/api@1.0.55/lib/client.d.ts";

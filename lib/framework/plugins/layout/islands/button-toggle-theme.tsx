@@ -1,5 +1,5 @@
 import { Fragment } from "../../../../deps/preact.ts";
-import { Head } from "../../../../deps/$fresh/src/runtime/head.ts";
+import { Head } from "../../../../deps/$fresh/runtime.ts";
 
 export default function ButtonToggleTheme() {
   function changeTheme() {

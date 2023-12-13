@@ -1,5 +1,5 @@
-import type { FreshContext } from "../../../../deps/$fresh/src/server/mod.ts";
-import type { PluginMiddleware } from "../../../../deps/$fresh/src/server/types.ts";
+import type { FreshContext } from "../../../../deps/$fresh/server.ts";
+import type { PluginMiddleware } from "../../../../deps/$fresh/server.ts";
 import { getSessionId } from "../../../../deps/deno_kv_oauth/mod.ts";
 import { getUserBySession } from "../../../../framework/plugins/auth/utils/db.ts";
 import type { NetzoState } from "../../../../framework/mod.ts";

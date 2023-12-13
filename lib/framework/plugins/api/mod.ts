@@ -1,8 +1,8 @@
-import type { Plugin } from "../../../deps/$fresh/src/server/mod.ts";
+import type { Plugin } from "../../../deps/$fresh/server.ts";
 import { isHttpError } from "../../../deps/std/http/http_errors.ts";
 import type { Project } from "../../../framework/mod.ts";
 import { parseRequestBody } from "../../../framework/utils/mod.ts";
-import { createDatabase } from "../../../database/mod.ts";
+import { createDatabase } from "../../../core/database.ts";
 
 export type ApiOptions = Project["config"]["api"];
 

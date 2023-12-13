@@ -2,13 +2,6 @@ import { multiSet } from "https://deno.land/x/kv_utils@1.1.1/mod.ts";
 import { monotonicFactory } from "https://deno.land/x/ulid@v0.3.0/mod.ts";
 import { filterObjectsByKeyValues } from "../framework/utils/mod.ts";
 
-const databaseId = Deno.env.get("NETZO_DATABASE_ID")!;
-const databaseUrl =  databaseId
-  ? `https://api.deno.com/databases/${databaseId}/connect`
-  : undefined;
-
-export const KV = await Deno.openKv(databaseUrl);
-
 export const ulid = monotonicFactory();
 
 /**
@@ -16,7 +9,7 @@ export const ulid = monotonicFactory();
  * @param kv - The Deno KV store to use.
  * @returns An object with methods for performing CRUD operations on the KV store.
  */
-export function createDatabase(kv: Deno.Kv = KV) {
+export function createDatabase(kv: Deno.Kv) {
   /**
    * Finds objects in the KV store that match the specified query.
    * @param resource - The name of the resource to search for.

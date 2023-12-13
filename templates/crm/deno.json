@@ -1,0 +1,52 @@
+{
+  "exclude": [
+    "_fresh/",
+    "**/_fresh/*"
+  ],
+  "lock": false,
+  "tasks": {
+    "db:dump": "deno run -A --unstable --env tasks/db-dump.ts",
+    "db:restore": "deno run -A --unstable --env tasks/db-restore.ts",
+    "db:seed": "deno run -A --allow-net --unstable --env tasks/db-seed.ts",
+    "db:migrate": "deno run -A --allow-net --unstable --env tasks/db-migrate.ts",
+    "db:reset": "deno run -A --unstable --env tasks/db-reset.ts",
+    "start": "deno run -A --unstable --env --watch=static/,routes app.netzo.ts dev",
+    "test": "DENO_KV_PATH=:memory: GITHUB_CLIENT_ID=xxx GITHUB_CLIENT_SECRET=xxx deno test -A --unstable --env --parallel --coverage=./cov --doc",
+    "check:types": "deno check **/*.ts && deno check **/*.tsx",
+    "ok": "deno fmt --check && deno lint && deno task check:license --check && deno task check:types && deno task test",
+    "cov:clean": "rm -rf cov html_cov cov.lcov",
+    "cov:gen": "deno coverage ./cov/ --lcov --exclude='.tsx' --output=cov.lcov",
+    "cov:view": "genhtml -o html_cov cov.lcov && open html_cov/index.html",
+    "update": "deno run -A -r https://fresh.deno.dev/update .",
+    "build": "deno run -A --unstable --env app.netzo.ts dev build",
+    "preview": "deno run -A --unstable --env main.ts"
+  },
+  "lint": {
+    "rules": {
+      "tags": [
+        "fresh",
+        "recommended"
+      ]
+    }
+  },
+  "fmt": {},
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxFactory": "h",
+    "jsxFragmentFactory": "Fragment",
+    "jsxImportSource": "preact"
+  },
+  "imports": {
+    "@/": "./",
+    "netzo/": "../../../netzo/lib/",
+    "$fresh/": "https://deno.land/x/fresh@1.6.1/",
+    "preact": "https://esm.sh/v135/preact@10.19.2",
+    "preact/": "https://esm.sh/v135/preact@10.19.2/",
+    "@preact/signals": "https://esm.sh/v135/*@preact/signals@1.2.1",
+    "@preact/signals-core": "https://esm.sh/v135/*@preact/signals-core@1.5.0",
+    "std/": "https://deno.land/std@0.205.0/",
+    "react": "https://esm.sh/v135/preact@10.19.2/compat",
+    "react-dom": "https://esm.sh/v135/preact@10.19.2/compat",
+    "react/jsx-runtime": "https://esm.sh/v135/preact@10.19.2/compat"
+  }
+}

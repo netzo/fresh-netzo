@@ -18,7 +18,7 @@ export type {
   ManifestEntryDirectory,
   ManifestEntryFile,
   ManifestEntrySymlink,
-  Project,
   // notifications:
   Notification,
+  Project,
 } from "../../deps/@netzo/api/mod.ts";

@@ -84,10 +84,9 @@ export const PROJECT_CONFIG: AppConfig = {
   },
   api: {
     enabled: true,
-    path: "",
+    path: "/api",
     idField: "",
     methods: ["find", "get", "create", "update", "patch", "remove"],
-    services: [],
   },
   devtools: {
     bindSignal: { enabled: true },

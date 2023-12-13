@@ -1,4 +1,4 @@
-import type { Plugin } from "../../../deps/$fresh/src/server/mod.ts";
+import type { Plugin } from "../../../deps/$fresh/server.ts";
 import type { Project } from "../../../framework/mod.ts";
 import _App from "./routes/_app.tsx";
 import _404 from "./routes/_404.tsx";

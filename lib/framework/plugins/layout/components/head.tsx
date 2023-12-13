@@ -1,5 +1,5 @@
 import { ComponentChildren } from "../../../../deps/preact.ts";
-import { Head as _Head } from "../../../../deps/$fresh/src/runtime/head.ts";
+import { Head as _Head } from "../../../../deps/$fresh/runtime.ts";
 import type { LayoutOptions } from "../mod.ts";
 
 export const Head = (

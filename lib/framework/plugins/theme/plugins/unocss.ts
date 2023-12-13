@@ -11,13 +11,13 @@ import type { Theme } from "https://esm.sh/v135/@unocss/preset-uno@0.58.0?target
 import {
   Plugin,
   type PluginRenderStyleTag,
-} from "../../../../deps/$fresh/src/server/mod.ts";
+} from "../../../../deps/$fresh/server.ts";
 import {
   dirname,
   fromFileUrl,
   join,
   walk,
-} from "../../../../deps/$fresh/src/server/deps.ts";
+} from "../../../../deps/$fresh/server/deps.ts";
 import { exists } from "../../../../deps/std/fs/exists.ts";
 
 type PreactOptions = typeof preactOptions & { __b?: (vnode: VNode) => void };

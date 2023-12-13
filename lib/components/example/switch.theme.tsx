@@ -1,4 +1,4 @@
-import { IS_BROWSER } from "../../deps/$fresh/src/runtime/utils.ts";
+import { IS_BROWSER } from "../../deps/$fresh/runtime.ts";
 import { effect, signal } from "../../deps/@preact/signals.ts";
 import { Switch } from "../ui/switch.tsx";
 import { Label } from "../ui/label.tsx";

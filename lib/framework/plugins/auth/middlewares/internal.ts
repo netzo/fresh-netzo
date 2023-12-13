@@ -1,4 +1,4 @@
-import type { PluginMiddleware } from "../../../../deps/$fresh/src/server/types.ts";
+import type { PluginMiddleware } from "../../../../deps/$fresh/server.ts";
 import type { NetzoState } from "../../../../framework/mod.ts";
 import { logInfo } from "../../../../framework/utils/console.ts";
 

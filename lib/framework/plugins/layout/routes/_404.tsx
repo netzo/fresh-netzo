@@ -1,4 +1,4 @@
-import { defineRoute } from "../../../../deps/$fresh/src/server/mod.ts";
+import { defineRoute } from "../../../../deps/$fresh/server.ts";
 import type { NetzoState } from "../../../../framework/mod.ts";
 
 export default defineRoute<NetzoState>((_req, ctx) => {

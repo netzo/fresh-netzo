@@ -1,5 +1,4 @@
 import { cn } from "../../../../components/utils.ts";
-import type { User } from "../../../../framework/plugins/auth/utils/db.ts";
 import { LayoutOptions } from "../mod.ts";
 import { NavItem, NavItemHeader, NavItemUser } from "../islands/nav-item.tsx";
 
@@ -24,9 +23,11 @@ export const Nav = ({ className, ...props }: LayoutOptions["nav"]) => {
         ))}
       </div>
       {/* IMPORTANT: disable client-side navigation for logout */}
+      {props?.sessionUser && (
       <div f-client-nav={false} className="px-3 py-2">
         <NavItemUser sessionUser={props?.sessionUser} />
       </div>
+      )}
     </div>
   );
 };

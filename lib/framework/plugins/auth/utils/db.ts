@@ -1,5 +1,5 @@
-import { ulid } from "../../../../database/mod.ts";
-import type { OAuthProvider } from "../routes/[provider].ts";
+import { ulid } from "../../../../core/database.ts";
+import type { OAuthProvider } from "../routes/external/[provider].ts";
 const kv = await Deno.openKv();
 // TODO: const db = createDatabase(kv);
 

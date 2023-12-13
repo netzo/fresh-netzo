@@ -6,7 +6,14 @@ import { createNotification } from "./notification.ts";
 export type NetzoOptions = {
   apiKey: string;
   baseURL?: string;
+  databaseURL?: string;
 };
+
+const NETZO_DATABASE_URL = Deno.env.get("NETZO_DATABASE_ID")
+  ? `https://api.deno.com/databases/${
+    Deno.env.get("NETZO_DATABASE_ID")
+  }/connect`
+  : undefined;
 
 /**
  * SDK constructor function for Netzo
@@ -15,17 +22,20 @@ export type NetzoOptions = {
  * @param {string} baseURL - (internal) the base URL to use for the API
  * @returns {object} - an object of multiple utilities core to Netzo
  */
-export const Netzo = ({
+export const Netzo = async ({
   apiKey = Deno.env.get("NETZO_API_KEY")!,
   baseURL = Deno.env.get("NETZO_API_URL") || "https://api.netzo.io",
+  databaseURL = Deno.env.get("NETZO_DATABASE_URL") ?? NETZO_DATABASE_URL,
 }: NetzoOptions = {} as NetzoOptions) => {
   const { api } = createApi({ apiKey, baseURL });
 
   const cron = createCron(api);
 
-  const db = createDatabase();
+  const kv = await Deno.openKv(databaseURL);
+
+  const db = createDatabase(kv);
 
   const notification = createNotification(api);
 
-  return { api, cron, db, notification };
+  return { api, cron, kv, db, notification };
 };

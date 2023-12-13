@@ -1,5 +1,5 @@
-import { defineApp } from "../../../../deps/$fresh/src/server/mod.ts";
-import { Partial } from "../../../../deps/$fresh/src/runtime/Partial.tsx";
+import { defineApp } from "../../../../deps/$fresh/server.ts";
+import { Partial } from "../../../../deps/$fresh/runtime.ts";
 import { cn } from "../../../../components/utils.ts";
 import type { NetzoState } from "../../../../framework/mod.ts";
 import { Nav } from "../components/nav.tsx";
@@ -8,7 +8,7 @@ import { Head } from "../components/head.tsx";
 import Header from "../islands/header.tsx";
 
 export default defineApp<NetzoState>((_req, ctx) => {
-  const { title, description, favicon, image, layout } = ctx.state.config;
+  const { title, description, favicon, image, auth, layout } = ctx.state.config;
   const { sessionId, sessionUser } = ctx.state.auth ?? {};
 
   return (
@@ -16,8 +16,25 @@ export default defineApp<NetzoState>((_req, ctx) => {
       <head>
         <Head {...{ title, description, favicon, image, href: ctx.url.href }} />
       </head>
-      {sessionId
+      {auth?.enabled || !sessionId
         ? (
+          <body
+            className={cn(
+              "h-full overflow-x-hidden",
+              "bg-[hsl(var(--background))]",
+            )}
+          >
+            <div className="flex flex-col w-full h-full overflow-x-hidden">
+              <main className="flex-1">
+                <ctx.Component />
+              </main>
+
+              <Footer className="sticky bottom-0" {...layout.footer} />
+            </div>
+          </body>
+
+        )
+        : (
           <body
             f-client-nav
             className={cn(
@@ -34,22 +51,6 @@ export default defineApp<NetzoState>((_req, ctx) => {
                 <Partial name="main">
                   <ctx.Component />
                 </Partial>
-              </main>
-
-              <Footer className="sticky bottom-0" {...layout.footer} />
-            </div>
-          </body>
-        )
-        : (
-          <body
-            className={cn(
-              "h-full overflow-x-hidden",
-              "bg-[hsl(var(--background))]",
-            )}
-          >
-            <div className="flex flex-col w-full h-full overflow-x-hidden">
-              <main className="flex-1">
-                <ctx.Component />
               </main>
 
               <Footer className="sticky bottom-0" {...layout.footer} />

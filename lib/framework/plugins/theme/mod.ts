@@ -1,4 +1,4 @@
-import { Plugin } from "../../../deps/$fresh/src/server/mod.ts";
+import { Plugin } from "../../../deps/$fresh/server.ts";
 import type { Project } from "../../../framework/mod.ts";
 import { defineConfig, unocss, type UnocssOptions } from "./plugins/unocss.ts";
 import presetNetzo from "./plugins/preset-netzo.ts";

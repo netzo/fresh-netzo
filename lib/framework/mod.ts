@@ -1,15 +1,22 @@
-import type { FreshConfig } from "../deps/$fresh/src/server/mod.ts";
+/// <reference no-default-lib="true" />
+/// <reference lib="dom" />
+/// <reference lib="dom.iterable" />
+/// <reference lib="dom.asynciterable" />
+/// <reference lib="deno.ns" />
+/// <reference lib="deno.unstable" />
+import type { FreshConfig } from "../deps/$fresh/server.ts";
 import type { Project } from "../deps/@netzo/api/mod.ts";
 import replace from "https://esm.sh/v135/object-replace-mustache@1.0.2";
 import { deepMerge } from "../deps/std/collections/deep_merge.ts";
-import { AuthState } from "../framework/plugins/auth/mod.ts";
-import { LayoutState } from "../framework/plugins/layout/mod.ts";
-import { ThemeState } from "../framework/plugins/theme/mod.ts";
-import { ApiState } from "../framework/plugins/api/mod.ts";
-import { DevtoolsState } from "../framework/plugins/devtools/mod.ts";
+import { AuthState } from "./plugins/auth/mod.ts";
+import { LayoutState } from "./plugins/layout/mod.ts";
+import { ThemeState } from "./plugins/theme/mod.ts";
+import { ApiState } from "./plugins/api/mod.ts";
+import { DevtoolsState } from "./plugins/devtools/mod.ts";
+import { createPluginsForModules } from "./plugins/utils.ts";
 import { Netzo } from "../core/mod.ts";
-import { log, logInfo, LOGS } from "../framework/utils/console.ts";
-import { setEnvVars } from "../framework/utils/mod.ts";
+import { log, logInfo, LOGS } from "./utils/console.ts";
+import { setEnvVars } from "./utils/mod.ts";
 import { PROJECT_CONFIG } from "./defaults.ts";
 import { createClient } from "../cli/src/utils/netzo.ts";
 
@@ -19,7 +26,7 @@ export type AppConfig = FreshConfig & Project["config"];
 
 export type NetzoState = {
   kv: Deno.Kv;
-  netzo: ReturnType<typeof Netzo>;
+  netzo: Awaited<ReturnType<typeof Netzo>>;
   config: Project["config"];
   // injected by plugins:
   auth?: AuthState;
@@ -58,10 +65,12 @@ export async function createApp(
   if (!NETZO_PROJECT_ID) throw new Error(LOGS.missingProjectId);
   if (!NETZO_API_KEY) throw new Error(LOGS.missingApiKey);
 
-  const netzo = Netzo({ apiKey: NETZO_API_KEY, baseURL: NETZO_API_URL });
+  const netzo = await Netzo({ apiKey: NETZO_API_KEY, baseURL: NETZO_API_URL });
 
   const project = await netzo.api.projects[NETZO_PROJECT_ID].get<Project>();
   if (!project) throw new Error(LOGS.notFoundProject);
+
+  const DEV = ["development"].includes(NETZO_ENV);
 
   Deno.env.set("NETZO_ENV", NETZO_ENV);
   Deno.env.set("NETZO_PROJECT_ID", NETZO_PROJECT_ID);
@@ -69,22 +78,17 @@ export async function createApp(
   Deno.env.set("NETZO_API_KEY", NETZO_API_KEY);
   Deno.env.set("NETZO_API_URL", NETZO_API_URL);
   Deno.env.set("NETZO_APP_URL", NETZO_APP_URL);
-  Deno.env.set(
-    "NETZO_DATABASE_IDS",
-    JSON.stringify({
-      default: project.databaseId,
-    }),
-  );
-
-  const DEV = ["development"].includes(NETZO_ENV)
+  if (!DEV) Deno.env.set("NETZO_DATABASE_ID", project.databaseId);
 
   if (DEV) setEnvVars(project.envVars?.development ?? {});
   const appUrl = Deno.env.get("NETZO_APP_URL") ?? "https://app.netzo.io";
 
+
   // 1) merge defaults and remote config
-  let config = deepMerge(PROJECT_CONFIG, project.config);
+  const mergeOptions = { arrays: "replace", maps: "replace", sets: "replace" } as const;
+  let config = deepMerge(PROJECT_CONFIG, project.config, mergeOptions);
   // 2) merge local config (local config takes precedence for better DX)
-  config = deepMerge(config, partialConfig);
+  config = deepMerge(config, partialConfig, mergeOptions);
   // 3) render values with mustache placeholders
   config = replace(config, { project });
   // 4) build state (pass single kv instance to plugins for performance)
@@ -139,59 +143,14 @@ export async function createApp(
   };
 }
 
-/**
- * An internal utility to bundle plugins based on app configuration.
- * @param state {NetzoState} - the app configuration
- * @returns {Promise<Plugin[]>} - the bundled plugins
- */
-async function createPluginsForModules(state: NetzoState): Promise<Plugin[]> {
-  // NOTE: async plugin initialization is parallelized for better performance
-  const PLUGINS = ["kv", "auth", "api", "layout", "theme", "devtools"];
-  const pluginsWithDuplicates = (await Promise.all(
-    PLUGINS.map(async (name) => {
-      if (!state.config?.[name]?.enabled) return; // skip disabled plugins
-      switch (name) {
-        case "kv": {
-          return;
-        }
-        case "auth": {
-          const mod = await import("./plugins/auth/mod.ts");
-          return [mod.auth(state.config[name])];
-        }
-        case "layout": {
-          const mod = await import("./plugins/layout/mod.ts");
-          const { theme } = await import("./plugins/theme/mod.ts");
-          return [
-            mod.layout(state.config[name]),
-            theme(state.config.theme),
-          ];
-        }
-        case "theme": {
-          const mod = await import("./plugins/theme/mod.ts");
-          return [mod.theme(state.config[name])];
-        }
-        case "api": {
-          const mod = await import("./plugins/api/mod.ts");
-          return [mod.api(state.config[name])];
-        }
-        case "devtools": {
-          const mod = await import("./plugins/devtools/mod.ts");
-          return [mod.devtools(state.config[name])];
-        }
-      }
-    }),
-  )).flat().filter((plugin) => !!plugin?.name);
-
-  // deduplicate plugins by name (uses includes(searchElement, fromIndex))
-  const names = pluginsWithDuplicates.map(({ name }) => name);
-  const plugins = pluginsWithDuplicates.filter(
-    ({ name }, i) => !names.includes(name, i + 1),
-  );
-  logInfo(`Plugins: ${
-    plugins.map(
-      ({ name }) => `${!!state.config[name]?.enabled ? "✅" : "❌"} ${name}`,
-    ).join(" | ")
-  }`);
-
-  return plugins;
-}
+export const start = async (config: AppConfig) => {
+  if (Deno.args.includes("dev")) {
+    const { default: dev } = await import("$fresh/dev.ts");
+    await dev(Deno.mainModule, "./app.netzo.ts", config);
+  } else {
+    const manifestURL = new URL("./fresh.gen.ts", Deno.mainModule).href;
+    const { default: manifest } = await import(manifestURL);
+    const { start } = await import("$fresh/server.ts");
+    await start(manifest, config);
+  }
+};
