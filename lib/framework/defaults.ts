@@ -3,7 +3,6 @@ import type { AppConfig } from "./mod.ts";
 export const PROJECT_CONFIG: AppConfig = {
   title: "{{project.name}}",
   description: "{{project.description}}",
-  logo: "{{project.avatar}}",
   favicon: "/favicon.svg",
   image: "{{project.avatar}}",
   auth: {

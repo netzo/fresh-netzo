@@ -23,4 +23,6 @@ export type {
   Paginated,
   Project,
   ProjectAssetsFile,
+  // notifications:
+  Notification,
 } from "npm:/@netzo/api@1.0.55/lib/client.d.ts";
