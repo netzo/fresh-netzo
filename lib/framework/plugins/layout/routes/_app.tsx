@@ -11,12 +11,14 @@ export default defineApp<NetzoState>((_req, ctx) => {
   const { title, description, favicon, image, auth, layout } = ctx.state.config;
   const { sessionId, sessionUser } = ctx.state.auth ?? {};
 
+  const authExternalEnabled = auth?.enabled && auth.level === "external";
+
   return (
     <html className="h-full overflow-hidden">
       <head>
         <Head {...{ title, description, favicon, image, href: ctx.url.href }} />
       </head>
-      {auth?.enabled || !sessionId
+      {authExternalEnabled && !sessionId
         ? (
           <body
             className={cn(
@@ -32,7 +34,6 @@ export default defineApp<NetzoState>((_req, ctx) => {
               <Footer className="sticky bottom-0" {...layout.footer} />
             </div>
           </body>
-
         )
         : (
           <body

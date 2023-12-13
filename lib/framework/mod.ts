@@ -37,7 +37,7 @@ export type NetzoState = {
   [k: string]: unknown;
 };
 
-if (import.meta.main) await createApp(); // allow running as script
+if (import.meta.main) await createNetzoApp(); // allow running as script
 
 // WORKAROUND: until resolution of https://github.com/denoland/fresh/issues/1773#issuecomment-1763502518
 const origConsoleError = console.error;
@@ -48,10 +48,10 @@ console.error = (msg) => {
   origConsoleError(msg);
 };
 
-export async function createApp(
+export async function createNetzoApp(
   partialConfig: Partial<AppConfig> = {},
 ): Promise<Required<AppConfig>> {
-  if (Deno.args[0] === "build") return partialConfig as Required<AppConfig>;
+  if (Deno.args.includes("build")) return partialConfig as Required<AppConfig>;
 
   const {
     NETZO_ENV = Deno.env.get("DENO_REGION") ? "production" : "development",
@@ -106,7 +106,8 @@ export async function createApp(
       apiKey: NETZO_API_KEY,
       baseURL: NETZO_API_URL,
     });
-    const main = Deno.mainModule.replace("file://", "").replace("/.dev.ts", "");
+    const main = Deno.mainModule.replace("file://", "").replace("netzo.ts", "fresh.gen.ts");
+    console.log(main)
     app.service("projects").on("patched", async (_project: Project) => {
       log("✨ App configuration updated, restarting server...");
       // trigger reload without modifying file using touch

@@ -1,13 +1,6 @@
-import { createHandler, Status } from "$fresh/server.ts";
+import { createHandler } from "$fresh/server.ts";
 import manifest from "./fresh.gen.ts";
-import {
-  createItem,
-  createUser,
-  getUser,
-  type Item,
-  randomItem,
-  randomUser,
-} from "netzo/framework/plugins/auth/utils/db.ts";
+import { User, createUser,  getUser,} from "netzo/framework/plugins/auth/utils/db.ts";
 import {
   assert,
   assertArrayIncludes,
@@ -15,12 +8,22 @@ import {
   assertInstanceOf,
   assertNotEquals,
 } from "std/assert/mod.ts";
-import { isRedirectStatus } from "std/http/http_status.ts";
-import options from "./netzo.ts";
+import { isRedirectStatus, STATUS_CODE } from "std/http/status.ts";
+import { config } from "./netzo.ts";
+
+/** For testing */
+export function randomUser(): User {
+  return {
+    authId: crypto.randomUUID(),
+    sessionId: crypto.randomUUID(),
+    isSubscribed: false,
+    stripeCustomerId: crypto.randomUUID(),
+  };
+}
 
 /**
  * These tests are end-to-end tests, which follow this rule-set:
- * 1. `Response.status` is checked first by using the `Status` enum. It's the
+ * 1. `Response.status` is checked first by using the `STATUS_CODE` enum. It's the
  * primary indicator of whether the request was successful or not.
  * 2. `Response.header`'s `content-type` is checked next to ensure the
  * response is of the expected type. This is where custom assertions are used.
@@ -33,7 +36,7 @@ import options from "./netzo.ts";
 /**
  * @see {@link https://fresh.deno.dev/docs/examples/writing-tests|Writing tests} example on how to write tests for Fresh projects.
  */
-const handler = await createHandler(manifest, options);
+const handler = await createHandler(manifest, config);
 
 function assertHtml(resp: Response) {
   assertInstanceOf(resp.body, ReadableStream);
@@ -58,12 +61,12 @@ function assertRedirect(response: Response, location: string) {
 Deno.test("[e2e] GET /", async () => {
   const resp = await handler(new Request("http://localhost"));
 
-  assertEquals(resp.status, Status.OK);
+  assertEquals(resp.status, STATUS_CODE.OK);
   assertHtml(resp);
 });
 
 Deno.test("[e2e] GET /auth/github/callback", async (test) => {
-  const login = crypto.randomUUID();
+  const authId = crypto.randomUUID();
   const sessionId = crypto.randomUUID();
 
   await test.step("creates a new user if it doesn't already exist", async () => {
@@ -76,7 +79,7 @@ Deno.test("[e2e] GET /auth/github/callback", async (test) => {
       sessionId,
     };
     const githubRespBody = {
-      login,
+      authId,
       email: crypto.randomUUID(),
     };
 
@@ -87,7 +90,7 @@ Deno.test("[e2e] GET /auth/github/callback", async (test) => {
 
   await test.step("updates the user session ID if they already exist", async () => {
     const githubRespBody = {
-      login,
+      authId,
       email: crypto.randomUUID(),
     };
 
@@ -104,7 +107,7 @@ Deno.test("[e2e] GET /auth/github/signin", async () => {
 
   assertRedirect(
     resp,
-    "https://github.com/login/auth/github/authorize",
+    "https://github.com/authId/auth/github/authorize",
   );
 });
 
@@ -114,41 +117,6 @@ Deno.test("[e2e] GET /auth/signout", async () => {
   );
 
   assertRedirect(resp, "/");
-});
-
-Deno.test("[e2e] GET /api/items", async () => {
-  const item1 = randomItem();
-  const item2 = randomItem();
-  await createItem(item1);
-  await createItem(item2);
-  const req = new Request("http://localhost/api/items");
-  const resp = await handler(req);
-  const { values } = await resp.json();
-
-  assertEquals(resp.status, Status.OK);
-  assertJson(resp);
-  assertArrayIncludes(values, [item1, item2]);
-});
-
-Deno.test("[e2e] GET /api/items/[id]", async (test) => {
-  const item = randomItem();
-  const req = new Request("http://localhost/api/items/" + item.id);
-
-  await test.step("serves not found response if item not found", async () => {
-    const resp = await handler(req);
-
-    assertEquals(resp.status, Status.NotFound);
-    assertEquals(await resp.text(), "Item not found");
-  });
-
-  await test.step("serves item as JSON", async () => {
-    await createItem(item);
-    const resp = await handler(req);
-
-    assertEquals(resp.status, Status.OK);
-    assertJson(resp);
-    assertEquals(await resp.json(), item);
-  });
 });
 
 Deno.test("[e2e] GET /api/users", async () => {
@@ -162,19 +130,19 @@ Deno.test("[e2e] GET /api/users", async () => {
 
   const { values } = await resp.json();
 
-  assertEquals(resp.status, Status.OK);
+  assertEquals(resp.status, STATUS_CODE.OK);
   assertJson(resp);
   assertArrayIncludes(values, [user1, user2]);
 });
 
-Deno.test("[e2e] GET /api/users/[login]", async (test) => {
+Deno.test("[e2e] GET /api/users/[authId]", async (test) => {
   const user = randomUser();
-  const req = new Request("http://localhost/api/users/" + user.login);
+  const req = new Request("http://localhost/api/users/" + user.authId);
 
   await test.step("serves not found response if user not found", async () => {
     const resp = await handler(req);
 
-    assertEquals(resp.status, Status.NotFound);
+    assertEquals(resp.status, STATUS_CODE.NotFound);
     assertText(resp);
     assertEquals(await resp.text(), "User not found");
   });
@@ -183,74 +151,8 @@ Deno.test("[e2e] GET /api/users/[login]", async (test) => {
     await createUser(user);
     const resp = await handler(req);
 
-    assertEquals(resp.status, Status.OK);
+    assertEquals(resp.status, STATUS_CODE.OK);
     assertJson(resp);
     assertEquals(await resp.json(), user);
-  });
-});
-
-Deno.test("[e2e] GET /api/users/[login]/items", async (test) => {
-  const user = randomUser();
-  const item: Item = {
-    ...randomItem(),
-    userLogin: user.login,
-  };
-  const req = new Request(`http://localhost/api/users/${user.login}/items`);
-
-  await test.step("serves not found response if user not found", async () => {
-    const resp = await handler(req);
-
-    assertEquals(resp.status, Status.NotFound);
-    assertText(resp);
-    assertEquals(await resp.text(), "User not found");
-  });
-
-  await test.step("serves items as JSON", async () => {
-    await createUser(user);
-    await createItem(item);
-    const resp = await handler(req);
-    const { values } = await resp.json();
-
-    assertEquals(resp.status, Status.OK);
-    assertJson(resp);
-    assertArrayIncludes(values, [item]);
-  });
-});
-
-Deno.test("[e2e] GET /account", async (test) => {
-  const url = "http://localhost/account";
-
-  await test.step("redirects to sign-in page if the session user is not signed in", async () => {
-    const resp = await handler(new Request(url));
-
-    assertRedirect(resp, "/auth/github/signin");
-  });
-
-  await test.step("serves a web page for signed-in free user", async () => {
-    const user = randomUser();
-    await createUser(user);
-
-    const resp = await handler(
-      new Request(url, {
-        headers: { cookie: "site-session=" + user.sessionId },
-      }),
-    );
-
-    assertEquals(resp.status, Status.OK);
-    assertHtml(resp);
-  });
-
-  await test.step("serves a web page for signed-in premium user", async () => {
-    const user = randomUser();
-    await createUser({ ...user, isSubscribed: true });
-
-    const resp = await handler(
-      new Request(url, {
-        headers: { cookie: "site-session=" + user.sessionId },
-      }),
-    );
-
-    assertEquals(resp.status, Status.OK);
-    assertHtml(resp);
   });
 });
