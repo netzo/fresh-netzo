@@ -80,9 +80,9 @@ export async function createApp(
   const appUrl = Deno.env.get("NETZO_APP_URL") ?? "https://app.netzo.io";
 
   // 1) merge defaults and remote config
-  let config = deepMerge({ config: PROJECT_CONFIG }, project.config);
+  let config = deepMerge(PROJECT_CONFIG, project.config);
   // 2) merge local config (local config takes precedence for better DX)
-  config = deepMerge(config, partialConfig as NetzoState);
+  config = deepMerge(config, partialConfig);
   // 3) render values with mustache placeholders
   config = replace(config, { project });
   // 4) build state (pass single kv instance to plugins for performance)
