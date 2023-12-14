@@ -51,7 +51,9 @@ console.error = (msg) => {
 export async function createNetzoApp(
   partialConfig: Partial<NetzoConfig> = {},
 ): Promise<Required<NetzoConfig>> {
-  if (Deno.args.includes("build")) return partialConfig as Required<NetzoConfig>;
+  if (Deno.args.includes("build")) {
+    return partialConfig as Required<NetzoConfig>;
+  }
 
   const {
     NETZO_ENV = Deno.env.get("DENO_REGION") ? "production" : "development",
@@ -83,9 +85,12 @@ export async function createNetzoApp(
   if (DEV) setEnvVars(project.envVars?.development ?? {});
   const appUrl = Deno.env.get("NETZO_APP_URL") ?? "https://app.netzo.io";
 
-
   // 1) merge defaults and remote config
-  const mergeOptions = { arrays: "replace", maps: "replace", sets: "replace" } as const;
+  const mergeOptions = {
+    arrays: "replace",
+    maps: "replace",
+    sets: "replace",
+  } as const;
   let config = deepMerge(CONFIG, project.config, mergeOptions);
   // 2) merge local config (local config takes precedence for better DX)
   config = deepMerge(config, partialConfig, mergeOptions);
@@ -106,8 +111,12 @@ export async function createNetzoApp(
       apiKey: NETZO_API_KEY,
       baseURL: NETZO_API_URL,
     });
-    const main = Deno.mainModule.replace("file://", "").replace("netzo.ts", "fresh.gen.ts");
-    console.log(main)
+    const main = Deno.mainModule.replace("file://", "").replace(
+      "netzo.ts",
+      "fresh.gen.ts",
+    );
+    console.log(main);
+    console.log(import.meta.resolve(main));
     app.service("projects").on("patched", async (_project: Project) => {
       log("✨ App configuration updated, restarting server...");
       // trigger reload without modifying file using touch
