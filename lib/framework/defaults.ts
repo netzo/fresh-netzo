@@ -1,73 +1,72 @@
-import type { AppConfig } from "./mod.ts";
+import type { NetzoConfig } from "./mod.ts";
 
-export const PROJECT_CONFIG: AppConfig = {
+export const CONFIG: NetzoConfig = {
   auth: {
     enabled: true,
-    level: "internal",
+    level: 'internal',
     userIds: [],
-    title: "{{project.name}}",
-    description: "Sign in to access the app",
-    caption:
-      'By signing in you agree to the <a href="/" target="_blank">Terms of Service</a> and <a href="/" target="_blank">Privacy Policy</a>',
+    title: '{{project.name}}',
+    description: 'Sign in to access the app',
+    caption: 'By signing in you agree to the <a href="/" target="_blank">Terms of Service</a> and <a href="/" target="_blank">Privacy Policy</a>',
     providers: {
       email: { enabled: false },
       google: {
         enabled: false,
-        clientId: "{{project.envVars.development.GOOGLE_CLIENT_ID}}",
-        clientSecret: "{{project.envVars.development.GOOGLE_CLIENT_SECRET}}",
-        redirectUri: "/auth/google/callback",
+        clientId: '{{project.envVars.development.GOOGLE_CLIENT_ID}}',
+        clientSecret: '{{project.envVars.development.GOOGLE_CLIENT_SECRET}}',
+        redirectUri: '/auth/google/callback',
       },
       github: {
         enabled: false,
-        clientId: "{{project.envVars.development.GITHUB_CLIENT_ID}}",
-        clientSecret: "{{project.envVars.development.GITHUB_CLIENT_SECRET}}",
-        redirectUri: "/auth/github/callback",
+        clientId: '{{project.envVars.development.GITHUB_CLIENT_ID}}',
+        clientSecret: '{{project.envVars.development.GITHUB_CLIENT_SECRET}}',
+        redirectUri: '/auth/github/callback',
       },
       gitlab: {
         enabled: false,
-        clientId: "{{project.envVars.development.GITLAB_CLIENT_ID}}",
-        clientSecret: "{{project.envVars.development.GITLAB_CLIENT_SECRET}}",
-        redirectUri: "/auth/gitlab/callback",
+        clientId: '{{project.envVars.development.GITLAB_CLIENT_ID}}',
+        clientSecret: '{{project.envVars.development.GITLAB_CLIENT_SECRET}}',
+        redirectUri: '/auth/gitlab/callback',
       },
       auth0: {
         enabled: false,
-        clientId: "{{project.envVars.development.AUTH0_CLIENT_ID}}",
-        clientSecret: "{{project.envVars.development.AUTH0_CLIENT_SECRET}}",
-        domain: "{{project.envVars.development.AUTH0_DOMAIN}}",
-        redirectUri: "/auth/auth0/callback",
+        clientId: '{{project.envVars.development.AUTH0_CLIENT_ID}}',
+        clientSecret: '{{project.envVars.development.AUTH0_CLIENT_SECRET}}',
+        domain: '{{project.envVars.development.AUTH0_DOMAIN}}',
+        redirectUri: '/auth/auth0/callback',
       },
       okta: {
         enabled: false,
-        clientId: "{{project.envVars.development.OKTA_CLIENT_ID}}",
-        clientSecret: "{{project.envVars.development.OKTA_CLIENT_SECRET}}",
-        domain: "{{project.envVars.development.OKTA_DOMAIN}}",
-        redirectUri: "/auth/okta/callback",
+        clientId: '{{project.envVars.development.OKTA_CLIENT_ID}}',
+        clientSecret: '{{project.envVars.development.OKTA_CLIENT_SECRET}}',
+        domain: '{{project.envVars.development.OKTA_DOMAIN}}',
+        redirectUri: '/auth/okta/callback',
       },
     },
   },
   head: {
-    title: "{{project.name}}",
-    description: "{{project.description}}",
-    favicon: "/favicon.svg",
-    image: "{{project.avatar}}",
+    title: '{{project.name}}',
+    description: '{{project.description}}',
+    favicon: '/favicon.svg',
+    image: '{{project.avatar}}',
   },
   layout: {
     enabled: true,
     nav: {
       items: [
         {
-          text: "Overview",
+          text: 'Overview',
           items: [
-            { icon: "mdi-home", text: "Home", href: "/" },
-            { icon: "mdi-web", text: "Website", href: "https://netzo.io/" },
+            { icon: 'mdi-home', text: 'Home', href: '/' },
+            { icon: 'mdi-web', text: 'Website', href: 'https://netzo.io/' },
           ],
         },
       ],
     },
     header: {
-      title: "{{project.name}}",
-      description: "{{project.description}}",
-      image: "{{project.avatar}}",
+      title: '{{project.name}}',
+      description: '{{project.description}}',
+      image: '{{project.avatar}}',
     },
     footer: {
       innerHTML: `<a href="https://netzo.io/" target="_blank">
@@ -81,14 +80,14 @@ export const PROJECT_CONFIG: AppConfig = {
   },
   theme: {
     enabled: true,
-    color: "slate",
+    color: 'slate',
     radius: 0.5,
   },
   api: {
     enabled: true,
-    path: "/api",
-    idField: "",
-    methods: ["find", "get", "create", "update", "patch", "remove"],
+    path: '/api',
+    idField: 'id',
+    methods: ['find', 'get', 'create', 'update', 'patch', 'remove'],
   },
   devtools: {
     bindSignal: { enabled: true },

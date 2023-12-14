@@ -20,16 +20,12 @@ export function Table({ data, options }) {
 
 export function EditForm({ data }) {
   return (
-    <div className="ml-10 mt-5 mb-10">
-      <div className="grid grid-cols-3 items-center gap-4">
-        <div>
-          <h1 className="text-lg font-medium">Edit</h1>
-          <div className="text-xs font-semibold text-yellow-900 bg-yellow-200 bg-opacity-30 rounded-lg my-2 p-2">
-            Warning: this action is not reversible.
-          </div>
-          <FormAdmin data={data} />
-        </div>
+    <div className="ml-10 mt-5 mb-10 max-w-500px">
+      <h1 className="text-lg font-medium">Edit</h1>
+      <div className="text-xs font-semibold text-yellow-900 bg-yellow-200 bg-opacity-30 rounded-lg my-2 p-2">
+        Warning: this action is not reversible.
       </div>
+      <FormAdmin data={data} />
     </div>
   );
 }

@@ -17,12 +17,12 @@ import { createPluginsForModules } from "./plugins/utils.ts";
 import { Netzo } from "../core/mod.ts";
 import { log, logInfo, LOGS } from "./utils/console.ts";
 import { setEnvVars } from "./utils/mod.ts";
-import { PROJECT_CONFIG } from "./defaults.ts";
+import { CONFIG } from "./defaults.ts";
 import { createClient } from "../cli/src/utils/netzo.ts";
 
 export type { Project };
 
-export type AppConfig = FreshConfig & Project["config"];
+export type NetzoConfig = FreshConfig & Project["config"];
 
 export type NetzoState = {
   kv: Deno.Kv;
@@ -49,9 +49,9 @@ console.error = (msg) => {
 };
 
 export async function createNetzoApp(
-  partialConfig: Partial<AppConfig> = {},
-): Promise<Required<AppConfig>> {
-  if (Deno.args.includes("build")) return partialConfig as Required<AppConfig>;
+  partialConfig: Partial<NetzoConfig> = {},
+): Promise<Required<NetzoConfig>> {
+  if (Deno.args.includes("build")) return partialConfig as Required<NetzoConfig>;
 
   const {
     NETZO_ENV = Deno.env.get("DENO_REGION") ? "production" : "development",
@@ -86,7 +86,7 @@ export async function createNetzoApp(
 
   // 1) merge defaults and remote config
   const mergeOptions = { arrays: "replace", maps: "replace", sets: "replace" } as const;
-  let config = deepMerge(PROJECT_CONFIG, project.config, mergeOptions);
+  let config = deepMerge(CONFIG, project.config, mergeOptions);
   // 2) merge local config (local config takes precedence for better DX)
   config = deepMerge(config, partialConfig, mergeOptions);
   // 3) render values with mustache placeholders
@@ -144,7 +144,7 @@ export async function createNetzoApp(
   };
 }
 
-export const start = async (config: AppConfig) => {
+export const start = async (config: NetzoConfig) => {
   if (Deno.args.includes("dev")) {
     const { default: dev } = await import("$fresh/dev.ts");
     await dev(Deno.mainModule, "./netzo.ts", config);
