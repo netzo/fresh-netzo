@@ -19,7 +19,7 @@
     "cov:view": "genhtml -o html_cov cov.lcov && open html_cov/index.html",
     "update": "deno run -A -r https://fresh.deno.dev/update .",
     "build": "deno run -A --unstable --env netzo.ts dev build",
-    "preview": "deno run -A --unstable --env main.ts"
+    "preview": "deno run -A --unstable --env netzo.ts"
   },
   "lint": {
     "rules": {
