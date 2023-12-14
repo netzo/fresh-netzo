@@ -18,10 +18,10 @@ export const internalMiddlewares: PluginMiddleware<NetzoState>[] = [
       handler: async (req, ctx) => {
         if (!["route"].includes(ctx.destination)) return await ctx.next();
 
-        if (Deno.env.get("NETZO_ENV") === "development") {
-          logInfo(`[dev] Skipping internal auth middleware...`);
-          return await ctx.next();
-        }
+        // if (Deno.env.get("NETZO_ENV") === "development") {
+        //   logInfo(`[dev] Skipping internal auth middleware...`);
+        //   return await ctx.next();
+        // }
 
         // const host = req.headers.get("host"); // e.g. my-project-906698.netzo.io
         const origin = req.headers.get("origin"); // e.g. https://my-project-906698.netzo.io
@@ -35,9 +35,13 @@ export const internalMiddlewares: PluginMiddleware<NetzoState>[] = [
         ctx.state.auth = { ...ctx.state.auth, origin, referer, isApp };
 
         if (!isApp) {
+          const url = new URL(req.url);
           const { NETZO_PROJECT_UID, NETZO_APP_URL } = Deno.env.toObject();
-          const url = `${NETZO_APP_URL}/projects/${NETZO_PROJECT_UID}`;
-          return Response.redirect(url, 302);
+          const appUrl = new URL(
+            `/projects/${NETZO_PROJECT_UID}${url.search}${url.hash}`,
+            NETZO_APP_URL,
+          );
+          return Response.redirect(appUrl.href, 302);
         }
 
         return await ctx.next();
