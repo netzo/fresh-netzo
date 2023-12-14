@@ -1,6 +1,6 @@
 export const baseImports = {
   "@/": "./",
-  "netzo/": "https://deno.land/x/netzo@0.3.17/",
+  "netzo/": "https://deno.land/x/netzo@0.3.18/",
   "$fresh/": "https://deno.land/x/fresh@1.6.1/",
   "preact": "https://esm.sh/v135/preact@10.19.2",
   "preact/": "https://esm.sh/v135/preact@10.19.2/",

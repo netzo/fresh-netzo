@@ -56,7 +56,7 @@ OPTIONS:
         --api-key=<API_KEY>      The API key to use (defaults to NETZO_API_KEY environment variable)
 
 ARGS:
-    <entrypoint>                 The file path to the entrypoint file (e.g. main.tsx)
+    <entrypoint>                 The file path to the entrypoint file (defaults to netzo.ts)
 `;
 
 export type Args = {
@@ -110,11 +110,11 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     console.error(help);
     error(LOGS.missingApiKey);
   }
-  const entrypoint = typeof rawArgs._[0] === "string" && rawArgs._[0];
-  if (!entrypoint) {
-    console.error(help);
-    error("No entrypoint specifier given.");
-  }
+  const entrypoint = typeof rawArgs._[0] === "string" ? rawArgs._[0] : "netzo.ts";
+  // if (!entrypoint) {
+  //   console.error(help);
+  //   error("No entrypoint specifier given.");
+  // }
   if (rawArgs._.length > 1) {
     console.error(help);
     error("Too many positional arguments given.");

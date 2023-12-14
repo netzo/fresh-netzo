@@ -4,7 +4,7 @@
 /// <reference lib="dom.asynciterable" />
 /// <reference lib="deno.ns" />
 /// <reference lib="deno.unstable" />
-import type { FreshConfig } from "../deps/$fresh/server.ts";
+import type { FreshConfig, Manifest } from "../deps/$fresh/server.ts";
 import type { Project } from "../deps/@netzo/api/mod.ts";
 import replace from "https://esm.sh/v135/object-replace-mustache@1.0.2";
 import { deepMerge } from "../deps/std/collections/deep_merge.ts";
@@ -144,13 +144,11 @@ export async function createNetzoApp(
   };
 }
 
-export const start = async (config: NetzoConfig) => {
+export const start = async (manifest: Manifest, config: NetzoConfig) => {
   if (Deno.args.includes("dev")) {
     const { default: dev } = await import("$fresh/dev.ts");
     await dev(Deno.mainModule, "./netzo.ts", config);
   } else {
-    const manifestURL = new URL("./fresh.gen.ts", Deno.mainModule).href;
-    const { default: manifest } = await import(manifestURL);
     const { start } = await import("$fresh/server.ts");
     await start(manifest, config);
   }
