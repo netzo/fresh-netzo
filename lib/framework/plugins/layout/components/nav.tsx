@@ -24,9 +24,9 @@ export const Nav = ({ className, ...props }: LayoutOptions["nav"]) => {
       </div>
       {/* IMPORTANT: disable client-side navigation for logout */}
       {props?.sessionUser && (
-      <div f-client-nav={false} className="px-3 py-2">
-        <NavItemUser sessionUser={props?.sessionUser} />
-      </div>
+        <div f-client-nav={false} className="px-3 py-2">
+          <NavItemUser sessionUser={props?.sessionUser} />
+        </div>
       )}
     </div>
   );

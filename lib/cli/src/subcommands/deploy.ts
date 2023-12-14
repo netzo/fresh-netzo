@@ -39,7 +39,7 @@ To ignore the node_modules directory while deploying:
   netzo deploy --project=<PROJECT_ID> --exclude=node_modules main.tsx
 
 USAGE:
-    netzo deploy [OPTIONS] <entrypoint>
+    netzo deploy [OPTIONS] [<entrypoint>]
 
 OPTIONS:
         --exclude=<PATTERNS>     Exclude files that match this pattern
@@ -110,7 +110,9 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     console.error(help);
     error(LOGS.missingApiKey);
   }
-  const entrypoint = typeof rawArgs._[0] === "string" ? rawArgs._[0] : "netzo.ts";
+  const entrypoint = typeof rawArgs._[0] === "string"
+    ? rawArgs._[0]
+    : "netzo.ts";
   // if (!entrypoint) {
   //   console.error(help);
   //   error("No entrypoint specifier given.");

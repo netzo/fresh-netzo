@@ -1,6 +1,10 @@
 import { createHandler } from "$fresh/server.ts";
 import manifest from "./fresh.gen.ts";
-import { User, createUser,  getUser,} from "netzo/framework/plugins/auth/utils/db.ts";
+import {
+  createUser,
+  getUser,
+  User,
+} from "netzo/framework/plugins/auth/utils/db.ts";
 import {
   assert,
   assertArrayIncludes,

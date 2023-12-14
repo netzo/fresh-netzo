@@ -76,4 +76,4 @@ export const getRoutesByProvider = (
   ];
 
   return routes;
-}
+};

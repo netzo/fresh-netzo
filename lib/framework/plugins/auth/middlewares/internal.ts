@@ -18,10 +18,10 @@ export const internalMiddlewares: PluginMiddleware<NetzoState>[] = [
       handler: async (req, ctx) => {
         if (!["route"].includes(ctx.destination)) return await ctx.next();
 
-        // if (Deno.env.get("NETZO_ENV") === "development") {
-        //   logInfo(`[dev] Skipping internal auth middleware...`);
-        //   return await ctx.next();
-        // }
+        if (Deno.env.get("NETZO_ENV") === "development") {
+          logInfo(`[dev] Skipping internal auth middleware...`);
+          return await ctx.next();
+        }
 
         // const host = req.headers.get("host"); // e.g. my-project-906698.netzo.io
         const origin = req.headers.get("origin"); // e.g. https://my-project-906698.netzo.io
