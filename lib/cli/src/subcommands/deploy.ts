@@ -327,7 +327,9 @@ async function deploy(opts: DeployOpts): Promise<void> {
             return;
           }
           case "success": {
-            deploySpinner?.succeed(message);
+            deploySpinner?.succeed(
+              message.replace("Deployed to", "Deployed to https://"),
+            ); // add protocol for clickable link
             const domain = message.split(" ").pop();
             const id = domain?.split(".")?.[0]?.split("-")?.pop();
             // const deploymentKind = opts.production ? "Production" : "Preview";
