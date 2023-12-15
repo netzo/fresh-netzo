@@ -1,7 +1,19 @@
 {
   "deno.enable": true,
   "deno.lint": true,
-  "editor.formatOnSave": false,
+  "deno.unstable": true,
   "editor.defaultFormatter": "denoland.vscode-deno",
-  "deno.unstable": true
+  "editor.formatOnSave": true,
+  "[javascript]": {
+    "editor.defaultFormatter": "denoland.vscode-deno"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "denoland.vscode-deno"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "denoland.vscode-deno"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "denoland.vscode-deno"
+  }
 }
