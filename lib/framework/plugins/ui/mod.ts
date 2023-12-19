@@ -32,9 +32,7 @@ export const ui = (options?: NetzoConfig["ui"]): Plugin => {
     islands: {
       baseLocation: import.meta.url,
       paths: [
-        "../../../components/ui/theme-toggle.tsx",
-        // "./islands/mobile-nav.tsx",
-        "./islands/nav-item.tsx",
+        "./islands/nav.tsx",
         "./islands/header.tsx",
         "./islands/footer.tsx",
       ],

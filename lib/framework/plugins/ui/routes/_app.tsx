@@ -3,7 +3,7 @@ import { Partial } from "../../../../deps/$fresh/runtime.ts";
 import { cn } from "../../../../components/utils.ts";
 import type { NetzoState } from "../../../../framework/mod.ts";
 import { Head } from "../components/head.tsx";
-import { Nav } from "../components/nav.tsx";
+import { Nav } from "../islands/nav.tsx";
 import { Footer } from "../islands/footer.tsx";
 import Header from "../islands/header.tsx";
 
