@@ -2,12 +2,6 @@ import type { PluginMiddleware } from "../../../../deps/$fresh/server.ts";
 import type { NetzoState } from "../../../../framework/mod.ts";
 import { logInfo } from "../../../../framework/utils/console.ts";
 
-export type AuthInternalState = {
-  origin: string | null;
-  referer: string | null;
-  isApp: boolean;
-};
-
 /**
  * Middleware that redirects client to the app if auth is 'internal'
  */
@@ -24,8 +18,8 @@ export const internalMiddlewares: PluginMiddleware<NetzoState>[] = [
         }
 
         // const host = req.headers.get("host"); // e.g. my-project-906698.netzo.io
-        const origin = req.headers.get("origin"); // e.g. https://my-project-906698.netzo.io
-        const referer = req.headers.get("referer"); // SOMETIMES SET e.g. https://app.netzo.io/some-path
+        const origin = req.headers.get("origin")!; // e.g. https://my-project-906698.netzo.io
+        const referer = req.headers.get("referer")!; // SOMETIMES SET e.g. https://app.netzo.io/some-path
 
         // simple heuristics to determine source of request:
         const assertIsApp = (url: string) =>

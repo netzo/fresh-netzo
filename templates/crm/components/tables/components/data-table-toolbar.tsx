@@ -1,7 +1,6 @@
 import {
   Cross2Icon,
   Pencil1Icon,
-  PlusIcon,
   ReloadIcon,
   TrashIcon,
 } from "netzo/deps/@radix-ui/react-icons.ts";
@@ -40,8 +39,7 @@ export function DataTableToolbar<TData>({
           onClick={() => window.location.reload()}
           className="h-8 px-2 lg:px-3"
         >
-          <ReloadIcon className="w-4 h-4 mr-2" />
-          Refresh
+          <ReloadIcon className="w-4 h-4" />
         </Button>
         {options.search && (
           <Input

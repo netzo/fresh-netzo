@@ -2,23 +2,23 @@ import { defineApp } from "../../../../deps/$fresh/server.ts";
 import { Partial } from "../../../../deps/$fresh/runtime.ts";
 import { cn } from "../../../../components/utils.ts";
 import type { NetzoState } from "../../../../framework/mod.ts";
-import { Nav } from "../components/nav.tsx";
-import { Footer } from "../components/footer.tsx";
 import { Head } from "../components/head.tsx";
+import { Nav } from "../components/nav.tsx";
+import { Footer } from "../islands/footer.tsx";
 import Header from "../islands/header.tsx";
 
 export default defineApp<NetzoState>((_req, ctx) => {
-  const { title, description, favicon, image, auth, layout } = ctx.state.config;
+  const { auth, ui } = ctx.state.config;
   const { sessionId, sessionUser } = ctx.state.auth ?? {};
 
-  const authExternalEnabled = auth?.enabled && auth.level === "external";
+  const externalAuthEnabled = auth?.enabled && auth.level === "external";
 
   return (
     <html className="h-full overflow-hidden">
       <head>
-        <Head {...{ title, description, favicon, image, href: ctx.url.href }} />
+        {ui.head?.enabled && <Head href={ctx.url.href} {...ui.head} />}
       </head>
-      {authExternalEnabled && !sessionId
+      {externalAuthEnabled && !sessionId
         ? (
           <body
             className={cn(
@@ -31,7 +31,9 @@ export default defineApp<NetzoState>((_req, ctx) => {
                 <ctx.Component />
               </main>
 
-              <Footer className="sticky bottom-0" {...layout.footer} />
+              {ui.footer?.enabled && (
+                <Footer className="sticky bottom-0" {...ui.footer} />
+              )}
             </div>
           </body>
         )
@@ -43,10 +45,10 @@ export default defineApp<NetzoState>((_req, ctx) => {
               "bg-[hsl(var(--background))]",
             )}
           >
-            <Nav {...layout.nav} sessionUser={sessionUser} />
+            {ui.nav?.enabled && <Nav {...ui.nav} sessionUser={sessionUser} />}
 
             <div className="flex flex-col w-full h-full overflow-x-hidden">
-              <Header {...layout.header} />
+              {ui.header?.enabled && <Header {...ui.header} />}
 
               <main className="flex-1">
                 <Partial name="main">
@@ -54,7 +56,9 @@ export default defineApp<NetzoState>((_req, ctx) => {
                 </Partial>
               </main>
 
-              <Footer className="sticky bottom-0" {...layout.footer} />
+              {ui.footer?.enabled && (
+                <Footer className="sticky bottom-0" {...ui.footer} />
+              )}
             </div>
           </body>
         )}

@@ -1,13 +1,8 @@
 import type { Plugin } from "../../../deps/$fresh/server.ts";
 import { isHttpError } from "../../../deps/std/http/http_errors.ts";
-import type { Project } from "../../../framework/mod.ts";
+import type { NetzoConfig } from "../../../framework/mod.ts";
 import { parseRequestBody } from "../../../framework/utils/mod.ts";
 import { createDatabase } from "../../../core/database.ts";
-
-export type ApiOptions = Project["config"]["api"];
-
-// deno-lint-ignore ban-types
-export type ApiState = {};
 
 const path = Deno.env.get("DENO_KV_PATH");
 
@@ -21,7 +16,7 @@ const METHODS = [
   "update",
   "patch",
   "remove",
-] as ApiOptions["methods"];
+] as NetzoConfig["api"]["methods"];
 const ERRORS = {
   notAllowed: () => new Response("Method not allowed", { status: 405 }),
 };
@@ -38,7 +33,7 @@ const ERRORS = {
  * - `PATCH /api/[resource]/[id]` patch a record of a resource by id
  * - `DELETE /api/[resource]/[id]` remove a record of a resource by id
  */
-export const api = (options?: ApiOptions): Plugin => {
+export const api = (options?: NetzoConfig["api"]): Plugin => {
   const { path = "/api", idField = "id", methods = METHODS } = options ?? {};
   return {
     name: "api",

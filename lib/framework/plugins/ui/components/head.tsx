@@ -1,9 +1,12 @@
+import type { NetzoConfig } from "../../../../framework/mod.ts";
 import { ComponentChildren } from "../../../../deps/preact.ts";
 import { Head as _Head } from "../../../../deps/$fresh/runtime.ts";
-import type { LayoutOptions } from "../mod.ts";
 
 export const Head = (
-  props: LayoutOptions["head"] & { href: string; children?: ComponentChildren },
+  props: NetzoConfig["ui"]["head"] & {
+    href: string;
+    children?: ComponentChildren;
+  },
 ) => {
   return (
     <_Head>
@@ -15,16 +18,16 @@ export const Head = (
         href={props.href}
         image={props.image}
       />
-      {/* {props.children} */}
+      {props.children}
     </_Head>
   );
 };
 
-export const Meta = (props: LayoutOptions["head"]) => {
+export const Meta = (props: NetzoConfig["ui"]["head"]) => {
   return (
     <>
       {/* HTML Meta Tags */}
-      <title>{props.title}</title>
+      <title>{props.title} | Netzo</title>
       <meta name="description" content={props.description} />
       <link rel="icon" href={props.favicon ?? "/favicon.svg"} />
 

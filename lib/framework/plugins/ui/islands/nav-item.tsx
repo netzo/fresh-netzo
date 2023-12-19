@@ -1,3 +1,4 @@
+import type { NetzoConfig } from "../../../../framework/mod.ts";
 import { cn } from "../../../../components/utils.ts";
 import { buttonVariants } from "../../../../components/ui/button.tsx";
 import {
@@ -6,21 +7,20 @@ import {
   AvatarImage,
 } from "../../../../components/ui/avatar.tsx";
 import type { User } from "../../../../framework/plugins/auth/utils/db.ts";
-import type { LayoutOptions } from "../mod.ts";
 
-type NavItemProps = LayoutOptions["nav"]["items"][number];
+type NavItemProps = NetzoConfig["ui"]["nav"]["items"][number];
 
 type NavItemUserProps = {
   sessionUser: User;
 };
 
 const getInitials = (sessionUser: User) => {
-  const { name, login, email } = sessionUser;
+  const { name, authId, email } = sessionUser ?? {};
   if (name) {
     const [first, last] = name.split(" ");
     return `${first[0]}${last[0]}`?.toUpperCase();
-  } else if (login) {
-    return login[0]?.toUpperCase();
+  } else if (authId) {
+    return authId[0]?.toUpperCase();
   }
   return email[0]?.toUpperCase();
 };
@@ -76,14 +76,14 @@ export function NavItemUser(props: NavItemUserProps) {
       <Avatar className="h-9 w-9">
         <AvatarImage
           src={props.sessionUser.avatar}
-          alt={`@${props.sessionUser.login}}`}
+          alt={`@${props.sessionUser.authId}}`}
         />
         <AvatarFallback>{getInitials(props.sessionUser)}</AvatarFallback>
       </Avatar>
       <div className="w-full ml-4 space-y-1">
-        {props.sessionUser.login && (
+        {props.sessionUser.authId && (
           <p className="text-sm font-medium leading-none">
-            {props.sessionUser.login}
+            {props.sessionUser.authId}
           </p>
         )}
         {props.sessionUser.email && (

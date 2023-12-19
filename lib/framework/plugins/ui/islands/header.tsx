@@ -1,8 +1,10 @@
+import type { NetzoConfig } from "../../../../framework/mod.ts";
 import { cn } from "../../../../components/utils.ts";
-import type { User } from "../../../../framework/plugins/auth/utils/db.ts";
-import { LayoutOptions } from "../mod.ts";
+import { ThemeToggle } from "../../../../components/ui/theme-toggle.tsx";
 
-export default ({ className, ...props }: LayoutOptions["header"]) => {
+export default (
+  { className, ...props }: NetzoConfig["ui"]["header"],
+) => {
   return (
     <header
       className={cn(
@@ -35,6 +37,7 @@ export default ({ className, ...props }: LayoutOptions["header"]) => {
       {/* CENTER CONTENT HERE */}
 
       {/* RIGHT CONTENT HERE */}
+      <ThemeToggle />
     </header>
   );
 };

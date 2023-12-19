@@ -1,5 +1,5 @@
 import type { Plugin } from "../../../deps/$fresh/server.ts";
-import type { Project } from "../../../framework/mod.ts";
+import type { NetzoConfig } from "../../../framework/mod.ts";
 import { type User } from "../../../framework/plugins/auth/utils/db.ts";
 import { internalMiddlewares } from "./middlewares/internal.ts";
 import { externalMiddlewares } from "./middlewares/external.ts";
@@ -7,8 +7,6 @@ import Auth from "./routes/external/auth.tsx";
 import { getRoutesByProvider } from "./routes/external/[provider].ts";
 
 export * from "../../../deps/deno_kv_oauth/mod.ts";
-
-export type AuthOptions = Project["config"]["auth"];
 
 export type AuthState = {
   // internal:
@@ -30,7 +28,7 @@ export type AuthState = {
  * - `GET /auth/{provider}/callback` for the callback page
  * - `GET /auth/signout` for the sign-out page
  */
-export const auth = (options: AuthOptions): Plugin => {
+export const auth = (options: NetzoConfig["auth"]): Plugin => {
   if (options?.enabled) {
     // internal authentication via netzo (redirects all external requests to app)
     if (["internal"].includes(options?.level)) {

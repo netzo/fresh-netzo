@@ -25,4 +25,4 @@ export type {
   Paginated,
   Project,
   ProjectAssetsFile,
-} from "npm:/@netzo/api@1.0.56/lib/client.d.ts";
+} from "npm:/@netzo/api@1.0.57/lib/client.d.ts";

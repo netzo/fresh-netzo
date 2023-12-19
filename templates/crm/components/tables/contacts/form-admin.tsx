@@ -195,7 +195,7 @@ export function FormAdmin({ data, ids }: FormAdminProps) {
                   <a
                     href="/clients"
                     target="_blank"
-                    className="text-blue-500 text-xs"
+                    className="text-[hsl(var(--primary))] text-xs"
                   >
                     See clients
                   </a>

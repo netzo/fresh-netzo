@@ -5,8 +5,8 @@ import {
   SheetContent,
   SheetTrigger,
 } from "../../../../components/ui/sheet.tsx";
-import { Nav } from "./nav.tsx";
-import { NavItems } from "./nav.tsx";
+import { Nav } from "../components/nav.tsx";
+import { NavItems } from "../components/nav.tsx";
 
 export const MobileSidebar = () => {
   const [open, setOpen] = useState(false);

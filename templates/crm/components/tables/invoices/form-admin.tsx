@@ -141,7 +141,7 @@ export function FormAdmin({ data, ids }: FormAdminProps) {
                         format(new Date(field.value), "PP")
                       )
                       : <span>Pick a date</span>}
-                    <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                    <CalendarIcon className="w-4 h-4 ml-auto opacity-50" />
                   </Button>
                 </FormControl>
                 {showCalendar &&
@@ -254,7 +254,7 @@ export function FormAdmin({ data, ids }: FormAdminProps) {
                   <a
                     href="/clients"
                     target="_blank"
-                    className="text-blue-500 text-xs"
+                    className="text-[hsl(var(--primary))] text-xs"
                   >
                     See clients
                   </a>

@@ -17,7 +17,7 @@ export function CopyId({ id }: CopyIdProps) {
     <CopyIcon
       onClick={handleCopy}
       className={isCopied.value
-        ? "mx-2 text-blue-500"
+        ? "mx-2 text-[hsl(var(--primary))]"
         : "mx-2 text-gray-500 cursor-pointer"}
     />
   );

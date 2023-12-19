@@ -4,21 +4,16 @@
 /// <reference lib="dom.asynciterable" />
 /// <reference lib="deno.ns" />
 /// <reference lib="deno.unstable" />
+
 import type { FreshConfig, Manifest } from "../deps/$fresh/server.ts";
 import type { Project } from "../deps/@netzo/api/mod.ts";
-import replace from "https://esm.sh/v135/object-replace-mustache@1.0.2";
-import { deepMerge } from "../deps/std/collections/deep_merge.ts";
 import { AuthState } from "./plugins/auth/mod.ts";
-import { LayoutState } from "./plugins/layout/mod.ts";
-import { ThemeState } from "./plugins/theme/mod.ts";
-import { ApiState } from "./plugins/api/mod.ts";
-import { DevtoolsState } from "./plugins/devtools/mod.ts";
 import { createPluginsForModules } from "./plugins/utils.ts";
 import { Netzo } from "../core/mod.ts";
 import { log, logInfo, LOGS } from "./utils/console.ts";
 import { setEnvVars } from "./utils/mod.ts";
-import { CONFIG } from "./defaults.ts";
 import { createClient } from "../cli/src/utils/netzo.ts";
+import { getDevConfig } from "./config.ts";
 
 export type { Project };
 
@@ -30,10 +25,6 @@ export type NetzoState = {
   config: Project["config"];
   // injected by plugins:
   auth?: AuthState;
-  layout?: LayoutState;
-  theme?: ThemeState;
-  api?: ApiState;
-  devtools?: DevtoolsState;
   [k: string]: unknown;
 };
 
@@ -50,7 +41,7 @@ console.error = (msg) => {
 
 export async function createNetzoApp(
   partialConfig: Partial<NetzoConfig> = {},
-): Promise<Required<NetzoConfig>> {
+): Promise<NetzoConfig> {
   if (Deno.args.includes("build")) {
     return partialConfig as Required<NetzoConfig>;
   }
@@ -69,10 +60,13 @@ export async function createNetzoApp(
 
   const netzo = await Netzo({ apiKey: NETZO_API_KEY, baseURL: NETZO_API_URL });
 
-  const project = await netzo.api.projects[NETZO_PROJECT_ID].get<Project>();
-  if (!project) throw new Error(LOGS.notFoundProject);
-
   const DEV = ["development"].includes(NETZO_ENV);
+
+  const project = DEV
+    ? await netzo.api.projects[NETZO_PROJECT_ID].get<Project>()
+    : JSON.parse(Deno.env.get("NETZO_PROJECT") ?? "{}");
+
+  if (!project) throw new Error(LOGS.notFoundProject);
 
   Deno.env.set("NETZO_ENV", NETZO_ENV);
   Deno.env.set("NETZO_PROJECT_ID", NETZO_PROJECT_ID);
@@ -85,18 +79,10 @@ export async function createNetzoApp(
   if (DEV) setEnvVars(project.envVars?.development ?? {});
   const appUrl = Deno.env.get("NETZO_APP_URL") ?? "https://app.netzo.io";
 
-  // 1) merge defaults and remote config
-  const mergeOptions = {
-    arrays: "replace",
-    maps: "replace",
-    sets: "replace",
-  } as const;
-  let config = deepMerge(CONFIG, project.config, mergeOptions);
-  // 2) merge local config (local config takes precedence for better DX)
-  config = deepMerge(config, partialConfig, mergeOptions);
-  // 3) render values with mustache placeholders
-  config = replace(config, { project });
-  // 4) build state (pass single kv instance to plugins for performance)
+  // 1) merge defaults and remote config, then remote and local config, then render mustache value
+  const config = DEV ? getDevConfig(project, partialConfig) : project.config;
+
+  // 2) build state (pass single kv instance to plugins for performance)
   const state: NetzoState = { kv: await Deno.openKv(), netzo, config };
 
   if (DEV) logInfo(`Merged remote and local app configuratitions`);

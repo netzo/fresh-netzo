@@ -25,7 +25,7 @@ export const columns: ColumnDef<Invoice>[] = [
         checked={table.getIsAllPageRowsSelected()}
         onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
         aria-label="Select all"
-        className="translate-y-[2px] mr-2"
+        className="mx-2"
       />
     ),
     cell: ({ row }) => (
@@ -33,7 +33,7 @@ export const columns: ColumnDef<Invoice>[] = [
         checked={row.getIsSelected()}
         onCheckedChange={(value) => row.toggleSelected(!!value)}
         aria-label="Select row"
-        className="translate-y-[2px]"
+        className="mr-2"
       />
     ),
     enableSorting: false,
@@ -51,7 +51,7 @@ export const columns: ColumnDef<Invoice>[] = [
             <div className="flex">
               <a
                 href={`/invoices/${id}`}
-                className="whitespace-nowrap text-center font-medium text-blue-500 hover:text-blue-600 hover:underline"
+                className="whitespace-nowrap text-center font-medium text-[hsl(var(--primary))] hover:underline"
               >
                 {name}
               </a>
@@ -105,7 +105,7 @@ export const columns: ColumnDef<Invoice>[] = [
             <a
               href={`/clients/${clientId}`}
               target="_blank"
-              className="whitespace-nowrap text-center font-medium text-blue-500 hover:text-blue-600 hover:underline"
+              className="whitespace-nowrap text-center font-medium text-[hsl(var(--primary))] hover:underline"
             >
               {client?.name ? client.name : clientId}
             </a>

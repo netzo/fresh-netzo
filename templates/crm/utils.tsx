@@ -74,13 +74,10 @@ export const renderCellCheckbox = () => ({ column, row }) => {
     ? false
     : undefined;
   return (
-    // WORKAROUND: add "ml-8" to somewhat center checkbox since
-    // cannot center using "text-center" nor "mx-auto" on checkbox
     <Checkbox
       checked={value}
       disabled={true}
       aria-label="Select row"
-      className="translate-y-[2px] ml-8"
     />
   );
 };

@@ -1,8 +1,10 @@
+import type { NetzoConfig } from "../../../../framework/mod.ts";
 import { cn } from "../../../../components/utils.ts";
-import { LayoutOptions } from "../mod.ts";
 import { NavItem, NavItemHeader, NavItemUser } from "../islands/nav-item.tsx";
 
-export const Nav = ({ className, ...props }: LayoutOptions["nav"]) => {
+export const Nav = (
+  { className, ...props }: NetzoConfig["ui"]["nav"],
+) => {
   return (
     <div
       className={cn(

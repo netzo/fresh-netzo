@@ -1,4 +1,3 @@
-import { PlusIcon } from "netzo/deps/@radix-ui/react-icons.ts";
 import { Button } from "netzo/components/ui/button.tsx";
 import {
   Sheet,
@@ -17,8 +16,8 @@ export function SheetCreate() {
     <>
       <Sheet>
         <SheetTrigger asChild>
-          <Button className="ml-3 h-8 px-2 lg:px-3">
-            <PlusIcon className="mr-2 h-4 w-4" /> New contact
+          <Button className="h-8 px-2 ml-3 lg:px-3">
+            New contact
           </Button>
         </SheetTrigger>
         <SheetContent className="overflow-auto">

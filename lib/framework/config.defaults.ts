@@ -45,14 +45,14 @@ export const CONFIG: NetzoConfig = {
       },
     },
   },
-  head: {
-    title: "{{project.name}}",
-    description: "{{project.description}}",
-    favicon: "/favicon.svg",
-    image: "{{project.avatar}}",
-  },
-  layout: {
+  ui: {
     enabled: true,
+    head: {
+      title: "{{project.name}}",
+      description: "{{project.description}}",
+      favicon: "/favicon.svg",
+      image: "{{project.avatar}}",
+    },
     nav: {
       items: [
         {
@@ -78,11 +78,11 @@ export const CONFIG: NetzoConfig = {
   />
 </a>`,
     },
-  },
-  theme: {
-    enabled: true,
-    color: "slate",
-    radius: 0.5,
+    theme: {
+      enabled: true,
+      color: "slate",
+      radius: 0.5,
+    },
   },
   api: {
     enabled: true,

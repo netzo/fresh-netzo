@@ -5,7 +5,7 @@ import {
   createGoogleOAuthConfig,
   createOktaOAuthConfig,
 } from "../../../../../deps/deno_kv_oauth/mod.ts";
-import { Project } from "../../../../../deps/@netzo/api/mod.ts";
+import type { NetzoConfig } from "../../../../mod.ts";
 import { type PartialUserFromProvider } from "../db.ts";
 import { getUserGoogle, isGoogleSetup } from "./google.ts";
 import { getUserGithub, isGitHubSetup } from "./github.ts";
@@ -27,7 +27,7 @@ const setFromOptionsIfNotInEnv = (name: string, value: string) => {
 
 export const getOAuthConfig = (
   provider: OAuthProvider,
-  options: Project["providers"][OAuthProvider],
+  options: NetzoConfig["auth"]["providers"][OAuthProvider],
 ) => {
   const getError = (provider: OAuthProvider) =>
     new Error(

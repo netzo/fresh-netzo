@@ -37,14 +37,14 @@ export function DataTableColumnHeader<TData, TValue>({
           <Button
             variant="ghost"
             size="sm"
-            className="w-full h-8 data-[state=open]:bg-accent"
+            className="w-full h-10 rounded-none bg-inherit"
           >
             <span>{title}</span>
             {column.getIsSorted() === "desc"
-              ? <ArrowDownIcon className="ml-2 h-4 w-4" />
+              ? <ArrowDownIcon className="w-4 h-4 ml-2" />
               : column.getIsSorted() === "asc"
-              ? <ArrowUpIcon className="ml-2 h-4 w-4" />
-              : <CaretSortIcon className="ml-2 h-4 w-4" />}
+              ? <ArrowUpIcon className="w-4 h-4 ml-2" />
+              : <CaretSortIcon className="w-4 h-4 ml-2" />}
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="start">

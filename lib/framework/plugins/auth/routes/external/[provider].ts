@@ -4,7 +4,7 @@ import {
   signIn,
   signOut,
 } from "../../../../../deps/deno_kv_oauth/mod.ts";
-import type { Project } from "../../../../mod.ts";
+import type { NetzoConfig } from "../../../../mod.ts";
 import {
   createUser,
   getUser,
@@ -20,7 +20,7 @@ import {
 
 export const getRoutesByProvider = (
   provider: OAuthProvider,
-  options: Project["providers"][OAuthProvider],
+  options: NetzoConfig["auth"]["providers"][OAuthProvider],
 ): PluginRoute[] => {
   const routes = [
     {
