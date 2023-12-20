@@ -18,9 +18,8 @@ export function Nav({ className, ...props }: NetzoConfig["ui"]["nav"]) {
   return (
     <nav
       className={cn(
-        "h-screen w-[250px]",
+        "h-screen",
         // "bg-[hsl(var(--secondary))]",
-        "md:border-r md:border-[hsl(var(--border))]",
         className,
       )}
     >

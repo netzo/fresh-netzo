@@ -51,7 +51,7 @@ export default defineApp<NetzoState>((_req, ctx) => {
               <Nav
                 {...ui.nav}
                 sessionUser={sessionUser}
-                className="hidden md:flex md:flex-col"
+                className="hidden md:flex md:flex-col w-[250px] md:border-r md:border-[hsl(var(--border))]"
               />
             )}
 
