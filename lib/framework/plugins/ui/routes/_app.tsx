@@ -4,6 +4,7 @@ import { cn } from "../../../../components/utils.ts";
 import type { NetzoState } from "../../../../framework/mod.ts";
 import { Head } from "../components/head.tsx";
 import { Nav } from "../islands/nav.tsx";
+import { NavMobile } from "../islands/nav-mobile.tsx";
 import { Footer } from "../islands/footer.tsx";
 import Header from "../islands/header.tsx";
 
@@ -41,14 +42,29 @@ export default defineApp<NetzoState>((_req, ctx) => {
           <body
             f-client-nav
             className={cn(
-              "h-full overflow-x-hidden grid lg:grid-cols-[250px_auto]",
+              "h-full overflow-x-hidden",
+              "flex flex-row-reverse md:grid md:grid-cols-[250px_auto]",
               "bg-[hsl(var(--background))]",
             )}
           >
-            {ui.nav?.enabled && <Nav {...ui.nav} sessionUser={sessionUser} />}
+            {ui.nav?.enabled && (
+              <Nav
+                {...ui.nav}
+                sessionUser={sessionUser}
+                className="hidden md:flex md:flex-col"
+              />
+            )}
 
             <div className="flex flex-col w-full h-full overflow-x-hidden">
-              {ui.header?.enabled && <Header {...ui.header} />}
+              {ui.header?.enabled && (
+                <Header {...ui.header} nav={ui.nav}>
+                  <NavMobile
+                    {...ui.nav}
+                    sessionUser={sessionUser}
+                    className="mr-4 md:hidden"
+                  />
+                </Header>
+              )}
 
               <main className="flex-1">
                 <Partial name="main">

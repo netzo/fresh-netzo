@@ -16,11 +16,11 @@ type NavItemUserProps = {
 
 export function Nav({ className, ...props }: NetzoConfig["ui"]["nav"]) {
   return (
-    <div
+    <nav
       className={cn(
-        "h-full hidden lg:flex lg:flex-col",
-        "bg-[hsl(var(--secondary))]",
-        "lg:border-r lg:border-[hsl(var(--border))]",
+        "h-screen w-[250px]",
+        // "bg-[hsl(var(--secondary))]",
+        "md:border-r md:border-[hsl(var(--border))]",
         className,
       )}
     >
@@ -40,9 +40,9 @@ export function Nav({ className, ...props }: NetzoConfig["ui"]["nav"]) {
           <NavItemUser sessionUser={props?.sessionUser} />
         </div>
       )}
-    </div>
+    </nav>
   );
-};
+}
 
 export function getInitials(sessionUser: User) {
   const { name, authId, email } = sessionUser ?? {};
@@ -53,7 +53,7 @@ export function getInitials(sessionUser: User) {
     return authId[0]?.toUpperCase();
   }
   return email[0]?.toUpperCase();
-};
+}
 
 export function NavItem(item: NavItemProps) {
   return (

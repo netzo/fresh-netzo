@@ -101,8 +101,6 @@ export async function createNetzoApp(
       "netzo.ts",
       "fresh.gen.ts",
     );
-    console.log(main);
-    console.log(import.meta.resolve(main));
     app.service("projects").on("patched", async (_project: Project) => {
       log("✨ App configuration updated, restarting server...");
       // trigger reload without modifying file using touch

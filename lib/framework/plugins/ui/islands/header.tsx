@@ -1,9 +1,12 @@
+import type { ComponentProps } from "../../../../deps/preact.ts";
 import type { NetzoConfig } from "../../../../framework/mod.ts";
 import { cn } from "../../../../components/utils.ts";
 import { ThemeToggle } from "../../../../components/ui/theme-toggle.tsx";
 
 export default (
-  { className, ...props }: NetzoConfig["ui"]["header"],
+  { className, ...props }: NetzoConfig["ui"]["header"] & {
+    children: ComponentProps;
+  },
 ) => {
   return (
     <header
@@ -13,6 +16,8 @@ export default (
       )}
     >
       <div className="flex items-center">
+        {props.children}
+
         {/* NOTE: use dark:filter-invert to invert color on dark */}
         {props?.image && (
           <img
