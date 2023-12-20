@@ -16,7 +16,7 @@ import type { PresetShadcnOptions } from "./preset-shadcn/types.ts";
 
 export type PresetNetzoOptions = PresetUnoOptions & {
   /**
-   * @default 'zinc'
+   * @default 'blue'
    */
   color?: PresetShadcnOptions["color"];
   /**
@@ -66,7 +66,6 @@ export function presetNetzo(
         },
       }),
     ],
-
     // NOTE: build step required for transformers (see @unocss/unocss#1673)
     // transformers: [transformerDirectives(), transformerVariantGroup()],
   };

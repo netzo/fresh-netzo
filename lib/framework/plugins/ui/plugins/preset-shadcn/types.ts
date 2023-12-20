@@ -13,7 +13,7 @@ export type ColorOptions =
 
 export type PresetShadcnOptions = {
   /**
-   * @default 'zinc'
+   * @default 'blue'
    */
   color?: ColorOptions;
   /**

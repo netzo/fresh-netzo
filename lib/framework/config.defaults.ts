@@ -80,7 +80,7 @@ export const CONFIG: NetzoConfig = {
     },
     theme: {
       enabled: true,
-      color: "slate",
+      color: "blue",
       radius: 0.5,
     },
   },
