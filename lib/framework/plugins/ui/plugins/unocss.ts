@@ -37,10 +37,10 @@ a,hr{color:inherit}progress,sub,sup{vertical-align:baseline}blockquote,body,dd,d
 
 export type UnocssOptions = {
   /**
-   * Explicit UnoCSS config object, alternative to `uno.config.ts` file.
-   * Not supported for the client runtime in CSR mode.
+   * Absolute URL to a custom `uno.config.ts` file.
+   * Defaults to a URL pointing to the default `uno.config.ts` of the plugin.
    */
-  config?: UserConfig<Theme>;
+  configURL?: UserConfig<Theme>;
   /**
    * Enable AOT mode - run UnoCSS to extract styles during the build task.
    * Enabled by default.
@@ -127,15 +127,17 @@ async function runOverSource(uno: UnoGenerator): Promise<string> {
  */
 export const unocss = (
   {
-    config,
+    configURL,
     aot = true,
     ssr = true,
-    csr = false,
+    csr = true,
   }: UnocssOptions = {},
 ): Plugin => {
   // A uno.config.ts file is required in the project directory if a config object is not provided,
   // or to use the browser runtime
-  const configURL = new URL("./uno.config.ts", Deno.mainModule);
+  configURL = configURL
+    ? new URL(configURL, Deno.mainModule) // use custom file at provided configURL
+    : new URL("./uno.config.ts", import.meta.url); // use local uno.config.ts
 
   // Link to CSS file, if AOT mode is enabled
   const links = aot ? [{ rel: "stylesheet", href: "/uno.css" }] : [];
@@ -165,7 +167,7 @@ export const unocss = (
         data:application/javascript,
         import config from "${configURL}";
         import init from "https://esm.sh/v135/@unocss/runtime@0.58.0?target=esnext";
-        export default function() {
+        export default function(state) {
           window.__unocss = config;
           init();
         }`,
@@ -173,28 +175,14 @@ export const unocss = (
       : {},
 
     async configResolved(freshConfig) {
-      // Load config from file if required
-      const configFileExists = await exists(configURL, {
-        isFile: true,
-        isReadable: true,
-      });
-      if (config === undefined) {
-        try {
-          config = (await import(configURL.toString())).default;
-        } catch (error) {
-          if (configFileExists) {
-            throw error;
-          } else {
-            throw new Error(
-              "uno.config.ts not found in the project directory! Please create it or pass a config object to the UnoCSS plugin",
-            );
-          }
-        }
-      }
-
-      if (csr && !configFileExists) {
+      // Load config from file for AoT and SSR (CSR imports it via "main" script while hydrating)
+      let config;
+      try {
+        config = (await import(configURL.href)).default;
+      } catch (cause) {
         throw new Error(
-          "uno.config.ts not found in the project directory! Required for CSR mode.",
+          `Missing or invalid "uno.config.ts" file at "${configURL.href}". Be sure it is located at the same level as your project entrypoint (usually at the root of your project).`,
+          { cause },
         );
       }
 
@@ -263,4 +251,4 @@ export const unocss = (
       }
     },
   };
-}
+};
