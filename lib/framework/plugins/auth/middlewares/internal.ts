@@ -11,6 +11,7 @@ export const internalMiddlewares: PluginMiddleware<NetzoState>[] = [
     middleware: {
       handler: async (req, ctx) => {
         if (!["route"].includes(ctx.destination)) return await ctx.next();
+        if (ctx.url.pathname.startsWith("/api")) return await ctx.next(); // skip API routes
 
         if (Deno.env.get("NETZO_ENV") === "development") {
           logInfo(`[dev] Skipping internal auth middleware...`);
@@ -29,10 +30,9 @@ export const internalMiddlewares: PluginMiddleware<NetzoState>[] = [
         ctx.state.auth = { ...ctx.state.auth, origin, referer, isApp };
 
         if (!isApp) {
-          const url = new URL(req.url);
           const { NETZO_PROJECT_UID, NETZO_APP_URL } = Deno.env.toObject();
           const appUrl = new URL(
-            `/projects/${NETZO_PROJECT_UID}${url.search}${url.hash}`,
+            `/projects/${NETZO_PROJECT_UID}${ctx.url.search}${ctx.url.hash}`,
             NETZO_APP_URL,
           );
           return Response.redirect(appUrl.href, 302);

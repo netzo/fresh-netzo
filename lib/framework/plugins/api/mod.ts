@@ -56,10 +56,12 @@ export const api = (options?: NetzoConfig["api"]): Plugin => {
       {
         path: `${path}/[resource]`,
         handler: {
-          async GET(_req, ctx) {
+          async GET(req, ctx) {
             if (!methods!.includes("find")) return ERRORS.notAllowed();
+            const url = new URL(req.url);
+            const query = Object.fromEntries(url.searchParams);
             const { resource } = ctx.params;
-            const result = await db.find(resource, {});
+            const result = await db.find(resource, query);
             return Response.json(result);
           },
           async POST(req, ctx) {
