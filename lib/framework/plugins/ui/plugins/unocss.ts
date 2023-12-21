@@ -134,7 +134,7 @@ export const unocss = (
   configURL = configURL
     ? new URL(configURL, Deno.mainModule).href // use custom file at provided configURL
     // else use local uno.config.ts (MUST use absolute URL for this to work in production)
-    : "https://deno.land/x/netzo@0.3.22/framework/plugins/ui/plugins/uno.config.ts";
+    : "https://deno.land/x/netzo@0.3.23/framework/plugins/ui/plugins/uno.config.ts";
 
   // Link to CSS file, if AOT mode is enabled
   const links = aot ? [{ rel: "stylesheet", href: "/uno.css" }] : [];
