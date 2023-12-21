@@ -1,5 +1,5 @@
 import { deepMerge } from "../deps/std/collections/deep_merge.ts";
-import { replace } from "../deps//object-replace-mustache.ts";
+import { replace } from "../deps/object-replace-mustache.ts";
 import type { Project } from "../deps/@netzo/api/mod.ts";
 import { CONFIG } from "./config.defaults.ts";
 import { NetzoConfig } from "netzo/framework/mod.ts";
