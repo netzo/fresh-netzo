@@ -10,12 +10,6 @@ import * as $_ui_contacts_index from "./routes/(ui)/contacts/index.tsx";
 import * as $_ui_invoices_id_ from "./routes/(ui)/invoices/[id].tsx";
 import * as $_ui_invoices_index from "./routes/(ui)/invoices/index.tsx";
 import * as $_middleware from "./routes/_middleware.ts";
-import * as $api_clients_id_ from "./routes/api/clients/[id].tsx";
-import * as $api_clients_index from "./routes/api/clients/index.tsx";
-import * as $api_contacts_id_ from "./routes/api/contacts/[id].tsx";
-import * as $api_contacts_index from "./routes/api/contacts/index.tsx";
-import * as $api_invoices_id_ from "./routes/api/invoices/[id].tsx";
-import * as $api_invoices_index from "./routes/api/invoices/index.tsx";
 import * as $Clients from "./islands/Clients.tsx";
 import * as $Contacts from "./islands/Contacts.tsx";
 import * as $Invoices from "./islands/Invoices.tsx";
@@ -31,12 +25,6 @@ const manifest = {
     "./routes/(ui)/invoices/[id].tsx": $_ui_invoices_id_,
     "./routes/(ui)/invoices/index.tsx": $_ui_invoices_index,
     "./routes/_middleware.ts": $_middleware,
-    "./routes/api/clients/[id].tsx": $api_clients_id_,
-    "./routes/api/clients/index.tsx": $api_clients_index,
-    "./routes/api/contacts/[id].tsx": $api_contacts_id_,
-    "./routes/api/contacts/index.tsx": $api_contacts_index,
-    "./routes/api/invoices/[id].tsx": $api_invoices_id_,
-    "./routes/api/invoices/index.tsx": $api_invoices_index,
   },
   islands: {
     "./islands/Clients.tsx": $Clients,
