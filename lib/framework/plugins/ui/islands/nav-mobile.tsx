@@ -1,8 +1,7 @@
-import { effect, useSignal } from "../../../../deps/@preact/signals.ts";
 import type { NetzoConfig } from "../../../../framework/mod.ts";
 import { cn } from "../../../../components/utils.ts";
 import { Button } from "../../../../components/ui/button.tsx";
-import { useNav } from "../../../../composables/nav.ts";
+import { useToggle } from "../../../../composables/toggle.ts";
 import {
   Sheet,
   SheetContent,
@@ -11,7 +10,7 @@ import {
 import { Nav } from "./nav.tsx";
 
 export function NavMobile({ className, ...props }: NetzoConfig["ui"]["nav"]) {
-  const { open, toggle } = useNav();
+  const { value: open, toggle } = useToggle();
 
   return (
     <Sheet open={open.value} onOpenChange={(e) => open.value = e}>
