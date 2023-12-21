@@ -14,27 +14,13 @@ export function filterObjectsByKeyValues<T = Record<string, any>>(
   data: T[],
   filters: Record<string, any> = {},
 ) {
-  let filteredData = data;
-
-  if (Object.keys(filters).length > 0) {
-    for (const key in filters) {
-      if (filters[key]) {
-        const value = filters?.[key];
-
-        if (["string", "number", "boolean"].includes(typeof value)) {
-          filteredData = filteredData.filter((item) => {
-            const itemValue = _get(item, key, "") as string;
-            const itemValueString = itemValue?.toString();
-            return itemValue?.toLowerCase().includes(
-              itemValueString?.toLowerCase(),
-            );
-          });
-        }
-      }
-    }
-  }
-
-  return filteredData;
+  // filter item out if any of the filters fail, otherwise keep it
+  return !Object.keys(filters).length ? data : data.filter((item) => {
+    return !Object.entries(filters).some(([key, value]) => {
+      const itemValue = _get(item, key, "").toString();
+      return itemValue?.toLowerCase() !== value?.toLowerCase(); // case insensitive
+    });
+  });
 }
 
 export async function parseRequestBody(req: Request) {
