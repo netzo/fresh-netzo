@@ -104,7 +104,6 @@ export const columns: ColumnDef<Invoice>[] = [
           return (
             <a
               href={`/clients/${clientId}`}
-              target="_blank"
               className="whitespace-nowrap text-center font-medium text-[hsl(var(--primary))] hover:underline"
             >
               {client?.name ? client.name : clientId}

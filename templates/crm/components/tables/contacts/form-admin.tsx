@@ -121,7 +121,7 @@ export function FormAdmin({ data, ids }: FormAdminProps) {
               </FormItem>
             )}
           />
-          <fieldset className="border border-solid border-gray-400 rounded p-3">
+          <fieldset className="p-3 border border-gray-400 border-solid rounded">
             <legend>Notifications</legend>
             <FormField
               control={form.control}
@@ -194,7 +194,6 @@ export function FormAdmin({ data, ids }: FormAdminProps) {
                   </FormDescription>
                   <a
                     href="/clients"
-                    target="_blank"
                     className="text-[hsl(var(--primary))] text-xs"
                   >
                     See clients

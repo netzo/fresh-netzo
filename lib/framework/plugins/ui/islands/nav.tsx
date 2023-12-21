@@ -64,7 +64,8 @@ export function NavItem(item: NavItemProps) {
           buttonVariants({ variant: "ghost" }),
           `justify-start w-full`,
           `hover:text-[hsl(var(--primary))]`,
-          `aria-[current='page']:text-[hsl(var(--primary))]`,
+          // aria-current="true" is for ancestor links, aria-current="page" is for current page
+          `aria-[current='true']:text-[hsl(var(--primary))] aria-[current='page']:text-[hsl(var(--primary))]`,
         )}
       >
         {item.icon && <NavItemIcon {...item} />}

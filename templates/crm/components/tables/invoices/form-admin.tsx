@@ -253,7 +253,6 @@ export function FormAdmin({ data, ids }: FormAdminProps) {
                   </FormDescription>
                   <a
                     href="/clients"
-                    target="_blank"
                     className="text-[hsl(var(--primary))] text-xs"
                   >
                     See clients
