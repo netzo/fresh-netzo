@@ -8,17 +8,13 @@ import {
   type UserConfig,
 } from "https://esm.sh/v135/@unocss/core@0.58.0?target=esnext";
 import type { Theme } from "https://esm.sh/v135/@unocss/preset-uno@0.58.0?target=esnext";
-import {
-  Plugin,
-  type PluginRenderStyleTag,
-} from "../../../../deps/$fresh/server.ts";
+import { Plugin } from "../../../../deps/$fresh/server.ts";
 import {
   dirname,
   fromFileUrl,
   join,
   walk,
 } from "../../../../deps/$fresh/server/deps.ts";
-import { exists } from "../../../../deps/std/fs/exists.ts";
 
 type PreactOptions = typeof preactOptions & { __b?: (vnode: VNode) => void };
 
@@ -40,7 +36,7 @@ export type UnocssOptions = {
    * Absolute URL to a custom `uno.config.ts` file.
    * Defaults to a URL pointing to the default `uno.config.ts` of the plugin.
    */
-  configURL?: UserConfig<Theme>;
+  configURL?: string;
   /**
    * Enable AOT mode - run UnoCSS to extract styles during the build task.
    * Enabled by default.
@@ -136,8 +132,9 @@ export const unocss = (
   // A uno.config.ts file is required in the project directory if a config object is not provided,
   // or to use the browser runtime
   configURL = configURL
-    ? new URL(configURL, Deno.mainModule) // use custom file at provided configURL
-    : new URL("./uno.config.ts", import.meta.url); // use local uno.config.ts
+    ? new URL(configURL, Deno.mainModule).href // use custom file at provided configURL
+    // else use local uno.config.ts (MUST use absolute URL for this to work in production)
+    : "https://deno.land/x/netzo@0.3.22/framework/plugins/ui/plugins/uno.config.ts";
 
   // Link to CSS file, if AOT mode is enabled
   const links = aot ? [{ rel: "stylesheet", href: "/uno.css" }] : [];
@@ -178,10 +175,10 @@ export const unocss = (
       // Load config from file for AoT and SSR (CSR imports it via "main" script while hydrating)
       let config;
       try {
-        config = (await import(configURL.href)).default;
+        config = (await import(configURL)).default;
       } catch (cause) {
         throw new Error(
-          `Missing or invalid "uno.config.ts" file at "${configURL.href}". Be sure it is located at the same level as your project entrypoint (usually at the root of your project).`,
+          `Missing or invalid "uno.config.ts" file at "${configURL}". Be sure it is located at the same level as your project entrypoint (usually at the root of your project).`,
           { cause },
         );
       }
