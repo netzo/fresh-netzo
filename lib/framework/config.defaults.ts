@@ -9,6 +9,7 @@ export const CONFIG: NetzoConfig = {
     caption:
       'By signing in you agree to the <a href="/" target="_blank">Terms of Service</a> and <a href="/" target="_blank">Privacy Policy</a>',
     providers: {
+      netzo: { enabled: false },
       email: { enabled: false },
       google: {
         enabled: false,
@@ -41,28 +42,23 @@ export const CONFIG: NetzoConfig = {
   },
   ui: {
     head: {
-      enabled: false,
       title: "{{project.name}}",
       description: "{{project.description}}",
       favicon: "/favicon.svg",
       image: "{{project.avatar}}",
     },
     nav: {
-      enabled: false,
       items: [],
     },
     header: {
-      enabled: false,
       title: "{{project.name}}",
       description: "{{project.description}}",
       image: "{{project.avatar}}",
     },
     footer: {
-      enabled: true,
       innerHTML: "",
     },
     theme: {
-      enabled: false,
       color: "blue",
       radius: 0.5,
     },

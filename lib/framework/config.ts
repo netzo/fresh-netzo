@@ -21,8 +21,10 @@ export const getDevConfig = (
   // 3) render values with mustache placeholders
   config = replace(config, {
     project: {
+      uid: project.uid,
       name: project.name,
       description: project.description,
+      labels: project.labels,
       avatar: project.avatar,
     }, // minimize passed in values for security
     ...Deno.env.toObject(), // make al runtime environment variables available
