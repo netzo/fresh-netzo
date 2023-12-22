@@ -7,19 +7,20 @@ import { Nav } from "../islands/nav.tsx";
 import { NavMobile } from "../islands/nav-mobile.tsx";
 import { Footer } from "../islands/footer.tsx";
 import Header from "../islands/header.tsx";
+import { enabled } from "../../mod.ts";
 
 export default defineApp<NetzoState>((_req, ctx) => {
   const { auth, ui } = ctx.state.config;
   const { sessionId, sessionUser } = ctx.state.auth ?? {};
 
-  const externalAuthEnabled = auth?.enabled && auth.level === "external";
+  const enabledExternalAuth = enabled(auth) && auth.level === "external";
 
   return (
     <html className="h-full overflow-hidden">
       <head>
-        {ui.head?.enabled && <Head href={ctx.url.href} {...ui.head} />}
+        {enabled(ui?.head) && <Head href={ctx.url.href} {...ui.head} />}
       </head>
-      {externalAuthEnabled && !sessionId
+      {enabledExternalAuth && !sessionId
         ? (
           <body
             className={cn(
@@ -32,7 +33,7 @@ export default defineApp<NetzoState>((_req, ctx) => {
                 <ctx.Component />
               </main>
 
-              {ui.footer?.enabled && (
+              {enabled(ui?.footer) && (
                 <Footer className="sticky bottom-0" {...ui.footer} />
               )}
             </div>
@@ -43,11 +44,12 @@ export default defineApp<NetzoState>((_req, ctx) => {
             f-client-nav
             className={cn(
               "h-full overflow-x-hidden",
-              "flex flex-row-reverse md:grid md:grid-cols-[250px_auto]",
+              enabled(ui?.nav) &&
+                "flex flex-row-reverse md:grid md:grid-cols-[250px_auto]",
               "bg-[hsl(var(--background))]",
             )}
           >
-            {ui.nav?.enabled && (
+            {enabled(ui?.nav) && (
               <Nav
                 {...ui.nav}
                 sessionUser={sessionUser}
@@ -56,7 +58,7 @@ export default defineApp<NetzoState>((_req, ctx) => {
             )}
 
             <div className="flex flex-col w-full h-full overflow-x-hidden">
-              {ui.header?.enabled && (
+              {enabled(ui?.header) && (
                 <Header {...ui.header} nav={ui.nav}>
                   <NavMobile
                     {...ui.nav}
@@ -72,7 +74,7 @@ export default defineApp<NetzoState>((_req, ctx) => {
                 </Partial>
               </main>
 
-              {ui.footer?.enabled && (
+              {enabled(ui?.footer) && (
                 <Footer className="sticky bottom-0" {...ui.footer} />
               )}
             </div>

@@ -1,11 +1,6 @@
 import type { NetzoConfig } from "../../../../framework/mod.ts";
+import { type Signal, useSignal } from "../../../../deps/@preact/signals.ts";
 import { cn } from "../../../../components/utils.ts";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "../../../../components/ui/accordion.tsx";
 import { buttonVariants } from "../../../../components/ui/button.tsx";
 import {
   Avatar,
@@ -13,14 +8,29 @@ import {
   AvatarImage,
 } from "../../../../components/ui/avatar.tsx";
 import type { User } from "../../../../framework/plugins/auth/utils/db.ts";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "./nav-item-accordion.tsx";
 
-type NavItemProps = NetzoConfig["ui"]["nav"]["items"][number];
+type NavItemProps = NetzoConfig["ui"]["nav"]["items"][number] & {
+  open: Signal<boolean>;
+  toggle: () => void;
+};
 
 type NavItemUserProps = {
   sessionUser: User;
 };
 
 export function Nav({ className, ...props }: NetzoConfig["ui"]["nav"]) {
+  const items: NavItemProps = props?.items?.map((item: NavItemProps) => ({
+    ...item,
+    open: useSignal(item?.open ?? true), // allow setting a default open state
+    toggle: () => item.open.value = !item.open.value,
+  }));
+
   return (
     <nav
       className={cn(
@@ -29,16 +39,37 @@ export function Nav({ className, ...props }: NetzoConfig["ui"]["nav"]) {
         className,
       )}
     >
-      <div className="flex-1 py-4 space-y-4">
-        {props?.items.map((item) => (
-          <div className="px-3 py-2">
-            {item?.items?.length
-              ? <NavItemHeader {...item} />
-              : <NavItem {...item} />}
-            {item?.items?.map((item) => <NavItem {...item} />)}
-          </div>
-        ))}
-      </div>
+      {items?.map((item: NavItemProps) =>
+        item?.items?.length
+          ? (
+            <Accordion
+              type="single"
+              collapsible
+              className="space-y-2"
+              key={item.text}
+              value={item.open.value}
+              onValueChange={(e) => item.open.value = e}
+            >
+              <AccordionItem value={item.text} className="border-none">
+                <AccordionTrigger
+                  className={cn(buttonVariants({ variant: "ghost" }))}
+                >
+                  <NavItem {...item} />
+                </AccordionTrigger>
+                <AccordionContent className="pb-1 pl-4 mt-2">
+                  {item.items?.map((subItem) => (
+                    <NavItem
+                      {...subItem}
+                      key={subItem.text}
+                      onClick={() => subItem.open.value = false}
+                    />
+                  ))}
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          )
+          : <NavItem {...item} onClick={() => item.open.value = false} />
+      )}
 
       {/* IMPORTANT: disable client-side navigation for logout */}
       {props?.sessionUser && (
@@ -50,50 +81,34 @@ export function Nav({ className, ...props }: NetzoConfig["ui"]["nav"]) {
   );
 }
 
-export function getInitials(sessionUser: User) {
-  const { name, authId, email } = sessionUser ?? {};
-  if (name) {
-    const [first, last] = name.split(" ");
-    return `${first[0]}${last[0]}`?.toUpperCase();
-  } else if (authId) {
-    return authId[0]?.toUpperCase();
-  }
-  return email[0]?.toUpperCase();
-}
-
-export function NavItem(item: NavItemProps) {
+export function NavItem(props: NavItemProps) {
   return (
-    <div className="space-y-1">
-      <a
-        href={item.href}
-        target={item.target}
-        className={cn(
-          buttonVariants({ variant: "ghost" }),
-          `justify-start w-full`,
-          `hover:text-[hsl(var(--primary))]`,
-          // aria-current="true" is for ancestor links, aria-current="page" is for current page
-          `aria-[current='true']:text-[hsl(var(--primary))] aria-[current='page']:text-[hsl(var(--primary))]`,
-        )}
-      >
-        {item.icon && <NavItemIcon {...item} />}
-        {item.text}
-      </a>
-    </div>
+    <a
+      href={props.href}
+      target={props.target}
+      className={cn(
+        buttonVariants({ variant: "ghost" }),
+        `flex justify-between w-full`,
+        `hover:text-[hsl(var(--primary))]`,
+        // aria-current="true" is for ancestor links, aria-current="page" is for current page
+        `aria-[current='true']:text-[hsl(var(--primary))] aria-[current='page']:text-[hsl(var(--primary))]`,
+      )}
+    >
+      <div className="flex items-center flex-1 gap-2">
+        {props.icon && <NavItemIcon {...props} />}
+        {props.text}
+      </div>
+      {props?.items?.length && props.open?.value && (
+        <div className="w-4 h-4 transition-transform duration-200 mdi-chevron-down shrink-0 text-muted-foreground" />
+      )}
+    </a>
   );
 }
 
-export function NavItemHeader(item: NavItemProps) {
-  return (
-    <h2 className="px-4 mb-2 text-lg font-semibold tracking-tight">
-      {item.text}
-    </h2>
-  );
-}
-
-export function NavItemIcon(item: NavItemProps) {
-  return item.icon.startsWith("http")
-    ? <img src={item.icon} className="w-4 h-4 mr-2" />
-    : <div className={cn(item.icon, `w-4 h-4 mr-2`)} />;
+export function NavItemIcon(props: NavItemProps) {
+  return props.icon.startsWith("http")
+    ? <img src={props.icon} className="w-4 h-4 mr-2" />
+    : <div className={cn(props.icon, `w-4 h-4 mr-2`)} />;
 }
 
 // IMPORTANT: disable client-side navigation for logout in component
@@ -117,7 +132,7 @@ export function NavItemUser(props: NavItemUserProps) {
         />
         <AvatarFallback>{getInitials(props.sessionUser)}</AvatarFallback>
       </Avatar>
-      <div className="w-full ml-4 space-y-1">
+      <div className="w-full">
         {props.sessionUser.authId && (
           <p className="text-sm font-medium leading-none">
             {props.sessionUser.authId}
@@ -132,4 +147,17 @@ export function NavItemUser(props: NavItemUserProps) {
       <div className="i-mdi-logout" />
     </a>
   );
+}
+
+// utils:
+
+export function getInitials(sessionUser: User) {
+  const { name, authId, email } = sessionUser ?? {};
+  if (name) {
+    const [first, last] = name.split(" ");
+    return `${first[0]}${last[0]}`?.toUpperCase();
+  } else if (authId) {
+    return authId[0]?.toUpperCase();
+  }
+  return email[0]?.toUpperCase();
 }
