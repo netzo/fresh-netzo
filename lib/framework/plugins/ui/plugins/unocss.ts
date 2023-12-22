@@ -123,19 +123,15 @@ async function runOverSource(uno: UnoGenerator): Promise<string> {
  */
 export const unocss = (
   {
-    configURL,
+    // NOTE: configURL must be absolute (e.g. new URL(configURL, Deno.mainModule).href)
+    // defaults to local uno.config.ts file (MUST be absolute URL to work for deployments)
+    configURL =
+      "https://deno.land/x/netzo@0.3.24/framework/plugins/ui/plugins/uno.config.ts",
     aot = true,
     ssr = true,
     csr = true,
   }: UnocssOptions = {},
 ): Plugin => {
-  // A uno.config.ts file is required in the project directory if a config object is not provided,
-  // or to use the browser runtime
-  configURL = configURL
-    ? new URL(configURL, Deno.mainModule).href // use custom file at provided configURL
-    // else use local uno.config.ts (MUST use absolute URL for this to work in production)
-    : "https://deno.land/x/netzo@0.3.23/framework/plugins/ui/plugins/uno.config.ts";
-
   // Link to CSS file, if AOT mode is enabled
   const links = aot ? [{ rel: "stylesheet", href: "/uno.css" }] : [];
 
