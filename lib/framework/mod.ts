@@ -62,9 +62,7 @@ export async function createNetzoApp(
 
   const DEV = ["development"].includes(NETZO_ENV);
 
-  const project = DEV
-    ? await netzo.api.projects[NETZO_PROJECT_ID].get<Project>()
-    : JSON.parse(Deno.env.get("NETZO_PROJECT") ?? "{}");
+  const project = await netzo.api.projects[NETZO_PROJECT_ID].get<Project>();
 
   if (!project) throw new Error(LOGS.notFoundProject);
 
