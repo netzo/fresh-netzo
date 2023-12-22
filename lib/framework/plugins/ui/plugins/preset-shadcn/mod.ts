@@ -51,6 +51,8 @@ export function presetShadcn(
   const { color = "blue", radius = 0.5 } = options;
   const cssVars = generateCSSVars(color, radius);
 
+  // IMPORTANT: note that functions are dropped for CSR mode due to by
+  // esbuild serialization so we use non-function syntax where possible
   return {
     name: "unocss-preset-shadcn",
 
