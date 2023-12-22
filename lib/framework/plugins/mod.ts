@@ -2,6 +2,10 @@ import type { Plugin } from "../../deps/$fresh/server.ts";
 import { logInfo } from "../utils/console.ts";
 import type { NetzoState } from "../mod.ts";
 
+export const enabled = (obj: { enabled?: boolean }) => obj?.enabled !== false;
+
+export const disabled = (obj: { enabled?: boolean }) => obj?.enabled === false;
+
 /**
  * An internal utility to bundle plugins based on app configuration.
  * @param state {NetzoState} - the app configuration
@@ -16,9 +20,13 @@ export async function createPluginsForModules(
   const pluginsWithDuplicates = (await Promise.all(
     PLUGINS.map(async (name) => {
       if (["ui"].includes(name)) {
-        const enabled = UI.filter((key) => !!state.config?.ui?.[key]?.enabled);
-        if (!enabled.length) return; // skip if no UI plugins are enabled
-      } else if (!state.config?.[name]?.enabled) return; // skip disabled plugins
+        const ui = state?.config?.ui;
+        if (!ui) return; // skip if ui is not set at least to {}
+        const uiEnabled = UI.filter((key) => enabled(ui?.[key]));
+        console.log(uiEnabled);
+        if (!uiEnabled.length) return; // skip if ui is set but no plugins are enabled
+      } // skip disabled plugins (note that they are disabled only if set to false)
+      else if (disabled(state.config?.[name])) return;
 
       switch (name) {
         case "auth": {

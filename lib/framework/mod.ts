@@ -8,7 +8,7 @@
 import type { FreshConfig, Manifest } from "../deps/$fresh/server.ts";
 import type { Project } from "../deps/@netzo/api/mod.ts";
 import { AuthState } from "./plugins/auth/mod.ts";
-import { createPluginsForModules } from "./plugins/utils.ts";
+import { createPluginsForModules } from "./plugins/mod.ts";
 import { Netzo } from "../core/mod.ts";
 import { log, logInfo, LOGS } from "./utils/console.ts";
 import { setEnvVars } from "./utils/mod.ts";
