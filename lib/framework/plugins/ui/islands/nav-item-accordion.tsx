@@ -8,7 +8,7 @@ import {
   type Ref,
   useState,
 } from "../../../../deps/preact/compat.ts";
-import { cn } from "../utils.ts";
+import { cn } from "../../../../components/utils.ts";
 
 const Accordion = AccordionPrimitive.Root;
 
@@ -38,6 +38,7 @@ const AccordionTrigger = forwardRef<
       {...props}
     >
       {children}
+      <ChevronDownIcon className="w-4 h-4 transition-transform duration-200 shrink-0 text-muted-foreground" />
     </AccordionPrimitive.Trigger>
   </AccordionPrimitive.Header>
 ));
@@ -49,10 +50,13 @@ const AccordionContent = forwardRef<
 >(({ className, children, ...props }, ref) => (
   <AccordionPrimitive.Content
     ref={ref}
-    className="overflow-hidden text-sm data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+    className={cn(
+      "overflow-hidden text-sm data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down",
+      className,
+    )}
     {...props}
   >
-    <div className={cn("pb-4 pt-0", className)}>{children}</div>
+    <div className="pt-0 pb-4">{children}</div>
   </AccordionPrimitive.Content>
 ));
 AccordionContent.displayName = AccordionPrimitive.Content.displayName;

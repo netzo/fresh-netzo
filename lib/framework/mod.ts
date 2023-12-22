@@ -72,7 +72,6 @@ export async function createNetzoApp(
   Deno.env.set("NETZO_API_KEY", NETZO_API_KEY);
   Deno.env.set("NETZO_API_URL", NETZO_API_URL);
   Deno.env.set("NETZO_APP_URL", NETZO_APP_URL);
-  if (!DEV) Deno.env.set("NETZO_DATABASE_ID", project.databaseId);
 
   if (DEV) setEnvVars(project.envVars?.development ?? {});
   const appUrl = Deno.env.get("NETZO_APP_URL") ?? "https://app.netzo.io";

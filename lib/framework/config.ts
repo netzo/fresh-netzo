@@ -19,7 +19,14 @@ export const getDevConfig = (
   // 2) merge local config (local config takes precedence for better DX)
   config = deepMerge(config, partialConfig, mergeOptions);
   // 3) render values with mustache placeholders
-  config = replace(config, { project });
+  config = replace(config, {
+    project: {
+      name: project.name,
+      description: project.description,
+      avatar: project.avatar,
+    }, // minimize passed in values for security
+    ...Deno.env.toObject(), // make al runtime environment variables available
+  });
 
   return config;
 };

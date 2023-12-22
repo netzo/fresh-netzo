@@ -2,9 +2,8 @@ import type { NetzoConfig } from "./mod.ts";
 
 export const CONFIG: NetzoConfig = {
   auth: {
-    enabled: true,
+    enabled: false,
     level: "internal",
-    userIds: [],
     title: "{{project.name}}",
     description: "Sign in to access the app",
     caption:
@@ -13,79 +12,63 @@ export const CONFIG: NetzoConfig = {
       email: { enabled: false },
       google: {
         enabled: false,
-        clientId: "{{project.envVars.development.GOOGLE_CLIENT_ID}}",
-        clientSecret: "{{project.envVars.development.GOOGLE_CLIENT_SECRET}}",
-        redirectUri: "/auth/google/callback",
+        clientId: "{{GOOGLE_CLIENT_ID}}",
+        clientSecret: "{{GOOGLE_CLIENT_SECRET}}",
       },
       github: {
         enabled: false,
-        clientId: "{{project.envVars.development.GITHUB_CLIENT_ID}}",
-        clientSecret: "{{project.envVars.development.GITHUB_CLIENT_SECRET}}",
-        redirectUri: "/auth/github/callback",
+        clientId: "{{GITHUB_CLIENT_ID}}",
+        clientSecret: "{{GITHUB_CLIENT_SECRET}}",
       },
       gitlab: {
         enabled: false,
-        clientId: "{{project.envVars.development.GITLAB_CLIENT_ID}}",
-        clientSecret: "{{project.envVars.development.GITLAB_CLIENT_SECRET}}",
-        redirectUri: "/auth/gitlab/callback",
+        clientId: "{{GITLAB_CLIENT_ID}}",
+        clientSecret: "{{GITLAB_CLIENT_SECRET}}",
       },
       auth0: {
         enabled: false,
-        clientId: "{{project.envVars.development.AUTH0_CLIENT_ID}}",
-        clientSecret: "{{project.envVars.development.AUTH0_CLIENT_SECRET}}",
-        domain: "{{project.envVars.development.AUTH0_DOMAIN}}",
-        redirectUri: "/auth/auth0/callback",
+        clientId: "{{AUTH0_CLIENT_ID}}",
+        clientSecret: "{{AUTH0_CLIENT_SECRET}}",
+        domain: "{{AUTH0_DOMAIN}}",
       },
       okta: {
         enabled: false,
-        clientId: "{{project.envVars.development.OKTA_CLIENT_ID}}",
-        clientSecret: "{{project.envVars.development.OKTA_CLIENT_SECRET}}",
-        domain: "{{project.envVars.development.OKTA_DOMAIN}}",
-        redirectUri: "/auth/okta/callback",
+        clientId: "{{OKTA_CLIENT_ID}}",
+        clientSecret: "{{OKTA_CLIENT_SECRET}}",
+        domain: "{{OKTA_DOMAIN}}",
       },
     },
   },
   ui: {
-    enabled: true,
     head: {
+      enabled: false,
       title: "{{project.name}}",
       description: "{{project.description}}",
       favicon: "/favicon.svg",
       image: "{{project.avatar}}",
     },
     nav: {
-      items: [
-        {
-          text: "Overview",
-          items: [
-            { icon: "mdi-home", text: "Home", href: "/" },
-            { icon: "mdi-web", text: "Website", href: "https://netzo.io/" },
-          ],
-        },
-      ],
+      enabled: false,
+      items: [],
     },
     header: {
+      enabled: false,
       title: "{{project.name}}",
       description: "{{project.description}}",
       image: "{{project.avatar}}",
     },
     footer: {
-      innerHTML: `<a href="https://netzo.io/" target="_blank">
-  <img
-    src="https://netzo.io/logos/built-with-netzo-light.svg"
-    alt="Built with Netzo"
-    class="h-[32px]"
-  />
-</a>`,
+      enabled: true,
+      innerHTML: "",
     },
     theme: {
-      enabled: true,
+      enabled: false,
       color: "blue",
       radius: 0.5,
     },
   },
   api: {
-    enabled: true,
+    enabled: false,
     path: "/api",
     idField: "id",
     methods: ["find", "get", "create", "update", "patch", "remove"],

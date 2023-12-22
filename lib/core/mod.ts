@@ -6,14 +6,7 @@ import { createNotification } from "./notification.ts";
 export type NetzoOptions = {
   apiKey: string;
   baseURL?: string;
-  // databaseURL?: string;
 };
-
-// const NETZO_DATABASE_URL = Deno.env.get("NETZO_DATABASE_ID")
-//   ? `https://api.deno.com/databases/${
-//     Deno.env.get("NETZO_DATABASE_ID")
-//   }/connect`
-//   : undefined;
 
 /**
  * SDK constructor function for Netzo
@@ -25,13 +18,12 @@ export type NetzoOptions = {
 export const Netzo = async ({
   apiKey = Deno.env.get("NETZO_API_KEY")!,
   baseURL = Deno.env.get("NETZO_API_URL") || "https://api.netzo.io",
-  // databaseURL = Deno.env.get("NETZO_DATABASE_URL") ?? NETZO_DATABASE_URL,
 }: NetzoOptions = {} as NetzoOptions) => {
   const { api } = createApi({ apiKey, baseURL });
 
   const cron = createCron(api);
 
-  // DISABLED: skip passing 'databaseURL' for now since Subhosting
+  // DISABLED: cannot pass 'databaseURL' for now since Subhosting
   // throws "TypeError: Non-default databases are not supported"
   const kv = await Deno.openKv();
 
