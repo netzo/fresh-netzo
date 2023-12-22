@@ -5,7 +5,6 @@ import {
   type ComponentProps,
   forwardRef,
   type Ref,
-  useState,
 } from "../../deps/preact/compat.ts";
 import { cn } from "../utils.ts";
 
