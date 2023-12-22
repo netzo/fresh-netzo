@@ -34,15 +34,9 @@ a,hr{color:inherit}progress,sub,sup{vertical-align:baseline}blockquote,body,dd,d
 
 export type UnocssOptions = {
   /**
-   * Explicit UnoCSS config object, alternative to `uno.config.ts` file.
-   * Not supported for the client runtime in CSR mode.
+   * Inline UnoCSS config object ()`uno.config.ts` file not supported)
    */
-  config?: UserConfig<Theme>;
-  /**
-   * The same as `config`, but base64 encoded to circumvent esbuild dropping
-   * functions when serializing plugin state.
-   */
-  configCSR?: string;
+  config: UserConfig<Theme>;
   /**
    * Enable AOT mode - run UnoCSS to extract styles during the build task.
    * Enabled by default.
@@ -127,26 +121,17 @@ async function runOverSource(uno: UnoGenerator): Promise<string> {
 /**
  * Plugin to automatically generates CSS utility classes
  */
-export const unocss = (
-  {
-    config,
-    configCSR,
-    aot = true,
-    ssr = true,
-    csr = true,
-  }: UnocssOptions = {},
-): Plugin => {
-  // A uno.config.ts file is required in the project directory if a config object is not provided,
-  // or to use the browser runtime
-  const configURL = configCSR
-    ? `data:text/javascript;base64,${btoa(configCSR)}`
-    : new URL("./uno.config.ts", Deno.mainModule);
-
+export const unocss = ({
+  config,
+  aot = true,
+  ssr = true,
+  csr = true,
+}: UnocssOptions): Plugin => {
   // Link to CSS file, if AOT mode is enabled
   const links = aot ? [{ rel: "stylesheet", href: "/uno.css" }] : [];
 
   // Add entrypoint, if CSR mode is enabled
-  const scripts = csr ? [{ entrypoint: "main", state: {} }] : [];
+  const scripts = csr ? [{ entrypoint: "main", state: { config } }] : [];
 
   // In CSR-only mode, include the style resets using an inline style tag
   const styles = csr && !aot && !ssr ? [{ cssText: unoResetCSS }] : [];
@@ -165,46 +150,20 @@ export const unocss = (
 
     // Optional client runtime
     entrypoints: csr
+      // WORKAROUND: esbulid serialization drops functions so the CSR config will be
+      // a subset of the AOT and SSR configs but there is no way around this currently
       ? {
         "main": `
         data:application/javascript,
-        import config from "${configURL}";
         import init from "https://esm.sh/v135/@unocss/runtime@0.58.0?target=esnext";
         export default function(state) {
-          window.__unocss = config;
-          window.console.log('configURL', '${configURL}');
-          window.console.log('config', config);
+          window.__unocss = state.config;
           init();
         }`,
       }
       : {},
 
     async configResolved(freshConfig) {
-      // Load config from file if required
-      const configFileExists = await exists(configURL, {
-        isFile: true,
-        isReadable: true,
-      });
-      if (config === undefined) {
-        try {
-          config = (await import(configURL.toString())).default;
-        } catch (error) {
-          if (configFileExists) {
-            throw error;
-          } else {
-            throw new Error(
-              "uno.config.ts not found in the project directory! Please create it or pass a config object to the UnoCSS plugin",
-            );
-          }
-        }
-      }
-
-      // if (csr && !configFileExists) {
-      //   throw new Error(
-      //     "uno.config.ts not found in the project directory! Required for CSR mode.",
-      //   );
-      // }
-
       // Create the generator object
       uno = new UnoGenerator(config);
 

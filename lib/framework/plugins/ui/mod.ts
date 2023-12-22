@@ -6,34 +6,6 @@ import _App from "./routes/_app.tsx";
 import _404 from "./routes/_404.tsx";
 import _500 from "./routes/_500.tsx";
 
-const createUnoConfig = ({ color, radius }: NetzoConfig["ui"]["theme"]) => {
-  return defineConfig({ presets: [presetNetzo({ color, radius })] });
-};
-
-/**
- * WORKAROUND: esbuild drops functions when serializing plugin state
- * so passing state.config to the "main" entrypoint script for CSR
- * does not work, and the client must be able to import the config
- * from the client (during hydration), therefore we need to base64
- * encode the config and pass it as a string to the client to avoid
- * the esbuild issue of dropping functions when serializing plugin.
- * Note that both config and configCSR should be the same, so we
- * initialize both from the same options (NetzoConfig["ui"]["theme"])
- * NOTE: no need to import and declare defineConfig() (avoids import)
- */
-const createUnoConfigCSR = ({ color, radius }: NetzoConfig["ui"]["theme"]) => {
-  // NOTE: must import presetNetzo from absolute URL since this is ran at client
-  return `import presetNetzo from "https://deno.land/x/netzo@0.3.26/framework/plugins/ui/plugins/preset-netzo.ts";
-
-export default {
-  presets: [presetNetzo({
-    color: "${color}",
-    radius: ${radius},
-  })],
-};
-`;
-};
-
 /**
  * Plugin to add layout (nav, header, footer) and theme (colors,
  * typography, etc.) powered by UnoCSS and netzo/components.
@@ -47,10 +19,14 @@ export const ui = (options?: NetzoConfig["ui"]): Plugin => {
   } = options ?? {} as NetzoConfig["ui"];
   return {
     ...unocss({
-      // used by AoT and SSR modes (no need to base64 encode)
-      config: createUnoConfig({ color, radius }),
-      // used by CSR mode (base64 encoded for proper serialization)
-      configCSR: createUnoConfigCSR({ color, radius }),
+      // used by AoT and SSR modes, however CSR mode requires injecting the
+      // inlined config via plugin `state.config` which is serialized by esbuild
+      // with the current known issue of not supporting `Function` type, so any
+      // functions (e.g. preflight.[].getCSS() functions) are dropped in serialization.
+      // Any attempt to circumvent this issue by serializing in any other way has failed,
+      // so far. Importing from a base64 encoded module works in development but fails in
+      // production (e.g. `import(`data:text/javascript;base64,${btoa(unoConfigString)}`)
+      config: defineConfig({ presets: [presetNetzo({ color, radius })] }),
       aot: true,
       ssr: true,
       csr: true,

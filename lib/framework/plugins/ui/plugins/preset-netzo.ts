@@ -28,6 +28,8 @@ export type PresetNetzoOptions = PresetUnoOptions & {
 export function presetNetzo(
   options: PresetNetzoOptions = {},
 ): PresetOrFactory<Theme> | PresetOrFactory<Theme>[] {
+  // IMPORTANT: note that functions are dropped for CSR mode due to by
+  // esbuild serialization so we use non-function syntax where possible
   return {
     ...options,
 
