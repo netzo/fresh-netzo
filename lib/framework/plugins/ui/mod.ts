@@ -23,7 +23,7 @@ const createUnoConfig = ({ color, radius }: NetzoConfig["ui"]["theme"]) => {
  */
 const createUnoConfigCSR = ({ color, radius }: NetzoConfig["ui"]["theme"]) => {
   // NOTE: must import presetNetzo from absolute URL since this is ran at client
-  return `import presetNetzo from "https://deno.land/x/netzo@0.3.25/framework/plugins/ui/plugins/preset-netzo.ts";
+  return `import presetNetzo from "https://deno.land/x/netzo@0.3.26/framework/plugins/ui/plugins/preset-netzo.ts";
 
 export default {
   presets: [presetNetzo({
