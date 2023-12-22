@@ -15,6 +15,7 @@ import {
   join,
   walk,
 } from "../../../../deps/$fresh/server/deps.ts";
+import { exists } from "../../../../deps/std/fs/exists.ts";
 
 type PreactOptions = typeof preactOptions & { __b?: (vnode: VNode) => void };
 
@@ -33,10 +34,15 @@ a,hr{color:inherit}progress,sub,sup{vertical-align:baseline}blockquote,body,dd,d
 
 export type UnocssOptions = {
   /**
-   * Absolute URL to a custom `uno.config.ts` file.
-   * Defaults to a URL pointing to the default `uno.config.ts` of the plugin.
+   * Explicit UnoCSS config object, alternative to `uno.config.ts` file.
+   * Not supported for the client runtime in CSR mode.
    */
-  configURL?: string;
+  config?: UserConfig<Theme>;
+  /**
+   * The same as `config`, but base64 encoded to circumvent esbuild dropping
+   * functions when serializing plugin state.
+   */
+  configCSR?: string;
   /**
    * Enable AOT mode - run UnoCSS to extract styles during the build task.
    * Enabled by default.
@@ -123,15 +129,19 @@ async function runOverSource(uno: UnoGenerator): Promise<string> {
  */
 export const unocss = (
   {
-    // NOTE: configURL must be absolute (e.g. new URL(configURL, Deno.mainModule).href)
-    // defaults to local uno.config.ts file (MUST be absolute URL to work for deployments)
-    configURL =
-      "https://deno.land/x/netzo@0.3.24/framework/plugins/ui/plugins/uno.config.ts",
+    config,
+    configCSR,
     aot = true,
     ssr = true,
     csr = true,
   }: UnocssOptions = {},
 ): Plugin => {
+  // A uno.config.ts file is required in the project directory if a config object is not provided,
+  // or to use the browser runtime
+  const configURL = configCSR
+    ? `data:text/javascript;base64,${btoa(configCSR)}`
+    : new URL("./uno.config.ts", Deno.mainModule);
+
   // Link to CSS file, if AOT mode is enabled
   const links = aot ? [{ rel: "stylesheet", href: "/uno.css" }] : [];
 
@@ -162,22 +172,37 @@ export const unocss = (
         import init from "https://esm.sh/v135/@unocss/runtime@0.58.0?target=esnext";
         export default function(state) {
           window.__unocss = config;
+          window.console.log(config);
           init();
         }`,
       }
       : {},
 
     async configResolved(freshConfig) {
-      // Load config from file for AoT and SSR (CSR imports it via "main" script while hydrating)
-      let config;
-      try {
-        config = (await import(configURL)).default;
-      } catch (cause) {
-        throw new Error(
-          `Missing or invalid "uno.config.ts" file at "${configURL}". Be sure it is located at the same level as your project entrypoint (usually at the root of your project).`,
-          { cause },
-        );
+      // Load config from file if required
+      const configFileExists = await exists(configURL, {
+        isFile: true,
+        isReadable: true,
+      });
+      if (config === undefined) {
+        try {
+          config = (await import(configURL.toString())).default;
+        } catch (error) {
+          if (configFileExists) {
+            throw error;
+          } else {
+            throw new Error(
+              "uno.config.ts not found in the project directory! Please create it or pass a config object to the UnoCSS plugin",
+            );
+          }
+        }
       }
+
+      // if (csr && !configFileExists) {
+      //   throw new Error(
+      //     "uno.config.ts not found in the project directory! Required for CSR mode.",
+      //   );
+      // }
 
       // Create the generator object
       uno = new UnoGenerator(config);

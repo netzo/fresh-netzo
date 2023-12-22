@@ -29,19 +29,6 @@ export function Nav({ className, ...props }: NetzoConfig["ui"]["nav"]) {
         className,
       )}
     >
-      <Accordion type="single" collapsible className="w-full">
-        {props?.items.map((item, i) => (
-          <AccordionItem value={`nav-item-${i}`}>
-            <AccordionTrigger>
-              <NavItem {...item} />
-            </AccordionTrigger>
-            <AccordionContent>
-              {item?.items?.map((item) => <NavItem {...item} />)}
-            </AccordionContent>
-          </AccordionItem>
-        ))}
-      </Accordion>
-
       <div className="flex-1 py-4 space-y-4">
         {props?.items.map((item) => (
           <div className="px-3 py-2">
