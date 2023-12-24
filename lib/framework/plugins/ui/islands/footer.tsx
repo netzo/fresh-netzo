@@ -7,6 +7,9 @@ export const Footer = (
   { className, ...props }: NetzoConfig["ui"]["footer"],
 ) => {
   const { theme } = useTheme();
+  const src = useComputed(() =>
+    `https://netzo.io/logos/built-with-netzo-${theme.value}.svg`
+  );
   return (
     <footer
       className={cn(
@@ -23,11 +26,7 @@ export const Footer = (
         )
         : (
           <a href="https://netzo.io/" target="_blank">
-            <img
-              src={`https://netzo.io/logos/built-with-netzo-${theme.value}.svg`}
-              alt="Built with Netzo"
-              class="h-[32px]"
-            />
+            <img src={src.value} alt="Built with Netzo" class="h-[32px]" />
           </a>
         )}
     </footer>

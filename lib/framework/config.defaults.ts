@@ -9,7 +9,7 @@ export const CONFIG: NetzoConfig = {
     caption:
       'By signing in you agree to the <a href="/" target="_blank">Terms of Service</a> and <a href="/" target="_blank">Privacy Policy</a>',
     providers: {
-      netzo: { enabled: true, userIds: [] },
+      netzo: { enabled: false },
       email: { enabled: false },
       google: {
         enabled: false,
