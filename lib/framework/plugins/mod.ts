@@ -22,7 +22,6 @@ export async function createPluginsForModules(
         const ui = state?.config?.ui;
         if (!ui) return; // skip if ui is not set at least to {}
         const uiEnabled = UI.filter((key) => enabled(ui?.[key]));
-        console.log(uiEnabled);
         if (!uiEnabled.length) return; // skip if ui is set but no plugins are enabled
       } // skip disabled plugins (note that they are disabled only if set to false)
       else if (!enabled(state.config?.[name])) return;

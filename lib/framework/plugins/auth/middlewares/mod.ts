@@ -5,6 +5,7 @@ import type { NetzoState } from "../../../../framework/mod.ts";
 
 const skipAuth = (_req: Request, ctx: FreshContext<NetzoState>) => {
   if (!["route"].includes(ctx.destination)) return true;
+  if (ctx.url.pathname.startsWith("/auth/")) return true; // skip auth routes (signin, callback, signout)
   if (ctx.url.pathname.startsWith("/api")) return true; // skip API routes
   return false;
 };
@@ -68,9 +69,6 @@ export async function ensureSignedIn(
 
   // IMPORTANT: disable client-side navigation for around logout links to
   // skip partials which cause infinite redirects in auth middleware
-
-  // skip authentication routes (signin, callback, signout)
-  if (ctx.url.pathname.startsWith("/auth/")) return await ctx.next();
 
   // check auth state
   const sessionId = ctx.state.auth?.sessionId;

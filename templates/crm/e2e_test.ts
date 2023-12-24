@@ -21,7 +21,6 @@ export function randomUser(): AuthUser {
     authId: crypto.randomUUID(),
     sessionId: crypto.randomUUID(),
     isSubscribed: false,
-    stripeCustomerId: crypto.randomUUID(),
   };
 }
 

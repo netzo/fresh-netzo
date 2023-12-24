@@ -25,7 +25,6 @@ export default defineApp<NetzoState>((_req, ctx) => {
         {enabled(ui?.head) && <Head href={ctx.url.href} {...ui.head} />}
       </head>
       <body
-        f-client-nav={showNav}
         className={cn(
           "h-full overflow-x-hidden",
           showNav &&
@@ -52,15 +51,12 @@ export default defineApp<NetzoState>((_req, ctx) => {
             </Header>
           )}
 
-          {/* IMPORTANT: disable client-side navigation for logout */}
           <main className="flex-1">
-            {mustAuth
-              ? <ctx.Component f-client-nav={false} />
-              : (
-                <Partial name="main">
-                  <ctx.Component />
-                </Partial>
-              )}
+            {mustAuth ? <ctx.Component /> : (
+              <Partial name="main">
+                <ctx.Component />
+              </Partial>
+            )}
           </main>
 
           {showFooter && <Footer className="sticky bottom-0" {...ui.footer} />}

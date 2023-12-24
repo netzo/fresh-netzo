@@ -35,7 +35,7 @@ const setFromOptionsIfNotInEnv = (name: string, value: string) => {
   Deno.env.set(name, value);
 };
 
-export const getOAuthConfig = (
+export const getAuthConfig = (
   provider: AuthProvider,
   options: NetzoConfig["auth"]["providers"][AuthProvider],
 ) => {

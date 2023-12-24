@@ -14,7 +14,7 @@ import {
 } from "../utils/db.ts";
 import {
   type AuthProvider,
-  getOAuthConfig,
+  getAuthConfig,
   getUserByProvider,
 } from "../utils/providers/mod.ts";
 
@@ -26,18 +26,18 @@ export const getRoutesByProvider = (
     {
       path: `/auth/${provider}/signin`,
       handler: async (req, _ctx) => {
-        const oAuthConfig = getOAuthConfig(provider, options);
-        const response = await signIn(req, oAuthConfig);
+        const authConfig = getAuthConfig(provider, options);
+        const response = await signIn(req, authConfig);
         return response;
       },
     },
     {
       path: `/auth/${provider}/callback`,
       handler: async (req, _ctx) => {
-        const oAuthConfig = getOAuthConfig(provider, options);
+        const authConfig = getAuthConfig(provider, options);
         const { response, tokens, sessionId } = await handleCallback(
           req,
-          oAuthConfig,
+          authConfig,
         );
 
         const userProvider = await getUserByProvider(
@@ -48,11 +48,11 @@ export const getRoutesByProvider = (
 
         const user = {
           sessionId,
+          provider: userProvider.provider,
           authId: userProvider.authId,
           name: userProvider.name,
           email: userProvider.email,
           avatar: userProvider.avatar,
-          provider: userProvider.provider,
           role: "admin",
         } as unknown as AuthUser;
 
