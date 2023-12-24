@@ -13,7 +13,7 @@ import { Netzo } from "../core/mod.ts";
 import { log, logInfo, LOGS } from "./utils/console.ts";
 import { setEnvVars } from "./utils/mod.ts";
 import { createClient } from "../cli/src/utils/netzo.ts";
-import { getDevConfig } from "./config.ts";
+import { resolveConfig } from "./config.ts";
 
 export type { Project };
 
@@ -76,13 +76,11 @@ export async function createNetzoApp(
   if (DEV) setEnvVars(project.envVars?.development ?? {});
   const appUrl = Deno.env.get("NETZO_APP_URL") ?? "https://app.netzo.io";
 
-  // 1) merge defaults and remote config, then remote and local config, then render mustache value
-  const config = DEV ? getDevConfig(project, partialConfig) : project.config;
+  // 1) merge defaults, remote configand local config and render mustache value
+  const config = resolveConfig(project, partialConfig);
 
   // 2) build state (pass single kv instance to plugins for performance)
   const state: NetzoState = { kv: await Deno.openKv(), netzo, config };
-
-  if (DEV) logInfo(`Merged remote and local app configuratitions`);
 
   const netzoPlugins = await createPluginsForModules(state);
 

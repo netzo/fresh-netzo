@@ -10,7 +10,7 @@ const mergeOptions = {
   sets: "replace",
 } as const;
 
-export const getDevConfig = (
+export const resolveConfig = (
   project: Project,
   partialConfig: Partial<NetzoConfig>,
 ): NetzoConfig => {
