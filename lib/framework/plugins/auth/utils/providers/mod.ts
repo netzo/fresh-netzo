@@ -1,19 +1,29 @@
-import {
-  createAuth0OAuthConfig,
-  createGitHubOAuthConfig,
-  createGitLabOAuthConfig,
-  createGoogleOAuthConfig,
-  createOktaOAuthConfig,
-} from "../../../../../deps/deno_kv_oauth/mod.ts";
 import type { NetzoConfig } from "../../../../mod.ts";
-import { type PartialUserFromProvider } from "../db.ts";
-import { getUserGoogle, isGoogleSetup } from "./google.ts";
-import { getUserGithub, isGitHubSetup } from "./github.ts";
-import { getUserGitlab, isGitlabSetup } from "./gitlab.ts";
-import { getUserAuth0, isAuth0Setup } from "./auth0.ts";
-import { getUserOkta, isOktaSetup } from "./okta.ts";
+import { type AuthUserFromProvider } from "../db.ts";
+import { createNetzoOAuthConfig, getUserNetzo, isNetzoSetup } from "./netzo.ts";
+import { createEmailOAuthConfig, getUserEmail, isEmailSetup } from "./email.ts";
+import {
+  createGoogleOAuthConfig,
+  getUserGoogle,
+  isGoogleSetup,
+} from "./google.ts";
+import {
+  createGitHubOAuthConfig,
+  getUserGithub,
+  isGitHubSetup,
+} from "./github.ts";
+import {
+  createGitLabOAuthConfig,
+  getUserGitlab,
+  isGitlabSetup,
+} from "./gitlab.ts";
+import { createAuth0OAuthConfig, getUserAuth0, isAuth0Setup } from "./auth0.ts";
+import { createOktaOAuthConfig, getUserOkta, isOktaSetup } from "./okta.ts";
 
-export type OAuthProvider =
+export type AuthProvider =
+  | "netzo"
+  // custom:
+  | "email"
   | "google"
   | "github"
   | "gitlab"
@@ -26,10 +36,10 @@ const setFromOptionsIfNotInEnv = (name: string, value: string) => {
 };
 
 export const getOAuthConfig = (
-  provider: OAuthProvider,
-  options: NetzoConfig["auth"]["providers"][OAuthProvider],
+  provider: AuthProvider,
+  options: NetzoConfig["auth"]["providers"][AuthProvider],
 ) => {
-  const getError = (provider: OAuthProvider) =>
+  const getError = (provider: AuthProvider) =>
     new Error(
       `[auth] Missing or invalid configuration for "${provider}" provider`,
     );
@@ -37,6 +47,14 @@ export const getOAuthConfig = (
   options.redirectUri = `/auth/${provider}/callback`;
 
   switch (provider) {
+    case "netzo": {
+      if (!isNetzoSetup()) throw getError(provider);
+      return createNetzoOAuthConfig();
+    }
+    case "email": {
+      if (!isEmailSetup()) throw getError(provider);
+      return createEmailOAuthConfig();
+    }
     case "google": {
       setFromOptionsIfNotInEnv("GOOGLE_CLIENT_ID", options.clientId);
       setFromOptionsIfNotInEnv("GOOGLE_CLIENT_SECRET", options.clientSecret);
@@ -73,10 +91,14 @@ export const getOAuthConfig = (
 };
 
 export const getUserByProvider = async (
-  provider: OAuthProvider,
+  provider: AuthProvider,
   accessToken: string,
-): Promise<PartialUserFromProvider> => {
+): Promise<AuthUserFromProvider> => {
   switch (provider) {
+    case "netzo":
+      return await getUserNetzo(accessToken);
+    case "email":
+      return await getUserEmail(accessToken);
     case "google":
       return await getUserGoogle(accessToken);
     case "github":

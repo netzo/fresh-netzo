@@ -1,9 +1,9 @@
 import { createHandler } from "$fresh/server.ts";
 import manifest from "./fresh.gen.ts";
 import {
+  AuthUser,
   createUser,
   getUser,
-  User,
 } from "netzo/framework/plugins/auth/utils/db.ts";
 import {
   assert,
@@ -16,7 +16,7 @@ import { isRedirectStatus, STATUS_CODE } from "std/http/status.ts";
 import { config } from "./netzo.ts";
 
 /** For testing */
-export function randomUser(): User {
+export function randomUser(): AuthUser {
   return {
     authId: crypto.randomUUID(),
     sessionId: crypto.randomUUID(),

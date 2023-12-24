@@ -1,6 +1,8 @@
 import { createHttpError } from "../../../../../deps/std/http/http_errors.ts";
 import { createGitHubOAuthConfig } from "../../../../../deps/deno_kv_oauth/mod.ts";
-import type { PartialUserFromProvider } from "../db.ts";
+import type { AuthUserFromProvider } from "../db.ts";
+
+export { createGitHubOAuthConfig };
 
 export function isGitHubSetup() {
   try {
@@ -48,7 +50,7 @@ export type UserGithub = {
 
 export async function getUserGithub(
   accessToken: string,
-): Promise<PartialUserFromProvider> {
+): Promise<AuthUserFromProvider> {
   const resp = await fetch("https://api.github.com/user", {
     headers: { authorization: `Bearer ${accessToken}` },
   });
@@ -58,10 +60,10 @@ export async function getUserGithub(
   }
   const userGithub: UserGithub = await resp.json();
   return {
+    provider: "github",
     authId: userGithub.login,
     name: userGithub.name as string,
     email: userGithub.email as string,
     avatar: userGithub.avatar_url,
-    provider: "github",
   };
 }

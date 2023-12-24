@@ -1,6 +1,8 @@
 import { createHttpError } from "../../../../../deps/std/http/http_errors.ts";
 import { createGitLabOAuthConfig } from "../../../../../deps/deno_kv_oauth/mod.ts";
-import type { PartialUserFromProvider } from "../db.ts";
+import type { AuthUserFromProvider } from "../db.ts";
+
+export { createGitLabOAuthConfig };
 
 export function isGitlabSetup(
   options: Parameters<typeof createGitLabOAuthConfig>[0],
@@ -49,7 +51,7 @@ export type UserGitlab = {
 
 export async function getUserGitlab(
   accessToken: string,
-): Promise<PartialUserFromProvider> {
+): Promise<AuthUserFromProvider> {
   const resp = await fetch("https://gitlab.com/api/v4/user", {
     headers: { authorization: `Bearer ${accessToken}` },
   });
@@ -59,10 +61,10 @@ export async function getUserGitlab(
   }
   const userGitlab: UserGitlab = await resp.json();
   return {
+    provider: "gitlab",
     authId: String(userGitlab.id),
     name: userGitlab.name,
     email: userGitlab.email,
     avatar: userGitlab.avatar_url,
-    provider: "gitlab",
   };
 }

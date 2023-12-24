@@ -4,12 +4,12 @@ export const CONFIG: NetzoConfig = {
   auth: {
     enabled: false,
     level: "internal",
-    title: "{{project.name}}",
+    title: "Sign In",
     description: "Sign in to access the app",
     caption:
       'By signing in you agree to the <a href="/" target="_blank">Terms of Service</a> and <a href="/" target="_blank">Privacy Policy</a>',
     providers: {
-      netzo: { enabled: false },
+      netzo: { enabled: true, userIds: [] },
       email: { enabled: false },
       google: {
         enabled: false,

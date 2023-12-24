@@ -31,6 +31,24 @@ const ButtonEmail = () => {
   );
 };
 
+const ButtonNetzo = (
+  props: {
+    text: string;
+    href: string;
+    children: ComponentChildren;
+  },
+) => {
+  // TODO: disabled: boolean; // use e.g. isGitHubSetup() utils for this
+  return (
+    <a
+      href={props.href}
+      className={cn(buttonVariants({ variant: "outline" }))}
+    >
+      {props.children} {props.text}
+    </a>
+  );
+};
+
 const ButtonOAuth2 = (
   props: {
     text: string;
@@ -96,6 +114,15 @@ export function AuthForm(props: NetzoState) {
               </span>
             </div>
           </div>
+        )}
+
+        {!!auth?.providers?.netzo?.enabled && (
+          <ButtonNetzo text="Sign In with Netzo" href="/auth/netzo/signin">
+            <img
+              src="https://netzo.io/favicon.svg"
+              className="mr-4 w-20px h-20px"
+            />
+          </ButtonNetzo>
         )}
 
         {!!auth?.providers?.google?.enabled && (

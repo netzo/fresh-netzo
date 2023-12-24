@@ -1,21 +1,25 @@
 import type { Plugin } from "../../../deps/$fresh/server.ts";
 import type { NetzoConfig } from "../../../framework/mod.ts";
-import { type User } from "../../../framework/plugins/auth/utils/db.ts";
-import { internalMiddlewares } from "./middlewares/internal.ts";
-import { externalMiddlewares } from "./middlewares/external.ts";
-import Auth from "./routes/external/auth.tsx";
-import { getRoutesByProvider } from "./routes/external/[provider].ts";
+import { enabled } from "../../../framework/plugins/mod.ts";
+import { type AuthUser } from "../../../framework/plugins/auth/utils/db.ts";
+import {
+  ensureSignedIn,
+  setAppState,
+  setSessionState,
+} from "./middlewares/mod.ts";
+import { getRoutesByProvider } from "./routes/mod.ts";
+import Auth from "./routes/auth.tsx";
 
 export * from "../../../deps/deno_kv_oauth/mod.ts";
 
 export type AuthState = {
-  // internal:
+  // session:
+  sessionId?: string;
+  sessionUser?: AuthUser;
+  // app:
   origin?: string;
   referer?: string;
   isApp?: boolean;
-  // external:
-  sessionId?: string;
-  sessionUser?: User;
 };
 
 /**
@@ -29,34 +33,37 @@ export type AuthState = {
  * - `GET /auth/signout` for the sign-out page
  */
 export const auth = (options: NetzoConfig["auth"]): Plugin => {
-  if (options?.enabled) {
-    // internal authentication via netzo (redirects all external requests to app)
-    if (["internal"].includes(options?.level)) {
-      return {
-        name: "auth",
-        middlewares: internalMiddlewares,
-      };
-    } // external authentication via email or oauth2 providers
-    else if (["external"].includes(options?.level)) {
-      const externalRoutes = [
-        { path: "/auth", component: Auth },
-        ...Object.keys(options.providers)
-          .filter((p) => options?.providers?.[p]?.enabled)
-          .flatMap((p) => getRoutesByProvider(p, options?.providers?.[p])),
-      ];
-      return {
-        name: "auth",
-        middlewares: externalMiddlewares,
-        routes: externalRoutes,
-        islands: {
-          baseLocation: import.meta.url,
-          paths: [
-            "./islands/auth-form.tsx",
-          ],
-        },
-      };
-    }
-  }
+  if (!enabled(options)) return { name: "auth" };
 
-  return { name: "auth" };
+  const authRoutes = [
+    { path: "/auth", component: Auth },
+    ...Object.keys(options.providers)
+      .filter((p) => options?.providers?.[p]?.enabled)
+      .flatMap((p) => getRoutesByProvider(p, options?.providers?.[p])),
+  ];
+
+  return {
+    name: "auth",
+    middlewares: [
+      {
+        path: "/",
+        middleware: { handler: setSessionState },
+      },
+      {
+        path: "/",
+        middleware: { handler: setAppState },
+      },
+      {
+        path: "/",
+        middleware: { handler: ensureSignedIn },
+      },
+    ],
+    routes: authRoutes,
+    islands: {
+      baseLocation: import.meta.url,
+      paths: [
+        "./islands/auth-form.tsx",
+      ],
+    },
+  };
 };

@@ -1,6 +1,8 @@
 import { createHttpError } from "../../../../../deps/std/http/http_errors.ts";
 import { createGoogleOAuthConfig } from "../../../../../deps/deno_kv_oauth/mod.ts";
-import type { PartialUserFromProvider } from "../db.ts";
+import type { AuthUserFromProvider } from "../db.ts";
+
+export { createGoogleOAuthConfig };
 
 export function isGoogleSetup(
   options: Parameters<typeof createGoogleOAuthConfig>[0],
@@ -27,7 +29,7 @@ export type UserGoogle = {
 
 export async function getUserGoogle(
   accessToken: string,
-): Promise<PartialUserFromProvider> {
+): Promise<AuthUserFromProvider> {
   const resp = await fetch("https://www.googleapis.com/oauth2/v3/userinfo", {
     headers: { authorization: `Bearer ${accessToken}` },
   });
@@ -37,10 +39,10 @@ export async function getUserGoogle(
   }
   const userGoogle: UserGoogle = await resp.json();
   return {
+    provider: "google",
     authId: userGoogle.sub,
     name: userGoogle.name,
     email: userGoogle.email,
     avatar: userGoogle.picture,
-    provider: "google",
   };
 }

@@ -1,6 +1,8 @@
 import { createHttpError } from "../../../../../deps/std/http/http_errors.ts";
 import { createAuth0OAuthConfig } from "../../../../../deps/deno_kv_oauth/mod.ts";
-import type { PartialUserFromProvider } from "../db.ts";
+import type { AuthUserFromProvider } from "../db.ts";
+
+export { createAuth0OAuthConfig };
 
 export function isAuth0Setup(
   options: Parameters<typeof createAuth0OAuthConfig>[0],
@@ -25,7 +27,7 @@ export type UserAuth0 = {
 
 export async function getUserAuth0(
   accessToken: string,
-): Promise<PartialUserFromProvider> {
+): Promise<AuthUserFromProvider> {
   const resp = await fetch("https://api.auth0.com/user", {
     headers: { authorization: `Bearer ${accessToken}` },
   });
@@ -35,10 +37,10 @@ export async function getUserAuth0(
   }
   const userAuth0: UserAuth0 = await resp.json();
   return {
+    provider: "auth0",
     authId: userAuth0.sub,
     name: userAuth0.name,
     email: userAuth0.email,
     avatar: userAuth0.picture,
-    provider: "auth0",
   };
 }

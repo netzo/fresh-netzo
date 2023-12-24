@@ -1,26 +1,26 @@
-import type { PluginRoute } from "../../../../../deps/$fresh/server.ts";
+import type { PluginRoute } from "../../../../deps/$fresh/server.ts";
 import {
   handleCallback,
   signIn,
   signOut,
-} from "../../../../../deps/deno_kv_oauth/mod.ts";
-import type { NetzoConfig } from "../../../../mod.ts";
+} from "../../../../deps/deno_kv_oauth/mod.ts";
+import type { NetzoConfig } from "../../../mod.ts";
 import {
+  type AuthUser,
   createUser,
   getUser,
   updateUser,
   updateUserSession,
-  type User,
-} from "./../../utils/db.ts";
+} from "../utils/db.ts";
 import {
+  type AuthProvider,
   getOAuthConfig,
   getUserByProvider,
-  type OAuthProvider,
-} from "../../utils/providers/mod.ts";
+} from "../utils/providers/mod.ts";
 
 export const getRoutesByProvider = (
-  provider: OAuthProvider,
-  options: NetzoConfig["auth"]["providers"][OAuthProvider],
+  provider: AuthProvider,
+  options: NetzoConfig["auth"]["providers"][AuthProvider],
 ): PluginRoute[] => {
   const routes = [
     {
@@ -54,7 +54,7 @@ export const getRoutesByProvider = (
           avatar: userProvider.avatar,
           provider: userProvider.provider,
           role: "admin",
-        } as unknown as User;
+        } as unknown as AuthUser;
 
         if (userCurrent === null) {
           await createUser(user);

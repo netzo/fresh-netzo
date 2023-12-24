@@ -1,5 +1,5 @@
 import { ulid } from "../../../../core/database.ts";
-import type { OAuthProvider } from "../routes/external/[provider].ts";
+import type { AuthProvider } from "../utils/providers/mod.ts";
 const kv = await Deno.openKv();
 // TODO: const db = createDatabase(kv);
 
@@ -31,21 +31,21 @@ export async function collectValues<T>(iter: Deno.KvListIterator<T>) {
 
 // users:
 
-export type User = {
+export type AuthUser = {
   id: string;
+  provider: AuthProvider;
   authId: string; // id from auth provider
   sessionId: string;
   name: string;
   email: string;
   avatar: string;
   role: string;
-  provider: OAuthProvider;
   createdAt: string;
   updatedAt: string;
 };
 
-export type PartialUserFromProvider = Pick<
-  User,
+export type AuthUserFromProvider = Pick<
+  AuthUser,
   "authId" | "name" | "email" | "avatar" | "provider"
 >;
 
@@ -63,7 +63,7 @@ export type PartialUserFromProvider = Pick<
  * });
  * ```
  */
-export async function createUser(user: User) {
+export async function createUser(user: AuthUser) {
   user.id = ulid();
   user.createdAt = new Date().toISOString();
   user.updatedAt = user.createdAt;
@@ -94,7 +94,7 @@ export async function createUser(user: User) {
  * });
  * ```
  */
-export async function updateUser(user: User) {
+export async function updateUser(user: AuthUser) {
   user.updatedAt ||= new Date().toISOString();
   const usersKey = ["users", user.authId];
   const usersBySessionKey = ["usersBySession", user.sessionId];
@@ -121,12 +121,12 @@ export async function updateUser(user: User) {
  * }, "yyy");
  * ```
  */
-export async function updateUserSession(user: User, sessionId: string) {
+export async function updateUserSession(user: AuthUser, sessionId: string) {
   user.updatedAt = new Date().toISOString();
   const userKey = ["users", user.authId];
   const oldUserBySessionKey = ["usersBySession", user.sessionId];
   const newUserBySessionKey = ["usersBySession", sessionId];
-  const newUser: User = { ...user, sessionId };
+  const newUser: AuthUser = { ...user, sessionId };
 
   const atomicOp = kv.atomic()
     .set(userKey, newUser)
@@ -153,7 +153,7 @@ export async function updateUserSession(user: User, sessionId: string) {
  * ```
  */
 export async function getUser(authId: string) {
-  const res = await kv.get<User>(["users", authId]);
+  const res = await kv.get<AuthUser>(["users", authId]);
   return res.value;
 }
 
@@ -177,11 +177,11 @@ export async function getUser(authId: string) {
  */
 export async function getUserBySession(sessionId: string) {
   const key = ["usersBySession", sessionId];
-  const eventualRes = await kv.get<User>(key, {
+  const eventualRes = await kv.get<AuthUser>(key, {
     consistency: "eventual",
   });
   if (eventualRes.value !== null) return eventualRes.value;
-  const res = await kv.get<User>(key);
+  const res = await kv.get<AuthUser>(key);
   return res.value;
 }
 
@@ -202,5 +202,5 @@ export async function getUserBySession(sessionId: string) {
  * ```
  */
 export function listUsers(options?: Deno.KvListOptions) {
-  return kv.list<User>({ prefix: ["users"] }, options);
+  return kv.list<AuthUser>({ prefix: ["users"] }, options);
 }

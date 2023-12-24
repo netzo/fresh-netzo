@@ -16,6 +16,16 @@ export const config = await createNetzoApp({
             { icon: "mdi-receipt", text: "Invoices", href: "/invoices" },
           ],
         },
+        {
+          icon: "mdi-home",
+          text: "Home 2",
+          href: "/",
+          items: [
+            { icon: "mdi-contacts", text: "Contacts", href: "/contacts" },
+            { icon: "mdi-account", text: "Clients", href: "/clients" },
+            { icon: "mdi-receipt", text: "Invoices", href: "/invoices" },
+          ],
+        },
         { icon: "mdi-login", text: "Login", href: "/login" },
         { icon: "mdi-logout", text: "Logout", href: "/logout" },
       ],

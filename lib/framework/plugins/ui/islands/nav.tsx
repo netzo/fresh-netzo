@@ -7,7 +7,7 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "../../../../components/ui/avatar.tsx";
-import type { User } from "../../../../framework/plugins/auth/utils/db.ts";
+import type { AuthUser } from "../../../../framework/plugins/auth/utils/db.ts";
 import {
   Accordion,
   AccordionContent,
@@ -15,61 +15,55 @@ import {
   AccordionTrigger,
 } from "./nav-item-accordion.tsx";
 
-type NavItemProps = NetzoConfig["ui"]["nav"]["items"][number] & {
-  open: Signal<boolean>;
-  toggle: () => void;
-};
+type NavItemProps = NetzoConfig["ui"]["nav"]["items"][number];
 
 type NavItemUserProps = {
-  sessionUser: User;
+  sessionUser: AuthUser;
 };
 
 export function Nav({ className, ...props }: NetzoConfig["ui"]["nav"]) {
-  const items: NavItemProps = props?.items?.map((item: NavItemProps) => ({
-    ...item,
-    open: useSignal(item?.open ?? true), // allow setting a default open state
-    toggle: () => item.open.value = !item.open.value,
-  }));
+  // open all by default to let unocss SSR render all icons else hidden will be missing
+  const defaultValue = props?.items?.map((_, i) => `item-${i}`);
+  const open = useSignal(defaultValue);
 
   return (
-    <nav
-      className={cn(
-        "h-screen",
-        // "bg-[hsl(var(--secondary))]",
-        className,
-      )}
-    >
-      {items?.map((item: NavItemProps) =>
-        item?.items?.length
-          ? (
-            <Accordion
-              type="single"
-              collapsible
-              className="space-y-2"
-              key={item.text}
-              value={item.open.value}
-              onValueChange={(e) => item.open.value = e}
-            >
-              <AccordionItem value={item.text} className="border-none">
-                <AccordionTrigger
-                  className={cn(buttonVariants({ variant: "ghost" }))}
-                >
-                  <NavItem {...item} />
-                </AccordionTrigger>
-                <AccordionContent className="pb-1 pl-4 mt-2">
-                  {item.items?.map((subItem) => (
-                    <NavItem
-                      {...subItem}
-                      key={subItem.text}
-                      onClick={() => subItem.open.value = false}
-                    />
-                  ))}
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          )
-          : <NavItem {...item} onClick={() => item.open.value = false} />
-      )}
+    <div className="flex flex-col h-screen">
+      <nav
+        className={cn(
+          "flex-1 grid gap-1 py-2 px-2",
+          // "bg-[hsl(var(--secondary))]",
+          className,
+        )}
+      >
+        {props?.items?.map((item: NavItemProps, i: number) =>
+          item?.items?.length
+            ? (
+              <Accordion
+                type="multiple"
+                collapsible
+                className="space-y-2"
+                key={item.text}
+                defaultValue={defaultValue}
+                value={open.value}
+                onValueChange={(value) => open.value = value}
+              >
+                <AccordionItem value={`item-${i}`} className="border-none">
+                  <AccordionTrigger
+                    className={cn(buttonVariants({ variant: "ghost" }))}
+                  >
+                    <NavItem {...item} className="py-2" />
+                  </AccordionTrigger>
+                  <AccordionContent className="pb-1 pl-3 mt-2">
+                    {item.items?.map((subItem) => (
+                      <NavItem {...subItem} key={subItem.text} />
+                    ))}
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            )
+            : <NavItem {...item} />
+        )}
+      </nav>
 
       {/* IMPORTANT: disable client-side navigation for logout */}
       {props?.sessionUser && (
@@ -77,7 +71,7 @@ export function Nav({ className, ...props }: NetzoConfig["ui"]["nav"]) {
           <NavItemUser sessionUser={props?.sessionUser} />
         </div>
       )}
-    </nav>
+    </div>
   );
 }
 
@@ -90,8 +84,9 @@ export function NavItem(props: NavItemProps) {
         buttonVariants({ variant: "ghost" }),
         `flex justify-between w-full`,
         `hover:text-[hsl(var(--primary))]`,
-        // aria-current="true" is for ancestor links, aria-current="page" is for current page
-        `aria-[current='true']:text-[hsl(var(--primary))] aria-[current='page']:text-[hsl(var(--primary))]`,
+        props?.items?.length
+          ? `aria-[current='true']:text-[hsl(var(--primary))]` // ancestor links
+          : `aria-[current='page']:text-[hsl(var(--primary))]`, // current page
       )}
     >
       <div className="flex items-center flex-1 gap-2">
@@ -112,8 +107,8 @@ export function NavItemIcon(props: NavItemProps) {
 }
 
 // IMPORTANT: disable client-side navigation for logout in component
-// wrapping NavItemUser via f-client-nav={false} to avoid partials
-// causing infinite redirects with auth/external middleware
+// wrapping NavItemUser via f-client-nav={false} to avoid
+// partials causing infinite redirects with auth middleware
 export function NavItemUser(props: NavItemUserProps) {
   if (!props?.sessionUser) return undefined;
   return (
@@ -125,7 +120,7 @@ export function NavItemUser(props: NavItemUserProps) {
         `h-12 px-3 py-2 flex items-center w-full hover:cursor-pointer`,
       )}
     >
-      <Avatar className="h-9 w-9">
+      <Avatar className="mr-3 h-9 w-9">
         <AvatarImage
           src={props.sessionUser.avatar}
           alt={`@${props.sessionUser.authId}}`}
@@ -151,7 +146,7 @@ export function NavItemUser(props: NavItemUserProps) {
 
 // utils:
 
-export function getInitials(sessionUser: User) {
+export function getInitials(sessionUser: AuthUser) {
   const { name, authId, email } = sessionUser ?? {};
   if (name) {
     const [first, last] = name.split(" ");
