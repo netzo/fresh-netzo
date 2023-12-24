@@ -12,7 +12,7 @@ const mergeOptions = {
 
 export const resolveConfig = (
   project: Project,
-  partialConfig: Partial<NetzoConfig>,
+  partialConfig: Partial<NetzoConfig> = {},
 ): NetzoConfig => {
   // 1) merge defaults and remote config
   let config = deepMerge(CONFIG, project.config, mergeOptions);

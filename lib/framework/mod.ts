@@ -28,8 +28,6 @@ export type NetzoState = {
   [k: string]: unknown;
 };
 
-if (import.meta.main) await createNetzoApp(); // allow running as script
-
 // WORKAROUND: until resolution of https://github.com/denoland/fresh/issues/1773#issuecomment-1763502518
 const origConsoleError = console.error;
 console.error = (msg) => {
@@ -40,12 +38,9 @@ console.error = (msg) => {
 };
 
 export async function createNetzoApp(
+  manifest: Manifest,
   partialConfig: Partial<NetzoConfig> = {},
-): Promise<NetzoConfig> {
-  if (Deno.args.includes("build")) {
-    return partialConfig as Required<NetzoConfig>;
-  }
-
+): Promise<{ netzo: ReturnType<typeof Netzo>; config: NetzoConfig }> {
   const {
     NETZO_ENV = Deno.env.get("DENO_REGION") ? "production" : "development",
     NETZO_PROJECT_ID,
@@ -53,7 +48,6 @@ export async function createNetzoApp(
     NETZO_API_URL = "https://api.netzo.io",
     NETZO_APP_URL = "https://app.netzo.io",
   } = Deno.env.toObject();
-  const { plugins = [] } = partialConfig ?? {};
 
   if (!NETZO_PROJECT_ID) throw new Error(LOGS.missingProjectId);
   if (!NETZO_API_KEY) throw new Error(LOGS.missingApiKey);
@@ -77,11 +71,12 @@ export async function createNetzoApp(
   const appUrl = Deno.env.get("NETZO_APP_URL") ?? "https://app.netzo.io";
 
   // 1) merge defaults, remote configand local config and render mustache value
-  const config = resolveConfig(project, partialConfig);
+  let config = resolveConfig(project, partialConfig);
 
   // 2) build state (pass single kv instance to plugins for performance)
   const state: NetzoState = { kv: await Deno.openKv(), netzo, config };
 
+  const { plugins = [] } = partialConfig ?? {};
   const netzoPlugins = await createPluginsForModules(state);
 
   // [live-reload] listen for "project:patched" events and restart server
@@ -109,7 +104,7 @@ export async function createNetzoApp(
     );
   }
 
-  return {
+  config = {
     ...partialConfig,
     plugins: [
       {
@@ -130,9 +125,7 @@ export async function createNetzoApp(
       ...plugins,
     ],
   };
-}
 
-export const start = async (manifest: Manifest, config: NetzoConfig) => {
   if (Deno.args.includes("dev")) {
     const { default: dev } = await import("$fresh/dev.ts");
     await dev(Deno.mainModule, "./netzo.ts", config);
@@ -140,4 +133,6 @@ export const start = async (manifest: Manifest, config: NetzoConfig) => {
     const { start } = await import("$fresh/server.ts");
     await start(manifest, config);
   }
-};
+
+  return { netzo, config };
+}

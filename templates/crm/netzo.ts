@@ -1,8 +1,8 @@
 #!/usr/bin/env -S deno run -A --unstable --env --watch=static/,routes dev.ts
-import { createNetzoApp, start } from "netzo/framework/mod.ts";
+import { createNetzoApp } from "netzo/framework/mod.ts";
 import manifest from "./fresh.gen.ts";
 
-export const config = await createNetzoApp({
+export const netzo = await createNetzoApp(manifest, {
   ui: {
     nav: {
       items: [
@@ -13,5 +13,3 @@ export const config = await createNetzoApp({
     },
   },
 });
-
-await start(manifest, config);
