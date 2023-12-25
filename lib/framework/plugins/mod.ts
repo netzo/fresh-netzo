@@ -40,10 +40,10 @@ export async function createPluginsForModules(
           const mod = await import("./api/mod.ts");
           return [mod.api(state.config[name])];
         }
-          case "devtools": {
-            const mod = await import("./devtools/mod.ts");
-            return [mod.devtools(state.config[name])];
-          }
+        case "devtools": {
+          const mod = await import("./devtools/mod.ts");
+          return [mod.devtools(state.config[name])];
+        }
       }
     }),
   )).flat().filter((plugin) => !!plugin?.name);

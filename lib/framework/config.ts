@@ -11,14 +11,12 @@ const mergeOptions = {
 } as const;
 
 export const resolveConfig = (
+  config: Partial<NetzoConfig> = {},
   project: Project,
-  partialConfig: Partial<NetzoConfig> = {},
 ): NetzoConfig => {
   // 1) merge defaults and remote config
-  let config = deepMerge(CONFIG, project.config, mergeOptions);
-  // 2) merge local config (local config takes precedence for better DX)
-  config = deepMerge(config, partialConfig, mergeOptions);
-  // 3) render values with mustache placeholders
+  config = deepMerge(CONFIG as Partial<NetzoConfig>, config, mergeOptions);
+  // 2) render values with mustache placeholders
   config = replace(config, {
     project: {
       uid: project.uid,
@@ -30,5 +28,5 @@ export const resolveConfig = (
     ...Deno.env.toObject(), // make al runtime environment variables available
   });
 
-  return config;
+  return config as NetzoConfig;
 };

@@ -39,8 +39,8 @@ console.error = (msg) => {
 
 export async function createNetzoApp(
   manifest: Manifest,
-  partialConfig: Partial<NetzoConfig> = {},
-): Promise<{ netzo: ReturnType<typeof Netzo>; config: NetzoConfig }> {
+  projectIdOrConfig: Project["_id"] | Partial<NetzoConfig>,
+): Promise<{ netzo: Awaited<ReturnType<typeof Netzo>>; config: NetzoConfig }> {
   const {
     NETZO_ENV = Deno.env.get("DENO_REGION") ? "production" : "development",
     NETZO_PROJECT_ID,
@@ -48,6 +48,10 @@ export async function createNetzoApp(
     NETZO_API_URL = "https://api.netzo.io",
     NETZO_APP_URL = "https://app.netzo.io",
   } = Deno.env.toObject();
+
+  if (typeof projectIdOrConfig === "string") {
+    Deno.env.set("NETZO_PROJECT_ID", projectIdOrConfig); // inline ID takes precedence
+  }
 
   if (!NETZO_PROJECT_ID) throw new Error(LOGS.missingProjectId);
   if (!NETZO_API_KEY) throw new Error(LOGS.missingApiKey);
@@ -70,13 +74,18 @@ export async function createNetzoApp(
   if (DEV) setEnvVars(project.envVars?.development ?? {});
   const appUrl = Deno.env.get("NETZO_APP_URL") ?? "https://app.netzo.io";
 
-  // 1) merge defaults, remote configand local config and render mustache value
-  let config = resolveConfig(project, partialConfig);
+  // 1) get project or inline config
+  let config: NetzoConfig = typeof projectIdOrConfig === "string"
+    ? project.config
+    : projectIdOrConfig;
 
-  // 2) build state (pass single kv instance to plugins for performance)
+  // 2) merge defaults and config and render mustache values
+  config = resolveConfig(config, project);
+
+  // 3) build state (pass single kv instance to plugins for performance)
   const state: NetzoState = { kv: await Deno.openKv(), netzo, config };
 
-  const { plugins = [] } = partialConfig ?? {};
+  const { plugins = [] } = config;
   const netzoPlugins = await createPluginsForModules(state);
 
   // [live-reload] listen for "project:patched" events and restart server
@@ -105,7 +114,7 @@ export async function createNetzoApp(
   }
 
   config = {
-    ...partialConfig,
+    ...config,
     plugins: [
       {
         name: "config",

@@ -166,13 +166,10 @@ export const unocss = (
       ? {
         "main": `
         data:application/javascript,
-        import { createUnoConfig } from "https://deno.land/x/netzo@0.3.42/framework/plugins/ui/plugins/csr/uno.config.js";
+        import { createUnoConfig } from "https://deno.land/x/netzo@0.3.43/framework/plugins/ui/plugins/csr/uno.config.js";
         import init from "https://esm.sh/v135/@unocss/runtime@0.58.0?target=esnext";
         export default function(state) {
-          console.log(state.options);
-          const config = createUnoConfig(state.options);
-          console.log(config);
-          window.__unocss = config;
+          window.__unocss = createUnoConfig(state.options);
           init();
         }`,
       }
