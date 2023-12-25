@@ -26,7 +26,7 @@ export const ui = (options?: NetzoConfig["ui"] & UnocssOptions): Plugin => {
     csr = false,
   } = options ?? {} as NetzoConfig["ui"] & UnocssOptions;
   return {
-    ...unocss({ config, aot, ssr, csr }), // { name, entrypoints, renderAsync, buildStart }
+    ...unocss({ options: { color, radius }, config, aot, ssr, csr }), // { name, entrypoints, renderAsync, buildStart }
     name: "ui",
     routes: [
       { path: "/_app", component: _App },

@@ -16,6 +16,7 @@ import {
   walk,
 } from "../../../../deps/$fresh/server/deps.ts";
 import { exists } from "../../../../deps/std/fs/exists.ts";
+import type { PresetNetzoOptions } from "./preset-netzo.ts";
 
 type PreactOptions = typeof preactOptions & { __b?: (vnode: VNode) => void };
 
@@ -33,6 +34,10 @@ a,hr{color:inherit}progress,sub,sup{vertical-align:baseline}blockquote,body,dd,d
 `;
 
 export type UnocssOptions = {
+  /**
+   * netzoPreset options for CSR mode
+   */
+  options?: PresetNetzoOptions;
   /**
    * Explicit UnoCSS config object, alternative to `uno.config.ts` file.
    * Not supported for the client runtime in CSR mode.
@@ -124,6 +129,7 @@ async function runOverSource(uno: UnoGenerator): Promise<string> {
  */
 export const unocss = (
   {
+    options, // netzoPreset options for CSR mode
     config,
     aot = true,
     ssr = true,
@@ -138,7 +144,7 @@ export const unocss = (
   const links = aot ? [{ rel: "stylesheet", href: "/uno.css" }] : [];
 
   // Add entrypoint, if CSR mode is enabled
-  const scripts = csr ? [{ entrypoint: "main", state: {} }] : [];
+  const scripts = csr ? [{ entrypoint: "main", state: { options } }] : [];
 
   // In CSR-only mode, include the style resets using an inline style tag
   const styles = csr && !aot && !ssr ? [{ cssText: unoResetCSS }] : [];
@@ -160,9 +166,11 @@ export const unocss = (
       ? {
         "main": `
         data:application/javascript,
-        import config from "${configURL}";
+        // DISABLED: import config from "${configURL}";
+        import { createUnoConfig } from "https://deno.land/x/netzo@0.3.37/framework/plugins/ui/plugins/csr/uno.config.js";
         import init from "https://esm.sh/v135/@unocss/runtime@0.58.0?target=esnext";
-        export default function() {
+        export default function(state) {
+          const config = createUnoConfig(state.options);
           window.__unocss = config;
           init();
         }`,
