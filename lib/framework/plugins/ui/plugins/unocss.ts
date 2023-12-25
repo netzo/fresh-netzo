@@ -167,7 +167,7 @@ export const unocss = (
         "main": `
         data:application/javascript,
         // DISABLED: import config from "${configURL}";
-        import { createUnoConfig } from "https://deno.land/x/netzo@0.3.38/framework/plugins/ui/plugins/csr/uno.config.js";
+        import { createUnoConfig } from "https://deno.land/x/netzo@0.3.39/framework/plugins/ui/plugins/csr/uno.config.js";
         import init from "https://esm.sh/v135/@unocss/runtime@0.58.0?target=esnext";
         export default function(state) {
           const config = createUnoConfig(state.options);
@@ -197,11 +197,11 @@ export const unocss = (
         }
       }
 
-      if (csr && !configFileExists) {
-        throw new Error(
-          "uno.config.ts not found in the project directory! Required for CSR mode.",
-        );
-      }
+      // if (csr && !configFileExists) {
+      //   throw new Error(
+      //     "uno.config.ts not found in the project directory! Required for CSR mode.",
+      //   );
+      // }
 
       // Create the generator object
       uno = new UnoGenerator(config);
