@@ -133,7 +133,7 @@ export const unocss = (
     config,
     aot = true,
     ssr = true,
-    csr = false,
+    csr = true,
   }: UnocssOptions = {},
 ): Plugin => {
   // A uno.config.ts file is required in the project directory if a config object is not provided,
@@ -167,7 +167,7 @@ export const unocss = (
         "main": `
         data:application/javascript,
         // DISABLED: import config from "${configURL}";
-        import { createUnoConfig } from "https://deno.land/x/netzo@0.3.37/framework/plugins/ui/plugins/csr/uno.config.js";
+        import { createUnoConfig } from "https://deno.land/x/netzo@0.3.38/framework/plugins/ui/plugins/csr/uno.config.js";
         import init from "https://esm.sh/v135/@unocss/runtime@0.58.0?target=esnext";
         export default function(state) {
           const config = createUnoConfig(state.options);

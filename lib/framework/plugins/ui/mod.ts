@@ -23,7 +23,7 @@ export const ui = (options?: NetzoConfig["ui"] & UnocssOptions): Plugin => {
     config = defineConfig({ presets: [presetNetzo({ color, radius })] }),
     aot = true,
     ssr = true,
-    csr = false,
+    csr = true,
   } = options ?? {} as NetzoConfig["ui"] & UnocssOptions;
   return {
     ...unocss({ options: { color, radius }, config, aot, ssr, csr }), // { name, entrypoints, renderAsync, buildStart }
