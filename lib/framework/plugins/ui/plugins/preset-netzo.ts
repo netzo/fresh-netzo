@@ -28,18 +28,16 @@ export type PresetNetzoOptions = PresetUnoOptions & {
 export function presetNetzo(
   options: PresetNetzoOptions = {},
 ): PresetOrFactory<Theme> | PresetOrFactory<Theme>[] {
+  const { color, radius, ...unoOptions } = options ?? {};
   // IMPORTANT: note that functions are dropped for CSR mode due to by
   // esbuild serialization so we use non-function syntax where possible
   return {
-    ...options,
+    ...unoOptions,
 
     name: "unocss-preset-netzo",
 
     presets: [
-      presetShadcn({
-        color: options?.color,
-        radius: options?.radius,
-      }),
+      presetShadcn({ color, radius }),
       presetUno(),
       presetTypography(),
       presetIcons({
