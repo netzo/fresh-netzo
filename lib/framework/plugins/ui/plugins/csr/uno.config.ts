@@ -1,5 +1,5 @@
 import { defineConfig } from "../unocss.ts";
-import presetNetzo, { type PresetNetzoOptions } from "../preset-netzo.ts";
+import { presetNetzo, type PresetNetzoOptions } from "../preset-netzo.ts";
 
 // TODO: import this factory from the client (during CSR hydration) and
 // use it to create a config object from state.options (which does not

@@ -16,13 +16,14 @@ export async function createPluginsForModules(
   // NOTE: async plugin initialization is parallelized for better performance
   const PLUGINS = ["auth", "ui", "api", "devtools"];
   const UI = ["head", "nav", "header", "footer", "theme"];
+  let uiEnabled = false;
   const pluginsWithDuplicates = (await Promise.all(
     PLUGINS.map(async (name) => {
       if (["ui"].includes(name)) {
         const ui = state?.config?.ui;
         if (!ui) return; // skip if ui is not set at least to {}
-        const uiEnabled = UI.filter((key) => enabled(ui?.[key]));
-        if (!uiEnabled.length) return; // skip if ui is set but no plugins are enabled
+        uiEnabled = !!UI.filter((key) => enabled(ui?.[key])).length;
+        if (!uiEnabled) return; // skip if ui is set but no plugins are enabled
       } // skip disabled plugins (note that they are disabled only if set to false)
       else if (!enabled(state.config?.[name])) return;
 
@@ -39,10 +40,10 @@ export async function createPluginsForModules(
           const mod = await import("./api/mod.ts");
           return [mod.api(state.config[name])];
         }
-          // case "devtools": {
-          //   const mod = await import("./devtools/mod.ts");
-          //   return [mod.devtools(state.config[name])];
-          // }
+          case "devtools": {
+            const mod = await import("./devtools/mod.ts");
+            return [mod.devtools(state.config[name])];
+          }
       }
     }),
   )).flat().filter((plugin) => !!plugin?.name);
@@ -54,7 +55,10 @@ export async function createPluginsForModules(
   );
   logInfo(`Plugins: ${
     plugins.map(
-      ({ name }) => `${!!state.config[name]?.enabled ? "✅" : "❌"} ${name}`,
+      ({ name }) => {
+        if (name === "ui") return `${uiEnabled ? "✅" : "❌"} ${name}`;
+        return `${!!state.config[name]?.enabled ? "✅" : "❌"} ${name}`;
+      },
     ).join(" | ")
   }`);
 
