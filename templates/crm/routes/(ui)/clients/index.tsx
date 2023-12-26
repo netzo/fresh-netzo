@@ -2,10 +2,10 @@ import { defineRoute } from "$fresh/server.ts";
 import { getOptions } from "@/components/tables/clients/data/options.tsx";
 import { Table } from "@/islands/Clients.tsx";
 import { Client } from "@/components/tables/clients/data/schema.ts";
-import { db } from "@/utils/db.ts";
+import { app } from "@/netzo.ts";
 
 export default defineRoute(async (req, ctx) => {
-  const data = await db.find<Client>("clients");
+  const data = await app.db.find<Client>("clients");
 
   if (!data) return ctx.renderNotFound();
 

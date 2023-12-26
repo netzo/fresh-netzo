@@ -40,7 +40,7 @@ console.error = (msg) => {
 export async function createNetzoApp(
   manifest: Manifest,
   projectIdOrConfig: Project["_id"] | Partial<NetzoConfig>,
-): Promise<{ netzo: Awaited<ReturnType<typeof Netzo>>; config: NetzoConfig }> {
+): Promise<Awaited<ReturnType<typeof Netzo>>> {
   if (typeof projectIdOrConfig === "string") {
     Deno.env.set("NETZO_PROJECT_ID", projectIdOrConfig); // inline ID takes precedence
   }
@@ -143,5 +143,5 @@ export async function createNetzoApp(
     await start(manifest, config);
   }
 
-  return { netzo, config };
+  return netzo;
 }

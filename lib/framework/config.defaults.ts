@@ -1,3 +1,9 @@
+
+
+
+
+
+
 import type { NetzoConfig } from "./mod.ts";
 
 export const CONFIG: NetzoConfig = {
@@ -65,6 +71,7 @@ export const CONFIG: NetzoConfig = {
   },
   api: {
     enabled: false,
+    auth: true,
     path: "/api",
     idField: "id",
     methods: ["find", "get", "create", "update", "patch", "remove"],
