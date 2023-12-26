@@ -13,12 +13,16 @@ export function NavMobile({ className, ...props }: NetzoConfig["ui"]["nav"]) {
   const { value: open, toggle } = useToggle();
 
   return (
-    <Sheet open={open.value} onOpenChange={(e) => open.value = e}>
+    <Sheet
+      className="md:hidden"
+      open={open.value}
+      onOpenChange={(e) => open.value = e}
+    >
       <SheetTrigger asChild>
         <Button
           variant="outline"
           size="icon"
-          className={cn(className)}
+          className={cn("mr-4", className)}
           onClick={toggle}
         >
           <div className="mdi-menu h-[1.2rem] w-[1.2rem]" />
@@ -26,7 +30,7 @@ export function NavMobile({ className, ...props }: NetzoConfig["ui"]["nav"]) {
         </Button>
       </SheetTrigger>
       <SheetContent side="left" className="w-[250px] p-0">
-        <div className="px-1 py-6 pt-16">
+        <div className="h-full px-1 py-6 pt-16">
           <Nav {...props} sessionUser={props.sessionUser} />
         </div>
       </SheetContent>

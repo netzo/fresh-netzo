@@ -8,7 +8,9 @@ import {
 } from "../../../../components/ui/avatar.tsx";
 import type { AuthUser } from "../../../../framework/plugins/auth/utils/db.ts";
 
-export type NavItemProps = NetzoConfig["ui"]["nav"]["items"][number];
+export type NavItemProps = NetzoConfig["ui"]["nav"]["items"][number] & {
+  open?: boolean;
+};
 
 export type NavItemUserProps = {
   sessionUser: AuthUser;
@@ -32,8 +34,13 @@ export function NavItem(props: NavItemProps) {
         {props.icon && <NavItemIcon {...props} />}
         {props.text}
       </div>
-      {props?.items?.length && props.open?.value && (
-        <div className="w-4 h-4 transition-transform duration-200 mdi-chevron-down shrink-0 text-muted-foreground" />
+      {!!props?.items?.length && (
+        <div
+          className={cn(
+            "w-4 h-4 transition-transform duration-200 shrink-0 text-muted-foreground",
+            props.open ? "mdi-chevron-down" : "mdi-chevron-right",
+          )}
+        />
       )}
     </a>
   );

@@ -28,7 +28,7 @@ export default defineApp<NetzoState>((_req, ctx) => {
         className={cn(
           "h-full overflow-x-hidden",
           showNav &&
-            "flex flex-row-reverse md:grid md:grid-cols-[250px_auto]",
+            "flex flex-row flex-row-reverse md:grid md:grid-cols-[250px_auto]",
           "bg-[hsl(var(--background))]",
         )}
       >
@@ -36,7 +36,7 @@ export default defineApp<NetzoState>((_req, ctx) => {
           <Nav
             {...ui.nav}
             sessionUser={sessionUser}
-            className="hidden md:flex md:flex-col w-[250px] md:border-r md:border-[hsl(var(--border))]"
+            className="hidden md:flex w-[250px]"
           />
         )}
 
@@ -46,7 +46,7 @@ export default defineApp<NetzoState>((_req, ctx) => {
               <NavMobile
                 {...ui.nav}
                 sessionUser={sessionUser}
-                className="mr-4 md:hidden"
+                className="flex md:hidden"
               />
             </Header>
           )}

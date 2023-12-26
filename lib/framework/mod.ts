@@ -41,6 +41,10 @@ export async function createNetzoApp(
   manifest: Manifest,
   projectIdOrConfig: Project["_id"] | Partial<NetzoConfig>,
 ): Promise<{ netzo: Awaited<ReturnType<typeof Netzo>>; config: NetzoConfig }> {
+  if (typeof projectIdOrConfig === "string") {
+    Deno.env.set("NETZO_PROJECT_ID", projectIdOrConfig); // inline ID takes precedence
+  }
+
   const {
     NETZO_ENV = Deno.env.get("DENO_REGION") ? "production" : "development",
     NETZO_PROJECT_ID,
@@ -48,10 +52,6 @@ export async function createNetzoApp(
     NETZO_API_URL = "https://api.netzo.io",
     NETZO_APP_URL = "https://app.netzo.io",
   } = Deno.env.toObject();
-
-  if (typeof projectIdOrConfig === "string") {
-    Deno.env.set("NETZO_PROJECT_ID", projectIdOrConfig); // inline ID takes precedence
-  }
 
   if (!NETZO_PROJECT_ID) throw new Error(LOGS.missingProjectId);
   if (!NETZO_API_KEY) throw new Error(LOGS.missingApiKey);
@@ -74,10 +74,10 @@ export async function createNetzoApp(
   if (DEV) setEnvVars(project.envVars?.development ?? {});
   const appUrl = Deno.env.get("NETZO_APP_URL") ?? "https://app.netzo.io";
 
-  // 1) get project or inline config
-  let config: NetzoConfig = typeof projectIdOrConfig === "string"
-    ? project.config
-    : projectIdOrConfig;
+  // 1) get inline or remote config
+  let config: NetzoConfig = typeof projectIdOrConfig === "object"
+    ? projectIdOrConfig // inline
+    : project.config; // remote
 
   // 2) merge defaults and config and render mustache values
   config = resolveConfig(config, project);
