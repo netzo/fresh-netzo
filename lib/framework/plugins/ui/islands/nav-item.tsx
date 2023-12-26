@@ -25,9 +25,8 @@ export function NavItem(props: NavItemProps) {
         buttonVariants({ variant: "ghost" }),
         `flex justify-between w-full`,
         `hover:text-[hsl(var(--primary))]`,
-        props?.items?.length
-          ? `aria-[current='true']:text-[hsl(var(--primary))]` // ancestor links
-          : `aria-[current='page']:text-[hsl(var(--primary))]`, // current page
+        `aria-[current='true']:text-[hsl(var(--primary))]`, // ancestor links
+        `aria-[current='page']:text-[hsl(var(--primary))]`, // current page
       )}
     >
       <div className="flex items-center flex-1 gap-2">
