@@ -18,6 +18,8 @@ const METHODS = [
   "remove",
 ] as NetzoConfig["api"]["methods"];
 const ERRORS = {
+  missingApiKey: () => new Response("Missing API key", { status: 401 }),
+  invalidApiKey: () => new Response("Invalid API key", { status: 401 }),
   notAllowed: () => new Response("Method not allowed", { status: 405 }),
 };
 
@@ -41,9 +43,20 @@ export const api = (options?: NetzoConfig["api"]): Plugin => {
       {
         path,
         middleware: {
-          handler: async (_req, ctx) => {
+          handler: async (req, ctx) => {
             try {
               if (!["route"].includes(ctx.destination)) return await ctx.next();
+
+              // API key authentication
+              const apiKeyHeader = req.headers.get("x-api-key");
+              const apiKeySearchParams = ctx.url.searchParams.get("apiKey");
+              const apiKey = apiKeyHeader || apiKeySearchParams;
+              if (!apiKey) return ERRORS.missingApiKey();
+              if (apiKey !== Deno.env.get("NETZO_API_KEY")!) {
+                return ERRORS.invalidApiKey();
+              }
+              ctx.url.searchParams.delete("apiKey"); // remove apiKey from query
+
               return await ctx.next();
             } catch (error) {
               return toErrorResponse(error);
@@ -56,10 +69,9 @@ export const api = (options?: NetzoConfig["api"]): Plugin => {
       {
         path: `${path}/[resource]`,
         handler: {
-          async GET(req, ctx) {
+          async GET(_req, ctx) {
             if (!methods!.includes("find")) return ERRORS.notAllowed();
-            const url = new URL(req.url);
-            const query = Object.fromEntries(url.searchParams);
+            const query = Object.fromEntries(ctx.url.searchParams);
             const { resource } = ctx.params;
             const result = await db.find(resource, query);
             return Response.json(result);
