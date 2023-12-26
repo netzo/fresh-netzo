@@ -5,7 +5,7 @@
 /// <reference lib="deno.ns" />
 /// <reference lib="deno.unstable" />
 
-import type { FreshConfig, Manifest } from "../deps/$fresh/server.ts";
+import { type FreshConfig, start } from "../deps/$fresh/server.ts";
 import type { Project } from "../deps/@netzo/api/mod.ts";
 import { AuthState } from "./plugins/auth/mod.ts";
 import { createPluginsForModules } from "./plugins/mod.ts";
@@ -19,10 +19,13 @@ export type { Project };
 
 export type NetzoConfig = FreshConfig & Project["config"];
 
+export type NetzoApp = Awaited<ReturnType<typeof Netzo>> & {
+  start: () => Promise<void>;
+};
+
 export type NetzoState = {
-  kv: Deno.Kv;
-  netzo: Awaited<ReturnType<typeof Netzo>>;
-  config: Project["config"];
+  app: Awaited<ReturnType<typeof Netzo>>;
+  config: NetzoConfig;
   // injected by plugins:
   auth?: AuthState;
   [k: string]: unknown;
@@ -38,9 +41,8 @@ console.error = (msg) => {
 };
 
 export async function createNetzoApp(
-  manifest: Manifest,
   projectIdOrConfig: Project["_id"] | Partial<NetzoConfig>,
-): Promise<Awaited<ReturnType<typeof Netzo>>> {
+): Promise<NetzoApp> {
   if (typeof projectIdOrConfig === "string") {
     Deno.env.set("NETZO_PROJECT_ID", projectIdOrConfig); // inline ID takes precedence
   }
@@ -56,11 +58,11 @@ export async function createNetzoApp(
   if (!NETZO_PROJECT_ID) throw new Error(LOGS.missingProjectId);
   if (!NETZO_API_KEY) throw new Error(LOGS.missingApiKey);
 
-  const netzo = await Netzo({ apiKey: NETZO_API_KEY, baseURL: NETZO_API_URL });
+  const app = await Netzo({ apiKey: NETZO_API_KEY, baseURL: NETZO_API_URL });
 
   const DEV = ["development"].includes(NETZO_ENV);
 
-  const project = await netzo.api.projects[NETZO_PROJECT_ID].get<Project>();
+  const project = await app.api.projects[NETZO_PROJECT_ID].get<Project>();
 
   if (!project) throw new Error(LOGS.notFoundProject);
 
@@ -83,7 +85,7 @@ export async function createNetzoApp(
   config = resolveConfig(config, project);
 
   // 3) build state (pass single kv instance to plugins for performance)
-  const state: NetzoState = { kv: await Deno.openKv(), netzo, config };
+  const state: NetzoState = { app, config };
 
   const { plugins = [] } = config;
   const netzoPlugins = await createPluginsForModules(state);
@@ -135,13 +137,17 @@ export async function createNetzoApp(
     ],
   };
 
-  if (Deno.args.includes("dev")) {
-    const { default: dev } = await import("$fresh/dev.ts");
-    await dev(Deno.mainModule, "./netzo.ts", config);
-  } else {
-    const { start } = await import("$fresh/server.ts");
-    await start(manifest, config);
-  }
-
-  return netzo;
+  return {
+    ...app,
+    start: async () => {
+      if (Deno.args.includes("dev")) {
+        const { default: dev } = await import("$fresh/dev.ts");
+        await dev(Deno.mainModule, "./netzo.ts", config);
+      } else {
+        // const { start } = await import("$fresh/server.ts");
+        const { default: manifest } = await import("@/fresh.gen.ts");
+        await start(manifest, config);
+      }
+    }, // NOTE: async but won't resolve (since dev/start won't) so we can't await it
+  };
 }

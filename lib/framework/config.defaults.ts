@@ -1,9 +1,3 @@
-
-
-
-
-
-
 import type { NetzoConfig } from "./mod.ts";
 
 export const CONFIG: NetzoConfig = {
