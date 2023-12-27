@@ -71,6 +71,6 @@ export const CONFIG: NetzoConfig = {
     methods: ["find", "get", "create", "update", "patch", "remove"],
   },
   devtools: {
-    bindSignal: { enabled: true },
+    bindSignal: {},
   },
 };

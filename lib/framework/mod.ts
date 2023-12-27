@@ -144,9 +144,7 @@ export async function createNetzoApp(
         const { default: dev } = await import("$fresh/dev.ts");
         await dev(Deno.mainModule, "./netzo.ts", config);
       } else {
-        // const { start } = await import("$fresh/server.ts");
-        const { default: manifest } = await import("@/fresh.gen.ts");
-        await start(manifest, config);
+        await start((await import("@/fresh.gen.ts")).default, config);
       }
     }, // NOTE: async but won't resolve (since dev/start won't) so we can't await it
   };
