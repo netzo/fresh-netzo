@@ -84,7 +84,7 @@ export async function readDecodeAndAddFileContentToAssets(
     await Promise.all(
       Object.entries(filesWithoutContent).map(
         async ([path, file]) => {
-          const { kind, gitSha1 /* size */ } = file as ProjectAssetsFile;
+          const { kind /* gitSha1, size */ } = file as ProjectAssetsFile;
           const content: string = isBinary(path)
             ? encodeBase64(await Deno.readFile(path)) // e.g. png, jpg
             : (await Deno.readTextFile(path)); // e.g. tsx, html, json, txt
@@ -93,6 +93,12 @@ export async function readDecodeAndAddFileContentToAssets(
             kind,
             content,
             encoding,
+            // DISABLED: cannot pass gitSha1 alongside the above, it is EITHER
+            // { content, encoding } OR { gitSha1 }, therefore necessitating an
+            // asset negotiation step before deployment (which we no longer support)
+            // therefore we disable passing the gitSha1 to avoid re-uploading files for now.
+            // The error we get if we pass a gitSha1 alongside content and encoding is:
+            // "Error: malformedRequest: data did not match any variant of untagged enum File"
             // gitSha1, // prevents need to re-upload unchanged files
           }];
         },
