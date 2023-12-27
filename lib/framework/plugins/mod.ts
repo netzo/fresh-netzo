@@ -2,8 +2,7 @@ import type { Plugin } from "../../deps/$fresh/server.ts";
 import { logInfo } from "../utils/console.ts";
 import type { NetzoState } from "../mod.ts";
 
-export const enabled = (obj: { [k: string]: unknown; enabled?: boolean }) =>
-  obj?.enabled !== false;
+export const enabled = (obj: any) => obj?.enabled !== false;
 
 /**
  * An internal utility to bundle plugins based on app configuration.
@@ -57,7 +56,7 @@ export async function createPluginsForModules(
     plugins.map(
       ({ name }) => {
         if (name === "ui") return `${uiEnabled ? "✅" : "❌"} ${name}`;
-        return `${!!state.config[name]?.enabled ? "✅" : "❌"} ${name}`;
+        return `${enabled(state.config[name]) ? "✅" : "❌"} ${name}`;
       },
     ).join(" | ")
   }`);

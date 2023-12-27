@@ -38,7 +38,7 @@ export const auth = (options: NetzoConfig["auth"]): Plugin => {
   const authRoutes = [
     { path: "/auth", component: Auth },
     ...Object.keys(options.providers)
-      .filter((p) => options?.providers?.[p]?.enabled)
+      .filter((p) => enabled(options?.providers?.[p]))
       .flatMap((p) => getRoutesByProvider(p, options?.providers?.[p])),
   ];
 

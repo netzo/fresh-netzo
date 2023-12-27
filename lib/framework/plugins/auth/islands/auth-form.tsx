@@ -1,5 +1,6 @@
 import type { ComponentChildren, JSX } from "../../../../deps/preact.ts";
 import type { NetzoState } from "../../../../framework/mod.ts";
+import { enabled } from "../../../../framework/plugins/mod.ts";
 import { cn } from "../../../../components/utils.ts";
 import { Button, buttonVariants } from "../../../../components/ui/button.tsx";
 import { Input } from "../../../../components/ui/input.tsx";
@@ -70,9 +71,9 @@ const ButtonOAuth2 = (
 export function AuthForm(props: NetzoState) {
   const { logo, auth } = props.config;
 
-  const hasEmail = !!auth?.providers?.email?.enabled;
+  const hasEmail = enabled(auth?.providers?.email);
   const hasOAuth2 = Object.entries(auth?.providers ?? {}).some(
-    ([key, value]) => !["email"].includes(key) && !!value.enabled,
+    ([key, value]) => !["email"].includes(key) && enabled(value),
   );
   const showDivider = hasEmail && hasOAuth2;
 
@@ -97,7 +98,7 @@ export function AuthForm(props: NetzoState) {
         )}
       </div>
       <div className="grid gap-6">
-        {!!auth?.providers?.email?.enabled && (
+        {enabled(auth?.providers?.email) && (
           <form method="POST" action="/auth/email">
             <ButtonEmail />
           </form>
@@ -116,7 +117,7 @@ export function AuthForm(props: NetzoState) {
           </div>
         )}
 
-        {!!auth?.providers?.netzo?.enabled && (
+        {enabled(auth?.providers?.netzo) && (
           <ButtonNetzo text="Sign In with Netzo" href="/auth/netzo/signin">
             <img
               src="https://netzo.io/favicon.svg"
@@ -125,36 +126,36 @@ export function AuthForm(props: NetzoState) {
           </ButtonNetzo>
         )}
 
-        {!!auth?.providers?.google?.enabled && (
+        {enabled(auth?.providers?.google) && (
           <ButtonOAuth2 text="Sign In with Google" href="/auth/google/signin">
             <div className="mr-4 w-20px h-20px logos-google-icon" />
           </ButtonOAuth2>
         )}
 
-        {!!auth?.providers?.github?.enabled && (
+        {enabled(auth?.providers?.github) && (
           <ButtonOAuth2 text="Sign In with GitHub" href="/auth/github/signin">
             <div className="mr-4 w-20px h-20px mdi-github" />
           </ButtonOAuth2>
         )}
 
-        {!!auth?.providers?.gitlab?.enabled && (
+        {enabled(auth?.providers?.gitlab) && (
           <ButtonOAuth2 text="Sign In with GitLab" href="/auth/gitlab/signin">
             <div className="mr-4 w-20px h-20px mdi-gitlab" />
           </ButtonOAuth2>
         )}
 
-        {!!auth?.providers?.auth0?.enabled && (
+        {enabled(auth?.providers?.auth0) && (
           <ButtonOAuth2 text="Sign In with Auth0" href="/auth/auth0/signin">
             <div className="mr-4 w-20px h-20px simple-icons-auth0" />
           </ButtonOAuth2>
         )}
-        {!!auth?.providers?.okta?.enabled && (
+        {enabled(auth?.providers?.okta) && (
           <ButtonOAuth2 text="Sign In with Okta" href="/auth/okta/signin">
             <div className="mr-4 w-20px h-20px simple-icons-okta" />
           </ButtonOAuth2>
         )}
 
-        {!!auth?.providers?.oauth2?.enabled && (
+        {enabled(auth?.providers?.oauth2) && (
           <ButtonOAuth2 text="Sign In with Custom" href="/auth/oauth2/signin">
             <div className="mr-4 w-20px h-20px mdi-code-json" />
           </ButtonOAuth2>
