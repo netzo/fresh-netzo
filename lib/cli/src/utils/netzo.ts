@@ -1,3 +1,5 @@
+import { isBinary } from "npm:istextorbinary@9.4.0";
+import { encodeBase64 } from "../../../deps/std/encoding/base64.ts";
 import { io } from "../../../deps/socket.io-client.ts";
 import { feathers } from "../../../deps/@feathersjs/feathers.ts";
 import { socketio } from "../../../deps/@feathersjs/socketio-client.ts";
@@ -82,14 +84,16 @@ export async function readDecodeAndAddFileContentToAssets(
     await Promise.all(
       Object.entries(filesWithoutContent).map(
         async ([path, file]) => {
-          const { kind, gitSha1, size } = file as ProjectAssetsFile;
-          // const bytes: Uint8Array = await Deno.readFile(path)
-          // const content: string = new TextDecoder().decode(bytes)
-          const content: string = await Deno.readTextFile(path);
+          const { kind, gitSha1 /* size */ } = file as ProjectAssetsFile;
+          const content: string = isBinary(path)
+            ? encodeBase64(await Deno.readFile(path)) // e.g. png, jpg
+            : (await Deno.readTextFile(path)); // e.g. tsx, html, json, txt
+          const encoding = isBinary(path) ? "base64" : "utf-8";
           return [path, {
             kind,
             content,
-            encoding: "utf-8", /* gitSha1, size */
+            encoding,
+            // gitSha1, // prevents need to re-upload unchanged files
           }];
         },
       ),

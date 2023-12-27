@@ -1,5 +1,7 @@
 export {
   fromFileUrl,
+  globToRegExp,
+  isGlob,
   join,
   normalize,
   resolve,

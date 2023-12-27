@@ -1,6 +1,6 @@
 #!/usr/bin/env -S deno run --allow-read --allow-write --allow-env --allow-net --allow-run
 
-import { parseArgs } from "../deps/std/flags/mod.ts";
+import { parseArgs } from "./src/args.ts";
 import { parse, semverGreaterThanOrEquals } from "../deps/semver/mod.ts";
 import { error } from "../framework/utils/console.ts";
 import initSubcommand from "./src/subcommands/init.ts";
@@ -40,33 +40,7 @@ if (
   );
 }
 
-const args = parseArgs(Deno.args, {
-  alias: {
-    "help": "h",
-    "version": "V",
-    "project": "p",
-  },
-  boolean: [
-    "help",
-    "static",
-    "build",
-    "production",
-    "version",
-    "dry-run",
-  ],
-  string: [
-    "project",
-    "api-key",
-    "exclude",
-    "include",
-    "import-map",
-    "deno-lock",
-    "deployment",
-  ],
-  default: {
-    static: true,
-  },
-});
+const args = parseArgs(Deno.args);
 
 if (Deno.isatty(Deno.stdin.rid)) {
   let latestVersion;

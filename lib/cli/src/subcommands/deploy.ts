@@ -7,8 +7,13 @@ import type {
   Project,
 } from "../../../deps/@netzo/api/mod.ts";
 export { Spinner } from "../../../deps/wait/mod.ts";
-import { fromFileUrl, normalize } from "../../../deps/std/path/mod.ts";
-import { wait } from "../../../deps/wait/mod.ts";
+import {
+  fromFileUrl,
+  globToRegExp,
+  isGlob,
+  normalize,
+} from "../../../deps/std/path/mod.ts";
+import { Spinner, wait } from "../../../deps/wait/mod.ts";
 import { netzo } from "../../../apis/netzo/mod.ts";
 import { error, LOGS } from "../../../framework/utils/console.ts";
 import { parseEntrypoint } from "../utils/entrypoint.ts";
@@ -19,6 +24,7 @@ import {
   readDecodeAndAddFileContentToAssets,
 } from "../utils/netzo.ts";
 import { APIError } from "../utils/api.ts";
+import { Args as RawArgs } from "../args.ts";
 
 const help = `netzo deploy
 Deploy a project with static files to Netzo.
@@ -45,7 +51,7 @@ OPTIONS:
         --exclude=<PATTERNS>     Exclude files that match this pattern
         --include=<PATTERNS>     Only upload files that match this pattern
         --import-map=<FILE>      Use import map file
-        --deno-lock=<FILE>       Use deno lock file
+        --lock-file=<FILE>       Use deno lock file
     -h, --help                   Prints help information
         --no-static              Don't include the files in the CWD as static files
         --build                  Runs custom build task (via "deno task build") before deploying
@@ -65,11 +71,11 @@ export type Args = {
   build: boolean;
   production: boolean;
   description: string | null;
-  exclude?: string[];
-  include?: string[];
+  exclude: string[];
+  include: string[];
   project: string | null;
   importMap: string | null;
-  denoLock: string | null;
+  lockFile: string | null;
   dryRun: boolean;
   apiKey: string | null;
   apiUrl?: string;
@@ -77,7 +83,7 @@ export type Args = {
 };
 
 // deno-lint-ignore no-explicit-any
-export default async function (rawArgs: Record<string, any>): Promise<void> {
+export default async function (rawArgs: RawArgs): Promise<void> {
   const {
     NETZO_PROJECT_ID = null,
     NETZO_API_KEY = null,
@@ -93,9 +99,9 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     description: rawArgs.description ? String(rawArgs.description) : null,
     project: rawArgs.project ? String(rawArgs.project) : NETZO_PROJECT_ID,
     importMap: rawArgs["import-map"] ? String(rawArgs["import-map"]) : null,
-    denoLock: rawArgs["deno-lock"] ? String(rawArgs["deno-lock"]) : null,
-    exclude: rawArgs.exclude?.split(","),
-    include: rawArgs.include?.split(","),
+    lockFile: rawArgs["lock-file"] ? String(rawArgs["lock-file"]) : null,
+    exclude: rawArgs.exclude.flatMap((e) => e.split(",")),
+    include: rawArgs.include.flatMap((i) => i.split(",")),
     dryRun: !!rawArgs["dry-run"],
     apiKey: rawArgs["api-key"] ? String(rawArgs["api-key"]) : NETZO_API_KEY,
     apiUrl: rawArgs["api-url"] ?? NETZO_API_URL,
@@ -141,17 +147,17 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
         ? null
         : await parseEntrypoint(args.importMap, undefined, "import map")
           .catch((e) => error(e)),
-      denoLockUrl: args.denoLock === null
+      lockFileUrl: args.lockFile === null
         ? null
-        : await parseEntrypoint(args.denoLock, undefined, "deno lock")
+        : await parseEntrypoint(args.lockFile, undefined, "deno lock")
           .catch((e) => error(e)),
       static: args.static,
       build: args.build,
       production: args.production,
       description: args.description,
       project: args.project,
-      include: args.include?.map((pattern) => normalize(pattern)),
-      exclude: args.exclude?.map((pattern) => normalize(pattern)),
+      include: args.include,
+      exclude: args.exclude,
       dryRun: args.dryRun,
       apiKey: args.apiKey!,
       apiUrl: args.apiUrl!,
@@ -163,13 +169,13 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
 type DeployOpts = {
   entrypoint: URL;
   importMapUrl: URL | null;
-  denoLockUrl: URL | null;
+  lockFileUrl: URL | null;
   static: boolean;
   build: boolean;
   production: boolean;
   description: string | null;
-  exclude?: string[];
-  include?: string[];
+  exclude: string[];
+  include: string[];
   project: string;
   dryRun: boolean;
   apiKey: string;
@@ -243,14 +249,14 @@ async function deploy(opts: DeployOpts): Promise<void> {
     importMapUrl = new URL(`file:///src${importMap}`);
   }
 
-  let denoLockUrl = opts.denoLockUrl ?? project.config?.denoLock;
-  if (denoLockUrl && denoLockUrl.protocol === "file:") {
-    const path = fromFileUrl(denoLockUrl);
+  let lockFileUrl = opts.lockFileUrl ?? project.config?.lockFile;
+  if (lockFileUrl && lockFileUrl.protocol === "file:") {
+    const path = fromFileUrl(lockFileUrl);
     if (!path.startsWith(cwd)) {
       error("Import map must be in the current working directory.");
     }
-    const denoLock = path.slice(cwd.length);
-    denoLockUrl = new URL(`file:///src${denoLock}`);
+    const lockFile = path.slice(cwd.length);
+    lockFileUrl = new URL(`file:///src${lockFile}`);
   }
 
   // NOTE: asset negotiation handled automatically by Sunhosting API
@@ -260,10 +266,19 @@ async function deploy(opts: DeployOpts): Promise<void> {
   if (opts.static) {
     wait("").start().info(`Uploading all files from the current dir (${cwd})`);
     const assetSpinner = wait("Finding static assets...").start();
-    const entries = await walk(cwd, cwd, assetsMap, {
-      include: opts.include,
-      exclude: opts.exclude,
-    });
+    const include = opts.include.map((pattern) =>
+      isGlob(pattern)
+        // slice is used to remove the end-of-string anchor '$'
+        ? RegExp(globToRegExp(normalize(pattern)).toString().slice(1, -2))
+        : RegExp(`^${normalize(pattern)}`)
+    );
+    const exclude = opts.exclude.map((pattern) =>
+      isGlob(pattern)
+        // slice is used to remove the end-of-string anchor '$'
+        ? RegExp(globToRegExp(normalize(pattern)).toString().slice(1, -2))
+        : RegExp(`^${normalize(pattern)}`)
+    );
+    const entries = await walk(cwd, cwd, assetsMap, { include, exclude });
     const s = assetsMap.size === 1 ? "" : "s";
     assetSpinner.succeed(`Found ${assetsMap.size} asset${s}.`);
     manifest = { entries };
@@ -281,7 +296,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
     // deno:
     entryPointUrl: entryPointUrl.href, // e.g. main.ts
     importMapUrl: importMapUrl?.href || null,
-    denoLockUrl: denoLockUrl?.href || null,
+    lockFileUrl: lockFileUrl?.href || null,
     // configures automatic JSX runtime for preact by default
     // see https://deno.com/manual@v1.34.3/advanced/jsx_dom/jsx#using-jsx-import-source-in-a-configuration-file
     compilerOptions: {

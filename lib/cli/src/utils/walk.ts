@@ -1,9 +1,8 @@
-import { join } from "../../../deps/std/path/mod.ts";
+import { join, normalize } from "../../../deps/std/path/mod.ts";
 import {
   type ManifestEntry,
   ManifestEntryDirectory,
 } from "../../../deps/@netzo/api/mod.ts";
-import { logWarning } from "../../../framework/utils/console.ts";
 
 /** Calculate git object hash, like `git hash-object` does. */
 export async function calculateGitSha1(bytes: Uint8Array) {
@@ -21,55 +20,19 @@ export async function calculateGitSha1(bytes: Uint8Array) {
 
 function include(
   path: string,
-  include?: string[],
-  exclude?: string[],
+  include: RegExp[],
+  exclude: RegExp[],
 ): boolean {
-  // FIXME: remove first if case that exclude binary multimedia files
-  // (images, videos, etc.) and add support for them as well via the
-  // Subhosting API integration (see https://deno-deploy.redoc.ly)
-  // TODO: read .gitignore file and skip those paths instead (if any)
   if (
-    [
-      "png",
-      "jpg",
-      "jpeg",
-      "webp",
-      "gif",
-      "ico",
-      "mp3",
-      "mp4",
-      "wav",
-      "ogg",
-      "pdf",
-      "doc",
-      "docx",
-      "xls",
-      "xlsx",
-      "ppt",
-      "pptx",
-      "zip",
-      "webm",
-      "ogg",
-      "m4a",
-      "m4v",
-      "mov",
-      "avi",
-      "wmv",
-      "mpg",
-      "mpeg",
-    ].includes(path?.split(".").pop()!)
-  ) {
-    logWarning(
-      `Skipping ${path} because it is a binary file (not yet supported)`,
-    ); // requires newline "\n" to avoid being swallowed by the spinner
-    return false;
-  }
-  if (
-    include && !include.some((pattern): boolean => path.startsWith(pattern))
+    include.length &&
+    !include.some((pattern): boolean => pattern.test(normalize(path)))
   ) {
     return false;
   }
-  if (exclude && exclude.some((pattern): boolean => path.startsWith(pattern))) {
+  if (
+    exclude.length &&
+    exclude.some((pattern): boolean => pattern.test(normalize(path)))
+  ) {
     return false;
   }
   return true;
@@ -79,14 +42,15 @@ export async function walk(
   cwd: string,
   dir: string,
   files: Map<string, string>,
-  options: { include?: string[]; exclude?: string[] },
+  options: { include: RegExp[]; exclude: RegExp[] },
 ): Promise<Record<string, ManifestEntry>> {
   const entries: Record<string, ManifestEntry> = {};
   for await (const file of Deno.readDir(dir)) {
     const path = join(dir, file.name);
     const relative = path.slice(cwd.length);
     if (
-      !include(
+      // Do not test directories, because --include=foo/bar must include the directory foo (same goes with --include=*/bar)
+      !file.isDirectory && !include(
         path.slice(cwd.length + 1),
         options.include,
         options.exclude,
