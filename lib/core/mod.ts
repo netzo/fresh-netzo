@@ -33,5 +33,34 @@ export const Netzo = async ({
 
   const notification = createNotification(api);
 
+  type Message<T = unknown> = {
+    type: "cron" | "email" | "notification" | "sms";
+    data: T;
+    env: "production" | "development";
+    projectId: string;
+    createdAt: string;
+    updatedAt: string;
+  };
+
+  // messaging:
+  kv.listenQueue(async (msg) => {
+    // create new messasge in database
+    if (!("type" in msg)) return;
+    const message = await api.messages.post<Message>({
+      ...msg,
+      env: Deno.env.get("NETZO_ENV")!,
+      projectId: Deno.env.get("NETZO_PROJECT_ID")!,
+    });
+    switch (msg?.type) {
+      // case "cron":
+      //   return await cron(message.data);
+      // case "email":
+      //   return await email(message.data);
+      case "notification":
+        return await notification(message.data);
+        // case "sms": return sms(message.data);
+    }
+  });
+
   return { api, cron, kv, db, notification };
 };

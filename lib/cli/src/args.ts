@@ -24,7 +24,7 @@ export function parseArgs(args: string[]) {
       "lock-file",
       "deployment",
       "api-url",
-      "app-url"
+      "app-url",
     ],
     collect: ["include", "exclude"],
     default: {

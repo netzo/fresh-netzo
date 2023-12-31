@@ -41,7 +41,6 @@ export const ui = (options?: NetzoConfig["ui"] & UnocssOptions): Plugin => {
         "./islands/nav.tsx",
         "./islands/nav-mobile.tsx",
         "./islands/nav-item.tsx",
-        "./islands/nav-item.accordion.tsx",
       ],
     },
   };

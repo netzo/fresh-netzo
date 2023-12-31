@@ -3,13 +3,13 @@ import { Partial } from "../../../../deps/$fresh/runtime.ts";
 import { cn } from "../../../../components/utils.ts";
 import type { NetzoState } from "../../../../framework/mod.ts";
 import { Head } from "../components/head.tsx";
+import { Header } from "../islands/header.tsx";
+import { Footer } from "../islands/footer.tsx";
 import { Nav } from "../islands/nav.tsx";
 import { NavMobile } from "../islands/nav-mobile.tsx";
-import { Footer } from "../islands/footer.tsx";
-import Header from "../islands/header.tsx";
 import { enabled } from "../../mod.ts";
 
-export default defineApp<NetzoState>((_req, ctx) => {
+export default defineApp<NetzoState>((req, ctx) => {
   const { auth, ui } = ctx.state.config;
   const { sessionId, sessionUser } = ctx.state.auth ?? {};
 
@@ -26,38 +26,40 @@ export default defineApp<NetzoState>((_req, ctx) => {
       </head>
       <body
         className={cn(
-          "h-full overflow-x-hidden",
+          "h-full overflow-x-hidden bg-[hsl(var(--background))]",
           showNav &&
             "flex flex-row flex-row-reverse md:grid md:grid-cols-[250px_auto]",
-          "bg-[hsl(var(--background))]",
         )}
       >
         {showNav && (
           <Nav
             {...ui.nav}
-            sessionUser={sessionUser}
-            className="hidden md:flex w-[250px]"
+            className="hidden md:flex w-[250px] md:b-r-1 md:b-[hsl(var(--border))]"
           />
         )}
-
         <div className="flex flex-col w-full h-full overflow-x-hidden">
           {showHeader && (
-            <Header {...ui.header} nav={ui.nav}>
+            <Header {...ui.header} nav={ui.nav} sessionUser={sessionUser}>
               <NavMobile
                 {...ui.nav}
-                sessionUser={sessionUser}
                 className="flex md:hidden"
               />
             </Header>
           )}
 
-          <main className="flex-1">
-            {mustAuth ? <ctx.Component /> : (
-              <Partial name="main">
+          {mustAuth
+            ? (
+              <main className="flex-1">
                 <ctx.Component />
-              </Partial>
+              </main>
+            )
+            : (
+              <main f-client-nav className="flex-1">
+                <Partial name="main">
+                  <ctx.Component />
+                </Partial>
+              </main>
             )}
-          </main>
 
           {showFooter && <Footer className="sticky bottom-0" {...ui.footer} />}
         </div>

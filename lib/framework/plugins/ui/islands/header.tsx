@@ -1,13 +1,9 @@
-import type { ComponentProps } from "../../../../deps/preact.ts";
 import type { NetzoConfig } from "../../../../framework/mod.ts";
 import { cn } from "../../../../components/utils.ts";
 import { ThemeToggle } from "../../../../components/ui/theme-toggle.tsx";
+import { HeaderAuth } from "./header.auth.tsx";
 
-export default (
-  { className, ...props }: NetzoConfig["ui"]["header"] & {
-    children: ComponentProps;
-  },
-) => {
+export function Header({ className, ...props }: NetzoConfig["ui"]["header"]) {
   return (
     <header
       className={cn(
@@ -42,7 +38,12 @@ export default (
       {/* CENTER CONTENT HERE */}
 
       {/* RIGHT CONTENT HERE */}
-      <ThemeToggle />
+      <div className="flex items-center h-full gap-4">
+        <ThemeToggle />
+        {props.sessionUser && (
+          <HeaderAuth f-client-nav={false} sessionUser={props.sessionUser} />
+        )}
+      </div>
     </header>
   );
-};
+}

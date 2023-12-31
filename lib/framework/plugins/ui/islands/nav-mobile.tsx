@@ -31,7 +31,7 @@ export function NavMobile({ className, ...props }: NetzoConfig["ui"]["nav"]) {
       </SheetTrigger>
       <SheetContent side="left" className="w-[250px] p-0">
         <div className="h-full px-1 py-6 pt-16">
-          <Nav {...props} sessionUser={props.sessionUser} />
+          <Nav {...props} />
         </div>
       </SheetContent>
     </Sheet>
