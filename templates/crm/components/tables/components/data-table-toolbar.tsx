@@ -17,14 +17,12 @@ interface DataTableToolbarProps<TData> {
   table: Table<TData>;
   options: DataTableProps<TData, unknown>["options"];
   SheetCreateComponent: () => JSX.Element;
-  SheetBulkUpdateComponent: () => JSX.Element;
 }
 
 export function DataTableToolbar<TData>({
   table,
   options,
   SheetCreateComponent,
-  SheetBulkUpdateComponent,
 }: DataTableToolbarProps<TData>) {
   const isFiltered = table.getState().columnFilters.length > 0;
   const selectedRows = table.getRowModel().rows.filter((row) =>
@@ -79,35 +77,7 @@ export function DataTableToolbar<TData>({
       <DataTableViewOptions table={table} />
 
       {selectedRows.length
-        ? (
-          <>
-            {selectedRows.length > 1
-              ? (
-                <SheetBulkUpdateComponent
-                  table={table}
-                  options={options}
-                  selectedRows={selectedRows}
-                />
-              )
-              : (
-                <>
-                  <a
-                    href={`${window.location.pathname}/${
-                      selectedRows[0].original.id
-                    }`}
-                  >
-                    <Button className="h-8 px-2 ml-3 lg:px-3">
-                      <Pencil1Icon className="w-4 h-4 mr-2" /> Edit
-                    </Button>
-                  </a>
-                </>
-              )}
-            <DialogDelete
-              options={options}
-              selectedRows={selectedRows}
-            />
-          </>
-        )
+        ? <DialogDelete options={options} selectedRows={selectedRows} />
         : <SheetCreateComponent table={table} options={options} />}
     </div>
   );

@@ -1,7 +1,6 @@
 import { DataTable } from "@/components/tables/components/data-table.tsx";
 import { columns } from "@/components/tables/invoices/columns.tsx";
 import { SheetCreate } from "@/components/tables/invoices/sheet-create.tsx";
-import { SheetBulkUpdate } from "@/components/tables/invoices/sheet-bulkUpdate.tsx";
 import { FormAdmin } from "@/components/tables/invoices/form-admin.tsx";
 
 export function Table({ data, options }) {
@@ -12,7 +11,6 @@ export function Table({ data, options }) {
         data={data}
         options={options}
         SheetCreateComponent={SheetCreate}
-        SheetBulkUpdateComponent={SheetBulkUpdate}
       />
     </div>
   );
