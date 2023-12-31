@@ -17,6 +17,8 @@ const dbSeed = async () => {
     console.log("Data uploaded to DB.");
   } catch (error) {
     console.error("Error seeding Database:", error);
+  } finally {
+    Deno.exit();
   }
 };
 
