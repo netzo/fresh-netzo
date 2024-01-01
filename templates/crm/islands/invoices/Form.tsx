@@ -37,10 +37,11 @@ import { Calendar } from "netzo/components/ui/calendar.tsx";
 
 interface FormProps {
   data?: Invoice;
+  method: "POST" | "PATCH";
   url: string;
 }
 
-export function FormInvoice({ data, url }: FormProps) {
+export function FormInvoice({ data, method, url }: FormProps) {
   const [defaultValues, setDefaultValues] = useState(data);
   const [showCalendar, setShowCalendar] = useState(false);
 
@@ -51,13 +52,22 @@ export function FormInvoice({ data, url }: FormProps) {
   });
 
   async function onSubmit(inputValues: Invoice) {
-    await fetch(url, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(inputValues),
-    });
+    const updatedAt = new Date().toISOString();
+    const createdAt = data?.createdAt || updatedAt;
+    try {
+      await fetch(url, {
+        method,
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          ...inputValues,
+          createdAt,
+          updatedAt,
+        }),
+      });
+      window.location.href = "/clients";
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   return (

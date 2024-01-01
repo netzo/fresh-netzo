@@ -41,14 +41,12 @@ export interface DataTableProps<TData, TValue> {
     }[];
     resource: string;
   };
-  SheetCreateComponent?: any;
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
   options,
-  SheetCreateComponent,
 }: DataTableProps<TData, TValue>) {
   const [rowSelection, setRowSelection] = useState({});
   const [columnVisibility, setColumnVisibility] = useState<
@@ -89,7 +87,6 @@ export function DataTable<TData, TValue>({
       <DataTableToolbar
         table={table}
         options={options}
-        SheetCreateComponent={SheetCreateComponent}
       />
       <div className="border rounded-md">
         <Table>

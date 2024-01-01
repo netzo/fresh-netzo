@@ -35,9 +35,10 @@ import {
 interface FormProps {
   data?: Contact;
   url: string;
+  method: "POST" | "PATCH";
 }
 
-export function FormContact({ data, url }: FormProps) {
+export function FormContact({ data, method, url }: FormProps) {
   const [defaultValues, setDefaultValues] = useState(data);
 
   const form = useForm<Contact>({
@@ -47,13 +48,22 @@ export function FormContact({ data, url }: FormProps) {
   });
 
   async function onSubmit(inputValues: Contact) {
-    await fetch(url, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(inputValues),
-    });
+    const updatedAt = new Date().toISOString();
+    const createdAt = data?.createdAt || updatedAt;
+    try {
+      await fetch(url, {
+        method,
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          ...inputValues,
+          createdAt,
+          updatedAt,
+        }),
+      });
+      window.location.href = "/contacts";
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   return (
@@ -119,7 +129,7 @@ export function FormContact({ data, url }: FormProps) {
               </FormItem>
             )}
           />
-          <fieldset className="p-3 border border-gray-400 border-solid rounded">
+          <fieldset className="p-3 border rounded">
             <legend>Notifications</legend>
             <FormField
               control={form.control}

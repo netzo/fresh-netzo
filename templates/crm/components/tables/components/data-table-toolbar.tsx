@@ -1,7 +1,8 @@
 import { Cross2Icon, ReloadIcon } from "netzo/deps/@radix-ui/react-icons.ts";
 import { Table } from "netzo/deps/@tanstack/react-table.ts";
 
-import { Button } from "netzo/components/ui/button.tsx";
+import { cn } from "netzo/components/utils.ts";
+import { Button, buttonVariants } from "netzo/components/ui/button.tsx";
 import { Input } from "netzo/components/ui/input.tsx";
 import { DataTableViewOptions } from "./data-table-view-options.tsx";
 import { DataTableFacetedFilter } from "./data-table-faceted-filter.tsx";
@@ -11,13 +12,11 @@ import { DialogDelete } from "@/components/tables/components/dialog-delete.tsx";
 interface DataTableToolbarProps<TData> {
   table: Table<TData>;
   options: DataTableProps<TData, unknown>["options"];
-  SheetCreateComponent: () => JSX.Element;
 }
 
 export function DataTableToolbar<TData>({
   table,
   options,
-  SheetCreateComponent,
 }: DataTableToolbarProps<TData>) {
   const isFiltered = table.getState().columnFilters.length > 0;
   const selectedRows = table.getRowModel().rows.filter((row) =>
@@ -73,7 +72,17 @@ export function DataTableToolbar<TData>({
 
       {selectedRows.length
         ? <DialogDelete options={options} selectedRows={selectedRows} />
-        : <SheetCreateComponent table={table} options={options} />}
+        : (
+          <a
+            href={`/${options.resource}/new`}
+            className={cn(
+              buttonVariants({ variant: "default" }),
+              "h-8 px-2 ml-3 lg:px-3",
+            )}
+          >
+            Create new
+          </a>
+        )}
     </div>
   );
 }

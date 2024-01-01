@@ -52,11 +52,10 @@ export const api = (options?: NetzoConfig["api"]): Plugin => {
               const referer = req.headers.get("referer")!; // SOMETIMES SET e.g. https://app.netzo.io/some-path
 
               // skip if request is from same host, origin or referer
-              const isSameHost = ctx.url.host === host;
-              const isSameOrigin = ctx.url.origin === origin;
-              const isSameReferer = referer.startsWith(ctx.url.origin);
-              console.log({ isSameHost, isSameOrigin, isSameReferer });
-              if (isSameHost || isSameOrigin || isSameReferer) {
+              const sameHost = ctx.url.host === host;
+              const sameOrigin = ctx.url.origin === origin;
+              const sameReferer = referer.startsWith(ctx.url.origin);
+              if (sameHost || sameOrigin || sameReferer) {
                 return await ctx.next();
               }
 
@@ -86,54 +85,46 @@ export const api = (options?: NetzoConfig["api"]): Plugin => {
             if (!methods!.includes("find")) return ERRORS.notAllowed();
             const query = Object.fromEntries(ctx.url.searchParams);
             const { resource } = ctx.params;
-            await db.find(resource, query);
-            return Response.redirect(req.url);
+            const result = await db.find(resource, query);
+            return Response.json(result);
           },
           async POST(req, ctx) {
             if (!methods!.includes("create")) return ERRORS.notAllowed();
             const { resource } = ctx.params;
             const data = await parseRequestBody(req);
-            await db.create(resource, data, idField);
-            return Response.redirect(req.url);
+            const result = await db.create(resource, data, idField);
+            return Response.json(result);
           },
         },
       },
       {
         path: `${path}/[resource]/[id]`,
         handler: {
-          async GET(req, ctx) {
+          async GET(_req, ctx) {
             if (!methods!.includes("get")) return ERRORS.notAllowed();
             const { resource, id } = ctx.params;
-            await db.get(resource, id);
-            return Response.redirect(req.url);
-          },
-          // NOTE: POST required for HTML5 forms which only allow GET and POST
-          async POST(req, ctx) {
-            if (!methods!.includes("create")) return ERRORS.notAllowed();
-            const { resource, id } = ctx.params;
-            const data = await parseRequestBody(req);
-            await db.patch(resource, id, data);
-            return Response.redirect(req.url);
+            const result = await db.get(resource, id);
+            return Response.json(result);
           },
           async PUT(req, ctx) {
             if (!methods!.includes("update")) return ERRORS.notAllowed();
             const { resource, id } = ctx.params;
             const data = await parseRequestBody(req);
-            await db.update(resource, id, data);
-            return Response.redirect(req.url);
+            const result = await db.update(resource, id, data);
+            return Response.json(result);
           },
           async PATCH(req, ctx) {
             if (!methods!.includes("patch")) return ERRORS.notAllowed();
             const { resource, id } = ctx.params;
             const data = await parseRequestBody(req);
-            await db.patch(resource, id, data);
-            return Response.redirect(req.url);
+            const result = await db.patch(resource, id, data);
+            return Response.json(result);
           },
           async DELETE(req, ctx) {
             if (!methods!.includes("remove")) return ERRORS.notAllowed();
             const { resource, id } = ctx.params;
             await db.remove(resource, id);
-            return Response.redirect(req.url);
+            return Response.json({ id });
           },
         },
       },

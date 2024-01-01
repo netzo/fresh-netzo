@@ -25,12 +25,11 @@ export function filterObjectsByKeyValues<T = Record<string, any>>(
 
 export async function parseRequestBody(req: Request) {
   const contentType = req.headers.get("content-type"); // case insensitive
-  console.log({ contentType });
   if (contentType?.includes("application/json")) {
     return req.json();
   } else if (
-    contentType?.includes("application/x-www-form-urlencoded")
-    || contentType?.includes("multipart/form-data")
+    contentType?.includes("application/x-www-form-urlencoded") ||
+    contentType?.includes("multipart/form-data")
   ) {
     const formData = await req.formData();
     return Object.fromEntries([...formData.entries()]);

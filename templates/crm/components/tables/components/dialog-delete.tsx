@@ -19,24 +19,13 @@ interface DialogDeleteProps<TData> {
   selectedRows: TData[];
 }
 
-export function DialogDelete(
-  { options, selectedRows }: DialogDeleteProps<TData>,
-) {
+export function DialogDelete({ options, selectedRows }: DialogDeleteProps<TData>) {
   const handleDelete = async () => {
-    const deletePromises = selectedRows.map((row) => {
-      fetch(`/api/${options.resource}/${row.original.id}`, {
-        method: "DELETE",
-      });
-    });
-
-    const deleteResult = await Promise.all(deletePromises);
-    if (deleteResult) {
-      window.alert("Deletion complete");
-      return window.location.reload();
-    } else {
-      window.alert("Error");
-      return;
-    }
+    await Promise.all(selectedRows.map((row) => {
+      const url = `/api/${options.resource}/${row.original.id}`;
+      return fetch(url, { method: "DELETE" });
+    }));
+    window.location.reload();
   };
 
   return (

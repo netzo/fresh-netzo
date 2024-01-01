@@ -27,9 +27,10 @@ import {
 interface FormProps {
   data?: Client;
   url: string;
+  method: "POST" | "PATCH";
 }
 
-export function FormClient({ data, url }: FormProps) {
+export function FormClient({ data, method, url }: FormProps) {
   const [defaultValues, setDefaultValues] = useState(data);
 
   const form = useForm<Client>({
@@ -39,13 +40,22 @@ export function FormClient({ data, url }: FormProps) {
   });
 
   async function onSubmit(inputValues: Client) {
-    await fetch(url, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(inputValues),
-    });
+    const updatedAt = new Date().toISOString();
+    const createdAt = data?.createdAt || updatedAt;
+    try {
+      await fetch(url, {
+        method,
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          ...inputValues,
+          createdAt,
+          updatedAt,
+        }),
+      });
+      window.location.href = "/clients";
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   return (
@@ -157,7 +167,7 @@ export function FormClient({ data, url }: FormProps) {
             )}
           />
 
-          <fieldset className="p-3 border border-gray-400 border-solid rounded">
+          <fieldset className="p-3 border rounded">
             <legend>Address</legend>
             <FormField
               control={form.control}
@@ -210,7 +220,7 @@ export function FormClient({ data, url }: FormProps) {
               )}
             />
           </fieldset>
-          <fieldset className="p-3 border border-gray-400 border-solid rounded">
+          <fieldset className="p-3 border rounded">
             <legend>Notifications</legend>
             <div className="flex flex-col gap-1">
               <FormField

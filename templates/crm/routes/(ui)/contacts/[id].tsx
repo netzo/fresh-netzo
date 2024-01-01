@@ -6,8 +6,12 @@ import { app } from "@/netzo.ts";
 
 export default defineRoute(async (req, ctx) => {
   const { id } = ctx.params;
-  const data = await app.db.get<Contact>("contacts", id);
+  const data = id === "new" ? {} : await app.db.get<Contact>("contacts", id);
   if (!data) return ctx.renderNotFound();
+
+  const url = id === "new"
+    ? `${ctx.url.origin}/api/contacts`
+    : `${ctx.url.origin}/api/contacts/${id}`;
 
   return (
     <div className="my-4 overflow-auto">
@@ -15,7 +19,8 @@ export default defineRoute(async (req, ctx) => {
       <div className="p-10 max-w-500px">
         <FormContact
           data={data}
-          url={`${ctx.url.origin}/api/contacts/${id}`}
+          method={id === "new" ? "POST" : "PATCH"}
+          url={url}
         />
       </div>
     </div>
