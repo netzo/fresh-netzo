@@ -47,6 +47,19 @@ export const api = (options?: NetzoConfig["api"]): Plugin => {
             try {
               if (!["route"].includes(ctx.destination)) return await ctx.next();
 
+              const host = req.headers.get("host"); // e.g. my-project-906698.netzo.io
+              const origin = req.headers.get("origin")!; // e.g. https://my-project-906698.netzo.io
+              const referer = req.headers.get("referer")!; // SOMETIMES SET e.g. https://app.netzo.io/some-path
+
+              // skip if request is from same host, origin or referer
+              const isSameHost = ctx.url.host === host;
+              const isSameOrigin = ctx.url.origin === origin;
+              const isSameReferer = referer.startsWith(ctx.url.origin);
+              console.log({ isSameHost, isSameOrigin, isSameReferer });
+              if (isSameHost || isSameOrigin || isSameReferer) {
+                return await ctx.next();
+              }
+
               // API key authentication
               const apiKeyHeader = req.headers.get("x-api-key");
               const apiKeySearchParams = ctx.url.searchParams.get("apiKey");
@@ -69,50 +82,58 @@ export const api = (options?: NetzoConfig["api"]): Plugin => {
       {
         path: `${path}/[resource]`,
         handler: {
-          async GET(_req, ctx) {
+          async GET(req, ctx) {
             if (!methods!.includes("find")) return ERRORS.notAllowed();
             const query = Object.fromEntries(ctx.url.searchParams);
             const { resource } = ctx.params;
-            const result = await db.find(resource, query);
-            return Response.json(result);
+            await db.find(resource, query);
+            return Response.redirect(req.url);
           },
           async POST(req, ctx) {
             if (!methods!.includes("create")) return ERRORS.notAllowed();
             const { resource } = ctx.params;
             const data = await parseRequestBody(req);
-            const result = await db.create(resource, data, idField);
-            return Response.json(result);
+            await db.create(resource, data, idField);
+            return Response.redirect(req.url);
           },
         },
       },
       {
         path: `${path}/[resource]/[id]`,
         handler: {
-          async GET(_req, ctx) {
+          async GET(req, ctx) {
             if (!methods!.includes("get")) return ERRORS.notAllowed();
             const { resource, id } = ctx.params;
-            const result = await db.get(resource, id);
-            return Response.json(result);
+            await db.get(resource, id);
+            return Response.redirect(req.url);
+          },
+          // NOTE: POST required for HTML5 forms which only allow GET and POST
+          async POST(req, ctx) {
+            if (!methods!.includes("create")) return ERRORS.notAllowed();
+            const { resource, id } = ctx.params;
+            const data = await parseRequestBody(req);
+            await db.patch(resource, id, data);
+            return Response.redirect(req.url);
           },
           async PUT(req, ctx) {
             if (!methods!.includes("update")) return ERRORS.notAllowed();
             const { resource, id } = ctx.params;
             const data = await parseRequestBody(req);
-            const result = await db.update(resource, id, data);
-            return Response.json(result);
+            await db.update(resource, id, data);
+            return Response.redirect(req.url);
           },
           async PATCH(req, ctx) {
             if (!methods!.includes("patch")) return ERRORS.notAllowed();
             const { resource, id } = ctx.params;
             const data = await parseRequestBody(req);
-            const result = await db.patch(resource, id, data);
-            return Response.json(result);
+            await db.patch(resource, id, data);
+            return Response.redirect(req.url);
           },
-          async DELETE(_req, ctx) {
+          async DELETE(req, ctx) {
             if (!methods!.includes("remove")) return ERRORS.notAllowed();
             const { resource, id } = ctx.params;
             await db.remove(resource, id);
-            return Response.json({ id });
+            return Response.redirect(req.url);
           },
         },
       },

@@ -28,14 +28,14 @@ export type UserAuth0 = {
 export async function getUserAuth0(
   accessToken: string,
 ): Promise<AuthUserFromProvider> {
-  const resp = await fetch("https://api.auth0.com/user", {
+  const response = await fetch("https://api.auth0.com/user", {
     headers: { authorization: `Bearer ${accessToken}` },
   });
-  if (!resp.ok) {
-    const { message } = await resp.json();
-    throw createHttpError(resp.status, message);
+  if (!response.ok) {
+    const { message } = await response.json();
+    throw createHttpError(response.status, message);
   }
-  const userAuth0: UserAuth0 = await resp.json();
+  const userAuth0: UserAuth0 = await response.json();
   return {
     provider: "auth0",
     authId: userAuth0.sub,

@@ -1,2 +1,12 @@
 // NOTE: esm.sh required for aliasing react to preact
-export * from "https://esm.sh/v135/preact@10.19.2/compat";
+// must export named exports individually due to preact/compat using "export ="
+export {
+  type ComponentProps,
+  createContext,
+  forwardRef,
+  type Ref,
+  useContext,
+  useEffect,
+  useId,
+  useState,
+} from "https://esm.sh/v135/preact@10.19.2/compat";

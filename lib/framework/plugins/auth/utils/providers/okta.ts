@@ -28,14 +28,14 @@ export type UserOkta = {
 export async function getUserOkta(
   accessToken: string,
 ): Promise<AuthUserFromProvider> {
-  const resp = await fetch("https://api.okta.com/user", {
+  const response = await fetch("https://api.okta.com/user", {
     headers: { authorization: `Bearer ${accessToken}` },
   });
-  if (!resp.ok) {
-    const { message } = await resp.json();
-    throw createHttpError(resp.status, message);
+  if (!response.ok) {
+    const { message } = await response.json();
+    throw createHttpError(response.status, message);
   }
-  const userOkta: UserOkta = await resp.json();
+  const userOkta: UserOkta = await response.json();
   return {
     provider: "okta",
     authId: userOkta.sub,

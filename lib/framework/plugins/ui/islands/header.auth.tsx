@@ -38,17 +38,23 @@ export function HeaderAuth(props: HeaderAuthProps) {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" forceMount>
-        <DropdownMenuLabel className="font-normal">
-          <div className="flex flex-col space-y-1">
-            <p className="text-sm font-medium leading-none">
-              {props.sessionUser.name}
-            </p>
-            <p className="text-xs leading-none text-muted-foreground">
-              {props.sessionUser.email}
-            </p>
-          </div>
-        </DropdownMenuLabel>
-        <DropdownMenuSeparator />
+        {props.sessionUser.name && (
+          <>
+            <DropdownMenuLabel className="font-normal">
+              <div className="flex flex-col space-y-1">
+                <p className="text-sm font-medium leading-none">
+                  {props.sessionUser.name}
+                </p>
+                {props.sessionUser.email && (
+                  <p className="text-xs leading-none text-muted-foreground">
+                    {props.sessionUser.email}
+                  </p>
+                )}
+              </div>
+            </DropdownMenuLabel>
+            <DropdownMenuSeparator />
+          </>
+        )}
         <DropdownMenuItem>
           <a href="/auth/signout" title="Sign out" className="w-full">
             Log out

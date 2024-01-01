@@ -52,14 +52,14 @@ export type UserGitlab = {
 export async function getUserGitlab(
   accessToken: string,
 ): Promise<AuthUserFromProvider> {
-  const resp = await fetch("https://gitlab.com/api/v4/user", {
+  const response = await fetch("https://gitlab.com/api/v4/user", {
     headers: { authorization: `Bearer ${accessToken}` },
   });
-  if (!resp.ok) {
-    const { message } = await resp.json();
-    throw createHttpError(resp.status, message);
+  if (!response.ok) {
+    const { message } = await response.json();
+    throw createHttpError(response.status, message);
   }
-  const userGitlab: UserGitlab = await resp.json();
+  const userGitlab: UserGitlab = await response.json();
   return {
     provider: "gitlab",
     authId: String(userGitlab.id),

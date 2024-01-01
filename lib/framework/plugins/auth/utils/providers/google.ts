@@ -30,14 +30,17 @@ export type UserGoogle = {
 export async function getUserGoogle(
   accessToken: string,
 ): Promise<AuthUserFromProvider> {
-  const resp = await fetch("https://www.googleapis.com/oauth2/v3/userinfo", {
-    headers: { authorization: `Bearer ${accessToken}` },
-  });
-  if (!resp.ok) {
-    const { message } = await resp.json();
-    throw createHttpError(resp.status, message);
+  const response = await fetch(
+    "https://www.googleapis.com/oauth2/v3/userinfo",
+    {
+      headers: { authorization: `Bearer ${accessToken}` },
+    },
+  );
+  if (!response.ok) {
+    const { message } = await response.json();
+    throw createHttpError(response.status, message);
   }
-  const userGoogle: UserGoogle = await resp.json();
+  const userGoogle: UserGoogle = await response.json();
   return {
     provider: "google",
     authId: userGoogle.sub,

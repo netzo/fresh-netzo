@@ -1,18 +1,8 @@
 import type { NetzoConfig } from "../../../../framework/mod.ts";
 import { cn } from "../../../../components/utils.ts";
 import { buttonVariants } from "../../../../components/ui/button.tsx";
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "../../../../components/ui/avatar.tsx";
-import type { AuthUser } from "../../../../framework/plugins/auth/utils/db.ts";
 
 export type NavItemProps = NetzoConfig["ui"]["nav"]["items"][number];
-
-export type NavItemUserProps = {
-  sessionUser: AuthUser;
-};
 
 export function NavItem(props: NavItemProps) {
   return (
@@ -24,7 +14,7 @@ export function NavItem(props: NavItemProps) {
         buttonVariants({ variant: "ghost", size: "sm" }),
         "flex w-full justify-start",
         "hover:cursor-pointer hover:text-[hsl(var(--primary))]",
-        `aria-[current='true']:text-[hsl(var(--primary))]`, // ancestor links
+        // `aria-[current='true']:text-[hsl(var(--primary))]`, // ancestor links
         `aria-[current='page']:text-[hsl(var(--primary))]`, // current page
       )}
     >

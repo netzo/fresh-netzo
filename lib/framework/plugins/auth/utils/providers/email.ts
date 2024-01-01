@@ -1,6 +1,12 @@
-import type { User as UserNetzo } from "../../../../../deps/@netzo/api/mod.ts";
 import { createHttpError } from "../../../../../deps/std/http/http_errors.ts";
 import type { AuthUserFromProvider } from "../db.ts";
+
+type UserEmail = {
+  _id: string;
+  name: unknown;
+  email: unknown;
+  avatar: string;
+};
 
 export const createEmailOAuthConfig = () => {
   return {
@@ -18,17 +24,41 @@ export function isEmailSetup() {
   }
 }
 
+export async function signInEmail(
+  _req: Request,
+  _authConfig: ReturnType<typeof createEmailOAuthConfig>,
+) {
+  const response = await new Response("Not implemented");
+  return response;
+}
+
+export async function handleCallbackEmail(
+  _req: Request,
+  _authConfig: ReturnType<typeof createEmailOAuthConfig>,
+) {
+  const response = await new Response("Not implemented");
+  return response;
+}
+
+export async function signOutEmail(
+  _req: Request,
+  _authConfig: ReturnType<typeof createEmailOAuthConfig>,
+) {
+  const response = await new Response("Not implemented");
+  return response;
+}
+
 export async function getUserEmail(
   accessToken: string,
 ): Promise<AuthUserFromProvider> {
-  const resp = await fetch("https://api.email.com/user", {
+  const response = await fetch("https://api.email.com/user", {
     headers: { authorization: `Bearer ${accessToken}` },
   });
-  if (!resp.ok) {
-    const { message } = await resp.json();
-    throw createHttpError(resp.status, message);
+  if (!response.ok) {
+    const { message } = await response.json();
+    throw createHttpError(response.status, message);
   }
-  const userEmail: UserEmail = await resp.json();
+  const userEmail: UserEmail = await response.json();
   return {
     provider: "email",
     authId: userEmail._id,

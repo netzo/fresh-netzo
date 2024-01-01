@@ -1,7 +1,26 @@
 import type { NetzoConfig } from "../../../../mod.ts";
+import {
+  handleCallback,
+  signIn,
+  signOut,
+} from "../../../../../deps/deno_kv_oauth/mod.ts";
+import {
+  createNetzoOAuthConfig,
+  getUserNetzo,
+  handleCallbackNetzo,
+  isNetzoSetup,
+  signInNetzo,
+  signOutNetzo,
+} from "./netzo.ts";
+import {
+  createEmailOAuthConfig,
+  getUserEmail,
+  handleCallbackEmail,
+  isEmailSetup,
+  signInEmail,
+  signOutEmail,
+} from "./email.ts";
 import { type AuthUserFromProvider } from "../db.ts";
-import { createNetzoOAuthConfig, getUserNetzo, isNetzoSetup } from "./netzo.ts";
-import { createEmailOAuthConfig, getUserEmail, isEmailSetup } from "./email.ts";
 import {
   createGoogleOAuthConfig,
   getUserGoogle,
@@ -87,6 +106,17 @@ export const getAuthConfig = (
     }
     default:
       throw new Error(`Provider ${provider} not supported`);
+  }
+};
+
+export const getFunctionsByProvider = (provider: AuthProvider) => {
+  switch (provider) {
+    case "netzo":
+      return [signInNetzo, handleCallbackNetzo, signOutNetzo];
+    case "email":
+      return [signInEmail, handleCallbackEmail, signOutEmail];
+    default:
+      return [signIn, handleCallback, signOut];
   }
 };
 

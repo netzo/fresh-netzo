@@ -6,7 +6,7 @@ import { Head } from "../components/head.tsx";
 import { Header } from "../islands/header.tsx";
 import { Footer } from "../islands/footer.tsx";
 import { Nav } from "../islands/nav.tsx";
-import { NavMobile } from "../islands/nav-mobile.tsx";
+import { NavMobile } from "../islands/nav.mobile.tsx";
 import { enabled } from "../../mod.ts";
 
 export default defineApp<NetzoState>((req, ctx) => {
@@ -32,18 +32,12 @@ export default defineApp<NetzoState>((req, ctx) => {
         )}
       >
         {showNav && (
-          <Nav
-            {...ui.nav}
-            className="hidden md:flex w-[250px] md:b-r-1 md:b-[hsl(var(--border))]"
-          />
+          <Nav {...ui.nav} className="hidden md:flex w-[250px] md:b-r-1" />
         )}
         <div className="flex flex-col w-full h-full overflow-x-hidden">
           {showHeader && (
             <Header {...ui.header} nav={ui.nav} sessionUser={sessionUser}>
-              <NavMobile
-                {...ui.nav}
-                className="flex md:hidden"
-              />
+              {showNav && <NavMobile {...ui.nav} className="flex md:hidden" />}
             </Header>
           )}
 
@@ -54,7 +48,7 @@ export default defineApp<NetzoState>((req, ctx) => {
               </main>
             )
             : (
-              <main f-client-nav className="flex-1">
+              <main className="flex-1">
                 <Partial name="main">
                   <ctx.Component />
                 </Partial>

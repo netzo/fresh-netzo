@@ -25,9 +25,13 @@ export function filterObjectsByKeyValues<T = Record<string, any>>(
 
 export async function parseRequestBody(req: Request) {
   const contentType = req.headers.get("content-type"); // case insensitive
+  console.log({ contentType });
   if (contentType?.includes("application/json")) {
     return req.json();
-  } else if (contentType?.includes("multipart/form-data")) {
+  } else if (
+    contentType?.includes("application/x-www-form-urlencoded")
+    || contentType?.includes("multipart/form-data")
+  ) {
     const formData = await req.formData();
     return Object.fromEntries([...formData.entries()]);
   } else if (contentType?.includes("text/plain")) {
@@ -39,7 +43,11 @@ export async function parseRequestBody(req: Request) {
       try {
         return Object.fromEntries((await req.formData()).entries());
       } catch (_formDataError) {
-        return JSON.parse(await req.text());
+        try {
+          return Object.fromEntries(req.searchParams);
+        } catch (_formDataError) {
+          return JSON.parse(await req.text());
+        }
       }
     }
   }

@@ -51,14 +51,14 @@ export type UserGithub = {
 export async function getUserGithub(
   accessToken: string,
 ): Promise<AuthUserFromProvider> {
-  const resp = await fetch("https://api.github.com/user", {
+  const response = await fetch("https://api.github.com/user", {
     headers: { authorization: `Bearer ${accessToken}` },
   });
-  if (!resp.ok) {
-    const { message } = await resp.json();
-    throw createHttpError(resp.status, message);
+  if (!response.ok) {
+    const { message } = await response.json();
+    throw createHttpError(response.status, message);
   }
-  const userGithub: UserGithub = await resp.json();
+  const userGithub: UserGithub = await response.json();
   return {
     provider: "github",
     authId: userGithub.login,
