@@ -1,7 +1,7 @@
 import { defineRoute } from "$fresh/server.ts";
-import { EditForm } from "@/islands/Invoices.tsx";
 import { Separator } from "netzo/components/ui/separator.tsx";
-import { Invoice } from "@/components/tables/invoices/data/schema.ts";
+import type { Invoice } from "@/components/tables/invoices/data/schema.ts";
+import { FormInvoice } from "@/islands/invoices/Form.tsx";
 import { app } from "@/netzo.ts";
 
 export default defineRoute(async (req, ctx) => {
@@ -13,7 +13,12 @@ export default defineRoute(async (req, ctx) => {
   return (
     <div className="my-4 overflow-auto">
       <Separator></Separator>
-      <EditForm data={data} />
+      <div className="p-10 max-w-500px">
+        <FormInvoice
+          data={data}
+          url={`${ctx.url.origin}/api/invoices/${id}`}
+        />
+      </div>
     </div>
   );
 });

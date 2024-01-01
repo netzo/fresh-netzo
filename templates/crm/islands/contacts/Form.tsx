@@ -6,7 +6,6 @@ import { Input } from "netzo/components/ui/input.tsx";
 import { Checkbox } from "netzo/components/ui/checkbox.tsx";
 import { Switch } from "netzo/components/ui/switch.tsx";
 import { renderFormCheckbox } from "@/utils.tsx";
-import { handleFormSubmit } from "@/utils.tsx";
 import {
   Contact,
   contactSchema,
@@ -33,12 +32,12 @@ import {
   FormMessage,
 } from "netzo/components/ui/form.tsx";
 
-interface FormAdminProps {
+interface FormProps {
   data?: Contact;
-  ids?: string[];
+  url: string;
 }
 
-export function FormAdmin({ data, ids }: FormAdminProps) {
+export function FormContact({ data, url }: FormProps) {
   const [defaultValues, setDefaultValues] = useState(data);
 
   const form = useForm<Contact>({
@@ -47,15 +46,14 @@ export function FormAdmin({ data, ids }: FormAdminProps) {
     mode: "onChange",
   });
 
-  function onSubmit(inputValues: Contact) {
-    //delete joined data to avoid saving it in database
-    delete inputValues.client;
-    handleFormSubmit(
-      "contacts",
-      inputValues,
-      data,
-      ids,
-    );
+  async function onSubmit(inputValues: Contact) {
+    await fetch(url, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(inputValues),
+    });
   }
 
   return (
@@ -184,19 +182,19 @@ export function FormAdmin({ data, ids }: FormAdminProps) {
 
           <FormField
             control={form.control}
-            name="clientId"
+            name="contactId"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{aliases.clientId}</FormLabel>
+                <FormLabel>{aliases.contactId}</FormLabel>
                 <div className="flex justify-between">
                   <FormDescription>
-                    Write the ID of the client
+                    Write the ID of the contact
                   </FormDescription>
                   <a
-                    href="/clients"
+                    href="/contacts"
                     className="text-[hsl(var(--primary))] text-xs"
                   >
-                    See clients
+                    See contacts
                   </a>
                 </div>
                 <FormControl>

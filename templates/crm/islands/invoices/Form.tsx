@@ -8,7 +8,6 @@ import {
   Invoice,
   invoiceSchema,
 } from "@/components/tables/invoices/data/schema.ts";
-import { handleFormSubmit } from "@/utils.tsx";
 import { aliases } from "@/components/tables/invoices/data/options.tsx";
 
 import {
@@ -36,12 +35,12 @@ import { format } from "netzo/deps/date-fns.ts";
 import { cn } from "netzo/components/utils.ts";
 import { Calendar } from "netzo/components/ui/calendar.tsx";
 
-interface FormAdminProps {
+interface FormProps {
   data?: Invoice;
-  ids?: string[];
+  url: string;
 }
 
-export function FormAdmin({ data, ids }: FormAdminProps) {
+export function FormInvoice({ data, url }: FormProps) {
   const [defaultValues, setDefaultValues] = useState(data);
   const [showCalendar, setShowCalendar] = useState(false);
 
@@ -51,22 +50,20 @@ export function FormAdmin({ data, ids }: FormAdminProps) {
     mode: "onChange",
   });
 
-  function onSubmit(inputValues: Invoice) {
-    //delete joined data to avoid saving it in database
-    delete inputValues.client;
-
-    handleFormSubmit(
-      "invoices",
-      inputValues,
-      data,
-      ids,
-    );
+  async function onSubmit(inputValues: Invoice) {
+    await fetch(url, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(inputValues),
+    });
   }
 
   return (
     <>
       <Form {...form}>
-        <form action="/api/invoices" className="space-y-1">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-1">
           <FormField
             control={form.control}
             name="id"
@@ -243,19 +240,19 @@ export function FormAdmin({ data, ids }: FormAdminProps) {
 
           <FormField
             control={form.control}
-            name="clientId"
+            name="invoiceId"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{aliases.clientId}</FormLabel>
+                <FormLabel>{aliases.invoiceId}</FormLabel>
                 <div className="flex justify-between">
                   <FormDescription>
-                    Write the ID of the client
+                    Write the ID of the invoice
                   </FormDescription>
                   <a
-                    href="/clients"
+                    href="/invoices"
                     className="text-[hsl(var(--primary))] text-xs"
                   >
-                    See clients
+                    See invoices
                   </a>
                 </div>
                 <FormControl>

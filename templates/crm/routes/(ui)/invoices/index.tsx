@@ -1,7 +1,7 @@
 import { defineRoute } from "$fresh/server.ts";
+import type { Invoice } from "@/components/tables/invoices/data/schema.ts";
 import { getOptions } from "@/components/tables/invoices/data/options.tsx";
-import { Table } from "@/islands/Invoices.tsx";
-import { Invoice } from "@/components/tables/invoices/data/schema.ts";
+import { Table } from "@/islands/invoices/Table.tsx";
 import { app } from "@/netzo.ts";
 
 export default defineRoute(async (req, ctx) => {

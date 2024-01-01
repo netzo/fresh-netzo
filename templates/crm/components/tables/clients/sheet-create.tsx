@@ -9,7 +9,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "netzo/components/ui/sheet.tsx";
-import { FormAdmin } from "@/components/tables/clients/form-admin.tsx";
+import { FormClient } from "@/islands/clients/Form.tsx";
 
 export function SheetCreate() {
   return (
@@ -28,8 +28,8 @@ export function SheetCreate() {
           </SheetHeader>
           <div className="">
             <div className="">
-              <FormAdmin>
-              </FormAdmin>
+              <FormClient url={`${ctx.url.origin}/api/clients/${id}`}>
+              </FormClient>
             </div>
           </div>
           <SheetFooter>

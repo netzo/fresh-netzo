@@ -1,7 +1,7 @@
 import { defineRoute } from "$fresh/server.ts";
-import { EditForm } from "@/islands/Clients.tsx";
 import { Separator } from "netzo/components/ui/separator.tsx";
-import { Client } from "@/components/tables/clients/data/schema.ts";
+import type { Client } from "@/components/tables/clients/data/schema.ts";
+import { FormClient } from "@/islands/clients/Form.tsx";
 import { app } from "@/netzo.ts";
 
 export default defineRoute(async (req, ctx) => {
@@ -13,7 +13,12 @@ export default defineRoute(async (req, ctx) => {
   return (
     <div className="my-4 overflow-auto">
       <Separator></Separator>
-      <EditForm data={data} />
+      <div className="p-10 max-w-500px">
+        <FormClient
+          data={data}
+          url={`${ctx.url.origin}/api/clients/${id}`}
+        />
+      </div>
     </div>
   );
 });

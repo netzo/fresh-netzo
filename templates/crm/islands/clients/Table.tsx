@@ -1,7 +1,6 @@
 import { DataTable } from "@/components/tables/components/data-table.tsx";
 import { columns } from "@/components/tables/clients/columns.tsx";
 import { SheetCreate } from "@/components/tables/clients/sheet-create.tsx";
-import { FormAdmin } from "@/components/tables/clients/form-admin.tsx";
 
 export function Table({ data, options }) {
   return (
@@ -12,18 +11,6 @@ export function Table({ data, options }) {
         options={options}
         SheetCreateComponent={SheetCreate}
       />
-    </div>
-  );
-}
-
-export function EditForm({ data }) {
-  return (
-    <div className="ml-10 mt-5 mb-10 max-w-500px">
-      <h1 className="text-lg font-medium">Edit</h1>
-      <div className="text-xs font-semibold text-yellow-900 bg-yellow-200 bg-opacity-30 rounded-lg my-2 p-2">
-        Warning: this action is not reversible.
-      </div>
-      <FormAdmin data={data} />
     </div>
   );
 }

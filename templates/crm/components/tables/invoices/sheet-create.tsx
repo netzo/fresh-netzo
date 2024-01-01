@@ -9,14 +9,14 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "netzo/components/ui/sheet.tsx";
-import { FormAdmin } from "@/components/tables/invoices/form-admin.tsx";
+import { FormInvoice } from "@/islands/invoices/Form.tsx";
 
 export function SheetCreate() {
   return (
     <>
       <Sheet>
         <SheetTrigger asChild>
-          <Button className="ml-3 h-8 px-2 lg:px-3">
+          <Button className="h-8 px-2 ml-3 lg:px-3">
             New invoice
           </Button>
         </SheetTrigger>
@@ -28,8 +28,8 @@ export function SheetCreate() {
           </SheetHeader>
           <div className="">
             <div className="">
-              <FormAdmin>
-              </FormAdmin>
+              <FormInvoice url={`${ctx.url.origin}/api/invoices/${id}`}>
+              </FormInvoice>
             </div>
           </div>
           <SheetFooter>

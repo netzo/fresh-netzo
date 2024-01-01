@@ -2,7 +2,6 @@ import { useState } from "preact/hooks";
 import { useForm } from "netzo/deps/react-hook-form.ts";
 import { zodResolver } from "netzo/deps/@hookform/resolvers/zod.ts";
 import { renderFormCheckbox } from "@/utils.tsx";
-import { handleFormSubmit } from "@/utils.tsx";
 import { Button } from "netzo/components/ui/button.tsx";
 import { Input } from "netzo/components/ui/input.tsx";
 import { Checkbox } from "netzo/components/ui/checkbox.tsx";
@@ -25,12 +24,12 @@ import {
   FormMessage,
 } from "netzo/components/ui/form.tsx";
 
-interface FormAdminProps {
+interface FormProps {
   data?: Client;
-  ids?: string[];
+  url: string;
 }
 
-export function FormAdmin({ data, ids }: FormAdminProps) {
+export function FormClient({ data, url }: FormProps) {
   const [defaultValues, setDefaultValues] = useState(data);
 
   const form = useForm<Client>({
@@ -39,15 +38,14 @@ export function FormAdmin({ data, ids }: FormAdminProps) {
     mode: "onChange",
   });
 
-  function onSubmit(inputValues: Client) {
-    delete inputValues.client;
-
-    handleFormSubmit(
-      "clients",
-      inputValues,
-      data,
-      ids,
-    );
+  async function onSubmit(inputValues: Client) {
+    await fetch(url, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(inputValues),
+    });
   }
 
   return (
@@ -159,7 +157,7 @@ export function FormAdmin({ data, ids }: FormAdminProps) {
             )}
           />
 
-          <fieldset className="border border-solid border-gray-400 rounded p-3">
+          <fieldset className="p-3 border border-gray-400 border-solid rounded">
             <legend>Address</legend>
             <FormField
               control={form.control}
@@ -212,7 +210,7 @@ export function FormAdmin({ data, ids }: FormAdminProps) {
               )}
             />
           </fieldset>
-          <fieldset className="border border-solid border-gray-400 rounded p-3">
+          <fieldset className="p-3 border border-gray-400 border-solid rounded">
             <legend>Notifications</legend>
             <div className="flex flex-col gap-1">
               <FormField
@@ -237,7 +235,7 @@ export function FormAdmin({ data, ids }: FormAdminProps) {
 
               <FormField
                 control={form.control}
-                name="notifications.invoices"
+                name="notifications.clients"
                 render={({ field }) => (
                   <FormItem className="flex flex-row items-start space-x-3 space-y-0">
                     <FormControl>
@@ -248,7 +246,7 @@ export function FormAdmin({ data, ids }: FormAdminProps) {
                     </FormControl>
                     <div className="space-y-1 leading-none">
                       <FormLabel>
-                        {aliases.notifications.invoices}
+                        {aliases.notifications.clients}
                       </FormLabel>
                     </div>
                   </FormItem>

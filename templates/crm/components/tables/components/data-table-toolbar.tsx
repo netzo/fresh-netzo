@@ -1,9 +1,4 @@
-import {
-  Cross2Icon,
-  Pencil1Icon,
-  ReloadIcon,
-  TrashIcon,
-} from "netzo/deps/@radix-ui/react-icons.ts";
+import { Cross2Icon, ReloadIcon } from "netzo/deps/@radix-ui/react-icons.ts";
 import { Table } from "netzo/deps/@tanstack/react-table.ts";
 
 import { Button } from "netzo/components/ui/button.tsx";
