@@ -6,7 +6,6 @@ import { createNotification } from "./notification.ts";
 export type NetzoOptions = {
   apiKey: string;
   baseURL?: string;
-  databaseURL?: string;
 };
 
 /**
@@ -19,19 +18,21 @@ export type NetzoOptions = {
 export const Netzo = async ({
   apiKey = Deno.env.get("NETZO_API_KEY")!,
   baseURL = Deno.env.get("NETZO_API_URL") || "https://api.netzo.io",
-  databaseURL = Deno.env.get("NETZO_DATABASE_URL"),
 }: NetzoOptions = {} as NetzoOptions) => {
   const { api } = createApi({ apiKey, baseURL });
 
   const cron = createCron(api);
 
-  // DISABLED: cannot pass 'databaseURL' for now since Subhosting
-  // throws "TypeError: Non-default databases are not supported"
-  const kv = await Deno.openKv(databaseURL); // databaseURL undefined in production
+  // DISABLED: cannot pass DENO_KV_PATH for now since Subhosting
+  // throws "TypeError: Non-default databases are not supported", note
+  // that DENO_KV_ACCESS_TOKEN is required if DENO_KV_PATH is remote URL
+  const kv = await Deno.openKv(Deno.env.get("DENO_KV_PATH")); // undefined in production
 
   const db = createDatabase(kv);
 
   const notification = createNotification(api);
+
+  // TODO: implement messaging system built on KV Queues once these are supported in Subhosting
 
   // type Message<T = unknown> = {
   //   type: "cron" | "email" | "notification" | "sms";
