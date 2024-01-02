@@ -19,7 +19,9 @@ interface DialogDeleteProps<TData> {
   selectedRows: TData[];
 }
 
-export function DialogDelete({ options, selectedRows }: DialogDeleteProps<TData>) {
+export function DialogDelete(
+  { options, selectedRows }: DialogDeleteProps<TData>,
+) {
   const handleDelete = async () => {
     await Promise.all(selectedRows.map((row) => {
       const url = `/api/${options.resource}/${row.original.id}`;

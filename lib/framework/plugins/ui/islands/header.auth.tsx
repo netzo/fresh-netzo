@@ -33,7 +33,7 @@ export function HeaderAuth(props: HeaderAuthProps) {
               src={props.sessionUser.avatar}
               alt={`@${props.sessionUser.authId}}`}
             />
-            <AvatarFallback>{getInitials(props.sessionUser)}</AvatarFallback>
+            <AvatarFallback>{getInitial(props.sessionUser)}</AvatarFallback>
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
@@ -67,13 +67,8 @@ export function HeaderAuth(props: HeaderAuthProps) {
 
 // utils:
 
-export function getInitials(sessionUser: AuthUser) {
+export function getInitial(sessionUser: AuthUser) {
   const { name, authId, email } = sessionUser ?? {};
-  if (name) {
-    const [first, last] = name.split(" ");
-    return `${first[0]}${last[0]}`?.toUpperCase();
-  } else if (authId) {
-    return authId[0]?.toUpperCase();
-  }
-  return email[0]?.toUpperCase();
+  const initials = name || authId || email || "?";
+  if (name) initials?.[0]?.toUpperCase();
 }

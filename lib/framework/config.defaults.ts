@@ -48,6 +48,8 @@ export const CONFIG: NetzoConfig = {
       image: "{{project.avatar}}",
     },
     nav: {
+      title: "",
+      image: "",
       items: [],
     },
     header: {
