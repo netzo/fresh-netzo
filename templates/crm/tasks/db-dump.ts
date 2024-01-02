@@ -14,9 +14,19 @@ function replacer(_key: unknown, value: unknown) {
   return typeof value === "bigint" ? value.toString() : value;
 }
 
-const iterator = kv.list({ prefix: [] });
-const items = [];
-for await (const { key, value } of iterator) items.push({ key, value });
-console.log(JSON.stringify(items, replacer, 2));
+const data = (await Array.fromAsync(
+  kv.list({ prefix: [] }),
+)).map(({ key, value }) => ({ key, value }));
+
+if (Deno.args.includes("--table")) {
+  const tables = Object.groupBy(data, ({ key }) => key[0]);
+  console.log(tables);
+
+  Object.entries(tables).forEach(([key, results]) => {
+    console.log(`\n${key}`);
+    const table = results.map(({ key, value }) => ({ key: key[1], ...value }));
+    console.table(table);
+  });
+} else console.log(JSON.stringify(data, replacer, 2));
 
 kv.close();
