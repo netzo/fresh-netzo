@@ -4,9 +4,8 @@ import type { NetzoConfig } from "../../../framework/mod.ts";
 import { parseRequestBody } from "../../../framework/utils/mod.ts";
 import { createDatabase } from "../../../core/database.ts";
 
-const path = Deno.env.get("DENO_KV_PATH");
+const kv = await Deno.openKv(Deno.env.get("DENO_KV_PATH"));
 
-const kv = await Deno.openKv(path);
 const db = createDatabase(kv);
 
 const METHODS = [

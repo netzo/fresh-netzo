@@ -1,6 +1,7 @@
 # Netzo
 _wip
 *.options.ts
+_fresh/
 
 # www
 www/.vitepress/cache
