@@ -20,9 +20,9 @@ export function createDatabase(kv: Deno.Kv) {
     resource: string,
     query: Record<string, string> = {},
   ) => {
-    const iterator = kv.list<T>({ prefix: [resource] });
-    const data = [];
-    for await (const res of iterator) data.push(res.value as T);
+    const data = (await Array.fromAsync(
+      kv.list<T>({ prefix: [resource] }),
+    )).map((res) => res.value);
     return filterObjectsByKeyValues<T>(data, query);
   };
 
