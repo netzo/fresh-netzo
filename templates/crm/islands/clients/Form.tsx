@@ -10,10 +10,10 @@ import {
   RadioGroupItem,
 } from "netzo/components/ui/radio-group.tsx";
 import {
-  Client,
-  clientSchema,
-} from "@/components/tables/clients/data/schema.ts";
-import { aliases } from "@/components/tables/clients/data/options.tsx";
+  Account,
+  accountSchema,
+} from "@/components/tables/accounts/data/schema.ts";
+import { aliases } from "@/components/tables/accounts/data/options.tsx";
 import {
   Form,
   FormControl,
@@ -25,21 +25,21 @@ import {
 } from "netzo/components/ui/form.tsx";
 
 interface FormProps {
-  data?: Client;
+  data?: Account;
   url: string;
   method: "POST" | "PATCH";
 }
 
-export function FormClient({ data, method, url }: FormProps) {
+export function FormAccount({ data, method, url }: FormProps) {
   const [defaultValues, setDefaultValues] = useState(data);
 
-  const form = useForm<Client>({
-    resolver: zodResolver(clientSchema),
+  const form = useForm<Account>({
+    resolver: zodResolver(accountSchema),
     defaultValues,
     mode: "onChange",
   });
 
-  async function onSubmit(inputValues: Client) {
+  async function onSubmit(inputValues: Account) {
     const updatedAt = new Date().toISOString();
     const createdAt = data?.createdAt || updatedAt;
     try {
@@ -52,7 +52,7 @@ export function FormClient({ data, method, url }: FormProps) {
           updatedAt,
         }),
       });
-      window.location.href = "/clients";
+      window.location.href = "/accounts";
     } catch (error) {
       console.error(error);
     }
@@ -245,7 +245,7 @@ export function FormClient({ data, method, url }: FormProps) {
 
               <FormField
                 control={form.control}
-                name="notifications.clients"
+                name="notifications.accounts"
                 render={({ field }) => (
                   <FormItem className="flex flex-row items-start space-x-3 space-y-0">
                     <FormControl>
@@ -256,7 +256,7 @@ export function FormClient({ data, method, url }: FormProps) {
                     </FormControl>
                     <div className="space-y-1 leading-none">
                       <FormLabel>
-                        {aliases.notifications.clients}
+                        {aliases.notifications.accounts}
                       </FormLabel>
                     </div>
                   </FormItem>

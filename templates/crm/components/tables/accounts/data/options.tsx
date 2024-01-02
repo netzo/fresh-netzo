@@ -1,4 +1,4 @@
-import { Client } from "./schema.ts";
+import { Account } from "./schema.ts";
 import { DataTableProps } from "@/components/tables/components/data-table.tsx";
 
 export const aliases = {
@@ -25,8 +25,8 @@ export const aliases = {
 };
 
 export const getOptions = (
-  data: Client[],
-): DataTableProps<Client, unknown>["options"] => {
+  data: Account[],
+): DataTableProps<Account, unknown>["options"] => {
   return {
     search: {
       column: "name",
@@ -66,6 +66,6 @@ export const getOptions = (
           ),
       },
     ],
-    resource: "clients",
+    resource: "accounts",
   };
 };

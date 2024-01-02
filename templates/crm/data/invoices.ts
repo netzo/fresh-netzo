@@ -10,7 +10,7 @@ export const invoices = [
     subtotal: "100.00",
     tax: "10.00",
     total: "110.00",
-    clientId: "01HEG8XFYVMQK2QT9EX2TVHN7K",
+    accountId: "01HEG8XFYVMQK2QT9EX2TVHN7K",
   },
   {
     id: "01HEG8XFZ9J46NZEBVW35TSM4H",
@@ -23,7 +23,7 @@ export const invoices = [
     subtotal: "75.00",
     tax: "7.50",
     total: "82.50",
-    clientId: "01HEG8XFZ8XHFTEM5K4E2ARWXB",
+    accountId: "01HEG8XFZ8XHFTEM5K4E2ARWXB",
   },
   {
     id: "01HEG8XFZ9J46NZEBVW35TSM4J",
@@ -36,7 +36,7 @@ export const invoices = [
     subtotal: "50.00",
     tax: "5.00",
     total: "55.00",
-    clientId: "01HEG8XFZ8XHFTEM5K4E2ARWXC",
+    accountId: "01HEG8XFZ8XHFTEM5K4E2ARWXC",
   },
   {
     "id": "01HEG8XFZ9J46NZEBVW35TSM4K",
@@ -49,7 +49,7 @@ export const invoices = [
     subtotal: "120.00",
     tax: "12.00",
     total: "132.00",
-    clientId: "01HEG8XFYVMQK2QT9EX2TVHN7K",
+    accountId: "01HEG8XFYVMQK2QT9EX2TVHN7K",
   },
   {
     "id": "01HEG8XFZ9J46NZEBVW35TSM4M",
@@ -62,7 +62,7 @@ export const invoices = [
     subtotal: "90.00",
     tax: "9.00",
     total: "99.00",
-    clientId: "01HEG8XFZ8XHFTEM5K4E2ARWXB",
+    accountId: "01HEG8XFZ8XHFTEM5K4E2ARWXB",
   },
   {
     "id": "01HEG8XFZ9J46NZEBVW35TSM4N",
@@ -75,7 +75,7 @@ export const invoices = [
     subtotal: "70.00",
     tax: "7.00",
     total: "77.00",
-    clientId: "01HEG8XFZ8XHFTEM5K4E2ARWXC",
+    accountId: "01HEG8XFZ8XHFTEM5K4E2ARWXC",
   },
   {
     "id": "01HEG8XFZ9J46NZEBVW35TSM4P",
@@ -88,7 +88,7 @@ export const invoices = [
     subtotal: "150.00",
     tax: "15.00",
     total: "165.00",
-    clientId: "01HEG8XFYVMQK2QT9EX2TVHN7K",
+    accountId: "01HEG8XFYVMQK2QT9EX2TVHN7K",
   },
   {
     "id": "01HEG8XFZ9J46NZEBVW35TSM4Q",
@@ -101,7 +101,7 @@ export const invoices = [
     subtotal: "80.00",
     tax: "8.00",
     total: "88.00",
-    clientId: "01HEG8XFZ8XHFTEM5K4E2ARWXB",
+    accountId: "01HEG8XFZ8XHFTEM5K4E2ARWXB",
   },
   {
     "id": "01HEG8XFZ9J46NZEBVW35TSM4R",
@@ -114,7 +114,7 @@ export const invoices = [
     subtotal: "60.00",
     tax: "6.00",
     total: "66.00",
-    clientId: "01HEG8XFZ8XHFTEM5K4E2ARWXC",
+    accountId: "01HEG8XFZ8XHFTEM5K4E2ARWXC",
   },
   {
     "id": "01HEG8XFZ9J46NZEBVW35TSM4S",
@@ -127,7 +127,7 @@ export const invoices = [
     subtotal: "110.00",
     tax: "11.00",
     total: "121.00",
-    clientId: "01HEG8XFYVMQK2QT9EX2TVHN7K",
+    accountId: "01HEG8XFYVMQK2QT9EX2TVHN7K",
   },
   {
     "id": "01HEG8XFZ9J46NZEBVW35TSM4T",
@@ -140,6 +140,6 @@ export const invoices = [
     subtotal: "130.00",
     tax: "13.00",
     total: "143.00",
-    clientId: "01HEG8XFZ8XHFTEM5K4E2ARWXB",
+    accountId: "01HEG8XFZ8XHFTEM5K4E2ARWXB",
   },
 ];

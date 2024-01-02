@@ -12,7 +12,7 @@ export const aliases = {
   subtotal: "Subtotal",
   tax: "Tax",
   total: "Total",
-  clientId: "Client",
+  accountId: "Account",
 };
 
 export const getOptions = (

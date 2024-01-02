@@ -1,5 +1,5 @@
 import { z } from "netzo/deps/zod/mod.ts";
-import { clientSchema } from "@/components/tables/clients/data/schema.ts";
+import { accountSchema } from "@/components/tables/accounts/data/schema.ts";
 
 const notificationSchema = z.object({
   new: z.boolean(),
@@ -18,8 +18,8 @@ export const contactSchema = z.object({
   }).optional().or(z.literal("")),
   phone: z.string(),
   notifications: notificationSchema,
-  clientId: z.string(),
-  client: clientSchema,
+  accountId: z.string(),
+  account: accountSchema,
 }).deepPartial();
 
 export type Contact = z.infer<typeof contactSchema>;

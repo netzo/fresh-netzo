@@ -9,7 +9,7 @@ export const aliases = {
   avatar: "Image",
   email: "Email",
   phone: "Phone",
-  clientId: "Client",
+  accountId: "Account",
   notifications: {
     new: "New products",
     promotions: "Promotions",

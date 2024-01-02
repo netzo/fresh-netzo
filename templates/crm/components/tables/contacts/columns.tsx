@@ -81,16 +81,16 @@ export const columns: ColumnDef<Contact>[] = [
         },
       },
       {
-        accessorKey: "clientId",
-        header: renderHeader(aliases.clientId),
+        accessorKey: "accountId",
+        header: renderHeader(aliases.accountId),
         cell: ({ row }) => {
-          const { clientId, client } = row.original;
+          const { accountId, account } = row.original;
           return (
             <a
-              href={`/clients/${clientId}`}
+              href={`/accounts/${accountId}`}
               className="whitespace-nowrap text-center font-medium text-[hsl(var(--primary))] hover:underline"
             >
-              {client?.name ? client.name : clientId}
+              {account?.name ? account.name : accountId}
             </a>
           );
         },

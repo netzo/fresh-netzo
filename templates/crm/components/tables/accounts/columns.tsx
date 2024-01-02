@@ -1,8 +1,8 @@
 import type { ColumnDef } from "netzo/deps/@tanstack/react-table.ts";
 import { Checkbox } from "netzo/components/ui/checkbox.tsx";
-import { Client } from "@/components/tables/clients/data/schema.ts";
+import { Account } from "@/components/tables/accounts/data/schema.ts";
 import { CopyId } from "@/components/tables/components/copy-id.tsx";
-import { aliases } from "@/components/tables/clients/data/options.tsx";
+import { aliases } from "@/components/tables/accounts/data/options.tsx";
 import {
   renderCell,
   renderCellCheckbox,
@@ -16,7 +16,7 @@ import {
   toPercent,
 } from "@/utils.tsx";
 
-export const columns: ColumnDef<Client>[] = [
+export const columns: ColumnDef<Account>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -49,7 +49,7 @@ export const columns: ColumnDef<Client>[] = [
           return (
             <div className="flex">
               <a
-                href={`/clients/${id}`}
+                href={`/accounts/${id}`}
                 className="whitespace-nowrap text-center font-medium text-[hsl(var(--primary))] hover:underline"
               >
                 {name}

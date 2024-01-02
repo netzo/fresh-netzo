@@ -1,5 +1,5 @@
 import { z } from "netzo/deps/zod/mod.ts";
-import { clientSchema } from "@/components/tables/clients/data/schema.ts";
+import { accountSchema } from "@/components/tables/accounts/data/schema.ts";
 
 export const invoiceSchema = z.object({
   id: z.string(),
@@ -16,8 +16,8 @@ export const invoiceSchema = z.object({
   subtotal: z.string(),
   tax: z.string(),
   total: z.string(),
-  clientId: z.string(),
-  client: clientSchema,
+  accountId: z.string(),
+  account: accountSchema,
 }).deepPartial();
 
 export type Invoice = z.infer<typeof invoiceSchema>;

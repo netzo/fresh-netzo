@@ -14,7 +14,7 @@ const notificationSchema = z.object({
   marketing: z.union([z.boolean(), z.string()]),
 });
 
-export const clientSchema = z.object({
+export const accountSchema = z.object({
   id: z.string(),
   createdAt: z.string(),
   updatedAt: z.string(),
@@ -27,4 +27,4 @@ export const clientSchema = z.object({
   notifications: notificationSchema,
 }).deepPartial();
 
-export type Client = z.infer<typeof clientSchema>;
+export type Account = z.infer<typeof accountSchema>;

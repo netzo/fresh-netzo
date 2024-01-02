@@ -1,4 +1,4 @@
-export const clients = [
+export const accounts = [
   {
     id: "01HEG8XFYVMQK2QT9EX2TVHN7K",
     createdAt: "2023-10-20",

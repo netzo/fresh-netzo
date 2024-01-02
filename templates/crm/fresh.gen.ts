@@ -3,16 +3,16 @@
 // This file is automatically updated during development when running `dev.ts`.
 
 import * as $_ui_layout from "./routes/(ui)/_layout.tsx";
-import * as $_ui_clients_id_ from "./routes/(ui)/clients/[id].tsx";
-import * as $_ui_clients_index from "./routes/(ui)/clients/index.tsx";
+import * as $_ui_accounts_id_ from "./routes/(ui)/accounts/[id].tsx";
+import * as $_ui_accounts_index from "./routes/(ui)/accounts/index.tsx";
 import * as $_ui_contacts_id_ from "./routes/(ui)/contacts/[id].tsx";
 import * as $_ui_contacts_index from "./routes/(ui)/contacts/index.tsx";
 import * as $_ui_index from "./routes/(ui)/index.tsx";
 import * as $_ui_invoices_id_ from "./routes/(ui)/invoices/[id].tsx";
 import * as $_ui_invoices_index from "./routes/(ui)/invoices/index.tsx";
 import * as $Home from "./islands/Home.tsx";
-import * as $clients_Form from "./islands/clients/Form.tsx";
-import * as $clients_Table from "./islands/clients/Table.tsx";
+import * as $accounts_Form from "./islands/accounts/Form.tsx";
+import * as $accounts_Table from "./islands/accounts/Table.tsx";
 import * as $contacts_Form from "./islands/contacts/Form.tsx";
 import * as $contacts_Table from "./islands/contacts/Table.tsx";
 import * as $invoices_Form from "./islands/invoices/Form.tsx";
@@ -22,8 +22,8 @@ import { type Manifest } from "$fresh/server.ts";
 const manifest = {
   routes: {
     "./routes/(ui)/_layout.tsx": $_ui_layout,
-    "./routes/(ui)/clients/[id].tsx": $_ui_clients_id_,
-    "./routes/(ui)/clients/index.tsx": $_ui_clients_index,
+    "./routes/(ui)/accounts/[id].tsx": $_ui_accounts_id_,
+    "./routes/(ui)/accounts/index.tsx": $_ui_accounts_index,
     "./routes/(ui)/contacts/[id].tsx": $_ui_contacts_id_,
     "./routes/(ui)/contacts/index.tsx": $_ui_contacts_index,
     "./routes/(ui)/index.tsx": $_ui_index,
@@ -32,8 +32,8 @@ const manifest = {
   },
   islands: {
     "./islands/Home.tsx": $Home,
-    "./islands/clients/Form.tsx": $clients_Form,
-    "./islands/clients/Table.tsx": $clients_Table,
+    "./islands/accounts/Form.tsx": $accounts_Form,
+    "./islands/accounts/Table.tsx": $accounts_Table,
     "./islands/contacts/Form.tsx": $contacts_Form,
     "./islands/contacts/Table.tsx": $contacts_Table,
     "./islands/invoices/Form.tsx": $invoices_Form,

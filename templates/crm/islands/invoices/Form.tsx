@@ -64,7 +64,7 @@ export function FormInvoice({ data, method, url }: FormProps) {
           updatedAt,
         }),
       });
-      window.location.href = "/clients";
+      window.location.href = "/accounts";
     } catch (error) {
       console.error(error);
     }

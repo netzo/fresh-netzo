@@ -1,5 +1,5 @@
 import { DataTable } from "@/components/tables/components/data-table.tsx";
-import { columns } from "@/components/tables/clients/columns.tsx";
+import { columns } from "@/components/tables/accounts/columns.tsx";
 
 export function Table({ data, options }) {
   return (

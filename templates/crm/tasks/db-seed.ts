@@ -1,15 +1,15 @@
-import { clients } from "@/data/clients.ts";
+import { accounts } from "@/data/accounts.ts";
 import { contacts } from "@/data/contacts.ts";
 import { invoices } from "@/data/invoices.ts";
-import { app } from "@/netzo.ts";
+
+const kv = await Deno.openKv(Deno.env.get("DENO_KV_PATH"));
 
 //Seed a local KV from fake data files.
-
 const dbSeed = async () => {
   const createPromises = [
-    Promise.all(clients.map((d) => app.kv.set(["clients", d.id], d))),
-    Promise.all(contacts.map((d) => app.kv.set(["contacts", d.id], d))),
-    Promise.all(invoices.map((d) => app.kv.set(["invoices", d.id], d))),
+    Promise.all(accounts.map((d) => kv.set(["accounts", d.id], d))),
+    Promise.all(contacts.map((d) => kv.set(["contacts", d.id], d))),
+    Promise.all(invoices.map((d) => kv.set(["invoices", d.id], d))),
   ];
 
   try {

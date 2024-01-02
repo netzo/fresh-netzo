@@ -7,7 +7,7 @@ export const contacts = [
     avatar: "",
     email: "john.doe@abcinc.com",
     phone: "111-111-1111",
-    clientId: "01HEG8XFYVMQK2QT9EX2TVHN7K",
+    accountId: "01HEG8XFYVMQK2QT9EX2TVHN7K",
     notifications: {
       new: true,
       promotions: false,
@@ -22,7 +22,7 @@ export const contacts = [
     avatar: "",
     email: "jane.smith@xyzcorp.com",
     phone: "222-222-2222",
-    clientId: "01HEG8XFZ8XHFTEM5K4E2ARWXB",
+    accountId: "01HEG8XFZ8XHFTEM5K4E2ARWXB",
     notifications: {
       new: true,
       promotions: false,
@@ -37,7 +37,7 @@ export const contacts = [
     avatar: "",
     email: "michael.johnson@lmn-ltd.com",
     phone: "333-333-3333",
-    clientId: "01HEG8XFZ8XHFTEM5K4E2ARWXC",
+    accountId: "01HEG8XFZ8XHFTEM5K4E2ARWXC",
     notifications: {
       new: true,
       promotions: false,
