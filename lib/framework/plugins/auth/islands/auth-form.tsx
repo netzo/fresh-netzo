@@ -87,7 +87,7 @@ export function AuthForm(props: NetzoState) {
           />
         )}
         {auth?.title && (
-          <h1 className="text-2xl font-semibold tracking-tight">
+          <h1 className="text-2xl font-semibold">
             {auth.title}
           </h1>
         )}
@@ -155,11 +155,13 @@ export function AuthForm(props: NetzoState) {
           </ButtonOAuth2>
         )}
 
-        {enabled(auth?.providers?.oauth2) && (
+        {
+          /* {enabled(auth?.providers?.oauth2) && (
           <ButtonOAuth2 text="Sign In with Custom" href="/auth/oauth2/signin">
             <div className="mr-4 w-20px h-20px mdi-code-json" />
           </ButtonOAuth2>
-        )}
+        )} */
+        }
       </div>
     </>
   );

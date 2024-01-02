@@ -2,7 +2,7 @@ import type { Plugin } from "../../deps/$fresh/server.ts";
 import { logInfo } from "../utils/console.ts";
 import type { NetzoState } from "../mod.ts";
 
-export const enabled = (obj: any) => obj?.enabled !== false;
+export const enabled = (obj: object) => !!obj && obj?.enabled !== false;
 
 /**
  * An internal utility to bundle plugins based on app configuration.

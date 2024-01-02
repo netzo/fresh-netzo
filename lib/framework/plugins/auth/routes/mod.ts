@@ -23,7 +23,7 @@ export const getRoutesByProvider = (
   const routes = [
     {
       path: `/auth/${provider}/signin`,
-      handler: async (req, _ctx) => {
+      handler: async (req, ctx) => {
         const authConfig = getAuthConfig(provider, options);
         const response = await signIn(req, authConfig);
         return response;
@@ -31,7 +31,7 @@ export const getRoutesByProvider = (
     },
     {
       path: `/auth/${provider}/callback`,
-      handler: async (req, _ctx) => {
+      handler: async (req, ctx) => {
         const authConfig = getAuthConfig(provider, options);
         const { response, tokens, sessionId } = await handleCallback(
           req,

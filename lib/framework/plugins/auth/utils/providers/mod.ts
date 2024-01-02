@@ -7,10 +7,9 @@ import {
 import {
   createNetzoOAuthConfig,
   getUserNetzo,
-  handleCallbackNetzo,
+  handleCallback as handleCallbackNetzo,
   isNetzoSetup,
-  signInNetzo,
-  signOutNetzo,
+  signIn as signInNetzo,
 } from "./netzo.ts";
 import {
   createEmailOAuthConfig,
@@ -112,7 +111,7 @@ export const getAuthConfig = (
 export const getFunctionsByProvider = (provider: AuthProvider) => {
   switch (provider) {
     case "netzo":
-      return [signInNetzo, handleCallbackNetzo, signOutNetzo];
+      return [signInNetzo, handleCallbackNetzo, signOut];
     case "email":
       return [signInEmail, handleCallbackEmail, signOutEmail];
     default:
