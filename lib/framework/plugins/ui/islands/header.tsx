@@ -18,6 +18,7 @@ export function Header({ className, ...props }: NetzoConfig["ui"]["header"]) {
       )}
     >
       <div className="flex items-center">
+        {props.children}
         {/* NOTE: use dark:filter-invert to invert color on dark */}
         {props?.image && (
           <img
@@ -25,31 +26,32 @@ export function Header({ className, ...props }: NetzoConfig["ui"]["header"]) {
             class="w-auto h-9 my-auto mr-4"
           />
         )}
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger>
-              {props?.title && (
-                <h1 className="text-xl font-bold">
-                  {props.title}
-                </h1>
-              )}
-            </TooltipTrigger>
-            <TooltipContent>
-              {props?.description && (
-                <p className="text-sm text-muted-foreground">
-                  {props.description}
-                </p>
-              )}
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
+        {props?.title && (
+          <h1 className="text-xl font-bold">
+            {props.title}
+          </h1>
+        )}
+        {props?.description && (
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger style={{ all: "unset" }}>
+                <div className="flex items-center ml-2 mdi-information text-muted-foreground" />
+              </TooltipTrigger>
+              <TooltipContent>
+                <p
+                  className="text-sm text-muted-foreground"
+                  dangerouslySetInnerHTML={{ __html: props.description }}
+                />
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        )}
       </div>
 
       {/* CENTER CONTENT HERE */}
 
       {/* RIGHT CONTENT HERE */}
-      <div className="flex items-center h-full gap-4">
-        {props.children}
+      <div className="flex items-center gap-4 !my-0">
         <ThemeToggle />
         {props.sessionUser && (
           <HeaderAuth f-client-nav={false} sessionUser={props.sessionUser} />
