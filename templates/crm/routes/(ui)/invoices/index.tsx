@@ -11,5 +11,9 @@ export default defineRoute(async (req, ctx) => {
 
   const options = getOptions(data);
 
-  return <Table data={data} options={options} />;
+  return (
+    <div className="h-full p-4">
+      <Table data={data} options={options} />
+    </div>
+  );
 });
