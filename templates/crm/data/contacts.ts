@@ -1,4 +1,6 @@
-export const contacts = [
+import type { Contact } from "@/components/tables/contacts/data/schema.ts";
+
+export const contacts: Contact[] = [
   {
     id: "01HEG8XFZ9J46NZEBVW35TSM4D",
     createdAt: "2023-01-01T13:03:00.000Z",

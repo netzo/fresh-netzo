@@ -18,6 +18,6 @@ export const invoiceSchema = z.object({
   total: z.string(),
   accountId: z.string(),
   account: accountSchema,
-}).deepPartial();
+});
 
 export type Invoice = z.infer<typeof invoiceSchema>;

@@ -25,6 +25,6 @@ export const accountSchema = z.object({
   phone: z.string(),
   address: addressSchema,
   notifications: notificationSchema,
-}).deepPartial();
+});
 
 export type Account = z.infer<typeof accountSchema>;

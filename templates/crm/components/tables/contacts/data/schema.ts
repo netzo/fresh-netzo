@@ -5,7 +5,7 @@ const notificationSchema = z.object({
   new: z.boolean(),
   promotions: z.boolean(),
   marketing: z.boolean(),
-}).deepPartial();
+});
 
 export const contactSchema = z.object({
   id: z.string(),
@@ -20,6 +20,6 @@ export const contactSchema = z.object({
   notifications: notificationSchema,
   accountId: z.string(),
   account: accountSchema,
-}).deepPartial();
+});
 
 export type Contact = z.infer<typeof contactSchema>;

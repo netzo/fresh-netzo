@@ -1,4 +1,6 @@
-export const accounts = [
+import type { Account } from "@/components/tables/accounts/data/schema.ts";
+
+export const accounts: Account[] = [
   {
     id: "01HEG8XFYVMQK2QT9EX2TVHN7K",
     createdAt: "2023-10-20",

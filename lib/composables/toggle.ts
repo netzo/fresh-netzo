@@ -1,4 +1,4 @@
-import { computed, effect, signal } from "../deps/@preact/signals.ts";
+import { signal } from "../deps/@preact/signals.ts";
 
 const value = signal<boolean>(false);
 

@@ -1,4 +1,6 @@
-export const invoices = [
+import type { Invoice } from "@/components/tables/invoices/data/schema.ts";
+
+export const invoices: Invoice[] = [
   {
     id: "01HEG8XFZ9J46NZEBVW35TSM4G",
     createdAt: "2023-10-20T08:00:00Z",

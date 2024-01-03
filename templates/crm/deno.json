@@ -11,7 +11,7 @@
     "db:migrate": "deno run -A --unstable --env tasks/db-migrate.ts",
     "db:reset": "deno run -A --unstable --env tasks/db-reset.ts",
     "start": "deno run -A --unstable --env --watch=static/,routes netzo.ts dev",
-    "test": "DENO_KV_PATH=:memory: GITHUB_CLIENT_ID=xxx GITHUB_CLIENT_SECRET=xxx deno test -A --unstable --env --parallel --coverage=./cov --doc",
+    "test": "deno test -A --unstable --env --parallel --coverage=./cov --doc",
     "check:types": "deno check **/*.ts && deno check **/*.tsx",
     "ok": "deno fmt --check && deno lint && deno task check:license --check && deno task check:types && deno task test",
     "cov:clean": "rm -rf cov html_cov cov.lcov",
