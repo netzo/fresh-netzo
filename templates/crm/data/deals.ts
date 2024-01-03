@@ -39,13 +39,13 @@ export const deals: Deal[] = [
   },
   {
     "id": 4,
-    "labels": [
-      "meeting",
-    ],
     "status": "done",
     "accountId": 101,
     "name": "Meeting with potential client",
     "description": "Discussed the new product features",
+    "labels": [
+      "meeting",
+    ],
     "createdAt": "2023-12-15T08:30:00Z",
     "updatedAt": "2023-12-15T09:00:00Z",
   },

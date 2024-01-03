@@ -1,8 +1,12 @@
 // adapted from https://github.com/Georgegriff/react-dnd-kit-tailwind-shadcn-ui/blob/main/src/components/TaskCard.tsx
-import type { UniqueIdentifier } from "netzo/deps/@dnd-kit/core.ts";
 import { useSortable } from "netzo/deps/@dnd-kit/sortable.ts";
 import { CSS } from "netzo/deps/@dnd-kit/utilities.ts";
-import { Card, CardContent, CardHeader } from "netzo/components/ui/card.tsx";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "netzo/components/ui/card.tsx";
 import { Button } from "netzo/components/ui/button.tsx";
 import { cva } from "netzo/deps/class-variance-authority.ts";
 import { Badge } from "netzo/components/ui/badge.tsx";
@@ -61,7 +65,7 @@ export function KanbanBoardCard({ deal, isOverlay }: KanbanBoardCardProps) {
         dragging: isOverlay ? "overlay" : isDragging ? "over" : undefined,
       })}
     >
-      <CardHeader className="relative flex flex-row px-3 py-3 border-b-2 space-between border-secondary">
+      <CardHeader className="relative flex flex-row px-3 py-1 space-between">
         <Button
           variant={"ghost"}
           {...attributes}
@@ -71,12 +75,15 @@ export function KanbanBoardCard({ deal, isOverlay }: KanbanBoardCardProps) {
           <span className="sr-only">Move deal</span>
           <div className="w-6 h-6 mdi-drag" />
         </Button>
-        <Badge variant={"outline"} className="ml-auto font-semibold">
+        <CardTitle className="ml-1 text-sm font-medium">
+          {deal.name}
+        </CardTitle>
+        <Badge variant={"outline"} className="ml-auto font-medium">
           Deal
         </Badge>
       </CardHeader>
-      <CardContent className="px-3 pt-3 pb-6 text-left whitespace-pre-wrap">
-        {deal.name}
+      <CardContent className="px-4 pt-2 pb-4 text-xs whitespace-pre-wrap text-secondary-foreground">
+        {deal.description}
       </CardContent>
     </Card>
   );
