@@ -1,5 +1,5 @@
 import { accounts } from "@/data/accounts.ts";
-import { activities } from "@/data/activities.ts";
+import { deals } from "@/data/deals.ts";
 import { contacts } from "@/data/contacts.ts";
 import { invoices } from "@/data/invoices.ts";
 
@@ -9,7 +9,7 @@ const kv = await Deno.openKv(Deno.env.get("DENO_KV_PATH"));
 const dbSeed = async () => {
   const createPromises = [
     Promise.all(accounts.map((d) => kv.set(["accounts", d.id], d))),
-    Promise.all(activities.map((d) => kv.set(["activities", d.id], d))),
+    Promise.all(deals.map((d) => kv.set(["deals", d.id], d))),
     Promise.all(contacts.map((d) => kv.set(["contacts", d.id], d))),
     Promise.all(invoices.map((d) => kv.set(["invoices", d.id], d))),
   ];

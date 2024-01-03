@@ -1,4 +1,4 @@
-import type { Invoice } from "@/components/tables/invoices/data/schema.ts";
+import type { Invoice } from "@/data/invoices.schema.ts";
 
 export const invoices: Invoice[] = [
   {

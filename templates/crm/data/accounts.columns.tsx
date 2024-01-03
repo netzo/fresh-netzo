@@ -1,14 +1,8 @@
 import type { ColumnDef } from "netzo/deps/@tanstack/react-table.ts";
 import { Checkbox } from "netzo/components/ui/checkbox.tsx";
-import { Contact } from "@/components/tables/contacts/data/schema.ts";
-import { CopyId } from "@/components/tables/components/copy-id.tsx";
-import { aliases } from "@/components/tables/contacts/data/options.tsx";
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "netzo/components/ui/avatar.tsx";
-
+import { Account } from "@/data/accounts.schema.ts";
+import { CopyId } from "@/components/tables/copy-id.tsx";
+import { aliases } from "@/data/accounts.options.tsx";
 import {
   renderCell,
   renderCellCheckbox,
@@ -22,7 +16,7 @@ import {
   toPercent,
 } from "@/utils.tsx";
 
-export const columns: ColumnDef<Contact>[] = [
+export const columns: ColumnDef<Account>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -48,21 +42,6 @@ export const columns: ColumnDef<Contact>[] = [
     header: "General",
     columns: [
       {
-        accessorKey: "avatar",
-        header: renderHeader(aliases.avatar),
-        cell: ({ row }) => {
-          const { name, avatar } = row.original;
-          const [first, last] = name.split(" ");
-          const initials = `${first[0]}${last[0]}`?.toUpperCase();
-          return (
-            <Avatar className="h-9 w-9">
-              <AvatarImage src={avatar} />
-              <AvatarFallback>{initials}</AvatarFallback>
-            </Avatar>
-          );
-        },
-      },
-      {
         accessorKey: "name",
         header: renderHeader(aliases.name),
         cell: ({ row }) => {
@@ -70,7 +49,7 @@ export const columns: ColumnDef<Contact>[] = [
           return (
             <div className="flex">
               <a
-                href={`/contacts/${id}`}
+                href={`/accounts/${id}`}
                 className="whitespace-nowrap text-center font-medium text-[hsl(var(--primary))] hover:underline"
               >
                 {name}
@@ -81,19 +60,29 @@ export const columns: ColumnDef<Contact>[] = [
         },
       },
       {
-        accessorKey: "accountId",
-        header: renderHeader(aliases.accountId),
+        accessorKey: "status",
+        header: renderHeader(aliases.status),
         cell: ({ row }) => {
-          const { accountId, account } = row.original;
+          const { status } = row.original;
+          const colors = {
+            active: "black",
+            inactive: "gray",
+          };
           return (
-            <a
-              href={`/accounts/${accountId}`}
-              className="whitespace-nowrap text-center font-medium text-[hsl(var(--primary))] hover:underline"
+            <p
+              className={`text-${colors[status]}-500`}
             >
-              {account?.name ? account.name : accountId}
-            </a>
+              {status}
+            </p>
           );
         },
+        filterFn: (row, id, value) => value.includes(row.getValue(id)),
+      },
+      {
+        accessorKey: "type",
+        header: renderHeader(aliases.type),
+        cell: renderCell(),
+        filterFn: (row, id, value) => value.includes(row.getValue(id)),
       },
     ],
   },
@@ -101,13 +90,39 @@ export const columns: ColumnDef<Contact>[] = [
     header: "Contact",
     columns: [
       {
-        accessorKey: "email",
-        header: renderHeader(aliases.email),
+        accessorKey: "phone",
+        header: renderHeader(aliases.phone),
         cell: renderCell(),
       },
       {
-        accessorKey: "phone",
-        header: renderHeader(aliases.phone),
+        accessorKey: "web",
+        header: renderHeader(aliases.web),
+        cell: renderCell(),
+      },
+    ],
+  },
+  {
+    header: "Address",
+    columns: [
+      {
+        accessorKey: "address.streetAddress",
+        header: renderHeader(aliases.address.streetAddress),
+        cell: renderCell(),
+      },
+      {
+        accessorKey: "address.number",
+        header: renderHeader(aliases.address.number),
+        cell: renderCell(),
+      },
+      {
+        accessorKey: "address.city",
+        header: renderHeader(aliases.address.city),
+        cell: renderCell(),
+        filterFn: (row, id, value) => value.includes(row.getValue(id)),
+      },
+      {
+        accessorKey: "address.postCode",
+        header: renderHeader(aliases.address.postCode),
         cell: renderCell(),
       },
     ],
@@ -116,8 +131,13 @@ export const columns: ColumnDef<Contact>[] = [
     header: "Notificaciones",
     columns: [
       {
-        accessorKey: "notifications.new",
-        header: renderHeader(aliases.notifications.new),
+        accessorKey: "notifications.payments",
+        header: renderHeader(aliases.notifications.payments),
+        cell: renderCellCheckbox(),
+      },
+      {
+        accessorKey: "notifications.invoices",
+        header: renderHeader(aliases.notifications.invoices),
         cell: renderCellCheckbox(),
       },
       {

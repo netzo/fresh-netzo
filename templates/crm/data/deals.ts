@@ -1,10 +1,10 @@
-import type { Activity } from "@/components/tables/activities/data/schema.ts";
+import type { Deal } from "@/data/deals.schema.ts";
 
-export const activities: Activity[] = [
+export const deals: Deal[] = [
   {
     "id": 1,
     "status": "done",
-    "contactId": 101,
+    "accountId": 101,
     "name": "Meeting with potential client",
     "description": "Discussed the new product features",
     "labels": [
@@ -16,7 +16,7 @@ export const activities: Activity[] = [
   {
     "id": 2,
     "status": "in-progress",
-    "contactId": 105,
+    "accountId": 105,
     "name": "Follow-up call",
     "description": "Addressed client concerns",
     "labels": [
@@ -28,7 +28,7 @@ export const activities: Activity[] = [
   {
     "id": 3,
     "status": "backlog",
-    "contactId": 102,
+    "accountId": 102,
     "name": "Follow-up email",
     "description": "Sent product brochure",
     "labels": [
@@ -43,7 +43,7 @@ export const activities: Activity[] = [
       "meeting",
     ],
     "status": "done",
-    "contactId": 101,
+    "accountId": 101,
     "name": "Meeting with potential client",
     "description": "Discussed the new product features",
     "createdAt": "2023-12-15T08:30:00Z",
@@ -52,7 +52,7 @@ export const activities: Activity[] = [
   {
     "id": 5,
     "status": "in-progress",
-    "contactId": 105,
+    "accountId": 105,
     "name": "Follow-up call",
     "description": "Addressed client concerns",
     "labels": [
@@ -64,7 +64,7 @@ export const activities: Activity[] = [
   {
     "id": 6,
     "status": "backlog",
-    "contactId": 102,
+    "accountId": 102,
     "name": "Follow-up email",
     "description": "Sent product brochure",
     "labels": [
@@ -76,7 +76,7 @@ export const activities: Activity[] = [
   {
     "id": 7,
     "status": "done",
-    "contactId": 101,
+    "accountId": 101,
     "name": "Meeting with potential client",
     "description": "Discussed the new product features",
     "labels": [
@@ -88,7 +88,7 @@ export const activities: Activity[] = [
   {
     "id": 8,
     "status": "in-progress",
-    "contactId": 105,
+    "accountId": 105,
     "name": "Follow-up call",
     "description": "Addressed client concerns",
     "labels": [
@@ -100,7 +100,7 @@ export const activities: Activity[] = [
   {
     "id": 9,
     "status": "backlog",
-    "contactId": 102,
+    "accountId": 102,
     "name": "Follow-up email",
     "description": "Sent product brochure",
     "labels": [
@@ -112,7 +112,7 @@ export const activities: Activity[] = [
   {
     "id": 10,
     "status": "done",
-    "contactId": 101,
+    "accountId": 101,
     "name": "Meeting with potential client",
     "description": "Discussed the new product features",
     "labels": [
@@ -124,7 +124,7 @@ export const activities: Activity[] = [
   {
     "id": 11,
     "status": "in-progress",
-    "contactId": 105,
+    "accountId": 105,
     "name": "Follow-up call",
     "description": "Addressed client concerns",
     "labels": [
@@ -136,7 +136,7 @@ export const activities: Activity[] = [
   {
     "id": 12,
     "status": "backlog",
-    "contactId": 102,
+    "accountId": 102,
     "name": "Follow-up email",
     "description": "Sent product brochure",
     "labels": [
@@ -148,7 +148,7 @@ export const activities: Activity[] = [
   {
     "id": 13,
     "status": "done",
-    "contactId": 101,
+    "accountId": 101,
     "name": "Meeting with potential client",
     "description": "Discussed the new product features",
     "labels": [
@@ -160,7 +160,7 @@ export const activities: Activity[] = [
   {
     "id": 14,
     "status": "in-progress",
-    "contactId": 105,
+    "accountId": 105,
     "name": "Follow-up call",
     "description": "Addressed client concerns",
     "labels": [
@@ -172,7 +172,7 @@ export const activities: Activity[] = [
   {
     "id": "backlog",
     "status": "backlog",
-    "contactId": 102,
+    "accountId": 102,
     "name": "Follow-up email",
     "description": "Sent product brochure",
     "labels": [
@@ -184,7 +184,7 @@ export const activities: Activity[] = [
   {
     "id": 16,
     "status": "done",
-    "contactId": 101,
+    "accountId": 101,
     "name": "Meeting with potential client",
     "description": "Discussed the new product features",
     "labels": [
@@ -196,7 +196,7 @@ export const activities: Activity[] = [
   {
     "id": 17,
     "status": "in-progress",
-    "contactId": 105,
+    "accountId": 105,
     "name": "Follow-up call",
     "description": "Addressed client concerns",
     "labels": [
@@ -208,7 +208,7 @@ export const activities: Activity[] = [
   {
     "id": 18,
     "status": "cancelled",
-    "contactId": 102,
+    "accountId": 102,
     "name": "Follow-up email",
     "description": "Sent product brochure",
     "labels": [

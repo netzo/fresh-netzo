@@ -1,5 +1,5 @@
-import { Contact } from "./schema.ts";
-import { DataTableProps } from "@/components/tables/components/data-table.tsx";
+import { Contact } from "./contacts.schema.ts";
+import { DataTableProps } from "@/components/tables/data-table.tsx";
 
 export const aliases = {
   id: "ID",

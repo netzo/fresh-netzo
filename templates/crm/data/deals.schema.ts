@@ -1,6 +1,6 @@
 import { z } from "netzo/deps/zod/mod.ts";
 
-export const activitySchema = z.object({
+export const dealSchema = z.object({
   id: z.string(),
   status: z.union([
     z.literal("backlog"),
@@ -9,7 +9,7 @@ export const activitySchema = z.object({
     z.literal("done"),
     z.literal("cancelled"),
   ]),
-  contactId: z.string(),
+  accountId: z.string(),
   name: z.string(),
   description: z.string(),
   labels: z.array(z.string()),
@@ -17,4 +17,4 @@ export const activitySchema = z.object({
   updatedAt: z.string(),
 });
 
-export type Contact = z.infer<typeof activitySchema>;
+export type Contact = z.infer<typeof dealSchema>;

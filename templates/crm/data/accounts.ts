@@ -1,4 +1,4 @@
-import type { Account } from "@/components/tables/accounts/data/schema.ts";
+import type { Account } from "@/data/accounts.schema.ts";
 
 export const accounts: Account[] = [
   {

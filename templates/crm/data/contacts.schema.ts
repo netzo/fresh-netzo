@@ -1,5 +1,5 @@
 import { z } from "netzo/deps/zod/mod.ts";
-import { accountSchema } from "@/components/tables/accounts/data/schema.ts";
+import { accountSchema } from "@/data/accounts.schema.ts";
 
 const notificationSchema = z.object({
   new: z.boolean(),

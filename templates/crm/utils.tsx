@@ -1,6 +1,6 @@
 import { _get } from "netzo/deps/lodash.get.ts";
 import { Checkbox } from "netzo/components/ui/checkbox.tsx";
-import { DataTableColumnHeader } from "@/components/tables/components/data-table-column-header.tsx";
+import { DataTableColumnHeader } from "@/components/tables/data-table-column-header.tsx";
 
 export const toInteger = (num: number) =>
   Math.round(Number(num)).toLocaleString("es-ES");

@@ -4,11 +4,8 @@ import { zodResolver } from "netzo/deps/@hookform/resolvers/zod.ts";
 import { Button } from "netzo/components/ui/button.tsx";
 import { Input } from "netzo/components/ui/input.tsx";
 import { Textarea } from "netzo/components/ui/textarea.tsx";
-import {
-  Invoice,
-  invoiceSchema,
-} from "@/components/tables/invoices/data/schema.ts";
-import { aliases } from "@/components/tables/invoices/data/options.tsx";
+import { Invoice, invoiceSchema } from "@/data/invoices.schema.ts";
+import { aliases } from "@/data/invoices.options.tsx";
 
 import {
   Select,

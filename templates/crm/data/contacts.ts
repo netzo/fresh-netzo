@@ -1,4 +1,4 @@
-import type { Contact } from "@/components/tables/contacts/data/schema.ts";
+import type { Contact } from "@/data/contacts.schema.ts";
 
 export const contacts: Contact[] = [
   {

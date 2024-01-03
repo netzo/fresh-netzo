@@ -1,9 +1,9 @@
 import type { ColumnDef } from "netzo/deps/@tanstack/react-table.ts";
 import { Checkbox } from "netzo/components/ui/checkbox.tsx";
 import { Badge } from "netzo/components/ui/badge.tsx";
-import { Invoice } from "@/components/tables/invoices/data/schema.ts";
-import { CopyId } from "@/components/tables/components/copy-id.tsx";
-import { aliases } from "@/components/tables/invoices/data/options.tsx";
+import { Invoice } from "@/data/invoices.schema.ts";
+import { CopyId } from "@/components/tables/copy-id.tsx";
+import { aliases } from "@/data/invoices.options.tsx";
 import {
   renderCell,
   renderCellCheckbox,

@@ -1,4 +1,4 @@
-import { DataTableProps } from "@/components/tables/components/data-table.tsx";
+import { DataTableProps } from "@/components/tables/data-table.tsx";
 import { Table } from "netzo/deps/@tanstack/react-table.ts";
 import { TrashIcon } from "netzo/deps/@radix-ui/react-icons.ts";
 import { Button } from "netzo/components/ui/button.tsx";

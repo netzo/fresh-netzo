@@ -1,8 +1,8 @@
 import { signal } from "../deps/@preact/signals.ts";
 
-const value = signal<boolean>(false);
-
 export function useToggle(init?: boolean) {
+  const value = signal<boolean>(false);
+
   if (init !== undefined) value.value = init;
   return {
     value,

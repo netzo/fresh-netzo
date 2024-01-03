@@ -1,8 +1,8 @@
 import type { ColumnDef } from "netzo/deps/@tanstack/react-table.ts";
 import { Checkbox } from "netzo/components/ui/checkbox.tsx";
-import { Activity } from "@/components/tables/activities/data/schema.ts";
-import { CopyId } from "@/components/tables/components/copy-id.tsx";
-import { aliases } from "@/components/tables/activities/data/options.tsx";
+import { Deal } from "@/data/deals.schema.ts";
+import { CopyId } from "@/components/tables/copy-id.tsx";
+import { aliases } from "@/data/deals.options.tsx";
 import {
   Avatar,
   AvatarFallback,
@@ -22,7 +22,7 @@ import {
   toPercent,
 } from "@/utils.tsx";
 
-export const columns: ColumnDef<Activity>[] = [
+export const columns: ColumnDef<Deal>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -70,7 +70,7 @@ export const columns: ColumnDef<Activity>[] = [
           return (
             <div className="flex">
               <a
-                href={`/activities/${id}`}
+                href={`/deals/${id}`}
                 className="whitespace-nowrap text-center font-medium text-[hsl(var(--primary))] hover:underline"
               >
                 {name}
@@ -98,7 +98,7 @@ export const columns: ColumnDef<Activity>[] = [
     ],
   },
   {
-    header: "Activity",
+    header: "Deal",
     columns: [
       {
         accessorKey: "email",

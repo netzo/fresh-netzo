@@ -1,5 +1,5 @@
-import { Invoice } from "./schema.ts";
-import { DataTableProps } from "@/components/tables/components/data-table.tsx";
+import { Invoice } from "./invoices.schema.ts";
+import { DataTableProps } from "@/components/tables/data-table.tsx";
 
 export const aliases = {
   id: "ID",

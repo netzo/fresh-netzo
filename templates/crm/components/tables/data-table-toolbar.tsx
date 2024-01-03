@@ -7,7 +7,7 @@ import { Input } from "netzo/components/ui/input.tsx";
 import { DataTableViewOptions } from "./data-table-view-options.tsx";
 import { DataTableFacetedFilter } from "./data-table-faceted-filter.tsx";
 import { DataTableProps } from "./data-table.tsx";
-import { DialogDelete } from "@/components/tables/components/dialog-delete.tsx";
+import { DialogDelete } from "@/components/tables/dialog-delete.tsx";
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>;
