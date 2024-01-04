@@ -1,5 +1,4 @@
 import * as ScrollAreaPrimitive from "../../deps/@radix-ui/react-scroll-area.ts";
-
 import type { JSX } from "../../deps/preact.ts";
 import {
   type ComponentProps,

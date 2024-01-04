@@ -3,17 +3,16 @@ import {
   ChevronRightIcon,
   DoubleArrowLeftIcon,
   DoubleArrowRightIcon,
-} from "netzo/deps/@radix-ui/react-icons.ts";
-import { Table } from "netzo/deps/@tanstack/react-table.ts";
-
-import { Button } from "netzo/components/ui/button.tsx";
+} from "../../../deps/@radix-ui/react-icons.ts";
+import { Table } from "../../../deps/@tanstack/react-table.ts";
+import { Button } from "../../ui/button.tsx";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "netzo/components/ui/select.tsx";
+} from "../../ui/select.tsx";
 
 interface DataTablePaginationProps<TData> {
   table: Table<TData>;

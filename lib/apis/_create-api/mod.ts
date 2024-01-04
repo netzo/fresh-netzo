@@ -4,7 +4,6 @@ import {
   resolveURL,
   withQuery,
 } from "https://esm.sh/v135/ufo@1.2.0";
-
 import type {
   ApiClient,
   ApiMethodHandler,
@@ -27,7 +26,7 @@ export function createApi<R extends ResponseType = "json">(
   defaultOptions: Omit<FetchOptions<R>, "method"> = {},
 ): ApiClient {
   // Callable internal target required to use `apply` on it
-  const internalTarget = (() => {}) as ApiClient;
+  const internalTarget = (() => { }) as ApiClient;
 
   function p(url: string): ApiClient {
     return new Proxy(internalTarget, {

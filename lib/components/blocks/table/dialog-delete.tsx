@@ -1,7 +1,7 @@
-import { DataTableProps } from "@/components/tables/data-table.tsx";
-import { Table } from "netzo/deps/@tanstack/react-table.ts";
-import { TrashIcon } from "netzo/deps/@radix-ui/react-icons.ts";
-import { Button } from "netzo/components/ui/button.tsx";
+import { DataTableProps } from "netzo/components/blocks/table/data-table.tsx";
+import { Table } from "../../../deps/@tanstack/react-table.ts";
+import { TrashIcon } from "../../../deps/@radix-ui/react-icons.ts";
+import { Button } from "../../ui/button.tsx";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -12,7 +12,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "netzo/components/ui/alert-dialog.tsx";
+} from "../../ui/alert-dialog.tsx";
 
 interface DialogDeleteProps<TData> {
   options: DataTableProps<TData, unknown>["options"];

@@ -1,5 +1,4 @@
 import * as ProgressPrimitive from "../../deps/@radix-ui/react-progress.ts";
-
 import type { JSX } from "../../deps/preact.ts";
 import {
   type ComponentProps,

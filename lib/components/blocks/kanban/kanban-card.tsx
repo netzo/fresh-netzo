@@ -1,18 +1,13 @@
 // adapted from https://github.com/Georgegriff/react-dnd-kit-tailwind-shadcn-ui/blob/main/src/components/TaskCard.tsx
-import { useSortable } from "netzo/deps/@dnd-kit/sortable.ts";
-import { CSS } from "netzo/deps/@dnd-kit/utilities.ts";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "netzo/components/ui/card.tsx";
-import { Button } from "netzo/components/ui/button.tsx";
-import { cva } from "netzo/deps/class-variance-authority.ts";
-import { Badge } from "netzo/components/ui/badge.tsx";
+import { useSortable } from "../../../deps/@dnd-kit/sortable.ts";
+import { CSS } from "../../../deps/@dnd-kit/utilities.ts";
+import { Card, CardContent, CardHeader, CardTitle } from "../../ui/card.tsx";
+import { Button } from "../../ui/button.tsx";
+import { cva } from "../../../deps/class-variance-authority.ts";
+import { Badge } from "../../ui/badge.tsx";
 import type { Deal } from "@/data/deals.schema.tsx";
 
-interface KanbanBoardCardProps {
+interface KanbanCardProps {
   deal: Deal;
   isOverlay?: boolean;
 }
@@ -24,7 +19,7 @@ export interface DealDragData {
   deal: Deal;
 }
 
-export function KanbanBoardCard({ deal, isOverlay }: KanbanBoardCardProps) {
+export function KanbanCard({ deal, isOverlay }: KanbanCardProps) {
   const {
     setNodeRef,
     attributes,

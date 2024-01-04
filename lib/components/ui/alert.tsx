@@ -1,5 +1,4 @@
 import { cva, type VariantProps } from "../../deps/class-variance-authority.ts";
-
 import type { JSX } from "../../deps/preact.ts";
 import {
   type ComponentProps,

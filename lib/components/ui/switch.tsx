@@ -1,5 +1,4 @@
 import * as SwitchPrimitives from "../../deps/@radix-ui/react-switch.ts";
-
 import type { JSX } from "../../deps/preact.ts";
 import {
   type ComponentProps,

@@ -1,5 +1,4 @@
 import { ChevronRightIcon } from "../../deps/@radix-ui/react-icons.ts";
-
 import { Button } from "../ui/button.tsx";
 
 export default () => {

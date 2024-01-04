@@ -2,12 +2,11 @@ import type { ComponentType } from "preact";
 import {
   CheckIcon,
   PlusCircledIcon,
-} from "netzo/deps/@radix-ui/react-icons.ts";
-import { Column } from "netzo/deps/@tanstack/react-table.ts";
-
+} from "../../../deps/@radix-ui/react-icons.ts";
+import { Column } from "../../../deps/@tanstack/react-table.ts";
 import { cn } from "netzo/components/utils.ts";
-import { Badge } from "netzo/components/ui/badge.tsx";
-import { Button } from "netzo/components/ui/button.tsx";
+import { Badge } from "../../ui/badge.tsx";
+import { Button } from "../../ui/button.tsx";
 import {
   Command,
   CommandEmpty,
@@ -16,13 +15,9 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
-} from "netzo/components/ui/command.tsx";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "netzo/components/ui/popover.tsx";
-import { Separator } from "netzo/components/ui/separator.tsx";
+} from "../../ui/command.tsx";
+import { Popover, PopoverContent, PopoverTrigger } from "../../ui/popover.tsx";
+import { Separator } from "../../ui/separator.tsx";
 
 interface DataTableFacetedFilter<TData, TValue> {
   column?: Column<TData, TValue>;

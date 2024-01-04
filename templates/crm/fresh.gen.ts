@@ -17,11 +17,7 @@ import * as $accounts_Form from "./islands/accounts/Form.tsx";
 import * as $accounts_Table from "./islands/accounts/Table.tsx";
 import * as $contacts_Form from "./islands/contacts/Form.tsx";
 import * as $contacts_Table from "./islands/contacts/Table.tsx";
-import * as $deals_kanban_KanbanBoard from "./islands/deals/kanban/KanbanBoard.tsx";
-import * as $deals_kanban_KanbanBoardCard from "./islands/deals/kanban/KanbanBoardCard.tsx";
-import * as $deals_kanban_KanbanBoardColumn from "./islands/deals/kanban/KanbanBoardColumn.tsx";
-import * as $deals_kanban_multipleContainersKeyboardPreset from "./islands/deals/kanban/multipleContainersKeyboardPreset.ts";
-import * as $deals_kanban_utils from "./islands/deals/kanban/utils.ts";
+import * as $deals_Kanban from "./islands/deals/Kanban.tsx";
 import * as $invoices_Form from "./islands/invoices/Form.tsx";
 import * as $invoices_Table from "./islands/invoices/Table.tsx";
 import { type Manifest } from "$fresh/server.ts";
@@ -45,13 +41,7 @@ const manifest = {
     "./islands/accounts/Table.tsx": $accounts_Table,
     "./islands/contacts/Form.tsx": $contacts_Form,
     "./islands/contacts/Table.tsx": $contacts_Table,
-    "./islands/deals/kanban/KanbanBoard.tsx": $deals_kanban_KanbanBoard,
-    "./islands/deals/kanban/KanbanBoardCard.tsx": $deals_kanban_KanbanBoardCard,
-    "./islands/deals/kanban/KanbanBoardColumn.tsx":
-      $deals_kanban_KanbanBoardColumn,
-    "./islands/deals/kanban/multipleContainersKeyboardPreset.ts":
-      $deals_kanban_multipleContainersKeyboardPreset,
-    "./islands/deals/kanban/utils.ts": $deals_kanban_utils,
+    "./islands/deals/Kanban.tsx": $deals_Kanban,
     "./islands/invoices/Form.tsx": $invoices_Form,
     "./islands/invoices/Table.tsx": $invoices_Table,
   },

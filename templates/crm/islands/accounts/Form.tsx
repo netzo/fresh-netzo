@@ -9,8 +9,8 @@ import {
   RadioGroup,
   RadioGroupItem,
 } from "netzo/components/ui/radio-group.tsx";
-import { Account, accountSchema } from "@/data/accounts.schema.ts";
-import { aliases } from "@/data/accounts.options.tsx";
+import { Account, accountSchema } from "@/components/data/accounts.ts";
+import { ALIASES } from "@/routes/accounts/index.tsx";
 import {
   Form,
   FormControl,
@@ -64,7 +64,7 @@ export function FormAccount({ data, method, url }: FormProps) {
             name="id"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{aliases.id}</FormLabel>
+                <FormLabel>{ALIASES.id}</FormLabel>
                 <FormControl>
                   <Input
                     placeholder="Created automatically"
@@ -81,7 +81,7 @@ export function FormAccount({ data, method, url }: FormProps) {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{aliases.name}</FormLabel>
+                <FormLabel>{ALIASES.name}</FormLabel>
                 <FormControl>
                   <Input {...field} />
                 </FormControl>
@@ -94,7 +94,7 @@ export function FormAccount({ data, method, url }: FormProps) {
             name="type"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{aliases.type}</FormLabel>
+                <FormLabel>{ALIASES.type}</FormLabel>
                 <FormControl>
                   <Input {...field} />
                 </FormControl>
@@ -108,7 +108,7 @@ export function FormAccount({ data, method, url }: FormProps) {
             name="status"
             render={({ field }) => (
               <FormItem className="space-y-3">
-                <FormLabel>{aliases.status}</FormLabel>
+                <FormLabel>{ALIASES.status}</FormLabel>
                 <FormControl>
                   <RadioGroup
                     onValueChange={field.onChange}
@@ -142,7 +142,7 @@ export function FormAccount({ data, method, url }: FormProps) {
             name="web"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{aliases.web}</FormLabel>
+                <FormLabel>{ALIASES.web}</FormLabel>
                 <FormControl>
                   <Input {...field} />
                 </FormControl>
@@ -155,7 +155,7 @@ export function FormAccount({ data, method, url }: FormProps) {
             name="phone"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{aliases.phone}</FormLabel>
+                <FormLabel>{ALIASES.phone}</FormLabel>
                 <FormControl>
                   <Input {...field} />
                 </FormControl>
@@ -171,7 +171,7 @@ export function FormAccount({ data, method, url }: FormProps) {
               name="address.streetAddress"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>{aliases.address.streetAddress}</FormLabel>
+                  <FormLabel>{ALIASES.address.streetAddress}</FormLabel>
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
@@ -183,7 +183,7 @@ export function FormAccount({ data, method, url }: FormProps) {
               name="address.number"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>{aliases.address.number}</FormLabel>
+                  <FormLabel>{ALIASES.address.number}</FormLabel>
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
@@ -196,7 +196,7 @@ export function FormAccount({ data, method, url }: FormProps) {
               name="address.city"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>{aliases.address.city}</FormLabel>
+                  <FormLabel>{ALIASES.address.city}</FormLabel>
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
@@ -209,7 +209,7 @@ export function FormAccount({ data, method, url }: FormProps) {
               name="address.postCode"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>{aliases.address.postCode}</FormLabel>
+                  <FormLabel>{ALIASES.address.postCode}</FormLabel>
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
@@ -233,7 +233,7 @@ export function FormAccount({ data, method, url }: FormProps) {
                     </FormControl>
                     <div className="space-y-1 leading-none">
                       <FormLabel>
-                        {aliases.notifications.payments}
+                        {ALIASES.notifications.payments}
                       </FormLabel>
                     </div>
                   </FormItem>
@@ -253,7 +253,7 @@ export function FormAccount({ data, method, url }: FormProps) {
                     </FormControl>
                     <div className="space-y-1 leading-none">
                       <FormLabel>
-                        {aliases.notifications.accounts}
+                        {ALIASES.notifications.accounts}
                       </FormLabel>
                     </div>
                   </FormItem>
@@ -272,7 +272,7 @@ export function FormAccount({ data, method, url }: FormProps) {
                     </FormControl>
                     <div className="space-y-1 leading-none">
                       <FormLabel>
-                        {aliases.notifications.promotions}
+                        {ALIASES.notifications.promotions}
                       </FormLabel>
                     </div>
                   </FormItem>
@@ -291,7 +291,7 @@ export function FormAccount({ data, method, url }: FormProps) {
                     </FormControl>
                     <div className="space-y-1 leading-none">
                       <FormLabel>
-                        {aliases.notifications.marketing}
+                        {ALIASES.notifications.marketing}
                       </FormLabel>
                     </div>
                   </FormItem>
@@ -304,7 +304,7 @@ export function FormAccount({ data, method, url }: FormProps) {
             name="createdAt"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{aliases.createdAt}</FormLabel>
+                <FormLabel>{ALIASES.createdAt}</FormLabel>
                 <FormControl>
                   <Input
                     placeholder="Created automatically"
@@ -321,7 +321,7 @@ export function FormAccount({ data, method, url }: FormProps) {
             name="updatedAt"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{aliases.updatedAt}</FormLabel>
+                <FormLabel>{ALIASES.updatedAt}</FormLabel>
                 <FormControl>
                   <Input
                     placeholder="Created automatically"

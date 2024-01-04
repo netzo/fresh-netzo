@@ -1,4 +1,4 @@
-import { useState } from "preact/hooks";
+import { useState } from "../../../deps/preact/hooks.ts";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -12,8 +12,7 @@ import {
   SortingState,
   useReactTable,
   VisibilityState,
-} from "netzo/deps/@tanstack/react-table.ts";
-
+} from "../../../deps/@tanstack/react-table.ts";
 import {
   Table,
   TableBody,
@@ -21,15 +20,14 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "netzo/components/ui/table.tsx";
-
+} from "../../ui/table.tsx";
 import { DataTablePagination } from "./data-table-pagination.tsx";
 import { DataTableToolbar } from "./data-table-toolbar.tsx";
 
-export interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[];
+export type DataTableProps<TData = unknown, TValue = unknown> = {
   data: TData[];
   options: {
+    resource: string;
     search?: {
       column: string;
       placeholder: string;
@@ -39,9 +37,9 @@ export interface DataTableProps<TData, TValue> {
       title: string;
       options: { label: string; value: string }[];
     }[];
-    resource: string;
   };
-}
+  columns: ColumnDef<TData, TValue>[];
+};
 
 export function DataTable<TData, TValue>({
   columns,
@@ -78,7 +76,7 @@ export function DataTable<TData, TValue>({
     getFacetedRowModel: getFacetedRowModel(),
     getFacetedUniqueValues: getFacetedUniqueValues(),
     initialState: {
-      pagination: { pageSize: "todo" },
+      pagination: { pageSize: 25 },
     },
   });
 

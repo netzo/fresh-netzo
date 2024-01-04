@@ -1,5 +1,4 @@
 import * as SeparatorPrimitive from "../../deps/@radix-ui/react-separator.ts";
-
 import type { JSX } from "../../deps/preact.ts";
 import {
   type ComponentProps,

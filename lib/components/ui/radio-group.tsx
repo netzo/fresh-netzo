@@ -1,6 +1,5 @@
 import { CheckIcon } from "../../deps/@radix-ui/react-icons.ts";
 import * as RadioGroupPrimitive from "../../deps/@radix-ui/react-radio-group.ts";
-
 import type { JSX } from "../../deps/preact.ts";
 import {
   type ComponentProps,

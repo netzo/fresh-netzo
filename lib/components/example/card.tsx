@@ -1,5 +1,4 @@
 import { BellIcon, CheckIcon } from "../../deps/@radix-ui/react-icons.ts";
-
 import { type ComponentProps } from "../../deps/preact/compat.ts";
 import { cn } from "../utils.ts";
 import { Button } from "../ui/button.tsx";

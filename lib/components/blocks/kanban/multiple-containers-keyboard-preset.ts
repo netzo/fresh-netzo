@@ -5,7 +5,7 @@ import {
   getFirstCollision,
   KeyboardCode,
   KeyboardCoordinateGetter,
-} from "netzo/deps/@dnd-kit/core.ts";
+} from "../../../deps/@dnd-kit/core.ts";
 
 const directions: string[] = [
   KeyboardCode.Down,

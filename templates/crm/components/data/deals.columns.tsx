@@ -1,14 +1,14 @@
 import type { ColumnDef } from "netzo/deps/@tanstack/react-table.ts";
 import { Checkbox } from "netzo/components/ui/checkbox.tsx";
-import { Contact } from "@/data/contacts.schema.ts";
-import { CopyId } from "@/components/tables/copy-id.tsx";
-import { aliases } from "@/data/contacts.options.tsx";
+import { Deal } from "@/components/data/deals.ts";
+import { CopyId } from "netzo/components/blocks/shared/copy-id.tsx";
+import { ALIASES } from "@/routes/deals/index.tsx";
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
 } from "netzo/components/ui/avatar.tsx";
-
+import { Button } from "netzo/components/ui/button.tsx";
 import {
   renderCell,
   renderCellCheckbox,
@@ -22,7 +22,7 @@ import {
   toPercent,
 } from "@/utils.tsx";
 
-export const columns: ColumnDef<Contact>[] = [
+export const columns: ColumnDef<Deal>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -49,7 +49,7 @@ export const columns: ColumnDef<Contact>[] = [
     columns: [
       {
         accessorKey: "avatar",
-        header: renderHeader(aliases.avatar),
+        header: renderHeader(ALIASES.avatar),
         cell: ({ row }) => {
           const { name, avatar } = row.original;
           const [first, last] = name.split(" ");
@@ -64,13 +64,13 @@ export const columns: ColumnDef<Contact>[] = [
       },
       {
         accessorKey: "name",
-        header: renderHeader(aliases.name),
+        header: renderHeader(ALIASES.name),
         cell: ({ row }) => {
           const { id, name } = row.original;
           return (
             <div className="flex">
               <a
-                href={`/contacts/${id}`}
+                href={`/deals/${id}`}
                 className="whitespace-nowrap text-center font-medium text-[hsl(var(--primary))] hover:underline"
               >
                 {name}
@@ -82,7 +82,7 @@ export const columns: ColumnDef<Contact>[] = [
       },
       {
         accessorKey: "accountId",
-        header: renderHeader(aliases.accountId),
+        header: renderHeader(ALIASES.accountId),
         cell: ({ row }) => {
           const { accountId, account } = row.original;
           return (
@@ -98,16 +98,16 @@ export const columns: ColumnDef<Contact>[] = [
     ],
   },
   {
-    header: "Contact",
+    header: "Deal",
     columns: [
       {
         accessorKey: "email",
-        header: renderHeader(aliases.email),
+        header: renderHeader(ALIASES.email),
         cell: renderCell(),
       },
       {
         accessorKey: "phone",
-        header: renderHeader(aliases.phone),
+        header: renderHeader(ALIASES.phone),
         cell: renderCell(),
       },
     ],
@@ -117,17 +117,17 @@ export const columns: ColumnDef<Contact>[] = [
     columns: [
       {
         accessorKey: "notifications.new",
-        header: renderHeader(aliases.notifications.new),
+        header: renderHeader(ALIASES.notifications.new),
         cell: renderCellCheckbox(),
       },
       {
         accessorKey: "notifications.promotions",
-        header: renderHeader(aliases.notifications.promotions),
+        header: renderHeader(ALIASES.notifications.promotions),
         cell: renderCellCheckbox(),
       },
       {
         accessorKey: "notifications.marketing",
-        header: renderHeader(aliases.notifications.marketing),
+        header: renderHeader(ALIASES.notifications.marketing),
         cell: renderCellCheckbox(),
       },
     ],
@@ -137,7 +137,7 @@ export const columns: ColumnDef<Contact>[] = [
     columns: [
       {
         accessorKey: "createdAt",
-        header: renderHeader(aliases.createdAt),
+        header: renderHeader(ALIASES.createdAt),
         cell: ({ row }) => {
           const { createdAt } = row.original;
           return <div>{toDateTime(createdAt)}</div>;
@@ -145,7 +145,7 @@ export const columns: ColumnDef<Contact>[] = [
       },
       {
         accessorKey: "updatedAt",
-        header: renderHeader(aliases.updatedAt),
+        header: renderHeader(ALIASES.updatedAt),
         cell: ({ row }) => {
           const { updatedAt } = row.original;
           return <div>{toDateTime(updatedAt)}</div>;

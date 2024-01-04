@@ -1,12 +1,17 @@
-import { DataTable } from "@/components/tables/data-table.tsx";
-import { columns } from "@/data/invoices.columns.tsx";
+import {
+  DataTable,
+  type DataTableProps,
+} from "netzo/components/blocks/table/data-table.tsx";
+import { columns } from "@/components/data/invoices.columns.tsx";
 
-export function Table({ data, options }) {
+type TableProps = Omit<DataTableProps<unknown, unknown>, "columns">;
+
+export function Table(props: TableProps) {
   return (
     <DataTable
-      columns={columns}
-      data={data}
-      options={options}
+      data={props.data}
+      options={props.options}
+      columns={columns as DataTableProps["columns"]}
     />
   );
 }

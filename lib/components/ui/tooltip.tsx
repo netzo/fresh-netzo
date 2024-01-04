@@ -1,5 +1,4 @@
 import * as TooltipPrimitive from "../../deps/@radix-ui/react-tooltip.ts";
-
 import type { JSX } from "../../deps/preact.ts";
 import {
   type ComponentProps,

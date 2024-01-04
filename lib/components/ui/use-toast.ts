@@ -1,7 +1,6 @@
 // Inspired by react-hot-toast library
 
 import type { ToastActionElement, ToastProps } from "../ui/toast.tsx";
-
 import type { VNode } from "../../deps/preact.ts";
 import { useEffect, useState } from "../../deps/preact/compat.ts";
 

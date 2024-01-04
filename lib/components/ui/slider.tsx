@@ -1,5 +1,4 @@
 import * as SliderPrimitive from "../../deps/@radix-ui/react-slider.ts";
-
 import type { JSX } from "../../deps/preact.ts";
 import {
   type ComponentProps,

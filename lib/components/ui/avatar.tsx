@@ -1,5 +1,4 @@
 import * as AvatarPrimitive from "../../deps/@radix-ui/react-avatar.ts";
-
 import type { JSX } from "../../deps/preact.ts";
 import {
   type ComponentProps,

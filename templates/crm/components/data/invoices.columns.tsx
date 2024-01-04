@@ -1,9 +1,10 @@
 import type { ColumnDef } from "netzo/deps/@tanstack/react-table.ts";
 import { Checkbox } from "netzo/components/ui/checkbox.tsx";
 import { Badge } from "netzo/components/ui/badge.tsx";
-import { Invoice } from "@/data/invoices.schema.ts";
-import { CopyId } from "@/components/tables/copy-id.tsx";
-import { aliases } from "@/data/invoices.options.tsx";
+import { Invoice } from "@/components/data/invoices.ts";
+import { CopyId } from "netzo/components/blocks/shared/copy-id.tsx";
+import { ALIASES } from "@/routes/invoices/index.tsx";
+import { Button } from "netzo/components/ui/button.tsx";
 import {
   renderCell,
   renderCellCheckbox,
@@ -44,7 +45,7 @@ export const columns: ColumnDef<Invoice>[] = [
     columns: [
       {
         accessorKey: "invoiceNumber",
-        header: renderHeader(aliases.invoiceNumber),
+        header: renderHeader(ALIASES.invoiceNumber),
         cell: ({ row }) => {
           const { id, invoiceNumber } = row.original;
           return (
@@ -62,7 +63,7 @@ export const columns: ColumnDef<Invoice>[] = [
       },
       {
         accessorKey: "status",
-        header: renderHeader(aliases.status),
+        header: renderHeader(ALIASES.status),
         cell: ({ row }) => {
           const { status } = row.original;
           const colors = {
@@ -85,12 +86,12 @@ export const columns: ColumnDef<Invoice>[] = [
       },
       {
         accessorKey: "description",
-        header: renderHeader(aliases.description),
+        header: renderHeader(ALIASES.description),
         cell: renderCell(),
       },
       {
         accessorKey: "dueDate",
-        header: renderHeader(aliases.dueDate),
+        header: renderHeader(ALIASES.dueDate),
         cell: ({ row }) => {
           const { dueDate } = row.original;
           return <div>{dueDate ? toDate(dueDate) : undefined}</div>;
@@ -98,7 +99,7 @@ export const columns: ColumnDef<Invoice>[] = [
       },
       {
         accessorKey: "accountId",
-        header: renderHeader(aliases.accountId),
+        header: renderHeader(ALIASES.accountId),
         cell: ({ row }) => {
           const { accountId, account } = row.original;
           return (
@@ -118,17 +119,17 @@ export const columns: ColumnDef<Invoice>[] = [
     columns: [
       {
         accessorKey: "subtotal",
-        header: renderHeader(aliases.subtotal),
+        header: renderHeader(ALIASES.subtotal),
         cell: renderCell(),
       },
       {
         accessorKey: "tax",
-        header: renderHeader(aliases.tax),
+        header: renderHeader(ALIASES.tax),
         cell: renderCell(),
       },
       {
         accessorKey: "total",
-        header: renderHeader(aliases.total),
+        header: renderHeader(ALIASES.total),
         cell: renderCell(),
       },
     ],
@@ -138,7 +139,7 @@ export const columns: ColumnDef<Invoice>[] = [
     columns: [
       {
         accessorKey: "createdAt",
-        header: renderHeader(aliases.createdAt),
+        header: renderHeader(ALIASES.createdAt),
         cell: ({ row }) => {
           const { createdAt } = row.original;
           return <div>{toDateTime(createdAt)}</div>;
@@ -146,7 +147,7 @@ export const columns: ColumnDef<Invoice>[] = [
       },
       {
         accessorKey: "updatedAt",
-        header: renderHeader(aliases.updatedAt),
+        header: renderHeader(ALIASES.updatedAt),
         cell: ({ row }) => {
           const { updatedAt } = row.original;
           return <div>{toDateTime(updatedAt)}</div>;

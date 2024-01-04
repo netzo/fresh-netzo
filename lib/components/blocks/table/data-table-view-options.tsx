@@ -1,15 +1,14 @@
-import { DropdownMenuTrigger } from "netzo/deps/@radix-ui/react-dropdown-menu.ts";
-import { MixerHorizontalIcon } from "netzo/deps/@radix-ui/react-icons.ts";
-import { Table } from "netzo/deps/@tanstack/react-table.ts";
-
-import { Button } from "netzo/components/ui/button.tsx";
+import { DropdownMenuTrigger } from "../../../deps/@radix-ui/react-dropdown-menu.ts";
+import { MixerHorizontalIcon } from "../../../deps/@radix-ui/react-icons.ts";
+import { Table } from "../../../deps/@tanstack/react-table.ts";
+import { Button } from "../../ui/button.tsx";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-} from "netzo/components/ui/dropdown-menu.tsx";
+} from "../../ui/dropdown-menu.tsx";
 
 interface DataTableViewOptionsProps<TData> {
   table: Table<TData>;

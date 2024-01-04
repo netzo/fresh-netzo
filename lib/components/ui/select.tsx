@@ -1,6 +1,5 @@
 import { CaretSortIcon, CheckIcon } from "../../deps/@radix-ui/react-icons.ts";
 import * as SelectPrimitive from "../../deps/@radix-ui/react-select.ts";
-
 import type { JSX } from "../../deps/preact.ts";
 import {
   type ComponentProps,

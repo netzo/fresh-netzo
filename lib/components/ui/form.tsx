@@ -8,9 +8,7 @@ import {
   FormProvider,
   useFormContext,
 } from "../../deps/react-hook-form.ts";
-
 import { Label } from "../ui/label.tsx";
-
 import type { JSX } from "../../deps/preact.ts";
 import {
   type ComponentProps,

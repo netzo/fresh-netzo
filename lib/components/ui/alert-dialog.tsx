@@ -1,5 +1,4 @@
 import * as AlertDialogPrimitive from "../../deps/@radix-ui/react-alert-dialog.ts";
-
 import type { JSX } from "../../deps/preact.ts";
 import {
   type ComponentProps,

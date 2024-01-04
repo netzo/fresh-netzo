@@ -1,19 +1,36 @@
 import { defineRoute } from "$fresh/server.ts";
-import type { Deal } from "@/data/deals.schema.ts";
-import { getOptions } from "@/data/deals.options.tsx";
-import { KanbanBoard } from "@/islands/deals/kanban/KanbanBoard.tsx";
+import type { KanbanProps } from "netzo/components/blocks/table/data-table.tsx";
+import type { Deal } from "@/components/data/deals.ts";
+import { Kanban } from "@/islands/deals/Kanban.tsx";
 import { app } from "@/netzo.ts";
+
+export const ALIASES = {};
+
+export const getKanbanOptions = (
+  data: Deal[],
+): KanbanProps<Deal, unknown>["options"] => {
+  return {
+    resource: "deals",
+    columns: [
+      { id: "backlog" as const, title: "Backlog" },
+      { id: "todo" as const, title: "Todo" },
+      { id: "in-progress" as const, title: "In Progress" },
+      { id: "done" as const, title: "Done" },
+      { id: "cancelled", title: "Cancelled" },
+    ],
+  };
+};
 
 export default defineRoute(async (req, ctx) => {
   const data = await app.db.find<Deal>("deals");
 
   if (!data) return ctx.renderNotFound();
 
-  const options = getOptions(data);
+  const options = getKanbanOptions(data);
 
   return (
     <div className="h-full p-4">
-      <KanbanBoard data={data} options={options} />
+      <Kanban data={data} options={options} />
     </div>
   );
 });

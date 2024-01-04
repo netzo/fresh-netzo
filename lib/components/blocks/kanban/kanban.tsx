@@ -1,6 +1,6 @@
-// adapted from https://github.com/Georgegriff/react-dnd-kit-tailwind-shadcn-ui/blob/main/src/components/KanbanBoard.tsx
-import { useComputed, useSignal } from "netzo/deps/@preact/signals.ts";
-import { BoardContainer, KanbanBoardColumn } from "./KanbanBoardColumn.tsx";
+// adapted from https://github.com/Georgegriff/react-dnd-kit-tailwind-shadcn-ui/blob/main/src/components/kanban.tsx
+import { useComputed, useSignal } from "../../../deps/@preact/signals.ts";
+import { BoardContainer, KanbanColumn } from "./kanban-column.tsx";
 import {
   Announcements,
   DndContext,
@@ -14,14 +14,23 @@ import {
   UniqueIdentifier,
   useSensor,
   useSensors,
-} from "netzo/deps/@dnd-kit/core.ts";
-import { arrayMove, SortableContext } from "netzo/deps/@dnd-kit/sortable.ts";
+} from "../../../deps/@dnd-kit/core.ts";
+import { arrayMove, SortableContext } from "../../../deps/@dnd-kit/sortable.ts";
 import type { Deal } from "@/data/deals.schema.tsx";
-import type { Column } from "./KanbanBoardColumn.tsx";
+import type { Column } from "./kanban-column.tsx";
 import { hasDraggableData } from "./utils.ts";
-import { coordinateGetter } from "./multipleContainersKeyboardPreset.ts";
+import { coordinateGetter } from "./multiple-containers-keyboard-preset.ts";
 
-export function KanbanBoard({ data, options }) {
+export type KanbanProps<TData = unknown, TValue = unknown> = {
+  data: TData[];
+  options: {
+    resource: string;
+    columnId: string;
+  };
+};
+
+export function Kanban({ data, options }) {
+  const { columnId = "status" } = options;
   const columns = useSignal<Column[]>(options.columns);
   const pickedUpDealColumn = useSignal<string | null>(null);
   const columnsId = useComputed(() => columns.value.map((col) => col.id));
@@ -40,10 +49,15 @@ export function KanbanBoard({ data, options }) {
     }),
   );
 
-  function getDraggingDealData(dealId: UniqueIdentifier, status: string) {
-    const dealsInColumn = deals.value.filter((deal) => deal.status === status);
+  function getDraggingDealData(
+    dealId: UniqueIdentifier,
+    columnIdValue: string,
+  ) {
+    const dealsInColumn = deals.value.filter((deal) =>
+      deal[columnId] === columnIdValue
+    );
     const dealPosition = dealsInColumn.findIndex((deal) => deal.id === dealId);
-    const column = columns.value.find((col) => col.id === status);
+    const column = columns.value.find((col) => col.id === columnIdValue);
     return {
       dealsInColumn,
       dealPosition,
@@ -63,7 +77,7 @@ export function KanbanBoard({ data, options }) {
           startColumnIdx + 1
         } of ${columnsId.value.length}`;
       } else if (active.data.current?.type === "Deal") {
-        pickedUpDealColumn.value = active.data.current.deal.status;
+        pickedUpDealColumn.value = active.data.current.deal[columnId];
         const { dealsInColumn, dealPosition, column } = getDraggingDealData(
           active.id,
           pickedUpDealColumn.value as string,
@@ -90,9 +104,9 @@ export function KanbanBoard({ data, options }) {
       ) {
         const { dealsInColumn, dealPosition, column } = getDraggingDealData(
           over.id,
-          over.data.current.deal.status,
+          over.data.current.deal[columnId],
         );
-        if (over.data.current.deal.status !== pickedUpDealColumn.value) {
+        if (over.data.current.deal[columnId] !== pickedUpDealColumn.value) {
           return `Deal ${active.data.current.deal.name} was moved over column ${column?.title} in position ${
             dealPosition + 1
           } of ${dealsInColumn.length}`;
@@ -124,9 +138,9 @@ export function KanbanBoard({ data, options }) {
       ) {
         const { dealsInColumn, dealPosition, column } = getDraggingDealData(
           over.id,
-          over.data.current.deal.status,
+          over.data.current.deal[columnId],
         );
-        if (over.data.current.deal.status !== pickedUpDealColumn.value) {
+        if (over.data.current.deal[columnId] !== pickedUpDealColumn.value) {
           return `Deal was dropped into column ${column?.title} in position ${
             dealPosition + 1
           } of ${dealsInColumn.length}`;
@@ -157,10 +171,10 @@ export function KanbanBoard({ data, options }) {
       <BoardContainer>
         <SortableContext items={columnsId.value}>
           {columns.value.map((col) => (
-            <KanbanBoardColumn
+            <KanbanColumn
               key={col.id}
               column={col}
-              deals={deals.value.filter((deal) => deal.status === col.id)}
+              deals={deals.value.filter((deal) => deal[columnId] === col.id)}
             />
           ))}
         </SortableContext>
@@ -171,15 +185,15 @@ export function KanbanBoard({ data, options }) {
         createPortal(
           <DragOverlay>
             {activeColumn && (
-              <KanbanBoardColumn
+              <KanbanColumn
                 isOverlay
                 column={activeColumn}
                 deals={deals.value.filter(
-                  (deal) => deal.status === activeColumn.id
+                  (deal) => deal[columnId] === activeColumn.id
                 )}
               />
             )}
-            {activeDeal && <KanbanBoardCard deal={activeDeal} isOverlay />}
+            {activeDeal && <KanbanCard deal={activeDeal} isOverlay />}
           </DragOverlay>,
           document.body
         )} */
@@ -261,9 +275,9 @@ export function KanbanBoard({ data, options }) {
       if (
         activeDeal &&
         overDeal &&
-        activeDeal.status !== overDeal.status
+        activeDeal[columnId] !== overDeal[columnId]
       ) {
-        activeDeal.status = overDeal.status;
+        activeDeal[columnId] = overDeal[columnId];
         deals.value = arrayMove(deals.value, activeIndex, overIndex - 1);
       }
 
@@ -277,7 +291,7 @@ export function KanbanBoard({ data, options }) {
       const activeIndex = deals.value.findIndex((t) => t.id === activeId);
       const activeDeal = deals.value[activeIndex];
       if (activeDeal) {
-        activeDeal.status = overId as string;
+        activeDeal[columnId] = overId as string;
         return arrayMove(deals.value, activeIndex, activeIndex);
       }
     }

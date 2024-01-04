@@ -4,7 +4,6 @@ import {
   type Ref,
 } from "../../deps/preact/compat.ts";
 import { cn } from "../utils.ts";
-
 import {
   NavigationMenu,
   NavigationMenuContent,

@@ -1,4 +1,32 @@
-import type { Contact } from "@/data/contacts.schema.ts";
+import { z } from "netzo/deps/zod/mod.ts";
+import { accountSchema } from "@/components/data/accounts.ts";
+
+// schemas:
+
+export const contactSchema = z.object({
+  id: z.string(),
+  createdAt: z.string(),
+  updatedAt: z.string(),
+  name: z.string(),
+  avatar: z.string(),
+  email: z.string().email({
+    message: "Invalid email format",
+  }).optional().or(z.literal("")),
+  phone: z.string(),
+  notifications: z.object({
+    new: z.boolean(),
+    promotions: z.boolean(),
+    marketing: z.boolean(),
+  }),
+  accountId: z.string(),
+  account: accountSchema,
+});
+
+// types:
+
+export type Contact = z.infer<typeof contactSchema>;
+
+// data:
 
 export const contacts: Contact[] = [
   {

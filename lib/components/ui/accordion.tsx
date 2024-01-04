@@ -1,6 +1,5 @@
 import * as AccordionPrimitive from "../../deps/@radix-ui/react-accordion.ts";
 import { ChevronDownIcon } from "../../deps/@radix-ui/react-icons.ts";
-
 import type { JSX } from "../../deps/preact.ts";
 import {
   type ComponentProps,

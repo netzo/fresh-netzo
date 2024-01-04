@@ -1,4 +1,35 @@
-import type { Account } from "@/data/accounts.schema.ts";
+import { z } from "netzo/deps/zod/mod.ts";
+
+// schemas:
+
+export const accountSchema = z.object({
+  id: z.string(),
+  createdAt: z.string(),
+  updatedAt: z.string(),
+  name: z.string(),
+  status: z.union([z.literal("active"), z.literal("inactive")]),
+  type: z.string(),
+  web: z.string().url({ message: "Invalid URL" }).optional().or(z.literal("")),
+  phone: z.string(),
+  address: z.object({
+    streetAddress: z.string(),
+    number: z.string(),
+    city: z.string(),
+    postCode: z.string(),
+  }),
+  notifications: z.object({
+    payments: z.union([z.boolean(), z.string()]),
+    invoices: z.union([z.boolean(), z.string()]),
+    promotions: z.union([z.boolean(), z.string()]),
+    marketing: z.union([z.boolean(), z.string()]),
+  }),
+});
+
+// types:
+
+export type Account = z.infer<typeof accountSchema>;
+
+// data:
 
 export const accounts: Account[] = [
   {
@@ -8,7 +39,6 @@ export const accounts: Account[] = [
     name: "ABC Inc.",
     status: "active",
     type: "Technology",
-    numberOfEmployees: "100",
     web: "https://www.abcinc.com",
     phone: "123-456-7890",
     address: {
@@ -31,7 +61,6 @@ export const accounts: Account[] = [
     name: "XYZ Corp.",
     status: "inactive",
     type: "Finance",
-    numberOfEmployees: "50",
     web: "https://www.xyzcorp.com",
     phone: "555-555-5555",
     address: {
@@ -54,7 +83,6 @@ export const accounts: Account[] = [
     name: "LMN Ltd.",
     status: "active",
     type: "Retail",
-    numberOfEmployees: "75",
     web: "https://www.lmn-ltd.com",
     phone: "888-123-4567",
     address: {

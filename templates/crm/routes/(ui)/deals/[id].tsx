@@ -1,6 +1,6 @@
 import { defineRoute } from "$fresh/server.ts";
 import { Separator } from "netzo/components/ui/separator.tsx";
-import type { Deal } from "@/data/deals.schema.ts";
+import type { Deal } from "@/components/data/deals.ts";
 import type { FormDeal } from "@/islands/deals/FormDeal.tsx";
 import { app } from "@/netzo.ts";
 

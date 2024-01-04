@@ -1,16 +1,19 @@
 // adapted from https://github.com/Georgegriff/react-dnd-kit-tailwind-shadcn-ui/blob/main/src/components/BoardColumn.tsx
-import { SortableContext, useSortable } from "netzo/deps/@dnd-kit/sortable.ts";
+import {
+  SortableContext,
+  useSortable,
+} from "../../../deps/@dnd-kit/sortable.ts";
 import {
   type UniqueIdentifier,
   useDndContext,
-} from "netzo/deps/@dnd-kit/core.ts";
-import { CSS } from "netzo/deps/@dnd-kit/utilities.ts";
-import { useComputed } from "netzo/deps/@preact/signals.ts";
-import { KanbanBoardCard } from "./KanbanBoardCard.tsx";
-import { cva } from "netzo/deps/class-variance-authority.ts";
-import { Card, CardContent, CardHeader } from "netzo/components/ui/card.tsx";
-import { Button } from "netzo/components/ui/button.tsx";
-import { ScrollArea, ScrollBar } from "netzo/components/ui/scroll-area.tsx";
+} from "../../../deps/@dnd-kit/core.ts";
+import { CSS } from "../../../deps/@dnd-kit/utilities.ts";
+import { useComputed } from "../../../deps/@preact/signals.ts";
+import { KanbanCard } from "./kanban-card.tsx";
+import { cva } from "../../../deps/class-variance-authority.ts";
+import { Card, CardContent, CardHeader } from "../../ui/card.tsx";
+import { Button } from "../../ui/button.tsx";
+import { ScrollArea, ScrollBar } from "../../ui/scroll-area.tsx";
 import type { Deal } from "@/data/deals.schema.tsx";
 
 export interface Column {
@@ -25,14 +28,14 @@ export interface ColumnDragData {
   column: Column;
 }
 
-interface KanbanBoardColumnProps {
+interface KanbanColumnProps {
   column: Column;
   deals: Deal[];
   isOverlay?: boolean;
 }
 
-export function KanbanBoardColumn(
-  { column, deals, isOverlay }: KanbanBoardColumnProps,
+export function KanbanColumn(
+  { column, deals, isOverlay }: KanbanColumnProps,
 ) {
   const dealsIds = useComputed(() => deals.map((deal) => deal.id));
 
@@ -60,7 +63,7 @@ export function KanbanBoardColumn(
   };
 
   const variants = cva(
-    "h-[500px] max-h-[500px] w-[350px] max-w-full bg-primary-foreground flex flex-col flex-shrink-0 snap-center",
+    "h-full self-baseline w-[300px] max-w-full bg-primary-foreground flex flex-col flex-shrink-0 snap-center",
     {
       variants: {
         dragging: {
@@ -95,7 +98,7 @@ export function KanbanBoardColumn(
       <ScrollArea>
         <CardContent className="flex flex-col flex-grow gap-2 p-2">
           <SortableContext items={dealsIds.value}>
-            {deals.map((deal) => <KanbanBoardCard key={deal.id} deal={deal} />)}
+            {deals.map((deal) => <KanbanCard key={deal.id} deal={deal} />)}
           </SortableContext>
         </CardContent>
       </ScrollArea>
@@ -106,7 +109,7 @@ export function KanbanBoardColumn(
 export function BoardContainer({ children }: { children: React.ReactNode }) {
   const dndContext = useDndContext();
 
-  const variations = cva("px-2 md:px-0 flex lg:justify-center pb-4", {
+  const variations = cva("h-full px-2 md:px-0 flex lg:justify-center", {
     variants: {
       dragging: {
         default: "snap-x snap-mandatory",
@@ -121,7 +124,7 @@ export function BoardContainer({ children }: { children: React.ReactNode }) {
         dragging: dndContext.active ? "active" : "default",
       })}
     >
-      <div className="flex flex-row items-center justify-center gap-4">
+      <div className="flex flex-row items-center justify-center gap-4 h-full">
         {children}
       </div>
       <ScrollBar orientation="horizontal" />

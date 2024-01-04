@@ -1,5 +1,4 @@
 import * as TabsPrimitive from "../../deps/@radix-ui/react-tabs.ts";
-
 import type { JSX } from "../../deps/preact.ts";
 import {
   type ComponentProps,

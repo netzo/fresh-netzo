@@ -1,6 +1,5 @@
 import * as DialogPrimitive from "../../deps/@radix-ui/react-dialog.ts";
 import { Cross2Icon } from "../../deps/@radix-ui/react-icons.ts";
-
 import type { JSX } from "../../deps/preact.ts";
 import {
   type ComponentProps,

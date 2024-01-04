@@ -1,5 +1,4 @@
 import { CaretSortIcon, CheckIcon } from "../../deps/@radix-ui/react-icons.ts";
-
 import { useState } from "../../deps/preact/hooks.ts";
 import { cn } from "../utils.ts";
 import { Button } from "../ui/button.tsx";

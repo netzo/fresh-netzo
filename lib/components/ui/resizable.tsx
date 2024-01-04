@@ -1,7 +1,6 @@
 import { type ComponentProps } from "../../deps/preact/compat.ts";
 import { DragHandleDots2Icon } from "../../deps/@radix-ui/react-icons.ts";
 import * as ResizablePrimitive from "../../deps/react-resizable-panels.ts";
-
 import { cn } from "../utils.ts";
 
 const ResizablePanelGroup = ({

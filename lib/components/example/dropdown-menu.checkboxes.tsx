@@ -1,5 +1,4 @@
 import { DropdownMenuCheckboxItemProps } from "../../deps/@radix-ui/react-dropdown-menu.ts";
-
 import { useState } from "../../deps/preact/hooks.ts";
 import { Button } from "../ui/button.tsx";
 import {

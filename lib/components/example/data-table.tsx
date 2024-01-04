@@ -15,7 +15,6 @@ import {
   useReactTable,
   VisibilityState,
 } from "@tanstack/react-table";
-
 import { useState } from "../../deps/preact/hooks.ts";
 import { Button } from "../ui/button.tsx";
 import { Checkbox } from "../ui/checkbox.tsx";

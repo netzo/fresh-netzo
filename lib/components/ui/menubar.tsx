@@ -4,7 +4,6 @@ import {
   DotFilledIcon,
 } from "../../deps/@radix-ui/react-icons.ts";
 import * as MenubarPrimitive from "../../deps/@radix-ui/react-menubar.ts";
-
 import type { JSX } from "../../deps/preact.ts";
 import {
   type ComponentProps,

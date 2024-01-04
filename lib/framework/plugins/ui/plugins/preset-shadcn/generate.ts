@@ -1,7 +1,5 @@
 import { mergeDeep } from "https://esm.sh/v135/@unocss/core@0.58.0?target=esnext";
-
 import { themeCSSVarKeys, themes } from "./themes.ts";
-
 import type { ThemeCSSVarKey, ThemeCSSVars } from "./themes.ts";
 import type { ColorOptions } from "./types.ts";
 

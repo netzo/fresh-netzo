@@ -53,7 +53,7 @@ export const api = (options?: NetzoConfig["api"]): Plugin => {
               // skip if request is from same host, origin or referer
               const sameHost = ctx.url.host === host;
               const sameOrigin = ctx.url.origin === origin;
-              const sameReferer = referer.startsWith(ctx.url.origin);
+              const sameReferer = referer?.startsWith(ctx.url.origin);
               if (sameHost || sameOrigin || sameReferer) {
                 return await ctx.next();
               }

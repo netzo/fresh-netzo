@@ -1,7 +1,6 @@
 import { DialogProps } from "../../deps/@radix-ui/react-dialog.ts";
 import { MagnifyingGlassIcon } from "../../deps/@radix-ui/react-icons.ts";
 import { Command as CommandPrimitive } from "../../deps/cmdk.ts";
-
 import type { JSX } from "../../deps/preact.ts";
 import {
   type ComponentProps,

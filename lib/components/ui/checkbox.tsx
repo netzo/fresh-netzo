@@ -1,6 +1,5 @@
 import * as CheckboxPrimitive from "../../deps/@radix-ui/react-checkbox.ts";
 import { CheckIcon } from "../../deps/@radix-ui/react-icons.ts";
-
 import type { JSX } from "../../deps/preact.ts";
 import {
   type ComponentProps,

@@ -3,17 +3,16 @@ import {
   ArrowDownIcon,
   ArrowUpIcon,
   CaretSortIcon,
-} from "netzo/deps/@radix-ui/react-icons.ts";
-import { Column } from "netzo/deps/@tanstack/react-table.ts";
-
+} from "../../../deps/@radix-ui/react-icons.ts";
+import { Column } from "../../../deps/@tanstack/react-table.ts";
 import { cn } from "netzo/components/utils.ts";
-import { Button } from "netzo/components/ui/button.tsx";
+import { Button } from "../../ui/button.tsx";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "netzo/components/ui/dropdown-menu.tsx";
+} from "../../ui/dropdown-menu.tsx";
 
 interface DataTableColumnHeaderProps<TData, TValue>
   extends JSX.HTMLAttributes<HTMLDivElement> {

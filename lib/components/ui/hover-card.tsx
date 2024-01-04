@@ -1,5 +1,4 @@
 import * as HoverCardPrimitive from "../../deps/@radix-ui/react-hover-card.ts";
-
 import type { JSX } from "../../deps/preact.ts";
 import {
   type ComponentProps,

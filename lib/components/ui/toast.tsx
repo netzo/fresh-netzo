@@ -1,7 +1,6 @@
 import { Cross2Icon } from "../../deps/@radix-ui/react-icons.ts";
 import * as ToastPrimitives from "../../deps/@radix-ui/react-toast.ts";
 import { cva, type VariantProps } from "../../deps/class-variance-authority.ts";
-
 import type { VNode } from "../../deps/preact.ts";
 import {
   type ComponentProps,

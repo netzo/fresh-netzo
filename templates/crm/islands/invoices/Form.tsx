@@ -4,9 +4,8 @@ import { zodResolver } from "netzo/deps/@hookform/resolvers/zod.ts";
 import { Button } from "netzo/components/ui/button.tsx";
 import { Input } from "netzo/components/ui/input.tsx";
 import { Textarea } from "netzo/components/ui/textarea.tsx";
-import { Invoice, invoiceSchema } from "@/data/invoices.schema.ts";
-import { aliases } from "@/data/invoices.options.tsx";
-
+import { Invoice, invoiceSchema } from "@/components/data/invoices.ts";
+import { aliases } from "@/routes/invoices.index.tsx";
 import {
   Select,
   SelectContent,
@@ -26,7 +25,6 @@ import {
   FormLabel,
   FormMessage,
 } from "netzo/components/ui/form.tsx";
-
 import { CalendarIcon } from "netzo/deps/@radix-ui/react-icons.ts";
 import { format } from "netzo/deps/date-fns.ts";
 import { cn } from "netzo/components/utils.ts";

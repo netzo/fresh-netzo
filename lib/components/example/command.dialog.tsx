@@ -6,7 +6,6 @@ import {
   PersonIcon,
   RocketIcon,
 } from "../../deps/@radix-ui/react-icons.ts";
-
 import {
   CommandDialog,
   CommandEmpty,
@@ -17,7 +16,6 @@ import {
   CommandSeparator,
   CommandShortcut,
 } from "../ui/command.tsx";
-
 import { useEffect, useState } from "../../deps/preact/compat.ts";
 
 export default () => {
