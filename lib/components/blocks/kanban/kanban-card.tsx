@@ -74,7 +74,7 @@ export function KanbanCard({ deal, isOverlay }: KanbanCardProps) {
           {deal.name}
         </CardTitle>
         <Badge variant={"outline"} className="ml-auto font-medium">
-          Deal
+          {deal.status}
         </Badge>
       </CardHeader>
       <CardContent className="px-4 pt-2 pb-4 text-xs whitespace-pre-wrap text-secondary-foreground">

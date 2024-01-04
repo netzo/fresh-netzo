@@ -35,7 +35,7 @@ const ERRORS = {
  * - `DELETE /api/[resource]/[id]` remove a record of a resource by id
  */
 export const api = (options?: NetzoConfig["api"]): Plugin => {
-  const { path = "/api", idField = "id", methods = METHODS } = options ?? {};
+  const { auth, path = "/api", idField = "id", methods = METHODS } = options ?? {};
   return {
     name: "api",
     middlewares: [
@@ -50,14 +50,17 @@ export const api = (options?: NetzoConfig["api"]): Plugin => {
               const origin = req.headers.get("origin")!; // e.g. https://my-project-906698.netzo.io
               const referer = req.headers.get("referer")!; // SOMETIMES SET e.g. https://app.netzo.io/some-path
 
+              if (auth !== true) return await ctx.next();
+
               // skip if request is from same host, origin or referer
               // NOTE: skipped in development since sameHost is true (localhost)
               const sameHost = ctx.url.host === host;
               const sameOrigin = ctx.url.origin === origin;
               const sameReferer = referer?.startsWith(ctx.url.origin);
-              if (sameHost || sameOrigin || sameReferer) {
-                return await ctx.next();
-              }
+              console.log({ host, origin, referer, sameHost, sameOrigin, sameReferer });
+              // if (sameHost || sameOrigin || sameReferer) {
+              //   return await ctx.next();
+              // }
 
               // API key authentication
               const apiKeyHeader = req.headers.get("x-api-key");
