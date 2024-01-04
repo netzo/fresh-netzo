@@ -7,7 +7,7 @@ import { Checkbox } from "netzo/components/ui/checkbox.tsx";
 import { Switch } from "netzo/components/ui/switch.tsx";
 import { renderFormCheckbox } from "@/utils.tsx";
 import { Contact, contactSchema } from "@/components/data/contacts.ts";
-import { aliases } from "@/routes/contacts.index.tsx";
+import { ALIASES } from "@/components/data/contacts.ts";
 import {
   Select,
   SelectContent,
@@ -71,7 +71,7 @@ export function FormContact({ data, method, url }: FormProps) {
             name="id"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{aliases.id}</FormLabel>
+                <FormLabel>{ALIASES.id}</FormLabel>
                 <FormControl>
                   <Input
                     placeholder="Created automatically"
@@ -89,7 +89,7 @@ export function FormContact({ data, method, url }: FormProps) {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>
-                  {aliases.name}
+                  {ALIASES.name}
                 </FormLabel>
                 <FormControl>
                   <Input {...field} />
@@ -104,7 +104,7 @@ export function FormContact({ data, method, url }: FormProps) {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{aliases.email}</FormLabel>
+                <FormLabel>{ALIASES.email}</FormLabel>
                 <FormControl>
                   <Input {...field} />
                 </FormControl>
@@ -117,7 +117,7 @@ export function FormContact({ data, method, url }: FormProps) {
             name="phone"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{aliases.phone}</FormLabel>
+                <FormLabel>{ALIASES.phone}</FormLabel>
                 <FormControl>
                   <Input {...field} />
                 </FormControl>
@@ -134,7 +134,7 @@ export function FormContact({ data, method, url }: FormProps) {
                 <FormItem className="flex flex-row items-center justify-between pb-2">
                   <div className="space-y-0.5">
                     <FormLabel className="text-sm">
-                      {aliases.notifications.new}
+                      {ALIASES.notifications.new}
                     </FormLabel>
                   </div>
                   <FormControl>
@@ -153,7 +153,7 @@ export function FormContact({ data, method, url }: FormProps) {
                 <FormItem className="flex flex-row items-center justify-between pb-2">
                   <div className="space-y-0.5">
                     <FormLabel className="text-sm">
-                      {aliases.notifications.promotions}
+                      {ALIASES.notifications.promotions}
                     </FormLabel>
                   </div>
                   <FormControl>
@@ -172,7 +172,7 @@ export function FormContact({ data, method, url }: FormProps) {
                 <FormItem className="flex flex-row items-center justify-between pb-2">
                   <div className="space-y-0.5">
                     <FormLabel className="text-sm">
-                      {aliases.notifications.marketing}
+                      {ALIASES.notifications.marketing}
                     </FormLabel>
                   </div>
                   <FormControl>
@@ -191,7 +191,7 @@ export function FormContact({ data, method, url }: FormProps) {
             name="contactId"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{aliases.contactId}</FormLabel>
+                <FormLabel>{ALIASES.contactId}</FormLabel>
                 <div className="flex justify-between">
                   <FormDescription>
                     Write the ID of the contact
@@ -217,7 +217,7 @@ export function FormContact({ data, method, url }: FormProps) {
             name="avatar"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{aliases.avatar}</FormLabel>
+                <FormLabel>{ALIASES.avatar}</FormLabel>
                 <FormControl>
                   <Input {...field} />
                 </FormControl>
@@ -230,7 +230,7 @@ export function FormContact({ data, method, url }: FormProps) {
             name="createdAt"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{aliases.createdAt}</FormLabel>
+                <FormLabel>{ALIASES.createdAt}</FormLabel>
                 <FormControl>
                   <Input
                     placeholder="Created automatically"
@@ -247,7 +247,7 @@ export function FormContact({ data, method, url }: FormProps) {
             name="updatedAt"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{aliases.updatedAt}</FormLabel>
+                <FormLabel>{ALIASES.updatedAt}</FormLabel>
                 <FormControl>
                   <Input
                     placeholder="Created automatically"

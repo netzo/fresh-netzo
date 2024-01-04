@@ -10,7 +10,7 @@ import {
   RadioGroupItem,
 } from "netzo/components/ui/radio-group.tsx";
 import { Account, accountSchema } from "@/components/data/accounts.ts";
-import { ALIASES } from "@/routes/accounts/index.tsx";
+import { ALIASES } from "@/components/data/accounts.ts";
 import {
   Form,
   FormControl,

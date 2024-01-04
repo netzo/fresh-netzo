@@ -75,3 +75,21 @@ export const contacts: Contact[] = [
     },
   },
 ];
+
+// i18n:
+
+export const ALIASES = {
+  id: "ID",
+  createdAt: "Created",
+  updatedAt: "Updated",
+  name: "Name",
+  avatar: "Image",
+  email: "Email",
+  phone: "Phone",
+  accountId: "Account",
+  notifications: {
+    new: "New products",
+    promotions: "Promotions",
+    marketing: "Marketing",
+  },
+};

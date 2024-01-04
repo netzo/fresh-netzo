@@ -173,3 +173,19 @@ export const invoices: Invoice[] = [
     accountId: "01HEG8XFZ8XHFTEM5K4E2ARWXB",
   },
 ];
+
+// i18n:
+
+export const ALIASES = {
+  id: "ID",
+  createdAt: "Created",
+  updatedAt: "Updated",
+  invoiceNumber: "Invoice No",
+  description: "Description",
+  dueDate: "Due date",
+  status: "Status",
+  subtotal: "Subtotal",
+  tax: "Tax",
+  total: "Total",
+  accountId: "Account",
+};

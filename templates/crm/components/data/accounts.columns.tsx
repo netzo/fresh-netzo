@@ -2,7 +2,7 @@ import type { ColumnDef } from "netzo/deps/@tanstack/react-table.ts";
 import { Checkbox } from "netzo/components/ui/checkbox.tsx";
 import { Account } from "@/components/data/accounts.ts";
 import { CopyId } from "netzo/components/blocks/shared/copy-id.tsx";
-import { ALIASES } from "@/routes/accounts/index.tsx";
+import { ALIASES } from "@/components/data/accounts.ts";
 import { Button } from "netzo/components/ui/button.tsx";
 import {
   renderCell,

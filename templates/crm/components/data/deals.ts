@@ -243,3 +243,7 @@ export const deals: Deal[] = [
     "updatedAt": "2024-02-25T14:00:00Z",
   },
 ];
+
+// i18n:
+
+export const ALIASES = {};

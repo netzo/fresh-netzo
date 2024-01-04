@@ -5,7 +5,7 @@ import { Button } from "netzo/components/ui/button.tsx";
 import { Input } from "netzo/components/ui/input.tsx";
 import { Textarea } from "netzo/components/ui/textarea.tsx";
 import { Invoice, invoiceSchema } from "@/components/data/invoices.ts";
-import { aliases } from "@/routes/invoices.index.tsx";
+import { ALIASES } from "@/components/data/invoices.ts";
 import {
   Select,
   SelectContent,
@@ -74,7 +74,7 @@ export function FormInvoice({ data, method, url }: FormProps) {
             name="id"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{aliases.id}</FormLabel>
+                <FormLabel>{ALIASES.id}</FormLabel>
                 <FormControl>
                   <Input
                     placeholder="Created automatically"
@@ -92,7 +92,7 @@ export function FormInvoice({ data, method, url }: FormProps) {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>
-                  {aliases.invoiceNumber}
+                  {ALIASES.invoiceNumber}
                 </FormLabel>
                 <FormControl>
                   <Input
@@ -108,7 +108,7 @@ export function FormInvoice({ data, method, url }: FormProps) {
             name="description"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{aliases.description}</FormLabel>
+                <FormLabel>{ALIASES.description}</FormLabel>
                 <FormControl>
                   <Textarea
                     placeholder="Invoice description"
@@ -127,7 +127,7 @@ export function FormInvoice({ data, method, url }: FormProps) {
             name="dueDate"
             render={({ field }) => (
               <FormItem className="flex flex-col">
-                <FormLabel>{aliases.dueDate}</FormLabel>
+                <FormLabel>{ALIASES.dueDate}</FormLabel>
                 <FormControl>
                   <Button
                     type="button"
@@ -168,7 +168,7 @@ export function FormInvoice({ data, method, url }: FormProps) {
             name="status"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{aliases.status}</FormLabel>
+                <FormLabel>{ALIASES.status}</FormLabel>
                 <Select
                   onValueChange={field.onChange}
                   defaultValue={data ? field.value : undefined}
@@ -196,7 +196,7 @@ export function FormInvoice({ data, method, url }: FormProps) {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>
-                  {aliases.subtotal}
+                  {ALIASES.subtotal}
                 </FormLabel>
                 <FormControl>
                   <Input
@@ -214,7 +214,7 @@ export function FormInvoice({ data, method, url }: FormProps) {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>
-                  {aliases.tax}
+                  {ALIASES.tax}
                 </FormLabel>
                 <FormControl>
                   <Input
@@ -231,7 +231,7 @@ export function FormInvoice({ data, method, url }: FormProps) {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>
-                  {aliases.total}
+                  {ALIASES.total}
                 </FormLabel>
                 <FormControl>
                   <Input
@@ -248,7 +248,7 @@ export function FormInvoice({ data, method, url }: FormProps) {
             name="invoiceId"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{aliases.invoiceId}</FormLabel>
+                <FormLabel>{ALIASES.invoiceId}</FormLabel>
                 <div className="flex justify-between">
                   <FormDescription>
                     Write the ID of the invoice
@@ -275,7 +275,7 @@ export function FormInvoice({ data, method, url }: FormProps) {
             name="createdAt"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{aliases.createdAt}</FormLabel>
+                <FormLabel>{ALIASES.createdAt}</FormLabel>
                 <FormControl>
                   <Input
                     placeholder="Created automatically"
@@ -292,7 +292,7 @@ export function FormInvoice({ data, method, url }: FormProps) {
             name="updatedAt"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{aliases.updatedAt}</FormLabel>
+                <FormLabel>{ALIASES.updatedAt}</FormLabel>
                 <FormControl>
                   <Input
                     placeholder="Created automatically"

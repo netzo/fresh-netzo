@@ -51,6 +51,7 @@ export const api = (options?: NetzoConfig["api"]): Plugin => {
               const referer = req.headers.get("referer")!; // SOMETIMES SET e.g. https://app.netzo.io/some-path
 
               // skip if request is from same host, origin or referer
+              // NOTE: skipped in development since sameHost is true (localhost)
               const sameHost = ctx.url.host === host;
               const sameOrigin = ctx.url.origin === origin;
               const sameReferer = referer?.startsWith(ctx.url.origin);

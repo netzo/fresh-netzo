@@ -1,31 +1,8 @@
 import { defineRoute } from "$fresh/server.ts";
 import type { DataTableProps } from "netzo/components/blocks/table/data-table.tsx";
-import type { Account } from "@/components/data/accounts.ts";
+import { type Account, ALIASES } from "@/components/data/accounts.ts";
 import { Table } from "@/islands/accounts/Table.tsx";
 import { app } from "@/netzo.ts";
-
-export const ALIASES = {
-  id: "ID",
-  createdAt: "Created",
-  updatedAt: "Updated",
-  name: "Name",
-  status: "Status",
-  type: "Type",
-  web: "Website",
-  phone: "Phone",
-  address: {
-    streetAddress: "Street address",
-    number: "Number",
-    city: "City",
-    postCode: "Post code",
-  },
-  notifications: {
-    payments: "Payments",
-    invoices: "Invoices",
-    promotions: "Promotions",
-    marketing: "Marketing",
-  },
-};
 
 export const getTableOptions = (
   data: Account[],

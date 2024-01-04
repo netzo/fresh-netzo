@@ -3,7 +3,7 @@ import { Checkbox } from "netzo/components/ui/checkbox.tsx";
 import { Badge } from "netzo/components/ui/badge.tsx";
 import { Invoice } from "@/components/data/invoices.ts";
 import { CopyId } from "netzo/components/blocks/shared/copy-id.tsx";
-import { ALIASES } from "@/routes/invoices/index.tsx";
+import { ALIASES } from "@/components/data/invoices.ts";
 import { Button } from "netzo/components/ui/button.tsx";
 import {
   renderCell,
