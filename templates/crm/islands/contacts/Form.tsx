@@ -6,8 +6,8 @@ import { Input } from "netzo/components/ui/input.tsx";
 import { Checkbox } from "netzo/components/ui/checkbox.tsx";
 import { Switch } from "netzo/components/ui/switch.tsx";
 import { renderFormCheckbox } from "@/utils.tsx";
-import { Contact, contactSchema } from "@/components/data/contacts.ts";
-import { ALIASES } from "@/components/data/contacts.ts";
+import { Contact, contactSchema } from "@/data/contacts.ts";
+import { ALIASES } from "@/data/contacts.ts";
 import {
   Select,
   SelectContent,

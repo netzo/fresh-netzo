@@ -1,5 +1,5 @@
 import { z } from "netzo/deps/zod/mod.ts";
-import { accountSchema } from "@/components/data/accounts.ts";
+import { accountSchema } from "@/data/accounts.ts";
 
 // schemas:
 
@@ -9,6 +9,8 @@ export const invoiceSchema = z.object({
   updatedAt: z.string(),
   invoiceNumber: z.string(),
   description: z.string(),
+  labels: z.array(z.string()),
+  notes: z.array(z.string()),
   dueDate: z.string(),
   status: z.union([
     z.literal("pending"),

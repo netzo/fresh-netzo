@@ -2,7 +2,7 @@ import {
   DataTable,
   type DataTableProps,
 } from "netzo/components/blocks/table/data-table.tsx";
-import { columns } from "@/components/data/invoices.columns.tsx";
+import { columns } from "@/data/invoices.columns.tsx";
 
 type TableProps = Omit<DataTableProps<unknown, unknown>, "columns">;
 

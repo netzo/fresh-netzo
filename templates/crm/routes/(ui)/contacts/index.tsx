@@ -1,6 +1,6 @@
 import { defineRoute } from "$fresh/server.ts";
 import type { DataTableProps } from "netzo/components/blocks/table/data-table.tsx";
-import { type Contact, ALIASES } from "@/components/data/contacts.ts";
+import { ALIASES, type Contact } from "@/data/contacts.ts";
 import { Table } from "@/islands/contacts/Table.tsx";
 import { app } from "@/netzo.ts";
 

@@ -4,6 +4,8 @@ import { z } from "netzo/deps/zod/mod.ts";
 
 export const dealSchema = z.object({
   id: z.string(),
+  createdAt: z.string(),
+  updatedAt: z.string(),
   status: z.union([
     z.literal("backlog"),
     z.literal("todo"),
@@ -15,8 +17,7 @@ export const dealSchema = z.object({
   name: z.string(),
   description: z.string(),
   labels: z.array(z.string()),
-  createdAt: z.string(),
-  updatedAt: z.string(),
+  notes: z.array(z.string()),
 });
 
 // types:

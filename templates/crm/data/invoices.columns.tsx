@@ -1,23 +1,19 @@
 import type { ColumnDef } from "netzo/deps/@tanstack/react-table.ts";
 import { Checkbox } from "netzo/components/ui/checkbox.tsx";
-import { Account } from "@/components/data/accounts.ts";
+import { Badge } from "netzo/components/ui/badge.tsx";
 import { CopyId } from "netzo/components/blocks/shared/copy-id.tsx";
-import { ALIASES } from "@/components/data/accounts.ts";
 import { Button } from "netzo/components/ui/button.tsx";
+import { Invoice } from "@/data/invoices.ts";
+import { ALIASES } from "@/data/invoices.ts";
 import {
   renderCell,
   renderCellCheckbox,
   renderHeader,
   toDate,
   toDateTime,
-  toEuro,
-  toFixed,
-  toInteger,
-  toMxn,
-  toPercent,
 } from "@/utils.tsx";
 
-export const columns: ColumnDef<Account>[] = [
+export const columns: ColumnDef<Invoice>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -43,14 +39,14 @@ export const columns: ColumnDef<Account>[] = [
     header: "General",
     columns: [
       {
-        accessorKey: "name",
-        header: renderHeader(ALIASES.name),
+        accessorKey: "invoiceNumber",
+        header: renderHeader(ALIASES.invoiceNumber),
         cell: ({ row }) => {
-          const { id, name } = row.original;
+          const { id, invoiceNumber } = row.original;
           return (
             <div className="flex">
               <a
-                href={`/accounts/${id}`}
+                href={`/invoices/${id}`}
                 className="whitespace-nowrap text-center font-medium text-[hsl(var(--primary))] hover:underline"
               >
                 {name}
@@ -66,90 +62,70 @@ export const columns: ColumnDef<Account>[] = [
         cell: ({ row }) => {
           const { status } = row.original;
           const colors = {
-            active: "black",
-            inactive: "gray",
+            pending: "red",
+            paid: "blue",
+            cancelled: "gray",
           };
-          return (
-            <p
-              className={`text-${colors[status]}-500`}
-            >
-              {status}
-            </p>
-          );
+          return status
+            ? (
+              <Badge
+                variant="outline"
+                className={`bg-${colors[status]}-500 bg-opacity-80 text-white`}
+              >
+                {status}
+              </Badge>
+            )
+            : <></>;
         },
         filterFn: (row, id, value) => value.includes(row.getValue(id)),
       },
       {
-        accessorKey: "type",
-        header: renderHeader(ALIASES.type),
+        accessorKey: "description",
+        header: renderHeader(ALIASES.description),
         cell: renderCell(),
-        filterFn: (row, id, value) => value.includes(row.getValue(id)),
+      },
+      {
+        accessorKey: "dueDate",
+        header: renderHeader(ALIASES.dueDate),
+        cell: ({ row }) => {
+          const { dueDate } = row.original;
+          return <div>{dueDate ? toDate(dueDate) : undefined}</div>;
+        },
+      },
+      {
+        accessorKey: "accountId",
+        header: renderHeader(ALIASES.accountId),
+        cell: ({ row }) => {
+          const { accountId, account } = row.original;
+          return (
+            <a
+              href={`/accounts/${accountId}`}
+              className="whitespace-nowrap text-center font-medium text-[hsl(var(--primary))] hover:underline"
+            >
+              {account?.name ? account.name : accountId}
+            </a>
+          );
+        },
       },
     ],
   },
   {
-    header: "Contact",
+    header: "Amount",
     columns: [
       {
-        accessorKey: "phone",
-        header: renderHeader(ALIASES.phone),
+        accessorKey: "subtotal",
+        header: renderHeader(ALIASES.subtotal),
         cell: renderCell(),
       },
       {
-        accessorKey: "web",
-        header: renderHeader(ALIASES.web),
-        cell: renderCell(),
-      },
-    ],
-  },
-  {
-    header: "Address",
-    columns: [
-      {
-        accessorKey: "address.streetAddress",
-        header: renderHeader(ALIASES.address.streetAddress),
+        accessorKey: "tax",
+        header: renderHeader(ALIASES.tax),
         cell: renderCell(),
       },
       {
-        accessorKey: "address.number",
-        header: renderHeader(ALIASES.address.number),
+        accessorKey: "total",
+        header: renderHeader(ALIASES.total),
         cell: renderCell(),
-      },
-      {
-        accessorKey: "address.city",
-        header: renderHeader(ALIASES.address.city),
-        cell: renderCell(),
-        filterFn: (row, id, value) => value.includes(row.getValue(id)),
-      },
-      {
-        accessorKey: "address.postCode",
-        header: renderHeader(ALIASES.address.postCode),
-        cell: renderCell(),
-      },
-    ],
-  },
-  {
-    header: "Notificaciones",
-    columns: [
-      {
-        accessorKey: "notifications.payments",
-        header: renderHeader(ALIASES.notifications.payments),
-        cell: renderCellCheckbox(),
-      },
-      {
-        accessorKey: "notifications.invoices",
-        header: renderHeader(ALIASES.notifications.invoices),
-        cell: renderCellCheckbox(),
-      },
-      {
-        accessorKey: "notifications.promotions",
-        header: renderHeader(ALIASES.notifications.promotions),
-        cell: renderCellCheckbox(),
-      },
-      {
-        accessorKey: "notifications.marketing",
-        header: renderHeader(ALIASES.notifications.marketing),
-        cell: renderCellCheckbox(),
       },
     ],
   },

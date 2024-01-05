@@ -1,8 +1,8 @@
 import type { ColumnDef } from "netzo/deps/@tanstack/react-table.ts";
 import { Checkbox } from "netzo/components/ui/checkbox.tsx";
-import { Contact } from "@/components/data/contacts.ts";
+import { Contact } from "@/data/contacts.ts";
 import { CopyId } from "netzo/components/blocks/shared/copy-id.tsx";
-import { ALIASES } from "@/components/data/contacts.ts";
+import { ALIASES } from "@/data/contacts.ts";
 import {
   Avatar,
   AvatarFallback,

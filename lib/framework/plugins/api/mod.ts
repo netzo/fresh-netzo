@@ -35,7 +35,12 @@ const ERRORS = {
  * - `DELETE /api/[resource]/[id]` remove a record of a resource by id
  */
 export const api = (options?: NetzoConfig["api"]): Plugin => {
-  const { auth, path = "/api", idField = "id", methods = METHODS } = options ?? {};
+  const {
+    auth,
+    path = "/api",
+    idField = "id",
+    methods = METHODS
+  } = options ?? {};
   return {
     name: "api",
     middlewares: [
@@ -57,10 +62,9 @@ export const api = (options?: NetzoConfig["api"]): Plugin => {
               const sameHost = ctx.url.host === host;
               const sameOrigin = ctx.url.origin === origin;
               const sameReferer = referer?.startsWith(ctx.url.origin);
-              console.log({ host, origin, referer, sameHost, sameOrigin, sameReferer });
-              // if (sameHost || sameOrigin || sameReferer) {
-              //   return await ctx.next();
-              // }
+              if (sameHost || sameOrigin || sameReferer) {
+                return await ctx.next();
+              }
 
               // API key authentication
               const apiKeyHeader = req.headers.get("x-api-key");
@@ -84,11 +88,13 @@ export const api = (options?: NetzoConfig["api"]): Plugin => {
       {
         path: `${path}/[resource]`,
         handler: {
-          async GET(req, ctx) {
+          async GET(_req, ctx) {
             if (!methods!.includes("find")) return ERRORS.notAllowed();
             const query = Object.fromEntries(ctx.url.searchParams);
             const { resource } = ctx.params;
             const result = await db.find(resource, query);
+            // validate to against ctx.state.project.database.schemas of resource (if any)
+            // const validate = await db.assertValid(result, query);
             return Response.json(result);
           },
           async POST(req, ctx) {

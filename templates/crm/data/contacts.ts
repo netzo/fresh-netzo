@@ -1,5 +1,5 @@
 import { z } from "netzo/deps/zod/mod.ts";
-import { accountSchema } from "@/components/data/accounts.ts";
+import { accountSchema } from "@/data/accounts.ts";
 
 // schemas:
 
