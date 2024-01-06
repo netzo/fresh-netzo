@@ -10,9 +10,15 @@ import {
 } from "netzo/components/blocks/render.tsx";
 import { toDate, toDateTime } from "netzo/components/blocks/format.ts";
 import { CopyId } from "netzo/components/blocks/shared/copy-id.tsx";
-import { Checkbox } from "netzo/components/ui/checkbox.tsx";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "netzo/components/ui/avatar.tsx";
+import { Badge } from "netzo/components/ui/badge.tsx";
 import { Button } from "netzo/components/ui/button.tsx";
-import { type Contact, ALIASES } from "@/data/contacts.ts";
+import { Checkbox } from "netzo/components/ui/checkbox.tsx";
+import { ALIASES, type Contact } from "@/data/contacts.ts";
 
 type TableProps = Omit<TableProps<Contact, unknown>, "columns">;
 
@@ -27,6 +33,7 @@ export function Table(props: TableProps) {
   );
 }
 
+// NOTE: columns must be defined in island due to client-only function serialization
 export const getColumns = (_props: TableProps): TableProps["columns"] => [
   {
     id: "select",

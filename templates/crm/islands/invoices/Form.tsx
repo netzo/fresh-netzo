@@ -314,7 +314,9 @@ export function FormInvoice({ data, method, url }: FormProps) {
                 Reset
               </Button>
             )}
-            <Button type="submit">Update</Button>
+            <Button type="submit">
+              {method === "POST" ? "Create" : "Update"}
+            </Button>
           </div>
         </form>
       </Form>

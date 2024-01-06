@@ -37,7 +37,6 @@ export function FormAccount({ data, method, url }: FormProps) {
   });
 
   async function onSubmit(inputValues: Account) {
-    console.log("inputValues", inputValues);
     const updatedAt = new Date().toISOString();
     const createdAt = data?.createdAt || updatedAt;
     try {

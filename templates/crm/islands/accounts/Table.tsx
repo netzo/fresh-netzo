@@ -10,8 +10,8 @@ import {
 } from "netzo/components/blocks/render.tsx";
 import { toDate, toDateTime } from "netzo/components/blocks/format.ts";
 import { CopyId } from "netzo/components/blocks/shared/copy-id.tsx";
-import { Checkbox } from "netzo/components/ui/checkbox.tsx";
 import { Button } from "netzo/components/ui/button.tsx";
+import { Checkbox } from "netzo/components/ui/checkbox.tsx";
 import { type Account, ALIASES } from "@/data/accounts.ts";
 
 type TableProps = Omit<TableProps<Account, unknown>, "columns">;
@@ -27,6 +27,7 @@ export function Table(props: TableProps) {
   );
 }
 
+// NOTE: columns must be defined in island due to client-only function serialization
 export const getColumns = (_props: TableProps): TableProps["columns"] => [
   {
     id: "select",

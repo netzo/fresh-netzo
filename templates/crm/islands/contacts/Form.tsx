@@ -269,7 +269,9 @@ export function FormContact({ data, method, url }: FormProps) {
                 Reset
               </Button>
             )}
-            <Button type="submit">Save</Button>
+            <Button type="submit">
+              {method === "POST" ? "Create" : "Update"}
+            </Button>
           </div>
         </form>
       </Form>
