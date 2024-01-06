@@ -1,7 +1,7 @@
 import { useState } from "preact/hooks";
 import { useForm } from "netzo/deps/react-hook-form.ts";
 import { zodResolver } from "netzo/deps/@hookform/resolvers/zod.ts";
-import { renderFormCheckbox } from "@/utils.tsx";
+import { renderFormCheckbox } from "netzo/components/blocks/render.tsx";
 import { Button } from "netzo/components/ui/button.tsx";
 import { Input } from "netzo/components/ui/input.tsx";
 import { Checkbox } from "netzo/components/ui/checkbox.tsx";
