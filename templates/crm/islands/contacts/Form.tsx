@@ -5,7 +5,7 @@ import { Button } from "netzo/components/ui/button.tsx";
 import { Input } from "netzo/components/ui/input.tsx";
 import { Checkbox } from "netzo/components/ui/checkbox.tsx";
 import { Switch } from "netzo/components/ui/switch.tsx";
-import { renderFormCheckbox } from "netzo/components/blocks/render.tsx";
+import { renderCheckbox } from "netzo/components/blocks/render.tsx";
 import { Contact, contactSchema } from "@/data/contacts.ts";
 import { ALIASES } from "@/data/contacts.ts";
 import {

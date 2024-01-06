@@ -5,7 +5,7 @@ import {
 import type { ColumnDef } from "netzo/deps/@tanstack/react-table.ts";
 import {
   renderCell,
-  renderCellCheckbox,
+  renderCheckboxRow,
   renderHeader,
 } from "netzo/components/blocks/render.tsx";
 import { toDate, toDateTime } from "netzo/components/blocks/format.ts";
@@ -130,17 +130,17 @@ export const getColumns = (_props: TableProps): TableProps["columns"] => [
       {
         accessorKey: "notifications.new",
         header: renderHeader(ALIASES.notifications.new),
-        cell: renderCellCheckbox(),
+        cell: renderCheckboxRow(),
       },
       {
         accessorKey: "notifications.promotions",
         header: renderHeader(ALIASES.notifications.promotions),
-        cell: renderCellCheckbox(),
+        cell: renderCheckboxRow(),
       },
       {
         accessorKey: "notifications.marketing",
         header: renderHeader(ALIASES.notifications.marketing),
-        cell: renderCellCheckbox(),
+        cell: renderCheckboxRow(),
       },
     ],
   },

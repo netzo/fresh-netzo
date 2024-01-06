@@ -5,7 +5,7 @@ import {
 import type { ColumnDef } from "netzo/deps/@tanstack/react-table.ts";
 import {
   renderCell,
-  renderCellCheckbox,
+  renderCheckboxRow,
   renderHeader,
 } from "netzo/components/blocks/render.tsx";
 import { toDate, toDateTime } from "netzo/components/blocks/format.ts";

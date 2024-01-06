@@ -13,6 +13,7 @@ import {
   useReactTable,
   VisibilityState,
 } from "../../../deps/@tanstack/react-table.ts";
+import { cn } from "../../utils.ts";
 import {
   Table as _Table,
   TableBody,
@@ -118,7 +119,10 @@ export function Table<TData, TValue>({
                     className="hover:bg-#dddddd/50 data-[state=selected]:bg-#dddddd dark:hover:bg-#333333/50 dark:data-[state=selected]:bg-#333333"
                   >
                     {row.getVisibleCells().map((cell) => (
-                      <TableCell key={cell.id}>
+                      <TableCell
+                        key={cell.id}
+                        className={cn("py-0")}
+                      >
                         {flexRender(
                           cell.column.columnDef.cell,
                           cell.getContext(),
