@@ -8,10 +8,10 @@ import { Overview } from "@/islands/Overview.tsx";
 
 export default defineRoute(async (req, ctx) => {
   // const data = await Promise.all([
-  //   app.db.find<Account>("accounts"),
-  //   app.db.find<Deal>("deals"),
-  //   app.db.find<Contact>("contacts"),
-  //   app.db.find<Invoice>("invoices"),
+  //   app.db.find<Account>(["accounts"]),
+  //   app.db.find<Deal>(["deals"]),
+  //   app.db.find<Contact>(["contacts"]),
+  //   app.db.find<Invoice>(["invoices"]),
   // ]);
 
   // if (!data) return ctx.renderNotFound();

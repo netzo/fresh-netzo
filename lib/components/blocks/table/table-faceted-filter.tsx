@@ -19,7 +19,7 @@ import {
 import { Popover, PopoverContent, PopoverTrigger } from "../../ui/popover.tsx";
 import { Separator } from "../../ui/separator.tsx";
 
-interface DataTableFacetedFilter<TData, TValue> {
+interface TableFacetedFilter<TData, TValue> {
   column?: Column<TData, TValue>;
   title?: string;
   options: {
@@ -29,11 +29,11 @@ interface DataTableFacetedFilter<TData, TValue> {
   }[];
 }
 
-export function DataTableFacetedFilter<TData, TValue>({
+export function TableFacetedFilter<TData, TValue>({
   column,
   title,
   options,
-}: DataTableFacetedFilter<TData, TValue>) {
+}: TableFacetedFilter<TData, TValue>) {
   const facets = column?.getFacetedUniqueValues();
   const selectedValues = new Set(column?.getFilterValue() as string[]);
 

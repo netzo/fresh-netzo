@@ -7,7 +7,6 @@ import * as $_ui_accounts_id_ from "./routes/(ui)/accounts/[id].tsx";
 import * as $_ui_accounts_index from "./routes/(ui)/accounts/index.tsx";
 import * as $_ui_contacts_id_ from "./routes/(ui)/contacts/[id].tsx";
 import * as $_ui_contacts_index from "./routes/(ui)/contacts/index.tsx";
-import * as $_ui_deals_id_ from "./routes/(ui)/deals/[id].tsx";
 import * as $_ui_deals_index from "./routes/(ui)/deals/index.tsx";
 import * as $_ui_index from "./routes/(ui)/index.tsx";
 import * as $_ui_invoices_id_ from "./routes/(ui)/invoices/[id].tsx";
@@ -29,7 +28,6 @@ const manifest = {
     "./routes/(ui)/accounts/index.tsx": $_ui_accounts_index,
     "./routes/(ui)/contacts/[id].tsx": $_ui_contacts_id_,
     "./routes/(ui)/contacts/index.tsx": $_ui_contacts_index,
-    "./routes/(ui)/deals/[id].tsx": $_ui_deals_id_,
     "./routes/(ui)/deals/index.tsx": $_ui_deals_index,
     "./routes/(ui)/index.tsx": $_ui_index,
     "./routes/(ui)/invoices/[id].tsx": $_ui_invoices_id_,

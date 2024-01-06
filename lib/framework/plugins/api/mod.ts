@@ -3,43 +3,30 @@ import { isHttpError } from "../../../deps/std/http/http_errors.ts";
 import type { NetzoConfig } from "../../../framework/mod.ts";
 import { parseRequestBody } from "../../../framework/utils/mod.ts";
 import { createDatabase } from "../../../core/database.ts";
+import { ERRORS, METHODS, parseSearchParams } from "./utils.ts";
 
 const kv = await Deno.openKv(Deno.env.get("DENO_KV_PATH"));
 
 const db = createDatabase(kv);
-
-const METHODS = [
-  "find",
-  "get",
-  "create",
-  "update",
-  "patch",
-  "remove",
-] as NetzoConfig["api"]["methods"];
-const ERRORS = {
-  missingApiKey: () => new Response("Missing API key", { status: 401 }),
-  invalidApiKey: () => new Response("Invalid API key", { status: 401 }),
-  notAllowed: () => new Response("Method not allowed", { status: 405 }),
-};
 
 /**
  * A fresh plugin that registers middleware and handlers to
  * to mount RESTful API routes on the `/api` route path.
  *
  * A fresh plugin that creates handlers for the following routes:
- * - `GET /api/[resource]` find all records of a resource
- * - `GET /api/[resource]/[id]` get a record of a resource by id
- * - `POST /api/[resource]` create a new record of a resource (auto-generates id)
- * - `PUT /api/[resource]/[id]` update a record of a resource by id
- * - `PATCH /api/[resource]/[id]` patch a record of a resource by id
- * - `DELETE /api/[resource]/[id]` remove a record of a resource by id
+ * - `GET /api?$prefix=<PREFIX>` find all records matching query
+ * - `GET /api?$key=<KEY>` get an entry by key
+ * - `POST /api?$prefix=<PREFIX>` create a new entry (auto-generates id)
+ * - `PUT /api?$key=<KEY>` update an entry by key
+ * - `PATCH /api?$key=<KEY>` patch an entry by key
+ * - `DELETE /api?$key=<KEY>` remove an entry by key
  */
 export const api = (options?: NetzoConfig["api"]): Plugin => {
   const {
     auth,
     path = "/api",
     idField = "id",
-    methods = METHODS
+    methods = METHODS,
   } = options ?? {};
   return {
     name: "api",
@@ -86,53 +73,54 @@ export const api = (options?: NetzoConfig["api"]): Plugin => {
     ],
     routes: [
       {
-        path: `${path}/[resource]`,
+        path,
         handler: {
           async GET(_req, ctx) {
-            if (!methods!.includes("find")) return ERRORS.notAllowed();
-            const query = Object.fromEntries(ctx.url.searchParams);
-            const { resource } = ctx.params;
-            const result = await db.find(resource, query);
-            // validate to against ctx.state.project.database.schemas of resource (if any)
-            // const validate = await db.assertValid(result, query);
-            return Response.json(result);
+            const { params, query } = parseSearchParams(ctx.url.searchParams);
+            console.log({ params, query });
+            if (params.$prefix) {
+              if (!methods!.includes("find")) return ERRORS.notAllowed();
+              const prefix = params.$prefix.split(",");
+              const result = await db.find(prefix, query);
+              // validate to against ctx.state.project.database.schemas (if any)
+              // const validate = await db.assertValid(result, query);
+              return Response.json(result);
+            } else {
+              if (!methods!.includes("get")) return ERRORS.notAllowed();
+              const key = params.$key.split(",");
+              const result = await db.get(key);
+              return Response.json(result);
+            }
           },
           async POST(req, ctx) {
+            const { params, query } = parseSearchParams(ctx.url.searchParams);
             if (!methods!.includes("create")) return ERRORS.notAllowed();
-            const { resource } = ctx.params;
+            const prefix = params.$prefix.split(",");
             const data = await parseRequestBody(req);
-            const result = await db.create(resource, data, idField);
-            return Response.json(result);
-          },
-        },
-      },
-      {
-        path: `${path}/[resource]/[id]`,
-        handler: {
-          async GET(_req, ctx) {
-            if (!methods!.includes("get")) return ERRORS.notAllowed();
-            const { resource, id } = ctx.params;
-            const result = await db.get(resource, id);
+            const result = await db.create(prefix, data, idField);
             return Response.json(result);
           },
           async PUT(req, ctx) {
+            const { params, query } = parseSearchParams(ctx.url.searchParams);
             if (!methods!.includes("update")) return ERRORS.notAllowed();
-            const { resource, id } = ctx.params;
+            const key = params.$key.split(",");
             const data = await parseRequestBody(req);
-            const result = await db.update(resource, id, data);
+            const result = await db.update(key, data);
             return Response.json(result);
           },
           async PATCH(req, ctx) {
+            const { params, query } = parseSearchParams(ctx.url.searchParams);
             if (!methods!.includes("patch")) return ERRORS.notAllowed();
-            const { resource, id } = ctx.params;
+            const key = params.$key.split(",");
             const data = await parseRequestBody(req);
-            const result = await db.patch(resource, id, data);
+            const result = await db.patch(key, data);
             return Response.json(result);
           },
           async DELETE(req, ctx) {
+            const { params, query } = parseSearchParams(ctx.url.searchParams);
             if (!methods!.includes("remove")) return ERRORS.notAllowed();
-            const { resource, id } = ctx.params;
-            await db.remove(resource, id);
+            const key = params.$key.split(",");
+            await db.remove(key);
             return Response.json({ id });
           },
         },

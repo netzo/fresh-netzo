@@ -1,4 +1,4 @@
-import { DataTableProps } from "netzo/components/blocks/table/data-table.tsx";
+import { TableProps } from "netzo/components/blocks/table/table.tsx";
 import { Table } from "../../../deps/@tanstack/react-table.ts";
 import { TrashIcon } from "../../../deps/@radix-ui/react-icons.ts";
 import { Button } from "../../ui/button.tsx";
@@ -15,7 +15,7 @@ import {
 } from "../../ui/alert-dialog.tsx";
 
 interface DialogDeleteProps<TData> {
-  options: DataTableProps<TData, unknown>["options"];
+  options: TableProps<TData, unknown>["options"];
   selectedRows: TData[];
 }
 

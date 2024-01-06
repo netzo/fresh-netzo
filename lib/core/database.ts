@@ -4,6 +4,12 @@ import { filterObjectsByKeyValues } from "../framework/utils/mod.ts";
 
 export const ulid = monotonicFactory();
 
+export const isUlid = (str: string) => {
+  // from https://regex101.com/library/ik6xZx
+  const ULID = /[0-7][0-9A-HJKMNP-TV-Z]{25}/gm;
+  return ULID.test(str);
+};
+
 /**
  * Creates a database object that can be used to perform CRUD operations on a Deno KV store.
  * @param kv - The Deno KV store to use.
@@ -12,44 +18,43 @@ export const ulid = monotonicFactory();
 export function createDatabase(kv: Deno.Kv) {
   /**
    * Finds objects in the KV store that match the specified query.
-   * @param resource - The name of the resource to search for.
+   * @param prefix - The prefix of keys to search for.
    * @param query - An object containing key-value pairs to filter the results by.
    * @returns An array of objects that match the specified query.
    */
-  const find = async <T>(
-    resource: string,
+  const find = async <T = unknown>(
+    prefix: Deno.KvKeyPart[],
     query: Record<string, string> = {},
   ) => {
     const data = (await Array.fromAsync(
-      kv.list<T>({ prefix: [resource] }),
+      kv.list<T>({ prefix }),
     )).map((res) => res.value);
     return filterObjectsByKeyValues<T>(data, query);
   };
 
   /**
-   * Gets an object from the KV store by its ID.
-   * @param resource - The name of the resource to get the object from.
-   * @param id - The ID of the object to get.
-   * @returns The object with the specified ID.
+   * Gets an object from the KV store by key.
+   * @param key
+   * @returns The object that matches the specified key.
    */
-  const get = async <T>(resource: string, id: string) => {
-    return (await kv.get<T>([resource, id])).value;
+  const get = async <T = unknown>(key: Deno.KvKeyPart[]) => {
+    return (await kv.get<T>(key)).value;
   };
 
   /**
    * Creates one or more objects in the KV store.
-   * @param resource - The name of the resource to create the objects in.
-   * @param data - The object to create.
+   * @param key
+   * @param data
    * @param idField - The name of the field to use as the ID for the objects.
    * @returns The created object.
    */
-  const create = async <T>(
-    resource: string,
+  const create = async <T = unknown>(
+    prefix: Deno.KvKeyPart[],
     data: T,
     idField: keyof T = "id" as keyof T,
   ) => {
     const id = (data?.[idField] ?? ulid()) as Deno.KvKeyPart;
-    const key = [resource, id];
+    const key = [...prefix, id];
     data = { [idField]: id, ...data };
     const ok = await kv.atomic().set(key, data).commit();
     if (!ok) throw new Error("Something went wrong.");
@@ -58,17 +63,11 @@ export function createDatabase(kv: Deno.Kv) {
 
   /**
    * Updates an object in the KV store.
-   * @param resource - The name of the resource to update the object in.
-   * @param id - The ID of the object to update.
-   * @param data - The updated data for the object.
+   * @param key
+   * @param data
    * @returns The updated object.
    */
-  const update = async <T>(
-    resource: string,
-    id: string,
-    data: T,
-  ) => {
-    const key = [resource, id];
+  const update = async <T = unknown>(key: Deno.KvKeyPart[], data: T) => {
     const entry = await kv.get<T>(key);
     if (!entry.value) throw new Error(`Record with id ${id} not found.`);
     const ok = await kv.atomic().check(entry).set(key, data).commit();
@@ -78,17 +77,14 @@ export function createDatabase(kv: Deno.Kv) {
 
   /**
    * Patches an object in the KV store.
-   * @param resource - The name of the resource to patch the object in.
-   * @param id - The ID of the object to patch.
-   * @param data - The partial data to patch the object with.
+   * @param key
+   * @param data
    * @returns The patched object.
    */
-  const patch = async <T>(
-    resource: string,
-    id: string,
+  const patch = async <T = unknown>(
+    key: Deno.KvKeyPart[],
     data: Partial<T>,
   ) => {
-    const key = [resource, id];
     const entry = await kv.get<T>(key);
     if (!entry.value) throw new Error(`Record with id ${id} not found.`);
     data = { ...entry.value, ...data };
@@ -99,18 +95,10 @@ export function createDatabase(kv: Deno.Kv) {
 
   /**
    * Removes an object from the KV store.
-   * @param resource - The name of the resource to remove the object from.
-   * @param id - The ID of the object to remove.
-   * @returns The ID of the removed object.
+   * @param key
    */
-  const remove = async <T>(resource: string, id: string) => {
-    // return await kv.delete([resource, id]);
-    const key = [resource, id];
-    const entry = await kv.get<T>(key);
-    if (!entry.value) throw new Error(`Record with id ${id} not found.`);
-    const ok = await kv.atomic().check(entry).delete(key).commit();
-    if (!ok) throw new Error("Something went wrong.");
-    return id;
+  const remove = async <T = unknown>(key: Deno.KvKeyPart[]) => {
+    return await kv.delete(key);
   };
 
   return {

@@ -14,17 +14,17 @@ import {
   VisibilityState,
 } from "../../../deps/@tanstack/react-table.ts";
 import {
-  Table,
+  Table as _Table,
   TableBody,
   TableCell,
   TableHead,
   TableHeader,
   TableRow,
 } from "../../ui/table.tsx";
-import { DataTablePagination } from "./data-table-pagination.tsx";
-import { DataTableToolbar } from "./data-table-toolbar.tsx";
+import { TablePagination } from "./table-pagination.tsx";
+import { TableToolbar } from "./table-toolbar.tsx";
 
-export type DataTableProps<TData = unknown, TValue = unknown> = {
+export type TableProps<TData = unknown, TValue = unknown> = {
   data: TData[];
   options: {
     resource: string;
@@ -41,11 +41,11 @@ export type DataTableProps<TData = unknown, TValue = unknown> = {
   columns: ColumnDef<TData, TValue>[];
 };
 
-export function DataTable<TData, TValue>({
+export function Table<TData, TValue>({
   columns,
   data,
   options,
-}: DataTableProps<TData, TValue>) {
+}: TableProps<TData, TValue>) {
   const [rowSelection, setRowSelection] = useState({});
   const [columnVisibility, setColumnVisibility] = useState<
     VisibilityState
@@ -82,12 +82,12 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="space-y-4">
-      <DataTableToolbar
+      <TableToolbar
         table={table}
         options={options}
       />
       <div className="border rounded-md">
-        <Table>
+        <_Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
@@ -139,9 +139,9 @@ export function DataTable<TData, TValue>({
                 </TableRow>
               )}
           </TableBody>
-        </Table>
+        </_Table>
       </div>
-      <DataTablePagination table={table} />
+      <TablePagination table={table} />
     </div>
   );
 }

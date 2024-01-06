@@ -3,20 +3,20 @@ import { Table } from "../../../deps/@tanstack/react-table.ts";
 import { cn } from "netzo/components/utils.ts";
 import { Button, buttonVariants } from "../../ui/button.tsx";
 import { Input } from "../../ui/input.tsx";
-import { DataTableViewOptions } from "./data-table-view-options.tsx";
-import { DataTableFacetedFilter } from "./data-table-faceted-filter.tsx";
-import { DataTableProps } from "./data-table.tsx";
+import { TableViewOptions } from "./table-view-options.tsx";
+import { TableFacetedFilter } from "./table-faceted-filter.tsx";
+import { TableProps } from "./table.tsx";
 import { DialogDelete } from "netzo/components/blocks/table/dialog-delete.tsx";
 
-interface DataTableToolbarProps<TData> {
+interface TableToolbarProps<TData> {
   table: Table<TData>;
-  options: DataTableProps<TData, unknown>["options"];
+  options: TableProps<TData, unknown>["options"];
 }
 
-export function DataTableToolbar<TData>({
+export function TableToolbar<TData>({
   table,
   options,
-}: DataTableToolbarProps<TData>) {
+}: TableToolbarProps<TData>) {
   const isFiltered = table.getState().columnFilters.length > 0;
   const selectedRows = table.getRowModel().rows.filter((row) =>
     row.getIsSelected()
@@ -48,7 +48,7 @@ export function DataTableToolbar<TData>({
 
         {options.filters?.map(({ column, title, options }) =>
           table.getColumn(column) && (
-            <DataTableFacetedFilter
+            <TableFacetedFilter
               column={table.getColumn(column)}
               title={title}
               options={options}
@@ -67,7 +67,7 @@ export function DataTableToolbar<TData>({
           </Button>
         )}
       </div>
-      <DataTableViewOptions table={table} />
+      <TableViewOptions table={table} />
 
       {selectedRows.length
         ? <DialogDelete options={options} selectedRows={selectedRows} />

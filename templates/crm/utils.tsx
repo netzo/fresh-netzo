@@ -1,6 +1,6 @@
 import { _get } from "netzo/deps/lodash.get.ts";
 import { Checkbox } from "netzo/components/ui/checkbox.tsx";
-import { DataTableColumnHeader } from "netzo/components/blocks/table/data-table-column-header.tsx";
+import { TableColumnHeader } from "netzo/components/blocks/table/table-column-header.tsx";
 
 export const toInteger = (num: number) =>
   Math.round(Number(num)).toLocaleString("es-ES");
@@ -52,7 +52,7 @@ export const toDateTime = (dateTime: string) =>
 
 // render:
 export const renderHeader = (title: string) => ({ column }) => {
-  return <DataTableColumnHeader column={column} title={title} />;
+  return <TableColumnHeader column={column} title={title} />;
 };
 
 export const renderCell =
