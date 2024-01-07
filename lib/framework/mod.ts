@@ -140,7 +140,6 @@ export async function createNetzoApp(
   return {
     ...app,
     start: async () => {
-      console.log(Deno.args)
       if (Deno.args.includes("dev")) {
         const { default: dev } = await import("$fresh/dev.ts");
         await dev(Deno.mainModule, "./netzo.ts", config);
