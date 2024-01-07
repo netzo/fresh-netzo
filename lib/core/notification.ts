@@ -5,7 +5,6 @@ import type { ApiClient } from "../apis/_create-api/types.ts";
 export type Notification = {
   _id: string;
   workspaceId: string;
-  labels: string[];
   readBy: string[]; // userId[]
   data: {
     type: "notice" | "info" | "success" | "warning" | "error" | string; // allow custom types
@@ -19,14 +18,13 @@ export type Notification = {
 };
 
 export const createNotification = (api: ApiClient) =>
-(
-  data: Notification["data"],
-): Promise<Notification> => {
-  return api.notifications.post<Notification>({
-    labels: [],
-    readBy: [],
-    data,
-    env: Deno.env.get("NETZO_ENV")!,
-    projectId: Deno.env.get("NETZO_PROJECT_ID")!,
-  });
-};
+  (
+    data: Notification["data"],
+  ): Promise<Notification> => {
+    return api.notifications.post<Notification>({
+      readBy: [],
+      data,
+      env: Deno.env.get("NETZO_ENV")!,
+      projectId: Deno.env.get("NETZO_PROJECT_ID")!,
+    });
+  };
