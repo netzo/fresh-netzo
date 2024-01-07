@@ -77,7 +77,7 @@ export function Table<TData, TValue>({
     getFacetedRowModel: getFacetedRowModel(),
     getFacetedUniqueValues: getFacetedUniqueValues(),
     initialState: {
-      pagination: { pageSize: 25 },
+      pagination: { pageSize: 10 },
     },
   });
 
