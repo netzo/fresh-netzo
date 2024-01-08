@@ -37,7 +37,7 @@ export default defineApp<NetzoState>((req, ctx) => {
         <div className="flex flex-col w-full h-full overflow-x-hidden">
           {showHeader && (
             <Header {...ui.header} nav={ui.nav} sessionUser={sessionUser}>
-              {/* {showNav && <NavMobile {...ui.nav} className="flex md:hidden" />} */}
+              {showNav && <NavMobile {...ui.nav} className="flex md:hidden" />}
             </Header>
           )}
 
