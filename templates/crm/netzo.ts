@@ -3,4 +3,4 @@ import { createNetzoApp } from "netzo/framework/mod.ts";
 
 export const app = await createNetzoApp(Deno.env.get("NETZO_PROJECT_ID")!);
 
-if (import.meta.main) app.start();
+if (import.meta.main) await app.start();

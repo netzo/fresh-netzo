@@ -81,43 +81,6 @@ export type User = {
   updatedAt: string;
 };
 
-export const projectSchema = Type.Object(
-  {
-    _id: ObjectIdSchema(),
-    workspaceId: Type.String(),
-    uid: Type.String({ pattern: PROJECT_UID_REGEX }), // note Type.Regex() is deprecated
-    name: Type.String(),
-    description: Type.String(),
-    labels: Type.Array(Type.String()),
-    avatar: Type.String(),
-    markdown: Type.String(),
-    userIds: Type.Array(Type.String()),
-    denoProductionDeploymentId: Type.String(),
-    denoLatestDeploymentId: Type.String(),
-    apiKeyId: Type.String(),
-    databaseId: Type.String(),
-    env: Type.Object({
-      development: ProjectEnvSchema(),
-      // preview: ProjectEnvSchema(), // TODO: once preview envs land in DD (see https://github.com/netzo/app/issues/396 lands)
-      production: ProjectEnvSchema(),
-    }),
-    envVars: Type.Optional(Type.Object({
-      development: Type.Record(Type.String(), Type.String()),
-      // preview: Type.Record(Type.String(), Type.String()),
-      production: Type.Record(Type.String(), Type.String()),
-    })), // populated in resolver
-    denoId: Type.String(),
-    deno: Type.Optional(DenoProjectSchema()), // populated in resolver
-    denoDatabase: Type.Optional(DenoDatabaseSchema()), // populated in resolver
-    denoAnalytics: Type.Optional(DenoProjectAnalyticsSchema()), // populated in resolver
-    config: Type.Partial(ProjectConfigSchema()), // populated in resolver
-    createdAt: Type.String({ format: 'date-time' }),
-    updatedAt: Type.String({ format: 'date-time' }),
-    // deletedAt: Type.Union([Type.Literal(''), Type.String({ format: 'date-time' })]),
-  },
-  { $id: 'Project', additionalProperties: false },
-)
-
 export type Project = {
   _id: string;
   workspaceId: string;
