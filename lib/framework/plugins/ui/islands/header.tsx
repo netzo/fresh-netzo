@@ -38,9 +38,7 @@ export function Header({ className, ...props }: NetzoConfig["ui"]["header"]) {
       {/* RIGHT CONTENT HERE */}
       <div className="flex items-center gap-4 !my-0">
         <ThemeToggle />
-        {props.sessionUser && (
-          <HeaderAuth f-client-nav={false} sessionUser={props.sessionUser} />
-        )}
+        <HeaderAuth f-client-nav={false} sessionUser={props.sessionUser} />
       </div>
     </header>
   );

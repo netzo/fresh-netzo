@@ -24,6 +24,7 @@ type HeaderAuthProps = {
 // setting f-client-nav={false} at HeaderAuth to avoid
 // partials causing infinite redirects with auth middleware
 export function HeaderAuth(props: HeaderAuthProps) {
+  if (!props.sessionUser) return null;
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
