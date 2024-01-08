@@ -1,5 +1,5 @@
-import type { User as UserNetzo } from "../../../../../deps/@netzo/api/mod.ts";
 import { createHttpError } from "../../../../../deps/std/http/http_errors.ts";
+import type { User as UserNetzo } from "../../../../../framework/mod.ts";
 import type { AuthUserFromProvider } from "../db.ts";
 import { signIn } from "./netzo.sign_in.ts";
 import { handleCallback } from "./netzo.handle_callback.ts";

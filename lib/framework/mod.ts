@@ -5,19 +5,17 @@
 /// <reference lib="deno.ns" />
 /// <reference lib="deno.unstable" />
 
-import { type FreshConfig, start } from "../deps/$fresh/server.ts";
-import type { Project } from "../deps/@netzo/api/mod.ts";
+import { start } from "../deps/$fresh/server.ts";
 import { AuthState } from "./plugins/auth/mod.ts";
 import { createPluginsForModules } from "./plugins/mod.ts";
 import { Netzo } from "../core/mod.ts";
 import { log, logInfo, LOGS } from "./utils/console.ts";
 import { setEnvVars } from "./utils/mod.ts";
-import { createClient } from "../cli/src/utils/netzo.ts";
+// import { createClient } from "../cli/src/utils/netzo.ts";
 import { resolveConfig } from "./config.ts";
+import type { NetzoConfig, Project } from "./types.ts";
 
-export type { Project };
-
-export type NetzoConfig = FreshConfig & Project["config"];
+export * from "./types.ts";
 
 export type NetzoApp = Awaited<ReturnType<typeof Netzo>> & {
   start: () => Promise<void>;
@@ -93,27 +91,29 @@ export async function createNetzoApp(
   // [live-reload] listen for "project:patched" events and restart server
   // NOTE: this is only available in development mode since in production,
   // Spawning subprocesses is not allowed on Deno Deploy (throws PermissionDenied)
-  if (DEV) {
-    const app = await createClient({
-      apiKey: NETZO_API_KEY,
-      baseURL: NETZO_API_URL,
-    });
-    const main = Deno.mainModule.replace("file://", "").replace(
-      "netzo.ts",
-      "fresh.gen.ts",
-    );
-    app.service("projects").on("patched", async (_project: Project) => {
-      log("✨ App configuration updated, restarting server...");
-      // trigger reload without modifying file using touch
-      const process = new Deno.Command("touch", { args: [main] }).spawn();
-      await process.status;
-    });
-    logInfo(`Listening for updates of app configuration...`);
+  // DISABLED: createClient requires importing feathersjs which blows up the bundle
+  // so we disable live-reload for now, until we find a better solution (SSE or similar)
+  // if (DEV) {
+  //   const app = await createClient({
+  //     apiKey: NETZO_API_KEY,
+  //     baseURL: NETZO_API_URL,
+  //   });
+  //   const main = Deno.mainModule.replace("file://", "").replace(
+  //     "netzo.ts",
+  //     "fresh.gen.ts",
+  //   );
+  //   app.service("projects").on("patched", async (_project: Project) => {
+  //     log("✨ App configuration updated, restarting server...");
+  //     // trigger reload without modifying file using touch
+  //     const process = new Deno.Command("touch", { args: [main] }).spawn();
+  //     await process.status;
+  //   });
+  //   logInfo(`Listening for updates of app configuration...`);
 
-    log(
-      `\nOpen in netzo at ${appUrl}/workspaces/${project.workspaceId}/projects/${project._id}`,
-    );
-  }
+  //   log(
+  //     `\nOpen in netzo at ${appUrl}/workspaces/${project.workspaceId}/projects/${project._id}`,
+  //   );
+  // }
 
   config = {
     ...config,

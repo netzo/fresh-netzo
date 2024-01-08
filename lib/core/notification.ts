@@ -1,21 +1,5 @@
+import type { Notification } from "../framework/mod.ts";
 import type { ApiClient } from "../apis/_create-api/types.ts";
-
-// NOTE: avoid importing from "./types.ts" which
-// bloats bundle with entire @netzo/api package
-export type Notification = {
-  _id: string;
-  workspaceId: string;
-  readBy: string[]; // userId[]
-  data: {
-    type: "notice" | "info" | "success" | "warning" | "error" | string; // allow custom types
-    title: string; // accepts HTML (will be sanitized)
-    body: string; // accepts HTML (will be sanitized)
-  };
-  env: "production" | "development"; // set to Deno.env.get('NETZO_ENV')
-  projectId: string; // set to Deno.env.get('NETZO_PROJECT_ID')
-  createdAt: string;
-  updatedAt: string;
-};
 
 export const createNotification = (api: ApiClient) =>
   (
