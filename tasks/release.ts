@@ -8,13 +8,13 @@ if (!tagName) {
 }
 
 // Create Git tag
-const process = new Deno.Command(Deno.execPath(), {
+const process1 = new Deno.Command(Deno.execPath(), {
   cmd: ["git", "tag", tagName],
 }).spawn();
-await process.status;
+await process1.status;
 
 // Create GitHub release
-const process = new Deno.Command(Deno.execPath(), {
+const process2 = new Deno.Command(Deno.execPath(), {
   cmd: [
     "gh",
     "release",
@@ -26,6 +26,6 @@ const process = new Deno.Command(Deno.execPath(), {
     "main",
   ],
 }).spawn();
-await process.status;
+await process2.status;
 
 console.log(`Created tag '${tagName}' and GitHub release for it.`);
