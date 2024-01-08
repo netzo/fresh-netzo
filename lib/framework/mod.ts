@@ -6,14 +6,16 @@
 /// <reference lib="deno.unstable" />
 
 import { start } from "../deps/$fresh/server.ts";
-import { AuthState } from "./plugins/auth/mod.ts";
-import { createPluginsForModules } from "./plugins/mod.ts";
 import { Netzo } from "../core/mod.ts";
 import { log, LOGS } from "./utils/console.ts";
 import { setEnvVars } from "./utils/mod.ts";
 // import { createClient } from "../cli/src/utils/netzo.ts";
 import { resolveConfig } from "./config.ts";
 import type { NetzoConfig, Project } from "./types.ts";
+import { auth, AuthState } from "./plugins/auth/mod.ts";
+import { api } from "./plugins/api/mod.ts";
+import { ui } from "./plugins/ui/mod.ts";
+import { devtools } from "./plugins/devtools/mod.ts";
 
 export * from "./types.ts";
 
@@ -86,7 +88,6 @@ export async function createNetzoApp(
   const state: NetzoState = { app, config };
 
   const { plugins = [] } = config;
-  const netzoPlugins = await createPluginsForModules(state);
 
   if (DEV) {
     // [live-reload] listen for "project:patched" events and restart server
@@ -132,7 +133,15 @@ export async function createNetzoApp(
           },
         ],
       },
-      ...netzoPlugins,
+      // IMPORTANT: must register all plugins (even if disabled) to ensure
+      // they are bundled at build time so that we do not have to redeploy
+      // when making changes to the project.config from the UI at app.netzo.io
+      ...[
+        auth(state.config.auth),
+        ui(state.config.ui),
+        api(state.config.api),
+        devtools(state.config.devtools),
+      ],
       ...plugins,
     ],
   };

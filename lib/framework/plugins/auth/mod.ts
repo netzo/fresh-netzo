@@ -1,6 +1,5 @@
 import type { Plugin } from "../../../deps/$fresh/server.ts";
 import type { NetzoConfig } from "../../../framework/mod.ts";
-import { enabled } from "../../../framework/plugins/mod.ts";
 import { type AuthUser } from "../../../framework/plugins/auth/utils/db.ts";
 import {
   ensureSignedIn,
@@ -9,6 +8,7 @@ import {
 } from "./middlewares/mod.ts";
 import { getRoutesByProvider } from "./routes/mod.ts";
 import Auth from "./routes/auth.tsx";
+import { enabled } from "../mod.ts";
 
 export * from "../../../deps/deno_kv_oauth/mod.ts";
 

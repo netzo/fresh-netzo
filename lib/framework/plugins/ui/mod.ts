@@ -5,12 +5,17 @@ import presetNetzo from "./plugins/preset-netzo.ts";
 import _App from "./routes/_app.tsx";
 import _404 from "./routes/_404.tsx";
 import _500 from "./routes/_500.tsx";
+import { enabled } from "../mod.ts";
 
 /**
  * Plugin to add layout (nav, header, footer) and theme (colors,
  * typography, etc.) powered by UnoCSS and netzo/components.
  */
 export const ui = (options?: NetzoConfig["ui"] & UnocssOptions): Plugin => {
+  const UI = ["head", "nav", "header", "footer", "theme"];
+  const uiEnabled = !!UI.filter((key) => enabled(options?.[key])).length;
+  if (!uiEnabled) return { name: "ui" }; // skip if ui is set but no plugins are enabled
+
   const {
     theme: { color = "blue", radius = 0.5 } = {},
     // inlined config is used by AoT and SSR modes, however CSR mode requires injecting
@@ -25,6 +30,7 @@ export const ui = (options?: NetzoConfig["ui"] & UnocssOptions): Plugin => {
     ssr = true,
     csr = true,
   } = options ?? {} as NetzoConfig["ui"] & UnocssOptions;
+
   return {
     ...unocss({ options: { color, radius }, config, aot, ssr, csr }), // { name, entrypoints, renderAsync, buildStart }
     name: "ui",

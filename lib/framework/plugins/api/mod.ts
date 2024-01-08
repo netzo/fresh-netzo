@@ -4,6 +4,7 @@ import type { NetzoConfig } from "../../../framework/mod.ts";
 import { parseRequestBody } from "../../../framework/utils/mod.ts";
 import { createDatabase } from "../../../core/database.ts";
 import { ERRORS, METHODS, parseSearchParams } from "./utils.ts";
+import { enabled } from "../mod.ts";
 
 const kv = await Deno.openKv(Deno.env.get("DENO_KV_PATH"));
 
@@ -22,6 +23,8 @@ const db = createDatabase(kv);
  * - `DELETE /api?$key=<KEY>` remove an entry by key
  */
 export const api = (options?: NetzoConfig["api"]): Plugin => {
+  if (!enabled(options)) return { name: "api" };
+
   const {
     auth,
     path = "/api",

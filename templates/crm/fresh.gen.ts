@@ -2,15 +2,15 @@
 // This file SHOULD be checked into source version control.
 // This file is automatically updated during development when running `dev.ts`.
 
-import * as $_ui_layout from "./routes/(ui)/_layout.tsx";
-import * as $_ui_accounts_id_ from "./routes/(ui)/accounts/[id].tsx";
-import * as $_ui_accounts_index from "./routes/(ui)/accounts/index.tsx";
-import * as $_ui_contacts_id_ from "./routes/(ui)/contacts/[id].tsx";
-import * as $_ui_contacts_index from "./routes/(ui)/contacts/index.tsx";
-import * as $_ui_deals_index from "./routes/(ui)/deals/index.tsx";
-import * as $_ui_index from "./routes/(ui)/index.tsx";
-import * as $_ui_invoices_id_ from "./routes/(ui)/invoices/[id].tsx";
-import * as $_ui_invoices_index from "./routes/(ui)/invoices/index.tsx";
+import * as $_layout from "./routes/_layout.tsx";
+import * as $accounts_id_ from "./routes/accounts/[id].tsx";
+import * as $accounts_index from "./routes/accounts/index.tsx";
+import * as $contacts_id_ from "./routes/contacts/[id].tsx";
+import * as $contacts_index from "./routes/contacts/index.tsx";
+import * as $deals_index from "./routes/deals/index.tsx";
+import * as $index from "./routes/index.tsx";
+import * as $invoices_id_ from "./routes/invoices/[id].tsx";
+import * as $invoices_index from "./routes/invoices/index.tsx";
 import * as $Overview from "./islands/Overview.tsx";
 import * as $accounts_Form from "./islands/accounts/Form.tsx";
 import * as $accounts_Table from "./islands/accounts/Table.tsx";
@@ -23,15 +23,15 @@ import { type Manifest } from "$fresh/server.ts";
 
 const manifest = {
   routes: {
-    "./routes/(ui)/_layout.tsx": $_ui_layout,
-    "./routes/(ui)/accounts/[id].tsx": $_ui_accounts_id_,
-    "./routes/(ui)/accounts/index.tsx": $_ui_accounts_index,
-    "./routes/(ui)/contacts/[id].tsx": $_ui_contacts_id_,
-    "./routes/(ui)/contacts/index.tsx": $_ui_contacts_index,
-    "./routes/(ui)/deals/index.tsx": $_ui_deals_index,
-    "./routes/(ui)/index.tsx": $_ui_index,
-    "./routes/(ui)/invoices/[id].tsx": $_ui_invoices_id_,
-    "./routes/(ui)/invoices/index.tsx": $_ui_invoices_index,
+    "./routes/_layout.tsx": $_layout,
+    "./routes/accounts/[id].tsx": $accounts_id_,
+    "./routes/accounts/index.tsx": $accounts_index,
+    "./routes/contacts/[id].tsx": $contacts_id_,
+    "./routes/contacts/index.tsx": $contacts_index,
+    "./routes/deals/index.tsx": $deals_index,
+    "./routes/index.tsx": $index,
+    "./routes/invoices/[id].tsx": $invoices_id_,
+    "./routes/invoices/index.tsx": $invoices_index,
   },
   islands: {
     "./islands/Overview.tsx": $Overview,

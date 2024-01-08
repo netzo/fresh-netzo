@@ -59,6 +59,18 @@ export type NetzoConfig = FreshConfig & {
       radius?: number;
     };
   };
+  api?: {
+    enabled?: boolean;
+    auth?: boolean;
+    path?: string;
+    idField?: string;
+    methods?: ("find" | "get" | "create" | "update" | "patch" | "remove")[];
+  };
+  devtools?: {
+    bindSignal?: {
+      enabled?: boolean;
+    };
+  };
 };
 
 // NOTE: avoid importing from "./types.ts" which
