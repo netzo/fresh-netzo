@@ -8,15 +8,15 @@ if (!tagName) {
 }
 
 // Create Git tag
-const process1 = new Deno.Command(Deno.execPath(), {
-  cmd: ["git", "tag", tagName],
+const process = new Deno.Command("git", {
+  args: ["tag", tagName],
 }).spawn();
-await process1.status;
+const { success } = await process.status;
+if (!success) console.error("Failed to create Git tag.");
 
 // Create GitHub release
-const process2 = new Deno.Command(Deno.execPath(), {
-  cmd: [
-    "gh",
+const processRelease = new Deno.Command("gh", {
+  args: [
     "release",
     "create",
     tagName,
@@ -26,6 +26,7 @@ const process2 = new Deno.Command(Deno.execPath(), {
     "main",
   ],
 }).spawn();
-await process2.status;
+const { success: successRelease } = await processRelease.status;
+if (!successRelease) console.error("Failed to create GitHub release.");
 
 console.log(`Created tag '${tagName}' and GitHub release for it.`);
