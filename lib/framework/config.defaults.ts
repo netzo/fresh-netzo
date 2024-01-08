@@ -72,7 +72,4 @@ export const CONFIG: NetzoConfig = {
     idField: "id",
     methods: ["find", "get", "create", "update", "patch", "remove"],
   },
-  devtools: {
-    bindSignal: { enabled: false },
-  },
 };

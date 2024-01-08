@@ -133,6 +133,7 @@ export async function createNetzoApp(
           },
         ],
       },
+      ...devtools(),
       // IMPORTANT: must register all plugins (even if disabled) to ensure
       // they are bundled at build time so that we do not have to redeploy
       // when making changes to the project.config from the UI at app.netzo.io
@@ -140,7 +141,6 @@ export async function createNetzoApp(
         auth(state.config.auth),
         ui(state.config.ui),
         api(state.config.api),
-        devtools(state.config.devtools),
       ],
       ...plugins,
     ],
