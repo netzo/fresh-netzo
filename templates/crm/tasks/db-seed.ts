@@ -2,7 +2,6 @@ import { accounts } from "@/data/accounts.ts";
 import { deals } from "@/data/deals.ts";
 import { contacts } from "@/data/contacts.ts";
 import { invoices } from "@/data/invoices.ts";
-// import { PREFIX } from "netzo/framework/plugins/mod.ts";
 
 const kv = await Deno.openKv(Deno.env.get("DENO_KV_PATH"));
 
