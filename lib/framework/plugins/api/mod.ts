@@ -37,7 +37,7 @@ export const api = (options?: NetzoConfig["api"]): Plugin => {
           handler: async (req, ctx) => {
             try {
               if (!["route"].includes(ctx.destination)) return await ctx.next();
-              // if (auth !== true) return await ctx.next();
+              if (auth !== true) return await ctx.next();
 
               const host = req.headers.get("host"); // e.g. my-project-906698.netzo.io
               const origin = req.headers.get("origin")!; // e.g. https://my-project-906698.netzo.io
@@ -45,10 +45,10 @@ export const api = (options?: NetzoConfig["api"]): Plugin => {
 
               // skip if request is from same host, origin or referer
               // NOTE: skipped in development since sameHost is true (localhost)
-              const sameHost = ctx.url.host === host;
-              const sameOrigin = ctx.url.origin === origin;
-              const sameReferer = referer?.startsWith(ctx.url.origin);
-              console.log({ sameHost, sameOrigin, sameReferer, auth });
+              const sameHost = host && ctx.url.host === host;
+              const sameOrigin = origin && ctx.url.origin === origin;
+              const sameReferer = referer && referer?.startsWith(ctx.url.origin);
+              console.log({ auth, url: ctx.url, host, origin, referer, sameHost, sameOrigin, sameReferer });
               if (sameHost || sameOrigin || sameReferer) {
                 return await ctx.next();
               }
