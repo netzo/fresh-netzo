@@ -166,7 +166,7 @@ export const unocss = (
       ? {
         "main": `
         data:application/javascript,
-        import { createUnoConfig } from "https://deno.land/x/netzo@0.3.66/framework/plugins/ui/plugins/csr/uno.config.js";
+        import { createUnoConfig } from "https://deno.land/x/netzo@0.3.67/framework/plugins/ui/plugins/csr/uno.config.js";
         import init from "https://esm.sh/v135/@unocss/runtime@0.58.0?target=esnext";
         export default function(state) {
           window.__unocss = createUnoConfig(state.options);
