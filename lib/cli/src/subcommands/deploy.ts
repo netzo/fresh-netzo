@@ -345,15 +345,13 @@ async function deploy(opts: DeployOpts): Promise<void> {
             deploySpinner?.succeed(
               message.replace("Deployed to ", "Deployed to https://"),
             ); // add protocol for clickable link
-            const domain = message.split(" ").pop();
-            const id = domain?.split(".")?.[0]?.split("-")?.pop();
+            // const domain = message.split(" ").pop();
+            // const id = domain?.split(".")?.[0]?.split("-")?.pop();
             // const deploymentKind = opts.production ? "Production" : "Preview";
             // deploySpinner!.succeed(`${deploymentKind} deployment complete.`);
-            const url = new URL(
-              `/workspaces/${project.workspaceId}/projects/${project._id}/deployments/${id}`,
-              opts.appUrl,
+            console.log(
+              `\Open in netzo at ${opts.appUrl}/workspaces/${project.workspaceId}/projects/${project._id}`,
             );
-            console.log(`\nView at: ${url.href}`);
             deploySpinner = null;
             return Deno.exit(0); // exits with success code 0
           }
@@ -365,7 +363,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
             return error(message); // exits with error code 1
           }
 
-            // app.service("deployments").removeAllListeners("progress"); // avoid memory leak
+          // app.service("deployments").removeAllListeners("progress"); // avoid memory leak
         }
       },
     );
