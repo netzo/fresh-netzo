@@ -7,7 +7,7 @@ export type Ref = {
 
 export type Ref = {
   index: number; // index of record in data array
-  prefix: string[]; // e.g. ["users"]
+  prefix: string[]; // e.g. ["contacts"]
   foreignKey: string; // e.g. "id"
   data: unknown; // e.g. { id: "123", name: "John Doe" }
 };

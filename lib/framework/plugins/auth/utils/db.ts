@@ -1,5 +1,6 @@
 import { ulid } from "../../../../core/database.ts";
 import type { AuthProvider } from "../utils/providers/mod.ts";
+import { PREFIX } from "../../mod.ts";
 
 const kv = await Deno.openKv(Deno.env.get("DENO_KV_PATH"));
 
@@ -69,8 +70,8 @@ export async function createUser(user: AuthUser) {
   user.id = ulid();
   user.createdAt = new Date().toISOString();
   user.updatedAt = user.createdAt;
-  const usersKey = ["users", user.authId];
-  const usersBySessionKey = ["usersBySession", user.sessionId];
+  const usersKey = [...PREFIX, "users", user.authId];
+  const usersBySessionKey = [...PREFIX, "usersBySession", user.sessionId];
 
   const atomicOp = kv.atomic()
     .check({ key: usersKey, versionstamp: null })
@@ -98,8 +99,8 @@ export async function createUser(user: AuthUser) {
  */
 export async function updateUser(user: AuthUser) {
   user.updatedAt ||= new Date().toISOString();
-  const usersKey = ["users", user.authId];
-  const usersBySessionKey = ["usersBySession", user.sessionId];
+  const usersKey = [...PREFIX, "users", user.authId];
+  const usersBySessionKey = [...PREFIX, "usersBySession", user.sessionId];
 
   const atomicOp = kv.atomic()
     .set(usersKey, user)
@@ -125,9 +126,9 @@ export async function updateUser(user: AuthUser) {
  */
 export async function updateUserSession(user: AuthUser, sessionId: string) {
   user.updatedAt = new Date().toISOString();
-  const userKey = ["users", user.authId];
-  const oldUserBySessionKey = ["usersBySession", user.sessionId];
-  const newUserBySessionKey = ["usersBySession", sessionId];
+  const userKey = [...PREFIX, "users", user.authId];
+  const oldUserBySessionKey = [...PREFIX, "usersBySession", user.sessionId];
+  const newUserBySessionKey = [...PREFIX, "usersBySession", sessionId];
   const newUser: AuthUser = { ...user, sessionId };
 
   const atomicOp = kv.atomic()
@@ -155,7 +156,7 @@ export async function updateUserSession(user: AuthUser, sessionId: string) {
  * ```
  */
 export async function getUser(authId: string) {
-  const res = await kv.get<AuthUser>(["users", authId]);
+  const res = await kv.get<AuthUser>([...PREFIX, "users", authId]);
   return res.value;
 }
 
@@ -178,7 +179,7 @@ export async function getUser(authId: string) {
  * ```
  */
 export async function getUserBySession(sessionId: string) {
-  const key = ["usersBySession", sessionId];
+  const key = [...PREFIX, "usersBySession", sessionId];
   const eventualRes = await kv.get<AuthUser>(key, {
     consistency: "eventual",
   });
@@ -204,5 +205,5 @@ export async function getUserBySession(sessionId: string) {
  * ```
  */
 export function listUsers(options?: Deno.KvListOptions) {
-  return kv.list<AuthUser>({ prefix: ["users"] }, options);
+  return kv.list<AuthUser>({ prefix: [...PREFIX, "users"] }, options);
 }
