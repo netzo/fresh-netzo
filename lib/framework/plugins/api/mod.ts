@@ -44,7 +44,8 @@ export const api = (options?: NetzoConfig["api"]): Plugin => {
 
               // skip if request is from same origin or referer (to allow fetch within app)
               const sameOrigin = origin && ctx.url.origin === origin;
-              const sameReferer = referer && referer?.startsWith(ctx.url.origin);
+              const sameReferer = referer &&
+                referer?.startsWith(ctx.url.origin);
               if (sameOrigin || sameReferer) {
                 return await ctx.next();
               }

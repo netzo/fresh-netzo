@@ -1,6 +1,9 @@
 import { type FreshConfig } from "../deps/$fresh/server.ts";
 import type { OAuth2ClientConfig } from "../deps/oauth2_client/src/oauth2_client.ts";
-import type { ShadcnThemeColor, ThemeCSSVarsVariant } from "./plugins/ui/plugins/preset-shadcn/types.ts";
+import type {
+  ShadcnThemeColor,
+  ThemeCSSVarsVariant,
+} from "./plugins/ui/plugins/preset-shadcn/types.ts";
 
 export type NetzoConfig = FreshConfig & {
   auth?: {
@@ -76,7 +79,7 @@ export type User = {
   email: string; // normalized profile.email for UI
   name: string;
   avatar: string;
-  roles?: Record<string, 'owner' | 'admin' | 'developer' | 'user'>; // populated in external resolver
+  roles?: Record<string, "owner" | "admin" | "developer" | "user">; // populated in external resolver
   createdAt: string;
   updatedAt: string;
 };
