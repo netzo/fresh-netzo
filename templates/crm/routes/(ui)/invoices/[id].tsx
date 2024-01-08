@@ -25,7 +25,7 @@ export default defineRoute(async (req, ctx) => {
           : (
             <FormInvoice
               data={data}
-              method="POST"
+              method="PATCH"
               url={`${ctx.url.origin}/api?$key=invoices,${id}`}
             />
           )}

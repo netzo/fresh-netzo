@@ -39,17 +39,13 @@ export const api = (options?: NetzoConfig["api"]): Plugin => {
               if (!["route"].includes(ctx.destination)) return await ctx.next();
               if (auth !== true) return await ctx.next();
 
-              const host = req.headers.get("host"); // e.g. my-project-906698.netzo.io
               const origin = req.headers.get("origin")!; // e.g. https://my-project-906698.netzo.io
               const referer = req.headers.get("referer")!; // SOMETIMES SET e.g. https://app.netzo.io/some-path
 
-              // skip if request is from same host, origin or referer
-              // NOTE: skipped in development since sameHost is true (localhost)
-              const sameHost = host && ctx.url.host === host;
+              // skip if request is from same origin or referer (to allow fetch within app)
               const sameOrigin = origin && ctx.url.origin === origin;
               const sameReferer = referer && referer?.startsWith(ctx.url.origin);
-              console.log({ auth, url: ctx.url, host, origin, referer, sameHost, sameOrigin, sameReferer });
-              if (sameHost || sameOrigin || sameReferer) {
+              if (sameOrigin || sameReferer) {
                 return await ctx.next();
               }
 
@@ -77,7 +73,6 @@ export const api = (options?: NetzoConfig["api"]): Plugin => {
         handler: {
           async GET(_req, ctx) {
             const { params, query } = parseSearchParams(ctx.url.searchParams);
-            console.log({ params, query });
             if (params.$prefix) {
               if (!methods!.includes("find")) return ERRORS.notAllowed();
               const prefix = params.$prefix.split(",");
@@ -85,15 +80,17 @@ export const api = (options?: NetzoConfig["api"]): Plugin => {
               // validate to against ctx.state.project.database.schemas (if any)
               // const validate = await db.assertValid(result, query);
               return Response.json(result);
-            } else {
+            } else if (params.$prefix) {
               if (!methods!.includes("get")) return ERRORS.notAllowed();
               const key = params.$key.split(",");
               const result = await db.get(key);
               return Response.json(result);
+            } else {
+              return ERRORS.invalidRequest();
             }
           },
           async POST(req, ctx) {
-            const { params, query } = parseSearchParams(ctx.url.searchParams);
+            const { params } = parseSearchParams(ctx.url.searchParams);
             if (!methods!.includes("create")) return ERRORS.notAllowed();
             const prefix = params.$prefix.split(",");
             const data = await parseRequestBody(req);
@@ -101,7 +98,7 @@ export const api = (options?: NetzoConfig["api"]): Plugin => {
             return Response.json(result);
           },
           async PUT(req, ctx) {
-            const { params, query } = parseSearchParams(ctx.url.searchParams);
+            const { params } = parseSearchParams(ctx.url.searchParams);
             if (!methods!.includes("update")) return ERRORS.notAllowed();
             const key = params.$key.split(",");
             const data = await parseRequestBody(req);
@@ -109,7 +106,7 @@ export const api = (options?: NetzoConfig["api"]): Plugin => {
             return Response.json(result);
           },
           async PATCH(req, ctx) {
-            const { params, query } = parseSearchParams(ctx.url.searchParams);
+            const { params } = parseSearchParams(ctx.url.searchParams);
             if (!methods!.includes("patch")) return ERRORS.notAllowed();
             const key = params.$key.split(",");
             const data = await parseRequestBody(req);
@@ -117,7 +114,7 @@ export const api = (options?: NetzoConfig["api"]): Plugin => {
             return Response.json(result);
           },
           async DELETE(req, ctx) {
-            const { params, query } = parseSearchParams(ctx.url.searchParams);
+            const { params } = parseSearchParams(ctx.url.searchParams);
             if (!methods!.includes("remove")) return ERRORS.notAllowed();
             const key = params.$key.split(",");
             await db.remove(key);

@@ -69,23 +69,20 @@ export function FormInvoice({ data, method, url }: FormProps) {
     <>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-1">
-          <FormField
-            control={form.control}
-            name="id"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>{ALIASES.id}</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="Created automatically"
-                    disabled
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
+          <div className="sticky top-0 flex flex-row justify-between py-5">
+            {data && (
+              <Button
+                variant="secondary"
+                type="button"
+                onClick={() => form.reset(defaultValues)}
+              >
+                Reset
+              </Button>
             )}
-          />
+            <Button type="submit">
+              {method === "POST" ? "Create" : "Update"}
+            </Button>
+          </div>
           <FormField
             control={form.control}
             name="invoiceNumber"
@@ -99,7 +96,7 @@ export function FormInvoice({ data, method, url }: FormProps) {
                     {...field}
                   />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="text-red-500" />
               </FormItem>
             )}
           />
@@ -117,7 +114,7 @@ export function FormInvoice({ data, method, url }: FormProps) {
                   />
                 </FormControl>
 
-                <FormMessage />
+                <FormMessage className="text-red-500" />
               </FormItem>
             )}
           />
@@ -158,7 +155,7 @@ export function FormInvoice({ data, method, url }: FormProps) {
                       initialFocus
                     />
                   )}
-                <FormMessage />
+                <FormMessage className="text-red-500" />
               </FormItem>
             )}
           />
@@ -186,7 +183,7 @@ export function FormInvoice({ data, method, url }: FormProps) {
                     <SelectItem value={undefined}>No selection</SelectItem>
                   </SelectContent>
                 </Select>
-                <FormMessage />
+                <FormMessage className="text-red-500" />
               </FormItem>
             )}
           />
@@ -203,7 +200,7 @@ export function FormInvoice({ data, method, url }: FormProps) {
                     {...field}
                   />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="text-red-500" />
               </FormItem>
             )}
           />
@@ -221,7 +218,7 @@ export function FormInvoice({ data, method, url }: FormProps) {
                     {...field}
                   />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="text-red-500" />
               </FormItem>
             )}
           />
@@ -238,7 +235,7 @@ export function FormInvoice({ data, method, url }: FormProps) {
                     {...field}
                   />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="text-red-500" />
               </FormItem>
             )}
           />
@@ -265,59 +262,10 @@ export function FormInvoice({ data, method, url }: FormProps) {
                     {...field}
                   />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="text-red-500" />
               </FormItem>
             )}
           />
-
-          <FormField
-            control={form.control}
-            name="createdAt"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>{ALIASES.createdAt}</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="Created automatically"
-                    disabled
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="updatedAt"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>{ALIASES.updatedAt}</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="Created automatically"
-                    disabled
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <div className="flex flex-row justify-between pt-5">
-            {data && (
-              <Button
-                variant="secondary"
-                type="button"
-                onClick={() => form.reset(defaultValues)}
-              >
-                Reset
-              </Button>
-            )}
-            <Button type="submit">
-              {method === "POST" ? "Create" : "Update"}
-            </Button>
-          </div>
         </form>
       </Form>
     </>

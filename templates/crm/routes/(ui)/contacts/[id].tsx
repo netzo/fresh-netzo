@@ -25,7 +25,7 @@ export default defineRoute(async (req, ctx) => {
           : (
             <FormContact
               data={data}
-              method="POST"
+              method="PATCH"
               url={`${ctx.url.origin}/api?$key=contacts,${id}`}
             />
           )}

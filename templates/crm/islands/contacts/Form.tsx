@@ -3,21 +3,10 @@ import { useForm } from "netzo/deps/react-hook-form.ts";
 import { zodResolver } from "netzo/deps/@hookform/resolvers/zod.ts";
 import { Button } from "netzo/components/ui/button.tsx";
 import { Input } from "netzo/components/ui/input.tsx";
-import { Checkbox } from "netzo/components/ui/checkbox.tsx";
+// import { Checkbox } from "netzo/components/ui/checkbox.tsx";
 import { Switch } from "netzo/components/ui/switch.tsx";
-import { renderCheckbox } from "netzo/components/blocks/render.tsx";
 import { Contact, contactSchema } from "@/data/contacts.ts";
 import { ALIASES } from "@/data/contacts.ts";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectSeparator,
-  SelectTrigger,
-  SelectValue,
-} from "netzo/components/ui/select.tsx";
 import {
   Form,
   FormControl,
@@ -66,23 +55,20 @@ export function FormContact({ data, method, url }: FormProps) {
     <>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-1">
-          <FormField
-            control={form.control}
-            name="id"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>{ALIASES.id}</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="Created automatically"
-                    disabled
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
+          <div className="sticky top-0 flex flex-row justify-between py-5">
+            {data && (
+              <Button
+                variant="secondary"
+                type="button"
+                onClick={() => form.reset(defaultValues)}
+              >
+                Reset
+              </Button>
             )}
-          />
+            <Button type="submit">
+              {method === "POST" ? "Create" : "Update"}
+            </Button>
+          </div>
           <FormField
             control={form.control}
             name="name"
@@ -94,7 +80,7 @@ export function FormContact({ data, method, url }: FormProps) {
                 <FormControl>
                   <Input {...field} />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="text-red-500" />
               </FormItem>
             )}
           />
@@ -108,7 +94,7 @@ export function FormContact({ data, method, url }: FormProps) {
                 <FormControl>
                   <Input {...field} />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="text-red-500" />
               </FormItem>
             )}
           />
@@ -121,7 +107,7 @@ export function FormContact({ data, method, url }: FormProps) {
                 <FormControl>
                   <Input {...field} />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="text-red-500" />
               </FormItem>
             )}
           />
@@ -208,7 +194,7 @@ export function FormContact({ data, method, url }: FormProps) {
                     {...field}
                   />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="text-red-500" />
               </FormItem>
             )}
           />
@@ -221,58 +207,10 @@ export function FormContact({ data, method, url }: FormProps) {
                 <FormControl>
                   <Input {...field} />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="text-red-500" />
               </FormItem>
             )}
           />
-          <FormField
-            control={form.control}
-            name="createdAt"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>{ALIASES.createdAt}</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="Created automatically"
-                    disabled
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="updatedAt"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>{ALIASES.updatedAt}</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="Created automatically"
-                    disabled
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <div className="flex flex-row justify-between pt-5">
-            {data && (
-              <Button
-                variant="secondary"
-                type="button"
-                onClick={() => form.reset(defaultValues)}
-              >
-                Reset
-              </Button>
-            )}
-            <Button type="submit">
-              {method === "POST" ? "Create" : "Update"}
-            </Button>
-          </div>
         </form>
       </Form>
     </>

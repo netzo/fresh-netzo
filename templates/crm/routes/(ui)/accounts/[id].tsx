@@ -25,7 +25,7 @@ export default defineRoute(async (req, ctx) => {
           : (
             <FormAccount
               data={data}
-              method="POST"
+              method="PATCH"
               url={`${ctx.url.origin}/api?$key=accounts,${id}`}
             />
           )}

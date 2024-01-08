@@ -11,6 +11,7 @@ export const ERRORS = {
   missingApiKey: () => new Response("Missing API key", { status: 401 }),
   invalidApiKey: () => new Response("Invalid API key", { status: 401 }),
   notAllowed: () => new Response("Method not allowed", { status: 405 }),
+  invalidRequest: () => new Response("Invalid request", { status: 400 }),
 };
 
 export function parseSearchParams(
