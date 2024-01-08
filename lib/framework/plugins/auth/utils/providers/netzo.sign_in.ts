@@ -48,8 +48,7 @@ export async function signIn(
   const { NETZO_API_URL = "https://api.netzo.io" } = Deno.env.toObject();
   const url = new URL(request.url);
   const redirectUrl = `${url.origin}/auth/netzo/callback`;
-  const uri = new URL(`${NETZO_API_URL}/oauth/auth0?redirect=${redirectUrl}&state=SOMESTATE`);
-  console.log({ uri: uri.href })
+  const uri = new URL(`${NETZO_API_URL}/oauth/auth0?redirect=${redirectUrl}`);
 
   if (options?.urlParams) {
     Object.entries(options.urlParams).forEach(([key, value]) =>
