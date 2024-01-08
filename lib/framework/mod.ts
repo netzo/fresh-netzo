@@ -9,7 +9,7 @@ import { start } from "../deps/$fresh/server.ts";
 import { AuthState } from "./plugins/auth/mod.ts";
 import { createPluginsForModules } from "./plugins/mod.ts";
 import { Netzo } from "../core/mod.ts";
-import { log, logInfo, LOGS } from "./utils/console.ts";
+import { log, LOGS } from "./utils/console.ts";
 import { setEnvVars } from "./utils/mod.ts";
 // import { createClient } from "../cli/src/utils/netzo.ts";
 import { resolveConfig } from "./config.ts";
@@ -142,9 +142,9 @@ export async function createNetzoApp(
     start: async () => {
       if (Deno.args.includes("dev")) {
         const { default: dev } = await import("$fresh/dev.ts");
-        dev(Deno.mainModule, "./netzo.ts", config);
+        return dev(Deno.mainModule, "./netzo.ts", config);
       } else {
-        start((await import("@/fresh.gen.ts")).default, config);
+        return start((await import("@/fresh.gen.ts")).default, config);
       }
     }, // NOTE: async but won't resolve (since dev/start won't) so we can't await it
   };
