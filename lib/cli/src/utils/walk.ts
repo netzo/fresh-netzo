@@ -2,7 +2,7 @@ import { join, normalize } from "../../../deps/std/path/mod.ts";
 import {
   type ManifestEntry,
   ManifestEntryDirectory,
-} from "../../../deps/@netzo/api/mod.ts";
+} from "npm:/@netzo/api@1.0.58/lib/client.d.ts";
 
 /** Calculate git object hash, like `git hash-object` does. */
 export async function calculateGitSha1(bytes: Uint8Array) {
