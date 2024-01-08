@@ -5,6 +5,7 @@
   ],
   "lock": false,
   "tasks": {
+    "release": "gh release create 0.3.62 --generate-notes --prerelease --target main",
     "db:dump": "deno run -A --unstable --env tasks/db-dump.ts",
     "db:restore": "deno run -A --unstable --env tasks/db-restore.ts",
     "db:seed": "deno run -A --unstable --env tasks/db-seed.ts",
