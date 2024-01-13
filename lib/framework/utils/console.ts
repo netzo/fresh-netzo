@@ -44,3 +44,15 @@ export function error(message: string): never {
   logError(message);
   Deno.exit(1);
 }
+
+// WORKAROUND: until resolution of https://github.com/denoland/fresh/issues/1773#issuecomment-1763502518
+const origConsoleError = console.error;
+console.error = (msg) => {
+  if (typeof msg === "string") {
+    if (msg.includes("Improper nesting of table")) return;
+    if (
+      msg.includes(`Comparison using the "!==" operator here is always true`)
+    ) return;
+  }
+  origConsoleError(msg);
+};

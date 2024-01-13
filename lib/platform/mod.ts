@@ -4,21 +4,27 @@ import { createDatabase } from "./database.ts";
 import { createNotification } from "./notification.ts";
 
 export type NetzoOptions = {
+  projectId: string;
   apiKey: string;
   baseURL?: string;
 };
 
 /**
- * SDK constructor function for Netzo
+ * Factory function for core Netzo modules
  *
  * @param {string} apiKey - the API key to use for authentication
  * @param {string} baseURL - (internal) the base URL to use for the API
  * @returns {object} - an object of multiple utilities core to Netzo
  */
 export const Netzo = async ({
+  projectId = Deno.env.get("NETZO_PROJECT_ID")!,
   apiKey = Deno.env.get("NETZO_API_KEY")!,
   baseURL = Deno.env.get("NETZO_API_URL") || "https://api.netzo.io",
 }: NetzoOptions = {} as NetzoOptions) => {
+  Deno.env.set("NETZO_PROJECT_ID", projectId);
+  Deno.env.set("NETZO_API_KEY", apiKey);
+  Deno.env.set("NETZO_API_URL", baseURL);
+
   const { api } = createApi({ apiKey, baseURL });
 
   const cron = createCron(api);

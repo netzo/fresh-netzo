@@ -2,11 +2,13 @@ import { defineRoute } from "$fresh/server.ts";
 import { Separator } from "netzo/components/ui/separator.tsx";
 import type { Contact } from "@/data/contacts.ts";
 import { FormContact } from "@/islands/contacts/Form.tsx";
-import { app } from "@/netzo.ts";
+import { netzo } from "@/netzo.ts";
 
 export default defineRoute(async (req, ctx) => {
   const { id } = ctx.params;
-  const data = id === "new" ? {} : await app.db.get<Contact>(["contacts", id]);
+  const data = id === "new"
+    ? {}
+    : await netzo.db.get<Contact>(["contacts", id]);
 
   if (!data) return ctx.renderNotFound();
 

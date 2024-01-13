@@ -1,8 +1,8 @@
-import type { NetzoConfig } from "../../../../framework/mod.ts";
 import { cn } from "../../../../components/utils.ts";
 import { buttonVariants } from "../../../../components/ui/button.tsx";
+import type { UiConfig } from "../mod.ts";
 
-export type NavItemProps = NetzoConfig["ui"]["nav"]["items"][number];
+export type NavItemProps = UiConfig["nav"]["items"][number];
 
 export function NavItem(props: NavItemProps) {
   return (

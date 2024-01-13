@@ -1,5 +1,5 @@
 import type { PluginRoute } from "../../../../deps/$fresh/server.ts";
-import type { NetzoConfig } from "../../../mod.ts";
+import type { AuthConfig } from "../mod.ts";
 import {
   type AuthUser,
   createUser,
@@ -16,7 +16,7 @@ import {
 
 export const getRoutesByProvider = (
   provider: AuthProvider,
-  options: NetzoConfig["auth"]["providers"][AuthProvider],
+  options: AuthConfig["providers"][AuthProvider],
 ): PluginRoute[] => {
   const [signIn, handleCallback, signOut] = getFunctionsByProvider(provider);
 

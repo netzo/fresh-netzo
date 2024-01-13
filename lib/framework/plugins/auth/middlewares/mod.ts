@@ -49,15 +49,6 @@ export async function setAppState(
 
   ctx.state.auth = { ...ctx.state.auth, origin, referer, isApp };
 
-  // if (!isApp) {
-  //   const { NETZO_PROJECT_UID, NETZO_APP_URL } = Deno.env.toObject();
-  //   const appUrl = new URL(
-  //     `/projects/${NETZO_PROJECT_UID}${ctx.url.search}${ctx.url.hash}`,
-  //     NETZO_APP_URL,
-  //   );
-  //   return Response.redirect(appUrl.href, 302);
-  // }
-
   return await ctx.next();
 }
 

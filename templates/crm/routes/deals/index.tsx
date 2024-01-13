@@ -2,7 +2,7 @@ import { defineRoute } from "$fresh/server.ts";
 import type { KanbanProps } from "netzo/components/blocks/kanban/kanban.tsx";
 import { ALIASES, type Deal } from "@/data/deals.ts";
 import { Kanban } from "@/islands/deals/Kanban.tsx";
-import { app } from "@/netzo.ts";
+import { netzo } from "@/netzo.ts";
 
 export const getKanbanOptions = (
   data: Deal[],
@@ -20,7 +20,7 @@ export const getKanbanOptions = (
 };
 
 export default defineRoute(async (req, ctx) => {
-  const data = await app.db.find<Deal>(["deals"]);
+  const data = await netzo.db.find<Deal>(["deals"]);
 
   if (!data) return ctx.renderNotFound();
 

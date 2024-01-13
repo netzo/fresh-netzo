@@ -7,22 +7,21 @@ import { Header } from "../islands/header.tsx";
 import { Footer } from "../islands/footer.tsx";
 import { Nav } from "../islands/nav.tsx";
 import { NavMobile } from "../islands/nav.mobile.tsx";
-import { enabled } from "../../mod.ts";
 
 export default defineApp<NetzoState>((req, ctx) => {
   const { auth, ui } = ctx.state.config;
   const { sessionId, sessionUser } = ctx.state.auth ?? {};
 
-  const mustAuth = enabled(auth) && !sessionId;
+  const mustAuth = !!auth && !sessionId;
 
-  const showNav = enabled(ui?.nav) && !mustAuth;
-  const showHeader = enabled(ui?.header);
-  const showFooter = enabled(ui?.footer);
+  const showNav = !!ui?.nav && !mustAuth;
+  const showHeader = !!ui?.header;
+  const showFooter = true; // enforce Netzo branding
 
   return (
     <html className="h-full overflow-hidden">
       <head>
-        {enabled(ui?.head) && <Head href={ctx.url.href} {...ui.head} />}
+        {!!ui?.head && <Head href={ctx.url.href} {...ui.head} />}
       </head>
       <body
         className={cn(

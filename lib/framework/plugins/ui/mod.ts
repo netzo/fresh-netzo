@@ -1,20 +1,70 @@
 import type { Plugin } from "../../../deps/$fresh/server.ts";
-import type { NetzoConfig } from "../../../framework/mod.ts";
 import { defineConfig, unocss, type UnocssOptions } from "./plugins/unocss.ts";
 import presetNetzo from "./plugins/preset-netzo.ts";
+import type {
+  ShadcnThemeColor,
+  ThemeCSSVarsVariant,
+} from "./plugins/preset-shadcn/types.ts";
 import _App from "./routes/_app.tsx";
 import _404 from "./routes/_404.tsx";
 import _500 from "./routes/_500.tsx";
-import { enabled } from "../mod.ts";
+
+export type UiConfig = UnocssOptions & {
+  head?: {
+    /** A short title for the app to be used in head of the page. */
+    title?: string;
+    /** A short description for the app to be used in head of the page. */
+    description?: string;
+    /** An https or data URL of the favicon to be shown in browser tabs */
+    favicon?: string;
+    /** An https or data URL of a cover image shown when sharing the link */
+    image?: string;
+  };
+  nav?: {
+    /** A short title for the app at the navigation drawer. */
+    title?: string;
+    /** An https or data URL of a cover image at the navigation drawer */
+    image?: string;
+    /** Navigation headers, links with absolute or relative URLs and/or dividers */
+    items?: Array<
+      | { text: string } // header
+      | { icon?: string; text: string; href?: string; target?: string } // link
+      | Record<string | number | symbol, never> // divider (empty object)
+    >;
+  };
+  header?: {
+    /** A short title for the app at the header. */
+    title?: string;
+    /** A short description for the app at the header. */
+    description?: string;
+    /** An https or data URL of a cover image at the header */
+    image?: string;
+  };
+  footer?: {
+    /** HTML content to be rendered at the left side of the footer. */
+    innerHTMLLeft?: string;
+    /** HTML content to be rendered at the right side of the footer. */
+    innerHTMLRight?: string;
+  };
+  theme?: {
+    /** The primary color to be used for UI components. */
+    color?: ShadcnThemeColor | ThemeCSSVarsVariant | {
+      base?: ShadcnThemeColor;
+      color?: Partial<ThemeCSSVarsVariant>;
+    };
+    /** The border radius to be used for UI components. */
+    radius?: number;
+  };
+};
 
 /**
  * Plugin to add layout (nav, header, footer) and theme (colors,
  * typography, etc.) powered by UnoCSS and netzo/components.
  */
-export const ui = (options?: NetzoConfig["ui"] & UnocssOptions): Plugin => {
+export const ui = (options: UiConfig): Plugin => {
   const UI = ["head", "nav", "header", "footer", "theme"];
-  const uiEnabled = !!UI.filter((key) => enabled(options?.[key])).length;
-  if (!uiEnabled) return { name: "ui" }; // skip if ui is set but no plugins are enabled
+  const uiEnabled = !!UI.filter((key) => !!options?.[key]).length;
+  if (!uiEnabled) return { name: "ui" }; // skip if ui but no plugins are set
 
   const {
     theme: { color = "blue", radius = 0.5 } = {},
@@ -29,7 +79,7 @@ export const ui = (options?: NetzoConfig["ui"] & UnocssOptions): Plugin => {
     aot = true,
     ssr = true,
     csr = true,
-  } = options ?? {} as NetzoConfig["ui"] & UnocssOptions;
+  } = options ?? {} as UiConfig;
 
   return {
     ...unocss({ options: { color, radius }, config, aot, ssr, csr }), // { name, entrypoints, renderAsync, buildStart }

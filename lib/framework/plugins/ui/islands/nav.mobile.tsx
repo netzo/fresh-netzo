@@ -1,4 +1,3 @@
-import type { NetzoConfig } from "../../../../framework/mod.ts";
 import { cn } from "../../../../components/utils.ts";
 import { Button } from "../../../../components/ui/button.tsx";
 import { useToggle } from "../../../../composables/toggle.ts";
@@ -8,8 +7,9 @@ import {
   SheetTrigger,
 } from "../../../../components/ui/sheet.tsx";
 import { Nav } from "./nav.tsx";
+import type { UiConfig } from "../mod.ts";
 
-export function NavMobile({ className, ...props }: NetzoConfig["ui"]["nav"]) {
+export function NavMobile({ className, ...props }: UiConfig["nav"]) {
   const { value: open, toggle } = useToggle();
 
   return (

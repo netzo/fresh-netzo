@@ -1,9 +1,9 @@
-import type { NetzoConfig } from "../../../../framework/mod.ts";
 import { cn } from "../../../../components/utils.ts";
 import { Separator } from "../../../../components/ui/separator.tsx";
 import { NavItem } from "./nav-item.tsx";
+import type { UiConfig } from "../mod.ts";
 
-export function Nav({ className, ...props }: NetzoConfig["ui"]["nav"]) {
+export function Nav({ className, ...props }: UiConfig["nav"]) {
   const showNavHeader = props?.image || props?.title;
   return (
     <div className={cn("group flex flex-col gap-4", className)}>

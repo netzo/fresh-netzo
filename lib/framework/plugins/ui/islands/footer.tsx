@@ -1,10 +1,10 @@
-import type { NetzoConfig } from "../../../../framework/mod.ts";
 import { useComputed } from "../../../../deps/@preact/signals.ts";
 import { cn } from "../../../../components/utils.ts";
 import { useTheme } from "../../../../composables/theme.ts";
+import type { UiConfig } from "../mod.ts";
 
 export const Footer = (
-  { className, ...props }: NetzoConfig["ui"]["footer"],
+  { className, ...props }: UiConfig["footer"],
 ) => {
   const { theme } = useTheme();
   const src = useComputed(() =>
@@ -13,22 +13,29 @@ export const Footer = (
   return (
     <footer
       className={cn(
-        "flex items-center justify-center bg-[hsl(var(--background))] p-3",
+        "w-full flex items-center justify-between bg-[hsl(var(--background))] p-3",
         className,
       )}
     >
-      {props?.innerHTML
+      {props?.innerHTMLLeft
         ? (
           <div
-            class="h-[32px]"
-            dangerouslySetInnerHTML={{ __html: props?.innerHTML }}
+            class="hidden md:flex pl-4 text-muted-foreground"
+            dangerouslySetInnerHTML={{ __html: props?.innerHTMLLeft }}
           />
         )
-        : (
-          <a href="https://netzo.io/" target="_blank">
-            <img src={src.value} alt="Built with Netzo" class="h-[32px]" />
-          </a>
-        )}
+        : <span />}
+      <a href="https://netzo.io/" target="_blank">
+        <img src={src.value} alt="Built with Netzo" class="h-[32px]" />
+      </a>
+      {props?.innerHTMLRight
+        ? (
+          <div
+            class="hidden md:flex pr-4 text-muted-foreground"
+            dangerouslySetInnerHTML={{ __html: props?.innerHTMLRight }}
+          />
+        )
+        : <span />}
     </footer>
   );
 };

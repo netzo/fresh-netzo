@@ -1,5 +1,5 @@
 import type { Plugin } from "../../../deps/$fresh/server.ts";
-import type { NetzoConfig } from "../../../framework/mod.ts";
+import type { OAuth2ClientConfig } from "../../../deps/oauth2_client/src/oauth2_client.ts";
 import { type AuthUser } from "../../../framework/plugins/auth/utils/db.ts";
 import {
   ensureSignedIn,
@@ -8,9 +8,26 @@ import {
 } from "./middlewares/mod.ts";
 import { getRoutesByProvider } from "./routes/mod.ts";
 import Auth from "./routes/auth.tsx";
-import { enabled } from "../mod.ts";
 
 export * from "../../../deps/deno_kv_oauth/mod.ts";
+
+export type AuthConfig = {
+  /** A short title for the app to appear above the login form at /auth. */
+  title?: string;
+  /** A short description for the app to appear above the login form at /auth. */
+  description?: string;
+  /** HTML content rendered below auth form e.g. to display a link to the terms of service via an a tag. */
+  caption?: string;
+  providers: {
+    netzo?: Record<string | number | symbol, never>; // (empty object)
+    email?: Record<string | number | symbol, never>; // (empty object)
+    google?: OAuth2ClientConfig;
+    github?: OAuth2ClientConfig;
+    gitlab?: OAuth2ClientConfig;
+    auth0?: OAuth2ClientConfig;
+    okta?: OAuth2ClientConfig;
+  };
+};
 
 export type AuthState = {
   // session:
@@ -32,13 +49,18 @@ export type AuthState = {
  * - `GET /auth/{provider}/callback` for the callback page
  * - `GET /auth/signout` for the sign-out page
  */
-export const auth = (options: NetzoConfig["auth"]): Plugin => {
-  if (!enabled(options)) return { name: "auth" };
+export const auth = (options: AuthConfig): Plugin => {
+  options ??= {} as AuthConfig;
+  options.title ??= "Sign In";
+  options.description ??= "Sign in to access the app";
+  options.caption ??=
+    'By signing in you agree to the <a href="/" target="_blank">Terms of Service</a>';
+  options.providers ??= {};
 
   const authRoutes = [
     { path: "/auth", component: Auth },
     ...Object.keys(options.providers)
-      .filter((p) => enabled(options?.providers?.[p]))
+      .filter((p) => !!options?.providers?.[p])
       .flatMap((p) => getRoutesByProvider(p, options?.providers?.[p])),
   ];
 

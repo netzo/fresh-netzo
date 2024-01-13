@@ -1,4 +1,4 @@
-import type { NetzoConfig } from "../../../../mod.ts";
+import type { AuthConfig } from "../../mod.ts";
 import {
   handleCallback,
   signIn,
@@ -38,15 +38,7 @@ import {
 import { createAuth0OAuthConfig, getUserAuth0, isAuth0Setup } from "./auth0.ts";
 import { createOktaOAuthConfig, getUserOkta, isOktaSetup } from "./okta.ts";
 
-export type AuthProvider =
-  | "netzo"
-  // custom:
-  | "email"
-  | "google"
-  | "github"
-  | "gitlab"
-  | "auth0"
-  | "okta";
+export type AuthProvider = keyof AuthConfig["providers"];
 
 const setFromOptionsIfNotInEnv = (name: string, value: string) => {
   if (!value) value = Deno.env.get(name)!;
@@ -55,7 +47,7 @@ const setFromOptionsIfNotInEnv = (name: string, value: string) => {
 
 export const getAuthConfig = (
   provider: AuthProvider,
-  options: NetzoConfig["auth"]["providers"][AuthProvider],
+  options: AuthConfig["providers"][AuthProvider],
 ) => {
   const getError = (provider: AuthProvider) =>
     new Error(

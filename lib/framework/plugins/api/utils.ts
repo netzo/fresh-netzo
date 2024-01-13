@@ -1,3 +1,5 @@
+import { ApiConfig } from "./mod.ts";
+
 export const METHODS = [
   "find",
   "get",
@@ -5,7 +7,7 @@ export const METHODS = [
   "update",
   "patch",
   "remove",
-] as NetzoConfig["api"]["methods"];
+] as ApiConfig["methods"];
 
 export const ERRORS = {
   missingApiKey: () => new Response("Missing API key", { status: 401 }),

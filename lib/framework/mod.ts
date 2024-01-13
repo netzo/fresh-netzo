@@ -5,22 +5,25 @@
 /// <reference lib="deno.ns" />
 /// <reference lib="deno.unstable" />
 
-import { start } from "../deps/$fresh/server.ts";
-import { Netzo } from "../core/mod.ts";
-import { log, LOGS } from "./utils/console.ts";
+import { type FreshConfig, start } from "../deps/$fresh/server.ts";
+import { replace } from "../deps/object-replace-mustache.ts";
+import { Netzo } from "../platform/mod.ts";
+import { log, LOGS, logWarning } from "./utils/console.ts";
 import { setEnvVars } from "./utils/mod.ts";
-// import { createClient } from "../cli/src/utils/netzo.ts";
-import { resolveConfig } from "./config.ts";
-import type { NetzoConfig, Project } from "./types.ts";
-import { auth, AuthState } from "./plugins/auth/mod.ts";
-import { api } from "./plugins/api/mod.ts";
-import { ui } from "./plugins/ui/mod.ts";
-import { devtools } from "./plugins/devtools/mod.ts";
+import type { Project } from "./types.ts";
+import { auth, type AuthConfig, type AuthState } from "./plugins/auth/mod.ts";
+import { api, type ApiConfig } from "./plugins/api/mod.ts";
+import { ui, type UiConfig } from "./plugins/ui/mod.ts";
+import { devtools, type DevtoolsConfig } from "./plugins/devtools/mod.ts";
 
+export * from "../platform/mod.ts";
 export * from "./types.ts";
 
-export type NetzoApp = Awaited<ReturnType<typeof Netzo>> & {
-  start: () => Promise<void>;
+export type NetzoConfig = FreshConfig & {
+  auth?: AuthConfig;
+  ui?: UiConfig;
+  api?: ApiConfig;
+  devtools?: DevtoolsConfig;
 };
 
 export type NetzoState = {
@@ -31,22 +34,19 @@ export type NetzoState = {
   [k: string]: unknown;
 };
 
-// WORKAROUND: until resolution of https://github.com/denoland/fresh/issues/1773#issuecomment-1763502518
-const origConsoleError = console.error;
-console.error = (msg) => {
-  if (typeof msg === "string" && msg.includes("Improper nesting of table")) {
-    return;
-  }
-  origConsoleError(msg);
+export type NetzoApp = Awaited<ReturnType<typeof Netzo>> & {
+  start: () => Promise<void>;
 };
 
+/**
+ * Factory function for Netzo apps
+ *
+ * @param {NetzoConfit} partialConfig - the Netzo app config object
+ * @returns {object} - an object of multiple utilities core to Netzo
+ */
 export async function createNetzoApp(
-  projectIdOrConfig: Project["_id"] | Partial<NetzoConfig>,
+  partialConfig: Partial<NetzoConfig>,
 ): Promise<NetzoApp> {
-  if (typeof projectIdOrConfig === "string") {
-    Deno.env.set("NETZO_PROJECT_ID", projectIdOrConfig); // inline ID takes precedence
-  }
-
   const {
     NETZO_ENV = Deno.env.get("DENO_REGION") ? "production" : "development",
     NETZO_PROJECT_ID,
@@ -55,10 +55,14 @@ export async function createNetzoApp(
     NETZO_APP_URL = "https://app.netzo.io",
   } = Deno.env.toObject();
 
-  if (!NETZO_PROJECT_ID) throw new Error(LOGS.missingProjectId);
-  if (!NETZO_API_KEY) throw new Error(LOGS.missingApiKey);
+  if (!NETZO_PROJECT_ID) logWarning(LOGS.missingProjectId);
+  if (!NETZO_API_KEY) logWarning(LOGS.missingApiKey);
 
-  const app = await Netzo({ apiKey: NETZO_API_KEY, baseURL: NETZO_API_URL });
+  const app = await Netzo({
+    projectId: NETZO_PROJECT_ID,
+    apiKey: NETZO_API_KEY,
+    baseURL: NETZO_API_URL,
+  });
 
   const DEV = ["development"].includes(NETZO_ENV);
 
@@ -74,46 +78,20 @@ export async function createNetzoApp(
   Deno.env.set("NETZO_APP_URL", NETZO_APP_URL);
 
   if (DEV) setEnvVars(project.envVars?.development ?? {});
-  const appUrl = Deno.env.get("NETZO_APP_URL") ?? "https://app.netzo.io";
 
-  // 1) get inline or remote config
-  let config: NetzoConfig = typeof projectIdOrConfig === "object"
-    ? projectIdOrConfig // inline
-    : project.config as NetzoConfig; // remote
+  // 1) render mustache values
+  let config = replace(partialConfig, Deno.env.toObject());
 
-  // 2) merge defaults and config and render mustache values
-  config = resolveConfig(config, project);
-
-  // 3) build state (pass single kv instance to plugins for performance)
+  // 2) build state (pass single kv instance to plugins for performance)
   const state: NetzoState = { app, config };
 
   const { plugins = [] } = config;
 
   if (DEV) {
-    // [live-reload] listen for "project:patched" events and restart server
-    // NOTE: this is only available in development mode since in production,
-    // Spawning subprocesses is not allowed on Deno Deploy (throws PermissionDenied)
-    // DISABLED: createClient requires importing feathersjs which blows up the bundle
-    // so we disable live-reload for now, until we find a better solution (SSE or similar)
-    //   const app = await createClient({
-    //     apiKey: NETZO_API_KEY,
-    //     baseURL: NETZO_API_URL,
-    //   });
-    //   const main = Deno.mainModule.replace("file://", "").replace(
-    //     "netzo.ts",
-    //     "fresh.gen.ts",
-    //   );
-    //   app.service("projects").on("patched", async (_project: Project) => {
-    //     log("✨ App configuration updated, restarting server...");
-    //     // trigger reload without modifying file using touch
-    //     const process = new Deno.Command("touch", { args: [main] }).spawn();
-    //     await process.status;
-    //   });
-    //   logInfo(`Listening for updates of app configuration...`);
-
-    log(
-      `\nOpen in netzo at ${appUrl}/workspaces/${project.workspaceId}/projects/${project._id}`,
-    );
+    const appUrl = Deno.env.get("NETZO_APP_URL") ?? "https://app.netzo.io";
+    const appUrlProject =
+      `${appUrl}/workspaces/${project.workspaceId}/projects/${project._id}`;
+    log(`\nOpen in netzo at ${appUrlProject}`);
   }
 
   config = {
@@ -134,9 +112,8 @@ export async function createNetzoApp(
         ],
       },
       ...devtools(),
-      // IMPORTANT: must register all plugins (even if disabled) to ensure
-      // they are bundled at build time so that we do not have to redeploy
-      // when making changes to the project.config from the UI at app.netzo.io
+      // IMPORTANT: must register all plugins (even if disabled) to ensure they
+      // are always bundled at build time since some might depend on others
       ...[
         auth(state.config.auth),
         ui(state.config.ui),

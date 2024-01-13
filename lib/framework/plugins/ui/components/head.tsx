@@ -1,9 +1,9 @@
-import type { NetzoConfig } from "../../../../framework/mod.ts";
 import { ComponentChildren } from "../../../../deps/preact.ts";
 import { Head as _Head } from "../../../../deps/$fresh/runtime.ts";
+import type { UiConfig } from "../mod.ts";
 
 export const Head = (
-  props: NetzoConfig["ui"]["head"] & {
+  props: UiConfig["head"] & {
     href: string;
     children?: ComponentChildren;
   },
@@ -23,7 +23,7 @@ export const Head = (
   );
 };
 
-export const Meta = (props: NetzoConfig["ui"]["head"]) => {
+export const Meta = (props: UiConfig["head"]) => {
   return (
     <>
       {/* HTML Meta Tags */}

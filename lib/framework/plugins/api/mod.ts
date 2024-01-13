@@ -1,14 +1,24 @@
 import type { Plugin } from "../../../deps/$fresh/server.ts";
 import { isHttpError } from "../../../deps/std/http/http_errors.ts";
-import type { NetzoConfig } from "../../../framework/mod.ts";
 import { parseRequestBody } from "../../../framework/utils/mod.ts";
-import { createDatabase } from "../../../core/database.ts";
+import { createDatabase } from "../../../platform/database.ts";
 import { ERRORS, METHODS, parseSearchParams } from "./utils.ts";
-import { enabled } from "../mod.ts";
 
 const kv = await Deno.openKv(Deno.env.get("DENO_KV_PATH"));
 
 const db = createDatabase(kv);
+
+export type ApiConfig = {
+  /** Wether to require authentication using project's default API key
+   * `NETZO_API_KEY` in the "x-api-key" header or "apiKey" query parameter. */
+  auth?: boolean;
+  /** The route path to mount the API on. Defaults to "/api". */
+  path?: string;
+  /** The field name to use as the primary key. Defaults to "id". */
+  idField?: string;
+  /** The methods to enable. Defaults to all methods. */
+  methods?: ("find" | "get" | "create" | "update" | "patch" | "remove")[];
+};
 
 /**
  * A fresh plugin that registers middleware and handlers to
@@ -22,15 +32,15 @@ const db = createDatabase(kv);
  * - `PATCH /api?$key=<KEY>` patch an entry by key
  * - `DELETE /api?$key=<KEY>` remove an entry by key
  */
-export const api = (options?: NetzoConfig["api"]): Plugin => {
-  if (!enabled(options)) return { name: "api" };
+export const api = (options: ApiConfig): Plugin => {
+  options ??= {} as ApiConfig;
+  options.auth ??= true;
+  options.path ??= "/api";
+  options.idField ??= "id";
+  options.methods ??= METHODS;
 
-  const {
-    auth,
-    path = "/api",
-    idField = "id",
-    methods = METHODS,
-  } = options ?? {};
+  const { auth, path, idField, methods } = options ?? {};
+
   return {
     name: "api",
     middlewares: [

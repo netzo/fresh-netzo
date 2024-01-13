@@ -2,7 +2,7 @@ import { defineRoute } from "$fresh/server.ts";
 import type { TableProps } from "netzo/components/blocks/table/table.tsx";
 import { type Account, ALIASES } from "@/data/accounts.ts";
 import { Table } from "@/islands/accounts/Table.tsx";
-import { app } from "@/netzo.ts";
+import { netzo } from "@/netzo.ts";
 
 export const getTableOptions = (
   data: Account[],
@@ -45,7 +45,7 @@ export const getTableOptions = (
 };
 
 export default defineRoute(async (req, ctx) => {
-  const data = await app.db.find<Account>(["accounts"]);
+  const data = await netzo.db.find<Account>(["accounts"]);
 
   if (!data) return ctx.renderNotFound();
 

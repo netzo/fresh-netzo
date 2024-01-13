@@ -1,9 +1,9 @@
-import type { NetzoConfig } from "../../../../framework/mod.ts";
 import { cn } from "../../../../components/utils.ts";
 import { ThemeToggle } from "../../../../components/ui/theme-toggle.tsx";
 import { HeaderAuth } from "./header.auth.tsx";
+import type { UiConfig } from "../mod.ts";
 
-export function Header({ className, ...props }: NetzoConfig["ui"]["header"]) {
+export function Header({ className, ...props }: UiConfig["header"]) {
   return (
     <header
       className={cn(
