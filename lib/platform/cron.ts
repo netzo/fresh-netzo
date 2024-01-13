@@ -12,33 +12,46 @@ export const createCron = (api: ApiClient): typeof Deno.cron => {
       let options: CronOptions | undefined;
       let fn: CronFn;
 
-      if (typeof opt1 === "function" && typeof opt2 !== "function") {
-        fn = opt1;
-        options = opt2;
-      } else if (typeof opt1 !== "function" && typeof opt2 === "function") {
+      // Deno.cron(name, schedule, options, handler)
+      if (typeof opt1 === "object" && typeof opt2 === "function") {
         fn = opt2;
         options = opt1;
+      } // Deno.cron(name, schedule, handler)
+      else if (typeof opt1 === "function") {
+        fn = opt1;
       }
 
       const projectId = Deno.env.get("NETZO_PROJECT_ID")!;
-      const data = { projectId, name, schedule, status: "running", duration: 0 };
+      const data = {
+        name,
+        schedule,
+        status: "running",
+        startedAt: "",
+        endedAt: "",
+        duration: 0,
+        env: Deno.env.get("NETZO_ENV")!,
+        projectId,
+      };
       api.crons.post(data); // do not await
 
       const query = { name, projectId };
 
       async function run(): Promise<void> {
-        const start = Date.now();
+        console.time(`[cron] ${name}`);
+        const startedAt = Date.now();
+        data.startedAt = new Date(startedAt).toISOString();
         try {
-          console.time(`[cron] ${name}`);
           api.crons.patch(data, query); // do not await
           await fn();
-          data.status = "done";
+          data.status = "success";
         } catch (err) {
           console.error(`[cron] ${name} failed: ${err.message}`);
           data.status = "failed";
         } finally {
           console.timeEnd(`[cron] ${name}`);
-          data.duration = Date.now() - start;
+          const endedAt = Date.now();
+          data.endedAt = new Date(endedAt).toISOString();
+          data.duration = endedAt - startedAt;
           api.crons.patch(data, query); // do not await
         }
       }
