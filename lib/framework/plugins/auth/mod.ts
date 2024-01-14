@@ -57,7 +57,7 @@ export const auth = (options: AuthConfig): Plugin => {
     'By signing in you agree to the <a href="/" target="_blank">Terms of Service</a>';
   options.providers ??= {};
 
-  const PROVIDERS = [
+  const authEnabled = [
     "netzo",
     "email",
     "google",
@@ -65,10 +65,7 @@ export const auth = (options: AuthConfig): Plugin => {
     "gitlab",
     "auth0",
     "okta",
-  ];
-  const authEnabled = !!PROVIDERS.filter((key) => !!options?.providers?.[key])
-    .length;
-  console.log({ authEnabled });
+  ].some((key) => !!options?.providers?.[key]);
   if (!authEnabled) return { name: "auth" }; // skip if auth but no providers are set
 
   const authRoutes = [

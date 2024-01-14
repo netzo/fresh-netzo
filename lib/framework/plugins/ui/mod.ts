@@ -62,8 +62,13 @@ export type UiConfig = UnocssOptions & {
  * typography, etc.) powered by UnoCSS and netzo/components.
  */
 export const ui = (options: UiConfig): Plugin => {
-  const UI = ["head", "nav", "header", "footer", "theme"];
-  const uiEnabled = !!UI.filter((key) => !!options?.[key]).length;
+  const uiEnabled = [
+    "head",
+    "nav",
+    "header",
+    "footer",
+    "theme",
+  ].some((key) => !!options?.[key]);
   if (!uiEnabled) return { name: "ui" }; // skip if ui but no plugins are set
 
   const {
