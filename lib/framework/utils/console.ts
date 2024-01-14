@@ -53,6 +53,11 @@ console.error = (msg) => {
     if (
       msg.includes(`Comparison using the "!==" operator here is always true`)
     ) return;
+    if (
+      msg.includes(
+        `Warning: Not implemented: ClientRequest.options.createConnection`,
+      )
+    ) return;
   }
   origConsoleError(msg);
 };
