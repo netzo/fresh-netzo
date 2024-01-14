@@ -38,8 +38,8 @@ export const createCron = (api: ApiClient): typeof Deno.cron => {
 
       async function run(): Promise<void> {
         console.time(`[cron] ${name}`);
-        const startedAt = Date.now();
         data.status = "running";
+        const startedAt = Date.now();
         data.startedAt = new Date(startedAt).toISOString();
         try {
           api.crons.patch(data, query); // do not await
