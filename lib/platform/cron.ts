@@ -25,7 +25,7 @@ export const createCron = (api: ApiClient): typeof Deno.cron => {
       const data = {
         name,
         schedule,
-        status: "running",
+        status: "idle",
         startedAt: "",
         endedAt: "",
         duration: 0,
@@ -39,6 +39,7 @@ export const createCron = (api: ApiClient): typeof Deno.cron => {
       async function run(): Promise<void> {
         console.time(`[cron] ${name}`);
         const startedAt = Date.now();
+        data.status = "running";
         data.startedAt = new Date(startedAt).toISOString();
         try {
           api.crons.patch(data, query); // do not await
