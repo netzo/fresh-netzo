@@ -70,7 +70,7 @@ export type Args = {
   static: boolean;
   build: boolean;
   production: boolean;
-  description: string | null;
+  description: string;
   exclude: string[];
   include: string[];
   project: string | null;
@@ -96,7 +96,7 @@ export default async function (rawArgs: RawArgs): Promise<void> {
     static: !rawArgs["no-static"], // negate the flag
     build: !!rawArgs.build,
     production: !!rawArgs.production,
-    description: rawArgs.description ? String(rawArgs.description) : null,
+    description: rawArgs.description ? String(rawArgs.description) : '',
     project: rawArgs.project ? String(rawArgs.project) : NETZO_PROJECT_ID,
     importMap: rawArgs["import-map"] ? String(rawArgs["import-map"]) : null,
     lockFile: rawArgs["lock-file"] ? String(rawArgs["lock-file"]) : null,
@@ -173,7 +173,7 @@ type DeployOpts = {
   static: boolean;
   build: boolean;
   production: boolean;
-  description: string | null;
+  description: string;
   exclude: string[];
   include: string[];
   project: string;
@@ -308,7 +308,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
     assets,
     envVars: {}, // set by netzo on deployment (project.envVars[env] empty for security)
     databases: undefined, // set by netzo on deployment (from project.databaseId)
-    description: opts.description || null,
+    description: opts.description,
   };
 
   let deploySpinner: Spinner | null = null;
@@ -363,7 +363,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
             return error(message); // exits with error code 1
           }
 
-            // app.service("deployments").removeAllListeners("progress"); // avoid memory leak
+          // app.service("deployments").removeAllListeners("progress"); // avoid memory leak
         }
       },
     );

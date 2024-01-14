@@ -55,7 +55,7 @@ console.error = (msg) => {
     ) return;
     if (
       msg.includes(
-        `Warning: Not implemented: ClientRequest.options.createConnection`,
+        `Not implemented: ClientRequest.options.createConnection`,
       )
     ) return;
   }
