@@ -8,11 +8,6 @@ export const netzo = await Netzo({
 }); // [optional] loaded from .env file
 
 export const app = await createNetzoApp({
-  auth: {
-    providers: {
-      netzo: {},
-    },
-  },
   ui: {
     head: {
       title: "CRM Template | Netzo",
