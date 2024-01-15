@@ -96,7 +96,7 @@ export default async function (rawArgs: RawArgs): Promise<void> {
     static: !rawArgs["no-static"], // negate the flag
     build: !!rawArgs.build,
     production: !!rawArgs.production,
-    description: rawArgs.description ? String(rawArgs.description) : '',
+    description: rawArgs.description ? String(rawArgs.description) : "",
     project: rawArgs.project ? String(rawArgs.project) : NETZO_PROJECT_ID,
     importMap: rawArgs["import-map"] ? String(rawArgs["import-map"]) : null,
     lockFile: rawArgs["lock-file"] ? String(rawArgs["lock-file"]) : null,
@@ -363,7 +363,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
             return error(message); // exits with error code 1
           }
 
-          // app.service("deployments").removeAllListeners("progress"); // avoid memory leak
+            // app.service("deployments").removeAllListeners("progress"); // avoid memory leak
         }
       },
     );

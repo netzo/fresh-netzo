@@ -55,7 +55,7 @@ export const auth = (options: AuthConfig): Plugin => {
   options ??= {} as AuthConfig;
   options.title ??= "Sign In";
   options.description ??= "Sign in to access the app";
-  options.caption ??= '' // e.g. 'By signing in you agree to the <a href="/" target="_blank">Terms of Service</a>';
+  options.caption ??= ""; // e.g. 'By signing in you agree to the <a href="/" target="_blank">Terms of Service</a>';
   options.providers ??= {};
 
   const authEnabled = [
