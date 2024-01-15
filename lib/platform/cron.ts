@@ -5,7 +5,7 @@ export type CronOptions = { backoffSchedule?: number[]; signal?: AbortSignal };
 export type CronFn = () => void | Promise<void>;
 export type CronParams = Parameters<typeof Deno.cron>;
 
-export const createCron = (api: ApiClient): typeof Deno.cron => {
+export const createCron = (api: ApiClient) => {
   return Deno.cron = new Proxy(Deno.cron, {
     apply(target, thisArg, argArray: CronParams) {
       const [name, schedule, opt1, opt2] = argArray;

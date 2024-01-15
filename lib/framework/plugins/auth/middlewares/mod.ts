@@ -3,7 +3,7 @@ import { getSessionId } from "../../../../deps/deno_kv_oauth/mod.ts";
 import { getUserBySession } from "../../../../framework/plugins/auth/utils/db.ts";
 import type { NetzoState } from "../../../../framework/mod.ts";
 
-const skipAuth = (_req: Request, ctx: FreshContext<NetzoState>) => {
+const skip = (_req: Request, ctx: FreshContext<NetzoState>) => {
   if (!["route"].includes(ctx.destination)) return true;
   if (ctx.url.pathname.startsWith("/auth/")) return true; // skip auth routes (signin, callback, signout)
   if (ctx.url.pathname.startsWith("/api")) return true; // skip API routes
@@ -14,7 +14,7 @@ export async function setSessionState(
   req: Request,
   ctx: FreshContext<NetzoState>,
 ) {
-  if (skipAuth(req, ctx)) return await ctx.next();
+  if (skip(req, ctx)) return await ctx.next();
 
   const sessionId = await getSessionId(req);
   ctx.state.auth = {
@@ -36,7 +36,7 @@ export async function setAppState(
   req: Request,
   ctx: FreshContext<NetzoState>,
 ) {
-  if (skipAuth(req, ctx)) return await ctx.next();
+  if (skip(req, ctx)) return await ctx.next();
 
   // const host = req.headers.get("host"); // e.g. my-project-906698.netzo.io
   const origin = req.headers.get("origin")!; // e.g. https://my-project-906698.netzo.io
@@ -56,7 +56,7 @@ export async function ensureSignedIn(
   req: Request,
   ctx: FreshContext<NetzoState>,
 ) {
-  if (skipAuth(req, ctx)) return await ctx.next();
+  if (skip(req, ctx)) return await ctx.next();
 
   // IMPORTANT: disable client-side navigation for around logout links to
   // skip partials which cause infinite redirects in auth middleware
