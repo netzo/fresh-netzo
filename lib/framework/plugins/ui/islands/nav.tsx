@@ -37,8 +37,13 @@ export function Nav({ className, ...props }: NavProps) {
 
       <nav f-client-nav className="grid gap-1">
         {props.items?.map((item, index) => {
-          if ("href" in item) return <NavItem key={index} item={item} />;
-          else if ("text" in item) {
+          if ("href" in item) {
+            return (
+              <div class="px-1">
+                <NavItem key={index} item={item} />
+              </div>
+            );
+          } else if ("text" in item) {
             return (
               <h3 className="mx-2 text-xs font-medium text-muted-foreground">
                 {item.text}

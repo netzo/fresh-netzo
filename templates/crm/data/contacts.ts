@@ -1,5 +1,5 @@
 import { z } from "netzo/deps/zod/mod.ts";
-import { accountSchema } from "@/data/accounts.ts";
+import { accountSchema } from "./accounts.ts";
 
 // schemas:
 
@@ -19,7 +19,7 @@ export const contactSchema = z.object({
     marketing: z.boolean(),
   }),
   accountId: z.string(),
-  account: accountSchema,
+  account: z.optional(accountSchema),
 });
 
 // types:

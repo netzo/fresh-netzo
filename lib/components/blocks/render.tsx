@@ -1,3 +1,4 @@
+import type { ComponentChildren } from "../../deps/preact.ts";
 import { _get } from "../../deps/lodash.get.ts";
 import { cn } from "../utils.ts";
 import { Checkbox } from "../ui/checkbox.tsx";
@@ -11,22 +12,27 @@ export const renderCell =
   (formatter = (v: unknown) => v) => ({ column, row }) => {
     const value = _get(row.original, column.id.replaceAll("_", "."));
     const isNegativeNumber = typeof value === "number" && value < 0;
-    const onKeyPress = (e: JSX.KeyboardEvent<HTMLDivElement>) => {
-      if (["Enter"].includes(event.key)) {
-        e.preventDefault();
-        e.target.blur();
-      }
-    };
+    // const onKeyPress = async (e: JSX.KeyboardEvent<HTMLDivElement>) => {
+    //   if (!IS_BROWSER) return;
+    //   if (["Enter"].includes(event.key)) {
+    //     e.preventDefault();
+    //     e.target.blur();
+    //     const value = e.target.textContent;
+    //     console.log(value);
+    //     const url = new URL(`/`, window.location.origin);
+    //     const response = await fetch();
+    //   }
+    // };
     return (
       <div
-        contenteditable
-        onKeyPress={onKeyPress}
+        // contenteditable
+        // onKeyPress={onKeyPress}
         className={cn(
           "w-max",
           isNegativeNumber ? `text-left text-red7` : "text-left",
         )}
       >
-        {formatter(value)}
+        {formatter(value) as ComponentChildren}
       </div>
     );
   };

@@ -69,6 +69,7 @@ export function presetShadcn(
 
           * {
             border-color: hsl(var(--border));
+            min-width: 0;
           }
 
           body {

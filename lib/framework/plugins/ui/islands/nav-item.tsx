@@ -12,7 +12,7 @@ export function NavItem(props: NavItemProps) {
       target={props.target}
       className={cn(
         buttonVariants({ variant: "ghost" }),
-        "flex w-full justify-start mx-1",
+        "flex w-full justify-start",
         "hover:cursor-pointer hover:text-[hsl(var(--primary))]",
         // `aria-[current='true']:text-[hsl(var(--primary))]`, // ancestor links
         `aria-[current='page']:text-[hsl(var(--primary))]`, // current page
