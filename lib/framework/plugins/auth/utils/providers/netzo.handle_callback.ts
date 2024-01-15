@@ -1,5 +1,5 @@
 // adapted from https://github.com/denoland/deno_kv_oauth/blob/main/lib/handle_callback.ts
-import type { Tokens } from "../../../../../deps/deno_kv_oauth/deps.ts";
+import type { Tokens } from "../../../../../deps/oauth2_client/src/types.ts";
 import {
   getCookies,
   setCookie,
@@ -23,7 +23,7 @@ import { NetzoClientConfig } from "./netzo.ts";
 export async function handleCallback(
   request: Request,
   /** @see {@linkcode NetzoClientConfig} */
-  clientConfig: NetzoClientConfig,
+  _clientConfig: NetzoClientConfig,
 ) {
   const oauthCookieName = getCookieName(
     OAUTH_COOKIE_NAME,
