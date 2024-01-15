@@ -36,12 +36,6 @@ export async function handleCallback(
   const url = new URL(request.url); //?.searchParams.get("access_token")
   const accessToken = url.searchParams.get("access_token")!;
 
-  console.log({
-    clientConfig,
-    oauthSession,
-    accessToken,
-  });
-
   const tokens: Tokens = {
     accessToken,
     tokenType: "Bearer",
