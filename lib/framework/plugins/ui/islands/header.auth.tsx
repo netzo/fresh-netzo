@@ -16,8 +16,8 @@ import {
 } from "../../../../components/ui/dropdown-menu.tsx";
 import type { AuthUser } from "../../../../framework/plugins/auth/utils/db.ts";
 
-type HeaderAuthProps = {
-  sessionUser: AuthUser;
+export type HeaderAuthProps = {
+  sessionUser?: AuthUser;
 };
 
 // IMPORTANT: make sure to disable client-side navigation

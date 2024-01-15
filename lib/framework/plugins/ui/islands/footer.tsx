@@ -1,10 +1,15 @@
+import type { JSX } from "../../../../deps/preact.ts";
 import { useComputed } from "../../../../deps/@preact/signals.ts";
 import { cn } from "../../../../components/utils.ts";
 import { useTheme } from "../../../../composables/theme.ts";
 import type { UiConfig } from "../mod.ts";
 
+export type FooterProps =
+  & JSX.HTMLAttributes<HTMLDivElement>
+  & UiConfig["footer"];
+
 export const Footer = (
-  { className, ...props }: UiConfig["footer"],
+  { className, ...props }: FooterProps,
 ) => {
   const { theme } = useTheme();
   const src = useComputed(() =>
@@ -13,7 +18,7 @@ export const Footer = (
   return (
     <footer
       className={cn(
-        "w-full flex items-center justify-between bg-[hsl(var(--background))] p-3",
+        "sticky bottom-0 w-full flex items-center justify-center md:justify-between bg-[hsl(var(--background))] p-3",
         className,
       )}
     >

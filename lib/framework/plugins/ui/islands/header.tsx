@@ -1,9 +1,16 @@
+import type { JSX } from "../../../../deps/preact.ts";
 import { cn } from "../../../../components/utils.ts";
 import { ThemeToggle } from "../../../../components/ui/theme-toggle.tsx";
 import { HeaderAuth } from "./header.auth.tsx";
 import type { UiConfig } from "../mod.ts";
+import type { HeaderAuthProps } from "./header.auth.tsx";
 
-export function Header({ className, ...props }: UiConfig["header"]) {
+export type HeaderProps =
+  & JSX.HTMLAttributes<HTMLDivElement>
+  & UiConfig["header"]
+  & HeaderAuthProps;
+
+export function Header({ className, ...props }: HeaderProps) {
   return (
     <header
       className={cn(

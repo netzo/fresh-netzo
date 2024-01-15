@@ -1,9 +1,14 @@
+import type { JSX } from "../../../../deps/preact.ts";
 import { cn } from "../../../../components/utils.ts";
 import { Separator } from "../../../../components/ui/separator.tsx";
 import { NavItem } from "./nav-item.tsx";
 import type { UiConfig } from "../mod.ts";
 
-export function Nav({ className, ...props }: UiConfig["nav"]) {
+export type NavProps =
+  & JSX.HTMLAttributes<HTMLDivElement>
+  & UiConfig["nav"];
+
+export function Nav({ className, ...props }: NavProps) {
   const showNavHeader = props?.image || props?.title;
   return (
     <div className={cn("group flex flex-col gap-4", className)}>
@@ -31,18 +36,15 @@ export function Nav({ className, ...props }: UiConfig["nav"]) {
       )}
 
       <nav f-client-nav className="grid gap-1">
-        {props.items.map((item, index) => {
+        {props.items?.map((item, index) => {
           if ("href" in item) return <NavItem key={index} item={item} />;
           else if ("text" in item) {
             return (
-              <h3
-                className="mx-2 text-xs font-medium text-muted-foreground"
-                key={index}
-              >
+              <h3 className="mx-2 text-xs font-medium text-muted-foreground">
                 {item.text}
               </h3>
             );
-          } else return <Separator key={index} />;
+          } else return <Separator />;
         })}
       </nav>
     </div>

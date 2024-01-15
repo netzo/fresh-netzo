@@ -35,8 +35,12 @@ export default defineApp<NetzoState>((req, ctx) => {
         )}
         <div className="flex flex-col w-full h-full overflow-x-hidden">
           {showHeader && (
-            <Header {...ui.header} nav={ui.nav} sessionUser={sessionUser}>
-              {showNav && <NavMobile {...ui.nav} className="flex md:hidden" />}
+            <Header {...ui.header} sessionUser={sessionUser}>
+              {showNav && (
+                <NavMobile {...ui.nav} className="flex md:hidden">
+                  <Nav {...ui.nav} />
+                </NavMobile>
+              )}
             </Header>
           )}
 
@@ -54,7 +58,7 @@ export default defineApp<NetzoState>((req, ctx) => {
               </main>
             )}
 
-          {showFooter && <Footer className="sticky bottom-0" {...ui.footer} />}
+          {showFooter && <Footer {...(ui ? ui.footer : {})} />}
         </div>
       </body>
     </html>

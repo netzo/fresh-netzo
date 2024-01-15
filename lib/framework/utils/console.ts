@@ -46,13 +46,19 @@ export function error(message: string): never {
 }
 
 // WORKAROUND: until resolution of https://github.com/denoland/fresh/issues/1773#issuecomment-1763502518
+const origConsoleWarn = console.warn;
+console.warn = (msg) => {
+  if (typeof msg === "string") {
+    if (
+      msg.includes(`Comparison using the "!==" operator here is always true`)
+    ) return;
+  }
+  origConsoleWarn(msg);
+};
 const origConsoleError = console.error;
 console.error = (msg) => {
   if (typeof msg === "string") {
     if (msg.includes("Improper nesting of table")) return;
-    if (
-      msg.includes(`Comparison using the "!==" operator here is always true`)
-    ) return;
     if (
       msg.includes(
         `Not implemented: ClientRequest.options.createConnection`,
