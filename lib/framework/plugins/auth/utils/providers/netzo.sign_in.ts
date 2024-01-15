@@ -1,8 +1,6 @@
 // adapted from https://github.com/denoland/deno_kv_oauth/blob/main/lib/sign_in.ts
 import {
   Cookie,
-  OAuth2Client,
-  type OAuth2ClientConfig,
   SECOND,
   setCookie,
 } from "../../../../../deps/deno_kv_oauth/deps.ts";
@@ -15,6 +13,7 @@ import {
   redirect,
 } from "../../../../../deps/deno_kv_oauth/lib/_http.ts";
 import { setOAuthSession } from "../../../../../deps/deno_kv_oauth/lib/_kv.ts";
+import { NetzoClientConfig } from "./netzo.ts";
 
 export interface SignInOptions {
   /** URL parameters that are appended to the authorization URI, if defined. */
@@ -22,26 +21,13 @@ export interface SignInOptions {
 }
 
 /**
- * Handles the sign-in request and process for the given OAuth configuration
+ * Handles the sign-in request and process for the given Netzo configuration
  * and redirects the client to the authorization URL.
- *
- * @see {@link https://deno.land/x/deno_kv_oauth#redirects-after-sign-in-and-sign-out}
- *
- * @example
- * ```ts
- * import { signIn, createGitHubOAuthConfig } from "https://deno.land/x/deno_kv_oauth@$VERSION/mod.ts";
- *
- * const oauthConfig = createGitHubOAuthConfig();
- *
- * export async function handleSignIn(request: Request) {
- *  return await signIn(request, oauthConfig);
- * }
- * ```
  */
 export async function signIn(
   request: Request,
-  /** @see {@linkcode OAuth2ClientConfig} */
-  _oauthConfig: OAuth2ClientConfig,
+  /** @see {@linkcode NetzoClientConfig} */
+  _clientConfig: NetzoClientConfig,
   options?: SignInOptions,
 ): Promise<Response> {
   const state = crypto.randomUUID();

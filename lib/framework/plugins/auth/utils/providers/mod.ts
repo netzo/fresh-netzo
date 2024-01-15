@@ -17,7 +17,6 @@ import {
   handleCallbackEmail,
   isEmailSetup,
   signInEmail,
-  signOutEmail,
 } from "./email.ts";
 import { type AuthUserFromProvider } from "../db.ts";
 import {
@@ -105,7 +104,7 @@ export const getFunctionsByProvider = (provider: AuthProvider) => {
     case "netzo":
       return [signInNetzo, handleCallbackNetzo, signOut];
     case "email":
-      return [signInEmail, handleCallbackEmail, signOutEmail];
+      return [signInEmail, handleCallbackEmail, signOut];
     default:
       return [signIn, handleCallback, signOut];
   }

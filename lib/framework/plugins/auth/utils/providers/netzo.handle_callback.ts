@@ -1,9 +1,7 @@
 // adapted from https://github.com/denoland/deno_kv_oauth/blob/main/lib/handle_callback.ts
-import type { Tokens } from "../../../../../deps/deno_kv_oauth/lib/types.ts";
+import type { Tokens } from "../../../../../deps/deno_kv_oauth/deps.ts";
 import {
   getCookies,
-  // OAuth2Client,
-  type OAuth2ClientConfig,
   setCookie,
 } from "../../../../../deps/deno_kv_oauth/deps.ts";
 import {
@@ -15,34 +13,17 @@ import {
   SITE_COOKIE_NAME,
 } from "../../../../../deps/deno_kv_oauth/lib/_http.ts";
 import { getAndDeleteOAuthSession } from "../../../../../deps/deno_kv_oauth/lib/_kv.ts";
+import { NetzoClientConfig } from "./netzo.ts";
 
 /**
- * Handles the OAuth callback request for the given OAuth configuration, and
+ * Handles the OAuth callback request for the given Netzo configuration, and
  * then redirects the client to the success URL set in {@linkcode signIn}. The
  * request URL must match the redirect URL of the OAuth application.
- *
- * @example
- * ```ts
- * import { handleCallback, createGitHubOAuthConfig } from "https://deno.land/x/deno_kv_oauth@$VERSION/mod.ts";
- *
- * const oauthConfig = createGitHubOAuthConfig();
- *
- * export async function handleOAuthCallback(request: Request) {
- *   const { response, tokens, sessionId } = await handleCallback(
- *     request,
- *     oauthConfig,
- *   );
- *
- *    // Perform some actions with the `tokens` and `sessionId`.
- *
- *    return response;
- * }
- * ```
  */
 export async function handleCallback(
   request: Request,
-  /** @see {@linkcode OAuth2ClientConfig} */
-  oauthConfig: OAuth2ClientConfig,
+  /** @see {@linkcode NetzoClientConfig} */
+  clientConfig: NetzoClientConfig,
 ) {
   const oauthCookieName = getCookieName(
     OAUTH_COOKIE_NAME,
@@ -53,7 +34,13 @@ export async function handleCallback(
   const oauthSession = await getAndDeleteOAuthSession(oauthSessionId);
 
   const url = new URL(request.url); //?.searchParams.get("access_token")
-  const accessToken = url.searchParams.get("access_token");
+  const accessToken = url.searchParams.get("access_token")!;
+
+  console.log({
+    clientConfig,
+    oauthSession,
+    accessToken,
+  });
 
   const tokens: Tokens = {
     accessToken,

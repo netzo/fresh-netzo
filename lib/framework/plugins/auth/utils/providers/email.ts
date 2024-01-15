@@ -42,14 +42,6 @@ export async function handleCallbackEmail(
   return response;
 }
 
-export async function signOutEmail(
-  _req: Request,
-  _authConfig: ReturnType<typeof createEmailOAuthConfig>,
-) {
-  const response = await new Response("Not implemented");
-  return response;
-}
-
 export async function getUserEmail(
   accessToken: string,
 ): Promise<AuthUserFromProvider> {
