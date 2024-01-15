@@ -8,6 +8,8 @@ type UserEmail = {
   avatar: string;
 };
 
+export type EmailClientConfig = Record<string | number | symbol, never>; // (empty object)
+
 export const createEmailOAuthConfig = () => {
   return {
     projectId: Deno.env.get("NETZO_PROJECT_ID")!,

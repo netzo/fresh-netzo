@@ -6,6 +6,8 @@ import { handleCallback } from "./netzo.handle_callback.ts";
 
 export { handleCallback, signIn };
 
+export type NetzoClientConfig = Record<string | number | symbol, never>; // (empty object)
+
 export const createNetzoOAuthConfig = () => {
   return {
     projectId: Deno.env.get("NETZO_PROJECT_ID")!,

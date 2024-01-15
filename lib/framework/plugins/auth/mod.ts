@@ -8,6 +8,8 @@ import {
 } from "./middlewares/mod.ts";
 import { getRoutesByProvider } from "./routes/mod.ts";
 import Auth from "./routes/auth.tsx";
+import { NetzoClientConfig } from "./utils/providers/netzo.ts";
+import { EmailClientConfig } from "./utils/providers/email.ts";
 
 export * from "../../../deps/deno_kv_oauth/mod.ts";
 
@@ -19,8 +21,8 @@ export type AuthConfig = {
   /** HTML content rendered below auth form e.g. to display a link to the terms of service via an a tag. */
   caption?: string;
   providers: {
-    netzo?: Record<string | number | symbol, never>; // (empty object)
-    email?: Record<string | number | symbol, never>; // (empty object)
+    netzo?: NetzoClientConfig;
+    email?: EmailClientConfig;
     google?: OAuth2ClientConfig;
     github?: OAuth2ClientConfig;
     gitlab?: OAuth2ClientConfig;
@@ -53,8 +55,7 @@ export const auth = (options: AuthConfig): Plugin => {
   options ??= {} as AuthConfig;
   options.title ??= "Sign In";
   options.description ??= "Sign in to access the app";
-  options.caption ??=
-    'By signing in you agree to the <a href="/" target="_blank">Terms of Service</a>';
+  options.caption ??= '' // e.g. 'By signing in you agree to the <a href="/" target="_blank">Terms of Service</a>';
   options.providers ??= {};
 
   const authEnabled = [
