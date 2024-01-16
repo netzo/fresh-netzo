@@ -1,5 +1,5 @@
 import { netzo as createApi } from "../apis/netzo/mod.ts";
-// import { createCron } from "./cron.ts";
+import { createCron } from "./cron.ts";
 import { createDatabase } from "./database.ts";
 import { createNotification } from "./notification.ts";
 
@@ -34,7 +34,7 @@ export const Netzo = async ({
 
   const db = createDatabase(kv);
 
-  // const cron = createCron(db);
+  const cron = createCron(db);
 
   const notification = createNotification(db);
 
@@ -70,5 +70,5 @@ export const Netzo = async ({
   //   }
   // });
 
-  return { api, /* cron, */ kv, db, notification };
+  return { api, cron, kv, db, notification };
 };

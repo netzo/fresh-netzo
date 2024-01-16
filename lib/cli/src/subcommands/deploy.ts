@@ -294,7 +294,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
   const data: DeploymentData = {
     production: opts.production,
     // deno:
-    entryPointUrl: entryPointUrl.href, // e.g. main.ts
+    entryPointUrl: entryPointUrl.href, // e.g. netzo.ts, main.ts
     importMapUrl: importMapUrl?.href || null,
     lockFileUrl: lockFileUrl?.href || null,
     // configures automatic JSX runtime for preact by default
@@ -363,7 +363,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
             return error(message); // exits with error code 1
           }
 
-            // app.service("deployments").removeAllListeners("progress"); // avoid memory leak
+          // app.service("deployments").removeAllListeners("progress"); // avoid memory leak
         }
       },
     );
