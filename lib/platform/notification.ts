@@ -1,13 +1,25 @@
-import type { Notification } from "../framework/mod.ts";
-import type { ApiClient } from "../apis/_create-api/types.ts";
+import type { createDatabase } from "./database.ts";
 
-export const createNotification = (api: ApiClient) => {
+export type Notification = {
+  id: string;
+  data: {
+    type: string;
+    title: string;
+    body: string;
+  };
+  projectId: string | undefined; // set in production
+  createdAt: string;
+  updatedAt: string;
+}
+
+export const createNotification = (db: ReturnType<typeof createDatabase>) => {
   return (data: Notification["data"]): Promise<Notification> => {
-    return api.notifications.post<Notification>({
-      readBy: [],
+    const createdAt = new Date().toISOString();
+    return db.create<Notification>(["$notifications"], {
       data,
-      env: Deno.env.get("NETZO_ENV")!,
       projectId: Deno.env.get("NETZO_PROJECT_ID")!,
-    });
+      createdAt,
+      updatedAt: createdAt,
+    } as Notification);
   };
 };

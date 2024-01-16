@@ -1,4 +1,3 @@
-import { multiSet } from "https://deno.land/x/kv_utils@1.1.1/mod.ts";
 import { monotonicFactory } from "https://deno.land/x/ulid@v0.3.0/mod.ts";
 import { filterObjectsByKeyValues } from "../framework/utils/mod.ts";
 
@@ -43,7 +42,7 @@ export function createDatabase(kv: Deno.Kv) {
 
   /**
    * Creates one or more objects in the KV store.
-   * @param key
+   * @param prefix
    * @param data
    * @param idField - The name of the field to use as the ID for the objects.
    * @returns The created object.

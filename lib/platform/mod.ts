@@ -27,8 +27,6 @@ export const Netzo = async ({
 
   const { api } = createApi({ apiKey, baseURL });
 
-  const cron = createCron(api);
-
   // DISABLED: cannot pass DENO_KV_PATH for now since Subhosting
   // throws "TypeError: Non-default databases are not supported", note
   // that DENO_KV_ACCESS_TOKEN is required if DENO_KV_PATH is remote URL
@@ -36,7 +34,9 @@ export const Netzo = async ({
 
   const db = createDatabase(kv);
 
-  const notification = createNotification(api);
+  const cron = createCron(db);
+
+  const notification = createNotification(db);
 
   // TODO: implement messaging system built on KV Queues once these are supported in Subhosting
 

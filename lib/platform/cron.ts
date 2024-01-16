@@ -1,11 +1,23 @@
 // see https://github.com/netzo/netzo/issues/57
-import type { ApiClient } from "../apis/_create-api/types.ts";
+import type { createDatabase } from "./database.ts";
+
+export type Run = {
+  id: string;
+  type: "cron"
+  name: string;
+  schedule: string | Deno.CronSchedule;
+  projectId: string | undefined; // set in production
+  status: "idle" | "success" | "running" | "failed";
+  startedAt?: string | undefined;
+  endedAt?: string | undefined;
+  duration?: number | undefined;
+}
 
 export type CronOptions = { backoffSchedule?: number[]; signal?: AbortSignal };
 export type CronFn = () => void | Promise<void>;
 export type CronParams = Parameters<typeof Deno.cron>;
 
-export const createCron = (api: ApiClient) => {
+export const createCron = (db: ReturnType<typeof createDatabase>) => {
   return Deno.cron = new Proxy(Deno.cron, {
     apply(target, thisArg, argArray: CronParams) {
       const [name, schedule, opt1, opt2] = argArray;
@@ -21,41 +33,31 @@ export const createCron = (api: ApiClient) => {
         fn = opt1;
       }
 
-      const projectId = Deno.env.get("NETZO_PROJECT_ID")!;
-      const data: Record<string, unknown> = {
-        name,
-        schedule,
-        runs: [],
-        env: Deno.env.get("NETZO_ENV")!,
-        projectId,
-      };
-      console.log('POST data', data)
-      api.crons.post(data); // do not await
-
-      const query = { name, projectId };
-
       async function run(): Promise<void> {
         console.time(`[cron] ${name}`);
         const startedAt = Date.now();
-        const run: Record<string, unknown> = {
+        const data = await db.create<Run>(["$runs"], {
+          type: "cron",
+          name,
+          schedule,
+          projectId: Deno.env.get("NETZO_PROJECT_ID")!,
           status: "running",
           startedAt: new Date(startedAt).toISOString(),
-        };
+          endedAt: undefined,
+          duration: 0,
+        } as Run); // do not await
         try {
-          console.log('PATCH run', run)
-          api.crons.patch({ runs: [run] }, query); // do not await
           await fn();
-          run.status = "success";
+          data.status = "success";
         } catch (err) {
           console.error(`[cron] ${name} failed: ${err.message}`);
-          run.status = "failed";
+          data.status = "failed";
         } finally {
           console.timeEnd(`[cron] ${name}`);
           const endedAt = Date.now();
-          run.endedAt = new Date(endedAt).toISOString();
-          run.duration = endedAt - startedAt;
-          console.log('PATCH 2', data)
-          api.crons.patch({ runs: [run] }, query); // do not await
+          data.endedAt = new Date(endedAt).toISOString();
+          data.duration = endedAt - startedAt;
+          await db.patch(["$runs", data.id], data); // do not await
         }
       }
 
