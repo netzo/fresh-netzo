@@ -1,42 +1,23 @@
 import { useSignal } from "@preact/signals";
 import { Button } from "netzo/components/ui/button.tsx";
+import { createOnSubmit, Form } from "netzo/components/blocks/form/form.tsx";
 import { Invoice, invoiceSchema } from "@/data/invoices.ts";
 // import { ALIASES } from "@/data/invoices.ts";
-import { Form } from "netzo/components/blocks/form/form.tsx";
 
-interface FormProps {
+type FormProps = {
   data?: Invoice;
-  url: string;
+  action: string;
   method: "POST" | "PATCH";
 }
 
-export function FormInvoice({ data, method, url }: FormProps) {
+export function FormInvoice({ data, method, action }: FormProps) {
   const values = useSignal(data);
-
-  async function onSubmit(data: Invoice) {
-    const updatedAt = new Date().toISOString();
-    const createdAt = data?.createdAt || updatedAt;
-    try {
-      await fetch(url, {
-        method,
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({
-          ...data,
-          createdAt,
-          updatedAt,
-        }),
-      });
-      window.location.href = "/invoices";
-    } catch (error) {
-      console.error(error);
-    }
-  }
 
   return (
     <Form
       values={values.value}
       formSchema={invoiceSchema}
-      onSubmit={onSubmit}
+      onSubmit={createOnSubmit(method, action)}
     >
       <Button type="submit" className="mt-8">
         {method === "POST" ? "Create" : "Update"}

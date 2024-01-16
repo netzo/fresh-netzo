@@ -22,38 +22,40 @@ export const createCron = (api: ApiClient) => {
       }
 
       const projectId = Deno.env.get("NETZO_PROJECT_ID")!;
-      const data = {
+      const data: Record<string, unknown> = {
         name,
         schedule,
-        status: "idle",
-        startedAt: "",
-        endedAt: "",
-        duration: 0,
+        runs: [],
         env: Deno.env.get("NETZO_ENV")!,
         projectId,
       };
+      console.log('POST data', data)
       api.crons.post(data); // do not await
 
       const query = { name, projectId };
 
       async function run(): Promise<void> {
         console.time(`[cron] ${name}`);
-        data.status = "running";
         const startedAt = Date.now();
-        data.startedAt = new Date(startedAt).toISOString();
+        const run: Record<string, unknown> = {
+          status: "running",
+          startedAt: new Date(startedAt).toISOString(),
+        };
         try {
-          api.crons.patch(data, query); // do not await
+          console.log('PATCH run', run)
+          api.crons.patch({ runs: [run] }, query); // do not await
           await fn();
-          data.status = "success";
+          run.status = "success";
         } catch (err) {
           console.error(`[cron] ${name} failed: ${err.message}`);
-          data.status = "failed";
+          run.status = "failed";
         } finally {
           console.timeEnd(`[cron] ${name}`);
           const endedAt = Date.now();
-          data.endedAt = new Date(endedAt).toISOString();
-          data.duration = endedAt - startedAt;
-          api.crons.patch(data, query); // do not await
+          run.endedAt = new Date(endedAt).toISOString();
+          run.duration = endedAt - startedAt;
+          console.log('PATCH 2', data)
+          api.crons.patch({ runs: [run] }, query); // do not await
         }
       }
 

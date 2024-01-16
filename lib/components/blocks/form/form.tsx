@@ -13,6 +13,8 @@ import {
 } from "./utils.ts";
 import AutoFormObject from "./fields/object.tsx";
 
+export { createOnSubmit } from "./utils.ts";
+
 export function FormSubmit({ children }: { children?: React.ReactNode }) {
   return <Button type="submit">{children ?? "Submit"}</Button>;
 }

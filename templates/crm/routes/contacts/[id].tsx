@@ -21,14 +21,14 @@ export default defineRoute(async (req, ctx) => {
             <FormContact
               data={data}
               method="POST"
-              url={`${ctx.url.origin}/api?$prefix=contacts`}
+              action={`${ctx.url.origin}/api?$prefix=contacts`}
             />
           )
           : (
             <FormContact
               data={data}
               method="PATCH"
-              url={`${ctx.url.origin}/api?$key=contacts,${id}`}
+              action={`${ctx.url.origin}/api?$key=contacts,${id}`}
             />
           )}
       </div>
