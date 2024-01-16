@@ -8,7 +8,7 @@ type FormProps = {
   data?: Invoice;
   action: string;
   method: "POST" | "PATCH";
-}
+};
 
 export function FormInvoice({ data, method, action }: FormProps) {
   const values = useSignal(data);

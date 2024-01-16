@@ -8,7 +8,7 @@ type FormProps = {
   data?: Contact;
   action: string;
   method: "POST" | "PATCH";
-}
+};
 
 export function FormContact({ data, method, action }: FormProps) {
   const values = useSignal(data);

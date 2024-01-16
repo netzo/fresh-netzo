@@ -3,7 +3,7 @@ import type { createDatabase } from "./database.ts";
 
 export type Run = {
   id: string;
-  type: "cron"
+  type: "cron";
   name: string;
   schedule: string | Deno.CronSchedule;
   projectId: string | undefined; // set in production
@@ -11,7 +11,7 @@ export type Run = {
   startedAt?: string | undefined;
   endedAt?: string | undefined;
   duration?: number | undefined;
-}
+};
 
 export type CronOptions = { backoffSchedule?: number[]; signal?: AbortSignal };
 export type CronFn = () => void | Promise<void>;

@@ -1,7 +1,7 @@
 import { DefaultValues } from "../../../deps/react-hook-form.ts";
 import { z } from "../../../deps/zod/mod.ts";
 
-export const createOnSubmit = (method: Request['method'], action: string) => {
+export const createOnSubmit = (method: Request["method"], action: string) => {
   return async (data: Account) => {
     const updatedAt = new Date().toISOString();
     const createdAt = data?.createdAt || updatedAt;
@@ -19,8 +19,8 @@ export const createOnSubmit = (method: Request['method'], action: string) => {
     } catch (error) {
       console.error(error);
     }
-  }
-}
+  };
+};
 
 // TODO: This should support recursive ZodEffects but TypeScript doesn't allow circular type definitions.
 export type ZodObjectOrWrapped =

@@ -8,7 +8,7 @@ type FormProps = {
   data?: Account;
   action: string;
   method: "POST" | "PATCH";
-}
+};
 
 export function FormAccount({ data, method, action }: FormProps) {
   const values = useSignal(data);
