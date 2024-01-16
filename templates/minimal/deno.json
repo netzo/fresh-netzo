@@ -1,7 +1,7 @@
 {
   "lock": false,
   "tasks": {
-    "start": "deno run -A --unstable --env main.ts",
+    "start": "deno run -A --unstable --env netzo.ts",
     "test": "deno test -A --unstable --env --parallel --coverage=./cov --doc",
     "check:types": "deno check **/*.ts **/*.tsx",
     "ok": "deno fmt --check && deno lint && deno task check:license --check && deno task check:types && deno task test"
