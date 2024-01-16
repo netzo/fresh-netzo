@@ -7,7 +7,7 @@
   "tasks": {
     "cache:deps": "deno cache **/deps/**/*.ts",
     "test": "deno test -A --parallel --unstable --coverage=./cov",
-    "check:types": "deno check **/*.ts && deno check **/*.tsx",
+    "check:types": "deno check **/*.ts **/*.tsx",
     "ok": "deno fmt --check && deno lint && deno task check:types && deno task test",
     "bundle:csr": "deno run -A --unstable lib/framework/plugins/ui/plugins/csr/bundle.task.ts",
     "deploy": "deno run --allow-env --allow-net --allow-read scripts/deploy-templates.ts",

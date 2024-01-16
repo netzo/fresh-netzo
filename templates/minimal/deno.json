@@ -3,7 +3,7 @@
   "tasks": {
     "start": "deno run -A --unstable --env main.ts",
     "test": "deno test -A --unstable --env --parallel --coverage=./cov --doc",
-    "check:types": "deno check **/*.ts && deno check **/*.tsx",
+    "check:types": "deno check **/*.ts **/*.tsx",
     "ok": "deno fmt --check && deno lint && deno task check:license --check && deno task check:types && deno task test"
   },
   "lint": {},
@@ -16,6 +16,6 @@
   },
   "imports": {
     "@/": "./",
-    "netzo/": "../../../netzo/lib/"
+    "netzo/": "https://deno.land/x/netzo@0.3.79/"
   }
 }
