@@ -34,7 +34,6 @@ export type Project = {
   denoProductionDeploymentId: string;
   denoLatestDeploymentId: string;
   apiKeyId: string;
-  databaseId: string;
   env: {
     development: Record<string, string | { _id: string }>;
     // preview: Record<string, string | { _id: string }>; // TODO: once preview envs land in DD (see

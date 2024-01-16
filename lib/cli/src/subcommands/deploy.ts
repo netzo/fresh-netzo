@@ -307,7 +307,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
     },
     assets,
     envVars: {}, // set by netzo on deployment (project.envVars[env] empty for security)
-    databases: undefined, // set by netzo on deployment (from project.databaseId)
+    databases: undefined, // set by netzo on deployment (from workspace.databaseId)
     description: opts.description,
   };
 
@@ -363,7 +363,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
             return error(message); // exits with error code 1
           }
 
-            // app.service("deployments").removeAllListeners("progress"); // avoid memory leak
+          // app.service("deployments").removeAllListeners("progress"); // avoid memory leak
         }
       },
     );
