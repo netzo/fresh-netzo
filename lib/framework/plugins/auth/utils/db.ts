@@ -19,7 +19,7 @@ const kv = await Deno.openKv(Deno.env.get("DENO_KV_PATH"));
  * users[0].sessionId; // Returns "xxx"
  * users[0].name; // Returns "Snoop Dogg"
  * users[0].email; // Returns "snoop.dogg@example"
- * users[0].role; // Returns "admin"
+ * users[0].roles; // Returns ["admin"]
  * users[0].provider; // Returns "github"
  * users[0].createdAt; // Returns "2021-08-31T00:00:00.000Z"
  * users[0].updatedAt; // Returns "2021-08-31T00:00:00.000Z"
@@ -41,7 +41,7 @@ export type AuthUser = {
   name: string;
   email: string;
   avatar: string;
-  role: string;
+  roles: string[];
   createdAt: string;
   updatedAt: string;
 };
@@ -92,7 +92,7 @@ export async function createUser(user: AuthUser) {
  * await updateUser({
  *   authId: "auth0|xxx",
  *   sessionId: crypto.randomUUID(),
- *   role: "admin",
+ *   roles: ["admin"],
  * });
  * ```
  */
@@ -119,7 +119,7 @@ export async function updateUser(user: AuthUser) {
  * await updateUserSession({
  *   authId: "auth0|xxx",
  *   sessionId: "xxx",
- *   role: "admin",
+ *   roles: ["admin"],
  * }, "yyy");
  * ```
  */
@@ -150,7 +150,7 @@ export async function updateUserSession(user: AuthUser, sessionId: string) {
  * const user = await getUser("jack");
  * user?.authId; // Returns "auth0|xxx"
  * user?.sessionId; // Returns "xxx"
- * user?.role; // Returns "admin"
+ * user?.roles; // Returns ["admin"]
  * user?.provider; // Returns "github"
  * ```
  */
@@ -173,7 +173,7 @@ export async function getUser(authId: string) {
  * const user = await getUserBySession("xxx");
  * user?.authId; // Returns "auth0|xxx"
  * user?.sessionId; // Returns "xxx"
- * user?.role; // Returns "admin"
+ * user?.roles; // Returns ["admin"]
  * user?.provider; // Returns "github"
  * ```
  */
@@ -198,7 +198,7 @@ export async function getUserBySession(sessionId: string) {
  * for await (const entry of listUsers()) {
  *   entry.value.authId; // Returns "auth0|xxx"
  *   entry.value.sessionId; // Returns "xxx"
- *   entry.value.role; // Returns "admin"
+ *   entry.value.roles; // Returns ["admin"]
  *   entry.value.provider; // Returns "github"
  * }
  * ```

@@ -51,7 +51,7 @@ export const getRoutesByProvider = (
           name: userProvider.name,
           email: userProvider.email,
           avatar: userProvider.avatar,
-          role: "admin",
+          roles: ["admin"],
         } as unknown as AuthUser;
 
         // [netzo] assert user is member of workspace of this project (check apiKey)
