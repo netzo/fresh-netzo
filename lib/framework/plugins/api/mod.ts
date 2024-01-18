@@ -27,8 +27,9 @@ export type ApiConfig = {
  * - `PATCH /api?$key=<KEY>` patch an entry by key
  * - `DELETE /api?$key=<KEY>` remove an entry by key
  */
-export const api = (options: ApiConfig): Plugin => {
-  options ??= {} as ApiConfig;
+export const api = (options?: ApiConfig): Plugin => {
+  if (!options) return { name: "api" };
+
   options.auth ??= true;
   options.path ??= "/api";
   options.idField ??= "id";

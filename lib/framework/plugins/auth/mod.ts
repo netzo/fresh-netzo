@@ -51,12 +51,8 @@ export type AuthState = {
  * - `GET /auth/{provider}/callback` for the callback page
  * - `GET /auth/signout` for the sign-out page
  */
-export const auth = (options: AuthConfig): Plugin => {
-  options ??= {} as AuthConfig;
-  options.title ??= "Sign In";
-  options.description ??= "Sign in to access the app";
-  options.caption ??= ""; // e.g. 'By signing in you agree to the <a href="/" target="_blank">Terms of Service</a>';
-  options.providers ??= {};
+export const auth = (options?: AuthConfig): Plugin => {
+  if (!options) return { name: "auth" };
 
   const authEnabled = [
     "netzo",
@@ -68,6 +64,11 @@ export const auth = (options: AuthConfig): Plugin => {
     "okta",
   ].some((key) => !!options?.providers?.[key]);
   if (!authEnabled) return { name: "auth" }; // skip if auth but no providers are set
+
+  options.title ??= "Sign In";
+  options.description ??= "Sign in to access the app";
+  options.caption ??= ""; // e.g. 'By signing in you agree to the <a href="/" target="_blank">Terms of Service</a>';
+  options.providers ??= {};
 
   const authRoutes = [
     { path: "/auth", component: Auth },

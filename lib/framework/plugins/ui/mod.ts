@@ -61,7 +61,9 @@ export type UiConfig = UnocssOptions & {
  * Plugin to add layout (nav, header, footer) and theme (colors,
  * typography, etc.) powered by UnoCSS and netzo/components.
  */
-export const ui = (options: UiConfig): Plugin => {
+export const ui = (options?: UiConfig): Plugin => {
+  if (!options) return { name: "ui" };
+
   const uiEnabled = [
     "head",
     "nav",
