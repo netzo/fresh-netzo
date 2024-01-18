@@ -88,7 +88,7 @@ export const api = (options?: ApiConfig): Plugin => {
               // validate to against ctx.state.project.database.schemas (if any)
               // const validate = await ctx.state.db.assertValid(result, query);
               return Response.json(result);
-            } else if (params.$prefix) {
+            } else if (params.$key) {
               if (!methods!.includes("get")) return ERRORS.notAllowed();
               const key = params.$key.split(",");
               const result = await ctx.state.db.get(key);
@@ -121,12 +121,12 @@ export const api = (options?: ApiConfig): Plugin => {
             const result = await ctx.state.db.patch(key, data);
             return Response.json(result);
           },
-          async DELETE(req, ctx) {
+          async DELETE(_req, ctx) {
             const { params } = parseSearchParams(ctx.url.searchParams);
             if (!methods!.includes("remove")) return ERRORS.notAllowed();
             const key = params.$key.split(",");
             await ctx.state.db.remove(key);
-            return Response.json({ id });
+            return Response.json({ key });
           },
         },
       },
