@@ -12,7 +12,7 @@ import {
   signIn as signInNetzo,
 } from "./netzo.ts";
 import {
-  createEmailOAuthConfig,
+  createEmailClientConfig,
   getUserEmail,
   handleCallbackEmail,
   isEmailSetup,
@@ -62,7 +62,7 @@ export const getAuthConfig = (
     }
     case "email": {
       if (!isEmailSetup()) throw getError(provider);
-      return createEmailOAuthConfig();
+      return createEmailClientConfig();
     }
     case "google": {
       setFromOptionsIfNotInEnv("GOOGLE_CLIENT_ID", options.clientId);

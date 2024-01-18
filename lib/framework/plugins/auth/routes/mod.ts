@@ -59,7 +59,7 @@ export const getRoutesByProvider = (
           const {
             NETZO_API_KEY,
             NETZO_API_URL = "https://api.netzo.io",
-          } = Deno.env.toObject();
+          } = Deno.env.toObject(); // MUST be set if using Netzo Auth Provider
           const response = await fetch(
             `${NETZO_API_URL}/api-keys?apiKey=${NETZO_API_KEY}`,
             {

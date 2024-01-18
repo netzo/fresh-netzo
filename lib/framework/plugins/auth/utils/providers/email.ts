@@ -10,16 +10,13 @@ type UserEmail = {
 
 export type EmailClientConfig = Record<string | number | symbol, never>; // (empty object)
 
-export const createEmailOAuthConfig = () => {
-  return {
-    projectId: Deno.env.get("NETZO_PROJECT_ID")!,
-    apiKey: Deno.env.get("NETZO_API_KEY")!,
-  };
+export const createEmailClientConfig = () => {
+  return {};
 };
 
 export function isEmailSetup() {
   try {
-    createEmailOAuthConfig();
+    createEmailClientConfig();
     return true;
   } catch {
     return false;
@@ -28,7 +25,7 @@ export function isEmailSetup() {
 
 export async function signInEmail(
   _req: Request,
-  _authConfig: ReturnType<typeof createEmailOAuthConfig>,
+  _authConfig: ReturnType<typeof createEmailClientConfig>,
 ) {
   const response = await new Response("Not implemented");
   return response;
@@ -36,7 +33,7 @@ export async function signInEmail(
 
 export async function handleCallbackEmail(
   _req: Request,
-  _authConfig: ReturnType<typeof createEmailOAuthConfig>,
+  _authConfig: ReturnType<typeof createEmailClientConfig>,
 ) {
   const response = await new Response("Not implemented");
   return response;

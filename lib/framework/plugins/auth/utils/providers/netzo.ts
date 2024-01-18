@@ -12,7 +12,7 @@ export const createNetzoOAuthConfig = () => {
   return {
     projectId: Deno.env.get("NETZO_PROJECT_ID")!,
     apiKey: Deno.env.get("NETZO_API_KEY")!,
-  };
+  }; // MUST be set if using Netzo Auth Provider
 };
 
 export function isNetzoSetup() {
