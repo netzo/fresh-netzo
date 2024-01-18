@@ -46,10 +46,10 @@ export type NetzoState = {
  * const netzo = await Netzo({ ... })
  * if (import.meta.main)netzo.start()
  *
- * @param {NetzoConfig} partialConfig - the Netzo app config object
+ * @param {NetzoConfig} config - the Netzo app config object
  * @returns {object} - an object of multiple utilities core to Netzo
  */
-export const Netzo = async (partialConfig: Partial<NetzoConfig>) => {
+export const Netzo = async (config: Partial<NetzoConfig>) => {
   // [development] load development envVars if referencing remote project
   if (!Deno.env.get("DENO_REGION")) await setEnvVarsIfRemoteProject();
 
@@ -64,7 +64,7 @@ export const Netzo = async (partialConfig: Partial<NetzoConfig>) => {
   Deno.cron = proxyCron(db);
 
   // [app/config] render mustache values
-  let config = replace(partialConfig, Deno.env.toObject());
+  config = replace(config, Deno.env.toObject());
   // [app/state] build state (pass single kv instance to plugins for performance)
   const state: NetzoState = { kv, db, notification, config };
 
@@ -89,9 +89,9 @@ export const Netzo = async (partialConfig: Partial<NetzoConfig>) => {
       // IMPORTANT: must register all plugins (even if disabled) to ensure they
       // are always bundled at build time since some might depend on others
       ...[
-        auth(state.config.auth),
-        ui(state.config.ui),
-        api(state.config.api),
+        auth(config.auth),
+        ui(config.ui),
+        api(config.api),
       ],
       ...(config?.plugins ?? []),
     ],
