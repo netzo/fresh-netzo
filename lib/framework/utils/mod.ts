@@ -16,26 +16,28 @@ export async function setEnvVarsIfRemoteProject() {
     NETZO_APP_URL = "https://app.netzo.io",
   } = Deno.env.toObject();
 
-  if (!NETZO_PROJECT_ID || !NETZO_API_KEY) {
-    return logInfo(LOGS.localEnvNotice); // [development] log notice for good DX
+  if (NETZO_PROJECT_ID && NETZO_API_KEY) {
+    // IMPORTANT: api used only during development for (optional) loading of env vars
+    // since otherwise the framework becomes netzo-dependant and requires an NETZO_API_KEY
+    // to run (which is undesired in order to have parity between development and production)
+    const api = netzo({ apiKey: NETZO_API_KEY, baseURL: NETZO_API_URL });
+
+    const project = await api.projects[NETZO_PROJECT_ID].get<Project>();
+
+    if (!project) throw new Error(LOGS.notFoundProject);
+
+    const envVars = project.envVars?.development ?? {};
+    setEnvVars(envVars);
+    logInfo(LOGS.envNoticeProduction(Object.keys(envVars).length));
+
+    log(
+      `\nOpen in netzo at ${NETZO_APP_URL}/workspaces/${project.workspaceId}/projects/${project._id}`,
+    );
+
+    return;
+  } else {
+    return logInfo(LOGS.envNoticeDevelopment); // [development] log notice for good DX
   }
-
-  // IMPORTANT: api used only during development for (optional) loading of env vars
-  // since otherwise the framework becomes netzo-dependant and requires an NETZO_API_KEY
-  // to run (which is undesired in order to have parity between development and production)
-  const api = netzo({ apiKey: NETZO_API_KEY, baseURL: NETZO_API_URL });
-
-  const project = await api.projects[NETZO_PROJECT_ID].get<Project>();
-
-  if (!project) throw new Error(LOGS.notFoundProject);
-
-  const envVars = project.envVars?.development ?? {};
-  setEnvVars(envVars);
-  logInfo(LOGS.remoteEnvNotice(Object.keys(envVars).length));
-
-  const appUrl =
-    `${NETZO_APP_URL}/workspaces/${project.workspaceId}/projects/${project._id}`;
-  log(`\nOpen in netzo at ${appUrl}`);
 }
 
 export function setEnvVars(envVars: Record<string, any>) {
