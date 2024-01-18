@@ -10,12 +10,14 @@ import {
 export const LOGS = {
   missingApiKey:
     "Missing API key. Set via --api-key flag or NETZO_API_KEY environment variable.",
-  missingProjectId:
-    "Missing project ID. Set via --project flag or NETZO_PROJECT_ID environment variable.",
   buildFailed: "Build failed. Fix issues or try running without --build.",
   skippingLoadingOfEnvVars:
     `Skipping loading of "development" environment variables.`,
   notFoundProject: "Project not found. Check the project ID and API key.",
+  // framework:
+  localEnvNotice:
+    "Running in development environment (NETZO_PROJECT_ID and/or NETZO_API_KEY not provided).",
+  remoteEnvNotice: (count: number) => `Running in production environment (loaded ${count} environment variables).`,
 } as const;
 
 export function log(message: string) {

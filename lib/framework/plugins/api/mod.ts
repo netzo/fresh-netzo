@@ -1,12 +1,7 @@
 import type { Plugin } from "../../../deps/$fresh/server.ts";
 import { isHttpError } from "../../../deps/std/http/http_errors.ts";
 import { parseRequestBody } from "../../../framework/utils/mod.ts";
-import { createDatabase } from "../../../platform/database.ts";
 import { ERRORS, METHODS, parseSearchParams } from "./utils.ts";
-
-const kv = await Deno.openKv(Deno.env.get("DENO_KV_PATH"));
-
-const db = createDatabase(kv);
 
 export type ApiConfig = {
   /** Wether to require authentication using project's default API key
@@ -45,7 +40,7 @@ export const api = (options: ApiConfig): Plugin => {
     name: "api",
     middlewares: [
       {
-        path,
+        path: path!,
         middleware: {
           handler: async (req, ctx) => {
             try {
@@ -83,21 +78,21 @@ export const api = (options: ApiConfig): Plugin => {
     ],
     routes: [
       {
-        path,
+        path: path!,
         handler: {
           async GET(_req, ctx) {
             const { params, query } = parseSearchParams(ctx.url.searchParams);
             if (params.$prefix) {
               if (!methods!.includes("find")) return ERRORS.notAllowed();
               const prefix = params.$prefix.split(",");
-              const result = await db.find(prefix, query);
+              const result = await ctx.db.find(prefix, query);
               // validate to against ctx.state.project.database.schemas (if any)
-              // const validate = await db.assertValid(result, query);
+              // const validate = await ctx.db.assertValid(result, query);
               return Response.json(result);
             } else if (params.$prefix) {
               if (!methods!.includes("get")) return ERRORS.notAllowed();
               const key = params.$key.split(",");
-              const result = await db.get(key);
+              const result = await ctx.db.get(key);
               return Response.json(result);
             } else {
               return ERRORS.invalidRequest();
@@ -108,7 +103,7 @@ export const api = (options: ApiConfig): Plugin => {
             if (!methods!.includes("create")) return ERRORS.notAllowed();
             const prefix = params.$prefix.split(",");
             const data = await parseRequestBody(req);
-            const result = await db.create(prefix, data, idField);
+            const result = await ctx.db.create(prefix, data, idField);
             return Response.json(result);
           },
           async PUT(req, ctx) {
@@ -116,7 +111,7 @@ export const api = (options: ApiConfig): Plugin => {
             if (!methods!.includes("update")) return ERRORS.notAllowed();
             const key = params.$key.split(",");
             const data = await parseRequestBody(req);
-            const result = await db.update(key, data);
+            const result = await ctx.db.update(key, data);
             return Response.json(result);
           },
           async PATCH(req, ctx) {
@@ -124,14 +119,14 @@ export const api = (options: ApiConfig): Plugin => {
             if (!methods!.includes("patch")) return ERRORS.notAllowed();
             const key = params.$key.split(",");
             const data = await parseRequestBody(req);
-            const result = await db.patch(key, data);
+            const result = await ctx.db.patch(key, data);
             return Response.json(result);
           },
           async DELETE(req, ctx) {
             const { params } = parseSearchParams(ctx.url.searchParams);
             if (!methods!.includes("remove")) return ERRORS.notAllowed();
             const key = params.$key.split(",");
-            await db.remove(key);
+            await ctx.db.remove(key);
             return Response.json({ id });
           },
         },

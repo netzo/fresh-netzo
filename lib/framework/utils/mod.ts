@@ -6,8 +6,7 @@ export function setEnvVars(envVars: Record<string, any>) {
   for (const key in envVars) {
     Deno.env.set(key, envVars[key]);
   }
-  const count = Object.keys(envVars).length;
-  logInfo(`Set ${count} development environment variables`);
+  return Deno.env.toObject();
 }
 
 export function filterObjectsByKeyValues<T = Record<string, any>>(

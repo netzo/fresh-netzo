@@ -1,5 +1,5 @@
 // see https://github.com/netzo/netzo/issues/57
-import type { createDatabase } from "./database.ts";
+import type { createDatabase } from "../../framework/database.ts";
 
 export type Run = {
   id: string;
@@ -17,8 +17,8 @@ export type CronOptions = { backoffSchedule?: number[]; signal?: AbortSignal };
 export type CronFn = () => void | Promise<void>;
 export type CronParams = Parameters<typeof Deno.cron>;
 
-export const createCron = (db: ReturnType<typeof createDatabase>) => {
-  return Deno.cron = new Proxy(Deno.cron, {
+export const proxyCron = (db: ReturnType<typeof createDatabase>) => {
+  return new Proxy(Deno.cron, {
     apply(target, thisArg, argArray: CronParams) {
       const [name, schedule, opt1, opt2] = argArray;
       let options: CronOptions | undefined;

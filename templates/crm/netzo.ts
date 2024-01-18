@@ -1,10 +1,7 @@
 #!/usr/bin/env -S deno run -A --unstable --env --watch=static/,routes dev.ts
 import { createNetzoApp, Netzo } from "netzo/framework/mod.ts";
 
-export const netzo = await Netzo({
-  projectId: Deno.env.get("NETZO_PROJECT_ID")!,
-  apiKey: Deno.env.get("NETZO_API_KEY")!,
-}); // [optional] loaded from .env file
+export const netzo = await Netzo(); // [optional] loaded from .env file
 
 export const app = await createNetzoApp({
   ui: {

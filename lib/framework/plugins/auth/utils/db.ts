@@ -1,9 +1,7 @@
-import { ulid } from "../../../../platform/database.ts";
+import { ulid } from "../../../../framework/database.ts";
 import type { AuthProvider } from "../utils/providers/mod.ts";
 
 const kv = await Deno.openKv(Deno.env.get("DENO_KV_PATH"));
-
-// TODO: const db = createDatabase(kv);
 
 /**
  * Returns an array of values of a given {@linkcode Deno.KvListIterator} that's
