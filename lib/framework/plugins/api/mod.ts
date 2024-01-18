@@ -4,9 +4,10 @@ import { parseRequestBody } from "../../../framework/utils/mod.ts";
 import { ERRORS, METHODS, parseSearchParams } from "./utils.ts";
 
 export type ApiConfig = {
-  /** Wether to require authentication using project's default API key
-   * `NETZO_API_KEY` in the "x-api-key" header or "apiKey" query parameter. */
-  auth?: boolean;
+  /** Wether to require authentication using the provided API key
+   * in the "x-api-key" header or "apiKey" query parameter.
+   * IMPORTANT: set "apiKey" using Deno.env.get(...) to keep it secret  */
+  apiKey?: string;
   /** The route path to mount the API on. Defaults to "/api". */
   path?: string;
   /** The field name to use as the primary key. Defaults to "id". */
@@ -30,12 +31,11 @@ export type ApiConfig = {
 export const api = (options?: ApiConfig): Plugin => {
   if (!options) return { name: "api" };
 
-  options.auth ??= true;
   options.path ??= "/api";
   options.idField ??= "id";
   options.methods ??= METHODS;
 
-  const { auth, path, idField, methods } = options ?? {};
+  const { apiKey, path, idField, methods } = options ?? {};
 
   return {
     name: "api",
@@ -46,7 +46,7 @@ export const api = (options?: ApiConfig): Plugin => {
           handler: async (req, ctx) => {
             try {
               if (!["route"].includes(ctx.destination)) return await ctx.next();
-              if (auth !== true) return await ctx.next();
+              if (!apiKey) return await ctx.next();
 
               const origin = req.headers.get("origin")!; // e.g. https://my-project-906698.netzo.io
               const referer = req.headers.get("referer")!; // SOMETIMES SET e.g. https://app.netzo.io/some-path
@@ -62,11 +62,9 @@ export const api = (options?: ApiConfig): Plugin => {
               // API key authentication
               const apiKeyHeader = req.headers.get("x-api-key");
               const apiKeySearchParams = ctx.url.searchParams.get("apiKey");
-              const apiKey = apiKeyHeader || apiKeySearchParams;
-              if (!apiKey) return ERRORS.missingApiKey();
-              if (apiKey !== Deno.env.get("NETZO_API_KEY")!) {
-                return ERRORS.invalidApiKey();
-              }
+              const apiKeyValue = apiKeyHeader || apiKeySearchParams;
+              if (!apiKeyValue) return ERRORS.missingApiKey();
+              if (apiKeyValue !== apiKey) return ERRORS.invalidApiKey();
               ctx.url.searchParams.delete("apiKey"); // remove apiKey from query
 
               return await ctx.next();
@@ -86,14 +84,14 @@ export const api = (options?: ApiConfig): Plugin => {
             if (params.$prefix) {
               if (!methods!.includes("find")) return ERRORS.notAllowed();
               const prefix = params.$prefix.split(",");
-              const result = await ctx.db.find(prefix, query);
+              const result = await ctx.state.db.find(prefix, query);
               // validate to against ctx.state.project.database.schemas (if any)
-              // const validate = await ctx.db.assertValid(result, query);
+              // const validate = await ctx.state.db.assertValid(result, query);
               return Response.json(result);
             } else if (params.$prefix) {
               if (!methods!.includes("get")) return ERRORS.notAllowed();
               const key = params.$key.split(",");
-              const result = await ctx.db.get(key);
+              const result = await ctx.state.db.get(key);
               return Response.json(result);
             } else {
               return ERRORS.invalidRequest();
@@ -104,7 +102,7 @@ export const api = (options?: ApiConfig): Plugin => {
             if (!methods!.includes("create")) return ERRORS.notAllowed();
             const prefix = params.$prefix.split(",");
             const data = await parseRequestBody(req);
-            const result = await ctx.db.create(prefix, data, idField);
+            const result = await ctx.state.db.create(prefix, data, idField);
             return Response.json(result);
           },
           async PUT(req, ctx) {
@@ -112,7 +110,7 @@ export const api = (options?: ApiConfig): Plugin => {
             if (!methods!.includes("update")) return ERRORS.notAllowed();
             const key = params.$key.split(",");
             const data = await parseRequestBody(req);
-            const result = await ctx.db.update(key, data);
+            const result = await ctx.state.db.update(key, data);
             return Response.json(result);
           },
           async PATCH(req, ctx) {
@@ -120,14 +118,14 @@ export const api = (options?: ApiConfig): Plugin => {
             if (!methods!.includes("patch")) return ERRORS.notAllowed();
             const key = params.$key.split(",");
             const data = await parseRequestBody(req);
-            const result = await ctx.db.patch(key, data);
+            const result = await ctx.state.db.patch(key, data);
             return Response.json(result);
           },
           async DELETE(req, ctx) {
             const { params } = parseSearchParams(ctx.url.searchParams);
             if (!methods!.includes("remove")) return ERRORS.notAllowed();
             const key = params.$key.split(",");
-            await ctx.db.remove(key);
+            await ctx.state.db.remove(key);
             return Response.json({ id });
           },
         },

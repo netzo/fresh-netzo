@@ -18,7 +18,7 @@ export const ERRORS = {
 
 export function parseSearchParams(
   searchParams: URLSearchParams,
-): { query: object; params: object } {
+): { query: Record<string, string>; params: Record<string, string> } {
   return Object.entries(Object.fromEntries(searchParams)).reduce(
     (acc, [key, value]) => (
       key.startsWith("$")
