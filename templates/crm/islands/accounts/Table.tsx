@@ -12,7 +12,7 @@ import { toDate, toDateTime } from "netzo/components/blocks/format.ts";
 import { CopyId } from "netzo/components/blocks/shared/copy-id.tsx";
 import { Button } from "netzo/components/ui/button.tsx";
 import { Checkbox } from "netzo/components/ui/checkbox.tsx";
-import { type Account, ALIASES } from "@/data/accounts.ts";
+import { type Account, ALIASES } from "@/database/accounts.ts";
 
 type TableProps = Omit<TableProps<Account, unknown>, "columns">;
 

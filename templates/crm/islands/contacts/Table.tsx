@@ -18,7 +18,7 @@ import {
 import { Badge } from "netzo/components/ui/badge.tsx";
 import { Button } from "netzo/components/ui/button.tsx";
 import { Checkbox } from "netzo/components/ui/checkbox.tsx";
-import { ALIASES, type Contact } from "@/data/contacts.ts";
+import { ALIASES, type Contact } from "@/database/contacts.ts";
 
 type TableProps = Omit<TableProps<Contact, unknown>, "columns">;
 

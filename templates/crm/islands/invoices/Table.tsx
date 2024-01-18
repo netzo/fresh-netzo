@@ -13,7 +13,7 @@ import { CopyId } from "netzo/components/blocks/shared/copy-id.tsx";
 import { Badge } from "netzo/components/ui/badge.tsx";
 import { Button } from "netzo/components/ui/button.tsx";
 import { Checkbox } from "netzo/components/ui/checkbox.tsx";
-import { ALIASES, type Invoice } from "@/data/invoices.ts";
+import { ALIASES, type Invoice } from "@/database/invoices.ts";
 
 type TableProps = Omit<TableProps<Invoice, unknown>, "columns">;
 

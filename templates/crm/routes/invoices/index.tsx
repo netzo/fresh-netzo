@@ -1,6 +1,6 @@
 import { defineRoute } from "$fresh/server.ts";
 import type { TableProps } from "netzo/components/blocks/table/table.tsx";
-import { ALIASES, type Invoice } from "@/data/invoices.ts";
+import { ALIASES, type Invoice } from "@/database/invoices.ts";
 import { Table } from "@/islands/invoices/Table.tsx";
 import { netzo } from "@/netzo.ts";
 
