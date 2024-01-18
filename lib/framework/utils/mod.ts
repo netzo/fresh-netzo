@@ -2,7 +2,11 @@
 import { _get } from "../../deps/lodash.get.ts";
 import { netzo } from "../../apis/netzo/mod.ts";
 import type { Project } from "../types.ts";
-import { logInfo, log, LOGS } from "./console.ts";
+import { log, logInfo, LOGS } from "./console.ts";
+
+export * from "./console.ts";
+export * from "./database.ts";
+export * from "./notification.ts";
 
 export async function setEnvVarsIfRemoteProject() {
   const {
@@ -29,7 +33,8 @@ export async function setEnvVarsIfRemoteProject() {
   setEnvVars(envVars);
   logInfo(LOGS.remoteEnvNotice(Object.keys(envVars).length));
 
-  const appUrl = `${NETZO_APP_URL}/workspaces/${project.workspaceId}/projects/${project._id}`;
+  const appUrl =
+    `${NETZO_APP_URL}/workspaces/${project.workspaceId}/projects/${project._id}`;
   log(`\nOpen in netzo at ${appUrl}`);
 }
 

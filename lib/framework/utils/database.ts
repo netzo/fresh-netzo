@@ -1,5 +1,5 @@
 import { monotonicFactory } from "https://deno.land/x/ulid@v0.3.0/mod.ts";
-import { filterObjectsByKeyValues } from "../framework/utils/mod.ts";
+import { filterObjectsByKeyValues } from "./mod.ts";
 
 export const ulid = monotonicFactory();
 

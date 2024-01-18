@@ -7,14 +7,16 @@
 
 import { type FreshConfig, start } from "../deps/$fresh/server.ts";
 import { replace } from "../deps/object-replace-mustache.ts";
-import { createDatabase } from "./database.ts";
-import { createNotification } from "./notification.ts";
 import { proxyCron } from "./proxies/cron.ts";
-import { setEnvVarsIfRemoteProject } from "./utils/mod.ts";
 import { auth, type AuthConfig, type AuthState } from "./plugins/auth/mod.ts";
 import { api, type ApiConfig } from "./plugins/api/mod.ts";
 import { ui, type UiConfig } from "./plugins/ui/mod.ts";
 import { devtools } from "./plugins/devtools/mod.ts";
+import {
+  createDatabase,
+  createNotification,
+  setEnvVarsIfRemoteProject,
+} from "./utils/mod.ts";
 
 export * from "./types.ts";
 
@@ -110,4 +112,4 @@ export const Netzo = async (partialConfig: Partial<NetzoConfig>) => {
       }
     }, // NOTE: async but won't resolve (since dev/start won't) so we can't await it
   };
-}
+};
