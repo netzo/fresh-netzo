@@ -32,5 +32,5 @@ export const cloudflare = ({
     },
   });
 
-  return { api };
+  return api;
 };

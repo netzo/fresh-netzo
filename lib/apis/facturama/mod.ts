@@ -29,5 +29,5 @@ export const facturama = ({
     },
   });
 
-  return { api };
+  return api;
 };

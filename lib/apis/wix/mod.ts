@@ -40,5 +40,5 @@ export const wix = ({
     },
   });
 
-  return { api };
+  return api;
 };

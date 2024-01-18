@@ -32,5 +32,5 @@ export const brevo = ({
     },
   });
 
-  return { api };
+  return api;
 };

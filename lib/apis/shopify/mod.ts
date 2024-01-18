@@ -38,5 +38,5 @@ export const shopify = ({
     },
   });
 
-  return { api };
+  return api;
 };

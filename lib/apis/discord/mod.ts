@@ -35,5 +35,5 @@ export const discord = ({
     },
   });
 
-  return { api };
+  return api;
 };

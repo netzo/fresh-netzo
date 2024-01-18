@@ -32,5 +32,5 @@ export const openai = ({
     },
   });
 
-  return { api };
+  return api;
 };

@@ -30,5 +30,5 @@ export const hubspot = ({
     },
   });
 
-  return { api };
+  return api;
 };

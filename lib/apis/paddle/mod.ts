@@ -35,5 +35,5 @@ export const paddle = ({
     },
   });
 
-  return { api };
+  return api;
 };

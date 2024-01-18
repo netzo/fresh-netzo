@@ -19,5 +19,5 @@ export const jsonplaceholder = () => {
     },
   });
 
-  return { api };
+  return api;
 };

@@ -32,5 +32,5 @@ export const pandadoc = ({
     },
   });
 
-  return { api };
+  return api;
 };

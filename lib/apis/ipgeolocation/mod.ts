@@ -32,5 +32,5 @@ export const ipgeolocation = ({
     },
   });
 
-  return { api };
+  return api;
 };

@@ -36,5 +36,5 @@ export const netzo = ({
     },
   });
 
-  return { api };
+  return api;
 };

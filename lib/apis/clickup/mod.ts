@@ -32,5 +32,5 @@ export const clickup = ({
     },
   });
 
-  return { api };
+  return api;
 };

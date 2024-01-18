@@ -33,5 +33,5 @@ export const holded = ({
     },
   });
 
-  return { api };
+  return api;
 };

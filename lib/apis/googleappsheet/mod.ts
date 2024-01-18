@@ -34,5 +34,5 @@ export const googleappsheet = ({
     },
   });
 
-  return { api };
+  return api;
 };

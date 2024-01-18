@@ -35,5 +35,5 @@ export const activecampaign = ({
     },
   });
 
-  return { api };
+  return api;
 };

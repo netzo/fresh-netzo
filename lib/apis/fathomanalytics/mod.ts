@@ -32,5 +32,5 @@ export const fathomanalytics = ({
     },
   });
 
-  return { api };
+  return api;
 };

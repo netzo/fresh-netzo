@@ -30,5 +30,5 @@ export const sendgrid = ({
     },
   });
 
-  return { api };
+  return api;
 };

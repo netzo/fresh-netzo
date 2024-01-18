@@ -47,32 +47,34 @@ export const googlesheets = ({
     },
   });
 
-  // see https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets.values
-  type Result = {
-    range: string;
-    majorDimension: "COLUMNS" | "ROWS";
-    values: string[][];
-  };
+  return api;
+};
 
-  const resultToRows = (result: Result, headers?: string[]) => {
-    let keys: string[];
-    let rows: Result["values"];
-    if (headers) {
-      keys = headers;
-      rows = result.values;
-    } else {
-      [keys, ...rows] = result.values;
-    }
-    return rows.map((row: string[]) =>
-      keys.reduce(
-        (acc: object, key: string, index: number) => ({
-          ...acc,
-          [key]: row[index],
-        }),
-        {},
-      )
-    );
-  };
+// utils:
 
-  return { api, resultToRows };
+// see https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets.values
+type Result = {
+  range: string;
+  majorDimension: "COLUMNS" | "ROWS";
+  values: string[][];
+};
+
+const resultToRows = (result: Result, headers?: string[]) => {
+  let keys: string[];
+  let rows: Result["values"];
+  if (headers) {
+    keys = headers;
+    rows = result.values;
+  } else {
+    [keys, ...rows] = result.values;
+  }
+  return rows.map((row: string[]) =>
+    keys.reduce(
+      (acc: object, key: string, index: number) => ({
+        ...acc,
+        [key]: row[index],
+      }),
+      {},
+    )
+  );
 };

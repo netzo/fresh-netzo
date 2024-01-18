@@ -32,5 +32,5 @@ export const mailgun = ({
     },
   });
 
-  return { api };
+  return api;
 };

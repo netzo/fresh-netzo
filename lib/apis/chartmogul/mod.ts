@@ -30,5 +30,5 @@ export const chartmogul = ({
     },
   });
 
-  return { api };
+  return api;
 };

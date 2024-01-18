@@ -35,5 +35,5 @@ export const mongodbatlasdata = ({
     },
   });
 
-  return { api };
+  return api;
 };

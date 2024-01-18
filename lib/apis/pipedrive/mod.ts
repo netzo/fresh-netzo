@@ -35,5 +35,5 @@ export const pipedrive = ({
     },
   });
 
-  return { api };
+  return api;
 };

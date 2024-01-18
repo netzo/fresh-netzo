@@ -38,5 +38,5 @@ export const stripe = ({
     },
   });
 
-  return { api };
+  return api;
 };

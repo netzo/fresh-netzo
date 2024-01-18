@@ -30,5 +30,5 @@ export const github = ({
     },
   });
 
-  return { api };
+  return api;
 };

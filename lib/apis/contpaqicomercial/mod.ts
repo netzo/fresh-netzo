@@ -35,5 +35,5 @@ export const ContpaqiComercial = ({
     },
   });
 
-  return { api };
+  return api;
 };

@@ -30,5 +30,5 @@ export const medium = ({
     },
   });
 
-  return { api };
+  return api;
 };

@@ -13,5 +13,5 @@ export type RestOptions = Parameters<typeof createApi>[0];
 export const rest = (options: RestOptions) => {
   const api = createApi(options);
 
-  return { api };
+  return api;
 };

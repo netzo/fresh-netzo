@@ -34,5 +34,5 @@ export const notion = ({
     },
   });
 
-  return { api };
+  return api;
 };

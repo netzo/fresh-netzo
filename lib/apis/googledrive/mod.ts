@@ -47,5 +47,5 @@ export const googledrive = ({
     },
   });
 
-  return { api };
+  return api;
 };

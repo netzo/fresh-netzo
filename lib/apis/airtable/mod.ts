@@ -30,5 +30,5 @@ export const airtable = ({
     },
   });
 
-  return { api };
+  return api;
 };

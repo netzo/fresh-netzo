@@ -33,5 +33,5 @@ export const mailchimpmarketing = ({
     },
   });
 
-  return { api };
+  return api;
 };

@@ -32,5 +32,5 @@ export const monday = ({
     },
   });
 
-  return { api };
+  return api;
 };
