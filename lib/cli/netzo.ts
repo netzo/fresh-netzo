@@ -5,7 +5,6 @@ import { parse, semverGreaterThanOrEquals } from "../deps/semver/mod.ts";
 import { error } from "../framework/utils/console.ts";
 import initSubcommand from "./src/subcommands/init.ts";
 import deploySubcommand from "./src/subcommands/deploy.ts";
-import envSubcommand from "./src/subcommands/env.ts";
 import upgradeSubcommand from "./src/subcommands/upgrade.ts";
 import { MINIMUM_DENO_VERSION, VERSION } from "./src/version.ts";
 import { fetchReleases, getConfigPaths } from "./src/utils/info.ts";
@@ -25,7 +24,6 @@ To deploy a local project:
 SUBCOMMANDS:
     init      Create a project from an existing template
     deploy    Deploy a project with static files to Netzo
-    env       Push project environment variables from env file to Netzo
     upgrade   Upgrade netzo to the given version (defaults to latest)
 `;
 
@@ -94,9 +92,6 @@ switch (subcommand) {
     break;
   case "deploy":
     await deploySubcommand(args);
-    break;
-  case "env":
-    await envSubcommand(args);
     break;
   case "upgrade":
     await upgradeSubcommand(args);
