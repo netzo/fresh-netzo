@@ -18,6 +18,7 @@ export const LOGS = {
   localEnvNotice:
     "Running in development environment (NETZO_PROJECT_ID and/or NETZO_API_KEY not provided).",
   remoteEnvNotice: (count: number) => `Running in production environment (loaded ${count} environment variables).`,
+  missingProjectDenoDatabaseId: "No default database set for the project. Head to https://app.netzo.io to set it up.",
 } as const;
 
 export function log(message: string) {

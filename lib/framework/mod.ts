@@ -7,17 +7,14 @@
 
 import { type FreshConfig, start } from "../deps/$fresh/server.ts";
 import { replace } from "../deps/object-replace-mustache.ts";
-import { netzo } from "../apis/netzo/mod.ts";
 import { createDatabase } from "./database.ts";
 import { createNotification } from "./notification.ts";
 import { proxyCron } from "./proxies/cron.ts";
-import { log, logInfo, LOGS, logWarning } from "./utils/console.ts";
-import { setEnvVars } from "./utils/mod.ts";
-import type { Project } from "./types.ts";
+import { setEnvVarsIfRemoteProject } from "./utils/mod.ts";
 import { auth, type AuthConfig, type AuthState } from "./plugins/auth/mod.ts";
 import { api, type ApiConfig } from "./plugins/api/mod.ts";
 import { ui, type UiConfig } from "./plugins/ui/mod.ts";
-import { devtools, type DevtoolsConfig } from "./plugins/devtools/mod.ts";
+import { devtools } from "./plugins/devtools/mod.ts";
 
 export * from "./types.ts";
 
@@ -25,7 +22,6 @@ export type NetzoConfig = FreshConfig & {
   auth?: AuthConfig;
   ui?: UiConfig;
   api?: ApiConfig;
-  devtools?: DevtoolsConfig;
 };
 
 export type NetzoState = {
@@ -38,83 +34,37 @@ export type NetzoState = {
   [k: string]: unknown;
 };
 
-export type NetzoOptions = {
-  projectId: string;
-  apiKey: string;
-  baseURL?: string;
-};
-
-/**
- * Factory function for core Netzo modules
- * @param {Deno.Kv} kv - [optional] the KV instance to use (defaults to default KV)
- */
-export const Netzo = async (kv?: Deno.Kv) => {
-  kv ??= await Deno.openKv(Deno.env.get("DENO_KV_PATH"));
-
-  const db = createDatabase(kv);
-  const notification = createNotification(db);
-
-  return { db, notification };
-};
-
 /**
  * Factory function for Netzo apps
+ *
+ * Netzo is a Deno Fresh-based meta-framework for building full-stack web apps
+ * faster with less code via an opinionated set of plugins and conventions.
+ *
+ * @example import { Netzo } from "netzo/framework/mod.ts"
+ * const netzo = await Netzo({ ... })
+ * if (import.meta.main)netzo.start()
  *
  * @param {NetzoConfig} partialConfig - the Netzo app config object
  * @returns {object} - an object of multiple utilities core to Netzo
  */
-export async function createNetzoApp(partialConfig: Partial<NetzoConfig>) {
-  const {
-    NETZO_PROJECT_ID,
-    NETZO_API_KEY,
-    NETZO_API_URL = "https://api.netzo.io",
-    NETZO_APP_URL = "https://app.netzo.io",
-  } = Deno.env.toObject();
-  const { DENO_ENV, NETZO_ENV } = setEnvVars({
-    DENO_ENV: Deno.env.get("DENO_REGION") ? "production" : "development",
-    NETZO_ENV: NETZO_PROJECT_ID && NETZO_API_KEY ? "production" : "development",
-    NETZO_API_URL,
-    NETZO_APP_URL,
-  });
+export const Netzo = async (partialConfig: Partial<NetzoConfig>) => {
+  // [development] load development envVars if referencing remote project
+  if (!Deno.env.get("DENO_REGION")) await setEnvVarsIfRemoteProject();
 
-  const kv = await Deno.openKv(Deno.env.get("DENO_KV_PATH"));
+  // [kv] defaults to local database (development) or remote database (production)
+  const kv = await Deno.openKv();
 
-  // [modules] create module utilities (these use kv, no need for apiKey)
-  const { db, notification } = await Netzo(kv);
+  // [modules] create module utilities (these use kv, not apiKey/projectId)
+  const db = createDatabase(kv);
+  const notification = createNotification(db);
 
-  // [deno] proxy deno primitives to augment NOT complement deno (see #81)
+  // [deno] proxy deno primitives
   Deno.cron = proxyCron(db);
 
-  // [deno development] always log notice for good DX
-  if (["development"].includes(DENO_ENV)) {
-    if (!NETZO_PROJECT_ID || !NETZO_API_KEY) logInfo(LOGS.localEnvNotice);
-  }
-  // [netzo production] only if connected to production (remote) project
-  if (["production"].includes(NETZO_ENV)) {
-    // IMPORTANT: api used only during development for (optional) loading of env vars
-    // since otherwise the framework becomes netzo-dependant and requires an NETZO_API_KEY
-    // to run (which is undesired in order to have parity between development and production)
-    const netzoApi = netzo({ apiKey: NETZO_API_KEY, baseURL: NETZO_API_URL });
-
-    const project = await netzoApi.projects[NETZO_PROJECT_ID].get<Project>();
-
-    if (!project) throw new Error(LOGS.notFoundProject);
-
-    const envVars = project.envVars?.development ?? {};
-    setEnvVars(envVars);
-    logInfo(LOGS.remoteEnvNotice(Object.keys(envVars).length));
-
-    const appUrl = new URL(
-      `/workspaces/${project.workspaceId}/projects/${project._id}`,
-      Deno.env.get("NETZO_APP_URL") ?? "https://app.netzo.io",
-    );
-    log(`\nOpen in netzo at ${appUrl.href}`);
-  }
-
-  // 1) render mustache values
+  // [config] render mustache values
   let config = replace(partialConfig, Deno.env.toObject());
 
-  // 2) build state (pass single kv instance to plugins for performance)
+  // [state] build state (pass single kv instance to plugins for performance)
   const state: NetzoState = { kv, db, notification, config };
 
   config = {
@@ -147,6 +97,10 @@ export async function createNetzoApp(partialConfig: Partial<NetzoConfig>) {
   };
 
   return {
+    kv,
+    db,
+    notification,
+    config,
     start: async () => {
       if (Deno.args.includes("dev")) {
         const { default: dev } = await import("$fresh/dev.ts");

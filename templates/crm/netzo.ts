@@ -1,9 +1,7 @@
 #!/usr/bin/env -S deno run -A --unstable --env --watch=static/,routes dev.ts
-import { createNetzoApp, Netzo } from "netzo/framework/mod.ts";
+import { Netzo } from "netzo/framework/mod.ts";
 
-export const netzo = await Netzo(); // [optional] loaded from .env file
-
-export const app = await createNetzoApp({
+export const netzo = await Netzo({
   ui: {
     head: {
       title: "CRM Template | Netzo",
@@ -35,4 +33,4 @@ export const app = await createNetzoApp({
   },
 });
 
-if (import.meta.main) app.start();
+if (import.meta.main) netzo.start();
