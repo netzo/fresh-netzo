@@ -6,7 +6,7 @@ import {
 import { openai } from "./mod.ts";
 
 Deno.test("[apis] openai", async (t) => {
-  const { api } = openai({
+  const api = openai({
     apiKey: Deno.env.get("OPENAI_API_KEY"),
   });
 

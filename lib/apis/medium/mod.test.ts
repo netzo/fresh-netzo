@@ -5,7 +5,7 @@ import {
 import { medium } from "./mod.ts";
 
 Deno.test("[apis] medium", async (t) => {
-  const { api } = medium({
+  const api = medium({
     accessToken: Deno.env.get("MEDIUM_ACCESS_TOKEN"),
   });
 

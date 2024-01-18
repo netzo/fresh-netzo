@@ -6,7 +6,7 @@ import {
 import { stripe } from "./mod.ts";
 
 Deno.test("[apis] stripe", async (t) => {
-  const { api } = stripe({
+  const api = stripe({
     apiKey: Deno.env.get("STRIPE_API_KEY")!,
   });
 

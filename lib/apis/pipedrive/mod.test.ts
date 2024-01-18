@@ -6,7 +6,7 @@ import {
 import { pipedrive } from "./mod.ts";
 
 Deno.test("[apis] pipedrive", async (t) => {
-  const { api } = pipedrive({
+  const api = pipedrive({
     apiToken: Deno.env.get("PIPEDRIVE_API_TOKEN")!,
     companyDomain: Deno.env.get("PIPEDRIVE_COMPANY_DOMAIN")!,
   });

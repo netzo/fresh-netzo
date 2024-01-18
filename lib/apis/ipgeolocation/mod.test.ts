@@ -6,7 +6,7 @@ import {
 import { ipgeolocation } from "./mod.ts";
 
 Deno.test("[apis] ip geolocation", async (t) => {
-  const { api } = ipgeolocation({
+  const api = ipgeolocation({
     apiKey: Deno.env.get("IPGEOLOCATION_API_KEY")!,
   });
 

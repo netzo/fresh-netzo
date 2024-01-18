@@ -6,7 +6,7 @@ import {
 import { googledrive } from "./mod.ts";
 
 Deno.test("[apis] googledrive", async (t) => {
-  const { api } = googledrive({
+  const api = googledrive({
     googleServiceAccountCredentials: Deno.env.get(
       "GOOGLE_SERVICE_ACCOUNT_CREDENTIALS",
     )!,

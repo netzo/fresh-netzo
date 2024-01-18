@@ -3,10 +3,10 @@ import {
   assertEquals,
   assertExists,
 } from "https://deno.land/std@0.205.0/testing/asserts.ts";
-import { googlesheets } from "./mod.ts";
+import { googlesheets, resultToRows } from "./mod.ts";
 
 Deno.test("[apis] googlesheets", async (t) => {
-  const { api, resultToRows } = googlesheets({
+  const api = googlesheets({
     googleServiceAccountCredentials: Deno.env.get(
       "GOOGLE_SERVICE_ACCOUNT_CREDENTIALS",
     )!,

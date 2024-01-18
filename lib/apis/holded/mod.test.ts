@@ -5,7 +5,7 @@ import {
 import { holded } from "./mod.ts";
 
 Deno.test("[apis] holded", async (t) => {
-  const { api } = holded({
+  const api = holded({
     apiKey: Deno.env.get("HOLDED_API_KEY"),
   });
 

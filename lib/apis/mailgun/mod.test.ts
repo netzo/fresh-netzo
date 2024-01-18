@@ -6,7 +6,7 @@ import {
 import { mailgun } from "./mod.ts";
 
 Deno.test("[apis] mailgun", async (t) => {
-  const { api } = mailgun({
+  const api = mailgun({
     apiKey: Deno.env.get("MAILGUN_API_KEY")!,
   });
 

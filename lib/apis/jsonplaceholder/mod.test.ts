@@ -6,7 +6,7 @@ import {
 import { jsonplaceholder } from "./mod.ts";
 
 Deno.test("[apis] jsonplaceholder", async (t) => {
-  const { api } = jsonplaceholder();
+  const api = jsonplaceholder();
 
   await t.step("find todos", async () => {
     const resultData = await api.todos.get();

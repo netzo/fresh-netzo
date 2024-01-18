@@ -6,7 +6,7 @@ import {
 import { github } from "./mod.ts";
 
 Deno.test("[apis] github", async (t) => {
-  const { api } = github({
+  const api = github({
     personalAccessToken: Deno.env.get("GITHUB_PERSONAL_ACCESS_TOKEN")!,
   });
 

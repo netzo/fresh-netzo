@@ -5,7 +5,7 @@ import {
 import { whatsappbusiness } from "./mod.ts";
 
 Deno.test("[apis] whatsappbusiness", async (t) => {
-  const { api } = whatsappbusiness({
+  const api = whatsappbusiness({
     businessAccountId: Deno.env.get("WHATSAPPBUSINESS_BUSINESS_ACCOUNT_ID"),
     permanentToken: Deno.env.get("WHATSAPPBUSINESS_PERMANENT_TOKEN"),
   });

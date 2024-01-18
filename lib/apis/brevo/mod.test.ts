@@ -6,7 +6,7 @@ import {
 import { brevo } from "./mod.ts";
 
 Deno.test("[apis] brevo", async (t) => {
-  const { api } = brevo({
+  const api = brevo({
     apiKey: Deno.env.get("BREVO_API_KEY")!,
   });
 

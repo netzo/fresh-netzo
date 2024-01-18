@@ -5,7 +5,7 @@ import {
 import { facturama } from "./mod.ts";
 
 Deno.test("[apis] facturama", async (t) => {
-  const { api } = facturama({
+  const api = facturama({
     username: Deno.env.get("FACTURAMA_USERNAME"),
     password: Deno.env.get("FACTURAMA_PASSWORD"),
   });

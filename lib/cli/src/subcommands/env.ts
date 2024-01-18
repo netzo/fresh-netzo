@@ -86,7 +86,7 @@ type SyncEnvOpts = {
 
 async function syncEnv(opts: SyncEnvOpts): Promise<void> {
   const projectSpinner = wait("Fetching project information...").start();
-  const { api } = netzo({ apiKey: opts.apiKey, baseURL: opts.apiUrl });
+  const api = netzo({ apiKey: opts.apiKey, baseURL: opts.apiUrl });
   const project = await api.projects[opts.project].get<Project>();
   if (project === null) {
     projectSpinner.fail("Project not found.");

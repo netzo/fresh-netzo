@@ -6,7 +6,7 @@ import {
 import { googleappsheet } from "./mod.ts";
 
 Deno.test("[apis] googleappsheet", async (t) => {
-  const { api } = googleappsheet({
+  const api = googleappsheet({
     appId: Deno.env.get("GOOGLEAPPSHEET_APP_ID")!,
     applicationAccessKey: Deno.env.get(
       "GOOGLEAPPSHEET_APPLICATION_ACCESS_KEY",

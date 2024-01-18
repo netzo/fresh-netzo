@@ -191,7 +191,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
   const projectSpinner = wait(
     `Fetching project '${opts.project}' information...`,
   ).start();
-  const { api } = netzo({ apiKey: opts.apiKey, baseURL: opts.apiUrl });
+  const api = netzo({ apiKey: opts.apiKey, baseURL: opts.apiUrl });
   const project = await api.projects[opts.project].get<Project>();
   if (!project) {
     projectSpinner.fail(
@@ -363,7 +363,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
             return error(message); // exits with error code 1
           }
 
-            // app.service("deployments").removeAllListeners("progress"); // avoid memory leak
+          // app.service("deployments").removeAllListeners("progress"); // avoid memory leak
         }
       },
     );

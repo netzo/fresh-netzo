@@ -6,7 +6,7 @@ import {
 import { discord } from "./mod.ts";
 
 Deno.test("[apis] discord", async (t) => {
-  const { api } = discord({
+  const api = discord({
     tokenType: Deno.env.get("DISCORD_TOKEN_TYPE") ?? "Bot",
     token: Deno.env.get("DISCORD_TOKEN")!,
   });

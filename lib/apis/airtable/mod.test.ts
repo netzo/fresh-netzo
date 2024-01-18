@@ -6,7 +6,7 @@ import {
 import { airtable } from "./mod.ts";
 
 Deno.test("[apis] airtable", async (t) => {
-  const { api } = airtable({
+  const api = airtable({
     personalAccessToken: Deno.env.get("AIRTABLE_PERSONAL_ACCESS_TOKEN")!,
   });
 

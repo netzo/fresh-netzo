@@ -6,7 +6,7 @@ import {
 import { shopify } from "./mod.ts";
 
 Deno.test("[apis] shopify", async (t) => {
-  const { api } = shopify({
+  const api = shopify({
     storeName: Deno.env.get("SHOPIFY_STORE_NAME")!,
     apiKey: Deno.env.get("SHOPIFY_API_KEY")!,
     apiVersion: "2023-07",

@@ -6,7 +6,7 @@ import {
 import { chartmogul } from "./mod.ts";
 
 Deno.test("[apis] chartmogul", async (t) => {
-  const { api } = chartmogul({
+  const api = chartmogul({
     apiKey: Deno.env.get("CHARTMOGUL_API_KEY")!,
   });
 

@@ -6,7 +6,7 @@ import {
 import { hubspot } from "./mod.ts";
 
 Deno.test("[apis] hubspot", async (t) => {
-  const { api } = hubspot({
+  const api = hubspot({
     privateAppAccessToken: Deno.env.get("HUBSPOT_PRIVATE_APP_ACCESS_TOKEN")!,
   });
 

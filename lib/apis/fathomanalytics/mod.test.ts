@@ -5,7 +5,7 @@ import {
 import { fathomanalytics } from "./mod.ts";
 
 Deno.test("[apis] fathomanalytics", async (t) => {
-  const { api } = fathomanalytics({
+  const api = fathomanalytics({
     apiKey: Deno.env.get("FATHOMANALYTICS_API_KEY"),
   });
 
