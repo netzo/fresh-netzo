@@ -29,20 +29,23 @@ import { Args as RawArgs } from "../args.ts";
 const help = `netzo deploy
 Deploy a project with static files to Netzo.
 
-To deploy a local project
+To deploy a local project (default netzo.ts entrypoint):
+  netzo deploy --project=<PROJECT_ID>
+
+To deploy a local project (other entrypoint):
   netzo deploy --project=<PROJECT_ID> main.ts
 
 To deploy a local project after running a build task:
-  netzo deploy --project=<PROJECT_ID> --build main.
+  netzo deploy --project=<PROJECT_ID> --build
 
 To deploy a local project and mark it as production:
-  netzo deploy --project=<PROJECT_ID> --production main.
+  netzo deploy --project=<PROJECT_ID> --production
 
 To deploy a local project without static files:
-  netzo deploy --project=<PROJECT_ID> --no-static main.ts
+  netzo deploy --project=<PROJECT_ID> --no-static
 
-To ignore the node_modules directory while deploying:
-  netzo deploy --project=<PROJECT_ID> --exclude=node_modules main.tsx
+To ignore the .env file while deploying:
+  netzo deploy --project=<PROJECT_ID> --exclude=".env"
 
 USAGE:
     netzo deploy [OPTIONS] [<entrypoint>]
@@ -55,7 +58,7 @@ OPTIONS:
     -h, --help                   Prints help information
         --no-static              Don't include the files in the CWD as static files
         --build                  Runs custom build task (via "deno task build") before deploying
-        --production                   Create a production deployment (default is preview deployment)
+        --production             Create a production deployment (default is preview deployment)
         --description=<TEXT>     A description of the deployment (like a git commit message)
     -p, --project=<PROJECT_ID>   The ID of the project to deploy to
         --dry-run                Dry run the deployment process

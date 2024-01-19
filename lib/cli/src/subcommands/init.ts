@@ -11,7 +11,7 @@ To create a new project from a specific template:
   netzo init --template=starter-app
 
 To create a new project from a template in a custom directory:
-  netzo init path/to/directory
+  netzo init path/to/project
 
 To create a new project from a template in the current working directory:
   netzo init .

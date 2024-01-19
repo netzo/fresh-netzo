@@ -39,7 +39,7 @@ export type NetzoState = {
 /**
  * Factory function for Netzo apps
  *
- * Netzo is a Deno Fresh-based framework for building full-stack web apps
+ * Netzo is a Deno framework for building full-stack web apps
  * faster with less code via an opinionated set of plugins and conventions.
  *
  * @example import { Netzo } from "netzo/core/mod.ts"
