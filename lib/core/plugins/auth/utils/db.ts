@@ -1,5 +1,5 @@
 import { ulid } from "../../../utils/database.ts";
-import type { AuthProvider } from "../utils/providers/mod.ts";
+import type { AuthProvider } from "./providers/mod.ts";
 
 const kv = await Deno.openKv(Deno.env.get("DENO_KV_PATH"));
 
@@ -9,7 +9,7 @@ const kv = await Deno.openKv(Deno.env.get("DENO_KV_PATH"));
  *
  * @example
  * ```ts
- * import { collectValues, listUsers, type User } from "../../../../framework/plugins/auth/utils/db.ts";
+ * import { collectValues, listUsers, type User } from "../../../../core/plugins/auth/utils/db.ts";
  *
  * const users = await collectValues<User>(listUsers());
  * users[0].id; // Returns "01H9YD2RVCYTBVJEYEJEV5D1S1";
@@ -55,7 +55,7 @@ export type AuthUserFromProvider = Pick<
  *
  * @example
  * ```ts
- * import { createUser } from "../../../../framework/plugins/auth/utils/db.ts";
+ * import { createUser } from "../../../../core/plugins/auth/utils/db.ts";
  *
  * await createUser({
  *   authId: "auth0|xxx",
@@ -85,7 +85,7 @@ export async function createUser(user: AuthUser) {
  *
  * @example
  * ```ts
- * import { updateUser } from "../../../../framework/plugins/auth/utils/db.ts";
+ * import { updateUser } from "../../../../core/plugins/auth/utils/db.ts";
  *
  * await updateUser({
  *   authId: "auth0|xxx",
@@ -112,7 +112,7 @@ export async function updateUser(user: AuthUser) {
  *
  * @example
  * ```ts
- * import { updateUserSession } from "../../../../framework/plugins/auth/utils/db.ts";
+ * import { updateUserSession } from "../../../../core/plugins/auth/utils/db.ts";
  *
  * await updateUserSession({
  *   authId: "auth0|xxx",
@@ -143,7 +143,7 @@ export async function updateUserSession(user: AuthUser, sessionId: string) {
  *
  * @example
  * ```ts
- * import { getUser } from "../../../../framework/plugins/auth/utils/db.ts";
+ * import { getUser } from "../../../../core/plugins/auth/utils/db.ts";
  *
  * const user = await getUser("jack");
  * user?.authId; // Returns "auth0|xxx"
@@ -166,7 +166,7 @@ export async function getUser(authId: string) {
  *
  * @example
  * ```ts
- * import { getUserBySession } from "../../../../framework/plugins/auth/utils/db.ts";
+ * import { getUserBySession } from "../../../../core/plugins/auth/utils/db.ts";
  *
  * const user = await getUserBySession("xxx");
  * user?.authId; // Returns "auth0|xxx"
@@ -191,7 +191,7 @@ export async function getUserBySession(sessionId: string) {
  *
  * @example
  * ```ts
- * import { listUsers } from "../../../../framework/plugins/auth/utils/db.ts";
+ * import { listUsers } from "../../../../core/plugins/auth/utils/db.ts";
  *
  * for await (const entry of listUsers()) {
  *   entry.value.authId; // Returns "auth0|xxx"

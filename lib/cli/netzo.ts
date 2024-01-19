@@ -2,7 +2,7 @@
 
 import { parseArgs } from "./src/args.ts";
 import { parse, semverGreaterThanOrEquals } from "../deps/semver/mod.ts";
-import { error } from "../framework/utils/console.ts";
+import { error } from "../core/utils/console.ts";
 import initSubcommand from "./src/subcommands/init.ts";
 import deploySubcommand from "./src/subcommands/deploy.ts";
 import upgradeSubcommand from "./src/subcommands/upgrade.ts";

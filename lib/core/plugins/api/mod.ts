@@ -1,6 +1,6 @@
 import type { Plugin } from "../../../deps/$fresh/server.ts";
 import { isHttpError } from "../../../deps/std/http/http_errors.ts";
-import { parseRequestBody } from "../../../framework/utils/mod.ts";
+import { parseRequestBody } from "../../utils/mod.ts";
 import { ERRORS, METHODS, parseSearchParams } from "./utils.ts";
 
 export type ApiConfig = {

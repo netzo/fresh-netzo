@@ -1,7 +1,7 @@
 import { defineApp } from "../../../../deps/$fresh/server.ts";
 import { Partial } from "../../../../deps/$fresh/runtime.ts";
 import { cn } from "../../../../components/utils.ts";
-import type { NetzoState } from "../../../../framework/mod.ts";
+import type { NetzoState } from "../../../mod.ts";
 import { Head } from "../components/head.tsx";
 import { Header } from "../islands/header.tsx";
 import { Footer } from "../islands/footer.tsx";

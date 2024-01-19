@@ -13,7 +13,7 @@ import {
  *
  * @example
  * ```ts
- * import { redirect } from "../../../../framework/plugins/auth/utils/http.ts";
+ * import { redirect } from "../../../../core/plugins/auth/utils/http.ts";
  *
  * redirect("/new-page"); // Redirects client to `/new-page` with HTTP status 303
  * redirect("/new-page", 301); // Redirects client to `/new-page` with HTTP status 301
@@ -36,7 +36,7 @@ export function redirect(
  *
  * @example
  * ```ts
- * import { getCursor } from "../../../../framework/plugins/auth/utils/http.ts";
+ * import { getCursor } from "../../../../core/plugins/auth/utils/http.ts";
  *
  * getCursor(new URL("http://example.com?cursor=12345")); // Returns "12345"
  * getCursor(new URL("http://example.com")); // Returns ""
@@ -53,8 +53,8 @@ export function getCursor(url: URL) {
  *
  * @example
  * ```ts
- * import { fetchValues } from "../../../../framework/plugins/auth/utils/http.ts";
- * import type { User } from "../../../../framework/plugins/auth/utils/db.ts";
+ * import { fetchValues } from "../../../../core/plugins/auth/utils/http.ts";
+ * import type { User } from "../../../../core/plugins/auth/utils/db.ts";
  *
  * const body = await fetchValues<User>("https://hunt.deno.land/api/users", "12345");
  * body.values[0].id; // Returns "13f34b7e-5563-4001-98ed-9ee04d7af717"

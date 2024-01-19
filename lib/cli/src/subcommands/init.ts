@@ -1,4 +1,4 @@
-import { error } from "../../../framework/utils/console.ts";
+import { error } from "../../../core/utils/console.ts";
 import { question } from "../../../deps/question/mod.ts";
 
 const help = `netzo init

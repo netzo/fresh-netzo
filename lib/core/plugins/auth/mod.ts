@@ -1,6 +1,6 @@
 import type { Plugin } from "../../../deps/$fresh/server.ts";
 import type { OAuth2ClientConfig } from "../../../deps/oauth2_client/src/oauth2_client.ts";
-import { type AuthUser } from "../../../framework/plugins/auth/utils/db.ts";
+import { type AuthUser } from "./utils/db.ts";
 import {
   ensureSignedIn,
   setAppState,
