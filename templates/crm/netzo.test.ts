@@ -1,5 +1,5 @@
 import { createHandler, ServeHandlerInfo } from "$fresh/server.ts";
-import { assert, assertEquals } from "std/testing/asserts.ts";
+import { assertEquals } from "std/testing/asserts.ts";
 import manifest from "./fresh.gen.ts";
 
 const CONN_INFO: ServeHandlerInfo = {

@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "../../ui/card.tsx";
 import { Button } from "../../ui/button.tsx";
 import { cva } from "../../../deps/class-variance-authority.ts";
 import { Badge } from "../../ui/badge.tsx";
-import type { Deal } from "@/data/deals.schema.tsx";
+import type { Deal } from "@/database/deals.schema.tsx";
 
 interface KanbanCardProps {
   deal: Deal;

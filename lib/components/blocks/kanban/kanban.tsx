@@ -16,7 +16,7 @@ import {
   useSensors,
 } from "../../../deps/@dnd-kit/core.ts";
 import { arrayMove, SortableContext } from "../../../deps/@dnd-kit/sortable.ts";
-import type { Deal } from "@/data/deals.schema.tsx";
+import type { Deal } from "@/database/deals.schema.tsx";
 import type { Column } from "./kanban-column.tsx";
 import { hasDraggableData } from "./utils.ts";
 import { coordinateGetter } from "./multiple-containers-keyboard-preset.ts";
@@ -26,6 +26,7 @@ export type KanbanProps<TData = unknown, TValue = unknown> = {
   options: {
     resource: string;
     columnId: string;
+    columns: Column[];
   };
 };
 

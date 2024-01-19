@@ -14,7 +14,7 @@ import { cva } from "../../../deps/class-variance-authority.ts";
 import { Card, CardContent, CardHeader } from "../../ui/card.tsx";
 import { Button } from "../../ui/button.tsx";
 import { ScrollArea, ScrollBar } from "../../ui/scroll-area.tsx";
-import type { Deal } from "@/data/deals.schema.tsx";
+import type { Deal } from "@/database/deals.schema.tsx";
 
 export interface Column {
   id: UniqueIdentifier;
