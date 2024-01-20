@@ -1,0 +1,9 @@
+.env
+.production.env
+*.DS_Store
+cov/
+cov.lcov
+.idea
+_fresh/
+backup.json
+html_cov/
