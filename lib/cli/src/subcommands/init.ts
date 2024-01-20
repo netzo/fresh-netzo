@@ -7,25 +7,22 @@ Create a new project from an existing template.
 To create a new project from a template:
   netzo init
 
-To create a new project from a specific template:
-  netzo init --template=starter-app
-
 To create a new project from a template in a custom directory:
-  netzo init path/to/project
+  netzo init --dir=path/to/project
 
 To create a new project from a template in the current working directory:
-  netzo init .
+  netzo init --dir=.
 
 USAGE:
-    netzo init [OPTIONS] [<directory>]
+    netzo init [OPTIONS] [<template>]
 
 OPTIONS:
-    -h, --help       Prints help information
-    -t, --template   The UID of the template (omit to list all templates)
-        --dry-run    Dry run the initialization process
+    -h, --help      Prints help information
+    -d, --dir       The directory path to initialize project in (defaults to <template>)
+        --dry-run   Dry run the initialization process
 
 ARGS:
-    <directory>      The directory path to initialize project in (defaults to --template)
+    <template>      The name of the template (omit to list all templates)
 `;
 
 export type Args = {
@@ -38,7 +35,7 @@ export type Args = {
 export default async function (rawArgs: Record<string, any>): Promise<void> {
   const args: Args = {
     help: !!rawArgs.help,
-    template: rawArgs.template ? String(rawArgs.template) : null,
+    dir: rawArgs.dir ? String(rawArgs.dir) : null,
     dryRun: !!rawArgs["dry-run"],
   };
 
@@ -50,25 +47,18 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     console.error(help);
     error("Too many positional arguments given.");
   }
-  if (args.template === null) {
+  const template = typeof rawArgs._[0] === "string"
+    ? rawArgs._[0]
     // @ts-ignore: types of question module are broken due to function overloading
-    args.template = await question(
+    : await question(
       "list",
       "Select a template:",
-      await getTemplateUids(),
+      await getTemplateNames(),
     );
-    // NOTE: exit directly if undefined (when cancelling/escaping prompt)
-    if (args.template === undefined) Deno.exit(1);
-  }
-  // in case prompt is cancelled/escaped
-  if (args.template === null) {
-    console.error(help);
-    error("Missing template UID.");
-  }
+  // exit directly in case prompt is cancelled/escaped
+  if (!template) Deno.exit(1);
 
-  const directory = typeof rawArgs._[0] === "string"
-    ? rawArgs._[0]
-    : args.template!; // defaults to template UID
+  if (args.dir === null) args.dir = template;
 
   const process = new Deno.Command(Deno.execPath(), {
     args: [
@@ -81,15 +71,15 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
       "--allow-sys",
       "--no-check",
       `npm:giget@1.1.2`,
-      `gh:netzo/netzo/templates/${args.template}`,
-      directory,
+      `gh:netzo/netzo/templates/${template}`,
+      args.dir,
       "--force", // init at existing directory even if exists
     ],
   }).spawn();
   await process.status;
 }
 
-async function getTemplateUids() {
+async function getTemplateNames() {
   const base = "https://raw.githubusercontent.com/netzo/netzo/main/templates";
   const response = await fetch(`${base}/templates.json`, {
     headers: { accept: "application/json", "cache-control": "no-cache" },
@@ -97,7 +87,7 @@ async function getTemplateUids() {
   const allUrls: string[] = await response.json();
   const urls = [...new Set(allUrls)]
     .filter((url) => !url.includes("/templates/_wip/"));
-  const pattern = `${base}/(.*)/template.json`; // extract UID from
-  const uids = urls.map((url) => url.match(new RegExp(pattern))?.[1]);
-  return uids.sort((a, b) => a!.localeCompare(b!));
+  const pattern = `${base}/(.*)/template.json`; // extract name from
+  const names = urls.map((url) => url.match(new RegExp(pattern))?.[1]);
+  return names.sort((a, b) => a!.localeCompare(b!));
 }
