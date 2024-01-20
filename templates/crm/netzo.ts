@@ -10,7 +10,7 @@ export const netzo = await Netzo({
       image: "/cover.svg",
     },
     nav: {
-      title: "Netzo Company",
+      title: "Netzo",
       image: "/favicon.svg",
       items: [
         { text: "Overview", href: "/" },
