@@ -1,3 +1,4 @@
+import type { ComponentChildren } from "../../../../deps/preact.ts";
 import * as z from "../../../../deps/zod/mod.ts";
 import { useForm } from "../../../../deps/react-hook-form.ts";
 import { FieldConfig, FieldConfigItem } from "../types.ts";
@@ -17,7 +18,7 @@ import { FormField } from "../../../ui/form.tsx";
 import { DEFAULT_ZOD_HANDLERS, INPUT_COMPONENTS } from "../config.ts";
 import AutoFormArray from "./array.tsx";
 
-function DefaultParent({ children }: { children: React.ReactNode }) {
+function DefaultParent({ children }: { children: ComponentChildren }) {
   return <>{children}</>;
 }
 

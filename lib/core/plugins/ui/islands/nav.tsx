@@ -39,13 +39,13 @@ export function Nav({ className, ...props }: NavProps) {
         {props.items?.map((item, index) => {
           if ("href" in item) {
             return (
-              <div class="px-1">
+              <div class="mx-1">
                 <NavItem key={index} item={item} />
               </div>
             );
           } else if ("text" in item) {
             return (
-              <h3 className="mx-2 text-xs font-medium text-muted-foreground">
+              <h3 className="mt-3 mb-1 mx-4 text-xs font-medium text-muted-foreground">
                 {item.text}
               </h3>
             );

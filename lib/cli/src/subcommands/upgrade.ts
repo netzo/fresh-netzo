@@ -6,13 +6,14 @@ import {
 } from "../../../deps/semver/mod.ts";
 import { VERSION } from "../version.ts";
 
-const help = `netzo upgrade: upgrade netzo to the given version (defaults to latest).
+const help =
+  `netzo upgrade: upgrade netzo CLI to the given version (defaults to latest).
 
 To upgrade to latest version:
 netzo upgrade
 
 To upgrade to specific version:
-netzo upgrade 1.2.3
+netzo upgrade X.Y.Z
 
 The version is downloaded from https://deno.land/x/netzo/cli/netzo.ts
 

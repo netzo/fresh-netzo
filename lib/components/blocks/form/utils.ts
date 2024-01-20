@@ -1,3 +1,4 @@
+import type { JSX } from "../../../deps/preact.ts";
 import { DefaultValues } from "../../../deps/react-hook-form.ts";
 import { z } from "../../../deps/zod/mod.ts";
 
@@ -138,7 +139,7 @@ export function zodToHtmlInputProps(
     | z.ZodString
     | z.ZodOptional<z.ZodNumber | z.ZodString>
     | any,
-): React.InputHTMLAttributes<HTMLInputElement> {
+): JSX.HTMLAttributes<HTMLInputElement> {
   if (["ZodOptional", "ZodNullable"].includes(schema._def.typeName)) {
     const typedSchema = schema as z.ZodOptional<z.ZodNumber | z.ZodString>;
     return {
@@ -156,7 +157,7 @@ export function zodToHtmlInputProps(
   }
 
   const { checks } = typedSchema._def;
-  const inputProps: React.InputHTMLAttributes<HTMLInputElement> = {
+  const inputProps: JSX.HTMLAttributes<HTMLInputElement> = {
     required: true,
   };
   const type = getBaseType(schema);

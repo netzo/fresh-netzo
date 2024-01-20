@@ -7,6 +7,7 @@ export type NavItemProps = UiConfig["nav"]["items"][number];
 export function NavItem(props: NavItemProps) {
   return (
     <a
+      {...props.item}
       key={props.item.key}
       href={props.item.href}
       target={props.target}

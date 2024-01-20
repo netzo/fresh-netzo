@@ -1,3 +1,4 @@
+import type { ComponentChildren, JSX } from "../../../deps/preact.ts";
 import {
   ControllerRenderProps,
   FieldValues,
@@ -7,12 +8,12 @@ import { INPUT_COMPONENTS } from "./config.ts";
 
 export type FieldConfigItem = {
   description?: React.ReactNode;
-  inputProps?: React.InputHTMLAttributes<HTMLInputElement> & {
+  inputProps?: JSX.HTMLAttributes<HTMLInputElement> & {
     showLabel?: boolean;
   };
   fieldType?:
     | keyof typeof INPUT_COMPONENTS
-    | React.FC<AutoFormInputComponentProps>;
+    | FunctionalComponent<AutoFormInputComponentProps>;
 
   renderParent?: (props: {
     children: React.ReactNode;
@@ -30,7 +31,7 @@ export type FieldConfig<SchemaType extends z.infer<z.ZodObject<any, any>>> = {
  * A FormInput component can handle a specific Zod type (e.g. "ZodBoolean")
  */
 export type AutoFormInputComponentProps = {
-  zodInputProps: React.InputHTMLAttributes<HTMLInputElement>;
+  zodInputProps: JSX.HTMLAttributes<HTMLInputElement>;
   field: ControllerRenderProps<FieldValues, any>;
   fieldConfigItem: FieldConfigItem;
   label: string;

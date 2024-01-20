@@ -1,4 +1,5 @@
 // adapted from https://github.com/vantezzen/auto-form
+import type { ComponentChildren } from "../../../deps/preact.ts";
 import { z } from "../../../deps/zod/mod.ts";
 import { Form as _Form } from "../../ui/form.tsx";
 import { DefaultValues, useForm } from "../../../deps/react-hook-form.ts";
@@ -15,7 +16,7 @@ import AutoFormObject from "./fields/object.tsx";
 
 export { createOnSubmit } from "./utils.ts";
 
-export function FormSubmit({ children }: { children?: React.ReactNode }) {
+export function FormSubmit({ children }: { children?: ComponentChildren }) {
   return <Button type="submit">{children ?? "Submit"}</Button>;
 }
 
@@ -35,7 +36,7 @@ export function Form<SchemaType extends ZodObjectOrWrapped>({
   onParsedValuesChange?: (values: Partial<z.infer<SchemaType>>) => void;
   onSubmit?: (values: z.infer<SchemaType>) => void;
   fieldConfig?: FieldConfig<z.infer<SchemaType>>;
-  children?: React.ReactNode;
+  children?: ComponentChildren;
   className?: string;
 }) {
   const objectFormSchema = getObjectFormSchema(formSchema);

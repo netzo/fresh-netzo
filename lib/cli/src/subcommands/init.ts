@@ -26,7 +26,7 @@ ARGS:
 
 export type Args = {
   help: boolean;
-  template: string | null;
+  dir: string | null;
   dryRun: boolean;
 };
 
@@ -49,11 +49,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
   const template = typeof rawArgs._[0] === "string"
     ? rawArgs._[0]
     // @ts-ignore: types of question module are broken due to function overloading
-    : await question(
-      "list",
-      "Select a template:",
-      await getTemplateNames(),
-    );
+    : await question("list", "Select a template:", await getTemplateNames());
   // exit directly in case prompt is cancelled/escaped
   if (!template) Deno.exit(1);
 

@@ -1,3 +1,4 @@
+import type { ComponentChildren } from "../../../deps/preact.ts";
 // adapted from https://github.com/Georgegriff/react-dnd-kit-tailwind-shadcn-ui/blob/main/src/components/BoardColumn.tsx
 import {
   SortableContext,
@@ -106,7 +107,7 @@ export function KanbanColumn(
   );
 }
 
-export function BoardContainer({ children }: { children: React.ReactNode }) {
+export function BoardContainer({ children }: { children: ComponentChildren }) {
   const dndContext = useDndContext();
 
   const variations = cva("h-full px-2 md:px-0 flex lg:justify-center", {
