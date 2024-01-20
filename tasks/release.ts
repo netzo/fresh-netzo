@@ -3,7 +3,7 @@
 const [tagName] = Deno.args;
 
 if (!tagName) {
-  console.error("Please provide a tag name (e.g. 1.2.3).");
+  console.error("Please provide a tag name X.Y.Z.");
   Deno.exit(1);
 }
 

@@ -20,10 +20,13 @@ To create a new project from a template:
 To deploy a local project:
   netzo deploy --project=<PROJECT_ID> ./main.ts
 
+To upgrade to the latest vesion:
+  netzo upgrade
+
 SUBCOMMANDS:
     init      Create a project from an existing template
     deploy    Deploy a project with static files to Netzo
-    upgrade   Upgrade netzo to the given version (defaults to latest)
+    upgrade   Upgrade netzo CLI to the given version (defaults to latest)
 `;
 
 if (
