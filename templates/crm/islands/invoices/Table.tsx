@@ -2,31 +2,12 @@ import {
   Table as _Table,
   type TableProps,
 } from "netzo/components/blocks/table/table.tsx";
-import type { ColumnDef } from "netzo/deps/@tanstack/react-table.ts";
-import {
-  renderCell,
-  renderCheckboxRow,
-  renderHeader,
-} from "netzo/components/blocks/render.tsx";
+import { renderCell, renderHeader } from "netzo/components/blocks/render.tsx";
 import { toDate, toDateTime } from "netzo/components/blocks/format.ts";
 import { CopyId } from "netzo/components/blocks/shared/copy-id.tsx";
 import { Badge } from "netzo/components/ui/badge.tsx";
-import { Button } from "netzo/components/ui/button.tsx";
 import { Checkbox } from "netzo/components/ui/checkbox.tsx";
 import { ALIASES, type Invoice } from "@/database/invoices.ts";
-
-type TableProps = Omit<TableProps<Invoice, unknown>, "columns">;
-
-export function Table(props: TableProps) {
-  const columns = getColumns(props);
-  return (
-    <_Table
-      data={props.data}
-      options={props.options}
-      columns={columns}
-    />
-  );
-}
 
 // NOTE: columns must be defined in island due to client-only function serialization
 export const getColumns = (_props: TableProps): TableProps["columns"] => [
@@ -167,3 +148,14 @@ export const getColumns = (_props: TableProps): TableProps["columns"] => [
     ],
   },
 ];
+
+export function Table(props: Omit<TableProps<Invoice, unknown>, "columns">) {
+  const columns = getColumns(props);
+  return (
+    <_Table
+      data={props.data}
+      options={props.options}
+      columns={columns}
+    />
+  );
+}

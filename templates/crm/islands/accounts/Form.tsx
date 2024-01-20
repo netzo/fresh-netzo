@@ -10,13 +10,20 @@ type FormProps = {
   method: "POST" | "PATCH";
 };
 
+// use z.omit()/z.pick() to filter out fields
+const formSchema = accountSchema.omit({
+  _id: true,
+  updatedAt: true,
+  createdAt: true,
+});
+
 export function FormAccount({ data, method, action }: FormProps) {
   const values = useSignal(data);
 
   return (
     <Form
       values={values.value}
-      formSchema={accountSchema}
+      formSchema={formSchema}
       onSubmit={createOnSubmit(method, action)}
     >
       <Button type="submit" className="mt-8">

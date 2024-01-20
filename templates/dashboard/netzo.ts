@@ -1,5 +1,5 @@
 #!/usr/bin/env -S deno run -A --unstable --env --watch=static/,routes dev.ts
-import { Netzo } from "../../lib/core/mod.ts";
+import { Netzo } from "netzo/core/mod.ts";
 
 export const netzo = await Netzo({
   ui: {
