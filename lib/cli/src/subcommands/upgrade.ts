@@ -6,8 +6,7 @@ import {
 } from "../../../deps/semver/mod.ts";
 import { VERSION } from "../version.ts";
 
-const help = `netzo upgrade
-Upgrade netzo to the given version (defaults to latest).
+const help = `netzo upgrade: upgrade netzo to the given version (defaults to latest).
 
 To upgrade to latest version:
 netzo upgrade

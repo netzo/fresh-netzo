@@ -1,8 +1,7 @@
 import { error } from "../../../core/utils/console.ts";
 import { question } from "../../../deps/question/mod.ts";
 
-const help = `netzo init
-Create a new project from an existing template.
+const help = `netzo init: create a new project from an existing template.
 
 To create a new project from a template:
   netzo init

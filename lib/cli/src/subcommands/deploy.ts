@@ -26,8 +26,7 @@ import {
 import { APIError } from "../utils/api.ts";
 import { Args as RawArgs } from "../args.ts";
 
-const help = `netzo deploy
-Deploy a project with static files to Netzo.
+const help = `netzo deploy: deploy a project with static files to Netzo.
 
 To deploy a local project (default netzo.ts entrypoint):
   netzo deploy --project=<PROJECT_ID>
@@ -366,7 +365,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
             return error(message); // exits with error code 1
           }
 
-            // app.service("deployments").removeAllListeners("progress"); // avoid memory leak
+          // app.service("deployments").removeAllListeners("progress"); // avoid memory leak
         }
       },
     );
