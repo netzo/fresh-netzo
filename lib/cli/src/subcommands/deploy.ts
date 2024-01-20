@@ -366,7 +366,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
             return error(message); // exits with error code 1
           }
 
-          // app.service("deployments").removeAllListeners("progress"); // avoid memory leak
+            // app.service("deployments").removeAllListeners("progress"); // avoid memory leak
         }
       },
     );
