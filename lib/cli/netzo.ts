@@ -12,8 +12,7 @@ import { fetchReleases, getConfigPaths } from "./src/utils/info.ts";
 // ensure .env is loaded (even if not using --env)
 import "https://deno.land/std@0.208.0/dotenv/load.ts";
 
-const help = `netzo ${VERSION}
-Command line tool for Netzo.
+const help = `netzo ${VERSION}: command line interface (CLI) for Netzo.
 
 To create a new project from a template:
   netzo init
