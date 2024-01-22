@@ -7,7 +7,7 @@
 <h3 align="center">Netzo</h3>
 
 <p align="center">
-  Code. Deploy. Repeat.
+  The complete open-source framework for building web apps.
 </p>
 
 <p align="center">
@@ -20,5 +20,6 @@
 
 [![Discord](https://discord.com/api/guilds/1069584352415068251/widget.png)](https://discord.gg/tbDUpRQCTk)
 [![Follow on Twitter](https://img.shields.io/twitter/follow/netzoio.svg?label=follow+netzoio)](https://twitter.com/netzoio)
+[![GitHub Repo stars](https://img.shields.io/github/stars/netzo/netzo?style=social)](https://github.com/netzo/netzo.io)
 
 </div>
