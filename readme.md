@@ -26,3 +26,8 @@
 </div>
 
 ## What is Netzo?
+
+Netzo is a batteries included metaframework for [fresh js](https://fresh.deno.dev/) powered by [Deno](https://deno.com) and [Deno subhosting](https://deno.com/subhosting) that provides a comprehensive solutions for building web apps faster and easier. Developer and engineering team are empowered to ship highly customizable solutions like internal tools, dashboards, admin panels and B2B apps — faster, more efficiently, and without compromising on flexibility. 
+
+
+ 
