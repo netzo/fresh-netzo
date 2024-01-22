@@ -4,6 +4,7 @@ import { parseArgs } from "./src/args.ts";
 import { parse, semverGreaterThanOrEquals } from "../deps/semver/mod.ts";
 import { error } from "../core/utils/console.ts";
 import initSubcommand from "./src/subcommands/init.ts";
+import addSubcommand from "./src/subcommands/add.ts";
 import deploySubcommand from "./src/subcommands/deploy.ts";
 import upgradeSubcommand from "./src/subcommands/upgrade.ts";
 import { MINIMUM_DENO_VERSION, VERSION } from "./src/version.ts";
@@ -17,14 +18,18 @@ const help = `netzo ${VERSION}: command line interface (CLI) for Netzo.
 To create a new project from a template:
   netzo init
 
+To add a new resource to an existing project:
+  netzo add
+
 To deploy a local project:
   netzo deploy --project=<PROJECT_ID> ./main.ts
 
-To upgrade to the latest vesion:
+To upgrade to the latest version:
   netzo upgrade
 
 SUBCOMMANDS:
     init      Create a project from an existing template
+    add       Add a new resource to an existing project
     deploy    Deploy a project with static files to Netzo
     upgrade   Upgrade netzo CLI to the given version (defaults to latest)
 `;
@@ -91,6 +96,9 @@ const subcommand = args._.shift();
 switch (subcommand) {
   case "init":
     await initSubcommand(args);
+    break;
+  case "add":
+    await addSubcommand(args);
     break;
   case "deploy":
     await deploySubcommand(args);

@@ -12,7 +12,7 @@ deno install -Arf https://deno.land/x/netzo/cli/netzo.ts
 ## Usage
 
 Before being able to deploy, you need to get an API key from the
-[Workspace > Settings > API keys](https://netzo.io/docs/platform/workspaces#api-keys)
+[Workspace > Settings > API keys](https://netzo.io/docs/platform/workspace#api-keys)
 page. Store this API key in a `NETZO_API_KEY` environment variable, or pass it
 to `netzo` with the `--api-key` flag.
 
