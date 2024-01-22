@@ -13,7 +13,8 @@
 <p align="center">
   <a href="https://netzo.io"><strong>Website</strong></a> ·
   <a href="https://netzo.io/docs"><strong>Docs</strong></a> ·
-  <a href="https://discord.gg/tbDUpRQCTk"><strong>Community</strong></a>
+  <a href="https://github.com/netzo/netzo/issues"><strong>Issues</strong></a> ·
+  <a href="https://discord.gg/tbDUpRQCTk"><strong>Discord</strong></a>
 </p>
 
 <div align="center" style="margin-top: 24px;">
@@ -23,3 +24,5 @@
 [![GitHub Repo stars](https://img.shields.io/github/stars/netzo/netzo?style=social)](https://github.com/netzo/netzo.io)
 
 </div>
+
+## What is Netzo?
