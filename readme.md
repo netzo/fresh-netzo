@@ -27,7 +27,34 @@
 
 ## What is Netzo?
 
-Netzo is a batteries included metaframework for [fresh js](https://fresh.deno.dev/) powered by [Deno](https://deno.com) and [Deno subhosting](https://deno.com/subhosting) that provides a comprehensive solutions for building web apps faster and easier. Developer and engineering team are empowered to ship highly customizable solutions like internal tools, dashboards, admin panels and B2B apps — faster, more efficiently, and without compromising on flexibility. 
+Netzo is a comprehensive, batteries-included metaframework for [Deno Fresh](https://fresh.deno.dev/), powered by [Deno](https://deno.com) and [Deno subhosting](https://deno.com/subhosting). It offers a full-stack solution that includes modules, components, and opinionated best practices, allowing developers and engineering teams to build bespoke web apps faster and more efficiently. With Netzo, you can create highly customizable solutions such as internal tools, dashboards, admin panels, and B2B apps fast and without compromising flexibility.
 
+## How does it work?
+
+Netzo consists of two main components:
+
+1. **Framework**: Netzo features an open-source, full-stack metaframework tailored for [Deno Fresh](https://fresh.deno.dev/) that streamlines the development of high-quality web apps. It incorporates out-of-the-box core functionalities including authentication, permissions, auditing, approval flows, notifications, UI components, and more.
+
+2. **Platform**: Netzo provides a centralized hub empowering organizations to effortlessly deploy and manage vital elements of their applications, users, and data using user-friendly interfaces.
+
+## Why Netzo?
+
+Custom business app development has challenges. Low-code tools ease the first 60% but struggle with complexity in the remaining 40%. Traditional development is complex and time-consuming. In business software, speed and efficiency often matter more than flexibility and control. 
+
+Our goal is to provide full-code flexibility at no-code speeds by packaging common elements, allowing developers to focus on writing code.
+
+## Tech Stack
+
+- **Runtime:** Powered by [Deno](https://deno.com), the modern and secure JavaScript runtime, ensuring efficiency and a superior developer experience.
+  
+- **Infrastructure:** [Deno subhosting](https://deno.com/subhosting) for multi-layered security with Google's V8, Rust, and Linux containers, providing a secure environment for running untrusted code without compromising reliability.
+
+- **Database:** [Deno KV](https://deno.com/kv), a fast, reliable, and secure key-value database, perfectly suited for Netzo's data storage needs.
+
+- **Framework:** Built on [Deno Fresh](https://fresh.deno.dev/), a next-gen web framework designed for rapid development, contributing to Netzo's speed, reliability, and simplicity.
+
+- **UI and CSS Libraries:**
+  - **[shadcn-ui](https://ui.shadcn.com/):** Beautifully designed, accessible, and customizable components.
+  - **[UnoCSS](https://unocss.dev/):** An instant, on-demand atomic CSS engine, ensuring better performance and joyful development experiences.
 
  
