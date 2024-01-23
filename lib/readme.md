@@ -31,7 +31,7 @@ Netzo is a batteries-included meta-framework for [Deno Fresh](https://fresh.deno
 
 ## Main Features
 
-- 🌐 [**`netzo/apis`**](/docs/platform/apis): Collection of integrations for popular HTTP APIs and services.
+- 🌐 [**APIs**](/docs/platform/apis): Collection of integrations for popular HTTP APIs and services.
 
 - 🔒 [**Authentication**](/docs/platform/authentication): Simple user management and role-based access control (RBAC).
 
