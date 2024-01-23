@@ -10,7 +10,7 @@ export type PaddleOptions = {
 /**
  * SDK constructor function for the Paddle API
  *
- * @see https://developer.paddle.com/api-reference/overview
+ * @see https://developer.paddle.com/api/overview
  *
  * @param {string} apiKey - the API key to use for authentication
  * @param {string} baseURL - the base URL to use for the API

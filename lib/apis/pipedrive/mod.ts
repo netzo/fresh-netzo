@@ -9,7 +9,7 @@ export type PipeDriveOptions = {
 /**
  * SDK constructor function for the Pipedrive API
  *
- * @see https://netzo.io/docs/framework/apis/pipedrive
+ * @see https://netzo.io/docs/platform/apis/pipedrive
  *
  * @param {string} apiToken - the token to use for authentication
  * @param {string} companyDomain - the company domain to use for authentication

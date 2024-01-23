@@ -1,11 +1,14 @@
 import { dirname } from "node:path";
-import { prompt, runGenerators } from "../../../../deps/@featherscloud/pinion.ts";
+import {
+  prompt,
+  runGenerators,
+} from "../../../../deps/@featherscloud/pinion.ts";
 import _kebabCase from "../../../../deps/lodash.kebabcase.ts";
 import _camelCase from "../../../../deps/lodash.camelcase.ts";
 import {
   checkPreconditions,
-  NetzoBaseContext,
   initializeBaseContext,
+  NetzoBaseContext,
 } from "../commons.js";
 
 // Set __dirname in es module

@@ -1,25 +1,24 @@
-import fs from 'fs'
-import { join, dirname } from 'path'
-import { readFile, writeFile } from 'fs/promises'
+import fs from "fs";
+import { dirname, join } from "path";
+import { readFile, writeFile } from "fs/promises";
 import {
   Callable,
-  PinionContext,
-  loadJSON,
+  exec,
   fromFile,
   getCallable,
-  renderTemplate,
   inject,
+  loadJSON,
   Location,
-  exec
-} from '@netzocloud/pinion'
-import ts from 'typescript'
-import prettier, { Options as PrettierOptions } from 'prettier'
-import path from 'path'
-import { DenoJson } from './types.ts'
+  PinionContext,
+  renderTemplate,
+} from "@netzocloud/pinion";
+import ts from "typescript";
+import prettier, { Options as PrettierOptions } from "prettier";
+import path from "path";
+import { DenoJson } from "./types.ts";
 
 // Set __dirname in es module
-const __dirname = dirname(new URL(import.meta.url).pathname)
-
+const __dirname = dirname(new URL(import.meta.url).pathname);
 
 /**
  * Returns the name of the Netzo database adapter for a supported database type
@@ -27,17 +26,19 @@ const __dirname = dirname(new URL(import.meta.url).pathname)
  * @param database The type of the database
  * @returns The name of the adapter
  */
-export const getDatabaseAdapter = (database: DatabaseType) => (database === 'mongodb' ? 'mongodb' : 'knex')
+export const getDatabaseAdapter = (
+  database: DatabaseType,
+) => (database === "mongodb" ? "mongodb" : "knex");
 
 export type NetzoAppInfo = {
   /**
    * The application language
    */
-  language: 'ts' | 'js'
-}
+  language: "ts" | "js";
+};
 
 export interface AppDenoJson extends DenoJson {
-  netzo?: NetzoAppInfo
+  netzo?: NetzoAppInfo;
 }
 
 export interface NetzoBaseContext extends PinionContext {
@@ -45,23 +46,23 @@ export interface NetzoBaseContext extends PinionContext {
    * Information about the Netzo application (like chosen language, database etc.)
    * usually taken from `package.json`
    */
-  netzo: NetzoAppInfo
+  netzo: NetzoAppInfo;
   /**
    * The package.json file
    */
-  denoJson: AppDenoJson
+  denoJson: AppDenoJson;
   /**
    * The folder where source files are put
    */
-  src: string
+  src: string;
   /**
    * The folder where test files are put
    */
-  test: string
+  test: string;
   /**
    * The language the app is generated in
    */
-  language: 'js' | 'ts'
+  language: "js" | "ts";
 }
 
 /**
@@ -71,8 +72,13 @@ export interface NetzoBaseContext extends PinionContext {
  * @param versions The dependency version list
  * @returns A list of dependencies with their versions
  */
-export const addVersions = (dependencies: string[], versions: DependencyVersions) =>
-  dependencies.map((dep) => `${dep}@${versions[dep] ? versions[dep] : 'latest'}`)
+export const addVersions = (
+  dependencies: string[],
+  versions: DependencyVersions,
+) =>
+  dependencies.map((dep) =>
+    `${dep}@${versions[dep] ? versions[dep] : "latest"}`
+  );
 
 /**
  * Loads the application package.json and populates information like the library and test directory
@@ -81,26 +87,30 @@ export const addVersions = (dependencies: string[], versions: DependencyVersions
  * @returns The updated context
  */
 export const initializeBaseContext =
-  () =>
-    <C extends NetzoBaseContext>(ctx: C) =>
-      Promise.resolve(ctx)
-        .then(loadJSON(fromFile('package.json'), (denoJson) => ({ denoJson }), {}))
-        .then(
-          loadJSON(path.join(__dirname, '..', 'package.json'), (denoJson: DenoJson) => ({
+  () => <C extends NetzoBaseContext>(ctx: C) =>
+    Promise.resolve(ctx)
+      .then(
+        loadJSON(fromFile("package.json"), (denoJson) => ({ denoJson }), {}),
+      )
+      .then(
+        loadJSON(
+          path.join(__dirname, "..", "package.json"),
+          (denoJson: DenoJson) => ({
             dependencyVersions: {
               ...denoJson.devDependencies,
               ...ctx.dependencyVersions,
-              '@netzojs/cli': version
-            }
-          }))
-        )
-        .then((ctx) => ({
-          ...ctx,
-          src: ctx.denoJson?.directories?.src || 'src',
-          test: ctx.denoJson?.directories?.test || 'test',
-          language: ctx.language || ctx.denoJson?.netzo?.language,
-          netzo: ctx.denoJson?.netzo
-        }))
+              "@netzojs/cli": version,
+            },
+          }),
+        ),
+      )
+      .then((ctx) => ({
+        ...ctx,
+        src: ctx.denoJson?.directories?.src || "src",
+        test: ctx.denoJson?.directories?.test || "test",
+        language: ctx.language || ctx.denoJson?.netzo?.language,
+        netzo: ctx.denoJson?.netzo,
+      }));
 
 /**
  * Checks if the current context contains a valid generated application. This is necesary for most
@@ -110,21 +120,25 @@ export const initializeBaseContext =
  * @returns Throws an error or returns the original context
  */
 export const checkPreconditions =
-  () =>
-    async <T extends NetzoBaseContext>(ctx: T) => {
-      if (!ctx.netzo) {
-        throw new Error(`Can not run generator since the current folder does not appear to be a Netzo application.
+  () => async <T extends NetzoBaseContext>(ctx: T) => {
+    if (!ctx.netzo) {
+      throw new Error(
+        `Can not run generator since the current folder does not appear to be a Netzo application.
 Either your package.json is missing or it does not have \`netzo\` property.
-`)
-      }
-
-      return ctx
+`,
+      );
     }
 
-const importRegex = /from '(\..*)'/g
-const escapeNewLines = (code: string) => code.replace(/\n\n/g, '\n/* :newline: */')
-const restoreNewLines = (code: string) => code.replace(/\/\* :newline: \*\//g, '\n')
-const fixLocalImports = (code: string) => code.replace(importRegex, "from '$1.js'")
+    return ctx;
+  };
+
+const importRegex = /from '(\..*)'/g;
+const escapeNewLines = (code: string) =>
+  code.replace(/\n\n/g, "\n/* :newline: */");
+const restoreNewLines = (code: string) =>
+  code.replace(/\/\* :newline: \*\//g, "\n");
+const fixLocalImports = (code: string) =>
+  code.replace(importRegex, "from '$1.js'");
 
 /**
  * Returns the transpiled and prettified JavaScript for a TypeScript source code
@@ -133,22 +147,25 @@ const fixLocalImports = (code: string) => code.replace(importRegex, "from '$1.js
  * @param options TypeScript transpilation options
  * @returns The formatted JavaScript source code
  */
-export const getJavaScript = (typescript: string, options: ts.TranspileOptions = {}) => {
-  const source = escapeNewLines(typescript)
+export const getJavaScript = (
+  typescript: string,
+  options: ts.TranspileOptions = {},
+) => {
+  const source = escapeNewLines(typescript);
   const transpiled = ts.transpileModule(source, {
     ...options,
     compilerOptions: {
       module: ts.ModuleKind.ESNext,
       target: ts.ScriptTarget.ES2020,
       preserveValueImports: true,
-      ...options.compilerOptions
-    }
-  })
+      ...options.compilerOptions,
+    },
+  });
 
-  return fixLocalImports(restoreNewLines(transpiled.outputText))
-}
+  return fixLocalImports(restoreNewLines(transpiled.outputText));
+};
 
-const getFileName = async <C extends PinionContext & { language: 'js' | 'ts' }>(
+const getFileName = async <C extends PinionContext & { language: "js" | "ts" }>(
   target: Callable<string, C>,
-  ctx: C
-) => `${await getCallable(target, ctx)}.${ctx.language}`
+  ctx: C,
+) => `${await getCallable(target, ctx)}.${ctx.language}`;

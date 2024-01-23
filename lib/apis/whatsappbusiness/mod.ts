@@ -9,14 +9,14 @@ export type WhatsappBusinessOptions = {
 /**
  * SDK constructor function for the WhatsApp Business API
  *
- * @see https://netzo.io/docs/framework/apis/whatsappbusiness
+ * @see https://netzo.io/docs/platform/apis/whatsappbusiness
  *
  * @param {string} apiKey - the API key to use for authentication
  * @returns {object} - an object of multiple utilities for the API
  */
 export const whatsappbusiness = ({
   businessAccountId = Deno.env.get("WHATSAPPBUSINESS_BUSINESS_ACCOUNT_ID") ||
-    "",
+  "",
   permanentToken = Deno.env.get("WHATSAPPBUSINESS_PERMANENT_TOKEN")!,
 }: WhatsappBusinessOptions) => {
   const api = createApi({

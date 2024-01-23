@@ -9,7 +9,7 @@ export type ActiveCampaignOptions = {
 /**
  * SDK constructor function for the ActiveCampaign API
  *
- * @see https://netzo.io/docs/framework/apis/activecampaign
+ * @see https://netzo.io/docs/platform/apis/activecampaign
  *
  * @param {string} accountName - the account name to construct the base URL
  * @param {string} apiKey - the API key to use for authentication

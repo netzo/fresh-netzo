@@ -82,7 +82,7 @@ export const sensorSchema = z.object({
       "pm2.5_6hour": z.number(),
       "pm2.5_24hour": z.number(),
       "pm2.5_1week": z.number(),
-      time_stamp: z.number()
+      time_stamp: z.number(),
     }),
     stats_a: z.object({
       "pm2.5": z.number(),
@@ -92,11 +92,10 @@ export const sensorSchema = z.object({
       "pm2.5_6hour": z.number(),
       "pm2.5_24hour": z.number(),
       "pm2.5_1week": z.number(),
-      time_stamp: z.number()
-    })
-  })
-})
-
+      time_stamp: z.number(),
+    }),
+  }),
+});
 
 // types:
 
@@ -183,7 +182,7 @@ export const sensors: Sensor[] = [
         "pm2.5_6hour": 0.5,
         "pm2.5_24hour": 0.5,
         "pm2.5_1week": 0.5,
-        "time_stamp": 1705163032
+        "time_stamp": 1705163032,
       },
       "stats_a": {
         "pm2.5": 0.0,
@@ -193,9 +192,9 @@ export const sensors: Sensor[] = [
         "pm2.5_6hour": 0.5,
         "pm2.5_24hour": 0.5,
         "pm2.5_1week": 0.5,
-        "time_stamp": 1705163032
-      }
-    }
+        "time_stamp": 1705163032,
+      },
+    },
   },
   {
     "api_version": "V1.0.11-0.0.49",
@@ -300,7 +299,7 @@ export const sensors: Sensor[] = [
         "pm2.5_6hour": 9.6,
         "pm2.5_24hour": 13.1,
         "pm2.5_1week": 21.8,
-        "time_stamp": 1705163275
+        "time_stamp": 1705163275,
       },
       "stats_a": {
         "pm2.5": 15.5,
@@ -310,7 +309,7 @@ export const sensors: Sensor[] = [
         "pm2.5_6hour": 10.1,
         "pm2.5_24hour": 13.6,
         "pm2.5_1week": 22.3,
-        "time_stamp": 1705163275
+        "time_stamp": 1705163275,
       },
       "stats_b": {
         "pm2.5": 14.8,
@@ -320,10 +319,10 @@ export const sensors: Sensor[] = [
         "pm2.5_6hour": 9.1,
         "pm2.5_24hour": 12.7,
         "pm2.5_1week": 21.4,
-        "time_stamp": 1705163275
-      }
-    }
-  }
+        "time_stamp": 1705163275,
+      },
+    },
+  },
 ];
 
 // i18n keys: for schema keys in spanish (español), primera letra siempre mayuscula
@@ -428,7 +427,7 @@ export const ALIASES = {
     secondary_id_b: "ID secundario B",
     secondary_key_b: "Clave secundaria B",
     stats: "Estadísticas",
-    stats_a: "Estadísticas A"
+    stats_a: "Estadísticas A",
   },
   en: {
     api_version: "API Version",
@@ -529,131 +528,182 @@ export const ALIASES = {
     secondary_id_b: "Secondary ID B",
     secondary_key_b: "Secondary Key B",
     stats: "Stats",
-    stats_a: "Stats A"
-  }
+    stats_a: "Stats A",
+  },
 };
 
 export const DEFINITIONS = {
   es: {
-    sensor_index: "El índice del sensor. Puede usarse para agregar un sensor a un grupo o ver sus detalles.",
-    icon: "Una bandera reservada para uso futuro para hacer referencia a un icono para el sensor.",
-    name: "El nombre dado al sensor desde el formulario de registro y utilizado en el mapa de PA.",
-    private: "Una bandera que indica el estado privado del sensor. Los valores posibles son: 0 = público o 1 = privado",
-    location_type: "El tipo de ubicación. Los valores posibles son: 0 = Exterior o 1 = Interior.",
+    sensor_index:
+      "El índice del sensor. Puede usarse para agregar un sensor a un grupo o ver sus detalles.",
+    icon:
+      "Una bandera reservada para uso futuro para hacer referencia a un icono para el sensor.",
+    name:
+      "El nombre dado al sensor desde el formulario de registro y utilizado en el mapa de PA.",
+    private:
+      "Una bandera que indica el estado privado del sensor. Los valores posibles son: 0 = público o 1 = privado",
+    location_type:
+      "El tipo de ubicación. Los valores posibles son: 0 = Exterior o 1 = Interior.",
     latitude: "El valor de posición de latitud para el sensor.",
     longitude: "El valor de posición de longitud para el sensor.",
     altitude: "La altitud para la ubicación del sensor en pies.",
-    position_rating: "Una calificación de 'estrella' de precisión de posición. 0 estrellas no está cerca de la ubicación reclamada, mientras que 5 estrellas está cerca de la ubicación del mapa según los valores de latitud y longitud.",
+    position_rating:
+      "Una calificación de 'estrella' de precisión de posición. 0 estrellas no está cerca de la ubicación reclamada, mientras que 5 estrellas está cerca de la ubicación del mapa según los valores de latitud y longitud.",
     hardware: "Los sensores y otro hardware que fue detectado por el firmware.",
-    firmware_version: "La última versión de firmware conocida en el dispositivo.",
+    firmware_version:
+      "La última versión de firmware conocida en el dispositivo.",
     rssi: "La fuerza de la señal WiFi.",
-    uptime: "El tiempo en minutos desde que se inició el firmware, según lo informado por el sensor.",
-    pa_latency: "El tiempo que tarda en enviar datos a los servidores de PurpleAir en milisegundos.",
+    uptime:
+      "El tiempo en minutos desde que se inició el firmware, según lo informado por el sensor.",
+    pa_latency:
+      "El tiempo que tarda en enviar datos a los servidores de PurpleAir en milisegundos.",
     memory: "Memoria HEAP libre en Kb.",
-    last_modified: "La marca de tiempo UNIX desde la última vez que el formulario de registro modificó el dispositivo.",
+    last_modified:
+      "La marca de tiempo UNIX desde la última vez que el formulario de registro modificó el dispositivo.",
     date_created: "La marca de tiempo UNIX desde que se creó el dispositivo.",
-    stats: "Estadísticas promedio seudo para el canal como promedio de canal A y canal B excluyendo canales degradados (ver objeto de estadísticas de datos del sensor a continuación).",
-    stats_a: "Estadísticas promedio seudo para el canal (ver objeto de estadísticas de datos del sensor a continuación).",
-    stats_b: "Estadísticas promedio seudo para el canal (ver objeto de estadísticas de datos del sensor a continuación).",
-    humidity: "Humedad relativa dentro de la carcasa del sensor (%). En promedio, esto es 4% menor que las condiciones ambientales. Nulo si no está equipado.",
+    stats:
+      "Estadísticas promedio seudo para el canal como promedio de canal A y canal B excluyendo canales degradados (ver objeto de estadísticas de datos del sensor a continuación).",
+    stats_a:
+      "Estadísticas promedio seudo para el canal (ver objeto de estadísticas de datos del sensor a continuación).",
+    stats_b:
+      "Estadísticas promedio seudo para el canal (ver objeto de estadísticas de datos del sensor a continuación).",
+    humidity:
+      "Humedad relativa dentro de la carcasa del sensor (%). En promedio, esto es 4% menor que las condiciones ambientales. Nulo si no está equipado.",
     humidity_a: "Humedad A",
     humidity_b: "Humedad B",
-    temperature: "Temperatura dentro de la carcasa del sensor (F). En promedio, esto es 8F más alto que las condiciones ambientales. Nulo si no está equipado.",
+    temperature:
+      "Temperatura dentro de la carcasa del sensor (F). En promedio, esto es 8F más alto que las condiciones ambientales. Nulo si no está equipado.",
     temperature_a: "Temperatura A",
     temperature_b: "Temperatura B",
     pressure: "Presión actual en milibares.",
     pressure_a: "Presión A",
     pressure_b: "Presión B",
-    voc: "Concentración de VOC (IAQ) en unidades estáticas iaq de Bosch según la hoja de datos de BME680, EXPERIMENTAL. Nulo si no está equipado.",
+    voc:
+      "Concentración de VOC (IAQ) en unidades estáticas iaq de Bosch según la hoja de datos de BME680, EXPERIMENTAL. Nulo si no está equipado.",
     voc_a: "VOC A",
     voc_b: "VOC B",
     ozone1: "Concentración de ozono (PPB) Nulo si no está equipado.",
-    scattering_coefficient: "Dispersión de luz de partículas finas: la interacción de la luz con la materia particulada fina hace que la luz se redirija de su camino. Al mirar una escena, la niebla se debe en parte a que la luz que emana de los elementos escénicos se dispersa fuera de la trayectoria de la vista y la luz aleatoria (luz del aire) se dispersa en la trayectoria de la vista. Ver, http://vista.cira.colostate.edu/Improve/visibility-basics/.",
+    scattering_coefficient:
+      "Dispersión de luz de partículas finas: la interacción de la luz con la materia particulada fina hace que la luz se redirija de su camino. Al mirar una escena, la niebla se debe en parte a que la luz que emana de los elementos escénicos se dispersa fuera de la trayectoria de la vista y la luz aleatoria (luz del aire) se dispersa en la trayectoria de la vista. Ver, http://vista.cira.colostate.edu/Improve/visibility-basics/.",
     scattering_coefficient_a: "Coeficiente de dispersión A",
     scattering_coefficient_b: "Coeficiente de dispersión B",
-    deciviews: "Un índice de bruma relacionado con la dispersión y extinción de la luz que está aproximadamente linealmente relacionado con la percepción humana de la bruma. Ver, http://vista.cira.colostate.edu/Improve/visibility-basics/.",
+    deciviews:
+      "Un índice de bruma relacionado con la dispersión y extinción de la luz que está aproximadamente linealmente relacionado con la percepción humana de la bruma. Ver, http://vista.cira.colostate.edu/Improve/visibility-basics/.",
     deciviews_a: "Deciviews A",
     deciviews_b: "Deciviews B",
-    visual_range: "A menudo denominada visibilidad, el alcance visual es la distancia desde el observador que un objeto oscuro grande, por ejemplo, la cima de una montaña o un edificio grande, desaparece de la vista.",
+    visual_range:
+      "A menudo denominada visibilidad, el alcance visual es la distancia desde el observador que un objeto oscuro grande, por ejemplo, la cima de una montaña o un edificio grande, desaparece de la vista.",
     visual_range_a: "Alcance visual A",
     visual_range_b: "Alcance visual B",
-    analog_input: "Si algo está conectado a él, el voltaje analógico en la entrada ADC de la placa de control del sensor PurpleAir.",
+    analog_input:
+      "Si algo está conectado a él, el voltaje analógico en la entrada ADC de la placa de control del sensor PurpleAir.",
     primary_id_a: "ID de canal ThingSpeak para almacenar valores de sensor",
-    primary_key_a: "Clave de lectura de ThingSpeak utilizada para acceder a los datos del canal",
+    primary_key_a:
+      "Clave de lectura de ThingSpeak utilizada para acceder a los datos del canal",
     secondary_id_a: "ID de canal ThingSpeak para almacenar valores de sensor",
-    secondary_key_a: "Clave de lectura de ThingSpeak utilizada para acceder a los datos del canal",
+    secondary_key_a:
+      "Clave de lectura de ThingSpeak utilizada para acceder a los datos del canal",
     primary_id_b: "ID de canal ThingSpeak para almacenar valores de sensor",
-    primary_key_b: "Clave de lectura de ThingSpeak utilizada para acceder a los datos del canal",
+    primary_key_b:
+      "Clave de lectura de ThingSpeak utilizada para acceder a los datos del canal",
     secondary_id_b: "ID de canal ThingSpeak para almacenar valores de sensor",
-    secondary_key_b: "Clave de lectura de ThingSpeak utilizada para acceder a los datos del canal",
-    pm2_5: "Concentración de masa estimada PM2.5 (ug / m3). PM2.5 son partículas finas con un diámetro de menos de 2.5 micras.",
+    secondary_key_b:
+      "Clave de lectura de ThingSpeak utilizada para acceder a los datos del canal",
+    pm2_5:
+      "Concentración de masa estimada PM2.5 (ug / m3). PM2.5 son partículas finas con un diámetro de menos de 2.5 micras.",
     pm2_5_10minute: "Promedio seudo (estimado) de 10 minutos para PM2.5",
     pm2_5_30minute: "Promedio seudo (estimado) de 30 minutos para PM2.5",
     pm2_5_60minute: "Promedio seudo (estimado) de 60 minutos para PM2.5",
     pm2_5_6hour: "Promedio seudo (estimado) de 6 horas para PM2.5",
     pm2_5_24hour: "Promedio seudo (estimado) de 24 horas para PM2.5",
     pm2_5_1week: "Promedio seudo (estimado) de 1 semana para PM2.5",
-    time_stamp: "La marca de tiempo UNIX del servidor desde que se recibieron datos para este canal."
+    time_stamp:
+      "La marca de tiempo UNIX del servidor desde que se recibieron datos para este canal.",
   },
   en: {
-    sensor_index: "The sensor's index. Can be used to add a sensor to a group or view it's details.",
+    sensor_index:
+      "The sensor's index. Can be used to add a sensor to a group or view it's details.",
     icon: "A flag reserved for future use to reference an icon for the sensor.",
-    name: "The name given to the sensor from the registration form and used on the PA map.",
-    private: "A flag indicating the private status of the sensor. Possible values are: 0 = public or 1 = private",
-    location_type: "The location type. Possible values are: 0 = Outside or 1 = Inside.",
+    name:
+      "The name given to the sensor from the registration form and used on the PA map.",
+    private:
+      "A flag indicating the private status of the sensor. Possible values are: 0 = public or 1 = private",
+    location_type:
+      "The location type. Possible values are: 0 = Outside or 1 = Inside.",
     latitude: "The latitude position value for the sensor.",
     longitude: "The longitude position value for the sensor.",
     altitude: "The altitude for the sensor's location in feet.",
-    position_rating: "A 'star' rating of position accuracy. 0 stars is nowhere near the claimed location whereas 5 stars is close to the map location as indicated by the latitude and longitude values.",
-    hardware: "The sensors and other hardware that was detected by the firmware.",
+    position_rating:
+      "A 'star' rating of position accuracy. 0 stars is nowhere near the claimed location whereas 5 stars is close to the map location as indicated by the latitude and longitude values.",
+    hardware:
+      "The sensors and other hardware that was detected by the firmware.",
     firmware_version: "The last known firmware version on the device.",
     rssi: "The WiFi signal strength.",
-    uptime: "The time in minutes since the firmware started as last reported by the sensor.",
-    pa_latency: "The time taken to send data to the PurpleAir servers in milliseconds.",
+    uptime:
+      "The time in minutes since the firmware started as last reported by the sensor.",
+    pa_latency:
+      "The time taken to send data to the PurpleAir servers in milliseconds.",
     memory: "Free HEAP memory in Kb.",
-    last_modified: "The UNIX time stamp from the last time the device was modified by the registration form.",
+    last_modified:
+      "The UNIX time stamp from the last time the device was modified by the registration form.",
     date_created: "The UNIX time stamp from when the device was created.",
-    stats: "Pseudo average statistics for the channel as an everage of channel A and channel B excluding downgraded channels (see Sensor data stats object below).",
-    stats_a: "Pseudo average statistics for the channel (see Sensor data stats object below).",
-    stats_b: "Pseudo average statistics for the channel (see Sensor data stats object below).",
-    humidity: "Relative humidity inside of the sensor housing (%). On average, this is 4% lower than ambient conditions. Null if not equipped.",
+    stats:
+      "Pseudo average statistics for the channel as an everage of channel A and channel B excluding downgraded channels (see Sensor data stats object below).",
+    stats_a:
+      "Pseudo average statistics for the channel (see Sensor data stats object below).",
+    stats_b:
+      "Pseudo average statistics for the channel (see Sensor data stats object below).",
+    humidity:
+      "Relative humidity inside of the sensor housing (%). On average, this is 4% lower than ambient conditions. Null if not equipped.",
     humidity_a: "Humidity A",
     humidity_b: "Humidity B",
-    temperature: "Temperature inside of the sensor housing (F). On average, this is 8F higher than ambient conditions. Null if not equipped.",
+    temperature:
+      "Temperature inside of the sensor housing (F). On average, this is 8F higher than ambient conditions. Null if not equipped.",
     temperature_a: "Temperature A",
     temperature_b: "Temperature B",
     pressure: "Current pressure in Millibars.",
     pressure_a: "Pressure A",
     pressure_b: "Pressure B",
-    voc: "VOC concentration (IAQ) in Bosch static iaq units as per BME680 spec sheet, EXPERIMENTAL. Null if not equipped.",
+    voc:
+      "VOC concentration (IAQ) in Bosch static iaq units as per BME680 spec sheet, EXPERIMENTAL. Null if not equipped.",
     voc_a: "VOC A",
     voc_b: "VOC B",
     ozone1: "Ozone concentration (PPB) Null if not equipped.",
-    scattering_coefficient: "Fine Particulate Light Scattering: The interaction of light with fine particulate matter causing the light to be redirected from its path. When looking at a scene, haze is partially due to light emanating from the scenic elements being scattered out of the sight path and random light (air light) being scattering into the sight path. See, http://vista.cira.colostate.edu/Improve/visibility-basics/.",
+    scattering_coefficient:
+      "Fine Particulate Light Scattering: The interaction of light with fine particulate matter causing the light to be redirected from its path. When looking at a scene, haze is partially due to light emanating from the scenic elements being scattered out of the sight path and random light (air light) being scattering into the sight path. See, http://vista.cira.colostate.edu/Improve/visibility-basics/.",
     scattering_coefficient_a: "Scattering Coefficient A",
     scattering_coefficient_b: "Scattering Coefficient B",
-    deciviews: "A haze index related to light scattering and extinction that is approximately linearly related to human perception of the haze. See, http://vista.cira.colostate.edu/Improve/visibility-basics/.",
+    deciviews:
+      "A haze index related to light scattering and extinction that is approximately linearly related to human perception of the haze. See, http://vista.cira.colostate.edu/Improve/visibility-basics/.",
     deciviews_a: "Deciviews A",
     deciviews_b: "Deciviews B",
-    visual_range: "Often referred to as visibility, visual range is the distance from the observer that a large dark object, e.g. a mountain top or large building, just disappears from view.",
+    visual_range:
+      "Often referred to as visibility, visual range is the distance from the observer that a large dark object, e.g. a mountain top or large building, just disappears from view.",
     visual_range_a: "Visual Range A",
     visual_range_b: "Visual Range B",
-    analog_input: "If anything is connected to it, the analog voltage on ADC input of the PurpleAir sensor control board.",
+    analog_input:
+      "If anything is connected to it, the analog voltage on ADC input of the PurpleAir sensor control board.",
     primary_id_a: "ThingSpeak channel ID for storing sensor values",
-    primary_key_a: "ThingSpeak read key used for accessing data for the channel",
+    primary_key_a:
+      "ThingSpeak read key used for accessing data for the channel",
     secondary_id_a: "ThingSpeak channel ID for storing sensor values",
-    secondary_key_a: "ThingSpeak read key used for accessing data for the channel",
+    secondary_key_a:
+      "ThingSpeak read key used for accessing data for the channel",
     primary_id_b: "ThingSpeak channel ID for storing sensor values",
-    primary_key_b: "ThingSpeak read key used for accessing data for the channel",
+    primary_key_b:
+      "ThingSpeak read key used for accessing data for the channel",
     secondary_id_b: "ThingSpeak channel ID for storing sensor values",
-    secondary_key_b: "ThingSpeak read key used for accessing data for the channel",
-    pm2_5: "Estimated mass concentration PM2.5 (ug/m3). PM2.5 are fine particulates with a diameter of fewer than 2.5 microns.",
+    secondary_key_b:
+      "ThingSpeak read key used for accessing data for the channel",
+    pm2_5:
+      "Estimated mass concentration PM2.5 (ug/m3). PM2.5 are fine particulates with a diameter of fewer than 2.5 microns.",
     pm2_5_10minute: "10 minute pseudo (estimated) average for PM2.5",
     pm2_5_30minute: "30 minute pseudo (estimated) average for PM2.5",
     pm2_5_60minute: "60 minute pseudo (estimated) average for PM2.5",
     pm2_5_6hour: "6 Hour pseudo (estimated) average for PM2.5",
     pm2_5_24hour: "24 hour pseudo (estimated) average for PM2.5",
     pm2_5_1week: "1 week pseudo (estimated) average for PM2.5",
-    time_stamp: "The servers UTC (Unix) time stamp from when data was received for this channel."
-  }
-}
+    time_stamp:
+      "The servers UTC (Unix) time stamp from when data was received for this channel.",
+  },
+};

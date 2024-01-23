@@ -1,29 +1,97 @@
 import { z } from "netzo/deps/zod/mod.ts";
+import { createZod } from "netzo/core/utils/database.utils.ts";
 
 // schemas:
 
-export const accountSchema = z.object({
-  id: z.string(),
-  createdAt: z.string(),
-  updatedAt: z.string(),
-  name: z.string(),
-  status: z.union([z.literal("active"), z.literal("inactive")]),
-  type: z.string(),
-  web: z.string().url({ message: "Invalid URL" }).optional().or(z.literal("")),
-  phone: z.string(),
-  address: z.object({
-    streetAddress: z.string(),
-    number: z.string(),
-    city: z.string(),
-    postCode: z.string(),
-  }),
-  notifications: z.object({
-    payments: z.union([z.boolean(), z.string()]),
-    invoices: z.union([z.boolean(), z.string()]),
-    promotions: z.union([z.boolean(), z.string()]),
-    marketing: z.union([z.boolean(), z.string()]),
-  }),
-});
+const accountJsonSchema = {
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+    },
+    "createdAt": {
+      "type": "string",
+    },
+    "updatedAt": {
+      "type": "string",
+    },
+    "name": {
+      "type": "string",
+    },
+    "status": {
+      "type": "string",
+    },
+    "type": {
+      "type": "string",
+    },
+    "web": {
+      "type": "string",
+    },
+    "phone": {
+      "type": "string",
+    },
+    "address": {
+      "type": "object",
+      "properties": {
+        "streetAddress": {
+          "type": "string",
+        },
+        "number": {
+          "type": "string",
+        },
+        "city": {
+          "type": "string",
+        },
+        "postCode": {
+          "type": "string",
+        },
+      },
+      "required": [
+        "streetAddress",
+        "number",
+        "city",
+        "postCode",
+      ],
+    },
+    "notifications": {
+      "type": "object",
+      "properties": {
+        "payments": {
+          "type": "string",
+        },
+        "invoices": {
+          "type": "string",
+        },
+        "promotions": {
+          "type": "string",
+        },
+        "marketing": {
+          "type": "string",
+        },
+      },
+      "required": [
+        "payments",
+        "invoices",
+        "promotions",
+        "marketing",
+      ],
+    },
+  },
+  "required": [
+    "id",
+    "createdAt",
+    "updatedAt",
+    "name",
+    "status",
+    "type",
+    "web",
+    "phone",
+    "address",
+    "notifications",
+  ],
+};
+
+export const accountSchema = createZod(accountJsonSchema);
 
 // types:
 

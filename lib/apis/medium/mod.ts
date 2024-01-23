@@ -8,7 +8,7 @@ export type MediumOptions = {
 /**
  * SDK constructor function for the Medium API
  *
- * @see https://netzo.io/docs/framework/apis/medium
+ * @see https://netzo.io/docs/platform/apis/medium
  *
  * @param {string} accessToken - the token to use for authentication
  * @returns {object} - an object of multiple utilities for the API

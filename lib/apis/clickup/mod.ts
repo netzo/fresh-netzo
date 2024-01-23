@@ -8,7 +8,7 @@ export type ClickupOptions = {
 /**
  * SDK constructor function for the Clickup API
  *
- * @see https://netzo.io/docs/framework/apis/clickup
+ * @see https://netzo.io/docs/platform/apis/clickup
  *
  * @param {string} personalApiKey - the personal API key to use for authentication
  * @returns {object} - an object of multiple utilities for the API

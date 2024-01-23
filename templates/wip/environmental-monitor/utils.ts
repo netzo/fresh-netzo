@@ -4,8 +4,14 @@ const sensorData = [
 ];
 
 // Function to filter data based on bounding box
-function filterByBoundingBox(data, latitudeSouth, latitudeNorth, longitudeWest, longitudeEast) {
-  return data.filter(sensor => {
+function filterByBoundingBox(
+  data,
+  latitudeSouth,
+  latitudeNorth,
+  longitudeWest,
+  longitudeEast,
+) {
+  return data.filter((sensor) => {
     const latitude = sensor.sensor.latitude;
     const longitude = sensor.sensor.longitude;
 
@@ -32,22 +38,28 @@ const longitudeWest = -120;
 const longitudeEast = -70;
 
 // Filter data based on the bounding box
-const filteredData = filterByBoundingBox(sensorData, latitudeSouth, latitudeNorth, longitudeWest, longitudeEast);
+const filteredData = filterByBoundingBox(
+  sensorData,
+  latitudeSouth,
+  latitudeNorth,
+  longitudeWest,
+  longitudeEast,
+);
 
 // Calculate average values
-const averagePM25 = calculateAverage(filteredData, 'pm2.5');
-const averageTemperature = calculateAverage(filteredData, 'temperature');
-const averageHumidity = calculateAverage(filteredData, 'humidity');
-const averagePressure = calculateAverage(filteredData, 'pressure');
-const averageConfidence = calculateAverage(filteredData, 'confidence');
-const averagePM10 = calculateAverage(filteredData, 'pm10.0');
+const averagePM25 = calculateAverage(filteredData, "pm2.5");
+const averageTemperature = calculateAverage(filteredData, "temperature");
+const averageHumidity = calculateAverage(filteredData, "humidity");
+const averagePressure = calculateAverage(filteredData, "pressure");
+const averageConfidence = calculateAverage(filteredData, "confidence");
+const averagePM10 = calculateAverage(filteredData, "pm10.0");
 // Add more properties as needed
 
 // Log the results
-console.log('Average PM2.5 Concentration:', averagePM25);
-console.log('Average Temperature:', averageTemperature);
-console.log('Average Humidity:', averageHumidity);
-console.log('Average Pressure:', averagePressure);
-console.log('Average Confidence Level:', averageConfidence);
-console.log('Average PM10.0 Concentration:', averagePM10);
+console.log("Average PM2.5 Concentration:", averagePM25);
+console.log("Average Temperature:", averageTemperature);
+console.log("Average Humidity:", averageHumidity);
+console.log("Average Pressure:", averagePressure);
+console.log("Average Confidence Level:", averageConfidence);
+console.log("Average PM10.0 Concentration:", averagePM10);
 // Log more results as needed

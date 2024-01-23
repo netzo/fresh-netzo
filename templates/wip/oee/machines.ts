@@ -39,30 +39,30 @@ export const productionLines: ProductionLine[] = [
       {
         "machine_id": "machine1",
         "machine_name": "Assembler A",
-        "specs": "High-speed assembly machine"
+        "specs": "High-speed assembly machine",
       },
       {
         "machine_id": "machine2",
         "machine_name": "Inspector X",
-        "specs": "Quality inspection machine"
-      }
+        "specs": "Quality inspection machine",
+      },
     ],
     "shifts": [
       {
         "shift_id": "shift1",
         "start_time": "08:00 AM",
-        "end_time": "04:00 PM"
+        "end_time": "04:00 PM",
       },
       {
         "shift_id": "shift2",
         "start_time": "04:00 PM",
-        "end_time": "12:00 AM"
-      }
+        "end_time": "12:00 AM",
+      },
     ],
     "excluded_stops": [
       "Breaks",
-      "Changeovers"
-    ]
+      "Changeovers",
+    ],
   },
   {
     "line_id": "line2",
@@ -71,20 +71,20 @@ export const productionLines: ProductionLine[] = [
       {
         "machine_id": "machine3",
         "machine_name": "Packer Pro",
-        "specs": "Automated packaging machine"
-      }
+        "specs": "Automated packaging machine",
+      },
     ],
     "shifts": [
       {
         "shift_id": "shift1",
         "start_time": "08:00 AM",
-        "end_time": "04:00 PM"
-      }
+        "end_time": "04:00 PM",
+      },
     ],
     "excluded_stops": [
-      "Breaks"
-    ]
-  }
+      "Breaks",
+    ],
+  },
 ];
 
 // i18n:
@@ -111,4 +111,3 @@ export const ALIASES = {
     marketing: "Marketing",
   },
 };
-

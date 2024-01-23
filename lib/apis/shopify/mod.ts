@@ -10,7 +10,7 @@ export type ShopifyOptions = {
 /**
  * SDK constructor function for the Shopify Admin API
  *
- * @see https://netzo.io/docs/framework/apis/shopify
+ * @see https://netzo.io/docs/platform/apis/shopify
  *
  * @param {string} storeName - the store name to construct the base URL
  * @param {string} apiVersion - the version to use for the base URL

@@ -8,7 +8,7 @@ export type GithubOptions = {
 /**
  * SDK constructor function for the GitHub API
  *
- * @see https://netzo.io/docs/framework/apis/github
+ * @see https://netzo.io/docs/platform/apis/github
  *
  * @param {string} personalAccessToken - the token to use for authentication
  * @returns {object} - an object of multiple utilities for the API

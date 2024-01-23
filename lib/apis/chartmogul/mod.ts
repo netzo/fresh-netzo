@@ -8,7 +8,7 @@ export type ChartmogulOptions = {
 /**
  * SDK constructor function for the ChartMogul API
  *
- * @see https://netzo.io/docs/framework/apis/chartmogul
+ * @see https://netzo.io/docs/platform/apis/chartmogul
  *
  * @param {string} apiKey - the API key to use for authentication
  * @returns {object} - an object of multiple utilities for the API

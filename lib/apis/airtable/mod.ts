@@ -8,7 +8,7 @@ export type AirtableOptions = {
 /**
  * SDK constructor function for the Airtable API
  *
- * @see https://netzo.io/docs/framework/apis/airtable
+ * @see https://netzo.io/docs/platform/apis/airtable
  *
  * @param {string} personalAccessToken - the token to use for authentication
  * @returns {object} - an object of multiple utilities for the API

@@ -10,7 +10,7 @@ import {
 import { toDateTime } from "netzo/components/blocks/format.ts";
 import { CopyId } from "netzo/components/blocks/shared/copy-id.tsx";
 import { Checkbox } from "netzo/components/ui/checkbox.tsx";
-import { type Account, ALIASES } from "@/database/accounts.ts";
+import { type Account, accountSchema, ALIASES } from "@/database/accounts.ts";
 
 // NOTE: columns must be defined in island due to client-only function serialization
 export const getColumns = (_props: TableProps): TableProps["columns"] => [

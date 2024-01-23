@@ -9,7 +9,7 @@ export type MailchimpOptions = {
 /**
  * SDK constructor function for the Mailchimp API
  *
- * @see https://netzo.io/docs/framework/apis/mailchimp
+ * @see https://netzo.io/docs/platform/apis/mailchimp
  *
  * @param {string} marketingApiKey - the marketing API key to use for authentication
  * @param {string} dataCenter - the data center to construct the base URL
