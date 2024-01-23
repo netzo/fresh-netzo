@@ -65,30 +65,34 @@ Our goal is to provide full-code flexibility at no-code speeds by packaging comm
 
 ## Quick start
 
-1. **[Install Deno CLI](https://docs.deno.com/runtime/manual/getting_started/installation)**
-2. **[Install Netzo CLI](https://netzo.io/docs/get-started/installation)**
+1. [Install Deno CLI](https://docs.deno.com/runtime/manual/getting_started/installation)
+
+2. [Install Netzo CLI](https://netzo.io/docs/get-started/installation)
+
 ```bash
 deno install -Arf https://deno.land/x/netzo/cli/netzo.ts
 ```
-3. **[Initialize project](https://netzo.io/docs/get-started/initialize-project)**
+
+3. [Initialize project](https://netzo.io/docs/get-started/initialize-project)
+
 ```bash
 netzo init
 ```
-4. **[Run project](https://netzo.io/docs/get-started/run-project)**
+
+4. [Run project](https://netzo.io/docs/get-started/run-project)
+
 ```bash
 deno task start
 ```
-5. **[Deploy project](https://netzo.io/docs/get-started/deploy-project)**
+
+5. [Deploy project](https://netzo.io/docs/get-started/deploy-project)
+
 ```bash
-# To deploy a local project (default netzo.ts entrypoint):
-netzo deploy
-# To deploy a local project (other entrypoint):
-netzo deploy main.ts
-# To deploy a local project after running a build task:
-netzo deploy --build
-# To deploy a local project and mark it as production:
-netzo deploy --production
+netzo deploy --build --production
 ```
+
+> To deploy your project, you need to create a project in the [Netzo Platform](https://app.netzo.io) if you don't already have one.
+
 ## Contribute
 
 Contributions are always welcome! Please read the [contribution guideline](https://github.com/netzo/netzo/blob/main/contributing.md) first.
