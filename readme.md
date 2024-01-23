@@ -39,7 +39,7 @@ Netzo is a batteries-included meta-framework for [Deno Fresh](https://fresh.deno
 
 - 🔔 [**Notifications**](/docs/platform/notifications): Built-in notifications system to push messages to app users in real-time.
 
-- 🧩 [**Components**](/docs/platform/components): Customizable UI components and building blocks to import/copy-paste into apps (powered by [`shadcn-ui`]([url](https://ui.shadcn.com/)).
+- 🧩 [**Components**](/docs/platform/components): Customizable UI components and building blocks to import/copy-paste into apps (powered by [`shadcn-ui`](https://ui.shadcn.com/)).
 
 - 💻 [**CLI**](/docs/platform/cli): Command-line interface (CLI) to help you develop and deploy Netzo applications.
 
