@@ -46,22 +46,20 @@ Netzo is a batteries-included meta-framework for [Deno Fresh](https://fresh.deno
 
 ## Why Netzo?
 
-Custom business app development has challenges. Low-code tools ease the first 60% but struggle with complexity in the remaining 40%. Traditional development is complex and time-consuming. In business software, speed and efficiency often matter more than flexibility and control.
+> "Low-code tools make the first 60% easy, and the remaining 40% impossible."
 
-Our goal is to provide full-code flexibility at no-code speeds by packaging common elements, allowing developers to focus on writing code.
+Custom business app development has challenges. Traditional development is complex and time-consuming. In business software flexibility but speed and efficiency are paramount. Our goal is to provide full-code flexibility at no-code speeds boosting developer productivity and enabling them to build apps 10x faster.
 
 ## Tech Stack
 
 - **Runtime:** Powered by [Deno](https://deno.com), the modern and secure JavaScript runtime, ensuring efficiency and a superior developer experience.
 
-- **Infrastructure:** [Deno subhosting](https://deno.com/subhosting) for multi-layered security with Google's V8, Rust, and Linux containers, providing a secure environment for running untrusted code without compromising reliability.
-
-- **Database:** [Deno KV](https://deno.com/kv), a fast, reliable, and secure key-value database, perfectly suited for Netzo's data storage needs.
-
 - **Framework:** Built on [Deno Fresh](https://fresh.deno.dev/), a next-gen web framework designed for rapid development, contributing to Netzo's speed, reliability, and simplicity.
 
   - **[shadcn-ui](https://ui.shadcn.com/):** Beautifully designed, accessible, and customizable components.
   - **[UnoCSS](https://unocss.dev/):** An instant, on-demand atomic CSS engine, ensuring better performance and joyful development experiences.
+
+- **Database:** [Deno KV](https://deno.com/kv), a fast, reliable, and secure key-value database, perfectly suited for Netzo's data storage needs.
 
 ## Quick start
 
