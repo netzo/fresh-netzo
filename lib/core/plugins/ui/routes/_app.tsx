@@ -1,5 +1,5 @@
 import { defineApp } from "../../../../deps/$fresh/server.ts";
-import { Partial } from "../../../../deps/$fresh/runtime.ts";
+// import { Partial } from "../../../../deps/$fresh/runtime.ts";
 import { cn } from "../../../../components/utils.ts";
 import type { NetzoState } from "../../../mod.ts";
 import { Head } from "../components/head.tsx";
@@ -52,9 +52,9 @@ export default defineApp<NetzoState>((req, ctx) => {
             )
             : (
               <main className="flex-1">
-                <Partial name="main">
-                  <ctx.Component />
-                </Partial>
+                {/* <Partial name="main"> */}
+                <ctx.Component />
+                {/* </Partial> */}
               </main>
             )}
 
