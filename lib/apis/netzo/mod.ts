@@ -9,7 +9,7 @@ export type NetzoOptions = {
 /**
  * SDK constructor function for the Netzo API
  *
- * @see https://netzo.io/docs/platform/apis/netzo
+ * @see https://netzo.io/docs/modules/apis/netzo
  *
  * @param {string} apiKey - the API key to use for authentication
  * @param {string} baseURL - (internal) the base URL to use for the API

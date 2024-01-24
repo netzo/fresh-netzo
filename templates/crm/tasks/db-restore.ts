@@ -22,7 +22,7 @@ function reviver(_key: unknown, value: unknown) {
   return isStoredKvU64(value) ? new Deno.KvU64(BigInt(value.value)) : value;
 }
 
-if (!confirm("WARNING: The database will be restored. Continue?")) Deno.exit();
+if (!confirm("WARNING: The database will be restored. Continue?")) Deno.exit(0);
 
 const [filePath] = Deno.args;
 if (filePath === undefined) throw new Error("File path must be defined");

@@ -5,7 +5,7 @@ export type RestOptions = Parameters<typeof createApi>[0];
 /**
  * SDK constructor function for REST APIs
  *
- * @see https://netzo.io/docs/platform/apis/rest
+ * @see https://netzo.io/docs/modules/apis/rest
  *
  * @param {string} options - the configuration for the API
  * @returns {object} - an object of multiple utilities for the API

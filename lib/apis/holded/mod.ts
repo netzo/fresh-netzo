@@ -8,7 +8,7 @@ export type HoldedOptions = {
 /**
  * SDK constructor function for the Holded API
  *
- * @see https://netzo.io/docs/platform/apis/holded
+ * @see https://netzo.io/docs/modules/apis/holded
  *
  * @param {string} apiKey - the API key to use for authentication
  * @returns {object} - an object of multiple utilities for the API

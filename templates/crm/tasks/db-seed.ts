@@ -20,7 +20,7 @@ const dbSeed = async () => {
   } catch (error) {
     console.error("Error seeding Database:", error);
   } finally {
-    Deno.exit();
+    Deno.exit(0);
   }
 };
 

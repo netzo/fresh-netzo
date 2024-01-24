@@ -8,7 +8,7 @@ export type FacturamaOptions = {
 /**
  * SDK constructor function for the Facturama API
  *
- * @see https://netzo.io/docs/platform/apis/facturama
+ * @see https://netzo.io/docs/modules/apis/facturama
  *
  * @param {string} username - the username to use for authentication
  * @param {string} password - the password to use for authentication

@@ -3,7 +3,7 @@ import { auth } from "../_create-api/auth/mod.ts";
 /**
  * SDK constructor function for the JSONPlaceholder API
  *
- * @see https://netzo.io/docs/platform/apis/jsonplaceholder
+ * @see https://netzo.io/docs/modules/apis/jsonplaceholder
  *
  * @returns {object} - an object of multiple utilities for the API
  */

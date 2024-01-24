@@ -9,7 +9,7 @@ export type DiscordOptions = {
 /**
  * SDK constructor function for the Discord API
  *
- * @see https://netzo.io/docs/platform/apis/discord
+ * @see https://netzo.io/docs/modules/apis/discord
  *
  * @param {string} tokenType - the token type to use for authentication
  * @param {string} token - the token to use for authentication

@@ -36,6 +36,8 @@ export const createZod = (schema: string | object) => {
 export const createZodForCollection = async (collectionPrefix: string[]) => {
   const prefix = ["$collections", ...collectionPrefix];
   const entry = await kv.get(["$collections", ...prefix]);
-  if (!entry.value) throw new Error(`Collection "${JSON.stringify(prefix)}" not found.`);
+  if (!entry.value) {
+    throw new Error(`Collection "${JSON.stringify(prefix)}" not found.`);
+  }
   return createZod(entry.value.schema);
-}
+};

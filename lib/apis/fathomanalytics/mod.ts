@@ -8,7 +8,7 @@ export type FathomAnalyticsOptions = {
 /**
  * SDK constructor function for the Fathom Analytics API
  *
- * @see https://netzo.io/docs/platform/apis/fathomanalytics
+ * @see https://netzo.io/docs/modules/apis/fathomanalytics
  *
  * @param {string} apiKey - the API key to use for authentication
  * @returns {object} - an object of multiple utilities for the API

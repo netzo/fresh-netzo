@@ -9,7 +9,7 @@ export type WhatsappBusinessOptions = {
 /**
  * SDK constructor function for the WhatsApp Business API
  *
- * @see https://netzo.io/docs/platform/apis/whatsappbusiness
+ * @see https://netzo.io/docs/modules/apis/whatsappbusiness
  *
  * @param {string} apiKey - the API key to use for authentication
  * @returns {object} - an object of multiple utilities for the API

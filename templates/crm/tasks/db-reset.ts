@@ -1,6 +1,6 @@
 const kv = await Deno.openKv();
 
-if (!confirm("WARNING: The database will be reset. Continue?")) Deno.exit();
+if (!confirm("WARNING: The database will be reset. Continue?")) Deno.exit(0);
 
 const promises = (await Array.fromAsync(
   kv.list({ prefix: [] }),

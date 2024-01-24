@@ -9,7 +9,7 @@ export type NotionOptions = {
 /**
  * SDK constructor function for the Notion API
  *
- * @see https://netzo.io/docs/platform/apis/notion
+ * @see https://netzo.io/docs/modules/apis/notion
  *
  * @param {string} internalIntegrationToken - the token to use for authentication
  * @param {string} notionVersion - the Notion API version to use (a date string)

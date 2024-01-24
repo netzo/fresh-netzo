@@ -1,9 +1,1 @@
-export {
-  fromFileUrl,
-  globToRegExp,
-  isGlob,
-  join,
-  normalize,
-  resolve,
-  toFileUrl,
-} from "https://deno.land/std@0.205.0/path/mod.ts";
+export * from "https://deno.land/std@0.205.0/path/mod.ts";

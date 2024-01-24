@@ -8,7 +8,7 @@ export type MondayOptions = {
 /**
  * SDK constructor function for the Monday API
  *
- * @see https://netzo.io/docs/platform/apis/monday
+ * @see https://netzo.io/docs/modules/apis/monday
  *
  * @param {string} apiKey - the API key to use for authentication
  * @returns {object} - an object of multiple utilities for the API

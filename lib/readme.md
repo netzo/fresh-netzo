@@ -27,39 +27,58 @@
 
 ## What is Netzo?
 
-Netzo is a batteries-included meta-framework for [Deno Fresh](https://fresh.deno.dev/). It offers a collection of modules and opinionated best practices, empowering developers to build web apps faster without sacrificing flexibility.
+Netzo is a batteries-included meta-framework for
+[Deno Fresh](https://fresh.deno.dev/). It offers a collection of modules and
+opinionated best practices, empowering developers to build web apps faster
+without sacrificing flexibility.
 
 ## Main Features
 
-- 🌐 [**APIs**](/docs/platform/apis): Collection of integrations for popular HTTP APIs and services.
+- 🌐 [**APIs**](/docs/modules/apis): Collection of integrations for popular
+  HTTP APIs and services.
 
-- 🔒 [**Authentication**](/docs/platform/authentication): Simple user management and role-based access control (RBAC).
+- 🔒 [**Authentication**](/docs/modules/authentication): Simple user management
+  and role-based access control (RBAC).
 
-- 🗃️ [**Database**](/docs/platform/database): Simple data management for the multi-model, real-time database that powers apps.
+- 🗃️ [**Database**](/docs/modules/database): Simple data management for the
+  multi-model, real-time database that powers apps.
 
-- 🔔 [**Notifications**](/docs/platform/notifications): Built-in notifications system to push messages to app users in real-time.
+- 🔔 [**Notifications**](/docs/modules/notifications): Built-in notifications
+  system to push messages to app users in real-time.
 
-- 🧩 [**Components**](/docs/platform/components): Customizable UI components and building blocks to import/copy-paste into apps (powered by [`shadcn-ui`](https://ui.shadcn.com/)).
+- 🧩 [**Components**](/docs/modules/components): Customizable UI components and
+  building blocks to import/copy-paste into apps (powered by
+  [`shadcn-ui`](https://ui.shadcn.com/)).
 
-- 💻 [**CLI**](/docs/platform/cli): Command-line interface (CLI) to help you develop and deploy Netzo applications.
-
+- 💻 [**CLI**](/docs/cli): Command-line interface (CLI) to help you develop and
+  deploy Netzo applications.
 
 ## Why Netzo?
 
 > "Low-code tools make the first 60% easy, and the remaining 40% impossible."
 
-Custom business app development has challenges. Traditional development is complex and time-consuming. In business software flexibility but speed and efficiency are paramount. Our goal is to provide full-code flexibility at no-code speeds boosting developer productivity and enabling them to build apps 10x faster.
+Custom business app development has challenges. Traditional development is
+complex and time-consuming. In business software flexibility but speed and
+efficiency are paramount. Our goal is to provide full-code flexibility at
+no-code speeds boosting developer productivity and enabling them to build apps
+10x faster.
 
 ## Tech Stack
 
-- **Runtime:** Powered by [Deno](https://deno.com), the modern and secure JavaScript runtime, ensuring efficiency and a superior developer experience.
+- **Runtime:** Powered by [Deno](https://deno.com), the modern and secure
+  JavaScript runtime, ensuring efficiency and a superior developer experience.
 
-- **Framework:** Built on [Deno Fresh](https://fresh.deno.dev/), a next-gen web framework designed for rapid development, contributing to Netzo's speed, reliability, and simplicity.
+- **Framework:** Built on [Deno Fresh](https://fresh.deno.dev/), a next-gen web
+  framework designed for rapid development, contributing to Netzo's speed,
+  reliability, and simplicity.
 
-  - **[shadcn-ui](https://ui.shadcn.com/):** Beautifully designed, accessible, and customizable components.
-  - **[UnoCSS](https://unocss.dev/):** An instant, on-demand atomic CSS engine, ensuring better performance and joyful development experiences.
+  - **[shadcn-ui](https://ui.shadcn.com/):** Beautifully designed, accessible,
+    and customizable components.
+  - **[UnoCSS](https://unocss.dev/):** An instant, on-demand atomic CSS engine,
+    ensuring better performance and joyful development experiences.
 
-- **Database:** [Deno KV](https://deno.com/kv), a fast, reliable, and secure key-value database, perfectly suited for Netzo's data storage needs.
+- **Database:** [Deno KV](https://deno.com/kv), a fast, reliable, and secure
+  key-value database, perfectly suited for Netzo's data storage needs.
 
 ## Quick start
 
@@ -89,8 +108,11 @@ deno task start
 netzo deploy --build --production
 ```
 
-> To deploy your project, you need to create a project in the [Netzo Platform](https://app.netzo.io) if you don't already have one.
+> To deploy your project, you need to create a project in the
+> [Netzo Platform](https://app.netzo.io) if you don't already have one.
 
 ## Contribute
 
-Contributions are always welcome! Please read the [contribution guideline](https://github.com/netzo/netzo/blob/main/contributing.md) first.
+Contributions are always welcome! Please read the
+[contribution guideline](https://github.com/netzo/netzo/blob/main/contributing.md)
+first.

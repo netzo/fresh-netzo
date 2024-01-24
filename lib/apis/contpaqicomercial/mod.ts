@@ -9,7 +9,7 @@ export type ContpaqiComercialOptions = {
 /**
  * SDK constructor function for the ContpaqiComercial API
  *
- * @see https://netzo.io/docs/platform/apis/contpaqicomercial
+ * @see https://netzo.io/docs/modules/apis/contpaqicomercial
  *
  * @param {string} apiKey - the API key to use for authentication
  * @param {string} companyRfc - the company RFC to use for authentication
