@@ -1,34 +1,19 @@
-import fs from "fs";
-import { dirname, join } from "path";
-import { readFile, writeFile } from "fs/promises";
+// adapted from https://github.com/feathersjs/feathers/blob/dove/packages/generators/src/commons.ts
 import {
-  Callable,
-  exec,
+  type Callable,
   fromFile,
   getCallable,
-  inject,
   loadJSON,
-  Location,
-  PinionContext,
+  type Location,
+  type PinionContext,
   renderTemplate,
-} from "@netzocloud/pinion";
-import ts from "typescript";
-import prettier, { Options as PrettierOptions } from "prettier";
-import path from "path";
+} from "../../../deps/@featherscloud/pinion.ts";
+import { ts } from "../../../deps/typescript.ts";
+import { prettier, Options as PrettierOptions } from "../../../deps/prettier.ts";
+import { existsSync } from "../../../deps/std/fs/exists.ts";
 import { DenoJson } from "./types.ts";
 
-// Set __dirname in es module
-const __dirname = dirname(new URL(import.meta.url).pathname);
-
-/**
- * Returns the name of the Netzo database adapter for a supported database type
- *
- * @param database The type of the database
- * @returns The name of the adapter
- */
-export const getDatabaseAdapter = (
-  database: DatabaseType,
-) => (database === "mongodb" ? "mongodb" : "knex");
+export type DependencyVersions = { [key: string]: string };
 
 export type NetzoAppInfo = {
   /**
@@ -41,14 +26,14 @@ export interface AppDenoJson extends DenoJson {
   netzo?: NetzoAppInfo;
 }
 
-export interface NetzoBaseContext extends PinionContext {
+export interface NetzoContext extends PinionContext {
   /**
-   * Information about the Netzo application (like chosen language, database etc.)
-   * usually taken from `package.json`
+   * Information about the Netzo application (like chosen language,
+   * database etc.) usually taken from "netzo" property in `deno.json`
    */
   netzo: NetzoAppInfo;
   /**
-   * The package.json file
+   * The deno.json file
    */
   denoJson: AppDenoJson;
   /**
@@ -66,71 +51,46 @@ export interface NetzoBaseContext extends PinionContext {
 }
 
 /**
- * Returns dependencies with the versions from the context attached (if available)
- *
- * @param dependencies The dependencies to install
- * @param versions The dependency version list
- * @returns A list of dependencies with their versions
- */
-export const addVersions = (
-  dependencies: string[],
-  versions: DependencyVersions,
-) =>
-  dependencies.map((dep) =>
-    `${dep}@${versions[dep] ? versions[dep] : "latest"}`
-  );
-
-/**
- * Loads the application package.json and populates information like the library and test directory
- * and Netzo app specific information.
+ * Loads the application deno.json and populates information like
+ * the library and test directory and Netzo app specific information.
  *
  * @returns The updated context
  */
-export const initializeBaseContext =
-  () => <C extends NetzoBaseContext>(ctx: C) =>
-    Promise.resolve(ctx)
-      .then(
-        loadJSON(fromFile("package.json"), (denoJson) => ({ denoJson }), {}),
-      )
-      .then(
-        loadJSON(
-          path.join(__dirname, "..", "package.json"),
-          (denoJson: DenoJson) => ({
-            dependencyVersions: {
-              ...denoJson.devDependencies,
-              ...ctx.dependencyVersions,
-              "@netzojs/cli": version,
-            },
-          }),
-        ),
-      )
-      .then((ctx) => ({
-        ...ctx,
-        src: ctx.denoJson?.directories?.src || "src",
-        test: ctx.denoJson?.directories?.test || "test",
-        language: ctx.language || ctx.denoJson?.netzo?.language,
-        netzo: ctx.denoJson?.netzo,
-      }));
+export const initializeBaseContext = () => <C extends NetzoContext>(ctx: C) => {
+  return Promise.resolve(ctx)
+    .then(
+      loadJSON(
+        fromFile("deno.json"),
+        (denoJson: DenoJson) => ({ denoJson }),
+        {},
+      ),
+    )
+    .then((ctx) => ({
+      ...ctx,
+      netzo: ctx.denoJson?.netzo,
+      src: ctx.denoJson?.src || '.',
+      test: ctx.denoJson?.test || 'test',
+      language: ctx.language || ctx.denoJson?.netzo?.language || "ts",
+    }));
+};
 
 /**
- * Checks if the current context contains a valid generated application. This is necesary for most
- * generators (besides the app generator).
+ * Checks if the current context contains a valid generated application.
+ * This is necesary for most generators (besides the app generator).
  *
  * @param ctx The context to check against
  * @returns Throws an error or returns the original context
  */
-export const checkPreconditions =
-  () => async <T extends NetzoBaseContext>(ctx: T) => {
-    if (!ctx.netzo) {
-      throw new Error(
-        `Can not run generator since the current folder does not appear to be a Netzo application.
-Either your package.json is missing or it does not have \`netzo\` property.
-`,
-      );
-    }
-
-    return ctx;
-  };
+export const checkPreconditions = () => <T extends NetzoContext>(ctx: T) => {
+  // const msg =
+  //   "Cannot run generator since current folder does not appear to be a Netzo application.";
+  // if (!ctx.netzo) {
+  //   throw new Error(
+  //     `${msg} Either the "deno.json" file is missing or it does not have a "netzo" property.`,
+  //   );
+  // }
+  return ctx;
+};
 
 const importRegex = /from '(\..*)'/g;
 const escapeNewLines = (code: string) =>
@@ -168,4 +128,112 @@ export const getJavaScript = (
 const getFileName = async <C extends PinionContext & { language: "js" | "ts" }>(
   target: Callable<string, C>,
   ctx: C,
-) => `${await getCallable(target, ctx)}.${ctx.language}`;
+) => {
+  const fileName = `${await getCallable(target, ctx)}.${ctx.language}`;
+  return fileName;
+};
+
+/**
+ * The default configuration for prettifying files
+ */
+export const PRETTIERRC: PrettierOptions = {
+  tabWidth: 2,
+  useTabs: false,
+  printWidth: 110,
+  semi: false,
+  trailingComma: "none",
+  singleQuote: true,
+};
+
+/*
+ * Format a source file using Prettier. Will use the local configuration, the settings set in
+ * `options` or a default configuration
+ *
+ * @param target The file to prettify
+ * @param options The Prettier options
+ * @returns The updated context
+ */
+export const prettify = <C extends PinionContext & { language: "js" | "ts" }>(
+  target: Callable<string, C>,
+  options: PrettierOptions = PRETTIERRC,
+) =>
+  async (ctx: C) => {
+    const fileName = await getFileName(target, ctx);
+    const config = (await prettier.resolveConfig(ctx.cwd)) || options;
+    const content = await Deno.readTextFile(fileName);
+
+    try {
+      await Deno.writeTextFile(
+        fileName,
+        await prettier.format(content, {
+          parser: ctx.language === "ts" ? "typescript" : "babel",
+          ...config,
+        }),
+      );
+    } catch (error) {
+      throw new Error(`Error prettifying ${fileName}: ${error.message}`);
+    }
+
+    return ctx;
+  };
+
+/**
+ * Render a source file template for the language set in the context.
+ *
+ * @param templates The JavaScript and TypeScript template to render
+ * @param target The target filename without extension (will be added based on language)
+ * @returns The updated context
+ */
+export const renderSource =
+  <C extends PinionContext & { language: "js" | "ts" }>(
+    template: Callable<string, C>,
+    target: Callable<string, C>,
+    options?: { force: boolean },
+  ) =>
+    async (ctx: C) => {
+      const { language } = ctx;
+      const fileName = await getFileName(target, ctx);
+      const content = language === "js"
+        ? getJavaScript(await getCallable<string, C>(template, ctx))
+        : template;
+      const renderer = renderTemplate(content, fileName, options);
+
+      return renderer(ctx).then(prettify(target));
+    };
+
+/**
+ * Inject a source template as the language set in the context.
+ *
+ * @param template The source template to render
+ * @param location The location to inject the code to. Must use the target language.
+ * @param target The target file name
+ * @param transpile Set to `false` if the code should not be transpiled to JavaScript
+ * @returns
+ */
+export const injectSource =
+  <C extends PinionContext & { language: "js" | "ts" }>(
+    template: Callable<string, C>,
+    location: Location<C>,
+    target: Callable<string, C>,
+    transpile = true,
+  ) =>
+    async (ctx: C) => {
+      const { language } = ctx;
+      const source = language === "js" && transpile
+        ? getJavaScript(await getCallable<string, C>(template, ctx))
+        : template;
+      const fileName = await getFileName(target, ctx);
+      const injector = inject(source, location, fileName);
+
+      return injector(ctx).then(prettify(target));
+    };
+
+/**
+ * Synchronously checks if a file exits
+ * @param context The base context
+ * @param filenames The filenames to check
+ * @returns Wether the file exists or not
+ */
+export const fileExists = (
+  ...filenames: string[]
+) => filenames.every((filename) => existsSync(filename));

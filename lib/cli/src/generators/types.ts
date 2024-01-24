@@ -4,7 +4,7 @@
 /**
  * A JSON representation of a Deno configuration file.
  */
-export interface DenoConfigurationFileSchema {
+export interface DenoJson {
   /**
    * Instructs the TypeScript compiler how to compile .ts files.
    */

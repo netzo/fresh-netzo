@@ -39,7 +39,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
   const version = typeof rawArgs._[0] === "string" ? rawArgs._[0] : null;
   if (args.help) {
     console.log(help);
-    Deno.exit();
+    Deno.exit(0);
   }
   if (rawArgs._.length > 1) {
     console.error(help);
@@ -60,7 +60,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
 
   if (!version && semverGreaterThanOrEquals(parse(VERSION), parse(latest))) {
     console.log("You're using the latest version.");
-    Deno.exit();
+    Deno.exit(0);
   } else {
     const process = new Deno.Command(Deno.execPath(), {
       args: [

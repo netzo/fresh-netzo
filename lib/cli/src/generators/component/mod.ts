@@ -1,59 +1,60 @@
-import { dirname } from "node:path";
+import { dirname } from "../../../../deps/std/path/mod.ts";
 import {
   prompt,
   runGenerators,
 } from "../../../../deps/@featherscloud/pinion.ts";
-import _kebabCase from "../../../../deps/lodash.kebabcase.ts";
-import _camelCase from "../../../../deps/lodash.camelcase.ts";
+import {
+  camelCase,
+  paramCase as kebabCase,
+  pascalCase,
+} from "../../../../deps/x/case/mod.ts";
 import {
   checkPreconditions,
   initializeBaseContext,
-  NetzoBaseContext,
-} from "../commons.js";
+  NetzoContext,
+} from "../commons.ts";
 
 // Set __dirname in es module
 const __dirname = dirname(new URL(import.meta.url).pathname);
 
-export interface HookGeneratorContext extends NetzoBaseContext {
+export interface ComponentGeneratorContext extends NetzoContext {
   name: string;
   camelName: string;
+  pascalName: string;
   kebabName: string;
-  type: "regular" | "around";
+  type: "default";
 }
 
-export const generate = (ctx: HookGeneratorContext) =>
+export const generate = (ctx: ComponentGeneratorContext) =>
   Promise.resolve(ctx)
     .then(initializeBaseContext())
     .then(checkPreconditions())
     .then(
-      prompt<HookGeneratorContext>(({ type, name }) => [
+      prompt<ComponentGeneratorContext>(({ name, type }) => [
         {
           type: "input",
           name: "name",
-          message: "What is the name of the hook?",
+          message: 'What is the name of the component (e.g. "my-component" or "nested/my-component")?',
           when: !name,
         },
         {
           name: "type",
           type: "list",
           when: !type,
-          message: "What kind of hook is it?",
+          message: "What type of component is it?",
           choices: [
-            { value: "around", name: "Around" },
-            { value: "regular", name: "Before, After or Error" },
+            { value: "default", name: "Default" },
           ],
         },
       ]),
     )
     .then((ctx) => {
       const { name } = ctx;
-      const kebabName = _._kebabCase(name);
-      const camelName = _._camelCase(name);
-
       return {
         ...ctx,
-        kebabName,
-        camelName,
+        pascalName: pascalCase(name),
+        camelName: camelCase(name),
+        kebabName: kebabCase(name),
       };
     })
     .then(runGenerators(__dirname, "templates"));

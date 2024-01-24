@@ -1,6 +1,5 @@
 import { error } from "../../../core/utils/console.ts";
 import { question } from "../../../deps/question/mod.ts";
-import { cli } from "../generators/cli.ts";
 
 const help = `netzo add: add a new resource to an existing project.
 
@@ -63,16 +62,16 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
 
   if (args.dir === null) args.dir = resource;
 
-  const url = new URL(
-    `../generators/${resource}/${resource}.tpl.ts`,
-    import.meta.url,
-  );
-  // const url = import.meta.resolve(`file:/home/mrk/repos/netzo/cli/src/generators/${resource}/${resource}.tpl.ts`)
-
-  // await cli(typeof rawArgs._[0] === "string"
-  //   ? Deno.args
-  //   : [...Deno.args, resource]
-  // )
+  // TODO: update all usages of import.meta.resolve(...).replace("file://", ""); to use built-in
+  // import.meta.filename/import.meta.dirname once these land in Deno (this
+  // is required since doing import.meta.resolve returns a file:// url for
+  // unix but not for windows, so we can't simply use .replace('file://', '')
+  const cli = import.meta.resolve(
+    `../generators/cli.ts`,
+  ).replace("file://", "");
+  const generatorFile = import.meta.resolve(
+    `../generators/${resource}/templates/${resource}.tpl.ts`,
+  ).replace("file://", "");
 
   const process = new Deno.Command(Deno.execPath(), {
     args: [
@@ -85,11 +84,14 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
       "--allow-sys",
       "--no-check",
       "--unstable",
-      new URL(`../generators/cli.ts`, import.meta.url).href,
+      cli,
+      generatorFile,
       resource,
-      args.dir,
-      "--force", // init at existing directory even if exists
+      // ...args,
     ],
   }).spawn();
   await process.status;
+
+  // NOTE: cannot programatically call cli() Deno requires --unstable flag
+  // await cli([generatorFile, resource, ...args]);
 }
