@@ -1,97 +1,29 @@
 import { z } from "netzo/deps/zod/mod.ts";
-import { createZod } from "netzo/core/utils/database.utils.ts";
 
 // schemas:
 
-const accountJsonSchema = {
-  "type": "object",
-  "properties": {
-    "id": {
-      "type": "string",
-    },
-    "createdAt": {
-      "type": "string",
-    },
-    "updatedAt": {
-      "type": "string",
-    },
-    "name": {
-      "type": "string",
-    },
-    "status": {
-      "type": "string",
-    },
-    "type": {
-      "type": "string",
-    },
-    "web": {
-      "type": "string",
-    },
-    "phone": {
-      "type": "string",
-    },
-    "address": {
-      "type": "object",
-      "properties": {
-        "streetAddress": {
-          "type": "string",
-        },
-        "number": {
-          "type": "string",
-        },
-        "city": {
-          "type": "string",
-        },
-        "postCode": {
-          "type": "string",
-        },
-      },
-      "required": [
-        "streetAddress",
-        "number",
-        "city",
-        "postCode",
-      ],
-    },
-    "notifications": {
-      "type": "object",
-      "properties": {
-        "payments": {
-          "type": "string",
-        },
-        "invoices": {
-          "type": "string",
-        },
-        "promotions": {
-          "type": "string",
-        },
-        "marketing": {
-          "type": "string",
-        },
-      },
-      "required": [
-        "payments",
-        "invoices",
-        "promotions",
-        "marketing",
-      ],
-    },
-  },
-  "required": [
-    "id",
-    "createdAt",
-    "updatedAt",
-    "name",
-    "status",
-    "type",
-    "web",
-    "phone",
-    "address",
-    "notifications",
-  ],
-};
-
-export const accountSchema = createZod(accountJsonSchema);
+export const accountSchema = z.object({
+  id: z.string(),
+  createdAt: z.string(),
+  updatedAt: z.string(),
+  name: z.string(),
+  status: z.string(),
+  type: z.string(),
+  web: z.string(),
+  phone: z.string(),
+  address: z.object({
+    streetAddress: z.string(),
+    number: z.string(),
+    city: z.string(),
+    postCode: z.string(),
+  }),
+  notifications: z.object({
+    payments: z.boolean(),
+    invoices: z.boolean(),
+    promotions: z.boolean(),
+    marketing: z.boolean(),
+  }),
+});
 
 // types:
 

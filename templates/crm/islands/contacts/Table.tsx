@@ -34,7 +34,7 @@ export const getColumns = (_props: TableProps): TableProps["columns"] => [
         checked={row.getIsSelected()}
         onCheckedChange={(value) => row.toggleSelected(!!value)}
         aria-label="Select row"
-        className="mr-2"
+        className="my-3 mr-2"
       />
     ),
     enableSorting: false,
