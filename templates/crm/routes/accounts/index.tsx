@@ -47,8 +47,6 @@ export const getTableOptions = (
 export default defineRoute(async (req, ctx) => {
   const data = await netzo.db.find<Account>(["accounts"]);
 
-  if (!data) return ctx.renderNotFound();
-
   const options = getTableOptions(data);
 
   return (

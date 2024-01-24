@@ -10,8 +10,6 @@ export default defineRoute(async (req, ctx) => {
     ? {}
     : await netzo.db.get<Account>(["accounts", id]);
 
-  if (!data) return ctx.renderNotFound();
-
   return (
     <div className="my-4 overflow-auto">
       <Separator />

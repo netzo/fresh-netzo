@@ -28,8 +28,6 @@ export const getTableOptions = (
 export default defineRoute(async (req, ctx) => {
   const data = await netzo.db.find<Invoice>(["invoices"]);
 
-  if (!data) return ctx.renderNotFound();
-
   const options = getTableOptions(data);
 
   return (

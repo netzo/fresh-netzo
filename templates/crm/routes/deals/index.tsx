@@ -22,8 +22,6 @@ export const getKanbanOptions = (
 export default defineRoute(async (req, ctx) => {
   const data = await netzo.db.find<Deal>(["deals"]);
 
-  if (!data) return ctx.renderNotFound();
-
   const options = getKanbanOptions(data);
 
   return (
