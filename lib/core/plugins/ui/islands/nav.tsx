@@ -35,7 +35,8 @@ export function Nav({ className, ...props }: NavProps) {
         </div>
       )}
 
-      <nav f-client-nav className="grid gap-1">
+      <nav className="grid gap-1">
+        {/* DISABLED: <nav f-client-nav className="grid gap-1"> */}
         {props.items?.map((item, index) => {
           if ("href" in item) {
             return (

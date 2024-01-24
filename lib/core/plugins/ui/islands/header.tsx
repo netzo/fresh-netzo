@@ -45,7 +45,8 @@ export function Header({ className, ...props }: HeaderProps) {
       {/* RIGHT CONTENT HERE */}
       <div className="flex items-center gap-4 !my-0">
         <ThemeToggle />
-        <HeaderAuth f-client-nav={false} sessionUser={props.sessionUser} />
+        <HeaderAuth sessionUser={props.sessionUser} />
+        {/* DISABLED: <HeaderAuth f-client-nav={false} sessionUser={props.sessionUser} /> */}
       </div>
     </header>
   );
