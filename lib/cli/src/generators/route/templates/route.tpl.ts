@@ -2,78 +2,47 @@ import { toFile } from "../../../../../deps/@featherscloud/pinion.ts";
 import { RouteGeneratorContext } from "../mod.ts";
 import { renderSource } from "../../commons.ts";
 
-const uiSyncTemplate = ({
-  pascalName,
-  name,
-}: RouteGeneratorContext) =>
-  /* ts */ `TODO
+const uiTemplate = ({}: RouteGeneratorContext) =>
+  /* ts */ `// [netzo] generated via https://netzo.io/docs/cli
+import { defineRoute } from "$fresh/server.ts";
+
+export type State = {};
+
+export default defineRoute<State>(async (req, ctx) => {
+  return (
+    <main>
+      <h1>About</h1>
+      <p>This is the about page.</p>
+    </main>
+  );
+});
 `;
 
-const uiAuiSyncTemplate = ({
-  pascalName,
-  name,
-}: RouteGeneratorContext) =>
-  /* ts */ `TODO
+const apiTemplate = ({}: RouteGeneratorContext) =>
+  /* ts */ `// [netzo] generated via https://netzo.io/docs/cli
+TODO
 `;
 
-const apiSyncTemplate = ({
-  pascalName,
-  name,
-}: RouteGeneratorContext) =>
-  /* ts */ `TODO
-`;
-
-const apiAuiSyncTemplate = ({
-  pascalName,
-  name,
-}: RouteGeneratorContext) =>
-  /* ts */ `TODO
-`;
-
-const layoutAppTemplate = ({
-  pascalName,
-  name,
-}: RouteGeneratorContext) =>
-  /* ts */ `TODO
-`;
-
-const layoutLayoutTemplate = ({
-  pascalName,
-  name,
-}: RouteGeneratorContext) =>
-  /* ts */ `TODO
-`;
-
-const error404Template = ({
-  pascalName,
-  name,
-}: RouteGeneratorContext) =>
-  /* ts */ `TODO
-`;
-
-const error500Template = ({
-  pascalName,
-  name,
-}: RouteGeneratorContext) =>
-  /* ts */ `TODO
+const mixedTemplate = ({}: RouteGeneratorContext) =>
+  /* ts */ `// [netzo] generated via https://netzo.io/docs/cli
+TODO
 `;
 
 export const generate = (ctx: RouteGeneratorContext) =>
-  Promise.resolve(ctx).then(
+  Promise.resolve(ctx).then((ctx) => {
+    if (ctx.language.startsWith("ts")) ctx.language = "tsx";
+    else if (ctx.language.startsWith("js")) ctx.language = "jsx";
+    return ctx;
+  }).then(
     renderSource(
       (ctx) =>
         ({
-          "ui:sync": uiSyncTemplate(ctx),
-          "ui:async": uiAuiSyncTemplate(ctx),
-          "api:sync": apiSyncTemplate(ctx),
-          "api:async": apiAuiSyncTemplate(ctx),
-          "layout:_app": layoutAppTemplate(ctx),
-          "layout:_layout": layoutLayoutTemplate(ctx),
-          "error:_404": error404Template(ctx),
-          "error:_500": error500Template(ctx),
+          "ui": uiTemplate(ctx),
+          "api": apiTemplate(ctx),
+          "mixed": mixedTemplate(ctx),
         })[ctx.type],
       toFile<RouteGeneratorContext>((
-        { src, kebabName },
-      ) => [src, "routes", kebabName]),
+        { src, filepath },
+      ) => [src, "routes", filepath]),
     ),
   );

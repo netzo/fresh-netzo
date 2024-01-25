@@ -4,11 +4,6 @@ import {
   runGenerators,
 } from "../../../../deps/@featherscloud/pinion.ts";
 import {
-  camelCase,
-  paramCase as kebabCase,
-  pascalCase,
-} from "../../../../deps/x/case/mod.ts";
-import {
   checkPreconditions,
   initializeBaseContext,
   NetzoContext,
@@ -18,11 +13,8 @@ import {
 const __dirname = dirname(new URL(import.meta.url).pathname);
 
 export interface MiddlewareGeneratorContext extends NetzoContext {
-  name: string;
-  camelName: string;
-  pascalName: string;
-  kebabName: string;
-  type: "sync" | "async";
+  type: "single" | "multiple";
+  path: string;
 }
 
 export const generate = (ctx: MiddlewareGeneratorContext) =>
@@ -30,33 +22,30 @@ export const generate = (ctx: MiddlewareGeneratorContext) =>
     .then(initializeBaseContext())
     .then(checkPreconditions())
     .then(
-      prompt<MiddlewareGeneratorContext>(({ name, type }) => [
-        {
-          type: "input",
-          name: "name",
-          message:
-            "What is the filepath (without extension) of the middleware?",
-          when: !name,
-        },
+      prompt<MiddlewareGeneratorContext>((/* { type, path } */) => [
         {
           name: "type",
           type: "list",
-          when: !type,
-          message: "What type of middleware is it?",
+          message: "Select middleware type:",
           choices: [
-            { value: "sync", name: "Sync" },
-            { value: "async", name: "Async" },
+            { value: "single", name: "Single" },
+            { value: "multiple", name: "Multiple" },
           ],
+          when: ({ type }) => !type,
+        },
+        {
+          type: "input",
+          name: "path",
+          message: ({ type }) => {
+            return ({
+              single:
+                'Enter path to middleware at "routes/" (e.g. "index", "api/users"):',
+              multiple:
+                'Enter path to middleware at "routes/" (e.g. "index", "api/users"):',
+            })[type as MiddlewareGeneratorContext["type"]];
+          },
+          when: ({ path }) => !path,
         },
       ]),
     )
-    .then((ctx) => {
-      const { name } = ctx;
-      return {
-        ...ctx,
-        pascalName: pascalCase(name),
-        camelName: camelCase(name),
-        kebabName: kebabCase(name),
-      };
-    })
     .then(runGenerators(__dirname, "templates"));

@@ -48,9 +48,10 @@ export interface NetzoContext extends PinionContext {
    */
   test: string;
   /**
-   * The language the app is generated in
+   * The language the app is generated in. Note that generators will
+   * overwrite to "tsx" or "jsx" if required (via setLanguageTsxOrJsx())
    */
-  language: "js" | "ts";
+  language: "ts" | "js" | "tsx" | "jsx";
 }
 
 /**
@@ -128,7 +129,9 @@ export const getJavaScript = (
   return fixLocalImports(restoreNewLines(transpiled.outputText));
 };
 
-const getFileName = async <C extends PinionContext & { language: "js" | "ts" }>(
+const getFileName = async <
+  C extends PinionContext & { language: NetzoContext["language"] },
+>(
   target: Callable<string, C>,
   ctx: C,
 ) => {
@@ -156,10 +159,11 @@ export const PRETTIERRC: PrettierOptions = {
  * @param options The Prettier options
  * @returns The updated context
  */
-export const prettify = <C extends PinionContext & { language: "js" | "ts" }>(
-  target: Callable<string, C>,
-  options: PrettierOptions = PRETTIERRC,
-) =>
+export const prettify =
+  <C extends PinionContext & { language: NetzoContext["language"] }>(
+    target: Callable<string, C>,
+    options: PrettierOptions = PRETTIERRC,
+  ) =>
   async (ctx: C) => {
     const fileName = await getFileName(target, ctx);
     const config = (await prettier.resolveConfig(ctx.cwd)) || options;
@@ -169,7 +173,7 @@ export const prettify = <C extends PinionContext & { language: "js" | "ts" }>(
       await Deno.writeTextFile(
         fileName,
         await prettier.format(content, {
-          parser: ctx.language === "ts" ? "typescript" : "babel",
+          parser: ["ts", "tsx"].includes(ctx.language) ? "typescript" : "babel",
           ...config,
         }),
       );
@@ -188,22 +192,22 @@ export const prettify = <C extends PinionContext & { language: "js" | "ts" }>(
  * @returns The updated context
  */
 export const renderSource =
-  <C extends PinionContext & { language: "js" | "ts" }>(
+  <C extends PinionContext & { language: NetzoContext["language"] }>(
     template: Callable<string, C>,
     target: Callable<string, C>,
     options?: { force: boolean },
   ) =>
-    async (ctx: C) => {
-      const { language } = ctx;
-      const fileName = await getFileName(target, ctx);
-      console.log({ template, target, options, language, fileName });
-      const content = language === "js"
-        ? getJavaScript(await getCallable<string, C>(template, ctx))
-        : template;
-      const renderer = renderTemplate(content, fileName, options);
+  async (ctx: C) => {
+    const { language } = ctx;
+    const fileName = await getFileName(target, ctx);
+    console.log({ template, target, options, language, fileName });
+    const content = language === "js"
+      ? getJavaScript(await getCallable<string, C>(template, ctx))
+      : template;
+    const renderer = renderTemplate(content, fileName, options);
 
-      return renderer(ctx).then(prettify(target));
-    };
+    return renderer(ctx).then(prettify(target));
+  };
 
 /**
  * Inject a source template as the language set in the context.
@@ -215,22 +219,22 @@ export const renderSource =
  * @returns
  */
 export const injectSource =
-  <C extends PinionContext & { language: "js" | "ts" }>(
+  <C extends PinionContext & { language: NetzoContext["language"] }>(
     template: Callable<string, C>,
     location: Location<C>,
     target: Callable<string, C>,
     transpile = true,
   ) =>
-    async (ctx: C) => {
-      const { language } = ctx;
-      const source = language === "js" && transpile
-        ? getJavaScript(await getCallable<string, C>(template, ctx))
-        : template;
-      const fileName = await getFileName(target, ctx);
-      const injector = inject(source, location, fileName);
+  async (ctx: C) => {
+    const { language } = ctx;
+    const source = language === "js" && transpile
+      ? getJavaScript(await getCallable<string, C>(template, ctx))
+      : template;
+    const fileName = await getFileName(target, ctx);
+    const injector = inject(source, location, fileName);
 
-      return injector(ctx).then(prettify(target));
-    };
+    return injector(ctx).then(prettify(target));
+  };
 
 /**
  * Synchronously checks if a file exits

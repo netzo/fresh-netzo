@@ -18,11 +18,12 @@ import {
 const __dirname = dirname(new URL(import.meta.url).pathname);
 
 export interface ComponentGeneratorContext extends NetzoContext {
-  name: string;
+  type: "component" | "island";
+  filepath: string;
+  name: string; // set from filepath
   camelName: string;
   pascalName: string;
   kebabName: string;
-  type: "default";
 }
 
 export const generate = (ctx: ComponentGeneratorContext) =>
@@ -30,26 +31,41 @@ export const generate = (ctx: ComponentGeneratorContext) =>
     .then(initializeBaseContext())
     .then(checkPreconditions())
     .then(
-      prompt<ComponentGeneratorContext>(({ name, type }) => [
-        {
-          type: "input",
-          name: "name",
-          message: "What is the filepath (without extension) of the component?",
-          when: !name,
-        },
+      prompt<ComponentGeneratorContext>((/* { type, name } */) => [
         {
           name: "type",
           type: "list",
-          when: !type,
-          message: "What type of component is it?",
+          message: "Select component type:",
           choices: [
-            { value: "default", name: "Default" },
+            {
+              value: "component",
+              name: "Component: server component (static)",
+            },
+            {
+              value: "island",
+              name: "Island: server+client component (interactive)",
+            },
           ],
+          when: ({ type }) => !type,
+        },
+        {
+          type: "input",
+          name: "filepath",
+          message: ({ type }) => {
+            return ({
+              component:
+                'Enter component filepath at "components/" (without extension e.g. "foo", "nested/foo"):',
+              island:
+                'Enter island filepath at "islands/" (without extension e.g. "foo", "nested/foo"):',
+            })[type as ComponentGeneratorContext["type"]];
+          },
+          when: ({ filepath }) => !filepath,
         },
       ]),
     )
     .then((ctx) => {
-      const { name } = ctx;
+      const { filepath } = ctx;
+      const name = filepath.split("/").pop() || "";
       return {
         ...ctx,
         pascalName: pascalCase(name),

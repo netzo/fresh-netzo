@@ -1,36 +1,38 @@
-import { Keypress } from 'https://deno.land/x/keypress@0.0.7/mod.ts'
+import { Keypress } from "https://deno.land/x/keypress@0.0.7/mod.ts";
 const keyToEventKeyMap = [
-  ['Escape', 'Esc'],
-  [' ', 'Space'],
-  ['ArrowLeft', 'Left'],
-  ['ArrowRight', 'Right'],
-  ['ArrowUp', 'Up'],
-  ['ArrowDown', 'Down'],
-  ['Enter', 'Return'],
-  ['Add', 'Plus', '+'],
-  ['Subtract', 'Minus', '-'],
-  ['Multiply', 'Times', '*'],
-  ['Divide', 'Div', '/'],
-  ['Decimal', '.'],
-  ['Separator', ','],
+  ["Escape", "Esc"],
+  [" ", "Space"],
+  ["ArrowLeft", "Left"],
+  ["ArrowRight", "Right"],
+  ["ArrowUp", "Up"],
+  ["ArrowDown", "Down"],
+  ["Enter", "Return"],
+  ["Add", "Plus", "+"],
+  ["Subtract", "Minus", "-"],
+  ["Multiply", "Times", "*"],
+  ["Divide", "Div", "/"],
+  ["Decimal", "."],
+  ["Separator", ","],
 ].reduce((map, combinations) => {
   for (const item of combinations) {
-    ;(map[item.toLowerCase()] = map[item.toLowerCase()] || []).push(...combinations.map(it => it.toLowerCase()))
+    (map[item.toLowerCase()] = map[item.toLowerCase()] || []).push(
+      ...combinations.map((it) => it.toLowerCase()),
+    );
   }
-  return map
-}, {} as Record<string, string[]>)
+  return map;
+}, {} as Record<string, string[]>);
 
 interface KeyComboParams {
   /** If the ctrl key must be present or absent. */
-  ctrl?: boolean
+  ctrl?: boolean;
   /** If the shift key must be present or absent. */
-  shift?: boolean
+  shift?: boolean;
   /** If the alt/option key must be present or absent. */
-  alt?: boolean
+  alt?: boolean;
   /** If the command/super/win key must be present or absent. */
-  meta?: boolean
+  meta?: boolean;
   /** The key name that must be percent or absent. */
-  key?: string
+  key?: string;
 }
 
 /**
@@ -49,26 +51,26 @@ export default class KeyCombo {
    * Creates a new KeyCombo instance.
    */
   constructor({ ctrl, shift, alt, meta, key }: KeyComboParams = {}) {
-    this.ctrl = ctrl ?? false
-    this.shift = shift ?? false
-    this.alt = alt ?? false
-    this.meta = meta ?? false
-    this.key = key ?? ''
+    this.ctrl = ctrl ?? false;
+    this.shift = shift ?? false;
+    this.alt = alt ?? false;
+    this.meta = meta ?? false;
+    this.key = key ?? "";
 
     // if (this.alt) throw new Error('The Alt/Option key is not supported!')
   }
 
   get option() {
-    return this.alt
+    return this.alt;
   }
   get command() {
-    return this.meta
+    return this.meta;
   }
   get win() {
-    return this.meta
+    return this.meta;
   }
   get super() {
-    return this.meta
+    return this.meta;
   }
 
   /**
@@ -92,18 +94,21 @@ export default class KeyCombo {
    * @returns The key combination instance parsed from the string.
    */
   static parse(str: string): KeyCombo {
-    let ctrl = false
-    let shift = false
-    let alt = false
-    let meta = false
+    let ctrl = false;
+    let shift = false;
+    let alt = false;
+    let meta = false;
     const key = str
-      .replace(/\s*ctrl\s*(?:\+\s*|$)/i, () => (ctrl = true,''))
-      .replace(/\s*shift\s*(?:\+\s*|$)/i, () => (shift = true,''))
-      .replace(/\s*(?:alt|option)\s*(?:\+\s*|$)/i, () => (alt = true,''))
-      .replace(/\s*(?:meta|super|win|command|cmd)\s*(?:\+\s*|$)/i, () => (meta = true,''))
-      .trim()
+      .replace(/\s*ctrl\s*(?:\+\s*|$)/i, () => (ctrl = true, ""))
+      .replace(/\s*shift\s*(?:\+\s*|$)/i, () => (shift = true, ""))
+      .replace(/\s*(?:alt|option)\s*(?:\+\s*|$)/i, () => (alt = true, ""))
+      .replace(
+        /\s*(?:meta|super|win|command|cmd)\s*(?:\+\s*|$)/i,
+        () => (meta = true, ""),
+      )
+      .trim();
 
-    return new KeyCombo({ ctrl, shift, alt, meta, key })
+    return new KeyCombo({ ctrl, shift, alt, meta, key });
   }
 
   /**
@@ -126,51 +131,72 @@ export default class KeyCombo {
       this.shift === event.shiftKey &&
       this.meta === event.metaKey &&
       (this.key
-        ? this.key === event.key || (keyToEventKeyMap[this.key.toLowerCase()] || []).includes(event.key?.toLowerCase() ?? '')
+        ? this.key === event.key ||
+          (keyToEventKeyMap[this.key.toLowerCase()] || []).includes(
+            event.key?.toLowerCase() ?? "",
+          )
         : true)
-    )
+    );
   }
 
   /** Get the string parts for a Windows system of this key combo. */
   getStringPartsWindows() {
-    return [this.ctrl && 'Ctrl', this.meta && 'Win', this.shift && 'Shift', this.alt && 'Alt', this.key].filter(Boolean)
+    return [
+      this.ctrl && "Ctrl",
+      this.meta && "Win",
+      this.shift && "Shift",
+      this.alt && "Alt",
+      this.key,
+    ].filter(Boolean);
   }
 
   /** Get a string representation of this key combination for Windows systems. */
   toStringWindows() {
-    return this.getStringPartsWindows().join('+')
+    return this.getStringPartsWindows().join("+");
   }
 
   /** Get the string parts for a Linux / Unix system of this key combo. */
   getStringPartsLinux() {
-    return [this.ctrl && 'Ctrl', this.meta && 'Super', this.shift && 'Shift', this.alt && 'Alt', this.key].filter(Boolean)
+    return [
+      this.ctrl && "Ctrl",
+      this.meta && "Super",
+      this.shift && "Shift",
+      this.alt && "Alt",
+      this.key,
+    ].filter(Boolean);
   }
 
   /** Get a string representation of this key combination for Linux / Unix systems. */
   toStringLinux() {
-    return this.getStringPartsLinux().join('+')
+    return this.getStringPartsLinux().join("+");
   }
 
   /** Get the string parts for a MacOS system of this key combo. */
   getStringPartsMac() {
-    return [this.ctrl && 'Ctrl', this.meta && 'Command', this.shift && 'Shift', this.alt && 'Option', this.key].filter(Boolean)
+    return [
+      this.ctrl && "Ctrl",
+      this.meta && "Command",
+      this.shift && "Shift",
+      this.alt && "Option",
+      this.key,
+    ].filter(Boolean);
   }
 
   /** Get a string representation of this key combination for MacOS systems. */
   toStringMac() {
-    return this.getStringPartsMac().join('+')
+    return this.getStringPartsMac().join("+");
   }
 
   /** Get the string parts for this key combo. */
   getStringParts() {
-    if (Deno.build.os === 'windows') return this.getStringPartsWindows()
-    if (Deno.build.os === 'linux') return this.getStringPartsLinux()
-    return this.getStringPartsMac()
+    if (Deno.build.os === "windows") return this.getStringPartsWindows();
+    if (Deno.build.os === "linux") return this.getStringPartsLinux();
+    return this.getStringPartsMac();
   }
 
   /** Get the string representation for this key combo. */
   toString() {
-    return this.getStringParts().join('+')
+    return this.getStringParts().join("+");
   }
 
   toJSON() {
@@ -180,7 +206,7 @@ export default class KeyCombo {
       alt: this.alt,
       meta: this.meta,
       key: this.key,
-    }
+    };
   }
 
   /**
@@ -188,7 +214,12 @@ export default class KeyCombo {
    * @param event A keyboard event.
    */
   static from(event: Keypress): KeyCombo {
-    return new KeyCombo({ ctrl: event.ctrlKey, shift: event.shiftKey, meta: event.metaKey, key: event.key })
+    return new KeyCombo({
+      ctrl: event.ctrlKey,
+      shift: event.shiftKey,
+      meta: event.metaKey,
+      key: event.key,
+    });
   }
 }
 
@@ -196,11 +227,11 @@ export class KeyCombos {
   constructor(private combos: readonly KeyCombo[]) {}
 
   test(event: Keypress): boolean {
-    return this.combos.some(combo => combo.test(event))
+    return this.combos.some((combo) => combo.test(event));
   }
 
   static parse(str: string) {
-    const combos = str.split('|').map(KeyCombo.parse)
-    return new KeyCombos(combos)
+    const combos = str.split("|").map(KeyCombo.parse);
+    return new KeyCombos(combos);
   }
 }

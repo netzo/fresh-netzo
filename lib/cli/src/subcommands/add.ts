@@ -51,12 +51,13 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     error("Too many positional arguments given.");
   }
 
+  const RESOURCES = ["component", "middleware", "route", "layout"];
+
   let [resource, name] = rawArgs._ as string[];
-  resource ||= await question(
-    "list",
-    "Select a resource:",
-    ["component", "island", "middleware", "route"],
-  ) as string; // vendored x/question@0.0.2 to silence deprecated API warnings (Deno >= 1.4)
+  if (!RESOURCES.includes(resource)) {
+    // vendored x/question@0.0.2 to silence deprecated API warnings (Deno>=1.4)
+    resource = (await question("list", "Select a resource:", RESOURCES))!;
+  }
   // exit directly in case prompt is cancelled/escaped
   if (!resource) Deno.exit(1);
 
@@ -79,6 +80,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
       "--allow-run",
       "--allow-sys",
       "--no-check",
+      "--quiet", // silence deprecated API warnings thrown by x/question@0.0.2 (Deno>=1.4)
       cli,
       generatorFile,
       resource,

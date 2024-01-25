@@ -1,6 +1,20 @@
-import { KeyCombos } from './KeyCombo.ts'
-import { print, println, HIDE_CURSOR, SHOW_CURSOR, PREFIX, asPromptText, CLEAR_LINE, highlightText, createRenderer, moveCursor, PRIMARY_COLOR, RESET_COLOR, getConsoleSize } from './util.ts'
-import { TextRange, textSearch } from './text-util.ts'
+import { KeyCombos } from "./KeyCombo.ts";
+import {
+  asPromptText,
+  CLEAR_LINE,
+  createRenderer,
+  getConsoleSize,
+  HIDE_CURSOR,
+  highlightText,
+  moveCursor,
+  PREFIX,
+  PRIMARY_COLOR,
+  print,
+  println,
+  RESET_COLOR,
+  SHOW_CURSOR,
+} from "./util.ts";
+import { TextRange, textSearch } from "./text-util.ts";
 
 export interface ListOptions {
   /**
@@ -8,21 +22,21 @@ export interface ListOptions {
    *
    * Default: The amount of items passed in.
    */
-  windowSize?: number
+  windowSize?: number;
   /**
    * The pattern to repeat for when there are more items either above or below
    * the current window.
    *
    * Default: `-`
    */
-  moreContentPattern?: string
+  moreContentPattern?: string;
   /**
    * The pattern to repeat for when there are no additional items either above
    * or below the current window.
    *
    * Default: `=`
    */
-  noMoreContentPattern?: string
+  noMoreContentPattern?: string;
   /**
    * Whether or not to offset the selected item while going through the item
    * list. If there are more items above or below (if enabled) it will select
@@ -31,7 +45,7 @@ export interface ListOptions {
    *
    * Default: `true`
    */
-  offsetWindowScroll?: boolean
+  offsetWindowScroll?: boolean;
   /**
    * Should the options be able to be filtered.
    *
@@ -43,7 +57,7 @@ export interface ListOptions {
    *
    * Default: `false`
    */
-  filtering?: Partial<TextFilteringOptions> | boolean
+  filtering?: Partial<TextFilteringOptions> | boolean;
   /**
    * Place all options on one line with a separator between.
    *
@@ -52,7 +66,7 @@ export interface ListOptions {
    *
    * Default: `false`
    */
-  inline?: Partial<InlineOptions> | boolean
+  inline?: Partial<InlineOptions> | boolean;
 }
 
 export interface InlineOptions {
@@ -61,7 +75,7 @@ export interface InlineOptions {
    *
    * Default: `/`
    */
-  separator: string
+  separator: string;
 }
 
 export interface TextFilteringOptions {
@@ -75,44 +89,44 @@ export interface TextFilteringOptions {
    *
    * Default: `rank`
    */
-  sorting: 'none' | 'rank'
+  sorting: "none" | "rank";
   /**
    * Should the matching parts of the labels be highlighted.
    *
    * Default: `false`
    */
-  highlight: boolean
+  highlight: boolean;
   /**
    * Should the options that does not match still be in the list.
    *
    * Default: `true`
    */
-  showOnlyMatching: boolean
+  showOnlyMatching: boolean;
   /**
    * When searching should the search string contents also match on letter casing.
    *
    * Default: `false`
    */
-  matchCase: boolean
+  matchCase: boolean;
 }
 
 const DEFAULT_TEXT_FILTERING: TextFilteringOptions = {
-  sorting: 'rank',
+  sorting: "rank",
   highlight: false,
   showOnlyMatching: true,
-  matchCase: false
-}
+  matchCase: false,
+};
 
 const DEFAULT_INLINE: InlineOptions = {
-  separator: '/'
-}
+  separator: "/",
+};
 
-const DEFAULT_NO_MORE_CONTENT_PATTERN = '='
-const DEFAULT_MORE_CONTENT_PATTERN = '-'
-const CURSOR_CHARACTER = '>'
-const NON_CURSOR_CHARACTER = ' '
-const LINE_COLOR_CURSOR = PRIMARY_COLOR
-const LINE_COLOR_UNSELECTED = '\x1b[90m'
+const DEFAULT_NO_MORE_CONTENT_PATTERN = "=";
+const DEFAULT_MORE_CONTENT_PATTERN = "-";
+const CURSOR_CHARACTER = ">";
+const NON_CURSOR_CHARACTER = " ";
+const LINE_COLOR_CURSOR = PRIMARY_COLOR;
+const LINE_COLOR_UNSELECTED = "\x1b[90m";
 
 /**
  * Creates a list of selectable items from which one item can be chosen. If no items are available
@@ -145,274 +159,407 @@ const LINE_COLOR_UNSELECTED = '\x1b[90m'
  * @param options The options the user has to choose from.
  * @returns The selected option or `undefined` if canceled or empty.
  */
-export default async function list<T = string>(label: string, options: string[] | Record<string, T>, listOptions?: ListOptions): Promise<T | undefined> {
-  const possibleOptions: { label: string, value: T, id: string, matchingTextRanges: TextRange[] }[] = []
-  if (Array.isArray(options)) options.forEach((value, index) => possibleOptions.push({
-    value: value as unknown as T,
-    label: value,
-    id: '' + index,
-    matchingTextRanges: []
-  }))
-  else Object.entries(options).forEach(([label, value], index) => possibleOptions.push({
-    value,
-    label,
-    id: '' + index,
-    matchingTextRanges: []
-  }))
+export default async function list<T = string>(
+  label: string,
+  options: string[] | Record<string, T>,
+  listOptions?: ListOptions,
+): Promise<T | undefined> {
+  const possibleOptions: {
+    label: string;
+    value: T;
+    id: string;
+    matchingTextRanges: TextRange[];
+  }[] = [];
+  if (Array.isArray(options)) {
+    options.forEach((value, index) =>
+      possibleOptions.push({
+        value: value as unknown as T,
+        label: value,
+        id: "" + index,
+        matchingTextRanges: [],
+      })
+    );
+  } else {Object.entries(options).forEach(([label, value], index) =>
+      possibleOptions.push({
+        value,
+        label,
+        id: "" + index,
+        matchingTextRanges: [],
+      })
+    );}
 
-  if (possibleOptions.length === 0) return undefined
-  let searchText = ''
-  let searchTextIndex = 0
-  let selectedIndex = 0
-  let indexOffset = 0
-  let printedLines = 1
-  let visibleOptions = possibleOptions
+  if (possibleOptions.length === 0) return undefined;
+  let searchText = "";
+  let searchTextIndex = 0;
+  let selectedIndex = 0;
+  let indexOffset = 0;
+  let printedLines = 1;
+  let visibleOptions = possibleOptions;
   const filteringOptions: TextFilteringOptions = Object.assign(
     {},
     DEFAULT_TEXT_FILTERING,
-    typeof listOptions?.filtering === 'object'
+    typeof listOptions?.filtering === "object"
       ? listOptions?.filtering ?? {}
-      : {}
-  )
+      : {},
+  );
   const inlineOptions: InlineOptions = Object.assign(
     {},
     DEFAULT_INLINE,
-    typeof listOptions?.inline === 'object'
-      ? listOptions?.inline ?? {}
-      : {}
-  )
-  const inlineEnabled = listOptions?.inline === true || typeof listOptions?.inline === 'object'
-  const filteringEnabled = listOptions?.filtering === true || typeof listOptions?.filtering === 'object'
-  const desiredWindowSize = Math.min(possibleOptions.length, Math.max(1, listOptions?.windowSize ?? possibleOptions.length))
-  const noMoreContentPattern = listOptions?.noMoreContentPattern ?? DEFAULT_NO_MORE_CONTENT_PATTERN
-  const moreContentPattern = listOptions?.moreContentPattern ?? DEFAULT_MORE_CONTENT_PATTERN
-  const longestItemLabelLength = Math.max(15, possibleOptions.map(it => it.label.length).sort((a, b) => b - a)[0] + 4)
-  if (!filteringEnabled) await print(HIDE_CURSOR)
+    typeof listOptions?.inline === "object" ? listOptions?.inline ?? {} : {},
+  );
+  const inlineEnabled = listOptions?.inline === true ||
+    typeof listOptions?.inline === "object";
+  const filteringEnabled = listOptions?.filtering === true ||
+    typeof listOptions?.filtering === "object";
+  const desiredWindowSize = Math.min(
+    possibleOptions.length,
+    Math.max(1, listOptions?.windowSize ?? possibleOptions.length),
+  );
+  const noMoreContentPattern = listOptions?.noMoreContentPattern ??
+    DEFAULT_NO_MORE_CONTENT_PATTERN;
+  const moreContentPattern = listOptions?.moreContentPattern ??
+    DEFAULT_MORE_CONTENT_PATTERN;
+  const longestItemLabelLength = Math.max(
+    15,
+    possibleOptions.map((it) => it.label.length).sort((a, b) => b - a)[0] + 4,
+  );
+  if (!filteringEnabled) await print(HIDE_CURSOR);
   return createRenderer({
     label,
     onExit: () => print(SHOW_CURSOR),
     clear: () => {
       if (filteringEnabled) {
-        return print(moveCursor(printedLines - 1, 'down') + (CLEAR_LINE + moveCursor(1, 'up')).repeat(printedLines - 1) + CLEAR_LINE)
+        return print(
+          moveCursor(printedLines - 1, "down") +
+            (CLEAR_LINE + moveCursor(1, "up")).repeat(printedLines - 1) +
+            CLEAR_LINE,
+        );
       } else {
-        return print((CLEAR_LINE + moveCursor(1, 'up')).repeat(printedLines - 1) + CLEAR_LINE)
+        return print(
+          (CLEAR_LINE + moveCursor(1, "up")).repeat(printedLines - 1) +
+            CLEAR_LINE,
+        );
       }
     },
     async prompt() {
-    if (inlineEnabled) {
-      let out = PREFIX + asPromptText(label)
-      for (let index = 0; index < possibleOptions.length; index++) {
-        const option = possibleOptions[index]
-        const lineColor = selectedIndex === indexOffset + index ? LINE_COLOR_CURSOR : LINE_COLOR_UNSELECTED
-        const label = option.label
-        out += `${lineColor}${label}${RESET_COLOR}${index + 1 === possibleOptions.length ? '' : inlineOptions.separator}`
-      }
-      await print(out)
-    } else {
-        const actualWindowSize = Math.min(desiredWindowSize, getConsoleSize().rows - 3)
-        const showNarrowWindow = actualWindowSize < visibleOptions.length
-        const len = Math.min(actualWindowSize, visibleOptions.length)
-
-        let out = PREFIX + asPromptText(label)
-        if (filteringEnabled) {
-          out += `[${(visibleOptions.length+'').padStart((''+possibleOptions.length).length)}/${possibleOptions.length}] Search: ${searchText}`
+      if (inlineEnabled) {
+        let out = PREFIX + asPromptText(label);
+        for (let index = 0; index < possibleOptions.length; index++) {
+          const option = possibleOptions[index];
+          const lineColor = selectedIndex === indexOffset + index
+            ? LINE_COLOR_CURSOR
+            : LINE_COLOR_UNSELECTED;
+          const label = option.label;
+          out += `${lineColor}${label}${RESET_COLOR}${
+            index + 1 === possibleOptions.length ? "" : inlineOptions.separator
+          }`;
         }
-        const promptLineLength = 3 + label.length + (!filteringEnabled ? 0 : 12 + (''+possibleOptions.length).length * 2)
-        out += '\n'
+        await print(out);
+      } else {
+        const actualWindowSize = Math.min(
+          desiredWindowSize,
+          getConsoleSize().rows - 3,
+        );
+        const showNarrowWindow = actualWindowSize < visibleOptions.length;
+        const len = Math.min(actualWindowSize, visibleOptions.length);
+
+        let out = PREFIX + asPromptText(label);
+        if (filteringEnabled) {
+          out += `[${
+            (visibleOptions.length + "").padStart(
+              ("" + possibleOptions.length).length,
+            )
+          }/${possibleOptions.length}] Search: ${searchText}`;
+        }
+        const promptLineLength = 3 + label.length +
+          (!filteringEnabled
+            ? 0
+            : 12 + ("" + possibleOptions.length).length * 2);
+        out += "\n";
         if (showNarrowWindow) {
-          if (indexOffset !== 0) out += moreContentPattern.repeat(Math.ceil(longestItemLabelLength / moreContentPattern.length)).slice(0, longestItemLabelLength) + '\n'
-          else out += noMoreContentPattern.repeat(Math.ceil(longestItemLabelLength / noMoreContentPattern.length)).slice(0, longestItemLabelLength) + '\n'
+          if (indexOffset !== 0) {
+            out += moreContentPattern.repeat(
+              Math.ceil(longestItemLabelLength / moreContentPattern.length),
+            ).slice(0, longestItemLabelLength) + "\n";
+          } else {out += noMoreContentPattern.repeat(
+              Math.ceil(longestItemLabelLength / noMoreContentPattern.length),
+            ).slice(0, longestItemLabelLength) + "\n";}
         }
 
         for (let index = 0; index < len; index++) {
-          const option = visibleOptions[indexOffset + index]
-          const lineColor = selectedIndex === indexOffset + index ? LINE_COLOR_CURSOR : LINE_COLOR_UNSELECTED
+          const option = visibleOptions[indexOffset + index];
+          const lineColor = selectedIndex === indexOffset + index
+            ? LINE_COLOR_CURSOR
+            : LINE_COLOR_UNSELECTED;
           const current = selectedIndex === indexOffset + index
             ? CURSOR_CHARACTER
-            : NON_CURSOR_CHARACTER
-          let label = option.label
-          if (filteringEnabled && filteringOptions.highlight)
-          for (const match of option.matchingTextRanges.reverse()) {
-            const before = label.slice(0, match.start)
-            const after = label.slice(match.end)
-            label = before + highlightText(label.slice(match.start, match.end), { underline: true, shouldHighlight: false }) + lineColor + after
+            : NON_CURSOR_CHARACTER;
+          let label = option.label;
+          if (filteringEnabled && filteringOptions.highlight) {
+            for (const match of option.matchingTextRanges.reverse()) {
+              const before = label.slice(0, match.start);
+              const after = label.slice(match.end);
+              label = before +
+                highlightText(label.slice(match.start, match.end), {
+                  underline: true,
+                  shouldHighlight: false,
+                }) + lineColor + after;
+            }
           }
-          out += `${lineColor}${current} ${label}${RESET_COLOR}${index + 1 === len ? '' : '\n'}`
+          out += `${lineColor}${current} ${label}${RESET_COLOR}${
+            index + 1 === len ? "" : "\n"
+          }`;
         }
 
         if (showNarrowWindow) {
-          if (indexOffset + actualWindowSize !== visibleOptions.length) out += '\n' + moreContentPattern.repeat(Math.ceil(longestItemLabelLength / moreContentPattern.length)).slice(0, longestItemLabelLength)
-          else out += '\n' + noMoreContentPattern.repeat(Math.ceil(longestItemLabelLength / noMoreContentPattern.length)).slice(0, longestItemLabelLength)
+          if (indexOffset + actualWindowSize !== visibleOptions.length) {
+            out += "\n" +
+              moreContentPattern.repeat(
+                Math.ceil(longestItemLabelLength / moreContentPattern.length),
+              ).slice(0, longestItemLabelLength);
+          } else {out += "\n" +
+              noMoreContentPattern.repeat(
+                Math.ceil(longestItemLabelLength / noMoreContentPattern.length),
+              ).slice(0, longestItemLabelLength);}
         }
-        printedLines = len + 1 + (showNarrowWindow ? 2 : 0)
+        printedLines = len + 1 + (showNarrowWindow ? 2 : 0);
         if (filteringEnabled) {
-          out += moveCursor(len > 0 ? printedLines - 1 : 1, 'up') + moveCursor(500, 'left') + moveCursor(promptLineLength + searchTextIndex, 'right')
+          out += moveCursor(len > 0 ? printedLines - 1 : 1, "up") +
+            moveCursor(500, "left") +
+            moveCursor(promptLineLength + searchTextIndex, "right");
         }
-        await print(out)
+        await print(out);
       }
     },
     actions: [
-      [KeyCombos.parse('up'), async ({clear,prompt}) => {
-        if (inlineEnabled) return
-        const newIndex = Math.min(Math.max(selectedIndex - 1, 0), visibleOptions.length - 1)
-        if (newIndex === selectedIndex) return
-        selectedIndex = newIndex
+      [KeyCombos.parse("up"), async ({ clear, prompt }) => {
+        if (inlineEnabled) return;
+        const newIndex = Math.min(
+          Math.max(selectedIndex - 1, 0),
+          visibleOptions.length - 1,
+        );
+        if (newIndex === selectedIndex) return;
+        selectedIndex = newIndex;
 
-        const actualWindowSize = Math.min(desiredWindowSize, getConsoleSize().rows - 3)
-        const offsetWindowScroll = actualWindowSize > 1 && (listOptions?.offsetWindowScroll ?? true)
+        const actualWindowSize = Math.min(
+          desiredWindowSize,
+          getConsoleSize().rows - 3,
+        );
+        const offsetWindowScroll = actualWindowSize > 1 &&
+          (listOptions?.offsetWindowScroll ?? true);
 
-        if (offsetWindowScroll && selectedIndex !== 0) indexOffset = selectedIndex - 1 < indexOffset ? selectedIndex - 1 : indexOffset
-        else indexOffset = selectedIndex < indexOffset ? selectedIndex : indexOffset
-        await clear()
-        await prompt()
+        if (offsetWindowScroll && selectedIndex !== 0) {
+          indexOffset = selectedIndex - 1 < indexOffset
+            ? selectedIndex - 1
+            : indexOffset;
+        } else {indexOffset = selectedIndex < indexOffset
+            ? selectedIndex
+            : indexOffset;}
+        await clear();
+        await prompt();
       }],
-      [KeyCombos.parse('down'), async ({clear,prompt}) => {
-        if (inlineEnabled) return
-        const newIndex = Math.min(Math.max(selectedIndex + 1, 0), visibleOptions.length - 1)
-        if (newIndex === selectedIndex) return
-        selectedIndex = newIndex
+      [KeyCombos.parse("down"), async ({ clear, prompt }) => {
+        if (inlineEnabled) return;
+        const newIndex = Math.min(
+          Math.max(selectedIndex + 1, 0),
+          visibleOptions.length - 1,
+        );
+        if (newIndex === selectedIndex) return;
+        selectedIndex = newIndex;
 
-        const actualWindowSize = Math.min(desiredWindowSize, getConsoleSize().rows - 3)
-        const offsetWindowScroll = actualWindowSize > 1 && (listOptions?.offsetWindowScroll ?? true)
+        const actualWindowSize = Math.min(
+          desiredWindowSize,
+          getConsoleSize().rows - 3,
+        );
+        const offsetWindowScroll = actualWindowSize > 1 &&
+          (listOptions?.offsetWindowScroll ?? true);
 
-        if (offsetWindowScroll && selectedIndex !== visibleOptions.length - 1) indexOffset = selectedIndex >= indexOffset + actualWindowSize - 2 ? selectedIndex - actualWindowSize + 2 : indexOffset
-        else indexOffset = selectedIndex >= indexOffset + actualWindowSize - 1 ? selectedIndex - actualWindowSize + 1 : indexOffset
-        await clear()
-        await prompt()
+        if (offsetWindowScroll && selectedIndex !== visibleOptions.length - 1) {
+          indexOffset = selectedIndex >= indexOffset + actualWindowSize - 2
+            ? selectedIndex - actualWindowSize + 2
+            : indexOffset;
+        } else {indexOffset =
+            selectedIndex >= indexOffset + actualWindowSize - 1
+              ? selectedIndex - actualWindowSize + 1
+              : indexOffset;}
+        await clear();
+        await prompt();
       }],
-      [KeyCombos.parse('home'), async ({clear,prompt}) => {
-        const newIndex = 0
-        if (newIndex === selectedIndex) return
-        selectedIndex = newIndex
-        indexOffset = 0
-        await clear()
-        await prompt()
+      [KeyCombos.parse("home"), async ({ clear, prompt }) => {
+        const newIndex = 0;
+        if (newIndex === selectedIndex) return;
+        selectedIndex = newIndex;
+        indexOffset = 0;
+        await clear();
+        await prompt();
       }],
-      [KeyCombos.parse('end'), async ({clear,prompt}) => {
-        const newIndex = visibleOptions.length - 1
-        if (newIndex === selectedIndex) return
-        selectedIndex = newIndex
-        const actualWindowSize = Math.min(desiredWindowSize, getConsoleSize().rows - 3)
-        indexOffset = Math.max(0, newIndex - actualWindowSize + 1)
-        await clear()
-        await prompt()
+      [KeyCombos.parse("end"), async ({ clear, prompt }) => {
+        const newIndex = visibleOptions.length - 1;
+        if (newIndex === selectedIndex) return;
+        selectedIndex = newIndex;
+        const actualWindowSize = Math.min(
+          desiredWindowSize,
+          getConsoleSize().rows - 3,
+        );
+        indexOffset = Math.max(0, newIndex - actualWindowSize + 1);
+        await clear();
+        await prompt();
       }],
-      [KeyCombos.parse('pageup'), async ({clear,prompt}) => {
-        const actualWindowSize = Math.min(desiredWindowSize, getConsoleSize().rows - 3)
-        const newIndex = Math.max(0, selectedIndex - actualWindowSize)
+      [KeyCombos.parse("pageup"), async ({ clear, prompt }) => {
+        const actualWindowSize = Math.min(
+          desiredWindowSize,
+          getConsoleSize().rows - 3,
+        );
+        const newIndex = Math.max(0, selectedIndex - actualWindowSize);
 
-        if (newIndex === selectedIndex) return
-        selectedIndex = newIndex
-        indexOffset = newIndex
-        await clear()
-        await prompt()
+        if (newIndex === selectedIndex) return;
+        selectedIndex = newIndex;
+        indexOffset = newIndex;
+        await clear();
+        await prompt();
       }],
-      [KeyCombos.parse('pagedown'), async ({clear,prompt}) => {
-        const actualWindowSize = Math.min(desiredWindowSize, getConsoleSize().rows - 3)
-        const offsetWindowScroll = actualWindowSize > 1 && (listOptions?.offsetWindowScroll ?? true)
+      [KeyCombos.parse("pagedown"), async ({ clear, prompt }) => {
+        const actualWindowSize = Math.min(
+          desiredWindowSize,
+          getConsoleSize().rows - 3,
+        );
+        const offsetWindowScroll = actualWindowSize > 1 &&
+          (listOptions?.offsetWindowScroll ?? true);
 
-        const newIndex = Math.min(visibleOptions.length - 1, selectedIndex + actualWindowSize)
-        if (newIndex === selectedIndex) return
+        const newIndex = Math.min(
+          visibleOptions.length - 1,
+          selectedIndex + actualWindowSize,
+        );
+        if (newIndex === selectedIndex) return;
 
-        selectedIndex = newIndex
-        indexOffset = Math.min(visibleOptions.length - actualWindowSize - 1, newIndex)
-        if (indexOffset === visibleOptions.length - actualWindowSize - 1 && offsetWindowScroll) {
-          indexOffset += 1
+        selectedIndex = newIndex;
+        indexOffset = Math.min(
+          visibleOptions.length - actualWindowSize - 1,
+          newIndex,
+        );
+        if (
+          indexOffset === visibleOptions.length - actualWindowSize - 1 &&
+          offsetWindowScroll
+        ) {
+          indexOffset += 1;
         }
-        await clear()
-        await prompt()
+        await clear();
+        await prompt();
       }],
-      [KeyCombos.parse('enter'), async ({clear}) => {
-        await clear()
-        await println(PREFIX + asPromptText(label) + highlightText(visibleOptions[selectedIndex].label))
-        return { result: visibleOptions[selectedIndex].value }
+      [KeyCombos.parse("enter"), async ({ clear }) => {
+        await clear();
+        await println(
+          PREFIX + asPromptText(label) +
+            highlightText(visibleOptions[selectedIndex].label),
+        );
+        return { result: visibleOptions[selectedIndex].value };
       }],
       // Search Input
-      [KeyCombos.parse('left'), async ({clear,prompt}) => {
+      [KeyCombos.parse("left"), async ({ clear, prompt }) => {
         if (inlineEnabled) {
-          const newIndex = Math.min(Math.max(selectedIndex - 1, 0), visibleOptions.length - 1)
-          if (newIndex === selectedIndex) return
-          selectedIndex = newIndex
+          const newIndex = Math.min(
+            Math.max(selectedIndex - 1, 0),
+            visibleOptions.length - 1,
+          );
+          if (newIndex === selectedIndex) return;
+          selectedIndex = newIndex;
 
-          await clear()
-          await prompt()
+          await clear();
+          await prompt();
         } else {
-          if (!filteringEnabled) return
-          if (searchText.length === 0) return
-          const newIndex = Math.min(Math.max(searchTextIndex - 1, 0), searchText.length)
-          if (newIndex === searchTextIndex) return
-          searchTextIndex = newIndex
-          await clear()
-          updateOptions()
-          await prompt()
+          if (!filteringEnabled) return;
+          if (searchText.length === 0) return;
+          const newIndex = Math.min(
+            Math.max(searchTextIndex - 1, 0),
+            searchText.length,
+          );
+          if (newIndex === searchTextIndex) return;
+          searchTextIndex = newIndex;
+          await clear();
+          updateOptions();
+          await prompt();
         }
       }],
-      [KeyCombos.parse('right'), async ({clear,prompt}) => {
+      [KeyCombos.parse("right"), async ({ clear, prompt }) => {
         if (inlineEnabled) {
-          const newIndex = Math.min(Math.max(selectedIndex + 1, 0), visibleOptions.length - 1)
-          if (newIndex === selectedIndex) return
-          selectedIndex = newIndex
+          const newIndex = Math.min(
+            Math.max(selectedIndex + 1, 0),
+            visibleOptions.length - 1,
+          );
+          if (newIndex === selectedIndex) return;
+          selectedIndex = newIndex;
 
-          await clear()
-          await prompt()
+          await clear();
+          await prompt();
         } else {
-          if (!filteringEnabled) return
-          if (searchText.length === 0) return
-          const newIndex = Math.min(Math.max(searchTextIndex + 1, 0), searchText.length)
-          if (newIndex === searchTextIndex) return
-          searchTextIndex = newIndex
-          await clear()
-          updateOptions()
-          await prompt()
+          if (!filteringEnabled) return;
+          if (searchText.length === 0) return;
+          const newIndex = Math.min(
+            Math.max(searchTextIndex + 1, 0),
+            searchText.length,
+          );
+          if (newIndex === searchTextIndex) return;
+          searchTextIndex = newIndex;
+          await clear();
+          updateOptions();
+          await prompt();
         }
       }],
-      [KeyCombos.parse('backspace'), async ({clear,prompt}) => {
-        if (!filteringEnabled) return
-        if (searchText.length === 0) return
-        if (searchTextIndex === 0) return
-        searchText = searchText.slice(0, searchTextIndex - 1) + searchText.slice(searchTextIndex)
-        searchTextIndex--
-        await clear()
-        updateOptions()
-        await prompt()
+      [KeyCombos.parse("backspace"), async ({ clear, prompt }) => {
+        if (!filteringEnabled) return;
+        if (searchText.length === 0) return;
+        if (searchTextIndex === 0) return;
+        searchText = searchText.slice(0, searchTextIndex - 1) +
+          searchText.slice(searchTextIndex);
+        searchTextIndex--;
+        await clear();
+        updateOptions();
+        await prompt();
       }],
-      [KeyCombos.parse('delete'), async ({clear,prompt}) => {
-        if (!filteringEnabled) return
-        if (searchText.length === 0) return
-        if (searchTextIndex === searchText.length) return
-        searchText = searchText.slice(0, searchTextIndex) + searchText.slice(searchTextIndex + 1)
-        await clear()
-        updateOptions()
-        await prompt()
+      [KeyCombos.parse("delete"), async ({ clear, prompt }) => {
+        if (!filteringEnabled) return;
+        if (searchText.length === 0) return;
+        if (searchTextIndex === searchText.length) return;
+        searchText = searchText.slice(0, searchTextIndex) +
+          searchText.slice(searchTextIndex + 1);
+        await clear();
+        updateOptions();
+        await prompt();
       }],
     ],
     async defaultAction(keypress, options) {
-      if (filteringEnabled && !keypress.ctrlKey && !keypress.metaKey && keypress.keyCode !== undefined) {
-        searchText = searchText.slice(0, searchTextIndex) + keypress.sequence + searchText.slice(searchTextIndex)
-        searchTextIndex++
-        await options.clear()
-        updateOptions()
-        await options.prompt()
+      if (
+        filteringEnabled && !keypress.ctrlKey && !keypress.metaKey &&
+        keypress.keyCode !== undefined
+      ) {
+        searchText = searchText.slice(0, searchTextIndex) + keypress.sequence +
+          searchText.slice(searchTextIndex);
+        searchTextIndex++;
+        await options.clear();
+        updateOptions();
+        await options.prompt();
       }
-    }
-  })
+    },
+  });
 
   function updateOptions() {
-    selectedIndex = 0
-    indexOffset = 0
-    if (searchText.trim() === '') return visibleOptions = possibleOptions
+    selectedIndex = 0;
+    indexOffset = 0;
+    if (searchText.trim() === "") return visibleOptions = possibleOptions;
     const results = textSearch(searchText, possibleOptions, {
-      transformer: item => item.label,
-      matchCase: filteringOptions.matchCase
-    })
-    const intermediate = filteringOptions.sorting === 'rank'
+      transformer: (item) => item.label,
+      matchCase: filteringOptions.matchCase,
+    });
+    const intermediate = filteringOptions.sorting === "rank"
       ? results.slice().sort((a, b) => b.specificityScore - a.specificityScore)
-      : results
+      : results;
 
     const finalList = filteringOptions.showOnlyMatching
-      ? intermediate.filter(result => result.specificityScore > 0)
-      : intermediate
+      ? intermediate.filter((result) => result.specificityScore > 0)
+      : intermediate;
 
-    visibleOptions = finalList.map(result => Object.assign({}, result.item, { matchingTextRanges: result.matches }))
+    visibleOptions = finalList.map((result) =>
+      Object.assign({}, result.item, { matchingTextRanges: result.matches })
+    );
   }
 }

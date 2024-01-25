@@ -1,21 +1,21 @@
 // NOTE: vendors question module since it hasn't received updates since 0.0.2
-// and Deno >= 1.4 has deprecated several API methods (e.g. Deno.{stdin/stdout}) which
+// and Deno>=1.4 has deprecated several API methods (e.g. Deno.{stdin/stdout}) which
 // is causing the question module to throw many warnings, so we vendor what's needed
 // export { default as question } from "https://deno.land/x/question@0.0.2/mod.ts";
 
-import confirm, { ConfirmOptions } from './confirm.ts'
-import checkbox, { CheckboxOptions, ObjectOption } from './checkbox.ts'
-import list, { ListOptions } from './list.ts'
-import input from './input.ts'
-import password from './password.ts'
-import questionConfig, { setQuestionConfig } from './config.ts';
+import confirm, { ConfirmOptions } from "./confirm.ts";
+import checkbox, { CheckboxOptions, ObjectOption } from "./checkbox.ts";
+import list, { ListOptions } from "./list.ts";
+import input from "./input.ts";
+import password from "./password.ts";
+import questionConfig, { setQuestionConfig } from "./config.ts";
 import { UnsupportedDenoVersionError } from "./util.ts";
 
-export { setQuestionConfig } from './config.ts';
-export type { Config } from './config.ts';
-export type { ConfirmOptions } from './confirm.ts'
-export type { CheckboxOptions, ObjectOption } from './checkbox.ts'
-export type { ListOptions } from './list.ts'
+export { setQuestionConfig } from "./config.ts";
+export type { Config } from "./config.ts";
+export type { ConfirmOptions } from "./confirm.ts";
+export type { CheckboxOptions, ObjectOption } from "./checkbox.ts";
+export type { ListOptions } from "./list.ts";
 
 /**
  * Creates a list of selectable items from which one item can be chosen. If no items are available
@@ -46,7 +46,12 @@ export type { ListOptions } from './list.ts'
  * @param options The options the user has to choose from.
  * @returns The selected option or `undefined` if canceled or empty.
  */
-export function question(type: 'list', label: string, options: string[], listOptions?: ListOptions): Promise<string | undefined>;
+export function question(
+  type: "list",
+  label: string,
+  options: string[],
+  listOptions?: ListOptions,
+): Promise<string | undefined>;
 /**
  * Creates a list of selectable items from which one item can be chosen. If no items are available
  * to be selected this will return `undefined` without a question prompt.
@@ -79,7 +84,12 @@ export function question(type: 'list', label: string, options: string[], listOpt
  * @param options The options the user has to choose from.
  * @returns The selected option or `undefined` if canceled or empty.
  */
-export function question<T>(type: 'list', label: string, options: Record<string, T>, listOptions?: ListOptions): Promise<T | undefined>;
+export function question<T>(
+  type: "list",
+  label: string,
+  options: Record<string, T>,
+  listOptions?: ListOptions,
+): Promise<T | undefined>;
 /**
  * Creates a list of selectable items from which one item will be chosen. If no items are available
  * to be selected this will return `undefined` without a question prompt.
@@ -111,7 +121,12 @@ export function question<T>(type: 'list', label: string, options: Record<string,
  * @param options The options the user has to choose from.
  * @returns The marked options or `undefined` if canceled or empty.
  */
-export function question(type: 'checkbox', label: string, options: string[], checkboxOptions?: CheckboxOptions): Promise<string[] | undefined>;
+export function question(
+  type: "checkbox",
+  label: string,
+  options: string[],
+  checkboxOptions?: CheckboxOptions,
+): Promise<string[] | undefined>;
 /**
  * Creates a list of selectable items from which one item will be chosen. If no items are available
  * to be selected this will return `undefined` without a question prompt.
@@ -168,7 +183,12 @@ export function question(type: 'checkbox', label: string, options: string[], che
  * @param options The options the user has to choose from.
  * @returns The marked options or `undefined` if canceled or empty.
  */
-export function question<T>(type: 'checkbox', label: string, options: Record<string, ObjectOption<T>>, checkboxOptions?: CheckboxOptions): Promise<T[] | undefined>;
+export function question<T>(
+  type: "checkbox",
+  label: string,
+  options: Record<string, ObjectOption<T>>,
+  checkboxOptions?: CheckboxOptions,
+): Promise<T[] | undefined>;
 /**
  * Create a confirmation question that resolves to a true or false based on user input. It
  * takes an `undefined`, `true`, or `false` value as the default value. Each of the default
@@ -197,7 +217,11 @@ export function question<T>(type: 'checkbox', label: string, options: Record<str
  * @param defaultValue The value that will determine the resulting value if none was provided.
  * @returns The boolean value from the answer or `undefined` if canceled.
  */
-export function question(type: 'confirm', label: string, defaultValue?: boolean | ConfirmOptions | undefined): Promise<boolean | undefined>;
+export function question(
+  type: "confirm",
+  label: string,
+  defaultValue?: boolean | ConfirmOptions | undefined,
+): Promise<boolean | undefined>;
 /**
  * Create a generic text input question requesting the user to input text in a free form format.
  * A default value can be provided and if the free form text input is blank that value will be
@@ -218,7 +242,11 @@ export function question(type: 'confirm', label: string, defaultValue?: boolean 
  * @param defaultValue The value that will determine the resulting value if none was provided.
  * @returns The answer text, default value text, or `undefined` if canceled.
  */
-export function question(type: 'input', label: string, defaultValue?: string | undefined): Promise<string | undefined>;
+export function question(
+  type: "input",
+  label: string,
+  defaultValue?: string | undefined,
+): Promise<string | undefined>;
 /**
  * Creates a free form text input that does not print the characters normally printed by the `input`
  * prompt. The characters are substituted for a substitute string you can provide. If the substitute
@@ -243,31 +271,46 @@ export function question(type: 'input', label: string, defaultValue?: string | u
  * @param substitute The substitution string or boolean indicating if you want a substitution string.
  * @returns The answer text or `undefined` if canceled.
  */
-export function question(type: 'password', label: string, substitute?: boolean | string | undefined): Promise<string | undefined>;
-export function question(type: string, ...opts: any[]): Promise<any | undefined> {
+export function question(
+  type: "password",
+  label: string,
+  substitute?: boolean | string | undefined,
+): Promise<string | undefined>;
+export function question(
+  type: string,
+  ...opts: any[]
+): Promise<any | undefined> {
   switch (type) {
-    case 'list': return list(...(opts as Parameters<typeof list>))
-    case 'confirm': return confirm(...(opts as Parameters<typeof confirm>))
-    case 'checkbox': return checkbox(...(opts as Parameters<typeof checkbox>))
-    case 'input': return input(...(opts as Parameters<typeof input>))
-    case 'password': return password(...(opts as Parameters<typeof password>))
-    default: throw new Error(`Unsupported type: ${type}`)
+    case "list":
+      return list(...(opts as Parameters<typeof list>));
+    case "confirm":
+      return confirm(...(opts as Parameters<typeof confirm>));
+    case "checkbox":
+      return checkbox(...(opts as Parameters<typeof checkbox>));
+    case "input":
+      return input(...(opts as Parameters<typeof input>));
+    case "password":
+      return password(...(opts as Parameters<typeof password>));
+    default:
+      throw new Error(`Unsupported type: ${type}`);
   }
 }
 
 export { questionConfig };
 
-const [major, minor, _patch] = Deno.version.deno.split('.').map(it => parseInt(it))
+const [major, minor, _patch] = Deno.version.deno.split(".").map((it) =>
+  parseInt(it)
+);
 
 export interface ConfigureForUnixPipesOptions {
   /** From where the input will be received. */
-  input: string
+  input: string;
   /** From where the prompts will output. */
-  output: string
+  output: string;
   /** How to handle the lack of permission to use any of the resources specified by `input` or `output`. Default panic. */
-  mode: 'fallback' | 'panic'
+  mode: "fallback" | "panic";
   /** If the program lacks permission for a resource should we prompt for the use of that resource. Default true */
-  promptPermissionRequest: boolean
+  promptPermissionRequest: boolean;
 }
 
 /**
@@ -282,64 +325,99 @@ export interface ConfigureForUnixPipesOptions {
  *
  * @param param0 The options to use when executing.
  */
-export async function configureForUnixPipes({ input, output, mode, promptPermissionRequest }: Partial<ConfigureForUnixPipesOptions> = {}) {
+export async function configureForUnixPipes(
+  { input, output, mode, promptPermissionRequest }: Partial<
+    ConfigureForUnixPipesOptions
+  > = {},
+) {
   if (major >= 1 && minor >= 27) {
     //@ts-ignore Unsupported API
-    if (typeof Deno.setRaw !== 'function' || Deno.setRaw.length < 2) {
-      throw new UnsupportedDenoVersionError("This version does not have a general setRaw for any resource id. Do only use stdin. https://github.com/denoland/deno/issues/15796")
+    if (typeof Deno.setRaw !== "function" || Deno.setRaw.length < 2) {
+      throw new UnsupportedDenoVersionError(
+        "This version does not have a general setRaw for any resource id. Do only use stdin. https://github.com/denoland/deno/issues/15796",
+      );
     }
     //@ts-ignore Unsupported API
-    if (typeof Deno.consoleSize !== 'function' || Deno.consoleSize.length < 1) {
-      throw new UnsupportedDenoVersionError("This version does not have a general setRaw for any resource id. Do only use stdin. https://github.com/denoland/deno/issues/15796")
+    if (typeof Deno.consoleSize !== "function" || Deno.consoleSize.length < 1) {
+      throw new UnsupportedDenoVersionError(
+        "This version does not have a general setRaw for any resource id. Do only use stdin. https://github.com/denoland/deno/issues/15796",
+      );
     }
   }
-  const permissionMode = mode ?? 'panic'
+  const permissionMode = mode ?? "panic";
   if (input === undefined) {
-    input = output ?? '/dev/tty'
+    input = output ?? "/dev/tty";
   }
   if (output === undefined || input === output) {
-    if (await hasResourcePermission(input, { read: true, write: true, prompt: promptPermissionRequest ?? true })) {
-      const r = await Deno.open(input, { read: true, write: true })
+    if (
+      await hasResourcePermission(input, {
+        read: true,
+        write: true,
+        prompt: promptPermissionRequest ?? true,
+      })
+    ) {
+      const r = await Deno.open(input, { read: true, write: true });
       setQuestionConfig({
         keypressReader: r,
-        writer: r
-      })
-      globalThis.addEventListener('unload', () => r.close())
-    } else if (permissionMode === 'panic') {
-      throw new Error(`Did not get permission to read and write from ` + input)
+        writer: r,
+      });
+      globalThis.addEventListener("unload", () => r.close());
+    } else if (permissionMode === "panic") {
+      throw new Error(`Did not get permission to read and write from ` + input);
     }
   } else {
-    if (await hasResourcePermission(input, { read: true, write: false, prompt: promptPermissionRequest ?? true })) {
-      const r = await Deno.open(input, { read: true })
-      setQuestionConfig({ keypressReader: r })
-      globalThis.addEventListener('unload', () => r.close())
+    if (
+      await hasResourcePermission(input, {
+        read: true,
+        write: false,
+        prompt: promptPermissionRequest ?? true,
+      })
+    ) {
+      const r = await Deno.open(input, { read: true });
+      setQuestionConfig({ keypressReader: r });
+      globalThis.addEventListener("unload", () => r.close());
     } else {
-      throw new Error(`Did not get permission to read from ` + input)
+      throw new Error(`Did not get permission to read from ` + input);
     }
-    if (await hasResourcePermission(output, { read: false, write: true, prompt: promptPermissionRequest ?? true })) {
-      const r = await Deno.open(output, { write: true })
-      setQuestionConfig({ keypressReader: r })
-      globalThis.addEventListener('unload', () => r.close())
-    } else if (permissionMode === 'panic') {
-      throw new Error(`Did not get permission to write from ` + output)
+    if (
+      await hasResourcePermission(output, {
+        read: false,
+        write: true,
+        prompt: promptPermissionRequest ?? true,
+      })
+    ) {
+      const r = await Deno.open(output, { write: true });
+      setQuestionConfig({ keypressReader: r });
+      globalThis.addEventListener("unload", () => r.close());
+    } else if (permissionMode === "panic") {
+      throw new Error(`Did not get permission to write from ` + output);
     }
   }
 }
 
-async function hasResourcePermission(file: string, { read, write, prompt }: { read: boolean, write: boolean, prompt: boolean }) {
+async function hasResourcePermission(
+  file: string,
+  { read, write, prompt }: { read: boolean; write: boolean; prompt: boolean },
+) {
   if (read) {
-    const status = await Deno.permissions.query({ name: 'read', path: file })
-    if (status.state === 'prompt' && prompt) {
-      const newStatus = await Deno.permissions.request({ name: 'read', path: file })
-      if (newStatus.state !== 'granted') return false
-    } else if (status.state !== 'granted') return false
+    const status = await Deno.permissions.query({ name: "read", path: file });
+    if (status.state === "prompt" && prompt) {
+      const newStatus = await Deno.permissions.request({
+        name: "read",
+        path: file,
+      });
+      if (newStatus.state !== "granted") return false;
+    } else if (status.state !== "granted") return false;
   }
   if (write) {
-    const status = await Deno.permissions.query({ name: 'write', path: file })
-    if (status.state === 'prompt' && prompt) {
-      const newStatus = await Deno.permissions.request({ name: 'write', path: file })
-      if (newStatus.state !== 'granted') return false
-    } else if (status.state !== 'granted') return false
+    const status = await Deno.permissions.query({ name: "write", path: file });
+    if (status.state === "prompt" && prompt) {
+      const newStatus = await Deno.permissions.request({
+        name: "write",
+        path: file,
+      });
+      if (newStatus.state !== "granted") return false;
+    } else if (status.state !== "granted") return false;
   }
-  return true
+  return true;
 }

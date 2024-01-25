@@ -47,12 +47,13 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     error("Too many positional arguments given.");
   }
 
+  const TEMPLATES = await getTemplateNames();
+
   let [template, ..._argsRest] = rawArgs._ as string[];
-  template ||= await question(
-    "list",
-    "Select a template:",
-    await getTemplateNames()
-  ) as string; // vendored x/question@0.0.2 to silence deprecated API warnings (Deno >= 1.4)
+  if (!TEMPLATES.includes(template)) {
+    // vendored x/question@0.0.2 to silence deprecated API warnings (Deno>=1.4)
+    template = (await question("list", "Select a template:", TEMPLATES))!;
+  }
   // exit directly in case prompt is cancelled/escaped
   if (!template) Deno.exit(1);
 
@@ -68,6 +69,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
       "--allow-run",
       "--allow-sys",
       "--no-check",
+      "--quiet", // silence deprecated API warnings thrown by x/question@0.0.2 (Deno>=1.4)
       `npm:giget@1.1.2`,
       `gh:netzo/netzo/templates/${template}`,
       args.dir,
