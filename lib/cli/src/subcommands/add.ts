@@ -64,12 +64,10 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
 
   if (args.dir === null) args.dir = resource;
 
-  const addScript = import.meta.resolve(
-    `../generators/mod.ts`,
-  ).replace("file://", "");
+  const addScript = import.meta.resolve(`../generators/mod.ts`);
   const generatorFile = import.meta.resolve(
     `../generators/${resource}/templates/${resource}.tpl.ts`,
-  ).replace("file://", "");
+  );
 
   const process = new Deno.Command(Deno.execPath(), {
     args: [
@@ -94,9 +92,10 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     ],
   }).spawn();
   await process.status;
+
   return Deno.exit(0);
 
-  // NOTE: cannot programatically call cli() Deno requires "--quiet" flag
+  // NOTE: cannot programatically call add() since Deno requires "certain flags
   // and calling add() programatically is also throwing the following:
   // Error: "Top-level await promise never resolved at await addSubcommand(args);"
   // proxyConsole(`Use of deprecated`)

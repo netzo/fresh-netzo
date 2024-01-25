@@ -14,6 +14,8 @@ export const add = async (cmd: string[]) => {
     `./${resource}/mod.ts`,
   ).replace("file://", "");
 
+  console.debug({ moduleName });
+
   if (!moduleName.startsWith('http') && !existsSync(moduleName)) {
     throw new Error(`The generator file ${moduleName} does not exists`);
   }
@@ -21,6 +23,8 @@ export const add = async (cmd: string[]) => {
   const module = await import(moduleName);
   const generate = module.default?.generate || module.generate;
   const generatorContext = getContext({ argv }, {});
+
+  console.debug({ module, generate, generatorContext });
 
   if (typeof generate !== "function") {
     throw new Error("The generator file must export a generate function");

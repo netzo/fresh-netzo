@@ -62,6 +62,7 @@ export const generate = (ctx: ComponentGeneratorContext) =>
     .then((ctx) => {
       const { filepath } = ctx;
       const name = filepath.split("/").pop() || "";
+      console.debug({ ctx });
       return {
         ...ctx,
         pascalName: pascalCase(name),
