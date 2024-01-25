@@ -31,7 +31,7 @@ export const cli = async (cmd: string[]) => {
     `./${resource}/mod.ts`,
   ).replace("file://", "");
 
-  if (!existsSync(moduleName)) {
+  if (!moduleName.startsWith('http') && !existsSync(moduleName)) {
     throw new Error(`The generator file ${moduleName} does not exists`);
   }
 
