@@ -92,7 +92,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
   await process.status;
   return Deno.exit(0);
 
-  // NOTE: cannot programatically call cli() Deno requires --quiet flag
+  // NOTE: cannot programatically call cli() Deno requires "--quiet" flag
   // and calling add() programatically is also throwing the following:
   // Error: "Top-level await promise never resolved at await addSubcommand(args);"
   // proxyConsole(`Use of deprecated`)
