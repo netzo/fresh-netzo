@@ -8,7 +8,7 @@ import { VERSION } from "../version.ts";
 const BASE_ACTIONS = ["help", "--help", "-h", "-V"];
 
 export const cli = async (cmd: string[]) => {
-  const [generatorFile, resource, ...argv] = cmd;
+  const [generatorFile, resource, name, ...argv] = cmd;
   const program = new Command();
 
   program.name("pinion").description("The Pinion CLI");

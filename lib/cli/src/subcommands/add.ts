@@ -16,7 +16,7 @@ To add a new resource in the current working directory:
   netzo add --dir=.
 
 USAGE:
-    netzo add [OPTIONS] [<resource>]
+    netzo add [OPTIONS] [<resource>] [<name>]
 
 OPTIONS:
     -h, --help      Prints help information
@@ -25,6 +25,7 @@ OPTIONS:
 
 ARGS:
     <resource>      The type of resource to add (omit to list options)
+    <name>          The name of the resource to add (omit to list options)
 `;
 
 export type Args = {
@@ -45,16 +46,17 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     console.log(help);
     Deno.exit(0);
   }
-  if (rawArgs._.length > 1) {
+  if (rawArgs._.length > 2) {
     console.error(help);
     error("Too many positional arguments given.");
   }
-  let [resource, ...argsRest] = rawArgs._;
+
+  let [resource, name] = rawArgs._ as string[];
   resource ||= await question(
     "list",
     "Select a resource:",
     ["component", "island", "middleware", "route"],
-  );
+  ) as string; // vendored x/question@0.0.2 to silence deprecated API warnings (Deno >= 1.4)
   // exit directly in case prompt is cancelled/escaped
   if (!resource) Deno.exit(1);
 
@@ -77,11 +79,10 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
       "--allow-run",
       "--allow-sys",
       "--no-check",
-      "--quiet", // NOTE: silence deprecated API warnings (thrown by x/question@0.0.2 on Deno >= 1.4)
       cli,
       generatorFile,
       resource,
-      ...argsRest,
+      name,
     ],
   }).spawn();
   await process.status;
