@@ -2,11 +2,13 @@
 import { Netzo } from "netzo/core/mod.ts";
 
 export const netzo = await Netzo({
-  auth: Deno.env.get("DENO_REGION") ? {
-    providers: {
-      netzo: {}
-    },
-  } : undefined,
+  auth: Deno.env.get("DENO_REGION")
+    ? {
+      providers: {
+        netzo: {},
+      },
+    }
+    : undefined,
   ui: {
     head: {
       title: "CRM Template | Netzo",

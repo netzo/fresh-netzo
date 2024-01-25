@@ -34,7 +34,7 @@ export const generate = (ctx: IslandGeneratorContext) =>
         {
           type: "input",
           name: "name",
-          message: 'What is the filepath (without extension) of the island?',
+          message: "What is the filepath (without extension) of the island?",
           when: !name,
         },
         {

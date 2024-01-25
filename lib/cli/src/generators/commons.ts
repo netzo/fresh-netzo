@@ -9,7 +9,10 @@ import {
   renderTemplate,
 } from "../../../deps/@featherscloud/pinion.ts";
 import { ts } from "../../../deps/typescript.ts";
-import { prettier, Options as PrettierOptions } from "../../../deps/prettier.ts";
+import {
+  Options as PrettierOptions,
+  prettier,
+} from "../../../deps/prettier.ts";
 import { existsSync } from "../../../deps/std/fs/exists.ts";
 import { DenoJson } from "./types.ts";
 
@@ -68,8 +71,8 @@ export const initializeBaseContext = () => <C extends NetzoContext>(ctx: C) => {
     .then((ctx) => ({
       ...ctx,
       netzo: ctx.denoJson?.netzo,
-      src: ctx.denoJson?.src || '.',
-      test: ctx.denoJson?.test || 'test',
+      src: ctx.denoJson?.src || ".",
+      test: ctx.denoJson?.test || "test",
       language: ctx.language || ctx.denoJson?.netzo?.language || "ts",
     }));
 };
@@ -157,25 +160,25 @@ export const prettify = <C extends PinionContext & { language: "js" | "ts" }>(
   target: Callable<string, C>,
   options: PrettierOptions = PRETTIERRC,
 ) =>
-  async (ctx: C) => {
-    const fileName = await getFileName(target, ctx);
-    const config = (await prettier.resolveConfig(ctx.cwd)) || options;
-    const content = await Deno.readTextFile(fileName);
+async (ctx: C) => {
+  const fileName = await getFileName(target, ctx);
+  const config = (await prettier.resolveConfig(ctx.cwd)) || options;
+  const content = await Deno.readTextFile(fileName);
 
-    try {
-      await Deno.writeTextFile(
-        fileName,
-        await prettier.format(content, {
-          parser: ctx.language === "ts" ? "typescript" : "babel",
-          ...config,
-        }),
-      );
-    } catch (error) {
-      throw new Error(`Error prettifying ${fileName}: ${error.message}`);
-    }
+  try {
+    await Deno.writeTextFile(
+      fileName,
+      await prettier.format(content, {
+        parser: ctx.language === "ts" ? "typescript" : "babel",
+        ...config,
+      }),
+    );
+  } catch (error) {
+    throw new Error(`Error prettifying ${fileName}: ${error.message}`);
+  }
 
-    return ctx;
-  };
+  return ctx;
+};
 
 /**
  * Render a source file template for the language set in the context.
@@ -190,16 +193,16 @@ export const renderSource =
     target: Callable<string, C>,
     options?: { force: boolean },
   ) =>
-    async (ctx: C) => {
-      const { language } = ctx;
-      const fileName = await getFileName(target, ctx);
-      const content = language === "js"
-        ? getJavaScript(await getCallable<string, C>(template, ctx))
-        : template;
-      const renderer = renderTemplate(content, fileName, options);
+  async (ctx: C) => {
+    const { language } = ctx;
+    const fileName = await getFileName(target, ctx);
+    const content = language === "js"
+      ? getJavaScript(await getCallable<string, C>(template, ctx))
+      : template;
+    const renderer = renderTemplate(content, fileName, options);
 
-      return renderer(ctx).then(prettify(target));
-    };
+    return renderer(ctx).then(prettify(target));
+  };
 
 /**
  * Inject a source template as the language set in the context.
@@ -217,16 +220,16 @@ export const injectSource =
     target: Callable<string, C>,
     transpile = true,
   ) =>
-    async (ctx: C) => {
-      const { language } = ctx;
-      const source = language === "js" && transpile
-        ? getJavaScript(await getCallable<string, C>(template, ctx))
-        : template;
-      const fileName = await getFileName(target, ctx);
-      const injector = inject(source, location, fileName);
+  async (ctx: C) => {
+    const { language } = ctx;
+    const source = language === "js" && transpile
+      ? getJavaScript(await getCallable<string, C>(template, ctx))
+      : template;
+    const fileName = await getFileName(target, ctx);
+    const injector = inject(source, location, fileName);
 
-      return injector(ctx).then(prettify(target));
-    };
+    return injector(ctx).then(prettify(target));
+  };
 
 /**
  * Synchronously checks if a file exits

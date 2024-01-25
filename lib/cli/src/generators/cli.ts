@@ -38,7 +38,7 @@ export const cli = async (cmd: string[]) => {
   console.log({
     FILENAME: import.meta.filename,
     DIRNAME: import.meta.dirname,
-  })
+  });
 
   if (!existsSync(moduleName)) {
     throw new Error(`The generator file ${moduleName} does not exists`);

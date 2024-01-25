@@ -23,7 +23,15 @@ export interface RouteGeneratorContext extends NetzoContext {
   pascalName: string;
   kebabName: string;
   kind: "ui" | "api" | "layout" | "error";
-  type: "ui:sync" | "ui:async" | "api:sync" | "api:async" | "layout:_app" | "layout:_layout" | "error:_404" | "error:_500";
+  type:
+    | "ui:sync"
+    | "ui:async"
+    | "api:sync"
+    | "api:async"
+    | "layout:_app"
+    | "layout:_layout"
+    | "error:_404"
+    | "error:_500";
 }
 
 export const generate = (ctx: RouteGeneratorContext) =>
@@ -35,7 +43,7 @@ export const generate = (ctx: RouteGeneratorContext) =>
         {
           type: "input",
           name: "name",
-          message: 'What is the filepath (without extension) of the route?',
+          message: "What is the filepath (without extension) of the route?",
           when: !name,
         },
         {

@@ -61,17 +61,17 @@ const error500Template = ({
 export const generate = (ctx: RouteGeneratorContext) =>
   Promise.resolve(ctx).then(
     renderSource(
-      (ctx) => ({
-        "ui:sync": uiSyncTemplate(ctx),
-        "ui:async": uiAuiSyncTemplate(ctx),
-        "api:sync": apiSyncTemplate(ctx),
-        "api:async": apiAuiSyncTemplate(ctx),
-        "layout:_app": layoutAppTemplate(ctx),
-        "layout:_layout": layoutLayoutTemplate(ctx),
-        "error:_404": error404Template(ctx),
-        "error:_500": error500Template(ctx),
-
-      })[ctx.type],
+      (ctx) =>
+        ({
+          "ui:sync": uiSyncTemplate(ctx),
+          "ui:async": uiAuiSyncTemplate(ctx),
+          "api:sync": apiSyncTemplate(ctx),
+          "api:async": apiAuiSyncTemplate(ctx),
+          "layout:_app": layoutAppTemplate(ctx),
+          "layout:_layout": layoutLayoutTemplate(ctx),
+          "error:_404": error404Template(ctx),
+          "error:_500": error500Template(ctx),
+        })[ctx.type],
       toFile<RouteGeneratorContext>((
         { src, kebabName },
       ) => [src, "routes", kebabName]),

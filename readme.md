@@ -34,8 +34,8 @@ without sacrificing flexibility.
 
 ## Main Features
 
-- 🌐 [**APIs**](/docs/modules/apis): Collection of integrations for popular
-  HTTP APIs and services.
+- 🌐 [**APIs**](/docs/modules/apis): Collection of integrations for popular HTTP
+  APIs and services.
 
 - 🔒 [**Authentication**](/docs/modules/authentication): Simple user management
   and role-based access control (RBAC).

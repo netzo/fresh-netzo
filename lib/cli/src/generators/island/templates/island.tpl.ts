@@ -22,9 +22,10 @@ export default function ${pascalName}(props: ${pascalName}Props) {
 export const generate = (ctx: IslandGeneratorContext) =>
   Promise.resolve(ctx).then(
     renderSource(
-      (ctx) => ({
-        default: defaultTemplate(ctx),
-      })[ctx.type],
+      (ctx) =>
+        ({
+          default: defaultTemplate(ctx),
+        })[ctx.type],
       toFile<IslandGeneratorContext>((
         { src, kebabName },
       ) => [src, "islands", kebabName]),

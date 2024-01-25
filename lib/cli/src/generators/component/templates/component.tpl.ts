@@ -19,9 +19,10 @@ export default function ${pascalName}(props: ${pascalName}Props) {
 export const generate = (ctx: ComponentGeneratorContext) =>
   Promise.resolve(ctx).then(
     renderSource(
-      (ctx) => ({
-        default: defaultTemplate(ctx)
-      })[ctx.type],
+      (ctx) =>
+        ({
+          default: defaultTemplate(ctx),
+        })[ctx.type],
       toFile<ComponentGeneratorContext>((
         { src, kebabName },
       ) => [src, "components", kebabName]),
