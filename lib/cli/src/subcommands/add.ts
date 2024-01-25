@@ -1,5 +1,6 @@
 import { error } from "../../../core/utils/console.ts";
 import { question } from "../../../deps/question/mod.ts";
+import { add } from "../generators/mod.ts";
 
 const help = `netzo add: add a new resource to an existing project.
 
@@ -53,7 +54,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
 
   const RESOURCES = ["component", "middleware", "route", "layout"];
 
-  let [resource, name] = rawArgs._ as string[];
+  let [resource, name, ...argv] = rawArgs._ as string[];
   if (!RESOURCES.includes(resource)) {
     // vendored x/question@0.0.2 to silence deprecated API warnings (Deno>=1.4)
     resource = (await question("list", "Select a resource:", RESOURCES))!;
@@ -63,8 +64,8 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
 
   if (args.dir === null) args.dir = resource;
 
-  const cli = import.meta.resolve(
-    `../generators/cli.ts`,
+  const addScript = import.meta.resolve(
+    `../generators/mod.ts`,
   ).replace("file://", "");
   const generatorFile = import.meta.resolve(
     `../generators/${resource}/templates/${resource}.tpl.ts`,
@@ -81,14 +82,35 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
       "--allow-sys",
       "--no-check",
       "--quiet", // silence deprecated API warnings thrown by x/question@0.0.2 (Deno>=1.4)
-      cli,
+      addScript,
       generatorFile,
       resource,
       name,
+      ...argv,
     ],
   }).spawn();
   await process.status;
+  return Deno.exit(0);
 
-  // NOTE: cannot programatically call cli() Deno requires --unstable flag
-  // await cli([generatorFile, resource, ...args]);
+  // NOTE: cannot programatically call cli() Deno requires --quiet flag
+  // and calling add() programatically is also throwing the following:
+  // Error: "Top-level await promise never resolved at await addSubcommand(args);"
+  // proxyConsole(`Use of deprecated`)
+  // return add([generatorFile, resource, name, ...argv]);
 }
+
+// function proxyConsole(...substringsToSkip: string[]) {
+//   const newConsole = new Proxy(console, {
+//     get(target, prop, receiver) {
+//       const method = target[prop]; // intercept method calls
+//       console.log({ method, prop, receiver });
+//       return (...args) => {
+//         const message = args.join(" ");
+//         const skip = substringsToSkip.some((s) => message.includes(s));
+//         console.log({ message, substringsToSkip, skip })
+//         if (!skip) method.apply(target, args);
+//       };
+//     },
+//   });
+//   console = newConsole;
+// }

@@ -355,7 +355,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
               `\nOpen in netzo at ${opts.appUrl}/workspaces/${project.workspaceId}/projects/${project._id}`,
             );
             deploySpinner = null;
-            return Deno.exit(0); // exits with success code 0
+            return Deno.exit(0);
           }
           case "error": {
             if (deploySpinner) {
@@ -365,7 +365,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
             return error(message); // exits with error code 1
           }
 
-            // app.service("deployments").removeAllListeners("progress"); // avoid memory leak
+          // app.service("deployments").removeAllListeners("progress"); // avoid memory leak
         }
       },
     );

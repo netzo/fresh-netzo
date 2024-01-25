@@ -1,4 +1,3 @@
-import { dirname } from "../../../../deps/std/path/mod.ts";
 import {
   prompt,
   runGenerators,
@@ -13,9 +12,6 @@ import {
   initializeBaseContext,
   NetzoContext,
 } from "../commons.ts";
-
-// Set __dirname in es module
-const __dirname = dirname(new URL(import.meta.url).pathname);
 
 export interface ComponentGeneratorContext extends NetzoContext {
   type: "component" | "island";
@@ -73,4 +69,4 @@ export const generate = (ctx: ComponentGeneratorContext) =>
         kebabName: kebabCase(name),
       };
     })
-    .then(runGenerators(__dirname, "templates"));
+    .then(runGenerators(import.meta.dirname!, "templates"));

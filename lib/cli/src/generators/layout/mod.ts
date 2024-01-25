@@ -1,4 +1,3 @@
-import { dirname } from "../../../../deps/std/path/mod.ts";
 import {
   prompt,
   runGenerators,
@@ -8,9 +7,6 @@ import {
   initializeBaseContext,
   NetzoContext,
 } from "../commons.ts";
-
-// Set __dirname in es module
-const __dirname = dirname(new URL(import.meta.url).pathname);
 
 export interface LayoutGeneratorContext extends NetzoContext {
   // NOTE: sync/async variants left for user to adapt
@@ -47,4 +43,4 @@ export const generate = (ctx: LayoutGeneratorContext) =>
         },
       ]),
     )
-    .then(runGenerators(__dirname, "templates"));
+    .then(runGenerators(import.meta.dirname!, "templates"));
