@@ -84,7 +84,9 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
       "--quiet", // silence deprecated API warnings thrown by x/question@0.0.2 (Deno>=1.4)
       // IMPORTANT: following flags are required for @featherscloud/pinion without vendoring
       "--unstable-bare-node-builtins", // allows built-in node modules without node: specifiers
+      "--unstable-byonm", // “bring your own node_modules” feature
       "--unstable-sloppy-imports", // loosens requirements for imports modules (e.g. no file extension)
+      "--unstable-unsafe-proto", //  enables support for Object.prototype.__proto__
       addScript,
       generatorFile,
       resource,
