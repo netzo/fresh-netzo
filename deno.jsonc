@@ -6,16 +6,20 @@
   "lock": false,
   "tasks": {
     "cache:deps": "deno cache **/deps/**/*.ts",
-    "test": "deno test -A --parallel --unstable --coverage=./cov",
+    "test": "deno test -A --parallel --coverage=./cov",
     "check:types": "deno check **/*.ts **/*.tsx",
     "ok": "deno fmt --check && deno lint && deno task check:types && deno task test",
-    "bundle:csr": "deno run -A --unstable lib/core/plugins/ui/plugins/csr/bundle.task.ts",
+    "bundle:csr": "deno run -A lib/core/plugins/ui/plugins/csr/bundle.task.ts",
     "deploy": "deno run --allow-env --allow-net --allow-read scripts/deploy-templates.ts",
     "release": "deno run --allow-run --allow-read tasks/release.ts",
     // use https://lcov-viewer.netlify.app to preview cov.lcov
     "cov": "deno coverage ./cov/ --lcov --exclude='test.ts|testdata' > cov.lcov"
     // run template in development: "deno task --cwd=templates/fresh/src dev"
   },
+  "unstable": [
+    "cron",
+    "kv"
+  ],
   "lint": {
     "rules": {
       "tags": [

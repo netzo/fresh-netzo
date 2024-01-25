@@ -34,7 +34,7 @@ export const generate = (ctx: ComponentGeneratorContext) =>
         {
           type: "input",
           name: "name",
-          message: 'What is the name of the component (e.g. "my-component" or "nested/my-component")?',
+          message: 'What is the filepath (without extension) of the component?',
           when: !name,
         },
         {

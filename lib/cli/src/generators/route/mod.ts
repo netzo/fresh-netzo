@@ -35,7 +35,7 @@ export const generate = (ctx: RouteGeneratorContext) =>
         {
           type: "input",
           name: "name",
-          message: 'What is the name of the route (e.g. "my-route" or "nested/my-route")?',
+          message: 'What is the filepath (without extension) of the route?',
           when: !name,
         },
         {

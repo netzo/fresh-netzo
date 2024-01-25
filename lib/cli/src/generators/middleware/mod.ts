@@ -34,7 +34,7 @@ export const generate = (ctx: MiddlewareGeneratorContext) =>
         {
           type: "input",
           name: "name",
-          message: 'What is the name of the middleware (e.g. "my-middleware" or "nested/my-middleware")?',
+          message: 'What is the filepath (without extension) of the middleware?',
           when: !name,
         },
         {

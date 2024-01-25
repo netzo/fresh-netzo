@@ -35,6 +35,11 @@ export const cli = async (cmd: string[]) => {
     `./${resource}/mod.ts`,
   ).replace("file://", "");
 
+  console.log({
+    FILENAME: import.meta.filename,
+    DIRNAME: import.meta.dirname,
+  })
+
   if (!existsSync(moduleName)) {
     throw new Error(`The generator file ${moduleName} does not exists`);
   }

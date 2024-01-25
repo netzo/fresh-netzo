@@ -47,7 +47,7 @@ if (
 
 const args = parseArgs(Deno.args);
 
-if (Deno.isatty(Deno.stdin.rid)) {
+if (Deno.stdin.isTerminal()) {
   let latestVersion;
   // Get the path to the update information json file.
   const { updatePath } = getConfigPaths();
