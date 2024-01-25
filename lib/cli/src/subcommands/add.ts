@@ -49,23 +49,17 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     console.error(help);
     error("Too many positional arguments given.");
   }
-  const resource = typeof rawArgs._[0] === "string"
-    ? rawArgs._[0]
-    // @ts-ignore: types of question module are broken due to function overloading
-    : await question(
-      "list",
-      "Select a resource:",
-      ["component", "island", "middleware", "route"],
-    );
+  let [resource, ...argsRest] = rawArgs._;
+  resource ||= await question(
+    "list",
+    "Select a resource:",
+    ["component", "island", "middleware", "route"],
+  );
   // exit directly in case prompt is cancelled/escaped
   if (!resource) Deno.exit(1);
 
   if (args.dir === null) args.dir = resource;
 
-  // TODO: update all usages of import.meta.resolve(...).replace("file://", ""); to use built-in
-  // import.meta.filename/import.meta.dirname once these land in Deno (this
-  // is required since doing import.meta.resolve returns a file:// url for
-  // unix but not for windows, so we can't simply use .replace('file://', '')
   const cli = import.meta.resolve(
     `../generators/cli.ts`,
   ).replace("file://", "");
@@ -83,11 +77,11 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
       "--allow-run",
       "--allow-sys",
       "--no-check",
-      "--unstable",
+      "--quiet", // NOTE: silence deprecated API warnings (thrown by x/question@0.0.2 on Deno >= 1.4)
       cli,
       generatorFile,
       resource,
-      // ...args,
+      ...argsRest,
     ],
   }).spawn();
   await process.status;

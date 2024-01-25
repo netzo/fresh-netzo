@@ -46,10 +46,12 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     console.error(help);
     error("Too many positional arguments given.");
   }
-  const template = typeof rawArgs._[0] === "string"
-    ? rawArgs._[0]
-    // @ts-ignore: types of question module are broken due to function overloading
-    : await question("list", "Select a template:", await getTemplateNames());
+  let [template, ..._argsRest] = rawArgs._ as string[];
+  template ||= await question(
+    "list",
+    "Select a template:",
+    await getTemplateNames()
+  ) as string;
   // exit directly in case prompt is cancelled/escaped
   if (!template) Deno.exit(1);
 
@@ -65,6 +67,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
       "--allow-run",
       "--allow-sys",
       "--no-check",
+      "--quiet", // NOTE: silence deprecated API warnings (thrown by x/question@0.0.2 on Deno >= 1.4)
       `npm:giget@1.1.2`,
       `gh:netzo/netzo/templates/${template}`,
       args.dir,
@@ -74,7 +77,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
   await process.status;
 }
 
-async function getTemplateNames() {
+async function getTemplateNames(): Promise<string[]> {
   const base = "https://raw.githubusercontent.com/netzo/netzo/main/templates";
   const response = await fetch(`${base}/templates.json`, {
     headers: { accept: "application/json", "cache-control": "no-cache" },
@@ -84,5 +87,5 @@ async function getTemplateNames() {
     .filter((url) => !url.includes("/templates/_wip/"));
   const pattern = `${base}/(.*)/template.json`; // extract name from
   const names = urls.map((url) => url.match(new RegExp(pattern))?.[1]);
-  return names.sort((a, b) => a!.localeCompare(b!));
+  return names.sort((a, b) => a!.localeCompare(b!)) as string[];
 }

@@ -27,18 +27,9 @@ export const cli = async (cmd: string[]) => {
     throw new Error("Please specify a generator file name");
   }
 
-  // TODO: update all usages of import.meta.resolve(...).replace("file://", ""); to use built-in
-  // import.meta.filename/import.meta.dirname once these land in Deno (this
-  // is required since doing import.meta.resolve returns a file:// url for
-  // unix but not for windows, so we can't simply use .replace('file://', '')
   const moduleName = import.meta.resolve(
     `./${resource}/mod.ts`,
   ).replace("file://", "");
-
-  console.log({
-    FILENAME: import.meta.filename,
-    DIRNAME: import.meta.dirname,
-  });
 
   if (!existsSync(moduleName)) {
     throw new Error(`The generator file ${moduleName} does not exists`);
