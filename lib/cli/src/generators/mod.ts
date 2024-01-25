@@ -1,7 +1,7 @@
 // adapted from @featherscloud/pinion to allow resolving the filepath to templates
 // see https://github.com/featherscloud/pinion/blob/main/packages/pinion/src/cli.ts
 import { existsSync } from "../../../deps/std/fs/exists.ts";
-import { getContext, loadModule } from "../../../deps/@featherscloud/pinion.ts";
+import { getContext /* loadModule */ } from "../../../deps/@featherscloud/pinion.ts";
 
 export const add = async (cmd: string[]) => {
   const [generatorFile, resource, name, ...argv] = cmd;
@@ -14,11 +14,11 @@ export const add = async (cmd: string[]) => {
     `./${resource}/mod.ts`,
   ).replace("file://", "");
 
-  if (!existsSync(moduleName)) {
+  if (!moduleName.startsWith('http') && !existsSync(moduleName)) {
     throw new Error(`The generator file ${moduleName} does not exists`);
   }
 
-  const module = await loadModule(moduleName);
+  const module = await import(moduleName);
   const generate = module.default?.generate || module.generate;
   const generatorContext = getContext({ argv }, {});
 
