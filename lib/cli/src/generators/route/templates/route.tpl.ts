@@ -1,4 +1,4 @@
-import { toFile } from "../../../../../deps/@featherscloud/pinion.ts";
+import { toFile } from "../../../../../deps/@featherscloud/pinion/mod.ts";
 import { RouteGeneratorContext } from "../mod.ts";
 import { renderSource } from "../../commons.ts";
 

@@ -1,7 +1,4 @@
-import {
-  prompt,
-  runGenerators,
-} from "../../../../deps/@featherscloud/pinion.ts";
+import { prompt, runGenerators } from "../../../../deps/@featherscloud/pinion/mod.ts";
 import {
   checkPreconditions,
   initializeBaseContext,
@@ -44,4 +41,8 @@ export const generate = (ctx: MiddlewareGeneratorContext) =>
         },
       ]),
     )
+    // FIXME: the runGenerators() function must be vendored and adapted to work
+    // also for https:// URLs (in production). Note that import.meta.dirname is
+    // undefined when running under https:// URLs (in production), so we should
+    // crawl the files in the directory in another way (maybe via GitHub API?)
     .then(runGenerators(import.meta.dirname!, "templates"));

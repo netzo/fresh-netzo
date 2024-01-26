@@ -79,6 +79,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
       "--allow-run",
       "--allow-sys",
       "--no-check",
+      // TODO: "--quite" will not be required when https://github.com/denoland/deno/pull/22120 is merged?
       "--quiet", // silence deprecated API warnings thrown by x/question@0.0.2 (Deno>=1.4)
       // IMPORTANT: following flags are required for @featherscloud/pinion without vendoring
       "--unstable-bare-node-builtins", // allows built-in node modules without node: specifiers

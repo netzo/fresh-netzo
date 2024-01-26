@@ -1,7 +1,4 @@
-import {
-  prompt,
-  runGenerators,
-} from "../../../../deps/@featherscloud/pinion.ts";
+import { prompt, runGenerators } from "../../../../deps/@featherscloud/pinion/mod.ts";
 import {
   camelCase,
   paramCase as kebabCase,
@@ -62,7 +59,6 @@ export const generate = (ctx: ComponentGeneratorContext) =>
     .then((ctx) => {
       const { filepath } = ctx;
       const name = filepath.split("/").pop() || "";
-      console.debug({ ctx });
       return {
         ...ctx,
         pascalName: pascalCase(name),
@@ -70,4 +66,8 @@ export const generate = (ctx: ComponentGeneratorContext) =>
         kebabName: kebabCase(name),
       };
     })
+    // FIXME: the runGenerators() function must be vendored and adapted to work
+    // also for https:// URLs (in production). Note that import.meta.dirname is
+    // undefined when running under https:// URLs (in production), so we should
+    // crawl the files in the directory in another way (maybe via GitHub API?)
     .then(runGenerators(import.meta.dirname!, "templates"));
