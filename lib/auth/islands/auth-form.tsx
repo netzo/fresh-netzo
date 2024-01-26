@@ -5,8 +5,8 @@ import { Button, buttonVariants } from "../../components/ui/button.tsx";
 import {
   Alert,
   AlertDescription,
-  AlertTitle
-} from "../../components/ui/alert.tsx"
+  AlertTitle,
+} from "../../components/ui/alert.tsx";
 import { Input } from "../../components/ui/input.tsx";
 import { Label } from "../../components/ui/label.tsx";
 // TODO: import { isGitHubSetup } from "../utils/providers/github.ts";

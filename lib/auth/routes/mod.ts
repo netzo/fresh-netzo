@@ -70,7 +70,7 @@ export const getRoutesByProvider = (
           const userHasAccessToWorkspaceOfApiKey = data?.data?.length === 1;
           if (!userHasAccessToWorkspaceOfApiKey) {
             return Response.redirect(
-              "/auth?error=You do not have access to this application."
+              "/auth?error=You do not have access to this application.",
             );
           }
         }
