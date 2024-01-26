@@ -19,14 +19,14 @@ export default defineRoute(async (req, ctx) => {
             <FormAccount
               data={data}
               method="POST"
-              action={`${ctx.url.origin}/api?$prefix=accounts`}
+              action={`${ctx.url.origin}/db?$prefix=accounts`}
             />
           )
           : (
             <FormAccount
               data={data}
               method="PATCH"
-              action={`${ctx.url.origin}/api?$key=accounts,${id}`}
+              action={`${ctx.url.origin}/db?$key=accounts,${id}`}
             />
           )}
       </div>

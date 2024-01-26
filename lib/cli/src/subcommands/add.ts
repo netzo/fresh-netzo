@@ -1,6 +1,7 @@
-import { error } from "../../../core/utils/console.ts";
+import { error } from "../../../utils/console.ts";
 import { question } from "../../../deps/question/mod.ts";
 import { add } from "../generators/mod.ts";
+// import { proxyConsole } from "../../../utils/proxies/console.ts";
 
 const help = `netzo add: add a new resource to an existing project.
 
@@ -102,19 +103,3 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
   // proxyConsole(`Use of deprecated`)
   // return await add([generatorFile, resource, name, ...argv]);
 }
-
-// function proxyConsole(...substringsToSkip: string[]) {
-//   const newConsole = new Proxy(console, {
-//     get(target, prop, receiver) {
-//       const method = target[prop]; // intercept method calls
-//       console.log({ method, prop, receiver });
-//       return (...args) => {
-//         const message = args.join(" ");
-//         const skip = substringsToSkip.some((s) => message.includes(s));
-//         console.log({ message, substringsToSkip, skip })
-//         if (!skip) method.apply(target, args);
-//       };
-//     },
-//   });
-//   console = newConsole;
-// }
