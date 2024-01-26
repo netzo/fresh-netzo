@@ -54,7 +54,7 @@ export const getRoutesByProvider = (
           roles: ["admin"],
         } as unknown as AuthUser;
 
-        // [netzo] assert user is member of workspace of this project (check apiKey)
+        // [netzo] assert user is member of workspace this project belongs to (check apiKey)
         if (["netzo"].includes(provider)) {
           const {
             NETZO_API_KEY,
@@ -69,11 +69,10 @@ export const getRoutesByProvider = (
           const data = await response.json();
           const userHasAccessToWorkspaceOfApiKey = data?.data?.length === 1;
           if (!userHasAccessToWorkspaceOfApiKey) {
-            return new Response("Unauthorized: user does not have access", {
-              status: 401,
-            });
+            return Response.redirect(
+              "/auth?error=You do not have access to this application."
+            );
           }
-          // assert that user is member of the workspace this project belons to (check apiKey)
         }
 
         if (userCurrent === null) {

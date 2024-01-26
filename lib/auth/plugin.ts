@@ -26,6 +26,7 @@ export type AuthConfig = {
     google?: OAuth2ClientConfig;
     github?: OAuth2ClientConfig;
     gitlab?: OAuth2ClientConfig;
+    slack?: OAuth2ClientConfig;
     auth0?: OAuth2ClientConfig;
     okta?: OAuth2ClientConfig;
   };

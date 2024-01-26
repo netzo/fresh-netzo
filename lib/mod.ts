@@ -43,6 +43,7 @@ console = proxyConsole(
   `Comparison using the "!==" operator here is always true`,
   "Improper nesting of table",
   `Not implemented: ClientRequest.options.createConnection`,
+  `Use of deprecated "`, // Deno 2.0 warnings (see https://github.com/denoland/fresh/issues/2276)
 );
 
 /**

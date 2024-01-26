@@ -5,7 +5,7 @@ import {
   signOut,
 } from "../../../deps/deno_kv_oauth/mod.ts";
 import {
-  createNetzoOAuthConfig,
+  createNetzoClientConfig,
   getUserNetzo,
   handleCallback as handleCallbackNetzo,
   isNetzoSetup,
@@ -34,6 +34,7 @@ import {
   getUserGitlab,
   isGitlabSetup,
 } from "./gitlab.ts";
+import { createSlackOAuthConfig, getUserSlack, isSlackSetup } from "./slack.ts";
 import { createAuth0OAuthConfig, getUserAuth0, isAuth0Setup } from "./auth0.ts";
 import { createOktaOAuthConfig, getUserOkta, isOktaSetup } from "./okta.ts";
 
@@ -58,7 +59,7 @@ export const getAuthConfig = (
   switch (provider) {
     case "netzo": {
       if (!isNetzoSetup()) throw getError(provider);
-      return createNetzoOAuthConfig();
+      return createNetzoClientConfig();
     }
     case "email": {
       if (!isEmailSetup()) throw getError(provider);
@@ -81,6 +82,12 @@ export const getAuthConfig = (
       setFromOptionsIfNotInEnv("GITLAB_CLIENT_SECRET", options.clientSecret);
       if (!isGitlabSetup(options)) throw getError(provider);
       return createGitLabOAuthConfig(options);
+    }
+    case "slack": {
+      setFromOptionsIfNotInEnv("SLACK_CLIENT_ID", options.clientId);
+      setFromOptionsIfNotInEnv("SLACK_CLIENT_SECRET", options.clientSecret);
+      if (!isSlackSetup(options)) throw getError(provider);
+      return createSlackOAuthConfig(options);
     }
     case "auth0": {
       setFromOptionsIfNotInEnv("CUSTOM_CLIENT_ID", options.clientId);
@@ -125,6 +132,8 @@ export const getUserByProvider = async (
       return await getUserGithub(accessToken);
     case "gitlab":
       return await getUserGitlab(accessToken);
+    case "slack":
+      return await getUserSlack(accessToken);
     case "auth0":
       return await getUserAuth0(accessToken);
     case "okta":

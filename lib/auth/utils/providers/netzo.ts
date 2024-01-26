@@ -8,7 +8,7 @@ export { handleCallback, signIn };
 
 export type NetzoClientConfig = Record<string | number | symbol, never>; // (empty object)
 
-export const createNetzoOAuthConfig = () => {
+export const createNetzoClientConfig = () => {
   return {
     projectId: Deno.env.get("NETZO_PROJECT_ID")!,
     apiKey: Deno.env.get("NETZO_API_KEY")!,
@@ -17,7 +17,7 @@ export const createNetzoOAuthConfig = () => {
 
 export function isNetzoSetup() {
   try {
-    createNetzoOAuthConfig();
+    createNetzoClientConfig();
     return true;
   } catch {
     return false;

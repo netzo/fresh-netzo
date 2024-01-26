@@ -2,6 +2,11 @@ import type { ComponentChildren, JSX } from "../../deps/preact.ts";
 import type { NetzoState } from "../../../mod.ts";
 import { cn } from "../../components/utils.ts";
 import { Button, buttonVariants } from "../../components/ui/button.tsx";
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle
+} from "../../components/ui/alert.tsx"
 import { Input } from "../../components/ui/input.tsx";
 import { Label } from "../../components/ui/label.tsx";
 // TODO: import { isGitHubSetup } from "../utils/providers/github.ts";
@@ -67,7 +72,10 @@ const ButtonOAuth2 = (
   );
 };
 
-export function AuthForm(props: NetzoState) {
+export function AuthForm(props: NetzoState & { request: Request }) {
+  const url = new URL(props.request.url);
+  const error = url.searchParams.get("error");
+
   const { logo, auth } = props.config;
 
   const hasEmail = !!auth?.providers?.email;
@@ -96,6 +104,18 @@ export function AuthForm(props: NetzoState) {
           </p>
         )}
       </div>
+
+      {error && (
+        <Alert variant="destructive">
+          <AlertTitle>
+            Error
+          </AlertTitle>
+          <AlertDescription>
+            {error}
+          </AlertDescription>
+        </Alert>
+      )}
+
       <div className="grid gap-6">
         {!!auth?.providers?.email && (
           <form method="POST" action="/auth/email">
@@ -143,11 +163,18 @@ export function AuthForm(props: NetzoState) {
           </ButtonOAuth2>
         )}
 
+        {!!auth?.providers?.slack && (
+          <ButtonOAuth2 text="Sign In with Slack" href="/auth/slack/signin">
+            <div className="mr-4 w-20px h-20px logos-slack-icon" />
+          </ButtonOAuth2>
+        )}
+
         {!!auth?.providers?.auth0 && (
           <ButtonOAuth2 text="Sign In with Auth0" href="/auth/auth0/signin">
             <div className="mr-4 w-20px h-20px simple-icons-auth0" />
           </ButtonOAuth2>
         )}
+
         {!!auth?.providers?.okta && (
           <ButtonOAuth2 text="Sign In with Okta" href="/auth/okta/signin">
             <div className="mr-4 w-20px h-20px simple-icons-okta" />

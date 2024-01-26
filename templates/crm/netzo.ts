@@ -38,7 +38,7 @@ export const netzo = await Netzo({
         `<a href="mailto:hello@netzo.io" target="_blank">Contact us</a>`,
     },
   },
-  api: {},
+  database: {},
 });
 
 if (import.meta.main) netzo.start();

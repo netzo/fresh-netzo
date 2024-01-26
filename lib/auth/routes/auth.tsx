@@ -5,14 +5,14 @@ import type { NetzoState } from "../../../mod.ts";
 // FIXME: not working for plugin-injected routes
 // export const config: RouteConfig = { skipAppWrapper: true };
 
-export default defineRoute<NetzoState>((_req, ctx) => {
+export default defineRoute<NetzoState>((req, ctx) => {
   const { auth } = ctx.state.config;
   return (
     <div
       className={`h-full w-full grid place-items-center p-4 bg-[hsl(var(--background))]`}
     >
       <div className="grid gap-6 w-full xs:w-[350px] max-w-[350px]">
-        <AuthForm {...ctx.state} />
+        <AuthForm {...ctx.state} request={req} />
 
         {auth?.caption && (
           <p
