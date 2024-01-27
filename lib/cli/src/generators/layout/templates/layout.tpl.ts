@@ -2,8 +2,8 @@ import { toFile } from "../../../../../deps/@featherscloud/pinion/mod.ts";
 import { LayoutGeneratorContext } from "../mod.ts";
 import { renderSource } from "../../commons.ts";
 
-const defaultTemplate = ({}: LayoutGeneratorContext) =>
-  /* ts */ `// [netzo] generated via https://netzo.io/docs/cli
+const defaultTemplate = ({ }: LayoutGeneratorContext) =>
+  /* tsx */ `// [netzo] generated via https://netzo.io/docs/cli
 import { defineLayout } from "$fresh/server.ts";
 
 export type State = {};
@@ -17,8 +17,8 @@ export default defineLayout<State>((req, ctx) => {
 });
 `;
 
-const sidebarTemplate = ({}: LayoutGeneratorContext) =>
-  /* ts */ `// [netzo] generated via https://netzo.io/docs/cli
+const sidebarTemplate = ({ }: LayoutGeneratorContext) =>
+  /* tsx */ `// [netzo] generated via https://netzo.io/docs/cli
 import { defineLayout } from "$fresh/server.ts";
 
 export type State = {};
@@ -37,8 +37,8 @@ export default defineLayout<State>((req, ctx) => {
 });
 `;
 
-const twoColumnTemplate = ({}: LayoutGeneratorContext) =>
-  /* ts */ `// [netzo] generated via https://netzo.io/docs/cli
+const twoColumnTemplate = ({ }: LayoutGeneratorContext) =>
+  /* tsx */ `// [netzo] generated via https://netzo.io/docs/cli
 import { defineLayout } from "$fresh/server.ts";
 
 export type State = {};
@@ -57,8 +57,8 @@ export default defineLayout<State>((req, ctx) => {
 });
 `;
 
-const dashboardTemplate = ({}: LayoutGeneratorContext) =>
-  /* ts */ `// [netzo] generated via https://netzo.io/docs/cli
+const dashboardTemplate = ({ }: LayoutGeneratorContext) =>
+  /* tsx */ `// [netzo] generated via https://netzo.io/docs/cli
 import { defineLayout } from "$fresh/server.ts";
 
 export type State = {};
@@ -88,8 +88,8 @@ export default defineLayout<State>((req, ctx) => {
 });
 `;
 
-const gridTemplate = ({}: LayoutGeneratorContext) =>
-  /* ts */ `// [netzo] generated via https://netzo.io/docs/cli
+const gridTemplate = ({ }: LayoutGeneratorContext) =>
+  /* tsx */ `// [netzo] generated via https://netzo.io/docs/cli
 import { defineLayout } from "$fresh/server.ts";
 
 export type State = {};

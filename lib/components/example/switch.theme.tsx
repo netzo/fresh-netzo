@@ -1,7 +1,7 @@
 import { signal } from "../../deps/@preact/signals.ts";
 import { Switch } from "../ui/switch.tsx";
 import { Label } from "../ui/label.tsx";
-import { type Theme, useTheme } from "../../hooks/theme.ts";
+import { type Theme, useTheme } from "../../composables/use-theme.ts";
 
 export default () => {
   const { isDark } = useTheme();

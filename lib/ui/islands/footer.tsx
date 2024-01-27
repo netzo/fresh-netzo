@@ -1,7 +1,7 @@
 import type { JSX } from "../../deps/preact.ts";
 import { useComputed } from "../../deps/@preact/signals.ts";
 import { cn } from "../../components/utils.ts";
-import { useTheme } from "../../hooks/theme.ts";
+import { useTheme } from "../../composables/use-theme.ts";
 import type { UiConfig } from "../mod.ts";
 
 export type FooterProps =

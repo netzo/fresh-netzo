@@ -3,7 +3,7 @@ import { ComponentGeneratorContext } from "../mod.ts";
 import { renderSource } from "../../commons.ts";
 
 const componentTemplate = ({ pascalName, name }: ComponentGeneratorContext) =>
-  /* ts */ `export type ${pascalName}Props = {};
+  /* tsx */ `export type ${pascalName}Props = {};
 
 export default function ${pascalName}(props: ${pascalName}Props) {
   return (
@@ -15,7 +15,7 @@ export default function ${pascalName}(props: ${pascalName}Props) {
 `;
 
 const islandTemplate = ({ pascalName }: ComponentGeneratorContext) =>
-  /* ts */ `// [netzo] generated via https://netzo.io/docs/cli
+  /* tsx */ `// [netzo] generated via https://netzo.io/docs/cli
 import { useSignal } from "@preact/signals";
 
 export type ${pascalName}Props = {};

@@ -1,6 +1,6 @@
 import { Button } from "./button.tsx";
 import { cn } from "../utils.ts";
-import { useTheme } from "../../hooks/theme.ts";
+import { useTheme } from "../../composables/use-theme.ts";
 
 export function ThemeToggle() {
   const { theme } = useTheme();
