@@ -15,7 +15,7 @@ import { cva } from "../../../deps/class-variance-authority.ts";
 import { Card, CardContent, CardHeader } from "../../ui/card.tsx";
 import { Button } from "../../ui/button.tsx";
 import { ScrollArea, ScrollBar } from "../../ui/scroll-area.tsx";
-import type { Deal } from "@/database/deals.schema.tsx";
+import type { Item } from "./kanban.tsx";
 
 export interface Column {
   id: UniqueIdentifier;
@@ -31,14 +31,14 @@ export interface ColumnDragData {
 
 interface KanbanColumnProps {
   column: Column;
-  deals: Deal[];
+  items: Item[];
   isOverlay?: boolean;
 }
 
 export function KanbanColumn(
-  { column, deals, isOverlay }: KanbanColumnProps,
+  { column, items, isOverlay }: KanbanColumnProps,
 ) {
-  const dealsIds = useComputed(() => deals.map((deal) => deal.id));
+  const itemsIds = useComputed(() => items.map((item) => item.id));
 
   const {
     setNodeRef,
@@ -98,8 +98,8 @@ export function KanbanColumn(
       </CardHeader>
       <ScrollArea>
         <CardContent className="flex flex-col flex-grow gap-2 p-2">
-          <SortableContext items={dealsIds.value}>
-            {deals.map((deal) => <KanbanCard key={deal.id} deal={deal} />)}
+          <SortableContext items={itemsIds.value}>
+            {items.map((item) => <KanbanCard key={item.id} item={item} />)}
           </SortableContext>
         </CardContent>
       </ScrollArea>

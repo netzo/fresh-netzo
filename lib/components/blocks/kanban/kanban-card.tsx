@@ -5,21 +5,21 @@ import { Card, CardContent, CardHeader, CardTitle } from "../../ui/card.tsx";
 import { Button } from "../../ui/button.tsx";
 import { cva } from "../../../deps/class-variance-authority.ts";
 import { Badge } from "../../ui/badge.tsx";
-import type { Deal } from "@/database/deals.schema.tsx";
+import type { Item } from "./kanban.tsx";
 
 interface KanbanCardProps {
-  deal: Deal;
+  item: Item;
   isOverlay?: boolean;
 }
 
-export type DealType = "Deal";
+export type ItemType = "Item";
 
-export interface DealDragData {
-  type: DealType;
-  deal: Deal;
+export interface ItemDragData {
+  type: ItemType;
+  item: Item;
 }
 
-export function KanbanCard({ deal, isOverlay }: KanbanCardProps) {
+export function KanbanCard({ item, isOverlay }: KanbanCardProps) {
   const {
     setNodeRef,
     attributes,
@@ -28,13 +28,13 @@ export function KanbanCard({ deal, isOverlay }: KanbanCardProps) {
     transition,
     isDragging,
   } = useSortable({
-    id: deal.id,
+    id: item.id,
     data: {
-      type: "Deal",
-      deal,
-    } satisfies DealDragData,
+      type: "Item",
+      item,
+    } satisfies ItemDragData,
     attributes: {
-      roleDescription: "Deal",
+      roleDescription: "Item",
     },
   });
 
@@ -67,18 +67,18 @@ export function KanbanCard({ deal, isOverlay }: KanbanCardProps) {
           {...listeners}
           className="h-auto p-1 -ml-2 text-secondary-foreground/50 cursor-grab"
         >
-          <span className="sr-only">Move deal</span>
+          <span className="sr-only">Move item</span>
           <div className="w-6 h-6 mdi-drag" />
         </Button>
         <CardTitle className="ml-1 text-sm font-medium">
-          {deal.name}
+          {item.name}
         </CardTitle>
         <Badge variant={"outline"} className="ml-auto font-medium">
-          {deal.status}
+          {item.status}
         </Badge>
       </CardHeader>
       <CardContent className="px-4 pt-2 pb-4 text-xs whitespace-pre-wrap text-secondary-foreground">
-        {deal.description}
+        {item.description}
       </CardContent>
     </Card>
   );

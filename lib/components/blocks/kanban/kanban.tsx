@@ -16,10 +16,16 @@ import {
   useSensors,
 } from "../../../deps/@dnd-kit/core.ts";
 import { arrayMove, SortableContext } from "../../../deps/@dnd-kit/sortable.ts";
-import type { Deal } from "@/database/deals.schema.tsx";
 import type { Column } from "./kanban-column.tsx";
 import { hasDraggableData } from "./utils.ts";
 import { coordinateGetter } from "./multiple-containers-keyboard-preset.ts";
+
+export type Item = {
+  id: UniqueIdentifier;
+  name: string;
+  status: string;
+  [key: string]: unknown;
+};
 
 export type KanbanProps<TData = unknown, TValue = unknown> = {
   data: TData[];
@@ -33,14 +39,14 @@ export type KanbanProps<TData = unknown, TValue = unknown> = {
 export function Kanban({ data, options }) {
   const { columnId = "status" } = options;
   const columns = useSignal<Column[]>(options.columns);
-  const pickedUpDealColumn = useSignal<string | null>(null);
+  const pickedUpItemColumn = useSignal<string | null>(null);
   const columnsId = useComputed(() => columns.value.map((col) => col.id));
 
-  const deals = useSignal<Deal[]>(data);
+  const items = useSignal<Item[]>(data);
 
   const activeColumn = useSignal<Column | null>(null);
 
-  const activeDeal = useSignal<Deal | null>(null);
+  const activeItem = useSignal<Item | null>(null);
 
   const sensors = useSensors(
     useSensor(MouseSensor),
@@ -50,18 +56,18 @@ export function Kanban({ data, options }) {
     }),
   );
 
-  function getDraggingDealData(
-    dealId: UniqueIdentifier,
+  function getDraggingItemData(
+    itemId: UniqueIdentifier,
     columnIdValue: string,
   ) {
-    const dealsInColumn = deals.value.filter((deal) =>
-      deal[columnId] === columnIdValue
+    const itemsInColumn = items.value.filter((item) =>
+      item[columnId] === columnIdValue
     );
-    const dealPosition = dealsInColumn.findIndex((deal) => deal.id === dealId);
+    const itemPosition = itemsInColumn.findIndex((item) => item.id === itemId);
     const column = columns.value.find((col) => col.id === columnIdValue);
     return {
-      dealsInColumn,
-      dealPosition,
+      itemsInColumn,
+      itemPosition,
       column,
     };
   }
@@ -77,15 +83,15 @@ export function Kanban({ data, options }) {
         return `Picked up Column ${startColumn?.title} at position: ${
           startColumnIdx + 1
         } of ${columnsId.value.length}`;
-      } else if (active.data.current?.type === "Deal") {
-        pickedUpDealColumn.value = active.data.current.deal[columnId];
-        const { dealsInColumn, dealPosition, column } = getDraggingDealData(
+      } else if (active.data.current?.type === "Item") {
+        pickedUpItemColumn.value = active.data.current.item[columnId];
+        const { itemsInColumn, itemPosition, column } = getDraggingItemData(
           active.id,
-          pickedUpDealColumn.value as string,
+          pickedUpItemColumn.value as string,
         );
-        return `Picked up Deal ${active.data.current.deal.name} at position: ${
-          dealPosition + 1
-        } of ${dealsInColumn.length} in column ${column?.title}`;
+        return `Picked up Item ${active.data.current.item.name} at position: ${
+          itemPosition + 1
+        } of ${itemsInColumn.length} in column ${column?.title}`;
       }
     },
     onDragOver({ active, over }) {
@@ -100,26 +106,26 @@ export function Kanban({ data, options }) {
           overColumnIdx + 1
         } of ${columnsId.value.length}`;
       } else if (
-        active.data.current?.type === "Deal" &&
-        over.data.current?.type === "Deal"
+        active.data.current?.type === "Item" &&
+        over.data.current?.type === "Item"
       ) {
-        const { dealsInColumn, dealPosition, column } = getDraggingDealData(
+        const { itemsInColumn, itemPosition, column } = getDraggingItemData(
           over.id,
-          over.data.current.deal[columnId],
+          over.data.current.item[columnId],
         );
-        if (over.data.current.deal[columnId] !== pickedUpDealColumn.value) {
-          return `Deal ${active.data.current.deal.name} was moved over column ${column?.title} in position ${
-            dealPosition + 1
-          } of ${dealsInColumn.length}`;
+        if (over.data.current.item[columnId] !== pickedUpItemColumn.value) {
+          return `Item ${active.data.current.item.name} was moved over column ${column?.title} in position ${
+            itemPosition + 1
+          } of ${itemsInColumn.length}`;
         }
-        return `Deal was moved over position ${
-          dealPosition + 1
-        } of ${dealsInColumn.length} in column ${column?.title}`;
+        return `Item was moved over position ${
+          itemPosition + 1
+        } of ${itemsInColumn.length} in column ${column?.title}`;
       }
     },
     onDragEnd({ active, over }) {
       if (!hasDraggableData(active) || !hasDraggableData(over)) {
-        pickedUpDealColumn.value = null;
+        pickedUpItemColumn.value = null;
         return;
       }
       if (
@@ -134,26 +140,26 @@ export function Kanban({ data, options }) {
           overColumnPosition + 1
         } of ${columnsId.value.length}`;
       } else if (
-        active.data.current?.type === "Deal" &&
-        over.data.current?.type === "Deal"
+        active.data.current?.type === "Item" &&
+        over.data.current?.type === "Item"
       ) {
-        const { dealsInColumn, dealPosition, column } = getDraggingDealData(
+        const { itemsInColumn, itemPosition, column } = getDraggingItemData(
           over.id,
-          over.data.current.deal[columnId],
+          over.data.current.item[columnId],
         );
-        if (over.data.current.deal[columnId] !== pickedUpDealColumn.value) {
-          return `Deal was dropped into column ${column?.title} in position ${
-            dealPosition + 1
-          } of ${dealsInColumn.length}`;
+        if (over.data.current.item[columnId] !== pickedUpItemColumn.value) {
+          return `Item was dropped into column ${column?.title} in position ${
+            itemPosition + 1
+          } of ${itemsInColumn.length}`;
         }
-        return `Deal was dropped into position ${
-          dealPosition + 1
-        } of ${dealsInColumn.length} in column ${column?.title}`;
+        return `Item was dropped into position ${
+          itemPosition + 1
+        } of ${itemsInColumn.length} in column ${column?.title}`;
       }
-      pickedUpDealColumn.value = null;
+      pickedUpItemColumn.value = null;
     },
     onDragCancel({ active }) {
-      pickedUpDealColumn.value = null;
+      pickedUpItemColumn.value = null;
       if (!hasDraggableData(active)) return;
       return `Dragging ${active.data.current?.type} cancelled.`;
     },
@@ -175,7 +181,7 @@ export function Kanban({ data, options }) {
             <KanbanColumn
               key={col.id}
               column={col}
-              deals={deals.value.filter((deal) => deal[columnId] === col.id)}
+              items={items.value.filter((item) => item[columnId] === col.id)}
             />
           ))}
         </SortableContext>
@@ -189,12 +195,12 @@ export function Kanban({ data, options }) {
               <KanbanColumn
                 isOverlay
                 column={activeColumn}
-                deals={deals.value.filter(
-                  (deal) => deal[columnId] === activeColumn.id
+                items={items.value.filter(
+                  (item) => item[columnId] === activeColumn.id
                 )}
               />
             )}
-            {activeDeal && <KanbanCard deal={activeDeal} isOverlay />}
+            {activeItem && <KanbanCard item={activeItem} isOverlay />}
           </DragOverlay>,
           document.body
         )} */
@@ -210,15 +216,15 @@ export function Kanban({ data, options }) {
       return;
     }
 
-    if (data?.type === "Deal") {
-      activeDeal.value = data.deal;
+    if (data?.type === "Item") {
+      activeItem.value = data.item;
       return;
     }
   }
 
   function onDragEnd(event: DragEndEvent) {
     activeColumn.value = null;
-    activeDeal.value = null;
+    activeItem.value = null;
 
     const { active, over } = event;
     if (!over) return;
@@ -262,38 +268,38 @@ export function Kanban({ data, options }) {
     const activeData = active.data.current;
     const overData = over.data.current;
 
-    const isActiveADeal = activeData?.type === "Deal";
-    const isOverADeal = activeData?.type === "Deal";
+    const isActiveAItem = activeData?.type === "Item";
+    const isOverAItem = activeData?.type === "Item";
 
-    if (!isActiveADeal) return;
+    if (!isActiveAItem) return;
 
-    // Im dropping a Deal over another Deal
-    if (isActiveADeal && isOverADeal) {
-      const activeIndex = deals.value.findIndex((t) => t.id === activeId);
-      const overIndex = deals.value.findIndex((t) => t.id === overId);
-      const activeDeal = deals.value[activeIndex];
-      const overDeal = deals.value[overIndex];
+    // Im dropping a Item over another Item
+    if (isActiveAItem && isOverAItem) {
+      const activeIndex = items.value.findIndex((t) => t.id === activeId);
+      const overIndex = items.value.findIndex((t) => t.id === overId);
+      const activeItem = items.value[activeIndex];
+      const overItem = items.value[overIndex];
       if (
-        activeDeal &&
-        overDeal &&
-        activeDeal[columnId] !== overDeal[columnId]
+        activeItem &&
+        overItem &&
+        activeItem[columnId] !== overItem[columnId]
       ) {
-        activeDeal[columnId] = overDeal[columnId];
-        deals.value = arrayMove(deals.value, activeIndex, overIndex - 1);
+        activeItem[columnId] = overItem[columnId];
+        items.value = arrayMove(items.value, activeIndex, overIndex - 1);
       }
 
-      deals.value = arrayMove(deals.value, activeIndex, overIndex);
+      items.value = arrayMove(items.value, activeIndex, overIndex);
     }
 
     const isOverAColumn = overData?.type === "Column";
 
-    // Im dropping a Deal over a column
-    if (isActiveADeal && isOverAColumn) {
-      const activeIndex = deals.value.findIndex((t) => t.id === activeId);
-      const activeDeal = deals.value[activeIndex];
-      if (activeDeal) {
-        activeDeal[columnId] = overId as string;
-        return arrayMove(deals.value, activeIndex, activeIndex);
+    // Im dropping a Item over a column
+    if (isActiveAItem && isOverAColumn) {
+      const activeIndex = items.value.findIndex((t) => t.id === activeId);
+      const activeItem = items.value[activeIndex];
+      if (activeItem) {
+        activeItem[columnId] = overId as string;
+        return arrayMove(items.value, activeIndex, activeIndex);
       }
     }
   }
