@@ -7,7 +7,7 @@ import { toDate, toDateTime } from "netzo/components/blocks/format.ts";
 import { CopyId } from "netzo/components/blocks/shared/copy-id.tsx";
 import { Badge } from "netzo/components/ui/badge.tsx";
 import { Checkbox } from "netzo/components/ui/checkbox.tsx";
-import { ALIASES, type Invoice } from "@/database/invoices.ts";
+import { ALIASES, type Invoice } from "@/resources/invoices.ts";
 
 // NOTE: columns must be defined in island due to client-only function serialization
 export const getColumns = (_props: TableProps): TableProps["columns"] => [

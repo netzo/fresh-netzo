@@ -1,8 +1,8 @@
 import { useSignal } from "@preact/signals";
 import { Button } from "netzo/components/ui/button.tsx";
 import { createOnSubmit, Form } from "netzo/components/blocks/form/form.tsx";
-import { Contact, contactSchema } from "@/database/contacts.ts";
-// import { ALIASES } from "@/database/contacts.ts";
+import { Contact, contactSchema } from "@/resources/contacts.ts";
+// import { ALIASES } from "@/resources/contacts.ts";
 
 type FormProps = {
   data?: Contact;

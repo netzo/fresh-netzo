@@ -15,7 +15,7 @@ import {
   AvatarImage,
 } from "netzo/components/ui/avatar.tsx";
 import { Checkbox } from "netzo/components/ui/checkbox.tsx";
-import { ALIASES, type Contact } from "@/database/contacts.ts";
+import { ALIASES, type Contact } from "@/resources/contacts.ts";
 
 // NOTE: columns must be defined in island due to client-only function serialization
 export const getColumns = (_props: TableProps): TableProps["columns"] => [

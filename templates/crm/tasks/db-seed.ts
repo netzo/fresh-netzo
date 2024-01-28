@@ -1,7 +1,7 @@
-import { accounts } from "@/database/accounts.ts";
-import { deals } from "@/database/deals.ts";
-import { contacts } from "@/database/contacts.ts";
-import { invoices } from "@/database/invoices.ts";
+import { accounts } from "@/resources/accounts.ts";
+import { deals } from "@/resources/deals.ts";
+import { contacts } from "@/resources/contacts.ts";
+import { invoices } from "@/resources/invoices.ts";
 
 const kv = await Deno.openKv(Deno.env.get("DENO_KV_PATH"));
 

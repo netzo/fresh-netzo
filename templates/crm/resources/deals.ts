@@ -59,7 +59,7 @@ export type Deal = z.infer<typeof dealSchema>;
 export const deals: Deal[] = [
   {
     id: "DEAL1",
-    status: "open",
+    status: "backlog",
     accountIds: ["ACCOUNT1"],
     accounts: [{ $ref: {} }],
     contactIds: ["CONTACT1"],
@@ -84,7 +84,7 @@ export const deals: Deal[] = [
     tasks: [
       {
         type: "call",
-        status: "open",
+        status: "todo",
         title: "Call with John Doe",
         description: "Call to discuss about the new project",
         assigneeIds: ["USER1", "USER2"],
@@ -99,7 +99,7 @@ export const deals: Deal[] = [
       },
       {
         type: "email",
-        status: "open",
+        status: "todo",
         title: "Email to John Doe",
         description: "Email to discuss about the new project",
         assigneeIds: ["USER1", "USER2"],
@@ -119,7 +119,7 @@ export const deals: Deal[] = [
   },
   {
     id: "DEAL2",
-    status: "open",
+    status: "backlog",
     accountIds: ["ACCOUNT1"],
     accounts: [{ $ref: {} }],
     contactIds: ["CONTACT1"],
@@ -144,7 +144,7 @@ export const deals: Deal[] = [
     tasks: [
       {
         type: "call",
-        status: "open",
+        status: "todo",
         title: "Call with John Doe",
         description: "Call to discuss about the new project",
         assigneeIds: ["USER1", "USER2"],
@@ -159,7 +159,7 @@ export const deals: Deal[] = [
       },
       {
         type: "email",
-        status: "open",
+        status: "done",
         title: "Email to John Doe",
         description: "Email to discuss about the new project",
         assigneeIds: ["USER1", "USER2"],
@@ -179,7 +179,7 @@ export const deals: Deal[] = [
   },
   {
     id: "DEAL3",
-    status: "open",
+    status: "done",
     accountIds: ["ACCOUNT1"],
     accounts: [{ $ref: {} }],
     contactIds: ["CONTACT1", "CONTACT2"],
@@ -204,7 +204,7 @@ export const deals: Deal[] = [
     tasks: [
       {
         type: "call",
-        status: "open",
+        status: "todo",
         title: "Call with John Doe",
         description: "Call to discuss about the new project",
         assigneeIds: ["USER1", "USER2"],
@@ -219,7 +219,7 @@ export const deals: Deal[] = [
       },
       {
         type: "email",
-        status: "open",
+        status: "cancelled",
         title: "Email to John Doe",
         description: "Email to discuss about the new project",
         assigneeIds: ["USER1", "USER2"],
@@ -243,7 +243,7 @@ export const deals: Deal[] = [
 
 export const ALIASES = {
   id: "Deal Id",
-  status: "Status",
+  status: "in-progress",
   accountIds: "Accounts Ids",
   accounts: "Accounts",
   contactIds: "Contact Ids",
@@ -262,7 +262,7 @@ export const ALIASES = {
   },
   tasks: {
     type: "Type",
-    status: "Status",
+    status: "in-progress",
     title: "Title",
     description: "Description",
     assigneeIds: "Assignee Ids",
