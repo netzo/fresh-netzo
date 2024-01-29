@@ -86,12 +86,12 @@ The following table gives an overview of the currently supported auth types for
 the [supported specs](#supported-specs):
 
 | **Auth Type**                | **Support** |
-|------------------------------|:-----------:|
-| [No auth](#no-auth)          |      ✅      |
-| [Basic auth](#basic-auth)    |      ✅      |
-| [Bearer token](#bearer-auth) |      ✅      |
-| [API key](#api-key)          |      ✅      |
-| [OAuth2](#oauth2)            |      ⌛      |
+| ---------------------------- | :---------: |
+| [No auth](#no-auth)          |     ✅      |
+| [Basic auth](#basic-auth)    |     ✅      |
+| [Bearer token](#bearer-auth) |     ✅      |
+| [API key](#api-key)          |     ✅      |
+| [OAuth2](#oauth2)            |     ⌛      |
 
 ### No auth
 

@@ -64,20 +64,17 @@ export const createResourceKv = defineResource<ResourceKvOptions>((options) => {
       const key = [...prefix, id];
       const entry = await kv.get<T>(key);
       if (!entry.value) {
-        throw new Error(`Record with id ${JSON.stringify(key)} not found.`);
+        throw new Error(`Entry with key ${JSON.stringify(key)} not found.`);
       }
       const ok = await kv.atomic().check(entry).set(key, data).commit();
       if (!ok) throw new Error("Something went wrong.");
       return data;
     },
-    patch: async (
-      id: Deno.KvKeyPart,
-      data: Partial<T>,
-    ) => {
+    patch: async (id: Deno.KvKeyPart, data: Partial<T>) => {
       const key = [...prefix, id];
       const entry = await kv.get<T>(key);
       if (!entry.value) {
-        throw new Error(`Record with id ${JSON.stringify(key)} not found.`);
+        throw new Error(`Entry with key ${JSON.stringify(key)} not found.`);
       }
       data = { ...entry.value, ...data };
       const ok = await kv.atomic().check(entry).set(key, data).commit();

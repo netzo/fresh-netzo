@@ -44,15 +44,16 @@ export const createResourceHttp = defineResource<ResourceHttpOptions>(
       get: (id) => {
         return client[String(id)].get<T>();
       },
-      create: async (data: T) => {
+      create: (data: T) => {
         const id = data?.[idField] ?? ulid();
-        data = { [idField]: id, ...(await client[id].get()) };
+        data = { [idField]: id, ...data };
         return client.post<T>(data);
       },
       update: (id, data: T) => {
         return client[String(id)].put<T>(data);
       },
-      patch: (id, data: Partial<T>) => {
+      patch: async (id, data: Partial<T>) => {
+        data = { [idField]: id, ...(await client[String(id)].get()) };
         return client[String(id)].patch<T>(data);
       },
       remove: async (id) => {
