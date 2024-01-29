@@ -5,15 +5,15 @@ client for an HTTP API. The client is a minimal wrapper around the `fetch` API
 using JS proxies that simplifies making HTTP requests.
 
 ```ts
-const client = await createApi({
+const api = await createApi({
   baseURL: "https://jsonplaceholder.typicode.com",
 });
 
 // GET {baseURL}/users (types optional)
-const users = await client.users.get<User[]>();
+const users = await api.users.get<User[]>();
 
 // PATCH {baseURL}/users/12 (types optional)
-const user = await client.users[12].patch<User>({ name: "John" });
+const user = await api.users[12].patch<User>({ name: "John" });
 ```
 
 ::: tip This module is heavily inspired by
@@ -37,7 +37,7 @@ call.
 
 ```ts
 // GET {baseURL}/users?search=john
-const result = await client.users.get({ search: "john" });
+const result = await api.users.get({ search: "john" });
 ```
 
 ::: tip URL encoding Query parameters are automatically URL encoded using
@@ -50,9 +50,9 @@ you have two options:
 
 ```ts
 // GET {baseURL}/users/12 (chain syntax):
-const user = await client.users(12).get<UserResult>();
+const user = await api.users(12).get<UserResult>();
 // GET {baseURL}/users/12 (bracket syntax):
-const user = await client.users[12].get<UserResult>();
+const user = await api.users[12].get<UserResult>();
 ```
 
 ## Payload requests
@@ -61,7 +61,7 @@ For HTTP request methods supporting a payload, add it to the method call.
 
 ```ts
 // POST request to {baseURL}/users
-const result = await client.users.post({ name: "foo" });
+const result = await api.users.post({ name: "foo" });
 ```
 
 ## Request Options
@@ -69,7 +69,7 @@ const result = await client.users.post({ name: "foo" });
 You can add/overwrite client options on a method-level:
 
 ```ts
-const result = await client.users.get({
+const result = await api.users.get({
   headers: { "content-type": "application/json" },
   onRequest: (request, options) => {
     request.url = request.url.replace("/v1", "/v2");
@@ -86,12 +86,12 @@ The following table gives an overview of the currently supported auth types for
 the [supported specs](#supported-specs):
 
 | **Auth Type**                | **Support** |
-| ---------------------------- | :---------: |
-| [No auth](#no-auth)          |     ✅      |
-| [Basic auth](#basic-auth)    |     ✅      |
-| [Bearer token](#bearer-auth) |     ✅      |
-| [API key](#api-key)          |     ✅      |
-| [OAuth2](#oauth2)            |     ⌛      |
+|------------------------------|:-----------:|
+| [No auth](#no-auth)          |      ✅      |
+| [Basic auth](#basic-auth)    |      ✅      |
+| [Bearer token](#bearer-auth) |      ✅      |
+| [API key](#api-key)          |      ✅      |
+| [OAuth2](#oauth2)            |      ⌛      |
 
 ### No auth
 

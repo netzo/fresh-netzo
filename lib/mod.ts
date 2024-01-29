@@ -7,12 +7,8 @@
 
 import { type FreshConfig, start } from "./deps/$fresh/server.ts";
 import { replace } from "./deps/object-replace-mustache.ts";
-import {
-  createDatabase,
-  createNotification,
-  setEnvVarsIfRemoteProject,
-} from "./utils/mod.ts";
-import { proxyCron } from "./utils/proxies/cron.ts";
+import { createNotification, setEnvVarsIfRemoteProject } from "./utils.ts";
+import { proxyCron } from "./cron/mod.ts";
 import { proxyConsole } from "./utils/proxies/console.ts";
 import { auth, type AuthConfig, type AuthState } from "./auth/plugin.ts";
 import { database, type DatabaseConfig } from "./database/plugin.ts";

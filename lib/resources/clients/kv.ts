@@ -1,23 +1,23 @@
 import { z, type ZodSchema } from "../../deps/zod/mod.ts";
 import { defineResource } from "../mod.ts";
-import { ulid, ERRORS } from "../utils.ts";
-import { filterObjectsByKeyValues } from "../../utils/mod.ts";
+import { ERRORS, ulid } from "../utils.ts";
+import { filterObjectsByKeyValues } from "../../utils.ts";
 
 export type ResourceKvOptions = {
   /* The Deno KV store to use. */
   kv: Deno.Kv;
-  /* The KV prefix location of the resource e.g. ["accounts"], ["accounts", "123", "contacts"] */
+  /* The KV prefix location of the resource e.g. ["users"], ["users", "123", "notes"] */
   prefix?: Deno.KvKey;
-  /* The name of the field to use as the ID for the items. */
-  idField: string;
-  /* The Zod schema to use for validating resource items. */
+  /* Name of the field to use as the ID for the items (defaults to "id"). */
+  idField?: string;
+  /* Zod schema to use for validating resource items (defaults to z.unknown(). */
   schema?: ZodSchema;
 };
 
 /**
- * Creates a Resource instance to perform RESTful operations on a Deno KV store.
+ * Creates a Resource instance to perform RESTful operations on a Deno KV resource.
  * @param options {ResourceKvOptions} - options to use when creating the resource.
- * @returns a Resource instance with methods for performing RESTful operations on the KV store.
+ * @returns a Resource instance with methods for performing RESTful operations on the KV resource.
  */
 export const createResourceKv = defineResource<ResourceKvOptions>((options) => {
   const {
@@ -63,7 +63,9 @@ export const createResourceKv = defineResource<ResourceKvOptions>((options) => {
     update: async (id: Deno.KvKeyPart, data: T) => {
       const key = [...prefix, id];
       const entry = await kv.get<T>(key);
-      if (!entry.value) throw new Error(`Record with id ${JSON.stringify(key)} not found.`);
+      if (!entry.value) {
+        throw new Error(`Record with id ${JSON.stringify(key)} not found.`);
+      }
       const ok = await kv.atomic().check(entry).set(key, data).commit();
       if (!ok) throw new Error("Something went wrong.");
       return data;
@@ -74,7 +76,9 @@ export const createResourceKv = defineResource<ResourceKvOptions>((options) => {
     ) => {
       const key = [...prefix, id];
       const entry = await kv.get<T>(key);
-      if (!entry.value) throw new Error(`Record with id ${JSON.stringify(key)} not found.`);
+      if (!entry.value) {
+        throw new Error(`Record with id ${JSON.stringify(key)} not found.`);
+      }
       data = { ...entry.value, ...data };
       const ok = await kv.atomic().check(entry).set(key, data).commit();
       if (!ok) throw new Error("Something went wrong.");

@@ -56,7 +56,7 @@ export function useResource<T = unknown>(resource: Resource) {
       try {
         const newItem = await resource.update(...args) as T;
         data.value = data.value.map(
-          (item: T) => item[idField] === newItem[idField] ? newItem : item
+          (item: T) => item[idField] === newItem[idField] ? newItem : item,
         );
         return data.value;
       } catch (err) {
@@ -72,7 +72,7 @@ export function useResource<T = unknown>(resource: Resource) {
       try {
         const newItem = await resource.patch(...args) as T;
         data.value = data.value.map(
-          (item: T) => item[idField] === newItem[idField] ? newItem : item
+          (item: T) => item[idField] === newItem[idField] ? newItem : item,
         );
         return data.value;
       } catch (err) {

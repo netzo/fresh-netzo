@@ -9,6 +9,8 @@ export const isUlid = (str: string) => {
 };
 
 export const ERRORS = {
-  missingProperty: (property: string) => `Missing "${property}" property in options.`,
-  invalidProperty: (property: string) => `Invalid "${property}" property in options.`,
+  missingProperty: (property: string) =>
+    `Missing "${property}" property in options.`,
+  invalidProperty: (property: string) =>
+    `Invalid "${property}" property in options.`,
 };
