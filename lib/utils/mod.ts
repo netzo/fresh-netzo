@@ -5,7 +5,7 @@ import type { Project } from "../types.ts";
 import { log, logInfo, LOGS } from "./console.ts";
 
 export * from "./console.ts";
-export * from "./database.ts";
+export * from "../resources/drivers/kv.ts";
 export * from "./notification.ts";
 
 export async function setEnvVarsIfRemoteProject() {
@@ -47,7 +47,7 @@ export function setEnvVars(envVars: Record<string, any>) {
   return Deno.env.toObject();
 }
 
-export function filterObjectsByKeyValues<T = Record<string, any>>(
+export function filterObjectsByKeyValues<T = any>(
   data: T[],
   filters: Record<string, any> = {},
 ) {

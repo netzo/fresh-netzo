@@ -26,7 +26,7 @@ export const dealSchema = z.object({
       createdBy: z.string(),
       createdAt: z.string(),
       updatedAt: z.string(),
-    })
+    }),
   ),
   tasks: z.array(
     z.object({
@@ -43,7 +43,7 @@ export const dealSchema = z.object({
       createdBy: z.string(),
       createdAt: z.string(),
       updatedAt: z.string(),
-    })
+    }),
   ),
   createdBy: z.string(),
   createdAt: z.string(),
@@ -74,8 +74,7 @@ export const deals: Deal[] = [
       createdBy: "USER1",
       createdAt: "2021-01-01T10:00:00.000Z",
       updatedAt: "2021-01-01T10:00:00.000Z",
-    },
-    {
+    }, {
       text: "Call with John Doe",
       createdBy: "USER1",
       createdAt: "2021-01-01T10:00:00.000Z",
@@ -111,7 +110,7 @@ export const deals: Deal[] = [
         createdBy: "USER1",
         createdAt: "2021-01-01T10:00:00.000Z",
         updatedAt: "2021-01-01T10:00:00.000Z",
-      }
+      },
     ],
     createdBy: "USER1",
     createdAt: "2021-01-01T10:00:00.000Z",
@@ -134,8 +133,7 @@ export const deals: Deal[] = [
       createdBy: "USER1",
       createdAt: "2021-01-01T10:00:00.000Z",
       updatedAt: "2021-01-01T10:00:00.000Z",
-    },
-    {
+    }, {
       text: "Call with John Doe",
       createdBy: "USER1",
       createdAt: "2021-01-01T10:00:00.000Z",
@@ -171,7 +169,7 @@ export const deals: Deal[] = [
         createdBy: "USER1",
         createdAt: "2021-01-01T10:00:00.000Z",
         updatedAt: "2021-01-01T10:00:00.000Z",
-      }
+      },
     ],
     createdBy: "USER1",
     createdAt: "2021-01-01T10:00:00.000Z",
@@ -194,8 +192,7 @@ export const deals: Deal[] = [
       createdBy: "USER1",
       createdAt: "2021-01-01T10:00:00.000Z",
       updatedAt: "2021-01-01T10:00:00.000Z",
-    },
-    {
+    }, {
       text: "Call with John Doe",
       createdBy: "USER1",
       createdAt: "2021-01-01T10:00:00.000Z",
@@ -231,12 +228,12 @@ export const deals: Deal[] = [
         createdBy: "USER1",
         createdAt: "2021-01-01T10:00:00.000Z",
         updatedAt: "2021-01-01T10:00:00.000Z",
-      }
+      },
     ],
     createdBy: "USER1",
     createdAt: "2021-01-01T10:00:00.000Z",
     updatedAt: "2021-01-01T10:00:00.000Z",
-  }
+  },
 ];
 
 // i18n:
@@ -258,7 +255,6 @@ export const ALIASES = {
     createdBy: "Created by",
     createdAt: "Created at",
     updatedAt: "Updated at",
-
   },
   tasks: {
     type: "Type",

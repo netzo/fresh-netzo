@@ -12,13 +12,15 @@ export const accountSchema = z.object({
       type: z.string(), // "contact", "sales", "billing"
       name: z.string(), // "Sales department", "Billing department"
       value: z.string().email(),
-    })),
+    }),
+  ),
   phones: z.array(
     z.object({
       type: z.string(), // "contact", "sales", "billing"
       name: z.string(), // "Sales department", "Billing department"
       value: z.string(),
-    })),
+    }),
+  ),
   website: z.string().url(),
   taxInfo: z.object({
     taxId: z.string(),
@@ -37,13 +39,13 @@ export const accountSchema = z.object({
       zipCode: z.string(),
       state: z.string(),
       countryCode: z.string(),
-    })
+    }),
   }),
   links: z.array(
     z.object({
       name: z.string(), // "website", "facebook", "linkedin", "twitter", "other"
       value: z.string().url(),
-    })
+    }),
   ),
   notes: z.array(
     z.object({
@@ -51,7 +53,7 @@ export const accountSchema = z.object({
       createdBy: z.string(),
       createdAt: z.string(),
       updatedAt: z.string(),
-    })
+    }),
   ),
   shippingAddresses: z.array(
     z.object({
@@ -86,7 +88,8 @@ export const accountSchema = z.object({
         country: z.string(),
       }),
       other: z.string(),
-    })),
+    }),
+  ),
   defaults: z.object({
     expensesAccount: z.number(),
     language: z.string(),
@@ -116,22 +119,20 @@ export const accounts: Account[] = [
     emails: [{
       type: "sales",
       name: "Sales department",
-      value: "sales@abc.com"
-    },
-    {
+      value: "sales@abc.com",
+    }, {
       type: "billing",
       name: "Billing department",
-      value: "billing@abc.com"
+      value: "billing@abc.com",
     }],
     phones: [{
       type: "sales",
       name: "Sales department",
-      value: "+1 123 456 7890"
-    },
-    {
+      value: "+1 123 456 7890",
+    }, {
       type: "billing",
       name: "Billing department",
-      value: "+1 123 456 7890"
+      value: "+1 123 456 7890",
     }],
     website: "https://www.abccompany.com",
     taxInfo: {
@@ -156,7 +157,10 @@ export const accounts: Account[] = [
     links: [
       { name: "facebook", value: "https://www.facebook.com/abccompany" },
       { name: "instagram", value: "https://www.instagram.com/abccompany" },
-      { name: "linkedin", value: "https://www.linkedin.com/company/abccompany" },
+      {
+        name: "linkedin",
+        value: "https://www.linkedin.com/company/abccompany",
+      },
     ],
     notes: [
       {
@@ -222,22 +226,20 @@ export const accounts: Account[] = [
     emails: [{
       type: "sales",
       name: "Sales department",
-      value: "sales@abc.com"
-    },
-    {
+      value: "sales@abc.com",
+    }, {
       type: "billing",
       name: "Billing department",
-      value: "billing@abc.com"
+      value: "billing@abc.com",
     }],
     phones: [{
       type: "sales",
       name: "Sales department",
-      value: "+1 123 456 7890"
-    },
-    {
+      value: "+1 123 456 7890",
+    }, {
       type: "billing",
       name: "Billing department",
-      value: "+1 123 456 7890"
+      value: "+1 123 456 7890",
     }],
     website: "https://www.abccompany.com",
     taxInfo: {
@@ -262,7 +264,10 @@ export const accounts: Account[] = [
     links: [
       { name: "facebook", value: "https://www.facebook.com/abccompany" },
       { name: "instagram", value: "https://www.instagram.com/abccompany" },
-      { name: "linkedin", value: "https://www.linkedin.com/company/abccompany" },
+      {
+        name: "linkedin",
+        value: "https://www.linkedin.com/company/abccompany",
+      },
     ],
     notes: [
       {
@@ -328,22 +333,20 @@ export const accounts: Account[] = [
     emails: [{
       type: "sales",
       name: "Sales department",
-      value: "sales@abc.com"
-    },
-    {
+      value: "sales@abc.com",
+    }, {
       type: "billing",
       name: "Billing department",
-      value: "billing@abc.com"
+      value: "billing@abc.com",
     }],
     phones: [{
       type: "sales",
       name: "Sales department",
-      value: "+1 123 456 7890"
-    },
-    {
+      value: "+1 123 456 7890",
+    }, {
       type: "billing",
       name: "Billing department",
-      value: "+1 123 456 7890"
+      value: "+1 123 456 7890",
     }],
     website: "https://www.abccompany.com",
     taxInfo: {
@@ -368,7 +371,10 @@ export const accounts: Account[] = [
     links: [
       { name: "facebook", value: "https://www.facebook.com/abccompany" },
       { name: "instagram", value: "https://www.instagram.com/abccompany" },
-      { name: "linkedin", value: "https://www.linkedin.com/company/abccompany" },
+      {
+        name: "linkedin",
+        value: "https://www.linkedin.com/company/abccompany",
+      },
     ],
     notes: [
       {
@@ -454,8 +460,8 @@ export const ALIASES = {
       "district": "District",
       "zipCode": "ZIP Code",
       "state": "State",
-      "countryCode": "Country Code"
-    }
+      "countryCode": "Country Code",
+    },
   },
   "links": "Links",
   "portals": [
@@ -465,8 +471,8 @@ export const ALIASES = {
       "descripcion": "Description",
       "url": "URL",
       "username": "Username",
-      "password": "Password"
-    }
+      "password": "Password",
+    },
   ],
   "notes": [
     {
@@ -474,7 +480,7 @@ export const ALIASES = {
       "createdBy": "Created At",
       "createdAt": "Created At",
       "updatedAt": "Updated At",
-    }
+    },
   ],
   "shippingAddresses": [
     {
@@ -489,8 +495,8 @@ export const ALIASES = {
       "district": "District",
       "zipCode": "ZIP Code",
       "state": "State",
-      "countryCode": "Country Code"
-    }
+      "countryCode": "Country Code",
+    },
   ],
   "bankAccounts": [
     {
@@ -506,10 +512,10 @@ export const ALIASES = {
         "name": "Name",
         "city": "City",
         "code": "Code",
-        "country": "Country"
+        "country": "Country",
       },
-      "info": "Info"
-    }
+      "info": "Info",
+    },
   ],
   "defaults": {
     "expensesAccount": "Expenses Account",
@@ -518,7 +524,7 @@ export const ALIASES = {
     "paymentMethod": "Payment Method",
     "paymentForm": "Payment Form",
     "paymentDeadline": "Payment Deadline",
-    "paymentTerms": "Payment Terms"
+    "paymentTerms": "Payment Terms",
   },
   "createdBy": "Created By",
   "createdAt": "Created At",

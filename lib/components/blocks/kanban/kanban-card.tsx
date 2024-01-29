@@ -5,11 +5,12 @@ import { Card, CardContent, CardHeader, CardTitle } from "../../ui/card.tsx";
 import { Button } from "../../ui/button.tsx";
 import { cva } from "../../../deps/class-variance-authority.ts";
 import { Badge } from "../../ui/badge.tsx";
-import type { Item } from "./kanban.tsx";
+import type { Item, KanbanProps } from "./kanban.tsx";
 
 interface KanbanCardProps {
   item: Item;
   isOverlay?: boolean;
+  options: KanbanProps["options"];
 }
 
 export type ItemType = "Item";
@@ -19,7 +20,7 @@ export interface ItemDragData {
   item: Item;
 }
 
-export function KanbanCard({ item, isOverlay }: KanbanCardProps) {
+export function KanbanCard({ item, isOverlay, options }: KanbanCardProps) {
   const {
     setNodeRef,
     attributes,
@@ -28,7 +29,7 @@ export function KanbanCard({ item, isOverlay }: KanbanCardProps) {
     transition,
     isDragging,
   } = useSortable({
-    id: item.id,
+    id: item[options.fieldIds.id],
     data: {
       type: "Item",
       item,
@@ -71,14 +72,14 @@ export function KanbanCard({ item, isOverlay }: KanbanCardProps) {
           <div className="w-6 h-6 mdi-drag" />
         </Button>
         <CardTitle className="ml-1 text-sm font-medium">
-          {item.name}
+          {item?.[options.fieldIds.name]}
         </CardTitle>
         <Badge variant={"outline"} className="ml-auto font-medium">
-          {item.status}
+          {item?.[options.fieldIds.column]}
         </Badge>
       </CardHeader>
       <CardContent className="px-4 pt-2 pb-4 text-xs whitespace-pre-wrap text-secondary-foreground">
-        {item.description}
+        {item?.[options.fieldIds.description]}
       </CardContent>
     </Card>
   );

@@ -16,18 +16,20 @@ export const contactSchema = z.object({
       type: z.string(), // "work", "mobile", "whatsapp",
       name: z.string(), // "Personal whatsapp", "Work phone", "Home phone", "Mobile phone", "Fax", "Other"
       value: z.string(),
-    })),
+    }),
+  ),
   emails: z.array(
     z.object({
       type: z.string(), // "personal", "work"
       name: z.string(), // "Personal email", "Work email", "Other"
       value: z.string().email(),
-    })),
+    }),
+  ),
   links: z.array(
     z.object({
       name: z.string(), // "website", "facebook", "linkedin", "twitter", "other"
       value: z.string().url(),
-    })
+    }),
   ),
   notes: z.array(
     z.object({
@@ -35,7 +37,7 @@ export const contactSchema = z.object({
       createdBy: z.string(),
       createdAt: z.string(),
       updatedAt: z.string(),
-    })
+    }),
   ),
   consent: z.object({
     documents: z.boolean(),
@@ -50,7 +52,7 @@ export const contactSchema = z.object({
   createdBy: z.string(),
   createdAt: z.string(),
   updatedAt: z.string(),
-})
+});
 
 // types:
 
@@ -71,12 +73,12 @@ export const contacts: Contact[] = [
     phone: [{
       type: "work",
       name: "Work Phone",
-      value: "+521234567890"
+      value: "+521234567890",
     }],
     emails: [{
       type: "work",
       name: "Work Email",
-      value: "john.doe@esgraf.com.mx"
+      value: "john.doe@esgraf.com.mx",
     }],
     links: [
       { name: "facebook", value: "https://facebook.com/johndoe" },
@@ -88,7 +90,6 @@ export const contacts: Contact[] = [
       createdBy: "USER1",
       createdAt: "2021-01-01T10:00:00.000Z",
       updatedAt: "2021-01-01T10:00:00.000Z",
-
     }],
     consent: {
       documents: true,
@@ -116,12 +117,12 @@ export const contacts: Contact[] = [
     phone: [{
       type: "work",
       name: "Work Phone",
-      value: "+521234567890"
+      value: "+521234567890",
     }],
     emails: [{
       type: "work",
       name: "Work Email",
-      value: "john.doe@esgraf.com.mx"
+      value: "john.doe@esgraf.com.mx",
     }],
     links: [
       { name: "facebook", value: "https://facebook.com/johndoe" },
@@ -133,7 +134,6 @@ export const contacts: Contact[] = [
       createdBy: "USER1",
       createdAt: "2021-01-01T10:00:00.000Z",
       updatedAt: "2021-01-01T10:00:00.000Z",
-
     }],
     consent: {
       documents: true,
@@ -161,12 +161,12 @@ export const contacts: Contact[] = [
     phone: [{
       type: "work",
       name: "Work Phone",
-      value: "+521234567890"
+      value: "+521234567890",
     }],
     emails: [{
       type: "work",
       name: "Work Email",
-      value: "john.doe@esgraf.com.mx"
+      value: "john.doe@esgraf.com.mx",
     }],
     links: [
       { name: "facebook", value: "https://facebook.com/johndoe" },

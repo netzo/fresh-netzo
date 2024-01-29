@@ -2,7 +2,7 @@ import { toFile } from "../../../../../deps/@featherscloud/pinion/mod.ts";
 import { RouteGeneratorContext } from "../mod.ts";
 import { renderSource } from "../../commons.ts";
 
-const uiTemplate = ({ }: RouteGeneratorContext) =>
+const uiTemplate = ({}: RouteGeneratorContext) =>
   /* tsx */ `// [netzo] generated via https://netzo.io/docs/cli
 import { defineRoute } from "$fresh/server.ts";
 
@@ -18,12 +18,12 @@ export default defineRoute<State>(async (req, ctx) => {
 });
 `;
 
-const apiTemplate = ({ }: RouteGeneratorContext) =>
+const apiTemplate = ({}: RouteGeneratorContext) =>
   /* tsx */ `// [netzo] generated via https://netzo.io/docs/cli
 TODO
 `;
 
-const mixedTemplate = ({ }: RouteGeneratorContext) =>
+const mixedTemplate = ({}: RouteGeneratorContext) =>
   /* tsx */ `// [netzo] generated via https://netzo.io/docs/cli
 TODO
 `;

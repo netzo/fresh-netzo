@@ -37,11 +37,9 @@ export type NetzoState = {
   [k: string]: unknown;
 };
 
-// WORKAROUND: silence selected messages by substrings until resolution of
-// https://github.com/denoland/fresh/issues/1773#issuecomment-1763502518
+// WORKAROUND: silence selected messages by substrings
 console = proxyConsole(
   `Comparison using the "!==" operator here is always true`,
-  "Improper nesting of table",
   `Not implemented: ClientRequest.options.createConnection`,
   `Use of deprecated "`, // Deno 2.0 warnings (see https://github.com/denoland/fresh/issues/2276)
 );

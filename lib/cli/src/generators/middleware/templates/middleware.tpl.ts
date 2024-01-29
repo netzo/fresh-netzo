@@ -2,7 +2,7 @@ import { toFile } from "../../../../../deps/@featherscloud/pinion/mod.ts";
 import { MiddlewareGeneratorContext } from "../mod.ts";
 import { renderSource } from "../../commons.ts";
 
-const singleTemplate = ({ }: MiddlewareGeneratorContext) =>
+const singleTemplate = ({}: MiddlewareGeneratorContext) =>
   /* tsx */ `// [netzo] generated via https://netzo.io/docs/cli
 import { FreshContext } from "$fresh/server.ts";
 
@@ -16,7 +16,7 @@ export async function handler(req: Request, ctx: FreshContext<State>) {
 }
 `;
 
-const multipleTemplate = ({ }: MiddlewareGeneratorContext) =>
+const multipleTemplate = ({}: MiddlewareGeneratorContext) =>
   /* tsx */ `// [netzo] generated via https://netzo.io/docs/cli
 export const handler = [
   async function middleware1(req, ctx) {

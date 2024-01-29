@@ -9,7 +9,7 @@ export const interactionSchema = z.object({
   createdBy: z.string(),
   createdAt: z.string(),
   updatedAt: z.string(),
-})
+});
 
 // types:
 
@@ -39,7 +39,7 @@ export const interactions: Interaction[] = [
       description: "Email to discuss about the new project",
       date: "2021-01-01T10:00:00.000Z",
       duration: 30,
-      from: ""
+      from: "",
     },
     createdBy: "USER1",
     createdAt: "2021-01-01T10:00:00.000Z",
@@ -57,7 +57,7 @@ export const interactions: Interaction[] = [
     createdBy: "USER1",
     createdAt: "2021-01-01T10:00:00.000Z",
     updatedAt: "2021-01-01T10:00:00.000Z",
-  }
+  },
 ];
 
 // i18n:

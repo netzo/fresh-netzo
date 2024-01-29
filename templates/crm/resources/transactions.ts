@@ -23,7 +23,7 @@ export const transactionSchema = z.object({
       createdBy: z.string(),
       createdAt: z.string(),
       updatedAt: z.string(),
-    })
+    }),
   ),
   createdBy: z.string(),
   createdAt: z.string(),
@@ -57,12 +57,12 @@ export const transactions: Transaction[] = [
         "text": "Received payment for services rendered",
         "createdBy": "John Doe",
         "createdAt": "2023-06-15T09:35:00Z",
-        "updatedAt": "2023-06-15T09:35:00Z"
-      }
+        "updatedAt": "2023-06-15T09:35:00Z",
+      },
     ],
     "createdBy": "Jane Smith",
     "createdAt": "2023-06-15T09:40:00Z",
-    "updatedAt": "2023-06-15T09:40:00Z"
+    "updatedAt": "2023-06-15T09:40:00Z",
   },
   {
     "id": "67890",
@@ -84,12 +84,12 @@ export const transactions: Transaction[] = [
         "text": "Payment for office supplies",
         "createdBy": "Alice Johnson",
         "createdAt": "2023-07-20T14:50:00Z",
-        "updatedAt": "2023-07-20T14:50:00Z"
-      }
+        "updatedAt": "2023-07-20T14:50:00Z",
+      },
     ],
     "createdBy": "Bob Williams",
     "createdAt": "2023-07-20T15:00:00Z",
-    "updatedAt": "2023-07-20T15:00:00Z"
+    "updatedAt": "2023-07-20T15:00:00Z",
   },
   {
     "id": "13579",
@@ -111,13 +111,13 @@ export const transactions: Transaction[] = [
         "text": "Transferring funds between internal accounts",
         "createdBy": "Eva Martinez",
         "createdAt": "2023-08-05T11:05:00Z",
-        "updatedAt": "2023-08-05T11:05:00Z"
-      }
+        "updatedAt": "2023-08-05T11:05:00Z",
+      },
     ],
     "createdBy": "David Brown",
     "createdAt": "2023-08-05T11:10:00Z",
-    "updatedAt": "2023-08-05T11:10:00Z"
-  }
+    "updatedAt": "2023-08-05T11:10:00Z",
+  },
 ];
 
 // i18n:

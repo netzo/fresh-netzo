@@ -1,5 +1,5 @@
-import { z } from "../../deps/zod/mod.ts";
-import { jsonSchemaToZod } from "../../deps/json-schema-to-zod.ts";
+import { z } from "../deps/zod/mod.ts";
+import { jsonSchemaToZod } from "../deps/json-schema-to-zod.ts";
 
 /**
  * Creates a Zod schema from a JSON schema (string or object).

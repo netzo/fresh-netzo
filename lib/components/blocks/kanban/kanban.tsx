@@ -1,6 +1,5 @@
 // adapted from https://github.com/Georgegriff/react-dnd-kit-tailwind-shadcn-ui/blob/main/src/components/kanban.tsx
 import { useComputed, useSignal } from "../../../deps/@preact/signals.ts";
-import { BoardContainer, KanbanColumn } from "./kanban-column.tsx";
 import {
   Announcements,
   DndContext,
@@ -16,9 +15,9 @@ import {
   useSensors,
 } from "../../../deps/@dnd-kit/core.ts";
 import { arrayMove, SortableContext } from "../../../deps/@dnd-kit/sortable.ts";
-import type { Column } from "./kanban-column.tsx";
-import { hasDraggableData } from "./utils.ts";
 import { coordinateGetter } from "./multiple-containers-keyboard-preset.ts";
+import { BoardContainer, type Column, KanbanColumn } from "./kanban-column.tsx";
+import { hasDraggableData } from "./utils.ts";
 
 export type Item = {
   id: UniqueIdentifier;
@@ -27,20 +26,34 @@ export type Item = {
   [key: string]: unknown;
 };
 
-export type KanbanProps<TData = unknown, TValue = unknown> = {
+export type KanbanProps<TData = Item> = {
   data: TData[];
   options: {
     resource: string;
-    columnId: string;
+    fieldIds: {
+      id: string;
+      column: string;
+      name: string;
+      description: string;
+    };
     columns: Column[];
   };
 };
 
-export function Kanban({ data, options }) {
-  const { columnId = "status" } = options;
+export function Kanban({ data, options }: KanbanProps) {
+  // set default fieldIds:
+  options.fieldIds = {
+    id: options?.fieldIds?.id || "id",
+    column: options?.fieldIds?.column || "status",
+    name: options?.fieldIds?.name || "name",
+    description: options?.fieldIds?.description || "description",
+  };
+
   const columns = useSignal<Column[]>(options.columns);
   const pickedUpItemColumn = useSignal<string | null>(null);
-  const columnsId = useComputed(() => columns.value.map((col) => col.id));
+  const columnsId = useComputed(() =>
+    columns.value.map((col) => col[options.fieldIds.id])
+  );
 
   const items = useSignal<Item[]>(data);
 
@@ -61,10 +74,14 @@ export function Kanban({ data, options }) {
     columnIdValue: string,
   ) {
     const itemsInColumn = items.value.filter((item) =>
-      item[columnId] === columnIdValue
+      item[options.fieldIds.column] === columnIdValue
     );
-    const itemPosition = itemsInColumn.findIndex((item) => item.id === itemId);
-    const column = columns.value.find((col) => col.id === columnIdValue);
+    const itemPosition = itemsInColumn.findIndex((item) =>
+      item[options.fieldIds.id] === itemId
+    );
+    const column = columns.value.find((col) =>
+      col[options.fieldIds.id] === columnIdValue
+    );
     return {
       itemsInColumn,
       itemPosition,
@@ -77,16 +94,17 @@ export function Kanban({ data, options }) {
       if (!hasDraggableData(active)) return;
       if (active.data.current?.type === "Column") {
         const startColumnIdx = columnsId.value.findIndex((id) =>
-          id === active.id
+          id === active[options.fieldIds.id]
         );
         const startColumn = columns.value[startColumnIdx];
         return `Picked up Column ${startColumn?.title} at position: ${
           startColumnIdx + 1
         } of ${columnsId.value.length}`;
       } else if (active.data.current?.type === "Item") {
-        pickedUpItemColumn.value = active.data.current.item[columnId];
+        pickedUpItemColumn.value =
+          active.data.current.item[options.fieldIds.column];
         const { itemsInColumn, itemPosition, column } = getDraggingItemData(
-          active.id,
+          active[options.fieldIds.id],
           pickedUpItemColumn.value as string,
         );
         return `Picked up Item ${active.data.current.item.name} at position: ${
@@ -101,7 +119,9 @@ export function Kanban({ data, options }) {
         active.data.current?.type === "Column" &&
         over.data.current?.type === "Column"
       ) {
-        const overColumnIdx = columnsId.value.findIndex((id) => id === over.id);
+        const overColumnIdx = columnsId.value.findIndex((id) =>
+          id === over[options.fieldIds.id]
+        );
         return `Column ${active.data.current.column.title} was moved over ${over.data.current.column.title} at position ${
           overColumnIdx + 1
         } of ${columnsId.value.length}`;
@@ -110,10 +130,13 @@ export function Kanban({ data, options }) {
         over.data.current?.type === "Item"
       ) {
         const { itemsInColumn, itemPosition, column } = getDraggingItemData(
-          over.id,
-          over.data.current.item[columnId],
+          over[options.fieldIds.id],
+          over.data.current.item[options.fieldIds.column],
         );
-        if (over.data.current.item[columnId] !== pickedUpItemColumn.value) {
+        if (
+          over.data.current.item[options.fieldIds.column] !==
+            pickedUpItemColumn.value
+        ) {
           return `Item ${active.data.current.item.name} was moved over column ${column?.title} in position ${
             itemPosition + 1
           } of ${itemsInColumn.length}`;
@@ -133,7 +156,7 @@ export function Kanban({ data, options }) {
         over.data.current?.type === "Column"
       ) {
         const overColumnPosition = columnsId.value.findIndex((id) =>
-          id === over.id
+          id === over[options.fieldIds.id]
         );
 
         return `Column ${active.data.current.column.title} was dropped into position ${
@@ -144,10 +167,13 @@ export function Kanban({ data, options }) {
         over.data.current?.type === "Item"
       ) {
         const { itemsInColumn, itemPosition, column } = getDraggingItemData(
-          over.id,
-          over.data.current.item[columnId],
+          over[options.fieldIds.id],
+          over.data.current.item[options.fieldIds.column],
         );
-        if (over.data.current.item[columnId] !== pickedUpItemColumn.value) {
+        if (
+          over.data.current.item[options.fieldIds.column] !==
+            pickedUpItemColumn.value
+        ) {
           return `Item was dropped into column ${column?.title} in position ${
             itemPosition + 1
           } of ${itemsInColumn.length}`;
@@ -179,9 +205,12 @@ export function Kanban({ data, options }) {
         <SortableContext items={columnsId.value}>
           {columns.value.map((col) => (
             <KanbanColumn
-              key={col.id}
+              key={col[options.fieldIds.id]}
               column={col}
-              items={items.value.filter((item) => item[columnId] === col.id)}
+              items={items.value.filter((item) =>
+                item[options.fieldIds.column] === col[options.fieldIds.id]
+              )}
+              options={options}
             />
           ))}
         </SortableContext>
@@ -196,7 +225,7 @@ export function Kanban({ data, options }) {
                 isOverlay
                 column={activeColumn}
                 items={items.value.filter(
-                  (item) => item[columnId] === activeColumn.id
+                  (item) => item[options.fieldIds.column] === activeColumn[options.fieldIds.id]
                 )}
               />
             )}
@@ -229,8 +258,8 @@ export function Kanban({ data, options }) {
     const { active, over } = event;
     if (!over) return;
 
-    const activeId = active.id;
-    const overId = over.id;
+    const activeId = active[options.fieldIds.id];
+    const overId = over[options.fieldIds.id];
 
     if (!hasDraggableData(active)) return;
 
@@ -242,10 +271,12 @@ export function Kanban({ data, options }) {
     if (!isActiveAColumn) return;
 
     const activeColumnIndex = columns.value.findIndex((col) =>
-      col.id === activeId
+      col[options.fieldIds.id] === activeId
     );
 
-    const overColumnIndex = columns.value.findIndex((col) => col.id === overId);
+    const overColumnIndex = columns.value.findIndex((col) =>
+      col[options.fieldIds.id] === overId
+    );
 
     columns.value = arrayMove(
       columns.value,
@@ -258,8 +289,8 @@ export function Kanban({ data, options }) {
     const { active, over } = event;
     if (!over) return;
 
-    const activeId = active.id;
-    const overId = over.id;
+    const activeId = active[options.fieldIds.id];
+    const overId = over[options.fieldIds.id];
 
     if (activeId === overId) return;
 
@@ -275,16 +306,21 @@ export function Kanban({ data, options }) {
 
     // Im dropping a Item over another Item
     if (isActiveAItem && isOverAItem) {
-      const activeIndex = items.value.findIndex((t) => t.id === activeId);
-      const overIndex = items.value.findIndex((t) => t.id === overId);
+      const activeIndex = items.value.findIndex((t) =>
+        t[options.fieldIds.id] === activeId
+      );
+      const overIndex = items.value.findIndex((t) =>
+        t[options.fieldIds.id] === overId
+      );
       const activeItem = items.value[activeIndex];
       const overItem = items.value[overIndex];
       if (
         activeItem &&
         overItem &&
-        activeItem[columnId] !== overItem[columnId]
+        activeItem[options.fieldIds.column] !==
+          overItem[options.fieldIds.column]
       ) {
-        activeItem[columnId] = overItem[columnId];
+        activeItem[options.fieldIds.column] = overItem[options.fieldIds.column];
         items.value = arrayMove(items.value, activeIndex, overIndex - 1);
       }
 
@@ -295,10 +331,12 @@ export function Kanban({ data, options }) {
 
     // Im dropping a Item over a column
     if (isActiveAItem && isOverAColumn) {
-      const activeIndex = items.value.findIndex((t) => t.id === activeId);
+      const activeIndex = items.value.findIndex((t) =>
+        t[options.fieldIds.id] === activeId
+      );
       const activeItem = items.value[activeIndex];
       if (activeItem) {
-        activeItem[columnId] = overId as string;
+        activeItem[options.fieldIds.column] = overId as string;
         return arrayMove(items.value, activeIndex, activeIndex);
       }
     }

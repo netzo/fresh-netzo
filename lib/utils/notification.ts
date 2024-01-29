@@ -1,4 +1,4 @@
-import type { createDatabase } from "./database.ts";
+import type { createDatabase } from "../resources/drivers/kv.ts";
 
 export type Notification = {
   id: string;

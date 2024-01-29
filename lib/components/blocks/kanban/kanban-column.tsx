@@ -15,7 +15,7 @@ import { cva } from "../../../deps/class-variance-authority.ts";
 import { Card, CardContent, CardHeader } from "../../ui/card.tsx";
 import { Button } from "../../ui/button.tsx";
 import { ScrollArea, ScrollBar } from "../../ui/scroll-area.tsx";
-import type { Item } from "./kanban.tsx";
+import type { Item, KanbanProps } from "./kanban.tsx";
 
 export interface Column {
   id: UniqueIdentifier;
@@ -33,12 +33,15 @@ interface KanbanColumnProps {
   column: Column;
   items: Item[];
   isOverlay?: boolean;
+  options: KanbanProps["options"];
 }
 
 export function KanbanColumn(
-  { column, items, isOverlay }: KanbanColumnProps,
+  { column, items, isOverlay, options }: KanbanColumnProps,
 ) {
-  const itemsIds = useComputed(() => items.map((item) => item.id));
+  const itemsIds = useComputed(() =>
+    items.map((item) => item[options.fieldIds.id])
+  );
 
   const {
     setNodeRef,
@@ -48,7 +51,7 @@ export function KanbanColumn(
     transition,
     isDragging,
   } = useSortable({
-    id: column.id,
+    id: column[options.fieldIds.id],
     data: {
       type: "Column",
       column,
@@ -99,7 +102,13 @@ export function KanbanColumn(
       <ScrollArea>
         <CardContent className="flex flex-col flex-grow gap-2 p-2">
           <SortableContext items={itemsIds.value}>
-            {items.map((item) => <KanbanCard key={item.id} item={item} />)}
+            {items.map((item) => (
+              <KanbanCard
+                key={item[options.fieldIds.id]}
+                item={item}
+                options={options}
+              />
+            ))}
           </SortableContext>
         </CardContent>
       </ScrollArea>
