@@ -1,6 +1,6 @@
 import { z, type ZodSchema } from "../../deps/zod/mod.ts";
 import { defineResource } from "../mod.ts";
-import { ApiClient } from "../../apis/_create-api/types.ts";
+import type { ApiClient } from "../../apis/_create-api/types.ts";
 
 import { ERRORS, ulid } from "../utils.ts";
 
@@ -18,7 +18,7 @@ export type ResourceHttpOptions = {
  * @param options {ResourceHttpOptions} - options to use when creating the resource.
  * @returns a Resource instance with methods for performing RESTful operations on the HTTP resource.
  */
-export const createResourceKv = defineResource<ResourceHttpOptions>(
+export const createResourceHttp = defineResource<ResourceHttpOptions>(
   (options) => {
     const {
       client,
@@ -27,7 +27,7 @@ export const createResourceKv = defineResource<ResourceHttpOptions>(
     } = options;
 
     if (!client) throw new Error(ERRORS.missingProperty("client"));
-    if (!(client instanceof Deno.Kv)) throw new Error(ERRORS.invalidProperty("client"));
+    // if (!(client is ApiClient)) throw new Error(ERRORS.invalidProperty("client"));
 
     type T = z.infer<typeof schema>;
 
@@ -42,7 +42,7 @@ export const createResourceKv = defineResource<ResourceHttpOptions>(
         return client.get<T[]>(query); // native querying (if any) instead of filterObjectsByKeyValues
       },
       get: (id) => {
-        return client[id].get<T>();
+        return client[String(id)].get<T>();
       },
       create: async (data: T) => {
         const id = data?.[idField] ?? ulid();
@@ -50,13 +50,13 @@ export const createResourceKv = defineResource<ResourceHttpOptions>(
         return client.post<T>(data);
       },
       update: (id, data: T) => {
-        return client[id].put<T>(data);
+        return client[String(id)].put<T>(data);
       },
       patch: (id, data: Partial<T>) => {
-        return client[id].patch<T>(data);
+        return client[String(id)].patch<T>(data);
       },
       remove: async (id) => {
-        await client[id].delete<T>();
+        await client[String(id)].delete<T>();
         return { ok: true };
       },
     };

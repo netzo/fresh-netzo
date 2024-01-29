@@ -6,7 +6,7 @@ import { filterObjectsByKeyValues } from "../../utils.ts";
 export type ResourceKvOptions = {
   /* The Deno KV store to use. */
   kv: Deno.Kv;
-  /* The KV prefix location of the resource e.g. ["users"], ["users", "123", "notes"] */
+  /* The KV prefix location of the resource e.g. ["users"] */
   prefix?: Deno.KvKey;
   /* Name of the field to use as the ID for the items (defaults to "id"). */
   idField?: string;

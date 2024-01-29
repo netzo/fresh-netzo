@@ -1,0 +1,83 @@
+// TODO: implement tests from https://github.com/johannschopplich/unrested/blob/main/test/index.test.ts
+import "../../deps/std/dotenv/load.ts";
+import { assertEquals, assertExists } from "../../deps/std/assert/mod.ts";
+import { z } from "../../deps/zod/mod.ts";
+import { createApi } from "../../apis/_create-api/mod.ts";
+import { auth } from "../../apis/_create-api/auth/mod.ts";
+import { createResourceHttp } from "./http.ts";
+
+const todoSchema = z.object({
+  userId: z.number(),
+  id: z.number(),
+  title: z.string(),
+  completed: z.boolean(),
+})
+
+type Todo = z.infer<typeof todoSchema>
+
+Deno.test("[apis] createApi", async (t) => {
+  const api = createApi({
+    baseURL: "https://jsonplaceholder.typicode.com",
+    headers: {
+      "content-type": "application/json",
+    },
+    async onRequest(ctx) {
+      await auth({ type: "none" }, ctx);
+    },
+  });
+
+  const $todos = createResourceHttp({
+    client: api.todos,
+    idField: 'id',
+    schema: z.object({
+      id: z.string(),
+      name: z.string(),
+      email: z.string().email(),
+    }),
+  })
+
+  await t.step("declarations", () => {
+    assertExists(createApi);
+    assertExists(api);
+    assertExists($todos);
+  });
+
+  await t.step("$todos.get()", async () => {
+    const todos = await $todos.find();
+    assertEquals(todos?.length, 200);
+  });
+
+  await t.step("$todos.get(1)", async () => {
+    const todo = await $todos.get(1);
+    assertEquals(todo?.id, 1);
+  });
+
+  await t.step("$todos.create()", async () => {
+    const todo = await $todos.create({
+      userId: 1,
+      title: "lorem ipsum",
+      completed: true,
+    });
+    assertExists(todo);
+  });
+
+  await t.step("$todos.update(1)", async () => {
+    const todo = await $todos.update(1, {
+      userId: 1,
+      id: 1,
+      title: "lorem ipsum",
+      completed: true,
+    });
+    assertExists(todo);
+  });
+
+  await t.step("$todos.patch(1)", async () => {
+    const todo = await $todos.patch(1, { completed: true });
+    assertExists(todo);
+  });
+
+  await t.step("$todos.delete(1)", async () => {
+    const todo = await $todos.remove(1);
+    assertExists(todo);
+  });
+});

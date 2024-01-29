@@ -1,7 +1,4 @@
-import {
-  assertEquals,
-  assertExists,
-} from "https://deno.land/std@0.205.0/testing/asserts.ts";
+import { assertEquals, assertExists } from "../../deps/std/assert/mod.ts";
 import { sendgrid } from "./mod.ts";
 
 Deno.test("[apis] sendgrid", async (t) => {

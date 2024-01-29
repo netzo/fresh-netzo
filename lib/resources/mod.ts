@@ -1,15 +1,18 @@
 // lik @unjs/unstorage but for resources instead of storage
 export * from "./utils.ts";
+import type { ULID } from "../deps/ulid.ts";
+
+export type Id = string | number | ULID;
 
 export type Resource<T = unknown> = {
   name?: string;
   options?: Record<string, unknown>;
   find: (query?: Record<string | number, unknown>) => Promise<T[]>;
-  get: (id: string) => Promise<T | undefined>;
+  get: (id: Id) => Promise<T | undefined>;
   create: (data: T) => Promise<T>;
-  update: (id: string, data: T) => Promise<T>;
-  patch: (id: string, data: Partial<T>) => Promise<T>;
-  remove: (id: string) => Promise<{ ok: boolean }>;
+  update: (id: Id, data: T) => Promise<T>;
+  patch: (id: Id, data: Partial<T>) => Promise<T>;
+  remove: (id: Id) => Promise<{ ok: boolean }>;
 };
 
 type ResourceFactory<T> = (opts: T) => Resource;

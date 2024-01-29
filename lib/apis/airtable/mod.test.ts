@@ -1,8 +1,5 @@
-import "https://deno.land/std@0.205.0/dotenv/load.ts";
-import {
-  assertEquals,
-  assertExists,
-} from "https://deno.land/std@0.205.0/testing/asserts.ts";
+import "../../deps/std/dotenv/load.ts";
+import { assertEquals, assertExists } from "../../deps/std/assert/mod.ts";
 import { airtable } from "./mod.ts";
 
 Deno.test("[apis] airtable", async (t) => {
