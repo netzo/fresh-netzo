@@ -1,4 +1,4 @@
-import { createResourceKv } from "../resources/clients/kv.ts";
+import { createResourceDenoKv } from "../services/adapters/denokv.ts";
 
 export type Notification = {
   id: string;
@@ -13,7 +13,7 @@ export type Notification = {
 };
 
 export const createNotification = (kv: Deno.Kv) => {
-  const $notifications = createResourceKv({ kv, prefix: ["$notifications"] });
+  const $notifications = createResourceDenoKv({ kv, prefix: ["$notifications"] });
   return (data: Notification["data"]): Promise<Notification> => {
     const createdAt = new Date().toISOString();
     return $notifications.create({

@@ -37,4 +37,3 @@ export const logRuntime = async (_context: HookContext, next: NextFunction) => {
 //   console.log({ refs });
 //   await next();
 // };
-

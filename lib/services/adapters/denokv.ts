@@ -19,7 +19,7 @@ export type ResourceKvOptions = {
  * @param options {ResourceKvOptions} - options to use when creating the resource.
  * @returns a Resource instance with methods for performing RESTful operations on the KV resource.
  */
-export const createResourceKv = defineResource<ResourceKvOptions>((options) => {
+export const createResourceDenoKv = defineResource<ResourceKvOptions>((options) => {
   const {
     kv,
     prefix,

@@ -1,5 +1,5 @@
 // see https://github.com/netzo/netzo/issues/57
-import { createResourceKv } from "../resources/clients/kv.ts";
+import { createResourceDenoKv } from "../services/adapters/denokv.ts";
 
 export type Run = {
   id: string;
@@ -24,7 +24,7 @@ export type CronParams = Parameters<typeof Deno.cron>;
  * @returns {Proxy} - a proxied Deno.cron object
  */
 export const proxyCron = (kv: Deno.Kv) => {
-  const $runs = createResourceKv({ kv, prefix: ["$runs"] });
+  const $runs = createResourceDenoKv({ kv, prefix: ["$runs"] });
   return new Proxy(Deno.cron, {
     apply(target, thisArg, argArray: CronParams) {
       const [name, schedule, opt1, opt2] = argArray;
