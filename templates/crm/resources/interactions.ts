@@ -5,7 +5,7 @@ import { z } from "netzo/deps/zod/mod.ts";
 export const interactionSchema = z.object({
   id: z.string(),
   type: z.string(), // "call", "email", "meeting", "whatsapp-msg", "livechat-msg", facebook-msg", "instagram-msg", "linkedin-msg", "twitter-msg", "other"
-  data: z.object(),
+  data: z.any(),
   createdBy: z.string(),
   createdAt: z.string(),
   updatedAt: z.string(),

@@ -5,7 +5,7 @@ import { z } from "netzo/deps/zod/mod.ts";
 export const contactSchema = z.object({
   id: z.string(),
   accountId: z.array(z.string()),
-  account: z.array(z.object()),
+  account: z.array(z.any()),
   accountDomain: z.string(), // Will be used to match records from email domain, once associated with an account, it will be removed from here
   firstName: z.string(),
   lastName: z.string(),

@@ -8,10 +8,10 @@ import { Overview } from "@/islands/Overview.tsx";
 
 export default defineRoute((req, ctx) => {
   // const data = await Promise.all([
-  //   netzo.db.find<Account>(["accounts"]),
-  //   netzo.db.find<Deal>(["deals"]),
-  //   netzo.db.find<Contact>(["contacts"]),
-  //   netzo.db.find<Invoice>(["invoices"]),
+  //   netzo.service("accounts").find<Account>(),
+  //   netzo.service("deals").find<Deal>(),
+  //   netzo.service("contacts").find<Contact>(),
+  //   netzo.service("invoices").find<Invoice>(),
   // ]);
 
   // if (!data) return ctx.renderNotFound();

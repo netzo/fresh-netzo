@@ -8,7 +8,7 @@ export default defineRoute(async (req, ctx) => {
   const { id } = ctx.params;
   const data = id === "new"
     ? {}
-    : await netzo.db.get<Invoice>(["invoices", id]);
+    : await netzo.service("invoices").get<Invoice>(id); // GET /api/invoices/:id
 
   return (
     <div className="my-4 overflow-auto">
