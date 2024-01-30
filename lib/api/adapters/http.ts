@@ -1,16 +1,11 @@
-import { z, type ZodSchema } from "../../deps/zod/mod.ts";
-import { defineService } from "../types.ts";
+import { defineService, type ServiceOptions } from "../types.ts";
 import type { ApiClient } from "../../apis/_create-api/types.ts";
 
 import { ERRORS, ulid } from "../utils.ts";
 
-export type HttpServiceOptions = {
+export type HttpServiceOptions = ServiceOptions & {
   /* Netzo API client of the service (e.g. api.users) */
   client: ApiClient;
-  /* Name of the field to use as the ID for the items (defaults to "id"). */
-  idField?: string;
-  /* Zod schema to use for validating items (defaults to z.unknown(). */
-  schema?: ZodSchema;
 };
 
 /**
@@ -20,22 +15,15 @@ export type HttpServiceOptions = {
  */
 export const HttpService = defineService<HttpServiceOptions>(
   (options) => {
-    const {
-      client,
-      idField = "id",
-      schema = z.unknown(),
-    } = options;
+    const { client, idField = "id" } = options;
 
     if (!client) throw new Error(ERRORS.missingProperty("client"));
     // if (!(client is ApiClient)) throw new Error(ERRORS.invalidProperty("client"));
-
-    type T = z.infer<typeof schema>;
 
     return {
       name: "http",
       options: {
         client,
-        schema,
         idField,
       },
       find: (query) => {

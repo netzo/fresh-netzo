@@ -1,17 +1,12 @@
-import { z, type ZodSchema } from "../../deps/zod/mod.ts";
-import { defineService } from "../types.ts";
+import { defineService, type ServiceOptions } from "../types.ts";
 import { ERRORS, ulid } from "../utils.ts";
 import { filterObjectsByKeyValues } from "../utils.ts";
 
-export type DenoKvServiceOptions = {
+export type DenoKvServiceOptions = ServiceOptions & {
   /* The Deno KV store to use. */
   kv: Deno.Kv;
   /* The KV prefix location of the service e.g. ["users"] */
   prefix?: Deno.KvKey;
-  /* Name of the field to use as the ID for the items (defaults to "id"). */
-  idField?: string;
-  /* Zod schema to use for validating items (defaults to z.unknown(). */
-  schema?: ZodSchema;
 };
 
 /**
@@ -21,12 +16,7 @@ export type DenoKvServiceOptions = {
  */
 export const DenoKvService = defineService<DenoKvServiceOptions>(
   (options) => {
-    const {
-      kv = options.kv,
-      prefix,
-      idField = "id",
-      schema = z.unknown(),
-    } = options;
+    const { kv = options.kv, prefix, idField = "id" } = options;
 
     if (!kv) throw new Error(ERRORS.missingProperty("kv"));
     if (!prefix) throw new Error(ERRORS.missingProperty("prefix"));
@@ -35,14 +25,11 @@ export const DenoKvService = defineService<DenoKvServiceOptions>(
       throw new Error(ERRORS.invalidProperty("prefix"));
     }
 
-    type T = z.infer<typeof schema>;
-
     return {
       name: "kv",
       options: {
         kv,
         prefix,
-        schema,
         idField,
       },
       find: async (query) => {

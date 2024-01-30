@@ -1,4 +1,3 @@
-// TODO: implement tests from https://github.com/johannschopplich/unrested/blob/main/test/index.test.ts
 import "../../deps/std/dotenv/load.ts";
 import { assertEquals, assertExists } from "../../deps/std/assert/mod.ts";
 import { z } from "../../deps/zod/mod.ts";
@@ -23,11 +22,6 @@ Deno.test("[api/adapters] HttpService", async (t) => {
   const $todos = HttpService({
     client: api.todos,
     idField: "id",
-    schema: z.object({
-      id: z.string(),
-      name: z.string(),
-      email: z.string().email(),
-    }),
   });
 
   await t.step("declarations", () => {

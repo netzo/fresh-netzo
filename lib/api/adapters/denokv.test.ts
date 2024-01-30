@@ -1,8 +1,7 @@
-// TODO: implement tests from https://github.com/johannschopplich/unrested/blob/main/test/index.test.ts
 import "../../deps/std/dotenv/load.ts";
 import { assertEquals, assertExists } from "../../deps/std/assert/mod.ts";
 import { z } from "../../deps/zod/mod.ts";
-import { DenoKvService } from "./kv.ts";
+import { DenoKvService } from "./denokv.ts";
 
 const kv = await Deno.openKv(":memory:");
 
@@ -24,11 +23,6 @@ Deno.test("[api/adapters] DenoKvService", async (t) => {
     kv,
     prefix: ["todos"],
     idField: "id",
-    schema: z.object({
-      id: z.string(),
-      name: z.string(),
-      email: z.string().email(),
-    }),
   });
 
   await t.step("declarations", () => {
