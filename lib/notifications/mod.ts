@@ -13,7 +13,10 @@ export type Notification = {
 };
 
 export const createNotification = (kv: Deno.Kv) => {
-  const $notifications = createResourceDenoKv({ kv, prefix: ["$notifications"] });
+  const $notifications = createResourceDenoKv({
+    kv,
+    prefix: ["$notifications"],
+  });
   return (data: Notification["data"]): Promise<Notification> => {
     const createdAt = new Date().toISOString();
     return $notifications.create({

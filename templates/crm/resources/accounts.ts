@@ -539,4 +539,4 @@ export const $accounts = createResourceDenoKv({
   kv: netzo.kv,
   prefix: ["accounts"],
   schema: accountSchema,
-})
+});

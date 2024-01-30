@@ -3,7 +3,7 @@ import "../../deps/std/dotenv/load.ts";
 import { assertEquals, assertExists } from "../../deps/std/assert/mod.ts";
 import { z } from "../../deps/zod/mod.ts";
 import { createApi } from "../../apis/_create-api/mod.ts";
-import { createResourceHttp } from "./http.ts";
+import { createServiceHttp } from "./http.ts";
 
 const todoSchema = z.object({
   id: z.number(),
@@ -14,13 +14,13 @@ const todoSchema = z.object({
 
 type Todo = z.infer<typeof todoSchema>;
 
-Deno.test("[resources] createResourceHttp", async (t) => {
+Deno.test("[services] createServiceHttp", async (t) => {
   const api = createApi({
     baseURL: "https://jsonplaceholder.typicode.com",
     headers: { "content-type": "application/json" },
   });
 
-  const $todos = createResourceHttp({
+  const $todos = createServiceHttp({
     client: api.todos,
     idField: "id",
     schema: z.object({

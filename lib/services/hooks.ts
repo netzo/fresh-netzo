@@ -6,10 +6,10 @@ export const logRuntime = async (_context: HookContext, next: NextFunction) => {
   const start = Date.now();
   await next();
   const duration = Date.now() - start;
-  console.log(`[resources] ${duration}ms`);
+  console.log(`[services] ${duration}ms`);
 };
 
-// TODO: add support for $ref via a resolveRef hook
+// TODO: add support for $ref via a resolveRef hook (refer to drizzle ORM for inspiration)
 
 // export type Ref = {
 //   $key: string; // e.g. ["todos", "123"]

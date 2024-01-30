@@ -2,7 +2,7 @@
 import "../../deps/std/dotenv/load.ts";
 import { assertEquals, assertExists } from "../../deps/std/assert/mod.ts";
 import { z } from "../../deps/zod/mod.ts";
-import { createResourceDenoKv } from "./kv.ts";
+import { createServiceDenoKv } from "./kv.ts";
 
 const kv = await Deno.openKv(":memory:");
 
@@ -19,8 +19,8 @@ const todoSchema = z.object({
 
 type Todo = z.infer<typeof todoSchema>;
 
-Deno.test("[resources] createResourceDenoKv", async (t) => {
-  const $todos = createResourceDenoKv({
+Deno.test("[services] createServiceDenoKv", async (t) => {
+  const $todos = createServiceDenoKv({
     kv,
     prefix: ["todos"],
     idField: "id",

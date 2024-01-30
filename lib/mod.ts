@@ -12,7 +12,11 @@ import { createNotification } from "./notifications/mod.ts";
 import { proxyCron } from "./cron/mod.ts";
 import { proxyConsole } from "./utils.console.ts";
 import { auth, type AuthConfig, type AuthState } from "./auth/plugin.ts";
-import { services, type ServicesConfig, type ServicesState } from "./services/plugin.ts";
+import {
+  services,
+  type ServicesConfig,
+  type ServicesState,
+} from "./services/plugin.ts";
 import { ui, type UiConfig } from "./ui/plugin.ts";
 import { devtools } from "./devtools/plugin.ts";
 
