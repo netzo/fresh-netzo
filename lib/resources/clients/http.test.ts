@@ -35,7 +35,7 @@ Deno.test("[resources] createResourceHttp", async (t) => {
     assertExists($todos);
   });
 
-  await t.step("$todos.get()", async () => {
+  await t.step("$todos.find()", async () => {
     const todos = await $todos.find();
     assertEquals(todos?.length, 200);
   });

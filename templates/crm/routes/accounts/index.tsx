@@ -1,6 +1,6 @@
 import { defineRoute } from "$fresh/server.ts";
 import type { TableProps } from "netzo/components/blocks/table/table.tsx";
-import { type Account, ALIASES } from "@/resources/accounts.ts";
+import { $accounts, type Account, ALIASES } from "@/resources/accounts.ts";
 import { Table } from "@/islands/accounts/Table.tsx";
 import { netzo } from "@/netzo.ts";
 
@@ -28,24 +28,12 @@ export const getTableOptions = (
           value,
         ) => (value ? { label: value, value } : { label: "*no data", value })),
       },
-      {
-        column: "address_city",
-        title: ALIASES.address.city,
-        options: [...new Set(data.map((item) => item.address?.city))].sort()
-          .map(
-            (
-              value,
-            ) => (value
-              ? { label: value, value }
-              : { label: "*no data", value }),
-          ),
-      },
     ],
   };
 };
 
 export default defineRoute(async (req, ctx) => {
-  const data = await netzo.db.find<Account>(["accounts"]);
+  const data = await $accounts.find<Account>();
 
   const options = getTableOptions(data);
 

@@ -7,9 +7,10 @@
 
 import { type FreshConfig, start } from "./deps/$fresh/server.ts";
 import { replace } from "./deps/object-replace-mustache.ts";
-import { createNotification, setEnvVarsIfRemoteProject } from "./utils.ts";
+import { setEnvVarsIfRemoteProject } from "./utils.ts";
+import { createNotification } from "./notifications/mod.ts";
 import { proxyCron } from "./cron/mod.ts";
-import { proxyConsole } from "./utils/proxies/console.ts";
+import { proxyConsole } from "./utils.console.ts";
 import { auth, type AuthConfig, type AuthState } from "./auth/plugin.ts";
 import { database, type DatabaseConfig } from "./database/plugin.ts";
 import { ui, type UiConfig } from "./ui/plugin.ts";
@@ -25,7 +26,6 @@ export type NetzoConfig = FreshConfig & {
 
 export type NetzoState = {
   kv: Deno.Kv;
-  db: ReturnType<typeof createDatabase>;
   notification: ReturnType<typeof createNotification>;
   config: NetzoConfig;
   // injected by plugins:
@@ -61,16 +61,15 @@ export const Netzo = async (config: Partial<NetzoConfig>) => {
   const kv = await Deno.openKv();
 
   // [utils] create utilities (these use kv, not apiKey/projectId)
-  const db = createDatabase(kv);
-  const notification = createNotification(db);
+  const notification = createNotification(kv);
 
   // [deno] proxy deno primitives
-  Deno.cron = proxyCron(db);
+  Deno.cron = proxyCron(kv);
 
   // [app/config] render mustache values
   config = replace(config, Deno.env.toObject());
   // [app/state] build state (pass single kv instance to plugins for performance)
-  const state: NetzoState = { kv, db, notification, config };
+  const state: NetzoState = { kv, notification, config };
 
   config = {
     ...config,
@@ -103,7 +102,6 @@ export const Netzo = async (config: Partial<NetzoConfig>) => {
 
   return {
     kv,
-    db,
     notification,
     config,
     start: async () => {

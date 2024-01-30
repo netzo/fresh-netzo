@@ -1,4 +1,4 @@
-import type { createDatabase } from "../resources/clients/kv.ts";
+import { createResourceKv } from "../resources/clients/kv.ts";
 
 export type Notification = {
   id: string;
@@ -12,14 +12,15 @@ export type Notification = {
   updatedAt: string;
 };
 
-export const createNotification = (db: ReturnType<typeof createDatabase>) => {
+export const createNotification = (kv: Deno.Kv) => {
+  const $notifications = createResourceKv({ kv, prefix: ["$notifications"] });
   return (data: Notification["data"]): Promise<Notification> => {
     const createdAt = new Date().toISOString();
-    return db.create<Notification>(["$notifications"], {
+    return $notifications.create({
       data,
       projectId: Deno.env.get("NETZO_PROJECT_ID")!,
       createdAt,
       updatedAt: createdAt,
-    } as Notification);
+    }) as Promise<Notification>;
   };
 };

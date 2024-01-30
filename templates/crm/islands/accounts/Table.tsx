@@ -36,141 +36,65 @@ export const getColumns = (_props: TableProps): TableProps["columns"] => [
     enableHiding: false,
   },
   {
-    header: "General",
-    columns: [
-      {
-        accessorKey: "name",
-        header: renderHeader(ALIASES.name),
-        cell: ({ row }) => {
-          const { id, name } = row.original;
-          return (
-            <div className="flex">
-              <a
-                href={`/accounts/${id}`}
-                className="whitespace-nowrap text-center font-medium text-[hsl(var(--primary))] hover:underline"
-              >
-                {name}
-              </a>
-              <CopyId id={id} />
-            </div>
-          );
-        },
-      },
-      {
-        accessorKey: "status",
-        header: renderHeader(ALIASES.status),
-        cell: ({ row }) => {
-          const { status } = row.original;
-          const colors = {
-            active: "black",
-            inactive: "gray",
-          };
-          return (
-            <p
-              className={`text-${colors[status]}-500`}
-            >
-              {status}
-            </p>
-          );
-        },
-        filterFn: (row, id, value) => value.includes(row.getValue(id)),
-      },
-      {
-        accessorKey: "type",
-        header: renderHeader(ALIASES.type),
-        cell: renderCell(),
-        filterFn: (row, id, value) => value.includes(row.getValue(id)),
-      },
-    ],
+    accessorKey: "name",
+    header: renderHeader(ALIASES.name),
+    cell: ({ row }) => {
+      const { id, name } = row.original;
+      return (
+        <div className="flex">
+          <a
+            href={`/accounts/${id}`}
+            className="whitespace-nowrap text-center font-medium text-[hsl(var(--primary))] hover:underline"
+          >
+            {name}
+          </a>
+          <CopyId id={id} />
+        </div>
+      );
+    },
   },
   {
-    header: "Contact",
-    columns: [
-      {
-        accessorKey: "phone",
-        header: renderHeader(ALIASES.phone),
-        cell: renderCell(),
-      },
-      {
-        accessorKey: "web",
-        header: renderHeader(ALIASES.web),
-        cell: renderCell(),
-      },
-    ],
+    accessorKey: "status",
+    header: renderHeader(ALIASES.status),
+    cell: ({ row }) => {
+      const { status } = row.original;
+      const colors = {
+        active: "black",
+        inactive: "gray",
+      };
+      return (
+        <p
+          className={`text-${colors[status]}-500`}
+        >
+          {status}
+        </p>
+      );
+    },
+    filterFn: (row, id, value) => value.includes(row.getValue(id)),
   },
   {
-    header: "Address",
-    columns: [
-      {
-        accessorKey: "address.streetAddress",
-        header: renderHeader(ALIASES.address.streetAddress),
-        cell: renderCell(),
-      },
-      {
-        accessorKey: "address.number",
-        header: renderHeader(ALIASES.address.number),
-        cell: renderCell(),
-      },
-      {
-        accessorKey: "address.city",
-        header: renderHeader(ALIASES.address.city),
-        cell: renderCell(),
-        filterFn: (row, id, value) => value.includes(row.getValue(id)),
-      },
-      {
-        accessorKey: "address.postCode",
-        header: renderHeader(ALIASES.address.postCode),
-        cell: renderCell(),
-      },
-    ],
+    accessorKey: "type",
+    header: renderHeader(ALIASES.type),
+    cell: renderCell(),
+    filterFn: (row, id, value) => value.includes(row.getValue(id)),
   },
   {
-    header: "Notificaciones",
-    columns: [
-      {
-        accessorKey: "notifications.payments",
-        header: renderHeader(ALIASES.notifications.payments),
-        cell: renderCheckboxRow(),
-      },
-      {
-        accessorKey: "notifications.invoices",
-        header: renderHeader(ALIASES.notifications.invoices),
-        cell: renderCheckboxRow(),
-      },
-      {
-        accessorKey: "notifications.promotions",
-        header: renderHeader(ALIASES.notifications.promotions),
-        cell: renderCheckboxRow(),
-      },
-      {
-        accessorKey: "notifications.marketing",
-        header: renderHeader(ALIASES.notifications.marketing),
-        cell: renderCheckboxRow(),
-      },
-    ],
+    accessorKey: "createdAt",
+    header: renderHeader(ALIASES.createdAt),
+    cell: ({ row }) => {
+      const { createdAt } = row.original;
+      return <div>{toDateTime(createdAt)}</div>;
+      // return <input type="date" bind:value={createdAt} />;
+    },
   },
   {
-    header: "Other",
-    columns: [
-      {
-        accessorKey: "createdAt",
-        header: renderHeader(ALIASES.createdAt),
-        cell: ({ row }) => {
-          const { createdAt } = row.original;
-          return <div>{toDateTime(createdAt)}</div>;
-          // return <input type="date" bind:value={createdAt} />;
-        },
-      },
-      {
-        accessorKey: "updatedAt",
-        header: renderHeader(ALIASES.updatedAt),
-        cell: ({ row }) => {
-          const { updatedAt } = row.original;
-          return <div>{toDateTime(updatedAt)}</div>;
-          // return <input type="date" bind:value={updatedAt} />;
-        },
-      },
-    ],
+    accessorKey: "updatedAt",
+    header: renderHeader(ALIASES.updatedAt),
+    cell: ({ row }) => {
+      const { updatedAt } = row.original;
+      return <div>{toDateTime(updatedAt)}</div>;
+      // return <input type="date" bind:value={updatedAt} />;
+    },
   },
 ];
 

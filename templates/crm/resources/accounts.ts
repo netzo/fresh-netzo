@@ -1,4 +1,6 @@
 import { z } from "netzo/deps/zod/mod.ts";
+import { createResourceKv } from "netzo/resources/clients/kv.ts";
+import { netzo } from "@/netzo.ts";
 
 // schemas:
 
@@ -530,3 +532,11 @@ export const ALIASES = {
   "createdAt": "Created At",
   "updatedAt": "Updated At",
 };
+
+// resources:
+
+export const $accounts = createResourceKv({
+  kv: netzo.kv,
+  prefix: ["accounts"],
+  schema: accountSchema,
+})

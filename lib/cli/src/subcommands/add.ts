@@ -1,7 +1,7 @@
 import { error } from "../../../utils/console.ts";
 import { question } from "../../../deps/question/mod.ts";
 import { add } from "../generators/mod.ts";
-// import { proxyConsole } from "../../../utils/proxies/console.ts";
+// import { proxyConsole } from "../../../utils.console.ts";
 
 const help = `netzo add: add a new resource to an existing project.
 

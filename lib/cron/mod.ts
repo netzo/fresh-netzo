@@ -1,5 +1,5 @@
 // see https://github.com/netzo/netzo/issues/57
-import type { createDatabase } from "../utils/database.ts";
+import { createResourceKv } from "../resources/clients/kv.ts";
 
 export type Run = {
   id: string;
@@ -23,7 +23,8 @@ export type CronParams = Parameters<typeof Deno.cron>;
  * @param db {object} - the Netzo database object (ReturnType of createDatabase factory)
  * @returns {Proxy} - a proxied Deno.cron object
  */
-export const proxyCron = (db: ReturnType<typeof createDatabase>) => {
+export const proxyCron = (kv: Deno.Kv) => {
+  const $runs = createResourceKv({ kv, prefix: ["$runs"] });
   return new Proxy(Deno.cron, {
     apply(target, thisArg, argArray: CronParams) {
       const [name, schedule, opt1, opt2] = argArray;
@@ -42,7 +43,7 @@ export const proxyCron = (db: ReturnType<typeof createDatabase>) => {
       async function run(): Promise<void> {
         console.time(`[cron] ${name}`);
         const startedAt = Date.now();
-        const data = await db.create<Run>(["$runs"], {
+        const data = await $runs.create({
           type: "cron",
           name,
           schedule,
@@ -51,7 +52,7 @@ export const proxyCron = (db: ReturnType<typeof createDatabase>) => {
           startedAt: new Date(startedAt).toISOString(),
           endedAt: undefined,
           duration: 0,
-        } as Run); // do not await
+        }) as Run;
         try {
           await fn();
           data.status = "success";
@@ -63,7 +64,7 @@ export const proxyCron = (db: ReturnType<typeof createDatabase>) => {
           const endedAt = Date.now();
           data.endedAt = new Date(endedAt).toISOString();
           data.duration = endedAt - startedAt;
-          await db.patch(["$runs", data.id], data); // do not await
+          await $runs.patch(data.id, data);
         }
       }
 
