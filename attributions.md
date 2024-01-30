@@ -28,3 +28,7 @@ by [Deno authors](https://github.com/denoland) is licensed under
 
 by [shadcn](https://github.com/shadcn-ui) is licensed under
 [MIT License](https://github.com/shadcn-ui/ui/blob/main/LICENS.md)
+
+### [@feathersjs/feathers](https://github.com/feathersjs/feathers)
+
+by [Feathers contributors](https://github.com/feathersjs/feathers/graphs/contributors) is licensed under [MIT License](https://github.com/feathersjs/feathers/blob/dove/LICENSE)
