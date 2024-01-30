@@ -31,4 +31,7 @@ by [shadcn](https://github.com/shadcn-ui) is licensed under
 
 ### [@feathersjs/feathers](https://github.com/feathersjs/feathers)
 
-by [Feathers contributors](https://github.com/feathersjs/feathers/graphs/contributors) is licensed under [MIT License](https://github.com/feathersjs/feathers/blob/dove/LICENSE)
+by
+[Feathers contributors](https://github.com/feathersjs/feathers/graphs/contributors)
+is licensed under
+[MIT License](https://github.com/feathersjs/feathers/blob/dove/LICENSE)

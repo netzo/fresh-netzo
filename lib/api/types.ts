@@ -12,7 +12,9 @@ export type ServiceOptions = {
 export type Service<T = unknown> = {
   adapter?: "denokv" | "http"; // undefined means custom service
   options?: Record<string, unknown>;
-  find?: <T = unknown>(query?: Record<string | number, unknown>) => Promise<T[]>;
+  find?: <T = unknown>(
+    query?: Record<string | number, unknown>,
+  ) => Promise<T[]>;
   get?: <T = unknown>(id: Id) => Promise<T | undefined>;
   create?: <T = unknown>(data: T) => Promise<T>;
   update?: <T = unknown>(id: Id, data: T) => Promise<T>;
