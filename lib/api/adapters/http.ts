@@ -21,7 +21,7 @@ export const HttpService = defineService<HttpServiceOptions>(
     // if (!(client is ApiClient)) throw new Error(ERRORS.invalidProperty("client"));
 
     return {
-      name: "http",
+      adapter: "http",
       options: {
         client,
         idField,

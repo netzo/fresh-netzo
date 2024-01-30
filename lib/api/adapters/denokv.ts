@@ -26,7 +26,7 @@ export const DenoKvService = defineService<DenoKvServiceOptions>(
     }
 
     return {
-      name: "kv",
+      adapter: "kv",
       options: {
         kv,
         prefix,

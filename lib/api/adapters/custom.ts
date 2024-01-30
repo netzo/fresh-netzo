@@ -13,7 +13,6 @@ export const CustomService = defineService<CustomServiceOptions>(
     const { idField = "id" } = options;
 
     return {
-      name: "custom",
       options: {
         idField,
       },
