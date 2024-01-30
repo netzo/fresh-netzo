@@ -40,7 +40,7 @@ without sacrificing flexibility.
 - 🔒 [**Authentication**](/docs/modules/authentication): Simple user management
   and role-based access control (RBAC).
 
-- 🗃️ [**Database**](/docs/modules/database): Simple data management for the
+- 🗃️ [**Database**](/products/database): Simple data management for the
   multi-model, real-time database that powers apps.
 
 - 🔔 [**Notifications**](/docs/modules/notifications): Built-in notifications

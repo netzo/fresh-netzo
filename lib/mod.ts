@@ -12,7 +12,7 @@ import { createNotification } from "./notifications/mod.ts";
 import { proxyCron } from "./cron/mod.ts";
 import { proxyConsole } from "./utils.console.ts";
 import { auth, type AuthConfig, type AuthState } from "./auth/plugin.ts";
-import { database, type DatabaseConfig } from "./database/plugin.ts";
+import { services, type ServicesConfig, type ServicesState } from "./services/plugin.ts";
 import { ui, type UiConfig } from "./ui/plugin.ts";
 import { devtools } from "./devtools/plugin.ts";
 
@@ -20,7 +20,7 @@ export * from "./types.ts";
 
 export type NetzoConfig = FreshConfig & {
   auth?: AuthConfig;
-  database?: DatabaseConfig;
+  services?: ServicesConfig;
   ui?: UiConfig;
 };
 
@@ -93,7 +93,7 @@ export const Netzo = async (config: Partial<NetzoConfig>) => {
       // are always bundled at build time since some might depend on others
       ...[
         auth(config.auth),
-        database(config.database),
+        services(config.services),
         ui(config.ui),
       ],
       ...(config?.plugins ?? []),
