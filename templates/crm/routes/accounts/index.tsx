@@ -1,6 +1,6 @@
 import { defineRoute } from "$fresh/server.ts";
 import type { TableProps } from "netzo/components/blocks/table/table.tsx";
-import { $accounts, type Account, ALIASES } from "@/resources/accounts.ts";
+import { type Account, ALIASES } from "@/resources/accounts.ts";
 import { Table } from "@/islands/accounts/Table.tsx";
 import { netzo } from "@/netzo.ts";
 
@@ -33,7 +33,7 @@ export const getTableOptions = (
 };
 
 export default defineRoute(async (req, ctx) => {
-  const data = await $accounts.find<Account>();
+  const data = await netzo.service("accounts").find<Account>(); // GET /api/accounts
 
   const options = getTableOptions(data);
 

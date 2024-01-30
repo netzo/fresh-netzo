@@ -1,4 +1,3 @@
-import { createHttpError } from "../../../deps/std/http/http_errors.ts";
 import { createGitHubOAuthConfig } from "../../../deps/deno_kv_oauth/mod.ts";
 import type { AuthUserFromProvider } from "../db.ts";
 
@@ -56,7 +55,7 @@ export async function getUserGithub(
   });
   if (!response.ok) {
     const { message } = await response.json();
-    throw createHttpError(response.status, message);
+    throw new Error(`${response.status}: ${message}`);
   }
   const userGithub: UserGithub = await response.json();
   return {

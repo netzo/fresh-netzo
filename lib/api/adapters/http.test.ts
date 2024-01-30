@@ -2,13 +2,8 @@
 import "../../deps/std/dotenv/load.ts";
 import { assertEquals, assertExists } from "../../deps/std/assert/mod.ts";
 import { z } from "../../deps/zod/mod.ts";
-import { createServiceDenoKv } from "./kv.ts";
-
-const kv = await Deno.openKv(":memory:");
-
-const response = await fetch("https://jsonplaceholder.typicode.com/todos");
-const todos: Todo[] = await response.json();
-await Promise.all(todos.map((todo) => kv.set(["todos", todo.id], todo)));
+import { createApi } from "../../apis/_create-api/mod.ts";
+import { HttpService } from "./http.ts";
 
 const todoSchema = z.object({
   id: z.number(),
@@ -19,10 +14,14 @@ const todoSchema = z.object({
 
 type Todo = z.infer<typeof todoSchema>;
 
-Deno.test("[services] createServiceDenoKv", async (t) => {
-  const $todos = createServiceDenoKv({
-    kv,
-    prefix: ["todos"],
+Deno.test("[api/adapters] HttpService", async (t) => {
+  const api = createApi({
+    baseURL: "https://jsonplaceholder.typicode.com",
+    headers: { "content-type": "application/json" },
+  });
+
+  const $todos = HttpService({
+    client: api.todos,
     idField: "id",
     schema: z.object({
       id: z.string(),
@@ -32,7 +31,7 @@ Deno.test("[services] createServiceDenoKv", async (t) => {
   });
 
   await t.step("declarations", () => {
-    assertExists(kv);
+    assertExists(api);
     assertExists($todos);
   });
 

@@ -1,9 +1,9 @@
 import { z, type ZodSchema } from "../../deps/zod/mod.ts";
-import { defineService } from "../mod.ts";
+import { defineService } from "../types.ts";
 import { ERRORS, ulid } from "../utils.ts";
-import { filterObjectsByKeyValues } from "../../utils.ts";
+import { filterObjectsByKeyValues } from "../utils.ts";
 
-export type ServiceKvOptions = {
+export type DenoKvServiceOptions = {
   /* The Deno KV store to use. */
   kv: Deno.Kv;
   /* The KV prefix location of the service e.g. ["users"] */
@@ -16,13 +16,13 @@ export type ServiceKvOptions = {
 
 /**
  * Creates a Service instance to perform RESTful operations on a Deno KV resource
- * @param options {ServiceKvOptions} - service options object
+ * @param options {DenoKvServiceOptions} - service options object
  * @returns a Service instance with methods for performing RESTful operations on the KV resource
  */
-export const createServiceDenoKv = defineService<ServiceKvOptions>(
+export const DenoKvService = defineService<DenoKvServiceOptions>(
   (options) => {
     const {
-      kv,
+      kv = options.kv,
       prefix,
       idField = "id",
       schema = z.unknown(),

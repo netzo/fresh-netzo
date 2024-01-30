@@ -1,4 +1,3 @@
-import { createHttpError } from "../../../deps/std/http/http_errors.ts";
 import { createGitLabOAuthConfig } from "../../../deps/deno_kv_oauth/mod.ts";
 import type { AuthUserFromProvider } from "../db.ts";
 
@@ -57,7 +56,7 @@ export async function getUserGitlab(
   });
   if (!response.ok) {
     const { message } = await response.json();
-    throw createHttpError(response.status, message);
+    throw new Error(`${response.status}: ${message}`);
   }
   const userGitlab: UserGitlab = await response.json();
   return {

@@ -1,6 +1,4 @@
 import { z } from "netzo/deps/zod/mod.ts";
-import { createResourceDenoKv } from "../../../lib/services/adapters/denokv.ts";
-import { netzo } from "@/netzo.ts";
 
 // schemas:
 
@@ -532,11 +530,3 @@ export const ALIASES = {
   "createdAt": "Created At",
   "updatedAt": "Updated At",
 };
-
-// resources:
-
-export const $accounts = createResourceDenoKv({
-  kv: netzo.kv,
-  prefix: ["accounts"],
-  schema: accountSchema,
-});

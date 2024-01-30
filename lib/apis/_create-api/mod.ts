@@ -33,8 +33,8 @@ export function createApi<R extends ResponseType = "json">(
       get(_target, key: string) {
         const method = String(key).toUpperCase();
 
-        if (!["GET", ...payloadMethods].includes(method)) {
-          return p(resolveURL(url, key));
+        if (key && !["GET", ...payloadMethods].includes(method)) {
+          return p(resolveURL(url, String(key)));
         }
 
         const handlerGET: ApiMethodHandlerGET = <

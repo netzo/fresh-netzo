@@ -1,4 +1,5 @@
 import type { Plugin } from "../deps/$fresh/server.ts";
+import type { NetzoState } from "../mod.ts";
 import { defineConfig, unocss, type UnocssOptions } from "./plugins/unocss.ts";
 import presetNetzo from "./plugins/preset-netzo.ts";
 import type {
@@ -58,11 +59,14 @@ export type UiConfig = UnocssOptions & {
   };
 };
 
+// deno-lint-ignore ban-types
+export type UiState = {};
+
 /**
  * Plugin to add layout (nav, header, footer) and theme (colors,
  * typography, etc.) powered by UnoCSS and netzo/components.
  */
-export const ui = (options?: UiConfig): Plugin => {
+export const ui = (options?: UiConfig): Plugin<NetzoState> => {
   if (!options) return { name: "ui" };
 
   const uiEnabled = [

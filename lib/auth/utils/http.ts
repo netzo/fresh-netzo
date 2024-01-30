@@ -1,4 +1,4 @@
-import { RedirectStatus, Status } from "../../deps/std/http/http_status.ts";
+import { RedirectStatus, Status } from "../../deps/std/http/status.ts";
 
 /**
  * Returns a response that redirects the client to the given location (URL).

@@ -1,5 +1,6 @@
 import type { Plugin } from "../deps/$fresh/server.ts";
 import type { OAuth2ClientConfig } from "../deps/oauth2_client/src/oauth2_client.ts";
+import type { NetzoState } from "../mod.ts";
 import { type AuthUser } from "./utils/db.ts";
 import {
   ensureSignedIn,
@@ -52,7 +53,7 @@ export type AuthState = {
  * - `GET /auth/{provider}/callback` for the callback page
  * - `GET /auth/signout` for the sign-out page
  */
-export const auth = (options?: AuthConfig): Plugin => {
+export const auth = (options?: AuthConfig): Plugin<NetzoState> => {
   if (!options) return { name: "auth" };
 
   const authEnabled = [

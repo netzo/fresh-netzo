@@ -1,4 +1,3 @@
-import { createHttpError } from "../../../deps/std/http/http_errors.ts";
 import type { AuthUserFromProvider } from "../db.ts";
 
 type UserEmail = {
@@ -47,7 +46,7 @@ export async function getUserEmail(
   });
   if (!response.ok) {
     const { message } = await response.json();
-    throw createHttpError(response.status, message);
+    throw new Error(`${response.status}: ${message}`);
   }
   const userEmail: UserEmail = await response.json();
   return {

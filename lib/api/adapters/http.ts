@@ -1,10 +1,10 @@
 import { z, type ZodSchema } from "../../deps/zod/mod.ts";
-import { defineService } from "../mod.ts";
+import { defineService } from "../types.ts";
 import type { ApiClient } from "../../apis/_create-api/types.ts";
 
 import { ERRORS, ulid } from "../utils.ts";
 
-export type ServiceHttpOptions = {
+export type HttpServiceOptions = {
   /* Netzo API client of the service (e.g. api.users) */
   client: ApiClient;
   /* Name of the field to use as the ID for the items (defaults to "id"). */
@@ -15,10 +15,10 @@ export type ServiceHttpOptions = {
 
 /**
  * Creates a Service instance to perform RESTful operations on an HTTP resource
- * @param options {ServiceHttpOptions} - service options object
+ * @param options {HttpServiceOptions} - service options object
  * @returns a Service instance with methods for performing RESTful operations on the HTTP resource
  */
-export const createServiceHttp = defineService<ServiceHttpOptions>(
+export const HttpService = defineService<HttpServiceOptions>(
   (options) => {
     const {
       client,

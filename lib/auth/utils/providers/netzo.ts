@@ -1,4 +1,3 @@
-import { createHttpError } from "../../../deps/std/http/http_errors.ts";
 import type { User as UserNetzo } from "../../../../mod.ts";
 import type { AuthUserFromProvider } from "../db.ts";
 import { signIn } from "./netzo.sign_in.ts";
@@ -33,7 +32,7 @@ export async function getUserNetzo(
   });
   if (!response.ok) {
     const { message } = await response.json();
-    throw createHttpError(response.status, message);
+    throw new Error(`${response.status}: ${message}`);
   }
   const data = await response.json();
   const userNetzo = data?.data?.[0] as UserNetzo;

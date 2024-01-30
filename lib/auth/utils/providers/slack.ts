@@ -1,4 +1,3 @@
-import { createHttpError } from "../../../deps/std/http/http_errors.ts";
 import { createSlackOAuthConfig } from "../../../deps/deno_kv_oauth/mod.ts";
 import type { AuthUserFromProvider } from "../db.ts";
 
@@ -85,11 +84,11 @@ export async function getUserSlack(
   });
   if (!responseAuth.ok) {
     const { message } = await responseAuth.json();
-    throw createHttpError(responseAuth.status, message);
+    throw new Error(`${responseAuth.status}: ${message}`);
   }
   const authSlack: AuthSlackResponse = await responseAuth.json();
   if (!authSlack.ok) {
-    throw createHttpError(401, "Slack authentication failed");
+    throw new Error("401: Slack authentication failed");
   }
 
   // see https://api.slack.com/methods/users.info
@@ -102,7 +101,7 @@ export async function getUserSlack(
   );
   if (!response.ok) {
     const { message } = await response.json();
-    throw createHttpError(response.status, message);
+    throw new Error(`${response.status}: ${message}`);
   }
   const userSlack: UserSlackResponse = await response.json();
   return {

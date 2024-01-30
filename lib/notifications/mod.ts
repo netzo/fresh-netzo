@@ -1,4 +1,4 @@
-import { createResourceDenoKv } from "../services/adapters/denokv.ts";
+import { DenoKvService } from "../api/adapters/denokv.ts";
 
 export type Notification = {
   id: string;
@@ -13,7 +13,7 @@ export type Notification = {
 };
 
 export const createNotification = (kv: Deno.Kv) => {
-  const $notifications = createResourceDenoKv({
+  const $notifications = DenoKvService({
     kv,
     prefix: ["$notifications"],
   });

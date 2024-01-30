@@ -12,19 +12,14 @@ import { createNotification } from "./notifications/mod.ts";
 import { proxyCron } from "./cron/mod.ts";
 import { proxyConsole } from "./utils.console.ts";
 import { auth, type AuthConfig, type AuthState } from "./auth/plugin.ts";
-import {
-  services,
-  type ServicesConfig,
-  type ServicesState,
-} from "./services/plugin.ts";
-import { ui, type UiConfig } from "./ui/plugin.ts";
-import { devtools } from "./devtools/plugin.ts";
+import { api, type ApiConfig, type ApiState } from "./api/plugin.ts";
+import { ui, type UiConfig, type UiState } from "./ui/plugin.ts";
 
 export * from "./types.ts";
 
 export type NetzoConfig = FreshConfig & {
   auth?: AuthConfig;
-  services?: ServicesConfig;
+  api?: ApiConfig;
   ui?: UiConfig;
 };
 
@@ -34,6 +29,8 @@ export type NetzoState = {
   config: NetzoConfig;
   // injected by plugins:
   auth?: AuthState;
+  api?: ApiState;
+  ui?: UiState;
   [k: string]: unknown;
 };
 
@@ -92,12 +89,11 @@ export const Netzo = async (config: Partial<NetzoConfig>) => {
           },
         ],
       },
-      ...devtools(),
       // IMPORTANT: must register all plugins (even if disabled) to ensure they
       // are always bundled at build time since some might depend on others
       ...[
         auth(config.auth),
-        services(config.services),
+        api(config.api),
         ui(config.ui),
       ],
       ...(config?.plugins ?? []),
@@ -108,6 +104,9 @@ export const Netzo = async (config: Partial<NetzoConfig>) => {
     kv,
     notification,
     config,
+    service: Object.entries(config.api?.services ?? {})?.length
+      ? (serviceName: string) => config.api!.services[serviceName]
+      : undefined,
     start: async () => {
       if (Deno.args.includes("dev")) {
         const { default: dev } = await import("$fresh/dev.ts");
