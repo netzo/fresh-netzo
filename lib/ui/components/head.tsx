@@ -1,6 +1,6 @@
 import { ComponentChildren } from "../../deps/preact.ts";
 import { Head as _Head } from "../../deps/$fresh/runtime.ts";
-import type { UiConfig } from "../mod.ts";
+import type { UiConfig } from "../plugin.ts";
 
 export const Head = (
   props: UiConfig["head"] & {

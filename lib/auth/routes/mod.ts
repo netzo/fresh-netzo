@@ -1,5 +1,5 @@
 import type { PluginRoute } from "../../deps/$fresh/server.ts";
-import type { AuthConfig } from "../mod.ts";
+import type { AuthConfig } from "../plugin.ts";
 import {
   type AuthUser,
   createUser,

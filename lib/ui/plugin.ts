@@ -1,4 +1,5 @@
 import type { Plugin } from "../deps/$fresh/server.ts";
+import type { JSX } from "../deps/preact.ts";
 import type { NetzoState } from "../mod.ts";
 import { defineConfig, unocss, type UnocssOptions } from "./plugins/unocss.ts";
 import presetNetzo from "./plugins/preset-netzo.ts";
@@ -30,9 +31,23 @@ export type UiConfig = UnocssOptions & {
     items?: Array<
       | { text: string } // header
       | { icon?: string; text: string; href?: string; target?: string }
-        & HTMLAnchorElement // link
+      & HTMLAnchorElement // link
       | Record<string | number | symbol, never> // divider (empty object)
     >;
+    /** Extra props to customize element (overwrites defaults). */
+    ui?: {
+      root?: JSX.IntrinsicElements["div"];
+      nav?: JSX.IntrinsicElements["nav"];
+      navHeaderRoot?: JSX.IntrinsicElements["div"];
+      navHeader?: JSX.IntrinsicElements["header"];
+      navHeaderImage?: JSX.IntrinsicElements["img"];
+      navHeaderTitle?: JSX.IntrinsicElements["h2"];
+      navItemRoot?: JSX.IntrinsicElements["div"];
+      navItem?: JSX.IntrinsicElements["a"];
+      navItemIcon?: JSX.IntrinsicElements["img"] | JSX.IntrinsicElements["div"];
+      navItemHeader?: JSX.IntrinsicElements["h3"];
+      navItemSeparator?: JSX.IntrinsicElements["div"];
+    };
   };
   header?: {
     /** A short title for the app at the header. */
@@ -41,17 +56,32 @@ export type UiConfig = UnocssOptions & {
     description?: string;
     /** An https or data URL of a cover image at the header */
     image?: string;
+    /** Extra props to customize element (overwrites defaults). */
+    ui?: {
+      root?: JSX.IntrinsicElements["header"];
+      title?: JSX.IntrinsicElements["h1"];
+      description?: JSX.IntrinsicElements["div"];
+      image?: JSX.IntrinsicElements["img"];
+      left?: JSX.IntrinsicElements["div"];
+      right?: JSX.IntrinsicElements["div"];
+    };
   };
   footer?: {
     /** HTML content to be rendered at the left side of the footer. */
     innerHTMLLeft?: string;
     /** HTML content to be rendered at the right side of the footer. */
     innerHTMLRight?: string;
+    /** Extra props to customize element (overwrites defaults). */
+    ui?: {
+      root?: JSX.IntrinsicElements["footer"];
+      left?: JSX.IntrinsicElements["div"];
+      right?: JSX.IntrinsicElements["div"];
+    };
   };
   theme?: {
     /** The primary color to be used for UI components. */
     color?: ShadcnThemeColor | ThemeCSSVarsVariant | {
-      base?: ShadcnThemeColor;
+      root?: ShadcnThemeColor;
       color?: Partial<ThemeCSSVarsVariant>;
     };
     /** The border radius to be used for UI components. */
@@ -108,7 +138,6 @@ export const ui = (options?: UiConfig): Plugin<NetzoState> => {
         "./islands/header.tsx",
         "./islands/nav.tsx",
         "./islands/nav.mobile.tsx",
-        "./islands/nav-item.tsx",
       ],
     },
   };

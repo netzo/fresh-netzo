@@ -1,4 +1,4 @@
-import type { AuthConfig } from "../../mod.ts";
+import type { AuthConfig } from "../../plugin.ts";
 import {
   handleCallback,
   signIn,

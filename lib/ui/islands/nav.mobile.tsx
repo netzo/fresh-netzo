@@ -7,7 +7,7 @@ import {
   SheetContent,
   SheetTrigger,
 } from "../../components/ui/sheet.tsx";
-import type { UiConfig } from "../mod.ts";
+import type { UiConfig } from "../plugin.ts";
 
 export type NavProps =
   & JSX.HTMLAttributes<HTMLDivElement>
