@@ -1,4 +1,3 @@
-import { Cross2Icon } from "../../deps/@radix-ui/react-icons.ts";
 import * as ToastPrimitives from "../../deps/@radix-ui/react-toast.ts";
 import { cva, type VariantProps } from "../../deps/class-variance-authority.ts";
 import type { VNode } from "../../deps/preact.ts";
@@ -86,7 +85,7 @@ const ToastClose = forwardRef<
     toast-close=""
     {...props}
   >
-    <Cross2Icon className="h-4 w-4" />
+    <div className="mdi-close h-4 w-4" />
   </ToastPrimitives.Close>
 ));
 ToastClose.displayName = ToastPrimitives.Close.displayName;

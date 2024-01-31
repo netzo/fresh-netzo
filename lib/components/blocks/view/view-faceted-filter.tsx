@@ -4,7 +4,7 @@ import {
   PlusCircledIcon,
 } from "../../../deps/@radix-ui/react-icons.ts";
 import { Column } from "../../../deps/@tanstack/react-table.ts";
-import { cn } from "netzo/components/utils.ts";
+import { cn } from "../../../components/utils.ts";
 import { Badge } from "../../ui/badge.tsx";
 import { Button } from "../../ui/button.tsx";
 import {

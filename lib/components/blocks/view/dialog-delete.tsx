@@ -1,6 +1,5 @@
-import { TableProps } from "netzo/components/blocks/table/table.tsx";
-import { Table } from "../../../deps/@tanstack/react-table.ts";
 import { TrashIcon } from "../../../deps/@radix-ui/react-icons.ts";
+import type { TableProps } from "../table/table.tsx";
 import { Button } from "../../ui/button.tsx";
 import {
   AlertDialog,

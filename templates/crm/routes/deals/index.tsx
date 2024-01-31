@@ -19,26 +19,31 @@ export const getKanbanOptions = (
       {
         id: "backlog",
         title: "Backlog",
+        icon: { className: "i-mdi-circle-outline bg-lightgray-500" },
         badge: { className: "bg-lightgray-500" },
       },
       {
         id: "todo",
         title: "Todo",
-        badge: { className: "bg-yellow-500" },
+        icon: { className: "i-mdi-circle-slice-2 bg-orange-500" },
+        badge: { className: "bg-orange-500" },
       },
       {
         id: "in-progress",
         title: "In Progress",
-        badge: { className: "bg-orange-500" },
+        icon: { className: "i-mdi-circle-slice-6 bg-yellow-500" },
+        badge: { className: "bg-yellow-500" },
       },
       {
         id: "done",
         title: "Done",
+        icon: { className: "i-mdi-check-circle bg-green-500" },
         badge: { className: "bg-green-500" },
       },
       {
         id: "cancelled",
         title: "Cancelled",
+        icon: { className: "i-mdi-close-circle bg-gray-500" },
         badge: { className: "bg-gray-500" },
       },
     ],
@@ -46,7 +51,7 @@ export const getKanbanOptions = (
 };
 
 export default defineRoute(async (req, ctx) => {
-  const data = await netzo.service("deals").find<Deal>(); // GET /api/deals
+  const data = await netzo.service("deals").find<Deal>();
 
   const options = getKanbanOptions(data);
 

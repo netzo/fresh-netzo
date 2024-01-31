@@ -257,7 +257,7 @@ export function Kanban({ data, options }: KanbanProps) {
     }
   }
 
-  async function onDragEnd(event: DragEndEvent) {
+  function onDragEnd(event: DragEndEvent) {
     console.log("onDragEnd", event);
     activeColumn.value = null;
     activeItem.value = null;
@@ -272,7 +272,7 @@ export function Kanban({ data, options }: KanbanProps) {
 
     const activeData = active.data.current;
 
-    // save:
+    // [api] update item
     console.log("SAVE", activeId, overId, active, over);
     fetch(`/api/${options.servicePath}/${activeId}`, {
       method: "PUT",

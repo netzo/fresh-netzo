@@ -26,7 +26,7 @@ export const getTableOptions = (
 };
 
 export default defineRoute(async (req, ctx) => {
-  const data = await netzo.service("invoices").find<Invoice>(); // GET /api/invoices
+  const data = await netzo.service("invoices").find<Invoice>();
 
   const options = getTableOptions(data);
 

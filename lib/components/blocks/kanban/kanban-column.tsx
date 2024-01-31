@@ -17,10 +17,12 @@ import { Card, CardContent, CardHeader } from "../../ui/card.tsx";
 import { Button } from "../../ui/button.tsx";
 import { ScrollArea, ScrollBar } from "../../ui/scroll-area.tsx";
 import type { Item, KanbanProps } from "./kanban.tsx";
+import { cn } from "../../../components/utils.ts";
 
 export interface Column {
   id: UniqueIdentifier;
   title: string;
+  icon?: JSX.IntrinsicElements["div"];
   badge?: BadgeProps;
 }
 
@@ -89,17 +91,17 @@ export function KanbanColumn(
         dragging: isOverlay ? "overlay" : isDragging ? "over" : undefined,
       })}
     >
-      <CardHeader className="flex flex-row items-center p-4 font-semibold text-left border-b-2 space-between">
-        <Button
-          variant={"ghost"}
-          {...attributes}
-          {...listeners}
-          className="relative h-auto p-1 -ml-2 text-primary/50 cursor-grab"
-        >
-          <span className="sr-only">{`Move column: ${column.title}`}</span>
-          <div className="w-6 h-6 mdi-drag" />
+      <CardHeader className="flex flex-row items-center py-2 px-4 font-semibold text-left border-b-2 justify-between">
+        <div className="flex items-center">
+          <div
+            {...column?.icon}
+            className={cn("w-6 h-6 mr-3", column?.icon?.className)}
+          />
+          <h3 className="mt-0">{column.title}</h3>
+        </div>
+        <Button variant="outline" size="icon" className="mt-0">
+          <div className="w-4 h-4 mdi-plus" />
         </Button>
-        <span className="ml-auto">{column.title}</span>
       </CardHeader>
       <ScrollArea>
         <CardContent className="flex flex-col flex-grow gap-2 p-2">

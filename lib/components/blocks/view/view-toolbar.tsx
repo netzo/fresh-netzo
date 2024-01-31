@@ -1,12 +1,11 @@
-import { Cross2Icon, ReloadIcon } from "../../../deps/@radix-ui/react-icons.ts";
 import { Table } from "../../../deps/@tanstack/react-table.ts";
-import { cn } from "netzo/components/utils.ts";
+import { cn } from "../../../components/utils.ts";
 import { Button, buttonVariants } from "../../ui/button.tsx";
 import { Input } from "../../ui/input.tsx";
-import { TableViewOptions } from "./table-view-options.tsx";
-import { TableFacetedFilter } from "./table-faceted-filter.tsx";
-import { TableProps } from "./table.tsx";
-import { DialogDelete } from "netzo/components/blocks/table/dialog-delete.tsx";
+import { TableViewOptions } from "./view-options.tsx";
+import { TableFacetedFilter } from "./view-faceted-filter.tsx";
+import { TableProps } from "../table/table.tsx";
+import { DialogDelete } from "./dialog-delete.tsx";
 
 interface TableToolbarProps<TData> {
   table: Table<TData>;
@@ -30,7 +29,7 @@ export function TableToolbar<TData>({
           onClick={() => window.location.reload()}
           className="h-8 px-2 lg:px-3"
         >
-          <ReloadIcon className="w-4 h-4" />
+          <div className="mdi-reload w-4 h-4" />
         </Button>
         {options.search && (
           <Input
@@ -63,7 +62,7 @@ export function TableToolbar<TData>({
             className="h-8 px-2 lg:px-3"
           >
             Reset
-            <Cross2Icon className="w-4 h-4 ml-2" />
+            <div className="mdi-close w-4 h-4 ml-2" />
           </Button>
         )}
       </div>

@@ -1,12 +1,5 @@
-import {
-  Table as _Table,
-  type TableProps,
-} from "netzo/components/blocks/table/table.tsx";
-import {
-  renderCell,
-  renderCheckboxRow,
-  renderHeader,
-} from "netzo/components/blocks/render.tsx";
+import { type TableProps, View } from "netzo/components/blocks/view/view.tsx";
+import { renderHeader } from "netzo/components/blocks/render.tsx";
 import { toDateTime } from "netzo/components/blocks/format.ts";
 import { CopyId } from "netzo/components/blocks/shared/copy-id.tsx";
 import { Badge } from "netzo/components/ui/badge.tsx";
@@ -102,7 +95,7 @@ export const getColumns = (_props: TableProps): TableProps["columns"] => [
 export function Table(props: Omit<TableProps<Account, unknown>, "columns">) {
   const columns = getColumns(props);
   return (
-    <_Table
+    <View
       data={props.data}
       options={props.options}
       columns={columns}

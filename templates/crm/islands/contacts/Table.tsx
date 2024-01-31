@@ -2,11 +2,7 @@ import {
   Table as _Table,
   type TableProps,
 } from "netzo/components/blocks/table/table.tsx";
-import {
-  renderCell,
-  renderCheckboxRow,
-  renderHeader,
-} from "netzo/components/blocks/render.tsx";
+import { renderHeader } from "netzo/components/blocks/render.tsx";
 import { toDateTime } from "netzo/components/blocks/format.ts";
 import { CopyId } from "netzo/components/blocks/shared/copy-id.tsx";
 import {
