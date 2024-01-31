@@ -8,19 +8,12 @@ export const getTableOptions = (
   data: Account[],
 ): TableProps<Account, unknown>["options"] => {
   return {
-    resource: "accounts",
+    servicePath: "accounts",
     search: {
       column: "name",
       placeholder: "Search by name...",
     },
     filters: [
-      {
-        column: "status",
-        title: ALIASES.status,
-        options: [...new Set(data.map((item) => item.status))].map((
-          value,
-        ) => ({ label: value, value: value })),
-      },
       {
         column: "type",
         title: ALIASES.type,

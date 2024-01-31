@@ -24,7 +24,7 @@ export function DialogDelete(
 ) {
   const handleDelete = async () => {
     await Promise.all(selectedRows.map((row) => {
-      const url = `/api/${options.resource}/${row.original.id}`;
+      const url = `/api/${options.servicePath}/${row.original.id}`;
       return fetch(url, { method: "DELETE" });
     }));
     window.location.reload();

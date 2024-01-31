@@ -8,7 +8,7 @@ export const getKanbanOptions = (
   data: Deal[],
 ): KanbanProps<Deal>["options"] => {
   return {
-    resource: "deals",
+    servicePath: "deals",
     fieldIds: {
       id: "id",
       column: "status",
@@ -16,11 +16,31 @@ export const getKanbanOptions = (
       description: "description",
     },
     columns: [
-      { id: "backlog" as const, title: "Backlog" },
-      { id: "todo" as const, title: "Todo" },
-      { id: "in-progress" as const, title: "In Progress" },
-      { id: "done" as const, title: "Done" },
-      { id: "cancelled", title: "Cancelled" },
+      {
+        id: "backlog",
+        title: "Backlog",
+        badge: { className: "bg-lightgray-500" },
+      },
+      {
+        id: "todo",
+        title: "Todo",
+        badge: { className: "bg-yellow-500" },
+      },
+      {
+        id: "in-progress",
+        title: "In Progress",
+        badge: { className: "bg-orange-500" },
+      },
+      {
+        id: "done",
+        title: "Done",
+        badge: { className: "bg-green-500" },
+      },
+      {
+        id: "cancelled",
+        title: "Cancelled",
+        badge: { className: "bg-gray-500" },
+      },
     ],
   };
 };

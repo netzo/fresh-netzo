@@ -18,7 +18,7 @@ export type Interaction = z.infer<typeof interactionSchema>;
 
 export const interactions: Interaction[] = [
   {
-    id: "INTERACTION1",
+    id: "interaction_1",
     type: "call",
     data: {
       title: "Call with John Doe",
@@ -30,7 +30,7 @@ export const interactions: Interaction[] = [
     updatedAt: "2021-01-01T10:00:00.000Z",
   },
   {
-    id: "INTERACTION2",
+    id: "interaction_2",
     type: "email",
     data: {
       title: "Email to John Doe",
@@ -43,7 +43,7 @@ export const interactions: Interaction[] = [
     updatedAt: "2021-01-01T10:00:00.000Z",
   },
   {
-    id: "INTERACTION3",
+    id: "interaction_3",
     type: "whatsapp-msg",
     data: {
       title: "WhatsApp message to John Doe",

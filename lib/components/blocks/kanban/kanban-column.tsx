@@ -12,6 +12,7 @@ import { CSS } from "../../../deps/@dnd-kit/utilities.ts";
 import { useComputed } from "../../../deps/@preact/signals.ts";
 import { KanbanCard } from "./kanban-card.tsx";
 import { cva } from "../../../deps/class-variance-authority.ts";
+import type { BadgeProps } from "../../ui/badge.tsx";
 import { Card, CardContent, CardHeader } from "../../ui/card.tsx";
 import { Button } from "../../ui/button.tsx";
 import { ScrollArea, ScrollBar } from "../../ui/scroll-area.tsx";
@@ -20,6 +21,7 @@ import type { Item, KanbanProps } from "./kanban.tsx";
 export interface Column {
   id: UniqueIdentifier;
   title: string;
+  badge?: BadgeProps;
 }
 
 export type ColumnType = "Column";

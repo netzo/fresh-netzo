@@ -43,9 +43,6 @@ without sacrificing flexibility.
 - 🗃️ [**Database**](/products/database): Simple data management for the
   multi-model, real-time database that powers apps.
 
-- 🔔 [**Notifications**](/docs/modules/notifications): Built-in notifications
-  system to push messages to app users in real-time.
-
 - 🧩 [**Components**](/docs/modules/components): Customizable UI components and
   building blocks to import/copy-paste into apps (powered by
   [`shadcn-ui`](https://ui.shadcn.com/)).

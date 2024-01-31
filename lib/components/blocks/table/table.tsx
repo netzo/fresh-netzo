@@ -28,7 +28,7 @@ import { TableToolbar } from "./table-toolbar.tsx";
 export type TableProps<TData = unknown, TValue = unknown> = {
   data: TData[];
   options: {
-    resource: string;
+    servicePath: string;
     search?: {
       column: string;
       placeholder: string;

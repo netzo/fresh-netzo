@@ -8,7 +8,7 @@ export const getTableOptions = (
   data: Contact[],
 ): TableProps<Contact, unknown>["options"] => {
   return {
-    resource: "contacts",
+    servicePath: "contacts",
     search: {
       column: "name",
       placeholder: "Search by name...",

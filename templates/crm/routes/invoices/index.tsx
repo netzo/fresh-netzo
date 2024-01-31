@@ -8,7 +8,7 @@ export const getTableOptions = (
   data: Invoice[],
 ): TableProps<Invoice, unknown>["options"] => {
   return {
-    resource: "invoices",
+    servicePath: "invoices",
     search: {
       column: "invoiceNumber",
       placeholder: "Search by invoice number...",

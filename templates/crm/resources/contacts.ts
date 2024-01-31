@@ -60,7 +60,7 @@ export type Contact = z.infer<typeof contactSchema>;
 export const contacts: Contact[] = [
   {
     id: "1",
-    accountId: "ACCOUNT1",
+    accountId: "account_1",
     account: [{ $ref: {} }],
     accountDomain: "esgraf.com,.mx",
     name: "John Doe",
@@ -101,7 +101,7 @@ export const contacts: Contact[] = [
   },
   {
     id: "2",
-    accountId: "ACCOUNT1",
+    accountId: "account_1",
     account: [{ $ref: {} }],
     accountDomain: "esgraf.com,.mx",
     name: "John Doe",
@@ -142,7 +142,7 @@ export const contacts: Contact[] = [
   },
   {
     id: "3",
-    accountId: "ACCOUNT1",
+    accountId: "account_1",
     account: [{ $ref: {} }],
     accountDomain: "esgraf.com,.mx",
     name: "John Doe",

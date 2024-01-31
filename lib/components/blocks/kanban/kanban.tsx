@@ -1,5 +1,9 @@
 // adapted from https://github.com/Georgegriff/react-dnd-kit-tailwind-shadcn-ui/blob/main/src/components/kanban.tsx
-import { useComputed, useSignal } from "../../../deps/@preact/signals.ts";
+import {
+  effect,
+  useComputed,
+  useSignal,
+} from "../../../deps/@preact/signals.ts";
 import {
   Announcements,
   DndContext,
@@ -29,7 +33,7 @@ export type Item = {
 export type KanbanProps<TData = Item> = {
   data: TData[];
   options: {
-    resource: string;
+    servicePath: string;
     fieldIds: {
       id: string;
       column: string;
@@ -56,6 +60,8 @@ export function Kanban({ data, options }: KanbanProps) {
   );
 
   const items = useSignal<Item[]>(data);
+
+  // effect(() => console.log(items.value));
 
   const activeColumn = useSignal<Column | null>(null);
 
@@ -251,7 +257,8 @@ export function Kanban({ data, options }: KanbanProps) {
     }
   }
 
-  function onDragEnd(event: DragEndEvent) {
+  async function onDragEnd(event: DragEndEvent) {
+    console.log("onDragEnd", event);
     activeColumn.value = null;
     activeItem.value = null;
 
@@ -264,6 +271,14 @@ export function Kanban({ data, options }: KanbanProps) {
     if (!hasDraggableData(active)) return;
 
     const activeData = active.data.current;
+
+    // save:
+    console.log("SAVE", activeId, overId, active, over);
+    fetch(`/api/${options.servicePath}/${activeId}`, {
+      method: "PUT",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(activeData.item),
+    });
 
     if (activeId === overId) return;
 

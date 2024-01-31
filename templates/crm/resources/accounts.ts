@@ -4,9 +4,15 @@ import { z } from "netzo/deps/zod/mod.ts";
 
 export const accountSchema = z.object({
   id: z.string(),
-  type: z.string(), // "prospect" | "customer" | "supplier" | "partner" | "other"
+  type: z.union([
+    z.literal("prospect"),
+    z.literal("customer"),
+    z.literal("supplier"),
+    z.literal("partner"),
+    z.literal("other"),
+  ]),
+  name: z.string(),
   legalName: z.string(),
-  tradeName: z.string(),
   emails: z.array(
     z.object({
       type: z.string(), // "contact", "sales", "billing"
@@ -110,10 +116,10 @@ export type Account = z.infer<typeof accountSchema>;
 
 export const accounts: Account[] = [
   {
-    id: "ACCOUNT1",
+    id: "account_1",
     type: "customer",
-    legalName: "ABC Company",
-    tradeName: "ABC Corp",
+    name: "ABC Company",
+    legalName: "ABC Company Incorporated",
     emails: [{
       type: "sales",
       name: "Sales department",
@@ -215,10 +221,10 @@ export const accounts: Account[] = [
     updatedAt: "2021-01-01T10:00:00.000Z",
   },
   {
-    id: "ACCOUNT2",
+    id: "account_2",
     type: "partner",
-    legalName: "ABC Company",
-    tradeName: "ABC Corp",
+    name: "123 Company",
+    legalName: "123 Company Incorporated",
     emails: [{
       type: "sales",
       name: "Sales department",
@@ -320,10 +326,10 @@ export const accounts: Account[] = [
     updatedAt: "2021-01-01T10:00:00.000Z",
   },
   {
-    id: "ACCOUNT3",
+    id: "account_3",
     type: "supplier",
-    legalName: "ABC Company",
-    tradeName: "ABC Corp",
+    name: "XYZ Company",
+    legalName: "XYZ Company Incorporated",
     emails: [{
       type: "sales",
       name: "Sales department",
@@ -431,8 +437,8 @@ export const accounts: Account[] = [
 export const ALIASES = {
   "id": "Account Id",
   "type": "Type",
+  "name": "Name",
   "legalName": "Legal Name",
-  "tradeName": "Trade Name",
   "email": "Emails",
   "phones": "Phones",
   "website": "Website",

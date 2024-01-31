@@ -73,7 +73,7 @@ export function TableToolbar<TData>({
         ? <DialogDelete options={options} selectedRows={selectedRows} />
         : (
           <a
-            href={`/${options.resource}/new`}
+            href={`/${options.servicePath}/new`}
             className={cn(
               buttonVariants({ variant: "default" }),
               "h-8 px-2 ml-3 lg:px-3",

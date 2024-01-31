@@ -1,6 +1,7 @@
 // adapted from https://github.com/Georgegriff/react-dnd-kit-tailwind-shadcn-ui/blob/main/src/components/TaskCard.tsx
 import { useSortable } from "../../../deps/@dnd-kit/sortable.ts";
 import { CSS } from "../../../deps/@dnd-kit/utilities.ts";
+import { cn } from "../../../components/utils.ts";
 import { Card, CardContent, CardHeader, CardTitle } from "../../ui/card.tsx";
 import { Button } from "../../ui/button.tsx";
 import { cva } from "../../../deps/class-variance-authority.ts";
@@ -53,6 +54,10 @@ export function KanbanCard({ item, isOverlay, options }: KanbanCardProps) {
     },
   });
 
+  const { badge } = options.columns.find((c) =>
+    c.id === item?.[options.fieldIds.column]
+  );
+
   return (
     <Card
       ref={setNodeRef}
@@ -74,7 +79,14 @@ export function KanbanCard({ item, isOverlay, options }: KanbanCardProps) {
         <CardTitle className="ml-1 text-sm font-medium">
           {item?.[options.fieldIds.name]}
         </CardTitle>
-        <Badge variant={"outline"} className="ml-auto font-medium">
+        <Badge
+          variant={"outline"}
+          {...badge}
+          className={cn(
+            "ml-auto font-medium",
+            badge?.className,
+          )}
+        >
           {item?.[options.fieldIds.column]}
         </Badge>
       </CardHeader>

@@ -9,6 +9,7 @@ import {
 } from "netzo/components/blocks/render.tsx";
 import { toDateTime } from "netzo/components/blocks/format.ts";
 import { CopyId } from "netzo/components/blocks/shared/copy-id.tsx";
+import { Badge } from "netzo/components/ui/badge.tsx";
 import { Checkbox } from "netzo/components/ui/checkbox.tsx";
 import { type Account, accountSchema, ALIASES } from "@/resources/accounts.ts";
 
@@ -53,28 +54,29 @@ export const getColumns = (_props: TableProps): TableProps["columns"] => [
     },
   },
   {
-    accessorKey: "status",
-    header: renderHeader(ALIASES.status),
-    cell: ({ row }) => {
-      const { status } = row.original;
-      const colors = {
-        active: "black",
-        inactive: "gray",
-      };
-      return (
-        <p
-          className={`text-${colors[status]}-500`}
-        >
-          {status}
-        </p>
-      );
-    },
-    filterFn: (row, id, value) => value.includes(row.getValue(id)),
-  },
-  {
     accessorKey: "type",
     header: renderHeader(ALIASES.type),
-    cell: renderCell(),
+    cell: ({ row }) => {
+      const { type } = row.original;
+      const colors = {
+        prospect: "yellow",
+        customer: "green",
+        supplier: "red",
+        partner: "blue",
+        other: "gray",
+      };
+      const background = `bg-${colors[type]}-500`;
+      return type
+        ? (
+          <Badge
+            variant="default"
+            className={`${background} hover:${background} bg-opacity-80 text-white`}
+          >
+            {type}
+          </Badge>
+        )
+        : <></>;
+    },
     filterFn: (row, id, value) => value.includes(row.getValue(id)),
   },
   {
