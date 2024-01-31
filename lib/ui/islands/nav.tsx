@@ -25,7 +25,7 @@ export function Nav({ className, ui = {}, ...props }: NavProps) {
   } = useUI(ui, {
     root: {
       className: cn(
-        "group flex flex-col gap-4 bg-primary-foreground text-foreground",
+        "h-full group flex flex-col gap-4 bg-primary-foreground text-foreground",
         className,
       ),
     },
@@ -47,7 +47,7 @@ export function Nav({ className, ui = {}, ...props }: NavProps) {
       ),
     },
     navItemIcon: {
-      className: "w-5 h-5 mr-3",
+      className: "w-4 h-4 mr-3",
     },
     navItemHeader: {
       className: "mt-3 mb-1 mx-4 text-xs font-medium text-muted-foreground",
@@ -56,6 +56,11 @@ export function Nav({ className, ui = {}, ...props }: NavProps) {
   });
 
   const showNavHeader = props?.image || props?.title;
+
+  const getIcon = (icon: string) =>
+    icon.startsWith("http")
+      ? <img {...navItemIcon} src={icon} />
+      : <div {...navItemIcon} className={cn(navItemIcon?.className, icon)} />;
 
   return (
     <div {...root}>
@@ -74,27 +79,25 @@ export function Nav({ className, ui = {}, ...props }: NavProps) {
         {props.items?.map((item, index) => {
           if ("href" in item) {
             return (
-              <div {...navItemRoot}>
-                <a key={index} {...{ ...navItem, ...item }}>
-                  {item.icon && (item.icon.startsWith("http")
-                    ? <img {...navItemIcon} src={item.icon} />
-                    : (
-                      <div
-                        {...navItemIcon}
-                        className={cn(navItemIcon?.className, item.icon)}
-                      />
-                    ))}
+              <div key={`nav-item-${index}`} {...navItemRoot}>
+                <a {...navItem} href={item.href} target={item.target}>
+                  {item.icon && getIcon(item.icon)}
                   {item.text}
                 </a>
               </div>
             );
           } else if ("text" in item) {
             return (
-              <h3 {...navItemHeader}>
+              <h3 key={`nav-item-header-${index}`} {...navItemHeader}>
                 {item.text}
               </h3>
             );
-          } else return <Separator {...navItemSeparator} />;
+          } else {return (
+              <Separator
+                key={`nav-item-separator-${index}`}
+                {...navItemSeparator}
+              />
+            );}
         })}
       </nav>
     </div>

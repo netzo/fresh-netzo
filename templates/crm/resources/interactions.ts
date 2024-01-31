@@ -6,7 +6,6 @@ export const interactionSchema = z.object({
   id: z.string(),
   type: z.string(), // "call", "email", "meeting", "whatsapp-msg", "livechat-msg", facebook-msg", "instagram-msg", "linkedin-msg", "twitter-msg", "other"
   data: z.any(),
-  createdBy: z.string(),
   createdAt: z.string(),
   updatedAt: z.string(),
 });
@@ -27,7 +26,6 @@ export const interactions: Interaction[] = [
       date: "2021-01-01T10:00:00.000Z",
       duration: 30,
     },
-    createdBy: "USER1",
     createdAt: "2021-01-01T10:00:00.000Z",
     updatedAt: "2021-01-01T10:00:00.000Z",
   },
@@ -41,7 +39,6 @@ export const interactions: Interaction[] = [
       duration: 30,
       from: "",
     },
-    createdBy: "USER1",
     createdAt: "2021-01-01T10:00:00.000Z",
     updatedAt: "2021-01-01T10:00:00.000Z",
   },
@@ -54,7 +51,6 @@ export const interactions: Interaction[] = [
       date: "2021-01-01T10:00:00.000Z",
       duration: 30,
     },
-    createdBy: "USER1",
     createdAt: "2021-01-01T10:00:00.000Z",
     updatedAt: "2021-01-01T10:00:00.000Z",
   },
@@ -66,7 +62,6 @@ export const ALIASES = {
   id: "Interaction Id",
   type: "Type",
   data: "Data",
-  createdBy: "Created By",
   createdAt: "Created At",
   updatedAt: "Updated At",
 };

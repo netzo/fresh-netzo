@@ -34,7 +34,6 @@ export const contactSchema = z.object({
   notes: z.array(
     z.object({
       text: z.string(),
-      createdBy: z.string(),
       createdAt: z.string(),
       updatedAt: z.string(),
     }),
@@ -49,7 +48,6 @@ export const contactSchema = z.object({
     privacy: z.boolean(),
     privacyTimestamp: z.number(),
   }),
-  createdBy: z.string(),
   createdAt: z.string(),
   updatedAt: z.string(),
 });
@@ -87,7 +85,6 @@ export const contacts: Contact[] = [
     ],
     notes: [{
       text: "Call with John Doe",
-      createdBy: "USER1",
       createdAt: "2021-01-01T10:00:00.000Z",
       updatedAt: "2021-01-01T10:00:00.000Z",
     }],
@@ -101,7 +98,6 @@ export const contacts: Contact[] = [
       privacy: true,
       privacyTimestamp: 1612137600,
     },
-    createdBy: "USER1",
     createdAt: "2021-01-01T10:00:00.000Z",
     updatedAt: "2021-01-01T10:00:00.000Z",
   },
@@ -131,7 +127,6 @@ export const contacts: Contact[] = [
     ],
     notes: [{
       text: "Call with John Doe",
-      createdBy: "USER1",
       createdAt: "2021-01-01T10:00:00.000Z",
       updatedAt: "2021-01-01T10:00:00.000Z",
     }],
@@ -145,7 +140,6 @@ export const contacts: Contact[] = [
       privacy: true,
       privacyTimestamp: 1612137600,
     },
-    createdBy: "USER1",
     createdAt: "2021-01-01T10:00:00.000Z",
     updatedAt: "2021-01-01T10:00:00.000Z",
   },
@@ -175,7 +169,6 @@ export const contacts: Contact[] = [
     ],
     notes: [{
       text: "Call with John Doe",
-      createdBy: "USER1",
       createdAt: "2021-01-01T10:00:00.000Z",
       updatedAt: "2021-01-01T10:00:00.000Z",
     }],
@@ -189,7 +182,6 @@ export const contacts: Contact[] = [
       privacy: true,
       privacyTimestamp: 1612137600,
     },
-    createdBy: "USER1",
     createdAt: "2021-01-01T10:00:00.000Z",
     updatedAt: "2021-01-01T10:00:00.000Z",
   },
@@ -211,7 +203,6 @@ export const ALIASES = {
   links: "Links",
   notes: {
     text: "Text",
-    createdBy: "Created By",
     createdAt: "Created At",
     updatedAt: "Updated At",
   },
@@ -225,7 +216,6 @@ export const ALIASES = {
     privacy: "Privacy",
     privacyTimestamp: "Privacy Timestamp",
   },
-  createdBy: "Created By",
   createdAt: "Created At",
   updatedAt: "Updated At",
 };

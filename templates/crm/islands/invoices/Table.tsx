@@ -32,119 +32,89 @@ export const getColumns = (_props: TableProps): TableProps["columns"] => [
     enableHiding: false,
   },
   {
-    header: "General",
-    columns: [
-      {
-        accessorKey: "invoiceNumber",
-        header: renderHeader(ALIASES.invoiceNumber),
-        cell: ({ row }) => {
-          const { id, invoiceNumber } = row.original;
-          return (
-            <div className="flex">
-              <a
-                href={`/invoices/${id}`}
-                className="whitespace-nowrap text-center font-medium text-primary hover:underline"
-              >
-                {name}
-              </a>
-              <CopyId id={id} />
-            </div>
-          );
-        },
-      },
-      {
-        accessorKey: "status",
-        header: renderHeader(ALIASES.status),
-        cell: ({ row }) => {
-          const { status } = row.original;
-          const colors = {
-            pending: "red",
-            paid: "blue",
-            cancelled: "gray",
-          };
-          return status
-            ? (
-              <Badge
-                variant="outline"
-                className={`bg-${colors[status]}-500 bg-opacity-80 text-white`}
-              >
-                {status}
-              </Badge>
-            )
-            : <></>;
-        },
-        filterFn: (row, id, value) => value.includes(row.getValue(id)),
-      },
-      {
-        accessorKey: "description",
-        header: renderHeader(ALIASES.description),
-        cell: renderCell(),
-      },
-      {
-        accessorKey: "dueDate",
-        header: renderHeader(ALIASES.dueDate),
-        cell: ({ row }) => {
-          const { dueDate } = row.original;
-          return <div>{dueDate ? toDate(dueDate) : undefined}</div>;
-        },
-      },
-      {
-        accessorKey: "accountId",
-        header: renderHeader(ALIASES.accountId),
-        cell: ({ row }) => {
-          const { accountId, account } = row.original;
-          return (
-            <a
-              href={`/accounts/${accountId}`}
-              className="whitespace-nowrap text-center font-medium text-primary hover:underline"
-            >
-              {account?.name ? account.name : accountId}
-            </a>
-          );
-        },
-      },
-    ],
+    accessorKey: "invoiceNumber",
+    header: renderHeader(ALIASES.invoiceNumber),
+    cell: ({ row }) => {
+      const { id, invoiceNumber } = row.original;
+      return (
+        <div className="flex">
+          <a
+            href={`/invoices/${id}`}
+            className="whitespace-nowrap text-center font-medium text-primary hover:underline"
+          >
+            {name}
+          </a>
+          <CopyId id={id} />
+        </div>
+      );
+    },
   },
   {
-    header: "Amount",
-    columns: [
-      {
-        accessorKey: "subtotal",
-        header: renderHeader(ALIASES.subtotal),
-        cell: renderCell(),
-      },
-      {
-        accessorKey: "tax",
-        header: renderHeader(ALIASES.tax),
-        cell: renderCell(),
-      },
-      {
-        accessorKey: "total",
-        header: renderHeader(ALIASES.total),
-        cell: renderCell(),
-      },
-    ],
+    accessorKey: "status",
+    header: renderHeader(ALIASES.status),
+    cell: ({ row }) => {
+      const { status } = row.original;
+      const colors = {
+        pending: "red",
+        paid: "blue",
+        cancelled: "gray",
+      };
+      return status
+        ? (
+          <Badge
+            variant="outline"
+            className={`bg-${colors[status]}-500 bg-opacity-80 text-white`}
+          >
+            {status}
+          </Badge>
+        )
+        : <></>;
+    },
+    filterFn: (row, id, value) => value.includes(row.getValue(id)),
   },
   {
-    header: "Other",
-    columns: [
-      {
-        accessorKey: "createdAt",
-        header: renderHeader(ALIASES.createdAt),
-        cell: ({ row }) => {
-          const { createdAt } = row.original;
-          return <div>{toDateTime(createdAt)}</div>;
-        },
-      },
-      {
-        accessorKey: "updatedAt",
-        header: renderHeader(ALIASES.updatedAt),
-        cell: ({ row }) => {
-          const { updatedAt } = row.original;
-          return <div>{toDateTime(updatedAt)}</div>;
-        },
-      },
-    ],
+    accessorKey: "description",
+    header: renderHeader(ALIASES.description),
+    cell: renderCell(),
+  },
+  {
+    accessorKey: "dueDate",
+    header: renderHeader(ALIASES.dueDate),
+    cell: ({ row }) => {
+      const { dueDate } = row.original;
+      return <div>{dueDate ? toDate(dueDate) : undefined}</div>;
+    },
+  },
+  {
+    accessorKey: "accountId",
+    header: renderHeader(ALIASES.accountId),
+    cell: ({ row }) => {
+      const { accountId, account } = row.original;
+      return (
+        <a
+          href={`/accounts/${accountId}`}
+          className="whitespace-nowrap text-center font-medium text-primary hover:underline"
+        >
+          {account?.name ? account.name : accountId}
+        </a>
+      );
+    },
+  },
+  {
+    accessorKey: "createdAt",
+    header: renderHeader(ALIASES.createdAt),
+    cell: ({ row }) => {
+      const { createdAt } = row.original;
+      return <div>{toDateTime(createdAt)}</div>;
+    },
+  },
+  {
+    accessorKey: "updatedAt",
+    header: renderHeader(ALIASES.updatedAt),
+    cell: ({ row }) => {
+      const { updatedAt } = row.original;
+      return <div>{toDateTime(updatedAt)}</div>;
+    },
   },
 ];
 

@@ -37,33 +37,22 @@ export const netzo = await Netzo({
       title: "Netzo",
       image: "/favicon.svg",
       items: [
-        { text: "Overview", href: "/", icon: "mdi-home" },
-        { text: "Deals", href: "/deals", icon: "i-mdi-home" },
+        { text: "Overview", href: "/", icon: "mdi-view-dashboard" },
+        { text: "Deals", href: "/deals", icon: "mdi-view-column" },
         {},
-        { text: "Accounts", href: "/accounts" },
-        { text: "Contacts", href: "/contacts" },
-        { text: "Invoices", href: "/invoices" },
+        { text: "Accounts", href: "/accounts", icon: "mdi-account-group" },
+        { text: "Contacts", href: "/contacts", icon: "mdi-contacts" },
+        { text: "Invoices", href: "/invoices", icon: "mdi-receipt" },
       ],
-      ui: {
-        // root: { class: "bg-black dark:bg-red-500 text-white" },
-        // navItem: { class: "text-green-500 px-20px" },
-        // navItemIcon: { className: "text-red-500 px-20px" },
-      },
     },
     header: {
       title: "CRM Template",
       description: "A starter template for a custom CRM app",
-      ui: {
-        // root: { class: "bg-black dark:bg-red-500 text-white" },
-      },
     },
     footer: {
       innerHTMLLeft: `${new Date().getFullYear()} &copy; Netzo`,
       innerHTMLRight:
         `<a href="mailto:hello@netzo.io" target="_blank">Contact us</a>`,
-      ui: {
-        // root: { class: "bg-black dark:bg-red-500 text-white" },
-      },
     },
   },
   api: {

@@ -30,8 +30,7 @@ export type UiConfig = UnocssOptions & {
     /** Navigation headers, links with absolute or relative URLs and/or dividers */
     items?: Array<
       | { text: string } // header
-      | { icon?: string; text: string; href?: string; target?: string }
-      & HTMLAnchorElement // link
+      | { icon?: string; text: string; href?: string; target?: string } // link
       | Record<string | number | symbol, never> // divider (empty object)
     >;
     /** Extra props to customize element (overwrites defaults). */

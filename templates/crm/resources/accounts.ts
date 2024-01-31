@@ -50,7 +50,6 @@ export const accountSchema = z.object({
   notes: z.array(
     z.object({
       text: z.string(),
-      createdBy: z.string(),
       createdAt: z.string(),
       updatedAt: z.string(),
     }),
@@ -99,7 +98,6 @@ export const accountSchema = z.object({
     paymentDeadline: z.string(),
     paymentTerms: z.string(),
   }),
-  createdBy: z.string(),
   createdAt: z.string(),
   updatedAt: z.string(),
 });
@@ -165,7 +163,6 @@ export const accounts: Account[] = [
     notes: [
       {
         text: "Note 1",
-        createdBy: "USER1",
         createdAt: "2023-02-15T10:00:00.000Z",
         updatedAt: "2023-02-15T10:00:00.000Z",
       },
@@ -214,7 +211,6 @@ export const accounts: Account[] = [
       paymentDeadline: "30 days",
       paymentTerms: "NET_30",
     },
-    createdBy: "USER1",
     createdAt: "2021-01-01T10:00:00.000Z",
     updatedAt: "2021-01-01T10:00:00.000Z",
   },
@@ -272,7 +268,6 @@ export const accounts: Account[] = [
     notes: [
       {
         text: "Note 1",
-        createdBy: "USER1",
         createdAt: "2023-02-15T10:00:00.000Z",
         updatedAt: "2023-02-15T10:00:00.000Z",
       },
@@ -321,7 +316,6 @@ export const accounts: Account[] = [
       paymentDeadline: "30 days",
       paymentTerms: "NET_30",
     },
-    createdBy: "USER1",
     createdAt: "2021-01-01T10:00:00.000Z",
     updatedAt: "2021-01-01T10:00:00.000Z",
   },
@@ -379,7 +373,6 @@ export const accounts: Account[] = [
     notes: [
       {
         text: "Note 1",
-        createdBy: "USER1",
         createdAt: "2023-02-15T10:00:00.000Z",
         updatedAt: "2023-02-15T10:00:00.000Z",
       },
@@ -428,7 +421,6 @@ export const accounts: Account[] = [
       paymentDeadline: "30 days",
       paymentTerms: "NET_30",
     },
-    createdBy: "USER1",
     createdAt: "2021-01-01T10:00:00.000Z",
     updatedAt: "2021-01-01T10:00:00.000Z",
   },

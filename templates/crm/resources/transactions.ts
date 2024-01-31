@@ -20,12 +20,10 @@ export const transactionSchema = z.object({
   notes: z.array(
     z.object({
       text: z.string(),
-      createdBy: z.string(),
       createdAt: z.string(),
       updatedAt: z.string(),
     }),
   ),
-  createdBy: z.string(),
   createdAt: z.string(),
   updatedAt: z.string(),
 });
@@ -55,12 +53,10 @@ export const transactions: Transaction[] = [
     "notes": [
       {
         "text": "Received payment for services rendered",
-        "createdBy": "John Doe",
         "createdAt": "2023-06-15T09:35:00Z",
         "updatedAt": "2023-06-15T09:35:00Z",
       },
     ],
-    "createdBy": "Jane Smith",
     "createdAt": "2023-06-15T09:40:00Z",
     "updatedAt": "2023-06-15T09:40:00Z",
   },
@@ -82,12 +78,10 @@ export const transactions: Transaction[] = [
     "notes": [
       {
         "text": "Payment for office supplies",
-        "createdBy": "Alice Johnson",
         "createdAt": "2023-07-20T14:50:00Z",
         "updatedAt": "2023-07-20T14:50:00Z",
       },
     ],
-    "createdBy": "Bob Williams",
     "createdAt": "2023-07-20T15:00:00Z",
     "updatedAt": "2023-07-20T15:00:00Z",
   },
@@ -109,12 +103,10 @@ export const transactions: Transaction[] = [
     "notes": [
       {
         "text": "Transferring funds between internal accounts",
-        "createdBy": "Eva Martinez",
         "createdAt": "2023-08-05T11:05:00Z",
         "updatedAt": "2023-08-05T11:05:00Z",
       },
     ],
-    "createdBy": "David Brown",
     "createdAt": "2023-08-05T11:10:00Z",
     "updatedAt": "2023-08-05T11:10:00Z",
   },
@@ -139,11 +131,9 @@ export const ALIASES = {
   exchangeRate: "Exchange Rate",
   notes: {
     text: "Text",
-    createdBy: "Created By",
     createdAt: "Created At",
     updatedAt: "Updated At",
   },
-  createdBy: "Created By",
   createdAt: "Created At",
   updatedAt: "Updated At",
 };

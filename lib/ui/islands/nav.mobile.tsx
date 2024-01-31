@@ -35,7 +35,7 @@ export function NavMobile({ className, ...props }: NavProps) {
         </Button>
       </SheetTrigger>
       <SheetContent side="left" className="w-[250px] p-0">
-        <div className="h-full px-1 py-6">
+        <div className="h-full">
           {props.children}
         </div>
       </SheetContent>
