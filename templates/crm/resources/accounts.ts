@@ -469,7 +469,6 @@ export const ALIASES = {
   "notes": [
     {
       "text": "Text",
-      "createdBy": "Created At",
       "createdAt": "Created At",
       "updatedAt": "Updated At",
     },
@@ -518,7 +517,6 @@ export const ALIASES = {
     "paymentDeadline": "Payment Deadline",
     "paymentTerms": "Payment Terms",
   },
-  "createdBy": "Created By",
   "createdAt": "Created At",
   "updatedAt": "Updated At",
 };

@@ -4,11 +4,10 @@ import { z } from "netzo/deps/zod/mod.ts";
 
 export const contactSchema = z.object({
   id: z.string(),
-  accountId: z.array(z.string()),
-  account: z.array(z.any()),
+  accountId: z.string(),
+  account: z.any(),
   accountDomain: z.string(), // Will be used to match records from email domain, once associated with an account, it will be removed from here
-  firstName: z.string(),
-  lastName: z.string(),
+  name: z.string(),
   position: z.string(),
   department: z.string(),
   phone: z.array(
@@ -64,8 +63,7 @@ export const contacts: Contact[] = [
     accountId: "ACCOUNT1",
     account: [{ $ref: {} }],
     accountDomain: "esgraf.com,.mx",
-    firstName: "John",
-    lastName: "Doe",
+    name: "John Doe",
     position: "CEO",
     department: "Management",
     phone: [{
@@ -106,8 +104,7 @@ export const contacts: Contact[] = [
     accountId: "ACCOUNT1",
     account: [{ $ref: {} }],
     accountDomain: "esgraf.com,.mx",
-    firstName: "John",
-    lastName: "Doe",
+    name: "John Doe",
     position: "CEO",
     department: "Management",
     phone: [{
@@ -148,8 +145,7 @@ export const contacts: Contact[] = [
     accountId: "ACCOUNT1",
     account: [{ $ref: {} }],
     accountDomain: "esgraf.com,.mx",
-    firstName: "John",
-    lastName: "Doe",
+    name: "John Doe",
     position: "CEO",
     department: "Management",
     phone: [{
@@ -194,12 +190,11 @@ export const ALIASES = {
   accountId: "Account Id",
   account: "Account",
   accountDomain: "Account Domain",
-  firstName: "First Name",
-  lastName: "Last Name",
+  name: "Full Name",
   position: "Position",
   department: "Department",
-  phone: "Phone Numbers ",
   emails: "Emails",
+  phones: "Phone Numbers",
   links: "Links",
   notes: {
     text: "Text",

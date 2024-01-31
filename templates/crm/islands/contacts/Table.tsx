@@ -40,104 +40,69 @@ export const getColumns = (_props: TableProps): TableProps["columns"] => [
     enableHiding: false,
   },
   {
-    header: "General",
-    columns: [
-      {
-        accessorKey: "name",
-        header: renderHeader(ALIASES.name),
-        cell: ({ row }) => {
-          const { id, name, avatar } = row.original;
-          const [first, last] = name.split(" ");
-          const initials = `${first[0]}${last[0]}`?.toUpperCase();
-          return (
-            <div className="flex items-center py-1">
-              <Avatar className="h-9 w-9 mr-3">
-                <AvatarImage src={avatar} />
-                <AvatarFallback>{initials}</AvatarFallback>
-              </Avatar>
-              <a
-                href={`/contacts/${id}`}
-                className="whitespace-nowrap text-center font-medium text-primary hover:underline"
-              >
-                {name}
-              </a>
-              <CopyId id={id} />
-            </div>
-          );
-        },
-      },
-      {
-        accessorKey: "accountId",
-        header: renderHeader(ALIASES.accountId),
-        cell: ({ row }) => {
-          const { accountId, account } = row.original;
-          return (
-            <a
-              href={`/accounts/${accountId}`}
-              className="whitespace-nowrap text-center font-medium text-primary hover:underline"
-            >
-              {account?.name ? account.name : accountId}
-            </a>
-          );
-        },
-      },
-    ],
+    accessorKey: "name",
+    header: renderHeader(ALIASES.name),
+    cell: ({ row }) => {
+      const { id, name = "" /*avatar*/ } = row.original;
+      const [first = "", last = ""] = name.split(" ");
+      const initials = `${first[0]}${last[0]}`?.toUpperCase();
+      return (
+        <div className="flex items-center py-1">
+          <Avatar className="h-9 w-9 mr-3">
+            {/* <AvatarImage src={avatar} /> */}
+            <AvatarFallback>{initials}</AvatarFallback>
+          </Avatar>
+          <a
+            href={`/contacts/${id}`}
+            className="whitespace-nowrap text-center font-medium text-primary hover:underline"
+          >
+            {name}
+          </a>
+          <CopyId id={id} />
+        </div>
+      );
+    },
   },
   {
-    header: "Contact",
-    columns: [
-      {
-        accessorKey: "email",
-        header: renderHeader(ALIASES.email),
-        cell: renderCell(),
-      },
-      {
-        accessorKey: "phone",
-        header: renderHeader(ALIASES.phone),
-        cell: renderCell(),
-      },
-    ],
+    accessorKey: "accountId",
+    header: renderHeader(ALIASES.accountId),
+    cell: ({ row }) => {
+      const { accountId, account } = row.original;
+      return (
+        <a
+          href={`/accounts/${accountId}`}
+          className="whitespace-nowrap text-center font-medium text-primary hover:underline"
+        >
+          {account?.name ? account.name : accountId}
+        </a>
+      );
+    },
   },
   {
-    header: "Notificaciones",
-    columns: [
-      {
-        accessorKey: "notifications.new",
-        header: renderHeader(ALIASES.notifications.new),
-        cell: renderCheckboxRow(),
-      },
-      {
-        accessorKey: "notifications.promotions",
-        header: renderHeader(ALIASES.notifications.promotions),
-        cell: renderCheckboxRow(),
-      },
-      {
-        accessorKey: "notifications.marketing",
-        header: renderHeader(ALIASES.notifications.marketing),
-        cell: renderCheckboxRow(),
-      },
-    ],
+    accessorKey: "emails",
+    header: renderHeader(ALIASES.emails),
+    cell: renderCell(),
   },
   {
-    header: "Other",
-    columns: [
-      {
-        accessorKey: "createdAt",
-        header: renderHeader(ALIASES.createdAt),
-        cell: ({ row }) => {
-          const { createdAt } = row.original;
-          return <div>{toDateTime(createdAt)}</div>;
-        },
-      },
-      {
-        accessorKey: "updatedAt",
-        header: renderHeader(ALIASES.updatedAt),
-        cell: ({ row }) => {
-          const { updatedAt } = row.original;
-          return <div>{toDateTime(updatedAt)}</div>;
-        },
-      },
-    ],
+    accessorKey: "phones",
+    header: renderHeader(ALIASES.phones),
+    cell: renderCell(),
+  },
+  {
+    accessorKey: "createdAt",
+    header: renderHeader(ALIASES.createdAt),
+    cell: ({ row }) => {
+      const { createdAt } = row.original;
+      return <div>{toDateTime(createdAt)}</div>;
+    },
+  },
+  {
+    accessorKey: "updatedAt",
+    header: renderHeader(ALIASES.updatedAt),
+    cell: ({ row }) => {
+      const { updatedAt } = row.original;
+      return <div>{toDateTime(updatedAt)}</div>;
+    },
   },
 ];
 

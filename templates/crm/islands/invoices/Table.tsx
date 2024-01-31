@@ -32,17 +32,17 @@ export const getColumns = (_props: TableProps): TableProps["columns"] => [
     enableHiding: false,
   },
   {
-    accessorKey: "invoiceNumber",
-    header: renderHeader(ALIASES.invoiceNumber),
+    accessorKey: "id",
+    header: renderHeader(ALIASES.id),
     cell: ({ row }) => {
-      const { id, invoiceNumber } = row.original;
+      const { id } = row.original;
       return (
         <div className="flex">
           <a
             href={`/invoices/${id}`}
             className="whitespace-nowrap text-center font-medium text-primary hover:underline"
           >
-            {name}
+            {id}
           </a>
           <CopyId id={id} />
         </div>
@@ -56,14 +56,15 @@ export const getColumns = (_props: TableProps): TableProps["columns"] => [
       const { status } = row.original;
       const colors = {
         pending: "red",
-        paid: "blue",
+        paid: "green",
         cancelled: "gray",
       };
+      const background = `bg-${colors[status]}-500`;
       return status
         ? (
           <Badge
-            variant="outline"
-            className={`bg-${colors[status]}-500 bg-opacity-80 text-white`}
+            variant="default"
+            className={`${background} hover:${background} bg-opacity-80 text-white`}
           >
             {status}
           </Badge>
@@ -71,34 +72,6 @@ export const getColumns = (_props: TableProps): TableProps["columns"] => [
         : <></>;
     },
     filterFn: (row, id, value) => value.includes(row.getValue(id)),
-  },
-  {
-    accessorKey: "description",
-    header: renderHeader(ALIASES.description),
-    cell: renderCell(),
-  },
-  {
-    accessorKey: "dueDate",
-    header: renderHeader(ALIASES.dueDate),
-    cell: ({ row }) => {
-      const { dueDate } = row.original;
-      return <div>{dueDate ? toDate(dueDate) : undefined}</div>;
-    },
-  },
-  {
-    accessorKey: "accountId",
-    header: renderHeader(ALIASES.accountId),
-    cell: ({ row }) => {
-      const { accountId, account } = row.original;
-      return (
-        <a
-          href={`/accounts/${accountId}`}
-          className="whitespace-nowrap text-center font-medium text-primary hover:underline"
-        >
-          {account?.name ? account.name : accountId}
-        </a>
-      );
-    },
   },
   {
     accessorKey: "createdAt",

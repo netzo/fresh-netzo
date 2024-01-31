@@ -14,18 +14,13 @@ const api = createApi({
 });
 
 export const netzo = await Netzo({
-  // auth: Deno.env.get("DENO_REGION")
-  //   ? {
-  //     providers: {
-  //       netzo: {},
-  //     },
-  //   }
-  //   : undefined,
-  auth: {
-    providers: {
-      netzo: {},
+  auth: Deno.env.get("DENO_REGION")
+    ? {
+      providers: {
+        netzo: {},
+      },
     }
-  },
+    : undefined,
   ui: {
     head: {
       title: "CRM Template | Netzo",
@@ -56,7 +51,7 @@ export const netzo = await Netzo({
     },
   },
   api: {
-    // apiKey: "123",
+    // apiKey: Deno.env.get("NETZO_API_KEY"),
     path: "/api",
     idField: "id",
     services: {
