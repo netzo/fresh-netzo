@@ -129,7 +129,7 @@ export function AuthForm(props: NetzoState & { request: Request }) {
               <span className="w-full border-t" />
             </div>
             <div className="relative flex justify-center text-xs uppercase">
-              <span className="px-2 bg-[hsl(var(--background))]">
+              <span className="px-2 bg-background">
                 Or continue with
               </span>
             </div>

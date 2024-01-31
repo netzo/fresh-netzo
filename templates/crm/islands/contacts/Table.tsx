@@ -26,7 +26,6 @@ export const getColumns = (_props: TableProps): TableProps["columns"] => [
         checked={table.getIsAllPageRowsSelected()}
         onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
         aria-label="Select all"
-        className="mx-2"
       />
     ),
     cell: ({ row }) => (
@@ -34,7 +33,7 @@ export const getColumns = (_props: TableProps): TableProps["columns"] => [
         checked={row.getIsSelected()}
         onCheckedChange={(value) => row.toggleSelected(!!value)}
         aria-label="Select row"
-        className="my-3 mr-2"
+        className="flex mx-auto my-2"
       />
     ),
     enableSorting: false,
@@ -58,7 +57,7 @@ export const getColumns = (_props: TableProps): TableProps["columns"] => [
               </Avatar>
               <a
                 href={`/contacts/${id}`}
-                className="whitespace-nowrap text-center font-medium text-[hsl(var(--primary))] hover:underline"
+                className="whitespace-nowrap text-center font-medium text-primary hover:underline"
               >
                 {name}
               </a>
@@ -75,7 +74,7 @@ export const getColumns = (_props: TableProps): TableProps["columns"] => [
           return (
             <a
               href={`/accounts/${accountId}`}
-              className="whitespace-nowrap text-center font-medium text-[hsl(var(--primary))] hover:underline"
+              className="whitespace-nowrap text-center font-medium text-primary hover:underline"
             >
               {account?.name ? account.name : accountId}
             </a>

@@ -1,11 +1,12 @@
-import { CopyIcon } from "../../../deps/@radix-ui/react-icons.ts";
 import { useSignal } from "@preact/signals";
+import { cn } from "../../utils.ts";
 
 interface CopyIdProps {
   id: string;
+  title?: string;
 }
 
-export function CopyId({ id }: CopyIdProps) {
+export function CopyId({ id, title = "Copy ID" }: CopyIdProps) {
   const isCopied = useSignal(false);
   const handleCopy = () => {
     navigator.clipboard.writeText(id);
@@ -14,11 +15,13 @@ export function CopyId({ id }: CopyIdProps) {
   };
 
   return (
-    <CopyIcon
+    <div
       onClick={handleCopy}
-      className={isCopied.value
-        ? "mx-2 text-[hsl(var(--primary))]"
-        : "mx-2 text-gray-500 cursor-pointer"}
+      title={title}
+      className={cn(
+        "mdi-content-copy mx-2 text-xs",
+        isCopied.value ? "text-primary" : "text-gray-500 cursor-pointer",
+      )}
     />
   );
 }

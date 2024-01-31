@@ -25,7 +25,7 @@ export default defineApp<NetzoState>((req, ctx) => {
       </head>
       <body
         className={cn(
-          "h-full overflow-x-hidden bg-[hsl(var(--background))]",
+          "h-full overflow-x-hidden bg-background",
           showNav &&
             "flex flex-row flex-row-reverse md:grid md:grid-cols-[250px_auto]",
         )}

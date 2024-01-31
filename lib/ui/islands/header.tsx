@@ -15,7 +15,7 @@ export function Header({ className, ui = {}, ...props }: HeaderProps) {
   const { root, title, description, image, left, right } = useUI(ui, {
     root: {
       className: cn(
-        "flex items-center justify-between p-4 space-y-2 bg-[hsl(var(--background))]",
+        "flex items-center justify-between p-4 space-y-2 bg-background",
         className,
       ),
     },
@@ -25,7 +25,7 @@ export function Header({ className, ui = {}, ...props }: HeaderProps) {
         "flex items-center ml-2 text-sm mdi-information text-muted-foreground",
     },
     image: { className: "w-auto h-9 my-auto mr-4" },
-    left: { className: "flex items-center gap-4 !my-auto" },
+    left: { className: "flex items-center gap-2 !my-auto" },
     right: { className: "flex items-center gap-4 !my-auto" },
   });
 

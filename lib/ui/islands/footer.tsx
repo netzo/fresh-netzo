@@ -15,7 +15,7 @@ export const Footer = (
   const { root, left, right } = useUI(ui, {
     root: {
       className: cn(
-        "sticky bottom-0 w-full flex items-center justify-center md:justify-between bg-[hsl(var(--background))] p-3",
+        "sticky bottom-0 w-full flex items-center justify-center md:justify-between bg-background p-3",
         className,
       ),
     },

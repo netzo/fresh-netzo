@@ -24,7 +24,10 @@ export function Nav({ className, ui = {}, ...props }: NavProps) {
     navItemSeparator,
   } = useUI(ui, {
     root: {
-      className: cn("group flex flex-col gap-4", className),
+      className: cn(
+        "group flex flex-col gap-4 bg-primary-foreground text-foreground",
+        className,
+      ),
     },
     nav: {
       className: "grid gap-1",
@@ -38,9 +41,9 @@ export function Nav({ className, ui = {}, ...props }: NavProps) {
       className: cn(
         buttonVariants({ variant: "ghost" }),
         "flex w-full justify-start",
-        "hover:cursor-pointer hover:text-[hsl(var(--primary))]",
-        // `aria-[current='true']:text-[hsl(var(--primary))]`, // ancestor links
-        `aria-[current='page']:text-[hsl(var(--primary))]`, // current page
+        "hover:cursor-pointer hover:text-primary",
+        // `aria-[current='true']:text-primary`, // ancestor links
+        `aria-[current='page']:text-primary`, // current page
       ),
     },
     navItemIcon: {

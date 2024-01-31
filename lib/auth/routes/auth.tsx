@@ -9,7 +9,7 @@ export default defineRoute<NetzoState>((req, ctx) => {
   const { auth } = ctx.state.config;
   return (
     <div
-      className={`h-full w-full grid place-items-center p-4 bg-[hsl(var(--background))]`}
+      className={`h-full w-full grid place-items-center p-4 bg-background`}
     >
       <div className="grid gap-6 w-full xs:w-[350px] max-w-[350px]">
         <AuthForm {...ctx.state} request={req} />
