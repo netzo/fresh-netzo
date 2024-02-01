@@ -1,7 +1,7 @@
 #!/usr/bin/env -S deno run -A --unstable --env --watch=static/,routes dev.ts
-import { Netzo } from "netzo/mod.ts";
-import { DenoKvService } from "../../lib/api/adapters/denokv.ts";
-import { HttpService } from "../../lib/api/adapters/http.ts";
+import { Netzo } from "../../lib/core/mod.ts";
+import { DenoKvService } from "../../lib/services/denokv.ts";
+import { HttpService } from "../../lib/services/http.ts";
 import { createApi } from "netzo/apis/_create-api/mod.ts";
 
 const kv = await Deno.openKv();

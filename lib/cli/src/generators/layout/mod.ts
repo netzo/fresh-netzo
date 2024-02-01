@@ -1,7 +1,7 @@
 import {
   prompt,
   runGenerators,
-} from "../../../../deps/@featherscloud/pinion/mod.ts";
+} from "../../../deps/@featherscloud/pinion/mod.ts";
 import {
   checkPreconditions,
   initializeBaseContext,
