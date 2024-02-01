@@ -1,9 +1,3 @@
-import {
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  DoubleArrowLeftIcon,
-  DoubleArrowRightIcon,
-} from "../../../deps/@radix-ui/react-icons.ts";
 import { Table } from "../../../deps/@tanstack/react-table.ts";
 import { Button } from "../../ui/button.tsx";
 import {
@@ -60,7 +54,7 @@ export function ViewPagination<TData>({
             disabled={!table.getCanPreviousPage()}
           >
             <span className="sr-only">Go to first page</span>
-            <DoubleArrowLeftIcon className="w-4 h-4" />
+            <i className="mdi-chevron-double-left w-4 h-4" />
           </Button>
           <Button
             variant="outline"
@@ -69,7 +63,7 @@ export function ViewPagination<TData>({
             disabled={!table.getCanPreviousPage()}
           >
             <span className="sr-only">Go to previous page</span>
-            <ChevronLeftIcon className="w-4 h-4" />
+            <i className="mdi-chevron-left w-4 h-4" />
           </Button>
           <Button
             variant="outline"
@@ -78,7 +72,7 @@ export function ViewPagination<TData>({
             disabled={!table.getCanNextPage()}
           >
             <span className="sr-only">Go to next page</span>
-            <ChevronRightIcon className="w-4 h-4" />
+            <i className="mdi-chevron-right w-4 h-4" />
           </Button>
           <Button
             variant="outline"
@@ -87,7 +81,7 @@ export function ViewPagination<TData>({
             disabled={!table.getCanNextPage()}
           >
             <span className="sr-only">Go to last page</span>
-            <DoubleArrowRightIcon className="w-4 h-4" />
+            <i className="mdi-chevron-double-right w-4 h-4" />
           </Button>
         </div>
       </div>

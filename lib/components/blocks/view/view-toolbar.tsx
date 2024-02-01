@@ -30,7 +30,7 @@ export function ViewToolbar<TData>({
           onClick={() => window.location.reload()}
           className="h-8 px-2 lg:px-3"
         >
-          <div className="mdi-reload w-4 h-4" />
+          <i className="mdi-reload w-4 h-4" />
         </Button>
         {options.search && (
           <Input
@@ -63,7 +63,7 @@ export function ViewToolbar<TData>({
             className="h-8 px-2 lg:px-3"
           >
             Reset
-            <div className="mdi-close w-4 h-4 ml-2" />
+            <i className="mdi-close w-4 h-4 ml-2" />
           </Button>
         )}
       </div>

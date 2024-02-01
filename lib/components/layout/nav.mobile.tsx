@@ -26,7 +26,7 @@ export function NavMobile({ className, ...props }: NavProps) {
           className={cn("mr-4", className)}
           onClick={() => open.value = !open.value}
         >
-          <div className="mdi-menu h-[1.2rem] w-[1.2rem]" />
+          <i className="mdi-menu h-[1.2rem] w-[1.2rem]" />
           <span className="sr-only">Toggle navigation</span>
         </Button>
       </SheetTrigger>

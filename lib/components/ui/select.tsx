@@ -1,4 +1,3 @@
-import { CaretSortIcon, CheckIcon } from "../../deps/@radix-ui/react-icons.ts";
 import * as SelectPrimitive from "../../deps/@radix-ui/react-select.ts";
 import type { JSX } from "../../deps/preact.ts";
 import {
@@ -29,7 +28,7 @@ const SelectTrigger = forwardRef<
   >
     {children}
     <SelectPrimitive.Icon asChild>
-      <CaretSortIcon className="h-4 w-4 opacity-50" />
+      <i className="mdi-unfold-more-horizontal h-4 w-4 opacity-50" />
     </SelectPrimitive.Icon>
   </SelectPrimitive.Trigger>
 ));
@@ -91,7 +90,7 @@ const SelectItem = forwardRef<
   >
     <span className="absolute right-2 flex h-3.5 w-3.5 items-center justify-center">
       <SelectPrimitive.ItemIndicator>
-        <CheckIcon className="h-4 w-4" />
+        <i className="mdi-check h-4 w-4" />
       </SelectPrimitive.ItemIndicator>
     </span>
     <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>

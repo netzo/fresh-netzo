@@ -1,5 +1,4 @@
 import { type ComponentProps } from "../../deps/preact/compat.ts";
-import { DragHandleDots2Icon } from "../../deps/@radix-ui/react-icons.ts";
 import * as ResizablePrimitive from "../../deps/react-resizable-panels.ts";
 import { cn } from "../utils.ts";
 
@@ -34,7 +33,7 @@ const ResizableHandle = ({
   >
     {withHandle && (
       <div className="z-10 flex items-center justify-center w-3 h-4 border rounded-sm bg-border">
-        <DragHandleDots2Icon className="h-2.5 w-2.5" />
+        <i className="mdi-drag h-2.5 w-2.5" />
       </div>
     )}
   </ResizablePrimitive.PanelResizeHandle>

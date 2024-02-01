@@ -1,4 +1,3 @@
-import { ChevronDownIcon } from "../../deps/@radix-ui/react-icons.ts";
 import * as NavigationMenuPrimitive from "../../deps/@radix-ui/react-navigation-menu.ts";
 import { cva } from "../../deps/class-variance-authority.ts";
 import type { JSX } from "../../deps/preact.ts";
@@ -59,8 +58,8 @@ const NavigationMenuTrigger = forwardRef<
     {...props}
   >
     {children}{" "}
-    <ChevronDownIcon
-      className="relative top-[1px] ml-1 h-3 w-3 transition duration-300 group-data-[state=open]:rotate-180"
+    <i
+      className="mdi-chevron-down relative top-[1px] ml-1 h-3 w-3 transition duration-300 group-data-[state=open]:rotate-180"
       aria-hidden="true"
     />
   </NavigationMenuPrimitive.Trigger>

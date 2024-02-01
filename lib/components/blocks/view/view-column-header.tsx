@@ -1,9 +1,4 @@
 import { type JSX } from "preact";
-import {
-  ArrowDownIcon,
-  ArrowUpIcon,
-  CaretSortIcon,
-} from "../../../deps/@radix-ui/react-icons.ts";
 import { Column } from "../../../deps/@tanstack/react-table.ts";
 import { cn } from "../../../components/utils.ts";
 import { Button } from "../../ui/button.tsx";
@@ -41,19 +36,19 @@ export function ViewColumnHeader<TData, TValue>({
           >
             <span>{title}</span>
             {column.getIsSorted() === "desc"
-              ? <ArrowDownIcon className="w-4 h-4 ml-2" />
+              ? <i className="mdi-arrow-down w-4 h-4 ml-2" />
               : column.getIsSorted() === "asc"
-              ? <ArrowUpIcon className="w-4 h-4 ml-2" />
-              : <CaretSortIcon className="w-4 h-4 ml-2" />}
+              ? <i className="mdi-arrow-up w-4 h-4 ml-2" />
+              : <i className="mdi-unfold-more-horizontal w-4 h-4 ml-2" />}
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="start">
           <DropdownMenuItem onClick={() => column.toggleSorting(false)}>
-            <ArrowUpIcon className="mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
+            <i className="mdi-arrow-up mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
             Asc
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => column.toggleSorting(true)}>
-            <ArrowDownIcon className="mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
+            <i className="mdi-arrow-down mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
             Desc
           </DropdownMenuItem>
         </DropdownMenuContent>

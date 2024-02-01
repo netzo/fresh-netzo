@@ -50,7 +50,7 @@ export default function AutoFormArray({
                 type="button"
                 onClick={() => remove(index)}
               >
-                <div className="mdi-delete h-4 w-4" />
+                <i className="mdi-delete h-4 w-4" />
               </Button>
               <Separator />
             </div>
@@ -61,7 +61,7 @@ export default function AutoFormArray({
           onClick={() => append({})}
           className="flex items-center"
         >
-          <div className="mdi-plus mr-2 h-4 w-4" />
+          <i className="mdi-plus mr-2 h-4 w-4" />
           Add
         </Button>
       </AccordionContent>

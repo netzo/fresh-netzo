@@ -1,5 +1,4 @@
 import * as AccordionPrimitive from "../../deps/@radix-ui/react-accordion.ts";
-import { ChevronDownIcon } from "../../deps/@radix-ui/react-icons.ts";
 import type { JSX } from "../../deps/preact.ts";
 import {
   type ComponentProps,
@@ -37,7 +36,7 @@ const AccordionTrigger = forwardRef<
       {...props}
     >
       {children}
-      <ChevronDownIcon className="w-4 h-4 transition-transform duration-200 shrink-0 text-muted-foreground" />
+      <i className="mdi-chevron-down w-4 h-4 transition-transform duration-200 shrink-0 text-muted-foreground" />
     </AccordionPrimitive.Trigger>
   </AccordionPrimitive.Header>
 ));

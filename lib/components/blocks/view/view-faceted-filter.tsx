@@ -1,8 +1,4 @@
 import type { ComponentType } from "preact";
-import {
-  CheckIcon,
-  PlusCircledIcon,
-} from "../../../deps/@radix-ui/react-icons.ts";
 import { Column } from "../../../deps/@tanstack/react-table.ts";
 import { cn } from "../../../components/utils.ts";
 import { Badge } from "../../ui/badge.tsx";
@@ -41,7 +37,7 @@ export function ViewFacetedFilter<TData, TValue>({
     <Popover>
       <PopoverTrigger asChild>
         <Button variant="outline" size="sm" className="h-8 border-dashed">
-          <PlusCircledIcon className="mr-2 h-4 w-4" />
+          <i className="mdi-plus-circle mr-2 h-4 w-4" />
           {title}
           {selectedValues?.size > 0 && (
             <>

@@ -1,4 +1,3 @@
-import { CheckIcon } from "../../deps/@radix-ui/react-icons.ts";
 import * as RadioGroupPrimitive from "../../deps/@radix-ui/react-radio-group.ts";
 import type { JSX } from "../../deps/preact.ts";
 import {
@@ -37,7 +36,7 @@ const RadioGroupItem = forwardRef<
       {...props}
     >
       <RadioGroupPrimitive.Indicator className="flex items-center justify-center">
-        <CheckIcon className="h-3.5 w-3.5 fill-primary" />
+        <i className="mdi-check h-3.5 w-3.5 fill-primary" />
       </RadioGroupPrimitive.Indicator>
     </RadioGroupPrimitive.Item>
   );

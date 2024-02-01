@@ -85,7 +85,7 @@ const ToastClose = forwardRef<
     toast-close=""
     {...props}
   >
-    <div className="mdi-close h-4 w-4" />
+    <i className="mdi-close h-4 w-4" />
   </ToastPrimitives.Close>
 ));
 ToastClose.displayName = ToastPrimitives.Close.displayName;

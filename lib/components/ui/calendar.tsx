@@ -1,7 +1,3 @@
-import {
-  ChevronLeftIcon,
-  ChevronRightIcon,
-} from "../../deps/@radix-ui/react-icons.ts";
 import { DayPicker } from "../../deps/react-day-picker.ts";
 import { type ComponentProps } from "../../deps/preact/compat.ts";
 import { cn } from "../utils.ts";
@@ -53,8 +49,8 @@ function Calendar({
         ...classNames,
       }}
       components={{
-        IconLeft: ({ ...props }) => <ChevronLeftIcon className="h-4 w-4" />,
-        IconRight: ({ ...props }) => <ChevronRightIcon className="h-4 w-4" />,
+        IconLeft: ({ ...props }) => <i className="mdi-chevron-left h-4 w-4" />,
+        IconRight: ({ ...props }) => <i className="mdi-chevron-right h-4 w-4" />,
       }}
       {...props}
     />

@@ -22,7 +22,7 @@ export const DatePicker = forwardRef<
             !date && "text-muted-foreground",
           )}
         >
-          <div className="mdi-calendar mr-2 h-4 w-4" />
+          <i className="mdi-calendar mr-2 h-4 w-4" />
           {date ? format(date, "PPP") : <span>Pick a date</span>}
         </Button>
       </PopoverTrigger>

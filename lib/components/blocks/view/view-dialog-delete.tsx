@@ -1,4 +1,3 @@
-import { TrashIcon } from "../../../deps/@radix-ui/react-icons.ts";
 import type { ViewProps } from "../../../composables/use-view.ts";
 import { Button } from "../../ui/button.tsx";
 import {
@@ -36,7 +35,7 @@ export function ViewDialogDelete(
           variant="destructive"
           className="h-8 px-2 ml-3 lg:px-3"
         >
-          <TrashIcon className="w-4 h-4 mr-2" />
+          <i className="mdi-delete w-4 h-4 mr-2" />
           Delete
         </Button>
       </AlertDialogTrigger>

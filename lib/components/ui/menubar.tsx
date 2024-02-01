@@ -1,8 +1,3 @@
-import {
-  CheckIcon,
-  ChevronRightIcon,
-  DotFilledIcon,
-} from "../../deps/@radix-ui/react-icons.ts";
 import * as MenubarPrimitive from "../../deps/@radix-ui/react-menubar.ts";
 import type { JSX } from "../../deps/preact.ts";
 import {
@@ -69,7 +64,7 @@ const MenubarSubTrigger = forwardRef<
     {...props}
   >
     {children}
-    <ChevronRightIcon className="ml-auto h-4 w-4" />
+    <i className="mdi-chevron-right ml-auto h-4 w-4" />
   </MenubarPrimitive.SubTrigger>
 ));
 MenubarSubTrigger.displayName = MenubarPrimitive.SubTrigger.displayName;
@@ -147,7 +142,7 @@ const MenubarCheckboxItem = forwardRef<
   >
     <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
       <MenubarPrimitive.ItemIndicator>
-        <CheckIcon className="h-4 w-4" />
+        <i className="mdi-check h-4 w-4" />
       </MenubarPrimitive.ItemIndicator>
     </span>
     {children}
@@ -169,7 +164,7 @@ const MenubarRadioItem = forwardRef<
   >
     <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
       <MenubarPrimitive.ItemIndicator>
-        <DotFilledIcon className="h-4 w-4 fill-current" />
+        <i className="mdi-circle-medium h-4 w-4 fill-current" />
       </MenubarPrimitive.ItemIndicator>
     </span>
     {children}
