@@ -14,29 +14,30 @@ import {
   DropdownMenuTrigger,
 } from "../../ui/dropdown-menu.tsx";
 
-interface TableColumnHeaderProps<TData, TValue>
-  extends JSX.HTMLAttributes<HTMLDivElement> {
-  column: Column<TData, TValue>;
-  title: string;
-}
+type ViewColumnHeaderProps<TData, TValue> =
+  & JSX.HTMLAttributes<HTMLDivElement>
+  & {
+    column: Column<TData, TValue>;
+    title: string;
+  };
 
-export function TableColumnHeader<TData, TValue>({
+export function ViewColumnHeader<TData, TValue>({
   column,
   title,
   className,
-}: TableColumnHeaderProps<TData, TValue>) {
+}: ViewColumnHeaderProps<TData, TValue>) {
   if (!column.getCanSort()) {
     return <div className={cn(className)}>{title}</div>;
   }
 
   return (
-    <div className={cn("flex items-center space-x-2", className)}>
+    <div className={cn("h-full flex items-center space-x-2", className)}>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button
             variant="ghost"
             size="sm"
-            className="w-full h-10 rounded-none bg-inherit"
+            className="w-full h-full rounded-none bg-inherit"
           >
             <span>{title}</span>
             {column.getIsSorted() === "desc"

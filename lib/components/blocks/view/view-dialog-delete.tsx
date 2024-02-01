@@ -1,5 +1,5 @@
 import { TrashIcon } from "../../../deps/@radix-ui/react-icons.ts";
-import type { TableProps } from "../table/table.tsx";
+import type { ViewProps } from "../../../composables/use-view.ts";
 import { Button } from "../../ui/button.tsx";
 import {
   AlertDialog,
@@ -13,13 +13,13 @@ import {
   AlertDialogTrigger,
 } from "../../ui/alert-dialog.tsx";
 
-interface DialogDeleteProps<TData> {
-  options: TableProps<TData, unknown>["options"];
+type ViewDialogDeleteProps<TData> = {
+  options: ViewProps<TData, unknown>["options"];
   selectedRows: TData[];
-}
+};
 
-export function DialogDelete(
-  { options, selectedRows }: DialogDeleteProps<TData>,
+export function ViewDialogDelete(
+  { options, selectedRows }: ViewDialogDeleteProps<TData>,
 ) {
   const handleDelete = async () => {
     await Promise.all(selectedRows.map((row) => {

@@ -1,10 +1,10 @@
 import { useSignal } from "@preact/signals";
 import { cn } from "../../utils.ts";
 
-interface CopyIdProps {
+type CopyIdProps = {
   id: string;
   title?: string;
-}
+};
 
 export function CopyId({ id, title = "Copy ID" }: CopyIdProps) {
   const isCopied = useSignal(false);

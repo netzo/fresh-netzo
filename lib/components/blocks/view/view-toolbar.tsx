@@ -2,20 +2,21 @@ import { Table } from "../../../deps/@tanstack/react-table.ts";
 import { cn } from "../../../components/utils.ts";
 import { Button, buttonVariants } from "../../ui/button.tsx";
 import { Input } from "../../ui/input.tsx";
-import { TableViewOptions } from "./view-options.tsx";
-import { TableFacetedFilter } from "./view-faceted-filter.tsx";
-import { TableProps } from "../table/table.tsx";
-import { DialogDelete } from "./dialog-delete.tsx";
+import { ViewOptions } from "./view-options.tsx";
+import { ViewFacetedFilter } from "./view-faceted-filter.tsx";
+import type { ViewProps } from "../../../composables/use-view.ts";
+import { ViewSheet } from "./view-sheet.tsx";
+import { ViewDialogDelete } from "./view-dialog-delete.tsx";
 
-interface TableToolbarProps<TData> {
+type ViewToolbarProps<TData> = {
   table: Table<TData>;
-  options: TableProps<TData, unknown>["options"];
-}
+  options: ViewProps<TData, unknown>["options"];
+};
 
-export function TableToolbar<TData>({
+export function ViewToolbar<TData>({
   table,
   options,
-}: TableToolbarProps<TData>) {
+}: ViewToolbarProps<TData>) {
   const isFiltered = table.getState().columnFilters.length > 0;
   const selectedRows = table.getRowModel().rows.filter((row) =>
     row.getIsSelected()
@@ -47,7 +48,7 @@ export function TableToolbar<TData>({
 
         {options.filters?.map(({ column, title, options }) =>
           table.getColumn(column) && (
-            <TableFacetedFilter
+            <ViewFacetedFilter
               column={table.getColumn(column)}
               title={title}
               options={options}
@@ -66,21 +67,27 @@ export function TableToolbar<TData>({
           </Button>
         )}
       </div>
-      <TableViewOptions table={table} />
 
-      {selectedRows.length
-        ? <DialogDelete options={options} selectedRows={selectedRows} />
-        : (
-          <a
-            href={`/${options.servicePath}/new`}
-            className={cn(
-              buttonVariants({ variant: "default" }),
-              "h-8 px-2 ml-3 lg:px-3",
-            )}
-          >
-            Create new
-          </a>
-        )}
+      <div className="flex items-center space-x-2">
+        <ViewOptions table={table} />
+
+        {selectedRows.length
+          ? <ViewDialogDelete options={options} selectedRows={selectedRows} />
+          : (
+            <>
+              <a
+                href={`/${options.servicePath}/new`}
+                className={cn(
+                  buttonVariants({ variant: "default" }),
+                  "h-8 px-2 ml-3 lg:px-3",
+                )}
+              >
+                Create new
+              </a>
+              <ViewSheet />
+            </>
+          )}
+      </div>
     </div>
   );
 }

@@ -1,45 +1,68 @@
-import { DropdownMenuTrigger } from "../../../deps/@radix-ui/react-dropdown-menu.ts";
-import { MixerHorizontalIcon } from "../../../deps/@radix-ui/react-icons.ts";
+import { signal } from "../../../deps/@preact/signals.ts";
 import { Table } from "../../../deps/@tanstack/react-table.ts";
+import { cn } from "../../utils.ts";
 import { Button } from "../../ui/button.tsx";
+import { layout } from "../view/view.tsx";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuLabel,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
   DropdownMenuSeparator,
+  DropdownMenuTrigger,
 } from "../../ui/dropdown-menu.tsx";
-import { ToggleGroup, ToggleGroupItem } from "../../ui/toggle-group.tsx";
 
-interface TableViewOptionsProps<TData> {
+type ViewOptionsProps<TData> = {
   table: Table<TData>;
-}
+};
 
-export function TableViewOptions<TData>({
+export const layout = signal("table");
+
+export const LAYOUTS = {
+  table: "mdi-table",
+  grid: "mdi-view-comfy",
+  kanban: "mdi-view-column",
+};
+
+export function ViewOptions<TData>({
   table,
-}: TableViewOptionsProps<TData>) {
+}: ViewOptionsProps<TData>) {
   return (
     <>
-      <ToggleGroup type="single" size="sm">
-        <ToggleGroupItem
-          value="table"
-          aria-label="Toggle table"
-        >
-          <div className="mdi-table h-4 w-4" />
-        </ToggleGroupItem>
-        <ToggleGroupItem
-          value="grid"
-          aria-label="Toggle grid"
-        >
-          <div className="mdi-view-column h-4 w-4" />
-        </ToggleGroupItem>
-        <ToggleGroupItem
-          value="kanban"
-          aria-label="Toggle kanban"
-        >
-          <div className="mdi-view-comfy h-4 w-4" />
-        </ToggleGroupItem>
-      </ToggleGroup>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button
+            variant="outline"
+            size="sm"
+            className="ml-3 hidden lg:flex"
+          >
+            <div className={cn("h-4 w-4", LAYOUTS[layout.value])} />
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent className="w-56">
+          <DropdownMenuLabel>View Layout</DropdownMenuLabel>
+          <DropdownMenuSeparator />
+          <DropdownMenuRadioGroup
+            value={layout.value}
+            onValueChange={(e) => layout.value = e}
+          >
+            <DropdownMenuRadioItem value="table">
+              Table
+              <div className={cn("h-4 w-4", LAYOUTS.table)} />
+            </DropdownMenuRadioItem>
+            <DropdownMenuRadioItem value="grid">
+              Grid
+              <div className={cn("h-4 w-4", LAYOUTS.grid)} />
+            </DropdownMenuRadioItem>
+            <DropdownMenuRadioItem value="kanban">
+              <div className={cn("h-4 w-4", LAYOUTS.kanban)} />
+              Kanban
+            </DropdownMenuRadioItem>
+          </DropdownMenuRadioGroup>
+        </DropdownMenuContent>
+      </DropdownMenu>
 
       <DropdownMenu>
         <DropdownMenuTrigger asChild>

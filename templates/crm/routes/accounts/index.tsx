@@ -1,12 +1,13 @@
 import { defineRoute } from "$fresh/server.ts";
-import type { TableProps } from "netzo/components/blocks/table/table.tsx";
+import type { ViewProps } from "netzo/composables/use-view.ts";
+import { View } from "netzo/components/blocks/view/view.tsx";
 import { type Account, ALIASES } from "@/resources/accounts.ts";
 import { Table } from "@/islands/accounts/Table.tsx";
 import { netzo } from "@/netzo.ts";
 
 export const getTableOptions = (
   data: Account[],
-): TableProps<Account, unknown>["options"] => {
+): ViewProps<Account, unknown>["options"] => {
   return {
     servicePath: "accounts",
     search: {
@@ -22,6 +23,7 @@ export const getTableOptions = (
         ) => (value ? { label: value, value } : { label: "*no data", value })),
       },
     ],
+    views: ["table"],
   };
 };
 

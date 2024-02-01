@@ -2,10 +2,10 @@ import type { ComponentChildren } from "../../deps/preact.ts";
 import { _get } from "../../deps/lodash.get.ts";
 import { cn } from "../utils.ts";
 import { Checkbox } from "../ui/checkbox.tsx";
-import { TableColumnHeader } from "./view/view-column-header.tsx";
+import { ViewColumnHeader } from "./view/view-column-header.tsx";
 
 export const renderHeader = (title: string) => ({ column }) => {
-  return <TableColumnHeader column={column} title={title} />;
+  return <ViewColumnHeader column={column} title={title} />;
 };
 
 export const renderCell =

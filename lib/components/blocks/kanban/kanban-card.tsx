@@ -8,18 +8,18 @@ import { cva } from "../../../deps/class-variance-authority.ts";
 import { Badge } from "../../ui/badge.tsx";
 import type { Item, KanbanProps } from "./kanban.tsx";
 
-interface KanbanCardProps {
+type KanbanCardProps = {
   item: Item;
   isOverlay?: boolean;
   options: KanbanProps["options"];
-}
+};
 
 export type ItemType = "Item";
 
-export interface ItemDragData {
+export type ItemDragData = {
   type: ItemType;
   item: Item;
-}
+};
 
 export function KanbanCard({ item, isOverlay, options }: KanbanCardProps) {
   const {

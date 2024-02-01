@@ -1,18 +1,4 @@
-import { useState } from "../../../deps/preact/hooks.ts";
-import {
-  ColumnDef,
-  ColumnFiltersState,
-  flexRender,
-  getCoreRowModel,
-  getFacetedRowModel,
-  getFacetedUniqueValues,
-  getFilteredRowModel,
-  getPaginationRowModel,
-  getSortedRowModel,
-  SortingState,
-  useReactTable,
-  VisibilityState,
-} from "../../../deps/@tanstack/react-table.ts";
+import { flexRender, type Table } from "../../../deps/@tanstack/react-table.ts";
 import { cn } from "../../utils.ts";
 import {
   Table as _Table,
@@ -22,23 +8,12 @@ import {
   TableHeader,
   TableRow,
 } from "../../ui/table.tsx";
+import type { View, ViewProps } from "../../../composables/use-view.ts";
 
-export type TableProps<TData = unknown, TValue = unknown> = {
-  data: TData[];
-  options: {
-    servicePath: string;
-    search?: {
-      column: string;
-      placeholder: string;
-    };
-    filters?: {
-      column: string;
-      title: string;
-      options: { label: string; value: string }[];
-    }[];
-  };
-  columns: ColumnDef<TData, TValue>[];
-};
+export type TableProps<
+  TData = unknown,
+  TValue = unknown,
+> = ViewProps<TData, TValue> & { table: View<TData> };
 
 export function Table<TData, TValue>({
   table,

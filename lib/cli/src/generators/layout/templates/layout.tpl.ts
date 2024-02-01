@@ -2,7 +2,7 @@ import { toFile } from "../../../../deps/@featherscloud/pinion/mod.ts";
 import { LayoutGeneratorContext } from "../mod.ts";
 import { renderSource } from "../../commons.ts";
 
-const defaultTemplate = ({ }: LayoutGeneratorContext) =>
+const defaultTemplate = ({}: LayoutGeneratorContext) =>
   /* tsx */ `// [netzo] generated via https://netzo.io/docs/cli
 import { defineLayout } from "$fresh/server.ts";
 
@@ -17,7 +17,7 @@ export default defineLayout<State>((req, ctx) => {
 });
 `;
 
-const sidebarTemplate = ({ }: LayoutGeneratorContext) =>
+const sidebarTemplate = ({}: LayoutGeneratorContext) =>
   /* tsx */ `// [netzo] generated via https://netzo.io/docs/cli
 import { defineLayout } from "$fresh/server.ts";
 
@@ -37,7 +37,7 @@ export default defineLayout<State>((req, ctx) => {
 });
 `;
 
-const twoColumnTemplate = ({ }: LayoutGeneratorContext) =>
+const twoColumnTemplate = ({}: LayoutGeneratorContext) =>
   /* tsx */ `// [netzo] generated via https://netzo.io/docs/cli
 import { defineLayout } from "$fresh/server.ts";
 
@@ -57,7 +57,7 @@ export default defineLayout<State>((req, ctx) => {
 });
 `;
 
-const dashboardTemplate = ({ }: LayoutGeneratorContext) =>
+const dashboardTemplate = ({}: LayoutGeneratorContext) =>
   /* tsx */ `// [netzo] generated via https://netzo.io/docs/cli
 import { defineLayout } from "$fresh/server.ts";
 
@@ -88,7 +88,7 @@ export default defineLayout<State>((req, ctx) => {
 });
 `;
 
-const gridTemplate = ({ }: LayoutGeneratorContext) =>
+const gridTemplate = ({}: LayoutGeneratorContext) =>
   /* tsx */ `// [netzo] generated via https://netzo.io/docs/cli
 import { defineLayout } from "$fresh/server.ts";
 

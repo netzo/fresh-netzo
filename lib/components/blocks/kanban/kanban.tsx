@@ -14,37 +14,25 @@ import {
   KeyboardSensor,
   MouseSensor,
   TouchSensor,
-  UniqueIdentifier,
+  // UniqueIdentifier,
   useSensor,
   useSensors,
 } from "../../../deps/@dnd-kit/core.ts";
 import { arrayMove, SortableContext } from "../../../deps/@dnd-kit/sortable.ts";
+import type { View, ViewProps } from "../../../composables/use-view.ts";
 import { coordinateGetter } from "./multiple-containers-keyboard-preset.ts";
 import { BoardContainer, type Column, KanbanColumn } from "./kanban-column.tsx";
 import { hasDraggableData } from "./utils.ts";
 
-export type Item = {
-  id: UniqueIdentifier;
-  name: string;
-  status: string;
-  [key: string]: unknown;
-};
+export type KanbanProps<
+  TData = unknown,
+  TValue = unknown,
+> = ViewProps<TData, TValue> & { view: View<TData> };
 
-export type KanbanProps<TData = Item> = {
-  data: TData[];
-  options: {
-    servicePath: string;
-    fieldIds: {
-      id: string;
-      column: string;
-      name: string;
-      description: string;
-    };
-    columns: Column[];
-  };
-};
-
-export function Kanban({ data, options }: KanbanProps) {
+export function Kanban<TData, TValue>({
+  data,
+  options,
+}: KanbanProps<TData, TValue>) {
   // set default fieldIds:
   options.fieldIds = {
     id: options?.fieldIds?.id || "id",
@@ -59,13 +47,13 @@ export function Kanban({ data, options }: KanbanProps) {
     columns.value.map((col) => col[options.fieldIds.id])
   );
 
-  const items = useSignal<Item[]>(data);
+  const items = useSignal<TData[]>(data);
 
   // effect(() => console.log(items.value));
 
   const activeColumn = useSignal<Column | null>(null);
 
-  const activeItem = useSignal<Item | null>(null);
+  const activeItem = useSignal<TData | null>(null);
 
   const sensors = useSensors(
     useSensor(MouseSensor),

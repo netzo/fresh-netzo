@@ -1,8 +1,6 @@
-import {
-  Table as _Table,
-  type TableProps,
-} from "netzo/components/blocks/table/table.tsx";
-import { renderHeader } from "netzo/components/blocks/render.tsx";
+import type { ViewProps } from "netzo/composables/use-view.ts";
+import { View } from "netzo/components/blocks/view/view.tsx";
+import { renderCell, renderHeader } from "netzo/components/blocks/render.tsx";
 import { toDateTime } from "netzo/components/blocks/format.ts";
 import { CopyId } from "netzo/components/blocks/shared/copy-id.tsx";
 import {
@@ -14,7 +12,7 @@ import { Checkbox } from "netzo/components/ui/checkbox.tsx";
 import { ALIASES, type Contact } from "@/resources/contacts.ts";
 
 // NOTE: columns must be defined in island due to client-only function serialization
-export const getColumns = (_props: TableProps): TableProps["columns"] => [
+export const getColumns = (_props: ViewProps): ViewProps["columns"] => [
   {
     id: "select",
     header: ({ table }) => (
@@ -102,10 +100,10 @@ export const getColumns = (_props: TableProps): TableProps["columns"] => [
   },
 ];
 
-export function Table(props: Omit<TableProps<Contact, unknown>, "columns">) {
+export function Table(props: Omit<ViewProps<Contact, unknown>, "columns">) {
   const columns = getColumns(props);
   return (
-    <_Table
+    <View
       data={props.data}
       options={props.options}
       columns={columns}

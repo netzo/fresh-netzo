@@ -1,8 +1,4 @@
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "../ui/avatar.tsx";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar.tsx";
 import { Button } from "../ui/button.tsx";
 import {
   DropdownMenu,

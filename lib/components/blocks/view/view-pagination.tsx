@@ -14,13 +14,13 @@ import {
   SelectValue,
 } from "../../ui/select.tsx";
 
-interface TablePaginationProps<TData> {
+type ViewPaginationProps<TData> = {
   table: Table<TData>;
-}
+};
 
-export function TablePagination<TData>({
+export function ViewPagination<TData>({
   table,
-}: TablePaginationProps<TData>) {
+}: ViewPaginationProps<TData>) {
   return (
     <div className="flex items-center justify-between px-2">
       <div className="hidden md:block flex-1 text-sm text-muted-foreground">

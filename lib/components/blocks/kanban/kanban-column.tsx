@@ -19,26 +19,26 @@ import { ScrollArea, ScrollBar } from "../../ui/scroll-area.tsx";
 import type { Item, KanbanProps } from "./kanban.tsx";
 import { cn } from "../../../components/utils.ts";
 
-export interface Column {
+export type Column = {
   id: UniqueIdentifier;
   title: string;
   icon?: JSX.IntrinsicElements["div"];
   badge?: BadgeProps;
-}
+};
 
 export type ColumnType = "Column";
 
-export interface ColumnDragData {
+export type ColumnDragData = {
   type: ColumnType;
   column: Column;
-}
+};
 
-interface KanbanColumnProps {
+type KanbanColumnProps = {
   column: Column;
   items: Item[];
   isOverlay?: boolean;
   options: KanbanProps["options"];
-}
+};
 
 export function KanbanColumn(
   { column, items, isOverlay, options }: KanbanColumnProps,

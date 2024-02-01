@@ -9,17 +9,15 @@ export type ServiceOptions = {
   idField?: string;
 };
 
-export type Service<T = unknown> = {
+export type Service<TData = unknown> = {
   adapter?: "denokv" | "http"; // undefined means custom service
   options?: Record<string, unknown>;
-  find?: <T = unknown>(
-    query?: Record<string | number, unknown>,
-  ) => Promise<T[]>;
-  get?: <T = unknown>(id: Id) => Promise<T | undefined>;
-  create?: <T = unknown>(data: T) => Promise<T>;
-  update?: <T = unknown>(id: Id, data: T) => Promise<T>;
-  patch?: <T = unknown>(id: Id, data: Partial<T>) => Promise<T>;
-  remove?: (id: Id) => Promise<{ ok: boolean }>;
+  find?: <T = TData>(query?: Record<string | number, unknown>) => Promise<T[]>;
+  get?: <T = TData>(id: Id) => Promise<T | undefined>;
+  create?: <T = TData>(data: T) => Promise<T>;
+  update?: <T = TData>(id: Id, data: T) => Promise<T>;
+  patch?: <T = TData>(id: Id, data: Partial<T>) => Promise<T>;
+  remove?: <T = TData>(id: Id) => Promise<{ ok: boolean }>;
 };
 
 type ServiceFactory<T> = (opts: T) => Service;
