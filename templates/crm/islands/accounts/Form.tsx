@@ -1,8 +1,8 @@
 import { useSignal } from "@preact/signals";
-import { Button } from "netzo/components/ui/button.tsx";
-import { createOnSubmit, Form } from "netzo/components/blocks/form/form.tsx";
-import { Account, accountSchema } from "@/resources/accounts.ts";
-// import { ALIASES } from "@/resources/accounts.ts";
+import { Button } from "netzo/ui/components/button.tsx";
+import { createOnSubmit, Form } from "netzo/ui/blocks/form/form.tsx";
+import { Account, accountSchema } from "@/services/accounts.ts";
+// import { ALIASES } from "@/services/accounts.ts";
 
 type FormProps = {
   data?: Account;

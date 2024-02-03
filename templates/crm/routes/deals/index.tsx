@@ -1,6 +1,6 @@
 import { defineRoute } from "$fresh/server.ts";
-import type { KanbanProps } from "netzo/components/blocks/kanban/kanban.tsx";
-import { ALIASES, type Deal } from "@/resources/deals.ts";
+import type { KanbanProps } from "netzo/ui/blocks/kanban/kanban.tsx";
+import { ALIASES, type Deal } from "@/services/deals.ts";
 import { Kanban } from "@/islands/deals/Kanban.tsx";
 import { netzo } from "@/netzo.ts";
 
@@ -14,39 +14,8 @@ export const getKanbanOptions = (
       column: "status",
       name: "title",
       description: "description",
+      image: "image",
     },
-    columns: [
-      {
-        id: "backlog",
-        title: "Backlog",
-        icon: { className: "i-mdi-circle-outline bg-lightgray-500" },
-        badge: { className: "bg-lightgray-500" },
-      },
-      {
-        id: "todo",
-        title: "Todo",
-        icon: { className: "i-mdi-circle-slice-2 bg-orange-500" },
-        badge: { className: "bg-orange-500" },
-      },
-      {
-        id: "in-progress",
-        title: "In Progress",
-        icon: { className: "i-mdi-circle-slice-6 bg-yellow-500" },
-        badge: { className: "bg-yellow-500" },
-      },
-      {
-        id: "done",
-        title: "Done",
-        icon: { className: "i-mdi-check-circle bg-green-500" },
-        badge: { className: "bg-green-500" },
-      },
-      {
-        id: "cancelled",
-        title: "Cancelled",
-        icon: { className: "i-mdi-close-circle bg-gray-500" },
-        badge: { className: "bg-gray-500" },
-      },
-    ],
   };
 };
 

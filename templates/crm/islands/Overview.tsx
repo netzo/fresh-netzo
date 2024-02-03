@@ -4,7 +4,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "netzo/components/ui/card.tsx";
+} from "netzo/ui/components/card.tsx";
 import { Overview as OverviewChart } from "@/components/dashboard/overview.tsx";
 import { RecentSales } from "@/components/dashboard/recent-sales.tsx";
 

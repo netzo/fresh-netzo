@@ -1,21 +1,17 @@
-import { accounts } from "@/resources/accounts.ts";
-import { deals } from "@/resources/deals.ts";
-import { contacts } from "@/resources/contacts.ts";
-import { invoices } from "@/resources/invoices.ts";
-
 const kv = await Deno.openKv(Deno.env.get("DENO_KV_PATH"));
 
-//Seed a local KV from fake data files.
-const dbSeed = async () => {
-  const createPromises = [
-    Promise.all(accounts.map((d) => kv.set(["accounts", d.id], d))),
-    Promise.all(deals.map((d) => kv.set(["deals", d.id], d))),
-    Promise.all(contacts.map((d) => kv.set(["contacts", d.id], d))),
-    Promise.all(invoices.map((d) => kv.set(["invoices", d.id], d))),
-  ];
+const SERVICES = ["accounts"]; // , "deals", "contacts", "invoices"];
 
+export const dbSeed = async () => {
   try {
-    await Promise.all(createPromises);
+    await Promise.all(SERVICES.map(async (service) => {
+      const mod = await import(`@/data/${service}.entries.json`, {
+        with: { type: "json" },
+      });
+      return Promise.all(
+        mod.default.map(({ key, value }) => kv.set(key, value)),
+      );
+    }));
     console.log("Data uploaded to DB.");
   } catch (error) {
     console.error("Error seeding Database:", error);

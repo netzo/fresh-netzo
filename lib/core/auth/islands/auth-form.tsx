@@ -1,14 +1,14 @@
 import type { ComponentChildren, JSX } from "../../../deps/preact.ts";
 import type { NetzoState } from "../../mod.ts";
-import { cn } from "../../../components/utils.ts";
-import { Button, buttonVariants } from "../../../components/ui/button.tsx";
+import { cn } from "../../../ui/utils.ts";
+import { Button, buttonVariants } from "../../../ui/components/button.tsx";
 import {
   Alert,
   AlertDescription,
   AlertTitle,
-} from "../../../components/ui/alert.tsx";
-import { Input } from "../../../components/ui/input.tsx";
-import { Label } from "../../../components/ui/label.tsx";
+} from "../../../ui/components/alert.tsx";
+import { Input } from "../../../ui/components/input.tsx";
+import { Label } from "../../../ui/components/label.tsx";
 // TODO: import { isGitHubSetup } from "../utils/providers/github.ts";
 
 export type AuthFormProps = JSX.HTMLAttributes<HTMLDivElement> & NetzoState;

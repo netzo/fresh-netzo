@@ -1,6 +1,6 @@
 import { defineRoute } from "$fresh/server.ts";
-import { Separator } from "netzo/components/ui/separator.tsx";
-import type { Account } from "@/resources/accounts.ts";
+import { Separator } from "netzo/ui/components/separator.tsx";
+import type { Account } from "@/services/accounts.ts";
 import { FormAccount } from "@/islands/accounts/Form.tsx";
 import { netzo } from "@/netzo.ts";
 

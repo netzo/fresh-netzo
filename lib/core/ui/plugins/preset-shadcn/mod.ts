@@ -14,7 +14,7 @@ import {
 } from "https://esm.sh/v135/@unocss/preset-mini@0.58.0/utils?target=esnext";
 import { generateCSSVars } from "./generate.ts";
 // DISABLED: breaks bundle.task.ts due to bundle's partial support of compilerOptions
-// import { sheetVariants } from "../../../components/ui/sheet.tsx";
+// import { sheetVariants } from "../../../ui/components/sheet.tsx";
 
 export type PresetShadcnOptions = PresetMiniOptions;
 

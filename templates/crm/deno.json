@@ -7,6 +7,7 @@
   "tasks": {
     "db:dump": "deno run -A --env tasks/db-dump.ts",
     "db:restore": "deno run -A --env tasks/db-restore.ts",
+    "db:mock": "deno run -A --env tasks/db-mock.ts",
     "db:seed": "deno run -A --env tasks/db-seed.ts",
     "db:migrate": "deno run -A --env tasks/db-migrate.ts",
     "db:reset": "deno run -A --env tasks/db-reset.ts",

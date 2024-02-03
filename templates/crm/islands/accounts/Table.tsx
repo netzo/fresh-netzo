@@ -1,14 +1,19 @@
-import type { ViewProps } from "netzo/composables/use-view.ts";
-import { View } from "netzo/components/blocks/view/view.tsx";
-import { renderHeader } from "netzo/components/blocks/render.tsx";
-import { toDateTime } from "netzo/components/blocks/format.ts";
-import { CopyId } from "netzo/components/blocks/shared/copy-id.tsx";
-import { Badge } from "netzo/components/ui/badge.tsx";
-import { Checkbox } from "netzo/components/ui/checkbox.tsx";
-import { type Account, accountSchema, ALIASES } from "@/resources/accounts.ts";
+import {
+  TablePagination,
+  type TableProps,
+  TableToolbar,
+  useTable,
+} from "netzo/ui/blocks/table/table.tsx";
+import { Grid } from "netzo/ui/blocks/grid/grid.tsx";
+import { renderHeader } from "netzo/ui/blocks/render.tsx";
+import { toDateTime } from "netzo/ui/blocks/format.ts";
+import { CopyId } from "netzo/ui/utils/copy-id.tsx";
+import { Badge } from "netzo/ui/components/badge.tsx";
+import { Checkbox } from "netzo/ui/components/checkbox.tsx";
+import { type Account, accountSchema, ALIASES } from "@/services/accounts.ts";
 
-// NOTE: columns must be defined in island due to client-only function serialization
-export const getColumns = (_props: ViewProps): ViewProps["columns"] => [
+// NOTE: define columns in island (route to island function serialization unsupported)
+export const getColumns = (_props: TableProps): TableProps["columns"] => [
   {
     id: "select",
     header: ({ table }) => (
@@ -35,7 +40,7 @@ export const getColumns = (_props: ViewProps): ViewProps["columns"] => [
     cell: ({ row }) => {
       const { id, name } = row.original;
       return (
-        <div className="flex">
+        <div className="flex items-center">
           <a
             href={`/accounts/${id}`}
             className="whitespace-nowrap text-center font-medium text-primary hover:underline"
@@ -93,13 +98,25 @@ export const getColumns = (_props: ViewProps): ViewProps["columns"] => [
   },
 ];
 
-export function Table(props: Omit<ViewProps<Account, unknown>, "columns">) {
-  const columns = getColumns(props);
+export function Table(
+  { data, options }: Omit<TableProps<Account, unknown>, "columns">,
+) {
+  const columns = getColumns({ data, options });
+
+  const table = useTable<TData, TValue>({ data, options, columns });
+
   return (
-    <View
-      data={props.data}
-      options={props.options}
-      columns={columns}
-    />
+    <div className="space-y-4">
+      <TableToolbar options={options} table={table} />
+      <div className="border rounded-md">
+        <Grid
+          data={data}
+          options={options}
+          columns={columns}
+          table={table}
+        />
+      </div>
+      <TablePagination table={table} />
+    </div>
   );
 }

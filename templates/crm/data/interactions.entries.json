@@ -1,0 +1,302 @@
+[
+  {
+    "key": [
+      "interactions",
+      "01HNN4419B8RBF2AM1CT7CFDSA"
+    ],
+    "value": {
+      "id": "01HNN4419B8RBF2AM1CT7CFDSA",
+      "type": "cetacean",
+      "createdAt": "2024-02-01T20:03:13.268Z",
+      "updatedAt": "2024-02-02T03:10:32.042Z"
+    }
+  },
+  {
+    "key": [
+      "interactions",
+      "01HNN4419B8RBF2AM1CT7CFDSB"
+    ],
+    "value": {
+      "id": "01HNN4419B8RBF2AM1CT7CFDSB",
+      "type": "bird",
+      "createdAt": "2024-02-01T15:26:35.955Z",
+      "updatedAt": "2024-02-02T13:32:26.833Z"
+    }
+  },
+  {
+    "key": [
+      "interactions",
+      "01HNN4419B8RBF2AM1CT7CFDSC"
+    ],
+    "value": {
+      "id": "01HNN4419B8RBF2AM1CT7CFDSC",
+      "type": "rabbit",
+      "createdAt": "2024-02-01T21:53:39.550Z",
+      "updatedAt": "2024-02-02T06:15:40.164Z"
+    }
+  },
+  {
+    "key": [
+      "interactions",
+      "01HNN4419B8RBF2AM1CT7CFDSD"
+    ],
+    "value": {
+      "id": "01HNN4419B8RBF2AM1CT7CFDSD",
+      "type": "cat",
+      "createdAt": "2024-02-02T00:11:36.288Z",
+      "updatedAt": "2024-02-01T22:14:12.986Z"
+    }
+  },
+  {
+    "key": [
+      "interactions",
+      "01HNN4419B8RBF2AM1CT7CFDSE"
+    ],
+    "value": {
+      "id": "01HNN4419B8RBF2AM1CT7CFDSE",
+      "type": "insect",
+      "createdAt": "2024-02-02T09:10:50.631Z",
+      "updatedAt": "2024-02-02T12:20:42.102Z"
+    }
+  },
+  {
+    "key": [
+      "interactions",
+      "01HNN4419B8RBF2AM1CT7CFDSF"
+    ],
+    "value": {
+      "id": "01HNN4419B8RBF2AM1CT7CFDSF",
+      "type": "cow",
+      "createdAt": "2024-02-02T05:16:41.659Z",
+      "updatedAt": "2024-02-01T23:29:54.522Z"
+    }
+  },
+  {
+    "key": [
+      "interactions",
+      "01HNN4419B8RBF2AM1CT7CFDSG"
+    ],
+    "value": {
+      "id": "01HNN4419B8RBF2AM1CT7CFDSG",
+      "type": "fish",
+      "createdAt": "2024-02-02T07:49:58.655Z",
+      "updatedAt": "2024-02-02T08:19:46.294Z"
+    }
+  },
+  {
+    "key": [
+      "interactions",
+      "01HNN4419B8RBF2AM1CT7CFDSH"
+    ],
+    "value": {
+      "id": "01HNN4419B8RBF2AM1CT7CFDSH",
+      "type": "cetacean",
+      "createdAt": "2024-02-01T18:09:12.816Z",
+      "updatedAt": "2024-02-02T12:33:40.391Z"
+    }
+  },
+  {
+    "key": [
+      "interactions",
+      "01HNN4419B8RBF2AM1CT7CFDSJ"
+    ],
+    "value": {
+      "id": "01HNN4419B8RBF2AM1CT7CFDSJ",
+      "type": "crocodilia",
+      "createdAt": "2024-02-01T17:00:30.148Z",
+      "updatedAt": "2024-02-02T06:15:55.620Z"
+    }
+  },
+  {
+    "key": [
+      "interactions",
+      "01HNN4419B8RBF2AM1CT7CFDSK"
+    ],
+    "value": {
+      "id": "01HNN4419B8RBF2AM1CT7CFDSK",
+      "type": "horse",
+      "createdAt": "2024-02-02T12:35:02.452Z",
+      "updatedAt": "2024-02-02T10:40:18.424Z"
+    }
+  },
+  {
+    "key": [
+      "interactions",
+      "01HNN4419C4Q9G1JKXT46457RG"
+    ],
+    "value": {
+      "id": "01HNN4419C4Q9G1JKXT46457RG",
+      "type": "lion",
+      "createdAt": "2024-02-01T16:08:34.070Z",
+      "updatedAt": "2024-02-02T02:44:58.412Z"
+    }
+  },
+  {
+    "key": [
+      "interactions",
+      "01HNN4419C4Q9G1JKXT46457RH"
+    ],
+    "value": {
+      "id": "01HNN4419C4Q9G1JKXT46457RH",
+      "type": "bird",
+      "createdAt": "2024-02-02T07:53:45.714Z",
+      "updatedAt": "2024-02-02T01:49:26.863Z"
+    }
+  },
+  {
+    "key": [
+      "interactions",
+      "01HNN4419C4Q9G1JKXT46457RJ"
+    ],
+    "value": {
+      "id": "01HNN4419C4Q9G1JKXT46457RJ",
+      "type": "horse",
+      "createdAt": "2024-02-02T00:07:38.739Z",
+      "updatedAt": "2024-02-02T04:50:38.553Z"
+    }
+  },
+  {
+    "key": [
+      "interactions",
+      "01HNN4419C4Q9G1JKXT46457RK"
+    ],
+    "value": {
+      "id": "01HNN4419C4Q9G1JKXT46457RK",
+      "type": "rabbit",
+      "createdAt": "2024-02-02T05:50:42.488Z",
+      "updatedAt": "2024-02-01T16:35:59.474Z"
+    }
+  },
+  {
+    "key": [
+      "interactions",
+      "01HNN4419C4Q9G1JKXT46457RM"
+    ],
+    "value": {
+      "id": "01HNN4419C4Q9G1JKXT46457RM",
+      "type": "crocodilia",
+      "createdAt": "2024-02-01T21:42:03.982Z",
+      "updatedAt": "2024-02-02T08:09:25.568Z"
+    }
+  },
+  {
+    "key": [
+      "interactions",
+      "01HNN4419C4Q9G1JKXT46457RN"
+    ],
+    "value": {
+      "id": "01HNN4419C4Q9G1JKXT46457RN",
+      "type": "fish",
+      "createdAt": "2024-02-01T20:36:25.734Z",
+      "updatedAt": "2024-02-02T11:22:15.910Z"
+    }
+  },
+  {
+    "key": [
+      "interactions",
+      "01HNN4419C4Q9G1JKXT46457RP"
+    ],
+    "value": {
+      "id": "01HNN4419C4Q9G1JKXT46457RP",
+      "type": "bear",
+      "createdAt": "2024-02-02T03:50:23.769Z",
+      "updatedAt": "2024-02-02T02:53:50.912Z"
+    }
+  },
+  {
+    "key": [
+      "interactions",
+      "01HNN4419C4Q9G1JKXT46457RQ"
+    ],
+    "value": {
+      "id": "01HNN4419C4Q9G1JKXT46457RQ",
+      "type": "crocodilia",
+      "createdAt": "2024-02-01T15:04:02.381Z",
+      "updatedAt": "2024-02-01T22:12:30.405Z"
+    }
+  },
+  {
+    "key": [
+      "interactions",
+      "01HNN4419C4Q9G1JKXT46457RR"
+    ],
+    "value": {
+      "id": "01HNN4419C4Q9G1JKXT46457RR",
+      "type": "cat",
+      "createdAt": "2024-02-02T05:11:06.080Z",
+      "updatedAt": "2024-02-01T19:02:26.471Z"
+    }
+  },
+  {
+    "key": [
+      "interactions",
+      "01HNN4419C4Q9G1JKXT46457RS"
+    ],
+    "value": {
+      "id": "01HNN4419C4Q9G1JKXT46457RS",
+      "type": "rabbit",
+      "createdAt": "2024-02-01T19:08:16.484Z",
+      "updatedAt": "2024-02-02T09:17:26.627Z"
+    }
+  },
+  {
+    "key": [
+      "interactions",
+      "01HNN4419C4Q9G1JKXT46457RT"
+    ],
+    "value": {
+      "id": "01HNN4419C4Q9G1JKXT46457RT",
+      "type": "horse",
+      "createdAt": "2024-02-02T08:21:23.650Z",
+      "updatedAt": "2024-02-01T15:20:56.655Z"
+    }
+  },
+  {
+    "key": [
+      "interactions",
+      "01HNN4419C4Q9G1JKXT46457RV"
+    ],
+    "value": {
+      "id": "01HNN4419C4Q9G1JKXT46457RV",
+      "type": "horse",
+      "createdAt": "2024-02-02T10:51:21.706Z",
+      "updatedAt": "2024-02-02T10:48:38.398Z"
+    }
+  },
+  {
+    "key": [
+      "interactions",
+      "01HNN4419C4Q9G1JKXT46457RW"
+    ],
+    "value": {
+      "id": "01HNN4419C4Q9G1JKXT46457RW",
+      "type": "crocodilia",
+      "createdAt": "2024-02-01T15:22:38.784Z",
+      "updatedAt": "2024-02-02T13:44:50.618Z"
+    }
+  },
+  {
+    "key": [
+      "interactions",
+      "01HNN4419C4Q9G1JKXT46457RX"
+    ],
+    "value": {
+      "id": "01HNN4419C4Q9G1JKXT46457RX",
+      "type": "cetacean",
+      "createdAt": "2024-02-02T10:53:26.890Z",
+      "updatedAt": "2024-02-01T19:25:27.610Z"
+    }
+  },
+  {
+    "key": [
+      "interactions",
+      "01HNN4419C4Q9G1JKXT46457RY"
+    ],
+    "value": {
+      "id": "01HNN4419C4Q9G1JKXT46457RY",
+      "type": "crocodilia",
+      "createdAt": "2024-02-01T17:19:25.128Z",
+      "updatedAt": "2024-02-02T04:05:56.078Z"
+    }
+  }
+]

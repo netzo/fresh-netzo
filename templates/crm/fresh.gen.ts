@@ -2,6 +2,7 @@
 // This file SHOULD be checked into source version control.
 // This file is automatically updated during development when running `dev.ts`.
 
+import * as $_app from "./routes/_app.tsx";
 import * as $_layout from "./routes/_layout.tsx";
 import * as $accounts_id_ from "./routes/accounts/[id].tsx";
 import * as $accounts_index from "./routes/accounts/index.tsx";
@@ -23,6 +24,7 @@ import { type Manifest } from "$fresh/server.ts";
 
 const manifest = {
   routes: {
+    "./routes/_app.tsx": $_app,
     "./routes/_layout.tsx": $_layout,
     "./routes/accounts/[id].tsx": $accounts_id_,
     "./routes/accounts/index.tsx": $accounts_index,

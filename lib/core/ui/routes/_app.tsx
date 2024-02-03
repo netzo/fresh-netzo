@@ -1,12 +1,12 @@
 import { defineApp } from "../../../deps/$fresh/server.ts";
 import { Partial } from "../../../deps/$fresh/runtime.ts";
-import { cn } from "../../../components/utils.ts";
+import { cn } from "../../../ui/utils.ts";
 import type { NetzoState } from "../../mod.ts";
-import { Head } from "../../../components/utils/head.tsx";
-import { Header } from "../../../components/layout/header.tsx";
-import { Footer } from "../../../components/layout/footer.tsx";
-import { Nav } from "../../../components/layout/nav.tsx";
-import { NavMobile } from "../../../components/layout/nav.mobile.tsx";
+import { Head } from "../../../ui/layout/head.tsx";
+import { Header } from "../../../ui/layout/header.tsx";
+import { Footer } from "../../../ui/layout/footer.tsx";
+import { Nav } from "../../../ui/layout/nav.tsx";
+import { NavMobile } from "../../../ui/layout/nav.mobile.tsx";
 
 export default defineApp<NetzoState>((req, ctx) => {
   const { auth, ui } = ctx.state.config;
