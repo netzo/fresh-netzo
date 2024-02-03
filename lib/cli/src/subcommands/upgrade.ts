@@ -1,4 +1,4 @@
-import { error } from "../../../utils/console.ts";
+import { error } from "../../../core/utils.console.ts";
 import {
   isSemVer,
   parse,

@@ -1,4 +1,4 @@
-import { difference } from "../../deps/std/datetime/difference.ts";
+import { difference } from "../../../deps/std/datetime/difference.ts";
 
 /**
  * Returns a pluralized string for the given amount and unit.
