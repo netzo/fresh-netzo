@@ -3,11 +3,11 @@ import {
   type TableProps,
   TableToolbar,
   useTable,
-} from "netzo/ui/blocks/table/table.tsx";
+} from "netzo/components/blocks/table/table.tsx";
 import {
   Kanban as _Kanban,
   type KanbanProps,
-} from "netzo/ui/blocks/kanban/kanban.tsx";
+} from "netzo/components/blocks/kanban/kanban.tsx";
 import { ALIASES, type Deal } from "@/services/deals.ts";
 
 // NOTE: define columns in island (route to island function serialization unsupported)

@@ -66,10 +66,10 @@ export const ui = (options?: UiConfig): Plugin<NetzoState> => {
     islands: {
       baseLocation: import.meta.url,
       paths: [
-        // "../../ui/layout/footer.tsx",
-        "../../ui/layout/header.tsx",
-        // "../../ui/layout/nav.tsx",
-        "../../ui/layout/nav.mobile.tsx",
+        // "../../components/layout/footer.tsx",
+        "../../components/layout/header.tsx",
+        // "../../components/layout/nav.tsx",
+        "../../components/layout/nav.mobile.tsx",
       ],
     },
   };

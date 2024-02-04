@@ -43,7 +43,7 @@ without sacrificing flexibility.
 - 🗃️ [**Database**](/products/database): Simple data management for the
   multi-model, real-time database that powers apps.
 
-- 🧩 [**Components**](/docs/modules/ui/components): Customizable UI components,
+- 🧩 [**Components**](/docs/modules/components): Customizable UI components,
   blocks and layouts to import/copy-paste into apps (powered by
   [`shadcn-ui`](https://ui.shadcn.com/)).
 

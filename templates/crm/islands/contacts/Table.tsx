@@ -3,17 +3,17 @@ import {
   type TableProps,
   TableToolbar,
   useTable,
-} from "netzo/ui/blocks/table/table.tsx";
-import { Grid } from "netzo/ui/blocks/grid/grid.tsx";
-import { renderCell, renderHeader } from "netzo/ui/blocks/render.tsx";
-import { toDateTime } from "netzo/ui/blocks/format.ts";
-import { CopyId } from "netzo/ui/utils/copy-id.tsx";
+} from "netzo/components/blocks/table/table.tsx";
+import { Grid } from "netzo/components/blocks/grid/grid.tsx";
+import { renderCell, renderHeader } from "netzo/components/blocks/render.tsx";
+import { toDateTime } from "netzo/components/blocks/format.ts";
+import { IconCopy } from "netzo/components/icon-copy.tsx";
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "netzo/ui/components/avatar.tsx";
-import { Checkbox } from "netzo/ui/components/checkbox.tsx";
+} from "netzo/components/avatar.tsx";
+import { Checkbox } from "netzo/components/checkbox.tsx";
 import { ALIASES, type Contact } from "@/services/contacts.ts";
 
 // NOTE: define columns in island (route to island function serialization unsupported)
@@ -57,7 +57,7 @@ export const getColumns = (_props: TableProps): TableProps["columns"] => [
           >
             {name}
           </a>
-          <CopyId id={id} />
+          <IconCopy value={id} tooltip="Copy ID" />
         </div>
       );
     },

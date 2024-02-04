@@ -1,8 +1,8 @@
 import { defineApp, type FreshContext } from "$fresh/server.ts";
-import { cn } from "netzo/ui/utils.ts";
 import type { NetzoState } from "netzo/core/mod.ts";
-import { useNetzoState } from "netzo/ui/composables/use-netzo-state.ts";
-import * as Layout from "netzo/ui/layout/mod.ts";
+import { useNetzoState } from "netzo/composables/use-netzo-state.ts";
+import { cn } from "netzo/components/utils.ts";
+import * as Layout from "netzo/components/layout/mod.ts";
 
 export default defineApp<NetzoState>((req, ctx) => {
   const { sessionId, sessionUser, mustAuth } = useNetzoState(ctx);

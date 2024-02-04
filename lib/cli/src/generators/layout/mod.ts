@@ -10,7 +10,7 @@ import {
 
 export interface LayoutGeneratorContext extends NetzoContext {
   // NOTE: sync/async variants left for user to adapt
-  // NOTE: "_app" not included to avoid conflicts with netzo/ui module
+  // NOTE: "_app" not included to avoid conflicts with netzo/components module
   type: "default" | "sidebar" | "two-column" | "dashboard" | "grid";
   filepath: string;
 }

@@ -1,6 +1,6 @@
 import { useSignal } from "@preact/signals";
-import { Button } from "netzo/ui/components/button.tsx";
-import { createOnSubmit, Form } from "netzo/ui/blocks/form/form.tsx";
+import { Button } from "netzo/components/button.tsx";
+import { createOnSubmit, Form } from "netzo/components/blocks/form/form.tsx";
 import { Contact, contactSchema } from "@/services/contacts.ts";
 // import { ALIASES } from "@/services/contacts.ts";
 

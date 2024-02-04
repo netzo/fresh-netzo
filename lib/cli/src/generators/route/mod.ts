@@ -10,7 +10,7 @@ import {
 
 export interface RouteGeneratorContext extends NetzoContext {
   // NOTE: sync/async variants left for user to adapt
-  // NOTE: "_404"/"_500" not included to avoid conflicts with netzo/ui module
+  // NOTE: "_404"/"_500" not included to avoid conflicts with netzo/components module
   type: "ui" | "api" | "mixed";
   filepath: string;
 }

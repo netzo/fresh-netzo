@@ -2,7 +2,7 @@ import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "netzo/ui/components/avatar.tsx";
+} from "netzo/components/avatar.tsx";
 
 export function RecentSales() {
   return (
