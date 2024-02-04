@@ -1,6 +1,6 @@
 import { defineApp, type FreshContext } from "$fresh/server.ts";
 import type { NetzoState } from "netzo/core/mod.ts";
-import { useNetzoState } from "netzo/composables/use-netzo-state.ts";
+import { useNetzoState } from "netzo/composables/server/use-netzo-state.ts";
 import { cn } from "netzo/components/utils.ts";
 import * as Layout from "netzo/components/layout/mod.ts";
 
