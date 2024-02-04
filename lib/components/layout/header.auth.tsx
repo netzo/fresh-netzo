@@ -10,7 +10,7 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu.tsx";
-import type { AuthUser } from "../../auth/utils/db.ts";
+import type { AuthUser } from "../../core/auth/utils/db.ts";
 
 export type HeaderAuthProps = {
   sessionUser?: AuthUser;
