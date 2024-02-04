@@ -1,4 +1,4 @@
-import { error } from "../../../utils/console.ts";
+import { error } from "../../../core/utils.console.ts";
 import { question } from "../../../deps/question/mod.ts";
 import { add } from "../generators/mod.ts";
 // import { proxyConsole } from "../../../utils.console.ts";

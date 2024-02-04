@@ -7,7 +7,7 @@
   "tasks": {
     "cache:deps": "deno cache **/deps/**/*.ts",
     "test": "deno test -A --parallel --coverage=./cov",
-    "check:types": "deno check **/*.ts **/*.tsx",
+    "check:types": "deno check lib/**/*.ts && deno check lib/**/*.tsx",
     "ok": "deno fmt --check && deno lint && deno task check:types && deno task test",
     "bundle:csr": "deno run -A lib/ui/plugins/csr/bundle.task.ts",
     "deploy": "deno run --allow-env --allow-net --allow-read scripts/deploy-templates.ts",
@@ -21,6 +21,10 @@
     "kv"
   ],
   "lint": {
+    "exclude": [
+      "./lib/core/ui/plugins/csr/uno.config.js",
+      "./lib/deps/"
+    ],
     "rules": {
       "tags": [
         "fresh",

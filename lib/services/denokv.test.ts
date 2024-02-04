@@ -1,6 +1,6 @@
-import "../../deps/std/dotenv/load.ts";
-import { assertEquals, assertExists } from "../../deps/std/assert/mod.ts";
-import { z } from "../../deps/zod/mod.ts";
+import "../deps/std/dotenv/load.ts";
+import { assertEquals, assertExists } from "../deps/std/assert/mod.ts";
+import { z } from "../deps/zod/mod.ts";
 import { DenoKvService } from "./denokv.ts";
 
 const kv = await Deno.openKv(":memory:");
