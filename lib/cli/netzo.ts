@@ -78,13 +78,10 @@ if (Deno.stdin.isTerminal()) {
       parse(latestVersion.toString()),
     ))
   ) {
-    console.log(
-      [
-        `A new release of netzo CLI is available: ${VERSION} -> ${latestVersion}`,
-        "To upgrade, run `netzo upgrade`",
-        `https://github.com/../github-action/releases/tag/${latestVersion}\n`,
-      ].join("\n"),
-    );
+    console.log([
+      `A new release of netzo CLI is available: ${VERSION} -> ${latestVersion}`,
+      "To upgrade, run `netzo upgrade`",
+    ].join("\n"));
   }
 }
 
