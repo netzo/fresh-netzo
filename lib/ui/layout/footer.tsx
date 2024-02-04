@@ -1,9 +1,7 @@
 import type { JSX } from "../../deps/preact.ts";
-import { useContext } from "../../deps/preact/hooks.ts";
 import { useComputed } from "../../deps/@preact/signals.ts";
 import { cn } from "../utils.ts";
 import { useUI } from "../composables/use-ui.ts";
-import { Ctx } from "@/routes/_app.tsx";
 import { useDarkMode } from "../composables/use-dark-mode.ts";
 
 export type FooterProps = JSX.IntrinsicElements["footer"] & {
@@ -18,7 +16,6 @@ export type FooterProps = JSX.IntrinsicElements["footer"] & {
 export const Footer = (
   { className, ui = {}, ...props }: FooterProps,
 ) => {
-  const ctx = useContext(Ctx);
   const { root } = useUI(ui, {
     root: {
       ...props,
@@ -36,7 +33,7 @@ export const Footer = (
   });
 
   const NetzoLogo = () => (
-    <a href="https://netzo.io/" target="_blank">
+    <a href="https://netzo.io/" target="_blank" className="mx-auto">
       <img src={src.value} alt="Built with Netzo" className="h-[32px]" />
     </a>
   );

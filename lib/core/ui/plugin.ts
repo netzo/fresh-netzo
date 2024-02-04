@@ -63,5 +63,14 @@ export const ui = (options?: UiConfig): Plugin<NetzoState> => {
       { path: "/_404", component: _404 },
       { path: "/_500", component: _500 },
     ],
+    islands: {
+      baseLocation: import.meta.url,
+      paths: [
+        // "../../ui/layout/footer.tsx",
+        "../../ui/layout/header.tsx",
+        // "../../ui/layout/nav.tsx",
+        "../../ui/layout/nav.mobile.tsx",
+      ],
+    },
   };
 };

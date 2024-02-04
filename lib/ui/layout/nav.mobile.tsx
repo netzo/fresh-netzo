@@ -1,24 +1,15 @@
 import type { JSX } from "../../deps/preact.ts";
-import { useContext } from "../../deps/preact/hooks.ts";
-import { useSignal } from "../../deps/@preact/signals.ts";
+import { signal } from "../../deps/@preact/signals.ts";
 import { cn } from "../utils.ts";
 import { Button } from "../components/button.tsx";
 import { Sheet, SheetContent, SheetTrigger } from "../components/sheet.tsx";
-import type { NavProps } from "./nav.tsx";
+import { Nav, type NavProps } from "./nav.tsx";
 import { useUI } from "../composables/use-ui.ts";
 import { Ctx } from "@/routes/_app.tsx";
 
+export const open = signal<boolean>(false);
+
 export function NavMobile({ className, ...props }: NavProps) {
-  const ctx = useContext(Ctx);
-  const { auth } = ctx.state.config;
-  const { sessionId, sessionUser } = ctx.state.auth ?? {};
-
-  const mustAuth = !!auth && !sessionId;
-
-  if (mustAuth) return null;
-
-  const open = useSignal<boolean>(false);
-
   return (
     <Sheet
       className="md:hidden"
@@ -38,7 +29,7 @@ export function NavMobile({ className, ...props }: NavProps) {
       </SheetTrigger>
       <SheetContent side="left" className="w-[250px] p-0">
         <div className="h-full">
-          {props.children}
+          <Nav {...props} />
         </div>
       </SheetContent>
     </Sheet>

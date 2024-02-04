@@ -1,5 +1,4 @@
 import type { JSX } from "../../deps/preact.ts";
-import { useContext } from "../../deps/preact/hooks.ts";
 import { cn } from "../utils.ts";
 import { Separator } from "../components/separator.tsx";
 import { buttonVariants } from "../components/button.tsx";
@@ -34,14 +33,6 @@ export type NavProps = IntrinsicElements["nav"] & {
 };
 
 export function Nav({ className, ui = {}, ...props }: NavProps) {
-  const ctx = useContext(Ctx);
-  const { auth } = ctx.state.config;
-  const { sessionId, sessionUser } = ctx.state.auth ?? {};
-
-  const mustAuth = !!auth && !sessionId;
-
-  if (mustAuth) return null;
-
   const {
     root,
     nav,

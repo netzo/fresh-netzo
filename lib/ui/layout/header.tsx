@@ -1,8 +1,6 @@
 import type { JSX } from "../../deps/preact.ts";
-import { useContext } from "../../deps/preact/hooks.ts";
 import { cn } from "../utils.ts";
 import { useUI } from "../composables/use-ui.ts";
-import { Ctx } from "@/routes/_app.tsx";
 import { HeaderDarkMode } from "./header.dark-mode.tsx";
 import { HeaderAuth } from "./header.auth.tsx";
 import type { HeaderAuthProps } from "./header.auth.tsx";
@@ -26,10 +24,9 @@ export type HeaderProps = JSX.IntrinsicElements["header"] & {
 } & HeaderAuthProps;
 
 export function Header({ className, ui = {}, ...props }: HeaderProps) {
-  const ctx = useContext(Ctx);
   const { root, title, description, image, left, right } = useUI(ui, {
     root: {
-      ...props,
+      // ...props,
       className: cn(
         "flex items-center justify-between p-4 space-y-2 bg-background",
         className,
