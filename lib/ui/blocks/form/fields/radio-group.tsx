@@ -6,7 +6,10 @@ import {
   FormLabel,
   FormMessage,
 } from "../../../components/form.tsx";
-import { RadioGroup, RadioGroupItem } from "../../../components/radio-group.tsx";
+import {
+  RadioGroup,
+  RadioGroupItem,
+} from "../../../components/radio-group.tsx";
 
 export default function AutoFormRadioGroup({
   label,

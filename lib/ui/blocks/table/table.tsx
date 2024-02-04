@@ -26,8 +26,8 @@ export function Table<TData, TValue>({
   return (
     <div className="space-y-4">
       <TableToolbar table={table} options={options} />
-        {["grid"].includes(layout.value) && (
-      <div className="border rounded-md">
+      {["grid"].includes(layout.value) && (
+        <div className="border rounded-md">
           <Grid
             table={table}
             data={data}
@@ -35,20 +35,20 @@ export function Table<TData, TValue>({
             columns={columns}
           />
         </div>
-        )}
-        {["gallery"].includes(layout.value) && (
-          <Grid
+      )}
+      {["gallery"].includes(layout.value) && (
+        <Grid
           table={table}
           data={data}
           options={options}
           columns={columns}
         />
-        )}
-        {["kanban"].includes(layout.value) && (
-          <div className="flex-1">
-            <Kanban table={table} options={options} />
-          </div>
-        )}
+      )}
+      {["kanban"].includes(layout.value) && (
+        <div className="flex-1">
+          <Kanban table={table} options={options} />
+        </div>
+      )}
       <TablePagination table={table} />
     </div>
   );

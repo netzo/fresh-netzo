@@ -1,15 +1,47 @@
 import type { JSX } from "../../deps/preact.ts";
+import { useContext } from "../../deps/preact/hooks.ts";
 import { cn } from "../utils.ts";
 import { Separator } from "../components/separator.tsx";
 import { buttonVariants } from "../components/button.tsx";
-import { useUI } from "../hooks/use-ui.ts";
-import type { UiConfig } from "../../core/ui/plugin.ts";
+import { useUI } from "../composables/use-ui.ts";
+import { Ctx } from "@/routes/_app.tsx";
 
-export type NavProps =
-  & JSX.HTMLAttributes<HTMLDivElement>
-  & UiConfig["nav"];
+export type NavProps = IntrinsicElements["nav"] & {
+  /** A short title for the app at the navigation drawer. */
+  title?: string;
+  /** An https or data URL of a cover image at the navigation drawer */
+  image?: string;
+  /** Navigation headers, links with absolute or relative URLs and/or dividers */
+  items?: Array<
+    | { text: string } // header
+    | { icon?: string; text: string; href?: string; target?: string } // link
+    | Record<string | number | symbol, never> // divider (empty object)
+  >;
+  /** Extra props to customize element (overwrites defaults). */
+  ui?: {
+    root?: JSX.IntrinsicElements["div"];
+    nav?: JSX.IntrinsicElements["nav"];
+    navHeaderRoot?: JSX.IntrinsicElements["div"];
+    navHeader?: JSX.IntrinsicElements["header"];
+    navHeaderImage?: JSX.IntrinsicElements["img"];
+    navHeaderTitle?: JSX.IntrinsicElements["h2"];
+    navItemRoot?: JSX.IntrinsicElements["div"];
+    navItem?: JSX.IntrinsicElements["a"];
+    navItemIcon?: JSX.IntrinsicElements["img"] | JSX.IntrinsicElements["div"];
+    navItemHeader?: JSX.IntrinsicElements["h3"];
+    navItemSeparator?: JSX.IntrinsicElements["div"];
+  };
+};
 
 export function Nav({ className, ui = {}, ...props }: NavProps) {
+  const ctx = useContext(Ctx);
+  const { auth } = ctx.state.config;
+  const { sessionId, sessionUser } = ctx.state.auth ?? {};
+
+  const mustAuth = !!auth && !sessionId;
+
+  if (mustAuth) return null;
+
   const {
     root,
     nav,
@@ -24,6 +56,7 @@ export function Nav({ className, ui = {}, ...props }: NavProps) {
     navItemSeparator,
   } = useUI(ui, {
     root: {
+      ...props,
       className: cn(
         "h-full group flex flex-col gap-4 bg-primary-foreground text-foreground",
         className,

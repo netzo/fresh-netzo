@@ -1,13 +1,22 @@
-import { ComponentChildren } from "../../deps/preact.ts";
+import type { JSX } from "../../deps/preact.ts";
 import { Head as _Head } from "../../deps/$fresh/runtime.ts";
-import type { UiConfig } from "../../core/ui/plugin.ts";
 
-export const Head = (
-  props: UiConfig["head"] & {
-    href: string;
-    children?: ComponentChildren;
-  },
-) => {
+export type HeadProps = {
+  /** A short title for the app to be used in head of the page. */
+  title?: string;
+  /** A short description for the app to be used in head of the page. */
+  description?: string;
+  /** An https or data URL of the favicon to be shown in browser tabs */
+  favicon?: string;
+  /** An https or data URL of a cover image shown when sharing the link */
+  image?: string;
+  /** The canonical URL of the page */
+  href: string;
+  /** Optional JSX content */
+  children?: JSX.ComponentChildren;
+};
+
+export const Head = (props: HeadProps) => {
   return (
     <_Head>
       <meta charset="utf-8" />
@@ -23,7 +32,7 @@ export const Head = (
   );
 };
 
-export const Meta = (props: UiConfig["head"]) => {
+export const Meta = (props: HeadProps) => {
   return (
     <>
       {/* HTML Meta Tags */}

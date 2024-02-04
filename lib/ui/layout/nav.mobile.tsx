@@ -1,16 +1,22 @@
-import type { ComponentChildren, JSX } from "../../deps/preact.ts";
+import type { JSX } from "../../deps/preact.ts";
+import { useContext } from "../../deps/preact/hooks.ts";
 import { useSignal } from "../../deps/@preact/signals.ts";
 import { cn } from "../utils.ts";
 import { Button } from "../components/button.tsx";
 import { Sheet, SheetContent, SheetTrigger } from "../components/sheet.tsx";
-import type { UiConfig } from "../../core/ui/plugin.ts";
-
-export type NavProps =
-  & JSX.HTMLAttributes<HTMLDivElement>
-  & UiConfig["nav"]
-  & { children: ComponentChildren };
+import type { NavProps } from "./nav.tsx";
+import { useUI } from "../composables/use-ui.ts";
+import { Ctx } from "@/routes/_app.tsx";
 
 export function NavMobile({ className, ...props }: NavProps) {
+  const ctx = useContext(Ctx);
+  const { auth } = ctx.state.config;
+  const { sessionId, sessionUser } = ctx.state.auth ?? {};
+
+  const mustAuth = !!auth && !sessionId;
+
+  if (mustAuth) return null;
+
   const open = useSignal<boolean>(false);
 
   return (

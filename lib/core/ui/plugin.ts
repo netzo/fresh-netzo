@@ -7,76 +7,10 @@ import type {
   ShadcnThemeColor,
   ThemeCSSVarsVariant,
 } from "./plugins/preset-shadcn/types.ts";
-import _App from "./routes/_app.tsx";
 import _404 from "./routes/_404.tsx";
 import _500 from "./routes/_500.tsx";
 
 export type UiConfig = UnocssOptions & {
-  head?: {
-    /** A short title for the app to be used in head of the page. */
-    title?: string;
-    /** A short description for the app to be used in head of the page. */
-    description?: string;
-    /** An https or data URL of the favicon to be shown in browser tabs */
-    favicon?: string;
-    /** An https or data URL of a cover image shown when sharing the link */
-    image?: string;
-  };
-  nav?: {
-    /** A short title for the app at the navigation drawer. */
-    title?: string;
-    /** An https or data URL of a cover image at the navigation drawer */
-    image?: string;
-    /** Navigation headers, links with absolute or relative URLs and/or dividers */
-    items?: Array<
-      | { text: string } // header
-      | { icon?: string; text: string; href?: string; target?: string } // link
-      | Record<string | number | symbol, never> // divider (empty object)
-    >;
-    /** Extra props to customize element (overwrites defaults). */
-    ui?: {
-      root?: JSX.IntrinsicElements["div"];
-      nav?: JSX.IntrinsicElements["nav"];
-      navHeaderRoot?: JSX.IntrinsicElements["div"];
-      navHeader?: JSX.IntrinsicElements["header"];
-      navHeaderImage?: JSX.IntrinsicElements["img"];
-      navHeaderTitle?: JSX.IntrinsicElements["h2"];
-      navItemRoot?: JSX.IntrinsicElements["div"];
-      navItem?: JSX.IntrinsicElements["a"];
-      navItemIcon?: JSX.IntrinsicElements["img"] | JSX.IntrinsicElements["div"];
-      navItemHeader?: JSX.IntrinsicElements["h3"];
-      navItemSeparator?: JSX.IntrinsicElements["div"];
-    };
-  };
-  header?: {
-    /** A short title for the app at the header. */
-    title?: string;
-    /** A short description for the app at the header. */
-    description?: string;
-    /** An https or data URL of a cover image at the header */
-    image?: string;
-    /** Extra props to customize element (overwrites defaults). */
-    ui?: {
-      root?: JSX.IntrinsicElements["header"];
-      title?: JSX.IntrinsicElements["h1"];
-      description?: JSX.IntrinsicElements["div"];
-      image?: JSX.IntrinsicElements["img"];
-      left?: JSX.IntrinsicElements["div"];
-      right?: JSX.IntrinsicElements["div"];
-    };
-  };
-  footer?: {
-    /** HTML content to be rendered at the left side of the footer. */
-    innerHTMLLeft?: string;
-    /** HTML content to be rendered at the right side of the footer. */
-    innerHTMLRight?: string;
-    /** Extra props to customize element (overwrites defaults). */
-    ui?: {
-      root?: JSX.IntrinsicElements["footer"];
-      left?: JSX.IntrinsicElements["div"];
-      right?: JSX.IntrinsicElements["div"];
-    };
-  };
   theme?: {
     /** The primary color to be used for UI components. */
     color?: ShadcnThemeColor | ThemeCSSVarsVariant | {
@@ -126,18 +60,8 @@ export const ui = (options?: UiConfig): Plugin<NetzoState> => {
     ...unocss({ options: { color, radius }, config, aot, ssr, csr }), // { name, entrypoints, renderAsync, buildStart }
     name: "ui",
     routes: [
-      { path: "/_app", component: _App },
       { path: "/_404", component: _404 },
       { path: "/_500", component: _500 },
     ],
-    islands: {
-      baseLocation: import.meta.url,
-      paths: [
-        "../../ui/layout/footer.tsx",
-        "../../ui/layout/header.tsx",
-        "../../ui/layout/nav.tsx",
-        "../../ui/layout/nav.mobile.tsx",
-      ],
-    },
   };
 };

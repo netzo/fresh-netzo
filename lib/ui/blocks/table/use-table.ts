@@ -40,7 +40,7 @@ export type TableProps<TData = unknown, TValue = unknown> = {
       grid?: {};
       gallery?: {};
       kanban?: {};
-    }
+    };
   };
   columns: ColumnDef<TData, TValue>[];
 };

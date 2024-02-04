@@ -1,19 +1,35 @@
 import type { JSX } from "../../deps/preact.ts";
+import { useContext } from "../../deps/preact/hooks.ts";
 import { cn } from "../utils.ts";
-import { useUI } from "../hooks/use-ui.ts";
-import { HeaderTheme } from "./header.theme.tsx";
+import { useUI } from "../composables/use-ui.ts";
+import { Ctx } from "@/routes/_app.tsx";
+import { HeaderDarkMode } from "./header.dark-mode.tsx";
 import { HeaderAuth } from "./header.auth.tsx";
-import type { UiConfig } from "../../core/ui/plugin.ts";
 import type { HeaderAuthProps } from "./header.auth.tsx";
 
-export type HeaderProps =
-  & JSX.HTMLAttributes<HTMLDivElement>
-  & UiConfig["header"]
-  & HeaderAuthProps;
+export type HeaderProps = JSX.IntrinsicElements["header"] & {
+  /** A short title for the app at the header. */
+  title?: string;
+  /** A short description for the app at the header. */
+  description?: string;
+  /** An https or data URL of a cover image at the header */
+  image?: string;
+  /** Extra props to customize element (overwrites defaults). */
+  ui?: {
+    root?: JSX.IntrinsicElements["header"];
+    title?: JSX.IntrinsicElements["h1"];
+    description?: JSX.IntrinsicElements["div"];
+    image?: JSX.IntrinsicElements["img"];
+    left?: JSX.IntrinsicElements["div"];
+    right?: JSX.IntrinsicElements["div"];
+  };
+} & HeaderAuthProps;
 
 export function Header({ className, ui = {}, ...props }: HeaderProps) {
+  const ctx = useContext(Ctx);
   const { root, title, description, image, left, right } = useUI(ui, {
     root: {
+      ...props,
       className: cn(
         "flex items-center justify-between p-4 space-y-2 bg-background",
         className,
@@ -42,7 +58,7 @@ export function Header({ className, ui = {}, ...props }: HeaderProps) {
       </div>
 
       <div {...right}>
-        <HeaderTheme />
+        <HeaderDarkMode />
         <HeaderAuth f-client-nav={false} sessionUser={props.sessionUser} />
       </div>
     </header>

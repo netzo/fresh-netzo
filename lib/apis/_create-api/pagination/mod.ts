@@ -33,7 +33,7 @@ export interface PaginationResult<T> {
  */
 export async function paginate<T>(
   fetchPage: (options: PaginationOptions) => Promise<PaginationResult<T>>,
-  options: PaginationOptions
+  options: PaginationOptions,
 ): Promise<PaginationResult<T>> {
   const { limit, cursor } = options;
   let nextCursor = cursor;
