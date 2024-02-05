@@ -18,7 +18,7 @@ export const mongodb = async ({
   url = Deno.env.get("MONGODB_URL")!,
   database = Deno.env.get("MONGODB_DATABASE")!,
 }: MongoDBOptions) => {
-  const client = = new MongoClient(url);
+  const client = new MongoClient(url);
 
   await client.connect();
 
