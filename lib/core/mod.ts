@@ -109,7 +109,8 @@ export const Netzo = async (config: Partial<NetzoConfig>) => {
         const { default: dev } = await import("$fresh/dev.ts");
         return dev(Deno.mainModule, "./netzo.ts", config);
       } else {
-        return start((await import("@/fresh.gen.ts")).default, config);
+        const importLocation = "@/fresh.gen.ts";
+        return start((await import(importLocation)).default, config);
       }
     }, // NOTE: async but won't resolve (since dev/start won't) so we can't await it
   };
