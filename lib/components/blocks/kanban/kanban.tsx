@@ -17,7 +17,7 @@ import {
 import { arrayMove, SortableContext } from "../../../deps/@dnd-kit/sortable.ts";
 import type { Table, TableProps } from "../table/use-table.ts";
 import { coordinateGetter } from "./multiple-containers-keyboard-preset.ts";
-import { BoardContainer, type Column, KanbanColumn } from "./kanban-column.tsx";
+import { BoardContainer, type Group, KanbanGroup } from "./kanban-group.tsx";
 import { hasDraggableData } from "./utils.ts";
 
 export type KanbanProps<
@@ -34,21 +34,21 @@ export function Kanban<TData, TValue>({
   // set default fieldIds:
   options.fieldIds = {
     id: options?.fieldIds?.id || "id",
-    column: options?.fieldIds?.column || "status",
+    group: options?.fieldIds?.group || "status",
     name: options?.fieldIds?.name || "name",
     description: options?.fieldIds?.description || "description",
     image: options?.fieldIds?.image || "image",
   };
 
-  const columns = useSignal<Column[]>(options.columns);
-  const pickedUpItemColumn = useSignal<string | null>(null);
-  const columnsId = useComputed(() =>
-    columns.value.map((col) => col[options.fieldIds.id])
+  const groups = useSignal<Group[]>(options.groups);
+  const pickedUpItemGroup = useSignal<string | null>(null);
+  const groupsId = useComputed(() =>
+    groups.value.map((col) => col[options.fieldIds.id])
   );
 
   const items = useSignal<TData[]>(data);
 
-  const activeColumn = useSignal<Column | null>(null);
+  const activeGroup = useSignal<Group | null>(null);
 
   const activeItem = useSignal<TData | null>(null);
 
@@ -62,121 +62,121 @@ export function Kanban<TData, TValue>({
 
   function getDraggingItemData(
     itemId: UniqueIdentifier,
-    columnIdValue: string,
+    groupIdValue: string,
   ) {
-    const itemsInColumn = items.value.filter((item) =>
-      item[options.fieldIds.column] === columnIdValue
+    const itemsInGroup = items.value.filter((item) =>
+      item[options.fieldIds.group] === groupIdValue
     );
-    const itemPosition = itemsInColumn.findIndex((item) =>
+    const itemPosition = itemsInGroup.findIndex((item) =>
       item[options.fieldIds.id] === itemId
     );
-    const column = columns.value.find((col) =>
-      col[options.fieldIds.id] === columnIdValue
+    const group = groups.value.find((col) =>
+      col[options.fieldIds.id] === groupIdValue
     );
     return {
-      itemsInColumn,
+      itemsInGroup,
       itemPosition,
-      column,
+      group,
     };
   }
 
   const announcements: Announcements = {
     onDragStart({ active }) {
       if (!hasDraggableData(active)) return;
-      if (active.data.current?.type === "Column") {
-        const startColumnIdx = columnsId.value.findIndex((id) =>
+      if (active.data.current?.type === "Group") {
+        const startGroupIdx = groupsId.value.findIndex((id) =>
           id === active[options.fieldIds.id]
         );
-        const startColumn = columns.value[startColumnIdx];
-        return `Picked up Column ${startColumn?.title} at position: ${
-          startColumnIdx + 1
-        } of ${columnsId.value.length}`;
+        const startGroup = groups.value[startGroupIdx];
+        return `Picked up Group ${startGroup?.title} at position: ${
+          startGroupIdx + 1
+        } of ${groupsId.value.length}`;
       } else if (active.data.current?.type === "Item") {
-        pickedUpItemColumn.value =
-          active.data.current.item[options.fieldIds.column];
-        const { itemsInColumn, itemPosition, column } = getDraggingItemData(
+        pickedUpItemGroup.value =
+          active.data.current.item[options.fieldIds.group];
+        const { itemsInGroup, itemPosition, group } = getDraggingItemData(
           active[options.fieldIds.id],
-          pickedUpItemColumn.value as string,
+          pickedUpItemGroup.value as string,
         );
         return `Picked up Item ${active.data.current.item.name} at position: ${
           itemPosition + 1
-        } of ${itemsInColumn.length} in column ${column?.title}`;
+        } of ${itemsInGroup.length} in group ${group?.title}`;
       }
     },
     onDragOver({ active, over }) {
       if (!hasDraggableData(active) || !hasDraggableData(over)) return;
 
       if (
-        active.data.current?.type === "Column" &&
-        over.data.current?.type === "Column"
+        active.data.current?.type === "Group" &&
+        over.data.current?.type === "Group"
       ) {
-        const overColumnIdx = columnsId.value.findIndex((id) =>
+        const overGroupIdx = groupsId.value.findIndex((id) =>
           id === over[options.fieldIds.id]
         );
-        return `Column ${active.data.current.column.title} was moved over ${over.data.current.column.title} at position ${
-          overColumnIdx + 1
-        } of ${columnsId.value.length}`;
+        return `Group ${active.data.current.group.title} was moved over ${over.data.current.group.title} at position ${
+          overGroupIdx + 1
+        } of ${groupsId.value.length}`;
       } else if (
         active.data.current?.type === "Item" &&
         over.data.current?.type === "Item"
       ) {
-        const { itemsInColumn, itemPosition, column } = getDraggingItemData(
+        const { itemsInGroup, itemPosition, group } = getDraggingItemData(
           over[options.fieldIds.id],
-          over.data.current.item[options.fieldIds.column],
+          over.data.current.item[options.fieldIds.group],
         );
         if (
-          over.data.current.item[options.fieldIds.column] !==
-            pickedUpItemColumn.value
+          over.data.current.item[options.fieldIds.group] !==
+            pickedUpItemGroup.value
         ) {
-          return `Item ${active.data.current.item.name} was moved over column ${column?.title} in position ${
+          return `Item ${active.data.current.item.name} was moved over group ${group?.title} in position ${
             itemPosition + 1
-          } of ${itemsInColumn.length}`;
+          } of ${itemsInGroup.length}`;
         }
         return `Item was moved over position ${
           itemPosition + 1
-        } of ${itemsInColumn.length} in column ${column?.title}`;
+        } of ${itemsInGroup.length} in group ${group?.title}`;
       }
     },
     onDragEnd({ active, over }) {
       if (!hasDraggableData(active) || !hasDraggableData(over)) {
-        pickedUpItemColumn.value = null;
+        pickedUpItemGroup.value = null;
         return;
       }
       if (
-        active.data.current?.type === "Column" &&
-        over.data.current?.type === "Column"
+        active.data.current?.type === "Group" &&
+        over.data.current?.type === "Group"
       ) {
-        const overColumnPosition = columnsId.value.findIndex((id) =>
+        const overGroupPosition = groupsId.value.findIndex((id) =>
           id === over[options.fieldIds.id]
         );
 
-        return `Column ${active.data.current.column.title} was dropped into position ${
-          overColumnPosition + 1
-        } of ${columnsId.value.length}`;
+        return `Group ${active.data.current.group.title} was dropped into position ${
+          overGroupPosition + 1
+        } of ${groupsId.value.length}`;
       } else if (
         active.data.current?.type === "Item" &&
         over.data.current?.type === "Item"
       ) {
-        const { itemsInColumn, itemPosition, column } = getDraggingItemData(
+        const { itemsInGroup, itemPosition, group } = getDraggingItemData(
           over[options.fieldIds.id],
-          over.data.current.item[options.fieldIds.column],
+          over.data.current.item[options.fieldIds.group],
         );
         if (
-          over.data.current.item[options.fieldIds.column] !==
-            pickedUpItemColumn.value
+          over.data.current.item[options.fieldIds.group] !==
+            pickedUpItemGroup.value
         ) {
-          return `Item was dropped into column ${column?.title} in position ${
+          return `Item was dropped into group ${group?.title} in position ${
             itemPosition + 1
-          } of ${itemsInColumn.length}`;
+          } of ${itemsInGroup.length}`;
         }
         return `Item was dropped into position ${
           itemPosition + 1
-        } of ${itemsInColumn.length} in column ${column?.title}`;
+        } of ${itemsInGroup.length} in group ${group?.title}`;
       }
-      pickedUpItemColumn.value = null;
+      pickedUpItemGroup.value = null;
     },
     onDragCancel({ active }) {
-      pickedUpItemColumn.value = null;
+      pickedUpItemGroup.value = null;
       if (!hasDraggableData(active)) return;
       return `Dragging ${active.data.current?.type} cancelled.`;
     },
@@ -193,13 +193,13 @@ export function Kanban<TData, TValue>({
       onDragOver={onDragOver}
     >
       <BoardContainer>
-        <SortableContext items={columnsId.value}>
-          {columns.value.map((col) => (
-            <KanbanColumn
+        <SortableContext items={groupsId.value}>
+          {groups.value.map((col) => (
+            <KanbanGroup
               key={col[options.fieldIds.id]}
-              column={col}
+              group={col}
               items={items.value.filter((item) =>
-                item[options.fieldIds.column] === col[options.fieldIds.id]
+                item[options.fieldIds.group] === col[options.fieldIds.id]
               )}
               options={options}
             />
@@ -211,12 +211,12 @@ export function Kanban<TData, TValue>({
         /* {"document" in window &&
         createPortal(
           <DragOverlay>
-            {activeColumn && (
-              <KanbanColumn
+            {activeGroup && (
+              <KanbanGroup
                 isOverlay
-                column={activeColumn}
+                group={activeGroup}
                 items={items.value.filter(
-                  (item) => item[options.fieldIds.column] === activeColumn[options.fieldIds.id]
+                  (item) => item[options.fieldIds.group] === activeGroup[options.fieldIds.id]
                 )}
               />
             )}
@@ -231,8 +231,8 @@ export function Kanban<TData, TValue>({
   function onDragStart(event: DragStartEvent) {
     if (!hasDraggableData(event.active)) return;
     const data = event.active.data.current;
-    if (data?.type === "Column") {
-      activeColumn.value = data.column;
+    if (data?.type === "Group") {
+      activeGroup.value = data.group;
       return;
     }
 
@@ -243,7 +243,7 @@ export function Kanban<TData, TValue>({
   }
 
   function onDragEnd(event: DragEndEvent) {
-    activeColumn.value = null;
+    activeGroup.value = null;
     activeItem.value = null;
 
     const { active, over } = event;
@@ -264,21 +264,21 @@ export function Kanban<TData, TValue>({
 
     if (activeId === overId) return;
 
-    const isActiveAColumn = activeData?.type === "Column";
-    if (!isActiveAColumn) return;
+    const isActiveAGroup = activeData?.type === "Group";
+    if (!isActiveAGroup) return;
 
-    const activeColumnIndex = columns.value.findIndex((col) =>
+    const activeGroupIndex = groups.value.findIndex((col) =>
       col[options.fieldIds.id] === activeId
     );
 
-    const overColumnIndex = columns.value.findIndex((col) =>
+    const overGroupIndex = groups.value.findIndex((col) =>
       col[options.fieldIds.id] === overId
     );
 
-    columns.value = arrayMove(
-      columns.value,
-      activeColumnIndex,
-      overColumnIndex,
+    groups.value = arrayMove(
+      groups.value,
+      activeGroupIndex,
+      overGroupIndex,
     );
   }
 
@@ -314,26 +314,26 @@ export function Kanban<TData, TValue>({
       if (
         activeItem &&
         overItem &&
-        activeItem[options.fieldIds.column] !==
-          overItem[options.fieldIds.column]
+        activeItem[options.fieldIds.group] !==
+          overItem[options.fieldIds.group]
       ) {
-        activeItem[options.fieldIds.column] = overItem[options.fieldIds.column];
+        activeItem[options.fieldIds.group] = overItem[options.fieldIds.group];
         items.value = arrayMove(items.value, activeIndex, overIndex - 1);
       }
 
       items.value = arrayMove(items.value, activeIndex, overIndex);
     }
 
-    const isOverAColumn = overData?.type === "Column";
+    const isOverAGroup = overData?.type === "Group";
 
-    // Im dropping a Item over a column
-    if (isActiveAItem && isOverAColumn) {
+    // Im dropping a Item over a group
+    if (isActiveAItem && isOverAGroup) {
       const activeIndex = items.value.findIndex((t) =>
         t[options.fieldIds.id] === activeId
       );
       const activeItem = items.value[activeIndex];
       if (activeItem) {
-        activeItem[options.fieldIds.column] = overId as string;
+        activeItem[options.fieldIds.group] = overId as string;
         return arrayMove(items.value, activeIndex, activeIndex);
       }
     }

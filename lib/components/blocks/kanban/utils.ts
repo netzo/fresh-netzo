@@ -1,9 +1,9 @@
 // adapted from https://github.com/Georgegriff/react-dnd-kit-tailwind-shadcn-ui/blob/main/src/components/utils.ts
 import { Active, DataRef, Over } from "../../../deps/@dnd-kit/core.ts";
-import { ColumnDragData } from "./kanban-column.tsx";
+import { GroupDragData } from "./kanban-group.tsx";
 import { ItemDragData } from "./kanban-card.tsx";
 
-type DraggableData = ColumnDragData | ItemDragData;
+type DraggableData = GroupDragData | ItemDragData;
 
 export function hasDraggableData<T extends Active | Over>(
   entry: T | null | undefined,
@@ -14,7 +14,7 @@ export function hasDraggableData<T extends Active | Over>(
 
   const data = entry.data.current;
 
-  if (data?.type === "Column" || data?.type === "Item") return true;
+  if (data?.type === "Group" || data?.type === "Item") return true;
 
   return false;
 }

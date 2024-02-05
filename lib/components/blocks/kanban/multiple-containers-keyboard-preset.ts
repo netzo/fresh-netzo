@@ -37,14 +37,14 @@ export const coordinateGetter: KeyboardCoordinateGetter = (
       if (data) {
         const { type, children } = data;
 
-        if (type === "Column" && children?.length > 0) {
-          if (active.data.current?.type !== "Column") return;
+        if (type === "Group" && children?.length > 0) {
+          if (active.data.current?.type !== "Group") return;
         }
       }
 
       switch (event.code) {
         case KeyboardCode.Down:
-          if (active.data.current?.type === "Column") return;
+          if (active.data.current?.type === "Group") return;
 
           if (collisionRect.top < rect.top) {
             // find all droppable areas below
@@ -52,7 +52,7 @@ export const coordinateGetter: KeyboardCoordinateGetter = (
           }
           break;
         case KeyboardCode.Up:
-          if (active.data.current?.type === "Column") {
+          if (active.data.current?.type === "Group") {
             return;
           }
           if (collisionRect.top > rect.top) {

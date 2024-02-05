@@ -1,5 +1,5 @@
 import type { ComponentChildren } from "../../../deps/preact.ts";
-// adapted from https://github.com/Georgegriff/react-dnd-kit-tailwind-shadcn-ui/blob/main/src/components/BoardColumn.tsx
+// adapted from https://github.com/Georgegriff/react-dnd-kit-tailwind-shadcn-ui/blob/main/src/components/BoardGroup.tsx
 import {
   SortableContext,
   useSortable,
@@ -19,29 +19,29 @@ import { ScrollArea, ScrollBar } from "../../scroll-area.tsx";
 import type { Item, KanbanProps } from "./kanban.tsx";
 import { cn } from "../../utils.ts";
 
-export type Column = {
+export type Group = {
   id: UniqueIdentifier;
   title: string;
   icon?: JSX.IntrinsicElements["div"];
   badge?: BadgeProps;
 };
 
-export type ColumnType = "Column";
+export type GroupType = "Group";
 
-export type ColumnDragData = {
-  type: ColumnType;
-  column: Column;
+export type GroupDragData = {
+  type: GroupType;
+  group: Group;
 };
 
-type KanbanColumnProps = {
-  column: Column;
+type KanbanGroupProps = {
+  group: Group;
   items: Item[];
   isOverlay?: boolean;
   options: KanbanProps["options"];
 };
 
-export function KanbanColumn(
-  { column, items, isOverlay, options }: KanbanColumnProps,
+export function KanbanGroup(
+  { group, items, isOverlay, options }: KanbanGroupProps,
 ) {
   const itemsIds = useComputed(() =>
     items.map((item) => item[options.fieldIds.id])
@@ -55,13 +55,13 @@ export function KanbanColumn(
     transition,
     isDragging,
   } = useSortable({
-    id: column[options.fieldIds.id],
+    id: group[options.fieldIds.id],
     data: {
-      type: "Column",
-      column,
-    } satisfies ColumnDragData,
+      type: "Group",
+      group,
+    } satisfies GroupDragData,
     attributes: {
-      roleDescription: `Column: ${column.title}`,
+      roleDescription: `Group: ${group.title}`,
     },
   });
 
@@ -94,10 +94,10 @@ export function KanbanColumn(
       <CardHeader className="flex flex-row items-center py-2 px-4 font-semibold text-left border-b-2 justify-between">
         <div className="flex items-center">
           <div
-            {...column?.icon}
-            className={cn("w-6 h-6 mr-3", column?.icon?.className)}
+            {...group?.icon}
+            className={cn("w-6 h-6 mr-3", group?.icon?.className)}
           />
-          <h3 className="mt-0">{column.title}</h3>
+          <h3 className="mt-0">{group.title}</h3>
         </div>
         <Button variant="outline" size="icon" className="mt-0">
           <div className="w-4 h-4 mdi-plus" />

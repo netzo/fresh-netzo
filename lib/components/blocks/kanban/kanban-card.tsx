@@ -54,8 +54,8 @@ export function KanbanCard({ item, isOverlay, options }: KanbanCardProps) {
     },
   });
 
-  const { badge } = options.columns.find((c) =>
-    c.id === item?.[options.fieldIds.column]
+  const { badge } = options.groups.find((c) =>
+    c.id === item?.[options.fieldIds.group]
   );
 
   return (
@@ -94,7 +94,7 @@ export function KanbanCard({ item, isOverlay, options }: KanbanCardProps) {
             badge?.className,
           )}
         >
-          {item?.[options.fieldIds.column]}
+          {item?.[options.fieldIds.group]}
         </Badge>
       </CardHeader>
       <CardContent className="px-4 pt-2 pb-4 text-xs whitespace-pre-wrap text-secondary-foreground">
