@@ -1,26 +1,21 @@
-import { cn } from "../../utils.ts";
-import { Button, buttonVariants } from "../../button.tsx";
+import { useSignal } from "../../../deps/@preact/signals.ts";
+import { Button } from "../../button.tsx";
 import { Input } from "../../input.tsx";
 import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "../../sheet.tsx";
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "../../dialog.tsx";
+import { Label } from "../../label.tsx";
 import {
   type Table,
   TableFacetedFilter,
   TableOptions,
   type TableProps,
-  TableSheet,
 } from "./table.tsx";
-
-// TODO: move out from here
-import type { Account } from "@/services/accounts.ts";
-import { FormAccount } from "@/islands/accounts/Form.tsx";
 
 type TableToolbarProps<TData> = {
   table: Table<TData>;
@@ -31,9 +26,23 @@ export function TableToolbar<TData>({
   table,
   options,
 }: TableToolbarProps<TData>) {
-  const { servicePath, idField = "id" } = options;
+  const { servicePath } = options;
 
   const isFiltered = table.getState().columnFilters.length > 0;
+
+  const data = useSignal({ name: "" });
+
+  const onClickCreate = async () => {
+    const response = await fetch(`/api/${servicePath}`, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(data.value),
+    });
+
+    if (response.ok) {
+      window.location.reload();
+    }
+  };
 
   return (
     <div className="flex items-center justify-between">
@@ -85,29 +94,32 @@ export function TableToolbar<TData>({
       <div className="flex items-center space-x-2">
         <TableOptions table={table} />
 
-        <Sheet>
-          <SheetTrigger asChild>
+        <Dialog>
+          <DialogTrigger asChild>
             <Button variant="default" size="sm">Create</Button>
-          </SheetTrigger>
-          <SheetContent className="h-full overflow-y-auto">
-            <SheetHeader>
-              <SheetTitle>Edit profile</SheetTitle>
-            </SheetHeader>
-
-            <div className="py-4">
-              <FormAccount
-                method="POST"
-                action={`/api/${servicePath}`}
-              />
+          </DialogTrigger>
+          <DialogContent className="sm:max-w-[425px]">
+            <DialogHeader className="text-left">
+              <DialogTitle>Create new</DialogTitle>
+            </DialogHeader>
+            <div className="grid gap-4 py-4">
+              <div className="grid grid-cols-4 items-center gap-4">
+                <Label htmlFor="name" className="text-right">
+                  Name
+                </Label>
+                <Input
+                  id="name"
+                  className="col-span-3"
+                  value={data.value.name}
+                  onInput={(e) => data.value.name = e.target.value}
+                />
+              </div>
             </div>
-
-            <SheetFooter>
-              <SheetClose asChild>
-                <Button type="submit">Create</Button>
-              </SheetClose>
-            </SheetFooter>
-          </SheetContent>
-        </Sheet>
+            <DialogFooter>
+              <Button onClick={onClickCreate}>Create</Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
       </div>
     </div>
   );

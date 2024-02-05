@@ -4,19 +4,9 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuRadioGroup,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../../dropdown-menu.tsx";
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "../../sheet.tsx";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -28,10 +18,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "../../alert-dialog.tsx";
-
-// TODO: move out from here
-import type { Account } from "@/services/accounts.ts";
-import { FormAccount } from "@/islands/accounts/Form.tsx";
+import type { TableProps } from "./use-table.ts";
 
 type TableRowActionsProps<TData> = TableProps<TData> & {
   row: Row<TData>;
@@ -44,8 +31,8 @@ export function TableRowActions<TData>({
 }: TableRowActionsProps<TData>) {
   const { servicePath, idField = "id" } = options;
 
-  const onSelectUpdate = () => {
-    window.alert("Edit");
+  const onSelectOpen = () => {
+    window.location.pathname = `/${servicePath}/${row.original[idField]}`;
   };
 
   const onSelectCreateACopy = async () => {
@@ -58,6 +45,10 @@ export function TableRowActions<TData>({
     window.location.reload();
   };
 
+  const onSelectCopyId = () => {
+    navigator.clipboard.writeText(row.original[idField]);
+  };
+
   const onClickRemove = async () => {
     await fetch(`/api/${servicePath}/${row.original[idField]}`, {
       method: "DELETE",
@@ -65,87 +56,61 @@ export function TableRowActions<TData>({
     window.location.reload();
   };
 
+  // NOTE: to activate the Dialog component from within ContextMenu we must
+  // place it at root (see https://ui.shadcn.com/docs/components/dialog#notes)
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button
-          variant="ghost"
-          className="flex h-8 w-8 mx-auto p-0 data-[state=open]:bg-muted"
-        >
-          <i className="mdi-dots-horizontal h-4 w-4" />
-          <span className="sr-only">Open menu</span>
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-[160px]">
-        {/* Edit */}
-        <Sheet>
-          <SheetTrigger asChild>
-            {
-              /*
-            IMPORTANT: must call preventDefault() when using Sheet within DropdownMenu
-            see https://github.com/radix-ui/primitives/issues/1836#issuecomment-1674338372
-             */
-            }
-            <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
-              Edit
-            </DropdownMenuItem>
-          </SheetTrigger>
-          <SheetContent>
-            <SheetHeader>
-              <SheetTitle>Edit profile</SheetTitle>
-            </SheetHeader>
+    <AlertDialog>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button
+            variant="ghost"
+            className="flex h-8 w-8 mx-auto p-0 data-[state=open]:bg-muted"
+          >
+            <i className="mdi-dots-horizontal h-4 w-4" />
+            <span className="sr-only">Open menu</span>
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="end" className="w-[160px]">
+          <DropdownMenuItem onSelect={onSelectOpen}>
+            Open
+          </DropdownMenuItem>
 
-            <div className="h-full overflow-y-auto py-4">
-              <FormAccount
-                data={row.original}
-                method="PATCH"
-                action={`/api${servicePath}/${row.original[idField]}`}
-              />
-            </div>
+          <DropdownMenuItem onSelect={onSelectCreateACopy}>
+            Create a copy
+          </DropdownMenuItem>
 
-            <SheetFooter>
-              <SheetClose asChild>
-                <Button type="submit">Save changes</Button>
-              </SheetClose>
-            </SheetFooter>
-          </SheetContent>
-        </Sheet>
+          <DropdownMenuItem onSelect={onSelectCopyId}>
+            Copy ID
+          </DropdownMenuItem>
 
-        {/* Create a copy */}
-        <DropdownMenuItem onSelect={onSelectCreateACopy}>
-          Create a copy
-        </DropdownMenuItem>
-
-        <DropdownMenuSeparator />
-
-        {/* Delete */}
-        <AlertDialog>
+          <DropdownMenuSeparator />
           <AlertDialogTrigger asChild>
             <DropdownMenuItem className="!text-red-500">
               Delete
             </DropdownMenuItem>
           </AlertDialogTrigger>
-          <AlertDialogContent>
-            <AlertDialogHeader>
-              <AlertDialogTitle>
-                Delete
-              </AlertDialogTitle>
-              <AlertDialogDescription>
-                You are about to delete the data permanently.
-              </AlertDialogDescription>
-            </AlertDialogHeader>
-            <AlertDialogFooter>
-              <AlertDialogCancel>Cancel</AlertDialogCancel>
-              <AlertDialogAction
-                className="text-white bg-red-600"
-                onClick={onClickRemove}
-              >
-                Confirm
-              </AlertDialogAction>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialog>
-      </DropdownMenuContent>
-    </DropdownMenu>
+        </DropdownMenuContent>
+      </DropdownMenu>
+
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>
+            Delete
+          </AlertDialogTitle>
+          <AlertDialogDescription>
+            You are about to delete the data permanently.
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogAction
+            className="text-white bg-red-600"
+            onClick={onClickRemove}
+          >
+            Confirm
+          </AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
   );
 }

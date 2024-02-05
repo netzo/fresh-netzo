@@ -16,6 +16,7 @@ export * from "./use-table.ts";
 
 export const layout = signal("grid");
 
+// TODO: finalize the Table component which would allow cycling between layouts
 export function Table<TData, TValue>({
   data,
   options,
