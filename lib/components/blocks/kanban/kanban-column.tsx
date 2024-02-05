@@ -12,7 +12,7 @@ import { CSS } from "../../../deps/@dnd-kit/utilities.ts";
 import { useComputed } from "../../../deps/@preact/signals.ts";
 import { KanbanCard } from "./kanban-card.tsx";
 import { cva } from "../../../deps/class-variance-authority.ts";
-import type { BadgeProps } from "../badge.tsx";
+import type { BadgeProps } from "../../badge.tsx";
 import { Card, CardContent, CardHeader } from "../../card.tsx";
 import { Button } from "../../button.tsx";
 import { ScrollArea, ScrollBar } from "../../scroll-area.tsx";
