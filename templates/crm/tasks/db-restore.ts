@@ -7,7 +7,7 @@
  * deno task db:restore backup.json
  * ```
  */
-const kv = await Deno.openKv();
+const kv = await Deno.openKv(Deno.env.get("DENO_KV_PATH"));
 
 interface StoredKvU64 {
   value: string;

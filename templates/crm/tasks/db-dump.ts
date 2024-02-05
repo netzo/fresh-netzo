@@ -7,7 +7,7 @@
  * deno task db:dump > backup.json
  * ```
  */
-const kv = await Deno.openKv();
+const kv = await Deno.openKv(Deno.env.get("DENO_KV_PATH"));
 
 // https://github.com/GoogleChromeLabs/jsbi/issues/30#issuecomment-521460510
 function replacer(_key: unknown, value: unknown) {

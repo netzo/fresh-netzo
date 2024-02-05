@@ -1,6 +1,6 @@
 const kv = await Deno.openKv(Deno.env.get("DENO_KV_PATH"));
 
-const SERVICES = ["accounts"]; // , "deals", "contacts", "invoices"];
+const SERVICES = ["accounts", "deals", "contacts", "invoices"];
 
 export const dbSeed = async () => {
   try {
