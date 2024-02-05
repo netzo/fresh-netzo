@@ -17,8 +17,8 @@ jobs:
       - name: Setup Deno
         uses: denoland/setup-deno@v1
 
-      - name: Test netzo/apis
-        run: deno test --allow-env --allow-net --allow-read --allow-run --no-check lib/apis/jsonplaceholder
+      - name: Test netzo/integrations
+        run: deno test --allow-env --allow-net --allow-read --allow-run --no-check lib/integrations/apis/jsonplaceholder
 
       - name: Test netzo/templates
         run: deno test --allow-env --no-check templates

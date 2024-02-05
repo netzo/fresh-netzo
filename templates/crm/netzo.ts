@@ -3,7 +3,7 @@ import { IS_BROWSER } from "$fresh/runtime.ts";
 import { Netzo } from "netzo/core/mod.ts";
 import { DenoKvService } from "netzo/services/denokv.ts";
 import { HttpService } from "netzo/services/http.ts";
-import { createApi } from "netzo/apis/_create-api/mod.ts";
+import { createApi } from "netzo/integrations/apis/_create-api/mod.ts";
 
 const kv = IS_BROWSER ? undefined : await Deno.openKv();
 

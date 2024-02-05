@@ -1,0 +1,15 @@
+import "../../../deps/std/dotenv/load.ts";
+import { assertExists } from "../../../deps/std/assert/mod.ts";
+import { mongodb } from "./mod.ts";
+
+Deno.test("[dbs] mongodb", async (t) => {
+  const db = mongodb({
+    url: Deno.env.get("MONGODB_URL")!,
+    database: Deno.env.get("MONGODB_DATABASE")!,
+  });
+
+  await t.step("declarations", () => {
+    assertExists(mongodb);
+    assertExists(db);
+  });
+});
