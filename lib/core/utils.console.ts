@@ -55,9 +55,7 @@ export function error(message: string): never {
 }
 
 export const LOGS = {
-  envNoticeDevelopment:
-    "Running in development environment (NETZO_PROJECT_ID and/or NETZO_API_KEY not provided).",
-  envNoticeProduction: (count: number) =>
-    `Running in production environment (loaded ${count} environment variables).`,
+  envNoticeDevelopment: "Running locally... Set NETZO_PROJECT_ID and NETZO_API_KEY to connect to remote project.",
+  envNoticeProduction: (count: number) => `Connected to remote project. Loaded ${count} environment variables.`,
   notFoundProject: "Project not found. Check the project ID and API key.",
 } as const;
