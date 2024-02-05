@@ -51,6 +51,7 @@ export const useTable = <TData = unknown, TValue = unknown>({
   data,
   options,
   columns,
+  meta = {},
 }: TableProps<TData, TValue>): Table<TData> => {
   const [rowSelection, setRowSelection] = useState({});
   const [
@@ -84,8 +85,9 @@ export const useTable = <TData = unknown, TValue = unknown>({
     getFacetedRowModel: getFacetedRowModel(),
     getFacetedUniqueValues: getFacetedUniqueValues(),
     initialState: {
-      pagination: { pageSize: 10 },
+      pagination: { pageSize: 25 },
     },
+    meta,
   });
 
   return table;

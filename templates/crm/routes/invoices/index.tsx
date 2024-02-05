@@ -1,6 +1,6 @@
 import { defineRoute } from "$fresh/server.ts";
 import type { TableProps } from "netzo/components/blocks/table/use-table.ts";
-import { ALIASES, type Invoice } from "@/services/invoices.ts";
+import { I18N, type Invoice } from "@/services/invoices.ts";
 import { Table } from "@/islands/invoices/Table.tsx";
 import { netzo } from "@/netzo.ts";
 
@@ -16,7 +16,7 @@ export const getTableOptions = (
     filters: [
       {
         column: "status",
-        title: ALIASES.status,
+        title: I18N.status,
         options: [...new Set(data.map((item) => item.status))].map((
           value,
         ) => (value ? { label: value, value } : { label: "*no data", value })),

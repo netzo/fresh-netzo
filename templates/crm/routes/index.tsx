@@ -1,8 +1,8 @@
 import { defineRoute } from "$fresh/server.ts";
-// import type { Account, ALIASES } from "@/services/accounts.ts";
-// import type { Deal, ALIASES } from "@/services/deals.ts";
-// import type { Contact, ALIASES } from "@/services/contacts.ts";
-// import type { Invoice, ALIASES } from "@/services/invoices.ts";
+// import type { Account, I18N } from "@/services/accounts.ts";
+// import type { Deal, I18N } from "@/services/deals.ts";
+// import type { Contact, I18N } from "@/services/contacts.ts";
+// import type { Invoice, I18N } from "@/services/invoices.ts";
 import { Overview } from "@/islands/Overview.tsx";
 // import { netzo } from "@/netzo.ts";
 

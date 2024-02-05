@@ -2,7 +2,7 @@ import { useSignal } from "@preact/signals";
 import { Button } from "netzo/components/button.tsx";
 import { createOnSubmit, Form } from "netzo/components/blocks/form/form.tsx";
 import { Contact, contactSchema } from "@/services/contacts.ts";
-// import { ALIASES } from "@/services/contacts.ts";
+// import { I18N } from "@/services/contacts.ts";
 
 type FormProps = {
   data?: Contact;
@@ -17,7 +17,7 @@ const formSchema = contactSchema.omit({
   createdAt: true,
 });
 
-export function FormContact({ data, method, action }: FormProps) {
+export function FormContact({ data = {}, method, action }: FormProps) {
   const values = useSignal(data);
 
   return (

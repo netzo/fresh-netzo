@@ -52,6 +52,7 @@
     "std/": "https://deno.land/std@0.205.0/",
     "react": "https://esm.sh/v135/preact@10.19.2/compat",
     "react-dom": "https://esm.sh/v135/preact@10.19.2/compat",
-    "react/jsx-runtime": "https://esm.sh/v135/preact@10.19.2/compat"
+    "react/jsx-runtime": "https://esm.sh/v135/preact@10.19.2/compat",
+    "zod": "https://deno.land/x/zod@v3.22.4/mod.ts"
   }
 }

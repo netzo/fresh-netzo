@@ -1,4 +1,4 @@
-import { z } from "netzo/deps/zod/mod.ts";
+import { z } from "zod";
 
 // schemas:
 
@@ -57,7 +57,7 @@ export type Contact = z.infer<typeof contactSchema>;
 
 // i18n:
 
-export const ALIASES = {
+export const I18N = {
   id: "Contact Id",
   accountId: "Account Id",
   account: "Account",

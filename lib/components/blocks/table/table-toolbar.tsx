@@ -2,13 +2,25 @@ import { cn } from "../../utils.ts";
 import { Button, buttonVariants } from "../../button.tsx";
 import { Input } from "../../input.tsx";
 import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "../../sheet.tsx";
+import {
   type Table,
-  TableDialogDelete,
   TableFacetedFilter,
   TableOptions,
   type TableProps,
   TableSheet,
 } from "./table.tsx";
+
+// TODO: move out from here
+import type { Account } from "@/services/accounts.ts";
+import { FormAccount } from "@/islands/accounts/Form.tsx";
 
 type TableToolbarProps<TData> = {
   table: Table<TData>;
@@ -19,10 +31,10 @@ export function TableToolbar<TData>({
   table,
   options,
 }: TableToolbarProps<TData>) {
+  const { servicePath, idField = "id" } = options;
+
   const isFiltered = table.getState().columnFilters.length > 0;
-  const selectedRows = table.getRowModel().rows.filter((row) =>
-    row.getIsSelected()
-  );
+
   return (
     <div className="flex items-center justify-between">
       <div className="flex items-center flex-1 space-x-2">
@@ -73,22 +85,29 @@ export function TableToolbar<TData>({
       <div className="flex items-center space-x-2">
         <TableOptions table={table} />
 
-        {selectedRows.length
-          ? <TableDialogDelete options={options} selectedRows={selectedRows} />
-          : (
-            <>
-              <a
-                href={`/${options.servicePath}/new`}
-                className={cn(
-                  buttonVariants({ variant: "default" }),
-                  "h-8 px-2 ml-3 lg:px-3",
-                )}
-              >
-                Create new
-              </a>
-              <TableSheet />
-            </>
-          )}
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button variant="default" size="sm">Create</Button>
+          </SheetTrigger>
+          <SheetContent className="h-full overflow-y-auto">
+            <SheetHeader>
+              <SheetTitle>Edit profile</SheetTitle>
+            </SheetHeader>
+
+            <div className="py-4">
+              <FormAccount
+                method="POST"
+                action={`/api/${servicePath}`}
+              />
+            </div>
+
+            <SheetFooter>
+              <SheetClose asChild>
+                <Button type="submit">Create</Button>
+              </SheetClose>
+            </SheetFooter>
+          </SheetContent>
+        </Sheet>
       </div>
     </div>
   );

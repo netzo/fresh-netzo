@@ -101,8 +101,8 @@ export const api = (options?: ApiConfig): Plugin<NetzoState> => {
           DELETE: service?.remove
             ? async (_req, ctx) => {
               const { params } = parseSearchParams(ctx.url.searchParams);
-              await service.remove(ctx.params.id);
-              return Response.json({ key });
+              const result = await service.remove(ctx.params.id);
+              return Response.json(result);
             }
             : () => RESPONSES.notAllowed(),
         },

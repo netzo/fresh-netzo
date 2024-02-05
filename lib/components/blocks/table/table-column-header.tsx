@@ -32,7 +32,7 @@ export function TableColumnHeader<TData, TValue>({
           <Button
             variant="ghost"
             size="sm"
-            className="w-full h-full rounded-none bg-inherit"
+            className="w-full h-full rounded-none bg-inherit justify-between"
           >
             <span>{title}</span>
             {column.getIsSorted() === "desc"

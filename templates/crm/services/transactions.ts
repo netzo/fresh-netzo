@@ -1,4 +1,4 @@
-import { z } from "netzo/deps/zod/mod.ts";
+import { z } from "zod";
 
 // schemas:
 
@@ -34,7 +34,7 @@ export type Transaction = z.infer<typeof transactionSchema>;
 
 // i18n:
 
-export const ALIASES = {
+export const I18N = {
   id: "Transaction Id",
   treasuryIdSource: "Source Treasury Id",
   treasuryIdDestination: "Destination Treasury Id",

@@ -1,4 +1,4 @@
-import { z } from "netzo/deps/zod/mod.ts";
+import { z } from "zod";
 import { generateMock } from "npm:@anatine/zod-mock@3.13.3";
 import { ulid } from "netzo/core/api/utils.ts";
 

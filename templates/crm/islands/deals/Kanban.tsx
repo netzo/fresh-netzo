@@ -8,7 +8,7 @@ import {
   Kanban as _Kanban,
   type KanbanProps,
 } from "netzo/components/blocks/kanban/kanban.tsx";
-import { ALIASES, type Deal } from "@/services/deals.ts";
+import { type Deal, I18N } from "@/services/deals.ts";
 
 // NOTE: define columns in island (route to island function serialization unsupported)
 export const getColumns = (_props: TableProps): TableProps["columns"] => [
@@ -44,21 +44,16 @@ export const getColumns = (_props: TableProps): TableProps["columns"] => [
   },
 ];
 
-export function Kanban<TData, TValue>(
-  { data, options }: KanbanProps<TData, TValue>,
-) {
-  const columns = getColumns({ data, options });
+export function Kanban<TData, TValue>(props: KanbanProps<TData, TValue>) {
+  const columns = getColumns(props);
 
-  const table = useTable<TData, TValue>({ data, options, columns });
+  const table = useTable<TData, TValue>({ ...props, columns });
 
   return (
     <div className="flex flex-col h-full space-y-4">
-      <TableToolbar options={options} table={table} />
+      <TableToolbar {...props} table={table} />
       <div className="flex-1">
-        <_Kanban
-          table={table}
-          options={options}
-        />
+        <_Kanban {...props} />
       </div>
       <TablePagination table={table} />
     </div>

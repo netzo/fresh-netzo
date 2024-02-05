@@ -1,11 +1,13 @@
 import {
+  TableColumnCell,
+  TableColumnHeader,
   TablePagination,
   type TableProps,
+  TableRowActions,
   TableToolbar,
   useTable,
 } from "netzo/components/blocks/table/table.tsx";
 import { Grid } from "netzo/components/blocks/grid/grid.tsx";
-import { renderCell, renderHeader } from "netzo/components/blocks/render.tsx";
 import { toDateTime } from "netzo/components/blocks/format.ts";
 import { IconCopy } from "netzo/components/icon-copy.tsx";
 import {
@@ -13,34 +15,17 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "netzo/components/avatar.tsx";
-import { Checkbox } from "netzo/components/checkbox.tsx";
-import { ALIASES, type Contact } from "@/services/contacts.ts";
+import { type Contact, I18N } from "@/services/contacts.ts";
 
 // NOTE: define columns in island (route to island function serialization unsupported)
-export const getColumns = (_props: TableProps): TableProps["columns"] => [
+export const getColumns = ({ options }: TableProps): TableProps["columns"] => [
   {
-    id: "select",
-    header: ({ table }) => (
-      <Checkbox
-        checked={table.getIsAllPageRowsSelected()}
-        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-        aria-label="Select all"
-      />
-    ),
-    cell: ({ row }) => (
-      <Checkbox
-        checked={row.getIsSelected()}
-        onCheckedChange={(value) => row.toggleSelected(!!value)}
-        aria-label="Select row"
-        className="flex mx-auto my-2"
-      />
-    ),
-    enableSorting: false,
-    enableHiding: false,
+    id: "actions",
+    cell: (props) => <TableRowActions {...props} options={options} />,
   },
   {
     accessorKey: "name",
-    header: renderHeader(ALIASES.name),
+    header: (props) => <TableColumnHeader {...props} title={I18N.name} />,
     cell: ({ row }) => {
       const { id, name = "" /*avatar*/ } = row.original;
       const [first = "", last = ""] = name.split(" ");
@@ -64,7 +49,7 @@ export const getColumns = (_props: TableProps): TableProps["columns"] => [
   },
   {
     accessorKey: "accountId",
-    header: renderHeader(ALIASES.accountId),
+    header: (props) => <TableColumnHeader {...props} title={I18N.accountId} />,
     cell: ({ row }) => {
       const { accountId, account } = row.original;
       return (
@@ -79,17 +64,17 @@ export const getColumns = (_props: TableProps): TableProps["columns"] => [
   },
   {
     accessorKey: "emails",
-    header: renderHeader(ALIASES.emails),
-    cell: renderCell(),
+    header: (props) => <TableColumnHeader {...props} title={I18N.emails} />,
+    cell: (props) => <TableColumnCell {...props} />,
   },
   {
     accessorKey: "phones",
-    header: renderHeader(ALIASES.phones),
-    cell: renderCell(),
+    header: (props) => <TableColumnHeader {...props} title={I18N.phones} />,
+    cell: (props) => <TableColumnCell {...props} />,
   },
   {
     accessorKey: "createdAt",
-    header: renderHeader(ALIASES.createdAt),
+    header: (props) => <TableColumnHeader {...props} title={I18N.createdAt} />,
     cell: ({ row }) => {
       const { createdAt } = row.original;
       return <div>{toDateTime(createdAt)}</div>;
@@ -97,7 +82,7 @@ export const getColumns = (_props: TableProps): TableProps["columns"] => [
   },
   {
     accessorKey: "updatedAt",
-    header: renderHeader(ALIASES.updatedAt),
+    header: (props) => <TableColumnHeader {...props} title={I18N.updatedAt} />,
     cell: ({ row }) => {
       const { updatedAt } = row.original;
       return <div>{toDateTime(updatedAt)}</div>;
@@ -105,23 +90,16 @@ export const getColumns = (_props: TableProps): TableProps["columns"] => [
   },
 ];
 
-export function Table(
-  { data, options }: Omit<TableProps<Contact, unknown>, "columns">,
-) {
-  const columns = getColumns({ data, options });
+export function Table(props: Omit<TableProps<Contact, unknown>, "columns">) {
+  const columns = getColumns(props);
 
-  const table = useTable<TData, TValue>({ data, options, columns });
+  const table = useTable<TData, TValue>({ ...props, columns });
 
   return (
     <div className="space-y-4">
-      <TableToolbar options={options} table={table} />
+      <TableToolbar {...props} table={table} />
       <div className="border rounded-md">
-        <Grid
-          data={data}
-          options={options}
-          columns={columns}
-          table={table}
-        />
+        <Grid {...props} columns={columns} table={table} />
       </div>
       <TablePagination table={table} />
     </div>
