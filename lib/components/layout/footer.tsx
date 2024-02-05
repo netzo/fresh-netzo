@@ -1,8 +1,8 @@
 import type { JSX } from "../../deps/preact.ts";
 import { useComputed } from "../../deps/@preact/signals.ts";
 import { cn } from "../utils.ts";
-import { useUI } from "../../composables/use-ui.ts";
-import { useDarkMode } from "../../composables/use-dark-mode.ts";
+import { useUI } from "../../hooks/use-ui.ts";
+import { useDarkMode } from "../../hooks/use-dark-mode.ts";
 
 export type FooterProps = JSX.IntrinsicElements["footer"] & {
   /** Extra props to customize element (overwrites defaults). */

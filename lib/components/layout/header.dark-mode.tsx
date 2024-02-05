@@ -1,6 +1,6 @@
 import { Button } from "../button.tsx";
 import { cn } from "../utils.ts";
-import { useDarkMode } from "../../composables/use-dark-mode.ts";
+import { useDarkMode } from "../../hooks/use-dark-mode.ts";
 
 export function HeaderDarkMode() {
   const { darkMode } = useDarkMode();

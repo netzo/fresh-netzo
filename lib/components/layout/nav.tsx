@@ -2,7 +2,7 @@ import type { JSX } from "../../deps/preact.ts";
 import { cn } from "../utils.ts";
 import { Separator } from "../separator.tsx";
 import { buttonVariants } from "../button.tsx";
-import { useUI } from "../../composables/use-ui.ts";
+import { useUI } from "../../hooks/use-ui.ts";
 import { Ctx } from "@/routes/_app.tsx";
 
 export type NavProps = IntrinsicElements["nav"] & {

@@ -1,7 +1,7 @@
 import type { JSX } from "../../deps/preact.ts";
 import { Partial } from "netzo/deps/$fresh/runtime.ts";
 import { cn } from "../utils.ts";
-import { useUI } from "../../composables/use-ui.ts";
+import { useUI } from "../../hooks/use-ui.ts";
 
 export type MainProps = JSX.IntrinsicElements["main"] & {
   /** Extra props to customize element (overwrites defaults). */
