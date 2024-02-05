@@ -7,7 +7,7 @@
 <h3 align="center">Netzo</h3>
 
 <p align="center">
-  The complete open-source framework for building web apps.
+  Productive open-source framework for building business web apps.
 </p>
 
 <p align="center">
