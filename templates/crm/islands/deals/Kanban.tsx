@@ -1,7 +1,5 @@
 import {
-  TablePagination,
   type TableProps,
-  TableToolbar,
   useTable,
 } from "netzo/components/blocks/table/table.tsx";
 import {
@@ -18,13 +16,5 @@ export function Kanban<TData, TValue>(props: KanbanProps<TData, TValue>) {
 
   const table = useTable<TData, TValue>({ ...props, columns });
 
-  return (
-    <div className="flex flex-col h-full space-y-4">
-      <TableToolbar {...props} table={table} />
-      <div className="flex-1">
-        <_Kanban {...props} columns={columns} table={table} />
-      </div>
-      <TablePagination table={table} />
-    </div>
-  );
+  return <_Kanban {...props} columns={columns} table={table} />;
 }
