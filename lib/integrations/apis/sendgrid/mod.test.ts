@@ -3,7 +3,7 @@ import { sendgrid } from "./mod.ts";
 
 Deno.test("[apis] sendgrid", async (t) => {
   const api = sendgrid({
-    apiKey: Deno.env.get("SENDGRID_API_KEY"),
+    apiKey: Deno.env.get("SENDGRID_API_KEY")!,
   });
 
   await t.step("find lists", async () => {

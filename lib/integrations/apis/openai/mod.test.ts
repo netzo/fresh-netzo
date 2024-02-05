@@ -4,7 +4,7 @@ import { openai } from "./mod.ts";
 
 Deno.test("[apis] openai", async (t) => {
   const api = openai({
-    apiKey: Deno.env.get("OPENAI_API_KEY"),
+    apiKey: Deno.env.get("OPENAI_API_KEY")!,
   });
 
   await t.step("create chat completion", async () => {

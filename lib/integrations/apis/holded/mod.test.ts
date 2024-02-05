@@ -3,7 +3,7 @@ import { holded } from "./mod.ts";
 
 Deno.test("[apis] holded", async (t) => {
   const api = holded({
-    apiKey: Deno.env.get("HOLDED_API_KEY"),
+    apiKey: Deno.env.get("HOLDED_API_KEY")!,
   });
 
   await t.step("find contacts", async () => {

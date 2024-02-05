@@ -3,8 +3,8 @@ import { mongodbatlasdata } from "./mod.ts";
 
 Deno.test("[apis] mongodbatlasdata", async (t) => {
   const api = mongodbatlasdata({
-    apiKey: Deno.env.get("MONGODBATLASDATA_API_KEY"),
-    dataApiAppId: Deno.env.get("MONGODBATLASDATA_DATA_API_APP_ID"),
+    apiKey: Deno.env.get("MONGODBATLASDATA_API_KEY")!,
+    dataApiAppId: Deno.env.get("MONGODBATLASDATA_DATA_API_APP_ID")!,
   });
 
   await t.step("find documents", async () => {

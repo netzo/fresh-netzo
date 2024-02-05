@@ -3,8 +3,8 @@ import { mailchimpmarketing } from "./mod.ts";
 
 Deno.test("[apis] mailchimpmarketing", async (t) => {
   const api = mailchimpmarketing({
-    marketingApiKey: Deno.env.get("MAILCHIMP_MARKETING_API_KEY"),
-    dataCenter: Deno.env.get("MAILCHIMP_DATA_CENTER"),
+    marketingApiKey: Deno.env.get("MAILCHIMP_MARKETING_API_KEY")!,
+    dataCenter: Deno.env.get("MAILCHIMP_DATA_CENTER")!,
   });
 
   await t.step("find campaigns", async () => {

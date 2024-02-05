@@ -3,7 +3,7 @@ import { pandadoc } from "./mod.ts";
 
 Deno.test("[apis] pandadoc", async (t) => {
   const api = pandadoc({
-    apiKey: Deno.env.get("PANDADOC_API_KEY"),
+    apiKey: Deno.env.get("PANDADOC_API_KEY")!,
   });
 
   await t.step("find documents", async () => {

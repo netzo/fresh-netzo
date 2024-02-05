@@ -59,7 +59,7 @@ type Result = {
   values: string[][];
 };
 
-const resultToRows = (result: Result, headers?: string[]) => {
+export const resultToRows = (result: Result, headers?: string[]) => {
   let keys: string[];
   let rows: Result["values"];
   if (headers) {

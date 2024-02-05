@@ -3,7 +3,7 @@ import { fathomanalytics } from "./mod.ts";
 
 Deno.test("[apis] fathomanalytics", async (t) => {
   const api = fathomanalytics({
-    apiKey: Deno.env.get("FATHOMANALYTICS_API_KEY"),
+    apiKey: Deno.env.get("FATHOMANALYTICS_API_KEY")!,
   });
 
   await t.step("find sites", async () => {
