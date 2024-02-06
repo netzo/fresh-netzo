@@ -55,7 +55,7 @@ export type Deal = z.infer<typeof dealSchema>;
 
 // data:
 
-export const generate = (idField = "id") => ({
+export const mock = (idField = "id") => ({
   [idField]: ulid(),
   status: faker.helpers.arrayElement([
     "backlog",

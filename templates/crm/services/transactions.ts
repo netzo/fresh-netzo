@@ -36,7 +36,7 @@ export type Transaction = z.infer<typeof transactionSchema>;
 
 // data:
 
-export const generate = (idField = "id") => ({
+export const mock = (idField = "id") => ({
   [idField]: ulid(),
   treasuryIdSource: ulid(),
   treasuryIdDestination: ulid(),

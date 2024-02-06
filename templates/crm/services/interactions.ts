@@ -18,7 +18,7 @@ export type Interaction = z.infer<typeof interactionSchema>;
 
 // data:
 
-export const generate = (idField = "id") => ({
+export const mock = (idField = "id") => ({
   [idField]: ulid(),
   type: faker.helpers.arrayElement([
     "call",

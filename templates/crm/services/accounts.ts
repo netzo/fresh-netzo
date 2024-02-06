@@ -116,7 +116,7 @@ export type Account = z.infer<typeof accountSchema>;
 
 // data:
 
-export const generate = (idField = "id") => ({
+export const mock = (idField = "id") => ({
   [idField]: ulid(),
   type: faker.helpers.arrayElement([
     "prospect",

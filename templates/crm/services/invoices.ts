@@ -23,7 +23,7 @@ export type Invoice = z.infer<typeof invoiceSchema>;
 
 // data:
 
-export const generate = (idField = "id") => ({
+export const mock = (idField = "id") => ({
   [idField]: ulid(),
   status: faker.helpers.arrayElement(["pending", "paid", "cancelled"]),
   xml: faker.lorem.paragraph(),

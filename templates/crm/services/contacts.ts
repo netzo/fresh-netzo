@@ -60,7 +60,7 @@ export type Contact = z.infer<typeof contactSchema>;
 
 // data:
 
-export const generate = (idField = "id") => ({
+export const mock = (idField = "id") => ({
   [idField]: ulid() as string,
   accountId: ulid() as string,
   account: faker.company.name(),

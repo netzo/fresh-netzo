@@ -16,10 +16,10 @@ export const dbMock = async () => {
   try {
     await Promise.all(
       SERVICES.map(async (service) => {
-        const { generate } = await import(`@/services/${service}.ts`);
+        const { mock } = await import(`@/services/${service}.ts`);
         // generate mock data
         const entries = Array.from(Array(length)).map(() => {
-          const value = generate();
+          const value = mock();
           return { key: [service, value.id], value };
         });
 
