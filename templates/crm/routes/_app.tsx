@@ -1,4 +1,4 @@
-import { defineApp, type FreshContext } from "$fresh/server.ts";
+import { defineApp } from "$fresh/server.ts";
 import type { NetzoState } from "netzo/core/mod.ts";
 import { useNetzoState } from "netzo/hooks/server/use-netzo-state.ts";
 import { cn } from "netzo/components/utils.ts";
@@ -9,7 +9,7 @@ export default defineApp<NetzoState>((req, ctx) => {
 
   const UI = {
     head: {
-      title: "CRM Template | Netzo",
+      title: "Company CRM | Netzo",
       description: "A starter template for a custom CRM app",
       favicon: "/favicon.svg",
       image: "/cover.svg",
@@ -20,9 +20,13 @@ export default defineApp<NetzoState>((req, ctx) => {
       items: [
         [
           { text: "Dashboard", href: "/", icon: "mdi-view-dashboard" },
-          { text: "Recent", href: "/interactions", icon: "mdi-history" },
+          {
+            text: "Recent Activity",
+            href: "/interactions",
+            icon: "mdi-history",
+          },
           {},
-          { text: "Deals", href: "/deals", icon: "mdi-view-column" },
+          { text: "Deals", href: "/deals", icon: "mdi-tag" },
           {
             text: "Transactions",
             href: "/transactions",
@@ -45,7 +49,7 @@ export default defineApp<NetzoState>((req, ctx) => {
       ],
     },
     header: {
-      title: "CRM Template",
+      title: "Company CRM",
       description: "A starter template for a custom CRM app",
       sessionUser,
     },

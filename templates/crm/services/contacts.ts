@@ -142,8 +142,8 @@ export const mock = (idField = "id") => ({
 // i18n:
 
 export const I18N = {
-  id: "Contact Id",
-  accountId: "Account Id",
+  id: "Contact ID",
+  accountId: "Account ID",
   account: "Account",
   accountDomain: "Account Domain",
   name: "Full Name",

@@ -77,9 +77,9 @@ export const mock = (idField = "id") => ({
 // i18n:
 
 export const I18N = {
-  id: "Transaction Id",
-  treasuryIdSource: "Source Treasury Id",
-  treasuryIdDestination: "Destination Treasury Id",
+  id: "Transaction ID",
+  treasuryIdSource: "Source Treasury ID",
+  treasuryIdDestination: "Destination Treasury ID",
   type: "Type",
   method: "Method",
   status: "Status",

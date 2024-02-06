@@ -71,7 +71,7 @@ export function KanbanGroup(
   };
 
   const variants = cva(
-    "h-full self-baseline w-[300px] max-w-full bg-primary-foreground flex flex-col flex-shrink-0 snap-center",
+    "h-full self-baseline w-[300px] max-w-full flex flex-col flex-shrink-0 snap-center",
     {
       variants: {
         dragging: {

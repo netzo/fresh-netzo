@@ -10,16 +10,24 @@ import * as $contacts_id_ from "./routes/contacts/[id].tsx";
 import * as $contacts_index from "./routes/contacts/index.tsx";
 import * as $deals_index from "./routes/deals/index.tsx";
 import * as $index from "./routes/index.tsx";
+import * as $interactions_id_ from "./routes/interactions/[id].tsx";
+import * as $interactions_index from "./routes/interactions/index.tsx";
 import * as $invoices_id_ from "./routes/invoices/[id].tsx";
 import * as $invoices_index from "./routes/invoices/index.tsx";
+import * as $transactions_id_ from "./routes/transactions/[id].tsx";
+import * as $transactions_index from "./routes/transactions/index.tsx";
 import * as $Dashboard from "./islands/Dashboard.tsx";
 import * as $accounts_Form from "./islands/accounts/Form.tsx";
 import * as $accounts_Table from "./islands/accounts/Table.tsx";
 import * as $contacts_Form from "./islands/contacts/Form.tsx";
 import * as $contacts_Table from "./islands/contacts/Table.tsx";
 import * as $deals_Kanban from "./islands/deals/Kanban.tsx";
+import * as $interactions_Form from "./islands/interactions/Form.tsx";
+import * as $interactions_Table from "./islands/interactions/Table.tsx";
 import * as $invoices_Form from "./islands/invoices/Form.tsx";
 import * as $invoices_Table from "./islands/invoices/Table.tsx";
+import * as $transactions_Form from "./islands/transactions/Form.tsx";
+import * as $transactions_Table from "./islands/transactions/Table.tsx";
 import { type Manifest } from "$fresh/server.ts";
 
 const manifest = {
@@ -32,8 +40,12 @@ const manifest = {
     "./routes/contacts/index.tsx": $contacts_index,
     "./routes/deals/index.tsx": $deals_index,
     "./routes/index.tsx": $index,
+    "./routes/interactions/[id].tsx": $interactions_id_,
+    "./routes/interactions/index.tsx": $interactions_index,
     "./routes/invoices/[id].tsx": $invoices_id_,
     "./routes/invoices/index.tsx": $invoices_index,
+    "./routes/transactions/[id].tsx": $transactions_id_,
+    "./routes/transactions/index.tsx": $transactions_index,
   },
   islands: {
     "./islands/Dashboard.tsx": $Dashboard,
@@ -42,8 +54,12 @@ const manifest = {
     "./islands/contacts/Form.tsx": $contacts_Form,
     "./islands/contacts/Table.tsx": $contacts_Table,
     "./islands/deals/Kanban.tsx": $deals_Kanban,
+    "./islands/interactions/Form.tsx": $interactions_Form,
+    "./islands/interactions/Table.tsx": $interactions_Table,
     "./islands/invoices/Form.tsx": $invoices_Form,
     "./islands/invoices/Table.tsx": $invoices_Table,
+    "./islands/transactions/Form.tsx": $transactions_Form,
+    "./islands/transactions/Table.tsx": $transactions_Table,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;

@@ -2,6 +2,7 @@ const kv = await Deno.openKv(Deno.env.get("DENO_KV_PATH"));
 
 const SERVICES = [
   "accounts",
+  "interactions",
   "contacts",
   "deals",
   "interactions",

@@ -40,7 +40,7 @@ export const mock = (idField = "id") => ({
 // i18n:
 
 export const I18N = {
-  id: "Interaction Id",
+  id: "Interaction ID",
   type: "Type",
   data: "Data",
   createdAt: "Created At",
