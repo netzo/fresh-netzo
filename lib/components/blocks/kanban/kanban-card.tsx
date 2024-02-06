@@ -86,19 +86,16 @@ export function KanbanCard({ item, isOverlay, options }: KanbanCardProps) {
         <CardTitle className="ml-1 text-sm font-medium">
           {item?.[options.fieldIds.name]}
         </CardTitle>
+      </CardHeader>
+      <CardContent className="flex flex-col gap-2 px-4 pt-2 pb-4 text-xs whitespace-pre-wrap text-secondary-foreground">
+        {item?.[options.fieldIds.description]}
         <Badge
           variant={"outline"}
           {...badge}
-          className={cn(
-            "ml-auto font-medium",
-            badge?.className,
-          )}
+          className={cn("mr-auto font-medium", badge?.className)}
         >
           {item?.[options.fieldIds.group]}
         </Badge>
-      </CardHeader>
-      <CardContent className="px-4 pt-2 pb-4 text-xs whitespace-pre-wrap text-secondary-foreground">
-        {item?.[options.fieldIds.description]}
       </CardContent>
     </Card>
   );

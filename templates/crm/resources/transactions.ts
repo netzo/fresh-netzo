@@ -8,7 +8,7 @@ export const transactionSchema = z.object({
   id: z.string(),
   treasuryIdSource: z.string(),
   treasuryIdDestination: z.string(),
-  type: z.enum(["income", "expense", "internal-transfer"]),
+  type: z.enum(["income", "expense", "transfer"]),
   method: z.enum(["wire-transfer", "check", "cash", "credit-card", "debit-card", "paypal", "stripe"]),
   status: z.enum(["pending", "completed", "failed", "cancelled", "refunded"]),
   reference: z.string(),
@@ -40,7 +40,7 @@ export const mock = (idField = "id") => ({
   [idField]: ulid(),
   treasuryIdSource: ulid(),
   treasuryIdDestination: ulid(),
-  type: faker.helpers.arrayElement(["income", "expense", "internal-transfer"]),
+  type: faker.helpers.arrayElement(["income", "expense", "transfer"]),
   method: faker.helpers.arrayElement([
     "wire-transfer",
     "check",
@@ -62,7 +62,7 @@ export const mock = (idField = "id") => ({
   receiverAccountId: ulid(),
   dateIssued: faker.date.past().toISOString(),
   datePayment: faker.date.recent().toISOString(),
-  amount: faker.number.int(),
+  amount: faker.finance.amount(),
   currency: faker.finance.currencyCode(),
   exchangeRate: faker.number.int(),
   notes: Array.from(Array(3)).map(() => ({

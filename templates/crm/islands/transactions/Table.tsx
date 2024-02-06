@@ -7,7 +7,7 @@ import {
   useTable,
 } from "netzo/components/blocks/table/table.tsx";
 import { Grid } from "netzo/components/blocks/table/table.grid.tsx";
-import { toDateTime } from "netzo/components/blocks/format.ts";
+import { toDateTime, toEuro } from "netzo/components/blocks/format.ts";
 import { IconCopy } from "netzo/components/icon-copy.tsx";
 import { Badge } from "netzo/components/badge.tsx";
 import {
@@ -45,26 +45,49 @@ export const getColumns = ({ options }: TableProps): TableProps["columns"] => [
     header: (props) => <TableColumnHeader {...props} title={I18N.type} />,
     cell: ({ row }) => {
       const { type } = row.original;
-      const colors = {
-        prospect: "yellow",
-        customer: "green",
-        supplier: "red",
-        partner: "blue",
-        other: "gray",
-      };
-      const background = `bg-${colors[type]}-500`;
-      return type
+      const props = ({
+        income: {
+          icon: "mdi-cash-plus",
+          text: "Income",
+          className: `bg-green hover:bg-green bg-opacity-80 text-white`,
+        },
+        expense: {
+          icon: "mdi-cash-minus",
+          text: "Expense",
+          className: `bg-red hover:bg-red bg-opacity-80 text-white`,
+        },
+        "transfer": {
+          icon: "mdi-cash-sync",
+          text: "Transfer",
+          className: `bg-blue hover:bg-blue bg-opacity-80 text-white`,
+        },
+      } as any)?.[type];
+      return props
         ? (
-          <Badge
-            variant="default"
-            className={`${background} hover:${background} bg-opacity-80 text-white`}
-          >
-            {type}
+          <Badge variant="default" className={`${props.className}`}>
+            <i className={`${props.icon} mr-1`} />
+            {props.text}
           </Badge>
         )
-        : <></>;
+        : null;
     },
     filterFn: (row, id, value) => value.includes(row.getValue(id)),
+  },
+  {
+    accessorKey: "amount",
+    header: (props) => <TableColumnHeader {...props} title={I18N.amount} />,
+    cell: ({ row }) => {
+      const { amount } = row.original;
+      return <div>{toEuro(amount)}</div>;
+    },
+  },
+  {
+    accessorKey: "currency",
+    header: (props) => <TableColumnHeader {...props} title={I18N.currency} />,
+    cell: ({ row }) => {
+      const { currency } = row.original;
+      return <div>{currency}</div>;
+    },
   },
   {
     accessorKey: "createdAt",

@@ -19,8 +19,8 @@ export const dealSchema = z.object({
   contacts: [{ $ref: {} }],
   title: z.string(),
   description: z.string(),
-  amount: z.number(),
-  currency: z.string(),
+  amount: faker.finance.amount(),
+  currency: faker.finance.currencyCode(),
   assignedTo: z.string(),
   notes: z.array(
     z.object({
@@ -68,8 +68,8 @@ export const mock = (idField = "id") => ({
   accounts: Array.from(Array(2)).map(() => ({ $ref: {} })),
   contactIds: Array.from(Array(2)).map(() => ulid()),
   contacts: Array.from(Array(2)).map(() => ({ $ref: {} })),
-  title: faker.lorem.sentence(),
-  description: faker.lorem.paragraph(),
+  title: faker.lorem.words(),
+  description: faker.lorem.sentence(),
   amount: faker.number.int(),
   currency: faker.finance.currencyCode(),
   assignedTo: ulid(),

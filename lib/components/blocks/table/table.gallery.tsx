@@ -30,7 +30,7 @@ export function Gallery<TData, TValue>(
       {table.getRowModel().rows.map((row) => (
         <Card key={row.id}>
           <CardHeader className="flex flex-row items-center justify-between">
-            <div className="flex-1">
+            <div className="flex-1 truncate">
               <Cell id="name" row={row} />
             </div>
             <Cell id="actions" row={row} />
@@ -41,10 +41,10 @@ export function Gallery<TData, TValue>(
             ).map((cell) => (
               <div key={cell.column.id}>
                 <div className="grid grid-cols-2 gap-1 text-sm">
-                  <div className="text-muted-secondary">
+                  <div className="text-muted-secondary truncate">
                     <Header id={cell.column.id} row={row} />
                   </div>
-                  <div className="text-right">
+                  <div className="text-right truncate">
                     <Cell id={cell.column.id} row={row} />
                   </div>
                 </div>

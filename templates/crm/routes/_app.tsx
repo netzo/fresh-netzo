@@ -16,7 +16,7 @@ export default defineApp<NetzoState>((req, ctx) => {
     },
     nav: {
       title: "Netzo",
-      image: "/favicon.svg",
+      image: "/logo.svg",
       items: [
         [
           { text: "Dashboard", href: "/", icon: "mdi-view-dashboard" },

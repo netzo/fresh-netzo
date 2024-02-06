@@ -1,11 +1,4 @@
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "netzo/components/card.tsx";
-import {
   TableColumnHeader,
   TablePagination,
   type TableProps,
@@ -56,7 +49,7 @@ export const getColumns = ({ options }: TableProps): TableProps["columns"] => [
         call: {
           icon: "mdi-phone",
           text: "Call",
-          className: `bg-purple hover:bg-orange bg-opacity-80 text-white`,
+          className: `bg-purple hover:bg-purple bg-opacity-80 text-white`,
         },
         email: {
           icon: "mdi-email",
@@ -154,63 +147,6 @@ export function Table(
 
   return (
     <div className="space-y-4">
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-            <CardTitle className="text-sm font-medium">
-              Total Deals
-            </CardTitle>
-            <div className="w-4 h-4 mdi-tag text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">14/28</div>
-            <p className="text-xs text-muted-foreground">
-              <span className="text-green-500">+19.6%</span> from last month
-            </p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-            <CardTitle className="text-sm font-medium">Total Sales</CardTitle>
-            <div className="w-4 h-4 mdi-currency-usd text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">$45,231.89</div>
-            <p className="text-xs text-muted-foreground">
-              <span className="text-red-500">+20.1%</span> from last month
-            </p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-            <CardTitle className="text-sm font-medium">
-              Average Sale Value
-            </CardTitle>
-            <div className="w-4 h-4 mdi-currency-usd-circle text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">$3230.85</div>
-            <p className="text-xs text-muted-foreground">
-              <span className="text-red-500">-5.1%</span> from last month
-            </p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-            <CardTitle className="text-sm font-medium">
-              Interactions
-            </CardTitle>
-            <div className="w-4 h-4 mdi-history text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">+573</div>
-            <p className="text-xs text-muted-foreground">
-              <span className="text-green-500">+53</span> from last month
-            </p>
-          </CardContent>
-        </Card>
-      </div>
-
       <TableToolbar {...props} table={table} />
       <div className="border rounded-md">
         <Grid {...props} columns={columns} table={table} />
