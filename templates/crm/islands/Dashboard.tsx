@@ -5,10 +5,10 @@ import {
   CardHeader,
   CardTitle,
 } from "netzo/components/card.tsx";
-import { Overview as OverviewChart } from "@/components/dashboard/overview.tsx";
+import { Overview } from "@/components/dashboard/overview.tsx";
 import { RecentSales } from "@/components/dashboard/recent-sales.tsx";
 
-export function Overview({ data, options }) {
+export function Dashboard({ data, options }) {
   return (
     <div className="p-4 space-y-4">
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -73,7 +73,7 @@ export function Overview({ data, options }) {
             <CardTitle>Overview</CardTitle>
           </CardHeader>
           <CardContent className="pl-2">
-            <OverviewChart />
+            <Overview />
           </CardContent>
         </Card>
         <Card className="col-span-3">

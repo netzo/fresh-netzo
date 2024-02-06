@@ -12,7 +12,7 @@ import * as $deals_index from "./routes/deals/index.tsx";
 import * as $index from "./routes/index.tsx";
 import * as $invoices_id_ from "./routes/invoices/[id].tsx";
 import * as $invoices_index from "./routes/invoices/index.tsx";
-import * as $Overview from "./islands/Overview.tsx";
+import * as $Dashboard from "./islands/Dashboard.tsx";
 import * as $accounts_Form from "./islands/accounts/Form.tsx";
 import * as $accounts_Table from "./islands/accounts/Table.tsx";
 import * as $contacts_Form from "./islands/contacts/Form.tsx";
@@ -36,7 +36,7 @@ const manifest = {
     "./routes/invoices/index.tsx": $invoices_index,
   },
   islands: {
-    "./islands/Overview.tsx": $Overview,
+    "./islands/Dashboard.tsx": $Dashboard,
     "./islands/accounts/Form.tsx": $accounts_Form,
     "./islands/accounts/Table.tsx": $accounts_Table,
     "./islands/contacts/Form.tsx": $contacts_Form,

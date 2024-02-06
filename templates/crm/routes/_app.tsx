@@ -19,8 +19,15 @@ export default defineApp<NetzoState>((req, ctx) => {
       image: "/favicon.svg",
       items: [
         [
-          { text: "Overview", href: "/", icon: "mdi-view-dashboard" },
+          { text: "Dashboard", href: "/", icon: "mdi-view-dashboard" },
+          { text: "Recent", href: "/interactions", icon: "mdi-history" },
+          {},
           { text: "Deals", href: "/deals", icon: "mdi-view-column" },
+          {
+            text: "Transactions",
+            href: "/transactions",
+            icon: "mdi-currency-usd",
+          },
           {},
           { text: "Accounts", href: "/accounts", icon: "mdi-account-group" },
           { text: "Contacts", href: "/contacts", icon: "mdi-contacts" },
