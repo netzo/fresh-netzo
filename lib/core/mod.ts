@@ -109,8 +109,13 @@ export const Netzo = async (config: Partial<NetzoConfig>) => {
         const { default: dev } = await import("$fresh/dev.ts");
         return dev(Deno.mainModule, "./netzo.ts", config);
       } else {
-        const manifestURL = import.meta.resolve("@/fresh.gen.ts");
-        return start((await import(manifestURL)).default, config);
+        // FIXME: the fix introduced in  is causing deploytime error
+        // "The deployment failed: UNCAUGHT_EXCEPTION TypeError: module
+        // not found: 'file:///src/fresh.gen.ts' at async Object.start()"
+        // so we revert to relying on import alias "@" for now despite
+        // this breaking types in development. This is a temporary fix
+        // see https://github.com/netzo/netzo/issues/85#issuecomment-1929225550
+        return start((await import("@/fresh.gen.ts")).default, config);
       }
     }, // NOTE: async but won't resolve (since dev/start won't) so we can't await it
   };
