@@ -3,7 +3,6 @@ import { cn } from "../utils.ts";
 import { Separator } from "../separator.tsx";
 import { buttonVariants } from "../button.tsx";
 import { useUI } from "../../hooks/use-ui.ts";
-// import { Ctx } from "@/routes/_app.tsx";
 
 export type NavItem = Array<
   | { text: string } // header
@@ -11,7 +10,7 @@ export type NavItem = Array<
   | Record<string | number | symbol, never> // divider (empty object)
 >;
 
-export type NavProps = IntrinsicElements["nav"] & {
+export type NavProps = JSX.IntrinsicElements["nav"] & {
   /** A short title for the app at the navigation drawer. */
   title?: string;
   /** An https or data URL of a cover image at the navigation drawer */
