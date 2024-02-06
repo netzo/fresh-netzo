@@ -16,9 +16,7 @@ const api = createApi({
 export const netzo = await Netzo({
   // auth: Deno.env.get("DENO_REGION") ? { providers: { netzo: {} } } : undefined,
   ui: {
-    theme: {
-      color: "red"
-    },
+    theme: {},
   },
   api: {
     // apiKey: Deno.env.get("NETZO_API_KEY"),
