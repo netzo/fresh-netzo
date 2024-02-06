@@ -2,7 +2,7 @@
 import { Netzo } from "netzo/core/mod.ts";
 import { DenoKvService } from "netzo/services/denokv.ts";
 import { HttpService } from "netzo/services/http.ts";
-import { createApi } from "netzo/integrations/apis/_create-api/mod.ts";
+import { createApi } from "netzo/integrations/create-api/mod.ts";
 
 const kv = await Deno.openKv();
 

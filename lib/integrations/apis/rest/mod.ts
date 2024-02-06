@@ -1,4 +1,4 @@
-import { createApi } from "../_create-api/mod.ts";
+import { createApi } from "../../create-api/mod.ts";
 
 export type RestOptions = Parameters<typeof createApi>[0];
 

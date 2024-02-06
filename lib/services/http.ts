@@ -1,5 +1,5 @@
 import { defineService, type ServiceOptions } from "../core/api/types.ts";
-import type { ApiClient } from "../integrations/apis/_create-api/types.ts";
+import type { ApiClient } from "../integrations/create-api/types.ts";
 
 import { ERRORS, ulid } from "../core/api/utils.ts";
 

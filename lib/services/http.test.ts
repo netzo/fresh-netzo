@@ -1,7 +1,7 @@
 import "../deps/std/dotenv/load.ts";
 import { assertEquals, assertExists } from "../deps/std/assert/mod.ts";
 import { z } from "../deps/zod/mod.ts";
-import { createApi } from "../integrations/apis/_create-api/mod.ts";
+import { createApi } from "../integrations/create-api/mod.ts";
 import { HttpService } from "./http.ts";
 
 const todoSchema = z.object({

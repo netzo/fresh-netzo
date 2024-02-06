@@ -1,5 +1,5 @@
-import { createApi } from "../_create-api/mod.ts";
-import { auth } from "../_create-api/auth/mod.ts";
+import { createApi } from "../../create-api/mod.ts";
+import { auth } from "../../create-api/auth/mod.ts";
 
 export type WhatsappBusinessOptions = {
   businessAccountId: string;
@@ -16,7 +16,7 @@ export type WhatsappBusinessOptions = {
  */
 export const whatsappbusiness = ({
   businessAccountId = Deno.env.get("WHATSAPPBUSINESS_BUSINESS_ACCOUNT_ID") ||
-    "",
+  "",
   permanentToken = Deno.env.get("WHATSAPPBUSINESS_PERMANENT_TOKEN")!,
 }: WhatsappBusinessOptions) => {
   const api = createApi({
