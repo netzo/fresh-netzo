@@ -1,4 +1,6 @@
 import { z } from "zod";
+import { faker } from "npm:@faker-js/faker@8.4.0";
+import { ulid } from "netzo/core/api/utils.ts";
 
 // schemas:
 
@@ -8,6 +10,7 @@ export const contactSchema = z.object({
   account: z.any(),
   accountDomain: z.string(), // Will be used to match records from email domain, once associated with an account, it will be removed from here
   name: z.string(),
+  image: z.string().url(),
   position: z.string(),
   department: z.string(),
   phone: z.array(
@@ -55,6 +58,87 @@ export const contactSchema = z.object({
 
 export type Contact = z.infer<typeof contactSchema>;
 
+// data:
+
+export const generate = (idField = "id") => ({
+  [idField]: ulid() as string,
+  accountId: ulid() as string,
+  account: faker.company.name(),
+  accountDomain: faker.internet.domainName(),
+  name: faker.person.fullName(),
+  image: faker.image.avatar(),
+  position: faker.person.jobTitle(),
+  department: faker.person.jobArea(),
+  phone: [
+    {
+      type: "work",
+      name: "Work phone",
+      value: faker.phone.number(),
+    },
+    {
+      type: "mobile",
+      name: "Mobile phone",
+      value: faker.phone.number(),
+    },
+    {
+      type: "whatsapp",
+      name: "Personal whatsapp",
+      value: faker.phone.number(),
+    },
+  ],
+  emails: [
+    {
+      type: "work",
+      name: "Work email",
+      value: faker.internet.email(),
+    },
+    {
+      type: "personal",
+      name: "Personal email",
+      value: faker.internet.email(),
+    },
+  ],
+  links: [
+    {
+      name: "website",
+      value: faker.internet.url(),
+    },
+    {
+      name: "facebook",
+      value: faker.internet.url(),
+    },
+    {
+      name: "linkedin",
+      value: faker.internet.url(),
+    },
+    {
+      name: "twitter",
+      value: faker.internet.url(),
+    },
+    {
+      name: "other",
+      value: faker.internet.url(),
+    },
+  ],
+  notes: Array.from(Array(3)).map(() => ({
+    text: faker.lorem.paragraph(),
+    createdAt: faker.date.past().toISOString(),
+    updatedAt: faker.date.recent().toISOString(),
+  })),
+  consent: {
+    documents: faker.datatype.boolean(),
+    documentsTimestamp: faker.number.int(),
+    marketing: faker.datatype.boolean(),
+    marketingLastTimestamp: faker.number.int(),
+    terms: faker.datatype.boolean(),
+    termsTimestamp: faker.number.int(),
+    privacy: faker.datatype.boolean(),
+    privacyTimestamp: faker.number.int(),
+  },
+  createdAt: faker.date.past().toISOString(),
+  updatedAt: faker.date.recent().toISOString(),
+});
+
 // i18n:
 
 export const I18N = {
@@ -63,6 +147,7 @@ export const I18N = {
   account: "Account",
   accountDomain: "Account Domain",
   name: "Full Name",
+  image: "Image",
   position: "Position",
   department: "Department",
   emails: "Emails",

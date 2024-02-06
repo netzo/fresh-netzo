@@ -1,11 +1,10 @@
 #!/usr/bin/env -S deno run -A --unstable --env --watch=static/,routes dev.ts
-import { IS_BROWSER } from "$fresh/runtime.ts";
 import { Netzo } from "netzo/core/mod.ts";
 import { DenoKvService } from "netzo/services/denokv.ts";
 import { HttpService } from "netzo/services/http.ts";
 import { createApi } from "netzo/integrations/apis/_create-api/mod.ts";
 
-const kv = IS_BROWSER ? undefined : await Deno.openKv();
+const kv = await Deno.openKv();
 
 const api = createApi({
   baseURL: "https://jsonplaceholder.typicode.com",
@@ -15,13 +14,7 @@ const api = createApi({
 });
 
 export const netzo = await Netzo({
-  auth: Deno.env.get("DENO_REGION")
-    ? {
-      providers: {
-        netzo: {},
-      },
-    }
-    : undefined,
+  // auth: Deno.env.get("DENO_REGION") ? { providers: { netzo: {} } } : undefined,
   ui: {
     theme: {},
   },

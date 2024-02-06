@@ -35,7 +35,7 @@ export function TableRowActions<TData>({
     window.location.pathname = `/${servicePath}/${row.original[idField]}`;
   };
 
-  const onSelectCreateACopy = async () => {
+  const onSelectDuplicate = async () => {
     const { [idField]: _id, ...data } = row.original;
     await fetch(`/api/${servicePath}`, {
       method: "POST",
@@ -75,8 +75,8 @@ export function TableRowActions<TData>({
             Open
           </DropdownMenuItem>
 
-          <DropdownMenuItem onSelect={onSelectCreateACopy}>
-            Create a copy
+          <DropdownMenuItem onSelect={onSelectDuplicate}>
+            Duplicate
           </DropdownMenuItem>
 
           <DropdownMenuItem onSelect={onSelectCopyId}>

@@ -18,12 +18,23 @@ export default defineApp<NetzoState>((req, ctx) => {
       title: "Netzo",
       image: "/favicon.svg",
       items: [
-        { text: "Overview", href: "/", icon: "mdi-view-dashboard" },
-        { text: "Deals", href: "/deals", icon: "mdi-view-column" },
-        {},
-        { text: "Accounts", href: "/accounts", icon: "mdi-account-group" },
-        { text: "Contacts", href: "/contacts", icon: "mdi-contacts" },
-        { text: "Invoices", href: "/invoices", icon: "mdi-receipt" },
+        [
+          { text: "Overview", href: "/", icon: "mdi-view-dashboard" },
+          { text: "Deals", href: "/deals", icon: "mdi-view-column" },
+          {},
+          { text: "Accounts", href: "/accounts", icon: "mdi-account-group" },
+          { text: "Contacts", href: "/contacts", icon: "mdi-contacts" },
+          { text: "Invoices", href: "/invoices", icon: "mdi-receipt" },
+        ],
+        [
+          {
+            text: "Feedback",
+            href:
+              "https://github.com/netzo/netzo/issues/new?title=[templates/crm]%20general%20feedback",
+            target: "_blank",
+            icon: "mdi-comment-question",
+          },
+        ],
       ],
     },
     header: {

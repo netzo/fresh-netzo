@@ -6,7 +6,7 @@ import {
   TableToolbar,
   useTable,
 } from "netzo/components/blocks/table/table.tsx";
-import { Grid } from "netzo/components/blocks/grid/grid.tsx";
+import { Grid } from "netzo/components/blocks/table/table.grid.tsx";
 import { toDate, toDateTime } from "netzo/components/blocks/format.ts";
 import { IconCopy } from "netzo/components/icon-copy.tsx";
 import { Badge } from "netzo/components/badge.tsx";

@@ -24,7 +24,7 @@ export type TableProps<TData = unknown, TValue = unknown> = {
       // options (depend on layout):
       name?: string;
       description?: string;
-      column?: string;
+      group?: string;
       image?: string;
     };
     search?: {

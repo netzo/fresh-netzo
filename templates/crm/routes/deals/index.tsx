@@ -11,12 +11,12 @@ export const getKanbanOptions = (
     servicePath: "deals",
     fieldIds: {
       id: "id",
-      column: "status",
+      group: "status",
       name: "title",
       description: "description",
       image: "image",
     },
-    columns: [
+    groups: [
       {
         id: "backlog",
         title: "Backlog",

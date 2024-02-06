@@ -9,6 +9,11 @@ export const getTableOptions = (
 ): TableProps<Contact, unknown>["options"] => {
   return {
     servicePath: "contacts",
+    fieldIds: {
+      id: "id",
+      name: "name",
+      image: "accountId",
+    },
     search: {
       column: "name",
       placeholder: "Search by name...",

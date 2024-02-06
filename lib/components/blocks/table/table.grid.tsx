@@ -8,7 +8,7 @@ import {
   TableHeader,
   TableRow,
 } from "../../table.tsx";
-import type { Table, TableProps } from "../table/use-table.ts";
+import type { Table, TableProps } from "./use-table.ts";
 
 export type GridProps<
   TData = unknown,

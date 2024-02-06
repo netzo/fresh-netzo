@@ -1,15 +1,17 @@
 import { z } from "zod";
+import { faker } from "npm:@faker-js/faker@8.4.0";
+import { ulid } from "netzo/core/api/utils.ts";
 
 // schemas:
 
 export const accountSchema = z.object({
   id: z.string(),
-  type: z.union([
-    z.literal("prospect"),
-    z.literal("customer"),
-    z.literal("supplier"),
-    z.literal("partner"),
-    z.literal("other"),
+  type: z.enum([
+    "prospect",
+    "customer",
+    "supplier",
+    "partner",
+    "other",
   ]),
   name: z.string(),
   legalName: z.string(),
@@ -111,6 +113,150 @@ export const accountSchema = z.object({
 // types:
 
 export type Account = z.infer<typeof accountSchema>;
+
+// data:
+
+export const generate = (idField = "id") => ({
+  [idField]: ulid(),
+  type: faker.helpers.arrayElement([
+    "prospect",
+    "customer",
+    "supplier",
+    "partner",
+    "other",
+  ]),
+  name: faker.company.name(),
+  legalName: faker.company.name(),
+  emails: [
+    {
+      type: "contact",
+      name: "Contact",
+      value: faker.internet.email(),
+    },
+    {
+      type: "sales",
+      name: "Sales",
+      value: faker.internet.email(),
+    },
+    {
+      type: "billing",
+      name: "Billing",
+      value: faker.internet.email(),
+    },
+  ],
+  phones: [
+    {
+      type: "contact",
+      name: "Contact",
+      value: faker.phone.number(),
+    },
+    {
+      type: "sales",
+      name: "Sales",
+      value: faker.phone.number(),
+    },
+    {
+      type: "billing",
+      name: "Billing",
+      value: faker.phone.number(),
+    },
+  ],
+  website: faker.internet.url(),
+  taxInfo: {
+    taxId: faker.string.alphanumeric(10),
+    isMexTaxId: faker.datatype.boolean(),
+    fiscalRegime: faker.lorem.word(),
+    proofTaxSituation: faker.lorem.word(),
+    proofTaxSituationDate: faker.date.past().toISOString(),
+    proofTaxSituationPdf: faker.internet.url(),
+    billingAddress: {
+      street: faker.location.street(),
+      numberExterior: faker.location.streetAddress(),
+      numberInterior: faker.location.secondaryAddress(),
+      neighborhood: faker.location.county(),
+      city: faker.location.city(),
+      district: faker.location.state(),
+      zipCode: faker.location.zipCode(),
+      state: faker.location.state(),
+      countryCode: faker.location.countryCode(),
+    },
+  },
+  links: [
+    {
+      name: "website",
+      value: faker.internet.url(),
+    },
+    {
+      name: "facebook",
+      value: faker.internet.url(),
+    },
+    {
+      name: "linkedin",
+      value: faker.internet.url(),
+    },
+    {
+      name: "twitter",
+      value: faker.internet.url(),
+    },
+    {
+      name: "other",
+      value: faker.internet.url(),
+    },
+  ],
+  notes: [
+    {
+      text: faker.lorem.paragraph(),
+      createdAt: faker.date.past().toISOString(),
+      updatedAt: faker.date.recent().toISOString(),
+    },
+  ],
+  shippingAddresses: [
+    {
+      title: faker.lorem.word(),
+      description: faker.lorem.words(),
+      note: faker.lorem.words(),
+      street: faker.location.street(),
+      numberExterior: faker.location.streetAddress(),
+      numberInterior: faker.location.secondaryAddress(),
+      neighborhood: faker.location.county(),
+      city: faker.location.city(),
+      district: faker.location.state(),
+      zipCode: faker.location.zipCode(),
+      state: faker.location.state(),
+      countryCode: faker.location.countryCode(),
+    },
+  ],
+  bankAccounts: [
+    {
+      name: faker.finance.accountName(),
+      currency: faker.finance.currencyCode(),
+      type: "account",
+      beneficiary: faker.finance.accountName(),
+      number: faker.finance.accountName(),
+      clabe: faker.finance.pin(),
+      swift: faker.finance.bic(),
+      iban: faker.finance.iban(),
+      bank: {
+        name: faker.company.name(),
+        city: faker.location.city(),
+        code: faker.finance.bic(),
+        country: faker.location.country(),
+      },
+      other: faker.lorem.words(),
+    },
+  ],
+  defaults: {
+    expensesAccount: faker.finance.accountNumber(),
+    language: faker.location.countryCode(),
+    currency: faker.finance.currencyCode(),
+    paymentMethod: faker.lorem.word(),
+    paymentForm: faker.lorem.word(),
+    paymentDeadline: faker.lorem.word(),
+    paymentTerms: faker.lorem.word(),
+  },
+  createdAt: faker.date.past().toISOString(),
+  updatedAt: faker.date.recent().toISOString(),
+});
 
 // i18n:
 

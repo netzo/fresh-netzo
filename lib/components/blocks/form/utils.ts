@@ -59,7 +59,7 @@ export function getBaseSchema<
  * This will unpack optionals, refinements, etc.
  */
 export function getBaseType(schema: z.ZodAny): string {
-  return getBaseSchema(schema)._def.typeName;
+  return getBaseSchema(schema)?._def?.typeName;
 }
 
 /**

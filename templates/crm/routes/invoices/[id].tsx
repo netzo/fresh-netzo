@@ -19,14 +19,14 @@ export default defineRoute(async (req, ctx) => {
             <FormInvoice
               data={data}
               method="POST"
-              action={`${ctx.url.origin}/db?$prefix=invoices`}
+              action={`/api/invoices`}
             />
           )
           : (
             <FormInvoice
               data={data}
               method="PATCH"
-              action={`${ctx.url.origin}/db?$key=invoices,${id}`}
+              action={`/api/invoices/${id}`}
             />
           )}
       </div>

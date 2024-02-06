@@ -1,15 +1,17 @@
 import { z } from "zod";
+import { faker } from "npm:@faker-js/faker@8.4.0";
+import { ulid } from "netzo/core/api/utils.ts";
 
 // schemas:
 
 export const dealSchema = z.object({
   id: z.string(),
-  status: z.union([
-    z.literal("backlog"),
-    z.literal("todo"),
-    z.literal("in-progress"),
-    z.literal("done"),
-    z.literal("cancelled"),
+  status: z.enum([
+    "backlog",
+    "todo",
+    "in-progress",
+    "done",
+    "cancelled",
   ]),
   accountIds: z.array(z.string()),
   accounts: [{ $ref: {} }],
@@ -50,6 +52,49 @@ export const dealSchema = z.object({
 // types:
 
 export type Deal = z.infer<typeof dealSchema>;
+
+// data:
+
+export const generate = (idField = "id") => ({
+  [idField]: ulid(),
+  status: faker.helpers.arrayElement([
+    "backlog",
+    "todo",
+    "in-progress",
+    "done",
+    "cancelled",
+  ]),
+  accountIds: Array.from(Array(2)).map(() => ulid()),
+  accounts: Array.from(Array(2)).map(() => ({ $ref: {} })),
+  contactIds: Array.from(Array(2)).map(() => ulid()),
+  contacts: Array.from(Array(2)).map(() => ({ $ref: {} })),
+  title: faker.lorem.sentence(),
+  description: faker.lorem.paragraph(),
+  amount: faker.number.int(),
+  currency: faker.finance.currencyCode(),
+  assignedTo: ulid(),
+  notes: Array.from(Array(3)).map(() => ({
+    text: faker.lorem.paragraph(),
+    createdAt: faker.date.past().toISOString(),
+    updatedAt: faker.date.recent().toISOString(),
+  })),
+  tasks: Array.from(Array(2)).map(() => ({
+    type: faker.lorem.word(),
+    status: "in-progress",
+    title: faker.lorem.sentence(),
+    description: faker.lorem.paragraph(),
+    assigneeIds: Array.from(Array(2)).map(() => ulid()),
+    assignees: Array.from(Array(2)).map(() => ({ $ref: {} })),
+    assignerIds: Array.from(Array(2)).map(() => ulid()),
+    assigners: Array.from(Array(2)).map(() => ({ $ref: {} })),
+    dateDue: faker.date.future().toISOString(),
+    dateCompleted: faker.date.recent().toISOString(),
+    createdAt: faker.date.past().toISOString(),
+    updatedAt: faker.date.recent().toISOString(),
+  })),
+  createdAt: faker.date.past().toISOString(),
+  updatedAt: faker.date.recent().toISOString(),
+});
 
 // i18n:
 

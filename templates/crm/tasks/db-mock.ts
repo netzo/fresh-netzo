@@ -1,39 +1,25 @@
-import { z } from "zod";
-import { generateMock } from "npm:@anatine/zod-mock@3.13.3";
-import { ulid } from "netzo/core/api/utils.ts";
-
 const kv = await Deno.openKv(Deno.env.get("DENO_KV_PATH"));
 
-const SERVICES = {
-  accounts: (await import("@/services/accounts.ts")).accountSchema,
-  contacts: (await import("@/services/contacts.ts")).contactSchema,
-  deals: (await import("@/services/deals.ts")).dealSchema,
-  interactions: (await import("@/services/interactions.ts")).interactionSchema,
-  invoices: (await import("@/services/invoices.ts")).invoiceSchema,
-  transactions: (await import("@/services/transactions.ts")).transactionSchema,
-};
+const SERVICES = [
+  "accounts",
+  "contacts",
+  "deals",
+  "interactions",
+  "invoices",
+  "transactions",
+];
 
 const [length = 25] = Deno.args;
-
-const generate = (schema: z.ZodSchema, idField = "id") => {
-  return generateMock(schema, {
-    keyName: idField,
-    recordKeysLength: 2,
-    mapEntriesLength: 2,
-    stringMap: {
-      [idField]: () => ulid(),
-    },
-  });
-};
 
 // seed a local KV from fake data files.
 export const dbMock = async () => {
   try {
     await Promise.all(
-      Object.entries(SERVICES).map(async ([service, schema]) => {
+      SERVICES.map(async (service) => {
+        const { generate } = await import(`@/services/${service}.ts`);
         // generate mock data
         const entries = Array.from(Array(length)).map(() => {
-          const value = generate(schema);
+          const value = generate();
           return { key: [service, value.id], value };
         });
 
@@ -48,9 +34,9 @@ export const dbMock = async () => {
         return Promise.all(entries.map(({ key, value }) => kv.set(key, value)));
       }),
     );
-    console.log("Data uploaded to DB.");
+    console.log("Mock data written to files");
   } catch (error) {
-    console.error("Error seeding Database:", error);
+    console.error("Error mocking data:", error);
   } finally {
     Deno.exit(0);
   }

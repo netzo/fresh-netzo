@@ -1,4 +1,6 @@
 import { z } from "zod";
+import { faker } from "npm:@faker-js/faker@8.4.0";
+import { ulid } from "netzo/core/api/utils.ts";
 
 // schemas:
 
@@ -6,10 +8,10 @@ export const transactionSchema = z.object({
   id: z.string(),
   treasuryIdSource: z.string(),
   treasuryIdDestination: z.string(),
-  type: z.string(), // income, expense, internal-transfer
-  method: z.string(), // "wire-transfer", "check", "cash", "credit-card", "debit-card", "paypal", "stripe
-  status: z.string(), // "pending", "completed", "failed", "cancelled", "refunded"
-  reference: z.string(), // "check number", "transaction id", etc.
+  type: z.enum(["income", "expense", "internal-transfer"]),
+  method: z.enum(["wire-transfer", "check", "cash", "credit-card", "debit-card", "paypal", "stripe"]),
+  status: z.enum(["pending", "completed", "failed", "cancelled", "refunded"]),
+  reference: z.string(),
   issuerAccountId: z.string(),
   receiverAccountId: z.string(),
   dateIssued: z.string(),
@@ -31,6 +33,46 @@ export const transactionSchema = z.object({
 // types:
 
 export type Transaction = z.infer<typeof transactionSchema>;
+
+// data:
+
+export const generate = (idField = "id") => ({
+  [idField]: ulid(),
+  treasuryIdSource: ulid(),
+  treasuryIdDestination: ulid(),
+  type: faker.helpers.arrayElement(["income", "expense", "internal-transfer"]),
+  method: faker.helpers.arrayElement([
+    "wire-transfer",
+    "check",
+    "cash",
+    "credit-card",
+    "debit-card",
+    "paypal",
+    "stripe",
+  ]),
+  status: faker.helpers.arrayElement([
+    "pending",
+    "completed",
+    "failed",
+    "cancelled",
+    "refunded",
+  ]),
+  reference: faker.lorem.sentence(),
+  issuerAccountId: ulid(),
+  receiverAccountId: ulid(),
+  dateIssued: faker.date.past().toISOString(),
+  datePayment: faker.date.recent().toISOString(),
+  amount: faker.number.int(),
+  currency: faker.finance.currencyCode(),
+  exchangeRate: faker.number.int(),
+  notes: Array.from(Array(3)).map(() => ({
+    text: faker.lorem.paragraph(),
+    createdAt: faker.date.past().toISOString(),
+    updatedAt: faker.date.recent().toISOString(),
+  })),
+  createdAt: faker.date.past().toISOString(),
+  updatedAt: faker.date.recent().toISOString(),
+});
 
 // i18n:
 
