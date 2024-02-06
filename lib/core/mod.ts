@@ -101,8 +101,8 @@ export const Netzo = async (config: Partial<NetzoConfig>) => {
   return {
     kv,
     config,
-    service: Object.entries(config.api?.services ?? {})?.length
-      ? (serviceName: string) => config.api!.services[serviceName]
+    resource: Object.entries(config.api?.resources ?? {})?.length
+      ? (resourceName: string) => config.api!.resources[resourceName]
       : undefined,
     start: async () => {
       if (Deno.args.includes("dev")) {

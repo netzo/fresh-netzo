@@ -1,19 +1,19 @@
-import { defineService, type ServiceOptions } from "../core/api/types.ts";
+import { defineResource, type ResourceOptions } from "../core/api/types.ts";
 import type { ApiClient } from "../integrations/create-api/types.ts";
 
 import { ERRORS, ulid } from "../core/api/utils.ts";
 
-export type HttpServiceOptions = ServiceOptions & {
-  /* Netzo API client of the service (e.g. api.users) */
+export type HttpResourceOptions = ResourceOptions & {
+  /* Netzo API client of the resource (e.g. api.users) */
   client: ApiClient;
 };
 
 /**
- * Creates a Service instance to perform RESTful operations on an HTTP resource
- * @param options {HttpServiceOptions} - service options object
- * @returns a Service instance with methods for performing RESTful operations on the HTTP resource
+ * Creates a Resource instance to perform RESTful operations on an HTTP resource
+ * @param options {HttpResourceOptions} - resource options object
+ * @returns a Resource instance with methods for performing RESTful operations on the HTTP resource
  */
-export const HttpService = defineService<HttpServiceOptions>(
+export const HttpResource = defineResource<HttpResourceOptions>(
   (options) => {
     const { client, idField = "id" } = options;
 

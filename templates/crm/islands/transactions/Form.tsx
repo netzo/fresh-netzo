@@ -1,8 +1,8 @@
 import { useSignal } from "@preact/signals";
 import { Button } from "netzo/components/button.tsx";
 import { createOnSubmit, Form } from "netzo/components/blocks/form/form.tsx";
-import { Transaction, transactionSchema } from "@/services/transactions.ts";
-// import { I18N } from "@/services/transactions.ts";
+import { Transaction, transactionSchema } from "@/resources/transactions.ts";
+// import { I18N } from "@/resources/transactions.ts";
 
 type FormProps = {
   data?: Transaction;

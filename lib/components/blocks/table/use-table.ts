@@ -17,7 +17,7 @@ import {
 export type TableProps<TData = unknown, TValue = unknown> = {
   data: TData[];
   options: {
-    servicePath: string;
+    resource: string;
     fieldIds: {
       // required:
       id: string;

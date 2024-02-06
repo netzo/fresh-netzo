@@ -1,10 +1,10 @@
 import { defineRoute } from "$fresh/server.ts";
 import type { TableProps } from "netzo/components/blocks/table/use-table.ts";
 import {
+  I18N,
   type Interaction,
   interactionSchema,
-  I18N,
-} from "@/services/interactions.ts";
+} from "@/resources/interactions.ts";
 import { Table } from "@/islands/interactions/Table.tsx";
 import { FormInteraction } from "@/islands/interactions/Form.tsx";
 import { netzo } from "@/netzo.ts";
@@ -13,7 +13,7 @@ export const getTableOptions = (
   data: Interaction[],
 ): TableProps<Interaction, unknown>["options"] => {
   return {
-    servicePath: "interactions",
+    resource: "interactions",
     search: {
       column: "name",
       placeholder: "Search by name...",
@@ -36,7 +36,7 @@ export const getTableOptions = (
 };
 
 export default defineRoute(async (req, ctx) => {
-  const data = await netzo.service("interactions").find<Interaction>();
+  const data = await netzo.resource("interactions").find<Interaction>();
 
   const options = getTableOptions(data);
 

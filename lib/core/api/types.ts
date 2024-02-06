@@ -1,16 +1,16 @@
-// lik @unjs/unstorage but for services instead of storage
+// lik @unjs/unstorage but for resources instead of storage
 export * from "./utils.ts";
 import type { ULID } from "../../deps/ulid.ts";
 
 export type Id = string | number | ULID;
 
-export type ServiceOptions = {
+export type ResourceOptions = {
   /* Name of the field to use as the ID for the items (defaults to "id"). */
   idField?: string;
 };
 
-export type Service<TData = unknown> = {
-  adapter?: "denokv" | "http"; // undefined means custom service
+export type Resource<TData = unknown> = {
+  adapter?: "denokv" | "http"; // undefined means custom resource
   options?: Record<string, unknown>;
   find?: <T = TData>(query?: Record<string | number, unknown>) => Promise<T[]>;
   get?: <T = TData>(id: Id) => Promise<T | undefined>;
@@ -20,10 +20,10 @@ export type Service<TData = unknown> = {
   remove?: <T = TData>(id: Id) => Promise<{ ok: boolean }>;
 };
 
-type ServiceFactory<T> = (opts: T) => Service;
+type ResourceFactory<T> = (opts: T) => Resource;
 
-export function defineService<T = any>(
-  factory: ServiceFactory<T>,
-): ServiceFactory<T> {
+export function defineResource<T = any>(
+  factory: ResourceFactory<T>,
+): ResourceFactory<T> {
   return factory;
 }

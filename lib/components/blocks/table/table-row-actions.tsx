@@ -29,15 +29,15 @@ export function TableRowActions<TData>({
   options,
   row,
 }: TableRowActionsProps<TData>) {
-  const { servicePath, idField = "id" } = options;
+  const { resource, idField = "id" } = options;
 
   const onSelectOpen = () => {
-    window.location.pathname = `/${servicePath}/${row.original[idField]}`;
+    window.location.pathname = `/${resource}/${row.original[idField]}`;
   };
 
   const onSelectDuplicate = async () => {
     const { [idField]: _id, ...data } = row.original;
-    await fetch(`/api/${servicePath}`, {
+    await fetch(`/api/${resource}`, {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(data),
@@ -50,7 +50,7 @@ export function TableRowActions<TData>({
   };
 
   const onClickRemove = async () => {
-    await fetch(`/api/${servicePath}/${row.original[idField]}`, {
+    await fetch(`/api/${resource}/${row.original[idField]}`, {
       method: "DELETE",
     });
     window.location.reload();

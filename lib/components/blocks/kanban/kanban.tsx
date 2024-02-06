@@ -256,7 +256,7 @@ export function Kanban<TData, TValue>({
 
     const activeData = active.data.current;
 
-    fetch(`/api/${options.servicePath}/${activeId}`, {
+    fetch(`/api/${options.resource}/${activeId}`, {
       method: "PUT",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(activeData.item),

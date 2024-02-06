@@ -19,7 +19,7 @@ export const logRuntime = async (_context: HookContext, next: NextFunction) => {
 // };
 
 // export const resolveRef = async (context: HookContext, next: NextFunction) => {
-//   const { app, service, method, id, params } = context;
+//   const { app, resource, method, id, params } = context;
 //   const { query } = params;
 
 //   const refs = Object.entries(query).reduce((acc, [key, value]) => {

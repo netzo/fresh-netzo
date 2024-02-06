@@ -1,6 +1,6 @@
 import type { Plugin, PluginRoute } from "../../deps/$fresh/server.ts";
 import type { NetzoState } from "../mod.ts";
-import type { Service } from "./types.ts";
+import type { Resource } from "./types.ts";
 import {
   type Methods,
   parseRequestBody,
@@ -17,12 +17,12 @@ export type ApiConfig = {
   path?: string;
   /** The field name to use as the primary key. Defaults to "id". */
   idField?: string;
-  /** An object mapping service names to services instances. */
-  services: Record<Methods[number], Service>;
+  /** An object mapping resource names to resources instances. */
+  resources: Record<Methods[number], Resource>;
 };
 
 export type ApiState = {
-  [key: string]: Service;
+  [key: string]: Resource;
 };
 
 /**
@@ -30,12 +30,12 @@ export type ApiState = {
  * to mount RESTful API routes on the `/api` route path.
  *
  * A fresh plugin that creates handlers for the following routes:
- * - `GET /api/{serviceName}` find all records matching query
- * - `GET /api/{serviceName}/{id}` get an entry by key
- * - `POST /api/{serviceName}` create a new entry (auto-generates id)
- * - `PUT /api/{serviceName}/{id}` update an entry by key
- * - `PATCH /api/{serviceName}/{id}` patch an entry by key
- * - `DELETE /api/{serviceName}/{id}` remove an entry by key
+ * - `GET /api/{resourceName}` find all records matching query
+ * - `GET /api/{resourceName}/{id}` get an entry by key
+ * - `POST /api/{resourceName}` create a new entry (auto-generates id)
+ * - `PUT /api/{resourceName}/{id}` update an entry by key
+ * - `PATCH /api/{resourceName}/{id}` patch an entry by key
+ * - `DELETE /api/{resourceName}/{id}` remove an entry by key
  */
 export const api = (options?: ApiConfig): Plugin<NetzoState> => {
   if (!options) return { name: "api" };
@@ -43,65 +43,65 @@ export const api = (options?: ApiConfig): Plugin<NetzoState> => {
   options.path ??= "/api";
   options.idField ??= "id";
 
-  const { apiKey, path, idField, services } = options ?? {};
+  const { apiKey, path, idField, resources } = options ?? {};
 
   const routes: Plugin["routes"] = [];
-  Object.entries(services!).forEach(([servicePath, service]) => {
+  Object.entries(resources!).forEach(([resourceName, resource]) => {
     routes.push(...[
       {
-        path: `${path}/${servicePath}`,
+        path: `${path}/${resourceName}`,
         handler: {
-          GET: service?.find
+          GET: resource?.find
             ? async (_req, ctx) => {
               const { params, query } = parseSearchParams(ctx.url.searchParams);
-              const prefix = [servicePath];
-              const result = await service.find(query);
-              // validate to against ctx.state.project.services.schemas (if any)
-              // const validate = await service.assertValid(result, query);
+              const prefix = [resourceName];
+              const result = await resource.find(query);
+              // validate to against ctx.state.project.resources.schemas (if any)
+              // const validate = await resource.assertValid(result, query);
               return Response.json(result);
             }
             : () => RESPONSES.notAllowed(),
-          POST: service?.create
+          POST: resource?.create
             ? async (req, ctx) => {
               const { params } = parseSearchParams(ctx.url.searchParams);
-              const prefix = [servicePath];
+              const prefix = [resourceName];
               const data = await parseRequestBody(req);
-              const result = await service.create(data, idField);
+              const result = await resource.create(data, idField);
               return Response.json(result);
             }
             : () => RESPONSES.notAllowed(),
         },
       } satisfies PluginRoute,
       {
-        path: `${path}/${servicePath}/[id]`,
+        path: `${path}/${resourceName}/[id]`,
         handler: {
-          GET: service?.get
+          GET: resource?.get
             ? async (_req, ctx) => {
               const { params, query } = parseSearchParams(ctx.url.searchParams);
-              const result = await service.get(ctx.params.id);
+              const result = await resource.get(ctx.params.id);
               return Response.json(result);
             }
             : () => RESPONSES.notAllowed(),
-          PUT: service?.update
+          PUT: resource?.update
             ? async (req, ctx) => {
               const { params } = parseSearchParams(ctx.url.searchParams);
               const data = await parseRequestBody(req);
-              const result = await service.update(ctx.params.id, data);
+              const result = await resource.update(ctx.params.id, data);
               return Response.json(result);
             }
             : () => RESPONSES.notAllowed(),
-          PATCH: service?.patch
+          PATCH: resource?.patch
             ? async (req, ctx) => {
               const { params } = parseSearchParams(ctx.url.searchParams);
               const data = await parseRequestBody(req);
-              const result = await service.patch(ctx.params.id, data);
+              const result = await resource.patch(ctx.params.id, data);
               return Response.json(result);
             }
             : () => RESPONSES.notAllowed(),
-          DELETE: service?.remove
+          DELETE: resource?.remove
             ? async (_req, ctx) => {
               const { params } = parseSearchParams(ctx.url.searchParams);
-              const result = await service.remove(ctx.params.id);
+              const result = await resource.remove(ctx.params.id);
               return Response.json(result);
             }
             : () => RESPONSES.notAllowed(),

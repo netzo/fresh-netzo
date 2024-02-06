@@ -21,7 +21,7 @@ import {
   I18N,
   type Interaction,
   interactionSchema,
-} from "@/services/interactions.ts";
+} from "@/resources/interactions.ts";
 
 // NOTE: define columns in island (route to island function serialization unsupported)
 export const getColumns = ({ options }: TableProps): TableProps["columns"] => [

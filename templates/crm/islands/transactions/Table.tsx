@@ -14,7 +14,7 @@ import {
   I18N,
   type Transaction,
   transactionSchema,
-} from "@/services/transactions.ts";
+} from "@/resources/transactions.ts";
 
 // NOTE: define columns in island (route to island function serialization unsupported)
 export const getColumns = ({ options }: TableProps): TableProps["columns"] => [

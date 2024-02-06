@@ -1,20 +1,20 @@
-import { defineService, type ServiceOptions } from "../core/api/types.ts";
+import { defineResource, type ResourceOptions } from "../core/api/types.ts";
 import { ERRORS, ulid } from "../core/api/utils.ts";
 import { filterObjectsByKeyValues } from "../core/api/utils.ts";
 
-export type DenoKvServiceOptions = ServiceOptions & {
+export type DenoKvResourceOptions = ResourceOptions & {
   /* The Deno KV store to use. */
   kv: Deno.Kv;
-  /* The KV prefix location of the service e.g. ["users"] */
+  /* The KV prefix location of the resource e.g. ["users"] */
   prefix?: Deno.KvKey;
 };
 
 /**
- * Creates a Service instance to perform RESTful operations on a Deno KV resource
- * @param options {DenoKvServiceOptions} - service options object
- * @returns a Service instance with methods for performing RESTful operations on the KV resource
+ * Creates a Resource instance to perform RESTful operations on a Deno KV resource
+ * @param options {DenoKvResourceOptions} - resource options object
+ * @returns a Resource instance with methods for performing RESTful operations on the KV resource
  */
-export const DenoKvService = defineService<DenoKvServiceOptions>(
+export const DenoKvResource = defineResource<DenoKvResourceOptions>(
   (options) => {
     const { kv = options.kv, prefix, idField = "id" } = options;
 

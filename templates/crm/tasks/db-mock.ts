@@ -1,6 +1,6 @@
 const kv = await Deno.openKv(Deno.env.get("DENO_KV_PATH"));
 
-const SERVICES = [
+const RESOURCES = [
   "accounts",
   "interactions",
   "contacts",
@@ -16,16 +16,16 @@ const [length = 25] = Deno.args;
 export const dbMock = async () => {
   try {
     await Promise.all(
-      SERVICES.map(async (service) => {
-        const { mock } = await import(`@/services/${service}.ts`);
+      RESOURCES.map(async (resource) => {
+        const { mock } = await import(`@/resources/${resource}.ts`);
         // generate mock data
         const entries = Array.from(Array(length)).map(() => {
           const value = mock();
-          return { key: [service, value.id], value };
+          return { key: [resource, value.id], value };
         });
 
         // write to file
-        const fileURL = import.meta.resolve(`@/data/${service}.entries.json`);
+        const fileURL = import.meta.resolve(`@/data/${resource}.entries.json`);
         await Deno.writeTextFile(
           fileURL.replace("file://", ""),
           JSON.stringify(entries, null, 2),

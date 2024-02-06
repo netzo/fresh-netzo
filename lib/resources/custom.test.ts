@@ -1,7 +1,7 @@
 import "../deps/std/dotenv/load.ts";
 // import { assertEquals, assertExists } from "../../deps/std/assert/mod.ts";
 import { z } from "../deps/zod/mod.ts";
-import { CustomService } from "./custom.ts";
+import { CustomResource } from "./custom.ts";
 
 const todoSchema = z.object({
   id: z.number(),
@@ -12,8 +12,8 @@ const todoSchema = z.object({
 
 type Todo = z.infer<typeof todoSchema>;
 
-Deno.test("[api/adapters] CustomService", async (t) => {
-  const $todos = CustomService({
+Deno.test("[api/adapters] CustomResource", async (t) => {
+  const $todos = CustomResource({
     idField: "id",
   });
 });

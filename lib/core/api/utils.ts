@@ -18,7 +18,7 @@ export const isUlid = (str: string) => {
   return ULID.test(str);
 };
 
-// services:
+// resources:
 
 export type Methods = typeof METHODS[number];
 

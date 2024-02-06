@@ -1,6 +1,6 @@
 const kv = await Deno.openKv(Deno.env.get("DENO_KV_PATH"));
 
-const SERVICES = [
+const RESOURCES = [
   "accounts",
   "interactions",
   "contacts",
@@ -12,8 +12,8 @@ const SERVICES = [
 
 export const dbSeed = async () => {
   try {
-    await Promise.all(SERVICES.map(async (service) => {
-      const mod = await import(`@/data/${service}.entries.json`, {
+    await Promise.all(RESOURCES.map(async (resource) => {
+      const mod = await import(`@/data/${resource}.entries.json`, {
         with: { type: "json" },
       });
       return Promise.all(

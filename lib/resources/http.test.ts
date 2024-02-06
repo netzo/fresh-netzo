@@ -1,13 +1,8 @@
 import "../deps/std/dotenv/load.ts";
 import { assertEquals, assertExists } from "../deps/std/assert/mod.ts";
 import { z } from "../deps/zod/mod.ts";
-import { DenoKvService } from "./denokv.ts";
-
-const kv = await Deno.openKv(":memory:");
-
-const response = await fetch("https://jsonplaceholder.typicode.com/todos");
-const todos: Todo[] = await response.json();
-await Promise.all(todos.map((todo) => kv.set(["todos", todo.id], todo)));
+import { createApi } from "../integrations/create-api/mod.ts";
+import { HttpResource } from "./http.ts";
 
 const todoSchema = z.object({
   id: z.number(),
@@ -18,15 +13,19 @@ const todoSchema = z.object({
 
 type Todo = z.infer<typeof todoSchema>;
 
-Deno.test("[api/adapters] DenoKvService", async (t) => {
-  const $todos = DenoKvService({
-    kv,
-    prefix: ["todos"],
+Deno.test("[api/adapters] HttpResource", async (t) => {
+  const api = createApi({
+    baseURL: "https://jsonplaceholder.typicode.com",
+    headers: { "content-type": "application/json" },
+  });
+
+  const $todos = HttpResource({
+    client: api.todos,
     idField: "id",
   });
 
   await t.step("declarations", () => {
-    assertExists(kv);
+    assertExists(api);
     assertExists($todos);
   });
 

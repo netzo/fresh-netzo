@@ -1,6 +1,6 @@
 import { defineRoute } from "$fresh/server.ts";
 import type { TableProps } from "netzo/components/blocks/table/use-table.ts";
-import { I18N, type Invoice } from "@/services/invoices.ts";
+import { I18N, type Invoice } from "@/resources/invoices.ts";
 import { Table } from "@/islands/invoices/Table.tsx";
 import { netzo } from "@/netzo.ts";
 
@@ -8,7 +8,7 @@ export const getTableOptions = (
   data: Invoice[],
 ): TableProps<Invoice, unknown>["options"] => {
   return {
-    servicePath: "invoices",
+    resource: "invoices",
     search: {
       column: "invoiceNumber",
       placeholder: "Search by invoice number...",
@@ -27,7 +27,7 @@ export const getTableOptions = (
 };
 
 export default defineRoute(async (req, ctx) => {
-  const data = await netzo.service("invoices").find<Invoice>();
+  const data = await netzo.resource("invoices").find<Invoice>();
 
   const options = getTableOptions(data);
 

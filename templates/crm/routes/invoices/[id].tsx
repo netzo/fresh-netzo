@@ -1,6 +1,6 @@
 import { defineRoute } from "$fresh/server.ts";
 import { Separator } from "netzo/components/separator.tsx";
-import type { Invoice } from "@/services/invoices.ts";
+import type { Invoice } from "@/resources/invoices.ts";
 import { FormInvoice } from "@/islands/invoices/Form.tsx";
 import { netzo } from "@/netzo.ts";
 
@@ -8,7 +8,7 @@ export default defineRoute(async (req, ctx) => {
   const { id } = ctx.params;
   const data = id === "new"
     ? {}
-    : await netzo.service("invoices").get<Invoice>(id);
+    : await netzo.resource("invoices").get<Invoice>(id);
 
   return (
     <div className="my-4 overflow-auto">

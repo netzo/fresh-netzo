@@ -1,6 +1,6 @@
 import { defineRoute } from "$fresh/server.ts";
 import type { TableProps } from "netzo/components/blocks/table/use-table.ts";
-import { type Account, accountSchema, I18N } from "@/services/accounts.ts";
+import { type Account, accountSchema, I18N } from "@/resources/accounts.ts";
 import { Table } from "@/islands/accounts/Table.tsx";
 import { FormAccount } from "@/islands/accounts/Form.tsx";
 import { netzo } from "@/netzo.ts";
@@ -9,7 +9,7 @@ export const getTableOptions = (
   data: Account[],
 ): TableProps<Account, unknown>["options"] => {
   return {
-    servicePath: "accounts",
+    resource: "accounts",
     search: {
       column: "name",
       placeholder: "Search by name...",
@@ -32,7 +32,7 @@ export const getTableOptions = (
 };
 
 export default defineRoute(async (req, ctx) => {
-  const data = await netzo.service("accounts").find<Account>();
+  const data = await netzo.resource("accounts").find<Account>();
 
   const options = getTableOptions(data);
 

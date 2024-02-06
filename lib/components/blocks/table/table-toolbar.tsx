@@ -26,14 +26,14 @@ export function TableToolbar<TData>({
   table,
   options,
 }: TableToolbarProps<TData>) {
-  const { servicePath } = options;
+  const { resource } = options;
 
   const isFiltered = table.getState().columnFilters.length > 0;
 
   const data = useSignal({ name: "" });
 
   const onClickCreate = async () => {
-    const response = await fetch(`/api/${servicePath}`, {
+    const response = await fetch(`/api/${resource}`, {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(data.value),

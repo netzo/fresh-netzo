@@ -1,14 +1,14 @@
-import { defineService, type ServiceOptions } from "../core/api/types.ts";
+import { defineResource, type ResourceOptions } from "../core/api/types.ts";
 import { NotImplemented } from "../core/api/errors.ts";
 
-export type CustomServiceOptions = ServiceOptions & {};
+export type CustomResourceOptions = ResourceOptions & {};
 
 /**
- * Creates a Service instance to perform RESTful operations on an CUSTOM resource
- * @param options {CustomServiceOptions} - service options object
- * @returns a Service instance with methods for performing RESTful operations on the CUSTOM resource
+ * Creates a Resource instance to perform RESTful operations on an CUSTOM resource
+ * @param options {CustomResourceOptions} - resource options object
+ * @returns a Resource instance with methods for performing RESTful operations on the CUSTOM resource
  */
-export const CustomService = defineService<CustomServiceOptions>(
+export const CustomResource = defineResource<CustomResourceOptions>(
   (options) => {
     const { idField = "id" } = options;
 

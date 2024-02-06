@@ -4,7 +4,7 @@ import {
   I18N,
   type Transaction,
   transactionSchema,
-} from "@/services/transactions.ts";
+} from "@/resources/transactions.ts";
 import { Table } from "@/islands/transactions/Table.tsx";
 import { FormTransaction } from "@/islands/transactions/Form.tsx";
 import { netzo } from "@/netzo.ts";
@@ -13,7 +13,7 @@ export const getTableOptions = (
   data: Transaction[],
 ): TableProps<Transaction, unknown>["options"] => {
   return {
-    servicePath: "transactions",
+    resource: "transactions",
     search: {
       column: "name",
       placeholder: "Search by name...",
@@ -36,7 +36,7 @@ export const getTableOptions = (
 };
 
 export default defineRoute(async (req, ctx) => {
-  const data = await netzo.service("transactions").find<Transaction>();
+  const data = await netzo.resource("transactions").find<Transaction>();
 
   const options = getTableOptions(data);
 
