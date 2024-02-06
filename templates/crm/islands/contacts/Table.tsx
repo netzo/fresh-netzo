@@ -7,7 +7,7 @@ import {
   TableToolbar,
   useTable,
 } from "netzo/components/blocks/table/table.tsx";
-import { Gallery } from "../../../../lib/components/blocks/table/table.gallery.tsx";
+import { Gallery } from "netzo/components/blocks/table/table.gallery.tsx";
 import { toDateTime } from "netzo/components/blocks/format.ts";
 import {
   Avatar,
