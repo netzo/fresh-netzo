@@ -25,6 +25,8 @@
 
 </div>
 
+> **We are on our [road to `v1`](https://netzo.io/roadmap/)! Until then, be sure to pin the version using `netzo@X.Y.Z` to ensure things don't break.**
+
 ## What is Netzo?
 
 Netzo is a batteries-included meta-framework for
