@@ -54,17 +54,13 @@ export const api = (options?: ApiConfig): Plugin<NetzoState> => {
           GET: resource?.find
             ? async (_req, ctx) => {
               const { params, query } = parseSearchParams(ctx.url.searchParams);
-              const prefix = [resourceName];
               const result = await resource.find(query);
-              // validate to against ctx.state.project.resources.schemas (if any)
-              // const validate = await resource.assertValid(result, query);
               return Response.json(result);
             }
             : () => RESPONSES.notAllowed(),
           POST: resource?.create
             ? async (req, ctx) => {
               const { params } = parseSearchParams(ctx.url.searchParams);
-              const prefix = [resourceName];
               const data = await parseRequestBody(req);
               const result = await resource.create(data, idField);
               return Response.json(result);

@@ -1,12 +1,12 @@
 {
   "lock": false,
   "tasks": {
-    "build": "deno run -A --env netzo.ts dev build",
+    "build": "deno run -A --env dev.ts build",
     "check:types": "deno check **/*.ts **/*.tsx",
     "ok": "deno fmt --check && deno lint && deno task check:types && deno task test",
-    "preview": "deno run -A --env netzo.ts",
-    "start": "deno run -A --env --watch netzo.ts dev",
-    "test": "deno test -A --env --parallel",
+    "preview": "deno run -A --env main.ts",
+    "start": "deno run -A --env --watch=static/,routes/ dev.ts",
+    "test": "deno test -A --env --parallel --coverage=./cov --doc",
     "update": "deno run -A -r https://fresh.deno.dev/update ."
   },
   "unstable": [
