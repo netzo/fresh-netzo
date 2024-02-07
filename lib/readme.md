@@ -25,7 +25,8 @@
 
 </div>
 
-> **We are on our [road to v1](https://netzo.io/roadmap/)! Be sure to pin version via `netzo@X.Y.Z` to ensure things don't break.**
+> **We are on our [road to v1](https://netzo.io/roadmap/)! Be sure to pin
+> version via `netzo@X.Y.Z` to ensure things don't break.**
 
 ## What is Netzo?
 
