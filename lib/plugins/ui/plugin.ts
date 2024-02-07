@@ -1,12 +1,11 @@
 import type { Plugin } from "../../deps/$fresh/server.ts";
-import type { JSX } from "../../deps/preact.ts";
 import type { NetzoState } from "../mod.ts";
-import { defineConfig, unocss, type UnocssOptions } from "./plugins/unocss.ts";
-import presetNetzo from "./plugins/preset-netzo.ts";
+import { defineConfig, unocss, type UnocssOptions } from "../unocss/plugin.ts";
+import presetNetzo from "../unocss/preset-netzo.ts";
 import type {
   ShadcnThemeColor,
   ThemeCSSVarsVariant,
-} from "./plugins/preset-shadcn/types.ts";
+} from "../unocss/preset-shadcn/types.ts";
 import _404 from "./routes/_404.tsx";
 import _500 from "./routes/_500.tsx";
 

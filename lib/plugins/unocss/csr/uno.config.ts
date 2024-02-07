@@ -1,4 +1,4 @@
-import { defineConfig } from "../unocss.ts";
+import { defineConfig } from "../plugin.ts";
 import { presetNetzo, type PresetNetzoOptions } from "../preset-netzo.ts";
 
 // TODO: import this factory from the client (during CSR hydration) and
