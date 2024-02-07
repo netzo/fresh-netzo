@@ -1,5 +1,5 @@
 import { defineApp } from "$fresh/server.ts";
-import type { NetzoState } from "netzo/core/mod.ts";
+import type { NetzoState } from "netzo/plugins/mod.ts";
 import { useNetzoState } from "netzo/hooks/server/use-netzo-state.ts";
 import { cn } from "netzo/components/utils.ts";
 import * as Layout from "netzo/components/layout/mod.ts";

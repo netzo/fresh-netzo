@@ -45,7 +45,7 @@ console = proxyConsole(
  * Netzo is a Deno framework for building full-stack web apps
  * faster with less code via an opinionated set of plugins and conventions.
  *
- * @example import { Netzo } from "netzo/core/mod.ts"
+ * @example import { Netzo } from "netzo/plugins/mod.ts"
  * const netzo = await Netzo({ ... })
  * if (import.meta.main)netzo.start()
  *

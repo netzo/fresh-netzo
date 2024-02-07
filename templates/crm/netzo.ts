@@ -1,5 +1,5 @@
 #!/usr/bin/env -S deno run -A --unstable --env --watch=static/,routes dev.ts
-import { Netzo } from "netzo/core/mod.ts";
+import { Netzo } from "netzo/plugins/mod.ts";
 import { DenoKvResource } from "netzo/resources/denokv.ts";
 import { HttpResource } from "netzo/resources/http.ts";
 import { createApi } from "netzo/integrations/create-api/mod.ts";

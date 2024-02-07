@@ -1,4 +1,4 @@
-import { Netzo } from "netzo/core/mod.ts";
+import { Netzo } from "netzo/plugins/mod.ts";
 
 export const netzo = await Netzo({
   ui: {
@@ -10,4 +10,5 @@ export const netzo = await Netzo({
     resources: {},
   },
 });
+
 if (import.meta.main) netzo.start();
