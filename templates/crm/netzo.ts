@@ -6,7 +6,7 @@ const kv = await Deno.openKv();
 export const netzo = await Netzo({
   // auth: Deno.env.get("DENO_REGION") ? { providers: { netzo: {} } } : undefined,
   api: {
-    // apiKey: Deno.env.get("NETZO_API_KEY"),
+    apiKey: Deno.env.get("NETZO_API_KEY"),
     path: "/api",
     idField: "id",
     resources: {
@@ -19,9 +19,7 @@ export const netzo = await Netzo({
       users: DenoKvResource({ kv, prefix: ["users"] }),
     },
   },
-  components: {
-    theme: {},
-  },
+  components: {},
 });
 
 if (import.meta.main) netzo.start();
