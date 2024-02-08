@@ -9,7 +9,6 @@ export const netzo = await Netzo({
   components: {
     theme: {},
   },
-  pages: {},
 });
 
 if (import.meta.main) netzo.start();
