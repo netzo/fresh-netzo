@@ -69,6 +69,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
       console.log(`Dry run: Copying template ${templateDir} to ${destDir}`);
     } else {
       await copy(templateDir, destDir, { overwrite: true });
+      console.log(`✨ Successfully cloned ${templateDir} to ${destDir}`);
     }
   } else {
     const process = new Deno.Command(Deno.execPath(), {
