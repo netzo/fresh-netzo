@@ -24,6 +24,9 @@ jobs:
       - name: Format
         run: deno fmt --check
 
+      - name: Test
+        run: deno test -A lib/cli/tests/init_test.ts
+
       # - name: Lint
       #   run: deno lint
 

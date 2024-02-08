@@ -6,7 +6,7 @@
     "ok": "deno fmt --check && deno lint && deno task check:types && deno task test",
     "preview": "deno run -A --env netzo.ts",
     "start": "deno run -A --env --watch=static/,routes/ netzo.ts dev",
-    "test": "deno test -A --env --parallel --coverage=./cov --doc",
+    "test": "deno test -A --env --parallel",
     "update": "deno run -A -r https://fresh.deno.dev/update ."
   },
   "unstable": [
