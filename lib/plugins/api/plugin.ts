@@ -1,5 +1,4 @@
 import type { Plugin, PluginRoute } from "../../deps/$fresh/server.ts";
-import type { NetzoState } from "../mod.ts";
 import type { Resource } from "./types.ts";
 import {
   type Methods,
@@ -37,7 +36,7 @@ export type ApiState = {
  * - `PATCH /api/{resourceName}/{id}` patch an entry by key
  * - `DELETE /api/{resourceName}/{id}` remove an entry by key
  */
-export const api = (options?: ApiConfig): Plugin<NetzoState> => {
+export const api = (options?: ApiConfig): Plugin => {
   if (!options) return { name: "api" };
 
   options.path ??= "/api";
@@ -54,7 +53,6 @@ export const api = (options?: ApiConfig): Plugin<NetzoState> => {
           GET: resource?.find
             ? async (_req, ctx) => {
               const { params, query } = parseSearchParams(ctx.url.searchParams);
-              const prefix = [resourceName];
               const result = await resource.find(query);
               // validate to against ctx.state.project.resources.schemas (if any)
               // const validate = await resource.assertValid(result, query);
@@ -64,7 +62,6 @@ export const api = (options?: ApiConfig): Plugin<NetzoState> => {
           POST: resource?.create
             ? async (req, ctx) => {
               const { params } = parseSearchParams(ctx.url.searchParams);
-              const prefix = [resourceName];
               const data = await parseRequestBody(req);
               const result = await resource.create(data, idField);
               return Response.json(result);

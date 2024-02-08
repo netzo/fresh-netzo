@@ -1,20 +1,14 @@
-/// <reference no-default-lib="true" />
-/// <reference lib="dom" />
-/// <reference lib="dom.iterable" />
-/// <reference lib="dom.asynciterable" />
-/// <reference lib="deno.ns" />
-/// <reference lib="deno.unstable" />
-
-import { type FreshConfig, start } from "../deps/$fresh/server.ts";
-import { replace } from "../deps/object-replace-mustache.ts";
-import { setEnvVarsIfRemoteProject } from "./utils.ts";
-import { proxyCron } from "./cron/mod.ts";
-import { proxyConsole } from "./utils.console.ts";
-import { auth, type AuthConfig, type AuthState } from "./auth/plugin.ts";
-import { api, type ApiConfig, type ApiState } from "./api/plugin.ts";
-import { ui, type UiConfig, type UiState } from "./ui/plugin.ts";
-
-export * from "./types.ts";
+import { type FreshConfig, start } from "./deps/$fresh/server.ts";
+import { replace } from "./deps/object-replace-mustache.ts";
+import { setEnvVarsIfRemoteProject } from "./plugins/utils.ts";
+import { proxyConsole } from "./plugins/utils.console.ts";
+import {
+  auth,
+  type AuthConfig,
+  type AuthState,
+} from "./plugins/auth/plugin.ts";
+import { api, type ApiConfig, type ApiState } from "./plugins/api/plugin.ts";
+import { ui, type UiConfig, type UiState } from "./plugins/ui/plugin.ts";
 
 export type NetzoConfig = FreshConfig & {
   auth?: AuthConfig;
@@ -25,19 +19,18 @@ export type NetzoConfig = FreshConfig & {
 export type NetzoState = {
   kv: Deno.Kv;
   config: NetzoConfig;
-  // injected by plugins:
   auth?: AuthState;
   api?: ApiState;
   ui?: UiState;
   [k: string]: unknown;
 };
 
-// WORKAROUND: silence selected messages by substrings
+// deno-lint-ignore no-global-assign
 console = proxyConsole(
   `Comparison using the "!==" operator here is always true`,
   `Not implemented: ClientRequest.options.createConnection`,
   `Use of deprecated "`, // Deno 2.0 warnings (see https://github.com/denoland/fresh/issues/2276)
-);
+); // WORKAROUND: silence selected messages by substrings
 
 /**
  * Factory function for Netzo apps
@@ -45,7 +38,7 @@ console = proxyConsole(
  * Netzo is a Deno framework for building full-stack web apps
  * faster with less code via an opinionated set of plugins and conventions.
  *
- * @example import { Netzo } from "netzo/core/mod.ts"
+ * @example import { Netzo } from "netzo/mod.ts"
  * const netzo = await Netzo({ ... })
  * if (import.meta.main)netzo.start()
  *
@@ -58,12 +51,6 @@ export const Netzo = async (config: Partial<NetzoConfig>) => {
 
   // [kv] defaults to local database (development) or remote database (production)
   const kv = await Deno.openKv();
-
-  // [utils] create utilities (these use kv, not apiKey/projectId)
-  // ...$notifications, $runs, etc
-
-  // [deno] proxy deno primitives
-  Deno.cron = proxyCron(kv);
 
   // [app/config] render mustache values
   config = replace(config, Deno.env.toObject());
@@ -96,14 +83,14 @@ export const Netzo = async (config: Partial<NetzoConfig>) => {
       ],
       ...(config?.plugins ?? []),
     ],
-  };
+  } satisfies NetzoConfig;
 
   return {
     kv,
-    config,
     resource: Object.entries(config.api?.resources ?? {})?.length
       ? (resourceName: string) => config.api!.resources[resourceName]
       : undefined,
+    config,
     start: async () => {
       if (Deno.args.includes("dev")) {
         const { default: dev } = await import("$fresh/dev.ts");

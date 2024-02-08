@@ -21,7 +21,7 @@ const options: BundleOptions = {
       "preact/": "https://esm.sh/v135/preact@10.19.2/",
       "@preact/signals": "https://esm.sh/v135/*@preact/signals@1.2.1",
       "@preact/signals-core": "https://esm.sh/v135/*@preact/signals-core@1.5.0",
-      "std/": "https://deno.land/std@0.205.0/",
+      "std/": "https://deno.land/std@0.208.0/",
       "react": "https://esm.sh/v135/preact@10.19.2/compat",
       "react-dom": "https://esm.sh/v135/preact@10.19.2/compat",
       "react/jsx-runtime": "https://esm.sh/v135/preact@10.19.2/compat",

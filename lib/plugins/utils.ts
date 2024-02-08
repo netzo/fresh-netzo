@@ -27,10 +27,7 @@ export async function setEnvVarsIfRemoteProject() {
     const envVars = project.envVars?.development ?? {};
     setEnvVars(envVars);
     logInfo(LOGS.envNoticeProduction(Object.keys(envVars).length));
-
-    log(
-      `\nOpen in netzo at ${NETZO_APP_URL}/workspaces/${project.workspaceId}/projects/${project._id}`,
-    );
+    logInfo(LOGS.openInNetzo(NETZO_APP_URL, project));
 
     return;
   } else {

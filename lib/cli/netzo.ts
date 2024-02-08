@@ -2,7 +2,7 @@
 
 import { parseArgs } from "./src/args.ts";
 import { parse, semverGreaterThanOrEquals } from "../deps/semver/mod.ts";
-import { error } from "../core/utils.console.ts";
+import { error } from "../plugins/utils.console.ts";
 import initSubcommand from "./src/subcommands/init.ts";
 import addSubcommand from "./src/subcommands/add.ts";
 import deploySubcommand from "./src/subcommands/deploy.ts";
@@ -10,8 +10,7 @@ import upgradeSubcommand from "./src/subcommands/upgrade.ts";
 import { MINIMUM_DENO_VERSION, VERSION } from "./src/version.ts";
 import { fetchReleases, getConfigPaths } from "./src/utils/info.ts";
 
-// ensure .env is loaded (even if not using --env)
-import "https://deno.land/std@0.208.0/dotenv/load.ts";
+import "../deps/std/dotenv/load.ts"; // ensure .env is loaded (even if not using --env)
 
 const help = `netzo ${VERSION}: command line interface (CLI) for Netzo.
 

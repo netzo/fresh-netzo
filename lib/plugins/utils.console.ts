@@ -1,11 +1,14 @@
 import {
+  bgBlue,
+  black,
   blue,
   bold,
   green,
   red,
   white,
   yellow,
-} from "https://deno.land/std@0.205.0/fmt/colors.ts";
+} from "https://deno.land/std@0.208.0/fmt/colors.ts";
+import type { Project } from "./types.ts";
 
 /**
  * Silence globalThis.console for selected messages by substrings
@@ -20,6 +23,9 @@ export const proxyConsole = (...substringsToSkip: string[]) => {
       // deno-lint-ignore no-explicit-any
       return (...args: any[]) => {
         const message = args.join(" ");
+        if (message.includes("🍋 Fresh ready")) {
+          return console.log(bgBlue(black(" Netzo ready ")));
+        }
         const skip = substringsToSkip.some((s) => message.includes(s));
         if (!skip) method.apply(target, args);
       };
@@ -57,7 +63,12 @@ export function error(message: string): never {
 export const LOGS = {
   envNoticeDevelopment:
     "Running locally... Set NETZO_PROJECT_ID and NETZO_API_KEY to connect to remote project.",
-  envNoticeProduction: (count: number) =>
-    `Connected to remote project. Loaded ${count} environment variables.`,
+  envNoticeProduction: (count: number) => {
+    return `Connected to remote Netzo project. Loaded ${count} environment variables.`;
+  },
   notFoundProject: "Project not found. Check the project ID and API key.",
+  openInNetzo: (appUrl: string, { _id, workspaceId }: Project) => {
+    const url = `${appUrl}/workspaces/${workspaceId}/projects/${_id}`;
+    return `Open at ${url}`;
+  },
 } as const;
