@@ -1,4 +1,4 @@
-export { retry } from "std/async/retry.ts";
+import { retry } from "std/async/retry.ts";
 
 Deno.test("CLI init and task execution", async () => {
   const tmpDirName = await Deno.makeTempDir();
