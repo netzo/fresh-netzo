@@ -6,7 +6,6 @@ import type {
   Paginated,
   Project,
 } from "../../../deps/@netzo/api/mod.ts";
-export { Spinner } from "../../../deps/wait/mod.ts";
 import {
   fromFileUrl,
   globToRegExp,
@@ -14,6 +13,7 @@ import {
   normalize,
 } from "../../../deps/std/path/mod.ts";
 import { Spinner, wait } from "../../../deps/wait/mod.ts";
+import { question } from "../../../deps/question/mod.ts";
 import type { Args as RawArgs } from "../args.ts";
 import { netzo } from "../../../integrations/apis/netzo/mod.ts";
 import { error, LOGS } from "../../../plugins/utils.console.ts";
@@ -28,23 +28,29 @@ import { APIError } from "../utils/api.ts";
 
 const help = `netzo deploy: deploy a project with static files to Netzo.
 
-To deploy a local project (default netzo.ts entrypoint):
+To deploy a local project:
+  netzo deploy
+
+To deploy a local project:
+  netzo deploy
+
+To deploy a local project by project ID:
   netzo deploy --project=<PROJECT_ID>
 
 To deploy a local project (other entrypoint):
-  netzo deploy --project=<PROJECT_ID> main.ts
+  netzo deploy main.ts
 
 To deploy a local project after running a build task:
-  netzo deploy --project=<PROJECT_ID> --build
+  netzo deploy --build
 
 To deploy a local project and mark it as production:
-  netzo deploy --project=<PROJECT_ID> --production
+  netzo deploy --production
 
 To deploy a local project without static files:
-  netzo deploy --project=<PROJECT_ID> --no-static
+  netzo deploy --no-static
 
 To ignore the .env file while deploying:
-  netzo deploy --project=<PROJECT_ID> --exclude=".env"
+  netzo deploy --exclude=".env"
 
 USAGE:
     netzo deploy [OPTIONS] [<entrypoint>]
@@ -59,7 +65,7 @@ OPTIONS:
         --build                  Runs custom build task (via "deno task build") before deploying
         --production             Create a production deployment (default is preview deployment)
         --description=<TEXT>     A description of the deployment (like a git commit message)
-    -p, --project=<PROJECT_ID>   The ID of the project to deploy to
+    -p, --project=<PROJECT_ID>   The ID of the project to deploy to (omit to list all projects)
         --dry-run                Dry run the deployment process
         --api-key=<API_KEY>      The API key to use (defaults to NETZO_API_KEY environment variable)
 
@@ -117,6 +123,7 @@ export default async function (rawArgs: RawArgs): Promise<void> {
     console.error(help);
     error(LOGS.missingApiKey);
   }
+  const api = netzo({ apiKey: args.apiKey!, baseURL: args.apiUrl });
   const entrypoint = typeof rawArgs._[0] === "string"
     ? rawArgs._[0]
     : "netzo.ts";
@@ -128,10 +135,15 @@ export default async function (rawArgs: RawArgs): Promise<void> {
     console.error(help);
     error("Too many positional arguments given.");
   }
-  if (args.project === null) {
-    console.error(help);
-    error("Missing project ID.");
+  let project = args.project;
+  if (!project) {
+    const results = await api.projects.get<Paginated<Project>>();
+    const PROJECTS = results.data.map((p) => p.uid);
+    // vendored x/question@0.0.2 to silence deprecated API warnings (Deno>=1.4)
+    const uid = (await question("list", "Select a project:", PROJECTS))!;
+    project = results.data?.find((p) => p.uid === uid)?._id as string;
   }
+  if (!project) Deno.exit(1); // exit directly if cancelled/escaped
 
   if (args.build) {
     const process = new Deno.Command(Deno.execPath(), {
@@ -142,6 +154,7 @@ export default async function (rawArgs: RawArgs): Promise<void> {
   }
 
   await deploy(
+    api,
     {
       entrypoint: await parseEntrypoint(entrypoint).catch((e) => error(e)),
       importMapUrl: args.importMap === null
@@ -156,7 +169,7 @@ export default async function (rawArgs: RawArgs): Promise<void> {
       build: args.build,
       production: args.production,
       description: args.description,
-      project: args.project,
+      project: args.project as string,
       include: args.include,
       exclude: args.exclude,
       dryRun: args.dryRun,
@@ -184,7 +197,10 @@ type DeployOpts = {
   appUrl: string;
 };
 
-async function deploy(opts: DeployOpts): Promise<void> {
+async function deploy(
+  api: ReturnType<typeof netzo>,
+  opts: DeployOpts,
+): Promise<void> {
   if (opts.dryRun) {
     wait("").start().info("Performing dry run of deployment");
   }
@@ -192,7 +208,6 @@ async function deploy(opts: DeployOpts): Promise<void> {
   const projectSpinner = wait(
     `Fetching project '${opts.project}' information...`,
   ).start();
-  const api = netzo({ apiKey: opts.apiKey, baseURL: opts.apiUrl });
   const project = await api.projects[opts.project].get<Project>();
   if (!project) {
     projectSpinner.fail(
@@ -221,7 +236,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
     opts.production = true;
   }
 
-  let entryPointUrl = opts.entrypoint ?? project.config?.entrypoint;
+  let entryPointUrl = opts.entrypoint ?? "netzo.ts";
   const cwd = Deno.cwd();
 
   if (["http:", "https:"].includes(entryPointUrl.protocol)) {
@@ -240,7 +255,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
     entryPointUrl = new URL(`file:///src${entrypoint}`);
   }
 
-  let importMapUrl = opts.importMapUrl ?? project.config?.importMap;
+  let importMapUrl = opts.importMapUrl;
   if (importMapUrl && importMapUrl.protocol === "file:") {
     const path = fromFileUrl(importMapUrl);
     if (!path.startsWith(cwd)) {
@@ -250,7 +265,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
     importMapUrl = new URL(`file:///src${importMap}`);
   }
 
-  let lockFileUrl = opts.lockFileUrl ?? project.config?.lockFile;
+  let lockFileUrl = opts.lockFileUrl;
   if (lockFileUrl && lockFileUrl.protocol === "file:") {
     const path = fromFileUrl(lockFileUrl);
     if (!path.startsWith(cwd)) {
@@ -324,7 +339,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
       "progress",
       ({ level, message }: DenoProjectDeploymentBuildLog) => {
         deploySpinner ??= wait("Deploying...").start();
-        let type = level; // "info" | "error"
+        let type: "info" | "error" | "download" | "done" | "success" = level;
         if (["info"].includes(type)) {
           // TODO: if (SOME CONDITION) type = "upload"
           if (message.startsWith("Downloaded")) type = "download";
@@ -364,7 +379,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
             return error(message); // exits with error code 1
           }
 
-          // app.service("deployments").removeAllListeners("progress"); // avoid memory leak
+            // app.service("deployments").removeAllListeners("progress"); // avoid memory leak
         }
       },
     );

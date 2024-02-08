@@ -60,8 +60,7 @@ export default async function (rawArgs: RawArgs): Promise<void> {
     // vendored x/question@0.0.2 to silence deprecated API warnings (Deno>=1.4)
     resource = (await question("list", "Select a resource:", RESOURCES))!;
   }
-  // exit directly in case prompt is cancelled/escaped
-  if (!resource) Deno.exit(1);
+  if (!resource) Deno.exit(1); // exit directly if cancelled/escaped
 
   if (args.dir === null) args.dir = resource;
 

@@ -61,6 +61,9 @@ export function error(message: string): never {
 }
 
 export const LOGS = {
+  missingApiKey:
+    "Missing API Key. Set NETZO_API_KEY environment variable or --api-key flag.",
+  buildFailed: "Build failed. Check the project logs for details.",
   envNoticeDevelopment:
     "Running locally... Set NETZO_PROJECT_ID and NETZO_API_KEY to connect to remote project.",
   envNoticeProduction: (count: number) => {

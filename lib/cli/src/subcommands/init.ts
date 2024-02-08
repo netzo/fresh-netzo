@@ -55,8 +55,7 @@ export default async function (rawArgs: RawArgs): Promise<void> {
     // vendored x/question@0.0.2 to silence deprecated API warnings (Deno>=1.4)
     template = (await question("list", "Select a template:", TEMPLATES))!;
   }
-  // exit directly in case prompt is cancelled/escaped
-  if (!template) Deno.exit(1);
+  if (!template) Deno.exit(1); // exit directly if cancelled/escaped
 
   if (args.dir === null) args.dir = template;
 
