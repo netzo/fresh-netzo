@@ -1,3 +1,10 @@
+/// <reference no-default-lib="true" />
+/// <reference lib="dom" />
+/// <reference lib="dom.iterable" />
+/// <reference lib="dom.asynciterable" />
+/// <reference lib="deno.ns" />
+/// <reference lib="deno.unstable" />
+
 import { type FreshConfig, start } from "./deps/$fresh/server.ts";
 import { replace } from "./deps/object-replace-mustache.ts";
 import { setEnvVarsIfRemoteProject } from "./plugins/utils.ts";
