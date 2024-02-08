@@ -1,21 +1,13 @@
-#!/usr/bin/env -S deno run -A --unstable --env --watch=static/,routes/ dev.ts
+#!/usr/bin/env -S deno run -A --unstable --env --watch=static/,routes/ netzo.ts
+
 import { Netzo } from "netzo/mod.ts";
 import { DenoKvResource } from "netzo/resources/denokv.ts";
-import { HttpResource } from "netzo/resources/http.ts";
 import { createApi } from "netzo/integrations/create-api/mod.ts";
 
 const kv = await Deno.openKv();
 
-const api = createApi({
-  baseURL: "https://jsonplaceholder.typicode.com",
-  headers: { "content-type": "application/json" },
-});
-
 export const netzo = await Netzo({
   // auth: Deno.env.get("DENO_REGION") ? { providers: { netzo: {} } } : undefined,
-  ui: {
-    theme: {},
-  },
   api: {
     // apiKey: Deno.env.get("NETZO_API_KEY"),
     path: "/api",
@@ -28,9 +20,12 @@ export const netzo = await Netzo({
       invoices: DenoKvResource({ kv, prefix: ["invoices"] }),
       transactions: DenoKvResource({ kv, prefix: ["transactions"] }),
       users: DenoKvResource({ kv, prefix: ["users"] }),
-      todos: HttpResource({ client: api.todos }),
     },
   },
+  components: {
+    theme: {},
+  },
+  pages: {},
 });
 
 if (import.meta.main) netzo.start();

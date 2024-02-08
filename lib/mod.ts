@@ -8,12 +8,16 @@ import {
   type AuthState,
 } from "./plugins/auth/plugin.ts";
 import { api, type ApiConfig, type ApiState } from "./plugins/api/plugin.ts";
-import { ui, type UiConfig, type UiState } from "./plugins/ui/plugin.ts";
+import {
+  components,
+  type ComponentsConfig,
+  type ComponentsState,
+} from "./plugins/components/plugin.ts";
 
 export type NetzoConfig = FreshConfig & {
   auth?: AuthConfig;
   api?: ApiConfig;
-  ui?: UiConfig;
+  components?: ComponentsConfig;
 };
 
 export type NetzoState = {
@@ -21,7 +25,7 @@ export type NetzoState = {
   config: NetzoConfig;
   auth?: AuthState;
   api?: ApiState;
-  ui?: UiState;
+  components?: ComponentsState;
   [k: string]: unknown;
 };
 
@@ -79,9 +83,9 @@ export const Netzo = async (config: Partial<NetzoConfig>) => {
       ...[
         auth(config.auth),
         api(config.api),
-        ui(config.ui),
+        components(config.components),
       ],
-      ...(config?.plugins ?? []),
+      // ...(config?.plugins ?? []),
     ],
   } satisfies NetzoConfig;
 

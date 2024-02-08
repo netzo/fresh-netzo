@@ -1,7 +1,7 @@
 {
   "lock": false,
   "tasks": {
-    "build": "deno run -A --env dev.ts build",
+    "build": "deno run -A --env netzo.ts dev build",
     "check:types": "deno check **/*.ts **/*.tsx",
     "ok": "deno fmt --check && deno lint && deno task check:types && deno task test",
     "preview": "deno run -A --env netzo.ts",

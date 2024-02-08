@@ -1,5 +1,5 @@
 import type { ComponentChildren, JSX } from "../../../deps/preact.ts";
-import type { NetzoState } from "../../mod.ts";
+import type { NetzoState } from "../../../mod.ts";
 import { cn } from "../../../components/utils.ts";
 import { Button, buttonVariants } from "../../../components/button.tsx";
 import {
