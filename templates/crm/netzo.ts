@@ -1,8 +1,5 @@
-#!/usr/bin/env -S deno run -A --unstable --env --watch=static/,routes/ netzo.ts
-
 import { Netzo } from "netzo/mod.ts";
 import { DenoKvResource } from "netzo/resources/denokv.ts";
-import { createApi } from "netzo/integrations/create-api/mod.ts";
 
 const kv = await Deno.openKv();
 
