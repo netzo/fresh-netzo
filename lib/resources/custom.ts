@@ -1,5 +1,5 @@
-import { defineResource, type ResourceOptions } from "../core/api/types.ts";
-import { NotImplemented } from "../core/api/errors.ts";
+import { defineResource, type ResourceOptions } from "../plugins/api/types.ts";
+import { NotImplemented } from "../plugins/api/errors.ts";
 
 export type CustomResourceOptions = ResourceOptions & {};
 

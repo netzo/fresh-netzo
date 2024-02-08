@@ -1,4 +1,4 @@
-#!/usr/bin/env -S deno run -A --unstable --env --watch=static/,routes dev.ts
+#!/usr/bin/env -S deno run -A --unstable --env --watch=static/,routes/ dev.ts
 
 const [tagName] = Deno.args;
 

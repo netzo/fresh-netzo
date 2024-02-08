@@ -1,6 +1,6 @@
-import { defineResource, type ResourceOptions } from "../core/api/types.ts";
-import { ERRORS, ulid } from "../core/api/utils.ts";
-import { filterObjectsByKeyValues } from "../core/api/utils.ts";
+import { defineResource, type ResourceOptions } from "../plugins/api/types.ts";
+import { ERRORS, ulid } from "../plugins/api/utils.ts";
+import { filterObjectsByKeyValues } from "../plugins/api/utils.ts";
 
 export type DenoKvResourceOptions = ResourceOptions & {
   /* The Deno KV store to use. */

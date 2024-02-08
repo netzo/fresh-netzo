@@ -1,7 +1,7 @@
-import { defineResource, type ResourceOptions } from "../core/api/types.ts";
+import { defineResource, type ResourceOptions } from "../plugins/api/types.ts";
 import type { ApiClient } from "../integrations/create-api/types.ts";
 
-import { ERRORS, ulid } from "../core/api/utils.ts";
+import { ERRORS, ulid } from "../plugins/api/utils.ts";
 
 export type HttpResourceOptions = ResourceOptions & {
   /* Netzo API client of the resource (e.g. api.users) */

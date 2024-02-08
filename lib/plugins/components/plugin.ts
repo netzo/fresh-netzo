@@ -1,45 +1,31 @@
 import type { Plugin } from "../../deps/$fresh/server.ts";
-import type { JSX } from "../../deps/preact.ts";
-import type { NetzoState } from "../mod.ts";
-import { defineConfig, unocss, type UnocssOptions } from "./plugins/unocss.ts";
-import presetNetzo from "./plugins/preset-netzo.ts";
+import { defineConfig, unocss, type UnocssOptions } from "../unocss/plugin.ts";
+import presetNetzo from "../unocss/preset-netzo.ts";
 import type {
   ShadcnThemeColor,
   ThemeCSSVarsVariant,
-} from "./plugins/preset-shadcn/types.ts";
-import _404 from "./routes/_404.tsx";
-import _500 from "./routes/_500.tsx";
+} from "../unocss/preset-shadcn/types.ts";
 
-export type UiConfig = UnocssOptions & {
+export type ComponentsConfig = UnocssOptions & {
   theme?: {
-    /** The primary color to be used for UI components. */
+    /** The primary color to be used for components. */
     color?: ShadcnThemeColor | ThemeCSSVarsVariant | {
       root?: ShadcnThemeColor;
       color?: Partial<ThemeCSSVarsVariant>;
     };
-    /** The border radius to be used for UI components. */
+    /** The border radius to be used for components. */
     radius?: number;
   };
 };
 
 // deno-lint-ignore ban-types
-export type UiState = {};
+export type ComponentsState = {};
 
 /**
- * Plugin to add layout (nav, header, footer) and theme (colors,
- * typography, etc.) powered by UnoCSS and netzo/components.
+ * Plugin to apply theme and styles to components.
  */
-export const ui = (options?: UiConfig): Plugin<NetzoState> => {
-  if (!options) return { name: "ui" };
-
-  const uiEnabled = [
-    "head",
-    "nav",
-    "header",
-    "footer",
-    "theme",
-  ].some((key) => !!options?.[key]);
-  if (!uiEnabled) return { name: "ui" }; // skip if ui but no plugins are set
+export const components = (options?: ComponentsConfig): Plugin => {
+  if (!options) return { name: "components" };
 
   const {
     theme: { color = "blue", radius = 0.5 } = {},
@@ -54,15 +40,11 @@ export const ui = (options?: UiConfig): Plugin<NetzoState> => {
     aot = true,
     ssr = true,
     csr = true,
-  } = options ?? {} as UiConfig;
+  } = options ?? {} as ComponentsConfig;
 
   return {
     ...unocss({ options: { color, radius }, config, aot, ssr, csr }), // { name, entrypoints, renderAsync, buildStart }
-    name: "ui",
-    routes: [
-      { path: "/_404", component: _404 },
-      { path: "/_500", component: _500 },
-    ],
+    name: "components",
     islands: {
       baseLocation: import.meta.url,
       paths: [
