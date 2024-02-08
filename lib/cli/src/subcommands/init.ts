@@ -1,5 +1,6 @@
 import { error } from "../../../plugins/utils.console.ts";
 import { question } from "../../../deps/question/mod.ts";
+import type { Args as RawArgs } from "../args.ts";
 import { copy } from "https://deno.land/std@0.214.0/fs/copy.ts";
 
 const help = `netzo init: create a new project from an existing template.
@@ -31,8 +32,7 @@ export type Args = {
   dryRun: boolean;
 };
 
-// deno-lint-ignore no-explicit-any
-export default async function (rawArgs: Record<string, any>): Promise<void> {
+export default async function (rawArgs: RawArgs): Promise<void> {
   const args: Args = {
     help: !!rawArgs.help,
     dir: rawArgs.dir ? String(rawArgs.dir) : null,

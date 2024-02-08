@@ -14,6 +14,7 @@ import {
   normalize,
 } from "../../../deps/std/path/mod.ts";
 import { Spinner, wait } from "../../../deps/wait/mod.ts";
+import type { Args as RawArgs } from "../args.ts";
 import { netzo } from "../../../integrations/apis/netzo/mod.ts";
 import { error, LOGS } from "../../../plugins/utils.console.ts";
 import { parseEntrypoint } from "../utils/entrypoint.ts";
@@ -24,7 +25,6 @@ import {
   readDecodeAndAddFileContentToAssets,
 } from "../utils/netzo.ts";
 import { APIError } from "../utils/api.ts";
-import { Args as RawArgs } from "../args.ts";
 
 const help = `netzo deploy: deploy a project with static files to Netzo.
 
@@ -84,7 +84,6 @@ export type Args = {
   appUrl?: string;
 };
 
-// deno-lint-ignore no-explicit-any
 export default async function (rawArgs: RawArgs): Promise<void> {
   const {
     NETZO_PROJECT_ID = null,
@@ -365,7 +364,7 @@ async function deploy(opts: DeployOpts): Promise<void> {
             return error(message); // exits with error code 1
           }
 
-            // app.service("deployments").removeAllListeners("progress"); // avoid memory leak
+          // app.service("deployments").removeAllListeners("progress"); // avoid memory leak
         }
       },
     );
