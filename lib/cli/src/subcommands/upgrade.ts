@@ -4,6 +4,7 @@ import {
   parse,
   semverGreaterThanOrEquals,
 } from "../../../deps/semver/mod.ts";
+import type { Args as RawArgs } from "../args.ts";
 import { VERSION } from "../version.ts";
 
 const help =
@@ -31,8 +32,7 @@ export type Args = {
   help: boolean;
 };
 
-// deno-lint-ignore no-explicit-any
-export default async function (rawArgs: Record<string, any>): Promise<void> {
+export default async function (rawArgs: RawArgs): Promise<void> {
   const args: Args = {
     help: !!rawArgs.help,
   };

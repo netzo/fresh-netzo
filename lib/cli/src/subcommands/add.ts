@@ -1,6 +1,7 @@
 import { error } from "../../../plugins/utils.console.ts";
 import { question } from "../../../deps/question/mod.ts";
-import { add } from "../generators/mod.ts";
+import type { Args as RawArgs } from "../args.ts";
+// import { add } from "../generators/mod.ts";
 // import { proxyConsole } from "../../../utils.console.ts";
 
 const help = `netzo add: add a new resource to an existing project.
@@ -36,8 +37,7 @@ export type Args = {
   dryRun: boolean;
 };
 
-// deno-lint-ignore no-explicit-any
-export default async function (rawArgs: Record<string, any>): Promise<void> {
+export default async function (rawArgs: RawArgs): Promise<void> {
   const args: Args = {
     help: !!rawArgs.help,
     dir: rawArgs.dir ? String(rawArgs.dir) : null,
@@ -60,8 +60,7 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     // vendored x/question@0.0.2 to silence deprecated API warnings (Deno>=1.4)
     resource = (await question("list", "Select a resource:", RESOURCES))!;
   }
-  // exit directly in case prompt is cancelled/escaped
-  if (!resource) Deno.exit(1);
+  if (!resource) Deno.exit(1); // exit directly if cancelled/escaped
 
   if (args.dir === null) args.dir = resource;
 
