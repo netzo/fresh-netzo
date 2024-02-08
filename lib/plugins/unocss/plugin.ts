@@ -132,8 +132,8 @@ export const unocss = (
     csr = true,
   }: UnocssOptions = {},
 ): Plugin => {
-  // A uno.config.ts file is required in the project directory if a config object is not provided,
-  // or to use the browser runtime
+  // A uno.config.ts file is required in the project directory if
+  // a config object is not provided, or to use the browser runtime
   const configURL = new URL("./uno.config.ts", Deno.mainModule);
 
   // Link to CSS file, if AOT mode is enabled

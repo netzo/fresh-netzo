@@ -10,3 +10,5 @@ export const netzo = await Netzo({
     resources: {},
   },
 });
+
+if (import.meta.main) netzo.start();

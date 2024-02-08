@@ -54,8 +54,6 @@ export const api = (options?: ApiConfig): Plugin => {
             ? async (_req, ctx) => {
               const { params, query } = parseSearchParams(ctx.url.searchParams);
               const result = await resource.find(query);
-              // validate to against ctx.state.project.resources.schemas (if any)
-              // const validate = await resource.assertValid(result, query);
               return Response.json(result);
             }
             : () => RESPONSES.notAllowed(),
