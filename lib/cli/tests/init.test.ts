@@ -44,9 +44,9 @@ Deno.test("CLI init and task execution -- crm", async () => {
   }).spawn();
   await process.status;
 
-  // this hack makes sure that we use the local version of the library for the template
-  // this allows the fix for preact signals cycles to go through right away, without having to wait for a new version
-  // https://github.com/netzo/netzo/issues/86 should properly fix this
+  // WORKAROUND: this hack makes sure that we use the local version of the library for the template
+  // this allows the fix for preact signals cycles to go through right away, without having to wait
+  // for a new version (https://github.com/netzo/netzo/issues/86 should properly fix this)
   const denoJsonPath = join(tmpDirName, "deno.json");
   const denoJson = JSON.parse(Deno.readTextFileSync(denoJsonPath));
   denoJson.imports["netzo/"] = join(Deno.cwd(), "lib/");
