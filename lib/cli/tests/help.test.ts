@@ -4,9 +4,10 @@ import {
   assertEquals,
   assertStringIncludes,
 } from "../../deps/std/assert/mod.ts";
-import { output, test } from "./utils.ts";
+import { netzo, output } from "./utils.ts";
 
-test({ args: [] }, async (proc) => {
+Deno.test("help command list", async () => {
+  const proc = netzo([]);
   const [stdout, stderr, { code }] = await output(proc);
   assertStringIncludes(stderr, "SUBCOMMANDS:");
   assertStringIncludes(stderr, "init ");
@@ -16,21 +17,24 @@ test({ args: [] }, async (proc) => {
   assertEquals(stdout, "");
 });
 
-test({ args: ["-V"] }, async (proc) => {
+Deno.test("-V argument", async () => {
+  const proc = netzo(["-V"]);
   const [stdout, stderr, { code }] = await output(proc);
   assertEquals(stderr, "");
   assertEquals(code, 0);
   assert(stdout.startsWith("netzo "));
 });
 
-test({ args: ["--version"] }, async (proc) => {
+Deno.test("--version argument", async () => {
+  const proc = netzo(["--version"]);
   const [stdout, stderr, { code }] = await output(proc);
   assertEquals(stderr, "");
   assertEquals(code, 0);
   assert(stdout.startsWith("netzo "));
 });
 
-test({ args: ["-h"] }, async (proc) => {
+Deno.test("-h argument", async () => {
+  const proc = netzo(["-h"]);
   const [stdout, stderr, { code }] = await output(proc);
   assertStringIncludes(stdout, "SUBCOMMANDS:");
   assertStringIncludes(stdout, "init ");
@@ -40,7 +44,8 @@ test({ args: ["-h"] }, async (proc) => {
   assertEquals(stderr, "");
 });
 
-test({ args: ["init", "-h"] }, async (proc) => {
+Deno.test("init -h argument", async () => {
+  const proc = netzo(["init", "-h"]);
   const [stdout, stderr, { code }] = await output(proc);
   assertStringIncludes(stdout, "USAGE:");
   assertStringIncludes(stdout, "netzo init");
@@ -48,7 +53,8 @@ test({ args: ["init", "-h"] }, async (proc) => {
   assertEquals(stderr, "");
 });
 
-test({ args: ["deploy", "-h"] }, async (proc) => {
+Deno.test("deploy -h argument", async () => {
+  const proc = netzo(["deploy", "-h"]);
   const [stdout, stderr, { code }] = await output(proc);
   assertStringIncludes(stdout, "USAGE:");
   assertStringIncludes(stdout, "netzo deploy");
@@ -56,7 +62,8 @@ test({ args: ["deploy", "-h"] }, async (proc) => {
   assertEquals(stderr, "");
 });
 
-test({ args: ["upgrade", "-h"] }, async (proc) => {
+Deno.test("upgrade -h argument", async () => {
+  const proc = netzo(["upgrade", "-h"]);
   const [stdout, stderr, { code }] = await output(proc);
   assertStringIncludes(stdout, "netzo upgrade");
   assertStringIncludes(stdout, "USAGE:");
