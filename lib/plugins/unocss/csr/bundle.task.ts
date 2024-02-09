@@ -15,7 +15,7 @@ const options: BundleOptions = {
   importMap: {
     imports: {
       "@/": "./",
-      "netzo/": "https://deno.land/x/netzo@0.4.29/",
+      "netzo/": "https://deno.land/x/netzo@0.4.30/",
       "$fresh/": "https://deno.land/x/fresh@1.6.3/",
       "preact": "https://esm.sh/v135/preact@10.19.3",
       "preact/": "https://esm.sh/v135/preact@10.19.3/",
