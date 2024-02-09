@@ -17,7 +17,9 @@ import {
 } from "@/resources/interactions.ts";
 
 // NOTE: define columns in island (route to island function serialization unsupported)
-export const getColumns = ({ options }: TableProps): TableProps["columns"] => [
+export const getColumns = (
+  { options }: TableProps<Interaction, unknown>,
+): TableProps<Interaction, unknown>["columns"] => [
   {
     id: "actions",
     cell: (props) => <TableRowActions {...props} options={options} />,
@@ -96,7 +98,7 @@ export const getColumns = ({ options }: TableProps): TableProps["columns"] => [
           text: "Other",
           className: `bg-gray hover:bg-gray bg-opacity-80 text-white`,
         },
-      } as any)?.[type];
+      })?.[type];
 
       return props
         ? (
@@ -134,7 +136,7 @@ export function Table(
 ) {
   const columns = getColumns(props);
 
-  const table = useTable<TData, TValue>({
+  const table = useTable<Interaction, unknown>({
     ...props,
     columns,
     meta: {

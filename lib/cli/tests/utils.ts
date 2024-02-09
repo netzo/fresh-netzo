@@ -47,17 +47,6 @@ export type TestOptions = {
   permissions?: Permissions;
 };
 
-export function test(
-  opts: TestOptions,
-  fn: (proc: Deno.ChildProcess) => void | Promise<void>,
-) {
-  const name = opts.name ?? [...opts.args].join(" ");
-  Deno.test(name, async () => {
-    const proc = netzo(opts.args, opts.permissions);
-    await fn(proc);
-  });
-}
-
 export async function output(
   proc: Deno.ChildProcess,
 ): Promise<[string, string, Deno.CommandStatus]> {

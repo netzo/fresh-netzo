@@ -15,17 +15,22 @@ import {
   type Transaction,
   transactionSchema,
 } from "@/resources/transactions.ts";
+import { CellContext } from "netzo/deps/@tanstack/react-table.ts";
 
 // NOTE: define columns in island (route to island function serialization unsupported)
-export const getColumns = ({ options }: TableProps): TableProps["columns"] => [
+export const getColumns = (
+  { options }: TableProps<Transaction, unknown>,
+): TableProps<Transaction, unknown>["columns"] => [
   {
     id: "actions",
-    cell: (props) => <TableRowActions {...props} options={options} />,
+    cell: (props) => (
+      <TableRowActions {...props} options={options} data={[]} columns={[]} />
+    ),
   },
   {
     accessorKey: "id",
     header: (props) => <TableColumnHeader {...props} title={I18N.id} />,
-    cell: ({ row }) => {
+    cell: ({ row }: CellContext<Transaction, unknown>) => {
       const { id } = row.original;
       return (
         <div className="flex items-center">
@@ -61,7 +66,7 @@ export const getColumns = ({ options }: TableProps): TableProps["columns"] => [
           text: "Transfer",
           className: `bg-blue hover:bg-blue bg-opacity-80 text-white`,
         },
-      } as any)?.[type];
+      })?.[type];
       return props
         ? (
           <Badge variant="default" className={`${props.className}`}>
@@ -109,12 +114,12 @@ export const getColumns = ({ options }: TableProps): TableProps["columns"] => [
   },
 ];
 
-export function Table(
+export function Table<Transaction, TValue = unknown>(
   props: Omit<TableProps<Transaction, unknown>, "columns">,
 ) {
   const columns = getColumns(props);
 
-  const table = useTable<TData, TValue>({
+  const table = useTable<Transaction, TValue>({
     ...props,
     columns,
     meta: {

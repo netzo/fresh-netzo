@@ -9,4 +9,4 @@ export {
   useEffect,
   useId,
   useState,
-} from "https://esm.sh/v135/preact@10.19.2/compat";
+} from "https://esm.sh/v135/preact@10.19.3/compat";
