@@ -12,9 +12,7 @@
     "bundle:csr": "deno run -A lib/plugins/unocss/csr/bundle.task.ts",
     "deploy": "deno run --allow-env --allow-net --allow-read scripts/deploy-templates.ts",
     "release": "deno run --allow-run --allow-read tasks/release.ts",
-    // use https://lcov-viewer.netlify.app to preview cov.lcov
     "cov": "deno coverage ./cov/ --lcov --exclude='test.ts|testdata' > cov.lcov"
-    // run template in development: "deno task --cwd=templates/fresh/src dev"
   },
   "unstable": [
     "cron",
