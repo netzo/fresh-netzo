@@ -143,7 +143,7 @@ Deno.test("CLI init reflects changes in the template -- minimal", async () => {
       "The manifest has been generated for 2 routes and 0 islands.",
     );
   } finally {
-    await Deno.remove(newRoutePath).catch(() => { });
+    await Deno.remove(newRoutePath).catch(() => {});
     await retry(() => Deno.remove(tmpDirName, { recursive: true }));
   }
 });
