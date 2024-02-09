@@ -3,8 +3,7 @@
   "tasks": {
     "build": "deno run -A --env netzo.ts dev build",
     "check:types": "deno check **/*.ts **/*.tsx",
-    "cli": "echo \"import '\\$fresh/src/dev/cli.ts'\" | deno run --unstable -A -",
-    "manifest": "deno task cli manifest $(pwd)",
+    "manifest": "deno run -A ../../tasks/manifest.ts",
     "ok": "deno fmt --check && deno lint && deno task check:types && deno task test",
     "preview": "deno run -A --env netzo.ts",
     "start": "deno run -A --env --watch=static/,routes/ netzo.ts dev",

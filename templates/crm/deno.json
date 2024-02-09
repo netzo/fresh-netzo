@@ -10,6 +10,7 @@
     "cov:gen": "deno coverage ./cov/ --lcov --exclude='.tsx' --output=cov.lcov",
     "cov:view": "genhtml -o html_cov cov.lcov && open html_cov/index.html",
     "check:types": "deno check **/*.ts **/*.tsx",
+    "manifest": "deno run -A ../../tasks/manifest.ts",
     "db:dump": "deno run -A --env tasks/db-dump.ts",
     "db:migrate": "deno run -A --env tasks/db-migrate.ts",
     "db:mock": "deno run -A --env tasks/db-mock.ts",
