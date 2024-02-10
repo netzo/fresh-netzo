@@ -1,6 +1,6 @@
-import "../deps/std/dotenv/load.ts";
-import { assertEquals, assertExists } from "../deps/std/assert/mod.ts";
-import { z } from "../deps/zod/mod.ts";
+import "../../../deps/std/dotenv/load.ts";
+import { assertEquals, assertExists } from "../../../deps/std/assert/mod.ts";
+import { z } from "../../../deps/zod/mod.ts";
 import { DenoKvResource } from "./denokv.ts";
 
 const kv = await Deno.openKv(":memory:");
@@ -18,7 +18,7 @@ const todoSchema = z.object({
 
 type Todo = z.infer<typeof todoSchema>;
 
-Deno.test("[api/adapters] DenoKvResource", async (t) => {
+Deno.test("[api/resources] DenoKvResource", async (t) => {
   const $todos = DenoKvResource({
     kv,
     prefix: ["todos"],
@@ -31,7 +31,7 @@ Deno.test("[api/adapters] DenoKvResource", async (t) => {
   });
 
   await t.step("$todos.find()", async () => {
-    const todos = await $todos.find();
+    const todos = await $todos.find<Todo>();
     assertEquals(todos?.length, 200);
   });
 

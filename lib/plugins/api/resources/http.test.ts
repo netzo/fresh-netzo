@@ -1,7 +1,7 @@
-import "../deps/std/dotenv/load.ts";
-import { assertEquals, assertExists } from "../deps/std/assert/mod.ts";
-import { z } from "../deps/zod/mod.ts";
-import { createApi } from "../integrations/create-api/mod.ts";
+import "../../../deps/std/dotenv/load.ts";
+import { assertEquals, assertExists } from "../../../deps/std/assert/mod.ts";
+import { z } from "../../../deps/zod/mod.ts";
+import { createApi } from "../../../integrations/create-api/mod.ts";
 import { HttpResource } from "./http.ts";
 
 const todoSchema = z.object({
@@ -13,7 +13,7 @@ const todoSchema = z.object({
 
 type Todo = z.infer<typeof todoSchema>;
 
-Deno.test("[api/adapters] HttpResource", async (t) => {
+Deno.test("[api/resources] HttpResource", async (t) => {
   const api = createApi({
     baseURL: "https://jsonplaceholder.typicode.com",
     headers: { "content-type": "application/json" },

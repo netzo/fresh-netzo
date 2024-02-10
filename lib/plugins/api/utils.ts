@@ -71,7 +71,8 @@ export async function parseRequestBody(req: Request) {
         return Object.fromEntries((await req.formData()).entries());
       } catch (_formDataError) {
         try {
-          return Object.fromEntries(req.searchParams);
+          const url = new URL(req.url);
+          return Object.fromEntries(url.searchParams.entries());
         } catch (_formDataError) {
           return JSON.parse(await req.text());
         }

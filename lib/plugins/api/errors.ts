@@ -1,3 +1,4 @@
+// deno-lint-ignore-file no-explicit-any
 // adapted from  @feathersjs/errors
 
 export interface NetzoErrorJSON {
@@ -22,14 +23,14 @@ interface ErrorProperties extends Omit<NetzoErrorJSON, "message"> {
 }
 
 export class NetzoError extends Error {
-  readonly type: string;
-  readonly code: number;
-  readonly className: string;
+  readonly type!: string;
+  readonly code!: number;
+  readonly className!: string;
   readonly data: any;
   readonly errors: any;
 
   constructor(
-    err: ErrorMessage,
+    err: ErrorMessage | undefined,
     name: string,
     code: number,
     className: string,

@@ -1,5 +1,5 @@
 import type { Plugin, PluginRoute } from "../../deps/$fresh/server.ts";
-import type { Resource } from "./types.ts";
+import type { Resource } from "./resources/mod.ts";
 import {
   type Methods,
   parseRequestBody,

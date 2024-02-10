@@ -1,5 +1,5 @@
 import { Netzo } from "netzo/mod.ts";
-import { DenoKvResource } from "netzo/resources/denokv.ts";
+import { DenoKvResource } from "netzo/plugins/api/resources/denokv.ts";
 
 const kv = await Deno.openKv();
 
