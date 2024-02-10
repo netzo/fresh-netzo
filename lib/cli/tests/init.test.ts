@@ -12,6 +12,12 @@ Deno.test("CLI init and task execution -- minimal", async (t) => {
     );
   });
 
+  await t.step("check netzo location", () => {
+    console.log(netzoLocation(tmpDirName));
+    console.log(Deno.cwd());
+    assertStringIncludes(netzoLocation(tmpDirName), Deno.cwd());
+  });
+
   await t.step("format", async () => {
     await executeAndAssert($`deno fmt --check`.cwd(tmpDirName));
   });
@@ -97,6 +103,33 @@ Deno.test("CLI init reflects changes in the template -- minimal", async () => {
     await retry(() => Deno.remove(tmpDirName, { recursive: true }));
   }
 });
+
+Deno.test("remote CLI execution", async (t) => {
+  const tmpDirName = await Deno.makeTempDir();
+
+  await t.step("init project", async () => {
+    await executeAndAssert(
+      $`deno run -A https://raw.githubusercontent.com/deer/netzo/improve_denojson_generation/lib/cli/netzo.ts init minimal --dir ${tmpDirName}`,
+    );
+  });
+
+  // await t.step("check netzo location", () => {
+  //   assertStringIncludes(
+  //     netzoLocation(tmpDirName),
+  //     "https://raw.githubusercontent.com/deer/netzo/improve_denojson_generation",
+  //   );
+  // });
+
+  await t.step("cleanup", async () => {
+    await retry(() => Deno.remove(tmpDirName, { recursive: true }));
+  });
+});
+
+function netzoLocation(tmpDirName: string) {
+  const denoJsonPath = join(tmpDirName, "deno.json");
+  const denoJson = JSON.parse(Deno.readTextFileSync(denoJsonPath));
+  return denoJson.imports["netzo/"];
+}
 
 async function executeAndAssert(commandBuilder: CommandBuilder) {
   const result = await commandBuilder.stdout("piped").stderr("piped")

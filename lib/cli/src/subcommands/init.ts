@@ -72,14 +72,6 @@ export default async function (rawArgs: RawArgs): Promise<void> {
       await copy(templateDir, destDir, { overwrite: true });
       console.log(`✨ Successfully cloned ${templateDir} to ${destDir}`);
     }
-
-    const denoJsonPath = join(destDir, "deno.json");
-    const denoJson = JSON.parse(Deno.readTextFileSync(denoJsonPath));
-    denoJson.imports["netzo/"] = new URL("../../../", import.meta.url).href;
-    Deno.writeTextFileSync(
-      denoJsonPath,
-      JSON.stringify(denoJson, null, 2) + "\n",
-    );
   } else {
     const process = new Deno.Command(Deno.execPath(), {
       args: [
@@ -100,6 +92,13 @@ export default async function (rawArgs: RawArgs): Promise<void> {
     }).spawn();
     await process.status;
   }
+  const denoJsonPath = join(args.dir, "deno.json");
+  const denoJson = JSON.parse(Deno.readTextFileSync(denoJsonPath));
+  denoJson.imports["netzo/"] = new URL("../../../", import.meta.url).href;
+  Deno.writeTextFileSync(
+    denoJsonPath,
+    JSON.stringify(denoJson, null, 2) + "\n",
+  );
 }
 
 async function getTemplateNames(): Promise<string[]> {
