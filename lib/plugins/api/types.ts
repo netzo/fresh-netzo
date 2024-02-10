@@ -1,4 +1,4 @@
-// lik @unjs/unstorage but for resources instead of storage
+// like @unjs/unstorage but for resources instead of storage
 export * from "./utils.ts";
 import type { ULID } from "../../deps/ulid.ts";
 

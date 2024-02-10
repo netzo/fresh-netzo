@@ -115,10 +115,11 @@ following required fields:
 
 ### Bearer auth
 
-**Bearer auth** (also refered to as **token authentication**) schema is a simple
-HTTP authentication schema that uses security tokens (referred to as **bearer
-tokens**). Bearer tokens are text strings that are included in the request
-header in the form of `Authorization: Bearer <TOKEN>` and act as access keys.
+**Bearer auth** (also referred to as **token authentication**) schema is a
+simple HTTP authentication schema that uses security tokens (referred to as
+**bearer tokens**). Bearer tokens are text strings that are included in the
+request header in the form of `Authorization: Bearer <TOKEN>` and act as access
+keys.
 
 To use this auth type select `HTTP` and `bearer` options, and fill-out the
 following required fields:
