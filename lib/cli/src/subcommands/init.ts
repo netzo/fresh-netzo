@@ -1,4 +1,5 @@
 import { error } from "../../../plugins/utils.console.ts";
+// vendored x/question@0.0.2 to silence deprecated API warnings (Deno>=1.4)
 import { question } from "../../../deps/question/mod.ts";
 import type { Args as RawArgs } from "../args.ts";
 import { copy } from "https://deno.land/std@0.214.0/fs/copy.ts";
@@ -52,7 +53,6 @@ export default async function (rawArgs: RawArgs): Promise<void> {
 
   let [template, ..._argsRest] = rawArgs._ as string[];
   if (!TEMPLATES.includes(template)) {
-    // vendored x/question@0.0.2 to silence deprecated API warnings (Deno>=1.4)
     template = (await question("list", "Select a template:", TEMPLATES))!;
   }
   if (!template) Deno.exit(1); // exit directly if cancelled/escaped

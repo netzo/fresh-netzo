@@ -2,7 +2,7 @@
 import { _get } from "../deps/lodash.get.ts";
 import { netzo } from "../integrations/apis/netzo/mod.ts";
 import type { Project } from "./types.ts";
-import { log, logInfo, LOGS } from "./utils.console.ts";
+import { logInfo, LOGS } from "./utils.console.ts";
 
 export * from "./utils.console.ts";
 
@@ -22,7 +22,7 @@ export async function setEnvVarsIfRemoteProject() {
 
     const project = await api.projects[NETZO_PROJECT_ID].get<Project>();
 
-    if (!project) throw new Error(LOGS.notFoundProject);
+    if (!project) throw new Error(LOGS.notFoundProject());
 
     const envVars = project.envVars?.development ?? {};
     setEnvVars(envVars);
@@ -31,7 +31,7 @@ export async function setEnvVarsIfRemoteProject() {
 
     return;
   } else {
-    return logInfo(LOGS.envNoticeDevelopment); // [development] log notice for good DX
+    return logInfo(LOGS.envNoticeDevelopment()); // [development] log notice for good DX
   }
 }
 
