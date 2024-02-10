@@ -1,4 +1,5 @@
 import { error } from "../../../plugins/utils.console.ts";
+// vendored x/question@0.0.2 to silence deprecated API warnings (Deno>=1.4)
 import { question } from "../../../deps/question/mod.ts";
 import type { Args as RawArgs } from "../args.ts";
 // import { add } from "../generators/mod.ts";
@@ -57,7 +58,6 @@ export default async function (rawArgs: RawArgs): Promise<void> {
 
   let [resource, name, ...argv] = rawArgs._ as string[];
   if (!RESOURCES.includes(resource)) {
-    // vendored x/question@0.0.2 to silence deprecated API warnings (Deno>=1.4)
     resource = (await question("list", "Select a resource:", RESOURCES))!;
   }
   if (!resource) Deno.exit(1); // exit directly if cancelled/escaped

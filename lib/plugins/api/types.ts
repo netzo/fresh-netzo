@@ -1,4 +1,3 @@
-// like @unjs/unstorage but for resources instead of storage
 export * from "./utils.ts";
 import type { ULID } from "../../deps/ulid.ts";
 
@@ -22,7 +21,7 @@ export type Resource<TData = unknown> = {
 
 type ResourceFactory<T> = (opts: T) => Resource;
 
-export function defineResource<T = any>(
+export function defineResource<T>(
   factory: ResourceFactory<T>,
 ): ResourceFactory<T> {
   return factory;

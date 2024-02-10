@@ -12,7 +12,9 @@ import {
   isGlob,
   normalize,
 } from "../../../deps/std/path/mod.ts";
+import { exists } from "../../../deps/std/fs/exists.ts";
 import { Spinner, wait } from "../../../deps/wait/mod.ts";
+// vendored x/question@0.0.2 to silence deprecated API warnings (Deno>=1.4)
 import { question } from "../../../deps/question/mod.ts";
 import type { Args as RawArgs } from "../args.ts";
 import { netzo } from "../../../integrations/apis/netzo/mod.ts";
@@ -124,24 +126,33 @@ export default async function (rawArgs: RawArgs): Promise<void> {
     error(LOGS.missingApiKey);
   }
   const api = netzo({ apiKey: args.apiKey!, baseURL: args.apiUrl });
-  const entrypoint = typeof rawArgs._[0] === "string"
-    ? rawArgs._[0]
-    : "netzo.ts";
-  // if (!entrypoint) {
-  //   console.error(help);
-  //   error("No entrypoint specifier given.");
-  // }
+
   if (rawArgs._.length > 1) {
     console.error(help);
     error("Too many positional arguments given.");
   }
+
+  const entrypoint = rawArgs._[0] || (await exists("netzo.ts"))
+    ? "netzo.ts" // assume netzo.ts if it exists (skip prompt)
+    : await question("input", "Enter the entrypoint file path:", "netzo.ts");
+  if (!entrypoint) Deno.exit(1); // exit directly if cancelled/escaped
+
   let project = args.project;
   if (!project) {
-    const results = await api.projects.get<Paginated<Project>>();
-    const PROJECTS = results.data.map((p) => p.uid);
-    // vendored x/question@0.0.2 to silence deprecated API warnings (Deno>=1.4)
-    const uid = (await question("list", "Select a project:", PROJECTS))!;
-    project = results.data?.find((p) => p.uid === uid)?._id as string;
+    const result = await api.projects.get<Paginated<Project>>();
+    const newProject = "Create new project";
+    const selection = (await question("list", "Select a project:", [
+      newProject,
+      ...result.data.map((p) => `${p.name}: ${p.uid}`),
+    ]))!;
+    if (selection === newProject) {
+      const name = await question("input", "Enter a name for the project:");
+      if (!name) Deno.exit(1); // exit directly if cancelled/escaped
+      project = (await api.projects.post<Project>({ name }))._id as string;
+    } else {
+      const uid = selection.split(": ").pop()!; // safe heuristic to extract uid
+      project = result.data?.find((p) => p.uid === uid)?._id as string;
+    }
   }
   if (!project) Deno.exit(1); // exit directly if cancelled/escaped
 
@@ -169,7 +180,7 @@ export default async function (rawArgs: RawArgs): Promise<void> {
       build: args.build,
       production: args.production,
       description: args.description,
-      project: args.project as string,
+      project,
       include: args.include,
       exclude: args.exclude,
       dryRun: args.dryRun,
