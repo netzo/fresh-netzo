@@ -13,8 +13,6 @@ Deno.test("CLI init and task execution -- minimal", async (t) => {
   });
 
   await t.step("check netzo location", () => {
-    console.log(netzoLocation(tmpDirName));
-    console.log(Deno.cwd());
     assertStringIncludes(netzoLocation(tmpDirName), Deno.cwd());
   });
 
@@ -113,12 +111,12 @@ Deno.test("remote CLI execution", async (t) => {
     );
   });
 
-  // await t.step("check netzo location", () => {
-  //   assertStringIncludes(
-  //     netzoLocation(tmpDirName),
-  //     "https://raw.githubusercontent.com/deer/netzo/improve_denojson_generation",
-  //   );
-  // });
+  await t.step("check netzo location", () => {
+    assertStringIncludes(
+      netzoLocation(tmpDirName),
+      "https://raw.githubusercontent.com/deer/netzo/improve_denojson_generation",
+    );
+  });
 
   await t.step("cleanup", async () => {
     await retry(() => Deno.remove(tmpDirName, { recursive: true }));
