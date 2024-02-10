@@ -158,7 +158,7 @@ export function presetShadcn(
             color: hsl(var(--card-foreground));
           }
 
-          /* WORKAROUND: set !important to --radius CSS variables since othwerwise
+          /* WORKAROUND: set !important to --radius CSS variables since otherwise
           the client-generated ones e.g. ".rounded-lg" will take precedence */
           .rounded-lg {
             border-radius: var(--radius) !important;

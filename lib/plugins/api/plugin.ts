@@ -8,7 +8,7 @@ import {
 } from "./utils.ts";
 
 export type ApiConfig = {
-  /** Wether to require authentication using the provided API key
+  /** Whether to require authentication using the provided API key
    * in the "x-api-key" header or "apiKey" query parameter.
    * IMPORTANT: set "apiKey" using Deno.env.get(...) to keep it secret  */
   apiKey?: string;

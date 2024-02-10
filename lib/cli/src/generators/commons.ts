@@ -80,7 +80,7 @@ export const initializeBaseContext = () => <C extends NetzoContext>(ctx: C) => {
 
 /**
  * Checks if the current context contains a valid generated application.
- * This is necesary for most generators (besides the app generator).
+ * This is necessary for most generators (besides the app generator).
  *
  * @param ctx The context to check against
  * @returns Throws an error or returns the original context
@@ -239,7 +239,7 @@ export const injectSource =
  * Synchronously checks if a file exits
  * @param context The base context
  * @param filenames The filenames to check
- * @returns Wether the file exists or not
+ * @returns Whether the file exists or not
  */
 export const fileExists = (
   ...filenames: string[]

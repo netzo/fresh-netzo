@@ -96,8 +96,8 @@ export default async function (rawArgs: RawArgs): Promise<void> {
 
   return Deno.exit(0);
 
-  // NOTE: cannot programatically call add() since Deno requires "certain flags
-  // and calling add() programatically is also throwing the following:
+  // NOTE: cannot programmatically call add() since Deno requires "certain flags
+  // and calling add() programmatically is also throwing the following:
   // Error: "Top-level await promise never resolved at await addSubcommand(args);"
   // proxyConsole(`Use of deprecated`)
   // return await add([generatorFile, resource, name, ...argv]);
