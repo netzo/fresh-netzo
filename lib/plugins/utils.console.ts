@@ -61,15 +61,24 @@ export function error(message: string): never {
 }
 
 export const LOGS = {
-  missingApiKey:
-    "Missing API Key. Set NETZO_API_KEY environment variable or --api-key flag.",
-  buildFailed: "Build failed. Check the project logs for details.",
-  envNoticeDevelopment:
-    "Running locally... Set NETZO_PROJECT_ID and NETZO_API_KEY to connect to remote project.",
+  missingApiKey: () => {
+    return "Missing API Key. Set NETZO_API_KEY environment variable or --api-key flag.";
+  },
+  buildFailed: () => {
+    return "Build failed. Check the project logs for details.";
+  },
+  envNoticeDevelopment: () => {
+    return "Running locally... Set NETZO_PROJECT_ID and NETZO_API_KEY to connect to remote project.";
+  },
   envNoticeProduction: (count: number) => {
     return `Connected to remote Netzo project. Loaded ${count} environment variables.`;
   },
-  notFoundProject: "Project not found. Check the project ID and API key.",
+  notFoundProject: () => {
+    return "Project not found. Check the project ID and API key.";
+  },
+  notFoundEntrypoint: (entrypoint: string) => {
+    return `Entrypoint file "${entrypoint}" not found. Check the file path.`;
+  },
   openInNetzo: (appUrl: string, { _id, workspaceId }: Project) => {
     const url = `${appUrl}/workspaces/${workspaceId}/projects/${_id}`;
     return `Open at ${url}`;

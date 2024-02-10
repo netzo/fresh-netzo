@@ -123,7 +123,7 @@ export default async function (rawArgs: RawArgs): Promise<void> {
 
   if ([null, "NETZO_API_KEY"].includes(args.apiKey)) {
     console.error(help);
-    error(LOGS.missingApiKey);
+    error(LOGS.missingApiKey());
   }
   const api = netzo({ apiKey: args.apiKey!, baseURL: args.apiUrl });
 
@@ -136,6 +136,7 @@ export default async function (rawArgs: RawArgs): Promise<void> {
     ? "netzo.ts" // assume netzo.ts if it exists (skip prompt)
     : await question("input", "Enter the entrypoint file path:", "netzo.ts");
   if (!entrypoint) Deno.exit(1); // exit directly if cancelled/escaped
+  if (!await exists(entrypoint)) error(LOGS.entrypointNotFound(entrypoint));
 
   let project = args.project;
   if (!project) {
@@ -161,7 +162,7 @@ export default async function (rawArgs: RawArgs): Promise<void> {
       args: ["task", "build"],
     }).spawn();
     const { success } = await process.status;
-    if (!success) error(LOGS.buildFailed);
+    if (!success) error(LOGS.buildFailed());
   }
 
   await deploy(
