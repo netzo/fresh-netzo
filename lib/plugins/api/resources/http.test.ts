@@ -19,7 +19,7 @@ Deno.test("[api/resources] HttpResource", async (t) => {
     headers: { "content-type": "application/json" },
   });
 
-  const $todos = HttpResource({
+  const $todos = HttpResource<Todo>({
     client: api.todos,
     idField: "id",
   });

@@ -8,27 +8,29 @@ export type ResourceOptions = {
   idField?: string;
 };
 
-type MaybePromise<T> = T | Promise<T>;
+type MaybePromise<T> = (T | undefined) | Promise<T | undefined> | undefined;
 
 export type Id = string | number | ULID;
 
-export type Resource<TData = unknown> = {
+export type Resource<T = unknown> = {
   type?: "denokv" | "http"; // undefined means custom resource
   options?: Record<string, unknown>;
-  find: <T = TData>(query?: Record<string, unknown>) => MaybePromise<T[]>;
-  get: <T = TData>(id: Id) => MaybePromise<T | undefined>;
-  create: <T = TData>(data: T) => MaybePromise<T>;
-  update: <T = TData>(id: Id, data: T) => MaybePromise<T>;
-  patch: <T = TData>(id: Id, data: Partial<T>) => MaybePromise<T>;
-  remove: <T = TData>(id: Id) => MaybePromise<{ ok: boolean }>;
+  find: (query?: Record<string, unknown>) => MaybePromise<T[]>;
+  get: (id: Id) => MaybePromise<T>;
+  create: (data: Partial<T>) => MaybePromise<T>;
+  update: (id: Id, data: T) => MaybePromise<T>;
+  patch: (id: Id, data: Partial<T>) => MaybePromise<T>;
+  remove: (id: Id) => MaybePromise<{ ok: boolean }>;
 };
 
 /**
- * Creates a Resource instance to perform RESTful operations on an CUSTOM resource
+ * Creates a Resource instance to perform RESTful operations on an arbitrary resource
  * @param options {ResourceOptions} - resource options object
- * @returns a Resource instance with methods for performing RESTful operations on the CUSTOM resource
+ * @returns a Resource instance with methods for performing RESTful operations on the resource
  */
-export const Resource = <T>(options: ResourceOptions): Resource<T> => {
+export const Resource = <T = Record<string, unknown>>(
+  options: ResourceOptions,
+): Resource<T> => {
   const { idField = "id" } = options;
 
   return {

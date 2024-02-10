@@ -10,3 +10,13 @@ export function headersToObject(headers: HeadersInit = {}) {
 
   return headers;
 }
+
+/**
+ * Simple heuristic to check if a client is an API client
+ * @param client {Record<string, unknown>} - the object to check
+ * @returns {boolean} - true if the object is an API client
+ */
+export const isApiClient = (client: Record<string, unknown>) => {
+  const METHODS = ["get", "post", "put", "patch", "delete"];
+  return METHODS.some((method: string) => client[method]);
+};

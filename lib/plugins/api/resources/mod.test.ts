@@ -13,7 +13,7 @@ const todoSchema = z.object({
 type Todo = z.infer<typeof todoSchema>;
 
 Deno.test("[api/resources] Resource", async (t) => {
-  const $todos = Resource({
+  const $todos = Resource<Todo>({
     idField: "id",
   });
 
@@ -22,16 +22,16 @@ Deno.test("[api/resources] Resource", async (t) => {
   });
 
   await t.step("$todos.find()", () => {
-    assertThrows(() => $todos.find<Todo>());
+    assertThrows(() => $todos.find());
   });
 
   await t.step("$todos.get(1)", () => {
-    assertThrows(() => $todos.get<Todo>(1));
+    assertThrows(() => $todos.get(1));
   });
 
   await t.step("$todos.create()", () => {
     assertThrows(() =>
-      $todos.create<Omit<Todo, "id">>({
+      $todos.create({
         userId: 1,
         title: "lorem ipsum",
         completed: true,
@@ -41,7 +41,7 @@ Deno.test("[api/resources] Resource", async (t) => {
 
   await t.step("$todos.update(1)", () => {
     assertThrows(() =>
-      $todos.update<Todo>(1, {
+      $todos.update(1, {
         id: 1,
         userId: 1,
         title: "lorem ipsum",
@@ -52,13 +52,13 @@ Deno.test("[api/resources] Resource", async (t) => {
 
   await t.step("$todos.patch(1)", () => {
     assertThrows(() =>
-      $todos.patch<Todo>(1, {
+      $todos.patch(1, {
         title: "lorem ipsum",
       })
     );
   });
 
   await t.step("$todos.delete(1)", () => {
-    assertThrows(() => $todos.remove<Todo>(1));
+    assertThrows(() => $todos.remove(1));
   });
 });

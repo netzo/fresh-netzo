@@ -13,7 +13,7 @@ export type DenoKvResourceOptions = ResourceOptions & {
  * @param options {DenoKvResourceOptions} - resource options object
  * @returns a Resource instance with methods for performing RESTful operations on the KV resource
  */
-export const DenoKvResource = <T>(
+export const DenoKvResource = <T = Record<string, unknown>>(
   options: DenoKvResourceOptions,
 ): Resource<T> => {
   const { kv = options.kv, prefix, idField = "id" } = options;
@@ -27,11 +27,7 @@ export const DenoKvResource = <T>(
 
   return {
     type: "denokv",
-    options: {
-      kv,
-      prefix,
-      idField,
-    },
+    options: { kv, prefix, idField },
     find: async (query) => {
       const data = (await Array.fromAsync(
         kv.list<T>({ prefix }),
@@ -40,15 +36,16 @@ export const DenoKvResource = <T>(
     },
     get: async (id) => {
       const key = [...prefix, id];
-      return (await kv.get<T>(key)).value;
+      const { value } = await kv.get<T>(key);
+      return value === null ? undefined : value;
     },
     create: async (data) => {
-      const id = (data?.[idField] ?? ulid()) as Deno.KvKeyPart;
+      const id = (data?.[idField as keyof T] ?? ulid()) as Deno.KvKeyPart;
       const key = [...prefix, id];
       data = { [idField]: id, ...data };
       const ok = await kv.atomic().set(key, data).commit();
       if (!ok) throw new Error("Something went wrong.");
-      return data;
+      return data as T;
     },
     update: async (id, data) => {
       const key = [...prefix, id];
@@ -69,7 +66,7 @@ export const DenoKvResource = <T>(
       data = { ...entry.value, ...data };
       const ok = await kv.atomic().check(entry).set(key, data).commit();
       if (!ok) throw new Error("Something went wrong.");
-      return data;
+      return data as T;
     },
     remove: async (id) => {
       const key = [...prefix, id];

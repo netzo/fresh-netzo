@@ -19,7 +19,7 @@ const todoSchema = z.object({
 type Todo = z.infer<typeof todoSchema>;
 
 Deno.test("[api/resources] DenoKvResource", async (t) => {
-  const $todos = DenoKvResource({
+  const $todos = DenoKvResource<Todo>({
     kv,
     prefix: ["todos"],
     idField: "id",
@@ -31,7 +31,7 @@ Deno.test("[api/resources] DenoKvResource", async (t) => {
   });
 
   await t.step("$todos.find()", async () => {
-    const todos = await $todos.find<Todo>();
+    const todos = await $todos.find();
     assertEquals(todos?.length, 200);
   });
 
