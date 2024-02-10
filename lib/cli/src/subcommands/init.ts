@@ -2,8 +2,9 @@ import { error } from "../../../plugins/utils.console.ts";
 // vendored x/question@0.0.2 to silence deprecated API warnings (Deno>=1.4)
 import { question } from "../../../deps/question/mod.ts";
 import type { Args as RawArgs } from "../args.ts";
+// never try to use import maps here, since this will be executed in a context that doesn't have them
 import { copy } from "https://deno.land/std@0.214.0/fs/copy.ts";
-import { join } from "std/path/mod.ts";
+import { join } from "https://deno.land/std@0.214.0/path/mod.ts";
 
 const help = `netzo init: create a new project from an existing template.
 
