@@ -3,6 +3,7 @@ import { error } from "../../../plugins/utils.console.ts";
 import { question } from "../../../deps/question/mod.ts";
 import type { Args as RawArgs } from "../args.ts";
 import { copy } from "https://deno.land/std@0.214.0/fs/copy.ts";
+import { join } from "std/path/mod.ts";
 
 const help = `netzo init: create a new project from an existing template.
 
@@ -70,6 +71,14 @@ export default async function (rawArgs: RawArgs): Promise<void> {
       await copy(templateDir, destDir, { overwrite: true });
       console.log(`✨ Successfully cloned ${templateDir} to ${destDir}`);
     }
+
+    const denoJsonPath = join(destDir, "deno.json");
+    const denoJson = JSON.parse(Deno.readTextFileSync(denoJsonPath));
+    denoJson.imports["netzo/"] = new URL("../../../", import.meta.url).href;
+    Deno.writeTextFileSync(
+      denoJsonPath,
+      JSON.stringify(denoJson, null, 2) + "\n",
+    );
   } else {
     const process = new Deno.Command(Deno.execPath(), {
       args: [
