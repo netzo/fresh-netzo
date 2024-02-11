@@ -20,10 +20,10 @@ export const getRoutesByProvider = (
 ): PluginRoute[] => {
   const [signIn, handleCallback, signOut] = getFunctionsByProvider(provider);
 
-  const routes = [
+  const routes: PluginRoute[] = [
     {
       path: `/auth/${provider}/signin`,
-      handler: async (req, ctx) => {
+      handler: async (req, _ctx) => {
         const authConfig = getAuthConfig(provider, options);
         const response = await signIn(req, authConfig);
         return response;
@@ -31,7 +31,7 @@ export const getRoutesByProvider = (
     },
     {
       path: `/auth/${provider}/callback`,
-      handler: async (req, ctx) => {
+      handler: async (req, _ctx) => {
         const authConfig = getAuthConfig(provider, options);
         const { response, tokens, sessionId } = await handleCallback(
           req,

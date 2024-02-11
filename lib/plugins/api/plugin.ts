@@ -52,14 +52,13 @@ export const api = (options?: ApiConfig): Plugin => {
         handler: {
           GET: resource?.find
             ? async (_req, ctx) => {
-              const { params, query } = parseSearchParams(ctx.url.searchParams);
+              const { query } = parseSearchParams(ctx.url.searchParams);
               const result = await resource.find(query);
               return Response.json(result);
             }
             : () => RESPONSES.notAllowed(),
           POST: resource?.create
-            ? async (req, ctx) => {
-              const { params } = parseSearchParams(ctx.url.searchParams);
+            ? async (req, _ctx) => {
               const data = await parseRequestBody(req);
               const result = await resource.create(data, idField);
               return Response.json(result);
@@ -72,14 +71,12 @@ export const api = (options?: ApiConfig): Plugin => {
         handler: {
           GET: resource?.get
             ? async (_req, ctx) => {
-              const { params, query } = parseSearchParams(ctx.url.searchParams);
               const result = await resource.get(ctx.params.id);
               return Response.json(result);
             }
             : () => RESPONSES.notAllowed(),
           PUT: resource?.update
             ? async (req, ctx) => {
-              const { params } = parseSearchParams(ctx.url.searchParams);
               const data = await parseRequestBody(req);
               const result = await resource.update(ctx.params.id, data);
               return Response.json(result);
@@ -87,7 +84,6 @@ export const api = (options?: ApiConfig): Plugin => {
             : () => RESPONSES.notAllowed(),
           PATCH: resource?.patch
             ? async (req, ctx) => {
-              const { params } = parseSearchParams(ctx.url.searchParams);
               const data = await parseRequestBody(req);
               const result = await resource.patch(ctx.params.id, data);
               return Response.json(result);
@@ -95,7 +91,6 @@ export const api = (options?: ApiConfig): Plugin => {
             : () => RESPONSES.notAllowed(),
           DELETE: resource?.remove
             ? async (_req, ctx) => {
-              const { params } = parseSearchParams(ctx.url.searchParams);
               const result = await resource.remove(ctx.params.id);
               return Response.json(result);
             }

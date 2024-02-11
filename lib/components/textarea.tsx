@@ -1,14 +1,8 @@
 import type { JSX } from "../deps/preact.ts";
-import {
-  type ComponentProps,
-  forwardRef,
-  type Ref,
-  useState,
-} from "../deps/preact/compat.ts";
+import { forwardRef } from "../deps/preact/compat.ts";
 import { cn } from "./utils.ts";
 
-export interface TextareaProps
-  extends JSX.HTMLAttributes<HTMLTextAreaElement> {}
+export type TextareaProps = JSX.HTMLAttributes<HTMLTextAreaElement>;
 
 const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
   ({ className, ...props }, ref) => {

@@ -37,9 +37,9 @@ export type TableProps<TData = unknown, TValue = unknown> = {
       options: { label: string; value: string }[];
     }[];
     layouts: {
-      grid?: {};
-      gallery?: {};
-      kanban?: {};
+      grid?: Record<string | number | symbol, never>;
+      gallery?: Record<string | number | symbol, never>;
+      kanban?: Record<string | number | symbol, never>;
     };
   };
   columns: ColumnDef<TData, TValue>[];
@@ -49,7 +49,6 @@ export type { Table };
 
 export const useTable = <TData = unknown, TValue = unknown>({
   data,
-  options,
   columns,
   meta = {},
 }: TableProps<TData, TValue>): Table<TData> => {
