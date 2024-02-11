@@ -1,6 +1,24 @@
 import { z } from "zod";
 import { faker } from "npm:@faker-js/faker@8.4.0";
 import { ulid } from "netzo/plugins/api/utils.ts";
+import { defineAPIEndpoint } from "netzo/plugins/api/plugin.ts";
+import { DenoKvResource } from "netzo/plugins/api/resources/denokv.ts";
+import { logRuntime } from "netzo/plugins/api/hooks/mod.ts";
+import { kv } from "./mod.ts";
+
+export const deals = defineAPIEndpoint({
+  idField: "id",
+  resource: DenoKvResource({ kv, prefix: ["deals"] }),
+  hooks: {
+    all: [logRuntime],
+    find: [logRuntime],
+    get: [logRuntime],
+    create: [logRuntime],
+    update: [logRuntime],
+    patch: [logRuntime],
+    remove: [logRuntime],
+  },
+});
 
 // schemas:
 

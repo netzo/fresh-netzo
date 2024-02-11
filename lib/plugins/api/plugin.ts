@@ -1,5 +1,5 @@
 import type { Plugin, PluginRoute } from "../../deps/$fresh/server.ts";
-import { hooks } from "../../deps/@feathersjs/hooks.ts";
+import { hooks as _hooks } from "../../deps/@feathersjs/hooks.ts";
 import type { Resource } from "./resources/mod.ts";
 import {
   type Methods,
@@ -8,19 +8,22 @@ import {
   RESPONSES,
 } from "./utils.ts";
 
-export type ApiConfig = {
-  /** Whether to require authentication using the provided API key
-   * in the "x-api-key" header or "apiKey" query parameter.
-   * IMPORTANT: set "apiKey" using Deno.env.get(...) to keep it secret  */
-  apiKey?: string;
-  /** The route path to mount the API on. Defaults to "/api". */
-  path?: string;
+export type ApiEndpoint = {
   /** The field name to use as the primary key. Defaults to "id". */
   idField?: string;
-  /** An object mapping resource names to resources instances. */
-  resources: Record<Methods[number], Resource>;
+  /** The resource instance to use for performing RESTful operations. */
+  resource: Resource;
   /** An object mapping resource names an array of hooks to apply to the resource. */
-  hooks: Record<Methods[number], any>;
+  hooks?: Record<Methods[number], any>;
+};
+
+export const defineAPIEndpoint = (options: ApiEndpoint): ApiEndpoint => options;
+
+export type ApiConfig = {
+  /** The route path to mount the API on. Defaults to "/api". */
+  path?: string;
+  /** An object mapping resource names to resources instances. */
+  endpoints: Record<Methods[number], ApiEndpoint>;
 };
 
 export type ApiState = {
@@ -42,39 +45,34 @@ export type ApiState = {
 export const api = (options?: ApiConfig): Plugin => {
   if (!options) return { name: "api" };
 
-  options.path ??= "/api";
-  options.idField ??= "id";
-  options.hooks ??= {};
-
-  const { apiKey, path, idField, resources } = options ?? {};
+  const { path = "/api", endpoints = {} } = options ?? {};
 
   const routes: Plugin["routes"] = [];
-  Object.entries(resources!).forEach(([resourceName, resource]) => {
-    const resourceHooks = resource?.hooks ?? [];
-    console.log(resourceHooks);
+  Object.entries(endpoints!).forEach(([resourceName, resourceOptions]) => {
+    const { idField, resource, hooks = {} } = resourceOptions ?? {};
     routes.push(...[
       {
         path: `${path}/${resourceName}`,
         handler: {
           GET: resource?.find
             ? async (_req, ctx) => {
-              const find = hooks(resource.find, resourceHooks.find);
+              const find = _hooks(resource.find, hooks.find);
               const { params: _, query } = parseSearchParams(
                 ctx.url.searchParams,
               );
               const result = await find(query);
               return Response.json(result);
             }
-            : () => RESPONSES.notAllowed(),
+            : () => RESPONSES.notImplemented(),
           POST: resource?.create
             ? async (req, ctx) => {
-              const create = hooks(resource.create, resourceHooks.create);
+              const create = _hooks(resource.create, hooks.create);
               const { params: _ } = parseSearchParams(ctx.url.searchParams);
               const data = await parseRequestBody(req);
               const result = await create(data);
               return Response.json(result);
             }
-            : () => RESPONSES.notAllowed(),
+            : () => RESPONSES.notImplemented(),
         },
       } satisfies PluginRoute,
       {
@@ -82,38 +80,38 @@ export const api = (options?: ApiConfig): Plugin => {
         handler: {
           GET: resource?.get
             ? async (_req, ctx) => {
-              const get = hooks(resource.get, resourceHooks.get);
+              const get = _hooks(resource.get, hooks.get);
               const { params: _ } = parseSearchParams(ctx.url.searchParams);
               const result = await get(ctx.params.id);
               return Response.json(result);
             }
-            : () => RESPONSES.notAllowed(),
+            : () => RESPONSES.notImplemented(),
           PUT: resource?.update
             ? async (req, ctx) => {
-              const update = hooks(resource.update, resourceHooks.update);
+              const update = _hooks(resource.update, hooks.update);
               const { params: _ } = parseSearchParams(ctx.url.searchParams);
               const data = await parseRequestBody(req);
               const result = await update(ctx.params.id, data);
               return Response.json(result);
             }
-            : () => RESPONSES.notAllowed(),
+            : () => RESPONSES.notImplemented(),
           PATCH: resource?.patch
             ? async (req, ctx) => {
-              const patch = hooks(resource.patch, resourceHooks.patch);
+              const patch = _hooks(resource.patch, hooks.patch);
               const { params: _ } = parseSearchParams(ctx.url.searchParams);
               const data = await parseRequestBody(req);
               const result = await patch(ctx.params.id, data);
               return Response.json(result);
             }
-            : () => RESPONSES.notAllowed(),
+            : () => RESPONSES.notImplemented(),
           DELETE: resource?.remove
             ? async (_req, ctx) => {
-              const remove = hooks(resource.remove, resourceHooks.remove);
+              const remove = _hooks(resource.remove, hooks.remove);
               const { params: _ } = parseSearchParams(ctx.url.searchParams);
               const result = await remove(ctx.params.id);
               return Response.json(result);
             }
-            : () => RESPONSES.notAllowed(),
+            : () => RESPONSES.notImplemented(),
         },
       } satisfies PluginRoute,
     ]);

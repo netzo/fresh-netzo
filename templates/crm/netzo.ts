@@ -1,34 +1,23 @@
 import { Netzo } from "netzo/mod.ts";
-import { DenoKvResource } from "netzo/plugins/api/resources/denokv.ts";
-import { logRuntime } from "netzo/plugins/api/hooks.ts";
-
-const kv = await Deno.openKv();
+import { accounts } from "./resources/accounts.ts";
+import { contacts } from "./resources/contacts.ts";
+import { deals } from "./resources/deals.ts";
+import { interactions } from "./resources/interactions.ts";
+import { invoices } from "./resources/invoices.ts";
+import { transactions } from "./resources/transactions.ts";
 
 export const netzo = await Netzo({
   // auth: Deno.env.get("DENO_REGION") ? { providers: { netzo: {} } } : undefined,
   api: {
     // apiKey: Deno.env.get("NETZO_API_KEY"),
     path: "/api",
-    idField: "id",
-    resources: {
-      accounts: DenoKvResource({
-        kv,
-        prefix: ["accounts"],
-        hooks: {
-          find: [logRuntime],
-        },
-      }),
-      contacts: DenoKvResource({ kv, prefix: ["contacts"] }),
-      deals: DenoKvResource({ kv, prefix: ["deals"] }),
-      interactions: DenoKvResource({ kv, prefix: ["interactions"] }),
-      invoices: DenoKvResource({ kv, prefix: ["invoices"] }),
-      transactions: DenoKvResource({ kv, prefix: ["transactions"] }),
-      users: DenoKvResource({ kv, prefix: ["users"] }),
-    },
-    hooks: {
-      resources: {
-        account: [logRuntime],
-      },
+    endpoints: {
+      accounts,
+      contacts,
+      deals,
+      interactions,
+      invoices,
+      transactions,
     },
   },
   components: {},
