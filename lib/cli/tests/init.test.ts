@@ -1,107 +1,77 @@
 import { join } from "std/path/mod.ts";
-import { assertStringIncludes } from "std/assert/mod.ts";
+import { assert, assertStringIncludes } from "std/assert/mod.ts";
 import { retry } from "std/async/retry.ts";
+import $, { CommandBuilder } from "https://deno.land/x/dax@0.39.1/mod.ts";
 
-Deno.test("CLI init and task execution -- minimal", async () => {
+Deno.test("CLI init and task execution -- minimal", async (t) => {
   const tmpDirName = await Deno.makeTempDir();
-  const process = new Deno.Command(Deno.execPath(), {
-    args: [
-      "run",
-      "-A",
-      "./lib/cli/netzo.ts",
-      "init",
-      "minimal",
-      "--dir",
-      tmpDirName,
-    ],
-  }).spawn();
-  await process.status;
 
-  const checkProcess = new Deno.Command(Deno.execPath(), {
-    args: [
-      "task",
-      "ok",
-    ],
-    cwd: tmpDirName,
-  }).spawn();
-  await checkProcess.status;
+  await t.step("init project", async () => {
+    await executeAndAssert(
+      $`deno run -A ./lib/cli/netzo.ts init minimal --dir ${tmpDirName}`,
+    );
+  });
 
-  await retry(() => Deno.remove(tmpDirName, { recursive: true }));
+  await t.step("check netzo location", () => {
+    assertStringIncludes(netzoLocation(tmpDirName), Deno.cwd());
+  });
+
+  await t.step("format", async () => {
+    await executeAndAssert($`deno fmt --check`.cwd(tmpDirName));
+  });
+
+  await t.step("lint", async () => {
+    await executeAndAssert($`deno lint`.cwd(tmpDirName));
+  });
+
+  // TODO: fix type check https://github.com/netzo/netzo/issues/88
+  // await t.step("type check", async () => {
+  //   await executeAndAssert($`deno task check:types`.cwd(tmpDirName));
+  // });
+
+  await t.step("test", async () => {
+    await executeAndAssert($`deno task test --no-check`.cwd(tmpDirName));
+  });
+
+  await t.step("cleanup", async () => {
+    await retry(() => Deno.remove(tmpDirName, { recursive: true }));
+  });
 });
 
-Deno.test("CLI init and task execution -- crm", async () => {
+Deno.test("CLI init and task execution -- crm", async (t) => {
   const tmpDirName = await Deno.makeTempDir();
-  const process = new Deno.Command(Deno.execPath(), {
-    args: [
-      "run",
-      "-A",
-      "./lib/cli/netzo.ts",
-      "init",
-      "crm",
-      "--dir",
-      tmpDirName,
-    ],
-  }).spawn();
-  await process.status;
 
-  // WORKAROUND: this hack makes sure that we use the local version of the library for the template
-  // this allows the fix for preact signals cycles to go through right away, without having to wait
-  // for a new version (https://github.com/netzo/netzo/issues/86 should properly fix this)
-  const denoJsonPath = join(tmpDirName, "deno.json");
-  const denoJson = JSON.parse(Deno.readTextFileSync(denoJsonPath));
-  denoJson.imports["netzo/"] = join(Deno.cwd(), "lib/");
-  Deno.writeTextFileSync(
-    denoJsonPath,
-    JSON.stringify(denoJson, null, 2) + "\n",
-  );
+  await t.step("init project", async () => {
+    await executeAndAssert(
+      $`deno run -A ./lib/cli/netzo.ts init crm --dir ${tmpDirName}`,
+    );
+  });
 
-  // this won't work due to the state of type errors
-  // const checkProcess = new Deno.Command(Deno.execPath(), {
-  //   args: [
-  //     "task",
-  //     "ok",
-  //   ],
-  //   cwd: tmpDirName,
-  // }).spawn();
-  // await checkProcess.status;
+  await t.step("format", async () => {
+    await executeAndAssert($`deno fmt --check`.cwd(tmpDirName));
+  });
 
-  // delete the following three once the above is fixed
-  const checkProcess = new Deno.Command(Deno.execPath(), {
-    args: [
-      "fmt",
-      "--check",
-    ],
-    cwd: tmpDirName,
-  }).spawn();
-  await checkProcess.status;
+  await t.step("lint", async () => {
+    await executeAndAssert($`deno lint`.cwd(tmpDirName));
+  });
 
-  const lintProcess = new Deno.Command(Deno.execPath(), {
-    args: [
-      "lint",
-    ],
-    cwd: tmpDirName,
-  }).spawn();
-  await lintProcess.status;
+  // TODO: fix type check https://github.com/netzo/netzo/issues/88
+  // await t.step("type check", async () => {
+  //   await executeAndAssert($`deno task check:types`.cwd(tmpDirName));
+  // });
 
-  const testProcess = new Deno.Command(Deno.execPath(), {
-    args: [
-      "task",
-      "test",
-      "--no-check",
-    ],
-    cwd: tmpDirName,
-  }).spawn();
-  await testProcess.status;
+  await t.step("test", async () => {
+    await executeAndAssert($`deno task test --no-check`.cwd(tmpDirName));
+  });
 
-  await retry(() => Deno.remove(tmpDirName, { recursive: true }));
+  await t.step("cleanup", async () => {
+    await retry(() => Deno.remove(tmpDirName, { recursive: true }));
+  });
 });
 
 Deno.test("CLI init reflects changes in the template -- minimal", async () => {
   const tmpDirName = await Deno.makeTempDir();
-  const templateDir = join(
-    Deno.cwd(),
-    "./templates/minimal",
-  );
+  const templateDir = join(Deno.cwd(), "./templates/minimal");
   const newRoutePath = join(templateDir, "routes/foo.tsx");
   const newRouteContent = `export default function Home() {
   return <div>foo</div>;
@@ -111,35 +81,19 @@ Deno.test("CLI init reflects changes in the template -- minimal", async () => {
   try {
     await Deno.writeTextFile(newRoutePath, newRouteContent);
 
-    await new Deno.Command(Deno.execPath(), {
-      args: [
-        "run",
-        "-A",
-        "./lib/cli/netzo.ts",
-        "init",
-        "minimal",
-        "--dir",
-        tmpDirName,
-      ],
-    }).spawn().status;
+    await executeAndAssert(
+      $`deno run -A ./lib/cli/netzo.ts init minimal --dir ${tmpDirName}`,
+    );
 
     const newProjectRoutePath = join(tmpDirName, "routes/foo.tsx");
     const newProjectRouteContent = await Deno.readTextFile(newProjectRoutePath);
     assertStringIncludes(newProjectRouteContent, "foo");
 
-    const checkProcess = new Deno.Command(Deno.execPath(), {
-      args: [
-        "task",
-        "manifest",
-      ],
-      cwd: tmpDirName,
-      stdout: "piped",
-    }).spawn();
-    await checkProcess.status;
-    const { stdout } = await checkProcess.output();
-    const output = new TextDecoder().decode(stdout);
+    const manifestOutput = await executeAndAssert(
+      $`deno task manifest`.cwd(tmpDirName),
+    );
     assertStringIncludes(
-      output,
+      manifestOutput.combined,
       "The manifest has been generated for 2 routes and 0 islands.",
     );
   } finally {
@@ -147,3 +101,71 @@ Deno.test("CLI init reflects changes in the template -- minimal", async () => {
     await retry(() => Deno.remove(tmpDirName, { recursive: true }));
   }
 });
+
+Deno.test("remote CLI execution", async (t) => {
+  const commitSHA = Deno.env.get("GITHUB_SHA"); // always provided by github
+  const githubRepository = Deno.env.get("GITHUB_REPOSITORY"); // always provided by github
+  const latestRelease = Deno.env.get("LATEST_RELEASE"); // set via pozetroninc/github-action-get-latest-release
+
+  if (!commitSHA || !latestRelease || !githubRepository) {
+    console.log("Environment variables not set. Exiting test.");
+    return;
+  }
+
+  const tmpDirName = await Deno.makeTempDir();
+
+  await t.step("init project from current commit and verify", async () => {
+    const currentCommitUrl =
+      `https://raw.githubusercontent.com/${githubRepository}/${commitSHA}/lib/cli/netzo.ts`;
+
+    await executeAndAssert(
+      $`deno run -A ${currentCommitUrl} init minimal --dir ${tmpDirName}`,
+    );
+
+    assertStringIncludes(
+      netzoLocation(tmpDirName),
+      `https://raw.githubusercontent.com/${githubRepository}/${commitSHA}/`,
+    );
+  });
+
+  await t.step("cleanup after current commit test", async () => {
+    await retry(() => Deno.remove(tmpDirName, { recursive: true }));
+  });
+
+  const tmpDirNameForRelease = await Deno.makeTempDir();
+
+  await t.step("init project from latest release and verify", async () => {
+    const latestReleaseUrl =
+      `https://deno.land/x/netzo@${latestRelease}/cli/netzo.ts`;
+
+    await executeAndAssert(
+      $`deno run -A ${latestReleaseUrl} init minimal --dir ${tmpDirNameForRelease}`,
+    );
+
+    assertStringIncludes(
+      netzoLocation(tmpDirNameForRelease),
+      `https://deno.land/x/netzo@${latestRelease}/`,
+    );
+  });
+
+  await t.step("cleanup after latest release test", async () => {
+    await retry(() => Deno.remove(tmpDirNameForRelease, { recursive: true }));
+  });
+});
+
+function netzoLocation(tmpDirName: string) {
+  const denoJsonPath = join(tmpDirName, "deno.json");
+  const denoJson = JSON.parse(Deno.readTextFileSync(denoJsonPath));
+  return denoJson.imports["netzo/"];
+}
+
+async function executeAndAssert(commandBuilder: CommandBuilder) {
+  const result = await commandBuilder.stdout("piped").stderr("piped")
+    .captureCombined().noThrow();
+  assert(
+    result.code === 0,
+    `Command failed with code ${result.code} and output:
+${result.combined}`,
+  );
+  return result;
+}
