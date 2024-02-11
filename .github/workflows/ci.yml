@@ -15,6 +15,15 @@ jobs:
         os: [ubuntu-latest]
 
     steps:
+      - name: Get Latest Release
+        id: latest_release
+        uses: pozetroninc/github-action-get-latest-release@v0.7.0
+        with:
+          repository: 'netzo/netzo'
+
+      - name: Set Latest Release as Env Variable
+        run: echo "LATEST_RELEASE=${{ steps.latest_release.outputs.release }}" >> $GITHUB_ENV
+
       - name: Git Checkout
         uses: actions/checkout@v4
 
