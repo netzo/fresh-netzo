@@ -1,11 +1,21 @@
+import type {
+  HookContext,
+  NextFunction,
+} from "../../../deps/@feathersjs/hooks.ts";
 import type { ULID } from "../../../deps/ulid.ts";
 import { NotImplemented } from "../errors.ts";
+import type { Methods } from "../utils.ts";
 
 export * from "../utils.ts";
 
 export type ResourceOptions = {
   /* Name of the field to use as the ID for the items (defaults to "id"). */
   idField?: string;
+  /** An object mapping resource names an array of hooks to apply to the resource. */
+  hooks?: Record<
+    Methods[number],
+    Array<(context: HookContext, next: NextFunction) => Promise<void>>
+  >;
 };
 
 type MaybePromise<T> = (T | undefined) | Promise<T | undefined> | undefined;

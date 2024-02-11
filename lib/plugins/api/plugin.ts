@@ -1,4 +1,5 @@
 import type { Plugin, PluginRoute } from "../../deps/$fresh/server.ts";
+import { hooks } from "../../deps/@feathersjs/hooks.ts";
 import type { Resource } from "./resources/mod.ts";
 import {
   type Methods,
@@ -18,6 +19,8 @@ export type ApiConfig = {
   idField?: string;
   /** An object mapping resource names to resources instances. */
   resources: Record<Methods[number], Resource>;
+  /** An object mapping resource names an array of hooks to apply to the resource. */
+  hooks: Record<Methods[number], any>;
 };
 
 export type ApiState = {
@@ -41,27 +44,34 @@ export const api = (options?: ApiConfig): Plugin => {
 
   options.path ??= "/api";
   options.idField ??= "id";
+  options.hooks ??= {};
 
   const { apiKey, path, idField, resources } = options ?? {};
 
   const routes: Plugin["routes"] = [];
   Object.entries(resources!).forEach(([resourceName, resource]) => {
+    const resourceHooks = resource?.hooks ?? [];
+    console.log(resourceHooks);
     routes.push(...[
       {
         path: `${path}/${resourceName}`,
         handler: {
           GET: resource?.find
             ? async (_req, ctx) => {
-              const { params, query } = parseSearchParams(ctx.url.searchParams);
-              const result = await resource.find(query);
+              const find = hooks(resource.find, resourceHooks.find);
+              const { params: _, query } = parseSearchParams(
+                ctx.url.searchParams,
+              );
+              const result = await find(query);
               return Response.json(result);
             }
             : () => RESPONSES.notAllowed(),
           POST: resource?.create
             ? async (req, ctx) => {
-              const { params } = parseSearchParams(ctx.url.searchParams);
+              const create = hooks(resource.create, resourceHooks.create);
+              const { params: _ } = parseSearchParams(ctx.url.searchParams);
               const data = await parseRequestBody(req);
-              const result = await resource.create(data, idField);
+              const result = await create(data);
               return Response.json(result);
             }
             : () => RESPONSES.notAllowed(),
@@ -72,31 +82,35 @@ export const api = (options?: ApiConfig): Plugin => {
         handler: {
           GET: resource?.get
             ? async (_req, ctx) => {
-              const { params, query } = parseSearchParams(ctx.url.searchParams);
-              const result = await resource.get(ctx.params.id);
+              const get = hooks(resource.get, resourceHooks.get);
+              const { params: _ } = parseSearchParams(ctx.url.searchParams);
+              const result = await get(ctx.params.id);
               return Response.json(result);
             }
             : () => RESPONSES.notAllowed(),
           PUT: resource?.update
             ? async (req, ctx) => {
-              const { params } = parseSearchParams(ctx.url.searchParams);
+              const update = hooks(resource.update, resourceHooks.update);
+              const { params: _ } = parseSearchParams(ctx.url.searchParams);
               const data = await parseRequestBody(req);
-              const result = await resource.update(ctx.params.id, data);
+              const result = await update(ctx.params.id, data);
               return Response.json(result);
             }
             : () => RESPONSES.notAllowed(),
           PATCH: resource?.patch
             ? async (req, ctx) => {
-              const { params } = parseSearchParams(ctx.url.searchParams);
+              const patch = hooks(resource.patch, resourceHooks.patch);
+              const { params: _ } = parseSearchParams(ctx.url.searchParams);
               const data = await parseRequestBody(req);
-              const result = await resource.patch(ctx.params.id, data);
+              const result = await patch(ctx.params.id, data);
               return Response.json(result);
             }
             : () => RESPONSES.notAllowed(),
           DELETE: resource?.remove
             ? async (_req, ctx) => {
-              const { params } = parseSearchParams(ctx.url.searchParams);
-              const result = await resource.remove(ctx.params.id);
+              const remove = hooks(resource.remove, resourceHooks.remove);
+              const { params: _ } = parseSearchParams(ctx.url.searchParams);
+              const result = await remove(ctx.params.id);
               return Response.json(result);
             }
             : () => RESPONSES.notAllowed(),
