@@ -117,7 +117,7 @@ Deno.test("remote CLI execution", async (t) => {
   await t.step("init project from current commit and verify", async () => {
     const currentCommitUrl =
       `https://raw.githubusercontent.com/${githubRepository}/${commitSHA}/lib/cli/netzo.ts`;
-    console.log({ currentCommitUrl });
+
     await executeAndAssert(
       $`deno run -A ${currentCommitUrl} init minimal --dir ${tmpDirName}`,
     );
@@ -137,7 +137,7 @@ Deno.test("remote CLI execution", async (t) => {
   await t.step("init project from latest release and verify", async () => {
     const latestReleaseUrl =
       `https://deno.land/x/netzo@${latestRelease}/cli/netzo.ts`;
-    console.log({ latestReleaseUrl });
+
     await executeAndAssert(
       $`deno run -A ${latestReleaseUrl} init minimal --dir ${tmpDirNameForRelease}`,
     );
