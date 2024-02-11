@@ -16,7 +16,7 @@ function getDarkMode(): boolean {
     const localStorageTheme: "true" | "false" = localStorage.getItem(
       "netzo:darkMode",
     );
-    const systemSettingDark = window.matchMedia(
+    const systemSettingDark = globalThis.matchMedia(
       "(prefers-color-scheme: dark)",
     );
     if (localStorageTheme !== null) return localStorageTheme === "true";

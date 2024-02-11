@@ -1,7 +1,7 @@
 import { defineResource, type ResourceOptions } from "../plugins/api/types.ts";
 import { NotImplemented } from "../plugins/api/errors.ts";
 
-export type CustomResourceOptions = ResourceOptions & {};
+export type CustomResourceOptions = ResourceOptions;
 
 /**
  * Creates a Resource instance to perform RESTful operations on an CUSTOM resource
@@ -16,23 +16,23 @@ export const CustomResource = defineResource<CustomResourceOptions>(
       options: {
         idField,
       },
-      find: (query) => {
+      find: (_query) => {
         throw new NotImplemented();
       },
-      get: (id) => {
+      get: (_id) => {
         throw new NotImplemented();
       },
-      create: (data: T) => {
+      create: (_data: T) => {
         throw new NotImplemented();
       },
-      update: (id, data: T) => {
+      update: (_id, _data: T) => {
         throw new NotImplemented();
       },
-      patch: async (id, data: Partial<T>) => {
-        throw new NotImplemented();
+      patch: (_id, _data: Partial<T>) => {
+        Promise.reject(new NotImplemented());
       },
-      remove: async (id) => {
-        throw new NotImplemented();
+      remove: (_id) => {
+        Promise.reject(new NotImplemented());
       },
     };
   },

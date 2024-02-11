@@ -4,7 +4,7 @@ import { existsSync } from "../../../deps/std/fs/exists.ts";
 import { getContext /* loadModule */ } from "../../../deps/@featherscloud/pinion/mod.ts";
 
 export const add = async (cmd: string[]) => {
-  const [generatorFile, resource, name, ...argv] = cmd;
+  const [generatorFile, resource, _name, ...argv] = cmd;
 
   if (!generatorFile) {
     throw new Error("Please specify a generator file name");

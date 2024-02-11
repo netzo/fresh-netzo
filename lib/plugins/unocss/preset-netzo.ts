@@ -44,17 +44,17 @@ export function presetNetzo(
         collections: {
           mdi: () =>
             import("https://esm.sh/v135/@iconify-json/mdi/icons.json", {
-              assert: { type: "json" },
+              with: { type: "json" },
             }).then((i) => i.default),
           logos: () =>
             import("https://esm.sh/v135/@iconify-json/logos/icons.json", {
-              assert: { type: "json" },
+              with: { type: "json" },
             }).then((i) => i.default),
           "simple-icons": () =>
             import(
               "https://esm.sh/v135/@iconify-json/simple-icons/icons.json",
               {
-                assert: { type: "json" },
+                with: { type: "json" },
               }
             ).then((i) => i.default),
           netzo: {
