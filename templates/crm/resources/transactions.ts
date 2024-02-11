@@ -3,7 +3,7 @@ import { faker } from "npm:@faker-js/faker@8.4.0";
 import { ulid } from "netzo/plugins/api/utils.ts";
 import { defineAPIEndpoint } from "netzo/plugins/api/plugin.ts";
 import { DenoKvResource } from "netzo/plugins/api/resources/denokv.ts";
-import { logRuntime } from "netzo/plugins/api/hooks/mod.ts";
+import { logRuntime } from "netzo/plugins/api/hooks/log-runtime.ts";
 import { kv } from "./mod.ts";
 
 export const transactions = defineAPIEndpoint({

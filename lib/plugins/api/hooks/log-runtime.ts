@@ -1,9 +1,9 @@
-import { HookContext, NextFunction } from "../../../deps/@feathersjs/hooks.ts";
+import { defineHook } from "./mod.ts";
 
-export const logRuntime = async (ctx: HookContext, next: NextFunction) => {
+export const logRuntime = defineHook(async (ctx, next) => {
   console.log(ctx);
   const start = Date.now();
   await next();
   const duration = Date.now() - start;
   console.log(`[api] ${duration}ms`);
-};
+});
