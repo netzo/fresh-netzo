@@ -103,23 +103,53 @@ Deno.test("CLI init reflects changes in the template -- minimal", async () => {
 });
 
 Deno.test("remote CLI execution", async (t) => {
+  const commitSHA = Deno.env.get("GITHUB_SHA"); // always provided by github
+  const githubRepository = Deno.env.get("GITHUB_REPOSITORY"); // always provided by github
+  const latestRelease = Deno.env.get("LATEST_RELEASE"); // set via pozetroninc/github-action-get-latest-release
+
+  if (!commitSHA || !latestRelease || !githubRepository) {
+    console.log("Environment variables not set. Exiting test.");
+    return;
+  }
+
   const tmpDirName = await Deno.makeTempDir();
 
-  await t.step("init project", async () => {
-    await executeAndAssert(
-      $`deno run -A https://raw.githubusercontent.com/deer/netzo/improve_denojson_generation/lib/cli/netzo.ts init minimal --dir ${tmpDirName}`,
-    );
-  });
+  await t.step("init project from current commit and verify", async () => {
+    const currentCommitUrl =
+      `https://raw.githubusercontent.com/${githubRepository}/${commitSHA}/lib/cli/netzo.ts`;
 
-  await t.step("check netzo location", () => {
+    await executeAndAssert(
+      $`deno run -A ${currentCommitUrl} init minimal --dir ${tmpDirName}`,
+    );
+
     assertStringIncludes(
       netzoLocation(tmpDirName),
-      "https://raw.githubusercontent.com/deer/netzo/improve_denojson_generation",
+      `https://raw.githubusercontent.com/${githubRepository}/${commitSHA}/`,
     );
   });
 
-  await t.step("cleanup", async () => {
+  await t.step("cleanup after current commit test", async () => {
     await retry(() => Deno.remove(tmpDirName, { recursive: true }));
+  });
+
+  const tmpDirNameForRelease = await Deno.makeTempDir();
+
+  await t.step("init project from latest release and verify", async () => {
+    const latestReleaseUrl =
+      `https://deno.land/x/netzo@${latestRelease}/cli/netzo.ts`;
+
+    await executeAndAssert(
+      $`deno run -A ${latestReleaseUrl} init minimal --dir ${tmpDirNameForRelease}`,
+    );
+
+    assertStringIncludes(
+      netzoLocation(tmpDirNameForRelease),
+      `https://deno.land/x/netzo@${latestRelease}/`,
+    );
+  });
+
+  await t.step("cleanup after latest release test", async () => {
+    await retry(() => Deno.remove(tmpDirNameForRelease, { recursive: true }));
   });
 });
 
