@@ -33,11 +33,11 @@ jobs:
       - name: Format
         run: deno fmt --check
 
+      - name: Lint
+        run: deno lint --rules-exclude=no-explicit-any
+
       - name: Test
         run: deno test -A lib/cli/tests/
-
-      # - name: Lint
-      #   run: deno lint
 
       # - name: Tests
       #   run: deno test --allow-env --allow-net --allow-read --allow-run
