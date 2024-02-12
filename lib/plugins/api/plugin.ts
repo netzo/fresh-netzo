@@ -4,7 +4,7 @@ import {
   Middleware,
   middleware,
 } from "../../deps/@feathersjs/hooks.ts";
-import type { Method, Resource } from "./resources/mod.ts";
+import type { Resource } from "./resources/mod.ts";
 import { parseRequestBody, parseSearchParams } from "./utils.ts";
 
 export * from "./hooks/mod.ts";
@@ -63,91 +63,125 @@ export const api = (options?: ApiConfig): Plugin => {
   const routes: Plugin["routes"] = [];
   Object.entries(endpoints!).forEach(([name, endpoint]) => {
     const { idField = "id", resource, hooks } = endpoint ?? {};
+    const {
+      all: allHooks = [],
+      find: findHooks = [],
+      get: getHooks = [],
+      create: createHooks = [],
+      update: updateHooks = [],
+      patch: patchHooks = [],
+      remove: removeHooks = [],
+    } = hooks ?? {};
     routes.push(...[
       {
         path: `${path}/${name}`,
         handler: {
-          GET: async (req, ctx) => {
-            const find = hookify(
-              "find",
+          GET: async (request, ctx) => {
+            const find = _hooks(
+              resource.find,
+              middleware([...allHooks, ...findHooks]),
+            );
+            const findCtx = find.createContext({
+              method: "find",
               name,
               resource,
-              hooks,
-              req,
-            ) as typeof resource.find;
+              request,
+              url: ctx.url,
+            });
             const { params: _, query } = parseSearchParams(
               ctx.url.searchParams,
             );
-            const result = await find(query);
-            return Response.json(result);
+            // const finalCtx = await find(query);
+            const finalCtx = await find(query, findCtx);
+            return Response.json(finalCtx.result);
           },
-          POST: async (req, ctx) => {
-            const create = hookify(
-              "create",
+          POST: async (request, ctx) => {
+            const create = _hooks(
+              resource.create,
+              middleware([...allHooks, ...createHooks]),
+            );
+            const createCtx = create.createContext({
+              method: "create",
               name,
               resource,
-              hooks,
-              req,
-            ) as typeof resource.create;
+              request,
+              url: ctx.url,
+            });
             const { params: _ } = parseSearchParams(ctx.url.searchParams);
-            const data = await parseRequestBody(req);
-            const result = await create(data);
-            return Response.json(result);
+            const data = await parseRequestBody(request);
+            const finalCtx = await create(data, createCtx);
+            return Response.json(finalCtx.result);
           },
         },
       } satisfies PluginRoute,
       {
         path: `${path}/${name}/[id]`,
         handler: {
-          GET: async (req, ctx) => {
-            const get = hookify(
-              "get",
+          GET: async (request, ctx) => {
+            const get = _hooks(
+              resource.get,
+              middleware([...allHooks, ...getHooks]),
+            );
+            const getCtx = get.createContext({
+              method: "get",
               name,
               resource,
-              hooks,
-              req,
-            ) as typeof resource.get;
+              request,
+              url: ctx.url,
+            });
             const { params: _ } = parseSearchParams(ctx.url.searchParams);
-            const result = await get(ctx.params[idField]);
-            return Response.json(result);
+            const finalCtx = await get(ctx.params[idField], getCtx);
+            return Response.json(finalCtx.result);
           },
-          PUT: async (req, ctx) => {
-            const update = hookify(
-              "update",
+          PUT: async (request, ctx) => {
+            const update = _hooks(
+              resource.update,
+              middleware([...allHooks, ...updateHooks]),
+            );
+            const updateCtx = update.createContext({
+              method: "update",
               name,
               resource,
-              hooks,
-              req,
-            ) as typeof resource.update;
+              request,
+              url: ctx.url,
+            });
             const { params: _ } = parseSearchParams(ctx.url.searchParams);
-            const data = await parseRequestBody(req);
-            const result = await update(ctx.params[idField], data);
-            return Response.json(result);
+            const data = await parseRequestBody(request);
+            const finalCtx = await update(ctx.params[idField], data, updateCtx);
+            return Response.json(finalCtx.result);
           },
-          PATCH: async (req, ctx) => {
-            const patch = hookify(
-              "patch",
+          PATCH: async (request, ctx) => {
+            const patch = _hooks(
+              resource.patch,
+              middleware([...allHooks, ...patchHooks]),
+            );
+            const patchCtx = patch.createContext({
+              method: "patch",
               name,
               resource,
-              hooks,
-              req,
-            ) as typeof resource.patch;
+              request,
+              url: ctx.url,
+            });
             const { params: _ } = parseSearchParams(ctx.url.searchParams);
-            const data = await parseRequestBody(req);
-            const result = await patch(ctx.params[idField], data);
-            return Response.json(result);
+            const data = await parseRequestBody(request);
+            const finalCtx = await patch(ctx.params[idField], data, patchCtx);
+            return Response.json(finalCtx.result);
           },
-          DELETE: async (req, ctx) => {
-            const remove = hookify(
-              "remove",
+          DELETE: async (request, ctx) => {
+            const remove = _hooks(
+              resource.remove,
+              middleware([...allHooks, ...removeHooks]),
+            );
+            const removeCtx = remove.createContext({
+              method: "remove",
               name,
               resource,
-              hooks,
-              req,
-            ) as typeof resource.remove;
+              request,
+              url: ctx.url,
+            });
             const { params: _ } = parseSearchParams(ctx.url.searchParams);
-            const result = await remove(ctx.params[idField]);
-            return Response.json(result);
+            const finalCtx = await remove(ctx.params[idField], removeCtx);
+            return Response.json(finalCtx.result);
           },
         },
       } satisfies PluginRoute,
@@ -161,7 +195,7 @@ export const api = (options?: ApiConfig): Plugin => {
         path: path!,
         middleware: {
           // error handling middleware:
-          handler: async (_req, ctx) => {
+          handler: async (_request, ctx) => {
             try {
               return await ctx.next();
             } catch (error) {
@@ -178,27 +212,3 @@ export const api = (options?: ApiConfig): Plugin => {
     routes,
   };
 };
-
-function hookify(
-  method: Method,
-  name: string,
-  resource: ApiEndpoint["resource"],
-  hooks: ApiEndpoint["hooks"],
-  req: Request,
-) {
-  return _hooks(
-    resource[method],
-    middleware([
-      ...(hooks?.all ? hooks.all : []),
-      ...(hooks?.[method] ? hooks[method]! : []),
-    ])
-      .defaults((_self, _args, _context) => {
-        return {
-          method,
-          name,
-          resource,
-          req,
-        };
-      }),
-  );
-}

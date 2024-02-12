@@ -31,18 +31,17 @@ export const authenticate = (options?: AuthenticateOptions) => {
 
     if (!apiKey) return await next();
 
-    const url = new URL(ctx.req.url);
-    const origin = ctx.req.headers.get("origin")!; // e.g. https://my-project-906698.netzo.io
-    const referer = ctx.req.headers.get("referer")!; // SOMETIMES SET e.g. https://app.netzo.io/some-path
+    const origin = ctx.request.headers.get("origin")!; // e.g. https://my-project-906698.netzo.io
+    const referer = ctx.request.headers.get("referer")!; // SOMETIMES SET e.g. https://app.netzo.io/some-path
 
     // skip if request is from same origin or referer (to allow fetch within app)
-    const sameOrigin = !!origin && url.origin === origin;
-    const sameReferer = !!referer && referer?.startsWith(url.origin);
+    const sameOrigin = !!origin && ctx.url.origin === origin;
+    const sameReferer = !!referer && referer?.startsWith(ctx.url.origin);
     if (sameOrigin || sameReferer) return await next();
 
     // API key authentication
-    const apiKeyHeader = header && ctx.req.headers.get(header);
-    const apiKeySearchParams = param && url.searchParams.get(param);
+    const apiKeyHeader = header && ctx.request.headers.get(header);
+    const apiKeySearchParams = param && ctx.url.searchParams.get(param);
     const apiKeyValue = apiKeyHeader || apiKeySearchParams;
     if (!apiKeyValue) throw new NotAuthenticated("Missing API key");
     if (apiKeyValue !== apiKey) throw new NotAuthenticated("Invalid API key");
