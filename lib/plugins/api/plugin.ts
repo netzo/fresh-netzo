@@ -58,7 +58,7 @@ export const api = (options?: ApiConfig): Plugin => {
 
   const routes: Plugin["routes"] = [];
   Object.entries(endpoints!).forEach(([resourceName, resourceOptions]) => {
-    const { idField, resource, hooks = {} } = resourceOptions ?? {};
+    const { idField: _, resource, hooks = {} } = resourceOptions ?? {};
     routes.push(...[
       {
         path: `${path}/${resourceName}`,
@@ -145,7 +145,7 @@ function hookify(
       .params("req")
       .params("ctx")
       .params("method")
-      .defaults((self, args, context) => {
+      .defaults((_self, _args, _context) => {
         return { req, ctx, method };
       }),
   );

@@ -18,9 +18,6 @@ export const authenticate = (options: AuthenticateOptions) => {
   return defineHook(async (ctx, next) => {
     const { apiKey = Deno.env.get("NETZO_API_KEY")! } = options;
 
-    console.log({ apiKey });
-    console.log(ctx);
-
     if (!apiKey) return await next();
 
     const origin = ctx.req.headers.get("origin")!; // e.g. https://my-project-906698.netzo.io

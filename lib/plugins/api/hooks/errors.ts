@@ -6,10 +6,10 @@ import { defineHook } from "./mod.ts";
  * @returns a hook function
  */
 export const errors = () => {
-  return defineHook(async (ctx, next) => {
+  return defineHook(async (_ctx, next) => {
     try {
       await next();
-    } catch (error) {
+    } catch (_error) {
       // TODO: convert NetzoError/Error instances to HTTP Reponses
     }
   });
