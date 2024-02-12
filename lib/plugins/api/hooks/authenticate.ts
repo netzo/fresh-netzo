@@ -2,9 +2,16 @@ import { defineHook } from "./mod.ts";
 import { NotAuthenticated } from "../errors.ts";
 
 export type AuthenticateOptions = {
-  /** The API key to use for authenticating requests (defaults to Deno.env.get("NETZO_API_KEY"))
-   * IMPORTANT: set value using Deno.env.get(...) to keep it secret  */
+  /** The API key to use for authenticating requests
+   * (defaults to Deno.env.get("NETZO_API_KEY")) */
   apiKey?: string;
+  /** The header name to check for the API key (defaults to "x-api-key")
+   * Set to false to disable authentication via request header. */
+  header?: string | false;
+  /** The query parameter name to check for the API key (defaults to "$apiKey").
+   * Note that this MUST start with "$" to avoid being used as query parameter.
+   * Set to false to disable authentication via request query parameter. */
+  param?: `$${string}` | false;
 };
 
 /**
@@ -16,7 +23,11 @@ export type AuthenticateOptions = {
  */
 export const authenticate = (options?: AuthenticateOptions) => {
   return defineHook(async (ctx, next) => {
-    const { apiKey = Deno.env.get("NETZO_API_KEY")! } = options ?? {};
+    const {
+      apiKey = Deno.env.get("NETZO_API_KEY")!,
+      header = "x-api-key",
+      param = "$apiKey",
+    } = options ?? {};
 
     if (!apiKey) return await next();
 
@@ -30,8 +41,8 @@ export const authenticate = (options?: AuthenticateOptions) => {
     if (sameOrigin || sameReferer) return await next();
 
     // API key authentication
-    const apiKeyHeader = ctx.req.headers.get("x-api-key");
-    const apiKeySearchParams = url.searchParams.get("$apiKey");
+    const apiKeyHeader = header && ctx.req.headers.get(header);
+    const apiKeySearchParams = param && url.searchParams.get(param);
     const apiKeyValue = apiKeyHeader || apiKeySearchParams;
     if (!apiKeyValue) throw new NotAuthenticated("Missing API key");
     if (apiKeyValue !== apiKey) throw new NotAuthenticated("Invalid API key");
