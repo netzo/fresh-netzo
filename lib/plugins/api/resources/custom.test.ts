@@ -13,25 +13,25 @@ const todoSchema = z.object({
 type Todo = z.infer<typeof todoSchema>;
 
 Deno.test("[api/resources] CustomResource", async (t) => {
-  const $todos = CustomResource<Todo>({
+  const resource = CustomResource<Todo>({
     idField: "id",
   });
 
   await t.step("declarations", () => {
-    assertExists($todos);
+    assertExists(resource);
   });
 
-  await t.step("$todos.find()", () => {
-    assertThrows(() => $todos.find());
+  await t.step("resource.find()", () => {
+    assertThrows(() => resource.find());
   });
 
-  await t.step("$todos.get(1)", () => {
-    assertThrows(() => $todos.get(1));
+  await t.step("resource.get(1)", () => {
+    assertThrows(() => resource.get(1));
   });
 
-  await t.step("$todos.create()", () => {
+  await t.step("resource.create()", () => {
     assertThrows(() =>
-      $todos.create({
+      resource.create({
         userId: 1,
         title: "lorem ipsum",
         completed: true,
@@ -39,9 +39,9 @@ Deno.test("[api/resources] CustomResource", async (t) => {
     );
   });
 
-  await t.step("$todos.update(1)", () => {
+  await t.step("resource.update(1)", () => {
     assertThrows(() =>
-      $todos.update(1, {
+      resource.update(1, {
         id: 1,
         userId: 1,
         title: "lorem ipsum",
@@ -50,15 +50,15 @@ Deno.test("[api/resources] CustomResource", async (t) => {
     );
   });
 
-  await t.step("$todos.patch(1)", () => {
+  await t.step("resource.patch(1)", () => {
     assertThrows(() =>
-      $todos.patch(1, {
+      resource.patch(1, {
         title: "lorem ipsum",
       })
     );
   });
 
-  await t.step("$todos.delete(1)", () => {
-    assertThrows(() => $todos.remove(1));
+  await t.step("resource.delete(1)", () => {
+    assertThrows(() => resource.remove(1));
   });
 });

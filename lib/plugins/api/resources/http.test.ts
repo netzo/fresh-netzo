@@ -19,28 +19,28 @@ Deno.test("[api/resources] HttpResource", async (t) => {
     headers: { "content-type": "application/json" },
   });
 
-  const $todos = HttpResource<Todo>({
+  const resource = HttpResource<Todo>({
     client: api.todos,
     idField: "id",
   });
 
   await t.step("declarations", () => {
     assertExists(api);
-    assertExists($todos);
+    assertExists(resource);
   });
 
-  await t.step("$todos.find()", async () => {
-    const todos = await $todos.find();
+  await t.step("resource.find()", async () => {
+    const todos = await resource.find();
     assertEquals(todos?.length, 200);
   });
 
-  await t.step("$todos.get(1)", async () => {
-    const todo = await $todos.get(1);
+  await t.step("resource.get(1)", async () => {
+    const todo = await resource.get(1);
     assertEquals(todo?.id, 1);
   });
 
-  await t.step("$todos.create()", async () => {
-    const todo = await $todos.create({
+  await t.step("resource.create()", async () => {
+    const todo = await resource.create({
       userId: 1,
       title: "lorem ipsum",
       completed: true,
@@ -48,8 +48,8 @@ Deno.test("[api/resources] HttpResource", async (t) => {
     assertExists(todo);
   });
 
-  await t.step("$todos.update(1)", async () => {
-    const todo = await $todos.update(1, {
+  await t.step("resource.update(1)", async () => {
+    const todo = await resource.update(1, {
       id: 1,
       userId: 1,
       title: "lorem ipsum",
@@ -58,13 +58,13 @@ Deno.test("[api/resources] HttpResource", async (t) => {
     assertExists(todo);
   });
 
-  await t.step("$todos.patch(1)", async () => {
-    const todo = await $todos.patch(1, { completed: true });
+  await t.step("resource.patch(1)", async () => {
+    const todo = await resource.patch(1, { completed: true });
     assertExists(todo);
   });
 
-  await t.step("$todos.delete(1)", async () => {
-    const todo = await $todos.remove(1);
+  await t.step("resource.delete(1)", async () => {
+    const todo = await resource.remove(1);
     assertExists(todo);
   });
 });
