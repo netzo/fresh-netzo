@@ -1,5 +1,10 @@
 import { defineHook } from "./mod.ts";
 
+/**
+ * A hook that logs general request information to the console.
+ *
+ * @returns a hook function
+ */
 export const log = () => {
   return defineHook(async (ctx, next) => {
     const start = new Date();
