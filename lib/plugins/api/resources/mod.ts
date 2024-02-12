@@ -31,6 +31,7 @@ export type Resource<T = unknown> = {
   update: (id: Id, data: T) => MaybePromise<T>;
   patch: (id: Id, data: Partial<T>) => MaybePromise<T>;
   remove: (id: Id) => MaybePromise<{ ok: boolean }>;
+  [k: string]: unknown; // circumvent Resource has no index signature
 };
 
 /**
