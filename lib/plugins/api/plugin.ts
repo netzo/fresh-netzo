@@ -1,5 +1,14 @@
-import type { Plugin, PluginRoute } from "../../deps/$fresh/server.ts";
-import { hooks as _hooks } from "../../deps/@feathersjs/hooks.ts";
+import type {
+  FreshContext,
+  Plugin,
+  PluginRoute,
+} from "../../deps/$fresh/server.ts";
+import {
+  hooks as _hooks,
+  Middleware,
+  middleware,
+} from "../../deps/@feathersjs/hooks.ts";
+import type { NetzoState } from "../../mod.ts";
 import type { Resource } from "./resources/mod.ts";
 import {
   type Methods,
@@ -14,7 +23,7 @@ export type ApiEndpoint = {
   /** The resource instance to use for performing RESTful operations. */
   resource: Resource;
   /** An object mapping resource names an array of hooks to apply to the resource. */
-  hooks?: Record<Methods[number], any>;
+  hooks?: Record<Methods[number], Middleware[]>;
 };
 
 export const defineAPIEndpoint = (options: ApiEndpoint): ApiEndpoint => options;
@@ -55,8 +64,8 @@ export const api = (options?: ApiConfig): Plugin => {
         path: `${path}/${resourceName}`,
         handler: {
           GET: resource?.find
-            ? async (_req, ctx) => {
-              const find = _hooks(resource.find, hooks.find);
+            ? async (req, ctx) => {
+              const find = hookify("find", resource, hooks, req, ctx);
               const { params: _, query } = parseSearchParams(
                 ctx.url.searchParams,
               );
@@ -66,7 +75,7 @@ export const api = (options?: ApiConfig): Plugin => {
             : () => RESPONSES.notImplemented(),
           POST: resource?.create
             ? async (req, ctx) => {
-              const create = _hooks(resource.create, hooks.create);
+              const create = hookify("create", resource, hooks, req, ctx);
               const { params: _ } = parseSearchParams(ctx.url.searchParams);
               const data = await parseRequestBody(req);
               const result = await create(data);
@@ -79,8 +88,8 @@ export const api = (options?: ApiConfig): Plugin => {
         path: `${path}/${resourceName}/[id]`,
         handler: {
           GET: resource?.get
-            ? async (_req, ctx) => {
-              const get = _hooks(resource.get, hooks.get);
+            ? async (req, ctx) => {
+              const get = hookify("get", resource, hooks, req, ctx);
               const { params: _ } = parseSearchParams(ctx.url.searchParams);
               const result = await get(ctx.params.id);
               return Response.json(result);
@@ -88,7 +97,7 @@ export const api = (options?: ApiConfig): Plugin => {
             : () => RESPONSES.notImplemented(),
           PUT: resource?.update
             ? async (req, ctx) => {
-              const update = _hooks(resource.update, hooks.update);
+              const update = hookify("update", resource, hooks, req, ctx);
               const { params: _ } = parseSearchParams(ctx.url.searchParams);
               const data = await parseRequestBody(req);
               const result = await update(ctx.params.id, data);
@@ -97,7 +106,7 @@ export const api = (options?: ApiConfig): Plugin => {
             : () => RESPONSES.notImplemented(),
           PATCH: resource?.patch
             ? async (req, ctx) => {
-              const patch = _hooks(resource.patch, hooks.patch);
+              const patch = hookify("patch", resource, hooks, req, ctx);
               const { params: _ } = parseSearchParams(ctx.url.searchParams);
               const data = await parseRequestBody(req);
               const result = await patch(ctx.params.id, data);
@@ -105,8 +114,8 @@ export const api = (options?: ApiConfig): Plugin => {
             }
             : () => RESPONSES.notImplemented(),
           DELETE: resource?.remove
-            ? async (_req, ctx) => {
-              const remove = _hooks(resource.remove, hooks.remove);
+            ? async (req, ctx) => {
+              const remove = hookify("remove", resource, hooks, req, ctx);
               const { params: _ } = parseSearchParams(ctx.url.searchParams);
               const result = await remove(ctx.params.id);
               return Response.json(result);
@@ -117,76 +126,27 @@ export const api = (options?: ApiConfig): Plugin => {
     ]);
   });
 
-  return {
-    name: "api",
-    middlewares: [
-      {
-        path: path!,
-        middleware: {
-          handler: async (req, ctx) => {
-            try {
-              if (!["route"].includes(ctx.destination)) return await ctx.next();
-              if (!apiKey) return await ctx.next();
-
-              const origin = req.headers.get("origin")!; // e.g. https://my-project-906698.netzo.io
-              const referer = req.headers.get("referer")!; // SOMETIMES SET e.g. https://app.netzo.io/some-path
-
-              // skip if request is from same origin or referer (to allow fetch within app)
-              const sameOrigin = origin && ctx.url.origin === origin;
-              const sameReferer = referer &&
-                referer?.startsWith(ctx.url.origin);
-              if (sameOrigin || sameReferer) {
-                return await ctx.next();
-              }
-
-              // API key authentication
-              const apiKeyHeader = req.headers.get("x-api-key");
-              const apiKeySearchParams = ctx.url.searchParams.get("apiKey");
-              const apiKeyValue = apiKeyHeader || apiKeySearchParams;
-              if (!apiKeyValue) return RESPONSES.missingApiKey();
-              if (apiKeyValue !== apiKey) return RESPONSES.invalidApiKey();
-              ctx.url.searchParams.delete("apiKey"); // remove apiKey from query
-
-              return await ctx.next();
-            } catch (error) {
-              return toErrorResponse(error);
-            }
-          },
-        },
-      },
-    ],
-    routes,
-  };
+  return { name: "api", routes };
 };
 
-/**
- * Returns the converted HTTP error response from the given error. If the error
- * is an instance of {@linkcode Deno.errors.NotFound}, a HTTP 404 Not Found
- * error response is returned. This is done to translate errors thrown from
- * logic that's separated by concerns.
- *
- * If the error is a HTTP-flavored error, the corresponding HTTP error response
- * is returned.
- *
- * If the error is a generic error, a HTTP 500 Internal Server error response
- * is returned.
- *
- * @see {@link https://deno.land/std/http/status.ts}
- *
- * @example
- * ```ts
- * import { toErrorResponse } from "@/plugins/error_handling.ts";
- * import { errors } from "../deps/std/http/status.ts";
- *
- * const resp = toErrorResponse(new errors.NotFound("User not found"));
- * resp.status; // Returns 404
- * await resp.text(); // Returns "User not found"
- * ```
- */
-// deno-lint-ignore no-explicit-any
-export function toErrorResponse(error: any) {
-  if (error instanceof Deno.errors.NotFound) {
-    return new Response(error.message, { status: 404 });
-  }
-  return new Response(error.message); // TODO: use custom HttpError class to retain status code
+function hookify(
+  method: Methods[number],
+  resource: ApiEndpoint["resource"],
+  hooks: ApiEndpoint["hooks"],
+  req: Request,
+  ctx: FreshContext<NetzoState>,
+) {
+  return _hooks(
+    resource[method],
+    middleware([
+      ...hooks.all,
+      ...hooks[method],
+    ])
+      .params("req")
+      .params("ctx")
+      .params("method")
+      .defaults((self, args, context) => {
+        return { req, ctx, method };
+      }),
+  );
 }

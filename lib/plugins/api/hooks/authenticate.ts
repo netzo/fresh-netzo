@@ -18,23 +18,27 @@ export const authenticate = (options: AuthenticateOptions) => {
   return defineHook(async (ctx, next) => {
     const { apiKey = Deno.env.get("NETZO_API_KEY")! } = options;
 
+    console.log({ apiKey });
+    console.log(ctx);
+
     if (!apiKey) return await next();
 
     const origin = ctx.req.headers.get("origin")!; // e.g. https://my-project-906698.netzo.io
     const referer = ctx.req.headers.get("referer")!; // SOMETIMES SET e.g. https://app.netzo.io/some-path
 
+    const url = new URL(ctx.req.url);
     // skip if request is from same origin or referer (to allow fetch within app)
-    const sameOrigin = origin && ctx.url.origin === origin;
-    const sameReferer = referer && referer?.startsWith(ctx.url.origin);
-    if (sameOrigin || sameReferer) return await ctx.next();
+    const sameOrigin = origin && url.origin === origin;
+    const sameReferer = referer && referer?.startsWith(url.origin);
+    if (sameOrigin || sameReferer) return await next();
 
     // API key authentication
     const apiKeyHeader = ctx.req.headers.get("x-api-key");
-    const apiKeySearchParams = ctx.url.searchParams.get("apiKey");
+    const apiKeySearchParams = url.searchParams.get("apiKey");
     const apiKeyValue = apiKeyHeader || apiKeySearchParams;
     if (!apiKeyValue) return RESPONSES.missingApiKey();
     if (apiKeyValue !== apiKey) return RESPONSES.invalidApiKey();
-    ctx.url.searchParams.delete("apiKey"); // remove apiKey from query
+    url.searchParams.delete("apiKey"); // remove apiKey from query
 
     await next();
   });
