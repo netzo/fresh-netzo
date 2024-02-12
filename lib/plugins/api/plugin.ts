@@ -19,7 +19,15 @@ export type ApiEndpoint = {
   /** The resource instance to use for performing RESTful operations. */
   resource: Resource;
   /** An object mapping resource names an array of hooks to apply to the resource. */
-  hooks?: Record<"all" | Method, Middleware[]>;
+  hooks?: {
+    all?: Middleware[];
+    find?: Middleware[];
+    get?: Middleware[];
+    create?: Middleware[];
+    update?: Middleware[];
+    patch?: Middleware[];
+    remove?: Middleware[];
+  };
 };
 
 export const defineAPIEndpoint = (options: ApiEndpoint): ApiEndpoint => options;
@@ -182,7 +190,7 @@ function hookify(
     resource[method],
     middleware([
       ...(hooks?.all ? hooks.all : []),
-      ...(hooks?.[method] ? hooks[method] : []),
+      ...(hooks?.[method] ? hooks[method]! : []),
     ])
       .defaults((_self, _args, _context) => {
         return {
