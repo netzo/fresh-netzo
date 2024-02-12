@@ -2,7 +2,7 @@ import type { Resource, ResourceOptions } from "./mod.ts";
 import { ERRORS, filterObjectsByKeyValues, ulid } from "../utils.ts";
 
 export type DenoKvResourceOptions = ResourceOptions & {
-  /* The Deno KV store to use. */
+  /* The Deno KV store to use (use Deno.openKv(":memory:") for in-memory storage) */
   kv: Deno.Kv;
   /* The KV prefix location of the resource e.g. ["users"] */
   prefix?: Deno.KvKey;
