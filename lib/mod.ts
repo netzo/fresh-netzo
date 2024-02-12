@@ -99,7 +99,7 @@ export const Netzo = async (config: Partial<NetzoConfig>) => {
   return {
     kv,
     resource: Object.entries(config.api?.endpoints ?? {})?.length
-      ? (endpointPath: string) => config.api!.endpoints[endpointPath]?.resource
+      ? (name: string) => config.api!.endpoints[name]?.resource
       : undefined,
     config,
     start: async () => {

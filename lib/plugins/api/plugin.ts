@@ -4,10 +4,8 @@ import {
   Middleware,
   middleware,
 } from "../../deps/@feathersjs/hooks.ts";
-import type { NetzoState } from "../../mod.ts";
 import type { Method, Resource } from "./resources/mod.ts";
 import { parseRequestBody, parseSearchParams } from "./utils.ts";
-import { NotImplemented } from "./errors.ts";
 
 export * from "./hooks/mod.ts";
 export * from "./resources/mod.ts";
@@ -55,83 +53,94 @@ export const api = (options?: ApiConfig): Plugin => {
   const { path = "/api", endpoints = {} } = options ?? {};
 
   const routes: Plugin["routes"] = [];
-  Object.entries(endpoints!).forEach(([endpointPath, endpoint]) => {
-    const { idField: _, resource, hooks } = endpoint ?? {};
+  Object.entries(endpoints!).forEach(([name, endpoint]) => {
+    const { idField = "id", resource, hooks } = endpoint ?? {};
     routes.push(...[
       {
-        path: `${path}/${endpointPath}`,
+        path: `${path}/${name}`,
         handler: {
-          GET: resource?.find
-            ? async (req, ctx) => {
-              const find = hookify("find", resource, hooks, req, ctx.state);
-              const { params: _, query } = parseSearchParams(
-                ctx.url.searchParams,
-              );
-              const result = await find(query);
-              console.log(result);
-              return Response.json(result);
-            }
-            : () => {
-              throw new NotImplemented("Method not implemented");
-            },
-          POST: resource?.create
-            ? async (req, ctx) => {
-              const create = hookify("create", resource, hooks, req, ctx.state);
-              const { params: _ } = parseSearchParams(ctx.url.searchParams);
-              const data = await parseRequestBody(req);
-              const result = await create(data);
-              return Response.json(result);
-            }
-            : () => {
-              throw new NotImplemented("Method not implemented");
-            },
+          GET: async (req, ctx) => {
+            const find = hookify(
+              "find",
+              name,
+              resource,
+              hooks,
+              req,
+            ) as typeof resource.find;
+            const { params: _, query } = parseSearchParams(
+              ctx.url.searchParams,
+            );
+            const result = await find(query);
+            return Response.json(result);
+          },
+          POST: async (req, ctx) => {
+            const create = hookify(
+              "create",
+              name,
+              resource,
+              hooks,
+              req,
+            ) as typeof resource.create;
+            const { params: _ } = parseSearchParams(ctx.url.searchParams);
+            const data = await parseRequestBody(req);
+            const result = await create(data);
+            return Response.json(result);
+          },
         },
       } satisfies PluginRoute,
       {
-        path: `${path}/${endpointPath}/[id]`,
+        path: `${path}/${name}/[id]`,
         handler: {
-          GET: resource?.get
-            ? async (req, ctx) => {
-              const get = hookify("get", resource, hooks, req, ctx.state);
-              const { params: _ } = parseSearchParams(ctx.url.searchParams);
-              const result = await get(ctx.params.id);
-              return Response.json(result);
-            }
-            : () => {
-              throw new NotImplemented("Method not implemented");
-            },
-          PUT: resource?.update
-            ? async (req, ctx) => {
-              const update = hookify("update", resource, hooks, req, ctx.state);
-              const { params: _ } = parseSearchParams(ctx.url.searchParams);
-              const data = await parseRequestBody(req);
-              const result = await update(ctx.params.id, data);
-              return Response.json(result);
-            }
-            : () => {
-              throw new NotImplemented("Method not implemented");
-            },
-          PATCH: resource?.patch
-            ? async (req, ctx) => {
-              const patch = hookify("patch", resource, hooks, req, ctx.state);
-              const { params: _ } = parseSearchParams(ctx.url.searchParams);
-              const data = await parseRequestBody(req);
-              const result = await patch(ctx.params.id, data);
-              return Response.json(result);
-            }
-            : () => {
-              throw new NotImplemented("Method not implemented");
-            },
-          DELETE: resource?.remove
-            ? async (req, ctx) => {
-              const remove = hookify("remove", resource, hooks, req, ctx.state);
-              const { params: _ } = parseSearchParams(ctx.url.searchParams);
-              const result = await remove(ctx.params.id);
-              return Response.json(result);
-            }
-            : () => {
-              throw new NotImplemented("Method not implemented");
-            },
+          GET: async (req, ctx) => {
+            const get = hookify(
+              "get",
+              name,
+              resource,
+              hooks,
+              req,
+            ) as typeof resource.get;
+            const { params: _ } = parseSearchParams(ctx.url.searchParams);
+            const result = await get(ctx.params[idField]);
+            return Response.json(result);
+          },
+          PUT: async (req, ctx) => {
+            const update = hookify(
+              "update",
+              name,
+              resource,
+              hooks,
+              req,
+            ) as typeof resource.update;
+            const { params: _ } = parseSearchParams(ctx.url.searchParams);
+            const data = await parseRequestBody(req);
+            const result = await update(ctx.params[idField], data);
+            return Response.json(result);
+          },
+          PATCH: async (req, ctx) => {
+            const patch = hookify(
+              "patch",
+              name,
+              resource,
+              hooks,
+              req,
+            ) as typeof resource.patch;
+            const { params: _ } = parseSearchParams(ctx.url.searchParams);
+            const data = await parseRequestBody(req);
+            const result = await patch(ctx.params[idField], data);
+            return Response.json(result);
+          },
+          DELETE: async (req, ctx) => {
+            const remove = hookify(
+              "remove",
+              name,
+              resource,
+              hooks,
+              req,
+            ) as typeof resource.remove;
+            const { params: _ } = parseSearchParams(ctx.url.searchParams);
+            const result = await remove(ctx.params[idField]);
+            return Response.json(result);
+          },
         },
       } satisfies PluginRoute,
     ]);
@@ -164,10 +173,10 @@ export const api = (options?: ApiConfig): Plugin => {
 
 function hookify(
   method: Method,
+  name: string,
   resource: ApiEndpoint["resource"],
   hooks: ApiEndpoint["hooks"],
   req: Request,
-  state: NetzoState,
 ) {
   return _hooks(
     resource[method],
@@ -175,11 +184,13 @@ function hookify(
       ...(hooks?.all ? hooks.all : []),
       ...(hooks?.[method] ? hooks[method] : []),
     ])
-      .params("req")
-      .params("ctx")
-      .params("method")
       .defaults((_self, _args, _context) => {
-        return { req, state, method };
+        return {
+          method,
+          name,
+          resource,
+          req,
+        };
       }),
   );
 }
