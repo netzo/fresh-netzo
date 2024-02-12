@@ -12,7 +12,7 @@ export type HttpResourceOptions = ResourceOptions & {
 /**
  * Creates a Resource instance to perform RESTful operations on an HTTP resource
  * @param options {HttpResourceOptions} - resource options object
- * @returns a Resource instance with methods for performing RESTful operations on the HTTP resource
+ * @returns a Resource instance for performing RESTful operations on the HTTP resource
  */
 export const HttpResource = <T = Record<string, unknown>>(
   options: HttpResourceOptions,

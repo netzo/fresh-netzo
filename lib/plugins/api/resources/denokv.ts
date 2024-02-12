@@ -11,7 +11,7 @@ export type DenoKvResourceOptions = ResourceOptions & {
 /**
  * Creates a Resource instance to perform RESTful operations on a Deno KV resource
  * @param options {DenoKvResourceOptions} - resource options object
- * @returns a Resource instance with methods for performing RESTful operations on the KV resource
+ * @returns a Resource instance for performing RESTful operations on the KV resource
  */
 export const DenoKvResource = <T = Record<string, unknown>>(
   options: DenoKvResourceOptions,

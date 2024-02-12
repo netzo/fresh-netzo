@@ -4,16 +4,17 @@ import type {
 } from "../../../deps/@feathersjs/hooks.ts";
 import type { ULID } from "../../../deps/ulid.ts";
 import { NotImplemented } from "../errors.ts";
-import type { Methods } from "../utils.ts";
 
 export * from "../utils.ts";
+
+export type Method = "find" | "get" | "create" | "update" | "patch" | "remove";
 
 export type ResourceOptions = {
   /* Name of the field to use as the ID for the items (defaults to "id"). */
   idField?: string;
   /** An object mapping resource names an array of hooks to apply to the resource. */
   hooks?: Record<
-    Methods[number],
+    Method,
     Array<(context: HookContext, next: NextFunction) => Promise<void>>
   >;
 };
@@ -37,7 +38,7 @@ export type Resource<T = unknown> = {
 /**
  * Creates a Resource instance to perform RESTful operations on an arbitrary resource
  * @param options {ResourceOptions} - resource options object
- * @returns a Resource instance with methods for performing RESTful operations on the resource
+ * @returns a Resource instance for performing RESTful operations on the resource
  */
 export const Resource = <T = Record<string, unknown>>(
   options: ResourceOptions,

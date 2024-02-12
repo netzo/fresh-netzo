@@ -1,5 +1,5 @@
-import { RESPONSES } from "../utils.ts";
 import { defineHook } from "./mod.ts";
+import { NotAuthenticated } from "../errors.ts";
 
 export type AuthenticateOptions = {
   /** The API key to use for authenticating requests.
@@ -20,23 +20,27 @@ export const authenticate = (options: AuthenticateOptions) => {
 
     if (!apiKey) return await next();
 
+    const url = new URL(ctx.req.url);
     const origin = ctx.req.headers.get("origin")!; // e.g. https://my-project-906698.netzo.io
     const referer = ctx.req.headers.get("referer")!; // SOMETIMES SET e.g. https://app.netzo.io/some-path
 
-    const url = new URL(ctx.req.url);
     // skip if request is from same origin or referer (to allow fetch within app)
-    const sameOrigin = origin && url.origin === origin;
-    const sameReferer = referer && referer?.startsWith(url.origin);
-    if (sameOrigin || sameReferer) return await next();
+    const sameOrigin = !!origin && url.origin === origin;
+    const sameReferer = !!referer && referer?.startsWith(url.origin);
+    // if (sameOrigin || sameReferer) return await next();
+
+    console.log({ origin, referer, sameOrigin, sameReferer });
 
     // API key authentication
     const apiKeyHeader = ctx.req.headers.get("x-api-key");
     const apiKeySearchParams = url.searchParams.get("apiKey");
     const apiKeyValue = apiKeyHeader || apiKeySearchParams;
-    if (!apiKeyValue) return RESPONSES.missingApiKey();
-    if (apiKeyValue !== apiKey) return RESPONSES.invalidApiKey();
+    if (!apiKeyValue) throw new NotAuthenticated("Missing API key");
+    if (apiKeyValue !== apiKey) throw new NotAuthenticated("Invalid API key");
     url.searchParams.delete("apiKey"); // remove apiKey from query
 
     await next();
+    console.log("DATA:", ctx.data);
+    console.log("RESULT:", ctx.result);
   });
 };

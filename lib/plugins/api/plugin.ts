@@ -1,21 +1,13 @@
-import type {
-  FreshContext,
-  Plugin,
-  PluginRoute,
-} from "../../deps/$fresh/server.ts";
+import type { Plugin, PluginRoute } from "../../deps/$fresh/server.ts";
 import {
   hooks as _hooks,
   Middleware,
   middleware,
 } from "../../deps/@feathersjs/hooks.ts";
 import type { NetzoState } from "../../mod.ts";
-import type { Resource } from "./resources/mod.ts";
-import {
-  type Methods,
-  parseRequestBody,
-  parseSearchParams,
-  RESPONSES,
-} from "./utils.ts";
+import type { Method, Resource } from "./resources/mod.ts";
+import { parseRequestBody, parseSearchParams } from "./utils.ts";
+import { NotImplemented } from "./errors.ts";
 
 export type ApiEndpoint = {
   /** The field name to use as the primary key. Defaults to "id". */
@@ -23,7 +15,7 @@ export type ApiEndpoint = {
   /** The resource instance to use for performing RESTful operations. */
   resource: Resource;
   /** An object mapping resource names an array of hooks to apply to the resource. */
-  hooks?: Record<Methods[number], Middleware[]>;
+  hooks?: Record<Method, Middleware[]>;
 };
 
 export const defineAPIEndpoint = (options: ApiEndpoint): ApiEndpoint => options;
@@ -32,7 +24,7 @@ export type ApiConfig = {
   /** The route path to mount the API on. Defaults to "/api". */
   path?: string;
   /** An object mapping resource names to resources instances. */
-  endpoints: Record<Methods[number], ApiEndpoint>;
+  endpoints: Record<Method, ApiEndpoint>;
 };
 
 export type ApiState = {
@@ -65,23 +57,28 @@ export const api = (options?: ApiConfig): Plugin => {
         handler: {
           GET: resource?.find
             ? async (req, ctx) => {
-              const find = hookify("find", resource, hooks, req, ctx);
+              const find = hookify("find", resource, hooks, req, ctx.state);
               const { params: _, query } = parseSearchParams(
                 ctx.url.searchParams,
               );
               const result = await find(query);
+              console.log(result);
               return Response.json(result);
             }
-            : () => RESPONSES.notImplemented(),
+            : () => {
+              throw new NotImplemented("Method not implemented");
+            },
           POST: resource?.create
             ? async (req, ctx) => {
-              const create = hookify("create", resource, hooks, req, ctx);
+              const create = hookify("create", resource, hooks, req, ctx.state);
               const { params: _ } = parseSearchParams(ctx.url.searchParams);
               const data = await parseRequestBody(req);
               const result = await create(data);
               return Response.json(result);
             }
-            : () => RESPONSES.notImplemented(),
+            : () => {
+              throw new NotImplemented("Method not implemented");
+            },
         },
       } satisfies PluginRoute,
       {
@@ -89,64 +86,94 @@ export const api = (options?: ApiConfig): Plugin => {
         handler: {
           GET: resource?.get
             ? async (req, ctx) => {
-              const get = hookify("get", resource, hooks, req, ctx);
+              const get = hookify("get", resource, hooks, req, ctx.state);
               const { params: _ } = parseSearchParams(ctx.url.searchParams);
               const result = await get(ctx.params.id);
               return Response.json(result);
             }
-            : () => RESPONSES.notImplemented(),
+            : () => {
+              throw new NotImplemented("Method not implemented");
+            },
           PUT: resource?.update
             ? async (req, ctx) => {
-              const update = hookify("update", resource, hooks, req, ctx);
+              const update = hookify("update", resource, hooks, req, ctx.state);
               const { params: _ } = parseSearchParams(ctx.url.searchParams);
               const data = await parseRequestBody(req);
               const result = await update(ctx.params.id, data);
               return Response.json(result);
             }
-            : () => RESPONSES.notImplemented(),
+            : () => {
+              throw new NotImplemented("Method not implemented");
+            },
           PATCH: resource?.patch
             ? async (req, ctx) => {
-              const patch = hookify("patch", resource, hooks, req, ctx);
+              const patch = hookify("patch", resource, hooks, req, ctx.state);
               const { params: _ } = parseSearchParams(ctx.url.searchParams);
               const data = await parseRequestBody(req);
               const result = await patch(ctx.params.id, data);
               return Response.json(result);
             }
-            : () => RESPONSES.notImplemented(),
+            : () => {
+              throw new NotImplemented("Method not implemented");
+            },
           DELETE: resource?.remove
             ? async (req, ctx) => {
-              const remove = hookify("remove", resource, hooks, req, ctx);
+              const remove = hookify("remove", resource, hooks, req, ctx.state);
               const { params: _ } = parseSearchParams(ctx.url.searchParams);
               const result = await remove(ctx.params.id);
               return Response.json(result);
             }
-            : () => RESPONSES.notImplemented(),
+            : () => {
+              throw new NotImplemented("Method not implemented");
+            },
         },
       } satisfies PluginRoute,
     ]);
   });
 
-  return { name: "api", routes };
+  return {
+    name: "api",
+    middlewares: [
+      {
+        path: path!,
+        middleware: {
+          // error handling middleware:
+          handler: async (_req, ctx) => {
+            try {
+              return await ctx.next();
+            } catch (error) {
+              if ("toJSON" in error && typeof error.toJSON === "function") {
+                const { name, message, code } = error;
+                return new Response(`${name}: ${message}`, { status: code });
+              }
+              return new Response(error.message, { status: 500 });
+            }
+          },
+        },
+      },
+    ],
+    routes,
+  };
 };
 
 function hookify(
-  method: Methods[number],
+  method: Method,
   resource: ApiEndpoint["resource"],
   hooks: ApiEndpoint["hooks"],
   req: Request,
-  ctx: FreshContext<NetzoState>,
+  state: NetzoState,
 ) {
   return _hooks(
     resource[method],
     middleware([
-      ...hooks.all,
-      ...hooks[method],
+      ...(hooks?.all ? hooks.all : []),
+      ...(hooks?.[method] ? hooks[method] : []),
     ])
       .params("req")
       .params("ctx")
       .params("method")
       .defaults((_self, _args, _context) => {
-        return { req, ctx, method };
+        return { req, state, method };
       }),
   );
 }
