@@ -30,7 +30,7 @@ export type ApiEndpoint = {
   };
 };
 
-export const defineAPIEndpoint = (options: ApiEndpoint): ApiEndpoint => options;
+export const defineApiEndpoint = (options: ApiEndpoint): ApiEndpoint => options;
 
 export type ApiConfig = {
   /** The route path to mount the API on. Defaults to "/api". */
