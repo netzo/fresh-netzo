@@ -9,7 +9,6 @@ import { transactions } from "./resources/transactions.ts";
 export const netzo = await Netzo({
   // auth: Deno.env.get("DENO_REGION") ? { providers: { netzo: {} } } : undefined,
   api: {
-    // apiKey: Deno.env.get("NETZO_API_KEY"),
     path: "/api",
     endpoints: {
       accounts,

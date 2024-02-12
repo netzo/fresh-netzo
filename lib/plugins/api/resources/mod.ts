@@ -1,22 +1,10 @@
-import type {
-  HookContext,
-  NextFunction,
-} from "../../../deps/@feathersjs/hooks.ts";
 import type { ULID } from "../../../deps/ulid.ts";
-import { NotImplemented } from "../errors.ts";
-
-export * from "../utils.ts";
 
 export type Method = "find" | "get" | "create" | "update" | "patch" | "remove";
 
 export type ResourceOptions = {
   /* Name of the field to use as the ID for the items (defaults to "id"). */
   idField?: string;
-  /** An object mapping resource names an array of hooks to apply to the resource. */
-  hooks?: Record<
-    Method,
-    Array<(context: HookContext, next: NextFunction) => Promise<void>>
-  >;
 };
 
 type MaybePromise<T> = (T | undefined) | Promise<T | undefined> | undefined;
@@ -33,39 +21,4 @@ export type Resource<T = unknown> = {
   patch: (id: Id, data: Partial<T>) => MaybePromise<T>;
   remove: (id: Id) => MaybePromise<{ ok: boolean }>;
   [k: string]: unknown; // circumvent Resource has no index signature
-};
-
-/**
- * Creates a Resource instance to perform RESTful operations on an arbitrary resource
- * @param options {ResourceOptions} - resource options object
- * @returns a Resource instance for performing RESTful operations on the resource
- */
-export const Resource = <T = Record<string, unknown>>(
-  options: ResourceOptions,
-): Resource<T> => {
-  const { idField = "id" } = options;
-
-  return {
-    options: {
-      idField,
-    },
-    find: (_query) => {
-      throw new NotImplemented();
-    },
-    get: (_id) => {
-      throw new NotImplemented();
-    },
-    create: (_data) => {
-      throw new NotImplemented();
-    },
-    update: (_id, _data) => {
-      throw new NotImplemented();
-    },
-    patch: (_id, _data) => {
-      throw new NotImplemented();
-    },
-    remove: (_id) => {
-      throw new NotImplemented();
-    },
-  };
 };

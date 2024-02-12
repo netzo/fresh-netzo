@@ -9,13 +9,19 @@ import type { Method, Resource } from "./resources/mod.ts";
 import { parseRequestBody, parseSearchParams } from "./utils.ts";
 import { NotImplemented } from "./errors.ts";
 
+export * from "./hooks/mod.ts";
+export * from "./resources/mod.ts";
+export * from "./errors.ts";
+export * from "./plugin.ts";
+export * from "./utils.ts";
+
 export type ApiEndpoint = {
   /** The field name to use as the primary key. Defaults to "id". */
   idField?: string;
   /** The resource instance to use for performing RESTful operations. */
   resource: Resource;
   /** An object mapping resource names an array of hooks to apply to the resource. */
-  hooks?: Record<Method, Middleware[]>;
+  hooks?: Record<"all" | Method, Middleware[]>;
 };
 
 export const defineAPIEndpoint = (options: ApiEndpoint): ApiEndpoint => options;
@@ -24,7 +30,7 @@ export type ApiConfig = {
   /** The route path to mount the API on. Defaults to "/api". */
   path?: string;
   /** An object mapping resource names to resources instances. */
-  endpoints: Record<Method, ApiEndpoint>;
+  endpoints: Record<string, ApiEndpoint>;
 };
 
 export type ApiState = {
@@ -36,12 +42,12 @@ export type ApiState = {
  * to mount RESTful API routes on the `/api` route path.
  *
  * A fresh plugin that creates handlers for the following routes:
- * - `GET /api/{resourceName}` find all records matching query
- * - `GET /api/{resourceName}/{id}` get an entry by key
- * - `POST /api/{resourceName}` create a new entry (auto-generates id)
- * - `PUT /api/{resourceName}/{id}` update an entry by key
- * - `PATCH /api/{resourceName}/{id}` patch an entry by key
- * - `DELETE /api/{resourceName}/{id}` remove an entry by key
+ * - `GET /api/{resource}` find all records matching query
+ * - `GET /api/{resource}/{id}` get an entry by key
+ * - `POST /api/{resource}` create a new entry (auto-generates id)
+ * - `PUT /api/{resource}/{id}` update an entry by key
+ * - `PATCH /api/{resource}/{id}` patch an entry by key
+ * - `DELETE /api/{resource}/{id}` remove an entry by key
  */
 export const api = (options?: ApiConfig): Plugin => {
   if (!options) return { name: "api" };
@@ -49,11 +55,11 @@ export const api = (options?: ApiConfig): Plugin => {
   const { path = "/api", endpoints = {} } = options ?? {};
 
   const routes: Plugin["routes"] = [];
-  Object.entries(endpoints!).forEach(([resourceName, resourceOptions]) => {
-    const { idField: _, resource, hooks = {} } = resourceOptions ?? {};
+  Object.entries(endpoints!).forEach(([endpointPath, endpoint]) => {
+    const { idField: _, resource, hooks } = endpoint ?? {};
     routes.push(...[
       {
-        path: `${path}/${resourceName}`,
+        path: `${path}/${endpointPath}`,
         handler: {
           GET: resource?.find
             ? async (req, ctx) => {
@@ -82,7 +88,7 @@ export const api = (options?: ApiConfig): Plugin => {
         },
       } satisfies PluginRoute,
       {
-        path: `${path}/${resourceName}/[id]`,
+        path: `${path}/${endpointPath}/[id]`,
         handler: {
           GET: resource?.get
             ? async (req, ctx) => {

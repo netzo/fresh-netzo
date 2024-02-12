@@ -3,7 +3,6 @@ import { faker } from "npm:@faker-js/faker@8.4.0";
 import { ulid } from "netzo/plugins/api/utils.ts";
 import { defineAPIEndpoint } from "netzo/plugins/api/plugin.ts";
 import { DenoKvResource } from "netzo/plugins/api/resources/denokv.ts";
-import { authenticate } from "netzo/plugins/api/hooks/authenticate.ts";
 import { logRuntime } from "netzo/plugins/api/hooks/log-runtime.ts";
 import { kv } from "./mod.ts";
 
@@ -11,7 +10,7 @@ export const accounts = defineAPIEndpoint({
   idField: "id",
   resource: DenoKvResource({ kv, prefix: ["accounts"] }),
   hooks: {
-    all: [authenticate({ apiKey: "123" }), logRuntime],
+    all: [logRuntime],
     find: [logRuntime],
     get: [logRuntime],
     create: [logRuntime],
