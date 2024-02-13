@@ -98,9 +98,8 @@ export const Netzo = async (config: Partial<NetzoConfig>) => {
 
   return {
     kv,
-    resource: Object.entries(config.api?.endpoints ?? {})?.length
-      ? (name: string) => config.api!.endpoints[name]?.resource
-      : undefined,
+    resource: (name: string) =>
+      config.api!.endpoints.find((e) => e.name === name)?.resource,
     config,
     start: async () => {
       if (Deno.args.includes("dev")) {
