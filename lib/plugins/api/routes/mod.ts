@@ -1,3 +1,4 @@
+import { join } from "../../../deps/std/path/mod.ts";
 import type { PluginRoute } from "../../../deps/$fresh/server.ts";
 import { hooks, middleware } from "../../../deps/@feathersjs/hooks.ts";
 import type { ApiConfig } from "../plugin.ts";
@@ -20,7 +21,7 @@ export const getRoutesByEndpoint = (
 
   const routes: PluginRoute[] = [
     {
-      path: `${options.path}/${path}`,
+      path: join(options.path!, path),
       handler: {
         GET: async (request, ctx) => {
           const find = hooks(
@@ -30,7 +31,7 @@ export const getRoutesByEndpoint = (
           const findCtx = find.createContext({
             method: "find",
             path,
-            fullPath: `${options.path}/${path}`,
+            fullPath: join(options.path!, path),
             idField,
             resource,
             request,
@@ -51,7 +52,7 @@ export const getRoutesByEndpoint = (
           const createCtx = create.createContext({
             method: "create",
             path,
-            fullPath: `${options.path}/${path}`,
+            fullPath: join(options.path!, path),
             idField,
             resource,
             request,
@@ -65,7 +66,7 @@ export const getRoutesByEndpoint = (
       },
     } satisfies PluginRoute,
     {
-      path: `${options.path}/${path}/[id]`,
+      path: join(options.path!, path, "[id]"),
       handler: {
         GET: async (request, ctx) => {
           const get = hooks(
@@ -75,7 +76,7 @@ export const getRoutesByEndpoint = (
           const getCtx = get.createContext({
             method: "get",
             path,
-            fullPath: `${options.path}/${path}/[id]`,
+            fullPath: join(options.path!, path, "[id]"),
             idField,
             resource,
             request,
@@ -93,7 +94,7 @@ export const getRoutesByEndpoint = (
           const updateCtx = update.createContext({
             method: "update",
             path,
-            fullPath: `${options.path}/${path}/[id]`,
+            fullPath: join(options.path!, path, "[id]"),
             idField,
             resource,
             request,
@@ -112,7 +113,7 @@ export const getRoutesByEndpoint = (
           const patchCtx = patch.createContext({
             method: "patch",
             path,
-            fullPath: `${options.path}/${path}/[id]`,
+            fullPath: join(options.path!, path, "[id]"),
             idField,
             resource,
             request,
@@ -131,7 +132,7 @@ export const getRoutesByEndpoint = (
           const removeCtx = remove.createContext({
             method: "remove",
             path,
-            fullPath: `${options.path}/${path}/[id]`,
+            fullPath: join(options.path!, path, "[id]"),
             idField,
             resource,
             request,
