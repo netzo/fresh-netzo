@@ -1,13 +1,13 @@
 import { z } from "zod";
 import { faker } from "npm:@faker-js/faker@8.4.0";
-import { ulid } from "netzo/plugins/api/utils.ts";
 import { defineApiEndpoint } from "netzo/plugins/api/plugin.ts";
-import { DenoKvResource } from "netzo/plugins/api/resources/denokv.ts";
-import { authenticate } from "netzo/plugins/api/hooks/authenticate.ts";
-import { log } from "netzo/plugins/api/hooks/log.ts";
+import { DenoKvResource } from "netzo/plugins/api/resources/mod.ts";
+import { authenticate, log } from "netzo/plugins/api/hooks/mod.ts";
+import { ulid } from "netzo/plugins/api/utils.ts";
 import { kv } from "./mod.ts";
 
 export const accounts = defineApiEndpoint({
+  path: "/accounts",
   idField: "id",
   resource: DenoKvResource({ kv, prefix: ["accounts"] }),
   hooks: {

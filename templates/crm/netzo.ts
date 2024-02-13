@@ -7,17 +7,17 @@ import { invoices } from "./resources/invoices.ts";
 import { transactions } from "./resources/transactions.ts";
 
 export const netzo = await Netzo({
-  // auth: Deno.env.get("DENO_REGION") ? { providers: { netzo: {} } } : undefined,
+  auth: Deno.env.get("DENO_REGION") ? { providers: { netzo: {} } } : undefined,
   api: {
     path: "/api",
-    endpoints: {
+    endpoints: [
       accounts,
       contacts,
       deals,
       interactions,
       invoices,
       transactions,
-    },
+    ],
   },
   components: {},
 });

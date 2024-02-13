@@ -74,8 +74,8 @@ export const auth = (options?: AuthConfig): Plugin => {
   const authRoutes = [
     { path: "/auth", component: Auth },
     ...Object.keys(options.providers)
-      .filter((p) => !!options?.providers?.[p])
-      .flatMap((p) => getRoutesByProvider(p, options?.providers?.[p])),
+      .filter((provider) => !!options?.providers?.[provider])
+      .flatMap((provider) => getRoutesByProvider(provider, options)),
   ];
 
   return {
