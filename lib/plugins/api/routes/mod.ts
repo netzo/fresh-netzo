@@ -1,14 +1,14 @@
 import { join } from "../../../deps/std/path/mod.ts";
 import type { PluginRoute } from "../../../deps/$fresh/server.ts";
 import { hooks, middleware } from "../../../deps/@feathersjs/hooks.ts";
-import type { ApiConfig } from "../plugin.ts";
+import type { ApiConfig, ApiEndpoint } from "../plugin.ts";
 import { parseRequestBody, parseSearchParams } from "../utils.ts";
 
 export const getRoutesByEndpoint = (
-  endpoint: string,
+  endpoint: ApiEndpoint,
   options: ApiConfig,
 ): PluginRoute[] => {
-  const { path, idField = "id", resource } = endpoint;
+  const { name, idField = "id", resource } = endpoint;
   const {
     all: allHooks = [],
     find: findHooks = [],
@@ -21,7 +21,7 @@ export const getRoutesByEndpoint = (
 
   const routes: PluginRoute[] = [
     {
-      path: join(options.path!, path),
+      path: join(options.path!, name),
       handler: {
         GET: async (request, ctx) => {
           const find = hooks(
@@ -30,8 +30,8 @@ export const getRoutesByEndpoint = (
           );
           const findCtx = find.createContext({
             method: "find",
-            path,
-            fullPath: join(options.path!, path),
+            name,
+            path: join(options.path!, name),
             idField,
             resource,
             request,
@@ -51,8 +51,8 @@ export const getRoutesByEndpoint = (
           );
           const createCtx = create.createContext({
             method: "create",
-            path,
-            fullPath: join(options.path!, path),
+            name,
+            path: join(options.path!, name),
             idField,
             resource,
             request,
@@ -66,7 +66,7 @@ export const getRoutesByEndpoint = (
       },
     } satisfies PluginRoute,
     {
-      path: join(options.path!, path, "[id]"),
+      path: join(options.path!, name, "[id]"),
       handler: {
         GET: async (request, ctx) => {
           const get = hooks(
@@ -75,8 +75,8 @@ export const getRoutesByEndpoint = (
           );
           const getCtx = get.createContext({
             method: "get",
-            path,
-            fullPath: join(options.path!, path, "[id]"),
+            name,
+            path: join(options.path!, name, "[id]"),
             idField,
             resource,
             request,
@@ -93,8 +93,8 @@ export const getRoutesByEndpoint = (
           );
           const updateCtx = update.createContext({
             method: "update",
-            path,
-            fullPath: join(options.path!, path, "[id]"),
+            name,
+            path: join(options.path!, name, "[id]"),
             idField,
             resource,
             request,
@@ -112,8 +112,8 @@ export const getRoutesByEndpoint = (
           );
           const patchCtx = patch.createContext({
             method: "patch",
-            path,
-            fullPath: join(options.path!, path, "[id]"),
+            name,
+            path: join(options.path!, name, "[id]"),
             idField,
             resource,
             request,
@@ -131,8 +131,8 @@ export const getRoutesByEndpoint = (
           );
           const removeCtx = remove.createContext({
             method: "remove",
-            path,
-            fullPath: join(options.path!, path, "[id]"),
+            name,
+            path: join(options.path!, name, "[id]"),
             idField,
             resource,
             request,

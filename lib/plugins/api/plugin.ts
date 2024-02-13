@@ -5,8 +5,8 @@ import { handleErrors } from "./middlewares/mod.ts";
 import { getRoutesByEndpoint } from "./routes/mod.ts";
 
 export type ApiEndpoint = {
-  /** The path (excluding base API path) to mount the API (e.g. "/users"). */
-  path: `/${string}`;
+  /** The name of the resource e.g. "users" (API endpoint will be mounted at `/api/{name}`). */
+  name: string;
   /** The field name to use as the primary key. Defaults to "id". */
   idField?: string;
   /** The resource instance to use for performing RESTful operations. */
@@ -27,7 +27,7 @@ export const defineApiEndpoint = (options: ApiEndpoint): ApiEndpoint => options;
 
 export type ApiConfig = {
   /** The route path to mount the API on. Defaults to "/api". */
-  path?: string;
+  path?: `/${string}`;
   /** An array of API endpoint objects. */
   endpoints: ApiEndpoint[];
 };
@@ -56,7 +56,7 @@ export const api = (options?: ApiConfig): Plugin => {
 
   const apiRoutes = [
     ...options.endpoints
-      .filter((endpoint) => !!endpoint?.path)
+      .filter((endpoint) => !!endpoint?.name)
       .flatMap((endpoint) => getRoutesByEndpoint(endpoint, options)),
   ];
 

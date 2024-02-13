@@ -7,7 +7,7 @@ import { ulid } from "netzo/plugins/api/utils.ts";
 import { kv } from "./mod.ts";
 
 export const invoices = defineApiEndpoint({
-  path: "/invoices",
+  name: "invoices",
   idField: "id",
   resource: DenoKvResource({ kv, prefix: ["invoices"] }),
   hooks: {

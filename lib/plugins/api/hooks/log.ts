@@ -11,6 +11,6 @@ export const log = () => {
     await next();
     const duration = Date.now() - start.getTime();
     const ts = start.toTimeString().slice(0, 8);
-    console.log(`${ts} ${ctx.method} ${ctx.fullPath} ${duration}ms`);
+    console.log(`${ts} ${ctx.name}.${ctx.method} ${duration}ms`);
   });
 };
