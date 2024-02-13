@@ -36,6 +36,11 @@ jobs:
       - name: Lint
         run: deno lint --rules-exclude=no-explicit-any
 
+      - name: Setup Git
+        run: |
+          git config --global user.email "you@example.com"
+          git config --global user.name "CI Bot"
+
       - name: Test
         run: deno test -A lib/cli/tests/
 
