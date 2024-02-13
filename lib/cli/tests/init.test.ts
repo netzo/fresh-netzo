@@ -33,6 +33,27 @@ Deno.test("CLI init and task execution -- minimal", async (t) => {
     await executeAndAssert($`deno task test --no-check`.cwd(tmpDirName));
   });
 
+  await t.step("git was initialized", async () => {
+    const gitDirExists = await Deno.stat(join(tmpDirName, ".git")).then(() =>
+      true
+    ).catch(() => false);
+    assert(gitDirExists, "Git directory does not exist.");
+
+    const commitCount = await $`git -C ${tmpDirName} rev-list --count HEAD`
+      .text();
+    assert(
+      Number.parseInt(commitCount) === 1,
+      `Expected exactly 1 commit, but found ${commitCount}.`,
+    );
+  });
+
+  const commitMessage =
+    await $`git -C ${tmpDirName} log --pretty=format:"%s" -n 1`.text();
+  assert(
+    commitMessage === "initial commit",
+    `Expected commit message "initial commit", but found "${commitMessage}".`,
+  );
+
   await t.step("cleanup", async () => {
     await retry(() => Deno.remove(tmpDirName, { recursive: true }));
   });
