@@ -1,11 +1,14 @@
 import type { Resource, ResourceOptions } from "./mod.ts";
 import { ERRORS, filterObjectsByKeyValues, ulid } from "../utils.ts";
 
+export const KV = await Deno.openKv();
+
 export type DenoKvResourceOptions = ResourceOptions & {
-  /* The Deno KV store to use (use Deno.openKv(":memory:") for in-memory storage) */
-  kv: Deno.Kv;
   /* The KV prefix location of the resource e.g. ["users"] */
-  prefix?: Deno.KvKey;
+  prefix: Deno.KvKey;
+  /* The Deno KV store to use (defaults to default database via Deno.openKv()).
+  Note that for in-memory storage you can use Deno.openKv(":memory:") */
+  kv?: Deno.Kv;
 };
 
 /**
@@ -16,7 +19,7 @@ export type DenoKvResourceOptions = ResourceOptions & {
 export const DenoKvResource = <T = Record<string, unknown>>(
   options: DenoKvResourceOptions,
 ): Resource<T> => {
-  const { kv = options.kv, prefix, idField = "id" } = options;
+  const { kv = KV, prefix, idField = "id" } = options;
 
   if (!kv) throw new Error(ERRORS.missingProperty("kv"));
   if (!prefix) throw new Error(ERRORS.missingProperty("prefix"));

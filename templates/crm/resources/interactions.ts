@@ -4,12 +4,11 @@ import { defineApiEndpoint } from "netzo/plugins/api/plugin.ts";
 import { DenoKvResource } from "netzo/plugins/api/resources/mod.ts";
 import { authenticate, log } from "netzo/plugins/api/hooks/mod.ts";
 import { ulid } from "netzo/plugins/api/utils.ts";
-import { kv } from "./mod.ts";
 
 export const interactions = defineApiEndpoint({
   name: "interactions",
   idField: "id",
-  resource: DenoKvResource({ kv, prefix: ["interactions"] }),
+  resource: DenoKvResource({ prefix: ["interactions"] }),
   hooks: {
     all: [authenticate(), log()],
     find: [],
