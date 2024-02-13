@@ -24,7 +24,7 @@ export type CronParams = Parameters<typeof Deno.cron>;
  * @returns {Proxy} - a proxied Deno.cron object
  */
 export const proxyCron = (kv: Deno.Kv) => {
-  const $runs = DenoKvResource({ kv, prefix: ["$runs"] });
+  const $runs = DenoKvResource({ prefix: ["$runs"], kv });
   return new Proxy(Deno.cron, {
     apply(target, thisArg, argArray: CronParams) {
       const [name, schedule, opt1, opt2] = argArray;
