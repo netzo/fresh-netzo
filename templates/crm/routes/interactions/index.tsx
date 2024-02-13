@@ -4,7 +4,7 @@ import {
   I18N,
   type Interaction,
   interactionSchema,
-} from "@/resources/interactions.ts";
+} from "@/data/interactions.ts";
 import { Table } from "@/islands/interactions/Table.tsx";
 import { FormInteraction } from "@/islands/interactions/Form.tsx";
 import { netzo } from "@/netzo.ts";

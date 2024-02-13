@@ -1,10 +1,10 @@
 import { defineRoute } from "$fresh/server.ts";
-import type { Account } from "@/resources/accounts.ts";
-import type { Contact } from "@/resources/contacts.ts";
-import type { Deal } from "@/resources/deals.ts";
-import type { Interaction } from "@/resources/interactions.ts";
-import type { Invoice } from "@/resources/invoices.ts";
-import type { Transaction } from "@/resources/transactions.ts";
+import type { Account } from "@/data/accounts.ts";
+import type { Contact } from "@/data/contacts.ts";
+import type { Deal } from "@/data/deals.ts";
+import type { Interaction } from "@/data/interactions.ts";
+import type { Invoice } from "@/data/invoices.ts";
+import type { Transaction } from "@/data/transactions.ts";
 import { Dashboard } from "@/islands/Dashboard.tsx";
 import { netzo } from "@/netzo.ts";
 

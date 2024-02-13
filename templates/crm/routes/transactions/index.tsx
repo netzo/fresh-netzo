@@ -4,7 +4,7 @@ import {
   I18N,
   type Transaction,
   transactionSchema,
-} from "@/resources/transactions.ts";
+} from "@/data/transactions.ts";
 import { Table } from "@/islands/transactions/Table.tsx";
 import { FormTransaction } from "@/islands/transactions/Form.tsx";
 import { netzo } from "@/netzo.ts";
