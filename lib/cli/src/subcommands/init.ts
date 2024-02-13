@@ -138,8 +138,8 @@ function patchDenoJson(dir: string) {
 }
 
 async function createGit(dir: string) {
-  await $`git -C ${dir} init`;
+  await $`git -C ${dir} init`.quiet("stdout");;
   await $`git -C ${dir} branch -m main`;
   await $`git -C ${dir} add .`;
-  await $`git -C ${dir} commit -m "initial commit"`;
+  await $`git -C ${dir} commit -m "initial commit"`.quiet("stdout");
 }
