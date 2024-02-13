@@ -8,8 +8,9 @@ import {
 } from "./middlewares/mod.ts";
 import { getRoutesByProvider } from "./routes/mod.ts";
 import Auth from "./routes/auth.tsx";
-import { NetzoClientConfig } from "./utils/providers/netzo.ts";
-import { EmailClientConfig } from "./utils/providers/email.ts";
+import type { AuthProvider } from "./utils/providers/mod.ts";
+import type { NetzoClientConfig } from "./utils/providers/netzo.ts";
+import type { EmailClientConfig } from "./utils/providers/email.ts";
 
 export * from "../../deps/deno_kv_oauth/mod.ts";
 
@@ -63,7 +64,7 @@ export const auth = (options?: AuthConfig): Plugin => {
     "gitlab",
     "auth0",
     "okta",
-  ].some((key) => !!options?.providers?.[key]);
+  ].some((key) => !!options?.providers?.[key as AuthProvider]);
   if (!authEnabled) return { name: "auth" }; // skip if auth but no providers are set
 
   options.title ??= "Sign In";
@@ -74,8 +75,10 @@ export const auth = (options?: AuthConfig): Plugin => {
   const authRoutes = [
     { path: "/auth", component: Auth },
     ...Object.keys(options.providers)
-      .filter((p) => !!options?.providers?.[p])
-      .flatMap((p) => getRoutesByProvider(p, options?.providers?.[p])),
+      .filter((provider) => !!options?.providers?.[provider as AuthProvider])
+      .flatMap((provider) =>
+        getRoutesByProvider(provider as AuthProvider, options)
+      ),
   ];
 
   return {

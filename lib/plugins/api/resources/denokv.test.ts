@@ -1,6 +1,6 @@
-import "../deps/std/dotenv/load.ts";
-import { assertEquals, assertExists } from "../deps/std/assert/mod.ts";
-import { z } from "../deps/zod/mod.ts";
+import "../../../deps/std/dotenv/load.ts";
+import { assertEquals, assertExists } from "../../../deps/std/assert/mod.ts";
+import { z } from "../../../deps/zod/mod.ts";
 import { DenoKvResource } from "./denokv.ts";
 
 const kv = await Deno.openKv(":memory:");
@@ -18,8 +18,8 @@ const todoSchema = z.object({
 
 type Todo = z.infer<typeof todoSchema>;
 
-Deno.test("[api/adapters] DenoKvResource", async (t) => {
-  const $todos = DenoKvResource({
+Deno.test("[api/resources] DenoKvResource", async (t) => {
+  const resource = DenoKvResource<Todo>({
     kv,
     prefix: ["todos"],
     idField: "id",
@@ -27,21 +27,21 @@ Deno.test("[api/adapters] DenoKvResource", async (t) => {
 
   await t.step("declarations", () => {
     assertExists(kv);
-    assertExists($todos);
+    assertExists(resource);
   });
 
-  await t.step("$todos.find()", async () => {
-    const todos = await $todos.find();
+  await t.step("resource.find()", async () => {
+    const todos = await resource.find();
     assertEquals(todos?.length, 200);
   });
 
-  await t.step("$todos.get(1)", async () => {
-    const todo = await $todos.get(1);
+  await t.step("resource.get(1)", async () => {
+    const todo = await resource.get(1);
     assertEquals(todo?.id, 1);
   });
 
-  await t.step("$todos.create()", async () => {
-    const todo = await $todos.create({
+  await t.step("resource.create()", async () => {
+    const todo = await resource.create({
       userId: 1,
       title: "lorem ipsum",
       completed: true,
@@ -49,8 +49,8 @@ Deno.test("[api/adapters] DenoKvResource", async (t) => {
     assertExists(todo);
   });
 
-  await t.step("$todos.update(1)", async () => {
-    const todo = await $todos.update(1, {
+  await t.step("resource.update(1)", async () => {
+    const todo = await resource.update(1, {
       id: 1,
       userId: 1,
       title: "lorem ipsum",
@@ -59,13 +59,13 @@ Deno.test("[api/adapters] DenoKvResource", async (t) => {
     assertExists(todo);
   });
 
-  await t.step("$todos.patch(1)", async () => {
-    const todo = await $todos.patch(1, { completed: true });
+  await t.step("resource.patch(1)", async () => {
+    const todo = await resource.patch(1, { completed: true });
     assertExists(todo);
   });
 
-  await t.step("$todos.delete(1)", async () => {
-    const todo = await $todos.remove(1);
+  await t.step("resource.delete(1)", async () => {
+    const todo = await resource.remove(1);
     assertExists(todo);
   });
 });
