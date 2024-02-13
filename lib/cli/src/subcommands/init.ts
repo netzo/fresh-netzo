@@ -5,6 +5,7 @@ import type { Args as RawArgs } from "../args.ts";
 // never try to use import maps here, since this will be executed in a context that doesn't have them
 import { copy } from "https://deno.land/std@0.214.0/fs/copy.ts";
 import { join } from "https://deno.land/std@0.214.0/path/mod.ts";
+import $ from "https://deno.land/x/dax@0.39.1/mod.ts";
 
 const help = `netzo init: create a new project from an existing template.
 
@@ -92,13 +93,9 @@ export default async function (rawArgs: RawArgs): Promise<void> {
     }).spawn();
     await process.status;
   }
-  const denoJsonPath = join(args.dir, "deno.json");
-  const denoJson = JSON.parse(Deno.readTextFileSync(denoJsonPath));
-  denoJson.imports["netzo/"] = new URL("../../../", import.meta.url).href;
-  Deno.writeTextFileSync(
-    denoJsonPath,
-    JSON.stringify(denoJson, null, 2) + "\n",
-  );
+
+  patchDenoJson(args.dir);
+  createGit(args.dir);
 }
 
 async function getTemplateNames(): Promise<string[]> {
@@ -128,4 +125,21 @@ async function getTemplateNames(): Promise<string[]> {
     const names = urls.map((url) => url.match(new RegExp(pattern))?.[1]);
     return names.sort((a, b) => a!.localeCompare(b!)) as string[];
   }
+}
+
+function patchDenoJson(dir: string) {
+  const denoJsonPath = join(dir, "deno.json");
+  const denoJson = JSON.parse(Deno.readTextFileSync(denoJsonPath));
+  denoJson.imports["netzo/"] = new URL("../../../", import.meta.url).href;
+  Deno.writeTextFileSync(
+    denoJsonPath,
+    JSON.stringify(denoJson, null, 2) + "\n",
+  );
+}
+
+async function createGit(dir: string) {
+  await $`git -C ${dir} init`;
+  await $`git -C ${dir} branch -m main`;
+  await $`git -C ${dir} add .`;
+  await $`git -C ${dir} commit -m "initial commit"`;
 }
