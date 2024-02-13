@@ -17,7 +17,7 @@ export const dbMock = async () => {
   try {
     await Promise.all(
       RESOURCES.map(async (resource) => {
-        const { mock } = await import(`@/resources/${resource}.ts`);
+        const { mock } = await import(`@/data/${resource}.ts`);
         // generate mock data
         const entries = Array.from(Array(length)).map(() => {
           const value = mock();

@@ -1,6 +1,6 @@
 import { defineRoute } from "$fresh/server.ts";
 import type { TableProps } from "netzo/components/blocks/table/use-table.ts";
-import { type Account, accountSchema, I18N } from "@/resources/accounts.ts";
+import { type Account, accountSchema, I18N } from "@/data/accounts.ts";
 import { Table } from "@/islands/accounts/Table.tsx";
 import { FormAccount } from "@/islands/accounts/Form.tsx";
 import { netzo } from "@/netzo.ts";

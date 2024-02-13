@@ -14,7 +14,7 @@ import {
   I18N,
   type Transaction,
   transactionSchema,
-} from "@/resources/transactions.ts";
+} from "@/data/transactions.ts";
 import { CellContext } from "netzo/deps/@tanstack/react-table.ts";
 
 // NOTE: define columns in island (route to island function serialization unsupported)

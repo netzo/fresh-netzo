@@ -1,6 +1,6 @@
 import { defineRoute } from "$fresh/server.ts";
 import { Separator } from "netzo/components/separator.tsx";
-import type { Interaction } from "@/resources/interactions.ts";
+import type { Interaction } from "@/data/interactions.ts";
 import { FormInteraction } from "@/islands/interactions/Form.tsx";
 import { netzo } from "@/netzo.ts";
 

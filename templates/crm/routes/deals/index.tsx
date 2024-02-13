@@ -1,6 +1,6 @@
 import { defineRoute } from "$fresh/server.ts";
 import type { KanbanProps } from "netzo/components/blocks/kanban/kanban.tsx";
-import { type Deal, I18N } from "@/resources/deals.ts";
+import { type Deal, I18N } from "@/data/deals.ts";
 import { Kanban } from "@/islands/deals/Kanban.tsx";
 import { netzo } from "@/netzo.ts";
 
