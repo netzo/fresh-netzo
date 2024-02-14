@@ -4,7 +4,6 @@ import { cn } from "../utils.ts";
 import { Button } from "../button.tsx";
 import { Sheet, SheetContent, SheetTrigger } from "../sheet.tsx";
 import { Nav, type NavProps } from "./nav.tsx";
-import { useUI } from "../../hooks/use-ui.ts";
 
 export const open = signal<boolean>(false);
 

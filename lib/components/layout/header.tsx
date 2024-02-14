@@ -1,6 +1,5 @@
 import type { JSX } from "../../deps/preact.ts";
-import { cn } from "../utils.ts";
-import { useUI } from "../../hooks/use-ui.ts";
+import { cn, useUI } from "../utils.ts";
 import { HeaderDarkMode } from "./header.dark-mode.tsx";
 import { HeaderAuth } from "./header.auth.tsx";
 import type { HeaderAuthProps } from "./header.auth.tsx";
