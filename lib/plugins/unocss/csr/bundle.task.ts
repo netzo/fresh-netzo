@@ -16,7 +16,7 @@ const options: BundleOptions = {
     imports: {
       "@/": "./",
       "netzo/": "https://deno.land/x/netzo@0.4.39/",
-      "$fresh/": "https://deno.land/x/fresh@1.6.3/",
+      "$fresh/": "https://deno.land/x/fresh@1.6.4/",
       "preact": "https://esm.sh/v135/preact@10.19.3",
       "preact/": "https://esm.sh/v135/preact@10.19.3/",
       "@preact/signals": "https://esm.sh/v135/*@preact/signals@1.2.2",
