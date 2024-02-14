@@ -1,4 +1,4 @@
-import type { JSX } from "../../deps/preact.ts";
+import type { ComponentChildren } from "../../deps/preact.ts";
 import { Head as _Head } from "../../deps/$fresh/runtime.ts";
 
 export type HeadProps = {
@@ -13,7 +13,7 @@ export type HeadProps = {
   /** The canonical URL of the page */
   href: string;
   /** Optional JSX content */
-  children?: JSX.ComponentChildren;
+  children?: ComponentChildren;
 };
 
 export const Head = (props: HeadProps) => {

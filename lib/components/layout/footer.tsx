@@ -1,4 +1,4 @@
-import type { JSX } from "../../deps/preact.ts";
+import type { ComponentChildren, JSX } from "../../deps/preact.ts";
 import { useComputed } from "../../deps/@preact/signals.ts";
 import { cn } from "../utils.ts";
 import { useUI } from "../../hooks/use-ui.ts";
@@ -10,7 +10,7 @@ export type FooterProps = JSX.IntrinsicElements["footer"] & {
     root?: JSX.IntrinsicElements["footer"];
   };
   /** Optional JSX content */
-  children?: JSX.ComponentChildren;
+  children?: ComponentChildren;
 };
 
 export const Footer = (
