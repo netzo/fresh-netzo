@@ -49,6 +49,15 @@ export const dbMock = async () => {
           entry.accountId = account.value.id;
         });
       }
+      if (resource === "transactions") {
+        entries.forEach((entry, index) => {
+          // const index = Math.floor(Math.random() * data["accounts"].length);
+          const issuerAccount = data["accounts"][index];
+          const receiverAccount = data["accounts"][length - index - 1];
+          entry.issuerAccountId = issuerAccount.value.id;
+          entry.receiverAccountId = receiverAccount.value.id;
+        });
+      }
     }
 
     // write data for each resource in parallel
