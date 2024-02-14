@@ -42,7 +42,7 @@
   "imports": {
     "@/": "./",
     "netzo/": "../../lib/",
-    "$fresh/": "https://deno.land/x/fresh@1.6.4/",
+    "$fresh/": "https://deno.land/x/fresh@1.6.5/",
     "preact": "https://esm.sh/v135/preact@10.19.3",
     "preact/": "https://esm.sh/v135/preact@10.19.3/",
     "@preact/signals": "https://esm.sh/v135/*@preact/signals@1.2.2",
