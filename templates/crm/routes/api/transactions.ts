@@ -1,6 +1,7 @@
 import { defineApiEndpoint } from "netzo/plugins/api/plugin.ts";
 import { DenoKvResource } from "netzo/plugins/api/resources/mod.ts";
 import { authenticate, log, resolve } from "netzo/plugins/api/hooks/mod.ts";
+import type { Transaction } from "@/data/transactions.ts";
 import { netzo } from "@/netzo.ts";
 
 export const transactions = defineApiEndpoint({
@@ -13,9 +14,9 @@ export const transactions = defineApiEndpoint({
       log(),
       resolve({
         after: {
-          issuerAccount: (data) =>
+          issuerAccount: (data: Transaction) =>
             netzo.resource("accounts").get(data.issuerAccountId),
-          receiverAccount: (data) =>
+          receiverAccount: (data: Transaction) =>
             netzo.resource("accounts").get(data.receiverAccountId),
         },
       }),
