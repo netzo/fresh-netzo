@@ -1,8 +1,7 @@
 import type { JSX } from "../../deps/preact.ts";
-import { cn } from "../utils.ts";
+import { cn, useUI } from "../utils.ts";
 import { Separator } from "../separator.tsx";
 import { buttonVariants } from "../button.tsx";
-import { useUI } from "../../hooks/use-ui.ts";
 
 export type NavItem = Array<
   | { text: string } // header

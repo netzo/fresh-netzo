@@ -5,7 +5,11 @@
 /// <reference lib="deno.ns" />
 /// <reference lib="deno.unstable" />
 
-import { type FreshConfig, start } from "./deps/$fresh/server.ts";
+import {
+  type FreshConfig,
+  type RouteContext,
+  start,
+} from "./deps/$fresh/server.ts";
 import { replace } from "./deps/object-replace-mustache.ts";
 import { setEnvVarsIfRemoteProject } from "./plugins/utils.ts";
 import { proxyConsole } from "./plugins/utils.console.ts";
@@ -35,6 +39,15 @@ export type NetzoState = {
   components?: ComponentsState;
   [k: string]: unknown;
 };
+
+export function useNetzoState(ctx: RouteContext<void, NetzoState>) {
+  const { auth } = ctx.state.config;
+  const { sessionId, sessionUser } = ctx.state.auth ?? {};
+
+  const mustAuth = !!auth && !sessionId;
+
+  return { sessionId, sessionUser, mustAuth };
+}
 
 // deno-lint-ignore no-global-assign
 console = proxyConsole(

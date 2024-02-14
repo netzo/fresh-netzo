@@ -1,8 +1,6 @@
 import type { ComponentChildren, JSX } from "../../deps/preact.ts";
-import { useComputed } from "../../deps/@preact/signals.ts";
-import { cn } from "../utils.ts";
-import { useUI } from "../../hooks/use-ui.ts";
-import { useDarkMode } from "../../hooks/use-dark-mode.ts";
+import { useDarkMode } from "../../deps/usehooks-ts.ts";
+import { cn, useUI } from "../utils.ts";
 
 export type FooterProps = JSX.IntrinsicElements["footer"] & {
   /** Extra props to customize element (overwrites defaults). */
@@ -13,9 +11,7 @@ export type FooterProps = JSX.IntrinsicElements["footer"] & {
   children?: ComponentChildren;
 };
 
-export const Footer = (
-  { className, ui = {}, ...props }: FooterProps,
-) => {
+export const Footer = ({ className, ui = {}, ...props }: FooterProps) => {
   const { root } = useUI(ui, {
     root: {
       ...props,
@@ -26,15 +22,17 @@ export const Footer = (
     },
   });
 
-  const { darkMode } = useDarkMode();
-  const src = useComputed(() => {
-    const variant = darkMode.value ? "dark" : "light";
-    return `https://netzo.io/logos/built-with-netzo-${variant}.svg`;
-  });
+  const { isDarkMode } = useDarkMode();
 
   const NetzoLogo = () => (
     <a href="https://netzo.io/" target="_blank" className="mx-auto">
-      <img src={src.value} alt="Built with Netzo" className="h-[32px]" />
+      <img
+        src={`https://netzo.io/logos/built-with-netzo-${
+          isDarkMode ? "dark" : "light"
+        }.svg`}
+        alt="Built with Netzo"
+        className="h-[32px]"
+      />
     </a>
   );
 
