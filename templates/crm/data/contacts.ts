@@ -7,7 +7,6 @@ import { ulid } from "netzo/plugins/api/utils.ts";
 export const contactSchema = z.object({
   id: z.string(),
   accountId: z.string(),
-  account: z.any(),
   accountDomain: z.string(), // Will be used to match records from email domain, once associated with an account, it will be removed from here
   name: z.string(),
   image: z.string().url(),
@@ -63,7 +62,6 @@ export type Contact = z.infer<typeof contactSchema>;
 export const mock = (idField = "id") => ({
   [idField]: ulid() as string,
   accountId: ulid() as string,
-  account: faker.company.name(),
   accountDomain: faker.internet.domainName(),
   name: faker.person.fullName(),
   image: faker.image.avatar(),
@@ -144,7 +142,6 @@ export const mock = (idField = "id") => ({
 export const I18N = {
   id: "Contact ID",
   accountId: "Account ID",
-  account: "Account",
   accountDomain: "Account Domain",
   name: "Full Name",
   image: "Image",

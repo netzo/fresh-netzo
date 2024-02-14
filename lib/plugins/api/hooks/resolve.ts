@@ -1,7 +1,10 @@
 import { defineHook, type HookContext } from "./mod.ts";
 
 // deno-lint-ignore no-explicit-any
-export type ResolverFn = (ctx: HookContext) => Promise<any> | any;
+export type ResolverFn = <T>(
+  data: T,
+  ctx: HookContext<T, any>,
+) => Promise<any> | any;
 
 export type ResolveOptions = {
   before?: { [key: string]: ResolverFn }; // set ctx.data
@@ -28,21 +31,21 @@ export const resolve = (options: ResolveOptions) => {
       await resolveProperties(ctx.result, options.after);
     }
 
-    async function resolveProperties(
-      object: any | any[],
+    // deno-lint-ignore no-explicit-any
+    async function resolveProperties<T = any>(
+      data: T | T[],
       resolvers: ResolveOptions["before" | "after"],
     ) {
-      if (Array.isArray(object)) {
-        await Promise.all(object.map(async (item, index) => {
+      if (Array.isArray(data)) {
+        await Promise.all(data.map(async (item, index) => {
           await resolveProperties(item, resolvers);
-          object[index] = item;
+          data[index] = item;
         }));
       } else {
         await Promise.all(
           Object.keys(resolvers).map(async (key) => {
-            const value = await resolvers[key](ctx);
-            console.log("resolved", key, value);
-            object[key] = value;
+            const value = await resolvers[key](data, ctx);
+            data[key] = value;
           }),
         );
       }
