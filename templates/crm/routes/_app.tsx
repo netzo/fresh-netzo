@@ -1,4 +1,5 @@
 import { defineApp } from "$fresh/server.ts";
+import { Partial } from "$fresh/runtime.ts";
 import type { NetzoState } from "netzo/mod.ts";
 import { useNetzoState } from "netzo/hooks/server/use-netzo-state.ts";
 import { cn } from "netzo/components/utils.ts";
@@ -79,9 +80,13 @@ export default defineApp<NetzoState>((req, ctx) => {
             )}
           </Layout.Header>
 
-          <Layout.Main mustAuth={mustAuth}>
-            <ctx.Component />
-          </Layout.Main>
+          <main className="flex-1">
+            {mustAuth ? <ctx.Component /> : (
+              <Partial name="main">
+                <ctx.Component />
+              </Partial>
+            )}
+          </main>
 
           <Layout.Footer />
         </div>
