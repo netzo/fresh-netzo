@@ -1,5 +1,5 @@
 // latest version of netzo/cli (see https://github.com/netzo/netzo/releases)
-export const VERSION = "0.4.40";
+export const VERSION = "0.4.41";
 
 // minimum version of Deno required to run this CLI
 // (see https://github.com/denoland/deployctl/blob/main/src/version.ts)
