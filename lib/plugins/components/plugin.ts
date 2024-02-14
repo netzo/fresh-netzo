@@ -42,14 +42,13 @@ export const components = (options?: ComponentsConfig): Plugin => {
     csr = true,
   } = options ?? {} as ComponentsConfig;
 
+  const {
+    name: _,
+    ...unocssPlugin
+  } = unocss({ options: { color, radius }, config, aot, ssr, csr });
+
   return {
-    ...unocss({ options: { color, radius }, config, aot, ssr, csr }), // { name, entrypoints, renderAsync, buildStart }
     name: "components",
-    islands: {
-      baseLocation: import.meta.url,
-      paths: [
-        "../../components/layout/mod.ts",
-      ],
-    },
+    ...unocssPlugin,
   };
 };
