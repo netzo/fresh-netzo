@@ -12,6 +12,7 @@ const RESOURCES = [
 const [length = 25] = Deno.args.map(Number);
 
 async function writeToStoreAndFile(
+  // deno-lint-ignore no-explicit-any
   [resource, entries]: [string, any[]],
   _index: number,
 ) {
@@ -27,8 +28,8 @@ async function writeToStoreAndFile(
 
 export const dbMock = async () => {
   try {
-    // store data in memory to allow linking resources
-    const data: { [key: string]: any[] } = {};
+    // deno-lint-ignore no-explicit-any
+    const data: { [key: string]: any[] } = {}; // store data in memory for inline modifications
 
     for (const resource of RESOURCES) {
       const { mock } = await import(`@/data/${resource}.ts`);
