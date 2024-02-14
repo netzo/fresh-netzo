@@ -3,14 +3,14 @@ import { Partial } from "$fresh/runtime.ts";
 import type { NetzoState } from "netzo/mod.ts";
 import { useNetzoState } from "netzo/hooks/server/use-netzo-state.ts";
 import { cn } from "netzo/components/utils.ts";
-import * as Layout from "netzo/components/layout/mod.ts";
+import * as Layout from "../islands/mod.ts";
 
 export default defineApp<NetzoState>((req, ctx) => {
   const { sessionId, sessionUser, mustAuth } = useNetzoState(ctx);
 
   const UI = {
     head: {
-      title: "Company CRM | Netzo",
+      title: "Company CRM",
       description: "A starter template for a custom CRM app",
       favicon: "/favicon.svg",
       image: "/cover.svg",

@@ -34,6 +34,7 @@ import * as $interactions_Form from "./islands/interactions/Form.tsx";
 import * as $interactions_Table from "./islands/interactions/Table.tsx";
 import * as $invoices_Form from "./islands/invoices/Form.tsx";
 import * as $invoices_Table from "./islands/invoices/Table.tsx";
+import * as $mod from "./islands/mod.ts";
 import * as $transactions_Form from "./islands/transactions/Form.tsx";
 import * as $transactions_Table from "./islands/transactions/Table.tsx";
 import { type Manifest } from "$fresh/server.ts";
@@ -74,6 +75,7 @@ const manifest = {
     "./islands/interactions/Table.tsx": $interactions_Table,
     "./islands/invoices/Form.tsx": $invoices_Form,
     "./islands/invoices/Table.tsx": $invoices_Table,
+    "./islands/mod.ts": $mod,
     "./islands/transactions/Form.tsx": $transactions_Form,
     "./islands/transactions/Table.tsx": $transactions_Table,
   },
