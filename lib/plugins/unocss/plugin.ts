@@ -1,9 +1,6 @@
+import { UnoGenerator, type UserConfig } from "../../deps/@unocss/core.ts";
+import type { Theme } from "../../deps/@unocss/preset-uno.ts";
 import { JSX, options as preactOptions, VNode } from "../../deps/preact.ts";
-import {
-  UnoGenerator,
-  type UserConfig,
-} from "https://esm.sh/v135/@unocss/core@0.58.0?target=esnext";
-import type { Theme } from "https://esm.sh/v135/@unocss/preset-uno@0.58.0?target=esnext";
 import type { Plugin } from "../../deps/$fresh/server.ts";
 import {
   dirname,
@@ -12,7 +9,6 @@ import {
   walk,
 } from "../../deps/$fresh/server/deps.ts";
 import { exists } from "../../deps/std/fs/exists.ts";
-import type { PresetNetzoOptions } from "./preset-netzo.ts";
 
 type PreactOptions = typeof preactOptions & { __b?: (vnode: VNode) => void };
 
@@ -31,15 +27,6 @@ a,hr{color:inherit}progress,sub,sup{vertical-align:baseline}blockquote,body,dd,d
 
 export type UnocssOptions = {
   /**
-   * netzoPreset options for CSR mode
-   */
-  options?: PresetNetzoOptions;
-  /**
-   * Explicit UnoCSS config object, alternative to `uno.config.ts` file.
-   * Not supported for the client runtime in CSR mode.
-   */
-  config?: UserConfig<Theme>;
-  /**
    * Enable AOT mode - run UnoCSS to extract styles during the build task.
    * Enabled by default.
    */
@@ -55,6 +42,11 @@ export type UnocssOptions = {
    * Disabled by default.
    */
   csr?: boolean;
+  /**
+   * Inline UnoCSS config object, alternative to `uno.config.ts` file.
+   * This cannot be used with CSR mode enabled which requires an `uno.config.ts` file.
+   */
+  config?: UserConfig<Theme>;
 };
 
 /**
@@ -122,14 +114,18 @@ async function runOverSource(uno: UnoGenerator): Promise<string> {
 
 /**
  * Plugin to automatically generates CSS utility classes
+ *
+ * @param aot (boolean) - enables ahead-of-time (AOT) mode to run UnoCSS to extract styles during the build task (default: true)
+ * @param ssr (boolean) - enables server-side rendering (SSR) mode to run UnoCSS live to extract styles during server renders (default: true)
+ * @param csr (boolean) - enables client-side rendering (CSR) mode to run the UnoCSS runtime on the client to generate styles live in response to DOM events (default: true)
+ * @param config (UserConfig<Theme>) - inline UnoCSS config object, alternative to `uno.config.ts` file. This cannot be used with CSR mode enabled which requires an `uno.config.ts` file.
  */
 export const unocss = (
   {
-    options, // netzoPreset options for CSR mode
-    config,
     aot = true,
     ssr = true,
     csr = true,
+    config,
   }: UnocssOptions = {},
 ): Plugin => {
   // A uno.config.ts file is required in the project directory if
@@ -140,7 +136,7 @@ export const unocss = (
   const links = aot ? [{ rel: "stylesheet", href: "/uno.css" }] : [];
 
   // Add entrypoint, if CSR mode is enabled
-  const scripts = csr ? [{ entrypoint: "main", state: { options } }] : [];
+  const scripts = csr ? [{ entrypoint: "main", state: {} }] : [];
 
   // In CSR-only mode, include the style resets using an inline style tag
   const styles = csr && !aot && !ssr ? [{ cssText: unoResetCSS }] : [];
@@ -156,21 +152,19 @@ export const unocss = (
   return {
     name: "unocss",
     middlewares,
-
     // Optional client runtime
     entrypoints: csr
       ? {
         "main": `
         data:application/javascript,
-        import { createUnoConfig } from "https://deno.land/x/netzo@0.4.41/plugins/unocss/csr/uno.config.js";
-        import init from "https://esm.sh/v135/@unocss/runtime@0.58.0?target=esnext";
-        export default function(state) {
-          window.__unocss = createUnoConfig(state.options);
+        import config from "${configURL}";
+        import init from "https://esm.sh/@unocss/runtime@0.58.5";
+        export default function() {
+          window.__unocss = config;
           init();
         }`,
       }
       : {},
-
     async configResolved(freshConfig) {
       // Load config from file if required
       const configFileExists = await exists(configURL, {
@@ -191,11 +185,11 @@ export const unocss = (
         }
       }
 
-      // if (csr && !configFileExists) {
-      //   throw new Error(
-      //     "uno.config.ts not found in the project directory! Required for CSR mode.",
-      //   );
-      // }
+      if (csr && !configFileExists) {
+        throw new Error(
+          "uno.config.ts not found in the project directory! Required for CSR mode.",
+        );
+      }
 
       // Create the generator object
       uno = new UnoGenerator(config);
@@ -229,7 +223,6 @@ export const unocss = (
         });
       }
     },
-
     async renderAsync(ctx) {
       // Generate inline styles, if SSR mode is enabled
       if (ssr) {
@@ -250,7 +243,6 @@ export const unocss = (
         return { scripts, links, styles };
       }
     },
-
     async buildStart({ build: { outDir } }) {
       // Generate a static CSS file, if AOT mode is enabled
       if (aot) {

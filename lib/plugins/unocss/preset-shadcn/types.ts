@@ -1,4 +1,4 @@
-import type { DeepPartial } from "https://esm.sh/v135/@unocss/core@0.58.0?target=esnext";
+import type { DeepPartial } from "../../../deps/@unocss/core.ts";
 import type { Theme as ShadcnTheme, ThemeCSSVarsVariant } from "./themes.ts";
 
 export { ShadcnTheme, ThemeCSSVarsVariant };

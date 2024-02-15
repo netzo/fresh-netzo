@@ -3,15 +3,15 @@ import type {
   Preset,
   VariantContext,
   VariantObject,
-} from "https://esm.sh/v135/@unocss/core@0.58.0?target=esnext";
+} from "../../../deps/@unocss/core.ts";
 import type {
   PresetMiniOptions,
   Theme,
-} from "https://esm.sh/v135/@unocss/preset-mini@0.58.0?target=esnext";
+} from "../../../deps/@unocss/preset-mini/mod.ts";
 import {
   h,
   variantGetParameter,
-} from "https://esm.sh/v135/@unocss/preset-mini@0.58.0/utils?target=esnext";
+} from "../../../deps/@unocss/preset-mini/utils.ts";
 import { generateCSSVars } from "./generate.ts";
 // DISABLED: breaks bundle.task.ts due to bundle's partial support of compilerOptions
 // import { sheetVariants } from "../../../components/sheet.tsx";
