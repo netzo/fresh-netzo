@@ -1,14 +1,11 @@
-import {
-  // mergeDeep,
-  type PresetOrFactory,
-} from "https://esm.sh/v135/@unocss/core@0.58.0?target=esnext";
-import { presetIcons } from "https://esm.sh/v135/@unocss/preset-icons@0.58.0/browser?target=esnext";
-import { presetTypography } from "https://esm.sh/v135/@unocss/preset-typography@0.58.0?target=esnext";
+import { /*mergeDeep*/ type PresetOrFactory } from "../../deps/@unocss/core.ts";
+import { presetIcons } from "../../deps/@unocss/preset-icons/browser.ts";
+import { presetTypography } from "../../deps/@unocss/preset-typography.ts";
 import {
   presetUno,
   type PresetUnoOptions,
   type Theme,
-} from "https://esm.sh/v135/@unocss/preset-uno@0.58.0?target=esnext";
+} from "../../deps/@unocss/preset-uno.ts";
 import { presetShadcn } from "./preset-shadcn/mod.ts";
 import type { PresetShadcnOptions } from "./preset-shadcn/types.ts";
 
@@ -43,16 +40,16 @@ export function presetNetzo(
       presetIcons({
         collections: {
           mdi: () =>
-            import("https://esm.sh/v135/@iconify-json/mdi/icons.json", {
+            import("https://esm.sh/@iconify-json/mdi@1.1.64/icons.json", {
               with: { type: "json" },
             }).then((i) => i.default),
           logos: () =>
-            import("https://esm.sh/v135/@iconify-json/logos/icons.json", {
+            import("https://esm.sh/@iconify-json/logos@1.1.42/icons.json", {
               with: { type: "json" },
             }).then((i) => i.default),
           "simple-icons": () =>
             import(
-              "https://esm.sh/v135/@iconify-json/simple-icons/icons.json",
+              "https://esm.sh/@iconify-json/simple-icons@1.1.91/icons.json",
               {
                 with: { type: "json" },
               }

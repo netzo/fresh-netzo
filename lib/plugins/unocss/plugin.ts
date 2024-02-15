@@ -1,9 +1,6 @@
+import { UnoGenerator, type UserConfig } from "../../deps/@unocss/core.ts";
+import type { Theme } from "../../deps/@unocss/preset-uno.ts";
 import { JSX, options as preactOptions, VNode } from "../../deps/preact.ts";
-import {
-  UnoGenerator,
-  type UserConfig,
-} from "https://esm.sh/v135/@unocss/core@0.58.0?target=esnext";
-import type { Theme } from "https://esm.sh/v135/@unocss/preset-uno@0.58.0?target=esnext";
 import type { Plugin } from "../../deps/$fresh/server.ts";
 import {
   dirname,
