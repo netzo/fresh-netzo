@@ -51,7 +51,7 @@ export function Nav({ className, ui = {}, ...props }: NavProps) {
     root: {
       ...props,
       className: cn(
-        "h-full group flex flex-col gap-4 bg-primary text-foreground",
+        "h-full group flex flex-col gap-4",
         className,
       ),
     },
@@ -71,9 +71,9 @@ export function Nav({ className, ui = {}, ...props }: NavProps) {
       className: cn(
         buttonVariants({ variant: "ghost" }),
         "flex w-full justify-start",
-        "hover:cursor-pointer hover:text-primary",
-        // `aria-[current='true']:text-primary`, // ancestor links
-        `aria-[current='page']:text-secondary`, // current page
+        "hover:cursor-pointer hover:bg-accent", // hover
+        // `aria-[current='true']:bg-accent`, // ancestor links
+        `aria-[current='page']:bg-accent`, // current page
       ),
     },
     navItemIcon: {

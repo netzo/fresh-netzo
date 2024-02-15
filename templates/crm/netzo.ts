@@ -1,4 +1,5 @@
 import { Netzo } from "netzo/mod.ts";
+import { unocss } from "netzo/plugins/unocss/plugin.ts";
 import { accounts } from "./routes/api/accounts.ts";
 import { contacts } from "./routes/api/contacts.ts";
 import { deals } from "./routes/api/deals.ts";
@@ -19,7 +20,7 @@ export const netzo = await Netzo({
       transactions,
     ],
   },
-  components: {},
+  plugins: [unocss()],
 });
 
 if (import.meta.main) netzo.start();
