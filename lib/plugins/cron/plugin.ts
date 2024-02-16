@@ -15,10 +15,10 @@ export type CronState = {};
  * @param {CronConfig} - configuration options for the plugin
  * @returns {Plugin} - a Plugin for Deno Fresh
  */
-export const cron = (options?: CronConfig): Plugin<NetzoState> => {
-  if (!options) return { name: "cron" };
+export const cron = (config?: CronConfig): Plugin<NetzoState> => {
+  if (!config) return { name: "cron" };
 
-  Deno.cron = proxyCron(options.kv); // [deno] proxy deno primitive
+  Deno.cron = proxyCron(config.kv); // [deno] proxy deno primitive
 
   return { name: "cron" };
 };

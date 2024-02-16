@@ -13,13 +13,13 @@ export type EnvironmentsState = {};
  * Plugin to load development envVars if referencing a remote project.
  * (Runs if NETZO_PROJECT_ID environment variable is set and valid).
  *
- * @param {EnvironmentsConfig} - configuration options for the plugin
+ * @param config {EnvironmentsConfig} - configuration options for the plugin
  * @returns {Plugin} - a Plugin for Deno Fresh
  */
 export const environments = (
-  options?: EnvironmentsConfig,
+  config?: EnvironmentsConfig,
 ): Plugin<NetzoState> => {
-  if (!options) return { name: "environments" };
+  if (!config) return { name: "environments" };
 
   return {
     name: "environments",

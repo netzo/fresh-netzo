@@ -70,8 +70,8 @@ export function useAuth(ctx: RouteContext<void, NetzoState>) {
  * @param {AuthConfig} - configuration options for the plugin
  * @returns {Plugin} - a Plugin for Deno Fresh
  */
-export const auth = (options?: AuthConfig): Plugin<NetzoState> => {
-  if (!options) return { name: "auth" };
+export const auth = (config?: AuthConfig): Plugin<NetzoState> => {
+  if (!config) return { name: "auth" };
 
   const authEnabled = [
     "netzo",
@@ -81,20 +81,20 @@ export const auth = (options?: AuthConfig): Plugin<NetzoState> => {
     "gitlab",
     "auth0",
     "okta",
-  ].some((key) => !!options?.providers?.[key as AuthProvider]);
+  ].some((key) => !!config?.providers?.[key as AuthProvider]);
   if (!authEnabled) return { name: "auth" }; // skip if auth but no providers are set
 
-  options.title ??= "Sign In";
-  options.description ??= "Sign in to access the app";
-  options.caption ??= ""; // e.g. 'By signing in you agree to the <a href="/" target="_blank">Terms of Service</a>';
-  options.providers ??= {};
+  config.title ??= "Sign In";
+  config.description ??= "Sign in to access the app";
+  config.caption ??= ""; // e.g. 'By signing in you agree to the <a href="/" target="_blank">Terms of Service</a>';
+  config.providers ??= {};
 
   const authRoutes: PluginRoute[] = [
-    { path: "/auth", component: createAuth(options) },
-    ...Object.keys(options.providers)
-      .filter((provider) => !!options?.providers?.[provider as AuthProvider])
+    { path: "/auth", component: createAuth(config) },
+    ...Object.keys(config.providers)
+      .filter((provider) => !!config?.providers?.[provider as AuthProvider])
       .flatMap((provider) =>
-        getRoutesByProvider(provider as AuthProvider, options)
+        getRoutesByProvider(provider as AuthProvider, config)
       ),
   ];
 

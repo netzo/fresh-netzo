@@ -5,7 +5,7 @@
 /// <reference lib="deno.ns" />
 /// <reference lib="deno.unstable" />
 
-import { start as _start, type FreshConfig } from "./deps/$fresh/server.ts";
+import { type FreshConfig, start as _start } from "./deps/$fresh/server.ts";
 import type { ApiState } from "./plugins/api/plugin.ts";
 import type { AuthState } from "./plugins/auth/plugin.ts";
 import type { CronState } from "./plugins/cron/plugin.ts";
@@ -15,8 +15,6 @@ import { proxyConsole } from "./plugins/utils.ts";
 export type NetzoConfig = FreshConfig;
 
 export type NetzoState = {
-  kv: Deno.Kv;
-  config: NetzoConfig;
   auth?: AuthState;
   api?: ApiState;
   cron?: CronState;
@@ -44,33 +42,9 @@ console = proxyConsole(
  * @param {NetzoConfig} config - configuration options for the application
  * @returns {object} - an application instance
  */
-export const createNetzoApp = async (config: Partial<NetzoConfig>) => {
+export const createNetzoApp = async (config: NetzoConfig) => {
   // [kv] defaults to local database (development) or remote database (production)
   const kv = await Deno.openKv();
-
-  // [app/state] build state (pass single kv instance to plugins for performance)
-  const state: NetzoState = { kv, config };
-
-  config = {
-    ...config,
-    plugins: [
-      {
-        name: "config",
-        middlewares: [
-          {
-            path: "/",
-            middleware: {
-              handler: (_req, ctx) => {
-                ctx.state = state;
-                return ctx.next();
-              },
-            },
-          },
-        ],
-      },
-      ...(config?.plugins ?? []),
-    ],
-  } satisfies NetzoConfig;
 
   return {
     kv,
