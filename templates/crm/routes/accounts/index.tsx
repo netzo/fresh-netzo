@@ -3,7 +3,7 @@ import type { TableProps } from "netzo/components/blocks/table/use-table.ts";
 import { type Account, accountSchema, I18N } from "@/data/accounts.ts";
 import { Table } from "@/islands/accounts/Table.tsx";
 import { FormAccount } from "@/islands/accounts/Form.tsx";
-import { netzo } from "@/netzo.ts";
+import { resource } from "@/netzo.ts";
 
 export const getTableOptions = (
   data: Account[],
@@ -32,7 +32,7 @@ export const getTableOptions = (
 };
 
 export default defineRoute(async (req, ctx) => {
-  const data = await netzo.resource("accounts").find<Account>();
+  const data = await resource("accounts").find<Account>();
 
   const options = getTableOptions(data);
 

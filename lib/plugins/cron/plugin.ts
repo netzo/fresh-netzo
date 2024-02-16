@@ -1,4 +1,5 @@
 import type { Plugin } from "../../deps/$fresh/server.ts";
+import type { NetzoState } from "../../mod.ts";
 import { proxyCron } from "./mod.ts";
 
 export type CronConfig = {
@@ -10,8 +11,11 @@ export type CronState = {};
 
 /**
  * Plugin to register monitoring for Deno.cron jobs.
+ *
+ * @param {CronConfig} - configuration options for the plugin
+ * @returns {Plugin} - a Plugin for Deno Fresh
  */
-export const cron = (options?: CronConfig): Plugin => {
+export const cron = (options?: CronConfig): Plugin<NetzoState> => {
   if (!options) return { name: "cron" };
 
   Deno.cron = proxyCron(options.kv); // [deno] proxy deno primitive

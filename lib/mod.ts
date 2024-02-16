@@ -5,27 +5,22 @@
 /// <reference lib="deno.ns" />
 /// <reference lib="deno.unstable" />
 
-import { type FreshConfig, start } from "./deps/$fresh/server.ts";
-import { replace } from "./deps/object-replace-mustache.ts";
-import { setEnvVarsIfRemoteProject } from "./plugins/utils.ts";
-import { proxyConsole } from "./plugins/utils.console.ts";
-import {
-  auth,
-  type AuthConfig,
-  type AuthState,
-} from "./plugins/auth/plugin.ts";
-import { api, type ApiConfig, type ApiState } from "./plugins/api/plugin.ts";
+import { type FreshConfig, start as _start } from "./deps/$fresh/server.ts";
+import { proxyConsole } from "./plugins/utils.ts";
+import type { AuthState } from "./plugins/auth/plugin.ts";
+import type { ApiState } from "./plugins/api/plugin.ts";
+import type { CronState } from "./plugins/cron/plugin.ts";
+import type { EnvironmentsState } from "./plugins/environments/plugin.ts";
 
-export type NetzoConfig = FreshConfig & {
-  auth?: AuthConfig;
-  api?: ApiConfig;
-};
+export type NetzoConfig = FreshConfig;
 
 export type NetzoState = {
   kv: Deno.Kv;
   config: NetzoConfig;
   auth?: AuthState;
   api?: ApiState;
+  cron?: CronState;
+  environments?: EnvironmentsState;
   [k: string]: unknown;
 };
 
@@ -42,22 +37,17 @@ console = proxyConsole(
  * Netzo is a Deno framework for building full-stack web apps
  * faster with less code via an opinionated set of plugins and conventions.
  *
- * @example import { Netzo } from "netzo/mod.ts"
- * const netzo = await Netzo({ ... })
- * if (import.meta.main)netzo.start()
+ * @example import { createNetzoApp } from "netzo/mod.ts"
+ * const app = await createNetzoApp({ ... })
+ * if (import.meta.main) app.start()
  *
- * @param {NetzoConfig} config - the Netzo app config object
- * @returns {object} - an object of multiple utilities core to Netzo
+ * @param {NetzoConfig} config - configuration options for the application
+ * @returns {object} - an application instance
  */
-export const Netzo = async (config: Partial<NetzoConfig>) => {
-  // [development] load development envVars if referencing remote project
-  if (!Deno.env.get("DENO_REGION")) await setEnvVarsIfRemoteProject();
-
+export const createNetzoApp = async (config: Partial<NetzoConfig>) => {
   // [kv] defaults to local database (development) or remote database (production)
   const kv = await Deno.openKv();
 
-  // [app/config] render mustache values
-  config = replace(config, Deno.env.toObject());
   // [app/state] build state (pass single kv instance to plugins for performance)
   const state: NetzoState = { kv, config };
 
@@ -78,20 +68,12 @@ export const Netzo = async (config: Partial<NetzoConfig>) => {
           },
         ],
       },
-      // IMPORTANT: must register all plugins (even if disabled) to ensure they
-      // are always bundled at build time since some might depend on others
-      ...[
-        auth(config.auth),
-        api(config.api),
-      ],
       ...(config?.plugins ?? []),
     ],
   } satisfies NetzoConfig;
 
   return {
     kv,
-    resource: (name: string) =>
-      config.api!.endpoints.find((e) => e.name === name)?.resource,
     config,
     start: async () => {
       if (Deno.args.includes("dev")) {
@@ -104,7 +86,7 @@ export const Netzo = async (config: Partial<NetzoConfig>) => {
         // so we revert to relying on import alias "@" for now despite
         // this breaking types in development. This is a temporary fix
         // see https://github.com/netzo/netzo/issues/85#issuecomment-1929225550
-        return start((await import("@/fresh.gen.ts")).default, config);
+        return _start((await import("@/fresh.gen.ts")).default, config);
       }
     }, // NOTE: async but won't resolve (since dev/start won't) so we can't await it
   };

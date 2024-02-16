@@ -1,5 +1,5 @@
-import { Netzo } from "netzo/mod.ts";
+import { createNetzoApp } from "netzo/mod.ts";
 
-export const netzo = await Netzo({});
+export const app = await createNetzoApp({});
 
-if (import.meta.main) netzo.start();
+if (import.meta.main) app.start();

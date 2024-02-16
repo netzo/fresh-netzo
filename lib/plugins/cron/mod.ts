@@ -1,5 +1,5 @@
 // see https://github.com/netzo/netzo/issues/57
-import { DenoKvResource } from "../../resources/denokv.ts";
+import { DenoKvResource } from "../api/resources/denokv.ts";
 
 export type Run = {
   id: string;

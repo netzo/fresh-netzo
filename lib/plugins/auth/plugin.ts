@@ -1,4 +1,8 @@
-import type { Plugin, RouteContext } from "../../deps/$fresh/server.ts";
+import type {
+  Plugin,
+  PluginRoute,
+  RouteContext,
+} from "../../deps/$fresh/server.ts";
 import type { OAuth2ClientConfig } from "../../deps/oauth2_client/src/oauth2_client.ts";
 import type { NetzoState } from "../../mod.ts";
 import type { AuthUser } from "./utils/db.ts";
@@ -8,7 +12,7 @@ import {
   setSessionState,
 } from "./middlewares/mod.ts";
 import { getRoutesByProvider } from "./routes/mod.ts";
-import Auth from "./routes/auth.tsx";
+import createAuth from "./routes/auth.tsx";
 import type { AuthProvider } from "./utils/providers/mod.ts";
 import type { NetzoClientConfig } from "./utils/providers/netzo.ts";
 import type { EmailClientConfig } from "./utils/providers/email.ts";
@@ -45,13 +49,12 @@ export type AuthState = {
 };
 
 export function useAuth(ctx: RouteContext<void, NetzoState>) {
-  const config = ctx.state?.config?.auth;
-  const state = ctx.state?.auth ?? {};
-  const { sessionId, sessionUser } = state;
+  const state = ctx.state?.auth;
+  const { sessionId, sessionUser } = state ?? {};
 
-  const mustAuth = !!config && !sessionId;
+  const mustAuth = !!state && !sessionId;
 
-  return { config, state, sessionId, sessionUser, mustAuth };
+  return { state, sessionId, sessionUser, mustAuth };
 }
 
 /**
@@ -63,8 +66,11 @@ export function useAuth(ctx: RouteContext<void, NetzoState>) {
  * - `GET /auth/{provider}/signin` for the sign-in page
  * - `GET /auth/{provider}/callback` for the callback page
  * - `GET /auth/signout` for the sign-out page
+ *
+ * @param {AuthConfig} - configuration options for the plugin
+ * @returns {Plugin} - a Plugin for Deno Fresh
  */
-export const auth = (options?: AuthConfig): Plugin => {
+export const auth = (options?: AuthConfig): Plugin<NetzoState> => {
   if (!options) return { name: "auth" };
 
   const authEnabled = [
@@ -83,8 +89,8 @@ export const auth = (options?: AuthConfig): Plugin => {
   options.caption ??= ""; // e.g. 'By signing in you agree to the <a href="/" target="_blank">Terms of Service</a>';
   options.providers ??= {};
 
-  const authRoutes = [
-    { path: "/auth", component: Auth },
+  const authRoutes: PluginRoute[] = [
+    { path: "/auth", component: createAuth(options) },
     ...Object.keys(options.providers)
       .filter((provider) => !!options?.providers?.[provider as AuthProvider])
       .flatMap((provider) =>
@@ -109,11 +115,5 @@ export const auth = (options?: AuthConfig): Plugin => {
       },
     ],
     routes: authRoutes,
-    islands: {
-      baseLocation: import.meta.url,
-      paths: [
-        "./islands/auth-form.tsx",
-      ],
-    },
   };
 };

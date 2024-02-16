@@ -1,4 +1,4 @@
-import type { Plugin, RouteContext } from "../../deps/$fresh/server.ts";
+import type { Plugin } from "../../deps/$fresh/server.ts";
 import { hooks as _hooks, Middleware } from "../../deps/@feathersjs/hooks.ts";
 import type { NetzoState } from "../../mod.ts";
 import type { Resource } from "./resources/mod.ts";
@@ -37,13 +37,6 @@ export type ApiState = {
   [key: string]: Resource;
 };
 
-export function useApi(ctx: RouteContext<void, NetzoState>) {
-  const config = ctx.state?.config?.api;
-  const state = ctx.state?.api ?? {};
-
-  return { config, state };
-}
-
 /**
  * A fresh plugin that registers middleware and handlers to
  * to mount RESTful API routes on the `/api` route path.
@@ -55,8 +48,11 @@ export function useApi(ctx: RouteContext<void, NetzoState>) {
  * - `PUT /api/{endpoint}/{id}` update an entry by key
  * - `PATCH /api/{endpoint}/{id}` patch an entry by key
  * - `DELETE /api/{endpoint}/{id}` remove an entry by key
+ *
+ * @param {ApiConfig} - configuration options for the plugin
+ * @returns {Plugin} - a Plugin for Deno Fresh
  */
-export const api = (options?: ApiConfig): Plugin => {
+export const api = (options?: ApiConfig): Plugin<NetzoState> => {
   if (!options) return { name: "api" };
 
   options.path ||= "/api";

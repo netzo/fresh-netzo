@@ -2,7 +2,7 @@ import { defineRoute } from "$fresh/server.ts";
 import type { TableProps } from "netzo/components/blocks/table/use-table.ts";
 import { type Contact, I18N } from "@/data/contacts.ts";
 import { Table } from "@/islands/contacts/Table.tsx";
-import { netzo } from "@/netzo.ts";
+import { resource } from "@/netzo.ts";
 
 export const getTableOptions = (
   data: Contact[],
@@ -24,7 +24,7 @@ export const getTableOptions = (
 };
 
 export default defineRoute(async (req, ctx) => {
-  const data = await netzo.resource("contacts").find<Contact>();
+  const data = await resource("contacts").find<Contact>();
 
   const options = getTableOptions(data);
 

@@ -15,7 +15,7 @@ import {
   AvatarImage,
 } from "netzo/components/avatar.tsx";
 import { IconCopy } from "netzo/components/icon-copy.tsx";
-import { type Contact, I18N } from "@/data/contacts.ts";
+import { type Contact, I18N } from "../../data/contacts.ts";
 
 // NOTE: define columns in island (route to island function serialization unsupported)
 export const getColumns = ({ options }: TableProps): TableProps["columns"] => [

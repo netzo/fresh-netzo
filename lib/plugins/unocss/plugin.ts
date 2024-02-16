@@ -9,6 +9,7 @@ import {
   walk,
 } from "../../deps/$fresh/server/deps.ts";
 import { exists } from "../../deps/std/fs/exists.ts";
+import type { NetzoState } from "../../mod.ts";
 
 type PreactOptions = typeof preactOptions & { __b?: (vnode: VNode) => void };
 
@@ -127,7 +128,7 @@ export const unocss = (
     csr = true,
     config,
   }: UnocssOptions = {},
-): Plugin => {
+): Plugin<NetzoState> => {
   // A uno.config.ts file is required in the project directory if
   // a config object is not provided, or to use the browser runtime
   const configURL = new URL("./uno.config.ts", Deno.mainModule);
