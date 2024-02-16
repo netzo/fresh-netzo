@@ -24,5 +24,8 @@
     "editor.defaultFormatter": "denoland.vscode-deno"
   },
   "editor.defaultFormatter": "denoland.vscode-deno",
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit"
+  }
 }
