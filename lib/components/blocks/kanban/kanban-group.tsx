@@ -1,23 +1,23 @@
-import type { ComponentChildren } from "../../../deps/preact.ts";
+import { useComputed } from "@preact/signals";
+import type { ComponentChildren } from "preact";
 // adapted from https://github.com/Georgegriff/react-dnd-kit-tailwind-shadcn-ui/blob/main/src/components/BoardGroup.tsx
+import {
+  useDndContext,
+  type UniqueIdentifier,
+} from "../../../deps/@dnd-kit/core.ts";
 import {
   SortableContext,
   useSortable,
 } from "../../../deps/@dnd-kit/sortable.ts";
-import {
-  type UniqueIdentifier,
-  useDndContext,
-} from "../../../deps/@dnd-kit/core.ts";
 import { CSS } from "../../../deps/@dnd-kit/utilities.ts";
-import { useComputed } from "../../../deps/@preact/signals.ts";
-import { KanbanCard } from "./kanban-card.tsx";
 import { cva } from "../../../deps/class-variance-authority.ts";
 import type { BadgeProps } from "../../badge.tsx";
-import { Card, CardContent, CardHeader } from "../../card.tsx";
 import { Button } from "../../button.tsx";
+import { Card, CardContent, CardHeader } from "../../card.tsx";
 import { ScrollArea, ScrollBar } from "../../scroll-area.tsx";
-import type { Item, KanbanProps } from "./kanban.tsx";
 import { cn } from "../../utils.ts";
+import { KanbanCard } from "./kanban-card.tsx";
+import type { Item, KanbanProps } from "./kanban.tsx";
 
 export type Group = {
   id: UniqueIdentifier;

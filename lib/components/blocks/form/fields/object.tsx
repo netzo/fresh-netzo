@@ -1,7 +1,6 @@
-import type { ComponentChildren } from "../../../../deps/preact.ts";
-import * as z from "../../../../deps/zod/mod.ts";
+import type { ComponentChildren } from "preact";
 import { useForm } from "../../../../deps/react-hook-form.ts";
-import { FieldConfig, FieldConfigItem } from "../types.ts";
+import * as z from "../../../../deps/zod/mod.ts";
 import {
   Accordion,
   AccordionContent,
@@ -9,13 +8,14 @@ import {
   AccordionTrigger,
 } from "../../../accordion.tsx";
 import { FormField } from "../../../form.tsx";
+import { DEFAULT_ZOD_HANDLERS, INPUT_COMPONENTS } from "../config.ts";
+import { FieldConfig, FieldConfigItem } from "../types.ts";
 import {
   beautifyObjectName,
   getBaseSchema,
   getBaseType,
   zodToHtmlInputProps,
 } from "../utils.ts";
-import { DEFAULT_ZOD_HANDLERS, INPUT_COMPONENTS } from "../config.ts";
 import AutoFormArray from "./array.tsx";
 
 function DefaultParent({ children }: { children: ComponentChildren }) {

@@ -1,5 +1,5 @@
-import { monotonicFactory } from "../../deps/ulid.ts";
 import { _get } from "../../deps/lodash.get.ts";
+import { monotonicFactory } from "../../deps/ulid.ts";
 
 export const ERRORS = {
   missingProperty: (name: string) => `Missing "${name}" property in options.`,

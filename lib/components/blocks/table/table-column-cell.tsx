@@ -1,6 +1,6 @@
 import type { ComponentChildren, JSX } from "preact";
-import { _get } from "../../../deps/lodash.get.ts";
 import { Column } from "../../../deps/@tanstack/react-table.ts";
+import { _get } from "../../../deps/lodash.get.ts";
 import { cn } from "../../utils.ts";
 
 type TableColumnCellProps<TData, TValue> =

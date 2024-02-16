@@ -1,13 +1,12 @@
-import * as AlertDialogPrimitive from "../deps/@radix-ui/react-alert-dialog.ts";
-import type { JSX } from "../deps/preact.ts";
+import type { JSX } from "preact";
 import {
-  type ComponentProps,
   forwardRef,
-  type Ref,
-  useState,
-} from "../deps/preact/compat.ts";
-import { cn } from "./utils.ts";
+  type ComponentProps,
+  type Ref
+} from "preact/compat";
+import * as AlertDialogPrimitive from "../deps/@radix-ui/react-alert-dialog.ts";
 import { buttonVariants } from "./button.tsx";
+import { cn } from "./utils.ts";
 
 const AlertDialog = AlertDialogPrimitive.Root;
 
@@ -141,5 +140,6 @@ export {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger,
+  AlertDialogTrigger
 };
+

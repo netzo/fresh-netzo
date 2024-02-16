@@ -1,8 +1,7 @@
-import type { JSX } from "../../deps/preact.ts";
-import { signal } from "../../deps/@preact/signals.ts";
-import { cn } from "../utils.ts";
+import { signal } from "@preact/signals";
 import { Button } from "../button.tsx";
 import { Sheet, SheetContent, SheetTrigger } from "../sheet.tsx";
+import { cn } from "../utils.ts";
 import { Nav, type NavProps } from "./nav.tsx";
 
 export const open = signal<boolean>(false);

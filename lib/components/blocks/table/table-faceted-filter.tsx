@@ -1,6 +1,5 @@
 import type { ComponentType } from "preact";
 import { Column } from "../../../deps/@tanstack/react-table.ts";
-import { cn } from "../../utils.ts";
 import { Badge } from "../../badge.tsx";
 import { Button } from "../../button.tsx";
 import {
@@ -14,6 +13,7 @@ import {
 } from "../../command.tsx";
 import { Popover, PopoverContent, PopoverTrigger } from "../../popover.tsx";
 import { Separator } from "../../separator.tsx";
+import { cn } from "../../utils.ts";
 
 type TableFacetedFilter<TData, TValue> = {
   column?: Column<TData, TValue>;

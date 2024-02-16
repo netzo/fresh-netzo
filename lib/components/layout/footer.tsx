@@ -1,4 +1,4 @@
-import type { ComponentChildren, JSX } from "../../deps/preact.ts";
+import type { ComponentChildren, JSX } from "preact";
 import { useDarkMode } from "../../deps/usehooks-ts.ts";
 import { cn, useUI } from "../utils.ts";
 

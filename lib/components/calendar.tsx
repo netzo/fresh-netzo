@@ -1,7 +1,7 @@
+import { type ComponentProps } from "preact/compat";
 import { DayPicker } from "../deps/react-day-picker.ts";
-import { type ComponentProps } from "../deps/preact/compat.ts";
-import { cn } from "./utils.ts";
 import { buttonVariants } from "./button.tsx";
+import { cn } from "./utils.ts";
 
 export type CalendarProps = ComponentProps<typeof DayPicker>;
 
@@ -50,7 +50,7 @@ function Calendar({
       }}
       components={{
         IconLeft: ({ ...props }) => <i className="mdi-chevron-left h-4 w-4" />,
-        IconRight: ({ ...props }) => 
+        IconRight: ({ ...props }) =>
         <i className="mdi-chevron-right h-4 w-4" />,
       }}
       {...props}

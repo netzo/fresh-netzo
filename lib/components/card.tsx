@@ -1,10 +1,7 @@
-import type { JSX } from "../deps/preact.ts";
+import type { JSX } from "preact";
 import {
-  type ComponentProps,
-  forwardRef,
-  type Ref,
-  useState,
-} from "../deps/preact/compat.ts";
+  forwardRef
+} from "preact/compat";
 import { cn } from "./utils.ts";
 
 const Card = forwardRef<
@@ -84,5 +81,6 @@ export {
   CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle,
+  CardTitle
 };
+

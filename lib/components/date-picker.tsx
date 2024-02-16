@@ -1,9 +1,9 @@
-import { forwardRef } from "../deps/preact/compat.ts";
+import { forwardRef } from "preact/compat";
 import { format } from "../deps/date-fns.ts";
-import { cn } from "./utils.ts";
 import { Button } from "./button.tsx";
 import { Calendar } from "./calendar.tsx";
 import { Popover, PopoverContent, PopoverTrigger } from "./popover.tsx";
+import { cn } from "./utils.ts";
 
 export const DatePicker = forwardRef<
   HTMLDivElement,

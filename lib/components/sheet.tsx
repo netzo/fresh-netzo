@@ -1,12 +1,11 @@
+import type { JSX } from "preact";
+import {
+  forwardRef,
+  type ComponentProps,
+  type Ref
+} from "preact/compat";
 import * as SheetPrimitive from "../deps/@radix-ui/react-dialog.ts";
 import { cva, type VariantProps } from "../deps/class-variance-authority.ts";
-import type { JSX } from "../deps/preact.ts";
-import {
-  type ComponentProps,
-  forwardRef,
-  type Ref,
-  useState,
-} from "../deps/preact/compat.ts";
 import { cn } from "./utils.ts";
 
 const Sheet = SheetPrimitive.Root;
@@ -142,5 +141,6 @@ export {
   SheetFooter,
   SheetHeader,
   SheetTitle,
-  SheetTrigger,
+  SheetTrigger
 };
+

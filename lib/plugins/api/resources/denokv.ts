@@ -1,5 +1,5 @@
-import type { Resource, ResourceOptions } from "./mod.ts";
 import { ERRORS, filterObjectsByKeyValues, ulid } from "../utils.ts";
+import type { Resource, ResourceOptions } from "./mod.ts";
 
 export const KV = await Deno.openKv();
 

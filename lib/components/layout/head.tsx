@@ -1,4 +1,4 @@
-import type { ComponentChildren } from "../../deps/preact.ts";
+import type { ComponentChildren } from "preact";
 import { Head as _Head } from "../../deps/$fresh/runtime.ts";
 
 export type HeadProps = {

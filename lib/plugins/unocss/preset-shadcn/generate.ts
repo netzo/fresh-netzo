@@ -1,6 +1,6 @@
 import { mergeDeep } from "../../../deps/@unocss/core.ts";
-import { themeCSSVarKeys, themes } from "./themes.ts";
 import type { ThemeCSSVarKey, ThemeCSSVars } from "./themes.ts";
+import { themeCSSVarKeys, themes } from "./themes.ts";
 import type { ColorOptions } from "./types.ts";
 
 function generateLightVars(

@@ -1,18 +1,18 @@
 // adapted from https://github.com/vantezzen/auto-form
-import type { ComponentChildren } from "../../../deps/preact.ts";
-import { z } from "../../../deps/zod/mod.ts";
-import { DefaultValues, useForm } from "../../../deps/react-hook-form.ts";
+import type { ComponentChildren } from "preact";
 import { zodResolver } from "../../../deps/@hookform/resolvers/zod.ts";
-import { Form as _Form } from "../../form.tsx";
+import { DefaultValues, useForm } from "../../../deps/react-hook-form.ts";
+import { z } from "../../../deps/zod/mod.ts";
 import { Button } from "../../button.tsx";
+import { Form as _Form } from "../../form.tsx";
 import { cn } from "../../utils.ts";
+import AutoFormObject from "./fields/object.tsx";
 import { FieldConfig } from "./types.ts";
 import {
+  ZodObjectOrWrapped,
   getDefaultValues,
   getObjectFormSchema,
-  ZodObjectOrWrapped,
 } from "./utils.ts";
-import AutoFormObject from "./fields/object.tsx";
 
 export { createOnSubmit } from "./utils.ts";
 

@@ -1,7 +1,7 @@
 // adapted from https://github.com/Georgegriff/react-dnd-kit-tailwind-shadcn-ui/blob/main/src/components/utils.ts
 import { Active, DataRef, Over } from "../../../deps/@dnd-kit/core.ts";
-import { GroupDragData } from "./kanban-group.tsx";
 import { ItemDragData } from "./kanban-card.tsx";
+import { GroupDragData } from "./kanban-group.tsx";
 
 type DraggableData = GroupDragData | ItemDragData;
 

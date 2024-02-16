@@ -1,15 +1,14 @@
 import { useFieldArray, useForm } from "../../../../deps/react-hook-form.ts";
 import * as z from "../../../../deps/zod/mod.ts";
-import { beautifyObjectName } from "../utils.ts";
 import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "../../../accordion.tsx";
-import AutoFormObject from "./object.tsx";
 import { Button } from "../../../button.tsx";
 import { Separator } from "../../../separator.tsx";
-import { FieldConfig } from "../types.ts";
+import { beautifyObjectName } from "../utils.ts";
+import AutoFormObject from "./object.tsx";
 
 export default function AutoFormArray({
   name,

@@ -1,5 +1,5 @@
-import { defineHook } from "./mod.ts";
 import { NotAuthenticated } from "../errors.ts";
+import { defineHook } from "./mod.ts";
 
 export type AuthenticateOptions = {
   /** The API key to use for authenticating requests

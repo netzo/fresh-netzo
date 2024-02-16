@@ -1,8 +1,8 @@
 import { defineRoute } from "$fresh/server.ts";
-import { Separator } from "netzo/components/separator.tsx";
 import type { Invoice } from "@/data/invoices.ts";
 import { FormInvoice } from "@/islands/invoices/Form.tsx";
 import { resource } from "@/netzo.ts";
+import { Separator } from "netzo/components/separator.tsx";
 
 export default defineRoute(async (req, ctx) => {
   const { id } = ctx.params;

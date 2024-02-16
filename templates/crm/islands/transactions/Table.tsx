@@ -1,21 +1,21 @@
+import { Badge } from "netzo/components/badge.tsx";
+import { toDateTime, toEuro } from "netzo/components/blocks/format.ts";
+import { Grid } from "netzo/components/blocks/table/table.grid.tsx";
 import {
   TableColumnHeader,
   TablePagination,
-  type TableProps,
   TableRowActions,
   TableToolbar,
   useTable,
+  type TableProps,
 } from "netzo/components/blocks/table/table.tsx";
-import { Grid } from "netzo/components/blocks/table/table.grid.tsx";
-import { toDateTime, toEuro } from "netzo/components/blocks/format.ts";
 import { IconCopy } from "netzo/components/icon-copy.tsx";
-import { Badge } from "netzo/components/badge.tsx";
+import { CellContext } from "netzo/deps/@tanstack/react-table.ts";
 import {
   I18N,
-  type Transaction,
   transactionSchema,
+  type Transaction,
 } from "../../data/transactions.ts";
-import { CellContext } from "netzo/deps/@tanstack/react-table.ts";
 
 // NOTE: define columns in island (route to island function serialization unsupported)
 export const getColumns = (

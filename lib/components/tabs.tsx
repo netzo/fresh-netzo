@@ -1,11 +1,9 @@
-import * as TabsPrimitive from "../deps/@radix-ui/react-tabs.ts";
-import type { JSX } from "../deps/preact.ts";
 import {
-  type ComponentProps,
   forwardRef,
-  type Ref,
-  useState,
-} from "../deps/preact/compat.ts";
+  type ComponentProps,
+  type Ref
+} from "preact/compat";
+import * as TabsPrimitive from "../deps/@radix-ui/react-tabs.ts";
 import { cn } from "./utils.ts";
 
 const Tabs = TabsPrimitive.Root;

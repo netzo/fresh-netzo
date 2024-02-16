@@ -1,11 +1,9 @@
-import * as SwitchPrimitives from "../deps/@radix-ui/react-switch.ts";
-import type { JSX } from "../deps/preact.ts";
 import {
-  type ComponentProps,
   forwardRef,
-  type Ref,
-  useState,
-} from "../deps/preact/compat.ts";
+  type ComponentProps,
+  type Ref
+} from "preact/compat";
+import * as SwitchPrimitives from "../deps/@radix-ui/react-switch.ts";
 import { cn } from "./utils.ts";
 
 const Switch = forwardRef<

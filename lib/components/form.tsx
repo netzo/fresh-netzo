@@ -1,3 +1,12 @@
+import type { JSX } from "preact";
+import {
+  createContext,
+  forwardRef,
+  useContext,
+  useId,
+  type ComponentProps,
+  type Ref
+} from "preact/compat";
 import * as LabelPrimitive from "../deps/@radix-ui/react-label.ts";
 import { Slot } from "../deps/@radix-ui/react-slot.ts";
 import {
@@ -9,16 +18,6 @@ import {
   useFormContext,
 } from "../deps/react-hook-form.ts";
 import { Label } from "./label.tsx";
-import type { JSX } from "../deps/preact.ts";
-import {
-  type ComponentProps,
-  createContext,
-  forwardRef,
-  type Ref,
-  useContext,
-  useId,
-  useState,
-} from "../deps/preact/compat.ts";
 import { cn } from "./utils.ts";
 
 const Form = FormProvider;
@@ -179,5 +178,6 @@ export {
   FormItem,
   FormLabel,
   FormMessage,
-  useFormField,
+  useFormField
 };
+

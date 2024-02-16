@@ -1,3 +1,4 @@
+import * as z from "../../../../deps/zod/mod.ts";
 import {
   FormControl,
   FormDescription,
@@ -14,7 +15,6 @@ import {
 } from "../../../select.tsx";
 import { AutoFormInputComponentProps } from "../types.ts";
 import { getBaseSchema } from "../utils.ts";
-import * as z from "../../../../deps/zod/mod.ts";
 
 export default function AutoFormEnum({
   label,

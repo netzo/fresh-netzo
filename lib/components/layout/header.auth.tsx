@@ -1,16 +1,14 @@
+import type { AuthUser } from "../../plugins/auth/utils/db.ts";
 import { Avatar, AvatarFallback, AvatarImage } from "../avatar.tsx";
 import { Button } from "../button.tsx";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuTrigger,
+  DropdownMenuTrigger
 } from "../dropdown-menu.tsx";
-import type { AuthUser } from "../../plugins/auth/utils/db.ts";
 
 export type HeaderAuthProps = {
   sessionUser?: AuthUser;

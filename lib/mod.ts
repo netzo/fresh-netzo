@@ -5,12 +5,12 @@
 /// <reference lib="deno.ns" />
 /// <reference lib="deno.unstable" />
 
-import { type FreshConfig, start as _start } from "./deps/$fresh/server.ts";
-import { proxyConsole } from "./plugins/utils.ts";
-import type { AuthState } from "./plugins/auth/plugin.ts";
+import { start as _start, type FreshConfig } from "./deps/$fresh/server.ts";
 import type { ApiState } from "./plugins/api/plugin.ts";
+import type { AuthState } from "./plugins/auth/plugin.ts";
 import type { CronState } from "./plugins/cron/plugin.ts";
 import type { EnvironmentsState } from "./plugins/environments/plugin.ts";
+import { proxyConsole } from "./plugins/utils.ts";
 
 export type NetzoConfig = FreshConfig;
 

@@ -1,14 +1,14 @@
 import {
-  type ComponentProps,
   createContext,
   forwardRef,
-  type Ref,
   useContext,
-} from "../deps/preact/compat.ts";
+  type ComponentProps,
+  type Ref,
+} from "preact/compat";
 import * as ToggleGroupPrimitive from "../deps/@radix-ui/react-toggle-group.ts";
 import { VariantProps } from "../deps/class-variance-authority.ts";
-import { cn } from "./utils.ts";
 import { toggleVariants } from "./toggle.tsx";
+import { cn } from "./utils.ts";
 
 const ToggleGroupContext = createContext<
   VariantProps<typeof toggleVariants>

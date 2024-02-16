@@ -1,6 +1,6 @@
-import { join } from "../../../deps/std/path/mod.ts";
 import type { PluginRoute } from "../../../deps/$fresh/server.ts";
 import { hooks, middleware } from "../../../deps/@feathersjs/hooks.ts";
+import { join } from "../../../deps/std/path/mod.ts";
 import type { ApiConfig, ApiEndpoint } from "../plugin.ts";
 import { parseRequestBody, parseSearchParams } from "../utils.ts";
 

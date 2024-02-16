@@ -1,28 +1,13 @@
-import { cn } from "../../utils.ts";
 import { Button } from "../../button.tsx";
-import { layout } from "./table.tsx";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuLabel,
-  DropdownMenuRadioGroup,
-  DropdownMenuRadioItem,
   DropdownMenuSeparator,
-  DropdownMenuTrigger,
+  DropdownMenuTrigger
 } from "../../dropdown-menu.tsx";
 import type { Table } from "./use-table.ts";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "../../card.tsx";
-import { Input } from "../../input.tsx";
-import { Label } from "../../label.tsx";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../tabs.tsx";
 
 type TableOptionsProps<TData> = {
   table: Table<TData>;

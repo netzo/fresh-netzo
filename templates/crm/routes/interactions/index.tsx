@@ -1,13 +1,13 @@
 import { defineRoute } from "$fresh/server.ts";
-import type { TableProps } from "netzo/components/blocks/table/use-table.ts";
 import {
   I18N,
-  type Interaction,
   interactionSchema,
+  type Interaction,
 } from "@/data/interactions.ts";
-import { Table } from "@/islands/interactions/Table.tsx";
 import { FormInteraction } from "@/islands/interactions/Form.tsx";
+import { Table } from "@/islands/interactions/Table.tsx";
 import { resource } from "@/netzo.ts";
+import type { TableProps } from "netzo/components/blocks/table/use-table.ts";
 
 export const getTableOptions = (
   data: Interaction[],

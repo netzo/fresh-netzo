@@ -5,17 +5,17 @@ import type {
 } from "../../deps/$fresh/server.ts";
 import type { OAuth2ClientConfig } from "../../deps/oauth2_client/src/oauth2_client.ts";
 import type { NetzoState } from "../../mod.ts";
-import type { AuthUser } from "./utils/db.ts";
 import {
   ensureSignedIn,
   setAppState,
   setSessionState,
 } from "./middlewares/mod.ts";
-import { getRoutesByProvider } from "./routes/mod.ts";
 import createAuth from "./routes/auth.tsx";
+import { getRoutesByProvider } from "./routes/mod.ts";
+import type { AuthUser } from "./utils/db.ts";
+import type { EmailClientConfig } from "./utils/providers/email.ts";
 import type { AuthProvider } from "./utils/providers/mod.ts";
 import type { NetzoClientConfig } from "./utils/providers/netzo.ts";
-import type { EmailClientConfig } from "./utils/providers/email.ts";
 
 export * from "../../deps/deno_kv_oauth/mod.ts";
 

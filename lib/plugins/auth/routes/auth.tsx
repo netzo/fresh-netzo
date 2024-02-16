@@ -1,7 +1,6 @@
 import { defineRoute } from "../../../deps/$fresh/server.ts";
 import { AuthForm } from "../islands/auth-form.tsx";
-import type { NetzoState } from "../../../mod.ts";
-import { type AuthConfig, useAuth } from "../plugin.ts";
+import { type AuthConfig } from "../plugin.ts";
 
 // FIXME: not working for plugin-injected routes
 // export const config: RouteConfig = { skipAppWrapper: true };

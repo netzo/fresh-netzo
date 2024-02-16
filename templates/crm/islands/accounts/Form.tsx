@@ -1,6 +1,6 @@
 import { useSignal } from "@preact/signals";
-import { Button } from "netzo/components/button.tsx";
 import { createOnSubmit, Form } from "netzo/components/blocks/form/form.tsx";
+import { Button } from "netzo/components/button.tsx";
 import { Account, accountSchema } from "../../data/accounts.ts";
 // import { I18N } from "../../data/accounts.ts";
 

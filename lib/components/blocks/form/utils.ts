@@ -1,4 +1,4 @@
-import type { JSX } from "../../../deps/preact.ts";
+import type { JSX } from "preact";
 import { DefaultValues } from "../../../deps/react-hook-form.ts";
 import { z } from "../../../deps/zod/mod.ts";
 

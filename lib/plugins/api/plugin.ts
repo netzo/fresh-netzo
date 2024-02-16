@@ -1,8 +1,8 @@
 import type { Plugin } from "../../deps/$fresh/server.ts";
-import { hooks as _hooks, Middleware } from "../../deps/@feathersjs/hooks.ts";
+import { Middleware } from "../../deps/@feathersjs/hooks.ts";
 import type { NetzoState } from "../../mod.ts";
-import type { Resource } from "./resources/mod.ts";
 import { handleErrors } from "./middlewares/mod.ts";
+import type { Resource } from "./resources/mod.ts";
 import { getRoutesByEndpoint } from "./routes/mod.ts";
 
 export type ApiEndpoint = {

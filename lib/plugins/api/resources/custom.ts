@@ -1,5 +1,5 @@
-import type { Method, Resource, ResourceOptions } from "./mod.ts";
 import { NotImplemented } from "../errors.ts";
+import type { Method, Resource, ResourceOptions } from "./mod.ts";
 
 export type CustomResourceOptions = ResourceOptions & {
   find?: Resource["find"];

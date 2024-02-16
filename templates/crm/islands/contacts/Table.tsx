@@ -1,21 +1,21 @@
 import {
-  TableColumnCell,
-  TableColumnHeader,
-  TablePagination,
-  type TableProps,
-  TableRowActions,
-  TableToolbar,
-  useTable,
-} from "netzo/components/blocks/table/table.tsx";
-import { Gallery } from "netzo/components/blocks/table/table.gallery.tsx";
-import { toDateTime } from "netzo/components/blocks/format.ts";
-import {
   Avatar,
   AvatarFallback,
   AvatarImage,
 } from "netzo/components/avatar.tsx";
+import { toDateTime } from "netzo/components/blocks/format.ts";
+import { Gallery } from "netzo/components/blocks/table/table.gallery.tsx";
+import {
+  TableColumnCell,
+  TableColumnHeader,
+  TablePagination,
+  TableRowActions,
+  TableToolbar,
+  useTable,
+  type TableProps,
+} from "netzo/components/blocks/table/table.tsx";
 import { IconCopy } from "netzo/components/icon-copy.tsx";
-import { type Contact, I18N } from "../../data/contacts.ts";
+import { I18N, type Contact } from "../../data/contacts.ts";
 
 // NOTE: define columns in island (route to island function serialization unsupported)
 export const getColumns = ({ options }: TableProps): TableProps["columns"] => [

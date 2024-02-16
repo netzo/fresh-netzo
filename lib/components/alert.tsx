@@ -1,11 +1,6 @@
+import type { JSX } from "preact";
+import { forwardRef } from "preact/compat";
 import { cva, type VariantProps } from "../deps/class-variance-authority.ts";
-import type { JSX } from "../deps/preact.ts";
-import {
-  type ComponentProps,
-  forwardRef,
-  type Ref,
-  useState,
-} from "../deps/preact/compat.ts";
 import { cn } from "./utils.ts";
 
 const alertVariants = cva(

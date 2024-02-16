@@ -1,4 +1,4 @@
-import { type ComponentProps } from "../deps/preact/compat.ts";
+import { type ComponentProps } from "preact/compat";
 import * as ResizablePrimitive from "../deps/react-resizable-panels.ts";
 import { cn } from "./utils.ts";
 

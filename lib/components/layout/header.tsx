@@ -1,8 +1,8 @@
-import type { JSX } from "../../deps/preact.ts";
+import type { JSX } from "preact";
 import { cn, useUI } from "../utils.ts";
-import { HeaderDarkMode } from "./header.dark-mode.tsx";
-import { HeaderAuth } from "./header.auth.tsx";
 import type { HeaderAuthProps } from "./header.auth.tsx";
+import { HeaderAuth } from "./header.auth.tsx";
+import { HeaderDarkMode } from "./header.dark-mode.tsx";
 
 export type HeaderProps = JSX.IntrinsicElements["header"] & {
   /** A short title for the app at the header. */

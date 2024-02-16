@@ -1,5 +1,4 @@
 // deno-lint-ignore-file no-explicit-any
-import { _get } from "../../deps/lodash.get.ts";
 import { netzo } from "../../integrations/apis/netzo/mod.ts";
 import type { Project } from "../types.ts";
 import { logInfo, LOGS } from "../utils.ts";

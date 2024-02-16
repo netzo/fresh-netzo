@@ -1,11 +1,11 @@
 // adapted from https://github.com/Georgegriff/react-dnd-kit-tailwind-shadcn-ui/blob/main/src/components/TaskCard.tsx
 import { useSortable } from "../../../deps/@dnd-kit/sortable.ts";
 import { CSS } from "../../../deps/@dnd-kit/utilities.ts";
-import { cn } from "../../utils.ts";
-import { Card, CardContent, CardHeader, CardTitle } from "../../card.tsx";
-import { Button } from "../../button.tsx";
 import { cva } from "../../../deps/class-variance-authority.ts";
 import { Badge } from "../../badge.tsx";
+import { Button } from "../../button.tsx";
+import { Card, CardContent, CardHeader, CardTitle } from "../../card.tsx";
+import { cn } from "../../utils.ts";
 import type { Item, KanbanProps } from "./kanban.tsx";
 
 type KanbanCardProps = {

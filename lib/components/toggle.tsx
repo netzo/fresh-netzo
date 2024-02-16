@@ -1,12 +1,10 @@
+import {
+  forwardRef,
+  type ComponentProps,
+  type Ref
+} from "preact/compat";
 import * as TogglePrimitive from "../deps/@radix-ui/react-toggle.ts";
 import { cva, type VariantProps } from "../deps/class-variance-authority.ts";
-import type { JSX } from "../deps/preact.ts";
-import {
-  type ComponentProps,
-  forwardRef,
-  type Ref,
-  useState,
-} from "../deps/preact/compat.ts";
 import { cn } from "./utils.ts";
 
 const toggleVariants = cva(

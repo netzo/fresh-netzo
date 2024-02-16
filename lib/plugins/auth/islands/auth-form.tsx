@@ -1,14 +1,14 @@
-import type { ComponentChildren, JSX } from "../../../deps/preact.ts";
-import type { AuthConfig } from "../plugin.ts";
-import { cn } from "../../../components/utils.ts";
-import { Button, buttonVariants } from "../../../components/button.tsx";
+import type { ComponentChildren, JSX } from "preact";
 import {
   Alert,
   AlertDescription,
   AlertTitle,
 } from "../../../components/alert.tsx";
+import { Button, buttonVariants } from "../../../components/button.tsx";
 import { Input } from "../../../components/input.tsx";
 import { Label } from "../../../components/label.tsx";
+import { cn } from "../../../components/utils.ts";
+import type { AuthConfig } from "../plugin.ts";
 
 export type AuthFormProps = JSX.HTMLAttributes<HTMLDivElement> & {
   config: AuthConfig;

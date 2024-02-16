@@ -2,6 +2,20 @@
 // This file SHOULD be checked into source version control.
 // This file is automatically updated during development when running `dev.ts`.
 
+import { type Manifest } from "$fresh/server.ts";
+import * as $Dashboard from "./islands/Dashboard.tsx";
+import * as $accounts_Form from "./islands/accounts/Form.tsx";
+import * as $accounts_Table from "./islands/accounts/Table.tsx";
+import * as $contacts_Form from "./islands/contacts/Form.tsx";
+import * as $contacts_Table from "./islands/contacts/Table.tsx";
+import * as $deals_Kanban from "./islands/deals/Kanban.tsx";
+import * as $interactions_Form from "./islands/interactions/Form.tsx";
+import * as $interactions_Table from "./islands/interactions/Table.tsx";
+import * as $invoices_Form from "./islands/invoices/Form.tsx";
+import * as $invoices_Table from "./islands/invoices/Table.tsx";
+import * as $mod from "./islands/mod.ts";
+import * as $transactions_Form from "./islands/transactions/Form.tsx";
+import * as $transactions_Table from "./islands/transactions/Table.tsx";
 import * as $_404 from "./routes/_404.tsx";
 import * as $_500 from "./routes/_500.tsx";
 import * as $_app from "./routes/_app.tsx";
@@ -24,20 +38,6 @@ import * as $invoices_id_ from "./routes/invoices/[id].tsx";
 import * as $invoices_index from "./routes/invoices/index.tsx";
 import * as $transactions_id_ from "./routes/transactions/[id].tsx";
 import * as $transactions_index from "./routes/transactions/index.tsx";
-import * as $Dashboard from "./islands/Dashboard.tsx";
-import * as $accounts_Form from "./islands/accounts/Form.tsx";
-import * as $accounts_Table from "./islands/accounts/Table.tsx";
-import * as $contacts_Form from "./islands/contacts/Form.tsx";
-import * as $contacts_Table from "./islands/contacts/Table.tsx";
-import * as $deals_Kanban from "./islands/deals/Kanban.tsx";
-import * as $interactions_Form from "./islands/interactions/Form.tsx";
-import * as $interactions_Table from "./islands/interactions/Table.tsx";
-import * as $invoices_Form from "./islands/invoices/Form.tsx";
-import * as $invoices_Table from "./islands/invoices/Table.tsx";
-import * as $mod from "./islands/mod.ts";
-import * as $transactions_Form from "./islands/transactions/Form.tsx";
-import * as $transactions_Table from "./islands/transactions/Table.tsx";
-import { type Manifest } from "$fresh/server.ts";
 
 const manifest = {
   routes: {

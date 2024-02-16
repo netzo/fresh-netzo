@@ -1,9 +1,9 @@
 import { deepMerge } from "../deps/std/collections/deep_merge.ts";
 // unocss might have twMerge alternative soon
 // see https://github.com/unocss/unocss/issues/2748
-import { twMerge } from "../deps/tailwind-merge.ts";
-import { type ClassValue, clsx } from "../deps/clsx.ts";
+import { clsx, type ClassValue } from "../deps/clsx.ts";
 import { createTwc } from "../deps/react-twc.ts";
+import { twMerge } from "../deps/tailwind-merge.ts";
 
 export const cn = (...inputs: ClassValue[]) => {
   return twMerge(clsx(inputs));

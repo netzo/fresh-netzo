@@ -1,23 +1,23 @@
 // adapted from https://github.com/Georgegriff/react-dnd-kit-tailwind-shadcn-ui/blob/main/src/components/kanban.tsx
-import { useComputed, useSignal } from "../../../deps/@preact/signals.ts";
+import { useComputed, useSignal } from "@preact/signals";
 import {
   Announcements,
   DndContext,
-  type DragEndEvent,
-  type DragOverEvent,
-  // DragOverlay,
-  type DragStartEvent,
   KeyboardSensor,
   MouseSensor,
   TouchSensor,
   // UniqueIdentifier,
   useSensor,
   useSensors,
+  type DragEndEvent,
+  type DragOverEvent,
+  // DragOverlay,
+  type DragStartEvent,
 } from "../../../deps/@dnd-kit/core.ts";
-import { arrayMove, SortableContext } from "../../../deps/@dnd-kit/sortable.ts";
+import { SortableContext, arrayMove } from "../../../deps/@dnd-kit/sortable.ts";
 import type { Table, TableProps } from "../table/use-table.ts";
+import { BoardContainer, KanbanGroup, type Group } from "./kanban-group.tsx";
 import { coordinateGetter } from "./multiple-containers-keyboard-preset.ts";
-import { BoardContainer, type Group, KanbanGroup } from "./kanban-group.tsx";
 import { hasDraggableData } from "./utils.ts";
 
 export type KanbanProps<

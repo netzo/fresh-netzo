@@ -1,6 +1,6 @@
-import { z } from "zod";
-import { faker } from "npm:@faker-js/faker@8.4.0";
 import { ulid } from "netzo/plugins/api/utils.ts";
+import { faker } from "npm:@faker-js/faker@8.4.0";
+import { z } from "zod";
 
 // schemas:
 

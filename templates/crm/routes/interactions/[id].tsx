@@ -1,8 +1,8 @@
 import { defineRoute } from "$fresh/server.ts";
-import { Separator } from "netzo/components/separator.tsx";
 import type { Interaction } from "@/data/interactions.ts";
 import { FormInteraction } from "@/islands/interactions/Form.tsx";
 import { resource } from "@/netzo.ts";
+import { Separator } from "netzo/components/separator.tsx";
 
 export default defineRoute(async (req, ctx) => {
   const { id } = ctx.params;

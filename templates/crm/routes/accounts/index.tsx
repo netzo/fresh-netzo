@@ -1,9 +1,9 @@
 import { defineRoute } from "$fresh/server.ts";
-import type { TableProps } from "netzo/components/blocks/table/use-table.ts";
-import { type Account, accountSchema, I18N } from "@/data/accounts.ts";
-import { Table } from "@/islands/accounts/Table.tsx";
+import { I18N, accountSchema, type Account } from "@/data/accounts.ts";
 import { FormAccount } from "@/islands/accounts/Form.tsx";
+import { Table } from "@/islands/accounts/Table.tsx";
 import { resource } from "@/netzo.ts";
+import type { TableProps } from "netzo/components/blocks/table/use-table.ts";
 
 export const getTableOptions = (
   data: Account[],

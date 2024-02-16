@@ -1,6 +1,6 @@
 // https://github.com/denoland/fresh/pull/1050
-import { useEffect } from "preact/hooks";
 import { useSignal } from "@preact/signals";
+import { useEffect } from "preact/hooks";
 
 /**
  * Returns a number of cssrules set by unocss.

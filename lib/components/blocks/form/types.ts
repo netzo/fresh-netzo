@@ -1,4 +1,4 @@
-import type { FunctionalComponent, JSX } from "../../../deps/preact.ts";
+import type { FunctionalComponent, JSX } from "preact";
 import {
   ControllerRenderProps,
   FieldValues,
