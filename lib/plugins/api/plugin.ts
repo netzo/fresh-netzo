@@ -1,5 +1,6 @@
-import type { Plugin } from "../../deps/$fresh/server.ts";
+import type { Plugin, RouteContext } from "../../deps/$fresh/server.ts";
 import { hooks as _hooks, Middleware } from "../../deps/@feathersjs/hooks.ts";
+import type { NetzoState } from "../../mod.ts";
 import type { Resource } from "./resources/mod.ts";
 import { handleErrors } from "./middlewares/mod.ts";
 import { getRoutesByEndpoint } from "./routes/mod.ts";
@@ -35,6 +36,13 @@ export type ApiConfig = {
 export type ApiState = {
   [key: string]: Resource;
 };
+
+export function useApi(ctx: RouteContext<void, NetzoState>) {
+  const config = ctx.state?.config?.api;
+  const state = ctx.state?.api ?? {};
+
+  return { config, state };
+}
 
 /**
  * A fresh plugin that registers middleware and handlers to

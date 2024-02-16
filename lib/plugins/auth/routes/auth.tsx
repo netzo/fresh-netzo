@@ -1,12 +1,13 @@
 import { defineRoute } from "../../../deps/$fresh/server.ts";
 import { AuthForm } from "../islands/auth-form.tsx";
 import type { NetzoState } from "../../../mod.ts";
+import { useAuth } from "../plugin.ts";
 
 // FIXME: not working for plugin-injected routes
 // export const config: RouteConfig = { skipAppWrapper: true };
 
 export default defineRoute<NetzoState>((req, ctx) => {
-  const { auth } = ctx.state.config;
+  const { config } = useAuth(ctx);
   return (
     <div
       className={`h-full w-full grid place-items-center p-4 bg-background`}
@@ -14,10 +15,10 @@ export default defineRoute<NetzoState>((req, ctx) => {
       <div className="grid gap-6 w-full xs:w-[350px] max-w-[350px]">
         <AuthForm {...ctx.state} request={req} />
 
-        {auth?.caption && (
+        {config?.caption && (
           <p
             className="px-8 text-sm text-center text-muted-foreground"
-            dangerouslySetInnerHTML={{ __html: auth.caption }}
+            dangerouslySetInnerHTML={{ __html: config.caption }}
           />
         )}
       </div>

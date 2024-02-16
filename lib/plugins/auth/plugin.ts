@@ -1,6 +1,7 @@
-import type { Plugin } from "../../deps/$fresh/server.ts";
+import type { Plugin, RouteContext } from "../../deps/$fresh/server.ts";
 import type { OAuth2ClientConfig } from "../../deps/oauth2_client/src/oauth2_client.ts";
-import { type AuthUser } from "./utils/db.ts";
+import type { NetzoState } from "../../mod.ts";
+import type { AuthUser } from "./utils/db.ts";
 import {
   ensureSignedIn,
   setAppState,
@@ -42,6 +43,16 @@ export type AuthState = {
   referer?: string;
   isApp?: boolean;
 };
+
+export function useAuth(ctx: RouteContext<void, NetzoState>) {
+  const config = ctx.state?.config?.auth;
+  const state = ctx.state?.auth ?? {};
+  const { sessionId, sessionUser } = state;
+
+  const mustAuth = !!config && !sessionId;
+
+  return { config, state, sessionId, sessionUser, mustAuth };
+}
 
 /**
  * A fresh plugin that registers middleware and handlers to

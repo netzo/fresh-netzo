@@ -1,11 +1,12 @@
 import { defineApp } from "$fresh/server.ts";
 import { Partial } from "$fresh/runtime.ts";
-import { type NetzoState, useNetzoState } from "netzo/mod.ts";
+import { type NetzoState } from "netzo/mod.ts";
 import { cn } from "netzo/components/utils.ts";
+import { useAuth } from "netzo/plugins/auth/plugin.ts";
 import * as Layout from "../islands/mod.ts";
 
 export default defineApp<NetzoState>((req, ctx) => {
-  const { sessionId, sessionUser, mustAuth } = useNetzoState(ctx);
+  const { sessionId, sessionUser, mustAuth } = useAuth(ctx);
 
   const UI = {
     head: {
