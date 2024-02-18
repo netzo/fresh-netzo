@@ -1,3 +1,6 @@
+import { Badge } from "netzo/components/badge.tsx";
+import { toDateTime, toEuro } from "netzo/components/blocks/format.ts";
+import { Grid } from "netzo/components/blocks/table/table.grid.tsx";
 import {
   TableColumnHeader,
   TablePagination,
@@ -6,16 +9,13 @@ import {
   TableToolbar,
   useTable,
 } from "netzo/components/blocks/table/table.tsx";
-import { Grid } from "netzo/components/blocks/table/table.grid.tsx";
-import { toDateTime, toEuro } from "netzo/components/blocks/format.ts";
 import { IconCopy } from "netzo/components/icon-copy.tsx";
-import { Badge } from "netzo/components/badge.tsx";
+import { CellContext } from "netzo/deps/@tanstack/react-table.ts";
 import {
   I18N,
   type Transaction,
   transactionSchema,
-} from "@/data/transactions.ts";
-import { CellContext } from "netzo/deps/@tanstack/react-table.ts";
+} from "../../data/transactions.ts";
 
 // NOTE: define columns in island (route to island function serialization unsupported)
 export const getColumns = (
@@ -28,19 +28,41 @@ export const getColumns = (
     ),
   },
   {
-    accessorKey: "id",
-    header: (props) => <TableColumnHeader {...props} title={I18N.id} />,
+    accessorKey: "issuerAccountId",
+    header: (props) => (
+      <TableColumnHeader {...props} title={I18N.issuerAccountId} />
+    ),
     cell: ({ row }: CellContext<Transaction, unknown>) => {
-      const { id } = row.original;
+      const { issuerAccountId, issuerAccount } = row.original;
       return (
         <div className="flex items-center">
           <a
-            href={`/invoices/${id}`}
+            href={`/accounts/${issuerAccountId}`}
             className="whitespace-nowrap text-center font-medium text-primary hover:underline"
           >
-            {id}
+            {issuerAccount?.name ?? issuerAccountId}
           </a>
-          <IconCopy value={id} tooltip="Copy ID" />
+          <IconCopy value={issuerAccountId} tooltip="Copy ID" />
+        </div>
+      );
+    },
+  },
+  {
+    accessorKey: "receiverAccountId",
+    header: (props) => (
+      <TableColumnHeader {...props} title={I18N.receiverAccountId} />
+    ),
+    cell: ({ row }: CellContext<Transaction, unknown>) => {
+      const { receiverAccountId, receiverAccount } = row.original;
+      return (
+        <div className="flex items-center">
+          <a
+            href={`/accounts/${receiverAccountId}`}
+            className="whitespace-nowrap text-center font-medium text-primary hover:underline"
+          >
+            {receiverAccount?.name ?? receiverAccountId}
+          </a>
+          <IconCopy value={receiverAccountId} tooltip="Copy ID" />
         </div>
       );
     },

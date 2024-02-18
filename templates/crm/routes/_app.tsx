@@ -1,11 +1,12 @@
-import { defineApp } from "$fresh/server.ts";
 import { Partial } from "$fresh/runtime.ts";
-import { type NetzoState, useNetzoState } from "netzo/mod.ts";
+import { defineApp } from "$fresh/server.ts";
 import { cn } from "netzo/components/utils.ts";
+import { type NetzoState } from "netzo/mod.ts";
+import { useAuth } from "netzo/plugins/auth/plugin.ts";
 import * as Layout from "../islands/mod.ts";
 
 export default defineApp<NetzoState>((req, ctx) => {
-  const { sessionId, sessionUser, mustAuth } = useNetzoState(ctx);
+  const { sessionId, sessionUser, mustAuth } = useAuth(ctx);
 
   const UI = {
     head: {
@@ -66,18 +67,9 @@ export default defineApp<NetzoState>((req, ctx) => {
           !mustAuth && "md:grid md:grid-cols-[250px_auto]",
         )}
       >
-        {!mustAuth && (
-          <Layout.Nav
-            {...UI.nav}
-            className="hidden md:flex w-[250px] md:b-r-1"
-          />
-        )}
+        {!mustAuth && <Layout.Nav {...UI.nav} />}
         <div className="flex flex-col w-full h-full overflow-x-hidden">
-          <Layout.Header {...UI.header}>
-            {!mustAuth && (
-              <Layout.NavMobile {...UI.nav} className="flex md:hidden" />
-            )}
-          </Layout.Header>
+          <Layout.Header {...UI.header} />
 
           <main className="flex-1">
             {mustAuth ? <ctx.Component /> : (

@@ -1,7 +1,9 @@
-import type { JSX } from "../../deps/preact.ts";
-import { cn, useUI } from "../utils.ts";
-import { Separator } from "../separator.tsx";
+import { signal } from "@preact/signals";
+import type { JSX } from "preact";
 import { buttonVariants } from "../button.tsx";
+import { Separator } from "../separator.tsx";
+import { Sheet, SheetContent, SheetTrigger } from "../sheet.tsx";
+import { cn, useUI } from "../utils.ts";
 
 export type NavItem = Array<
   | { text: string } // header
@@ -33,7 +35,53 @@ export type NavProps = JSX.IntrinsicElements["nav"] & {
   };
 };
 
-export function Nav({ className, ui = {}, ...props }: NavProps) {
+export const open = signal<boolean>(false);
+
+export function Nav({ className, ...props }: NavProps) {
+  return (
+    <>
+      <Sheet
+        className={cn(
+          "md:hidden",
+          open.value ? "w-[250px]" : "w-[28px]",
+        )}
+        open={open.value}
+        onOpenChange={(e) => open.value = e}
+      >
+        <SheetTrigger asChild>
+          <div
+            variant="outline"
+            size="icon"
+            className={cn(
+              "h-full w-[28px]",
+              "fixed top-0 left-0 z-1000",
+              "hover:bg-background hover:bg-opacity-80 hover:cursor-pointer",
+              "flex items-center justify-center",
+              open.value ? "!hidden" : "!md:hidden",
+              className,
+            )}
+            onClick={() => open.value = !open.value}
+          >
+            <i className="mdi-menu-open rotate-180  h-[1.2rem] w-[1.2rem]" />
+            <span className="sr-only">Toggle navigation</span>
+          </div>
+        </SheetTrigger>
+        <SheetContent side="left" className="w-[250px] p-0">
+          <div className="h-full">
+            <NavBase {...props} />
+          </div>
+        </SheetContent>
+      </Sheet>
+
+      <NavBase
+        className={cn("hidden md:flex md:b-r-1", className)}
+        {...props}
+      />
+    </>
+  );
+}
+
+function NavBase({ className, ui = {}, ...props }: NavProps) {
   const {
     root,
     nav,

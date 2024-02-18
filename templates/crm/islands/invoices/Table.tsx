@@ -1,3 +1,6 @@
+import { Badge } from "netzo/components/badge.tsx";
+import { toDateTime } from "netzo/components/blocks/format.ts";
+import { Grid } from "netzo/components/blocks/table/table.grid.tsx";
 import {
   TableColumnHeader,
   TablePagination,
@@ -6,11 +9,8 @@ import {
   TableToolbar,
   useTable,
 } from "netzo/components/blocks/table/table.tsx";
-import { Grid } from "netzo/components/blocks/table/table.grid.tsx";
-import { toDate, toDateTime } from "netzo/components/blocks/format.ts";
 import { IconCopy } from "netzo/components/icon-copy.tsx";
-import { Badge } from "netzo/components/badge.tsx";
-import { I18N, type Invoice } from "@/data/invoices.ts";
+import { I18N, type Invoice } from "../../data/invoices.ts";
 
 // NOTE: define columns in island (route to island function serialization unsupported)
 export const getColumns = ({ options }: TableProps): TableProps["columns"] => [

@@ -1,7 +1,7 @@
+import { type ComponentProps } from "preact/compat";
 import { DayPicker } from "../deps/react-day-picker.ts";
-import { type ComponentProps } from "../deps/preact/compat.ts";
-import { cn } from "./utils.ts";
 import { buttonVariants } from "./button.tsx";
+import { cn } from "./utils.ts";
 
 export type CalendarProps = ComponentProps<typeof DayPicker>;
 

@@ -1,7 +1,8 @@
 import type { Plugin } from "../../deps/$fresh/server.ts";
-import { hooks as _hooks, Middleware } from "../../deps/@feathersjs/hooks.ts";
-import type { Resource } from "./resources/mod.ts";
+import { Middleware } from "../../deps/@feathersjs/hooks.ts";
+import type { NetzoState } from "../../mod.ts";
 import { handleErrors } from "./middlewares/mod.ts";
+import type { Resource } from "./resources/mod.ts";
 import { getRoutesByEndpoint } from "./routes/mod.ts";
 
 export type ApiEndpoint = {
@@ -47,24 +48,27 @@ export type ApiState = {
  * - `PUT /api/{endpoint}/{id}` update an entry by key
  * - `PATCH /api/{endpoint}/{id}` patch an entry by key
  * - `DELETE /api/{endpoint}/{id}` remove an entry by key
+ *
+ * @param {ApiConfig} - configuration options for the plugin
+ * @returns {Plugin} - a Plugin for Deno Fresh
  */
-export const api = (options?: ApiConfig): Plugin => {
-  if (!options) return { name: "api" };
+export const api = (config?: ApiConfig): Plugin<NetzoState> => {
+  if (!config) return { name: "api" };
 
-  options.path ||= "/api";
-  options.endpoints ||= [];
+  config.path ||= "/api";
+  config.endpoints ||= [];
 
   const apiRoutes = [
-    ...options.endpoints
+    ...config.endpoints
       .filter((endpoint) => !!endpoint?.name)
-      .flatMap((endpoint) => getRoutesByEndpoint(endpoint, options)),
+      .flatMap((endpoint) => getRoutesByEndpoint(endpoint, config)),
   ];
 
   return {
     name: "api",
     middlewares: [
       {
-        path: options.path!,
+        path: config.path!,
         middleware: { handler: handleErrors },
       },
     ],

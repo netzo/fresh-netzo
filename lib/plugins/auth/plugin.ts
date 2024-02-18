@@ -1,16 +1,21 @@
-import type { Plugin } from "../../deps/$fresh/server.ts";
+import type {
+  Plugin,
+  PluginRoute,
+  RouteContext,
+} from "../../deps/$fresh/server.ts";
 import type { OAuth2ClientConfig } from "../../deps/oauth2_client/src/oauth2_client.ts";
-import { type AuthUser } from "./utils/db.ts";
+import type { NetzoState } from "../../mod.ts";
 import {
   ensureSignedIn,
   setAppState,
   setSessionState,
 } from "./middlewares/mod.ts";
+import createAuth from "./routes/auth.tsx";
 import { getRoutesByProvider } from "./routes/mod.ts";
-import Auth from "./routes/auth.tsx";
+import type { AuthUser } from "./utils/db.ts";
+import type { EmailClientConfig } from "./utils/providers/email.ts";
 import type { AuthProvider } from "./utils/providers/mod.ts";
 import type { NetzoClientConfig } from "./utils/providers/netzo.ts";
-import type { EmailClientConfig } from "./utils/providers/email.ts";
 
 export * from "../../deps/deno_kv_oauth/mod.ts";
 
@@ -43,6 +48,15 @@ export type AuthState = {
   isApp?: boolean;
 };
 
+export function useAuth(ctx: RouteContext<void, NetzoState>) {
+  const state = ctx.state?.auth;
+  const { sessionId, sessionUser } = state ?? {};
+
+  const mustAuth = !!state && !sessionId;
+
+  return { state, sessionId, sessionUser, mustAuth };
+}
+
 /**
  * A fresh plugin that registers middleware and handlers to
  * handle Authentication with multiple OAuth2 providers and
@@ -52,9 +66,12 @@ export type AuthState = {
  * - `GET /auth/{provider}/signin` for the sign-in page
  * - `GET /auth/{provider}/callback` for the callback page
  * - `GET /auth/signout` for the sign-out page
+ *
+ * @param {AuthConfig} - configuration options for the plugin
+ * @returns {Plugin} - a Plugin for Deno Fresh
  */
-export const auth = (options?: AuthConfig): Plugin => {
-  if (!options) return { name: "auth" };
+export const auth = (config?: AuthConfig): Plugin<NetzoState> => {
+  if (!config) return { name: "auth" };
 
   const authEnabled = [
     "netzo",
@@ -64,20 +81,20 @@ export const auth = (options?: AuthConfig): Plugin => {
     "gitlab",
     "auth0",
     "okta",
-  ].some((key) => !!options?.providers?.[key as AuthProvider]);
+  ].some((key) => !!config?.providers?.[key as AuthProvider]);
   if (!authEnabled) return { name: "auth" }; // skip if auth but no providers are set
 
-  options.title ??= "Sign In";
-  options.description ??= "Sign in to access the app";
-  options.caption ??= ""; // e.g. 'By signing in you agree to the <a href="/" target="_blank">Terms of Service</a>';
-  options.providers ??= {};
+  config.title ??= "Sign In";
+  config.description ??= "Sign in to access the app";
+  config.caption ??= ""; // e.g. 'By signing in you agree to the <a href="/" target="_blank">Terms of Service</a>';
+  config.providers ??= {};
 
-  const authRoutes = [
-    { path: "/auth", component: Auth },
-    ...Object.keys(options.providers)
-      .filter((provider) => !!options?.providers?.[provider as AuthProvider])
+  const authRoutes: PluginRoute[] = [
+    { path: "/auth", component: createAuth(config) },
+    ...Object.keys(config.providers)
+      .filter((provider) => !!config?.providers?.[provider as AuthProvider])
       .flatMap((provider) =>
-        getRoutesByProvider(provider as AuthProvider, options)
+        getRoutesByProvider(provider as AuthProvider, config)
       ),
   ];
 
@@ -98,11 +115,5 @@ export const auth = (options?: AuthConfig): Plugin => {
       },
     ],
     routes: authRoutes,
-    islands: {
-      baseLocation: import.meta.url,
-      paths: [
-        "./islands/auth-form.tsx",
-      ],
-    },
   };
 };

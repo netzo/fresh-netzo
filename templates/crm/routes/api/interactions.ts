@@ -1,6 +1,6 @@
+import { authenticate, log } from "netzo/plugins/api/hooks/mod.ts";
 import { defineApiEndpoint } from "netzo/plugins/api/plugin.ts";
 import { DenoKvResource } from "netzo/plugins/api/resources/mod.ts";
-import { authenticate, log } from "netzo/plugins/api/hooks/mod.ts";
 
 export const interactions = defineApiEndpoint({
   name: "interactions",

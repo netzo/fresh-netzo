@@ -1,11 +1,5 @@
+import { type ComponentProps, forwardRef, type Ref } from "preact/compat";
 import * as AvatarPrimitive from "../deps/@radix-ui/react-avatar.ts";
-import type { JSX } from "../deps/preact.ts";
-import {
-  type ComponentProps,
-  forwardRef,
-  type Ref,
-  useState,
-} from "../deps/preact/compat.ts";
 import { cn } from "./utils.ts";
 
 const Avatar = forwardRef<

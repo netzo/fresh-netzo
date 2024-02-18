@@ -1,6 +1,6 @@
-import type { Resource, ResourceOptions } from "./mod.ts";
 import type { ApiClient } from "../../../integrations/create-api/types.ts";
 import { isApiClient } from "../../../integrations/create-api/utils.ts";
+import type { Resource, ResourceOptions } from "./mod.ts";
 
 import { ERRORS, ulid } from "../utils.ts";
 

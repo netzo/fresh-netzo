@@ -1,5 +1,4 @@
 import * as z from "../../../../deps/zod/mod.ts";
-import { AutoFormInputComponentProps } from "../types.ts";
 import {
   FormControl,
   FormItem,
@@ -7,6 +6,7 @@ import {
   FormMessage,
 } from "../../../form.tsx";
 import { RadioGroup, RadioGroupItem } from "../../../radio-group.tsx";
+import { AutoFormInputComponentProps } from "../types.ts";
 
 export default function AutoFormRadioGroup({
   label,

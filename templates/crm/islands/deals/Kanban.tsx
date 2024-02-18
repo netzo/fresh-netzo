@@ -1,12 +1,11 @@
 import {
-  type TableProps,
-  useTable,
-} from "netzo/components/blocks/table/table.tsx";
-import {
   Kanban as _Kanban,
   type KanbanProps,
 } from "netzo/components/blocks/kanban/kanban.tsx";
-import { type Deal, I18N } from "@/data/deals.ts";
+import {
+  type TableProps,
+  useTable,
+} from "netzo/components/blocks/table/table.tsx";
 
 // NOTE: define columns in island (route to island function serialization unsupported)
 export const getColumns = (_props: TableProps): TableProps["columns"] => [];

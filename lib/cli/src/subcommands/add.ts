@@ -1,9 +1,8 @@
-import { error } from "../../../plugins/utils.console.ts";
+import { error } from "../../../plugins/utils.ts";
 // vendored x/question@0.0.2 to silence deprecated API warnings (Deno>=1.4)
 import { question } from "../../../deps/question/mod.ts";
 import type { Args as RawArgs } from "../args.ts";
 // import { add } from "../generators/mod.ts";
-// import { proxyConsole } from "../../../utils.console.ts";
 
 const help = `netzo add: add a new resource to an existing project.
 
@@ -99,6 +98,5 @@ export default async function (rawArgs: RawArgs): Promise<void> {
   // NOTE: cannot programmatically call add() since Deno requires "certain flags
   // and calling add() programmatically is also throwing the following:
   // Error: "Top-level await promise never resolved at await addSubcommand(args);"
-  // proxyConsole(`Use of deprecated`)
   // return await add([generatorFile, resource, name, ...argv]);
 }

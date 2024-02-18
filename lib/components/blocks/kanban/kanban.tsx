@@ -1,5 +1,5 @@
 // adapted from https://github.com/Georgegriff/react-dnd-kit-tailwind-shadcn-ui/blob/main/src/components/kanban.tsx
-import { useComputed, useSignal } from "../../../deps/@preact/signals.ts";
+import { useComputed, useSignal } from "@preact/signals";
 import {
   Announcements,
   DndContext,
@@ -16,8 +16,8 @@ import {
 } from "../../../deps/@dnd-kit/core.ts";
 import { arrayMove, SortableContext } from "../../../deps/@dnd-kit/sortable.ts";
 import type { Table, TableProps } from "../table/use-table.ts";
-import { coordinateGetter } from "./multiple-containers-keyboard-preset.ts";
 import { BoardContainer, type Group, KanbanGroup } from "./kanban-group.tsx";
+import { coordinateGetter } from "./multiple-containers-keyboard-preset.ts";
 import { hasDraggableData } from "./utils.ts";
 
 export type KanbanProps<

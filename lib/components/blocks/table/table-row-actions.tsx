@@ -1,12 +1,4 @@
 import { Row } from "../../../deps/@tanstack/react-table.ts";
-import { Button } from "../../button.tsx";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "../../dropdown-menu.tsx";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -18,6 +10,14 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "../../alert-dialog.tsx";
+import { Button } from "../../button.tsx";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "../../dropdown-menu.tsx";
 import type { TableProps } from "./use-table.ts";
 
 type TableRowActionsProps<TData> = TableProps<TData> & {

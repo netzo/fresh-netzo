@@ -1,4 +1,4 @@
-import { signal } from "../../../deps/@preact/signals.ts";
+import { signal } from "@preact/signals";
 import { TablePagination } from "./table-pagination.tsx";
 import { TableToolbar } from "./table-toolbar.tsx";
 import { Grid } from "./table.grid.tsx";
@@ -7,7 +7,6 @@ import { type TableProps, useTable } from "./use-table.ts";
 export * from "./table-column-cell.tsx";
 export * from "./table-column-header.tsx";
 export * from "./table-faceted-filter.tsx";
-export * from "./table-options.tsx";
 export * from "./table-options.tsx";
 export * from "./table-pagination.tsx";
 export * from "./table-row-actions.tsx";

@@ -1,4 +1,4 @@
-import { useState } from "../../../deps/preact/hooks.ts";
+import { useState } from "preact/hooks";
 import {
   ColumnDef,
   ColumnFiltersState,

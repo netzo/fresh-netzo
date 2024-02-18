@@ -1,4 +1,4 @@
-import { useEffect } from "../../deps/preact/hooks.ts";
+import { useEffect } from "preact/hooks";
 import { useDarkMode } from "../../deps/usehooks-ts.ts";
 import { Button } from "../button.tsx";
 import { cn } from "../utils.ts";

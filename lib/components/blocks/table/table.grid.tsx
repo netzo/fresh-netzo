@@ -1,5 +1,4 @@
 import { flexRender } from "../../../deps/@tanstack/react-table.ts";
-import { cn } from "../../utils.ts";
 import {
   Table as _Table,
   TableBody,
@@ -8,6 +7,7 @@ import {
   TableHeader,
   TableRow,
 } from "../../table.tsx";
+import { cn } from "../../utils.ts";
 import type { Table, TableProps } from "./use-table.ts";
 
 export type GridProps<

@@ -1,12 +1,7 @@
+import type { VNode } from "preact";
+import { type ComponentProps, forwardRef, type Ref } from "preact/compat";
 import * as ToastPrimitives from "../deps/@radix-ui/react-toast.ts";
 import { cva, type VariantProps } from "../deps/class-variance-authority.ts";
-import type { VNode } from "../deps/preact.ts";
-import {
-  type ComponentProps,
-  forwardRef,
-  type Ref,
-  useState,
-} from "../deps/preact/compat.ts";
 import { cn } from "./utils.ts";
 
 const ToastProvider = ToastPrimitives.Provider;

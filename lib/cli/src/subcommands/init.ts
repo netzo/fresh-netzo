@@ -1,4 +1,4 @@
-import { error } from "../../../plugins/utils.console.ts";
+import { error } from "../../../plugins/utils.ts";
 // vendored x/question@0.0.2 to silence deprecated API warnings (Deno>=1.4)
 import { question } from "../../../deps/question/mod.ts";
 import type { Args as RawArgs } from "../args.ts";

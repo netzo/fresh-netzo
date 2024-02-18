@@ -1,11 +1,5 @@
+import { type ComponentProps, forwardRef, type Ref } from "preact/compat";
 import * as TooltipPrimitive from "../deps/@radix-ui/react-tooltip.ts";
-import type { JSX } from "../deps/preact.ts";
-import {
-  type ComponentProps,
-  forwardRef,
-  type Ref,
-  useState,
-} from "../deps/preact/compat.ts";
 import { cn } from "./utils.ts";
 
 const TooltipProvider = TooltipPrimitive.Provider;

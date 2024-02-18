@@ -1,7 +1,7 @@
 import type { User as UserNetzo } from "../../../types.ts";
 import type { AuthUserFromProvider } from "../db.ts";
-import { signIn } from "./netzo.sign_in.ts";
 import { handleCallback } from "./netzo.handle_callback.ts";
+import { signIn } from "./netzo.sign_in.ts";
 
 export { handleCallback, signIn };
 

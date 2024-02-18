@@ -1,6 +1,5 @@
 import type { JSX } from "preact";
 import { Column } from "../../../deps/@tanstack/react-table.ts";
-import { cn } from "../../utils.ts";
 import { Button } from "../../button.tsx";
 import {
   DropdownMenu,
@@ -8,6 +7,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "../../dropdown-menu.tsx";
+import { cn } from "../../utils.ts";
 
 type TableColumnHeaderProps<TData, TValue> =
   & JSX.HTMLAttributes<HTMLDivElement>

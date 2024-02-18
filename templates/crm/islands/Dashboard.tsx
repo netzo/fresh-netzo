@@ -5,8 +5,8 @@ import {
   CardHeader,
   CardTitle,
 } from "netzo/components/card.tsx";
-import { Overview } from "@/components/dashboard/overview.tsx";
-import { RecentSales } from "@/components/dashboard/recent-sales.tsx";
+import { Overview } from "../components/dashboard/overview.tsx";
+import { RecentSales } from "../components/dashboard/recent-sales.tsx";
 
 export function Dashboard(props) {
   const [

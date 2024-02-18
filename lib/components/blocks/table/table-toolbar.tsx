@@ -1,6 +1,5 @@
-import { useSignal } from "../../../deps/@preact/signals.ts";
+import { useSignal } from "@preact/signals";
 import { Button } from "../../button.tsx";
-import { Input } from "../../input.tsx";
 import {
   Dialog,
   DialogContent,
@@ -9,13 +8,9 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../../dialog.tsx";
+import { Input } from "../../input.tsx";
 import { Label } from "../../label.tsx";
-import {
-  type Table,
-  TableFacetedFilter,
-  TableOptions,
-  type TableProps,
-} from "./table.tsx";
+import { TableFacetedFilter, TableOptions, type TableProps } from "./table.tsx";
 
 type TableToolbarProps<TData> = {
   table: Table<TData>;

@@ -1,5 +1,5 @@
-import type { JSX } from "../deps/preact.ts";
-import { forwardRef } from "../deps/preact/compat.ts";
+import type { JSX } from "preact";
+import { forwardRef } from "preact/compat";
 import { cn } from "./utils.ts";
 
 export type InputProps = JSX.HTMLAttributes<HTMLInputElement>;

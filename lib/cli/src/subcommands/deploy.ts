@@ -18,7 +18,7 @@ import { Spinner, wait } from "../../../deps/wait/mod.ts";
 import { question } from "../../../deps/question/mod.ts";
 import type { Args as RawArgs } from "../args.ts";
 import { netzo } from "../../../integrations/apis/netzo/mod.ts";
-import { error, LOGS } from "../../../plugins/utils.console.ts";
+import { error, LOGS } from "../../../plugins/utils.ts";
 import { parseEntrypoint } from "../utils/entrypoint.ts";
 import { walk } from "../utils/walk.ts";
 import {

@@ -1,6 +1,6 @@
 import type { ZodSchema } from "../../../deps/zod/mod.ts";
-import { defineHook } from "./mod.ts";
 import { BadRequest } from "../errors.ts";
+import { defineHook } from "./mod.ts";
 
 /**
  * A hook that validates the request data using the provided Zod schema.

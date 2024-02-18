@@ -1,8 +1,6 @@
-// Inspired by react-hot-toast library
-
+import type { VNode } from "preact";
+import { useEffect, useState } from "preact/compat";
 import type { ToastActionElement, ToastProps } from "./toast.tsx";
-import type { VNode } from "../deps/preact.ts";
-import { useEffect, useState } from "../deps/preact/compat.ts";
 
 const TOAST_LIMIT = 1;
 const TOAST_REMOVE_DELAY = 1000000;

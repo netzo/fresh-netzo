@@ -4,10 +4,10 @@ import {
   I18N,
   type Interaction,
   interactionSchema,
-} from "@/data/interactions.ts";
-import { Table } from "@/islands/interactions/Table.tsx";
-import { FormInteraction } from "@/islands/interactions/Form.tsx";
-import { netzo } from "@/netzo.ts";
+} from "../../data/interactions.ts";
+import { FormInteraction } from "../../islands/interactions/Form.tsx";
+import { Table } from "../../islands/interactions/Table.tsx";
+import { api } from "../../netzo.config.ts";
 
 export const getTableOptions = (
   data: Interaction[],
@@ -36,7 +36,7 @@ export const getTableOptions = (
 };
 
 export default defineRoute(async (req, ctx) => {
-  const data = await netzo.resource("interactions").find<Interaction>();
+  const data = await api.interactions.get<Interaction[]>();
 
   const options = getTableOptions(data);
 

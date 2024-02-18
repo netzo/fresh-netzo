@@ -1,14 +1,14 @@
 import { defineRoute } from "$fresh/server.ts";
 import { Separator } from "netzo/components/separator.tsx";
-import type { Interaction } from "@/data/interactions.ts";
-import { FormInteraction } from "@/islands/interactions/Form.tsx";
-import { netzo } from "@/netzo.ts";
+import type { Interaction } from "../../data/interactions.ts";
+import { FormInteraction } from "../../islands/interactions/Form.tsx";
+import { api } from "../../netzo.config.ts";
 
 export default defineRoute(async (req, ctx) => {
   const { id } = ctx.params;
   const data = id === "new"
     ? {}
-    : await netzo.resource("interactions").get<Interaction>(id);
+    : await api.interactions[id].get<Interaction>();
 
   return (
     <div className="my-4 overflow-auto">

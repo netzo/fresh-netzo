@@ -1,16 +1,11 @@
-import type { AuthConfig } from "../../plugin.ts";
 import {
   handleCallback,
   signIn,
   signOut,
 } from "../../../../deps/deno_kv_oauth/mod.ts";
-import {
-  createNetzoClientConfig,
-  getUserNetzo,
-  handleCallback as handleCallbackNetzo,
-  isNetzoSetup,
-  signIn as signInNetzo,
-} from "./netzo.ts";
+import type { AuthConfig } from "../../plugin.ts";
+import { type AuthUserFromProvider } from "../db.ts";
+import { createAuth0OAuthConfig, getUserAuth0, isAuth0Setup } from "./auth0.ts";
 import {
   createEmailClientConfig,
   getUserEmail,
@@ -18,12 +13,6 @@ import {
   isEmailSetup,
   signInEmail,
 } from "./email.ts";
-import { type AuthUserFromProvider } from "../db.ts";
-import {
-  createGoogleOAuthConfig,
-  getUserGoogle,
-  isGoogleSetup,
-} from "./google.ts";
 import {
   createGitHubOAuthConfig,
   getUserGithub,
@@ -34,9 +23,20 @@ import {
   getUserGitlab,
   isGitlabSetup,
 } from "./gitlab.ts";
-import { createSlackOAuthConfig, getUserSlack, isSlackSetup } from "./slack.ts";
-import { createAuth0OAuthConfig, getUserAuth0, isAuth0Setup } from "./auth0.ts";
+import {
+  createGoogleOAuthConfig,
+  getUserGoogle,
+  isGoogleSetup,
+} from "./google.ts";
+import {
+  createNetzoClientConfig,
+  getUserNetzo,
+  handleCallback as handleCallbackNetzo,
+  isNetzoSetup,
+  signIn as signInNetzo,
+} from "./netzo.ts";
 import { createOktaOAuthConfig, getUserOkta, isOktaSetup } from "./okta.ts";
+import { createSlackOAuthConfig, getUserSlack, isSlackSetup } from "./slack.ts";
 
 export type AuthProvider = keyof AuthConfig["providers"];
 

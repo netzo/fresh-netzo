@@ -1,7 +1,7 @@
 // https://github.com/denoland/fresh/pull/1050
+import { useSignal } from "@preact/signals";
 import { useEffect } from "preact/hooks";
 import { cmpCssRules } from "../utils.ts";
-import { useSignal } from "@preact/signals";
 
 /**
  * Returns a cssrulelist of styleElement matching the selector.
