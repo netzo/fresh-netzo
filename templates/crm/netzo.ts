@@ -22,7 +22,7 @@ const app = await createNetzoApp({
   plugins: [
     netzo.environments(),
     netzo.auth(
-      // Deno.env.get("DENO_REGION") ? { providers: { netzo: {} } } : undefined,
+      Deno.env.get("DENO_REGION") ? { providers: { netzo: {} } } : undefined,
     ),
     netzo.api({
       path: "/api",
