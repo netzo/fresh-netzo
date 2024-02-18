@@ -140,10 +140,7 @@ export const unocss = (
 ): Plugin<NetzoState> => {
   // A uno.config.ts file is required in the project directory if
   // a config object is not provided, or to use the browser runtime
-  const configFileURL = new URL("./uno.config.ts", Deno.mainModule);
-  // NOTE: Subhosting fails when reading from file:// URLs somehow,
-  // so we remove the file:// prefix to avoid build/deployment errors
-  const configURL = configFileURL.href.replace("file://", "");
+  const configURL = new URL("./uno.config.ts", Deno.mainModule);
 
   // Link to CSS file, if AOT mode is enabled
   const links = aot ? [{ rel: "stylesheet", href: "/uno.css" }] : [];
@@ -186,7 +183,10 @@ export const unocss = (
       });
       if (config === undefined) {
         try {
-          config = (await import(configURL)).default;
+          // NOTE: Subhosting fails when reading from file:// URLs somehow,
+          // so we remove the file:// prefix to avoid build/deployment errors
+          const configURLSafe = configURL.href.replace("file://", "");
+          config = (await import(configURLSafe)).default;
         } catch (error) {
           if (configFileExists) {
             throw error;
