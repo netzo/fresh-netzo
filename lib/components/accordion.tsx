@@ -1,4 +1,4 @@
-import { forwardRef, type ComponentProps, type Ref } from "preact/compat";
+import { type ComponentProps, forwardRef, type Ref } from "preact/compat";
 import * as AccordionPrimitive from "../deps/@radix-ui/react-accordion.ts";
 import { cn } from "./utils.ts";
 
