@@ -1,5 +1,5 @@
 import { createApi } from "netzo/integrations/create-api/mod.ts";
-import { defineNetzoConfig } from "netzo/mod.ts";
+import { defineConfig } from "netzo/mod.ts";
 import * as netzo from "netzo/plugins/mod.ts";
 import { unocss } from "netzo/plugins/unocss/plugin.ts";
 import * as endpoints from "./routes/api/mod.ts";
@@ -12,7 +12,7 @@ export const api = createApi({
   },
 });
 
-export default defineNetzoConfig({
+export default defineConfig({
   plugins: [
     netzo.environments(),
     netzo.auth(

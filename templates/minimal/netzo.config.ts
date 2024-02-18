@@ -1,3 +1,3 @@
-import { defineNetzoConfig } from "netzo/mod.ts";
+import { defineConfig } from "netzo/mod.ts";
 
-export default defineNetzoConfig({});
+export default defineConfig({});
