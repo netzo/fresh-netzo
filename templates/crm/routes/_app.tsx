@@ -21,6 +21,7 @@ export default defineApp<NetzoState>((req, ctx) => {
       items: [
         [
           { text: "Dashboard", href: "/", icon: "mdi-view-dashboard" },
+          { text: "Calendar", href: "/calendar", icon: "mdi-calendar" },
           {
             text: "Recent Activity",
             href: "/interactions",
@@ -28,15 +29,15 @@ export default defineApp<NetzoState>((req, ctx) => {
           },
           {},
           { text: "Deals", href: "/deals", icon: "mdi-tag" },
-          {
-            text: "Transactions",
-            href: "/transactions",
-            icon: "mdi-currency-usd",
-          },
-          {},
           { text: "Accounts", href: "/accounts", icon: "mdi-account-group" },
           { text: "Contacts", href: "/contacts", icon: "mdi-contacts" },
-          { text: "Invoices", href: "/invoices", icon: "mdi-receipt" },
+          {},
+          { text: "Products", href: "/", icon: "mdi-package-variant" },
+          { text: "Services", href: "/", icon: "mdi-cogs" },
+          {},
+          { text: "Quotes", href: "/quotes", icon: "mdi-file-document" },
+          {},
+          { text: "Team", href: "/team", icon: "mdi-account-multiple" },
         ],
         [
           {
@@ -45,6 +46,12 @@ export default defineApp<NetzoState>((req, ctx) => {
               "https://github.com/netzo/netzo/issues/new?title=[templates/crm]%20general%20feedback",
             target: "_blank",
             icon: "mdi-comment-question",
+          },
+          {
+            text: "View Source Code",
+            href: "https://github.com/netzo/netzo/tree/main/templates/crm",
+            target: "_blank",
+            icon: "mdi-github",
           },
         ],
       ],
