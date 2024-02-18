@@ -28,19 +28,41 @@ export const getColumns = (
     ),
   },
   {
-    accessorKey: "id",
-    header: (props) => <TableColumnHeader {...props} title={I18N.id} />,
+    accessorKey: "issuerAccountId",
+    header: (props) => (
+      <TableColumnHeader {...props} title={I18N.issuerAccountId} />
+    ),
     cell: ({ row }: CellContext<Transaction, unknown>) => {
-      const { id } = row.original;
+      const { issuerAccountId, issuerAccount } = row.original;
       return (
         <div className="flex items-center">
           <a
-            href={`/invoices/${id}`}
+            href={`/accounts/${issuerAccountId}`}
             className="whitespace-nowrap text-center font-medium text-primary hover:underline"
           >
-            {id}
+            {issuerAccount?.name ?? issuerAccountId}
           </a>
-          <IconCopy value={id} tooltip="Copy ID" />
+          <IconCopy value={issuerAccountId} tooltip="Copy ID" />
+        </div>
+      );
+    },
+  },
+  {
+    accessorKey: "receiverAccountId",
+    header: (props) => (
+      <TableColumnHeader {...props} title={I18N.receiverAccountId} />
+    ),
+    cell: ({ row }: CellContext<Transaction, unknown>) => {
+      const { receiverAccountId, receiverAccount } = row.original;
+      return (
+        <div className="flex items-center">
+          <a
+            href={`/accounts/${receiverAccountId}`}
+            className="whitespace-nowrap text-center font-medium text-primary hover:underline"
+          >
+            {receiverAccount?.name ?? receiverAccountId}
+          </a>
+          <IconCopy value={receiverAccountId} tooltip="Copy ID" />
         </div>
       );
     },

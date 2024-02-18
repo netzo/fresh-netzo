@@ -1,9 +1,9 @@
 import { defineRoute } from "$fresh/server.ts";
-import { type Account, accountSchema, I18N } from "@/data/accounts.ts";
-import { FormAccount } from "@/islands/accounts/Form.tsx";
-import { Table } from "@/islands/accounts/Table.tsx";
-import { resource } from "@/netzo.ts";
 import type { TableProps } from "netzo/components/blocks/table/use-table.ts";
+import { type Account, accountSchema, I18N } from "../../data/accounts.ts";
+import { FormAccount } from "../../islands/accounts/Form.tsx";
+import { Table } from "../../islands/accounts/Table.tsx";
+import { api } from "../../netzo.config.ts";
 
 export const getTableOptions = (
   data: Account[],
@@ -32,7 +32,7 @@ export const getTableOptions = (
 };
 
 export default defineRoute(async (req, ctx) => {
-  const data = await resource("accounts").find<Account>();
+  const data = await api.accounts.get<Account[]>();
 
   const options = getTableOptions(data);
 

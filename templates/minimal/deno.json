@@ -1,13 +1,13 @@
 {
   "lock": false,
   "tasks": {
-    "build": "deno run -A --env netzo.ts dev build",
+    "build": "deno run -A --env dev.ts build",
     "check:types": "deno check **/*.ts **/*.tsx",
     "cli": "echo \"import 'netzo/cli/dev/cli.ts'\" | deno run --unstable-cron --unstable-kv -A -",
     "manifest": "deno task cli manifest $(pwd)",
     "ok": "deno fmt --check && deno lint && deno task check:types && deno task test",
-    "preview": "deno run -A --env netzo.ts",
-    "start": "deno run -A --env --watch=static/,routes/ netzo.ts dev",
+    "preview": "deno run -A --env main.ts",
+    "start": "deno run -A --env --watch=static/,routes/ dev.ts",
     "test": "deno test -A --env --parallel",
     "update": "deno run -A -r https://fresh.deno.dev/update ."
   },

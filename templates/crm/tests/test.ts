@@ -3,7 +3,7 @@ import { assertEquals } from "std/assert/mod.ts";
 import { withFresh } from "./test.utils.ts";
 
 Deno.test("index test", async () => {
-  await withFresh("./netzo.ts", ["dev"], async (address) => {
+  await withFresh("./dev.ts", [], async (address) => {
     const doc = await fetchHtml(address);
     assertEquals(
       doc.querySelector(

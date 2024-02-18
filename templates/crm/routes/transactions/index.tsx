@@ -1,13 +1,13 @@
 import { defineRoute } from "$fresh/server.ts";
+import type { TableProps } from "netzo/components/blocks/table/use-table.ts";
 import {
   I18N,
-  type Transaction,
   transactionSchema,
-} from "@/data/transactions.ts";
-import { FormTransaction } from "@/islands/transactions/Form.tsx";
-import { Table } from "@/islands/transactions/Table.tsx";
-import { resource } from "@/netzo.ts";
-import type { TableProps } from "netzo/components/blocks/table/use-table.ts";
+  type Transaction,
+} from "../../data/transactions.ts";
+import { FormTransaction } from "../../islands/transactions/Form.tsx";
+import { Table } from "../../islands/transactions/Table.tsx";
+import { api } from "../../netzo.config.ts";
 
 export const getTableOptions = (
   data: Transaction[],
@@ -36,7 +36,7 @@ export const getTableOptions = (
 };
 
 export default defineRoute(async (req, ctx) => {
-  const data = await resource("transactions").find<Transaction>();
+  const data = await api.transactions.get<Transaction[]>();
 
   const options = getTableOptions(data);
 

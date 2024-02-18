@@ -8,9 +8,9 @@ const [cmd, configURL] = Deno.args;
 switch (cmd) {
   case "manifest": {
     if (configURL) {
-      const CONFIG_TS_PATH = join(configURL, "netzo.ts");
+      const CONFIG_TS_PATH = join(configURL, "netzo.config.ts");
       const url = toFileUrl(CONFIG_TS_PATH).toString();
-      const config: FreshConfig = (await import(url)).app.config;
+      const config: FreshConfig = (await import(url)).default;
       await manifest(configURL, config?.router?.ignoreFilePattern);
     } else {
       console.error("Missing input for manifest command");
