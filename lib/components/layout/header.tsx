@@ -44,7 +44,6 @@ export function Header({ className, ui = {}, ...props }: HeaderProps) {
   return (
     <header {...root}>
       <div {...left}>
-        {props.children}
         {/* NOTE: use dark:filter-invert to invert color on dark */}
         {props?.image && <img {...image} src={props?.image} />}
         {props?.title && <h1 {...title}>{props.title}</h1>}
@@ -54,6 +53,7 @@ export function Header({ className, ui = {}, ...props }: HeaderProps) {
       </div>
 
       <div {...right}>
+        {props.children}
         <HeaderDarkMode />
         <HeaderAuth f-client-nav={false} sessionUser={props.sessionUser} />
       </div>
