@@ -6,27 +6,27 @@ import type {
   Paginated,
   Project,
 } from "../../../deps/@netzo/api/mod.ts";
+import { exists } from "../../../deps/std/fs/exists.ts";
 import {
   fromFileUrl,
   globToRegExp,
   isGlob,
   normalize,
 } from "../../../deps/std/path/mod.ts";
-import { exists } from "../../../deps/std/fs/exists.ts";
 import { Spinner, wait } from "../../../deps/wait/mod.ts";
 // vendored x/question@0.0.2 to silence deprecated API warnings (Deno>=1.4)
 import { question } from "../../../deps/question/mod.ts";
-import type { Args as RawArgs } from "../args.ts";
 import { netzo } from "../../../integrations/apis/netzo/mod.ts";
 import { error, LOGS } from "../../../plugins/utils.ts";
+import type { Args as RawArgs } from "../args.ts";
+import { APIError } from "../utils/api.ts";
 import { parseEntrypoint } from "../utils/entrypoint.ts";
-import { walk } from "../utils/walk.ts";
 import {
   buildAssetsFromManifest,
   createClient,
   readDecodeAndAddFileContentToAssets,
 } from "../utils/netzo.ts";
-import { APIError } from "../utils/api.ts";
+import { walk } from "../utils/walk.ts";
 
 const help = `netzo deploy: deploy a project with static files to Netzo.
 
@@ -72,7 +72,7 @@ OPTIONS:
         --api-key=<API_KEY>      The API key to use (defaults to NETZO_API_KEY environment variable)
 
 ARGS:
-    <entrypoint>                 The file path to the entrypoint file (defaults to netzo.ts)
+    <entrypoint>                 The file path to the entrypoint file (defaults to main.ts)
 `;
 
 export type Args = {
@@ -132,9 +132,9 @@ export default async function (rawArgs: RawArgs): Promise<void> {
     error("Too many positional arguments given.");
   }
 
-  const entrypoint = rawArgs._[0] || (await exists("netzo.ts"))
-    ? "netzo.ts" // assume netzo.ts if it exists (skip prompt)
-    : await question("input", "Enter the entrypoint file path:", "netzo.ts");
+  const entrypoint = rawArgs._[0] || (await exists("main.ts"))
+    ? "main.ts" // assume main.ts if it exists (skip prompt)
+    : await question("input", "Enter the entrypoint file path:", "main.ts");
   if (!entrypoint) Deno.exit(1); // exit directly if cancelled/escaped
   if (!await exists(entrypoint)) error(LOGS.entrypointNotFound(entrypoint));
 
@@ -248,7 +248,7 @@ async function deploy(
     opts.production = true;
   }
 
-  let entryPointUrl = opts.entrypoint ?? "netzo.ts";
+  let entryPointUrl = opts.entrypoint ?? "main.ts";
   const cwd = Deno.cwd();
 
   if (["http:", "https:"].includes(entryPointUrl.protocol)) {
@@ -322,7 +322,7 @@ async function deploy(
   const data: DeploymentData = {
     production: opts.production,
     // deno:
-    entryPointUrl: entryPointUrl.href, // e.g. netzo.ts, main.ts
+    entryPointUrl: entryPointUrl.href, // e.g. main.ts
     importMapUrl: importMapUrl?.href || null,
     lockFileUrl: lockFileUrl?.href || null,
     // configures automatic JSX runtime for preact by default
