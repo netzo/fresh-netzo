@@ -1,9 +1,5 @@
 import type { VNode } from "preact";
-import {
-  forwardRef,
-  type ComponentProps,
-  type Ref
-} from "preact/compat";
+import { type ComponentProps, forwardRef, type Ref } from "preact/compat";
 import * as ToastPrimitives from "../deps/@radix-ui/react-toast.ts";
 import { cva, type VariantProps } from "../deps/class-variance-authority.ts";
 import { cn } from "./utils.ts";
@@ -119,9 +115,12 @@ type ToastActionElement = VNode<typeof ToastAction>;
 
 export {
   Toast,
-  ToastAction, ToastClose,
-  ToastDescription, ToastProvider,
+  ToastAction,
+  type ToastActionElement,
+  ToastClose,
+  ToastDescription,
+  type ToastProps,
+  ToastProvider,
   ToastTitle,
-  ToastViewport, type ToastActionElement, type ToastProps
+  ToastViewport,
 };
-

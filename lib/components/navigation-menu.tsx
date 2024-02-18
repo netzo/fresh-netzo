@@ -1,8 +1,4 @@
-import {
-  forwardRef,
-  type ComponentProps,
-  type Ref
-} from "preact/compat";
+import { type ComponentProps, forwardRef, type Ref } from "preact/compat";
 import * as NavigationMenuPrimitive from "../deps/@radix-ui/react-navigation-menu.ts";
 import { cva } from "../deps/class-variance-authority.ts";
 import { cn } from "./utils.ts";
@@ -124,6 +120,7 @@ export {
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-  NavigationMenuTrigger, NavigationMenuViewport, navigationMenuTriggerStyle
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
+  NavigationMenuViewport,
 };
-

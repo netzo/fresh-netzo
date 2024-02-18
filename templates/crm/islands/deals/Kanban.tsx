@@ -3,8 +3,8 @@ import {
   type KanbanProps,
 } from "netzo/components/blocks/kanban/kanban.tsx";
 import {
-  useTable,
   type TableProps,
+  useTable,
 } from "netzo/components/blocks/table/table.tsx";
 
 // NOTE: define columns in island (route to island function serialization unsupported)

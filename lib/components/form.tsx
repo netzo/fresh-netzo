@@ -1,11 +1,11 @@
 import type { JSX } from "preact";
 import {
+  type ComponentProps,
   createContext,
   forwardRef,
+  type Ref,
   useContext,
   useId,
-  type ComponentProps,
-  type Ref
 } from "preact/compat";
 import * as LabelPrimitive from "../deps/@radix-ui/react-label.ts";
 import { Slot } from "../deps/@radix-ui/react-slot.ts";
@@ -178,6 +178,5 @@ export {
   FormItem,
   FormLabel,
   FormMessage,
-  useFormField
+  useFormField,
 };
-

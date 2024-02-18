@@ -1,8 +1,4 @@
-import {
-  forwardRef,
-  type ComponentProps,
-  type Ref
-} from "preact/compat";
+import { type ComponentProps, forwardRef, type Ref } from "preact/compat";
 import * as ScrollAreaPrimitive from "../deps/@radix-ui/react-scroll-area.ts";
 import { cn } from "./utils.ts";
 

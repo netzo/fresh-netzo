@@ -9,9 +9,9 @@ import { cn } from "../../utils.ts";
 import AutoFormObject from "./fields/object.tsx";
 import { FieldConfig } from "./types.ts";
 import {
-  ZodObjectOrWrapped,
   getDefaultValues,
   getObjectFormSchema,
+  ZodObjectOrWrapped,
 } from "./utils.ts";
 
 export { createOnSubmit } from "./utils.ts";

@@ -10,11 +10,7 @@ import {
 } from "../../dialog.tsx";
 import { Input } from "../../input.tsx";
 import { Label } from "../../label.tsx";
-import {
-  TableFacetedFilter,
-  TableOptions,
-  type TableProps
-} from "./table.tsx";
+import { TableFacetedFilter, TableOptions, type TableProps } from "./table.tsx";
 
 type TableToolbarProps<TData> = {
   table: Table<TData>;

@@ -1,9 +1,5 @@
 import type { JSX } from "preact";
-import {
-  forwardRef,
-  type ComponentProps,
-  type Ref
-} from "preact/compat";
+import { type ComponentProps, forwardRef, type Ref } from "preact/compat";
 import * as DropdownMenuPrimitive from "../deps/@radix-ui/react-dropdown-menu.ts";
 import { cn } from "./utils.ts";
 
@@ -198,6 +194,5 @@ export {
   DropdownMenuSub,
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 };
-

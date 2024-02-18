@@ -1,9 +1,5 @@
 import type { JSX } from "preact";
-import {
-  forwardRef,
-  type ComponentProps,
-  type Ref
-} from "preact/compat";
+import { type ComponentProps, forwardRef, type Ref } from "preact/compat";
 import * as DialogPrimitive from "../deps/@radix-ui/react-dialog.ts";
 import { cn } from "./utils.ts";
 
@@ -117,5 +113,5 @@ export {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger
+  DialogTrigger,
 };

@@ -1,7 +1,11 @@
 import { Middleware } from "../../../deps/@feathersjs/hooks.ts";
 
 export {
-  hooks, middleware, type HookContext, type Middleware, type NextFunction
+  type HookContext,
+  hooks,
+  type Middleware,
+  middleware,
+  type NextFunction,
 } from "../../../deps/@feathersjs/hooks.ts";
 
 export * from "./authenticate.ts";

@@ -1,5 +1,5 @@
 import type { JSX } from "preact";
-import { forwardRef, type ComponentProps, type Ref } from "preact/compat";
+import { type ComponentProps, forwardRef, type Ref } from "preact/compat";
 import { DialogProps } from "../deps/@radix-ui/react-dialog.ts";
 import { Command as CommandPrimitive } from "../deps/cmdk.ts";
 import { Dialog, DialogContent } from "./dialog.tsx";
@@ -148,6 +148,5 @@ export {
   CommandItem,
   CommandList,
   CommandSeparator,
-  CommandShortcut
+  CommandShortcut,
 };
-

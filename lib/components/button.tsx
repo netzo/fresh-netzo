@@ -1,7 +1,5 @@
 import type { JSX } from "preact";
-import {
-  forwardRef
-} from "preact/compat";
+import { forwardRef } from "preact/compat";
 import { Slot } from "../deps/@radix-ui/react-slot.ts";
 import { cva, type VariantProps } from "../deps/class-variance-authority.ts";
 import { cn } from "./utils.ts";

@@ -1,5 +1,5 @@
 import { defineRoute } from "$fresh/server.ts";
-import { I18N, accountSchema, type Account } from "@/data/accounts.ts";
+import { type Account, accountSchema, I18N } from "@/data/accounts.ts";
 import { FormAccount } from "@/islands/accounts/Form.tsx";
 import { Table } from "@/islands/accounts/Table.tsx";
 import { resource } from "@/netzo.ts";

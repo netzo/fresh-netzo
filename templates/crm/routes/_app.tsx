@@ -67,18 +67,9 @@ export default defineApp<NetzoState>((req, ctx) => {
           !mustAuth && "md:grid md:grid-cols-[250px_auto]",
         )}
       >
-        {!mustAuth && (
-          <Layout.Nav
-            {...UI.nav}
-            className="hidden md:flex w-[250px] md:b-r-1"
-          />
-        )}
+        {!mustAuth && <Layout.Nav {...UI.nav} />}
         <div className="flex flex-col w-full h-full overflow-x-hidden">
-          <Layout.Header {...UI.header}>
-            {!mustAuth && (
-              <Layout.NavMobile {...UI.nav} className="flex md:hidden" />
-            )}
-          </Layout.Header>
+          <Layout.Header {...UI.header} />
 
           <main className="flex-1">
             {mustAuth ? <ctx.Component /> : (

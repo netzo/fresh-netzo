@@ -1,8 +1,4 @@
-import {
-  forwardRef,
-  type ComponentProps,
-  type Ref
-} from "preact/compat";
+import { type ComponentProps, forwardRef, type Ref } from "preact/compat";
 import * as HoverCardPrimitive from "../deps/@radix-ui/react-hover-card.ts";
 import { cn } from "./utils.ts";
 

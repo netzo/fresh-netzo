@@ -2,7 +2,7 @@ import { signal } from "@preact/signals";
 import { TablePagination } from "./table-pagination.tsx";
 import { TableToolbar } from "./table-toolbar.tsx";
 import { Grid } from "./table.grid.tsx";
-import { useTable, type TableProps } from "./use-table.ts";
+import { type TableProps, useTable } from "./use-table.ts";
 
 export * from "./table-column-cell.tsx";
 export * from "./table-column-header.tsx";

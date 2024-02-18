@@ -2,8 +2,8 @@ import { useComputed } from "@preact/signals";
 import type { ComponentChildren } from "preact";
 // adapted from https://github.com/Georgegriff/react-dnd-kit-tailwind-shadcn-ui/blob/main/src/components/BoardGroup.tsx
 import {
-  useDndContext,
   type UniqueIdentifier,
+  useDndContext,
 } from "../../../deps/@dnd-kit/core.ts";
 import {
   SortableContext,

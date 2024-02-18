@@ -1,9 +1,5 @@
 import type { JSX } from "preact";
-import {
-  forwardRef,
-  type ComponentProps,
-  type Ref
-} from "preact/compat";
+import { type ComponentProps, forwardRef, type Ref } from "preact/compat";
 import * as AlertDialogPrimitive from "../deps/@radix-ui/react-alert-dialog.ts";
 import { buttonVariants } from "./button.tsx";
 import { cn } from "./utils.ts";
@@ -140,6 +136,5 @@ export {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger
+  AlertDialogTrigger,
 };
-

@@ -1,9 +1,5 @@
 import type { JSX } from "preact";
-import {
-  forwardRef,
-  type ComponentProps,
-  type Ref
-} from "preact/compat";
+import { type ComponentProps, forwardRef, type Ref } from "preact/compat";
 import * as MenubarPrimitive from "../deps/@radix-ui/react-menubar.ts";
 import { cn } from "./utils.ts";
 
@@ -233,6 +229,5 @@ export {
   MenubarSub,
   MenubarSubContent,
   MenubarSubTrigger,
-  MenubarTrigger
+  MenubarTrigger,
 };
-

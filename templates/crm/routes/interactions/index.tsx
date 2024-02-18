@@ -1,8 +1,8 @@
 import { defineRoute } from "$fresh/server.ts";
 import {
   I18N,
-  interactionSchema,
   type Interaction,
+  interactionSchema,
 } from "@/data/interactions.ts";
 import { FormInteraction } from "@/islands/interactions/Form.tsx";
 import { Table } from "@/islands/interactions/Table.tsx";

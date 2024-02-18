@@ -5,7 +5,7 @@ import {
   DropdownMenuContent,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "../../dropdown-menu.tsx";
 import type { Table } from "./use-table.ts";
 

@@ -1,17 +1,17 @@
 import type { PluginRoute } from "../../../deps/$fresh/server.ts";
 import type { AuthConfig } from "../plugin.ts";
 import {
+  type AuthUser,
   createUser,
   getUser,
   updateUser,
   updateUserSession,
-  type AuthUser,
 } from "../utils/db.ts";
 import {
+  type AuthProvider,
   getAuthConfig,
   getFunctionsByProvider,
   getUserByProvider,
-  type AuthProvider,
 } from "../utils/providers/mod.ts";
 
 export const getRoutesByProvider = (

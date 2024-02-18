@@ -4,10 +4,10 @@ import { Grid } from "netzo/components/blocks/table/table.grid.tsx";
 import {
   TableColumnHeader,
   TablePagination,
+  type TableProps,
   TableRowActions,
   TableToolbar,
   useTable,
-  type TableProps,
 } from "netzo/components/blocks/table/table.tsx";
 import { IconCopy } from "netzo/components/icon-copy.tsx";
 import { I18N, type Invoice } from "../../data/invoices.ts";
