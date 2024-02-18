@@ -4,6 +4,7 @@ import type { Contact } from "../data/contacts.ts";
 import type { Deal } from "../data/deals.ts";
 import type { Interaction } from "../data/interactions.ts";
 import type { Invoice } from "../data/invoices.ts";
+import type { Team } from "../data/team.ts";
 import type { Transaction } from "../data/transactions.ts";
 import { Dashboard } from "../islands/Dashboard.tsx";
 import { api } from "../netzo.config.ts";
@@ -16,6 +17,7 @@ export default defineRoute(async (req, ctx) => {
     api.interactions.get<Interaction[]>(),
     api.invoices.get<Invoice[]>(),
     api.transactions.get<Transaction[]>(),
+    api.team.get<Team[]>(),
   ]);
 
   // if (!data) return ctx.renderNotFound();
