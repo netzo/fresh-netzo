@@ -4,5 +4,5 @@ import { unocss } from "netzo/plugins/unocss/plugin.ts";
 export default defineConfig({
   plugins: [
     unocss(),
-  ]
+  ],
 });
