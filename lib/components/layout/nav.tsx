@@ -181,7 +181,7 @@ function NavBase({ className, ui = {}, ...props }: NavProps) {
         </div>
       )}
 
-      <nav {...nav}>
+      <nav f-client-nav {...nav}>
         {props.items?.map((item, index) =>
           Array.isArray(item)
             ? (

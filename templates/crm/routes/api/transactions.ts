@@ -1,9 +1,6 @@
-import { authenticate, log, resolve } from "netzo/plugins/api/hooks/mod.ts";
+import { authenticate, log } from "netzo/plugins/api/hooks/mod.ts";
 import { defineApiEndpoint } from "netzo/plugins/api/plugin.ts";
 import { DenoKvResource } from "netzo/plugins/api/resources/mod.ts";
-import type { Account } from "../../data/accounts.ts";
-import type { Transaction } from "../../data/transactions.ts";
-import { api } from "../../netzo.config.ts";
 
 export const transactions = defineApiEndpoint({
   name: "transactions",
@@ -13,14 +10,15 @@ export const transactions = defineApiEndpoint({
     all: [
       authenticate(),
       log(),
-      resolve({
-        after: {
-          issuerAccount: (data: Transaction) =>
-            api.accounts[data.issuerAccountId].get<Account>(),
-          receiverAccount: (data: Transaction) =>
-            api.accounts[data.receiverAccountId].get<Account>(),
-        },
-      }),
+      // FIXME: returns FetchError:  (500 Internal Server Error)
+      // resolve({
+      //   after: {
+      //     issuerAccount: (data: Transaction) =>
+      //       api.accounts[data.issuerAccountId].get<Account>(),
+      //     receiverAccount: (data: Transaction) =>
+      //       api.accounts[data.receiverAccountId].get<Account>(),
+      //   },
+      // }),
     ],
     find: [],
     get: [],
