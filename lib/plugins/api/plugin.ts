@@ -52,9 +52,7 @@ export type ApiState = {
  * @param {ApiConfig} - configuration options for the plugin
  * @returns {Plugin} - a Plugin for Deno Fresh
  */
-export const api = (config?: ApiConfig): Plugin<NetzoState> => {
-  if (!config) return { name: "api" };
-
+export const api = (config: ApiConfig): Plugin<NetzoState> => {
   config.path ||= "/api";
   config.endpoints ||= [];
 

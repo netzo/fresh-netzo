@@ -15,9 +15,7 @@ export const api = createApi({
 export default defineConfig({
   plugins: [
     netzo.environments(),
-    netzo.auth(
-      Deno.env.get("DENO_REGION") ? { providers: { netzo: {} } } : undefined,
-    ),
+    // netzo.auth({ providers: { netzo: {} } }),
     netzo.api({
       path: "/api",
       endpoints: [

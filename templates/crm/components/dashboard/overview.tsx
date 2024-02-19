@@ -4,7 +4,7 @@ import {
   ResponsiveContainer,
   XAxis,
   YAxis,
-} from "https://esm.sh/v135/recharts@2.10.3?external=react,react-dom&target=es2022";
+} from "https://esm.sh/v135/recharts@2.12.0?external=react,react-dom&target=es2022";
 
 const data = [
   {
