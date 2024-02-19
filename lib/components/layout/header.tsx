@@ -55,7 +55,7 @@ export function Header({ className, ui = {}, ...props }: HeaderProps) {
       <div {...right}>
         {props.children}
         <HeaderDarkMode />
-        <HeaderAuth f-client-nav={false} sessionUser={props.sessionUser} />
+        <HeaderAuth sessionUser={props.sessionUser} />
       </div>
     </header>
   );

@@ -5,8 +5,10 @@ import { unocss } from "netzo/plugins/unocss/plugin.ts";
 import * as endpoints from "./routes/api/mod.ts";
 import unoConfig from "./uno.config.ts";
 
+const { NETZO_API_URL = "http://localhost:8000" } = Deno.env.toObject();
+
 export const api = createApi({
-  baseURL: "http://localhost:8000/api",
+  baseURL: `${NETZO_API_URL}/api`,
   headers: {
     "content-type": "application/json",
     "x-api-key": Deno.env.get("NETZO_API_KEY")!,
