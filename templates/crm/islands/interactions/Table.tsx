@@ -4,16 +4,16 @@ import { Grid } from "netzo/components/blocks/table/table.grid.tsx";
 import {
   TableColumnHeader,
   TablePagination,
-  type TableProps,
   TableRowActions,
   TableToolbar,
   useTable,
+  type TableProps,
 } from "netzo/components/blocks/table/table.tsx";
 import { IconCopy } from "netzo/components/icon-copy.tsx";
 import {
   I18N,
-  type Interaction,
   interactionSchema,
+  type Interaction,
 } from "../../data/interactions.ts";
 
 // NOTE: define columns in island (route to island function serialization unsupported)
@@ -32,7 +32,7 @@ export const getColumns = (
       return (
         <div className="flex items-center">
           <a
-            href={`/invoices/${id}`}
+            href={`/interactions/${id}`}
             className="whitespace-nowrap text-center font-medium text-primary hover:underline"
           >
             {id}

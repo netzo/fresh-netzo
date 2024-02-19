@@ -7,7 +7,7 @@ import {
 } from "../../data/interactions.ts";
 import { FormInteraction } from "../../islands/interactions/Form.tsx";
 import { Table } from "../../islands/interactions/Table.tsx";
-import { api } from "../../netzo.config.ts";
+import { $client } from "../../netzo.config.ts";
 
 export const getTableOptions = (
   data: Interaction[],
@@ -36,7 +36,7 @@ export const getTableOptions = (
 };
 
 export default defineRoute(async (req, ctx) => {
-  const data = await api.interactions.get<Interaction[]>();
+  const data = await $client.interactions.find() as Interaction[];
 
   const options = getTableOptions(data);
 
