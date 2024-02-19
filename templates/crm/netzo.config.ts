@@ -4,8 +4,8 @@ import { unocss } from "netzo/plugins/unocss/plugin.ts";
 import * as endpoints from "./routes/api/mod.ts";
 import unoConfig from "./uno.config.ts";
 
-// [server-side] use the $ERVER-only ($ convention) $client object.
-// [client-side] (browser) use fetch() or custom createApi() client.
+// server-side: use server-only $client object ($ = server-only).
+// client-side: use fetch() or custom createApi() client.
 export const $client = {
   accounts: endpoints.accounts.resource,
   contacts: endpoints.contacts.resource,
