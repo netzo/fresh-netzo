@@ -120,6 +120,9 @@ async function runOverSource(uno: UnoGenerator): Promise<string> {
 /**
  * Plugin to automatically generates CSS utility classes
  *
+ * IMPORTANT: A "uno.config.ts" file in the root of the project and
+ * the "@/" alias in the import map of the project are required.
+ *
  * @param aot (boolean) - enables ahead-of-time (AOT) mode to run UnoCSS to extract styles during the build task (default: true)
  * @param ssr (boolean) - enables server-side rendering (SSR) mode to run UnoCSS live to extract styles during server renders (default: true)
  * @param csr (boolean) - enables client-side rendering (CSR) mode to run the UnoCSS runtime on the client to generate styles live in response to DOM events (default: true)
@@ -129,10 +132,11 @@ export const unocss = ({
   ssr = true,
   csr = true,
 }: UnocssConfig = {}): Plugin<NetzoState> => {
-  // A uno.config.ts file is required in the project directory if
-  // a config object is not provided, or to use the browser runtime
-
-  const configFileURL = new URL("./uno.config.ts", Deno.mainModule).href;
+  // WORKAROUND: require "@/" alias in import map instead of using
+  // Deno.mainModule to resolve configFileURL since it is dependant
+  // on the proccess being ran (e.g. dev.ts (also for build), main.ts
+  // and even Subhosting code ran when deploying e.g. to register Crons)
+  const configFileURL = import.meta.resolve("@/uno.config.ts");
 
   // WORKAROUND: skip if Deno.mainModule is not local file to ensure Subhosting
   // scripts (e.g. to register Crons) won't lead to errors when deploying
@@ -147,7 +151,10 @@ export const unocss = ({
     isReadable: true,
   });
   if (!configFileExists) {
-    throw new Error(`Missing "uno.config.ts" file in the root of the project.`);
+    throw new Error([
+      `Could not resolve "uno.config.ts" file in the project directory.`,
+      `Make sure it exists and that and "@/": "./" alias is set in the import map.`,
+    ].join(" "));
   }
   // Serialize uno.config.ts contents to base64 ES import since default fresh serialization
   // (via esbuild) looses functions when bundling the client runtime script for CSR mode
