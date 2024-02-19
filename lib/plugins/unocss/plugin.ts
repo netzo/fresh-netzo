@@ -43,11 +43,6 @@ export type UnocssConfig = {
    * Enabled by default.
    */
   csr?: boolean;
-  /**
-   * Inline UnoCSS config object, alternative to `uno.config.ts` file.
-   * This cannot be used with CSR mode enabled which requires an `uno.config.ts` file.
-   */
-  config?: UserConfig<Theme>;
 };
 
 /**
@@ -128,35 +123,37 @@ async function runOverSource(uno: UnoGenerator): Promise<string> {
  * @param aot (boolean) - enables ahead-of-time (AOT) mode to run UnoCSS to extract styles during the build task (default: true)
  * @param ssr (boolean) - enables server-side rendering (SSR) mode to run UnoCSS live to extract styles during server renders (default: true)
  * @param csr (boolean) - enables client-side rendering (CSR) mode to run the UnoCSS runtime on the client to generate styles live in response to DOM events (default: true)
- * @param config (UserConfig<Theme>) - inline UnoCSS config object, alternative to `uno.config.ts` file. This cannot be used with CSR mode enabled which requires an `uno.config.ts` file.
  */
-export const unocss = (
-  {
-    aot = true,
-    ssr = true,
-    csr = true,
-    config,
-  }: UnocssConfig = {},
-): Plugin<NetzoState> => {
+export const unocss = ({
+  aot = true,
+  ssr = true,
+  csr = true,
+}: UnocssConfig = {}): Plugin<NetzoState> => {
   // A uno.config.ts file is required in the project directory if
   // a config object is not provided, or to use the browser runtime
+
   const configFileURL = new URL("./uno.config.ts", Deno.mainModule).href;
 
-  // NOTE: Subhosting somehow fails when operating with and/or importing from
-  // file:// URLs, so we remove the file:// prefix to avoid build/deployment errors
+  // WORKAROUND: skip if Deno.mainModule is not local file to ensure Subhosting
+  // scripts (e.g. to register Crons) won't lead to errors when deploying
+  if (!configFileURL.startsWith("file://")) return { name: "unocss" };
+
+  // Subhosting somehow fails when operating with and/or importing from file://
+  // URLs, so we remove the file:// prefix to avoid build/deployment errors
   const configURL = configFileURL.replace("file://", "");
 
   const configFileExists = existsSync(configURL, {
     isFile: true,
     isReadable: true,
   });
+  if (!configFileExists) {
+    throw new Error(`Missing "uno.config.ts" file in the root of the project.`);
+  }
   // Serialize uno.config.ts contents to base64 ES import since default fresh serialization
   // (via esbuild) looses functions when bundling the client runtime script for CSR mode
   let configESM = "";
+  let config: UserConfig<Theme>;
   if (csr) {
-    if (!configFileExists) {
-      throw new Error(`Missing "uno.config.ts" file in the project directory.`);
-    }
     const configString = Deno.readTextFileSync(configURL);
     configESM = `data:application/javascript;base64,${btoa(configString)}`;
   }
@@ -195,27 +192,10 @@ export const unocss = (
       }
       : {},
     async configResolved(freshConfig) {
-      console.debug({
-        configFileURL,
-        configURL,
-        "Deno.mainModule": Deno.mainModule,
-        "import.meta.url": import.meta.url,
-        "import.meta.resolve": import.meta.resolve("@/uno.config.ts"),
-      });
-      // Load config from file if not passed directly to plugin
-      if (config === undefined) {
-        try {
-          config = (await import(configURL)).default;
-        } catch (error) {
-          if (configFileExists) {
-            throw error;
-          } else {
-            throw new Error([
-              `Missing "uno.config.ts" file in the project directory.`,
-              `Create one or pass a config object to the UnoCSS plugin.`,
-            ].join(" "));
-          }
-        }
+      try {
+        config = (await import(configURL)).default;
+      } catch (error) {
+        throw error;
       }
 
       // Create the generator object
