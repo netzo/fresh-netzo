@@ -2,7 +2,7 @@ import { defineRoute } from "$fresh/server.ts";
 import type { KanbanProps } from "netzo/components/blocks/kanban/kanban.tsx";
 import { type Deal } from "../../data/deals.ts";
 import { Kanban } from "../../islands/deals/Kanban.tsx";
-import { api } from "../../netzo.config.ts";
+import { $client } from "../../netzo.config.ts";
 
 export const getKanbanOptions = (
   data: Deal[],
@@ -52,7 +52,7 @@ export const getKanbanOptions = (
 };
 
 export default defineRoute(async (req, ctx) => {
-  const data = await api.deals.get<Deal[]>();
+  const data = await $client.deals.find() as Deal[];
 
   const options = getKanbanOptions(data);
 

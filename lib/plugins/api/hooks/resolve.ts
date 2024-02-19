@@ -1,9 +1,10 @@
 import { defineHook, type HookContext } from "./mod.ts";
 
-// deno-lint-ignore no-explicit-any
 export type ResolverFn = <T>(
   data: T,
+  // deno-lint-ignore no-explicit-any
   ctx: HookContext<T, any>,
+  // deno-lint-ignore no-explicit-any
 ) => Promise<any> | any;
 
 export type ResolveOptions = {

@@ -32,7 +32,7 @@ export const getColumns = (
       return (
         <div className="flex items-center">
           <a
-            href={`/invoices/${id}`}
+            href={`/interactions/${id}`}
             className="whitespace-nowrap text-center font-medium text-primary hover:underline"
           >
             {id}

@@ -6,16 +6,16 @@ import type { Interaction } from "../data/interactions.ts";
 import type { Invoice } from "../data/invoices.ts";
 import type { Transaction } from "../data/transactions.ts";
 import { Dashboard } from "../islands/Dashboard.tsx";
-import { api } from "../netzo.config.ts";
+import { $client } from "../netzo.config.ts";
 
 export default defineRoute(async (req, ctx) => {
   const data = await Promise.all([
-    api.accounts.get<Account[]>(),
-    api.contacts.get<Contact[]>(),
-    api.deals.get<Deal[]>(),
-    api.interactions.get<Interaction[]>(),
-    api.invoices.get<Invoice[]>(),
-    api.transactions.get<Transaction[]>(),
+    $client.accounts.find() as Account[],
+    $client.contacts.find() as Contact[],
+    $client.deals.find() as Deal[],
+    $client.interactions.find() as Interaction[],
+    $client.invoices.find() as Invoice[],
+    $client.transactions.find() as Transaction[],
   ]);
 
   // if (!data) return ctx.renderNotFound();
