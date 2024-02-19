@@ -4,16 +4,16 @@ import { Grid } from "netzo/components/blocks/table/table.grid.tsx";
 import {
   TableColumnHeader,
   TablePagination,
+  type TableProps,
   TableRowActions,
   TableToolbar,
   useTable,
-  type TableProps,
 } from "netzo/components/blocks/table/table.tsx";
 import { IconCopy } from "netzo/components/icon-copy.tsx";
 import {
   I18N,
-  interactionSchema,
   type Interaction,
+  interactionSchema,
 } from "../../data/interactions.ts";
 
 // NOTE: define columns in island (route to island function serialization unsupported)

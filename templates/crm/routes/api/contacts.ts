@@ -15,7 +15,8 @@ export const contacts = defineApiEndpoint({
       log(),
       resolve({
         after: {
-          account: (data: Contact) => $client.accounts.get(data.accountId) as Account,
+          account: (data: Contact) =>
+            $client.accounts.get(data.accountId) as Account,
         },
       }),
     ],
