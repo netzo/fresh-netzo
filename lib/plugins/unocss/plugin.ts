@@ -28,6 +28,11 @@ a,hr{color:inherit}progress,sub,sup{vertical-align:baseline}blockquote,body,dd,d
 
 export type UnocssConfig = {
   /**
+   * Inline UnoCSS config object, alternative to `uno.config.ts` file.
+   * This cannot be used with CSR mode enabled which requires an `uno.config.ts` file.
+   */
+  config: UserConfig<Theme>;
+  /**
    * Enable AOT mode - run UnoCSS to extract styles during the build task.
    * Enabled by default.
    */
@@ -120,49 +125,38 @@ async function runOverSource(uno: UnoGenerator): Promise<string> {
 /**
  * Plugin to automatically generates CSS utility classes
  *
- * IMPORTANT: A "uno.config.ts" file in the root of the project and
- * the "@/" alias in the import map of the project are required.
+ * IMPORTANT: must declare a valid "uno.config.ts" file and pass it as the "config" option.
  *
+ * @param config (UserConfig<Theme>) - inline UnoCSS config object declared at "uno.config.ts".
  * @param aot (boolean) - enables ahead-of-time (AOT) mode to run UnoCSS to extract styles during the build task (default: true)
  * @param ssr (boolean) - enables server-side rendering (SSR) mode to run UnoCSS live to extract styles during server renders (default: true)
  * @param csr (boolean) - enables client-side rendering (CSR) mode to run the UnoCSS runtime on the client to generate styles live in response to DOM events (default: true)
  */
 export const unocss = ({
+  config,
   aot = true,
   ssr = true,
   csr = true,
-}: UnocssConfig = {}): Plugin<NetzoState> => {
-  // WORKAROUND: require "@/" alias in import map instead of using
-  // Deno.mainModule to resolve configFileURL since it is dependant
-  // on the proccess being ran (e.g. dev.ts (also for build), main.ts
-  // and even Subhosting code ran when deploying e.g. to register Crons)
-  const configFileURL = import.meta.resolve("@/uno.config.ts");
+}: UnocssConfig): Plugin<NetzoState> => {
+  // A uno.config.ts file is required in the project directory if
+  // a config object is not provided, or to use the browser runtime
+  const configFileURL = new URL("./uno.config.ts", Deno.mainModule).href;
 
-  // WORKAROUND: skip if Deno.mainModule is not local file to ensure Subhosting
-  // scripts (e.g. to register Crons) won't lead to errors when deploying
-  if (!configFileURL.startsWith("file://")) return { name: "unocss" };
-
-  // Subhosting somehow fails when operating with and/or importing from file://
-  // URLs, so we remove the file:// prefix to avoid build/deployment errors
+  // NOTE: Subhosting somehow fails when operating with and/or importing from
+  // file:// URLs, so we remove the file:// prefix to avoid build/deployment errors
   const configURL = configFileURL.replace("file://", "");
 
   const configFileExists = existsSync(configURL, {
     isFile: true,
     isReadable: true,
   });
-  if (!configFileExists) {
-    throw new Error([
-      `Could not resolve "uno.config.ts" file in the project directory.`,
-      `Make sure it exists and that and "@/": "./" alias is set in the import map.`,
-    ].join(" "));
-  }
   // Serialize uno.config.ts contents to base64 ES import since default fresh serialization
   // (via esbuild) looses functions when bundling the client runtime script for CSR mode
-  let configESM = "";
-  let config: UserConfig<Theme>;
-  if (csr) {
-    const configString = Deno.readTextFileSync(configURL);
-    configESM = `data:application/javascript;base64,${btoa(configString)}`;
+  if (csr && !configFileExists) {
+    throw new Error(`Missing "uno.config.ts" file in the project directory.`);
+  }
+  if ((aot || ssr) && !config) {
+    throw new Error(`Missing "uno.config.ts" file in the project directory.`);
   }
 
   // Link to CSS file, if AOT mode is enabled
@@ -190,7 +184,9 @@ export const unocss = ({
       ? {
         "main": `
         data:application/javascript,
-        import config from "${configESM}";
+        import config from "data:application/javascript;base64,${
+          btoa(Deno.readTextFileSync(configURL))
+        }";
         import init from "https://esm.sh/@unocss/runtime@0.58.5";
         export default function() {
           window.__unocss = config;
@@ -199,12 +195,6 @@ export const unocss = ({
       }
       : {},
     async configResolved(freshConfig) {
-      try {
-        config = (await import(configURL)).default;
-      } catch (error) {
-        throw error;
-      }
-
       // Create the generator object
       uno = new UnoGenerator(config);
 

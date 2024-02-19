@@ -3,6 +3,7 @@ import { defineConfig } from "netzo/mod.ts";
 import * as netzo from "netzo/plugins/mod.ts";
 import { unocss } from "netzo/plugins/unocss/plugin.ts";
 import * as endpoints from "./routes/api/mod.ts";
+import unoConfig from "./uno.config.ts";
 
 export const api = createApi({
   baseURL: "http://localhost:8000/api",
@@ -27,6 +28,6 @@ export default defineConfig({
         endpoints.transactions,
       ],
     }),
-    unocss(),
+    unocss({ config: unoConfig }),
   ],
 });
