@@ -198,7 +198,7 @@ export const unocss = (
       // Load config from file if not passed directly to plugin
       if (config === undefined) {
         try {
-          config = (await import(configURL)).default;
+          config = (await import(configESM)).default;
         } catch (error) {
           if (configFileExists) {
             throw error;
