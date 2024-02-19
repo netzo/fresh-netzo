@@ -195,10 +195,17 @@ export const unocss = (
       }
       : {},
     async configResolved(freshConfig) {
+      console.debug({
+        configFileURL,
+        configURL,
+        "Deno.mainModule": Deno.mainModule,
+        "import.meta.url": import.meta.url,
+        "import.meta.resolve": import.meta.resolve("@/uno.config.ts"),
+      });
       // Load config from file if not passed directly to plugin
       if (config === undefined) {
         try {
-          config = (await import(configESM)).default;
+          config = (await import(configURL)).default;
         } catch (error) {
           if (configFileExists) {
             throw error;
