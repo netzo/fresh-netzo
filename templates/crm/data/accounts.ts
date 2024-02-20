@@ -15,20 +15,14 @@ export const accountSchema = z.object({
   ]),
   name: z.string(),
   legalName: z.string(),
-  emails: z.array(
-    z.object({
-      type: z.string(), // "contact", "sales", "billing"
-      name: z.string(), // "Sales department", "Billing department"
-      value: z.string().email(),
-    }),
-  ),
-  phones: z.array(
-    z.object({
-      type: z.string(), // "contact", "sales", "billing"
-      name: z.string(), // "Sales department", "Billing department"
-      value: z.string(),
-    }),
-  ),
+  emails: z.array(z.object({
+    name: z.string(),
+    value: z.string().email(),
+  })),
+  phones: z.array(z.object({
+    name: z.string(),
+    value: z.string(),
+  })),
   website: z.string().url(),
   taxInfo: z.object({
     taxId: z.string(),
@@ -49,54 +43,46 @@ export const accountSchema = z.object({
       countryCode: z.string(),
     }),
   }),
-  links: z.array(
-    z.object({
-      name: z.string(), // "website", "facebook", "linkedin", "twitter", "other"
-      value: z.string().url(),
-    }),
-  ),
-  notes: z.array(
-    z.object({
-      text: z.string(),
-      createdAt: z.string().datetime(),
-      updatedAt: z.string().datetime(),
-    }),
-  ),
-  shippingAddresses: z.array(
-    z.object({
-      title: z.string(),
-      description: z.string(),
-      note: z.string(),
-      street: z.string(),
-      numberExterior: z.string(),
-      numberInterior: z.string(),
-      neighborhood: z.string(),
-      city: z.string(),
-      district: z.string(),
-      zipCode: z.string(),
-      state: z.string(),
-      countryCode: z.string(),
-    }),
-  ),
-  bankAccounts: z.array(
-    z.object({
+  links: z.array(z.object({
+    name: z.string(),
+    value: z.string().url(),
+  })),
+  notes: z.array(z.object({
+    text: z.string(),
+    createdAt: z.string().datetime(),
+    updatedAt: z.string().datetime(),
+  })),
+  shippingAddresses: z.array(z.object({
+    title: z.string(),
+    description: z.string(),
+    note: z.string(),
+    street: z.string(),
+    numberExterior: z.string(),
+    numberInterior: z.string(),
+    neighborhood: z.string(),
+    city: z.string(),
+    district: z.string(),
+    zipCode: z.string(),
+    state: z.string(),
+    countryCode: z.string(),
+  })),
+  bankAccounts: z.array(z.object({
+    name: z.string(),
+    currency: z.string(),
+    type: z.string(),
+    beneficiary: z.string(),
+    number: z.string(),
+    clabe: z.string(),
+    swift: z.string(),
+    iban: z.string(),
+    bank: z.object({
       name: z.string(),
-      currency: z.string(),
-      type: z.string(),
-      beneficiary: z.string(),
-      number: z.string(),
-      clabe: z.string(),
-      swift: z.string(),
-      iban: z.string(),
-      bank: z.object({
-        name: z.string(),
-        city: z.string(),
-        code: z.string(),
-        country: z.string(),
-      }),
-      other: z.string(),
+      city: z.string(),
+      code: z.string(),
+      country: z.string(),
     }),
-  ),
+    other: z.string(),
+  })),
   defaults: z.object({
     expensesAccount: z.number(),
     language: z.string(),
@@ -129,34 +115,28 @@ export const mock = (idField = "id") => ({
   legalName: faker.company.name(),
   emails: [
     {
-      type: "contact",
       name: "Contact",
       value: faker.internet.email(),
     },
     {
-      type: "sales",
       name: "Sales",
       value: faker.internet.email(),
     },
     {
-      type: "billing",
       name: "Billing",
       value: faker.internet.email(),
     },
   ],
   phones: [
     {
-      type: "contact",
       name: "Contact",
       value: faker.phone.number(),
     },
     {
-      type: "sales",
       name: "Sales",
       value: faker.phone.number(),
     },
     {
-      type: "billing",
       name: "Billing",
       value: faker.phone.number(),
     },

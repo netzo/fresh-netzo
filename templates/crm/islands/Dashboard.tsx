@@ -13,7 +13,7 @@ export function Dashboard(props) {
     accounts,
     contacts,
     deals,
-    invoices,
+    quotes,
     transactions,
     users,
   ] = props.data;

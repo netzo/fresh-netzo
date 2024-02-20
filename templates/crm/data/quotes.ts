@@ -4,12 +4,12 @@ import { z } from "zod";
 
 // schemas:
 
-export const invoiceSchema = z.object({
+export const quoteSchema = z.object({
   id: z.string(),
   status: z.enum([
     "pending",
     "paid",
-    "cancelled",
+    "lost",
   ]),
   xml: z.string(),
   pdf: z.string().url(),
@@ -19,13 +19,13 @@ export const invoiceSchema = z.object({
 
 // types:
 
-export type Invoice = z.infer<typeof invoiceSchema>;
+export type Quote = z.infer<typeof quoteSchema>;
 
 // data:
 
 export const mock = (idField = "id") => ({
   [idField]: ulid(),
-  status: faker.helpers.arrayElement(["pending", "paid", "cancelled"]),
+  status: faker.helpers.arrayElement(["pending", "paid", "lost"]),
   xml: faker.lorem.paragraph(),
   pdf: faker.internet.url(),
   createdAt: faker.date.past().toISOString(),
@@ -35,7 +35,7 @@ export const mock = (idField = "id") => ({
 // i18n:
 
 export const I18N = {
-  id: "Invoice ID",
+  id: "Quote ID",
   status: "Status",
   xml: "XML",
   pdf: "PDF",

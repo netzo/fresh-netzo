@@ -2,156 +2,426 @@
   {
     "key": [
       "users",
-      "1"
+      "01HQ42X8619E62TR1AWAHKBRHF"
     ],
     "value": {
-      "id": 1,
-      "name": "Arturo Romero",
-      "image": "https://github.com/arturork.png",
-      "department": "sales",
-      "userInfo": {
-        "position": "CEO",
-        "seniority": "junior",
-        "office": "Monterrey, Mexico"
-      },
-      "phones": [
-        {
-          "type": "mobile",
-          "name": "Mobile phone",
-          "value": "811-123-4567"
-        },
-        {
-          "type": "work",
-          "name": "Work phone",
-          "value": "811-123-4567"
-        }
+      "id": "01HQ42X8619E62TR1AWAHKBRHF",
+      "name": "Roman Batz II",
+      "email": "Pink63@hotmail.com",
+      "image": "https://avatars.githubusercontent.com/u/98023894",
+      "roles": [
+        "admin"
       ],
-      "emails": [
-        {
-          "type": "work",
-          "name": "Work email",
-          "value": "arturo.romero@netzo.io"
-        }
-      ],
-      "links": [
-        {
-          "type": "linkedin",
-          "name": "Linkedin",
-          "value": "https://www.linkedin.com/in/arturork/"
-        },
-        {
-          "type": "github",
-          "name": "GitHub",
-          "value": "https://github.com/arturork"
-        }
-      ],
-      "createdAt": "2021-03-01T00:00:00",
-      "lasUpdated": "2021-03-01T00:00:00"
+      "createdAt": "2023-05-12T08:59:11.070Z",
+      "updatedAt": "2024-02-20T10:37:52.339Z"
     }
   },
   {
     "key": [
       "users",
-      "2"
+      "01HQ42X8619E62TR1AWAHKBRHG"
     ],
     "value": {
-      "id": 2,
-      "name": "Miguel Romero",
-      "image": "https://github.com/miguelrk.png",
-      "department": "management",
-      "userInfo": {
-        "position": "CTO",
-        "seniority": "executive",
-        "office": "Madrid, Spain"
-      },
-      "phones": [
-        {
-          "type": "mobile",
-          "name": "Mobile phone",
-          "value": "811-123-4567"
-        },
-        {
-          "type": "work",
-          "name": "Work phone",
-          "value": "811-123-4567"
-        }
+      "id": "01HQ42X8619E62TR1AWAHKBRHG",
+      "name": "Emily Streich",
+      "email": "Sabrina_Hickle@yahoo.com",
+      "image": "https://avatars.githubusercontent.com/u/97181472",
+      "roles": [
+        "edit"
       ],
-      "emails": [
-        {
-          "type": "work",
-          "name": "Work email",
-          "value": "miguel.romero@netzo.io"
-        }
-      ],
-      "links": [
-        {
-          "type": "linkedin",
-          "name": "Linkedin",
-          "value": "https://www.linkedin.com/in/miguelromerokaram/"
-        },
-        {
-          "type": "github",
-          "name": "GitHub",
-          "value": "https://github.com/miguelrk"
-        }
-      ],
-      "createdAt": "2021-03-01T00:00:00",
-      "lasUpdated": "2021-03-01T00:00:00"
+      "createdAt": "2023-12-07T02:11:33.946Z",
+      "updatedAt": "2024-02-20T07:36:16.268Z"
     }
   },
   {
     "key": [
       "users",
-      "3"
+      "01HQ42X862028SYHH8GM2W5400"
     ],
     "value": {
-      "id": 3,
-      "name": "Gabriel Romero",
-      "image": "https://github.com/gabrielromk.png",
-      "department": "management",
-      "userInfo": {
-        "position": "COO",
-        "seniority": "executive",
-        "office": "Madrid, Spain"
-      },
-      "phones": [
-        {
-          "type": "mobile",
-          "name": "Mobile phone",
-          "value": "811-123-4567"
-        },
-        {
-          "type": "work",
-          "name": "Work phone",
-          "value": "811-123-4567"
-        }
+      "id": "01HQ42X862028SYHH8GM2W5400",
+      "name": "Jerald Moore",
+      "email": "Elvie75@hotmail.com",
+      "image": "https://avatars.githubusercontent.com/u/60679416",
+      "roles": [
+        "admin"
       ],
-      "emails": [
-        {
-          "type": "work",
-          "name": "Work email",
-          "value": "gabriel.romero@netzo.io"
-        },
-        {
-          "type": "personal",
-          "name": "Personal email",
-          "value": "gabriel.romero.karam@gmail.com"
-        }
+      "createdAt": "2023-07-06T22:24:39.133Z",
+      "updatedAt": "2024-02-20T05:03:18.665Z"
+    }
+  },
+  {
+    "key": [
+      "users",
+      "01HQ42X862028SYHH8GM2W5401"
+    ],
+    "value": {
+      "id": "01HQ42X862028SYHH8GM2W5401",
+      "name": "Walter Mante",
+      "email": "Darlene.Wisozk@yahoo.com",
+      "image": "https://avatars.githubusercontent.com/u/72784917",
+      "roles": [
+        "admin"
       ],
-      "links": [
-        {
-          "type": "linkedin",
-          "name": "Linkedin",
-          "value": "https://www.linkedin.com/in/gabrielromero1995/"
-        },
-        {
-          "type": "github",
-          "name": "GitHub",
-          "value": "https://github.com/gabrielromk"
-        }
+      "createdAt": "2024-01-04T12:55:02.734Z",
+      "updatedAt": "2024-02-20T10:02:19.808Z"
+    }
+  },
+  {
+    "key": [
+      "users",
+      "01HQ42X862028SYHH8GM2W5402"
+    ],
+    "value": {
+      "id": "01HQ42X862028SYHH8GM2W5402",
+      "name": "Spencer Mertz",
+      "email": "Laury.Koepp83@gmail.com",
+      "image": "https://avatars.githubusercontent.com/u/52043794",
+      "roles": [
+        "view"
       ],
-      "createdAt": "2021-03-01T00:00:00",
-      "lasUpdated": "2021-03-01T00:00:00"
+      "createdAt": "2023-02-22T14:44:56.459Z",
+      "updatedAt": "2024-02-19T23:47:12.973Z"
+    }
+  },
+  {
+    "key": [
+      "users",
+      "01HQ42X862028SYHH8GM2W5403"
+    ],
+    "value": {
+      "id": "01HQ42X862028SYHH8GM2W5403",
+      "name": "Melody Barrows",
+      "email": "Isabella5@hotmail.com",
+      "image": "https://avatars.githubusercontent.com/u/98614903",
+      "roles": [
+        "view"
+      ],
+      "createdAt": "2023-11-14T18:42:15.949Z",
+      "updatedAt": "2024-02-20T03:15:03.873Z"
+    }
+  },
+  {
+    "key": [
+      "users",
+      "01HQ42X862028SYHH8GM2W5404"
+    ],
+    "value": {
+      "id": "01HQ42X862028SYHH8GM2W5404",
+      "name": "Alexandra Pollich",
+      "email": "Kolby.Trantow@hotmail.com",
+      "image": "https://avatars.githubusercontent.com/u/8367462",
+      "roles": [
+        "admin"
+      ],
+      "createdAt": "2024-02-02T17:09:54.508Z",
+      "updatedAt": "2024-02-20T10:41:34.419Z"
+    }
+  },
+  {
+    "key": [
+      "users",
+      "01HQ42X862028SYHH8GM2W5405"
+    ],
+    "value": {
+      "id": "01HQ42X862028SYHH8GM2W5405",
+      "name": "Linda Jacobson",
+      "email": "Sheldon46@hotmail.com",
+      "image": "https://avatars.githubusercontent.com/u/54616425",
+      "roles": [
+        "admin"
+      ],
+      "createdAt": "2023-09-10T10:16:23.555Z",
+      "updatedAt": "2024-02-20T11:19:35.543Z"
+    }
+  },
+  {
+    "key": [
+      "users",
+      "01HQ42X862028SYHH8GM2W5406"
+    ],
+    "value": {
+      "id": "01HQ42X862028SYHH8GM2W5406",
+      "name": "Tricia Mills II",
+      "email": "Hassie.Nienow@gmail.com",
+      "image": "https://avatars.githubusercontent.com/u/67113766",
+      "roles": [
+        "admin"
+      ],
+      "createdAt": "2023-06-22T04:03:20.240Z",
+      "updatedAt": "2024-02-20T15:27:49.184Z"
+    }
+  },
+  {
+    "key": [
+      "users",
+      "01HQ42X862028SYHH8GM2W5407"
+    ],
+    "value": {
+      "id": "01HQ42X862028SYHH8GM2W5407",
+      "name": "Al Halvorson",
+      "email": "Buster_Ryan15@yahoo.com",
+      "image": "https://avatars.githubusercontent.com/u/56502711",
+      "roles": [
+        "view"
+      ],
+      "createdAt": "2023-10-10T08:00:02.403Z",
+      "updatedAt": "2024-02-20T05:38:56.210Z"
+    }
+  },
+  {
+    "key": [
+      "users",
+      "01HQ42X862028SYHH8GM2W5408"
+    ],
+    "value": {
+      "id": "01HQ42X862028SYHH8GM2W5408",
+      "name": "Karla Sanford",
+      "email": "Christiana_Stoltenberg60@hotmail.com",
+      "image": "https://avatars.githubusercontent.com/u/77245161",
+      "roles": [
+        "admin"
+      ],
+      "createdAt": "2024-02-09T13:38:10.547Z",
+      "updatedAt": "2024-02-20T08:07:29.937Z"
+    }
+  },
+  {
+    "key": [
+      "users",
+      "01HQ42X862028SYHH8GM2W5409"
+    ],
+    "value": {
+      "id": "01HQ42X862028SYHH8GM2W5409",
+      "name": "Lucia Emmerich Jr.",
+      "email": "Rosella89@yahoo.com",
+      "image": "https://avatars.githubusercontent.com/u/92035108",
+      "roles": [
+        "view"
+      ],
+      "createdAt": "2023-08-23T23:09:41.661Z",
+      "updatedAt": "2024-02-19T21:21:40.537Z"
+    }
+  },
+  {
+    "key": [
+      "users",
+      "01HQ42X862028SYHH8GM2W540A"
+    ],
+    "value": {
+      "id": "01HQ42X862028SYHH8GM2W540A",
+      "name": "Mr. Pablo Hammes",
+      "email": "Jewel.Kuphal@hotmail.com",
+      "image": "https://avatars.githubusercontent.com/u/54897481",
+      "roles": [
+        "edit"
+      ],
+      "createdAt": "2023-03-22T12:39:04.762Z",
+      "updatedAt": "2024-02-20T05:09:41.459Z"
+    }
+  },
+  {
+    "key": [
+      "users",
+      "01HQ42X862028SYHH8GM2W540B"
+    ],
+    "value": {
+      "id": "01HQ42X862028SYHH8GM2W540B",
+      "name": "Rick Moore DDS",
+      "email": "Ashley79@gmail.com",
+      "image": "https://avatars.githubusercontent.com/u/59065317",
+      "roles": [
+        "edit"
+      ],
+      "createdAt": "2023-08-20T16:17:55.291Z",
+      "updatedAt": "2024-02-20T12:25:31.833Z"
+    }
+  },
+  {
+    "key": [
+      "users",
+      "01HQ42X862028SYHH8GM2W540C"
+    ],
+    "value": {
+      "id": "01HQ42X862028SYHH8GM2W540C",
+      "name": "Kristen Homenick",
+      "email": "Graciela.Lemke28@gmail.com",
+      "image": "https://avatars.githubusercontent.com/u/223635",
+      "roles": [
+        "admin"
+      ],
+      "createdAt": "2023-10-21T03:13:55.853Z",
+      "updatedAt": "2024-02-20T00:17:19.818Z"
+    }
+  },
+  {
+    "key": [
+      "users",
+      "01HQ42X862028SYHH8GM2W540D"
+    ],
+    "value": {
+      "id": "01HQ42X862028SYHH8GM2W540D",
+      "name": "Jennie Lemke",
+      "email": "Ernie78@yahoo.com",
+      "image": "https://avatars.githubusercontent.com/u/76714134",
+      "roles": [
+        "edit"
+      ],
+      "createdAt": "2023-09-09T15:14:01.079Z",
+      "updatedAt": "2024-02-19T23:32:17.559Z"
+    }
+  },
+  {
+    "key": [
+      "users",
+      "01HQ42X8635KC5Y19P0VYJK1JK"
+    ],
+    "value": {
+      "id": "01HQ42X8635KC5Y19P0VYJK1JK",
+      "name": "Ernest Rath",
+      "email": "Ibrahim_Zboncak99@hotmail.com",
+      "image": "https://avatars.githubusercontent.com/u/9329606",
+      "roles": [
+        "edit"
+      ],
+      "createdAt": "2023-10-19T12:57:09.355Z",
+      "updatedAt": "2024-02-19T21:01:40.074Z"
+    }
+  },
+  {
+    "key": [
+      "users",
+      "01HQ42X8635KC5Y19P0VYJK1JM"
+    ],
+    "value": {
+      "id": "01HQ42X8635KC5Y19P0VYJK1JM",
+      "name": "Faith Cummings",
+      "email": "Jazmin.Kilback@yahoo.com",
+      "image": "https://avatars.githubusercontent.com/u/42862895",
+      "roles": [
+        "admin"
+      ],
+      "createdAt": "2023-07-31T19:50:36.743Z",
+      "updatedAt": "2024-02-20T16:47:25.894Z"
+    }
+  },
+  {
+    "key": [
+      "users",
+      "01HQ42X8635KC5Y19P0VYJK1JN"
+    ],
+    "value": {
+      "id": "01HQ42X8635KC5Y19P0VYJK1JN",
+      "name": "Jon Rath",
+      "email": "Carson25@yahoo.com",
+      "image": "https://avatars.githubusercontent.com/u/80757147",
+      "roles": [
+        "view"
+      ],
+      "createdAt": "2023-05-03T08:22:58.541Z",
+      "updatedAt": "2024-02-19T21:06:02.635Z"
+    }
+  },
+  {
+    "key": [
+      "users",
+      "01HQ42X8635KC5Y19P0VYJK1JP"
+    ],
+    "value": {
+      "id": "01HQ42X8635KC5Y19P0VYJK1JP",
+      "name": "Rosa McClure",
+      "email": "Cristian_Rutherford49@gmail.com",
+      "image": "https://avatars.githubusercontent.com/u/71601687",
+      "roles": [
+        "view"
+      ],
+      "createdAt": "2023-05-06T03:51:01.807Z",
+      "updatedAt": "2024-02-20T09:15:06.581Z"
+    }
+  },
+  {
+    "key": [
+      "users",
+      "01HQ42X8635KC5Y19P0VYJK1JQ"
+    ],
+    "value": {
+      "id": "01HQ42X8635KC5Y19P0VYJK1JQ",
+      "name": "Trevor Hamill",
+      "email": "Meggie.Pagac28@hotmail.com",
+      "image": "https://avatars.githubusercontent.com/u/6872300",
+      "roles": [
+        "edit"
+      ],
+      "createdAt": "2024-02-17T16:24:53.597Z",
+      "updatedAt": "2024-02-19T20:54:04.972Z"
+    }
+  },
+  {
+    "key": [
+      "users",
+      "01HQ42X8635KC5Y19P0VYJK1JR"
+    ],
+    "value": {
+      "id": "01HQ42X8635KC5Y19P0VYJK1JR",
+      "name": "Shelley Rohan",
+      "email": "Hiram_Deckow7@yahoo.com",
+      "image": "https://avatars.githubusercontent.com/u/2136098",
+      "roles": [
+        "admin"
+      ],
+      "createdAt": "2023-08-25T23:19:55.424Z",
+      "updatedAt": "2024-02-20T07:12:21.753Z"
+    }
+  },
+  {
+    "key": [
+      "users",
+      "01HQ42X8635KC5Y19P0VYJK1JS"
+    ],
+    "value": {
+      "id": "01HQ42X8635KC5Y19P0VYJK1JS",
+      "name": "Marco Schoen",
+      "email": "Wilfrid6@gmail.com",
+      "image": "https://avatars.githubusercontent.com/u/94074201",
+      "roles": [
+        "view"
+      ],
+      "createdAt": "2023-06-02T01:29:02.106Z",
+      "updatedAt": "2024-02-20T13:16:38.592Z"
+    }
+  },
+  {
+    "key": [
+      "users",
+      "01HQ42X8635KC5Y19P0VYJK1JT"
+    ],
+    "value": {
+      "id": "01HQ42X8635KC5Y19P0VYJK1JT",
+      "name": "Lucille Walsh",
+      "email": "Rogelio.Lehner2@hotmail.com",
+      "image": "https://avatars.githubusercontent.com/u/60901963",
+      "roles": [
+        "view"
+      ],
+      "createdAt": "2023-11-19T21:06:09.424Z",
+      "updatedAt": "2024-02-20T14:05:22.358Z"
+    }
+  },
+  {
+    "key": [
+      "users",
+      "01HQ42X8635KC5Y19P0VYJK1JV"
+    ],
+    "value": {
+      "id": "01HQ42X8635KC5Y19P0VYJK1JV",
+      "name": "Preston Cartwright MD",
+      "email": "Asa_Pfeffer@yahoo.com",
+      "image": "https://avatars.githubusercontent.com/u/23069892",
+      "roles": [
+        "view"
+      ],
+      "createdAt": "2023-11-27T11:48:25.374Z",
+      "updatedAt": "2024-02-19T20:30:29.444Z"
     }
   }
 ]

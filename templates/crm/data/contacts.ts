@@ -1,12 +1,6 @@
 import { ulid } from "netzo/plugins/api/utils.ts";
 import { faker } from "npm:@faker-js/faker@8.4.0";
 import { z } from "zod";
-import {
-  emailSchema,
-  linkSchema,
-  noteSchema,
-  phoneSchema,
-} from "./utils/global.types.ts";
 
 // schemas:
 
@@ -18,10 +12,23 @@ export const contactSchema = z.object({
   image: z.string().url(),
   position: z.string(),
   department: z.string(),
-  phones: z.array(phoneSchema),
-  emails: z.array(emailSchema),
-  links: z.array(linkSchema),
-  notes: z.array(noteSchema),
+  phones: z.array(z.object({
+    name: z.string(),
+    value: z.string(),
+  })),
+  emails: z.array(z.object({
+    name: z.string(),
+    value: z.string().email(),
+  })),
+  links: z.array(z.object({
+    name: z.string(),
+    value: z.string().url(),
+  })),
+  notes: z.array(z.object({
+    text: z.string(),
+    createdAt: z.string().datetime(),
+    updatedAt: z.string().datetime(),
+  })),
   consent: z.object({
     documents: z.boolean(),
     documentsTimestamp: z.number(),
@@ -52,30 +59,21 @@ export const mock = (idField = "id") => ({
   department: faker.person.jobArea(),
   phones: [
     {
-      type: "work",
-      name: "Work phone",
+      name: "Work",
       value: faker.phone.number(),
     },
     {
-      type: "mobile",
-      name: "Mobile phone",
-      value: faker.phone.number(),
-    },
-    {
-      type: "whatsapp",
-      name: "Personal whatsapp",
+      name: "Personal",
       value: faker.phone.number(),
     },
   ],
   emails: [
     {
-      type: "work",
-      name: "Work email",
+      name: "Work",
       value: faker.internet.email(),
     },
     {
-      type: "personal",
-      name: "Personal email",
+      name: "Personal",
       value: faker.internet.email(),
     },
   ],
@@ -130,7 +128,7 @@ export const I18N = {
   image: "Image",
   position: "Position",
   department: "Department",
-  phones: "Phone Numbers",
+  phones: "Phones",
   emails: "Emails",
   links: "Links",
   notes: {

@@ -18,7 +18,7 @@ export const transactionSchema = z.object({
     "paypal",
     "stripe",
   ]),
-  status: z.enum(["pending", "completed", "failed", "cancelled", "refunded"]),
+  status: z.enum(["pending", "completed", "failed", "lost", "refunded"]),
   reference: z.string(),
   issuerAccountId: z.string(),
   receiverAccountId: z.string(),
@@ -27,13 +27,11 @@ export const transactionSchema = z.object({
   amount: z.number(),
   currency: z.string(),
   exchangeRate: z.number(),
-  notes: z.array(
-    z.object({
-      text: z.string(),
-      createdAt: z.string().datetime(),
-      updatedAt: z.string().datetime(),
-    }),
-  ),
+  notes: z.array(z.object({
+    text: z.string(),
+    createdAt: z.string().datetime(),
+    updatedAt: z.string().datetime(),
+  })),
   createdAt: z.string().datetime(),
   updatedAt: z.string().datetime(),
 });
@@ -62,7 +60,7 @@ export const mock = (idField = "id") => ({
     "pending",
     "completed",
     "failed",
-    "cancelled",
+    "lost",
     "refunded",
   ]),
   reference: faker.lorem.sentence(),

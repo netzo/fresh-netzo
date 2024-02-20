@@ -1,80 +1,45 @@
+import { ulid } from "netzo/plugins/api/utils.ts";
+import { faker } from "npm:@faker-js/faker@8.4.0";
 import { z } from "zod";
-import { emailSchema, linkSchema, phoneSchema } from "./utils/global.types.ts";
 
-export const senorityLevels = [
-  "entry",
-  "junior",
-  "mid",
-  "senior",
-  "manager",
-  "executive",
-] as const;
-
-export const offices = [
-  "Monterrey, Mexico",
-  "Madrid, Spain",
-  "Munich, Germany",
-  "Houston, USA",
-  "San Francisco, USA",
-] as const;
-
-export const departments = [
-  "sales",
-  "marketing",
-  "management",
-  "finance",
-  "hr",
-  "legal",
-  "operations",
-  "productAndEngineering",
-  "customerSuccess",
-] as const;
+const ROLES = ["admin", "edit", "view"] as const;
 
 // schemas:
 
 export const userSchema = z.object({
   id: z.string(),
   name: z.string(),
+  email: z.string().email(),
   image: z.string().url(),
-  department: z.enum(departments),
-  userInfo: z.object({
-    position: z.string(),
-    seniority: z.enum(senorityLevels),
-    office: z.enum(offices),
-  }),
-  phones: z.array(phoneSchema),
-  emails: z.array(emailSchema),
-  links: z.array(linkSchema),
+  roles: z.array(z.enum(ROLES)),
   createdAt: z.string().datetime(),
   updatedAt: z.string().datetime(),
 });
 
+// types:
+
 export type User = z.infer<typeof userSchema>;
+
+// data:
+
+export const mock = (idField = "id") => ({
+  [idField]: ulid(),
+  name: faker.person.fullName(),
+  email: faker.internet.email(),
+  image: faker.image.avatarGitHub(),
+  roles: [faker.helpers.arrayElement(ROLES)],
+  createdAt: faker.date.past().toISOString(),
+  updatedAt: faker.date.recent().toISOString(),
+});
+
+// i18n:
 
 export const I18N = {
   "id": "Employee ID",
   "name": "Name",
-  "image": "User image",
-  "department": {
-    "label": "Department",
-    "sales": "Sales",
-    "marketing": "Marketing",
-    "management": "Management",
-    "finance": "Finance",
-    "hr": "Human Resources",
-    "legal": "Legal",
-    "operations": "Operations",
-    "productAndEngineering": "Product & Engineering",
-  },
-  "userInfo": {
-    "label": "User information",
-    "position": "Position",
-    "seniority": "Seniority",
-    "office": "Office",
-  },
-  "phones": "Contact phone",
-  "emails": "Contact email",
-  "links": "Links",
+  "email": "Email",
+  "image": "Image",
+  "roles": "Roles",
   "createdAt": "Created at",
   "updatedAt": "Updated at",
 };

@@ -4,7 +4,7 @@ const RESOURCES = [
   "accounts",
   "contacts",
   "deals",
-  "invoices",
+  "quotes",
   "products",
   "transactions",
   "users",
