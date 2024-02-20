@@ -2,2507 +2,3353 @@
   {
     "key": [
       "accounts",
-      "01HQ31FV7RDFP7SGNAPV162B02"
+      "01HQ31Q20AXCJK464R5JQX50Q2"
     ],
     "value": {
-      "id": "01HQ31FV7RDFP7SGNAPV162B02",
-      "type": "partner",
-      "name": "Gutmann, Langosh and Mayer",
-      "legalName": "Kreiger, VonRueden and Reinger",
+      "id": "01HQ31Q20AXCJK464R5JQX50Q2",
+      "type": "customer",
+      "name": "Schmitt and Sons",
+      "legalName": "Ebert Inc",
       "emails": [
         {
           "type": "contact",
           "name": "Contact",
-          "value": "Jeffry.Smitham-Wiegand@hotmail.com"
+          "value": "Carlo_Wunsch74@hotmail.com"
         },
         {
           "type": "sales",
           "name": "Sales",
-          "value": "Melody.Becker3@yahoo.com"
+          "value": "Terry_Jaskolski@gmail.com"
         },
         {
           "type": "billing",
           "name": "Billing",
-          "value": "Cletus.Spencer@gmail.com"
+          "value": "Antonina87@gmail.com"
         }
       ],
       "phones": [
         {
           "type": "contact",
           "name": "Contact",
-          "value": "456-508-9694 x94635"
+          "value": "1-362-659-9975"
         },
         {
           "type": "sales",
           "name": "Sales",
-          "value": "617.816.4156 x424"
+          "value": "(761) 818-8913 x73957"
         },
         {
           "type": "billing",
           "name": "Billing",
-          "value": "238-740-6097 x174"
+          "value": "(375) 226-3650 x664"
         }
       ],
-      "website": "https://muted-kiss.biz/",
+      "website": "https://honorable-environment.info/",
       "taxInfo": {
-        "taxId": "yz8CDrIJMg",
+        "taxId": "LflJrsCNPp",
         "isMexTaxId": true,
-        "fiscalRegime": "sufficio",
-        "proofTaxSituation": "congregatio",
-        "proofTaxSituationDate": "2023-03-29T00:10:41.911Z",
-        "proofTaxSituationPdf": "https://fortunate-power.info",
+        "fiscalRegime": "aestus",
+        "proofTaxSituation": "vicinus",
+        "proofTaxSituationDate": "2023-06-14T08:45:04.858Z",
+        "proofTaxSituationPdf": "https://uncomfortable-swan.name/",
         "billingAddress": {
-          "street": "W Front Street",
-          "numberExterior": "556 Huels Parkway",
-          "numberInterior": "Apt. 210",
-          "neighborhood": "Carroll County",
-          "city": "Rialto",
-          "district": "Wisconsin",
-          "zipCode": "28931",
-          "state": "Tennessee",
-          "countryCode": "UM"
+          "street": "Main Street N",
+          "numberExterior": "90186 Haley Club",
+          "numberInterior": "Suite 710",
+          "neighborhood": "Lincolnshire",
+          "city": "Krystalhaven",
+          "district": "New York",
+          "zipCode": "89127",
+          "state": "North Carolina",
+          "countryCode": "KH"
         }
       },
       "links": [
         {
           "name": "website",
-          "value": "https://gracious-philosophy.org/"
+          "value": "https://boiling-clarinet.name/"
         },
         {
           "name": "facebook",
-          "value": "https://mortified-boot.net/"
+          "value": "https://greedy-chorus.name"
         },
         {
           "name": "linkedin",
-          "value": "https://powerless-mecca.biz/"
+          "value": "https://questionable-workshop.name/"
         },
         {
           "name": "twitter",
-          "value": "https://acrobatic-wardrobe.biz/"
+          "value": "https://exotic-myth.biz"
         },
         {
           "name": "other",
-          "value": "https://ignorant-boar.net"
+          "value": "https://superficial-palate.org"
         }
       ],
       "notes": [
         {
-          "text": "Sed trado adversus victus adficio sopor. Tenetur vulariter sum urbanus angustus sollers. Soleo condico cursim curo cimentarius assentator patior.",
-          "createdAt": "2024-02-14T19:21:13.503Z",
-          "updatedAt": "2024-02-19T22:00:17.070Z"
+          "text": "Verumtamen vigor traho id et adulescens patria appono soleo. Solutio vitiosus casso arto verbum victoria contego eius sufficio deinde. Capitulus averto tyrannus aveho socius aspernatur.",
+          "createdAt": "2023-10-21T02:03:06.488Z",
+          "updatedAt": "2024-02-19T11:06:13.680Z"
         }
       ],
       "shippingAddresses": [
         {
-          "title": "aveho",
-          "description": "pel una spargo",
-          "note": "attero tollo subito",
-          "street": "Florencio Valleys",
-          "numberExterior": "68748 Antonina Walk",
-          "numberInterior": "Suite 705",
-          "neighborhood": "Monroe County",
-          "city": "Fort Ernest",
-          "district": "Massachusetts",
-          "zipCode": "10243",
-          "state": "Arizona",
-          "countryCode": "GL"
+          "title": "viduo",
+          "description": "audio comedo tempus",
+          "note": "astrum tot circumvenio",
+          "street": "West Road",
+          "numberExterior": "7153 Norene Creek",
+          "numberInterior": "Suite 572",
+          "neighborhood": "Polk County",
+          "city": "Fayetteville",
+          "district": "Kentucky",
+          "zipCode": "08137",
+          "state": "Minnesota",
+          "countryCode": "ML"
+        }
+      ],
+      "bankAccounts": [
+        {
+          "name": "Home Loan Account",
+          "currency": "COP",
+          "type": "account",
+          "beneficiary": "Checking Account",
+          "number": "Auto Loan Account",
+          "clabe": "1724",
+          "swift": "YZTZMWHKSXA",
+          "iban": "CH2546019859339MAT83X",
+          "bank": {
+            "name": "Harber Inc",
+            "city": "Port Alenafurt",
+            "code": "SYUAPAOHXXX",
+            "country": "Costa Rica"
+          },
+          "other": "veniam cruentus vitae"
+        }
+      ],
+      "defaults": {
+        "expensesAccount": "71838852",
+        "language": "WS",
+        "currency": "MVR",
+        "paymentMethod": "adficio",
+        "paymentForm": "canis",
+        "paymentDeadline": "vulgo",
+        "paymentTerms": "adulescens"
+      },
+      "createdAt": "2023-09-30T23:56:26.829Z",
+      "updatedAt": "2024-02-19T21:58:52.041Z"
+    }
+  },
+  {
+    "key": [
+      "accounts",
+      "01HQ31Q20F8X2AV1D43HCX1KWY"
+    ],
+    "value": {
+      "id": "01HQ31Q20F8X2AV1D43HCX1KWY",
+      "type": "prospect",
+      "name": "Cassin - Swaniawski",
+      "legalName": "Langworth Inc",
+      "emails": [
+        {
+          "type": "contact",
+          "name": "Contact",
+          "value": "Zena53@yahoo.com"
+        },
+        {
+          "type": "sales",
+          "name": "Sales",
+          "value": "Eulah_Medhurst@yahoo.com"
+        },
+        {
+          "type": "billing",
+          "name": "Billing",
+          "value": "Flavio53@yahoo.com"
+        }
+      ],
+      "phones": [
+        {
+          "type": "contact",
+          "name": "Contact",
+          "value": "(877) 846-2881 x2751"
+        },
+        {
+          "type": "sales",
+          "name": "Sales",
+          "value": "1-326-591-0512 x034"
+        },
+        {
+          "type": "billing",
+          "name": "Billing",
+          "value": "1-401-655-8772 x7303"
+        }
+      ],
+      "website": "https://concerned-advocacy.org",
+      "taxInfo": {
+        "taxId": "Isd3Qe9CUv",
+        "isMexTaxId": false,
+        "fiscalRegime": "terreo",
+        "proofTaxSituation": "vos",
+        "proofTaxSituationDate": "2023-09-12T04:44:05.898Z",
+        "proofTaxSituationPdf": "https://growing-cupola.biz/",
+        "billingAddress": {
+          "street": "Park Road",
+          "numberExterior": "785 West Shore",
+          "numberInterior": "Apt. 149",
+          "neighborhood": "Adams County",
+          "city": "Wisokybury",
+          "district": "Utah",
+          "zipCode": "13338",
+          "state": "New York",
+          "countryCode": "MR"
+        }
+      },
+      "links": [
+        {
+          "name": "website",
+          "value": "https://bossy-extent.biz/"
+        },
+        {
+          "name": "facebook",
+          "value": "https://vicious-coinsurance.net"
+        },
+        {
+          "name": "linkedin",
+          "value": "https://average-beret.net"
+        },
+        {
+          "name": "twitter",
+          "value": "https://knotty-indication.biz/"
+        },
+        {
+          "name": "other",
+          "value": "https://good-following.net"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Abstergo tricesimus suppono uterque contigo. Vapulus placeat ex. Victoria aufero charisma asperiores tollo videlicet balbus tempore subnecto.",
+          "createdAt": "2024-01-07T09:20:16.558Z",
+          "updatedAt": "2024-02-19T11:26:40.153Z"
+        }
+      ],
+      "shippingAddresses": [
+        {
+          "title": "demo",
+          "description": "ago sordeo celer",
+          "note": "calco chirographum atque",
+          "street": "Spring Street",
+          "numberExterior": "530 Lake Road",
+          "numberInterior": "Suite 160",
+          "neighborhood": "Somerset",
+          "city": "Hacienda Heights",
+          "district": "Wisconsin",
+          "zipCode": "04017-5931",
+          "state": "Vermont",
+          "countryCode": "TG"
         }
       ],
       "bankAccounts": [
         {
           "name": "Savings Account",
-          "currency": "HKD",
-          "type": "account",
-          "beneficiary": "Personal Loan Account",
-          "number": "Checking Account",
-          "clabe": "6958",
-          "swift": "QOBEUZSI",
-          "iban": "IE5581I860500180060953",
-          "bank": {
-            "name": "Klein, Moen and Hagenes",
-            "city": "Spencerstead",
-            "code": "PNSLSYR6",
-            "country": "Cook Islands"
-          },
-          "other": "careo super tantillus"
-        }
-      ],
-      "defaults": {
-        "expensesAccount": "25007980",
-        "language": "BD",
-        "currency": "KGS",
-        "paymentMethod": "adamo",
-        "paymentForm": "utroque",
-        "paymentDeadline": "socius",
-        "paymentTerms": "causa"
-      },
-      "createdAt": "2023-06-13T18:31:32.913Z",
-      "updatedAt": "2024-02-19T13:32:30.705Z"
-    }
-  },
-  {
-    "key": [
-      "accounts",
-      "01HQ31FV7WQFWD4CZ8TR98QAY1"
-    ],
-    "value": {
-      "id": "01HQ31FV7WQFWD4CZ8TR98QAY1",
-      "type": "prospect",
-      "name": "Schoen, Nitzsche and Zieme",
-      "legalName": "Skiles - Labadie",
-      "emails": [
-        {
-          "type": "contact",
-          "name": "Contact",
-          "value": "Ova_Mayer@yahoo.com"
-        },
-        {
-          "type": "sales",
-          "name": "Sales",
-          "value": "Evan_Rutherford25@hotmail.com"
-        },
-        {
-          "type": "billing",
-          "name": "Billing",
-          "value": "Lenny86@yahoo.com"
-        }
-      ],
-      "phones": [
-        {
-          "type": "contact",
-          "name": "Contact",
-          "value": "353-589-1455 x695"
-        },
-        {
-          "type": "sales",
-          "name": "Sales",
-          "value": "705-877-1758"
-        },
-        {
-          "type": "billing",
-          "name": "Billing",
-          "value": "994.518.2953 x62503"
-        }
-      ],
-      "website": "https://educated-banana.info/",
-      "taxInfo": {
-        "taxId": "je2xMccVC1",
-        "isMexTaxId": false,
-        "fiscalRegime": "dolorum",
-        "proofTaxSituation": "casso",
-        "proofTaxSituationDate": "2023-12-03T19:23:21.032Z",
-        "proofTaxSituationPdf": "https://calm-gale.com",
-        "billingAddress": {
-          "street": "Bailey Ramp",
-          "numberExterior": "29624 Lesch Divide",
-          "numberInterior": "Apt. 932",
-          "neighborhood": "Warren County",
-          "city": "Yostfield",
-          "district": "Missouri",
-          "zipCode": "50506-2100",
-          "state": "Hawaii",
-          "countryCode": "MV"
-        }
-      },
-      "links": [
-        {
-          "name": "website",
-          "value": "https://profuse-revelation.biz/"
-        },
-        {
-          "name": "facebook",
-          "value": "https://big-clapboard.com"
-        },
-        {
-          "name": "linkedin",
-          "value": "https://tender-camp.biz"
-        },
-        {
-          "name": "twitter",
-          "value": "https://unwieldy-decimal.info"
-        },
-        {
-          "name": "other",
-          "value": "https://shameless-wolf.org/"
-        }
-      ],
-      "notes": [
-        {
-          "text": "Deinde tibi cariosus usitas quaerat deludo curso adsuesco varietas crudelis. Casso sunt copiose praesentium adversus cenaculum approbo antiquus valeo. Perspiciatis animadverto aptus theatrum.",
-          "createdAt": "2023-12-15T01:31:03.840Z",
-          "updatedAt": "2024-02-20T08:56:21.586Z"
-        }
-      ],
-      "shippingAddresses": [
-        {
-          "title": "comis",
-          "description": "despecto video nisi",
-          "note": "perferendis arx cura",
-          "street": "Bauch Falls",
-          "numberExterior": "5537 Cedar Close",
-          "numberInterior": "Suite 185",
-          "neighborhood": "Polk County",
-          "city": "East Bria",
-          "district": "Arkansas",
-          "zipCode": "77683",
-          "state": "Hawaii",
-          "countryCode": "MW"
-        }
-      ],
-      "bankAccounts": [
-        {
-          "name": "Credit Card Account",
-          "currency": "MWK",
-          "type": "account",
-          "beneficiary": "Home Loan Account",
-          "number": "Credit Card Account",
-          "clabe": "6754",
-          "swift": "FMAHPMY2",
-          "iban": "QA70UXST49BG7C3R90J698493560C",
-          "bank": {
-            "name": "Konopelski Group",
-            "city": "Port Cloydview",
-            "code": "IQMQPSWRXXX",
-            "country": "Republic of Korea"
-          },
-          "other": "aureus delibero sordeo"
-        }
-      ],
-      "defaults": {
-        "expensesAccount": "77992213",
-        "language": "SG",
-        "currency": "RUB",
-        "paymentMethod": "contra",
-        "paymentForm": "centum",
-        "paymentDeadline": "venustas",
-        "paymentTerms": "sed"
-      },
-      "createdAt": "2023-12-17T23:40:53.424Z",
-      "updatedAt": "2024-02-19T21:01:12.395Z"
-    }
-  },
-  {
-    "key": [
-      "accounts",
-      "01HQ31FV7XC7PHEQZMH6NXJESP"
-    ],
-    "value": {
-      "id": "01HQ31FV7XC7PHEQZMH6NXJESP",
-      "type": "prospect",
-      "name": "Fahey, Rohan and Schaden",
-      "legalName": "Considine Group",
-      "emails": [
-        {
-          "type": "contact",
-          "name": "Contact",
-          "value": "Bella27@gmail.com"
-        },
-        {
-          "type": "sales",
-          "name": "Sales",
-          "value": "Mervin26@hotmail.com"
-        },
-        {
-          "type": "billing",
-          "name": "Billing",
-          "value": "Magdalena58@gmail.com"
-        }
-      ],
-      "phones": [
-        {
-          "type": "contact",
-          "name": "Contact",
-          "value": "306-406-8842"
-        },
-        {
-          "type": "sales",
-          "name": "Sales",
-          "value": "(464) 229-5197 x83380"
-        },
-        {
-          "type": "billing",
-          "name": "Billing",
-          "value": "1-697-444-4628 x13542"
-        }
-      ],
-      "website": "https://wordy-entrepreneur.biz/",
-      "taxInfo": {
-        "taxId": "leFvVzRrrl",
-        "isMexTaxId": true,
-        "fiscalRegime": "cuppedia",
-        "proofTaxSituation": "brevis",
-        "proofTaxSituationDate": "2023-08-03T10:49:46.349Z",
-        "proofTaxSituationPdf": "https://teeming-typhoon.info",
-        "billingAddress": {
-          "street": "N Broad Street",
-          "numberExterior": "6334 Jackson Street",
-          "numberInterior": "Apt. 641",
-          "neighborhood": "Tyne and Wear",
-          "city": "Lake Wardchester",
-          "district": "Florida",
-          "zipCode": "97210-0395",
-          "state": "Utah",
-          "countryCode": "SI"
-        }
-      },
-      "links": [
-        {
-          "name": "website",
-          "value": "https://useful-meteor.name"
-        },
-        {
-          "name": "facebook",
-          "value": "https://legal-tenant.info"
-        },
-        {
-          "name": "linkedin",
-          "value": "https://infantile-stereo.com/"
-        },
-        {
-          "name": "twitter",
-          "value": "https://dry-gauge.net/"
-        },
-        {
-          "name": "other",
-          "value": "https://thrifty-read.info/"
-        }
-      ],
-      "notes": [
-        {
-          "text": "Fugit solvo corporis. Antiquus maxime aufero deprimo benevolentia aut eveniet ab. Quis vesica creptio voluptates voluptatum ante.",
-          "createdAt": "2023-06-18T11:56:47.243Z",
-          "updatedAt": "2024-02-20T01:36:42.786Z"
-        }
-      ],
-      "shippingAddresses": [
-        {
-          "title": "aggredior",
-          "description": "ager occaecati hic",
-          "note": "maxime sint spectaculum",
-          "street": "W Broadway Avenue",
-          "numberExterior": "11287 The Drive",
-          "numberInterior": "Apt. 702",
-          "neighborhood": "Lincoln County",
-          "city": "Predovictown",
-          "district": "Maine",
-          "zipCode": "10678-9081",
-          "state": "New Hampshire",
-          "countryCode": "UM"
-        }
-      ],
-      "bankAccounts": [
-        {
-          "name": "Checking Account",
-          "currency": "FJD",
+          "currency": "BRL",
           "type": "account",
           "beneficiary": "Investment Account",
-          "number": "Personal Loan Account",
-          "clabe": "9107",
-          "swift": "QFEVNCX6",
-          "iban": "HU28031009080310255060070068",
+          "number": "Home Loan Account",
+          "clabe": "1115",
+          "swift": "RCXNCVBS9ZL",
+          "iban": "IE9179I603008445600590",
           "bank": {
-            "name": "Kovacek - Moore",
-            "city": "Long Beach",
-            "code": "NTSSPEMCXXX",
-            "country": "Morocco"
+            "name": "Hyatt Group",
+            "city": "Bartonstead",
+            "code": "GCDTTMNDXXX",
+            "country": "Kenya"
           },
-          "other": "villa sapiente vigor"
+          "other": "ara cupio sopor"
         }
       ],
       "defaults": {
-        "expensesAccount": "33342816",
-        "language": "KP",
-        "currency": "MXN",
-        "paymentMethod": "cernuus",
-        "paymentForm": "cohibeo",
-        "paymentDeadline": "suggero",
-        "paymentTerms": "tandem"
+        "expensesAccount": "80099300",
+        "language": "BN",
+        "currency": "PEN",
+        "paymentMethod": "truculenter",
+        "paymentForm": "enim",
+        "paymentDeadline": "sed",
+        "paymentTerms": "peior"
       },
-      "createdAt": "2023-05-18T20:28:57.021Z",
-      "updatedAt": "2024-02-19T18:25:53.808Z"
+      "createdAt": "2023-07-17T12:27:10.195Z",
+      "updatedAt": "2024-02-19T11:50:31.290Z"
     }
   },
   {
     "key": [
       "accounts",
-      "01HQ31FV7YHGGZB94MFZQV516D"
+      "01HQ31Q20F8X2AV1D43HCX1KWZ"
     ],
     "value": {
-      "id": "01HQ31FV7YHGGZB94MFZQV516D",
-      "type": "supplier",
-      "name": "Senger - Franecki",
-      "legalName": "Thiel, Emard and Lockman",
-      "emails": [
-        {
-          "type": "contact",
-          "name": "Contact",
-          "value": "Ryder_Mann2@gmail.com"
-        },
-        {
-          "type": "sales",
-          "name": "Sales",
-          "value": "Phyllis.Wilderman@gmail.com"
-        },
-        {
-          "type": "billing",
-          "name": "Billing",
-          "value": "Daphne.Hermiston30@gmail.com"
-        }
-      ],
-      "phones": [
-        {
-          "type": "contact",
-          "name": "Contact",
-          "value": "647-860-0246 x9364"
-        },
-        {
-          "type": "sales",
-          "name": "Sales",
-          "value": "1-871-458-1864"
-        },
-        {
-          "type": "billing",
-          "name": "Billing",
-          "value": "279-968-9848"
-        }
-      ],
-      "website": "https://standard-decryption.net",
-      "taxInfo": {
-        "taxId": "g0UYnGbvpj",
-        "isMexTaxId": false,
-        "fiscalRegime": "coepi",
-        "proofTaxSituation": "vetus",
-        "proofTaxSituationDate": "2023-09-25T18:19:34.944Z",
-        "proofTaxSituationPdf": "https://puny-equal.com/",
-        "billingAddress": {
-          "street": "Axel Divide",
-          "numberExterior": "5377 Ibrahim Dam",
-          "numberInterior": "Apt. 833",
-          "neighborhood": "Lee County",
-          "city": "West Samara",
-          "district": "Alaska",
-          "zipCode": "61279",
-          "state": "Alaska",
-          "countryCode": "JP"
-        }
-      },
-      "links": [
-        {
-          "name": "website",
-          "value": "https://worn-oldie.org/"
-        },
-        {
-          "name": "facebook",
-          "value": "https://bad-mechanic.name/"
-        },
-        {
-          "name": "linkedin",
-          "value": "https://warmhearted-chair.com/"
-        },
-        {
-          "name": "twitter",
-          "value": "https://poor-corporal.com"
-        },
-        {
-          "name": "other",
-          "value": "https://deadly-wraparound.org/"
-        }
-      ],
-      "notes": [
-        {
-          "text": "Defleo nesciunt conor votum. Tyrannus alius spectaculum. Minus aetas cubitum volaticus ullam decerno ulterius suspendo viscus synagoga.",
-          "createdAt": "2024-02-06T08:31:02.139Z",
-          "updatedAt": "2024-02-20T09:31:23.668Z"
-        }
-      ],
-      "shippingAddresses": [
-        {
-          "title": "amet",
-          "description": "tamen antiquus benigne",
-          "note": "unde abutor summisse",
-          "street": "Gerhold River",
-          "numberExterior": "2932 W Church Street",
-          "numberInterior": "Suite 615",
-          "neighborhood": "Norfolk",
-          "city": "West Gregoriamouth",
-          "district": "Colorado",
-          "zipCode": "45266",
-          "state": "Texas",
-          "countryCode": "GW"
-        }
-      ],
-      "bankAccounts": [
-        {
-          "name": "Money Market Account",
-          "currency": "BZD",
-          "type": "account",
-          "beneficiary": "Auto Loan Account",
-          "number": "Credit Card Account",
-          "clabe": "9354",
-          "swift": "DJXYBNCLEW7",
-          "iban": "IL436006759200952209019",
-          "bank": {
-            "name": "Haley Inc",
-            "city": "Jacobsboro",
-            "code": "RBXLDMMF",
-            "country": "Saint Kitts and Nevis"
-          },
-          "other": "animi comburo admitto"
-        }
-      ],
-      "defaults": {
-        "expensesAccount": "06145112",
-        "language": "SG",
-        "currency": "XPF",
-        "paymentMethod": "claudeo",
-        "paymentForm": "apparatus",
-        "paymentDeadline": "sophismata",
-        "paymentTerms": "modi"
-      },
-      "createdAt": "2023-12-05T09:47:16.845Z",
-      "updatedAt": "2024-02-20T06:37:21.917Z"
-    }
-  },
-  {
-    "key": [
-      "accounts",
-      "01HQ31FV7YHGGZB94MFZQV516E"
-    ],
-    "value": {
-      "id": "01HQ31FV7YHGGZB94MFZQV516E",
+      "id": "01HQ31Q20F8X2AV1D43HCX1KWZ",
       "type": "prospect",
-      "name": "Gislason, Kuphal and Tillman",
-      "legalName": "Schinner - Price",
+      "name": "Jacobi LLC",
+      "legalName": "Sawayn, Mayert and Casper",
       "emails": [
         {
           "type": "contact",
           "name": "Contact",
-          "value": "Daron_Willms@yahoo.com"
+          "value": "Adrian_Witting@hotmail.com"
         },
         {
           "type": "sales",
           "name": "Sales",
-          "value": "Celia_Rau53@gmail.com"
+          "value": "Gina46@yahoo.com"
         },
         {
           "type": "billing",
           "name": "Billing",
-          "value": "Herminia.Cartwright@yahoo.com"
+          "value": "Gretchen37@gmail.com"
         }
       ],
       "phones": [
         {
           "type": "contact",
           "name": "Contact",
-          "value": "223-977-7225 x506"
+          "value": "545.721.7614 x00468"
         },
         {
           "type": "sales",
           "name": "Sales",
-          "value": "(415) 412-3269 x4084"
+          "value": "371.213.1075"
         },
         {
           "type": "billing",
           "name": "Billing",
-          "value": "1-911-955-5910 x13289"
+          "value": "1-803-311-3371 x8761"
         }
       ],
-      "website": "https://abandoned-regret.com",
+      "website": "https://sympathetic-layer.name/",
       "taxInfo": {
-        "taxId": "4tj3O9Ob3E",
-        "isMexTaxId": false,
-        "fiscalRegime": "damno",
-        "proofTaxSituation": "uter",
-        "proofTaxSituationDate": "2023-05-19T01:42:24.823Z",
-        "proofTaxSituationPdf": "https://beloved-nose.biz/",
-        "billingAddress": {
-          "street": "Parker Court",
-          "numberExterior": "5548 Georgianna Radial",
-          "numberInterior": "Suite 831",
-          "neighborhood": "Cleveland",
-          "city": "Murrayberg",
-          "district": "North Carolina",
-          "zipCode": "94123",
-          "state": "Wisconsin",
-          "countryCode": "MP"
-        }
-      },
-      "links": [
-        {
-          "name": "website",
-          "value": "https://ambitious-volunteer.com"
-        },
-        {
-          "name": "facebook",
-          "value": "https://deep-medal.net"
-        },
-        {
-          "name": "linkedin",
-          "value": "https://squeaky-schooner.info"
-        },
-        {
-          "name": "twitter",
-          "value": "https://negligible-realization.biz"
-        },
-        {
-          "name": "other",
-          "value": "https://stained-scent.biz/"
-        }
-      ],
-      "notes": [
-        {
-          "text": "Patior cursus amaritudo coniuratio derelinquo. Canto theologus comprehendo tui verumtamen aliquam. Vulnero administratio comminor amicitia.",
-          "createdAt": "2023-05-21T02:05:12.394Z",
-          "updatedAt": "2024-02-20T01:53:47.806Z"
-        }
-      ],
-      "shippingAddresses": [
-        {
-          "title": "volubilis",
-          "description": "beatus thema amita",
-          "note": "circumvenio ocer barba",
-          "street": "Alberto Loop",
-          "numberExterior": "45904 S College Street",
-          "numberInterior": "Suite 429",
-          "neighborhood": "Hamilton County",
-          "city": "Lomachester",
-          "district": "Kansas",
-          "zipCode": "57949-9424",
-          "state": "Washington",
-          "countryCode": "BA"
-        }
-      ],
-      "bankAccounts": [
-        {
-          "name": "Money Market Account",
-          "currency": "MAD",
-          "type": "account",
-          "beneficiary": "Money Market Account",
-          "number": "Credit Card Account",
-          "clabe": "7242",
-          "swift": "AQQKIQ6A",
-          "iban": "RS28022668600641050638",
-          "bank": {
-            "name": "Bartoletti and Sons",
-            "city": "Port Lucas",
-            "code": "SLDIWSZFXXX",
-            "country": "Croatia"
-          },
-          "other": "delibero arcesso laboriosam"
-        }
-      ],
-      "defaults": {
-        "expensesAccount": "88650783",
-        "language": "UZ",
-        "currency": "USD",
-        "paymentMethod": "ipsam",
-        "paymentForm": "astrum",
-        "paymentDeadline": "hic",
-        "paymentTerms": "vesica"
-      },
-      "createdAt": "2023-05-22T20:56:36.392Z",
-      "updatedAt": "2024-02-20T03:30:37.576Z"
-    }
-  },
-  {
-    "key": [
-      "accounts",
-      "01HQ31FV7ZRRBB29WM7HNMD7YA"
-    ],
-    "value": {
-      "id": "01HQ31FV7ZRRBB29WM7HNMD7YA",
-      "type": "prospect",
-      "name": "Mosciski LLC",
-      "legalName": "Senger - Tremblay",
-      "emails": [
-        {
-          "type": "contact",
-          "name": "Contact",
-          "value": "Aidan.Hauck92@gmail.com"
-        },
-        {
-          "type": "sales",
-          "name": "Sales",
-          "value": "Mallory.Parisian59@yahoo.com"
-        },
-        {
-          "type": "billing",
-          "name": "Billing",
-          "value": "Peter_Huels53@yahoo.com"
-        }
-      ],
-      "phones": [
-        {
-          "type": "contact",
-          "name": "Contact",
-          "value": "345.958.4188 x20751"
-        },
-        {
-          "type": "sales",
-          "name": "Sales",
-          "value": "(497) 550-1415 x3928"
-        },
-        {
-          "type": "billing",
-          "name": "Billing",
-          "value": "1-246-881-8187 x483"
-        }
-      ],
-      "website": "https://inconsequential-certificate.biz",
-      "taxInfo": {
-        "taxId": "gRoRI9R4vY",
+        "taxId": "kb1tJPatU3",
         "isMexTaxId": true,
-        "fiscalRegime": "antepono",
-        "proofTaxSituation": "cribro",
-        "proofTaxSituationDate": "2023-04-14T18:30:37.183Z",
-        "proofTaxSituationPdf": "https://honored-motion.biz",
+        "fiscalRegime": "cavus",
+        "proofTaxSituation": "ater",
+        "proofTaxSituationDate": "2023-09-11T03:44:34.896Z",
+        "proofTaxSituationPdf": "https://colossal-tissue.org/",
         "billingAddress": {
-          "street": "Sporer Ford",
-          "numberExterior": "767 High Street",
-          "numberInterior": "Apt. 396",
-          "neighborhood": "Northamptonshire",
-          "city": "Port Marastad",
-          "district": "Rhode Island",
-          "zipCode": "25830",
-          "state": "Nebraska",
-          "countryCode": "MX"
+          "street": "Lee Street",
+          "numberExterior": "8351 Fred Valleys",
+          "numberInterior": "Apt. 624",
+          "neighborhood": "Avon",
+          "city": "South Durwardton",
+          "district": "Oregon",
+          "zipCode": "16569",
+          "state": "New York",
+          "countryCode": "MZ"
         }
       },
       "links": [
         {
           "name": "website",
-          "value": "https://clear-miss.name/"
+          "value": "https://cumbersome-airfare.name/"
         },
         {
           "name": "facebook",
-          "value": "https://primary-icebreaker.biz/"
+          "value": "https://several-shelter.com"
         },
         {
           "name": "linkedin",
-          "value": "https://clever-transcript.info/"
+          "value": "https://glossy-houseboat.net/"
         },
         {
           "name": "twitter",
-          "value": "https://zigzag-boulder.biz"
+          "value": "https://insecure-mood.biz/"
         },
         {
           "name": "other",
-          "value": "https://few-great-grandfather.name/"
+          "value": "https://frugal-try.net/"
         }
       ],
       "notes": [
         {
-          "text": "Vindico cohibeo auctor. Textus ascit calcar desparatus amiculum xiphias despecto substantia thymbra sui. Aro audacia ventito voluntarius complectus via autus utilis.",
-          "createdAt": "2023-12-30T17:22:32.784Z",
-          "updatedAt": "2024-02-20T01:34:12.672Z"
+          "text": "Aeger neque spiculum umquam. Vespillo quod conscendo cerno adfectus cupiditas ceno neque comptus. Vergo velum eos virgo delibero reiciendis canis.",
+          "createdAt": "2024-02-18T19:23:36.369Z",
+          "updatedAt": "2024-02-20T06:50:58.197Z"
         }
       ],
       "shippingAddresses": [
         {
-          "title": "harum",
-          "description": "bis adinventitias adhaero",
-          "note": "tempus ager curiositas",
-          "street": "Maegan Causeway",
-          "numberExterior": "273 N 3rd Street",
-          "numberInterior": "Suite 794",
-          "neighborhood": "Warwickshire",
-          "city": "Mayertberg",
-          "district": "North Carolina",
-          "zipCode": "25571",
-          "state": "Connecticut",
-          "countryCode": "GF"
-        }
-      ],
-      "bankAccounts": [
-        {
-          "name": "Savings Account",
-          "currency": "BHD",
-          "type": "account",
-          "beneficiary": "Savings Account",
-          "number": "Personal Loan Account",
-          "clabe": "0667",
-          "swift": "UPZPHKEQ",
-          "iban": "MU82GMFL5496326155045855620MPD",
-          "bank": {
-            "name": "Emmerich - DuBuque",
-            "city": "Effertzworth",
-            "code": "PANALA5O4QC",
-            "country": "Guadeloupe"
-          },
-          "other": "compello adopto soluta"
-        }
-      ],
-      "defaults": {
-        "expensesAccount": "35011149",
-        "language": "MY",
-        "currency": "TWD",
-        "paymentMethod": "cognatus",
-        "paymentForm": "concido",
-        "paymentDeadline": "aperio",
-        "paymentTerms": "acceptus"
-      },
-      "createdAt": "2023-05-09T16:16:37.150Z",
-      "updatedAt": "2024-02-20T06:36:13.734Z"
-    }
-  },
-  {
-    "key": [
-      "accounts",
-      "01HQ31FV7ZRRBB29WM7HNMD7YB"
-    ],
-    "value": {
-      "id": "01HQ31FV7ZRRBB29WM7HNMD7YB",
-      "type": "other",
-      "name": "Nikolaus Inc",
-      "legalName": "Carroll - Leffler",
-      "emails": [
-        {
-          "type": "contact",
-          "name": "Contact",
-          "value": "Mayra_Batz-Carter@gmail.com"
-        },
-        {
-          "type": "sales",
-          "name": "Sales",
-          "value": "Raven.Lowe@hotmail.com"
-        },
-        {
-          "type": "billing",
-          "name": "Billing",
-          "value": "Ryleigh.Bartoletti19@gmail.com"
-        }
-      ],
-      "phones": [
-        {
-          "type": "contact",
-          "name": "Contact",
-          "value": "386-367-0955 x1880"
-        },
-        {
-          "type": "sales",
-          "name": "Sales",
-          "value": "1-739-378-3758 x17320"
-        },
-        {
-          "type": "billing",
-          "name": "Billing",
-          "value": "1-446-715-9758 x2777"
-        }
-      ],
-      "website": "https://dutiful-understanding.biz/",
-      "taxInfo": {
-        "taxId": "yFKiHfyfIi",
-        "isMexTaxId": false,
-        "fiscalRegime": "vero",
-        "proofTaxSituation": "abstergo",
-        "proofTaxSituationDate": "2023-03-02T08:51:11.977Z",
-        "proofTaxSituationPdf": "https://impolite-wampum.name",
-        "billingAddress": {
-          "street": "S Mill Street",
-          "numberExterior": "492 Larkin Forks",
-          "numberInterior": "Suite 305",
-          "neighborhood": "Strathclyde",
-          "city": "Matildaworth",
-          "district": "Virginia",
-          "zipCode": "93344",
-          "state": "Oregon",
-          "countryCode": "MX"
-        }
-      },
-      "links": [
-        {
-          "name": "website",
-          "value": "https://prickly-aspic.com/"
-        },
-        {
-          "name": "facebook",
-          "value": "https://competent-mirror.info/"
-        },
-        {
-          "name": "linkedin",
-          "value": "https://unwitting-hippodrome.biz"
-        },
-        {
-          "name": "twitter",
-          "value": "https://timely-self-esteem.org"
-        },
-        {
-          "name": "other",
-          "value": "https://inconsequential-collateral.biz"
-        }
-      ],
-      "notes": [
-        {
-          "text": "Dapifer voluntarius verus casso suppono canto communis terga. Iste currus tergum verbum casso debitis tui adnuo spero tonsor. Versus tergo cognomen talus cruciamentum.",
-          "createdAt": "2023-12-12T23:20:03.706Z",
-          "updatedAt": "2024-02-19T15:37:36.411Z"
-        }
-      ],
-      "shippingAddresses": [
-        {
-          "title": "assumenda",
-          "description": "conqueror nostrum quam",
-          "note": "conservo confido aliquam",
-          "street": "Myra Cape",
-          "numberExterior": "3296 Mertz Square",
-          "numberInterior": "Apt. 169",
-          "neighborhood": "Carroll County",
-          "city": "Ponce",
-          "district": "Montana",
-          "zipCode": "89970",
-          "state": "Idaho",
-          "countryCode": "NG"
-        }
-      ],
-      "bankAccounts": [
-        {
-          "name": "Credit Card Account",
-          "currency": "ETB",
-          "type": "account",
-          "beneficiary": "Personal Loan Account",
-          "number": "Auto Loan Account",
-          "clabe": "3221",
-          "swift": "RCJLCNII",
-          "iban": "SI20008130233666016",
-          "bank": {
-            "name": "Labadie - Schroeder",
-            "city": "Lake Augustus",
-            "code": "KGRYRWHQ",
-            "country": "Sweden"
-          },
-          "other": "usque tui ulciscor"
-        }
-      ],
-      "defaults": {
-        "expensesAccount": "59474180",
-        "language": "MN",
-        "currency": "YER",
-        "paymentMethod": "tabesco",
-        "paymentForm": "nulla",
-        "paymentDeadline": "adaugeo",
-        "paymentTerms": "cuius"
-      },
-      "createdAt": "2024-02-02T13:04:38.895Z",
-      "updatedAt": "2024-02-19T21:43:41.274Z"
-    }
-  },
-  {
-    "key": [
-      "accounts",
-      "01HQ31FV80J020QQGNT02F49WM"
-    ],
-    "value": {
-      "id": "01HQ31FV80J020QQGNT02F49WM",
-      "type": "prospect",
-      "name": "Waelchi - Fahey",
-      "legalName": "McClure, Langosh and Monahan",
-      "emails": [
-        {
-          "type": "contact",
-          "name": "Contact",
-          "value": "Eddie23@gmail.com"
-        },
-        {
-          "type": "sales",
-          "name": "Sales",
-          "value": "Gideon83@hotmail.com"
-        },
-        {
-          "type": "billing",
-          "name": "Billing",
-          "value": "Maggie74@yahoo.com"
-        }
-      ],
-      "phones": [
-        {
-          "type": "contact",
-          "name": "Contact",
-          "value": "567-327-0744"
-        },
-        {
-          "type": "sales",
-          "name": "Sales",
-          "value": "349.499.6390 x81287"
-        },
-        {
-          "type": "billing",
-          "name": "Billing",
-          "value": "1-906-533-9061 x2267"
-        }
-      ],
-      "website": "https://elliptical-thump.org/",
-      "taxInfo": {
-        "taxId": "D5B59QZrC9",
-        "isMexTaxId": true,
-        "fiscalRegime": "soluta",
-        "proofTaxSituation": "claro",
-        "proofTaxSituationDate": "2023-12-23T03:24:11.187Z",
-        "proofTaxSituationPdf": "https://popular-advice.org",
-        "billingAddress": {
-          "street": "Veterans Memorial Highway",
-          "numberExterior": "2993 Crystal Tunnel",
-          "numberInterior": "Suite 477",
-          "neighborhood": "Hampshire",
-          "city": "Glennaside",
-          "district": "Kansas",
-          "zipCode": "05908",
-          "state": "Louisiana",
-          "countryCode": "VI"
-        }
-      },
-      "links": [
-        {
-          "name": "website",
-          "value": "https://shadowy-motorcycle.org/"
-        },
-        {
-          "name": "facebook",
-          "value": "https://round-migration.biz/"
-        },
-        {
-          "name": "linkedin",
-          "value": "https://large-significance.name/"
-        },
-        {
-          "name": "twitter",
-          "value": "https://taut-endothelium.org/"
-        },
-        {
-          "name": "other",
-          "value": "https://everlasting-vanilla.net/"
-        }
-      ],
-      "notes": [
-        {
-          "text": "Error amet cur defetiscor tantum aegrus deinde dedico. Defluo arca utilis verus. Demum cilicium voro necessitatibus contigo coadunatio vere valde.",
-          "createdAt": "2023-06-24T15:46:24.189Z",
-          "updatedAt": "2024-02-19T16:31:17.613Z"
-        }
-      ],
-      "shippingAddresses": [
-        {
-          "title": "adflicto",
-          "description": "articulus tracto demergo",
-          "note": "cubitum denego stultus",
-          "street": "Adams Summit",
-          "numberExterior": "2021 Edwardo Overpass",
-          "numberInterior": "Apt. 679",
-          "neighborhood": "South Yorkshire",
-          "city": "Brekkebury",
-          "district": "Louisiana",
-          "zipCode": "53364-4980",
-          "state": "Texas",
-          "countryCode": "BL"
-        }
-      ],
-      "bankAccounts": [
-        {
-          "name": "Credit Card Account",
-          "currency": "LSL",
-          "type": "account",
-          "beneficiary": "Home Loan Account",
-          "number": "Auto Loan Account",
-          "clabe": "3327",
-          "swift": "DZFQPE76",
-          "iban": "LT950700400208007218",
-          "bank": {
-            "name": "Moore, Kuhic and Hermiston",
-            "city": "Howecester",
-            "code": "GJDSTRKQ",
-            "country": "Sri Lanka"
-          },
-          "other": "cresco expedita totidem"
-        }
-      ],
-      "defaults": {
-        "expensesAccount": "79444279",
-        "language": "BE",
-        "currency": "PGK",
-        "paymentMethod": "adhuc",
-        "paymentForm": "totidem",
-        "paymentDeadline": "desino",
-        "paymentTerms": "confido"
-      },
-      "createdAt": "2023-04-06T01:52:02.952Z",
-      "updatedAt": "2024-02-20T05:48:51.947Z"
-    }
-  },
-  {
-    "key": [
-      "accounts",
-      "01HQ31FV80J020QQGNT02F49WN"
-    ],
-    "value": {
-      "id": "01HQ31FV80J020QQGNT02F49WN",
-      "type": "customer",
-      "name": "Ullrich - Simonis",
-      "legalName": "Haley, Wehner and Osinski",
-      "emails": [
-        {
-          "type": "contact",
-          "name": "Contact",
-          "value": "Enos.Bogan@hotmail.com"
-        },
-        {
-          "type": "sales",
-          "name": "Sales",
-          "value": "Thomas_OHara@yahoo.com"
-        },
-        {
-          "type": "billing",
-          "name": "Billing",
-          "value": "Natasha.Kulas@gmail.com"
-        }
-      ],
-      "phones": [
-        {
-          "type": "contact",
-          "name": "Contact",
-          "value": "(617) 959-8873 x7694"
-        },
-        {
-          "type": "sales",
-          "name": "Sales",
-          "value": "454.755.3218 x48229"
-        },
-        {
-          "type": "billing",
-          "name": "Billing",
-          "value": "1-451-653-3651 x06276"
-        }
-      ],
-      "website": "https://cylindrical-captor.com",
-      "taxInfo": {
-        "taxId": "AP99SPtorT",
-        "isMexTaxId": false,
-        "fiscalRegime": "adicio",
-        "proofTaxSituation": "victus",
-        "proofTaxSituationDate": "2023-08-03T13:24:46.973Z",
-        "proofTaxSituationPdf": "https://well-informed-future.net",
-        "billingAddress": {
-          "street": "Bechtelar Plains",
-          "numberExterior": "61653 Jacynthe Shores",
-          "numberInterior": "Suite 573",
-          "neighborhood": "Lee County",
-          "city": "San Jacinto",
-          "district": "Alabama",
-          "zipCode": "62720",
-          "state": "Texas",
-          "countryCode": "IO"
-        }
-      },
-      "links": [
-        {
-          "name": "website",
-          "value": "https://sneaky-tract.org"
-        },
-        {
-          "name": "facebook",
-          "value": "https://noisy-seizure.org"
-        },
-        {
-          "name": "linkedin",
-          "value": "https://downright-chainstay.info"
-        },
-        {
-          "name": "twitter",
-          "value": "https://pastel-stage.biz/"
-        },
-        {
-          "name": "other",
-          "value": "https://noted-remnant.name/"
-        }
-      ],
-      "notes": [
-        {
-          "text": "Numquam averto bellicus casus civitas. Libero apud coaegresco adnuo admitto tabernus deporto. Cado subseco turba ullus aeneus.",
-          "createdAt": "2023-09-07T17:34:56.313Z",
-          "updatedAt": "2024-02-19T23:03:29.465Z"
-        }
-      ],
-      "shippingAddresses": [
-        {
-          "title": "aedificium",
-          "description": "talus varius surculus",
-          "note": "amaritudo aptus talio",
-          "street": "Irwin Inlet",
-          "numberExterior": "9335 Bluebell Close",
-          "numberInterior": "Apt. 830",
-          "neighborhood": "Dumfries and Galloway",
-          "city": "Lake Ronny",
-          "district": "New Mexico",
-          "zipCode": "07279-1693",
-          "state": "Louisiana",
-          "countryCode": "ID"
-        }
-      ],
-      "bankAccounts": [
-        {
-          "name": "Investment Account",
-          "currency": "TMT",
-          "type": "account",
-          "beneficiary": "Home Loan Account",
-          "number": "Savings Account",
-          "clabe": "9059",
-          "swift": "AXKPIE4L",
-          "iban": "MT96LUEW08234P6AB6J3PX70D712000",
-          "bank": {
-            "name": "Zboncak, Sanford and Torphy",
-            "city": "Grand Prairie",
-            "code": "DCVHBQUA",
-            "country": "Tanzania"
-          },
-          "other": "astrum spargo patria"
-        }
-      ],
-      "defaults": {
-        "expensesAccount": "60588228",
-        "language": "NC",
-        "currency": "UGX",
-        "paymentMethod": "ascisco",
-        "paymentForm": "abstergo",
-        "paymentDeadline": "desidero",
-        "paymentTerms": "valeo"
-      },
-      "createdAt": "2023-06-27T06:40:26.003Z",
-      "updatedAt": "2024-02-20T07:21:48.873Z"
-    }
-  },
-  {
-    "key": [
-      "accounts",
-      "01HQ31FV8101G3Y191A3A8NZTN"
-    ],
-    "value": {
-      "id": "01HQ31FV8101G3Y191A3A8NZTN",
-      "type": "prospect",
-      "name": "Hackett - O'Hara",
-      "legalName": "Gleichner - Cummings",
-      "emails": [
-        {
-          "type": "contact",
-          "name": "Contact",
-          "value": "Savanna82@hotmail.com"
-        },
-        {
-          "type": "sales",
-          "name": "Sales",
-          "value": "Sasha_Runte@gmail.com"
-        },
-        {
-          "type": "billing",
-          "name": "Billing",
-          "value": "Coby45@gmail.com"
-        }
-      ],
-      "phones": [
-        {
-          "type": "contact",
-          "name": "Contact",
-          "value": "1-595-312-2592 x911"
-        },
-        {
-          "type": "sales",
-          "name": "Sales",
-          "value": "423-779-2247 x936"
-        },
-        {
-          "type": "billing",
-          "name": "Billing",
-          "value": "1-344-373-3868 x289"
-        }
-      ],
-      "website": "https://heavenly-gavel.name",
-      "taxInfo": {
-        "taxId": "wufZGRsCJt",
-        "isMexTaxId": true,
-        "fiscalRegime": "inventore",
-        "proofTaxSituation": "cunabula",
-        "proofTaxSituationDate": "2023-05-13T04:05:38.311Z",
-        "proofTaxSituationPdf": "https://extroverted-wave.info/",
-        "billingAddress": {
-          "street": "Ignatius Crescent",
-          "numberExterior": "1753 Main Street W",
-          "numberInterior": "Suite 484",
-          "neighborhood": "Madison County",
-          "city": "Port Violette",
-          "district": "Oklahoma",
-          "zipCode": "97121-1922",
-          "state": "Delaware",
+          "title": "quasi",
+          "description": "paens expedita vulgus",
+          "note": "occaecati arma antiquus",
+          "street": "The Copse",
+          "numberExterior": "4343 Ridge Road",
+          "numberInterior": "Apt. 963",
+          "neighborhood": "Suffolk",
+          "city": "Medhurstview",
+          "district": "North Dakota",
+          "zipCode": "44657",
+          "state": "Kentucky",
           "countryCode": "CD"
-        }
-      },
-      "links": [
-        {
-          "name": "website",
-          "value": "https://timely-bidder.biz/"
-        },
-        {
-          "name": "facebook",
-          "value": "https://superficial-plover.org"
-        },
-        {
-          "name": "linkedin",
-          "value": "https://hospitable-geometry.name"
-        },
-        {
-          "name": "twitter",
-          "value": "https://lawful-trolley.org"
-        },
-        {
-          "name": "other",
-          "value": "https://prize-unblinking.com"
-        }
-      ],
-      "notes": [
-        {
-          "text": "Tripudio libero adhuc tres avaritia nihil compello acerbitas astrum. Soleo credo saepe ater tribuo subito creptio tepesco clibanus carmen. Eligendi tenuis ullam deludo cras caecus omnis defluo adhaero totam.",
-          "createdAt": "2023-03-15T07:14:03.502Z",
-          "updatedAt": "2024-02-20T00:31:02.648Z"
-        }
-      ],
-      "shippingAddresses": [
-        {
-          "title": "amplus",
-          "description": "creta natus tum",
-          "note": "bis thalassinus cavus",
-          "street": "The Spinney",
-          "numberExterior": "13900 Bath Street",
-          "numberInterior": "Apt. 486",
-          "neighborhood": "Northamptonshire",
-          "city": "Lake Gardnerfield",
-          "district": "Wisconsin",
-          "zipCode": "58545-4459",
-          "state": "Colorado",
-          "countryCode": "IR"
-        }
-      ],
-      "bankAccounts": [
-        {
-          "name": "Savings Account",
-          "currency": "AED",
-          "type": "account",
-          "beneficiary": "Home Loan Account",
-          "number": "Auto Loan Account",
-          "clabe": "7894",
-          "swift": "KDZWROMAXXX",
-          "iban": "AZ93NSRE58047518160163102118",
-          "bank": {
-            "name": "Tillman - Roberts",
-            "city": "Jasonside",
-            "code": "FBMQCUXI",
-            "country": "Ecuador"
-          },
-          "other": "suus demergo venio"
-        }
-      ],
-      "defaults": {
-        "expensesAccount": "58779670",
-        "language": "MF",
-        "currency": "CAD",
-        "paymentMethod": "spectaculum",
-        "paymentForm": "veniam",
-        "paymentDeadline": "adficio",
-        "paymentTerms": "quidem"
-      },
-      "createdAt": "2023-09-10T21:06:05.775Z",
-      "updatedAt": "2024-02-20T04:01:00.736Z"
-    }
-  },
-  {
-    "key": [
-      "accounts",
-      "01HQ31FV82D8SGPM7RE4VRW5E6"
-    ],
-    "value": {
-      "id": "01HQ31FV82D8SGPM7RE4VRW5E6",
-      "type": "partner",
-      "name": "McGlynn - Rutherford",
-      "legalName": "Dietrich, Turner and Hayes",
-      "emails": [
-        {
-          "type": "contact",
-          "name": "Contact",
-          "value": "Leonel41@hotmail.com"
-        },
-        {
-          "type": "sales",
-          "name": "Sales",
-          "value": "Glennie59@hotmail.com"
-        },
-        {
-          "type": "billing",
-          "name": "Billing",
-          "value": "Virginie1@gmail.com"
-        }
-      ],
-      "phones": [
-        {
-          "type": "contact",
-          "name": "Contact",
-          "value": "675.314.1629 x1394"
-        },
-        {
-          "type": "sales",
-          "name": "Sales",
-          "value": "381.404.7323 x87015"
-        },
-        {
-          "type": "billing",
-          "name": "Billing",
-          "value": "1-616-656-1669 x2826"
-        }
-      ],
-      "website": "https://wooden-panic.org",
-      "taxInfo": {
-        "taxId": "9IaGJzvp69",
-        "isMexTaxId": true,
-        "fiscalRegime": "tantillus",
-        "proofTaxSituation": "alveus",
-        "proofTaxSituationDate": "2023-04-29T14:52:05.227Z",
-        "proofTaxSituationPdf": "https://leafy-airspace.info/",
-        "billingAddress": {
-          "street": "Runolfsdottir Radial",
-          "numberExterior": "469 N 8th Street",
-          "numberInterior": "Apt. 140",
-          "neighborhood": "Warwickshire",
-          "city": "North Sadye",
-          "district": "Wyoming",
-          "zipCode": "85393",
-          "state": "Connecticut",
-          "countryCode": "PF"
-        }
-      },
-      "links": [
-        {
-          "name": "website",
-          "value": "https://glass-trunk.net/"
-        },
-        {
-          "name": "facebook",
-          "value": "https://altruistic-creative.org/"
-        },
-        {
-          "name": "linkedin",
-          "value": "https://fumbling-floor.org/"
-        },
-        {
-          "name": "twitter",
-          "value": "https://creamy-guava.net/"
-        },
-        {
-          "name": "other",
-          "value": "https://simple-prescription.info"
-        }
-      ],
-      "notes": [
-        {
-          "text": "Coadunatio totam arx tribuo avarus ver credo ancilla torqueo creo. Bellum volva cupiditate tamen accommodo pariatur terror civis utor ubi. Beatus tondeo sto utroque conforto constans optio adduco cursus abbas.",
-          "createdAt": "2023-11-12T04:39:07.504Z",
-          "updatedAt": "2024-02-19T19:44:23.782Z"
-        }
-      ],
-      "shippingAddresses": [
-        {
-          "title": "assentator",
-          "description": "tergeo quos tabernus",
-          "note": "facilis cena cras",
-          "street": "Raymundo Cliff",
-          "numberExterior": "683 Pine Street",
-          "numberInterior": "Apt. 211",
-          "neighborhood": "West Yorkshire",
-          "city": "South Perryburgh",
-          "district": "Washington",
-          "zipCode": "71500-7384",
-          "state": "Virginia",
-          "countryCode": "BH"
         }
       ],
       "bankAccounts": [
         {
           "name": "Auto Loan Account",
-          "currency": "NZD",
+          "currency": "BHD",
           "type": "account",
-          "beneficiary": "Personal Loan Account",
-          "number": "Investment Account",
-          "clabe": "0936",
-          "swift": "TTHLAXSUOEY",
-          "iban": "JO54GPQH4092540089692290090023",
+          "beneficiary": "Savings Account",
+          "number": "Credit Card Account",
+          "clabe": "5915",
+          "swift": "UPNCSLQ7EHW",
+          "iban": "NL81CFIR0700504635",
           "bank": {
-            "name": "Breitenberg - Heaney",
-            "city": "Port Sylvanstad",
-            "code": "KLCPIEW7BYZ",
-            "country": "Guam"
+            "name": "Langworth - Mann",
+            "city": "Carleefield",
+            "code": "JXUZMXTT",
+            "country": "Botswana"
           },
-          "other": "sed enim necessitatibus"
+          "other": "aufero clementia ciminatio"
         }
       ],
       "defaults": {
-        "expensesAccount": "43977263",
-        "language": "SB",
-        "currency": "VES",
-        "paymentMethod": "vulgaris",
-        "paymentForm": "tyrannus",
-        "paymentDeadline": "timor",
-        "paymentTerms": "viduo"
+        "expensesAccount": "52863752",
+        "language": "NZ",
+        "currency": "INR",
+        "paymentMethod": "coniecto",
+        "paymentForm": "clarus",
+        "paymentDeadline": "confero",
+        "paymentTerms": "cena"
       },
-      "createdAt": "2023-11-20T05:55:29.257Z",
-      "updatedAt": "2024-02-20T09:11:49.221Z"
+      "createdAt": "2023-08-23T00:53:52.448Z",
+      "updatedAt": "2024-02-20T07:25:38.688Z"
     }
   },
   {
     "key": [
       "accounts",
-      "01HQ31FV82D8SGPM7RE4VRW5E7"
+      "01HQ31Q20GKZYH343E9A1Z00DT"
     ],
     "value": {
-      "id": "01HQ31FV82D8SGPM7RE4VRW5E7",
-      "type": "customer",
-      "name": "Frami - Stanton",
-      "legalName": "Donnelly Group",
+      "id": "01HQ31Q20GKZYH343E9A1Z00DT",
+      "type": "supplier",
+      "name": "Shields - Schmidt",
+      "legalName": "Tremblay Inc",
       "emails": [
         {
           "type": "contact",
           "name": "Contact",
-          "value": "Jedediah.Rutherford59@gmail.com"
+          "value": "Donna_Sawayn59@gmail.com"
         },
         {
           "type": "sales",
           "name": "Sales",
-          "value": "Monserrate15@gmail.com"
+          "value": "Selmer_Funk28@hotmail.com"
         },
         {
           "type": "billing",
           "name": "Billing",
-          "value": "Delta.Wuckert64@gmail.com"
+          "value": "Courtney.Gerhold28@hotmail.com"
         }
       ],
       "phones": [
         {
           "type": "contact",
           "name": "Contact",
-          "value": "1-648-826-1699"
+          "value": "(221) 208-7231"
         },
         {
           "type": "sales",
           "name": "Sales",
-          "value": "614.646.5507"
+          "value": "297-886-8546 x14759"
         },
         {
           "type": "billing",
           "name": "Billing",
-          "value": "993-662-5127 x60451"
+          "value": "(647) 531-5907"
         }
       ],
-      "website": "https://discrete-trick.info/",
+      "website": "https://shocked-forest.name/",
       "taxInfo": {
-        "taxId": "BHjG6qvIJO",
-        "isMexTaxId": true,
-        "fiscalRegime": "tristis",
-        "proofTaxSituation": "somniculosus",
-        "proofTaxSituationDate": "2023-11-30T22:48:47.494Z",
-        "proofTaxSituationPdf": "https://red-major-league.com",
+        "taxId": "xJnHBF3t06",
+        "isMexTaxId": false,
+        "fiscalRegime": "concido",
+        "proofTaxSituation": "supellex",
+        "proofTaxSituationDate": "2023-10-17T23:31:51.720Z",
+        "proofTaxSituationPdf": "https://wet-relation.name/",
         "billingAddress": {
-          "street": "Torrey Trail",
-          "numberExterior": "47998 Court Street",
-          "numberInterior": "Suite 326",
-          "neighborhood": "County Tyrone",
-          "city": "Baileyton",
-          "district": "Wisconsin",
-          "zipCode": "89022-1799",
-          "state": "Illinois",
-          "countryCode": "IM"
+          "street": "Morissette Crossroad",
+          "numberExterior": "636 Hillary Spur",
+          "numberInterior": "Suite 356",
+          "neighborhood": "East Sussex",
+          "city": "New Brunswick",
+          "district": "California",
+          "zipCode": "77361-0120",
+          "state": "New York",
+          "countryCode": "UG"
         }
       },
       "links": [
         {
           "name": "website",
-          "value": "https://grizzled-cloves.com"
+          "value": "https://emotional-cope.biz/"
         },
         {
           "name": "facebook",
-          "value": "https://vital-contributor.net"
+          "value": "https://probable-art.net"
         },
         {
           "name": "linkedin",
-          "value": "https://knowledgeable-date.org"
+          "value": "https://spanish-anywhere.net"
         },
         {
           "name": "twitter",
-          "value": "https://wiggly-thump.net"
+          "value": "https://lovable-llama.biz"
         },
         {
           "name": "other",
-          "value": "https://serene-shearling.name/"
+          "value": "https://grandiose-cadet.com/"
         }
       ],
       "notes": [
         {
-          "text": "Correptius color voro summopere rem cognomen eaque absque atavus. Cupio pauper pariatur optio ut vulnus eos defaeco. Sortitus traho umquam surculus adsidue.",
-          "createdAt": "2023-10-08T18:34:48.819Z",
-          "updatedAt": "2024-02-19T15:24:12.883Z"
+          "text": "Alii depromo supplanto amet eligendi cruciamentum teneo sulum viscus patria. Occaecati ter aduro sordeo. Delinquo tubineus adsidue.",
+          "createdAt": "2023-05-24T23:36:50.582Z",
+          "updatedAt": "2024-02-19T13:11:39.790Z"
         }
       ],
       "shippingAddresses": [
         {
-          "title": "acceptus",
-          "description": "tener vulgus arceo",
-          "note": "adfero cunabula nesciunt",
-          "street": "Gorczany Fords",
-          "numberExterior": "4506 Bradtke Harbors",
-          "numberInterior": "Suite 691",
-          "neighborhood": "Strathclyde",
-          "city": "North Lauderdale",
-          "district": "South Dakota",
-          "zipCode": "89773",
-          "state": "South Dakota",
-          "countryCode": "SK"
+          "title": "calcar",
+          "description": "solium adhaero velit",
+          "note": "charisma triumphus approbo",
+          "street": "Feest Throughway",
+          "numberExterior": "8287 W River Road",
+          "numberInterior": "Apt. 303",
+          "neighborhood": "Washington County",
+          "city": "Gibsonworth",
+          "district": "Iowa",
+          "zipCode": "62589-7300",
+          "state": "Nevada",
+          "countryCode": "CI"
+        }
+      ],
+      "bankAccounts": [
+        {
+          "name": "Savings Account",
+          "currency": "RWF",
+          "type": "account",
+          "beneficiary": "Personal Loan Account",
+          "number": "Home Loan Account",
+          "clabe": "3675",
+          "swift": "GTKVPFZ6XXX",
+          "iban": "AE450285008630023955234",
+          "bank": {
+            "name": "Senger - Kemmer",
+            "city": "Kattieberg",
+            "code": "YRNEGUTYXXX",
+            "country": "France"
+          },
+          "other": "terra tempore repudiandae"
+        }
+      ],
+      "defaults": {
+        "expensesAccount": "92500810",
+        "language": "NG",
+        "currency": "RON",
+        "paymentMethod": "facilis",
+        "paymentForm": "vulnus",
+        "paymentDeadline": "testimonium",
+        "paymentTerms": "usque"
+      },
+      "createdAt": "2023-11-08T07:43:18.705Z",
+      "updatedAt": "2024-02-19T23:55:09.611Z"
+    }
+  },
+  {
+    "key": [
+      "accounts",
+      "01HQ31Q20HM37KZD9CQFYYFCFK"
+    ],
+    "value": {
+      "id": "01HQ31Q20HM37KZD9CQFYYFCFK",
+      "type": "prospect",
+      "name": "Stokes LLC",
+      "legalName": "Fadel - Predovic",
+      "emails": [
+        {
+          "type": "contact",
+          "name": "Contact",
+          "value": "Emie.Wisoky@yahoo.com"
+        },
+        {
+          "type": "sales",
+          "name": "Sales",
+          "value": "Willy.Rau@yahoo.com"
+        },
+        {
+          "type": "billing",
+          "name": "Billing",
+          "value": "Reece_Murray@hotmail.com"
+        }
+      ],
+      "phones": [
+        {
+          "type": "contact",
+          "name": "Contact",
+          "value": "420.324.2114 x1726"
+        },
+        {
+          "type": "sales",
+          "name": "Sales",
+          "value": "(462) 738-3057"
+        },
+        {
+          "type": "billing",
+          "name": "Billing",
+          "value": "792-990-2416 x81996"
+        }
+      ],
+      "website": "https://pristine-ethernet.biz",
+      "taxInfo": {
+        "taxId": "zZ885cWjdj",
+        "isMexTaxId": true,
+        "fiscalRegime": "usque",
+        "proofTaxSituation": "appello",
+        "proofTaxSituationDate": "2023-07-30T01:31:47.034Z",
+        "proofTaxSituationPdf": "https://drab-leash.info/",
+        "billingAddress": {
+          "street": "Xavier Corners",
+          "numberExterior": "7121 Metz Causeway",
+          "numberInterior": "Suite 360",
+          "neighborhood": "Hancock County",
+          "city": "Port Garnettburgh",
+          "district": "New York",
+          "zipCode": "44662",
+          "state": "Maryland",
+          "countryCode": "TW"
+        }
+      },
+      "links": [
+        {
+          "name": "website",
+          "value": "https://youthful-airspace.com/"
+        },
+        {
+          "name": "facebook",
+          "value": "https://brown-letter.org/"
+        },
+        {
+          "name": "linkedin",
+          "value": "https://nervous-skirt.org"
+        },
+        {
+          "name": "twitter",
+          "value": "https://offensive-contrail.org"
+        },
+        {
+          "name": "other",
+          "value": "https://growling-advent.org"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Subvenio contra explicabo crur stillicidium adhuc eligendi similique. Conspergo advoco alter quas deprimo vetus usus. Tenus spiculum adduco.",
+          "createdAt": "2023-03-04T02:00:12.494Z",
+          "updatedAt": "2024-02-19T11:46:23.072Z"
+        }
+      ],
+      "shippingAddresses": [
+        {
+          "title": "unus",
+          "description": "demonstro copiose tonsor",
+          "note": "contra minima cognatus",
+          "street": "Hilario Alley",
+          "numberExterior": "22938 Issac Neck",
+          "numberInterior": "Suite 300",
+          "neighborhood": "Union County",
+          "city": "San Antonio",
+          "district": "Colorado",
+          "zipCode": "03123-2914",
+          "state": "Oregon",
+          "countryCode": "SB"
         }
       ],
       "bankAccounts": [
         {
           "name": "Credit Card Account",
-          "currency": "MYR",
+          "currency": "FKP",
           "type": "account",
           "beneficiary": "Money Market Account",
-          "number": "Credit Card Account",
-          "clabe": "2871",
-          "swift": "GQOIUZR0",
-          "iban": "LU56426Q32609B08143A",
+          "number": "Auto Loan Account",
+          "clabe": "4067",
+          "swift": "VYBHNIVEXXX",
+          "iban": "BA069531810252550299",
           "bank": {
-            "name": "Bogisich and Sons",
-            "city": "North Dorothy",
-            "code": "DRHWGSHD",
-            "country": "Saint Lucia"
+            "name": "Spinka, Denesik and Price",
+            "city": "North Adelineshire",
+            "code": "NOFELTQMXXX",
+            "country": "Denmark"
           },
-          "other": "ipsum somnus agnosco"
+          "other": "quasi statim voveo"
         }
       ],
       "defaults": {
-        "expensesAccount": "54633138",
-        "language": "BG",
-        "currency": "PLN",
-        "paymentMethod": "vomito",
-        "paymentForm": "eum",
-        "paymentDeadline": "unus",
-        "paymentTerms": "claro"
+        "expensesAccount": "62647098",
+        "language": "NL",
+        "currency": "NAD",
+        "paymentMethod": "antepono",
+        "paymentForm": "sub",
+        "paymentDeadline": "abeo",
+        "paymentTerms": "careo"
       },
-      "createdAt": "2023-03-20T19:52:00.616Z",
-      "updatedAt": "2024-02-20T00:00:33.444Z"
+      "createdAt": "2023-10-31T06:53:57.202Z",
+      "updatedAt": "2024-02-19T15:24:25.300Z"
     }
   },
   {
     "key": [
       "accounts",
-      "01HQ31FV83MAR872K5MJN9RMGN"
+      "01HQ31Q20HM37KZD9CQFYYFCFM"
     ],
     "value": {
-      "id": "01HQ31FV83MAR872K5MJN9RMGN",
-      "type": "customer",
-      "name": "Goyette LLC",
-      "legalName": "Quigley Inc",
-      "emails": [
-        {
-          "type": "contact",
-          "name": "Contact",
-          "value": "Danika_Rogahn81@hotmail.com"
-        },
-        {
-          "type": "sales",
-          "name": "Sales",
-          "value": "Bennie65@yahoo.com"
-        },
-        {
-          "type": "billing",
-          "name": "Billing",
-          "value": "Jalyn68@hotmail.com"
-        }
-      ],
-      "phones": [
-        {
-          "type": "contact",
-          "name": "Contact",
-          "value": "754-486-9355 x828"
-        },
-        {
-          "type": "sales",
-          "name": "Sales",
-          "value": "761.218.8784"
-        },
-        {
-          "type": "billing",
-          "name": "Billing",
-          "value": "(767) 582-1568 x02753"
-        }
-      ],
-      "website": "https://stimulating-mastoid.name",
-      "taxInfo": {
-        "taxId": "tl8SJHFfNO",
-        "isMexTaxId": false,
-        "fiscalRegime": "tonsor",
-        "proofTaxSituation": "vado",
-        "proofTaxSituationDate": "2023-10-15T05:21:18.324Z",
-        "proofTaxSituationPdf": "https://plump-poster.info",
-        "billingAddress": {
-          "street": "Margarete Orchard",
-          "numberExterior": "573 Meadow Close",
-          "numberInterior": "Apt. 808",
-          "neighborhood": "Avon",
-          "city": "Port Estastad",
-          "district": "New York",
-          "zipCode": "77140",
-          "state": "Ohio",
-          "countryCode": "ZA"
-        }
-      },
-      "links": [
-        {
-          "name": "website",
-          "value": "https://friendly-consumer.com/"
-        },
-        {
-          "name": "facebook",
-          "value": "https://usable-bagpipe.biz/"
-        },
-        {
-          "name": "linkedin",
-          "value": "https://spry-label.name/"
-        },
-        {
-          "name": "twitter",
-          "value": "https://black-lending.net/"
-        },
-        {
-          "name": "other",
-          "value": "https://our-goddess.info"
-        }
-      ],
-      "notes": [
-        {
-          "text": "Demulceo vere anser aeger terga. Ad apparatus aut. Valens amor amicitia vero sursum pectus undique accedo.",
-          "createdAt": "2023-08-30T02:50:15.668Z",
-          "updatedAt": "2024-02-20T10:30:21.399Z"
-        }
-      ],
-      "shippingAddresses": [
-        {
-          "title": "artificiose",
-          "description": "umquam porro validus",
-          "note": "sulum iusto mollitia",
-          "street": "Wood Lane",
-          "numberExterior": "27247 Garfield Corner",
-          "numberInterior": "Suite 199",
-          "neighborhood": "Northamptonshire",
-          "city": "Commerce City",
-          "district": "Alabama",
-          "zipCode": "73100-6682",
-          "state": "Washington",
-          "countryCode": "KE"
-        }
-      ],
-      "bankAccounts": [
-        {
-          "name": "Personal Loan Account",
-          "currency": "RWF",
-          "type": "account",
-          "beneficiary": "Credit Card Account",
-          "number": "Money Market Account",
-          "clabe": "4650",
-          "swift": "QDUUDOKUF76",
-          "iban": "LU08191WZ651690V1377",
-          "bank": {
-            "name": "Schmitt - Miller",
-            "city": "Santa Barbara",
-            "code": "CKPXQAOK",
-            "country": "Democratic People's Republic of Korea"
-          },
-          "other": "suggero ver eum"
-        }
-      ],
-      "defaults": {
-        "expensesAccount": "20863333",
-        "language": "PG",
-        "currency": "THB",
-        "paymentMethod": "aptus",
-        "paymentForm": "angustus",
-        "paymentDeadline": "assentator",
-        "paymentTerms": "absconditus"
-      },
-      "createdAt": "2023-12-17T11:50:47.452Z",
-      "updatedAt": "2024-02-19T14:55:32.163Z"
-    }
-  },
-  {
-    "key": [
-      "accounts",
-      "01HQ31FV85H6X9G9XN9H1ND35X"
-    ],
-    "value": {
-      "id": "01HQ31FV85H6X9G9XN9H1ND35X",
+      "id": "01HQ31Q20HM37KZD9CQFYYFCFM",
       "type": "other",
-      "name": "Mraz Inc",
-      "legalName": "Keeling - Jenkins",
+      "name": "Bruen, Medhurst and Goldner",
+      "legalName": "Murray - Fadel",
       "emails": [
         {
           "type": "contact",
           "name": "Contact",
-          "value": "Koby.Barton@hotmail.com"
+          "value": "Krystina_Watsica@hotmail.com"
         },
         {
           "type": "sales",
           "name": "Sales",
-          "value": "Rowena33@yahoo.com"
+          "value": "Joey_Beahan26@yahoo.com"
         },
         {
           "type": "billing",
           "name": "Billing",
-          "value": "Arlie.Hudson86@hotmail.com"
+          "value": "Darrell13@gmail.com"
         }
       ],
       "phones": [
         {
           "type": "contact",
           "name": "Contact",
-          "value": "(297) 644-8401 x57531"
+          "value": "1-825-266-5682 x70836"
         },
         {
           "type": "sales",
           "name": "Sales",
-          "value": "261.561.3520 x07480"
+          "value": "1-931-425-6708 x18480"
         },
         {
           "type": "billing",
           "name": "Billing",
-          "value": "560-795-4684 x63753"
+          "value": "312-835-9735"
         }
       ],
-      "website": "https://edible-cube.org",
+      "website": "https://famous-perfection.org/",
       "taxInfo": {
-        "taxId": "kzQLh92emD",
+        "taxId": "BjVDKncTQ5",
         "isMexTaxId": true,
-        "fiscalRegime": "asporto",
-        "proofTaxSituation": "atavus",
-        "proofTaxSituationDate": "2023-04-20T23:43:40.178Z",
-        "proofTaxSituationPdf": "https://helpful-armpit.net",
+        "fiscalRegime": "convoco",
+        "proofTaxSituation": "stella",
+        "proofTaxSituationDate": "2023-10-29T21:49:23.369Z",
+        "proofTaxSituationPdf": "https://elliptical-agreement.org",
         "billingAddress": {
-          "street": "Bradtke Corner",
-          "numberExterior": "5071 West Street",
-          "numberInterior": "Suite 172",
-          "neighborhood": "Lake County",
-          "city": "Port Nikkiside",
-          "district": "Illinois",
-          "zipCode": "89210-1291",
-          "state": "Ohio",
+          "street": "Volkman Motorway",
+          "numberExterior": "8560 Jesus Village",
+          "numberInterior": "Apt. 141",
+          "neighborhood": "Cornwall",
+          "city": "Russelshire",
+          "district": "Massachusetts",
+          "zipCode": "62325-1336",
+          "state": "New Hampshire",
           "countryCode": "GR"
         }
       },
       "links": [
         {
           "name": "website",
-          "value": "https://elderly-robin.name"
+          "value": "https://ill-informed-sprinkles.name"
         },
         {
           "name": "facebook",
-          "value": "https://harmless-shoemaker.info/"
+          "value": "https://short-card.name/"
         },
         {
           "name": "linkedin",
-          "value": "https://blushing-buy.name"
+          "value": "https://even-maple.net/"
         },
         {
           "name": "twitter",
-          "value": "https://those-sailboat.org"
+          "value": "https://chilly-corduroy.com"
         },
         {
           "name": "other",
-          "value": "https://powerful-chive.name/"
+          "value": "https://bulky-nick.biz"
         }
       ],
       "notes": [
         {
-          "text": "Despecto cattus tyrannus combibo demonstro delibero. Aveho corrigo exercitationem. Odit hic adulescens.",
-          "createdAt": "2023-12-11T22:42:31.297Z",
-          "updatedAt": "2024-02-20T10:00:58.725Z"
+          "text": "Theca corrigo adiuvo apparatus. Iusto explicabo vulnus vaco. Vero soleo capto conitor pecco deinde debeo.",
+          "createdAt": "2023-05-05T13:39:41.093Z",
+          "updatedAt": "2024-02-20T09:41:20.289Z"
         }
       ],
       "shippingAddresses": [
         {
-          "title": "ullam",
-          "description": "vapulus cur eos",
-          "note": "comes aer amplitudo",
-          "street": "The Woodlands",
-          "numberExterior": "13363 N Maple Street",
-          "numberInterior": "Suite 163",
-          "neighborhood": "Gwent",
-          "city": "Baumbachboro",
-          "district": "New Mexico",
-          "zipCode": "49970-2505",
-          "state": "Georgia",
-          "countryCode": "CW"
-        }
-      ],
-      "bankAccounts": [
-        {
-          "name": "Money Market Account",
-          "currency": "NOK",
-          "type": "account",
-          "beneficiary": "Auto Loan Account",
-          "number": "Checking Account",
-          "clabe": "7611",
-          "swift": "LJVVCXHN",
-          "iban": "FI2508505804605527",
-          "bank": {
-            "name": "Connelly, Bashirian and Barrows",
-            "city": "Pacochaburgh",
-            "code": "XHBQDJEM",
-            "country": "Turks and Caicos Islands"
-          },
-          "other": "pecto taceo cornu"
-        }
-      ],
-      "defaults": {
-        "expensesAccount": "01191309",
-        "language": "GT",
-        "currency": "MDL",
-        "paymentMethod": "artificiose",
-        "paymentForm": "nemo",
-        "paymentDeadline": "aurum",
-        "paymentTerms": "patior"
-      },
-      "createdAt": "2023-08-07T20:16:11.084Z",
-      "updatedAt": "2024-02-20T08:05:11.096Z"
-    }
-  },
-  {
-    "key": [
-      "accounts",
-      "01HQ31FV86TW7QWTAKHGGTJM4Q"
-    ],
-    "value": {
-      "id": "01HQ31FV86TW7QWTAKHGGTJM4Q",
-      "type": "supplier",
-      "name": "Luettgen - Pollich",
-      "legalName": "Jenkins - Dicki",
-      "emails": [
-        {
-          "type": "contact",
-          "name": "Contact",
-          "value": "Terrence.Brakus8@yahoo.com"
-        },
-        {
-          "type": "sales",
-          "name": "Sales",
-          "value": "Zakary_Reichel@hotmail.com"
-        },
-        {
-          "type": "billing",
-          "name": "Billing",
-          "value": "Serena.Johns18@gmail.com"
-        }
-      ],
-      "phones": [
-        {
-          "type": "contact",
-          "name": "Contact",
-          "value": "(752) 686-4979 x11437"
-        },
-        {
-          "type": "sales",
-          "name": "Sales",
-          "value": "1-910-511-0238 x2194"
-        },
-        {
-          "type": "billing",
-          "name": "Billing",
-          "value": "(559) 896-7317"
-        }
-      ],
-      "website": "https://measly-camel.name",
-      "taxInfo": {
-        "taxId": "KxJS4pHlvg",
-        "isMexTaxId": true,
-        "fiscalRegime": "aestus",
-        "proofTaxSituation": "arbor",
-        "proofTaxSituationDate": "2023-10-13T12:36:50.298Z",
-        "proofTaxSituationPdf": "https://quick-ego.com",
-        "billingAddress": {
-          "street": "Larson Mount",
-          "numberExterior": "78511 Fredrick Circle",
-          "numberInterior": "Apt. 678",
-          "neighborhood": "Carroll County",
-          "city": "Port Otis",
+          "title": "amiculum",
+          "description": "cattus asporto taceo",
+          "note": "concedo velit timidus",
+          "street": "McClure Wells",
+          "numberExterior": "274 Hillside Avenue",
+          "numberInterior": "Suite 781",
+          "neighborhood": "Durham",
+          "city": "Alessandraland",
           "district": "Indiana",
-          "zipCode": "33104",
-          "state": "Illinois",
-          "countryCode": "AQ"
-        }
-      },
-      "links": [
-        {
-          "name": "website",
-          "value": "https://faint-implication.info/"
-        },
-        {
-          "name": "facebook",
-          "value": "https://snappy-sofa.com"
-        },
-        {
-          "name": "linkedin",
-          "value": "https://diligent-feather.name/"
-        },
-        {
-          "name": "twitter",
-          "value": "https://admired-examiner.biz"
-        },
-        {
-          "name": "other",
-          "value": "https://definite-constant.info"
-        }
-      ],
-      "notes": [
-        {
-          "text": "Tempore adicio tamisium. Patruus laboriosam trucido mollitia sint temptatio reprehenderit nihil admoneo. Delinquo acer caelestis soluta caries templum.",
-          "createdAt": "2023-10-31T11:50:48.531Z",
-          "updatedAt": "2024-02-19T23:38:07.779Z"
-        }
-      ],
-      "shippingAddresses": [
-        {
-          "title": "comis",
-          "description": "socius velum comptus",
-          "note": "comptus attero truculenter",
-          "street": "Birch Avenue",
-          "numberExterior": "7972 Wiley Lakes",
-          "numberInterior": "Apt. 971",
-          "neighborhood": "Washington County",
-          "city": "Lake Edd",
-          "district": "Kentucky",
-          "zipCode": "97059",
-          "state": "Ohio",
-          "countryCode": "AM"
-        }
-      ],
-      "bankAccounts": [
-        {
-          "name": "Checking Account",
-          "currency": "NPR",
-          "type": "account",
-          "beneficiary": "Investment Account",
-          "number": "Auto Loan Account",
-          "clabe": "8077",
-          "swift": "AFPRSVYBXXX",
-          "iban": "TN0200829861343006009048",
-          "bank": {
-            "name": "Windler LLC",
-            "city": "New Janae",
-            "code": "EEJFTZCN",
-            "country": "Turkey"
-          },
-          "other": "capio certus beatus"
-        }
-      ],
-      "defaults": {
-        "expensesAccount": "75417213",
-        "language": "HU",
-        "currency": "NZD",
-        "paymentMethod": "reprehenderit",
-        "paymentForm": "spectaculum",
-        "paymentDeadline": "suscipit",
-        "paymentTerms": "decens"
-      },
-      "createdAt": "2023-04-19T02:12:33.277Z",
-      "updatedAt": "2024-02-20T08:43:09.971Z"
-    }
-  },
-  {
-    "key": [
-      "accounts",
-      "01HQ31FV86TW7QWTAKHGGTJM4R"
-    ],
-    "value": {
-      "id": "01HQ31FV86TW7QWTAKHGGTJM4R",
-      "type": "supplier",
-      "name": "Mante - Mosciski",
-      "legalName": "Schinner Group",
-      "emails": [
-        {
-          "type": "contact",
-          "name": "Contact",
-          "value": "Efren81@hotmail.com"
-        },
-        {
-          "type": "sales",
-          "name": "Sales",
-          "value": "Albert_Hermann75@hotmail.com"
-        },
-        {
-          "type": "billing",
-          "name": "Billing",
-          "value": "Kelli_Toy@yahoo.com"
-        }
-      ],
-      "phones": [
-        {
-          "type": "contact",
-          "name": "Contact",
-          "value": "1-534-442-3722"
-        },
-        {
-          "type": "sales",
-          "name": "Sales",
-          "value": "669.582.5542 x6868"
-        },
-        {
-          "type": "billing",
-          "name": "Billing",
-          "value": "769-963-3051"
-        }
-      ],
-      "website": "https://disguised-tree.name",
-      "taxInfo": {
-        "taxId": "nalP18aGwm",
-        "isMexTaxId": true,
-        "fiscalRegime": "causa",
-        "proofTaxSituation": "delinquo",
-        "proofTaxSituationDate": "2023-12-30T12:33:45.070Z",
-        "proofTaxSituationPdf": "https://faraway-stable.net",
-        "billingAddress": {
-          "street": "Louisa Crossroad",
-          "numberExterior": "19666 Hodkiewicz Path",
-          "numberInterior": "Suite 654",
-          "neighborhood": "County Down",
-          "city": "New Newell",
-          "district": "Washington",
-          "zipCode": "11331",
-          "state": "Montana",
-          "countryCode": "BY"
-        }
-      },
-      "links": [
-        {
-          "name": "website",
-          "value": "https://rude-encirclement.info"
-        },
-        {
-          "name": "facebook",
-          "value": "https://shocking-fireman.org"
-        },
-        {
-          "name": "linkedin",
-          "value": "https://worse-delivery.net/"
-        },
-        {
-          "name": "twitter",
-          "value": "https://left-half-sister.com"
-        },
-        {
-          "name": "other",
-          "value": "https://muted-nit.info/"
-        }
-      ],
-      "notes": [
-        {
-          "text": "Villa via virga cultellus necessitatibus pecto amitto. Atrocitas nam tibi. Ater templum sum vicissitudo vilitas calcar versus.",
-          "createdAt": "2023-10-28T21:21:23.642Z",
-          "updatedAt": "2024-02-19T16:26:47.767Z"
-        }
-      ],
-      "shippingAddresses": [
-        {
-          "title": "tepesco",
-          "description": "aedificium quaerat cubo",
-          "note": "volup tolero consequatur",
-          "street": "Reichert Cliffs",
-          "numberExterior": "47201 Block Roads",
-          "numberInterior": "Apt. 808",
-          "neighborhood": "Adams County",
-          "city": "Kozeyfort",
-          "district": "Wisconsin",
-          "zipCode": "68397",
-          "state": "Colorado",
-          "countryCode": "TJ"
-        }
-      ],
-      "bankAccounts": [
-        {
-          "name": "Money Market Account",
-          "currency": "AOA",
-          "type": "account",
-          "beneficiary": "Credit Card Account",
-          "number": "Credit Card Account",
-          "clabe": "2618",
-          "swift": "BSUCBFO5XXX",
-          "iban": "RO50HNMUZ0Z6P85XL850X158",
-          "bank": {
-            "name": "Barton - Wisoky",
-            "city": "Lake Adelaburgh",
-            "code": "HYCBFJ9P7IB",
-            "country": "Gibraltar"
-          },
-          "other": "addo quibusdam tonsor"
-        }
-      ],
-      "defaults": {
-        "expensesAccount": "59465896",
-        "language": "SL",
-        "currency": "COP",
-        "paymentMethod": "tersus",
-        "paymentForm": "curiositas",
-        "paymentDeadline": "absens",
-        "paymentTerms": "civitas"
-      },
-      "createdAt": "2023-12-31T21:43:46.844Z",
-      "updatedAt": "2024-02-20T05:05:16.630Z"
-    }
-  },
-  {
-    "key": [
-      "accounts",
-      "01HQ31FV86TW7QWTAKHGGTJM4S"
-    ],
-    "value": {
-      "id": "01HQ31FV86TW7QWTAKHGGTJM4S",
-      "type": "prospect",
-      "name": "Hegmann - Von",
-      "legalName": "Cremin LLC",
-      "emails": [
-        {
-          "type": "contact",
-          "name": "Contact",
-          "value": "Iliana.Fadel64@hotmail.com"
-        },
-        {
-          "type": "sales",
-          "name": "Sales",
-          "value": "Shany58@hotmail.com"
-        },
-        {
-          "type": "billing",
-          "name": "Billing",
-          "value": "Herminia31@gmail.com"
-        }
-      ],
-      "phones": [
-        {
-          "type": "contact",
-          "name": "Contact",
-          "value": "(762) 896-4394 x5828"
-        },
-        {
-          "type": "sales",
-          "name": "Sales",
-          "value": "318.438.6716"
-        },
-        {
-          "type": "billing",
-          "name": "Billing",
-          "value": "(411) 700-4268 x3815"
-        }
-      ],
-      "website": "https://lumbering-awareness.info/",
-      "taxInfo": {
-        "taxId": "2559LexMxb",
-        "isMexTaxId": false,
-        "fiscalRegime": "acer",
-        "proofTaxSituation": "confugo",
-        "proofTaxSituationDate": "2023-08-30T09:28:51.572Z",
-        "proofTaxSituationPdf": "https://detailed-bachelor.com",
-        "billingAddress": {
-          "street": "Roberta Burg",
-          "numberExterior": "93848 Mount Street",
-          "numberInterior": "Apt. 681",
-          "neighborhood": "North Yorkshire",
-          "city": "Wauwatosa",
-          "district": "Michigan",
-          "zipCode": "84049",
-          "state": "Vermont",
-          "countryCode": "BI"
-        }
-      },
-      "links": [
-        {
-          "name": "website",
-          "value": "https://wiggly-theology.info"
-        },
-        {
-          "name": "facebook",
-          "value": "https://bare-shrine.org"
-        },
-        {
-          "name": "linkedin",
-          "value": "https://colossal-stain.com/"
-        },
-        {
-          "name": "twitter",
-          "value": "https://ashamed-continuity.org/"
-        },
-        {
-          "name": "other",
-          "value": "https://drab-prelude.com"
-        }
-      ],
-      "notes": [
-        {
-          "text": "Voluntarius tres quae defungo tantum recusandae vulnero illo denego. Cras considero modi vehemens aestivus coma. Sophismata pariatur tergo tametsi video totam.",
-          "createdAt": "2024-02-11T04:30:29.775Z",
-          "updatedAt": "2024-02-20T02:34:54.595Z"
-        }
-      ],
-      "shippingAddresses": [
-        {
-          "title": "aegrotatio",
-          "description": "beatus sed cunctatio",
-          "note": "coniecto auctus absconditus",
-          "street": "D'angelo Loop",
-          "numberExterior": "1492 Ashlee Creek",
-          "numberInterior": "Suite 553",
-          "neighborhood": "Lawrence County",
-          "city": "South Luna",
-          "district": "Alabama",
-          "zipCode": "12032",
-          "state": "Kentucky",
-          "countryCode": "RE"
+          "zipCode": "59665-3198",
+          "state": "Idaho",
+          "countryCode": "DJ"
         }
       ],
       "bankAccounts": [
         {
           "name": "Personal Loan Account",
-          "currency": "SCR",
+          "currency": "AED",
           "type": "account",
-          "beneficiary": "Investment Account",
-          "number": "Checking Account",
-          "clabe": "6574",
-          "swift": "ZECQPGO0",
-          "iban": "LB700129Q2T03S9178N65801Z36K",
+          "beneficiary": "Home Loan Account",
+          "number": "Money Market Account",
+          "clabe": "6897",
+          "swift": "BRFCTJTR",
+          "iban": "AD05002090092363S2041B73",
           "bank": {
-            "name": "Considine Inc",
-            "city": "Brandoborough",
-            "code": "MOAFBMDVXXX",
-            "country": "Myanmar"
+            "name": "Feil Group",
+            "city": "South Durwardport",
+            "code": "BDDWDOCW",
+            "country": "Malaysia"
           },
-          "other": "sed aegrotatio turbo"
+          "other": "sint volva adipisci"
         }
       ],
       "defaults": {
-        "expensesAccount": "51676135",
-        "language": "GD",
-        "currency": "SLE",
-        "paymentMethod": "aduro",
-        "paymentForm": "inventore",
-        "paymentDeadline": "delinquo",
-        "paymentTerms": "utrum"
+        "expensesAccount": "64023132",
+        "language": "TZ",
+        "currency": "ALL",
+        "paymentMethod": "concido",
+        "paymentForm": "victus",
+        "paymentDeadline": "terror",
+        "paymentTerms": "adiuvo"
       },
-      "createdAt": "2023-05-19T08:01:08.664Z",
-      "updatedAt": "2024-02-20T00:58:10.927Z"
+      "createdAt": "2024-01-03T19:04:39.229Z",
+      "updatedAt": "2024-02-19T10:48:52.367Z"
     }
   },
   {
     "key": [
       "accounts",
-      "01HQ31FV87RZYT5QS59FYBSKHW"
+      "01HQ31Q20J1JBH5WDXQNCS6PV7"
     ],
     "value": {
-      "id": "01HQ31FV87RZYT5QS59FYBSKHW",
-      "type": "prospect",
-      "name": "Greenfelder and Sons",
-      "legalName": "Kub Inc",
+      "id": "01HQ31Q20J1JBH5WDXQNCS6PV7",
+      "type": "other",
+      "name": "Sauer - Doyle",
+      "legalName": "Wilkinson, Bartoletti and Kautzer",
       "emails": [
         {
           "type": "contact",
           "name": "Contact",
-          "value": "Burnice_Marvin@gmail.com"
+          "value": "Liliana_Botsford@yahoo.com"
         },
         {
           "type": "sales",
           "name": "Sales",
-          "value": "Eugenia27@hotmail.com"
+          "value": "Sydnie_Langworth75@yahoo.com"
         },
         {
           "type": "billing",
           "name": "Billing",
-          "value": "Dejon.Kuhlman-Stanton67@yahoo.com"
+          "value": "Liana.Kling51@yahoo.com"
         }
       ],
       "phones": [
         {
           "type": "contact",
           "name": "Contact",
-          "value": "994-626-0242 x111"
+          "value": "(788) 824-7369 x687"
         },
         {
           "type": "sales",
           "name": "Sales",
-          "value": "(613) 377-1630 x806"
+          "value": "785.644.4455 x540"
         },
         {
           "type": "billing",
           "name": "Billing",
-          "value": "435.921.6940 x575"
+          "value": "596-358-6146 x981"
         }
       ],
-      "website": "https://boiling-composer.biz/",
+      "website": "https://fearful-piety.biz",
       "taxInfo": {
-        "taxId": "py18RcGe68",
+        "taxId": "SkhFoSpyMe",
         "isMexTaxId": true,
-        "fiscalRegime": "vos",
-        "proofTaxSituation": "theatrum",
-        "proofTaxSituationDate": "2023-06-16T07:07:17.600Z",
-        "proofTaxSituationPdf": "https://apt-prosecutor.org",
+        "fiscalRegime": "corpus",
+        "proofTaxSituation": "odio",
+        "proofTaxSituationDate": "2023-04-16T05:17:13.639Z",
+        "proofTaxSituationPdf": "https://potable-glance.name/",
         "billingAddress": {
-          "street": "1st Avenue",
-          "numberExterior": "651 Micheal Motorway",
-          "numberInterior": "Apt. 864",
-          "neighborhood": "Lothian",
-          "city": "Fontana",
+          "street": "The Rise",
+          "numberExterior": "262 S Franklin Street",
+          "numberInterior": "Suite 155",
+          "neighborhood": "Lee County",
+          "city": "West Geraldinefield",
           "district": "California",
-          "zipCode": "06263-1964",
-          "state": "Colorado",
-          "countryCode": "HR"
+          "zipCode": "84076-0145",
+          "state": "New Hampshire",
+          "countryCode": "SN"
         }
       },
       "links": [
         {
           "name": "website",
-          "value": "https://untrue-vagrant.com"
+          "value": "https://mammoth-meteor.org/"
         },
         {
           "name": "facebook",
-          "value": "https://hurtful-transformation.org"
+          "value": "https://ill-informed-pinto.name/"
         },
         {
           "name": "linkedin",
-          "value": "https://dull-stud.com"
+          "value": "https://drafty-weather.com/"
         },
         {
           "name": "twitter",
-          "value": "https://awesome-dealer.net/"
+          "value": "https://unlawful-kiwi.info"
         },
         {
           "name": "other",
-          "value": "https://fearless-tanker.name/"
+          "value": "https://suspicious-shoemaker.info/"
         }
       ],
       "notes": [
         {
-          "text": "Pax dolore vociferor. Confugo vere aetas accusamus valeo. Amet subvenio vinco ullus cogo cogito subiungo viscus.",
-          "createdAt": "2023-04-01T16:34:04.185Z",
-          "updatedAt": "2024-02-19T20:56:15.984Z"
+          "text": "Cinis vorago sustineo arbitro. Sono rerum verbera acer officiis tonsor repellendus magni. Cavus volo quibusdam tristis colo cicuta tabella paulatim damno volva.",
+          "createdAt": "2023-12-19T06:43:08.842Z",
+          "updatedAt": "2024-02-19T12:51:55.656Z"
         }
       ],
       "shippingAddresses": [
         {
-          "title": "statim",
-          "description": "canto pauper auctus",
-          "note": "explicabo ascit confido",
-          "street": "Simonis Key",
-          "numberExterior": "600 Shanna Lane",
-          "numberInterior": "Apt. 146",
-          "neighborhood": "Wiltshire",
-          "city": "San Jacinto",
-          "district": "Texas",
-          "zipCode": "82980",
+          "title": "callide",
+          "description": "tubineus vesco omnis",
+          "note": "vorax agnosco stipes",
+          "street": "Santiago Shoals",
+          "numberExterior": "3938 Bartoletti Streets",
+          "numberInterior": "Suite 231",
+          "neighborhood": "Jackson County",
+          "city": "Zenaboro",
+          "district": "Washington",
+          "zipCode": "07431-5227",
+          "state": "Ohio",
+          "countryCode": "NI"
+        }
+      ],
+      "bankAccounts": [
+        {
+          "name": "Credit Card Account",
+          "currency": "PAB",
+          "type": "account",
+          "beneficiary": "Personal Loan Account",
+          "number": "Money Market Account",
+          "clabe": "2247",
+          "swift": "ZCJLSS5SMNH",
+          "iban": "TR652787132302095330006931",
+          "bank": {
+            "name": "Monahan LLC",
+            "city": "Jeffereyburgh",
+            "code": "KKRJJEHO",
+            "country": "Denmark"
+          },
+          "other": "ullus caelestis capillus"
+        }
+      ],
+      "defaults": {
+        "expensesAccount": "83462385",
+        "language": "FO",
+        "currency": "DZD",
+        "paymentMethod": "confero",
+        "paymentForm": "assentator",
+        "paymentDeadline": "victoria",
+        "paymentTerms": "tricesimus"
+      },
+      "createdAt": "2023-10-08T15:10:13.157Z",
+      "updatedAt": "2024-02-20T08:24:26.868Z"
+    }
+  },
+  {
+    "key": [
+      "accounts",
+      "01HQ31Q20K00K4VBR6WJTQ20TT"
+    ],
+    "value": {
+      "id": "01HQ31Q20K00K4VBR6WJTQ20TT",
+      "type": "partner",
+      "name": "Hilll - Sawayn",
+      "legalName": "Prohaska, Hoppe and Wehner",
+      "emails": [
+        {
+          "type": "contact",
+          "name": "Contact",
+          "value": "Vida51@yahoo.com"
+        },
+        {
+          "type": "sales",
+          "name": "Sales",
+          "value": "Flossie.Donnelly@yahoo.com"
+        },
+        {
+          "type": "billing",
+          "name": "Billing",
+          "value": "Julio_Schmitt61@gmail.com"
+        }
+      ],
+      "phones": [
+        {
+          "type": "contact",
+          "name": "Contact",
+          "value": "629.995.3808"
+        },
+        {
+          "type": "sales",
+          "name": "Sales",
+          "value": "(580) 289-6032"
+        },
+        {
+          "type": "billing",
+          "name": "Billing",
+          "value": "(645) 346-1763 x2856"
+        }
+      ],
+      "website": "https://altruistic-colorlessness.org/",
+      "taxInfo": {
+        "taxId": "DmMkJfOHyH",
+        "isMexTaxId": true,
+        "fiscalRegime": "crepusculum",
+        "proofTaxSituation": "umerus",
+        "proofTaxSituationDate": "2023-03-18T03:24:44.318Z",
+        "proofTaxSituationPdf": "https://scared-coincidence.info",
+        "billingAddress": {
+          "street": "Ryan Brook",
+          "numberExterior": "50064 Mariela Vista",
+          "numberInterior": "Apt. 659",
+          "neighborhood": "Grant County",
+          "city": "Beulahfurt",
+          "district": "Illinois",
+          "zipCode": "34980-2695",
+          "state": "Nevada",
+          "countryCode": "NE"
+        }
+      },
+      "links": [
+        {
+          "name": "website",
+          "value": "https://useful-hydraulics.org/"
+        },
+        {
+          "name": "facebook",
+          "value": "https://even-menorah.info"
+        },
+        {
+          "name": "linkedin",
+          "value": "https://far-off-disguise.info"
+        },
+        {
+          "name": "twitter",
+          "value": "https://equatorial-distortion.org"
+        },
+        {
+          "name": "other",
+          "value": "https://glamorous-dreamer.com"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Ultra fuga timor vehemens aggredior causa. Iusto validus cura. Utique temporibus alioqui depromo vobis.",
+          "createdAt": "2023-04-22T12:09:56.876Z",
+          "updatedAt": "2024-02-19T21:01:47.413Z"
+        }
+      ],
+      "shippingAddresses": [
+        {
+          "title": "conqueror",
+          "description": "tabesco depulso deleo",
+          "note": "admitto utique stultus",
+          "street": "Heller Heights",
+          "numberExterior": "6299 S 10th Street",
+          "numberInterior": "Suite 440",
+          "neighborhood": "Kent",
+          "city": "East Jedediah",
+          "district": "Tennessee",
+          "zipCode": "75629-8534",
+          "state": "Alabama",
+          "countryCode": "WF"
+        }
+      ],
+      "bankAccounts": [
+        {
+          "name": "Money Market Account",
+          "currency": "IRR",
+          "type": "account",
+          "beneficiary": "Savings Account",
+          "number": "Personal Loan Account",
+          "clabe": "1668",
+          "swift": "WWXHADN0XXX",
+          "iban": "CY36041660033L0R84C3A511G701",
+          "bank": {
+            "name": "Kessler Inc",
+            "city": "Bernierchester",
+            "code": "PMUNMSA0ZH2",
+            "country": "Angola"
+          },
+          "other": "aperiam repellat verus"
+        }
+      ],
+      "defaults": {
+        "expensesAccount": "78602219",
+        "language": "CG",
+        "currency": "PGK",
+        "paymentMethod": "dignissimos",
+        "paymentForm": "carus",
+        "paymentDeadline": "eius",
+        "paymentTerms": "ipsa"
+      },
+      "createdAt": "2023-02-20T22:11:38.231Z",
+      "updatedAt": "2024-02-20T01:03:27.188Z"
+    }
+  },
+  {
+    "key": [
+      "accounts",
+      "01HQ31Q20K00K4VBR6WJTQ20TV"
+    ],
+    "value": {
+      "id": "01HQ31Q20K00K4VBR6WJTQ20TV",
+      "type": "supplier",
+      "name": "Streich - Lindgren",
+      "legalName": "Fay and Sons",
+      "emails": [
+        {
+          "type": "contact",
+          "name": "Contact",
+          "value": "Gladyce.Crooks@yahoo.com"
+        },
+        {
+          "type": "sales",
+          "name": "Sales",
+          "value": "Dee91@gmail.com"
+        },
+        {
+          "type": "billing",
+          "name": "Billing",
+          "value": "Sandy87@hotmail.com"
+        }
+      ],
+      "phones": [
+        {
+          "type": "contact",
+          "name": "Contact",
+          "value": "1-728-364-4648 x9822"
+        },
+        {
+          "type": "sales",
+          "name": "Sales",
+          "value": "878-452-0685 x86720"
+        },
+        {
+          "type": "billing",
+          "name": "Billing",
+          "value": "518-223-0456"
+        }
+      ],
+      "website": "https://yellowish-thermometer.name",
+      "taxInfo": {
+        "taxId": "VmZtANMxca",
+        "isMexTaxId": true,
+        "fiscalRegime": "patruus",
+        "proofTaxSituation": "quam",
+        "proofTaxSituationDate": "2023-06-22T16:22:19.105Z",
+        "proofTaxSituationPdf": "https://ill-fated-broiler.net",
+        "billingAddress": {
+          "street": "E 3rd Street",
+          "numberExterior": "86593 Stehr Rest",
+          "numberInterior": "Suite 195",
+          "neighborhood": "Gwynedd County",
+          "city": "Franciscocester",
+          "district": "Wyoming",
+          "zipCode": "36478",
+          "state": "California",
+          "countryCode": "BR"
+        }
+      },
+      "links": [
+        {
+          "name": "website",
+          "value": "https://silky-emergence.info/"
+        },
+        {
+          "name": "facebook",
+          "value": "https://terrific-jasmine.com"
+        },
+        {
+          "name": "linkedin",
+          "value": "https://grouchy-campus.info/"
+        },
+        {
+          "name": "twitter",
+          "value": "https://flaky-collector.com"
+        },
+        {
+          "name": "other",
+          "value": "https://active-t-shirt.biz"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Strenuus perspiciatis coadunatio. Arbitro audentia condico. Vinculum ver vox doloribus.",
+          "createdAt": "2023-06-14T19:50:09.638Z",
+          "updatedAt": "2024-02-19T15:13:44.621Z"
+        }
+      ],
+      "shippingAddresses": [
+        {
+          "title": "utroque",
+          "description": "volubilis voluptatibus amo",
+          "note": "considero claudeo vilis",
+          "street": "George Street",
+          "numberExterior": "692 Park Avenue",
+          "numberInterior": "Apt. 321",
+          "neighborhood": "Shropshire",
+          "city": "South Andrew",
+          "district": "West Virginia",
+          "zipCode": "51342-5814",
+          "state": "Louisiana",
+          "countryCode": "NE"
+        }
+      ],
+      "bankAccounts": [
+        {
+          "name": "Auto Loan Account",
+          "currency": "JOD",
+          "type": "account",
+          "beneficiary": "Auto Loan Account",
+          "number": "Personal Loan Account",
+          "clabe": "9100",
+          "swift": "XKOOQAU1",
+          "iban": "EE580703078519847399",
+          "bank": {
+            "name": "Bernier - Maggio",
+            "city": "Hesselworth",
+            "code": "QPFINA6H",
+            "country": "Jamaica"
+          },
+          "other": "deleo quod vinculum"
+        }
+      ],
+      "defaults": {
+        "expensesAccount": "60282820",
+        "language": "FJ",
+        "currency": "NAD",
+        "paymentMethod": "acerbitas",
+        "paymentForm": "demens",
+        "paymentDeadline": "aspernatur",
+        "paymentTerms": "assumenda"
+      },
+      "createdAt": "2023-11-03T10:51:00.598Z",
+      "updatedAt": "2024-02-19T14:29:57.761Z"
+    }
+  },
+  {
+    "key": [
+      "accounts",
+      "01HQ31Q20MH1XKHCXDGEZXTMVA"
+    ],
+    "value": {
+      "id": "01HQ31Q20MH1XKHCXDGEZXTMVA",
+      "type": "partner",
+      "name": "Denesik and Sons",
+      "legalName": "Streich LLC",
+      "emails": [
+        {
+          "type": "contact",
+          "name": "Contact",
+          "value": "Lexi8@hotmail.com"
+        },
+        {
+          "type": "sales",
+          "name": "Sales",
+          "value": "Rodrick_Kuhn@yahoo.com"
+        },
+        {
+          "type": "billing",
+          "name": "Billing",
+          "value": "Daphnee.Goldner@hotmail.com"
+        }
+      ],
+      "phones": [
+        {
+          "type": "contact",
+          "name": "Contact",
+          "value": "(643) 465-2808 x2329"
+        },
+        {
+          "type": "sales",
+          "name": "Sales",
+          "value": "217.452.8078 x496"
+        },
+        {
+          "type": "billing",
+          "name": "Billing",
+          "value": "214.510.0936"
+        }
+      ],
+      "website": "https://sophisticated-tonic.net",
+      "taxInfo": {
+        "taxId": "NyTYOch2fr",
+        "isMexTaxId": false,
+        "fiscalRegime": "sub",
+        "proofTaxSituation": "ascit",
+        "proofTaxSituationDate": "2023-07-29T13:41:37.400Z",
+        "proofTaxSituationPdf": "https://splendid-barbecue.org",
+        "billingAddress": {
+          "street": "Ramon Row",
+          "numberExterior": "249 S Monroe Street",
+          "numberInterior": "Suite 259",
+          "neighborhood": "Bedfordshire",
+          "city": "Mishawaka",
+          "district": "North Dakota",
+          "zipCode": "38921-9433",
+          "state": "Texas",
+          "countryCode": "GY"
+        }
+      },
+      "links": [
+        {
+          "name": "website",
+          "value": "https://jittery-eavesdropper.com"
+        },
+        {
+          "name": "facebook",
+          "value": "https://nimble-freon.info/"
+        },
+        {
+          "name": "linkedin",
+          "value": "https://fatherly-astronomy.info"
+        },
+        {
+          "name": "twitter",
+          "value": "https://intrepid-everyone.com"
+        },
+        {
+          "name": "other",
+          "value": "https://trained-model.org/"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Videlicet demitto defetiscor itaque magni. Vulgo angustus magnam sunt vorago decor tenuis combibo. Temptatio deprimo aspicio cogito comparo cado modi aeneus sapiente.",
+          "createdAt": "2023-12-31T00:24:30.359Z",
+          "updatedAt": "2024-02-20T04:57:32.573Z"
+        }
+      ],
+      "shippingAddresses": [
+        {
+          "title": "vulariter",
+          "description": "volubilis fuga peior",
+          "note": "cursus universe ater",
+          "street": "Tremayne Greens",
+          "numberExterior": "9940 Sarah Brooks",
+          "numberInterior": "Suite 403",
+          "neighborhood": "Cheshire",
+          "city": "McGlynnboro",
+          "district": "South Dakota",
+          "zipCode": "90983-4692",
+          "state": "Hawaii",
+          "countryCode": "IO"
+        }
+      ],
+      "bankAccounts": [
+        {
+          "name": "Checking Account",
+          "currency": "GTQ",
+          "type": "account",
+          "beneficiary": "Savings Account",
+          "number": "Personal Loan Account",
+          "clabe": "2260",
+          "swift": "HXOCKGDE",
+          "iban": "IL373600280040311721733",
+          "bank": {
+            "name": "Kihn LLC",
+            "city": "North Charleyborough",
+            "code": "KWGOEEYBCBQ",
+            "country": "Ghana"
+          },
+          "other": "suspendo fugiat vester"
+        }
+      ],
+      "defaults": {
+        "expensesAccount": "66072885",
+        "language": "CY",
+        "currency": "VUV",
+        "paymentMethod": "arguo",
+        "paymentForm": "vereor",
+        "paymentDeadline": "bestia",
+        "paymentTerms": "sustineo"
+      },
+      "createdAt": "2024-01-18T05:33:15.656Z",
+      "updatedAt": "2024-02-19T23:26:20.221Z"
+    }
+  },
+  {
+    "key": [
+      "accounts",
+      "01HQ31Q20MH1XKHCXDGEZXTMVB"
+    ],
+    "value": {
+      "id": "01HQ31Q20MH1XKHCXDGEZXTMVB",
+      "type": "supplier",
+      "name": "Hodkiewicz, Dickinson and Hettinger",
+      "legalName": "Gorczany, Labadie and Hermiston",
+      "emails": [
+        {
+          "type": "contact",
+          "name": "Contact",
+          "value": "Kiarra.Tillman@yahoo.com"
+        },
+        {
+          "type": "sales",
+          "name": "Sales",
+          "value": "Brown.Osinski69@gmail.com"
+        },
+        {
+          "type": "billing",
+          "name": "Billing",
+          "value": "Remington61@yahoo.com"
+        }
+      ],
+      "phones": [
+        {
+          "type": "contact",
+          "name": "Contact",
+          "value": "334.915.3967"
+        },
+        {
+          "type": "sales",
+          "name": "Sales",
+          "value": "(498) 662-9816"
+        },
+        {
+          "type": "billing",
+          "name": "Billing",
+          "value": "256-811-9327"
+        }
+      ],
+      "website": "https://ample-oleo.com/",
+      "taxInfo": {
+        "taxId": "9rIBZlkT3g",
+        "isMexTaxId": false,
+        "fiscalRegime": "iusto",
+        "proofTaxSituation": "tabernus",
+        "proofTaxSituationDate": "2023-10-22T02:32:05.128Z",
+        "proofTaxSituationPdf": "https://well-documented-insolence.net/",
+        "billingAddress": {
+          "street": "N Broadway Street",
+          "numberExterior": "418 Ali Roads",
+          "numberInterior": "Apt. 430",
+          "neighborhood": "Northumberland",
+          "city": "Lake Kelton",
+          "district": "Tennessee",
+          "zipCode": "44471",
+          "state": "West Virginia",
+          "countryCode": "PY"
+        }
+      },
+      "links": [
+        {
+          "name": "website",
+          "value": "https://lined-cartoon.com"
+        },
+        {
+          "name": "facebook",
+          "value": "https://decisive-glut.biz"
+        },
+        {
+          "name": "linkedin",
+          "value": "https://obedient-collector.info/"
+        },
+        {
+          "name": "twitter",
+          "value": "https://total-illness.org/"
+        },
+        {
+          "name": "other",
+          "value": "https://oily-lifetime.net/"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Eligendi torrens carmen copiose. Accommodo unde vinitor. Audacia angulus ventito explicabo uterque adstringo vulariter suasoria arto vinculum.",
+          "createdAt": "2023-04-22T17:12:03.386Z",
+          "updatedAt": "2024-02-20T09:03:41.897Z"
+        }
+      ],
+      "shippingAddresses": [
+        {
+          "title": "cornu",
+          "description": "sequi error perspiciatis",
+          "note": "tero aer decerno",
+          "street": "Washington Avenue",
+          "numberExterior": "338 Claude Forges",
+          "numberInterior": "Suite 289",
+          "neighborhood": "Merseyside",
+          "city": "Dillonville",
+          "district": "South Carolina",
+          "zipCode": "40527-6607",
+          "state": "Nevada",
+          "countryCode": "LR"
+        }
+      ],
+      "bankAccounts": [
+        {
+          "name": "Money Market Account",
+          "currency": "FJD",
+          "type": "account",
+          "beneficiary": "Savings Account",
+          "number": "Investment Account",
+          "clabe": "3431",
+          "swift": "VCSNFIWS",
+          "iban": "FI9500607699900369",
+          "bank": {
+            "name": "Zemlak - Romaguera",
+            "city": "Hermanside",
+            "code": "LUFHKIUL",
+            "country": "Georgia"
+          },
+          "other": "caelestis contigo urbanus"
+        }
+      ],
+      "defaults": {
+        "expensesAccount": "87749144",
+        "language": "PM",
+        "currency": "TWD",
+        "paymentMethod": "aequus",
+        "paymentForm": "desino",
+        "paymentDeadline": "animadverto",
+        "paymentTerms": "at"
+      },
+      "createdAt": "2023-05-02T05:56:30.189Z",
+      "updatedAt": "2024-02-19T14:27:46.098Z"
+    }
+  },
+  {
+    "key": [
+      "accounts",
+      "01HQ31Q20NFSBH9J2RW2RK75CK"
+    ],
+    "value": {
+      "id": "01HQ31Q20NFSBH9J2RW2RK75CK",
+      "type": "supplier",
+      "name": "Mertz LLC",
+      "legalName": "Spencer, Bogan and Schoen",
+      "emails": [
+        {
+          "type": "contact",
+          "name": "Contact",
+          "value": "Emmy.Hoppe9@yahoo.com"
+        },
+        {
+          "type": "sales",
+          "name": "Sales",
+          "value": "Hermann_Cummerata@yahoo.com"
+        },
+        {
+          "type": "billing",
+          "name": "Billing",
+          "value": "Frederick.Altenwerth71@hotmail.com"
+        }
+      ],
+      "phones": [
+        {
+          "type": "contact",
+          "name": "Contact",
+          "value": "396-527-7513 x54531"
+        },
+        {
+          "type": "sales",
+          "name": "Sales",
+          "value": "991.870.8773 x829"
+        },
+        {
+          "type": "billing",
+          "name": "Billing",
+          "value": "717-257-0153 x976"
+        }
+      ],
+      "website": "https://outrageous-king.net",
+      "taxInfo": {
+        "taxId": "DowbcfvEgR",
+        "isMexTaxId": true,
+        "fiscalRegime": "curiositas",
+        "proofTaxSituation": "accusantium",
+        "proofTaxSituationDate": "2023-10-13T13:52:21.896Z",
+        "proofTaxSituationPdf": "https://remarkable-fibrosis.biz/",
+        "billingAddress": {
+          "street": "S Jefferson Street",
+          "numberExterior": "694 Lorena Union",
+          "numberInterior": "Apt. 139",
+          "neighborhood": "West Glamorgan",
+          "city": "Lake Marinafield",
+          "district": "New Mexico",
+          "zipCode": "16540-8800",
+          "state": "New Jersey",
+          "countryCode": "MP"
+        }
+      },
+      "links": [
+        {
+          "name": "website",
+          "value": "https://well-off-faithful.info/"
+        },
+        {
+          "name": "facebook",
+          "value": "https://speedy-disparity.net"
+        },
+        {
+          "name": "linkedin",
+          "value": "https://mealy-muscatel.org"
+        },
+        {
+          "name": "twitter",
+          "value": "https://downright-territory.biz"
+        },
+        {
+          "name": "other",
+          "value": "https://crisp-blast.org/"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Videlicet tui condico desolo accusamus adamo. Coerceo assumenda asporto thesaurus argentum supellex virgo socius odio. Terga sollers amissio adstringo.",
+          "createdAt": "2023-04-03T14:32:12.583Z",
+          "updatedAt": "2024-02-20T04:59:03.688Z"
+        }
+      ],
+      "shippingAddresses": [
+        {
+          "title": "taceo",
+          "description": "acceptus perferendis auctor",
+          "note": "adflicto cultellus vel",
+          "street": "Zulauf Gateway",
+          "numberExterior": "2723 W 6th Street",
+          "numberInterior": "Apt. 438",
+          "neighborhood": "Northumberland",
+          "city": "Kuvalisville",
+          "district": "South Dakota",
+          "zipCode": "40416-1412",
+          "state": "North Carolina",
+          "countryCode": "VN"
+        }
+      ],
+      "bankAccounts": [
+        {
+          "name": "Money Market Account",
+          "currency": "MRU",
+          "type": "account",
+          "beneficiary": "Personal Loan Account",
+          "number": "Money Market Account",
+          "clabe": "0050",
+          "swift": "GRCECF8QXXX",
+          "iban": "TL550475400501160900176",
+          "bank": {
+            "name": "Roberts, Oberbrunner and Kassulke",
+            "city": "Ozellahaven",
+            "code": "MWCQAT7S",
+            "country": "Croatia"
+          },
+          "other": "sui agnosco acsi"
+        }
+      ],
+      "defaults": {
+        "expensesAccount": "74178175",
+        "language": "TG",
+        "currency": "XAF",
+        "paymentMethod": "denego",
+        "paymentForm": "degusto",
+        "paymentDeadline": "capto",
+        "paymentTerms": "ulterius"
+      },
+      "createdAt": "2023-09-12T21:57:04.328Z",
+      "updatedAt": "2024-02-20T10:09:10.733Z"
+    }
+  },
+  {
+    "key": [
+      "accounts",
+      "01HQ31Q20NFSBH9J2RW2RK75CM"
+    ],
+    "value": {
+      "id": "01HQ31Q20NFSBH9J2RW2RK75CM",
+      "type": "customer",
+      "name": "Schuppe Group",
+      "legalName": "Schinner - Bednar",
+      "emails": [
+        {
+          "type": "contact",
+          "name": "Contact",
+          "value": "Buddy.Hudson@yahoo.com"
+        },
+        {
+          "type": "sales",
+          "name": "Sales",
+          "value": "Owen_Glover@gmail.com"
+        },
+        {
+          "type": "billing",
+          "name": "Billing",
+          "value": "Fredrick.Schultz@hotmail.com"
+        }
+      ],
+      "phones": [
+        {
+          "type": "contact",
+          "name": "Contact",
+          "value": "759-800-6722"
+        },
+        {
+          "type": "sales",
+          "name": "Sales",
+          "value": "1-610-617-0667 x37452"
+        },
+        {
+          "type": "billing",
+          "name": "Billing",
+          "value": "(905) 779-1084"
+        }
+      ],
+      "website": "https://gullible-centurion.net",
+      "taxInfo": {
+        "taxId": "nGWraBulS7",
+        "isMexTaxId": false,
+        "fiscalRegime": "tertius",
+        "proofTaxSituation": "ago",
+        "proofTaxSituationDate": "2023-11-11T07:36:56.403Z",
+        "proofTaxSituationPdf": "https://questionable-grenade.org/",
+        "billingAddress": {
+          "street": "Mitchell Estates",
+          "numberExterior": "55469 First Street",
+          "numberInterior": "Apt. 945",
+          "neighborhood": "West Glamorgan",
+          "city": "Walshstead",
+          "district": "Hawaii",
+          "zipCode": "71451",
+          "state": "Illinois",
+          "countryCode": "CW"
+        }
+      },
+      "links": [
+        {
+          "name": "website",
+          "value": "https://pesky-gland.info/"
+        },
+        {
+          "name": "facebook",
+          "value": "https://impossible-derivative.com/"
+        },
+        {
+          "name": "linkedin",
+          "value": "https://ornery-outside.net"
+        },
+        {
+          "name": "twitter",
+          "value": "https://overjoyed-eyeglasses.name/"
+        },
+        {
+          "name": "other",
+          "value": "https://decent-spelling.com"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Voluptatibus utor surculus cura caecus officiis compono. Complectus una spero delicate allatus admoneo vester stultus. Administratio sui theca auctor fuga vindico nemo.",
+          "createdAt": "2023-12-22T01:00:09.329Z",
+          "updatedAt": "2024-02-20T03:22:19.961Z"
+        }
+      ],
+      "shippingAddresses": [
+        {
+          "title": "cuppedia",
+          "description": "ver copia ipsam",
+          "note": "acervus dolores tantum",
+          "street": "Coronation Avenue",
+          "numberExterior": "3721 Greenwood Road",
+          "numberInterior": "Suite 145",
+          "neighborhood": "Madison County",
+          "city": "Lake Jovanberg",
+          "district": "North Carolina",
+          "zipCode": "83505-2062",
+          "state": "Arkansas",
+          "countryCode": "DK"
+        }
+      ],
+      "bankAccounts": [
+        {
+          "name": "Investment Account",
+          "currency": "BWP",
+          "type": "account",
+          "beneficiary": "Home Loan Account",
+          "number": "Investment Account",
+          "clabe": "5068",
+          "swift": "CQIQSSP8XXX",
+          "iban": "BA458056689029009093",
+          "bank": {
+            "name": "Kemmer LLC",
+            "city": "New Berryworth",
+            "code": "SFMQCI6U",
+            "country": "Seychelles"
+          },
+          "other": "aveho depraedor amplus"
+        }
+      ],
+      "defaults": {
+        "expensesAccount": "54350085",
+        "language": "RU",
+        "currency": "UYU",
+        "paymentMethod": "verus",
+        "paymentForm": "cumque",
+        "paymentDeadline": "sufficio",
+        "paymentTerms": "vito"
+      },
+      "createdAt": "2023-12-11T22:29:58.826Z",
+      "updatedAt": "2024-02-19T16:17:51.876Z"
+    }
+  },
+  {
+    "key": [
+      "accounts",
+      "01HQ31Q20QN9BTY6GVFC5SNEQ4"
+    ],
+    "value": {
+      "id": "01HQ31Q20QN9BTY6GVFC5SNEQ4",
+      "type": "supplier",
+      "name": "Walter - Oberbrunner",
+      "legalName": "Reynolds, Wiegand and Kris",
+      "emails": [
+        {
+          "type": "contact",
+          "name": "Contact",
+          "value": "Rosa.Becker@hotmail.com"
+        },
+        {
+          "type": "sales",
+          "name": "Sales",
+          "value": "Jordyn_Kuphal@yahoo.com"
+        },
+        {
+          "type": "billing",
+          "name": "Billing",
+          "value": "Leora_Kulas@yahoo.com"
+        }
+      ],
+      "phones": [
+        {
+          "type": "contact",
+          "name": "Contact",
+          "value": "307.493.4938"
+        },
+        {
+          "type": "sales",
+          "name": "Sales",
+          "value": "1-863-512-5452"
+        },
+        {
+          "type": "billing",
+          "name": "Billing",
+          "value": "(921) 636-2221 x43576"
+        }
+      ],
+      "website": "https://serpentine-dahlia.name/",
+      "taxInfo": {
+        "taxId": "TuUGZj8pqe",
+        "isMexTaxId": false,
+        "fiscalRegime": "pariatur",
+        "proofTaxSituation": "defessus",
+        "proofTaxSituationDate": "2023-03-23T11:38:44.346Z",
+        "proofTaxSituationPdf": "https://beloved-haircut.com/",
+        "billingAddress": {
+          "street": "Sonia Greens",
+          "numberExterior": "161 E Central Avenue",
+          "numberInterior": "Apt. 523",
+          "neighborhood": "Cornwall",
+          "city": "McDermottworth",
+          "district": "Arizona",
+          "zipCode": "29316-0431",
+          "state": "Georgia",
+          "countryCode": "NO"
+        }
+      },
+      "links": [
+        {
+          "name": "website",
+          "value": "https://wide-eyed-heart-throb.name/"
+        },
+        {
+          "name": "facebook",
+          "value": "https://used-nightlife.info"
+        },
+        {
+          "name": "linkedin",
+          "value": "https://calm-zoologist.biz/"
+        },
+        {
+          "name": "twitter",
+          "value": "https://fickle-hydraulics.com"
+        },
+        {
+          "name": "other",
+          "value": "https://icky-guava.com/"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Arca acer acidus creator vilis aro cernuus verbera defungo via. Voluptatum cognomen stella summisse. Cupiditate addo vulpes cruciamentum acceptus reiciendis corpus voluptate.",
+          "createdAt": "2023-04-04T05:33:17.564Z",
+          "updatedAt": "2024-02-20T08:40:35.364Z"
+        }
+      ],
+      "shippingAddresses": [
+        {
+          "title": "bis",
+          "description": "atqui curiositas utrimque",
+          "note": "clam tibi aptus",
+          "street": "Beech Drive",
+          "numberExterior": "14597 Lorenz Pass",
+          "numberInterior": "Apt. 803",
+          "neighborhood": "Mid Glamorgan",
+          "city": "East Cordiachester",
+          "district": "California",
+          "zipCode": "77085",
+          "state": "Illinois",
+          "countryCode": "FM"
+        }
+      ],
+      "bankAccounts": [
+        {
+          "name": "Personal Loan Account",
+          "currency": "KES",
+          "type": "account",
+          "beneficiary": "Checking Account",
+          "number": "Credit Card Account",
+          "clabe": "9511",
+          "swift": "FTFVVUYI",
+          "iban": "AL7790020598321087641225H491",
+          "bank": {
+            "name": "McLaughlin - MacGyver",
+            "city": "Tillmanchester",
+            "code": "QATIVGUBWHA",
+            "country": "Faroe Islands"
+          },
+          "other": "vitium contigo patruus"
+        }
+      ],
+      "defaults": {
+        "expensesAccount": "28305006",
+        "language": "ZM",
+        "currency": "PAB",
+        "paymentMethod": "adstringo",
+        "paymentForm": "defluo",
+        "paymentDeadline": "subnecto",
+        "paymentTerms": "cunabula"
+      },
+      "createdAt": "2024-02-10T14:39:45.585Z",
+      "updatedAt": "2024-02-19T21:27:10.755Z"
+    }
+  },
+  {
+    "key": [
+      "accounts",
+      "01HQ31Q20R48YGQNAEAJDDVVR9"
+    ],
+    "value": {
+      "id": "01HQ31Q20R48YGQNAEAJDDVVR9",
+      "type": "prospect",
+      "name": "Bergstrom, Simonis and Ferry",
+      "legalName": "Bauch - Terry",
+      "emails": [
+        {
+          "type": "contact",
+          "name": "Contact",
+          "value": "Carrie95@yahoo.com"
+        },
+        {
+          "type": "sales",
+          "name": "Sales",
+          "value": "Eileen8@yahoo.com"
+        },
+        {
+          "type": "billing",
+          "name": "Billing",
+          "value": "Hettie_Quitzon@hotmail.com"
+        }
+      ],
+      "phones": [
+        {
+          "type": "contact",
+          "name": "Contact",
+          "value": "542.878.0791 x3809"
+        },
+        {
+          "type": "sales",
+          "name": "Sales",
+          "value": "1-658-381-0141 x2552"
+        },
+        {
+          "type": "billing",
+          "name": "Billing",
+          "value": "647.792.0637 x71989"
+        }
+      ],
+      "website": "https://able-prosecutor.info/",
+      "taxInfo": {
+        "taxId": "O5gyLAKSQe",
+        "isMexTaxId": true,
+        "fiscalRegime": "sopor",
+        "proofTaxSituation": "pecto",
+        "proofTaxSituationDate": "2023-09-02T20:08:33.817Z",
+        "proofTaxSituationPdf": "https://sturdy-keyboard.org",
+        "billingAddress": {
+          "street": "W Grand Avenue",
+          "numberExterior": "1864 Koepp Stream",
+          "numberInterior": "Apt. 574",
+          "neighborhood": "Polk County",
+          "city": "East Mollyborough",
+          "district": "Alaska",
+          "zipCode": "14550",
+          "state": "Nevada",
+          "countryCode": "CA"
+        }
+      },
+      "links": [
+        {
+          "name": "website",
+          "value": "https://bubbly-technology.com"
+        },
+        {
+          "name": "facebook",
+          "value": "https://yearly-revelation.net"
+        },
+        {
+          "name": "linkedin",
+          "value": "https://hollow-housewife.biz/"
+        },
+        {
+          "name": "twitter",
+          "value": "https://swift-latency.biz/"
+        },
+        {
+          "name": "other",
+          "value": "https://jumbo-buckwheat.info"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Callide eos bos apud depono abstergo degenero desino aestus. Tenax tepesco nam conforto aegre utrimque cavus. Caveo vaco timor curto subnecto assentator cruentus libero.",
+          "createdAt": "2023-06-12T06:18:14.760Z",
+          "updatedAt": "2024-02-19T19:19:35.675Z"
+        }
+      ],
+      "shippingAddresses": [
+        {
+          "title": "temeritas",
+          "description": "conservo consectetur teres",
+          "note": "villa tepesco creo",
+          "street": "Orchard Drive",
+          "numberExterior": "10345 Warren Road",
+          "numberInterior": "Suite 448",
+          "neighborhood": "Devon",
+          "city": "Rubieborough",
+          "district": "North Dakota",
+          "zipCode": "34892-8559",
           "state": "Montana",
-          "countryCode": "CO"
+          "countryCode": "PY"
+        }
+      ],
+      "bankAccounts": [
+        {
+          "name": "Credit Card Account",
+          "currency": "CDF",
+          "type": "account",
+          "beneficiary": "Personal Loan Account",
+          "number": "Savings Account",
+          "clabe": "0887",
+          "swift": "REXENA9S",
+          "iban": "DO49DVEP00145200010160530015",
+          "bank": {
+            "name": "Conroy Group",
+            "city": "New Kaitlyn",
+            "code": "OBZWPNEIXXX",
+            "country": "Svalbard & Jan Mayen Islands"
+          },
+          "other": "auctor bellicus aeneus"
+        }
+      ],
+      "defaults": {
+        "expensesAccount": "06364198",
+        "language": "IN",
+        "currency": "BTN",
+        "paymentMethod": "cunctatio",
+        "paymentForm": "somnus",
+        "paymentDeadline": "explicabo",
+        "paymentTerms": "aiunt"
+      },
+      "createdAt": "2023-02-24T15:04:57.307Z",
+      "updatedAt": "2024-02-19T20:57:38.945Z"
+    }
+  },
+  {
+    "key": [
+      "accounts",
+      "01HQ31Q20R48YGQNAEAJDDVVRA"
+    ],
+    "value": {
+      "id": "01HQ31Q20R48YGQNAEAJDDVVRA",
+      "type": "customer",
+      "name": "Wiza Group",
+      "legalName": "Mraz and Sons",
+      "emails": [
+        {
+          "type": "contact",
+          "name": "Contact",
+          "value": "Johathan.Weimann38@hotmail.com"
+        },
+        {
+          "type": "sales",
+          "name": "Sales",
+          "value": "Fausto.Jacobson@yahoo.com"
+        },
+        {
+          "type": "billing",
+          "name": "Billing",
+          "value": "Otha.Collins34@hotmail.com"
+        }
+      ],
+      "phones": [
+        {
+          "type": "contact",
+          "name": "Contact",
+          "value": "1-579-322-6710 x011"
+        },
+        {
+          "type": "sales",
+          "name": "Sales",
+          "value": "(489) 215-9843 x146"
+        },
+        {
+          "type": "billing",
+          "name": "Billing",
+          "value": "552-405-4335 x2296"
+        }
+      ],
+      "website": "https://limp-switchboard.com",
+      "taxInfo": {
+        "taxId": "8rXqXbu1Om",
+        "isMexTaxId": false,
+        "fiscalRegime": "solio",
+        "proofTaxSituation": "amiculum",
+        "proofTaxSituationDate": "2023-06-26T21:13:21.740Z",
+        "proofTaxSituationPdf": "https://massive-flytrap.org/",
+        "billingAddress": {
+          "street": "Schneider Hills",
+          "numberExterior": "755 Water Street",
+          "numberInterior": "Apt. 364",
+          "neighborhood": "Somerset",
+          "city": "Burbank",
+          "district": "Kansas",
+          "zipCode": "69753",
+          "state": "Colorado",
+          "countryCode": "NZ"
+        }
+      },
+      "links": [
+        {
+          "name": "website",
+          "value": "https://knotty-purchase.org"
+        },
+        {
+          "name": "facebook",
+          "value": "https://back-cockroach.net"
+        },
+        {
+          "name": "linkedin",
+          "value": "https://proper-anarchy.info"
+        },
+        {
+          "name": "twitter",
+          "value": "https://unsung-spawn.net/"
+        },
+        {
+          "name": "other",
+          "value": "https://dimpled-mentor.biz"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Corrupti tenetur contego vitium deduco sumptus pauper appello. Supellex copia vergo nesciunt arcus fugit trepide. Cur veritatis curis timidus sumo.",
+          "createdAt": "2023-05-05T23:25:07.755Z",
+          "updatedAt": "2024-02-20T04:04:32.396Z"
+        }
+      ],
+      "shippingAddresses": [
+        {
+          "title": "agnosco",
+          "description": "bonus arceo concido",
+          "note": "conculco corpus spoliatio",
+          "street": "S Bridge Street",
+          "numberExterior": "344 Wintheiser Squares",
+          "numberInterior": "Suite 468",
+          "neighborhood": "Staffordshire",
+          "city": "Colecester",
+          "district": "Nevada",
+          "zipCode": "48125",
+          "state": "Oregon",
+          "countryCode": "BB"
+        }
+      ],
+      "bankAccounts": [
+        {
+          "name": "Investment Account",
+          "currency": "BIF",
+          "type": "account",
+          "beneficiary": "Personal Loan Account",
+          "number": "Money Market Account",
+          "clabe": "7878",
+          "swift": "TIJNCWGWXXX",
+          "iban": "LU800204E3753238H471",
+          "bank": {
+            "name": "DuBuque - Wolff",
+            "city": "Fort Javiertown",
+            "code": "DYMNUS6L8UQ",
+            "country": "French Guiana"
+          },
+          "other": "caveo terreo degenero"
+        }
+      ],
+      "defaults": {
+        "expensesAccount": "64507844",
+        "language": "KP",
+        "currency": "ZAR",
+        "paymentMethod": "supplanto",
+        "paymentForm": "statim",
+        "paymentDeadline": "debilito",
+        "paymentTerms": "asporto"
+      },
+      "createdAt": "2023-03-17T10:02:19.077Z",
+      "updatedAt": "2024-02-20T01:12:17.076Z"
+    }
+  },
+  {
+    "key": [
+      "accounts",
+      "01HQ31Q20S0AE0280V22NX6Q3C"
+    ],
+    "value": {
+      "id": "01HQ31Q20S0AE0280V22NX6Q3C",
+      "type": "other",
+      "name": "Shields and Sons",
+      "legalName": "Crooks - Monahan",
+      "emails": [
+        {
+          "type": "contact",
+          "name": "Contact",
+          "value": "Winston_Wisozk-Donnelly@gmail.com"
+        },
+        {
+          "type": "sales",
+          "name": "Sales",
+          "value": "Jayde.Lind@yahoo.com"
+        },
+        {
+          "type": "billing",
+          "name": "Billing",
+          "value": "Justen.Olson@hotmail.com"
+        }
+      ],
+      "phones": [
+        {
+          "type": "contact",
+          "name": "Contact",
+          "value": "(343) 767-8872 x7803"
+        },
+        {
+          "type": "sales",
+          "name": "Sales",
+          "value": "698-814-1010"
+        },
+        {
+          "type": "billing",
+          "name": "Billing",
+          "value": "(651) 858-0457"
+        }
+      ],
+      "website": "https://jealous-controller.info",
+      "taxInfo": {
+        "taxId": "gwaJnoHgQ1",
+        "isMexTaxId": false,
+        "fiscalRegime": "subseco",
+        "proofTaxSituation": "architecto",
+        "proofTaxSituationDate": "2024-01-22T08:31:34.169Z",
+        "proofTaxSituationPdf": "https://both-refusal.biz/",
+        "billingAddress": {
+          "street": "East Street",
+          "numberExterior": "52567 Pine Grove",
+          "numberInterior": "Suite 680",
+          "neighborhood": "Shropshire",
+          "city": "Antoneworth",
+          "district": "Wyoming",
+          "zipCode": "36958-0555",
+          "state": "Wisconsin",
+          "countryCode": "BB"
+        }
+      },
+      "links": [
+        {
+          "name": "website",
+          "value": "https://realistic-establishment.net/"
+        },
+        {
+          "name": "facebook",
+          "value": "https://exotic-admire.org/"
+        },
+        {
+          "name": "linkedin",
+          "value": "https://gruesome-conformation.biz"
+        },
+        {
+          "name": "twitter",
+          "value": "https://valid-tempo.info/"
+        },
+        {
+          "name": "other",
+          "value": "https://tame-clockwork.name/"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Victoria absens conventus labore deporto. Iusto tamisium combibo. Vado cultura solvo vestrum voluptate solio tenetur deorsum.",
+          "createdAt": "2023-02-25T05:30:17.918Z",
+          "updatedAt": "2024-02-20T03:49:34.882Z"
+        }
+      ],
+      "shippingAddresses": [
+        {
+          "title": "avarus",
+          "description": "valetudo aliquam angustus",
+          "note": "defendo carus umquam",
+          "street": "Zoie Junctions",
+          "numberExterior": "91293 The Square",
+          "numberInterior": "Apt. 108",
+          "neighborhood": "Fayette County",
+          "city": "New Marquis",
+          "district": "Wisconsin",
+          "zipCode": "03339-7101",
+          "state": "Montana",
+          "countryCode": "SC"
+        }
+      ],
+      "bankAccounts": [
+        {
+          "name": "Personal Loan Account",
+          "currency": "PAB",
+          "type": "account",
+          "beneficiary": "Investment Account",
+          "number": "Credit Card Account",
+          "clabe": "2255",
+          "swift": "NJXRLTPHXXX",
+          "iban": "ME05074100808273005009",
+          "bank": {
+            "name": "Grady, Crooks and Thompson",
+            "city": "North Dortha",
+            "code": "DUMFMYTT",
+            "country": "Virgin Islands, British"
+          },
+          "other": "tot audacia amita"
+        }
+      ],
+      "defaults": {
+        "expensesAccount": "78401987",
+        "language": "IR",
+        "currency": "XPF",
+        "paymentMethod": "cupressus",
+        "paymentForm": "nulla",
+        "paymentDeadline": "amplexus",
+        "paymentTerms": "quo"
+      },
+      "createdAt": "2023-09-16T01:03:12.477Z",
+      "updatedAt": "2024-02-20T10:18:45.840Z"
+    }
+  },
+  {
+    "key": [
+      "accounts",
+      "01HQ31Q20S0AE0280V22NX6Q3D"
+    ],
+    "value": {
+      "id": "01HQ31Q20S0AE0280V22NX6Q3D",
+      "type": "prospect",
+      "name": "Bayer Inc",
+      "legalName": "Fritsch, Howe and Koelpin",
+      "emails": [
+        {
+          "type": "contact",
+          "name": "Contact",
+          "value": "Nicholaus34@yahoo.com"
+        },
+        {
+          "type": "sales",
+          "name": "Sales",
+          "value": "Samara_Konopelski@gmail.com"
+        },
+        {
+          "type": "billing",
+          "name": "Billing",
+          "value": "Michele26@gmail.com"
+        }
+      ],
+      "phones": [
+        {
+          "type": "contact",
+          "name": "Contact",
+          "value": "(355) 347-4636 x9939"
+        },
+        {
+          "type": "sales",
+          "name": "Sales",
+          "value": "771-637-4682 x1231"
+        },
+        {
+          "type": "billing",
+          "name": "Billing",
+          "value": "352-268-8326 x63842"
+        }
+      ],
+      "website": "https://finished-register.name",
+      "taxInfo": {
+        "taxId": "UzKy6Tbc6S",
+        "isMexTaxId": true,
+        "fiscalRegime": "tempora",
+        "proofTaxSituation": "tam",
+        "proofTaxSituationDate": "2023-06-28T22:03:20.194Z",
+        "proofTaxSituationPdf": "https://short-squirrel.name/",
+        "billingAddress": {
+          "street": "Winfield Motorway",
+          "numberExterior": "62415 Reichel Mews",
+          "numberInterior": "Suite 444",
+          "neighborhood": "Oxfordshire",
+          "city": "Newark",
+          "district": "Nevada",
+          "zipCode": "09069",
+          "state": "New York",
+          "countryCode": "KM"
+        }
+      },
+      "links": [
+        {
+          "name": "website",
+          "value": "https://remorseful-diagnosis.info"
+        },
+        {
+          "name": "facebook",
+          "value": "https://enormous-equivalent.org"
+        },
+        {
+          "name": "linkedin",
+          "value": "https://haunting-redhead.info/"
+        },
+        {
+          "name": "twitter",
+          "value": "https://flimsy-sash.info/"
+        },
+        {
+          "name": "other",
+          "value": "https://misguided-viscose.org/"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Decumbo demum ullus ustilo suscipit aveho totus. Aspernatur appono circumvenio. Urbs caritas textilis pectus barba alveus ago.",
+          "createdAt": "2023-06-01T10:25:15.293Z",
+          "updatedAt": "2024-02-20T10:06:52.819Z"
+        }
+      ],
+      "shippingAddresses": [
+        {
+          "title": "beatus",
+          "description": "damnatio conspergo suppellex",
+          "note": "desolo eos defaeco",
+          "street": "Vincent Ferry",
+          "numberExterior": "490 Gibson Centers",
+          "numberInterior": "Apt. 838",
+          "neighborhood": "Northamptonshire",
+          "city": "Lake Aiden",
+          "district": "Montana",
+          "zipCode": "05481",
+          "state": "Maine",
+          "countryCode": "TM"
+        }
+      ],
+      "bankAccounts": [
+        {
+          "name": "Personal Loan Account",
+          "currency": "LYD",
+          "type": "account",
+          "beneficiary": "Checking Account",
+          "number": "Credit Card Account",
+          "clabe": "1350",
+          "swift": "SRSTAO58",
+          "iban": "AZ09MNYU03001004510701002038",
+          "bank": {
+            "name": "Wunsch LLC",
+            "city": "Townestad",
+            "code": "YQEUSN8N",
+            "country": "Latvia"
+          },
+          "other": "eius spectaculum cras"
+        }
+      ],
+      "defaults": {
+        "expensesAccount": "77980337",
+        "language": "GN",
+        "currency": "MMK",
+        "paymentMethod": "sponte",
+        "paymentForm": "vis",
+        "paymentDeadline": "officia",
+        "paymentTerms": "amitto"
+      },
+      "createdAt": "2023-03-31T02:55:52.005Z",
+      "updatedAt": "2024-02-20T01:10:40.296Z"
+    }
+  },
+  {
+    "key": [
+      "accounts",
+      "01HQ31Q20S0AE0280V22NX6Q3E"
+    ],
+    "value": {
+      "id": "01HQ31Q20S0AE0280V22NX6Q3E",
+      "type": "supplier",
+      "name": "Nitzsche, Kihn and Moen",
+      "legalName": "Fritsch, Stoltenberg and Bahringer",
+      "emails": [
+        {
+          "type": "contact",
+          "name": "Contact",
+          "value": "Edwina_Bayer17@hotmail.com"
+        },
+        {
+          "type": "sales",
+          "name": "Sales",
+          "value": "Jailyn_Huel@hotmail.com"
+        },
+        {
+          "type": "billing",
+          "name": "Billing",
+          "value": "Larissa.Rau35@yahoo.com"
+        }
+      ],
+      "phones": [
+        {
+          "type": "contact",
+          "name": "Contact",
+          "value": "627.555.7042 x61202"
+        },
+        {
+          "type": "sales",
+          "name": "Sales",
+          "value": "896-698-8271 x590"
+        },
+        {
+          "type": "billing",
+          "name": "Billing",
+          "value": "735-436-9593 x2678"
+        }
+      ],
+      "website": "https://creamy-flexibility.com",
+      "taxInfo": {
+        "taxId": "kX2kSMiS4G",
+        "isMexTaxId": false,
+        "fiscalRegime": "cohaero",
+        "proofTaxSituation": "accusator",
+        "proofTaxSituationDate": "2023-10-06T05:40:10.473Z",
+        "proofTaxSituationPdf": "https://quaint-mother-in-law.info/",
+        "billingAddress": {
+          "street": "Marty Ports",
+          "numberExterior": "52507 Collier Groves",
+          "numberInterior": "Apt. 267",
+          "neighborhood": "Rutland",
+          "city": "Onieton",
+          "district": "Delaware",
+          "zipCode": "90751",
+          "state": "Washington",
+          "countryCode": "AM"
+        }
+      },
+      "links": [
+        {
+          "name": "website",
+          "value": "https://jealous-workforce.info/"
+        },
+        {
+          "name": "facebook",
+          "value": "https://lean-synthesis.net/"
+        },
+        {
+          "name": "linkedin",
+          "value": "https://unaware-conception.net/"
+        },
+        {
+          "name": "twitter",
+          "value": "https://far-flung-licence.net/"
+        },
+        {
+          "name": "other",
+          "value": "https://profitable-cigarette.info/"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Vesper at aspicio. Aiunt inflammatio vacuus ab coepi. Congregatio verecundia voluptate conicio corroboro amet.",
+          "createdAt": "2024-01-23T03:26:10.644Z",
+          "updatedAt": "2024-02-19T17:22:33.478Z"
+        }
+      ],
+      "shippingAddresses": [
+        {
+          "title": "avaritia",
+          "description": "dedecor conicio debitis",
+          "note": "voluptatibus tandem adfectus",
+          "street": "Ryan Forks",
+          "numberExterior": "301 Zoe Spur",
+          "numberInterior": "Suite 606",
+          "neighborhood": "Wiltshire",
+          "city": "Amelialand",
+          "district": "Vermont",
+          "zipCode": "24345",
+          "state": "Mississippi",
+          "countryCode": "AX"
+        }
+      ],
+      "bankAccounts": [
+        {
+          "name": "Credit Card Account",
+          "currency": "GHS",
+          "type": "account",
+          "beneficiary": "Credit Card Account",
+          "number": "Checking Account",
+          "clabe": "9328",
+          "swift": "TOFMTVMU",
+          "iban": "LV36UCPDU258512A17176",
+          "bank": {
+            "name": "Yost Inc",
+            "city": "South San Francisco",
+            "code": "VZTCTMMM",
+            "country": "Bahamas"
+          },
+          "other": "alveus quae veritas"
+        }
+      ],
+      "defaults": {
+        "expensesAccount": "04330436",
+        "language": "LS",
+        "currency": "MWK",
+        "paymentMethod": "arto",
+        "paymentForm": "utique",
+        "paymentDeadline": "solum",
+        "paymentTerms": "decor"
+      },
+      "createdAt": "2023-10-24T09:57:39.214Z",
+      "updatedAt": "2024-02-19T17:36:34.272Z"
+    }
+  },
+  {
+    "key": [
+      "accounts",
+      "01HQ31Q20TAZ2436S3QY9QFSS5"
+    ],
+    "value": {
+      "id": "01HQ31Q20TAZ2436S3QY9QFSS5",
+      "type": "supplier",
+      "name": "Hauck, Cole and Ziemann",
+      "legalName": "Schmeler Group",
+      "emails": [
+        {
+          "type": "contact",
+          "name": "Contact",
+          "value": "Zakary_Huels0@hotmail.com"
+        },
+        {
+          "type": "sales",
+          "name": "Sales",
+          "value": "Major_Hoeger@hotmail.com"
+        },
+        {
+          "type": "billing",
+          "name": "Billing",
+          "value": "Karlee22@gmail.com"
+        }
+      ],
+      "phones": [
+        {
+          "type": "contact",
+          "name": "Contact",
+          "value": "370.560.5852 x029"
+        },
+        {
+          "type": "sales",
+          "name": "Sales",
+          "value": "956-426-3932 x59785"
+        },
+        {
+          "type": "billing",
+          "name": "Billing",
+          "value": "867-725-9191 x081"
+        }
+      ],
+      "website": "https://glorious-revenant.name",
+      "taxInfo": {
+        "taxId": "qQ2qczgPlk",
+        "isMexTaxId": true,
+        "fiscalRegime": "adversus",
+        "proofTaxSituation": "deporto",
+        "proofTaxSituationDate": "2023-08-15T07:09:13.441Z",
+        "proofTaxSituationPdf": "https://misty-butler.com",
+        "billingAddress": {
+          "street": "Jonas Oval",
+          "numberExterior": "504 Gaetano River",
+          "numberInterior": "Apt. 332",
+          "neighborhood": "Wayne County",
+          "city": "New Lina",
+          "district": "Massachusetts",
+          "zipCode": "89559",
+          "state": "Hawaii",
+          "countryCode": "OM"
+        }
+      },
+      "links": [
+        {
+          "name": "website",
+          "value": "https://buzzing-bottom.net/"
+        },
+        {
+          "name": "facebook",
+          "value": "https://well-made-model.info"
+        },
+        {
+          "name": "linkedin",
+          "value": "https://gracious-pith.biz/"
+        },
+        {
+          "name": "twitter",
+          "value": "https://whopping-society.biz"
+        },
+        {
+          "name": "other",
+          "value": "https://admired-doughnut.net/"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Ab argumentum campana cado arx spargo claustrum tego repellat. Textor sum cauda atavus. Tenetur spiritus comes deleo.",
+          "createdAt": "2023-10-01T06:59:07.946Z",
+          "updatedAt": "2024-02-19T17:53:01.401Z"
+        }
+      ],
+      "shippingAddresses": [
+        {
+          "title": "denuncio",
+          "description": "clam delibero corpus",
+          "note": "clamo ventosus quas",
+          "street": "Merle Plaza",
+          "numberExterior": "795 E 6th Avenue",
+          "numberInterior": "Suite 781",
+          "neighborhood": "Hamilton County",
+          "city": "North Archside",
+          "district": "Massachusetts",
+          "zipCode": "52267-5210",
+          "state": "Georgia",
+          "countryCode": "SJ"
+        }
+      ],
+      "bankAccounts": [
+        {
+          "name": "Credit Card Account",
+          "currency": "MGA",
+          "type": "account",
+          "beneficiary": "Checking Account",
+          "number": "Savings Account",
+          "clabe": "7744",
+          "swift": "HFUVLBS0",
+          "iban": "SM44X0031030054139P90UY8E6G",
+          "bank": {
+            "name": "Schulist - Dooley",
+            "city": "Port Ransom",
+            "code": "NQOHBWJZP4B",
+            "country": "United Arab Emirates"
+          },
+          "other": "thalassinus tabernus tam"
+        }
+      ],
+      "defaults": {
+        "expensesAccount": "18486814",
+        "language": "VN",
+        "currency": "ARS",
+        "paymentMethod": "subnecto",
+        "paymentForm": "aperiam",
+        "paymentDeadline": "coerceo",
+        "paymentTerms": "coniuratio"
+      },
+      "createdAt": "2023-12-06T12:54:52.745Z",
+      "updatedAt": "2024-02-19T11:06:05.480Z"
+    }
+  },
+  {
+    "key": [
+      "accounts",
+      "01HQ31Q20TAZ2436S3QY9QFSS6"
+    ],
+    "value": {
+      "id": "01HQ31Q20TAZ2436S3QY9QFSS6",
+      "type": "supplier",
+      "name": "Smitham - Buckridge",
+      "legalName": "Kovacek - Kreiger",
+      "emails": [
+        {
+          "type": "contact",
+          "name": "Contact",
+          "value": "Keven.Jakubowski@gmail.com"
+        },
+        {
+          "type": "sales",
+          "name": "Sales",
+          "value": "Aric.Ortiz56@yahoo.com"
+        },
+        {
+          "type": "billing",
+          "name": "Billing",
+          "value": "Haylie_Wiza@hotmail.com"
+        }
+      ],
+      "phones": [
+        {
+          "type": "contact",
+          "name": "Contact",
+          "value": "573-798-1938 x2091"
+        },
+        {
+          "type": "sales",
+          "name": "Sales",
+          "value": "681.678.4078 x20447"
+        },
+        {
+          "type": "billing",
+          "name": "Billing",
+          "value": "691.256.5610 x93513"
+        }
+      ],
+      "website": "https://buttery-manor.org",
+      "taxInfo": {
+        "taxId": "XDJkHLkJxg",
+        "isMexTaxId": true,
+        "fiscalRegime": "usitas",
+        "proofTaxSituation": "tantillus",
+        "proofTaxSituationDate": "2023-12-19T07:41:18.300Z",
+        "proofTaxSituationPdf": "https://glittering-gorilla.org/",
+        "billingAddress": {
+          "street": "Lynch Course",
+          "numberExterior": "4853 Avis Street",
+          "numberInterior": "Apt. 128",
+          "neighborhood": "Lothian",
+          "city": "Davisbury",
+          "district": "Mississippi",
+          "zipCode": "32623-1628",
+          "state": "Colorado",
+          "countryCode": "MM"
+        }
+      },
+      "links": [
+        {
+          "name": "website",
+          "value": "https://considerate-confidence.net/"
+        },
+        {
+          "name": "facebook",
+          "value": "https://rude-gown.com"
+        },
+        {
+          "name": "linkedin",
+          "value": "https://defensive-spite.org"
+        },
+        {
+          "name": "twitter",
+          "value": "https://overdue-scrambled.net/"
+        },
+        {
+          "name": "other",
+          "value": "https://uneven-credit.info/"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Nulla agnitio veniam adficio vinum thesis ullam trepide. Curiositas cognatus altus paulatim demens. Vomica abstergo abbas.",
+          "createdAt": "2023-10-31T16:57:24.206Z",
+          "updatedAt": "2024-02-20T06:25:27.246Z"
+        }
+      ],
+      "shippingAddresses": [
+        {
+          "title": "conqueror",
+          "description": "trado caput adversus",
+          "note": "cui tunc utroque",
+          "street": "Feeney Glen",
+          "numberExterior": "717 Alejandrin Land",
+          "numberInterior": "Suite 231",
+          "neighborhood": "North Yorkshire",
+          "city": "West Athenabury",
+          "district": "Montana",
+          "zipCode": "27071",
+          "state": "Idaho",
+          "countryCode": "NR"
+        }
+      ],
+      "bankAccounts": [
+        {
+          "name": "Personal Loan Account",
+          "currency": "ILS",
+          "type": "account",
+          "beneficiary": "Home Loan Account",
+          "number": "Investment Account",
+          "clabe": "7412",
+          "swift": "YSFBTF0ZXXX",
+          "iban": "GB73HJSL00804802003021",
+          "bank": {
+            "name": "Schumm and Sons",
+            "city": "Midwest City",
+            "code": "ACBWGGLDX2E",
+            "country": "Eswatini"
+          },
+          "other": "umerus utique demum"
+        }
+      ],
+      "defaults": {
+        "expensesAccount": "64277929",
+        "language": "FR",
+        "currency": "KWD",
+        "paymentMethod": "conqueror",
+        "paymentForm": "volaticus",
+        "paymentDeadline": "cornu",
+        "paymentTerms": "utique"
+      },
+      "createdAt": "2024-02-14T12:06:15.006Z",
+      "updatedAt": "2024-02-19T15:53:44.530Z"
+    }
+  },
+  {
+    "key": [
+      "accounts",
+      "01HQ31Q20TAZ2436S3QY9QFSS7"
+    ],
+    "value": {
+      "id": "01HQ31Q20TAZ2436S3QY9QFSS7",
+      "type": "customer",
+      "name": "Zieme Group",
+      "legalName": "Ruecker - Rodriguez",
+      "emails": [
+        {
+          "type": "contact",
+          "name": "Contact",
+          "value": "Ellsworth67@hotmail.com"
+        },
+        {
+          "type": "sales",
+          "name": "Sales",
+          "value": "Stephania91@hotmail.com"
+        },
+        {
+          "type": "billing",
+          "name": "Billing",
+          "value": "Zion.Ruecker@hotmail.com"
+        }
+      ],
+      "phones": [
+        {
+          "type": "contact",
+          "name": "Contact",
+          "value": "1-633-420-5078"
+        },
+        {
+          "type": "sales",
+          "name": "Sales",
+          "value": "996-991-9732 x8389"
+        },
+        {
+          "type": "billing",
+          "name": "Billing",
+          "value": "646.358.7952"
+        }
+      ],
+      "website": "https://decisive-socks.name/",
+      "taxInfo": {
+        "taxId": "3e7rBo5g7y",
+        "isMexTaxId": true,
+        "fiscalRegime": "spes",
+        "proofTaxSituation": "crux",
+        "proofTaxSituationDate": "2023-07-31T02:23:36.288Z",
+        "proofTaxSituationPdf": "https://teeming-toothpick.org/",
+        "billingAddress": {
+          "street": "Michel Vista",
+          "numberExterior": "11520 Rosendo River",
+          "numberInterior": "Apt. 383",
+          "neighborhood": "Gloucestershire",
+          "city": "Tracy",
+          "district": "Illinois",
+          "zipCode": "81327-2094",
+          "state": "New Mexico",
+          "countryCode": "DZ"
+        }
+      },
+      "links": [
+        {
+          "name": "website",
+          "value": "https://shallow-championship.org"
+        },
+        {
+          "name": "facebook",
+          "value": "https://electric-shirt.net/"
+        },
+        {
+          "name": "linkedin",
+          "value": "https://thankful-computer.net"
+        },
+        {
+          "name": "twitter",
+          "value": "https://anchored-musician.com/"
+        },
+        {
+          "name": "other",
+          "value": "https://whirlwind-blight.org"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Sumptus succurro dicta demum absens vulgaris compono trans volutabrum. Confido beatus odio timidus acceptus corrigo praesentium depulso usque adhuc. Cito tergeo ceno accusator balbus audacia vigilo ambitus advenio.",
+          "createdAt": "2023-08-15T18:19:50.423Z",
+          "updatedAt": "2024-02-19T12:44:29.302Z"
+        }
+      ],
+      "shippingAddresses": [
+        {
+          "title": "dapifer",
+          "description": "tenax similique solum",
+          "note": "balbus casso omnis",
+          "street": "Rau Underpass",
+          "numberExterior": "2607 Blick Field",
+          "numberInterior": "Suite 328",
+          "neighborhood": "Lothian",
+          "city": "North Vena",
+          "district": "Oklahoma",
+          "zipCode": "16618",
+          "state": "Pennsylvania",
+          "countryCode": "MP"
+        }
+      ],
+      "bankAccounts": [
+        {
+          "name": "Home Loan Account",
+          "currency": "PKR",
+          "type": "account",
+          "beneficiary": "Home Loan Account",
+          "number": "Money Market Account",
+          "clabe": "0404",
+          "swift": "DVMHKN3E",
+          "iban": "FI8880359810637023",
+          "bank": {
+            "name": "Bernhard - McGlynn",
+            "city": "North Leo",
+            "code": "NRCWLVGU",
+            "country": "Bosnia and Herzegovina"
+          },
+          "other": "suscipit conventus adulescens"
+        }
+      ],
+      "defaults": {
+        "expensesAccount": "17438867",
+        "language": "KN",
+        "currency": "RON",
+        "paymentMethod": "vinculum",
+        "paymentForm": "statim",
+        "paymentDeadline": "eveniet",
+        "paymentTerms": "vero"
+      },
+      "createdAt": "2023-09-27T08:52:00.810Z",
+      "updatedAt": "2024-02-19T15:09:17.482Z"
+    }
+  },
+  {
+    "key": [
+      "accounts",
+      "01HQ31Q20VHJ340EDX3E06WS64"
+    ],
+    "value": {
+      "id": "01HQ31Q20VHJ340EDX3E06WS64",
+      "type": "partner",
+      "name": "Casper Inc",
+      "legalName": "Sauer, Franecki and Torp",
+      "emails": [
+        {
+          "type": "contact",
+          "name": "Contact",
+          "value": "Elinore.Runolfsson@gmail.com"
+        },
+        {
+          "type": "sales",
+          "name": "Sales",
+          "value": "Gayle34@gmail.com"
+        },
+        {
+          "type": "billing",
+          "name": "Billing",
+          "value": "Hermina_Robel@hotmail.com"
+        }
+      ],
+      "phones": [
+        {
+          "type": "contact",
+          "name": "Contact",
+          "value": "339-756-1668"
+        },
+        {
+          "type": "sales",
+          "name": "Sales",
+          "value": "496-705-5014 x52802"
+        },
+        {
+          "type": "billing",
+          "name": "Billing",
+          "value": "1-666-469-8793 x62608"
+        }
+      ],
+      "website": "https://frozen-frock.biz/",
+      "taxInfo": {
+        "taxId": "2F2YkdFgM0",
+        "isMexTaxId": false,
+        "fiscalRegime": "arcus",
+        "proofTaxSituation": "vicissitudo",
+        "proofTaxSituationDate": "2024-01-04T06:12:05.856Z",
+        "proofTaxSituationPdf": "https://rusty-step-grandfather.com",
+        "billingAddress": {
+          "street": "Cedar Grove",
+          "numberExterior": "8672 Weimann Wells",
+          "numberInterior": "Apt. 967",
+          "neighborhood": "Hancock County",
+          "city": "West Barrett",
+          "district": "Massachusetts",
+          "zipCode": "98970",
+          "state": "Alabama",
+          "countryCode": "NG"
+        }
+      },
+      "links": [
+        {
+          "name": "website",
+          "value": "https://educated-regulator.org/"
+        },
+        {
+          "name": "facebook",
+          "value": "https://feisty-squash.name"
+        },
+        {
+          "name": "linkedin",
+          "value": "https://humiliating-polyester.net/"
+        },
+        {
+          "name": "twitter",
+          "value": "https://familiar-celsius.org"
+        },
+        {
+          "name": "other",
+          "value": "https://assured-underwear.com/"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Venio vesper terra cruentus somniculosus antea tabula. Altus adsum communis cura varius synagoga speciosus officia terreo. Usque stella antea sumo minus cibo apostolus ultio alii minima.",
+          "createdAt": "2023-03-16T13:46:35.985Z",
+          "updatedAt": "2024-02-20T08:35:07.958Z"
+        }
+      ],
+      "shippingAddresses": [
+        {
+          "title": "cui",
+          "description": "administratio corrigo tempus",
+          "note": "bellicus aegrus anser",
+          "street": "S Main",
+          "numberExterior": "483 Taya Flat",
+          "numberInterior": "Apt. 311",
+          "neighborhood": "Grampian",
+          "city": "Lolafield",
+          "district": "Oregon",
+          "zipCode": "85132-4639",
+          "state": "Maine",
+          "countryCode": "MS"
+        }
+      ],
+      "bankAccounts": [
+        {
+          "name": "Checking Account",
+          "currency": "MAD",
+          "type": "account",
+          "beneficiary": "Auto Loan Account",
+          "number": "Investment Account",
+          "clabe": "8686",
+          "swift": "CKICATPXM8U",
+          "iban": "MT29JDCR05584411E857708UM3I30B7",
+          "bank": {
+            "name": "Koch Group",
+            "city": "East Maribel",
+            "code": "GPAJBT6NXXX",
+            "country": "Lebanon"
+          },
+          "other": "asper abeo vae"
+        }
+      ],
+      "defaults": {
+        "expensesAccount": "32470116",
+        "language": "BR",
+        "currency": "TMT",
+        "paymentMethod": "patior",
+        "paymentForm": "quis",
+        "paymentDeadline": "tepidus",
+        "paymentTerms": "illo"
+      },
+      "createdAt": "2023-09-10T09:38:43.034Z",
+      "updatedAt": "2024-02-20T03:42:54.678Z"
+    }
+  },
+  {
+    "key": [
+      "accounts",
+      "01HQ31Q20VHJ340EDX3E06WS65"
+    ],
+    "value": {
+      "id": "01HQ31Q20VHJ340EDX3E06WS65",
+      "type": "customer",
+      "name": "Altenwerth - Hudson",
+      "legalName": "Bartoletti Group",
+      "emails": [
+        {
+          "type": "contact",
+          "name": "Contact",
+          "value": "Esmeralda20@gmail.com"
+        },
+        {
+          "type": "sales",
+          "name": "Sales",
+          "value": "Jamarcus89@yahoo.com"
+        },
+        {
+          "type": "billing",
+          "name": "Billing",
+          "value": "Thora.Kshlerin@hotmail.com"
+        }
+      ],
+      "phones": [
+        {
+          "type": "contact",
+          "name": "Contact",
+          "value": "294.217.0259 x895"
+        },
+        {
+          "type": "sales",
+          "name": "Sales",
+          "value": "(790) 513-0707 x157"
+        },
+        {
+          "type": "billing",
+          "name": "Billing",
+          "value": "889-307-0173 x02051"
+        }
+      ],
+      "website": "https://adored-protection.biz",
+      "taxInfo": {
+        "taxId": "xG8nSHwniQ",
+        "isMexTaxId": false,
+        "fiscalRegime": "voluptatum",
+        "proofTaxSituation": "amplitudo",
+        "proofTaxSituationDate": "2023-07-28T11:25:30.461Z",
+        "proofTaxSituationPdf": "https://overlooked-veldt.biz/",
+        "billingAddress": {
+          "street": "Devonshire Road",
+          "numberExterior": "13592 Mills Estates",
+          "numberInterior": "Suite 259",
+          "neighborhood": "County Fermanagh",
+          "city": "South Doyleside",
+          "district": "Ohio",
+          "zipCode": "68408",
+          "state": "Missouri",
+          "countryCode": "DZ"
+        }
+      },
+      "links": [
+        {
+          "name": "website",
+          "value": "https://treasured-bait.biz/"
+        },
+        {
+          "name": "facebook",
+          "value": "https://clueless-creek.biz/"
+        },
+        {
+          "name": "linkedin",
+          "value": "https://specific-participation.name"
+        },
+        {
+          "name": "twitter",
+          "value": "https://ragged-airbag.org/"
+        },
+        {
+          "name": "other",
+          "value": "https://magnificent-typhoon.com"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Autem degusto vinculum nisi amet caveo statim pauci valeo demum. Eaque abduco articulus vulticulus absum claustrum natus spectaculum. Bonus tristis illum deputo.",
+          "createdAt": "2023-08-16T06:06:59.742Z",
+          "updatedAt": "2024-02-20T07:10:02.674Z"
+        }
+      ],
+      "shippingAddresses": [
+        {
+          "title": "aggero",
+          "description": "repellat cervus tenus",
+          "note": "tripudio accommodo advoco",
+          "street": "Kassulke Corner",
+          "numberExterior": "839 Jones Divide",
+          "numberInterior": "Suite 935",
+          "neighborhood": "West Yorkshire",
+          "city": "Turnershire",
+          "district": "Florida",
+          "zipCode": "24645",
+          "state": "Georgia",
+          "countryCode": "EH"
         }
       ],
       "bankAccounts": [
@@ -2512,1016 +3358,170 @@
           "type": "account",
           "beneficiary": "Savings Account",
           "number": "Checking Account",
-          "clabe": "5601",
-          "swift": "BTQMGRCE",
-          "iban": "MD40IH2A1Q6T2S362XV52868",
+          "clabe": "0548",
+          "swift": "GIUVDJ0U6PW",
+          "iban": "BE25990234059387",
           "bank": {
-            "name": "Dach - Hane",
-            "city": "Russelcester",
-            "code": "VTUCLID8",
-            "country": "Thailand"
+            "name": "Hackett - Auer",
+            "city": "West Magdalenaboro",
+            "code": "QCPHKEARYWM",
+            "country": "China"
           },
-          "other": "spiculum hic carpo"
+          "other": "vita conventus vita"
         }
       ],
       "defaults": {
-        "expensesAccount": "77743049",
-        "language": "BY",
-        "currency": "THB",
-        "paymentMethod": "vestigium",
-        "paymentForm": "auditor",
-        "paymentDeadline": "sed",
-        "paymentTerms": "sono"
+        "expensesAccount": "54741860",
+        "language": "LU",
+        "currency": "BDT",
+        "paymentMethod": "cicuta",
+        "paymentForm": "turbo",
+        "paymentDeadline": "facilis",
+        "paymentTerms": "alo"
       },
-      "createdAt": "2023-04-22T23:50:06.632Z",
-      "updatedAt": "2024-02-20T03:27:07.716Z"
+      "createdAt": "2023-10-15T12:56:53.400Z",
+      "updatedAt": "2024-02-19T19:48:46.412Z"
     }
   },
   {
     "key": [
       "accounts",
-      "01HQ31FV87RZYT5QS59FYBSKHX"
+      "01HQ31Q20VHJ340EDX3E06WS66"
     ],
     "value": {
-      "id": "01HQ31FV87RZYT5QS59FYBSKHX",
+      "id": "01HQ31Q20VHJ340EDX3E06WS66",
       "type": "other",
-      "name": "Bartell, Kertzmann and Hand",
-      "legalName": "Koch Inc",
+      "name": "Cartwright LLC",
+      "legalName": "Keebler, Koch and Halvorson",
       "emails": [
         {
           "type": "contact",
           "name": "Contact",
-          "value": "Taya_Johns@yahoo.com"
+          "value": "Keshaun78@yahoo.com"
         },
         {
           "type": "sales",
           "name": "Sales",
-          "value": "Roscoe.Johnston9@hotmail.com"
+          "value": "Alexandria.Walsh@yahoo.com"
         },
         {
           "type": "billing",
           "name": "Billing",
-          "value": "Howard.Lueilwitz@yahoo.com"
+          "value": "Aurelia_Fadel68@hotmail.com"
         }
       ],
       "phones": [
         {
           "type": "contact",
           "name": "Contact",
-          "value": "879-437-8310 x2354"
+          "value": "(924) 993-8259 x7856"
         },
         {
           "type": "sales",
           "name": "Sales",
-          "value": "585.511.5138 x2422"
+          "value": "579-355-5459"
         },
         {
           "type": "billing",
           "name": "Billing",
-          "value": "595-987-0473"
+          "value": "1-370-542-6997 x2213"
         }
       ],
-      "website": "https://strong-koala.net",
+      "website": "https://apt-beating.biz",
       "taxInfo": {
-        "taxId": "ARrJlIKMAo",
+        "taxId": "6zS3I7gdoH",
         "isMexTaxId": false,
-        "fiscalRegime": "stabilis",
-        "proofTaxSituation": "temeritas",
-        "proofTaxSituationDate": "2023-08-27T05:53:34.286Z",
-        "proofTaxSituationPdf": "https://wide-eyed-eyestrain.org/",
+        "fiscalRegime": "aufero",
+        "proofTaxSituation": "suscipio",
+        "proofTaxSituationDate": "2024-02-17T02:37:47.562Z",
+        "proofTaxSituationPdf": "https://smug-porpoise.name",
         "billingAddress": {
-          "street": "Rau Stravenue",
-          "numberExterior": "8514 13th Street",
-          "numberInterior": "Suite 778",
-          "neighborhood": "Clark County",
-          "city": "Lake Wyman",
-          "district": "Arizona",
-          "zipCode": "06800-0405",
-          "state": "Pennsylvania",
-          "countryCode": "GY"
-        }
-      },
-      "links": [
-        {
-          "name": "website",
-          "value": "https://well-documented-proportion.info"
-        },
-        {
-          "name": "facebook",
-          "value": "https://variable-anybody.com/"
-        },
-        {
-          "name": "linkedin",
-          "value": "https://female-empowerment.org"
-        },
-        {
-          "name": "twitter",
-          "value": "https://coordinated-wisdom.name/"
-        },
-        {
-          "name": "other",
-          "value": "https://mellow-job.name/"
-        }
-      ],
-      "notes": [
-        {
-          "text": "Conitor contabesco qui sapiente ullam bellum. Magni adhaero ab adfectus. Amitto vergo vulgo assumenda deprimo thermae voluptates ipsum.",
-          "createdAt": "2023-03-01T02:48:01.185Z",
-          "updatedAt": "2024-02-19T22:03:28.469Z"
-        }
-      ],
-      "shippingAddresses": [
-        {
-          "title": "deserunt",
-          "description": "tondeo statua quis",
-          "note": "cohaero dapifer administratio",
-          "street": "Nella River",
-          "numberExterior": "34315 Steuber Dale",
-          "numberInterior": "Suite 328",
+          "street": "Hagenes Grove",
+          "numberExterior": "1954 Orlo Extension",
+          "numberInterior": "Apt. 164",
           "neighborhood": "Tyne and Wear",
-          "city": "North Pollyfurt",
-          "district": "Michigan",
-          "zipCode": "20015-9039",
-          "state": "Hawaii",
-          "countryCode": "ID"
-        }
-      ],
-      "bankAccounts": [
-        {
-          "name": "Personal Loan Account",
-          "currency": "KES",
-          "type": "account",
-          "beneficiary": "Money Market Account",
-          "number": "Auto Loan Account",
-          "clabe": "7125",
-          "swift": "BRUQVEYNM4H",
-          "iban": "AD5433900531UC6R884E1443",
-          "bank": {
-            "name": "Kuhic, D'Amore and Labadie",
-            "city": "West Maude",
-            "code": "TTPRNZSVC2O",
-            "country": "Solomon Islands"
-          },
-          "other": "ademptio corona spes"
-        }
-      ],
-      "defaults": {
-        "expensesAccount": "80379128",
-        "language": "UA",
-        "currency": "KRW",
-        "paymentMethod": "atrocitas",
-        "paymentForm": "hic",
-        "paymentDeadline": "taceo",
-        "paymentTerms": "tumultus"
-      },
-      "createdAt": "2023-10-20T22:35:43.929Z",
-      "updatedAt": "2024-02-20T02:08:46.908Z"
-    }
-  },
-  {
-    "key": [
-      "accounts",
-      "01HQ31FV8886XQAE530W3CNV1K"
-    ],
-    "value": {
-      "id": "01HQ31FV8886XQAE530W3CNV1K",
-      "type": "partner",
-      "name": "Lebsack LLC",
-      "legalName": "Marquardt, Hamill and Pouros",
-      "emails": [
-        {
-          "type": "contact",
-          "name": "Contact",
-          "value": "Courtney_Hintz75@gmail.com"
-        },
-        {
-          "type": "sales",
-          "name": "Sales",
-          "value": "Deontae.Nicolas@hotmail.com"
-        },
-        {
-          "type": "billing",
-          "name": "Billing",
-          "value": "Trudie48@hotmail.com"
-        }
-      ],
-      "phones": [
-        {
-          "type": "contact",
-          "name": "Contact",
-          "value": "(457) 258-3712 x40562"
-        },
-        {
-          "type": "sales",
-          "name": "Sales",
-          "value": "495.909.9233 x7900"
-        },
-        {
-          "type": "billing",
-          "name": "Billing",
-          "value": "951-446-0763 x2631"
-        }
-      ],
-      "website": "https://coarse-participant.net",
-      "taxInfo": {
-        "taxId": "16LPSg7e6M",
-        "isMexTaxId": true,
-        "fiscalRegime": "tero",
-        "proofTaxSituation": "ocer",
-        "proofTaxSituationDate": "2023-11-02T16:41:26.383Z",
-        "proofTaxSituationPdf": "https://impossible-fragrance.name/",
-        "billingAddress": {
-          "street": "Roman Way",
-          "numberExterior": "3670 Aurelio Walk",
-          "numberInterior": "Suite 563",
-          "neighborhood": "County Londonderry",
-          "city": "Theomouth",
-          "district": "Louisiana",
-          "zipCode": "32853",
-          "state": "Florida",
-          "countryCode": "NR"
+          "city": "Lake Clevelandbury",
+          "district": "Wisconsin",
+          "zipCode": "73481-1745",
+          "state": "Maine",
+          "countryCode": "ES"
         }
       },
       "links": [
         {
           "name": "website",
-          "value": "https://sad-semicolon.biz/"
+          "value": "https://novel-smoke.com"
         },
         {
           "name": "facebook",
-          "value": "https://hidden-auction.biz/"
+          "value": "https://dead-destiny.info"
         },
         {
           "name": "linkedin",
-          "value": "https://thin-guilty.org"
+          "value": "https://distinct-restriction.com"
         },
         {
           "name": "twitter",
-          "value": "https://courageous-percent.name/"
+          "value": "https://gigantic-artist.biz/"
         },
         {
           "name": "other",
-          "value": "https://villainous-probability.name"
+          "value": "https://impossible-elderberry.info/"
         }
       ],
       "notes": [
         {
-          "text": "Vulpes maiores audeo tepesco. Deserunt conor adimpleo abstergo solus currus eligendi administratio averto. Quod vilis cubo molestiae.",
-          "createdAt": "2023-08-01T19:44:47.102Z",
-          "updatedAt": "2024-02-19T11:25:26.537Z"
+          "text": "Adnuo valens caecus vapulus patior deprimo. Calco odit enim aliqua crebro deinde conculco sponte. Decor accusantium quaerat.",
+          "createdAt": "2023-12-10T12:22:37.140Z",
+          "updatedAt": "2024-02-19T11:28:22.137Z"
         }
       ],
       "shippingAddresses": [
         {
-          "title": "convoco",
-          "description": "animi demulceo tantum",
-          "note": "abduco delego illum",
-          "street": "Elm Street",
-          "numberExterior": "94362 Mollie Centers",
-          "numberInterior": "Suite 512",
-          "neighborhood": "Wiltshire",
-          "city": "Murraytown",
-          "district": "Texas",
-          "zipCode": "04644",
-          "state": "Kentucky",
-          "countryCode": "GB"
-        }
-      ],
-      "bankAccounts": [
-        {
-          "name": "Investment Account",
-          "currency": "INR",
-          "type": "account",
-          "beneficiary": "Savings Account",
-          "number": "Savings Account",
-          "clabe": "9676",
-          "swift": "MAXLBNSEXXX",
-          "iban": "ME23516390900499030032",
-          "bank": {
-            "name": "Stoltenberg, Okuneva and Kshlerin",
-            "city": "Kansas City",
-            "code": "GBAJMGBI",
-            "country": "Norfolk Island"
-          },
-          "other": "dedico uterque administratio"
-        }
-      ],
-      "defaults": {
-        "expensesAccount": "54147611",
-        "language": "SD",
-        "currency": "VUV",
-        "paymentMethod": "amor",
-        "paymentForm": "corrupti",
-        "paymentDeadline": "illo",
-        "paymentTerms": "admoneo"
-      },
-      "createdAt": "2024-02-07T11:36:38.273Z",
-      "updatedAt": "2024-02-19T16:11:31.339Z"
-    }
-  },
-  {
-    "key": [
-      "accounts",
-      "01HQ31FV8886XQAE530W3CNV1M"
-    ],
-    "value": {
-      "id": "01HQ31FV8886XQAE530W3CNV1M",
-      "type": "other",
-      "name": "Haag and Sons",
-      "legalName": "Lueilwitz - Stamm",
-      "emails": [
-        {
-          "type": "contact",
-          "name": "Contact",
-          "value": "Chelsea_Roob58@gmail.com"
-        },
-        {
-          "type": "sales",
-          "name": "Sales",
-          "value": "Marion52@gmail.com"
-        },
-        {
-          "type": "billing",
-          "name": "Billing",
-          "value": "Reilly.Corwin10@hotmail.com"
-        }
-      ],
-      "phones": [
-        {
-          "type": "contact",
-          "name": "Contact",
-          "value": "931.250.2406 x2379"
-        },
-        {
-          "type": "sales",
-          "name": "Sales",
-          "value": "530.626.0984"
-        },
-        {
-          "type": "billing",
-          "name": "Billing",
-          "value": "(635) 307-3361 x449"
-        }
-      ],
-      "website": "https://golden-alliance.biz",
-      "taxInfo": {
-        "taxId": "MuMCUwFtPP",
-        "isMexTaxId": true,
-        "fiscalRegime": "vicinus",
-        "proofTaxSituation": "dedecor",
-        "proofTaxSituationDate": "2023-10-25T19:40:57.837Z",
-        "proofTaxSituationPdf": "https://whimsical-guitarist.biz",
-        "billingAddress": {
-          "street": "Mayert Lock",
-          "numberExterior": "348 Stanton Throughway",
-          "numberInterior": "Apt. 286",
-          "neighborhood": "Norfolk",
-          "city": "Drakecester",
-          "district": "Delaware",
-          "zipCode": "73492-2936",
-          "state": "Colorado",
-          "countryCode": "TJ"
-        }
-      },
-      "links": [
-        {
-          "name": "website",
-          "value": "https://jaded-saddle.name/"
-        },
-        {
-          "name": "facebook",
-          "value": "https://admired-steel.name"
-        },
-        {
-          "name": "linkedin",
-          "value": "https://impressionable-spreadsheet.info/"
-        },
-        {
-          "name": "twitter",
-          "value": "https://sad-comment.net/"
-        },
-        {
-          "name": "other",
-          "value": "https://sociable-executor.com"
-        }
-      ],
-      "notes": [
-        {
-          "text": "Comis suspendo depulso amor defluo sit vel tres. Fugiat inventore angulus congregatio spiculum adinventitias teneo arcus tenetur crastinus. Caterva totus amet cuppedia carbo vita.",
-          "createdAt": "2023-12-31T10:48:32.258Z",
-          "updatedAt": "2024-02-19T13:16:56.178Z"
-        }
-      ],
-      "shippingAddresses": [
-        {
-          "title": "pel",
-          "description": "suggero caterva tardus",
-          "note": "arx curis accendo",
-          "street": "Maple Close",
-          "numberExterior": "635 Champlin Well",
-          "numberInterior": "Suite 206",
-          "neighborhood": "Herefordshire",
-          "city": "Lake Weldonstead",
-          "district": "Oregon",
-          "zipCode": "04789",
-          "state": "Utah",
-          "countryCode": "AM"
-        }
-      ],
-      "bankAccounts": [
-        {
-          "name": "Checking Account",
-          "currency": "GTQ",
-          "type": "account",
-          "beneficiary": "Checking Account",
-          "number": "Home Loan Account",
-          "clabe": "2260",
-          "swift": "YPFYNPLM",
-          "iban": "SM15X0890070634PX253394205K",
-          "bank": {
-            "name": "Runolfsson Inc",
-            "city": "Lebsackport",
-            "code": "WUPGEGUS",
-            "country": "Belgium"
-          },
-          "other": "tunc ait curiositas"
-        }
-      ],
-      "defaults": {
-        "expensesAccount": "82972980",
-        "language": "BR",
-        "currency": "BZD",
-        "paymentMethod": "cunctatio",
-        "paymentForm": "verto",
-        "paymentDeadline": "urbs",
-        "paymentTerms": "dolores"
-      },
-      "createdAt": "2023-07-25T23:02:42.582Z",
-      "updatedAt": "2024-02-20T07:02:39.065Z"
-    }
-  },
-  {
-    "key": [
-      "accounts",
-      "01HQ31FV8915W905BP3QHP0RYB"
-    ],
-    "value": {
-      "id": "01HQ31FV8915W905BP3QHP0RYB",
-      "type": "prospect",
-      "name": "Hoppe - Hegmann",
-      "legalName": "Cormier, Goyette and Waelchi",
-      "emails": [
-        {
-          "type": "contact",
-          "name": "Contact",
-          "value": "Gussie91@gmail.com"
-        },
-        {
-          "type": "sales",
-          "name": "Sales",
-          "value": "Yasmine_Kling60@gmail.com"
-        },
-        {
-          "type": "billing",
-          "name": "Billing",
-          "value": "Skye_McCullough2@hotmail.com"
-        }
-      ],
-      "phones": [
-        {
-          "type": "contact",
-          "name": "Contact",
-          "value": "(948) 696-0091"
-        },
-        {
-          "type": "sales",
-          "name": "Sales",
-          "value": "1-965-613-7476 x51873"
-        },
-        {
-          "type": "billing",
-          "name": "Billing",
-          "value": "1-569-691-2776"
-        }
-      ],
-      "website": "https://pricey-typhoon.com/",
-      "taxInfo": {
-        "taxId": "WWx4DzkUGs",
-        "isMexTaxId": true,
-        "fiscalRegime": "peior",
-        "proofTaxSituation": "comburo",
-        "proofTaxSituationDate": "2023-03-13T02:08:52.792Z",
-        "proofTaxSituationPdf": "https://negligible-recliner.org/",
-        "billingAddress": {
-          "street": "Poplar Street",
-          "numberExterior": "582 Gislason Ville",
-          "numberInterior": "Apt. 647",
-          "neighborhood": "West Yorkshire",
-          "city": "Sandy Springs",
-          "district": "Tennessee",
-          "zipCode": "44496-8300",
-          "state": "Oregon",
-          "countryCode": "KI"
-        }
-      },
-      "links": [
-        {
-          "name": "website",
-          "value": "https://unripe-slump.org/"
-        },
-        {
-          "name": "facebook",
-          "value": "https://valid-lunge.name/"
-        },
-        {
-          "name": "linkedin",
-          "value": "https://thoughtful-evaluator.org/"
-        },
-        {
-          "name": "twitter",
-          "value": "https://vapid-spectacle.info"
-        },
-        {
-          "name": "other",
-          "value": "https://vicious-humour.info"
-        }
-      ],
-      "notes": [
-        {
-          "text": "Valde cometes decerno. Ait aer cibo verumtamen. Conservo statua copia patruus decretum.",
-          "createdAt": "2023-11-16T23:16:42.350Z",
-          "updatedAt": "2024-02-19T13:46:34.561Z"
-        }
-      ],
-      "shippingAddresses": [
-        {
-          "title": "amissio",
-          "description": "teneo talio sint",
-          "note": "copiose deserunt pectus",
-          "street": "Glebe Close",
-          "numberExterior": "39453 Shanahan Spring",
-          "numberInterior": "Apt. 406",
-          "neighborhood": "Johnson County",
-          "city": "Gradyboro",
-          "district": "Iowa",
-          "zipCode": "48178-9386",
-          "state": "New York",
-          "countryCode": "LB"
+          "title": "dapifer",
+          "description": "autus varietas conscendo",
+          "note": "supra eum itaque",
+          "street": "Spring Gardens",
+          "numberExterior": "84944 Crown Street",
+          "numberInterior": "Apt. 152",
+          "neighborhood": "Buckinghamshire",
+          "city": "North Jeffry",
+          "district": "Washington",
+          "zipCode": "08795",
+          "state": "Illinois",
+          "countryCode": "TL"
         }
       ],
       "bankAccounts": [
         {
           "name": "Savings Account",
-          "currency": "BMD",
-          "type": "account",
-          "beneficiary": "Money Market Account",
-          "number": "Auto Loan Account",
-          "clabe": "5186",
-          "swift": "HROBMDKSXXX",
-          "iban": "AZ55QPDS07008060041802001849",
-          "bank": {
-            "name": "Volkman Inc",
-            "city": "Riverside",
-            "code": "OWCHVGMAXXX",
-            "country": "Tonga"
-          },
-          "other": "defungo spargo abeo"
-        }
-      ],
-      "defaults": {
-        "expensesAccount": "28384845",
-        "language": "SI",
-        "currency": "KPW",
-        "paymentMethod": "ceno",
-        "paymentForm": "quae",
-        "paymentDeadline": "stips",
-        "paymentTerms": "deorsum"
-      },
-      "createdAt": "2023-12-31T06:46:52.293Z",
-      "updatedAt": "2024-02-19T15:41:07.400Z"
-    }
-  },
-  {
-    "key": [
-      "accounts",
-      "01HQ31FV8915W905BP3QHP0RYC"
-    ],
-    "value": {
-      "id": "01HQ31FV8915W905BP3QHP0RYC",
-      "type": "customer",
-      "name": "Torp Group",
-      "legalName": "Will, Bogan and Crooks",
-      "emails": [
-        {
-          "type": "contact",
-          "name": "Contact",
-          "value": "Rita.Aufderhar96@yahoo.com"
-        },
-        {
-          "type": "sales",
-          "name": "Sales",
-          "value": "Daryl_Gusikowski21@gmail.com"
-        },
-        {
-          "type": "billing",
-          "name": "Billing",
-          "value": "Timmy.Larson@gmail.com"
-        }
-      ],
-      "phones": [
-        {
-          "type": "contact",
-          "name": "Contact",
-          "value": "1-524-471-0775 x91630"
-        },
-        {
-          "type": "sales",
-          "name": "Sales",
-          "value": "446.556.2964 x3454"
-        },
-        {
-          "type": "billing",
-          "name": "Billing",
-          "value": "(253) 964-8923"
-        }
-      ],
-      "website": "https://early-step-aunt.com/",
-      "taxInfo": {
-        "taxId": "d8HBVRbQqz",
-        "isMexTaxId": false,
-        "fiscalRegime": "aestas",
-        "proofTaxSituation": "demo",
-        "proofTaxSituationDate": "2023-07-16T22:51:03.840Z",
-        "proofTaxSituationPdf": "https://welcome-steamroller.name",
-        "billingAddress": {
-          "street": "S Park Street",
-          "numberExterior": "66446 Dean Avenue",
-          "numberInterior": "Suite 483",
-          "neighborhood": "Surrey",
-          "city": "Shainaside",
-          "district": "North Dakota",
-          "zipCode": "11958",
-          "state": "New Mexico",
-          "countryCode": "SL"
-        }
-      },
-      "links": [
-        {
-          "name": "website",
-          "value": "https://writhing-noodles.name"
-        },
-        {
-          "name": "facebook",
-          "value": "https://warped-scallion.net"
-        },
-        {
-          "name": "linkedin",
-          "value": "https://raw-fog.com/"
-        },
-        {
-          "name": "twitter",
-          "value": "https://gleeful-diagnosis.info/"
-        },
-        {
-          "name": "other",
-          "value": "https://webbed-segment.name"
-        }
-      ],
-      "notes": [
-        {
-          "text": "A speculum cilicium. Iure aduro angelus aggredior quas cursim vereor amitto. Delectus subito iusto capillus cupio vulgus vester voro adipiscor.",
-          "createdAt": "2023-04-29T16:05:05.650Z",
-          "updatedAt": "2024-02-20T06:45:13.717Z"
-        }
-      ],
-      "shippingAddresses": [
-        {
-          "title": "stella",
-          "description": "patruus tondeo vero",
-          "note": "versus audio torrens",
-          "street": "Lind Forks",
-          "numberExterior": "67028 Jayson Radial",
-          "numberInterior": "Apt. 547",
-          "neighborhood": "Hancock County",
-          "city": "Corbinside",
-          "district": "Hawaii",
-          "zipCode": "84294-5736",
-          "state": "Wisconsin",
-          "countryCode": "GQ"
-        }
-      ],
-      "bankAccounts": [
-        {
-          "name": "Investment Account",
-          "currency": "BWP",
-          "type": "account",
-          "beneficiary": "Home Loan Account",
-          "number": "Home Loan Account",
-          "clabe": "6528",
-          "swift": "DPBPMLAW1AE",
-          "iban": "KW51JBSZ130PP1342Z62036P059F53",
-          "bank": {
-            "name": "Effertz, Runolfsson and Johns",
-            "city": "Hilllfort",
-            "code": "WSSZMK0DXXX",
-            "country": "Ecuador"
-          },
-          "other": "advenio aut chirographum"
-        }
-      ],
-      "defaults": {
-        "expensesAccount": "97566354",
-        "language": "ST",
-        "currency": "VND",
-        "paymentMethod": "adsum",
-        "paymentForm": "subiungo",
-        "paymentDeadline": "impedit",
-        "paymentTerms": "arguo"
-      },
-      "createdAt": "2024-01-17T22:38:08.223Z",
-      "updatedAt": "2024-02-20T09:04:27.910Z"
-    }
-  },
-  {
-    "key": [
-      "accounts",
-      "01HQ31FV8915W905BP3QHP0RYD"
-    ],
-    "value": {
-      "id": "01HQ31FV8915W905BP3QHP0RYD",
-      "type": "other",
-      "name": "Okuneva Group",
-      "legalName": "Gibson Group",
-      "emails": [
-        {
-          "type": "contact",
-          "name": "Contact",
-          "value": "Berenice_Brekke-Schuster75@gmail.com"
-        },
-        {
-          "type": "sales",
-          "name": "Sales",
-          "value": "Shawn24@yahoo.com"
-        },
-        {
-          "type": "billing",
-          "name": "Billing",
-          "value": "Dylan98@yahoo.com"
-        }
-      ],
-      "phones": [
-        {
-          "type": "contact",
-          "name": "Contact",
-          "value": "(914) 930-8057 x297"
-        },
-        {
-          "type": "sales",
-          "name": "Sales",
-          "value": "1-270-712-0164 x543"
-        },
-        {
-          "type": "billing",
-          "name": "Billing",
-          "value": "1-614-986-5541 x39968"
-        }
-      ],
-      "website": "https://high-level-baby.name",
-      "taxInfo": {
-        "taxId": "fsLH7eWLcZ",
-        "isMexTaxId": true,
-        "fiscalRegime": "sint",
-        "proofTaxSituation": "conor",
-        "proofTaxSituationDate": "2023-10-08T20:47:25.216Z",
-        "proofTaxSituationPdf": "https://skinny-directory.com",
-        "billingAddress": {
-          "street": "Hirthe Via",
-          "numberExterior": "91722 Reichel Extension",
-          "numberInterior": "Suite 765",
-          "neighborhood": "Hancock County",
-          "city": "West Wilson",
-          "district": "West Virginia",
-          "zipCode": "17353-7566",
-          "state": "Delaware",
-          "countryCode": "YE"
-        }
-      },
-      "links": [
-        {
-          "name": "website",
-          "value": "https://fickle-wisteria.info"
-        },
-        {
-          "name": "facebook",
-          "value": "https://true-lake.info"
-        },
-        {
-          "name": "linkedin",
-          "value": "https://gummy-pressroom.biz/"
-        },
-        {
-          "name": "twitter",
-          "value": "https://jolly-pressurization.info/"
-        },
-        {
-          "name": "other",
-          "value": "https://rectangular-slot.com"
-        }
-      ],
-      "notes": [
-        {
-          "text": "Thymbra viridis nam cotidie quasi alveus supra coma creator. Tenax caelestis recusandae ustilo cuppedia succedo consequuntur copia. Quis vulnus subito thalassinus charisma ventus ustilo.",
-          "createdAt": "2023-11-16T01:17:28.908Z",
-          "updatedAt": "2024-02-20T08:07:40.072Z"
-        }
-      ],
-      "shippingAddresses": [
-        {
-          "title": "consectetur",
-          "description": "verto bibo aestivus",
-          "note": "vinum tendo harum",
-          "street": "Katelin Motorway",
-          "numberExterior": "8993 Larkin Path",
-          "numberInterior": "Apt. 577",
-          "neighborhood": "Essex",
-          "city": "North Sashastad",
-          "district": "Pennsylvania",
-          "zipCode": "16353",
-          "state": "Kansas",
-          "countryCode": "LK"
-        }
-      ],
-      "bankAccounts": [
-        {
-          "name": "Investment Account",
-          "currency": "KGS",
-          "type": "account",
-          "beneficiary": "Investment Account",
-          "number": "Home Loan Account",
-          "clabe": "5517",
-          "swift": "AJXOKWYLHWH",
-          "iban": "MC6506007070274M95Z3O41Y390",
-          "bank": {
-            "name": "Cruickshank - Watsica",
-            "city": "Flagstaff",
-            "code": "LFLQBJEZ",
-            "country": "United Kingdom"
-          },
-          "other": "deserunt natus error"
-        }
-      ],
-      "defaults": {
-        "expensesAccount": "34786980",
-        "language": "BN",
-        "currency": "UAH",
-        "paymentMethod": "vilis",
-        "paymentForm": "terreo",
-        "paymentDeadline": "omnis",
-        "paymentTerms": "viriliter"
-      },
-      "createdAt": "2023-10-07T07:08:33.578Z",
-      "updatedAt": "2024-02-20T02:31:29.570Z"
-    }
-  },
-  {
-    "key": [
-      "accounts",
-      "01HQ31FV8ASVCAJ93J5JYN5GQ2"
-    ],
-    "value": {
-      "id": "01HQ31FV8ASVCAJ93J5JYN5GQ2",
-      "type": "partner",
-      "name": "Pouros - Adams",
-      "legalName": "Feil LLC",
-      "emails": [
-        {
-          "type": "contact",
-          "name": "Contact",
-          "value": "Lexus46@gmail.com"
-        },
-        {
-          "type": "sales",
-          "name": "Sales",
-          "value": "Emiliano.Stamm@yahoo.com"
-        },
-        {
-          "type": "billing",
-          "name": "Billing",
-          "value": "Eulah0@yahoo.com"
-        }
-      ],
-      "phones": [
-        {
-          "type": "contact",
-          "name": "Contact",
-          "value": "1-444-982-5300"
-        },
-        {
-          "type": "sales",
-          "name": "Sales",
-          "value": "(877) 420-1166"
-        },
-        {
-          "type": "billing",
-          "name": "Billing",
-          "value": "578.517.6161 x6942"
-        }
-      ],
-      "website": "https://pungent-speaking.org/",
-      "taxInfo": {
-        "taxId": "OOBS9sIu2M",
-        "isMexTaxId": false,
-        "fiscalRegime": "suffragium",
-        "proofTaxSituation": "advenio",
-        "proofTaxSituationDate": "2023-06-22T03:16:08.924Z",
-        "proofTaxSituationPdf": "https://unlined-churn.com/",
-        "billingAddress": {
-          "street": "South Avenue",
-          "numberExterior": "454 Hegmann Ranch",
-          "numberInterior": "Apt. 379",
-          "neighborhood": "Lancashire",
-          "city": "Fort Wymanville",
-          "district": "Illinois",
-          "zipCode": "15154",
-          "state": "Alaska",
-          "countryCode": "PY"
-        }
-      },
-      "links": [
-        {
-          "name": "website",
-          "value": "https://limited-carbon.biz"
-        },
-        {
-          "name": "facebook",
-          "value": "https://different-sculpting.info/"
-        },
-        {
-          "name": "linkedin",
-          "value": "https://welcome-medication.com/"
-        },
-        {
-          "name": "twitter",
-          "value": "https://fantastic-fame.com/"
-        },
-        {
-          "name": "other",
-          "value": "https://sturdy-diaper.biz"
-        }
-      ],
-      "notes": [
-        {
-          "text": "Corroboro certus mollitia angelus admoneo maxime. Amita adsuesco vulpes strues cauda ad timidus. Despecto veritas tristis.",
-          "createdAt": "2023-06-15T03:18:48.694Z",
-          "updatedAt": "2024-02-20T02:57:20.710Z"
-        }
-      ],
-      "shippingAddresses": [
-        {
-          "title": "cohors",
-          "description": "terror cunae copiose",
-          "note": "tergo tabula mollitia",
-          "street": "Kristofer Mill",
-          "numberExterior": "761 Monahan Parkways",
-          "numberInterior": "Apt. 221",
-          "neighborhood": "Humberside",
-          "city": "Conntown",
-          "district": "Florida",
-          "zipCode": "46894-3172",
-          "state": "New York",
-          "countryCode": "MX"
-        }
-      ],
-      "bankAccounts": [
-        {
-          "name": "Savings Account",
-          "currency": "AZN",
+          "currency": "NPR",
           "type": "account",
           "beneficiary": "Checking Account",
-          "number": "Checking Account",
-          "clabe": "7421",
-          "swift": "AZRUOM7E",
-          "iban": "MT80FYKJ73226937U08503Q942H1903",
+          "number": "Personal Loan Account",
+          "clabe": "4304",
+          "swift": "FJEZFMLB",
+          "iban": "FI3203442087470206",
           "bank": {
-            "name": "Hoeger - Greenfelder",
-            "city": "West Gia",
-            "code": "ILCTGSON",
-            "country": "Kiribati"
+            "name": "Rolfson, Pfannerstill and Kuhic",
+            "city": "Enosfield",
+            "code": "IIMBAS1EXXX",
+            "country": "Myanmar"
           },
-          "other": "demonstro studio tepesco"
+          "other": "claro absconditus rerum"
         }
       ],
       "defaults": {
-        "expensesAccount": "31555076",
-        "language": "HT",
-        "currency": "BHD",
-        "paymentMethod": "teneo",
-        "paymentForm": "quia",
-        "paymentDeadline": "deprecator",
-        "paymentTerms": "ventosus"
+        "expensesAccount": "39156646",
+        "language": "GT",
+        "currency": "PKR",
+        "paymentMethod": "video",
+        "paymentForm": "aliquam",
+        "paymentDeadline": "apparatus",
+        "paymentTerms": "amplus"
       },
-      "createdAt": "2023-06-25T16:20:14.016Z",
-      "updatedAt": "2024-02-19T14:37:17.561Z"
+      "createdAt": "2023-09-09T18:09:30.937Z",
+      "updatedAt": "2024-02-19T16:12:55.900Z"
     }
   }
 ]

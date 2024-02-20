@@ -28,7 +28,7 @@ export default defineConfig({
         endpoints.interactions,
         endpoints.invoices,
         endpoints.transactions,
-        endpoints.teamMembers,
+        endpoints.users,
       ],
     }),
     unocss({ config: unoConfig }),

@@ -37,8 +37,8 @@ export default defineApp<NetzoState>((req, ctx) => {
           { text: "Quotes", href: "/quotes", icon: "mdi-file-document" },
           {},
           {
-            text: "Team Members",
-            href: "/teamMembers",
+            text: "Users",
+            href: "/users",
             icon: "mdi-account-multiple",
           },
         ],
