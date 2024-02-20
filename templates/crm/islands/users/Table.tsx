@@ -1,17 +1,17 @@
 import {
-    Avatar,
-    AvatarFallback,
-    AvatarImage,
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
 } from "netzo/components/avatar.tsx";
 import { Badge } from "netzo/components/badge.tsx";
 import { Gallery } from "netzo/components/blocks/table/table.gallery.tsx";
 import {
-    TableColumnHeader,
-    TablePagination,
-    TableRowActions,
-    TableToolbar,
-    useTable,
-    type TableProps,
+  TableColumnHeader,
+  TablePagination,
+  type TableProps,
+  TableRowActions,
+  TableToolbar,
+  useTable,
 } from "netzo/components/blocks/table/table.tsx";
 import { IconCopy } from "netzo/components/icon-copy.tsx";
 import { I18N, type User } from "../../data/users.ts";

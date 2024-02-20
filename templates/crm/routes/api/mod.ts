@@ -6,4 +6,3 @@ export { invoices } from "./invoices.ts";
 export { products } from "./products.ts";
 export { transactions } from "./transactions.ts";
 export { users } from "./users.ts";
-

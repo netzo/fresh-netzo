@@ -1,8 +1,6 @@
 import { z } from "zod";
 import { emailSchema, linkSchema, phoneSchema } from "./utils/global.types.ts";
 
-// sub-schemas:
-
 export const senorityLevels = [
   "entry",
   "junior",
@@ -44,9 +42,9 @@ export const userSchema = z.object({
     seniority: z.enum(senorityLevels),
     office: z.enum(offices),
   }),
-  phones: z.array(z.object(phoneSchema)),
+  phones: z.array(phoneSchema),
   emails: z.array(emailSchema),
-  links: z.array(z.object(linkSchema)),
+  links: z.array(linkSchema),
   createdAt: z.string().datetime(),
   updatedAt: z.string().datetime(),
 });
