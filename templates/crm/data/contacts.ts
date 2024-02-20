@@ -1,6 +1,12 @@
 import { ulid } from "netzo/plugins/api/utils.ts";
 import { faker } from "npm:@faker-js/faker@8.4.0";
 import { z } from "zod";
+import {
+  EmailSchema,
+  LinksSchema,
+  NoteSchema,
+  PhoneSchema,
+} from "./utils/global.types.ts";
 
 // schemas:
 
@@ -12,33 +18,10 @@ export const contactSchema = z.object({
   image: z.string().url(),
   position: z.string(),
   department: z.string(),
-  phone: z.array(
-    z.object({
-      type: z.string(), // "work", "mobile", "whatsapp",
-      name: z.string(), // "Personal whatsapp", "Work phone", "Home phone", "Mobile phone", "Fax", "Other"
-      value: z.string(),
-    }),
-  ),
-  emails: z.array(
-    z.object({
-      type: z.string(), // "personal", "work"
-      name: z.string(), // "Personal email", "Work email", "Other"
-      value: z.string().email(),
-    }),
-  ),
-  links: z.array(
-    z.object({
-      name: z.string(), // "website", "facebook", "linkedin", "twitter", "other"
-      value: z.string().url(),
-    }),
-  ),
-  notes: z.array(
-    z.object({
-      text: z.string(),
-      createdAt: z.string().datetime(),
-      updatedAt: z.string().datetime(),
-    }),
-  ),
+  PhoneSchema: z.array(z.object(PhoneSchema)),
+  emails: z.array(z.object(EmailSchema)),
+  links: z.array(z.object(LinksSchema)),
+  notes: z.array(z.object(NoteSchema)),
   consent: z.object({
     documents: z.boolean(),
     documentsTimestamp: z.number(),
