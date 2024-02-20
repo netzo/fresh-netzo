@@ -30,7 +30,7 @@ const dealBaseSchema = z.object({
         primary: z.boolean(),
       }),
     ),
-    phone: z.array(
+    phones: z.array(
       z.object({
         label: z.string(),
         value: z.string(),
@@ -136,7 +136,7 @@ const relatedObjectsDealSchema = z.object({
           primary: z.boolean(),
         }),
       ),
-      phone: z.array(
+      phones: z.array(
         z.object({
           label: z.string(),
           value: z.string(),
@@ -355,7 +355,7 @@ export const personsSchema = z.object({
       lost_deals_count: z.number(),
       related_lost_deals_count: z.number(),
       active_flag: z.boolean(),
-      phone: z.array(
+      phones: z.array(
         z.object({
           value: z.string(),
           primary: z.boolean(),
@@ -557,7 +557,7 @@ export const addOrUpdatePersonResultSchema = z.object({
     lost_deals_count: z.number(),
     related_lost_deals_count: z.number(),
     active_flag: z.boolean(),
-    phone: z.array(
+    phones: z.array(
       z.object({
         value: z.string(),
         primary: z.boolean(),

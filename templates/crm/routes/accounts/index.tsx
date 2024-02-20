@@ -23,7 +23,6 @@ export const getTableOptions = (
         ) => (value ? { label: value, value } : { label: "*no data", value })),
       },
     ],
-    layouts: ["grid"],
     forms: {
       create: accountSchema,
       update: accountSchema,

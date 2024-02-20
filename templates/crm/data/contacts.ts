@@ -12,7 +12,7 @@ export const contactSchema = z.object({
   image: z.string().url(),
   position: z.string(),
   department: z.string(),
-  phone: z.array(
+  phones: z.array(
     z.object({
       type: z.string(), // "work", "mobile", "whatsapp",
       name: z.string(), // "Personal whatsapp", "Work phone", "Home phone", "Mobile phone", "Fax", "Other"
@@ -67,7 +67,7 @@ export const mock = (idField = "id") => ({
   image: faker.image.avatar(),
   position: faker.person.jobTitle(),
   department: faker.person.jobArea(),
-  phone: [
+  phones: [
     {
       type: "work",
       name: "Work phone",
@@ -147,8 +147,8 @@ export const I18N = {
   image: "Image",
   position: "Position",
   department: "Department",
-  emails: "Emails",
   phones: "Phone Numbers",
+  emails: "Emails",
   links: "Links",
   notes: {
     text: "Text",

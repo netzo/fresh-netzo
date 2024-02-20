@@ -14,6 +14,7 @@ import * as $api_deals from "./routes/api/deals.ts";
 import * as $api_interactions from "./routes/api/interactions.ts";
 import * as $api_invoices from "./routes/api/invoices.ts";
 import * as $api_mod from "./routes/api/mod.ts";
+import * as $api_products from "./routes/api/products.ts";
 import * as $api_transactions from "./routes/api/transactions.ts";
 import * as $api_users from "./routes/api/users.ts";
 import * as $contacts_id_ from "./routes/contacts/[id].tsx";
@@ -24,6 +25,8 @@ import * as $interactions_id_ from "./routes/interactions/[id].tsx";
 import * as $interactions_index from "./routes/interactions/index.tsx";
 import * as $invoices_id_ from "./routes/invoices/[id].tsx";
 import * as $invoices_index from "./routes/invoices/index.tsx";
+import * as $products_id_ from "./routes/products/[id].tsx";
+import * as $products_index from "./routes/products/index.tsx";
 import * as $transactions_id_ from "./routes/transactions/[id].tsx";
 import * as $transactions_index from "./routes/transactions/index.tsx";
 import * as $Dashboard from "./islands/Dashboard.tsx";
@@ -37,6 +40,8 @@ import * as $interactions_Table from "./islands/interactions/Table.tsx";
 import * as $invoices_Form from "./islands/invoices/Form.tsx";
 import * as $invoices_Table from "./islands/invoices/Table.tsx";
 import * as $mod from "./islands/mod.ts";
+import * as $products_Form from "./islands/products/Form.tsx";
+import * as $products_Table from "./islands/products/Table.tsx";
 import * as $transactions_Form from "./islands/transactions/Form.tsx";
 import * as $transactions_Table from "./islands/transactions/Table.tsx";
 import { type Manifest } from "$fresh/server.ts";
@@ -55,6 +60,7 @@ const manifest = {
     "./routes/api/interactions.ts": $api_interactions,
     "./routes/api/invoices.ts": $api_invoices,
     "./routes/api/mod.ts": $api_mod,
+    "./routes/api/products.ts": $api_products,
     "./routes/api/transactions.ts": $api_transactions,
     "./routes/api/users.ts": $api_users,
     "./routes/contacts/[id].tsx": $contacts_id_,
@@ -65,6 +71,8 @@ const manifest = {
     "./routes/interactions/index.tsx": $interactions_index,
     "./routes/invoices/[id].tsx": $invoices_id_,
     "./routes/invoices/index.tsx": $invoices_index,
+    "./routes/products/[id].tsx": $products_id_,
+    "./routes/products/index.tsx": $products_index,
     "./routes/transactions/[id].tsx": $transactions_id_,
     "./routes/transactions/index.tsx": $transactions_index,
   },
@@ -80,6 +88,8 @@ const manifest = {
     "./islands/invoices/Form.tsx": $invoices_Form,
     "./islands/invoices/Table.tsx": $invoices_Table,
     "./islands/mod.ts": $mod,
+    "./islands/products/Form.tsx": $products_Form,
+    "./islands/products/Table.tsx": $products_Table,
     "./islands/transactions/Form.tsx": $transactions_Form,
     "./islands/transactions/Table.tsx": $transactions_Table,
   },

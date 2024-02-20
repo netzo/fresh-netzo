@@ -31,9 +31,7 @@ export default defineApp<NetzoState>((req, ctx) => {
           { text: "Accounts", href: "/accounts", icon: "mdi-account-group" },
           { text: "Contacts", href: "/contacts", icon: "mdi-contacts" },
           {},
-          { text: "Products", href: "/", icon: "mdi-package-variant" },
-          { text: "Services", href: "/", icon: "mdi-cogs" },
-          {},
+          { text: "Products", href: "/products", icon: "mdi-barcode" },
           { text: "Quotes", href: "/quotes", icon: "mdi-file-document" },
           {},
           {

@@ -6,6 +6,7 @@ const RESOURCES = [
   "deals",
   "interactions",
   "invoices",
+  "products",
   "transactions",
 ];
 
