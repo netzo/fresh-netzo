@@ -50,14 +50,14 @@ export const getColumns = ({ options }: TableProps): TableProps["columns"] => [
     cell: ({ row }) => {
       const { userInfo } = row.original as User;
 
-      return userInfo.position
-        ? (
-          <div className="flex">
-            <i className="mdi-account-tie-outline mr-2"></i>
-            {userInfo.position}
-          </div>
-        )
-        : <></>;
+      if (!userInfo?.position) return null;
+
+      return (
+        <div className="flex">
+          <i className="mdi-account-tie-outline mr-2"></i>
+          {userInfo.position}
+        </div>
+      );
     },
     filterFn: (row, id, value) => value.includes(row.getValue(id)),
   },
@@ -69,14 +69,14 @@ export const getColumns = ({ options }: TableProps): TableProps["columns"] => [
     cell: ({ row }) => {
       const { userInfo } = row.original as User;
 
-      return userInfo.office
-        ? (
-          <div className="flex">
-            <i className="mdi-map-marker-outline mr-2"></i>
-            {userInfo.office}
-          </div>
-        )
-        : <></>;
+     if (!userInfo?.office) return null;
+
+      return (
+        <div className="flex">
+          <i className="mdi-account-tie-outline mr-2"></i>
+          {userInfo.office}
+        </div>
+      );
     },
     filterFn: (row, id, value) => value.includes(row.getValue(id)),
   },

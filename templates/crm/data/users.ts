@@ -69,15 +69,7 @@ export const I18N = {
   "userInfo": {
     "label": "User information",
     "position": "Position",
-    "seniority": {
-      "label": "Seniority",
-      "entry": "Entry",
-      "junior": "Junior",
-      "mid": "Mid",
-      "senior": "Senior",
-      "manager": "Manager",
-      "executive": "Executive",
-    },
+    "seniority": "Seniority",
     "office": "Office",
   },
   "phones": "Contact phone",
