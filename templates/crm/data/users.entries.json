@@ -8,11 +8,11 @@
       "id": 1,
       "name": "Arturo Romero",
       "image": "https://github.com/arturork.png",
-      "department": "Management",
+      "department": "sales",
       "userInfo": {
         "position": "CEO",
-        "seniority": "Principal",
-        "office": "Monterrey"
+        "seniority": "junior",
+        "office": "Monterrey, Mexico"
       },
       "phones": [
         {
@@ -58,11 +58,11 @@
       "id": 2,
       "name": "Miguel Romero",
       "image": "https://github.com/miguelrk.png",
-      "department": "Management",
+      "department": "management",
       "userInfo": {
         "position": "CTO",
-        "seniority": "Principal",
-        "office": "Madrid"
+        "seniority": "executive",
+        "office": "Madrid, Spain"
       },
       "phones": [
         {
@@ -108,11 +108,11 @@
       "id": 3,
       "name": "Gabriel Romero",
       "image": "https://github.com/gabrielromk.png",
-      "department": "Management",
+      "department": "management",
       "userInfo": {
         "position": "COO",
-        "seniority": "Principal",
-        "office": "Madrid"
+        "seniority": "executive",
+        "office": "Madrid, Spain"
       },
       "phones": [
         {
@@ -131,6 +131,11 @@
           "type": "work",
           "name": "Work email",
           "value": "gabriel.romero@netzo.io"
+        },
+        {
+          "type": "personal",
+          "name": "Personal email",
+          "value": "gabriel.romero.karam@gmail.com"
         }
       ],
       "links": [

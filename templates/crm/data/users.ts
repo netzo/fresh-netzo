@@ -3,33 +3,33 @@ import { EmailSchema, LinksSchema, PhoneSchema } from "./utils/global.types.ts";
 
 // sub-schemas:
 
-const senorityLevels = [
-  "Entry-Level",
-  "Junior",
-  "Mid-Level",
-  "Senior",
-  "Lead",
-  "Principal",
+export const senorityLevels = [
+  "entry",
+  "junior",
+  "mid",
+  "senior",
+  "manager",
+  "executive",
 ] as const;
 
-const offices = [
-  "Monterrey",
-  "Madrid",
-  "Munich",
-  "Houston",
-  "San Francisco",
+export const offices = [
+  "Monterrey, Mexico",
+  "Madrid, Spain",
+  "Munich, Germany",
+  "Houston, USA",
+  "San Francisco, USA",
 ] as const;
 
-const departments = [
-  "Sales",
-  "Marketing",
-  "Management",
-  "Finance",
-  "HR",
-  "Legal",
-  "Operations",
-  "Product & Engineering",
-  "Customer Success",
+export const departments = [
+  "sales",
+  "marketing",
+  "management",
+  "finance",
+  "hr",
+  "legal",
+  "operations",
+  "productAndEngineering",
+  "customerSuccess",
 ] as const;
 
 // schemas:
@@ -57,11 +57,29 @@ export const I18N = {
   "id": "Employee ID",
   "name": "Name",
   "image": "User image",
-  "department": "Department",
+  "department": {
+    "label": "Department",
+    "sales": "Sales",
+    "marketing": "Marketing",
+    "management": "Management",
+    "finance": "Finance",
+    "hr": "Human Resources",
+    "legal": "Legal",
+    "operations": "Operations",
+    "productAndEngineering": "Product & Engineering",
+  },
   "userInfo": {
     "label": "User information",
     "position": "Position",
-    "seniority": "Seniority",
+    "seniority": {
+      "label": "Seniority",
+      "entry": "Entry",
+      "junior": "Junior",
+      "mid": "Mid",
+      "senior": "Senior",
+      "manager": "Manager",
+      "executive": "Executive",
+    },
     "office": "Office",
   },
   "phones": "Contact phone",
