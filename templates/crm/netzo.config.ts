@@ -13,6 +13,7 @@ export const $client = {
   interactions: endpoints.interactions.resource,
   invoices: endpoints.invoices.resource,
   transactions: endpoints.transactions.resource,
+  users: endpoints.users.resource,
 };
 
 export default defineConfig({
