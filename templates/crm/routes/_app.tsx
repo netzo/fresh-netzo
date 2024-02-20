@@ -21,7 +21,6 @@ export default defineApp<NetzoState>((req, ctx) => {
       items: [
         [
           { text: "Dashboard", href: "/", icon: "mdi-view-dashboard" },
-          { text: "Calendar", href: "/calendar", icon: "mdi-calendar" },
           {
             text: "Recent Activity",
             href: "/interactions",
@@ -48,7 +47,7 @@ export default defineApp<NetzoState>((req, ctx) => {
             icon: "mdi-comment-question",
           },
           {
-            text: "View Source Code",
+            text: "Open in GitHub",
             href: "https://github.com/netzo/netzo/tree/main/templates/crm",
             target: "_blank",
             icon: "mdi-github",
