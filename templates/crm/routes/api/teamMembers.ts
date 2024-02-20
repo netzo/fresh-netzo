@@ -2,10 +2,10 @@
 import { defineApiEndpoint } from "netzo/plugins/api/plugin.ts";
 import { DenoKvResource } from "netzo/plugins/api/resources/mod.ts";
 
-export const team = defineApiEndpoint({
-  name: "team",
+export const teamMembers = defineApiEndpoint({
+  name: "teamMembers",
   idField: "id",
-  resource: DenoKvResource({ prefix: ["team"] }),
+  resource: DenoKvResource({ prefix: ["teamMembers"] }),
   hooks: {
     all: [],
     find: [],

@@ -34,7 +34,7 @@ const departments = [
 
 // schemas:
 
-export const teamSchema = z.object({
+export const teamMemberSchema = z.object({
   id: z.string(),
   name: z.string(),
   contact: z.object({
@@ -60,7 +60,7 @@ export const teamSchema = z.object({
   }),
 });
 
-export type Team = z.infer<typeof teamSchema>;
+export type TeamMember = z.infer<typeof teamMemberSchema>;
 
 export const I18N = {
   "id": "Employee ID",
