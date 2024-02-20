@@ -8,7 +8,7 @@ import {
 } from "../../deps/$fresh/server/deps.ts";
 import { UnoGenerator, type UserConfig } from "../../deps/@unocss/core.ts";
 import type { Theme } from "../../deps/@unocss/preset-uno.ts";
-import { exists } from "../../deps/std/fs/exists.ts";
+import { existsSync } from "../../deps/std/fs/exists.ts";
 import type { NetzoState } from "../../mod.ts";
 
 type PreactOptions = typeof preactOptions & { __b?: (vnode: VNode) => void };
@@ -26,7 +26,12 @@ const unoResetCSS = `/* reset */
 a,hr{color:inherit}progress,sub,sup{vertical-align:baseline}blockquote,body,dd,dl,fieldset,figure,h1,h2,h3,h4,h5,h6,hr,menu,ol,p,pre,ul{margin:0}fieldset,legend,menu,ol,ul{padding:0}*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:var(--un-default-border-color,#e5e7eb)}html{line-height:1.5;-webkit-text-size-adjust:100%;text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"}body{line-height:inherit}hr{height:0;border-top-width:1px}abbr:where([title]){text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}menu,ol,ul{list-style:none}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]{display:none}
 `;
 
-export type UnocssOptions = {
+export type UnocssConfig = {
+  /**
+   * Inline UnoCSS config object, alternative to `uno.config.ts` file.
+   * This cannot be used with CSR mode enabled which requires an `uno.config.ts` file.
+   */
+  config: UserConfig<Theme>;
   /**
    * Enable AOT mode - run UnoCSS to extract styles during the build task.
    * Enabled by default.
@@ -34,20 +39,15 @@ export type UnocssOptions = {
   aot?: boolean;
   /**
    * Enable SSR mode - run UnoCSS live to extract styles during server renders.
-   * Disabled by default.
+   * Enabled by default.
    */
   ssr?: boolean;
   /**
    * Enable CSR mode - run the UnoCSS runtime on the client.
    * It will generate styles live in response to DOM events.
-   * Disabled by default.
+   * Enabled by default.
    */
   csr?: boolean;
-  /**
-   * Inline UnoCSS config object, alternative to `uno.config.ts` file.
-   * This cannot be used with CSR mode enabled which requires an `uno.config.ts` file.
-   */
-  config?: UserConfig<Theme>;
 };
 
 /**
@@ -125,22 +125,39 @@ async function runOverSource(uno: UnoGenerator): Promise<string> {
 /**
  * Plugin to automatically generates CSS utility classes
  *
+ * IMPORTANT: must declare a valid "uno.config.ts" file and pass it as the "config" option.
+ *
+ * @param config (UserConfig<Theme>) - inline UnoCSS config object declared at "uno.config.ts".
  * @param aot (boolean) - enables ahead-of-time (AOT) mode to run UnoCSS to extract styles during the build task (default: true)
  * @param ssr (boolean) - enables server-side rendering (SSR) mode to run UnoCSS live to extract styles during server renders (default: true)
  * @param csr (boolean) - enables client-side rendering (CSR) mode to run the UnoCSS runtime on the client to generate styles live in response to DOM events (default: true)
- * @param config (UserConfig<Theme>) - inline UnoCSS config object, alternative to `uno.config.ts` file. This cannot be used with CSR mode enabled which requires an `uno.config.ts` file.
  */
-export const unocss = (
-  {
-    aot = true,
-    ssr = true,
-    csr = true,
-    config,
-  }: UnocssOptions = {},
-): Plugin<NetzoState> => {
+export const unocss = ({
+  config,
+  aot = true,
+  ssr = true,
+  csr = true,
+}: UnocssConfig): Plugin<NetzoState> => {
   // A uno.config.ts file is required in the project directory if
   // a config object is not provided, or to use the browser runtime
-  const configURL = new URL("./uno.config.ts", Deno.mainModule);
+  const configFileURL = new URL("./uno.config.ts", Deno.mainModule).href;
+
+  // NOTE: Subhosting somehow fails when operating with and/or importing from
+  // file:// URLs, so we remove the file:// prefix to avoid build/deployment errors
+  const configURL = configFileURL.replace("file://", "");
+
+  const configFileExists = existsSync(configURL, {
+    isFile: true,
+    isReadable: true,
+  });
+  // Serialize uno.config.ts contents to base64 ES import since default fresh serialization
+  // (via esbuild) looses functions when bundling the client runtime script for CSR mode
+  if (csr && !configFileExists) {
+    throw new Error(`Missing "uno.config.ts" file in the project directory.`);
+  }
+  if ((aot || ssr) && !config) {
+    throw new Error(`Missing "uno.config.ts" file in the project directory.`);
+  }
 
   // Link to CSS file, if AOT mode is enabled
   const links = aot ? [{ rel: "stylesheet", href: "/uno.css" }] : [];
@@ -167,7 +184,9 @@ export const unocss = (
       ? {
         "main": `
         data:application/javascript,
-        import config from "${configURL}";
+        import config from "data:application/javascript;base64,${
+          btoa(Deno.readTextFileSync(configURL))
+        }";
         import init from "https://esm.sh/@unocss/runtime@0.58.5";
         export default function() {
           window.__unocss = config;
@@ -176,34 +195,6 @@ export const unocss = (
       }
       : {},
     async configResolved(freshConfig) {
-      // Load config from file if required
-      const configFileExists = await exists(configURL, {
-        isFile: true,
-        isReadable: true,
-      });
-      if (config === undefined) {
-        try {
-          // NOTE: Subhosting fails when reading from file:// URLs somehow,
-          // so we remove the file:// prefix to avoid build/deployment errors
-          const configURLSafe = configURL.href.replace("file://", "");
-          config = (await import(configURLSafe)).default;
-        } catch (error) {
-          if (configFileExists) {
-            throw error;
-          } else {
-            throw new Error(
-              "uno.config.ts not found in the project directory! Please create it or pass a config object to the UnoCSS plugin",
-            );
-          }
-        }
-      }
-
-      if (csr && !configFileExists) {
-        throw new Error(
-          "uno.config.ts not found in the project directory! Required for CSR mode.",
-        );
-      }
-
       // Create the generator object
       uno = new UnoGenerator(config);
 

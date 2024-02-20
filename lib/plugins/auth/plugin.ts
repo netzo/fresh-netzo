@@ -70,9 +70,7 @@ export function useAuth(ctx: RouteContext<void, NetzoState>) {
  * @param {AuthConfig} - configuration options for the plugin
  * @returns {Plugin} - a Plugin for Deno Fresh
  */
-export const auth = (config?: AuthConfig): Plugin<NetzoState> => {
-  if (!config) return { name: "auth" };
-
+export const auth = (config: AuthConfig): Plugin<NetzoState> => {
   const authEnabled = [
     "netzo",
     "email",

@@ -3,7 +3,7 @@ import { defineApiEndpoint } from "netzo/plugins/api/plugin.ts";
 import { DenoKvResource } from "netzo/plugins/api/resources/mod.ts";
 import type { Account } from "../../data/accounts.ts";
 import type { Contact } from "../../data/contacts.ts";
-import { api } from "../../netzo.config.ts";
+import { $client } from "../../netzo.config.ts";
 
 export const contacts = defineApiEndpoint({
   name: "contacts",
@@ -16,7 +16,7 @@ export const contacts = defineApiEndpoint({
       resolve({
         after: {
           account: (data: Contact) =>
-            api.accounts[data.accountId].get<Account>(),
+            $client.accounts.get(data.accountId) as Account,
         },
       }),
     ],

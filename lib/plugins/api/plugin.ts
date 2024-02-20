@@ -5,13 +5,13 @@ import { handleErrors } from "./middlewares/mod.ts";
 import type { Resource } from "./resources/mod.ts";
 import { getRoutesByEndpoint } from "./routes/mod.ts";
 
-export type ApiEndpoint = {
+export type ApiEndpoint<T = Record<string, unknown>> = {
   /** The name of the resource e.g. "users" (API endpoint will be mounted at `/api/{name}`). */
   name: string;
   /** The field name to use as the primary key. Defaults to "id". */
   idField?: string;
   /** The resource instance to use for performing RESTful operations. */
-  resource: Resource;
+  resource: Resource<T>;
   /** An object mapping resource methods to an array of hooks to apply. */
   hooks?: {
     all?: Middleware[];
@@ -52,9 +52,7 @@ export type ApiState = {
  * @param {ApiConfig} - configuration options for the plugin
  * @returns {Plugin} - a Plugin for Deno Fresh
  */
-export const api = (config?: ApiConfig): Plugin<NetzoState> => {
-  if (!config) return { name: "api" };
-
+export const api = (config: ApiConfig): Plugin<NetzoState> => {
   config.path ||= "/api";
   config.endpoints ||= [];
 

@@ -1,23 +1,24 @@
-import { createApi } from "netzo/integrations/create-api/mod.ts";
 import { defineConfig } from "netzo/mod.ts";
 import * as netzo from "netzo/plugins/mod.ts";
 import { unocss } from "netzo/plugins/unocss/plugin.ts";
 import * as endpoints from "./routes/api/mod.ts";
+import unoConfig from "./uno.config.ts";
 
-export const api = createApi({
-  baseURL: "http://localhost:8000/api",
-  headers: {
-    "content-type": "application/json",
-    "x-api-key": Deno.env.get("NETZO_API_KEY")!,
-  },
-});
+// server-side: use server-only $client object ($ = server-only).
+// client-side: use fetch() or custom createApi() client.
+export const $client = {
+  accounts: endpoints.accounts.resource,
+  contacts: endpoints.contacts.resource,
+  deals: endpoints.deals.resource,
+  interactions: endpoints.interactions.resource,
+  invoices: endpoints.invoices.resource,
+  transactions: endpoints.transactions.resource,
+};
 
 export default defineConfig({
   plugins: [
     netzo.environments(),
-    netzo.auth(
-      Deno.env.get("DENO_REGION") ? { providers: { netzo: {} } } : undefined,
-    ),
+    // netzo.auth({ providers: { netzo: {} } }),
     netzo.api({
       path: "/api",
       endpoints: [
@@ -30,6 +31,6 @@ export default defineConfig({
         endpoints.team,
       ],
     }),
-    unocss(),
+    unocss({ config: unoConfig }),
   ],
 });
