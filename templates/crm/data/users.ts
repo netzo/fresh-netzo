@@ -1,5 +1,5 @@
-import { phoneRegex } from "@/data/utils/global.types.ts";
 import { z } from "zod";
+import { EmailSchema, LinksSchema, PhoneSchema } from "./utils/global.types.ts";
 
 // sub-schemas:
 
@@ -37,27 +37,18 @@ const departments = [
 export const userSchema = z.object({
   id: z.string(),
   name: z.string(),
-  contact: z.object({
-    mobilePhone: z.string().regex(phoneRegex),
-    officePhone: z.string().regex(phoneRegex),
-    companyEmail: z.string().email(),
-  }),
-  info: z.object({
-    avatar: z.string().url(),
+  image: z.string().url(),
+  department: z.enum(departments),
+  userInfo: z.object({
     position: z.string(),
     seniority: z.enum(senorityLevels),
-    department: z.enum(departments),
     office: z.enum(offices),
   }),
-  socialMedia: z.object({
-    linkedin: z.string().url(),
-    twitter: z.string().url(),
-    github: z.string().url(),
-  }),
-  meta: z.object({
-    createdAt: z.string().datetime(),
-    updatedAt: z.string().datetime(),
-  }),
+  phones: z.array(z.object(PhoneSchema)),
+  emails: z.array(z.object(EmailSchema)),
+  links: z.array(z.object(LinksSchema)),
+  createdAt: z.string().datetime(),
+  updatedAt: z.string().datetime(),
 });
 
 export type User = z.infer<typeof userSchema>;
@@ -65,29 +56,17 @@ export type User = z.infer<typeof userSchema>;
 export const I18N = {
   "id": "Employee ID",
   "name": "Name",
-  "contact": {
-    "title": "Contact",
-    "mobilePhone": "Mobile Phone",
-    "officePhone": "Office Phone",
-    "companyEmail": "Company Email",
-  },
-  "info": {
-    "title": "Information",
-    "avatar": "Avatar",
+  "image": "User image",
+  "department": "Department",
+  "userInfo": {
+    "label": "User information",
     "position": "Position",
     "seniority": "Seniority",
-    "department": "Department",
     "office": "Office",
   },
-  "socialMedia": {
-    "title": "Social Media",
-    "linkedin": "LinkedIn",
-    "twitter": "Twitter",
-    "github": "GitHub",
-  },
-  "meta": {
-    "title": "Metadata",
-    "createdAt": "Created At",
-    "updatedAt": "Updated At",
-  },
+  "phones": "Contact phone",
+  "emails": "Contact email",
+  "links": "Links",
+  "createdAt": "Created at",
+  "updatedAt": "Updated at",
 };

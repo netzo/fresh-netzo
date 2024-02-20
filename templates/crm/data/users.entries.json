@@ -7,27 +7,46 @@
     "value": {
       "id": 1,
       "name": "Arturo Romero",
-      "contact": {
-        "mobilePhone": "",
-        "officePhone": "",
-        "email": "arturo.romero@netzo.io"
-      },
-      "info": {
-        "avatar": "https://github.com/arturork.png",
+      "image": "https://github.com/arturork.png",
+      "department": "Management",
+      "userInfo": {
         "position": "CEO",
         "seniority": "Principal",
-        "department": "Management",
         "office": "Monterrey"
       },
-      "socialMedia": {
-        "linkedin": "https://www.linkedin.com/in/arturork/",
-        "twitter": "",
-        "github": "https://github.com/arturork"
-      },
-      "meta": {
-        "createdAt": "2021-03-01T00:00:00",
-        "lasUpdated": "2021-03-01T00:00:00"
-      }
+      "phones": [
+        {
+          "type": "mobile",
+          "name": "Mobile phone",
+          "value": "811-123-4567"
+        },
+        {
+          "type": "work",
+          "name": "Work phone",
+          "value": "811-123-4567"
+        }
+      ],
+      "emails": [
+        {
+          "type": "work",
+          "name": "Work email",
+          "value": "arturo.romero@netzo.io"
+        }
+      ],
+      "links": [
+        {
+          "type": "linkedin",
+          "name": "Linkedin",
+          "value": "https://www.linkedin.com/in/arturork/"
+        },
+        {
+          "type": "github",
+          "name": "GitHub",
+          "value": "https://github.com/arturork"
+        }
+      ],
+      "createdAt": "2021-03-01T00:00:00",
+      "lasUpdated": "2021-03-01T00:00:00"
     }
   },
   {
@@ -38,27 +57,46 @@
     "value": {
       "id": 2,
       "name": "Miguel Romero",
-      "contact": {
-        "mobilePhone": "",
-        "officePhone": "",
-        "email": "miguel.romero@netzo.io"
-      },
-      "info": {
-        "avatar": "https://github.com/miguelrk.png",
+      "image": "https://github.com/miguelrk.png",
+      "department": "Management",
+      "userInfo": {
         "position": "CTO",
         "seniority": "Principal",
-        "department": "Management",
         "office": "Madrid"
       },
-      "socialMedia": {
-        "linkedin": "https://www.linkedin.com/in/miguelromerokaram/",
-        "twitter": "",
-        "github": "https://github.com/miguelrk"
-      },
-      "meta": {
-        "createdAt": "2021-03-01T00:00:00",
-        "lasUpdated": "2021-03-01T00:00:00"
-      }
+      "phones": [
+        {
+          "type": "mobile",
+          "name": "Mobile phone",
+          "value": "811-123-4567"
+        },
+        {
+          "type": "work",
+          "name": "Work phone",
+          "value": "811-123-4567"
+        }
+      ],
+      "emails": [
+        {
+          "type": "work",
+          "name": "Work email",
+          "value": "miguel.romero@netzo.io"
+        }
+      ],
+      "links": [
+        {
+          "type": "linkedin",
+          "name": "Linkedin",
+          "value": "https://www.linkedin.com/in/miguelromerokaram/"
+        },
+        {
+          "type": "github",
+          "name": "GitHub",
+          "value": "https://github.com/miguelrk"
+        }
+      ],
+      "createdAt": "2021-03-01T00:00:00",
+      "lasUpdated": "2021-03-01T00:00:00"
     }
   },
   {
@@ -67,29 +105,48 @@
       "3"
     ],
     "value": {
-      "id": 1,
+      "id": 3,
       "name": "Gabriel Romero",
-      "contact": {
-        "mobilePhone": "",
-        "officePhone": "",
-        "email": "gabriel.romero@netzo.io"
-      },
-      "info": {
-        "avatar": "https://github.com/gabrielromk.png",
+      "image": "https://github.com/gabrielromk.png",
+      "department": "Management",
+      "userInfo": {
         "position": "COO",
         "seniority": "Principal",
-        "department": "Management",
         "office": "Madrid"
       },
-      "socialMedia": {
-        "linkedin": "https://www.linkedin.com/in/gabrielromero1995/",
-        "twitter": "",
-        "github": "https://github.com/gabrielromk"
-      },
-      "meta": {
-        "createdAt": "2021-03-01T00:00:00",
-        "lasUpdated": "2021-03-01T00:00:00"
-      }
+      "phones": [
+        {
+          "type": "mobile",
+          "name": "Mobile phone",
+          "value": "811-123-4567"
+        },
+        {
+          "type": "work",
+          "name": "Work phone",
+          "value": "811-123-4567"
+        }
+      ],
+      "emails": [
+        {
+          "type": "work",
+          "name": "Work email",
+          "value": "gabriel.romero@netzo.io"
+        }
+      ],
+      "links": [
+        {
+          "type": "linkedin",
+          "name": "Linkedin",
+          "value": "https://www.linkedin.com/in/gabrielromero1995/"
+        },
+        {
+          "type": "github",
+          "name": "GitHub",
+          "value": "https://github.com/gabrielromk"
+        }
+      ],
+      "createdAt": "2021-03-01T00:00:00",
+      "lasUpdated": "2021-03-01T00:00:00"
     }
   }
 ]
