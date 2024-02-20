@@ -4,10 +4,10 @@ const RESOURCES = [
   "accounts",
   "contacts",
   "deals",
-  "interactions",
   "invoices",
   "products",
   "transactions",
+  "users",
 ];
 
 const [length = 25] = Deno.args.map(Number);

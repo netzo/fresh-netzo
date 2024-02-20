@@ -21,16 +21,10 @@ export default defineApp<NetzoState>((req, ctx) => {
       items: [
         [
           { text: "Dashboard", href: "/", icon: "mdi-view-dashboard" },
-          {
-            text: "Recent Activity",
-            href: "/interactions",
-            icon: "mdi-history",
-          },
-          {},
           { text: "Deals", href: "/deals", icon: "mdi-tag" },
+          {},
           { text: "Accounts", href: "/accounts", icon: "mdi-account-group" },
           { text: "Contacts", href: "/contacts", icon: "mdi-contacts" },
-          {},
           { text: "Products", href: "/products", icon: "mdi-barcode" },
           { text: "Quotes", href: "/quotes", icon: "mdi-file-document" },
           {},
