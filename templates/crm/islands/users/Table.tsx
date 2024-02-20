@@ -69,7 +69,7 @@ export const getColumns = ({ options }: TableProps): TableProps["columns"] => [
     cell: ({ row }) => {
       const { userInfo } = row.original as User;
 
-     if (!userInfo?.office) return null;
+      if (!userInfo?.office) return null;
 
       return (
         <div className="flex">
