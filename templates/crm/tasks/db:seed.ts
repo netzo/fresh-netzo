@@ -8,6 +8,7 @@ const RESOURCES = [
   "interactions",
   "invoices",
   "transactions",
+  "users",
 ];
 
 export const dbSeed = async () => {

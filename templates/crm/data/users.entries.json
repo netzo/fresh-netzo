@@ -1,0 +1,95 @@
+[
+  {
+    "key": [
+      "users",
+      "1"
+    ],
+    "value": {
+      "id": 1,
+      "name": "Arturo Romero",
+      "contact": {
+        "mobilePhone": "",
+        "officePhone": "",
+        "email": "arturo.romero@netzo.io"
+      },
+      "info": {
+        "avatar": "https://github.com/arturork.png",
+        "position": "CEO",
+        "seniority": "Principal",
+        "department": "Management",
+        "office": "Monterrey"
+      },
+      "socialMedia": {
+        "linkedin": "https://www.linkedin.com/in/arturork/",
+        "twitter": "",
+        "github": "https://github.com/arturork"
+      },
+      "meta": {
+        "createdAt": "2021-03-01T00:00:00",
+        "lasUpdated": "2021-03-01T00:00:00"
+      }
+    }
+  },
+  {
+    "key": [
+      "users",
+      "2"
+    ],
+    "value": {
+      "id": 2,
+      "name": "Miguel Romero",
+      "contact": {
+        "mobilePhone": "",
+        "officePhone": "",
+        "email": "miguel.romero@netzo.io"
+      },
+      "info": {
+        "avatar": "https://github.com/miguelrk.png",
+        "position": "CTO",
+        "seniority": "Principal",
+        "department": "Management",
+        "office": "Madrid"
+      },
+      "socialMedia": {
+        "linkedin": "https://www.linkedin.com/in/miguelromerokaram/",
+        "twitter": "",
+        "github": "https://github.com/miguelrk"
+      },
+      "meta": {
+        "createdAt": "2021-03-01T00:00:00",
+        "lasUpdated": "2021-03-01T00:00:00"
+      }
+    }
+  },
+  {
+    "key": [
+      "users",
+      "3"
+    ],
+    "value": {
+      "id": 1,
+      "name": "Gabriel Romero",
+      "contact": {
+        "mobilePhone": "",
+        "officePhone": "",
+        "email": "gabriel.romero@netzo.io"
+      },
+      "info": {
+        "avatar": "https://github.com/gabrielromk.png",
+        "position": "COO",
+        "seniority": "Principal",
+        "department": "Management",
+        "office": "Madrid"
+      },
+      "socialMedia": {
+        "linkedin": "https://www.linkedin.com/in/gabrielromero1995/",
+        "twitter": "",
+        "github": "https://github.com/gabrielromk"
+      },
+      "meta": {
+        "createdAt": "2021-03-01T00:00:00",
+        "lasUpdated": "2021-03-01T00:00:00"
+      }
+    }
+  }
+]
