@@ -14,6 +14,7 @@ export const $client = {
   invoices: endpoints.invoices.resource,
   products: endpoints.products.resource,
   transactions: endpoints.transactions.resource,
+  users: endpoints.users.resource,
 };
 
 export default defineConfig({

@@ -91,7 +91,7 @@ export const addContactsResultSchema = z.object({
   job_id: z.string(),
 }).deepPartial();
 
-export const dataSendEmailSchema = z.object({
+export const dataSendemailSchema = z.object({
   personalizations: z.array(
     z.object({
       to: z.array(
@@ -219,4 +219,4 @@ export type QueryLists = z.infer<typeof queryListsSchema>;
 export type QueryList = z.infer<typeof queryListSchema>;
 export type DataAddContacts = z.infer<typeof dataAddContactsSchema>;
 export type AddContactsResult = z.infer<typeof addContactsResultSchema>;
-export type DataSendEmail = z.infer<typeof dataSendEmailSchema>;
+export type DataSendEmail = z.infer<typeof dataSendemailSchema>;

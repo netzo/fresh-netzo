@@ -29,6 +29,7 @@ import * as $products_id_ from "./routes/products/[id].tsx";
 import * as $products_index from "./routes/products/index.tsx";
 import * as $transactions_id_ from "./routes/transactions/[id].tsx";
 import * as $transactions_index from "./routes/transactions/index.tsx";
+import * as $users_index from "./routes/users/index.tsx";
 import * as $Dashboard from "./islands/Dashboard.tsx";
 import * as $accounts_Form from "./islands/accounts/Form.tsx";
 import * as $accounts_Table from "./islands/accounts/Table.tsx";
@@ -44,6 +45,7 @@ import * as $products_Form from "./islands/products/Form.tsx";
 import * as $products_Table from "./islands/products/Table.tsx";
 import * as $transactions_Form from "./islands/transactions/Form.tsx";
 import * as $transactions_Table from "./islands/transactions/Table.tsx";
+import * as $users_Table from "./islands/users/Table.tsx";
 import { type Manifest } from "$fresh/server.ts";
 
 const manifest = {
@@ -75,6 +77,7 @@ const manifest = {
     "./routes/products/index.tsx": $products_index,
     "./routes/transactions/[id].tsx": $transactions_id_,
     "./routes/transactions/index.tsx": $transactions_index,
+    "./routes/users/index.tsx": $users_index,
   },
   islands: {
     "./islands/Dashboard.tsx": $Dashboard,
@@ -92,6 +95,7 @@ const manifest = {
     "./islands/products/Table.tsx": $products_Table,
     "./islands/transactions/Form.tsx": $transactions_Form,
     "./islands/transactions/Table.tsx": $transactions_Table,
+    "./islands/users/Table.tsx": $users_Table,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;

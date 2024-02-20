@@ -1,35 +1,35 @@
-import { phoneRegex } from "@/data/utils/global.types.ts";
 import { z } from "zod";
+import { emailSchema, linkSchema, phoneSchema } from "./utils/global.types.ts";
 
 // sub-schemas:
 
-const senorityLevels = [
-  "Entry-Level",
-  "Junior",
-  "Mid-Level",
-  "Senior",
-  "Lead",
-  "Principal",
+export const senorityLevels = [
+  "entry",
+  "junior",
+  "mid",
+  "senior",
+  "manager",
+  "executive",
 ] as const;
 
-const offices = [
-  "Monterrey",
-  "Madrid",
-  "Munich",
-  "Houston",
-  "San Francisco",
+export const offices = [
+  "Monterrey, Mexico",
+  "Madrid, Spain",
+  "Munich, Germany",
+  "Houston, USA",
+  "San Francisco, USA",
 ] as const;
 
-const departments = [
-  "Sales",
-  "Marketing",
-  "Management",
-  "Finance",
-  "HR",
-  "Legal",
-  "Operations",
-  "Product & Engineering",
-  "Customer Success",
+export const departments = [
+  "sales",
+  "marketing",
+  "management",
+  "finance",
+  "hr",
+  "legal",
+  "operations",
+  "productAndEngineering",
+  "customerSuccess",
 ] as const;
 
 // schemas:
@@ -37,27 +37,18 @@ const departments = [
 export const userSchema = z.object({
   id: z.string(),
   name: z.string(),
-  contact: z.object({
-    mobilePhone: z.string().regex(phoneRegex),
-    officePhone: z.string().regex(phoneRegex),
-    companyEmail: z.string().email(),
-  }),
-  info: z.object({
-    avatar: z.string().url(),
+  image: z.string().url(),
+  department: z.enum(departments),
+  userInfo: z.object({
     position: z.string(),
     seniority: z.enum(senorityLevels),
-    department: z.enum(departments),
     office: z.enum(offices),
   }),
-  socialMedia: z.object({
-    linkedin: z.string().url(),
-    twitter: z.string().url(),
-    github: z.string().url(),
-  }),
-  meta: z.object({
-    createdAt: z.string().datetime(),
-    updatedAt: z.string().datetime(),
-  }),
+  phones: z.array(z.object(phoneSchema)),
+  emails: z.array(emailSchema),
+  links: z.array(z.object(linkSchema)),
+  createdAt: z.string().datetime(),
+  updatedAt: z.string().datetime(),
 });
 
 export type User = z.infer<typeof userSchema>;
@@ -65,29 +56,35 @@ export type User = z.infer<typeof userSchema>;
 export const I18N = {
   "id": "Employee ID",
   "name": "Name",
-  "contact": {
-    "title": "Contact",
-    "mobilePhone": "Mobile Phone",
-    "officePhone": "Office Phone",
-    "companyEmail": "Company Email",
+  "image": "User image",
+  "department": {
+    "label": "Department",
+    "sales": "Sales",
+    "marketing": "Marketing",
+    "management": "Management",
+    "finance": "Finance",
+    "hr": "Human Resources",
+    "legal": "Legal",
+    "operations": "Operations",
+    "productAndEngineering": "Product & Engineering",
   },
-  "info": {
-    "title": "Information",
-    "avatar": "Avatar",
+  "userInfo": {
+    "label": "User information",
     "position": "Position",
-    "seniority": "Seniority",
-    "department": "Department",
+    "seniority": {
+      "label": "Seniority",
+      "entry": "Entry",
+      "junior": "Junior",
+      "mid": "Mid",
+      "senior": "Senior",
+      "manager": "Manager",
+      "executive": "Executive",
+    },
     "office": "Office",
   },
-  "socialMedia": {
-    "title": "Social Media",
-    "linkedin": "LinkedIn",
-    "twitter": "Twitter",
-    "github": "GitHub",
-  },
-  "meta": {
-    "title": "Metadata",
-    "createdAt": "Created At",
-    "updatedAt": "Updated At",
-  },
+  "phones": "Contact phone",
+  "emails": "Contact email",
+  "links": "Links",
+  "createdAt": "Created at",
+  "updatedAt": "Updated at",
 };
