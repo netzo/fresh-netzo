@@ -1,8 +1,6 @@
-const kv = await Deno.openKv(Deno.env.get("DENO_KV_PATH"));
-
 export const FILEPATH = "../data/db.entries.json";
 
-const RESOURCES = {
+export const RESOURCES = {
   accounts: 25,
   contacts: 25,
   deals: 25,

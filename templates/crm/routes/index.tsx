@@ -18,7 +18,5 @@ export default defineRoute(async (req, ctx) => {
     $client.users.find() as User[],
   ]);
 
-  // if (!data) return ctx.renderNotFound();
-
   return <Dashboard data={data} />;
 });
