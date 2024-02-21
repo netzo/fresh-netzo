@@ -1,76 +1,48 @@
 const kv = await Deno.openKv(Deno.env.get("DENO_KV_PATH"));
 
-const RESOURCES = [
-  "accounts",
-  "contacts",
-  "deals",
-  "quotes",
-  "products",
-  "transactions",
-  "users",
-];
+export const FILEPATH = "../data/data.entries.json";
 
-const [length = 25] = Deno.args.map(Number);
-
-async function writeToStoreAndFile(
-  // deno-lint-ignore no-explicit-any
-  [resource, entries]: [string, any[]],
-  _index: number,
-) {
-  // write to file
-  const fileURL = import.meta.resolve(`@/data/${resource}.entries.json`);
-  await Deno.writeTextFile(
-    fileURL.replace("file://", ""),
-    JSON.stringify(entries, null, 2),
-  );
-  // write to Deno KV
-  await Promise.all(entries.map(({ key, value }) => kv.set(key, value)));
-}
+const RESOURCES = {
+  accounts: 25,
+  contacts: 25,
+  deals: 25,
+  // quotes: 25,
+  // products: 25,
+  // transactions: 25,
+  users: 10,
+} as const;
 
 export const dbMock = async () => {
-  try {
-    // deno-lint-ignore no-explicit-any
-    const data: { [key: string]: any[] } = {}; // store data in memory for inline modifications
+  // deno-lint-ignore no-explicit-any
+  const data = {} as Record<string, Omit<Deno.KvEntry<any>, "versionstamp">[]>;
 
-    for (const resource of RESOURCES) {
-      const { mock } = await import(`@/data/${resource}.ts`);
-      // generate mock data
-      const entries = Array.from({ length }, () => mock());
+  for (const [resource, length] of Object.entries(RESOURCES)) {
+    const { mock } = await import(`@/data/${resource}.ts`);
+    // Generate mock data and prepare for KV store
+    data[resource] = Array.from({ length }, () => mock()).map((entry) => ({
+      key: [resource, entry.id],
+      value: entry,
+    }));
 
-      // assume mock() generates an id for each entry, adjust accordingly if needed
-      data[resource] = entries.map((entry) => ({
-        key: [resource, entry.id],
-        value: entry,
-      }));
-
-      // [optional] modify entries e.g. to link with other resources
-      if (resource === "contacts") {
-        entries.forEach((entry, index) => {
-          // const index = Math.floor(Math.random() * data["accounts"].length);
-          const account = data["accounts"][index];
-          entry.accountId = account.value.id;
-        });
-      }
-      if (resource === "transactions") {
-        entries.forEach((entry, index) => {
-          // const index = Math.floor(Math.random() * data["accounts"].length);
-          const issuerAccount = data["accounts"][index];
-          const receiverAccount = data["accounts"][length - index - 1];
-          entry.issuerAccountId = issuerAccount.value.id;
-          entry.receiverAccountId = receiverAccount.value.id;
-        });
-      }
+    // [optional] modify entries e.g. to link with other resources
+    if (resource === "contacts") {
+      data[resource].forEach((entry, index) => {
+        // const index = Math.floor(Math.random() * data["accounts"].length);
+        const account = data["accounts"][index];
+        entry.value.accountId = account.value.id;
+      });
     }
-
-    // write data for each resource in parallel
-    await Promise.all(Object.entries(data).map(writeToStoreAndFile));
-
-    console.log("Mock data written to files and KV store");
-  } catch (error) {
-    console.error("Error mocking data:", error);
-  } finally {
-    Deno.exit(0);
   }
+
+  const entries = Object.values(data).flat();
+
+  const filepath = import.meta.resolve(FILEPATH).replace("file://", "");
+  await Deno.writeTextFile(filepath, `${JSON.stringify(entries, null, 2)}\n`);
+
+  console.log(`Mock data written to "data/data.entries.json".`);
+  console.log(`Run "deno task db:load" to load entries into the database.`);
+
+  Deno.exit(0);
 };
 
 if (import.meta.main) dbMock();
