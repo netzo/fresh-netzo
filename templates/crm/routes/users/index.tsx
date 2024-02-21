@@ -1,29 +1,30 @@
 import { defineRoute } from "$fresh/server.ts";
 import type { TableProps } from "netzo/components/blocks/table/use-table.ts";
-import { type Contact } from "../../data/contacts.ts";
-import { Table } from "../../islands/contacts/Table.tsx";
+import { type User } from "../../data/users.ts";
+import { Table } from "../../islands/users/Table.tsx";
 import { $client } from "../../netzo.config.ts";
 
 export const getTableOptions = (
-  data: Contact[],
-): TableProps<Contact, unknown>["options"] => {
+  data: User[],
+): TableProps<User, unknown>["options"] => {
   return {
-    resource: "contacts",
+    resource: "users",
     fieldIds: {
       id: "id",
       name: "name",
-      image: "image",
+      image: "accountId",
     },
     search: {
       column: "name",
       placeholder: "Search by name...",
     },
     filters: [],
+    layouts: ["grid"],
   };
 };
 
 export default defineRoute(async (req, ctx) => {
-  const data = await $client.contacts.find() as Contact[];
+  const data = await $client.users.find() as User[];
 
   const options = getTableOptions(data);
 

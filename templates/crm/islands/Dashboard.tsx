@@ -13,9 +13,9 @@ export function Dashboard(props) {
     accounts,
     contacts,
     deals,
-    interactions,
-    invoices,
+    quotes,
     transactions,
+    users,
   ] = props.data;
   return (
     <div className="p-4 space-y-4">

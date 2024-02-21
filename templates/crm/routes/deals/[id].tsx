@@ -1,14 +1,12 @@
 import { defineRoute } from "$fresh/server.ts";
 import { Separator } from "netzo/components/separator.tsx";
-import type { Interaction } from "../../data/interactions.ts";
-import { FormInteraction } from "../../islands/interactions/Form.tsx";
+import type { Deal } from "../../data/deals.ts";
+import { FormDeal } from "../../islands/deals/Form.tsx";
 import { $client } from "../../netzo.config.ts";
 
 export default defineRoute(async (req, ctx) => {
   const { id } = ctx.params;
-  const data = id === "new"
-    ? {}
-    : await $client.interactions.get(id) as Interaction;
+  const data = id === "new" ? {} : await $client.deals.get(id) as Deal;
 
   return (
     <div className="my-4 overflow-auto">
@@ -16,17 +14,17 @@ export default defineRoute(async (req, ctx) => {
       <div className="p-10 max-w-500px">
         {id === "new"
           ? (
-            <FormInteraction
+            <FormDeal
               data={data}
               method="POST"
-              action={`/api/interactions`}
+              action={`/api/deals`}
             />
           )
           : (
-            <FormInteraction
+            <FormDeal
               data={data}
               method="PATCH"
-              action={`/api/interactions/${id}`}
+              action={`/api/deals/${id}`}
             />
           )}
       </div>

@@ -1,13 +1,13 @@
-import { authenticate, log } from "netzo/plugins/api/hooks/mod.ts";
+// import { authenticate, log, resolve } from "netzo/plugins/api/hooks/mod.ts";
 import { defineApiEndpoint } from "netzo/plugins/api/plugin.ts";
 import { DenoKvResource } from "netzo/plugins/api/resources/mod.ts";
 
-export const invoices = defineApiEndpoint({
-  name: "invoices",
+export const users = defineApiEndpoint({
+  name: "users",
   idField: "id",
-  resource: DenoKvResource({ prefix: ["invoices"] }),
+  resource: DenoKvResource({ prefix: ["users"] }),
   hooks: {
-    all: [authenticate(), log()],
+    all: [],
     find: [],
     get: [],
     create: [],

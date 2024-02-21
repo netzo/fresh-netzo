@@ -3,7 +3,7 @@ import { DefaultValues } from "../../../deps/react-hook-form.ts";
 import { z } from "../../../deps/zod/mod.ts";
 
 export const createOnSubmit = (method: Request["method"], action: string) => {
-  return async (data: Account) => {
+  return async (data: any) => {
     const updatedAt = new Date().toISOString();
     const createdAt = data?.createdAt || updatedAt;
     try {
@@ -16,7 +16,7 @@ export const createOnSubmit = (method: Request["method"], action: string) => {
           updatedAt,
         }),
       });
-      window.location.href = "/accounts";
+      window.location.reload();
     } catch (error) {
       console.error(error);
     }

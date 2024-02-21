@@ -70,21 +70,11 @@ export const getColumns = ({ options }: TableProps): TableProps["columns"] => [
     filterFn: (row, id, value) => value.includes(row.getValue(id)),
   },
   {
-    accessorKey: "createdAt",
-    header: (props) => <TableColumnHeader {...props} title={I18N.createdAt} />,
-    cell: ({ row }) => {
-      const { createdAt } = row.original;
-      return <div>{toDateTime(createdAt)}</div>;
-      // return <input type="date" bind:value={createdAt} />;
-    },
-  },
-  {
     accessorKey: "updatedAt",
     header: (props) => <TableColumnHeader {...props} title={I18N.updatedAt} />,
     cell: ({ row }) => {
       const { updatedAt } = row.original;
       return <div>{toDateTime(updatedAt)}</div>;
-      // return <input type="date" bind:value={updatedAt} />;
     },
   },
 ];

@@ -10,9 +10,10 @@ export const $client = {
   accounts: endpoints.accounts.resource,
   contacts: endpoints.contacts.resource,
   deals: endpoints.deals.resource,
-  interactions: endpoints.interactions.resource,
-  invoices: endpoints.invoices.resource,
+  quotes: endpoints.quotes.resource,
+  products: endpoints.products.resource,
   transactions: endpoints.transactions.resource,
+  users: endpoints.users.resource,
 };
 
 export default defineConfig({
@@ -25,9 +26,10 @@ export default defineConfig({
         endpoints.accounts,
         endpoints.contacts,
         endpoints.deals,
-        endpoints.interactions,
-        endpoints.invoices,
+        endpoints.quotes,
+        endpoints.products,
         endpoints.transactions,
+        endpoints.users,
       ],
     }),
     unocss({ config: unoConfig }),

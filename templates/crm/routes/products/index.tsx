@@ -1,14 +1,14 @@
 import { defineRoute } from "$fresh/server.ts";
 import type { TableProps } from "netzo/components/blocks/table/use-table.ts";
-import { type Contact } from "../../data/contacts.ts";
-import { Table } from "../../islands/contacts/Table.tsx";
+import { type Product } from "../../data/products.ts";
+import { Table } from "../../islands/products/Table.tsx";
 import { $client } from "../../netzo.config.ts";
 
 export const getTableOptions = (
-  data: Contact[],
-): TableProps<Contact, unknown>["options"] => {
+  data: Product[],
+): TableProps<Product, unknown>["options"] => {
   return {
-    resource: "contacts",
+    resource: "products",
     fieldIds: {
       id: "id",
       name: "name",
@@ -23,7 +23,7 @@ export const getTableOptions = (
 };
 
 export default defineRoute(async (req, ctx) => {
-  const data = await $client.contacts.find() as Contact[];
+  const data = await $client.products.find() as Product[];
 
   const options = getTableOptions(data);
 

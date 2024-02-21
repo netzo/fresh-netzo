@@ -1,12 +1,12 @@
 import { defineRoute } from "$fresh/server.ts";
 import { Separator } from "netzo/components/separator.tsx";
-import type { Invoice } from "../../data/invoices.ts";
-import { FormInvoice } from "../../islands/invoices/Form.tsx";
+import type { Product } from "../../data/products.ts";
+import { FormProduct } from "../../islands/products/Form.tsx";
 import { $client } from "../../netzo.config.ts";
 
 export default defineRoute(async (req, ctx) => {
   const { id } = ctx.params;
-  const data = id === "new" ? {} : await $client.invoices.get(id) as Invoice;
+  const data = id === "new" ? {} : await $client.products.get(id) as Product;
 
   return (
     <div className="my-4 overflow-auto">
@@ -14,17 +14,17 @@ export default defineRoute(async (req, ctx) => {
       <div className="p-10 max-w-500px">
         {id === "new"
           ? (
-            <FormInvoice
+            <FormProduct
               data={data}
               method="POST"
-              action={`/api/invoices`}
+              action={`/api/products`}
             />
           )
           : (
-            <FormInvoice
+            <FormProduct
               data={data}
               method="PATCH"
-              action={`/api/invoices/${id}`}
+              action={`/api/products/${id}`}
             />
           )}
       </div>

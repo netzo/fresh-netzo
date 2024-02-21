@@ -83,6 +83,23 @@ export function KanbanGroup(
     },
   );
 
+  const onClickCreate = async (groupId: UniqueIdentifier) => {
+    const name = globalThis.prompt("Enter a name");
+    if (name) {
+      const description = globalThis.prompt("Enter a description");
+      await fetch(`/api/${options.resource}`, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          [options.fieldIds.name]: name,
+          [options.fieldIds.description]: description,
+          [options.fieldIds.group]: groupId,
+        }),
+      });
+      globalThis.location.reload();
+    }
+  };
+
   return (
     <Card
       ref={setNodeRef}
@@ -92,14 +109,19 @@ export function KanbanGroup(
       })}
     >
       <CardHeader className="flex flex-row items-center py-2 px-4 font-semibold text-left border-b-2 justify-between">
-        <div className="flex items-center">
+        <div className="flex flex-1 items-center">
           <div
             {...group?.icon}
             className={cn("w-6 h-6 mr-3", group?.icon?.className)}
           />
           <h3 className="mt-0">{group.title}</h3>
         </div>
-        <Button variant="outline" size="icon" className="mt-0">
+        <Button
+          variant="outline"
+          size="icon"
+          className="mt-0"
+          onClick={() => onClickCreate(group.id)}
+        >
           <div className="w-4 h-4 mdi-plus" />
         </Button>
       </CardHeader>

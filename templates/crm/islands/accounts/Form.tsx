@@ -12,7 +12,7 @@ type FormProps = {
 
 // use z.omit()/z.pick() to filter out fields
 const formSchema = accountSchema.omit({
-  _id: true,
+  id: true,
   updatedAt: true,
   createdAt: true,
 });

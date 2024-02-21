@@ -1,17 +1,17 @@
 import { defineRoute } from "$fresh/server.ts";
 import type { TableProps } from "netzo/components/blocks/table/use-table.ts";
-import { I18N, type Invoice } from "../../data/invoices.ts";
-import { Table } from "../../islands/invoices/Table.tsx";
+import { I18N, type Quote } from "../../data/quotes.ts";
+import { Table } from "../../islands/quotes/Table.tsx";
 import { $client } from "../../netzo.config.ts";
 
 export const getTableOptions = (
-  data: Invoice[],
-): TableProps<Invoice, unknown>["options"] => {
+  data: Quote[],
+): TableProps<Quote, unknown>["options"] => {
   return {
-    resource: "invoices",
+    resource: "quotes",
     search: {
-      column: "invoiceNumber",
-      placeholder: "Search by invoice number...",
+      column: "quoteNumber",
+      placeholder: "Search by quote number...",
     },
     filters: [
       {
@@ -22,12 +22,11 @@ export const getTableOptions = (
         ) => (value ? { label: value, value } : { label: "*no data", value })),
       },
     ],
-    layouts: ["grid"],
   };
 };
 
 export default defineRoute(async (req, ctx) => {
-  const data = await $client.invoices.find() as Invoice[];
+  const data = await $client.quotes.find() as Quote[];
 
   const options = getTableOptions(data);
 

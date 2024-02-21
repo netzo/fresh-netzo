@@ -10,7 +10,7 @@ import {
   useTable,
 } from "netzo/components/blocks/table/table.tsx";
 import { IconCopy } from "netzo/components/icon-copy.tsx";
-import { I18N, type Invoice } from "../../data/invoices.ts";
+import { I18N, type Quote } from "../../data/quotes.ts";
 
 // NOTE: define columns in island (route to island function serialization unsupported)
 export const getColumns = ({ options }: TableProps): TableProps["columns"] => [
@@ -26,7 +26,7 @@ export const getColumns = ({ options }: TableProps): TableProps["columns"] => [
       return (
         <div className="flex items-center">
           <a
-            href={`/invoices/${id}`}
+            href={`/quotes/${id}`}
             className="whitespace-nowrap text-center font-medium text-primary hover:underline"
           >
             {id}
@@ -61,14 +61,6 @@ export const getColumns = ({ options }: TableProps): TableProps["columns"] => [
     filterFn: (row, id, value) => value.includes(row.getValue(id)),
   },
   {
-    accessorKey: "createdAt",
-    header: (props) => <TableColumnHeader {...props} title={I18N.createdAt} />,
-    cell: ({ row }) => {
-      const { createdAt } = row.original;
-      return <div>{toDateTime(createdAt)}</div>;
-    },
-  },
-  {
     accessorKey: "updatedAt",
     header: (props) => <TableColumnHeader {...props} title={I18N.updatedAt} />,
     cell: ({ row }) => {
@@ -78,7 +70,7 @@ export const getColumns = ({ options }: TableProps): TableProps["columns"] => [
   },
 ];
 
-export function Table(props: Omit<TableProps<Invoice, unknown>, "columns">) {
+export function Table(props: Omit<TableProps<Quote, unknown>, "columns">) {
   const columns = getColumns(props);
 
   const table = useTable<TData, TValue>({ ...props, columns });

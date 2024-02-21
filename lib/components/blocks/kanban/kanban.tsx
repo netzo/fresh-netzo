@@ -1,21 +1,23 @@
 // adapted from https://github.com/Georgegriff/react-dnd-kit-tailwind-shadcn-ui/blob/main/src/components/kanban.tsx
 import { useComputed, useSignal } from "@preact/signals";
+import { createPortal } from "preact/compat";
 import {
   Announcements,
   DndContext,
   type DragEndEvent,
   type DragOverEvent,
-  // DragOverlay,
+  DragOverlay,
   type DragStartEvent,
   KeyboardSensor,
   MouseSensor,
   TouchSensor,
-  // UniqueIdentifier,
+  type UniqueIdentifier,
   useSensor,
   useSensors,
 } from "../../../deps/@dnd-kit/core.ts";
 import { arrayMove, SortableContext } from "../../../deps/@dnd-kit/sortable.ts";
 import type { Table, TableProps } from "../table/use-table.ts";
+import { KanbanCard } from "./kanban-card.tsx";
 import { BoardContainer, type Group, KanbanGroup } from "./kanban-group.tsx";
 import { coordinateGetter } from "./multiple-containers-keyboard-preset.ts";
 import { hasDraggableData } from "./utils.ts";
@@ -207,24 +209,30 @@ export function Kanban<TData, TValue>({
         </SortableContext>
       </BoardContainer>
 
-      {
-        /* {"document" in window &&
+      {"document" in window &&
         createPortal(
           <DragOverlay>
-            {activeGroup && (
+            {activeGroup.value && (
               <KanbanGroup
                 isOverlay
-                group={activeGroup}
+                group={activeGroup.value}
                 items={items.value.filter(
-                  (item) => item[options.fieldIds.group] === activeGroup[options.fieldIds.id]
+                  (item) =>
+                    item[options.fieldIds.group] ===
+                      activeGroup.value[options.fieldIds.id],
                 )}
               />
             )}
-            {activeItem && <KanbanCard item={activeItem} isOverlay />}
+            {activeItem.value && (
+              <KanbanCard
+                item={activeItem.value}
+                options={options}
+                isOverlay
+              />
+            )}
           </DragOverlay>,
-          document.body
-        )} */
-      }
+          document.body,
+        )}
     </DndContext>
   );
 

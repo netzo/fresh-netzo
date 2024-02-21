@@ -6,6 +6,7 @@ import { Badge } from "../../badge.tsx";
 import { Button } from "../../button.tsx";
 import { Card, CardContent, CardHeader, CardTitle } from "../../card.tsx";
 import { cn } from "../../utils.ts";
+import { TableRowActions } from "../table/table.tsx";
 import type { Item, KanbanProps } from "./kanban.tsx";
 
 type KanbanCardProps = {
@@ -73,19 +74,26 @@ export function KanbanCard({ item, isOverlay, options }: KanbanCardProps) {
         />
       )}
 
-      <CardHeader className="relative flex flex-row px-3 py-1 space-between">
-        <Button
-          variant={"ghost"}
-          {...attributes}
-          {...listeners}
-          className="h-auto p-1 -ml-2 text-secondary-foreground/50 cursor-grab"
-        >
-          <span className="sr-only">Move item</span>
-          <div className="w-6 h-6 mdi-drag" />
-        </Button>
-        <CardTitle className="ml-1 text-sm font-medium">
-          {item?.[options.fieldIds.name]}
-        </CardTitle>
+      <CardHeader className="relative flex flex-row items-center px-3 py-1 justify-between">
+        <div className="flex flex-1 items-center">
+          <Button
+            variant={"ghost"}
+            {...attributes}
+            {...listeners}
+            className="h-auto p-1 -ml-2 text-secondary-foreground/50 cursor-grab"
+          >
+            <span className="sr-only">Move item</span>
+            <div className="w-6 h-6 mdi-drag" />
+          </Button>
+          <CardTitle className="ml-1 text-sm font-medium">
+            {item?.[options.fieldIds.name]}
+          </CardTitle>
+        </div>
+        <TableRowActions
+          className={cn("h-auto p-1 -mr-2 text-secondary-foreground/50")}
+          row={{ original: item }}
+          options={options}
+        />
       </CardHeader>
       <CardContent className="flex flex-col gap-2 px-4 pt-2 pb-4 text-xs whitespace-pre-wrap text-secondary-foreground">
         {item?.[options.fieldIds.description]}

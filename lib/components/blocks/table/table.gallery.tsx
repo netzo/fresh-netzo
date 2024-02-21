@@ -29,6 +29,13 @@ export function Gallery<TData, TValue>(
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
       {table.getRowModel().rows.map((row) => (
         <Card key={row.id}>
+          {row?.original?.[options.fieldIds?.image] && (
+            <img
+              className="w-full h-32 object-cover"
+              src={row?.original?.[options.fieldIds?.image]}
+              alt=""
+            />
+          )}
           <CardHeader className="flex flex-row items-center justify-between">
             <div className="flex-1 truncate">
               <Cell id="name" row={row} />
@@ -40,13 +47,17 @@ export function Gallery<TData, TValue>(
               !["actions", "name"].includes(cell.column.id)
             ).map((cell) => (
               <div key={cell.column.id}>
-                <div className="grid grid-cols-2 gap-1 text-sm">
-                  <div className="text-muted-secondary truncate">
-                    <Header id={cell.column.id} row={row} />
-                  </div>
-                  <div className="text-right truncate">
-                    <Cell id={cell.column.id} row={row} />
-                  </div>
+                <div className="mb-1 flex justify-between text-sm">
+                  <Header
+                    className="text-muted-secondary !truncate"
+                    id={cell.column.id}
+                    row={row}
+                  />
+                  <Cell
+                    className="flex-1 text-right !truncate"
+                    id={cell.column.id}
+                    row={row}
+                  />
                 </div>
               </div>
             ))}

@@ -2,3201 +2,1776 @@
   {
     "key": [
       "deals",
-      "01HPY71V5RA8VZNDB9RGXYJBY3"
+      "01HQ4FWET1VHE1CZ30NHKHFYNR"
     ],
     "value": {
-      "id": "01HPY71V5RA8VZNDB9RGXYJBY3",
-      "status": "done",
+      "id": "01HQ4FWET1VHE1CZ30NHKHFYNR",
+      "status": "qualified",
       "accountIds": [
-        "01HPY71V5RA8VZNDB9RGXYJBY4",
-        "01HPY71V5RA8VZNDB9RGXYJBY5"
+        "01HQ4FWET1VHE1CZ30NHKHFYNS",
+        "01HQ4FWET1VHE1CZ30NHKHFYNT"
       ],
       "accounts": [
-        {
-          "$ref": {}
-        },
-        {
-          "$ref": {}
-        }
+        {},
+        {}
       ],
       "contactIds": [
-        "01HPY71V5RA8VZNDB9RGXYJBY6",
-        "01HPY71V5RA8VZNDB9RGXYJBY7"
+        "01HQ4FWET1VHE1CZ30NHKHFYNV",
+        "01HQ4FWET1VHE1CZ30NHKHFYNW"
       ],
       "contacts": [
-        {
-          "$ref": {}
-        },
-        {
-          "$ref": {}
-        }
+        {},
+        {}
       ],
-      "title": "iusto vaco cohors",
-      "description": "Dapifer capto cursus aiunt.",
-      "amount": 1517953616969728,
-      "currency": "MGA",
-      "assignedTo": "01HPY71V5RA8VZNDB9RGXYJBY8",
+      "title": "dolore carmen tamen",
+      "description": "Amicitia demergo xiphias.",
+      "amount": 328289608531968,
+      "currency": "BIF",
       "notes": [
         {
-          "text": "Appello suffragium auctus defetiscor iusto cum vox. Vigor solus subnecto atque approbo decumbo succedo. Summa demo venustas stillicidium alter laudantium volva benigne cognomen aufero.",
-          "createdAt": "2023-08-21T22:48:14.055Z",
-          "updatedAt": "2024-02-18T03:23:42.208Z"
+          "text": "Animadverto colligo corrigo theologus a auctor. Territo vulgivagus conspergo. Suggero quas tunc vigilo trans cribro autem vulgus.",
+          "createdAt": "2023-12-26T09:01:56.337Z",
+          "updatedAt": "2024-02-20T04:10:05.044Z"
         },
         {
-          "text": "Ullus soleo tamdiu absque accusamus curso facilis expedita. Tracto supplanto apparatus audax voluptatum desolo tempore. Comes abstergo conforto eius tonsor temperantia abduco amo.",
-          "createdAt": "2023-04-08T00:36:49.098Z",
-          "updatedAt": "2024-02-17T18:23:40.553Z"
+          "text": "Adipisci cohors tergiversatio venia defendo consuasor umerus cunae amo tenax. Adiuvo repudiandae blandior. Maiores ara substantia coepi.",
+          "createdAt": "2023-04-15T06:06:35.601Z",
+          "updatedAt": "2024-02-20T03:35:57.446Z"
         },
         {
-          "text": "Coaegresco solum cubitum iusto necessitatibus usus templum. Claro statua utrimque distinctio solus teneo delinquo. Ara beatus ubi vitiosus nostrum peior ipsam versus.",
-          "createdAt": "2023-02-28T04:47:25.425Z",
-          "updatedAt": "2024-02-18T02:02:47.044Z"
+          "text": "Expedita quisquam repudiandae certe ventosus amplexus aufero. Astrum quam suscipit substantia cauda. Soluta rerum collum non.",
+          "createdAt": "2023-12-07T16:36:37.285Z",
+          "updatedAt": "2024-02-20T20:42:46.777Z"
         }
       ],
       "tasks": [
         {
-          "type": "incidunt",
+          "type": "absum",
           "status": "in-progress",
-          "title": "Paens cubo magni decretum tenetur cubicularis utilis audentia abutor tenus.",
-          "description": "Abduco angustus desparatus curo ulciscor tandem earum tenax. Aro arx decretum totam utilis autus cotidie curriculum. Tempore subiungo taedium vestrum creber vita auditor eligendi contabesco.",
-          "assigneeIds": [
-            "01HPY71V5RA8VZNDB9RGXYJBY9",
-            "01HPY71V5RA8VZNDB9RGXYJBYA"
-          ],
-          "assignees": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "assignerIds": [
-            "01HPY71V5RA8VZNDB9RGXYJBYB",
-            "01HPY71V5RA8VZNDB9RGXYJBYC"
-          ],
-          "assigners": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "dateDue": "2024-10-14T09:54:41.279Z",
-          "dateCompleted": "2024-02-17T23:14:23.173Z",
-          "createdAt": "2023-07-20T20:44:57.864Z",
-          "updatedAt": "2024-02-17T22:40:33.687Z"
+          "title": "Decens accusator civis deporto vero colo tempus.",
+          "description": "Commodo spes dignissimos cibus vivo acerbitas tabella beatae sophismata. Basium crudelis temperantia curvo virgo adfectus depereo carbo. Summopere venio decet crur decipio testimonium.",
+          "dateDue": "2024-06-27T10:25:54.427Z",
+          "dateCompleted": "2024-02-20T05:22:55.846Z",
+          "createdAt": "2023-03-02T07:21:22.871Z",
+          "updatedAt": "2024-02-20T02:10:19.959Z"
         },
         {
-          "type": "temeritas",
+          "type": "candidus",
           "status": "in-progress",
-          "title": "Textor acsi tandem blanditiis vis sulum tot certe arguo.",
-          "description": "Cetera barba deleniti synagoga strenuus vel officia harum. Tempore allatus adeo cura aurum deputo mollitia urbanus. Beatus quod tempora.",
-          "assigneeIds": [
-            "01HPY71V5S0Z2HE4M30EJEVDAQ",
-            "01HPY71V5S0Z2HE4M30EJEVDAR"
-          ],
-          "assignees": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "assignerIds": [
-            "01HPY71V5S0Z2HE4M30EJEVDAS",
-            "01HPY71V5S0Z2HE4M30EJEVDAT"
-          ],
-          "assigners": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "dateDue": "2024-10-04T15:33:19.492Z",
-          "dateCompleted": "2024-02-18T05:26:25.959Z",
-          "createdAt": "2023-11-19T06:11:54.875Z",
-          "updatedAt": "2024-02-18T01:53:15.215Z"
+          "title": "Angelus quaerat terga.",
+          "description": "Cornu versus vivo vesica eligendi culpo. Conor thymbra angulus nisi toties abundans. Taedium impedit dolore voluptate.",
+          "dateDue": "2024-07-02T18:55:47.146Z",
+          "dateCompleted": "2024-02-20T15:33:24.239Z",
+          "createdAt": "2023-12-04T18:58:31.770Z",
+          "updatedAt": "2024-02-20T00:49:13.860Z"
         }
       ],
-      "createdAt": "2024-01-01T14:41:46.491Z",
-      "updatedAt": "2024-02-17T21:11:37.907Z"
+      "createdAt": "2024-02-18T20:59:50.755Z",
+      "updatedAt": "2024-02-20T01:50:41.147Z"
     }
   },
   {
     "key": [
       "deals",
-      "01HPY71V5S0Z2HE4M30EJEVDAV"
+      "01HQ4FWET1VHE1CZ30NHKHFYNX"
     ],
     "value": {
-      "id": "01HPY71V5S0Z2HE4M30EJEVDAV",
-      "status": "todo",
+      "id": "01HQ4FWET1VHE1CZ30NHKHFYNX",
+      "status": "lost",
       "accountIds": [
-        "01HPY71V5S0Z2HE4M30EJEVDAW",
-        "01HPY71V5S0Z2HE4M30EJEVDAX"
+        "01HQ4FWET1VHE1CZ30NHKHFYNY",
+        "01HQ4FWET1VHE1CZ30NHKHFYNZ"
       ],
       "accounts": [
-        {
-          "$ref": {}
-        },
-        {
-          "$ref": {}
-        }
+        {},
+        {}
       ],
       "contactIds": [
-        "01HPY71V5S0Z2HE4M30EJEVDAY",
-        "01HPY71V5S0Z2HE4M30EJEVDAZ"
+        "01HQ4FWET1VHE1CZ30NHKHFYP0",
+        "01HQ4FWET1VHE1CZ30NHKHFYP1"
       ],
       "contacts": [
-        {
-          "$ref": {}
-        },
-        {
-          "$ref": {}
-        }
+        {},
+        {}
       ],
-      "title": "rerum celebrer audacia",
-      "description": "Adaugeo agnitio tersus curia substantia.",
-      "amount": 8829994356703232,
-      "currency": "ZWL",
-      "assignedTo": "01HPY71V5S0Z2HE4M30EJEVDB0",
+      "title": "colo temptatio reiciendis",
+      "description": "Qui pariatur certus.",
+      "amount": 7663082614554624,
+      "currency": "UYU",
       "notes": [
         {
-          "text": "Acer carpo delinquo concido comminor. Iste sum fugit virtus neque argentum comis. Arceo crapula ulterius temptatio tremo addo victus adsuesco tertius verumtamen.",
-          "createdAt": "2023-02-19T18:23:01.883Z",
-          "updatedAt": "2024-02-18T02:27:20.157Z"
+          "text": "Temeritas bardus solum caritas. Consequuntur delibero acquiro coerceo. Tametsi circumvenio ventus.",
+          "createdAt": "2023-11-04T02:33:30.037Z",
+          "updatedAt": "2024-02-20T04:20:47.311Z"
         },
         {
-          "text": "Carbo textor temperantia depopulo caecus. Vespillo defero natus depono consequuntur. Copiose nulla autus triumphus vinitor thesaurus arceo.",
-          "createdAt": "2023-09-27T17:20:34.252Z",
-          "updatedAt": "2024-02-18T00:10:12.753Z"
+          "text": "Alter brevis delibero pecto tremo territo timidus demens. Delibero vorago earum. Ustulo utpote aegre defero laborum.",
+          "createdAt": "2023-10-16T02:30:23.420Z",
+          "updatedAt": "2024-02-20T13:59:09.638Z"
         },
         {
-          "text": "Est verumtamen velociter vir accusamus. Et avarus bonus crux decimus. Amaritudo spiritus maiores tempora atavus.",
-          "createdAt": "2024-01-04T20:04:37.230Z",
-          "updatedAt": "2024-02-18T01:29:44.607Z"
+          "text": "Spes valeo conculco altus. Texo tracto solvo facere itaque barba abundans demum. Suscipit cultura concido.",
+          "createdAt": "2023-11-25T20:15:25.632Z",
+          "updatedAt": "2024-02-20T19:42:00.768Z"
         }
       ],
       "tasks": [
         {
-          "type": "verbera",
+          "type": "varius",
           "status": "in-progress",
-          "title": "Consequuntur thermae qui depono.",
-          "description": "Vulnus vesica arbitro votum utroque nulla ademptio vitiosus absorbeo. Comes porro tamquam. Crastinus colo aegre non crapula vorax verto mollitia stabilis.",
-          "assigneeIds": [
-            "01HPY71V5S0Z2HE4M30EJEVDB1",
-            "01HPY71V5S0Z2HE4M30EJEVDB2"
-          ],
-          "assignees": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "assignerIds": [
-            "01HPY71V5S0Z2HE4M30EJEVDB3",
-            "01HPY71V5S0Z2HE4M30EJEVDB4"
-          ],
-          "assigners": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "dateDue": "2024-07-08T18:00:31.132Z",
-          "dateCompleted": "2024-02-18T00:56:35.662Z",
-          "createdAt": "2024-01-10T19:49:31.980Z",
-          "updatedAt": "2024-02-17T22:10:30.889Z"
+          "title": "Ea laudantium aveho ulciscor capillus argumentum.",
+          "description": "Cogito conservo apud. Clam sub ars utilis. Possimus adeptio vapulus doloribus fugit.",
+          "dateDue": "2024-07-30T01:46:44.655Z",
+          "dateCompleted": "2024-02-20T05:47:21.703Z",
+          "createdAt": "2023-08-29T03:00:18.606Z",
+          "updatedAt": "2024-02-20T02:53:01.641Z"
         },
         {
-          "type": "admitto",
+          "type": "civitas",
           "status": "in-progress",
-          "title": "Utroque dolore adeptio conscendo spiculum cupio aro.",
-          "description": "Totus tabula cibus crapula debilito casus adimpleo. Thesis annus officia timidus desparatus urbanus depulso. Appello peior ventus verus conqueror venustas tergiversatio quibusdam vito alius.",
-          "assigneeIds": [
-            "01HPY71V5S0Z2HE4M30EJEVDB5",
-            "01HPY71V5S0Z2HE4M30EJEVDB6"
-          ],
-          "assignees": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "assignerIds": [
-            "01HPY71V5S0Z2HE4M30EJEVDB7",
-            "01HPY71V5S0Z2HE4M30EJEVDB8"
-          ],
-          "assigners": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "dateDue": "2024-04-18T01:50:21.511Z",
-          "dateCompleted": "2024-02-18T12:54:51.654Z",
-          "createdAt": "2023-12-27T09:55:33.003Z",
-          "updatedAt": "2024-02-17T20:52:34.731Z"
+          "title": "Expedita nemo articulus ascit tempora varius ex coniuratio aeneus cohibeo.",
+          "description": "Perspiciatis traho ceno alienus concedo quaerat theologus earum casso eum. Arguo sopor amor depulso officiis ex uterque vorax sodalitas. Arcus amplexus teneo succedo turbo doloremque asporto.",
+          "dateDue": "2024-08-20T08:25:29.212Z",
+          "dateCompleted": "2024-02-20T01:36:52.008Z",
+          "createdAt": "2023-12-14T01:10:33.131Z",
+          "updatedAt": "2024-02-20T05:24:38.571Z"
         }
       ],
-      "createdAt": "2023-11-17T01:20:32.037Z",
-      "updatedAt": "2024-02-17T15:11:17.663Z"
+      "createdAt": "2023-08-19T22:45:16.786Z",
+      "updatedAt": "2024-02-20T15:34:33.132Z"
     }
   },
   {
     "key": [
       "deals",
-      "01HPY71V5S0Z2HE4M30EJEVDB9"
+      "01HQ4FWET1VHE1CZ30NHKHFYP2"
     ],
     "value": {
-      "id": "01HPY71V5S0Z2HE4M30EJEVDB9",
-      "status": "cancelled",
+      "id": "01HQ4FWET1VHE1CZ30NHKHFYP2",
+      "status": "lost",
       "accountIds": [
-        "01HPY71V5S0Z2HE4M30EJEVDBA",
-        "01HPY71V5S0Z2HE4M30EJEVDBB"
+        "01HQ4FWET1VHE1CZ30NHKHFYP3",
+        "01HQ4FWET1VHE1CZ30NHKHFYP4"
       ],
       "accounts": [
-        {
-          "$ref": {}
-        },
-        {
-          "$ref": {}
-        }
+        {},
+        {}
       ],
       "contactIds": [
-        "01HPY71V5S0Z2HE4M30EJEVDBC",
-        "01HPY71V5S0Z2HE4M30EJEVDBD"
+        "01HQ4FWET1VHE1CZ30NHKHFYP5",
+        "01HQ4FWET1VHE1CZ30NHKHFYP6"
       ],
       "contacts": [
-        {
-          "$ref": {}
-        },
-        {
-          "$ref": {}
-        }
+        {},
+        {}
       ],
-      "title": "harum aduro vivo",
-      "description": "Ascisco facere contigo voro pecco tremo cubicularis adflicto.",
-      "amount": 7502851597139968,
-      "currency": "SBD",
-      "assignedTo": "01HPY71V5S0Z2HE4M30EJEVDBE",
+      "title": "aetas inflammatio conspergo",
+      "description": "Templum thorax contra vespillo odit verecundia decor.",
+      "amount": 3465427940278272,
+      "currency": "CVE",
       "notes": [
         {
-          "text": "Rerum creta avarus vinum. Aestus bos depereo teres. Assentator arto vicinus.",
-          "createdAt": "2024-01-01T22:52:41.199Z",
-          "updatedAt": "2024-02-18T12:50:25.125Z"
+          "text": "Adsum ipsa recusandae sortitus delibero sum quaerat corrigo. Taedium sufficio aspicio cicuta valens. Color rem arbor ustilo depraedor recusandae antiquus defendo stips temeritas.",
+          "createdAt": "2023-11-13T06:44:50.420Z",
+          "updatedAt": "2024-02-20T07:15:23.696Z"
         },
         {
-          "text": "Vesco considero arbustum necessitatibus aeneus tabesco inflammatio vestrum pauci caelestis. Spiritus delinquo vilitas ambitus solitudo. Vinitor spiculum super terga compono ante.",
-          "createdAt": "2023-04-02T11:27:12.022Z",
-          "updatedAt": "2024-02-18T07:27:25.296Z"
+          "text": "Vulgus delinquo celebrer tondeo voluptatibus. Campana vae conculco canis reiciendis denego quia sopor. Statua terreo tendo ustulo tunc velit chirographum consectetur.",
+          "createdAt": "2023-11-10T01:32:29.195Z",
+          "updatedAt": "2024-02-20T03:31:32.994Z"
         },
         {
-          "text": "Solio uberrime autem somniculosus. Arceo animi deficio tabula. Volutabrum veniam error volup vilicus.",
-          "createdAt": "2023-07-17T18:51:11.404Z",
-          "updatedAt": "2024-02-18T01:56:41.461Z"
+          "text": "Eos urbs nihil bene demo sumo triumphus. Aptus succedo cimentarius trepide tollo beatus demergo dignissimos curis. Spargo suffragium nesciunt alveus magni bos subseco corrumpo alius.",
+          "createdAt": "2023-09-15T11:18:41.040Z",
+          "updatedAt": "2024-02-20T20:01:57.812Z"
         }
       ],
       "tasks": [
         {
-          "type": "deprimo",
+          "type": "reiciendis",
           "status": "in-progress",
-          "title": "Ipsam cumque defleo ubi corrupti via desino desparatus.",
-          "description": "Nulla degenero quia voco advenio censura celo spectaculum cultellus clamo. Unus barba caveo tonsor caries victoria. Crudelis cinis quaerat iste.",
-          "assigneeIds": [
-            "01HPY71V5S0Z2HE4M30EJEVDBF",
-            "01HPY71V5S0Z2HE4M30EJEVDBG"
-          ],
-          "assignees": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "assignerIds": [
-            "01HPY71V5S0Z2HE4M30EJEVDBH",
-            "01HPY71V5S0Z2HE4M30EJEVDBJ"
-          ],
-          "assigners": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "dateDue": "2025-02-08T01:24:36.684Z",
-          "dateCompleted": "2024-02-17T17:18:48.211Z",
-          "createdAt": "2024-01-13T15:32:30.970Z",
-          "updatedAt": "2024-02-17T19:15:54.299Z"
+          "title": "Artificiose vito statim odit arguo.",
+          "description": "Tutamen denego porro occaecati texo coepi ullam attero decumbo. Vesper ipsa denuo tracto taceo quia. Conventus denuncio cunae arcus depereo corrupti tabgo nulla aegre.",
+          "dateDue": "2024-11-19T06:58:51.141Z",
+          "dateCompleted": "2024-02-20T16:49:52.322Z",
+          "createdAt": "2023-12-06T13:04:53.843Z",
+          "updatedAt": "2024-02-20T10:46:06.383Z"
         },
         {
-          "type": "cuppedia",
+          "type": "carcer",
           "status": "in-progress",
-          "title": "Eaque compono adhaero cotidie.",
-          "description": "Quod tandem avarus crapula vulnero solus tempore accommodo tardus culpo. Sustineo pecus terra. Sublime creptio infit convoco coepi clarus voluntarius demergo occaecati suus.",
-          "assigneeIds": [
-            "01HPY71V5S0Z2HE4M30EJEVDBK",
-            "01HPY71V5S0Z2HE4M30EJEVDBM"
-          ],
-          "assignees": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "assignerIds": [
-            "01HPY71V5S0Z2HE4M30EJEVDBN",
-            "01HPY71V5S0Z2HE4M30EJEVDBP"
-          ],
-          "assigners": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "dateDue": "2024-12-14T18:00:09.489Z",
-          "dateCompleted": "2024-02-18T06:13:49.397Z",
-          "createdAt": "2023-10-05T01:03:12.924Z",
-          "updatedAt": "2024-02-17T22:55:24.128Z"
+          "title": "Repellendus tremo vitae constans titulus aptus voluptas cohors.",
+          "description": "Collum utrimque ustulo thalassinus catena solutio alii necessitatibus. Conicio comes eum volaticus ventosus argentum vaco aggredior cavus. Debitis officiis somniculosus odit paulatim summa arbor.",
+          "dateDue": "2024-05-19T08:53:19.243Z",
+          "dateCompleted": "2024-02-20T04:05:29.307Z",
+          "createdAt": "2023-12-23T00:53:41.751Z",
+          "updatedAt": "2024-02-20T14:36:07.286Z"
         }
       ],
-      "createdAt": "2023-04-07T09:43:18.117Z",
-      "updatedAt": "2024-02-17T16:05:42.759Z"
+      "createdAt": "2023-07-11T13:35:27.013Z",
+      "updatedAt": "2024-02-20T21:49:17.687Z"
     }
   },
   {
     "key": [
       "deals",
-      "01HPY71V5S0Z2HE4M30EJEVDBQ"
+      "01HQ4FWET2ZM03RSXXQT6HAYEE"
     ],
     "value": {
-      "id": "01HPY71V5S0Z2HE4M30EJEVDBQ",
-      "status": "in-progress",
+      "id": "01HQ4FWET2ZM03RSXXQT6HAYEE",
+      "status": "negotiation",
       "accountIds": [
-        "01HPY71V5S0Z2HE4M30EJEVDBR",
-        "01HPY71V5S0Z2HE4M30EJEVDBS"
+        "01HQ4FWET2ZM03RSXXQT6HAYEF",
+        "01HQ4FWET2ZM03RSXXQT6HAYEG"
       ],
       "accounts": [
-        {
-          "$ref": {}
-        },
-        {
-          "$ref": {}
-        }
+        {},
+        {}
       ],
       "contactIds": [
-        "01HPY71V5S0Z2HE4M30EJEVDBT",
-        "01HPY71V5S0Z2HE4M30EJEVDBV"
+        "01HQ4FWET2ZM03RSXXQT6HAYEH",
+        "01HQ4FWET2ZM03RSXXQT6HAYEJ"
       ],
       "contacts": [
-        {
-          "$ref": {}
-        },
-        {
-          "$ref": {}
-        }
+        {},
+        {}
       ],
-      "title": "inventore eligendi uberrime",
-      "description": "Arca ventosus corporis correptius terreo commodi cultura spiritus.",
-      "amount": 1776716997459968,
-      "currency": "GTQ",
-      "assignedTo": "01HPY71V5S0Z2HE4M30EJEVDBW",
+      "title": "vere soleo vaco",
+      "description": "Ara vobis non thorax voluptates thesis.",
+      "amount": 1850507685527552,
+      "currency": "BYN",
       "notes": [
         {
-          "text": "Alo vehemens tactus sum vindico credo conculco consequuntur. Contego subito inventore tyrannus decipio thymbra basium capillus. Apto basium barba dolore a.",
-          "createdAt": "2023-05-08T09:41:09.403Z",
-          "updatedAt": "2024-02-17T20:23:34.472Z"
+          "text": "Vallum caelestis solitudo spoliatio architecto. Exercitationem titulus curriculum tactus suscipio natus summa tergo supra abutor. Excepturi aperiam in earum viscus cado.",
+          "createdAt": "2023-09-02T21:47:26.561Z",
+          "updatedAt": "2024-02-20T03:57:59.048Z"
         },
         {
-          "text": "Adicio vulgo tersus patria decet pectus numquam conspergo. Ancilla tollo avarus. Aer solio doloremque placeat.",
-          "createdAt": "2023-04-14T14:44:28.790Z",
-          "updatedAt": "2024-02-18T06:29:36.562Z"
+          "text": "Dolorem supra ventus decet acidus nam voluptatem balbus. Aeternus delibero cariosus ratione suggero tergum. Vociferor adfectus uberrime.",
+          "createdAt": "2023-07-01T19:46:20.940Z",
+          "updatedAt": "2024-02-20T13:08:35.158Z"
         },
         {
-          "text": "In vulnus tabernus velociter arguo. Cursus timor derelinquo. Volutabrum fugiat trado beatus voluptatibus.",
-          "createdAt": "2023-04-16T20:26:23.586Z",
-          "updatedAt": "2024-02-18T12:13:51.562Z"
+          "text": "Cimentarius torrens tenuis vicinus placeat clamo theologus. Arx cognomen sublime crebro nam vulariter adopto animus ambitus. Versus cunae abutor.",
+          "createdAt": "2023-06-05T13:04:19.701Z",
+          "updatedAt": "2024-02-20T03:51:02.936Z"
         }
       ],
       "tasks": [
         {
-          "type": "celebrer",
+          "type": "custodia",
           "status": "in-progress",
-          "title": "Vomito conatus ipsum dicta credo damnatio baiulus doloremque aspernatur.",
-          "description": "Rerum trado antepono. Repudiandae defetiscor civis similique paens soleo delectatio. Eaque damno doloribus laborum ipsa.",
-          "assigneeIds": [
-            "01HPY71V5S0Z2HE4M30EJEVDBX",
-            "01HPY71V5S0Z2HE4M30EJEVDBY"
-          ],
-          "assignees": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "assignerIds": [
-            "01HPY71V5S0Z2HE4M30EJEVDBZ",
-            "01HPY71V5S0Z2HE4M30EJEVDC0"
-          ],
-          "assigners": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "dateDue": "2024-03-03T02:33:45.794Z",
-          "dateCompleted": "2024-02-18T03:01:39.656Z",
-          "createdAt": "2023-06-14T03:57:15.273Z",
-          "updatedAt": "2024-02-18T10:29:30.313Z"
+          "title": "Vero vetus sequi subseco advenio valde coruscus cohors.",
+          "description": "Quos minima volutabrum odio vespillo consuasor bardus eaque stabilis torqueo. Cedo venia comitatus cresco varius. Viduo trado contigo conventus ambulo adulatio sunt.",
+          "dateDue": "2024-03-12T12:48:39.799Z",
+          "dateCompleted": "2024-02-20T02:57:59.966Z",
+          "createdAt": "2023-07-09T12:28:48.299Z",
+          "updatedAt": "2024-02-20T08:50:46.384Z"
         },
         {
-          "type": "cumque",
+          "type": "uterque",
           "status": "in-progress",
-          "title": "Pauper aer communis supplanto alveus audio strenuus venio provident vulariter.",
-          "description": "Patria spiculum utrimque cultellus statua ipsam. Adnuo titulus deleo talis sto deficio quis. Antiquus absorbeo quaerat patria aureus adamo administratio sponte tersus callide.",
-          "assigneeIds": [
-            "01HPY71V5S0Z2HE4M30EJEVDC1",
-            "01HPY71V5S0Z2HE4M30EJEVDC2"
-          ],
-          "assignees": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "assignerIds": [
-            "01HPY71V5S0Z2HE4M30EJEVDC3",
-            "01HPY71V5S0Z2HE4M30EJEVDC4"
-          ],
-          "assigners": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "dateDue": "2024-12-16T09:04:44.252Z",
-          "dateCompleted": "2024-02-18T10:18:31.879Z",
-          "createdAt": "2023-07-09T18:07:55.347Z",
-          "updatedAt": "2024-02-17T15:13:48.216Z"
+          "title": "Alioqui soleo admiratio admoveo.",
+          "description": "Verecundia pariatur carpo absconditus sollers depromo pecco acerbitas. Torqueo confero supplanto cubitum et caelestis cui ara. Arcesso textor absconditus vorago.",
+          "dateDue": "2024-04-28T16:14:22.768Z",
+          "dateCompleted": "2024-02-20T02:35:00.818Z",
+          "createdAt": "2023-03-29T10:36:18.848Z",
+          "updatedAt": "2024-02-20T06:52:16.106Z"
         }
       ],
-      "createdAt": "2023-10-15T09:12:09.956Z",
-      "updatedAt": "2024-02-17T14:36:22.824Z"
+      "createdAt": "2023-10-19T08:17:53.037Z",
+      "updatedAt": "2024-02-20T13:44:11.278Z"
     }
   },
   {
     "key": [
       "deals",
-      "01HPY71V5S0Z2HE4M30EJEVDC5"
+      "01HQ4FWET2ZM03RSXXQT6HAYEK"
     ],
     "value": {
-      "id": "01HPY71V5S0Z2HE4M30EJEVDC5",
-      "status": "todo",
+      "id": "01HQ4FWET2ZM03RSXXQT6HAYEK",
+      "status": "won",
       "accountIds": [
-        "01HPY71V5S0Z2HE4M30EJEVDC6",
-        "01HPY71V5S0Z2HE4M30EJEVDC7"
+        "01HQ4FWET2ZM03RSXXQT6HAYEM",
+        "01HQ4FWET2ZM03RSXXQT6HAYEN"
       ],
       "accounts": [
-        {
-          "$ref": {}
-        },
-        {
-          "$ref": {}
-        }
+        {},
+        {}
       ],
       "contactIds": [
-        "01HPY71V5S0Z2HE4M30EJEVDC8",
-        "01HPY71V5S0Z2HE4M30EJEVDC9"
+        "01HQ4FWET2ZM03RSXXQT6HAYEP",
+        "01HQ4FWET2ZM03RSXXQT6HAYEQ"
       ],
       "contacts": [
-        {
-          "$ref": {}
-        },
-        {
-          "$ref": {}
-        }
+        {},
+        {}
       ],
-      "title": "victoria coniecto viscus",
-      "description": "Tempus vel corroboro tum defessus aufero abutor voro.",
-      "amount": 1867144862105600,
-      "currency": "CLP",
-      "assignedTo": "01HPY71V5S0Z2HE4M30EJEVDCA",
+      "title": "cura vulnero ubi",
+      "description": "Culpo conforto suus non eius canonicus.",
+      "amount": 1440784832266240,
+      "currency": "LSL",
       "notes": [
         {
-          "text": "Minima arbitro curia. Cupiditas temporibus iusto apud. Nihil paulatim comedo venio suscipit unus terror.",
-          "createdAt": "2024-01-16T16:49:39.322Z",
-          "updatedAt": "2024-02-17T18:28:17.384Z"
+          "text": "Degero cilicium cetera. Quia degenero tendo cras vir somniculosus verto brevis tam. Vomica comprehendo vado.",
+          "createdAt": "2023-04-17T20:47:05.961Z",
+          "updatedAt": "2024-02-20T16:48:15.535Z"
         },
         {
-          "text": "Derideo appositus currus. Desino tres terror. Adicio valetudo voluptates sto magnam occaecati cedo.",
-          "createdAt": "2023-11-21T16:01:47.441Z",
-          "updatedAt": "2024-02-17T15:11:31.949Z"
+          "text": "Aliqua voluptatibus tot. Vapulus quaerat cupio amet arca cupio traho enim. Desidero delectus ago cognatus calamitas perferendis vaco deripio.",
+          "createdAt": "2023-11-21T21:18:38.339Z",
+          "updatedAt": "2024-02-20T20:26:23.097Z"
         },
         {
-          "text": "Casus adstringo amitto textor. Tui doloribus ipsam centum stips. Solus campana cognomen defluo earum cariosus abundans esse aranea.",
-          "createdAt": "2023-12-25T10:52:52.532Z",
-          "updatedAt": "2024-02-18T11:14:03.683Z"
+          "text": "Cicuta alienus vesper viscus utrum substantia suscipio vapulus. Inventore turbo ustilo velum charisma termes sortitus tamen. Officiis aufero vapulus acer concido temptatio volubilis degenero reprehenderit caelestis.",
+          "createdAt": "2023-07-16T23:04:02.870Z",
+          "updatedAt": "2024-02-20T21:18:17.290Z"
         }
       ],
       "tasks": [
         {
-          "type": "confido",
+          "type": "vere",
           "status": "in-progress",
-          "title": "Defleo praesentium sint voluntarius arguo trepide ultra animadverto.",
-          "description": "Tibi cruentus arceo tondeo suppono campana valetudo eaque vita. Thymum sequi quas ustulo crux vestigium virgo testimonium vos. Tandem spectaculum cubitum candidus caput arca.",
-          "assigneeIds": [
-            "01HPY71V5S0Z2HE4M30EJEVDCB",
-            "01HPY71V5S0Z2HE4M30EJEVDCC"
-          ],
-          "assignees": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "assignerIds": [
-            "01HPY71V5S0Z2HE4M30EJEVDCD",
-            "01HPY71V5S0Z2HE4M30EJEVDCE"
-          ],
-          "assigners": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "dateDue": "2024-09-09T10:28:37.985Z",
-          "dateCompleted": "2024-02-17T13:58:31.566Z",
-          "createdAt": "2023-05-21T19:58:40.557Z",
-          "updatedAt": "2024-02-18T06:38:36.930Z"
+          "title": "Subseco eligendi antea adduco aegre videlicet aureus argumentum vir.",
+          "description": "Celebrer amissio ait. Creber succurro curtus quasi veniam suasoria cultura solvo. Vinum volup uterque talis tutamen conturbo sophismata thorax uredo.",
+          "dateDue": "2024-12-20T08:07:33.189Z",
+          "dateCompleted": "2024-02-20T08:04:03.334Z",
+          "createdAt": "2023-03-25T01:27:00.249Z",
+          "updatedAt": "2024-02-20T20:05:09.068Z"
         },
         {
-          "type": "tabgo",
+          "type": "ciminatio",
           "status": "in-progress",
-          "title": "Ciminatio amitto defetiscor.",
-          "description": "Adeptio repellat tempus nulla tristis. Demonstro caveo atrox unde vito abstergo. Deserunt civitas confido creptio corporis.",
-          "assigneeIds": [
-            "01HPY71V5TB4J2DM99DSHQ9AYK",
-            "01HPY71V5TB4J2DM99DSHQ9AYM"
-          ],
-          "assignees": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "assignerIds": [
-            "01HPY71V5TB4J2DM99DSHQ9AYN",
-            "01HPY71V5TB4J2DM99DSHQ9AYP"
-          ],
-          "assigners": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "dateDue": "2024-08-29T22:23:13.069Z",
-          "dateCompleted": "2024-02-17T20:03:24.405Z",
-          "createdAt": "2023-09-23T03:34:43.642Z",
-          "updatedAt": "2024-02-17T16:03:18.369Z"
+          "title": "Ante ocer suffoco thesis clarus cavus suus.",
+          "description": "Utrum veritas comitatus contra fuga contabesco utpote colligo. Vomer aduro audeo carpo bellum admiratio advoco absum cariosus administratio. Amitto apto depereo thorax termes demo conitor doloribus clementia thymbra.",
+          "dateDue": "2024-10-10T01:35:31.658Z",
+          "dateCompleted": "2024-02-20T23:29:47.521Z",
+          "createdAt": "2023-12-14T08:57:36.197Z",
+          "updatedAt": "2024-02-20T03:20:37.555Z"
         }
       ],
-      "createdAt": "2023-06-21T17:03:59.837Z",
-      "updatedAt": "2024-02-18T09:59:43.115Z"
+      "createdAt": "2023-10-07T11:28:34.030Z",
+      "updatedAt": "2024-02-20T06:28:22.519Z"
     }
   },
   {
     "key": [
       "deals",
-      "01HPY71V5TB4J2DM99DSHQ9AYQ"
+      "01HQ4FWET2ZM03RSXXQT6HAYER"
     ],
     "value": {
-      "id": "01HPY71V5TB4J2DM99DSHQ9AYQ",
-      "status": "done",
+      "id": "01HQ4FWET2ZM03RSXXQT6HAYER",
+      "status": "lost",
       "accountIds": [
-        "01HPY71V5TB4J2DM99DSHQ9AYR",
-        "01HPY71V5TB4J2DM99DSHQ9AYS"
+        "01HQ4FWET2ZM03RSXXQT6HAYES",
+        "01HQ4FWET2ZM03RSXXQT6HAYET"
       ],
       "accounts": [
-        {
-          "$ref": {}
-        },
-        {
-          "$ref": {}
-        }
+        {},
+        {}
       ],
       "contactIds": [
-        "01HPY71V5TB4J2DM99DSHQ9AYT",
-        "01HPY71V5TB4J2DM99DSHQ9AYV"
+        "01HQ4FWET2ZM03RSXXQT6HAYEV",
+        "01HQ4FWET2ZM03RSXXQT6HAYEW"
       ],
       "contacts": [
-        {
-          "$ref": {}
-        },
-        {
-          "$ref": {}
-        }
+        {},
+        {}
       ],
-      "title": "vinculum solium vehemens",
-      "description": "Doloremque asper conculco iste carus veritas speculum vox deludo sequi.",
-      "amount": 1194873828933632,
-      "currency": "SGD",
-      "assignedTo": "01HPY71V5TB4J2DM99DSHQ9AYW",
+      "title": "copia vulgus capitulus",
+      "description": "Fugit animi dolore provident sophismata hic occaecati laborum.",
+      "amount": 1863024447062016,
+      "currency": "TMT",
       "notes": [
         {
-          "text": "Tabesco cunae caries cimentarius vis. Ago defetiscor esse correptius tenuis vinculum veritas quisquam ratione. Comburo umbra vulpes callide.",
-          "createdAt": "2023-03-29T05:17:51.359Z",
-          "updatedAt": "2024-02-18T01:54:08.071Z"
+          "text": "Absorbeo delego beatae spero repellendus dicta. Pecus assentator subnecto sublime auctus comminor. Constans decor eum accommodo demonstro ceno solum accusantium cornu eum.",
+          "createdAt": "2023-05-30T22:27:08.701Z",
+          "updatedAt": "2024-02-20T02:29:01.799Z"
         },
         {
-          "text": "Abeo caelum culpo. Color copiose copia universe sortitus sol adeo. Vindico crepusculum aurum thalassinus adfectus.",
-          "createdAt": "2024-01-05T12:41:30.669Z",
-          "updatedAt": "2024-02-18T08:43:37.372Z"
+          "text": "Vado incidunt amitto aggero sperno deficio celo et. Terror degero cibo universe ancilla balbus volo. Officiis curis demoror caput trado alius.",
+          "createdAt": "2023-11-22T11:49:29.893Z",
+          "updatedAt": "2024-02-20T16:55:08.130Z"
         },
         {
-          "text": "Demulceo enim deduco. Taceo omnis deinde nisi turpis. Umbra cupressus denuo deserunt arbitro minus spero campana comitatus.",
-          "createdAt": "2023-08-22T15:32:35.558Z",
-          "updatedAt": "2024-02-18T04:19:10.105Z"
+          "text": "Argumentum asper avaritia tantum velit arcus error cauda. Amoveo utrum centum textilis adversus capto theatrum amitto corrigo cotidie. Creo occaecati bis.",
+          "createdAt": "2023-11-08T06:50:11.138Z",
+          "updatedAt": "2024-02-20T08:09:13.003Z"
         }
       ],
       "tasks": [
         {
-          "type": "ulterius",
+          "type": "vobis",
           "status": "in-progress",
-          "title": "Aspernatur minima beneficium voluptatibus teneo super.",
-          "description": "Vis qui summa aveho repellat depraedor. Canto sui denego. Delibero vehemens deporto autem vulticulus arca.",
-          "assigneeIds": [
-            "01HPY71V5TB4J2DM99DSHQ9AYX",
-            "01HPY71V5TB4J2DM99DSHQ9AYY"
-          ],
-          "assignees": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "assignerIds": [
-            "01HPY71V5TB4J2DM99DSHQ9AYZ",
-            "01HPY71V5TB4J2DM99DSHQ9AZ0"
-          ],
-          "assigners": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "dateDue": "2024-05-24T06:08:26.744Z",
-          "dateCompleted": "2024-02-18T06:13:41.118Z",
-          "createdAt": "2023-02-20T09:07:27.888Z",
-          "updatedAt": "2024-02-18T05:52:19.916Z"
+          "title": "Denuncio harum confugo sui adsuesco cura.",
+          "description": "Quidem aduro adhuc. Turpis audentia allatus verto cupiditate vis tego utroque. Arguo considero distinctio comes.",
+          "dateDue": "2025-01-28T20:00:41.607Z",
+          "dateCompleted": "2024-02-20T20:17:46.435Z",
+          "createdAt": "2023-05-24T10:53:54.857Z",
+          "updatedAt": "2024-02-20T18:01:13.155Z"
         },
         {
-          "type": "terebro",
+          "type": "apud",
           "status": "in-progress",
-          "title": "Terebro alias corona trepide subvenio quo labore summopere arbustum.",
-          "description": "Vomito repudiandae teneo advenio auxilium cruentus acsi coniecto. Amoveo quidem nostrum tonsor atrocitas. Certus turba atrocitas tubineus thymbra maiores cruentus totidem cribro adipiscor.",
-          "assigneeIds": [
-            "01HPY71V5TB4J2DM99DSHQ9AZ1",
-            "01HPY71V5TB4J2DM99DSHQ9AZ2"
-          ],
-          "assignees": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "assignerIds": [
-            "01HPY71V5TB4J2DM99DSHQ9AZ3",
-            "01HPY71V5TB4J2DM99DSHQ9AZ4"
-          ],
-          "assigners": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "dateDue": "2024-08-01T13:09:38.703Z",
-          "dateCompleted": "2024-02-18T08:56:36.407Z",
-          "createdAt": "2023-02-28T04:24:16.328Z",
-          "updatedAt": "2024-02-18T12:24:41.885Z"
+          "title": "Apparatus cras virtus quidem.",
+          "description": "Ascisco tepesco solio esse dolores. Corrumpo culpa coma curto cubitum desipio tres amplitudo. Bardus corroboro aperio capillus admoneo.",
+          "dateDue": "2024-12-05T01:52:27.276Z",
+          "dateCompleted": "2024-02-20T06:44:19.421Z",
+          "createdAt": "2023-04-06T22:46:10.367Z",
+          "updatedAt": "2024-02-20T12:35:34.606Z"
         }
       ],
-      "createdAt": "2023-04-07T03:29:57.549Z",
-      "updatedAt": "2024-02-17T20:11:29.037Z"
+      "createdAt": "2023-10-07T17:07:54.384Z",
+      "updatedAt": "2024-02-20T10:09:38.715Z"
     }
   },
   {
     "key": [
       "deals",
-      "01HPY71V5TB4J2DM99DSHQ9AZ5"
+      "01HQ4FWET2ZM03RSXXQT6HAYEX"
     ],
     "value": {
-      "id": "01HPY71V5TB4J2DM99DSHQ9AZ5",
-      "status": "todo",
+      "id": "01HQ4FWET2ZM03RSXXQT6HAYEX",
+      "status": "negotiation",
       "accountIds": [
-        "01HPY71V5TB4J2DM99DSHQ9AZ6",
-        "01HPY71V5TB4J2DM99DSHQ9AZ7"
+        "01HQ4FWET2ZM03RSXXQT6HAYEY",
+        "01HQ4FWET2ZM03RSXXQT6HAYEZ"
       ],
       "accounts": [
-        {
-          "$ref": {}
-        },
-        {
-          "$ref": {}
-        }
+        {},
+        {}
       ],
       "contactIds": [
-        "01HPY71V5TB4J2DM99DSHQ9AZ8",
-        "01HPY71V5TB4J2DM99DSHQ9AZ9"
+        "01HQ4FWET2ZM03RSXXQT6HAYF0",
+        "01HQ4FWET2ZM03RSXXQT6HAYF1"
       ],
       "contacts": [
-        {
-          "$ref": {}
-        },
-        {
-          "$ref": {}
-        }
+        {},
+        {}
       ],
-      "title": "volutabrum vespillo voluptas",
-      "description": "Aliquam stultus anser tandem torqueo utor utroque atque demoror tenax.",
-      "amount": 6476198989266944,
-      "currency": "UGX",
-      "assignedTo": "01HPY71V5TB4J2DM99DSHQ9AZA",
+      "title": "cibus asperiores temperantia",
+      "description": "Decens cedo adsidue combibo virga deorsum cui ars aggredior molestias.",
+      "amount": 6281904605102080,
+      "currency": "MXN",
       "notes": [
         {
-          "text": "Deinde cursus thermae creator quibusdam. Soleo molestiae spes socius. Quas adipisci doloremque cogito ver abundans conatus consectetur titulus.",
-          "createdAt": "2023-07-25T19:06:07.140Z",
-          "updatedAt": "2024-02-18T02:22:50.040Z"
+          "text": "Cuppedia nemo spes defleo. Ventosus abutor attollo. Validus approbo teneo arbor amplitudo.",
+          "createdAt": "2023-08-31T22:36:55.719Z",
+          "updatedAt": "2024-02-20T09:48:59.741Z"
         },
         {
-          "text": "Aeger altus cinis tamisium arbustum. Conservo claudeo cedo reprehenderit veritas solitudo uterque curriculum considero. Volutabrum adeo laboriosam.",
-          "createdAt": "2023-03-14T16:29:19.121Z",
-          "updatedAt": "2024-02-18T11:47:16.831Z"
+          "text": "Enim vomer nulla voco venia demonstro. Brevis vivo aurum. Clementia suasoria tendo dolores auctus vesper inventore colligo eveniet.",
+          "createdAt": "2023-04-16T11:07:45.500Z",
+          "updatedAt": "2024-02-20T12:28:54.250Z"
         },
         {
-          "text": "Vilicus cras quam. Defessus caritas sed absum catena absque vulgaris spargo subseco. Solium spectaculum patrocinor non clam color.",
-          "createdAt": "2023-07-14T09:34:17.832Z",
-          "updatedAt": "2024-02-18T07:48:17.262Z"
+          "text": "Casus vero ademptio trepide. Corrupti cuius cunabula decor ancilla voluptatibus quos. Titulus demergo auctor vulgus stabilis bardus animi solio adicio via.",
+          "createdAt": "2023-06-10T22:02:54.806Z",
+          "updatedAt": "2024-02-20T14:29:57.804Z"
         }
       ],
       "tasks": [
         {
-          "type": "amaritudo",
+          "type": "corporis",
           "status": "in-progress",
-          "title": "Abduco amet conspergo.",
-          "description": "Patria audeo crur comis viscus arto torqueo. Vitium peior pecco consequuntur aggero vesica cilicium consequatur. Ara tracto conspergo balbus vacuus vos aveho calculus stips.",
-          "assigneeIds": [
-            "01HPY71V5TB4J2DM99DSHQ9AZB",
-            "01HPY71V5TB4J2DM99DSHQ9AZC"
-          ],
-          "assignees": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "assignerIds": [
-            "01HPY71V5TB4J2DM99DSHQ9AZD",
-            "01HPY71V5TB4J2DM99DSHQ9AZE"
-          ],
-          "assigners": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "dateDue": "2024-09-07T20:01:32.826Z",
-          "dateCompleted": "2024-02-17T20:40:02.413Z",
-          "createdAt": "2023-05-04T21:18:40.352Z",
-          "updatedAt": "2024-02-17T18:03:52.428Z"
+          "title": "Conservo accusantium dolore.",
+          "description": "Ambitus spectaculum reprehenderit ipsa repellat voluptatibus animadverto. Venio in trado voco corroboro thorax. Rerum adsum tutamen vindico admoveo possimus alii utrimque conspergo.",
+          "dateDue": "2025-01-05T22:27:39.612Z",
+          "dateCompleted": "2024-02-20T20:06:28.869Z",
+          "createdAt": "2023-08-19T04:21:01.594Z",
+          "updatedAt": "2024-02-20T11:44:47.859Z"
         },
+        {
+          "type": "veniam",
+          "status": "in-progress",
+          "title": "Expedita patria officiis.",
+          "description": "Contego approbo ventosus velut basium contego. Thymbra cui contego vis theatrum nam iure. Abduco creptio vere capto tricesimus suasoria.",
+          "dateDue": "2024-08-04T23:46:41.417Z",
+          "dateCompleted": "2024-02-20T19:28:11.433Z",
+          "createdAt": "2023-09-23T22:14:06.383Z",
+          "updatedAt": "2024-02-20T11:04:52.139Z"
+        }
+      ],
+      "createdAt": "2023-04-20T19:33:51.542Z",
+      "updatedAt": "2024-02-20T15:12:57.950Z"
+    }
+  },
+  {
+    "key": [
+      "deals",
+      "01HQ4FWET351HF5T7BDC24K422"
+    ],
+    "value": {
+      "id": "01HQ4FWET351HF5T7BDC24K422",
+      "status": "qualified",
+      "accountIds": [
+        "01HQ4FWET351HF5T7BDC24K423",
+        "01HQ4FWET351HF5T7BDC24K424"
+      ],
+      "accounts": [
+        {},
+        {}
+      ],
+      "contactIds": [
+        "01HQ4FWET351HF5T7BDC24K425",
+        "01HQ4FWET351HF5T7BDC24K426"
+      ],
+      "contacts": [
+        {},
+        {}
+      ],
+      "title": "attollo capto cattus",
+      "description": "Ter deficio atque defendo bardus terror sum numquam arca.",
+      "amount": 5421790809554944,
+      "currency": "USD",
+      "notes": [
+        {
+          "text": "Creber sollicito vilitas ciminatio. Advoco addo comedo. Tamquam ut venustas ratione sodalitas summisse callide tendo arbor basium.",
+          "createdAt": "2023-09-18T03:43:46.943Z",
+          "updatedAt": "2024-02-20T08:55:20.842Z"
+        },
+        {
+          "text": "Vicinus vulticulus crapula theca uter amitto. Defendo minima clarus adsum cuius comes vox verumtamen cupiditas usitas. Cado calco commemoro.",
+          "createdAt": "2023-09-12T21:18:55.671Z",
+          "updatedAt": "2024-02-20T16:54:10.598Z"
+        },
+        {
+          "text": "Vulnero spargo adfectus consuasor aetas delectatio creta at. Cernuus cupio corrumpo. Amet eos taedium animus depromo coniuratio uxor comis carmen.",
+          "createdAt": "2024-01-18T13:51:34.713Z",
+          "updatedAt": "2024-02-20T12:36:43.408Z"
+        }
+      ],
+      "tasks": [
         {
           "type": "degusto",
           "status": "in-progress",
-          "title": "Tabella acer cubo.",
-          "description": "Adsuesco adversus bestia viduo voluptatem temptatio velit impedit. Solvo acceptus ipsa deprimo arbor. Dedico eos comburo.",
-          "assigneeIds": [
-            "01HPY71V5TB4J2DM99DSHQ9AZF",
-            "01HPY71V5TB4J2DM99DSHQ9AZG"
-          ],
-          "assignees": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "assignerIds": [
-            "01HPY71V5TB4J2DM99DSHQ9AZH",
-            "01HPY71V5TB4J2DM99DSHQ9AZJ"
-          ],
-          "assigners": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "dateDue": "2024-07-17T20:27:38.875Z",
-          "dateCompleted": "2024-02-18T11:47:46.358Z",
-          "createdAt": "2023-07-31T06:53:26.795Z",
-          "updatedAt": "2024-02-17T19:47:48.287Z"
+          "title": "Optio talio advoco terra deduco tempus certe valeo arca.",
+          "description": "Varius delibero confugo totidem dapifer adopto corroboro carus tempus vomito. Fugit ver volubilis absum. Autus votum ager ait cauda occaecati certe perferendis conculco.",
+          "dateDue": "2024-06-09T18:25:19.628Z",
+          "dateCompleted": "2024-02-20T02:59:18.174Z",
+          "createdAt": "2023-08-07T04:37:43.043Z",
+          "updatedAt": "2024-02-20T15:53:48.752Z"
+        },
+        {
+          "type": "cupiditate",
+          "status": "in-progress",
+          "title": "Adimpleo timidus suggero repudiandae quibusdam viridis.",
+          "description": "Perferendis accusator accendo depromo absens vulnero video uxor celer admoveo. Crustulum veritas carbo creo. Vis cunae depromo cursus.",
+          "dateDue": "2024-12-30T15:50:50.695Z",
+          "dateCompleted": "2024-02-20T08:38:32.965Z",
+          "createdAt": "2023-11-06T14:13:22.967Z",
+          "updatedAt": "2024-02-20T06:21:30.455Z"
         }
       ],
-      "createdAt": "2023-10-27T05:04:34.870Z",
-      "updatedAt": "2024-02-17T19:34:04.862Z"
+      "createdAt": "2023-05-26T04:27:38.849Z",
+      "updatedAt": "2024-02-20T08:07:37.078Z"
     }
   },
   {
     "key": [
       "deals",
-      "01HPY71V5TB4J2DM99DSHQ9AZK"
+      "01HQ4FWET351HF5T7BDC24K427"
     ],
     "value": {
-      "id": "01HPY71V5TB4J2DM99DSHQ9AZK",
-      "status": "done",
+      "id": "01HQ4FWET351HF5T7BDC24K427",
+      "status": "lost",
       "accountIds": [
-        "01HPY71V5TB4J2DM99DSHQ9AZM",
-        "01HPY71V5TB4J2DM99DSHQ9AZN"
+        "01HQ4FWET351HF5T7BDC24K428",
+        "01HQ4FWET351HF5T7BDC24K429"
       ],
       "accounts": [
-        {
-          "$ref": {}
-        },
-        {
-          "$ref": {}
-        }
+        {},
+        {}
       ],
       "contactIds": [
-        "01HPY71V5TB4J2DM99DSHQ9AZP",
-        "01HPY71V5TB4J2DM99DSHQ9AZQ"
+        "01HQ4FWET351HF5T7BDC24K42A",
+        "01HQ4FWET351HF5T7BDC24K42B"
       ],
       "contacts": [
-        {
-          "$ref": {}
-        },
-        {
-          "$ref": {}
-        }
+        {},
+        {}
       ],
-      "title": "chirographum anser termes",
-      "description": "Cubicularis delibero bos calcar utrimque.",
-      "amount": 2206358331981824,
-      "currency": "MAD",
-      "assignedTo": "01HPY71V5TB4J2DM99DSHQ9AZR",
+      "title": "apud tollo adstringo",
+      "description": "Absconditus taedium dolorem.",
+      "amount": 4503102401019904,
+      "currency": "MUR",
       "notes": [
         {
-          "text": "Nihil veniam nemo cicuta excepturi triduana qui voveo. Arca vilicus thorax speculum spiritus. Dolor tres acsi delibero dens decretum beatae carbo.",
-          "createdAt": "2023-08-21T17:03:36.027Z",
-          "updatedAt": "2024-02-18T11:35:15.673Z"
+          "text": "Utpote cunae viriliter nesciunt ascit acies utor. Velum saepe corona video vinum. Convoco delinquo ratione benigne crudelis.",
+          "createdAt": "2023-05-17T18:35:07.768Z",
+          "updatedAt": "2024-02-20T05:35:10.633Z"
         },
         {
-          "text": "Vetus conscendo contigo baiulus adopto vesco aro. Astrum peior valetudo. Volva statim peccatus comis demitto.",
-          "createdAt": "2023-12-30T22:18:28.607Z",
-          "updatedAt": "2024-02-17T17:33:20.225Z"
+          "text": "Strues tam villa. Color truculenter comedo vis communis conor toties. Comedo numquam amita debeo culpa ipsa comminor copiose cernuus.",
+          "createdAt": "2023-09-08T11:57:39.984Z",
+          "updatedAt": "2024-02-20T19:05:36.730Z"
         },
         {
-          "text": "Patior vere tremo impedit vestrum ultra. Vulgivagus cupressus vis ambitus vigilo illo aperio auxilium. Bonus cattus sono arcus aperiam combibo conforto casus benigne recusandae.",
-          "createdAt": "2023-11-28T02:14:03.509Z",
-          "updatedAt": "2024-02-17T20:18:46.000Z"
+          "text": "Sub una aeternus absens curo triumphus cribro demoror. Terga debeo quibusdam. Cibo aeger calculus deduco tolero concedo voluptatibus vinitor.",
+          "createdAt": "2023-09-24T21:04:28.415Z",
+          "updatedAt": "2024-02-20T00:32:54.654Z"
         }
       ],
       "tasks": [
         {
-          "type": "adulatio",
+          "type": "bibo",
           "status": "in-progress",
-          "title": "Acerbitas turba quidem reprehenderit placeat.",
-          "description": "Compono spectaculum cumque acceptus aetas decens calculus torqueo. Laudantium truculenter adinventitias delego vita. Aequitas attero veniam.",
-          "assigneeIds": [
-            "01HPY71V5TB4J2DM99DSHQ9AZS",
-            "01HPY71V5TB4J2DM99DSHQ9AZT"
-          ],
-          "assignees": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "assignerIds": [
-            "01HPY71V5TB4J2DM99DSHQ9AZV",
-            "01HPY71V5TB4J2DM99DSHQ9AZW"
-          ],
-          "assigners": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "dateDue": "2024-12-05T13:23:53.261Z",
-          "dateCompleted": "2024-02-18T11:29:47.104Z",
-          "createdAt": "2023-05-09T13:40:38.731Z",
-          "updatedAt": "2024-02-18T05:15:40.593Z"
+          "title": "Similique vaco comitatus voluptatibus iusto.",
+          "description": "Amo dedico fugit. Arcesso cavus voco ter coepi aeneus peior maxime videlicet vehemens. Subito aveho vos videlicet fuga censura valeo.",
+          "dateDue": "2024-04-23T22:19:16.557Z",
+          "dateCompleted": "2024-02-20T06:12:04.973Z",
+          "createdAt": "2023-11-29T13:17:54.874Z",
+          "updatedAt": "2024-02-20T10:44:25.840Z"
         },
         {
-          "type": "sed",
+          "type": "summa",
           "status": "in-progress",
-          "title": "Cribro alienus ab acerbitas.",
-          "description": "Utilis auctus conqueror vacuus absque bestia aer doloremque. Spectaculum sufficio sum verecundia. Commodo undique quisquam.",
-          "assigneeIds": [
-            "01HPY71V5V2XZD555NG7DE79DR",
-            "01HPY71V5V2XZD555NG7DE79DS"
-          ],
-          "assignees": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "assignerIds": [
-            "01HPY71V5V2XZD555NG7DE79DT",
-            "01HPY71V5V2XZD555NG7DE79DV"
-          ],
-          "assigners": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "dateDue": "2024-02-28T20:35:27.921Z",
-          "dateCompleted": "2024-02-18T10:07:51.971Z",
-          "createdAt": "2023-12-06T01:53:47.250Z",
-          "updatedAt": "2024-02-18T13:20:51.573Z"
+          "title": "Aeger incidunt volubilis esse altus sursum rerum carpo comparo.",
+          "description": "Super ullam valetudo temptatio defero spectaculum. Clementia aeger sufficio suffoco bibo. Terra comis tersus degusto aliqua.",
+          "dateDue": "2024-08-02T12:45:08.638Z",
+          "dateCompleted": "2024-02-20T16:40:45.497Z",
+          "createdAt": "2023-03-07T13:53:50.860Z",
+          "updatedAt": "2024-02-20T17:17:23.405Z"
         }
       ],
-      "createdAt": "2024-01-28T15:56:52.676Z",
-      "updatedAt": "2024-02-17T20:32:05.152Z"
+      "createdAt": "2023-04-24T14:27:17.828Z",
+      "updatedAt": "2024-02-20T12:15:21.591Z"
     }
   },
   {
     "key": [
       "deals",
-      "01HPY71V5V2XZD555NG7DE79DW"
+      "01HQ4FWET351HF5T7BDC24K42C"
     ],
     "value": {
-      "id": "01HPY71V5V2XZD555NG7DE79DW",
-      "status": "cancelled",
+      "id": "01HQ4FWET351HF5T7BDC24K42C",
+      "status": "lead",
       "accountIds": [
-        "01HPY71V5V2XZD555NG7DE79DX",
-        "01HPY71V5V2XZD555NG7DE79DY"
+        "01HQ4FWET351HF5T7BDC24K42D",
+        "01HQ4FWET351HF5T7BDC24K42E"
       ],
       "accounts": [
-        {
-          "$ref": {}
-        },
-        {
-          "$ref": {}
-        }
+        {},
+        {}
       ],
       "contactIds": [
-        "01HPY71V5V2XZD555NG7DE79DZ",
-        "01HPY71V5V2XZD555NG7DE79E0"
+        "01HQ4FWET351HF5T7BDC24K42F",
+        "01HQ4FWET351HF5T7BDC24K42G"
       ],
       "contacts": [
-        {
-          "$ref": {}
-        },
-        {
-          "$ref": {}
-        }
+        {},
+        {}
       ],
-      "title": "villa ullam tui",
-      "description": "Iusto curtus velociter tondeo delibero.",
-      "amount": 4240818768445440,
-      "currency": "AOA",
-      "assignedTo": "01HPY71V5V2XZD555NG7DE79E1",
+      "title": "asperiores uredo cur",
+      "description": "Tutis vereor quod.",
+      "amount": 8113655642062848,
+      "currency": "JOD",
       "notes": [
         {
-          "text": "Consuasor verecundia tenuis admoneo. Adipisci assentator armarium. Comminor vetus amo temeritas aspicio ver utrum.",
-          "createdAt": "2023-04-29T02:40:18.390Z",
-          "updatedAt": "2024-02-18T07:04:27.819Z"
+          "text": "Degero conspergo tres vitium crudelis. Umquam dicta peccatus velociter demitto. Minima similique bonus textus balbus creptio turba.",
+          "createdAt": "2023-05-29T21:43:41.996Z",
+          "updatedAt": "2024-02-20T12:14:26.777Z"
         },
         {
-          "text": "Accusamus verumtamen tener dolore aureus deduco. Curto delectatio vulpes tracto. Vomito cultura conicio perferendis.",
-          "createdAt": "2023-02-18T19:21:58.526Z",
-          "updatedAt": "2024-02-18T07:55:01.072Z"
+          "text": "Tolero talis solutio debeo optio. Harum vestigium alter ipsa solitudo nemo caritas advenio. Adstringo subnecto decor allatus explicabo vesco teres.",
+          "createdAt": "2023-06-21T01:44:48.911Z",
+          "updatedAt": "2024-02-20T03:27:41.292Z"
         },
         {
-          "text": "Adhuc solitudo summopere strues venustas audio. Congregatio natus sursum dens doloremque ambitus. Blanditiis vel amoveo adipisci eveniet curo cubitum aranea volutabrum.",
-          "createdAt": "2023-02-25T20:23:51.700Z",
-          "updatedAt": "2024-02-17T17:24:23.784Z"
+          "text": "Voluptatum numquam admiratio annus. Canto comptus coerceo delicate complectus cupio itaque crur. Textus abeo vester corrumpo tot carcer dicta comedo.",
+          "createdAt": "2023-04-28T04:49:05.144Z",
+          "updatedAt": "2024-02-20T15:56:05.779Z"
         }
       ],
       "tasks": [
         {
-          "type": "valeo",
+          "type": "illo",
           "status": "in-progress",
-          "title": "Arguo vinitor auctus aedificium defero annus acidus.",
-          "description": "Aequus admitto concedo consequuntur ullus decumbo tabgo caecus voco demens. Sonitus tergiversatio taceo voluptate auctor clibanus pecto cras cilicium. Arto amicitia dicta curvo auditor sunt crinis tenetur.",
-          "assigneeIds": [
-            "01HPY71V5V2XZD555NG7DE79E2",
-            "01HPY71V5V2XZD555NG7DE79E3"
-          ],
-          "assignees": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "assignerIds": [
-            "01HPY71V5V2XZD555NG7DE79E4",
-            "01HPY71V5V2XZD555NG7DE79E5"
-          ],
-          "assigners": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "dateDue": "2024-07-27T20:57:43.647Z",
-          "dateCompleted": "2024-02-18T11:19:03.862Z",
-          "createdAt": "2023-07-28T23:14:37.790Z",
-          "updatedAt": "2024-02-18T07:26:55.367Z"
+          "title": "Tendo voluptatem corpus tamen verecundia tabgo cetera.",
+          "description": "Aperte est antea. Solutio conspergo auctus nisi voro laborum. Porro magni clementia arto arbustum audio umbra ventosus.",
+          "dateDue": "2024-03-05T03:17:18.912Z",
+          "dateCompleted": "2024-02-20T22:07:23.351Z",
+          "createdAt": "2023-11-02T12:07:21.702Z",
+          "updatedAt": "2024-02-20T11:24:20.549Z"
         },
         {
-          "type": "reprehenderit",
+          "type": "optio",
           "status": "in-progress",
-          "title": "Degero depromo tredecim.",
-          "description": "Volaticus odio tunc cras tero utrum vespillo. Deripio vix totam. Attero quaerat titulus subvenio voluptas error comminor.",
-          "assigneeIds": [
-            "01HPY71V5V2XZD555NG7DE79E6",
-            "01HPY71V5V2XZD555NG7DE79E7"
-          ],
-          "assignees": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "assignerIds": [
-            "01HPY71V5V2XZD555NG7DE79E8",
-            "01HPY71V5V2XZD555NG7DE79E9"
-          ],
-          "assigners": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "dateDue": "2024-05-06T03:21:09.484Z",
-          "dateCompleted": "2024-02-18T11:38:06.466Z",
-          "createdAt": "2023-06-27T07:46:30.988Z",
-          "updatedAt": "2024-02-18T02:26:15.108Z"
+          "title": "Verbera annus circumvenio cernuus.",
+          "description": "Bellum vox truculenter nemo dolorum cuius cruentus. Fugiat ver timidus. Adficio adiuvo reprehenderit adicio.",
+          "dateDue": "2024-08-25T19:30:22.202Z",
+          "dateCompleted": "2024-02-20T23:35:30.569Z",
+          "createdAt": "2023-05-22T18:42:18.685Z",
+          "updatedAt": "2024-02-20T00:52:49.978Z"
         }
       ],
-      "createdAt": "2023-12-16T10:27:32.932Z",
-      "updatedAt": "2024-02-18T10:24:38.347Z"
+      "createdAt": "2023-09-03T23:29:31.325Z",
+      "updatedAt": "2024-02-20T23:13:05.464Z"
     }
   },
   {
     "key": [
       "deals",
-      "01HPY71V5V2XZD555NG7DE79EA"
+      "01HQ4FWET351HF5T7BDC24K42H"
     ],
     "value": {
-      "id": "01HPY71V5V2XZD555NG7DE79EA",
-      "status": "done",
+      "id": "01HQ4FWET351HF5T7BDC24K42H",
+      "status": "won",
       "accountIds": [
-        "01HPY71V5V2XZD555NG7DE79EB",
-        "01HPY71V5V2XZD555NG7DE79EC"
+        "01HQ4FWET351HF5T7BDC24K42J",
+        "01HQ4FWET351HF5T7BDC24K42K"
       ],
       "accounts": [
-        {
-          "$ref": {}
-        },
-        {
-          "$ref": {}
-        }
+        {},
+        {}
       ],
       "contactIds": [
-        "01HPY71V5V2XZD555NG7DE79ED",
-        "01HPY71V5V2XZD555NG7DE79EE"
+        "01HQ4FWET351HF5T7BDC24K42M",
+        "01HQ4FWET351HF5T7BDC24K42N"
       ],
       "contacts": [
-        {
-          "$ref": {}
-        },
-        {
-          "$ref": {}
-        }
+        {},
+        {}
       ],
-      "title": "distinctio vesica vos",
-      "description": "Odit tabesco caelestis statim cui adduco delibero attonbitus communis aequitas.",
-      "amount": 3331559566344192,
-      "currency": "RWF",
-      "assignedTo": "01HPY71V5V2XZD555NG7DE79EF",
+      "title": "amitto addo stillicidium",
+      "description": "Super vomer argentum laboriosam labore vetus viscus traho.",
+      "amount": 4377862144524288,
+      "currency": "PYG",
       "notes": [
         {
-          "text": "Laborum amaritudo alius tertius maxime nemo audacia cur adiuvo absum. Cedo patruus adsuesco auctor aetas. Aveho suffoco adstringo usus victus creo.",
-          "createdAt": "2024-02-11T02:13:58.895Z",
-          "updatedAt": "2024-02-17T22:11:13.753Z"
+          "text": "Appono amiculum amoveo veritas ultio mollitia dolores vilicus sopor vespillo. Deleniti termes truculenter cumque tripudio corona vos delicate. Theologus custodia carcer qui soleo volo tondeo ubi torrens.",
+          "createdAt": "2024-01-02T13:33:38.464Z",
+          "updatedAt": "2024-02-20T16:28:57.477Z"
         },
         {
-          "text": "Subseco ocer xiphias eveniet vulgaris decumbo. Capto admoneo ipsam valens vetus minus depraedor benigne avarus accedo. Vicinus turba vae autus valeo dedico.",
-          "createdAt": "2023-11-22T08:09:09.477Z",
-          "updatedAt": "2024-02-18T09:16:20.574Z"
+          "text": "Usque celebrer adipiscor cohaero patior tersus. Denuncio tersus collum sophismata carpo xiphias atque volutabrum corporis. Saepe attollo voluptatibus viduo cunabula votum tepidus.",
+          "createdAt": "2023-11-28T01:08:32.957Z",
+          "updatedAt": "2024-02-20T16:30:10.005Z"
         },
         {
-          "text": "Cupio placeat conventus adinventitias tonsor aranea. Depromo claro degenero agnitio aufero sequi accendo. Suffoco atqui solio quis aranea terreo.",
-          "createdAt": "2023-12-29T07:22:08.667Z",
-          "updatedAt": "2024-02-18T01:38:44.406Z"
+          "text": "Administratio ipsam solum defessus torrens. Abundans cicuta tametsi undique suffragium. Trepide theologus vorago vorago.",
+          "createdAt": "2023-04-06T14:59:20.262Z",
+          "updatedAt": "2024-02-20T17:29:11.135Z"
         }
       ],
       "tasks": [
         {
-          "type": "tepesco",
+          "type": "vulpes",
           "status": "in-progress",
-          "title": "Depopulo certus adulescens aureus voluptas.",
-          "description": "Pauper facere conspergo unde bestia amita comitatus vigilo succedo. Ventito civis atqui thermae aeger. Cursus dolor aurum spero.",
-          "assigneeIds": [
-            "01HPY71V5V2XZD555NG7DE79EG",
-            "01HPY71V5V2XZD555NG7DE79EH"
-          ],
-          "assignees": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "assignerIds": [
-            "01HPY71V5V2XZD555NG7DE79EJ",
-            "01HPY71V5V2XZD555NG7DE79EK"
-          ],
-          "assigners": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "dateDue": "2024-11-19T09:15:05.886Z",
-          "dateCompleted": "2024-02-17T20:29:49.346Z",
-          "createdAt": "2023-08-15T23:21:13.053Z",
-          "updatedAt": "2024-02-17T13:45:25.741Z"
+          "title": "Talis charisma dolorem voluptas vilicus truculenter.",
+          "description": "Sol antiquus allatus clamo admoveo adeptio dicta complectus angulus. Auditor acceptus tibi fugiat sed anser sol. Celo iste sponte.",
+          "dateDue": "2024-04-09T00:00:11.845Z",
+          "dateCompleted": "2024-02-20T09:32:54.169Z",
+          "createdAt": "2023-04-23T20:12:25.081Z",
+          "updatedAt": "2024-02-20T07:31:28.902Z"
         },
         {
-          "type": "ait",
+          "type": "cras",
           "status": "in-progress",
-          "title": "Credo nobis caritas cunctatio subvenio damnatio angelus accusamus ventosus.",
-          "description": "Maxime terreo curis aureus terra dolores ullus deleo. Solvo auditor credo. Perspiciatis succurro aut.",
-          "assigneeIds": [
-            "01HPY71V5V2XZD555NG7DE79EM",
-            "01HPY71V5V2XZD555NG7DE79EN"
-          ],
-          "assignees": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "assignerIds": [
-            "01HPY71V5V2XZD555NG7DE79EP",
-            "01HPY71V5V2XZD555NG7DE79EQ"
-          ],
-          "assigners": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "dateDue": "2024-03-26T03:39:17.191Z",
-          "dateCompleted": "2024-02-18T09:14:04.598Z",
-          "createdAt": "2023-12-26T00:00:11.926Z",
-          "updatedAt": "2024-02-17T15:17:07.440Z"
+          "title": "Bene vado comedo sed recusandae fugiat spectaculum caelum.",
+          "description": "Alii deludo vicinus canis vito maiores cattus. Umquam maxime bellum astrum virtus. Cupressus autus solitudo aspicio amicitia aliquam cresco vindico averto.",
+          "dateDue": "2024-11-06T21:18:05.923Z",
+          "dateCompleted": "2024-02-20T04:39:07.874Z",
+          "createdAt": "2023-11-04T06:43:50.592Z",
+          "updatedAt": "2024-02-20T21:33:21.131Z"
         }
       ],
-      "createdAt": "2023-02-25T15:35:39.584Z",
-      "updatedAt": "2024-02-17T17:59:39.557Z"
+      "createdAt": "2023-07-03T10:55:51.866Z",
+      "updatedAt": "2024-02-20T21:02:17.533Z"
     }
   },
   {
     "key": [
       "deals",
-      "01HPY71V5V2XZD555NG7DE79ER"
+      "01HQ4FWET351HF5T7BDC24K42P"
     ],
     "value": {
-      "id": "01HPY71V5V2XZD555NG7DE79ER",
-      "status": "backlog",
+      "id": "01HQ4FWET351HF5T7BDC24K42P",
+      "status": "negotiation",
       "accountIds": [
-        "01HPY71V5V2XZD555NG7DE79ES",
-        "01HPY71V5V2XZD555NG7DE79ET"
+        "01HQ4FWET351HF5T7BDC24K42Q",
+        "01HQ4FWET351HF5T7BDC24K42R"
       ],
       "accounts": [
-        {
-          "$ref": {}
-        },
-        {
-          "$ref": {}
-        }
+        {},
+        {}
       ],
       "contactIds": [
-        "01HPY71V5V2XZD555NG7DE79EV",
-        "01HPY71V5V2XZD555NG7DE79EW"
+        "01HQ4FWET351HF5T7BDC24K42S",
+        "01HQ4FWET351HF5T7BDC24K42T"
       ],
       "contacts": [
-        {
-          "$ref": {}
-        },
-        {
-          "$ref": {}
-        }
+        {},
+        {}
       ],
-      "title": "somniculosus vulpes cupiditas",
-      "description": "Tripudio deleo vinitor.",
-      "amount": 2561138099224576,
-      "currency": "RON",
-      "assignedTo": "01HPY71V5V2XZD555NG7DE79EX",
+      "title": "credo talio subseco",
+      "description": "Viscus sulum infit vulgo.",
+      "amount": 6540060960751616,
+      "currency": "GTQ",
       "notes": [
         {
-          "text": "Tui succurro vulariter cernuus aliquid cubitum adfero deprimo dolorum. Clam cur averto capto dignissimos alveus turbo. Auctus amplexus circumvenio atqui spiritus combibo talis centum.",
-          "createdAt": "2023-12-19T20:40:25.272Z",
-          "updatedAt": "2024-02-17T14:16:18.681Z"
+          "text": "Depulso tertius tenus patrocinor officiis. Stabilis arguo recusandae aut aegrotatio barba. Sustineo caterva ubi tabgo atque.",
+          "createdAt": "2023-09-13T09:28:02.059Z",
+          "updatedAt": "2024-02-20T05:59:06.091Z"
         },
         {
-          "text": "Caute cunctatio desipio defetiscor vinitor. Vulticulus arma supra. Rem sui arguo vix speciosus.",
-          "createdAt": "2023-11-16T03:13:57.332Z",
-          "updatedAt": "2024-02-18T03:01:20.995Z"
+          "text": "Abbas eius caelestis. Adduco titulus perferendis adfectus denuncio aliquam. Optio corrumpo temeritas somnus arceo temporibus nostrum.",
+          "createdAt": "2023-08-08T11:48:57.935Z",
+          "updatedAt": "2024-02-20T15:48:19.421Z"
         },
         {
-          "text": "Repudiandae testimonium esse. Nam incidunt comptus. Depromo aggredior temeritas cavus arto.",
-          "createdAt": "2023-10-16T05:07:04.077Z",
-          "updatedAt": "2024-02-17T15:43:05.928Z"
+          "text": "Bardus auctus tabula textus cicuta ad sortitus quidem adnuo solum. Sursum in thesis arbitro volo altus sophismata ustulo. Cimentarius casus aperio carcer vereor corrigo pecto.",
+          "createdAt": "2023-07-06T17:25:18.705Z",
+          "updatedAt": "2024-02-20T18:34:04.042Z"
         }
       ],
       "tasks": [
         {
-          "type": "subseco",
+          "type": "quod",
           "status": "in-progress",
-          "title": "Tergeo cogito adfero consectetur amor spargo alii.",
-          "description": "Ager aiunt succurro nam damnatio et sortitus amet dolorum. Conicio debeo peccatus super thesaurus umbra arcus vilis decretum talis. Depereo tristis sunt appositus depulso volo textilis.",
-          "assigneeIds": [
-            "01HPY71V5V2XZD555NG7DE79EY",
-            "01HPY71V5V2XZD555NG7DE79EZ"
-          ],
-          "assignees": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "assignerIds": [
-            "01HPY71V5V2XZD555NG7DE79F0",
-            "01HPY71V5V2XZD555NG7DE79F1"
-          ],
-          "assigners": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "dateDue": "2025-01-12T02:56:18.682Z",
-          "dateCompleted": "2024-02-17T15:50:21.556Z",
-          "createdAt": "2023-09-08T18:02:54.182Z",
-          "updatedAt": "2024-02-18T03:34:35.470Z"
+          "title": "Benigne vulticulus curriculum.",
+          "description": "Quisquam volva sortitus alii demergo pax. Venia comitatus carpo debeo arx iusto cogito volup arbor civis. Tenax celo accusantium caute terminatio sum.",
+          "dateDue": "2024-09-10T23:02:32.658Z",
+          "dateCompleted": "2024-02-20T13:43:01.429Z",
+          "createdAt": "2023-05-13T22:08:17.525Z",
+          "updatedAt": "2024-02-20T04:53:25.661Z"
         },
         {
-          "type": "cruciamentum",
+          "type": "verumtamen",
           "status": "in-progress",
-          "title": "Aedificium summa balbus tergiversatio votum varietas cruciamentum conatus eaque.",
-          "description": "Velum doloribus tricesimus audacia sequi cado modi carbo. Temptatio pecto addo caelestis ad laudantium. Dedecor consequatur adduco decretum tremo sublime.",
-          "assigneeIds": [
-            "01HPY71V5V2XZD555NG7DE79F2",
-            "01HPY71V5V2XZD555NG7DE79F3"
-          ],
-          "assignees": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "assignerIds": [
-            "01HPY71V5V2XZD555NG7DE79F4",
-            "01HPY71V5V2XZD555NG7DE79F5"
-          ],
-          "assigners": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "dateDue": "2024-08-10T01:10:53.976Z",
-          "dateCompleted": "2024-02-18T12:04:56.382Z",
-          "createdAt": "2023-12-18T05:11:23.902Z",
-          "updatedAt": "2024-02-18T00:56:37.540Z"
+          "title": "Aestas demergo talio amo.",
+          "description": "Canonicus vitium fuga dens voveo praesentium vociferor cupiditate sodalitas. Confugo candidus aestus defungo crur pel sequi carmen thema. Culpo crepusculum caritas capillus supplanto sperno aliqua doloribus confido crinis.",
+          "dateDue": "2024-04-18T12:15:36.304Z",
+          "dateCompleted": "2024-02-20T04:05:18.254Z",
+          "createdAt": "2024-01-08T22:54:32.262Z",
+          "updatedAt": "2024-02-20T04:20:45.203Z"
         }
       ],
-      "createdAt": "2024-02-01T11:11:14.810Z",
-      "updatedAt": "2024-02-18T08:09:52.419Z"
+      "createdAt": "2023-07-25T03:27:12.163Z",
+      "updatedAt": "2024-02-20T05:02:42.043Z"
     }
   },
   {
     "key": [
       "deals",
-      "01HPY71V5V2XZD555NG7DE79F6"
+      "01HQ4FWET351HF5T7BDC24K42V"
     ],
     "value": {
-      "id": "01HPY71V5V2XZD555NG7DE79F6",
-      "status": "in-progress",
+      "id": "01HQ4FWET351HF5T7BDC24K42V",
+      "status": "lost",
       "accountIds": [
-        "01HPY71V5V2XZD555NG7DE79F7",
-        "01HPY71V5V2XZD555NG7DE79F8"
+        "01HQ4FWET351HF5T7BDC24K42W",
+        "01HQ4FWET4679SKHJP2YZ3Z9BB"
       ],
       "accounts": [
-        {
-          "$ref": {}
-        },
-        {
-          "$ref": {}
-        }
+        {},
+        {}
       ],
       "contactIds": [
-        "01HPY71V5V2XZD555NG7DE79F9",
-        "01HPY71V5V2XZD555NG7DE79FA"
+        "01HQ4FWET4679SKHJP2YZ3Z9BC",
+        "01HQ4FWET4679SKHJP2YZ3Z9BD"
       ],
       "contacts": [
-        {
-          "$ref": {}
-        },
-        {
-          "$ref": {}
-        }
+        {},
+        {}
       ],
-      "title": "patrocinor nisi pax",
-      "description": "Tepidus aestus vos conscendo.",
-      "amount": 4861423410741248,
-      "currency": "MMK",
-      "assignedTo": "01HPY71V5V2XZD555NG7DE79FB",
+      "title": "spes viriliter verto",
+      "description": "Repellendus bardus beatus viridis capio conatus defleo alii dedico.",
+      "amount": 7486113170063360,
+      "currency": "PKR",
       "notes": [
         {
-          "text": "Atavus dolores recusandae demum constans. Suffragium varius capillus alter quisquam tardus demitto vetus. Veritas calcar tollo.",
-          "createdAt": "2023-03-29T08:49:25.067Z",
-          "updatedAt": "2024-02-17T22:20:17.542Z"
+          "text": "Bellicus esse claustrum vitiosus vulnero theca corpus cui custodia. Confero deserunt venia occaecati. Cum baiulus iure cognomen celer suadeo.",
+          "createdAt": "2023-05-16T11:25:12.271Z",
+          "updatedAt": "2024-02-20T19:41:50.944Z"
         },
         {
-          "text": "Dicta dolore terga cattus aliqua cubo aduro. Volva delibero ademptio. Taceo tres aeger clibanus attollo totam crapula crastinus.",
-          "createdAt": "2023-09-08T19:01:37.967Z",
-          "updatedAt": "2024-02-17T21:18:54.970Z"
+          "text": "Vesper voro vesper stillicidium ter arbustum tempora. Ulciscor cunae charisma copia paens. Adamo arbustum viduo.",
+          "createdAt": "2023-03-08T00:09:11.456Z",
+          "updatedAt": "2024-02-20T12:04:39.785Z"
         },
         {
-          "text": "Ocer aptus tergeo. Decerno strues turba abscido voluptate ocer suasoria curis. Admoneo temptatio delectus arto arcus aperio aspernatur tamquam vomer.",
-          "createdAt": "2023-04-07T03:41:51.188Z",
-          "updatedAt": "2024-02-17T17:30:31.186Z"
+          "text": "Coepi valetudo crux vomica abduco demo. Cursim triduana tot cerno crudelis ipsa conatus alias alii ascit. Paens vallum defluo capto cupiditate.",
+          "createdAt": "2023-12-19T07:34:22.457Z",
+          "updatedAt": "2024-02-20T22:57:55.648Z"
         }
       ],
       "tasks": [
         {
-          "type": "demoror",
+          "type": "adstringo",
           "status": "in-progress",
-          "title": "Vir verbum ut voluptatum thymbra cras eum accendo adhaero.",
-          "description": "Turbo testimonium verto utilis vivo summa magni. Conventus torrens abscido versus. Tepidus delectatio et stella odit enim conventus.",
-          "assigneeIds": [
-            "01HPY71V5WGJGMWYVVGQTB514N",
-            "01HPY71V5WGJGMWYVVGQTB514P"
-          ],
-          "assignees": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "assignerIds": [
-            "01HPY71V5WGJGMWYVVGQTB514Q",
-            "01HPY71V5WGJGMWYVVGQTB514R"
-          ],
-          "assigners": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "dateDue": "2024-12-11T09:43:58.013Z",
-          "dateCompleted": "2024-02-17T21:47:39.631Z",
-          "createdAt": "2023-12-20T21:54:01.719Z",
-          "updatedAt": "2024-02-18T07:04:00.303Z"
+          "title": "Aliqua apud nostrum angulus pecco tam venustas.",
+          "description": "Vespillo decet timidus tersus colligo comis cuius temporibus tabesco vox. Porro deporto artificiose capto tumultus dolorem spargo curriculum. Cuppedia eligendi subseco cresco vomito apparatus conscendo comburo adversus basium.",
+          "dateDue": "2024-12-01T17:21:39.151Z",
+          "dateCompleted": "2024-02-20T12:34:22.796Z",
+          "createdAt": "2023-05-09T21:24:37.824Z",
+          "updatedAt": "2024-02-20T09:43:49.149Z"
         },
         {
-          "type": "appono",
+          "type": "amicitia",
           "status": "in-progress",
-          "title": "Sumptus voveo tum conventus beatae tonsor ambitus.",
-          "description": "Angulus delectus caterva aggredior tepesco velum vita curriculum sunt. Vel civitas umquam desipio ventus armarium. Auxilium aqua vix sursum quos.",
-          "assigneeIds": [
-            "01HPY71V5WGJGMWYVVGQTB514S",
-            "01HPY71V5WGJGMWYVVGQTB514T"
-          ],
-          "assignees": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "assignerIds": [
-            "01HPY71V5WGJGMWYVVGQTB514V",
-            "01HPY71V5WGJGMWYVVGQTB514W"
-          ],
-          "assigners": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "dateDue": "2024-05-11T08:36:30.492Z",
-          "dateCompleted": "2024-02-17T20:13:20.884Z",
-          "createdAt": "2023-04-25T16:21:29.849Z",
-          "updatedAt": "2024-02-17T18:26:58.945Z"
+          "title": "Placeat ter absum placeat.",
+          "description": "Uter addo accusantium bellicus deorsum ipsa civitas una. Solutio nisi vereor succurro super vulpes curatio odit triumphus. Solio sordeo clibanus color amplexus velociter apud crapula tumultus suggero.",
+          "dateDue": "2024-10-20T03:55:36.999Z",
+          "dateCompleted": "2024-02-20T13:45:54.056Z",
+          "createdAt": "2023-05-22T21:09:41.947Z",
+          "updatedAt": "2024-02-20T03:46:12.403Z"
         }
       ],
-      "createdAt": "2023-12-07T00:31:49.624Z",
-      "updatedAt": "2024-02-18T00:28:35.611Z"
+      "createdAt": "2023-10-18T00:13:53.993Z",
+      "updatedAt": "2024-02-20T09:25:58.089Z"
     }
   },
   {
     "key": [
       "deals",
-      "01HPY71V5WGJGMWYVVGQTB514X"
+      "01HQ4FWET4679SKHJP2YZ3Z9BE"
     ],
     "value": {
-      "id": "01HPY71V5WGJGMWYVVGQTB514X",
-      "status": "done",
+      "id": "01HQ4FWET4679SKHJP2YZ3Z9BE",
+      "status": "qualified",
       "accountIds": [
-        "01HPY71V5WGJGMWYVVGQTB514Y",
-        "01HPY71V5WGJGMWYVVGQTB514Z"
+        "01HQ4FWET4679SKHJP2YZ3Z9BF",
+        "01HQ4FWET4679SKHJP2YZ3Z9BG"
       ],
       "accounts": [
-        {
-          "$ref": {}
-        },
-        {
-          "$ref": {}
-        }
+        {},
+        {}
       ],
       "contactIds": [
-        "01HPY71V5WGJGMWYVVGQTB5150",
-        "01HPY71V5WGJGMWYVVGQTB5151"
+        "01HQ4FWET4679SKHJP2YZ3Z9BH",
+        "01HQ4FWET4679SKHJP2YZ3Z9BJ"
       ],
       "contacts": [
+        {},
+        {}
+      ],
+      "title": "ancilla subiungo volo",
+      "description": "Vinum adopto bellum suscipit.",
+      "amount": 7075744364625920,
+      "currency": "TWD",
+      "notes": [
         {
-          "$ref": {}
+          "text": "Solum animus suus. Bestia approbo damno audacia dapifer taedium angelus crinis adnuo. Spectaculum careo apto atavus nobis canto vulgaris virtus aggero solio.",
+          "createdAt": "2023-04-21T23:41:04.853Z",
+          "updatedAt": "2024-02-20T15:37:28.550Z"
         },
         {
-          "$ref": {}
+          "text": "Voluptates odit ager causa valens. Capillus omnis acidus cohaero ademptio nemo comes cornu averto theatrum. Campana conor surgo corroboro provident uxor decens vulariter cuppedia.",
+          "createdAt": "2023-09-17T02:36:48.009Z",
+          "updatedAt": "2024-02-20T06:09:49.734Z"
+        },
+        {
+          "text": "Tumultus talio textor qui ait cruciamentum caecus. Conturbo quod absorbeo spectaculum eius terror audacia deleniti commemoro cernuus. Creta abbas sono sto spargo defendo tactus aeger addo.",
+          "createdAt": "2023-03-16T19:33:50.897Z",
+          "updatedAt": "2024-02-20T01:27:06.848Z"
         }
       ],
-      "title": "atrox vulticulus apparatus",
-      "description": "Sumo odio vulgaris.",
-      "amount": 6417154020737024,
+      "tasks": [
+        {
+          "type": "angulus",
+          "status": "in-progress",
+          "title": "Aliquam thesis valetudo quis deludo volaticus optio.",
+          "description": "Acer admiratio aiunt cursim vere cursim conduco derideo. Derelinquo curatio apparatus rerum tutis vado decet. Vero cupiditate vitium cauda similique adulatio dolorum atavus bene.",
+          "dateDue": "2024-11-13T01:48:13.647Z",
+          "dateCompleted": "2024-02-20T04:58:23.027Z",
+          "createdAt": "2023-05-21T22:45:54.966Z",
+          "updatedAt": "2024-02-20T11:00:03.311Z"
+        },
+        {
+          "type": "defero",
+          "status": "in-progress",
+          "title": "Inventore tubineus sub causa beatae nulla aperio.",
+          "description": "Color fuga conventus vulgaris sum at pauper. Vulticulus conspergo cogo bardus. Decet nam pel vito creber totus cauda substantia patior.",
+          "dateDue": "2024-03-24T09:57:49.225Z",
+          "dateCompleted": "2024-02-20T19:20:57.959Z",
+          "createdAt": "2023-06-28T17:46:45.954Z",
+          "updatedAt": "2024-02-20T11:13:20.310Z"
+        }
+      ],
+      "createdAt": "2023-07-30T09:54:08.179Z",
+      "updatedAt": "2024-02-20T10:36:08.229Z"
+    }
+  },
+  {
+    "key": [
+      "deals",
+      "01HQ4FWET4679SKHJP2YZ3Z9BK"
+    ],
+    "value": {
+      "id": "01HQ4FWET4679SKHJP2YZ3Z9BK",
+      "status": "negotiation",
+      "accountIds": [
+        "01HQ4FWET4679SKHJP2YZ3Z9BM",
+        "01HQ4FWET4679SKHJP2YZ3Z9BN"
+      ],
+      "accounts": [
+        {},
+        {}
+      ],
+      "contactIds": [
+        "01HQ4FWET4679SKHJP2YZ3Z9BP",
+        "01HQ4FWET4679SKHJP2YZ3Z9BQ"
+      ],
+      "contacts": [
+        {},
+        {}
+      ],
+      "title": "quasi demens aequitas",
+      "description": "Illum amiculum congregatio bellum vilis tollo alo saepe charisma.",
+      "amount": 6803789489111040,
+      "currency": "BRL",
+      "notes": [
+        {
+          "text": "Deleniti valens enim ratione. Recusandae cedo supellex viscus rem victus pel. Conculco volubilis cernuus.",
+          "createdAt": "2023-11-06T18:26:45.609Z",
+          "updatedAt": "2024-02-20T03:59:06.577Z"
+        },
+        {
+          "text": "Vespillo virga suppellex. Utrimque delicate commodi patior aetas appello. Deprimo tunc exercitationem stella ubi conventus claro condico.",
+          "createdAt": "2023-11-26T20:38:14.271Z",
+          "updatedAt": "2024-02-20T19:42:55.690Z"
+        },
+        {
+          "text": "Cubitum utpote quos appono deficio adeo demens cui veniam comis. Tametsi decimus fugit deripio vero tamisium decretum tollo tutamen est. Tredecim peccatus vulticulus optio terror benigne beatus tenuis venustas.",
+          "createdAt": "2023-04-30T05:27:41.475Z",
+          "updatedAt": "2024-02-21T00:02:21.837Z"
+        }
+      ],
+      "tasks": [
+        {
+          "type": "ventus",
+          "status": "in-progress",
+          "title": "Aequitas vinitor vulpes denique et bellum deleo demulceo.",
+          "description": "Ascisco vomer tutis deleo. Harum solio amitto ciminatio. Venia curo cupiditas.",
+          "dateDue": "2025-01-14T05:21:58.729Z",
+          "dateCompleted": "2024-02-20T06:09:53.570Z",
+          "createdAt": "2023-12-14T04:54:50.414Z",
+          "updatedAt": "2024-02-20T21:16:58.689Z"
+        },
+        {
+          "type": "tego",
+          "status": "in-progress",
+          "title": "Possimus comburo id demergo tabula recusandae somnus.",
+          "description": "Collum aureus argumentum creo calamitas combibo deprecator solvo substantia quia. Dignissimos vos facere truculenter alius adsidue ipsum decor. Sollers stultus damno abstergo ratione.",
+          "dateDue": "2024-04-19T16:23:31.593Z",
+          "dateCompleted": "2024-02-20T03:51:23.608Z",
+          "createdAt": "2023-06-09T16:18:44.453Z",
+          "updatedAt": "2024-02-20T00:46:01.400Z"
+        }
+      ],
+      "createdAt": "2023-12-01T01:36:39.305Z",
+      "updatedAt": "2024-02-20T21:48:00.682Z"
+    }
+  },
+  {
+    "key": [
+      "deals",
+      "01HQ4FWET4679SKHJP2YZ3Z9BR"
+    ],
+    "value": {
+      "id": "01HQ4FWET4679SKHJP2YZ3Z9BR",
+      "status": "won",
+      "accountIds": [
+        "01HQ4FWET4679SKHJP2YZ3Z9BS",
+        "01HQ4FWET4679SKHJP2YZ3Z9BT"
+      ],
+      "accounts": [
+        {},
+        {}
+      ],
+      "contactIds": [
+        "01HQ4FWET4679SKHJP2YZ3Z9BV",
+        "01HQ4FWET4679SKHJP2YZ3Z9BW"
+      ],
+      "contacts": [
+        {},
+        {}
+      ],
+      "title": "abscido audio baiulus",
+      "description": "Careo celer valens abbas solus verumtamen thermae utique vitae color.",
+      "amount": 6108360738865152,
+      "currency": "ZAR",
+      "notes": [
+        {
+          "text": "Nulla vitiosus caveo velociter antepono. Exercitationem stipes decumbo perspiciatis crux alias molestias decretum sollicito harum. Expedita repellendus qui aegrotatio damno villa vociferor comparo modi ante.",
+          "createdAt": "2023-04-27T20:25:02.567Z",
+          "updatedAt": "2024-02-20T17:41:32.492Z"
+        },
+        {
+          "text": "Apparatus cilicium vinum. Solum tergiversatio corroboro. Tum suspendo denego dicta tamisium studio abstergo odio aut non.",
+          "createdAt": "2024-01-20T04:30:29.591Z",
+          "updatedAt": "2024-02-20T03:25:52.690Z"
+        },
+        {
+          "text": "Omnis voro censura consequuntur. Bonus sublime cupio reiciendis velociter pauci defungo speculum aequitas. Atavus timidus esse.",
+          "createdAt": "2023-10-15T04:47:57.305Z",
+          "updatedAt": "2024-02-20T11:51:03.687Z"
+        }
+      ],
+      "tasks": [
+        {
+          "type": "creptio",
+          "status": "in-progress",
+          "title": "Crudelis placeat quibusdam collum ademptio umquam audacia caecus.",
+          "description": "Corona minima attero talus depromo catena. Considero corrumpo acquiro vulariter tollo accommodo animi tollo cum. Nostrum deinde arto videlicet villa cilicium venia adeo laboriosam antiquus.",
+          "dateDue": "2024-06-17T16:02:07.619Z",
+          "dateCompleted": "2024-02-20T18:12:03.369Z",
+          "createdAt": "2023-10-02T07:34:52.068Z",
+          "updatedAt": "2024-02-20T01:52:37.240Z"
+        },
+        {
+          "type": "comprehendo",
+          "status": "in-progress",
+          "title": "Timidus crudelis aliquid ulterius ascisco tempus.",
+          "description": "Antea armarium termes curriculum apto. Carmen tandem argumentum caste cattus quo. Correptius consequatur cervus traho colo capillus colligo.",
+          "dateDue": "2024-06-08T22:46:46.724Z",
+          "dateCompleted": "2024-02-20T03:48:20.826Z",
+          "createdAt": "2023-04-14T13:28:02.800Z",
+          "updatedAt": "2024-02-20T20:58:25.648Z"
+        }
+      ],
+      "createdAt": "2023-08-20T03:10:38.001Z",
+      "updatedAt": "2024-02-20T20:33:40.617Z"
+    }
+  },
+  {
+    "key": [
+      "deals",
+      "01HQ4FWET4679SKHJP2YZ3Z9BX"
+    ],
+    "value": {
+      "id": "01HQ4FWET4679SKHJP2YZ3Z9BX",
+      "status": "won",
+      "accountIds": [
+        "01HQ4FWET4679SKHJP2YZ3Z9BY",
+        "01HQ4FWET4679SKHJP2YZ3Z9BZ"
+      ],
+      "accounts": [
+        {},
+        {}
+      ],
+      "contactIds": [
+        "01HQ4FWET4679SKHJP2YZ3Z9C0",
+        "01HQ4FWET4679SKHJP2YZ3Z9C1"
+      ],
+      "contacts": [
+        {},
+        {}
+      ],
+      "title": "comburo vehemens umquam",
+      "description": "Stultus aeternus correptius dicta.",
+      "amount": 6724099202088960,
+      "currency": "EUR",
+      "notes": [
+        {
+          "text": "Adsidue sapiente theologus aedificium coniecto denego abundans quam peccatus titulus. Considero ager spargo tremo viduo ante acidus approbo vigor certus. Vester eius tristis acceptus vorax aedificium clibanus.",
+          "createdAt": "2024-01-27T21:31:31.783Z",
+          "updatedAt": "2024-02-20T11:25:45.119Z"
+        },
+        {
+          "text": "Defungo curto curriculum auxilium quo adinventitias voro argumentum video laboriosam. Aperiam tersus patior tabella aequitas comptus carmen. Callide sumptus delinquo arcus vado.",
+          "createdAt": "2023-12-28T17:22:15.513Z",
+          "updatedAt": "2024-02-20T07:10:55.341Z"
+        },
+        {
+          "text": "Capio ulterius caput tempore cedo agnitio tenetur. Acerbitas cornu illo similique depraedor decens laboriosam. Cribro cur conforto vergo viriliter teneo.",
+          "createdAt": "2024-01-14T04:18:54.519Z",
+          "updatedAt": "2024-02-20T08:32:57.794Z"
+        }
+      ],
+      "tasks": [
+        {
+          "type": "tripudio",
+          "status": "in-progress",
+          "title": "Solus dens ulterius deripio crustulum fuga.",
+          "description": "Arcesso comburo incidunt nobis thema expedita adnuo. Modi tondeo viscus traho ullam via. Degenero caste claudeo.",
+          "dateDue": "2024-05-09T02:39:18.789Z",
+          "dateCompleted": "2024-02-20T04:47:24.286Z",
+          "createdAt": "2023-09-26T05:09:10.608Z",
+          "updatedAt": "2024-02-20T09:50:00.742Z"
+        },
+        {
+          "type": "vinculum",
+          "status": "in-progress",
+          "title": "Adfero caveo suspendo dens summopere.",
+          "description": "Traho tabgo cribro tenus. Culpo tempora voluntarius possimus nemo vita audax. Voveo custodia cunabula tolero utique acsi.",
+          "dateDue": "2024-12-25T20:34:36.164Z",
+          "dateCompleted": "2024-02-20T02:51:25.178Z",
+          "createdAt": "2023-10-27T13:43:20.775Z",
+          "updatedAt": "2024-02-20T04:16:37.777Z"
+        }
+      ],
+      "createdAt": "2023-03-23T10:58:36.283Z",
+      "updatedAt": "2024-02-20T03:06:49.989Z"
+    }
+  },
+  {
+    "key": [
+      "deals",
+      "01HQ4FWET59FZT315KQK3NA250"
+    ],
+    "value": {
+      "id": "01HQ4FWET59FZT315KQK3NA250",
+      "status": "negotiation",
+      "accountIds": [
+        "01HQ4FWET59FZT315KQK3NA251",
+        "01HQ4FWET59FZT315KQK3NA252"
+      ],
+      "accounts": [
+        {},
+        {}
+      ],
+      "contactIds": [
+        "01HQ4FWET59FZT315KQK3NA253",
+        "01HQ4FWET59FZT315KQK3NA254"
+      ],
+      "contacts": [
+        {},
+        {}
+      ],
+      "title": "admoveo ter cernuus",
+      "description": "Sum cinis sto vulgo cuius.",
+      "amount": 6764506086637568,
+      "currency": "KES",
+      "notes": [
+        {
+          "text": "Cruentus ipsum tondeo sufficio aro. Adimpleo ancilla crepusculum adiuvo tenetur. Vallum ciminatio aveho confero.",
+          "createdAt": "2023-05-11T09:10:37.286Z",
+          "updatedAt": "2024-02-20T16:30:49.974Z"
+        },
+        {
+          "text": "Absorbeo communis abbas cotidie. Numquam comburo adinventitias aperio reiciendis. Desidero vetus vilicus thorax coadunatio conventus desipio reiciendis.",
+          "createdAt": "2023-02-28T08:01:00.165Z",
+          "updatedAt": "2024-02-20T15:18:56.321Z"
+        },
+        {
+          "text": "Versus clementia amoveo. Artificiose quas subseco cultura speciosus tactus angelus. Spargo quae atrox utrum vehemens.",
+          "createdAt": "2024-02-14T18:23:27.280Z",
+          "updatedAt": "2024-02-20T23:49:03.722Z"
+        }
+      ],
+      "tasks": [
+        {
+          "type": "quo",
+          "status": "in-progress",
+          "title": "Creta credo contego velociter eaque charisma desipio.",
+          "description": "Suadeo sum itaque sapiente vobis appositus concido. Agnitio tactus copia absque vulgo neque. Tonsor magnam cotidie voluptas iusto abundans quis.",
+          "dateDue": "2024-12-10T02:50:44.290Z",
+          "dateCompleted": "2024-02-20T19:49:41.308Z",
+          "createdAt": "2023-04-05T13:12:08.465Z",
+          "updatedAt": "2024-02-20T09:50:42.653Z"
+        },
+        {
+          "type": "sui",
+          "status": "in-progress",
+          "title": "Coaegresco speciosus combibo delego inventore capto crustulum tamen.",
+          "description": "Compello vix ipsa concido suppellex eaque. Demoror et comis ullus. Virtus nulla curatio modi utrimque vado corrupti vereor utique cognatus.",
+          "dateDue": "2024-10-17T22:33:40.126Z",
+          "dateCompleted": "2024-02-20T05:06:18.274Z",
+          "createdAt": "2023-08-31T09:48:08.829Z",
+          "updatedAt": "2024-02-20T19:08:18.061Z"
+        }
+      ],
+      "createdAt": "2023-06-26T14:07:04.432Z",
+      "updatedAt": "2024-02-20T14:51:13.032Z"
+    }
+  },
+  {
+    "key": [
+      "deals",
+      "01HQ4FWET59FZT315KQK3NA255"
+    ],
+    "value": {
+      "id": "01HQ4FWET59FZT315KQK3NA255",
+      "status": "qualified",
+      "accountIds": [
+        "01HQ4FWET59FZT315KQK3NA256",
+        "01HQ4FWET59FZT315KQK3NA257"
+      ],
+      "accounts": [
+        {},
+        {}
+      ],
+      "contactIds": [
+        "01HQ4FWET59FZT315KQK3NA258",
+        "01HQ4FWET59FZT315KQK3NA259"
+      ],
+      "contacts": [
+        {},
+        {}
+      ],
+      "title": "cito absque admoneo",
+      "description": "Incidunt vita decens trepide audio vapulus.",
+      "amount": 6318225287544832,
       "currency": "MNT",
-      "assignedTo": "01HPY71V5WGJGMWYVVGQTB5152",
       "notes": [
         {
-          "text": "Compello currus vulticulus tremo celebrer angulus cognomen cicuta attonbitus. Amaritudo curriculum voluptates creber tricesimus accendo veritatis textor comitatus. Alo adinventitias sto thermae altus mollitia temporibus voluptas crudelis capillus.",
-          "createdAt": "2024-01-20T20:10:15.042Z",
-          "updatedAt": "2024-02-18T03:32:52.361Z"
+          "text": "Numquam clarus cribro pauci deduco tergeo verus arbustum decimus. Spes ter ara suscipit adulatio summisse bellicus. Argentum verto ultra thermae anser cedo cibus.",
+          "createdAt": "2023-08-21T16:14:23.365Z",
+          "updatedAt": "2024-02-20T01:53:38.595Z"
         },
         {
-          "text": "Compono articulus fuga aduro aetas depromo sonitus talus. Spes et tumultus tollo creator debilito. Vulgivagus exercitationem pecus antea sumo valeo clibanus averto nihil aranea.",
-          "createdAt": "2023-10-17T06:57:29.228Z",
-          "updatedAt": "2024-02-18T07:45:40.745Z"
+          "text": "Incidunt thorax sollicito torrens deduco demum vulnero. Vergo spiritus voveo terga autus. Infit capillus canis crastinus tepidus deorsum fugit addo.",
+          "createdAt": "2023-10-28T05:08:20.414Z",
+          "updatedAt": "2024-02-20T04:06:12.218Z"
         },
         {
-          "text": "Patruus demoror video animus adfectus at itaque abundans tabgo. Caveo ars velut suspendo. Tepidus crur canonicus odit.",
-          "createdAt": "2023-04-04T16:22:34.113Z",
-          "updatedAt": "2024-02-17T20:49:31.824Z"
+          "text": "Expedita tersus attero. Sollicito ab patior auxilium aqua iure. Tamisium custodia reiciendis assentator nesciunt cupressus cariosus cedo vesica.",
+          "createdAt": "2023-07-12T20:10:24.314Z",
+          "updatedAt": "2024-02-20T16:13:42.116Z"
         }
       ],
       "tasks": [
         {
-          "type": "temptatio",
+          "type": "asper",
           "status": "in-progress",
-          "title": "Calcar perferendis sonitus auctus aegrus spes speciosus distinctio.",
-          "description": "Cedo viridis placeat decens considero coerceo atque sortitus. Capto appositus sublime velum sperno denego sulum. Occaecati curtus cotidie deleniti adipisci ver vix.",
-          "assigneeIds": [
-            "01HPY71V5WGJGMWYVVGQTB5153",
-            "01HPY71V5WGJGMWYVVGQTB5154"
-          ],
-          "assignees": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "assignerIds": [
-            "01HPY71V5WGJGMWYVVGQTB5155",
-            "01HPY71V5WGJGMWYVVGQTB5156"
-          ],
-          "assigners": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "dateDue": "2024-03-01T15:01:37.240Z",
-          "dateCompleted": "2024-02-17T21:36:17.276Z",
-          "createdAt": "2023-07-27T12:58:05.335Z",
-          "updatedAt": "2024-02-17T23:39:11.952Z"
+          "title": "Vito mollitia pauci acervus dens tametsi colo tersus.",
+          "description": "Cubicularis beatus verecundia averto vitae. Supra arbor est nemo assumenda. Sunt caelestis basium sponte abduco ipsa.",
+          "dateDue": "2024-08-04T22:54:58.445Z",
+          "dateCompleted": "2024-02-20T19:12:04.811Z",
+          "createdAt": "2023-06-21T08:52:29.360Z",
+          "updatedAt": "2024-02-20T18:29:14.336Z"
         },
         {
-          "type": "tum",
+          "type": "terreo",
           "status": "in-progress",
-          "title": "Timidus aveho voro asporto aduro soleo templum vulariter consuasor placeat.",
-          "description": "Virgo caecus contabesco beatae nihil verus addo. Ventus officiis enim debitis voco clibanus. Viridis comedo subseco coniuratio usitas compono tabella vix totam.",
-          "assigneeIds": [
-            "01HPY71V5WGJGMWYVVGQTB5157",
-            "01HPY71V5WGJGMWYVVGQTB5158"
-          ],
-          "assignees": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "assignerIds": [
-            "01HPY71V5WGJGMWYVVGQTB5159",
-            "01HPY71V5WGJGMWYVVGQTB515A"
-          ],
-          "assigners": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "dateDue": "2024-03-31T05:23:16.599Z",
-          "dateCompleted": "2024-02-18T09:20:10.311Z",
-          "createdAt": "2023-05-06T03:18:51.312Z",
-          "updatedAt": "2024-02-18T03:44:36.744Z"
+          "title": "Decretum vivo socius ago acsi socius illum vomer pecus.",
+          "description": "Soluta cernuus decretum. Cetera error tenetur vergo calculus cinis bellum vehemens causa. Velum aegrotatio caput dedecor uter deorsum defungo.",
+          "dateDue": "2024-08-06T11:21:32.812Z",
+          "dateCompleted": "2024-02-20T10:14:42.579Z",
+          "createdAt": "2023-03-02T02:48:09.472Z",
+          "updatedAt": "2024-02-20T11:15:57.701Z"
         }
       ],
-      "createdAt": "2023-09-04T10:14:07.450Z",
-      "updatedAt": "2024-02-18T10:17:54.931Z"
+      "createdAt": "2023-06-15T04:11:40.508Z",
+      "updatedAt": "2024-02-20T13:18:11.745Z"
     }
   },
   {
     "key": [
       "deals",
-      "01HPY71V5WGJGMWYVVGQTB515B"
+      "01HQ4FWET59FZT315KQK3NA25A"
     ],
     "value": {
-      "id": "01HPY71V5WGJGMWYVVGQTB515B",
-      "status": "done",
+      "id": "01HQ4FWET59FZT315KQK3NA25A",
+      "status": "qualified",
       "accountIds": [
-        "01HPY71V5WGJGMWYVVGQTB515C",
-        "01HPY71V5WGJGMWYVVGQTB515D"
+        "01HQ4FWET59FZT315KQK3NA25B",
+        "01HQ4FWET59FZT315KQK3NA25C"
       ],
       "accounts": [
-        {
-          "$ref": {}
-        },
-        {
-          "$ref": {}
-        }
+        {},
+        {}
       ],
       "contactIds": [
-        "01HPY71V5WGJGMWYVVGQTB515E",
-        "01HPY71V5WGJGMWYVVGQTB515F"
+        "01HQ4FWET59FZT315KQK3NA25D",
+        "01HQ4FWET59FZT315KQK3NA25E"
       ],
       "contacts": [
-        {
-          "$ref": {}
-        },
-        {
-          "$ref": {}
-        }
+        {},
+        {}
       ],
-      "title": "curvo cruentus ascisco",
-      "description": "Alioqui arcus cometes infit tabernus ea acies administratio nam.",
-      "amount": 2859958550921216,
-      "currency": "XOF",
-      "assignedTo": "01HPY71V5WGJGMWYVVGQTB515G",
+      "title": "caveo atavus collum",
+      "description": "Aedificium quis aveho uterque assumenda arbustum ambulo deinde clam.",
+      "amount": 2265959832223744,
+      "currency": "YER",
       "notes": [
         {
-          "text": "Cui casus somniculosus eaque deleniti totus pecus aperte deleo commodi. Arceo odit succurro tui alo arto. Sophismata corona ventito tempus degusto aperte confugo calcar asperiores sit.",
-          "createdAt": "2023-08-08T11:12:37.691Z",
-          "updatedAt": "2024-02-18T08:25:54.760Z"
+          "text": "Auditor veniam veniam arbitro atque debilito atque. Omnis expedita pariatur veritatis desino uxor aeger quam theca. Adicio victoria taedium averto abbas derideo nemo.",
+          "createdAt": "2023-03-13T18:38:05.187Z",
+          "updatedAt": "2024-02-20T21:30:34.458Z"
         },
         {
-          "text": "Eos solvo celebrer. Cenaculum solium usque ullam officia apto abundans suffoco. Tristis pecco substantia aspernatur caput adflicto conicio arceo.",
-          "createdAt": "2024-01-21T18:14:27.759Z",
-          "updatedAt": "2024-02-18T11:33:19.843Z"
+          "text": "Sollicito acceptus defluo unus arbitro vulgivagus centum utroque. Adulescens corrigo defendo aut adipisci alo. Dicta nesciunt bis.",
+          "createdAt": "2023-08-12T18:04:00.933Z",
+          "updatedAt": "2024-02-20T02:11:46.816Z"
         },
         {
-          "text": "Cauda comis cribro comis decens cruentus altus sapiente. Laboriosam tredecim enim vir facere benigne somnus ambitus vicissitudo demonstro. Triduana deludo caelum agnosco.",
-          "createdAt": "2024-02-17T18:30:33.277Z",
-          "updatedAt": "2024-02-18T05:11:01.089Z"
+          "text": "Dicta ut amplexus pariatur iste charisma dolorum cenaculum solutio quia. Tempus vir suasoria quod. Voluptatibus allatus suffoco terminatio pax vinum.",
+          "createdAt": "2023-11-24T22:54:10.293Z",
+          "updatedAt": "2024-02-20T01:03:51.954Z"
         }
       ],
       "tasks": [
         {
-          "type": "caste",
+          "type": "occaecati",
           "status": "in-progress",
-          "title": "Apud vestigium solutio bestia sto careo.",
-          "description": "Tabgo vado solvo sunt itaque. Trucido molestias a. Addo charisma optio sodalitas.",
-          "assigneeIds": [
-            "01HPY71V5WGJGMWYVVGQTB515H",
-            "01HPY71V5WGJGMWYVVGQTB515J"
-          ],
-          "assignees": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "assignerIds": [
-            "01HPY71V5WGJGMWYVVGQTB515K",
-            "01HPY71V5WGJGMWYVVGQTB515M"
-          ],
-          "assigners": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "dateDue": "2024-06-29T08:26:51.143Z",
-          "dateCompleted": "2024-02-18T03:29:40.032Z",
-          "createdAt": "2024-01-28T15:30:33.559Z",
-          "updatedAt": "2024-02-17T20:10:36.530Z"
+          "title": "Nihil aspicio comis carpo via consequatur decimus dolores acceptus.",
+          "description": "Xiphias demulceo vulariter rerum conor sint virga ipsam succedo. Depromo color comptus eius arguo calco. Totidem vinco decet.",
+          "dateDue": "2024-09-11T04:45:05.903Z",
+          "dateCompleted": "2024-02-20T19:31:15.374Z",
+          "createdAt": "2023-09-28T10:20:00.426Z",
+          "updatedAt": "2024-02-20T21:38:14.978Z"
         },
         {
-          "type": "auctus",
+          "type": "umquam",
           "status": "in-progress",
-          "title": "Viscus conitor cogito mollitia.",
-          "description": "Volva aliquam caelum ars facilis. Appello vacuus suasoria. Centum defungo subnecto amplus claudeo.",
-          "assigneeIds": [
-            "01HPY71V5WGJGMWYVVGQTB515N",
-            "01HPY71V5WGJGMWYVVGQTB515P"
-          ],
-          "assignees": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "assignerIds": [
-            "01HPY71V5WGJGMWYVVGQTB515Q",
-            "01HPY71V5WGJGMWYVVGQTB515R"
-          ],
-          "assigners": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "dateDue": "2024-09-12T07:17:05.102Z",
-          "dateCompleted": "2024-02-18T13:07:15.402Z",
-          "createdAt": "2024-01-16T18:16:21.211Z",
-          "updatedAt": "2024-02-17T15:19:47.837Z"
+          "title": "Tricesimus alioqui aranea spargo tabgo.",
+          "description": "Stillicidium blanditiis suadeo aequitas comitatus pel ipsa animi supellex sapiente. Vis audentia ambitus angulus. Creber trucido valeo civitas earum casus.",
+          "dateDue": "2025-01-29T11:42:52.907Z",
+          "dateCompleted": "2024-02-20T09:17:06.173Z",
+          "createdAt": "2023-04-19T09:34:54.865Z",
+          "updatedAt": "2024-02-20T17:59:26.782Z"
         }
       ],
-      "createdAt": "2024-01-18T16:02:58.399Z",
-      "updatedAt": "2024-02-18T10:53:18.800Z"
+      "createdAt": "2024-01-06T08:15:49.716Z",
+      "updatedAt": "2024-02-20T09:35:27.937Z"
     }
   },
   {
     "key": [
       "deals",
-      "01HPY71V5WGJGMWYVVGQTB515S"
+      "01HQ4FWET59FZT315KQK3NA25F"
     ],
     "value": {
-      "id": "01HPY71V5WGJGMWYVVGQTB515S",
-      "status": "todo",
+      "id": "01HQ4FWET59FZT315KQK3NA25F",
+      "status": "negotiation",
       "accountIds": [
-        "01HPY71V5WGJGMWYVVGQTB515T",
-        "01HPY71V5WGJGMWYVVGQTB515V"
+        "01HQ4FWET59FZT315KQK3NA25G",
+        "01HQ4FWET59FZT315KQK3NA25H"
       ],
       "accounts": [
-        {
-          "$ref": {}
-        },
-        {
-          "$ref": {}
-        }
+        {},
+        {}
       ],
       "contactIds": [
-        "01HPY71V5WGJGMWYVVGQTB515W",
-        "01HPY71V5WGJGMWYVVGQTB515X"
+        "01HQ4FWET59FZT315KQK3NA25J",
+        "01HQ4FWET59FZT315KQK3NA25K"
       ],
       "contacts": [
-        {
-          "$ref": {}
-        },
-        {
-          "$ref": {}
-        }
+        {},
+        {}
       ],
-      "title": "comitatus cilicium suspendo",
-      "description": "Utrum sulum curso vomer cunabula ambulo cariosus pax utpote tego.",
-      "amount": 2451301008932864,
-      "currency": "NAD",
-      "assignedTo": "01HPY71V5WGJGMWYVVGQTB515Y",
+      "title": "odio atque varius",
+      "description": "Usus vehemens molestiae a sursum.",
+      "amount": 564006393741312,
+      "currency": "STN",
       "notes": [
         {
-          "text": "Spoliatio comburo textilis dedico perferendis ambitus. Arbitro compono deprecator non denique quia tubineus magni. Cogito perferendis alter.",
-          "createdAt": "2023-08-14T16:24:25.713Z",
-          "updatedAt": "2024-02-17T17:40:07.774Z"
+          "text": "Collum adsidue suspendo amplus clarus speciosus aer. Cras denego torqueo cultellus custodia tener universe neque virga. Quia soleo sollicito contigo uxor sperno.",
+          "createdAt": "2023-09-29T08:54:21.443Z",
+          "updatedAt": "2024-02-20T20:33:09.735Z"
         },
         {
-          "text": "Cum sit infit aiunt. Umquam caste deduco audeo minus totidem ambulo damno confugo. Dolore amiculum valens assumenda suffoco xiphias attonbitus thalassinus.",
-          "createdAt": "2023-02-25T01:42:29.690Z",
-          "updatedAt": "2024-02-17T18:56:59.972Z"
+          "text": "Congregatio aer creo vir cupio ultra. Accusamus artificiose alius demonstro clarus causa coma corpus ocer. Ustilo defluo claustrum conicio adeptio arbitro vis vita repellendus creber.",
+          "createdAt": "2023-09-29T16:50:01.344Z",
+          "updatedAt": "2024-02-20T09:30:58.732Z"
         },
         {
-          "text": "Statim tepidus quisquam cursus accusamus acerbitas vulticulus aer. Quae conturbo aurum demonstro. Vir carcer sulum verus trepide doloremque varietas in degusto.",
-          "createdAt": "2023-09-21T03:40:44.194Z",
-          "updatedAt": "2024-02-17T21:32:12.134Z"
+          "text": "Truculenter comes via numquam. Deprimo deorsum cur sulum tondeo excepturi utrimque caecus deserunt. Necessitatibus reiciendis deripio cupiditate vos comparo cumque adimpleo aiunt traho.",
+          "createdAt": "2023-07-24T22:43:02.808Z",
+          "updatedAt": "2024-02-20T09:06:09.164Z"
         }
       ],
       "tasks": [
         {
-          "type": "constans",
+          "type": "decerno",
           "status": "in-progress",
-          "title": "Adfero color vicinus.",
-          "description": "Reprehenderit aliquam tener aureus cernuus. Talus undique callide thesaurus centum clamo ceno coadunatio. Acer thorax aperiam.",
-          "assigneeIds": [
-            "01HPY71V5XJFNBHT1EJV69V42C",
-            "01HPY71V5XJFNBHT1EJV69V42D"
-          ],
-          "assignees": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "assignerIds": [
-            "01HPY71V5XJFNBHT1EJV69V42E",
-            "01HPY71V5XJFNBHT1EJV69V42F"
-          ],
-          "assigners": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "dateDue": "2024-12-22T20:08:05.424Z",
-          "dateCompleted": "2024-02-18T05:31:23.696Z",
-          "createdAt": "2024-02-02T03:53:56.741Z",
-          "updatedAt": "2024-02-18T02:21:11.158Z"
+          "title": "Deputo tergeo decens impedit repellendus fugiat texo versus caecus.",
+          "description": "Patria suffoco angelus auctus iure vobis aegrus arcesso cui summa. Dolorum delectatio tum voluptate claudeo suggero casso. Conitor argentum vita dolore blandior vulgivagus molestiae subnecto.",
+          "dateDue": "2024-08-04T15:59:47.548Z",
+          "dateCompleted": "2024-02-20T15:11:37.091Z",
+          "createdAt": "2023-08-12T21:32:04.306Z",
+          "updatedAt": "2024-02-20T23:55:41.298Z"
         },
         {
-          "type": "inflammatio",
+          "type": "sint",
           "status": "in-progress",
-          "title": "Eius vergo speciosus defaeco ubi thymum demitto.",
-          "description": "Adsum appello tergiversatio sum aspicio nulla ipsa ut. Nisi villa nulla quas annus venustas pecco trepide tolero. Capillus pax quaerat umquam sperno audeo commodi creptio aspernatur.",
-          "assigneeIds": [
-            "01HPY71V5XJFNBHT1EJV69V42G",
-            "01HPY71V5XJFNBHT1EJV69V42H"
-          ],
-          "assignees": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "assignerIds": [
-            "01HPY71V5XJFNBHT1EJV69V42J",
-            "01HPY71V5XJFNBHT1EJV69V42K"
-          ],
-          "assigners": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "dateDue": "2024-09-24T20:21:48.835Z",
-          "dateCompleted": "2024-02-17T13:57:54.062Z",
-          "createdAt": "2024-01-18T21:30:30.242Z",
-          "updatedAt": "2024-02-17T15:06:27.584Z"
+          "title": "Ut animi colo crux deprimo dignissimos cubitum conservo.",
+          "description": "Defluo coerceo harum tabula sordeo cruentus. Suus abundans aperiam adhuc suppellex strues cado tyrannus deludo veritas. Adflicto triumphus aqua confido.",
+          "dateDue": "2024-05-28T03:07:55.110Z",
+          "dateCompleted": "2024-02-20T17:12:30.773Z",
+          "createdAt": "2023-06-17T12:40:03.108Z",
+          "updatedAt": "2024-02-20T22:24:56.605Z"
         }
       ],
-      "createdAt": "2023-11-16T16:31:01.149Z",
-      "updatedAt": "2024-02-18T03:29:18.632Z"
+      "createdAt": "2023-08-13T00:09:29.458Z",
+      "updatedAt": "2024-02-20T00:16:50.826Z"
     }
   },
   {
     "key": [
       "deals",
-      "01HPY71V5XJFNBHT1EJV69V42M"
+      "01HQ4FWET6G5PK1DW5JWEYA4Y6"
     ],
     "value": {
-      "id": "01HPY71V5XJFNBHT1EJV69V42M",
-      "status": "todo",
+      "id": "01HQ4FWET6G5PK1DW5JWEYA4Y6",
+      "status": "won",
       "accountIds": [
-        "01HPY71V5XJFNBHT1EJV69V42N",
-        "01HPY71V5XJFNBHT1EJV69V42P"
+        "01HQ4FWET6G5PK1DW5JWEYA4Y7",
+        "01HQ4FWET6G5PK1DW5JWEYA4Y8"
       ],
       "accounts": [
-        {
-          "$ref": {}
-        },
-        {
-          "$ref": {}
-        }
+        {},
+        {}
       ],
       "contactIds": [
-        "01HPY71V5XJFNBHT1EJV69V42Q",
-        "01HPY71V5XJFNBHT1EJV69V42R"
+        "01HQ4FWET6G5PK1DW5JWEYA4Y9",
+        "01HQ4FWET6G5PK1DW5JWEYA4YA"
       ],
       "contacts": [
-        {
-          "$ref": {}
-        },
-        {
-          "$ref": {}
-        }
+        {},
+        {}
       ],
-      "title": "conatus curto clamo",
-      "description": "Vallum assentator cohibeo sum adsidue.",
-      "amount": 2162149463949312,
-      "currency": "BIF",
-      "assignedTo": "01HPY71V5XJFNBHT1EJV69V42S",
+      "title": "sollicito solutio volo",
+      "description": "Doloremque soluta ter odit cibo cometes territo.",
+      "amount": 778641805934592,
+      "currency": "IDR",
       "notes": [
         {
-          "text": "Accusator totam sub quas talis tubineus adaugeo. Sufficio sophismata recusandae vado caecus tredecim. Somnus capto utor tergum admiratio ustilo.",
-          "createdAt": "2023-05-07T17:37:56.609Z",
-          "updatedAt": "2024-02-17T23:39:53.110Z"
+          "text": "Adfero debilito tum consuasor quis. Sperno ventosus aqua adsum vinco. Voluptatibus ambitus tum spargo sit capto deleo.",
+          "createdAt": "2023-06-06T22:06:48.687Z",
+          "updatedAt": "2024-02-20T12:32:19.544Z"
         },
         {
-          "text": "Peccatus tersus umbra volaticus abstergo umerus clibanus. Summisse vomito tabula patruus sustineo decerno amicitia aliquam adeo assentator. Custodia curvo cogo odio amet.",
-          "createdAt": "2023-03-03T03:09:28.623Z",
-          "updatedAt": "2024-02-18T00:08:38.944Z"
+          "text": "Corona reprehenderit averto solvo allatus. Amiculum alii virtus. Adversus ultio coaegresco voco.",
+          "createdAt": "2023-08-28T20:38:18.792Z",
+          "updatedAt": "2024-02-20T11:24:55.138Z"
         },
         {
-          "text": "Callide crudelis urbanus demo sumo. Articulus vulgivagus usque minus altus comminor creator censura commodi. Et atqui ocer vigor consequuntur suus cilicium ultra vindico.",
-          "createdAt": "2023-05-20T02:26:38.154Z",
-          "updatedAt": "2024-02-18T13:22:36.065Z"
+          "text": "Ambulo textilis candidus thalassinus. Carcer spero clibanus coniuratio arto. Cernuus animus vacuus uter benevolentia.",
+          "createdAt": "2023-10-25T03:32:35.916Z",
+          "updatedAt": "2024-02-20T02:27:33.816Z"
         }
       ],
       "tasks": [
         {
-          "type": "debitis",
+          "type": "terreo",
           "status": "in-progress",
-          "title": "Suadeo amplitudo ab deorsum benevolentia ea callide quas caput.",
-          "description": "Demum nostrum quos pecto articulus conculco spero debeo. Cultellus mollitia quia decumbo asporto cogo quod virgo claudeo. Terminatio ubi aeger speciosus umerus amor apud quasi dolores conforto.",
-          "assigneeIds": [
-            "01HPY71V5XJFNBHT1EJV69V42T",
-            "01HPY71V5XJFNBHT1EJV69V42V"
-          ],
-          "assignees": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "assignerIds": [
-            "01HPY71V5XJFNBHT1EJV69V42W",
-            "01HPY71V5XJFNBHT1EJV69V42X"
-          ],
-          "assigners": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "dateDue": "2024-05-09T23:52:03.847Z",
-          "dateCompleted": "2024-02-17T16:34:36.744Z",
-          "createdAt": "2023-04-26T05:19:09.005Z",
-          "updatedAt": "2024-02-17T23:42:37.675Z"
+          "title": "Cur quae infit doloremque nihil adsidue arx desipio vitae.",
+          "description": "Reiciendis esse stella tripudio varietas cito tempore. Umbra acceptus amplexus. Vestigium communis cetera.",
+          "dateDue": "2024-08-15T00:18:29.561Z",
+          "dateCompleted": "2024-02-20T06:07:04.964Z",
+          "createdAt": "2023-07-18T09:07:23.678Z",
+          "updatedAt": "2024-02-20T12:17:36.554Z"
         },
         {
-          "type": "mollitia",
+          "type": "recusandae",
           "status": "in-progress",
-          "title": "Verus condico stillicidium sol sub.",
-          "description": "Acceptus curto temporibus crux virga adamo cohaero accendo. Aestus suffragium tantillus. Vulpes aliquid tergeo abscido ultra versus crebro artificiose ullus curriculum.",
-          "assigneeIds": [
-            "01HPY71V5XJFNBHT1EJV69V42Y",
-            "01HPY71V5XJFNBHT1EJV69V42Z"
-          ],
-          "assignees": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "assignerIds": [
-            "01HPY71V5XJFNBHT1EJV69V430",
-            "01HPY71V5XJFNBHT1EJV69V431"
-          ],
-          "assigners": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "dateDue": "2024-10-06T08:35:22.223Z",
-          "dateCompleted": "2024-02-18T11:48:02.869Z",
-          "createdAt": "2023-10-02T09:36:45.384Z",
-          "updatedAt": "2024-02-18T01:48:09.576Z"
+          "title": "Vallum viduo claudeo vix.",
+          "description": "Velociter subseco callide turpis correptius arbitro amplus. Sol ulterius absens spero. Sublime pauper sopor vito damno vita solio voluptates.",
+          "dateDue": "2024-09-05T16:22:06.191Z",
+          "dateCompleted": "2024-02-20T22:45:41.845Z",
+          "createdAt": "2023-06-16T06:04:32.745Z",
+          "updatedAt": "2024-02-20T01:07:55.627Z"
         }
       ],
-      "createdAt": "2023-10-31T08:24:31.595Z",
-      "updatedAt": "2024-02-18T04:20:11.682Z"
+      "createdAt": "2023-12-02T01:44:41.396Z",
+      "updatedAt": "2024-02-20T00:31:40.233Z"
     }
   },
   {
     "key": [
       "deals",
-      "01HPY71V5XJFNBHT1EJV69V432"
+      "01HQ4FWET6G5PK1DW5JWEYA4YB"
     ],
     "value": {
-      "id": "01HPY71V5XJFNBHT1EJV69V432",
-      "status": "todo",
+      "id": "01HQ4FWET6G5PK1DW5JWEYA4YB",
+      "status": "negotiation",
       "accountIds": [
-        "01HPY71V5XJFNBHT1EJV69V433",
-        "01HPY71V5XJFNBHT1EJV69V434"
+        "01HQ4FWET6G5PK1DW5JWEYA4YC",
+        "01HQ4FWET6G5PK1DW5JWEYA4YD"
       ],
       "accounts": [
-        {
-          "$ref": {}
-        },
-        {
-          "$ref": {}
-        }
+        {},
+        {}
       ],
       "contactIds": [
-        "01HPY71V5XJFNBHT1EJV69V435",
-        "01HPY71V5XJFNBHT1EJV69V436"
+        "01HQ4FWET6G5PK1DW5JWEYA4YE",
+        "01HQ4FWET6G5PK1DW5JWEYA4YF"
       ],
       "contacts": [
-        {
-          "$ref": {}
-        },
-        {
-          "$ref": {}
-        }
+        {},
+        {}
       ],
-      "title": "villa tepesco desino",
-      "description": "Paens aperte textilis coadunatio damnatio cribro socius asper.",
-      "amount": 1460131602628608,
-      "currency": "ALL",
-      "assignedTo": "01HPY71V5XJFNBHT1EJV69V437",
+      "title": "cometes vetus textilis",
+      "description": "Animadverto curis ea conturbo angelus spiritus aestas aliquid absorbeo.",
+      "amount": 3844483080781824,
+      "currency": "DZD",
       "notes": [
         {
-          "text": "Natus suscipio verus demitto ulterius aveho denuo. Cilicium super vallum deorsum depraedor praesentium tactus. Demens arma vel itaque.",
-          "createdAt": "2024-01-20T14:19:08.013Z",
-          "updatedAt": "2024-02-18T11:14:57.035Z"
+          "text": "Cito alveus spectaculum trepide. Adfectus architecto baiulus. Vorax sustineo recusandae itaque nihil accommodo utroque alienus.",
+          "createdAt": "2024-01-09T18:08:36.830Z",
+          "updatedAt": "2024-02-20T09:44:16.763Z"
         },
         {
-          "text": "Perspiciatis adeptio cras campana iusto deripio aro audio doloremque thesaurus. Perferendis fugit apparatus tenax supellex deserunt cupressus. Eaque verus advoco valetudo defessus tempus concido.",
-          "createdAt": "2023-09-25T06:13:12.280Z",
-          "updatedAt": "2024-02-17T17:13:49.182Z"
+          "text": "Collum claro contra. Vir coerceo subvenio cavus traho nobis unus truculenter videlicet antepono. Tergeo cur auxilium verumtamen sustineo talus subvenio caveo repellendus cumque.",
+          "createdAt": "2023-10-24T17:00:19.164Z",
+          "updatedAt": "2024-02-20T09:13:50.493Z"
         },
         {
-          "text": "Aegrus paens carbo cribro voluptates advoco denuncio depulso. Summisse ocer excepturi. Aetas acceptus quis defaeco.",
-          "createdAt": "2023-11-13T02:13:58.026Z",
-          "updatedAt": "2024-02-17T15:20:01.407Z"
+          "text": "Vulnus caelestis addo delicate solus. Quidem terminatio barba. Sufficio trado totam quam terreo.",
+          "createdAt": "2023-11-03T07:48:56.155Z",
+          "updatedAt": "2024-02-20T15:00:29.056Z"
         }
       ],
       "tasks": [
         {
-          "type": "spiculum",
+          "type": "illum",
           "status": "in-progress",
-          "title": "Absconditus cauda apto spero saepe universe tabula tergiversatio tubineus.",
-          "description": "Error non vinum deorsum cetera cognomen. Videlicet stabilis dedico molestiae. Alter tandem clibanus termes cernuus dicta adimpleo tot decens eos.",
-          "assigneeIds": [
-            "01HPY71V5XJFNBHT1EJV69V438",
-            "01HPY71V5XJFNBHT1EJV69V439"
-          ],
-          "assignees": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "assignerIds": [
-            "01HPY71V5XJFNBHT1EJV69V43A",
-            "01HPY71V5XJFNBHT1EJV69V43B"
-          ],
-          "assigners": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "dateDue": "2024-12-24T15:21:37.197Z",
-          "dateCompleted": "2024-02-17T20:30:43.781Z",
-          "createdAt": "2023-04-15T19:54:33.236Z",
-          "updatedAt": "2024-02-17T20:23:21.500Z"
+          "title": "Vomer cibus temporibus amita cunctatio.",
+          "description": "Reprehenderit aro eos. Torqueo utilis vulnero. Eveniet patior demitto comis baiulus acidus.",
+          "dateDue": "2024-06-17T10:19:58.139Z",
+          "dateCompleted": "2024-02-20T09:41:31.649Z",
+          "createdAt": "2023-12-25T14:54:22.591Z",
+          "updatedAt": "2024-02-20T19:17:38.152Z"
         },
         {
-          "type": "creber",
+          "type": "voluptates",
           "status": "in-progress",
-          "title": "Vulpes amitto nesciunt caterva conventus tardus.",
-          "description": "Amplexus creber catena. Cognatus cervus cribro denique audio. Ambitus aspicio cupio deficio dedecor laborum defaeco asporto ocer termes.",
-          "assigneeIds": [
-            "01HPY71V5XJFNBHT1EJV69V43C",
-            "01HPY71V5XJFNBHT1EJV69V43D"
-          ],
-          "assignees": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "assignerIds": [
-            "01HPY71V5XJFNBHT1EJV69V43E",
-            "01HPY71V5XJFNBHT1EJV69V43F"
-          ],
-          "assigners": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "dateDue": "2024-03-24T11:04:23.887Z",
-          "dateCompleted": "2024-02-18T09:18:33.259Z",
-          "createdAt": "2023-05-05T17:29:17.037Z",
-          "updatedAt": "2024-02-18T10:00:39.932Z"
+          "title": "Arcesso damnatio cariosus fuga dedico tabesco caput tamdiu termes.",
+          "description": "Aliqua collum astrum victus cubitum. Textus viriliter tutis calco copia placeat tyrannus. Utpote crux texo vomer delicate pauper sodalitas tardus cotidie cubicularis.",
+          "dateDue": "2024-10-13T23:08:07.562Z",
+          "dateCompleted": "2024-02-20T04:37:29.513Z",
+          "createdAt": "2023-09-29T05:28:23.497Z",
+          "updatedAt": "2024-02-20T08:41:38.850Z"
         }
       ],
-      "createdAt": "2023-11-28T05:13:04.138Z",
-      "updatedAt": "2024-02-18T00:13:09.461Z"
+      "createdAt": "2023-09-12T18:59:29.186Z",
+      "updatedAt": "2024-02-20T09:17:06.276Z"
     }
   },
   {
     "key": [
       "deals",
-      "01HPY71V5XJFNBHT1EJV69V43G"
+      "01HQ4FWET6G5PK1DW5JWEYA4YG"
     ],
     "value": {
-      "id": "01HPY71V5XJFNBHT1EJV69V43G",
-      "status": "cancelled",
+      "id": "01HQ4FWET6G5PK1DW5JWEYA4YG",
+      "status": "lead",
       "accountIds": [
-        "01HPY71V5XJFNBHT1EJV69V43H",
-        "01HPY71V5XJFNBHT1EJV69V43J"
+        "01HQ4FWET6G5PK1DW5JWEYA4YH",
+        "01HQ4FWET6G5PK1DW5JWEYA4YJ"
       ],
       "accounts": [
-        {
-          "$ref": {}
-        },
-        {
-          "$ref": {}
-        }
+        {},
+        {}
       ],
       "contactIds": [
-        "01HPY71V5XJFNBHT1EJV69V43K",
-        "01HPY71V5XJFNBHT1EJV69V43M"
+        "01HQ4FWET6G5PK1DW5JWEYA4YK",
+        "01HQ4FWET6G5PK1DW5JWEYA4YM"
       ],
       "contacts": [
-        {
-          "$ref": {}
-        },
-        {
-          "$ref": {}
-        }
+        {},
+        {}
       ],
-      "title": "terminatio custodia teneo",
-      "description": "Cotidie voveo confido depromo.",
-      "amount": 6992767716687872,
-      "currency": "OMR",
-      "assignedTo": "01HPY71V5XJFNBHT1EJV69V43N",
+      "title": "admoveo accedo cervus",
+      "description": "Crux debeo optio.",
+      "amount": 6444841485467648,
+      "currency": "JPY",
       "notes": [
         {
-          "text": "Animadverto ea aro perspiciatis a tempore. Quos minima tamen tonsor cernuus xiphias autem conitor accusantium contra. Capillus cogo facilis fuga.",
-          "createdAt": "2023-05-26T22:18:13.618Z",
-          "updatedAt": "2024-02-18T10:02:24.488Z"
+          "text": "Alius ademptio acquiro. Peccatus conventus aureus auctus cerno. Voluptates caste totus ara.",
+          "createdAt": "2023-07-07T12:55:44.186Z",
+          "updatedAt": "2024-02-20T07:52:18.202Z"
         },
         {
-          "text": "Alienus amicitia nostrum confugo amo accedo denuncio cohaero. Possimus curatio advenio odit rerum defero amplus centum. Defungo contabesco deputo similique cupiditate.",
-          "createdAt": "2023-12-29T01:21:25.337Z",
-          "updatedAt": "2024-02-17T21:07:49.723Z"
+          "text": "Molestias amplexus tabgo. Decumbo trans confero celebrer tollo alii cunae facere comburo. Stipes conturbo tumultus verbera.",
+          "createdAt": "2023-12-19T22:00:22.367Z",
+          "updatedAt": "2024-02-20T19:00:52.183Z"
         },
         {
-          "text": "Tibi alveus stella volup ipsum. Spiritus crustulum thermae clibanus apud canonicus architecto. Fugit succedo sordeo.",
-          "createdAt": "2023-05-01T09:51:50.892Z",
-          "updatedAt": "2024-02-17T14:51:47.704Z"
+          "text": "Admiratio stella admitto et artificiose curriculum vigilo vacuus sed. Laborum quas calculus ustilo vapulus distinctio approbo perferendis sum totus. Credo capillus dapifer subiungo bardus alias cedo argentum tantillus thalassinus.",
+          "createdAt": "2023-11-24T18:11:18.746Z",
+          "updatedAt": "2024-02-20T19:26:11.864Z"
         }
       ],
       "tasks": [
         {
-          "type": "taedium",
+          "type": "cupio",
           "status": "in-progress",
-          "title": "Arx comes depopulo adversus verecundia aetas attero.",
-          "description": "Audacia altus decimus substantia decipio. Color desino coniecto. Volutabrum attonbitus tandem amiculum calcar perferendis vox velociter advenio.",
-          "assigneeIds": [
-            "01HPY71V5XJFNBHT1EJV69V43P",
-            "01HPY71V5XJFNBHT1EJV69V43Q"
-          ],
-          "assignees": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "assignerIds": [
-            "01HPY71V5XJFNBHT1EJV69V43R",
-            "01HPY71V5XJFNBHT1EJV69V43S"
-          ],
-          "assigners": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "dateDue": "2024-07-10T21:58:40.884Z",
-          "dateCompleted": "2024-02-18T10:38:04.853Z",
-          "createdAt": "2023-04-08T09:11:38.442Z",
-          "updatedAt": "2024-02-17T18:17:44.395Z"
+          "title": "Spargo tenax copiose dolore harum vinum adfero natus.",
+          "description": "Eum cohors vita creptio strues clementia tredecim summopere tactus. Nulla desparatus tantum admoneo quasi absorbeo cum doloremque certus. Calamitas nostrum vix verus ultra sunt sono totus consuasor.",
+          "dateDue": "2024-09-23T02:03:46.094Z",
+          "dateCompleted": "2024-02-20T09:16:50.728Z",
+          "createdAt": "2023-08-25T13:52:27.581Z",
+          "updatedAt": "2024-02-20T21:31:56.833Z"
         },
         {
-          "type": "compono",
+          "type": "circumvenio",
           "status": "in-progress",
-          "title": "Utor assentator vero.",
-          "description": "Cibus umbra volutabrum. Tergeo cena adfectus alioqui viridis demulceo. Aestus impedit facere arma cattus ciminatio.",
-          "assigneeIds": [
-            "01HPY71V5XJFNBHT1EJV69V43T",
-            "01HPY71V5XJFNBHT1EJV69V43V"
-          ],
-          "assignees": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "assignerIds": [
-            "01HPY71V5XJFNBHT1EJV69V43W",
-            "01HPY71V5XJFNBHT1EJV69V43X"
-          ],
-          "assigners": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "dateDue": "2024-08-09T21:46:09.581Z",
-          "dateCompleted": "2024-02-18T12:52:14.431Z",
-          "createdAt": "2023-05-29T12:56:37.222Z",
-          "updatedAt": "2024-02-17T14:10:19.555Z"
+          "title": "Ubi assentator adnuo cura depono texo sto cometes decimus vilicus.",
+          "description": "Tam amplus tantum apud spoliatio defero denique vinum turba. Vae stabilis sponte utrum administratio ut vaco corrumpo. Vester tardus arca caecus.",
+          "dateDue": "2024-10-12T08:28:15.913Z",
+          "dateCompleted": "2024-02-20T02:11:24.468Z",
+          "createdAt": "2023-03-04T05:17:42.409Z",
+          "updatedAt": "2024-02-20T03:10:11.041Z"
         }
       ],
-      "createdAt": "2023-08-31T21:21:24.269Z",
-      "updatedAt": "2024-02-18T05:08:44.529Z"
+      "createdAt": "2023-04-04T22:52:36.582Z",
+      "updatedAt": "2024-02-20T20:40:09.946Z"
     }
   },
   {
     "key": [
       "deals",
-      "01HPY71V5XJFNBHT1EJV69V43Y"
+      "01HQ4FWET6G5PK1DW5JWEYA4YN"
     ],
     "value": {
-      "id": "01HPY71V5XJFNBHT1EJV69V43Y",
-      "status": "done",
+      "id": "01HQ4FWET6G5PK1DW5JWEYA4YN",
+      "status": "qualified",
       "accountIds": [
-        "01HPY71V5XJFNBHT1EJV69V43Z",
-        "01HPY71V5XJFNBHT1EJV69V440"
+        "01HQ4FWET6G5PK1DW5JWEYA4YP",
+        "01HQ4FWET6G5PK1DW5JWEYA4YQ"
       ],
       "accounts": [
-        {
-          "$ref": {}
-        },
-        {
-          "$ref": {}
-        }
+        {},
+        {}
       ],
       "contactIds": [
-        "01HPY71V5XJFNBHT1EJV69V441",
-        "01HPY71V5XJFNBHT1EJV69V442"
+        "01HQ4FWET6G5PK1DW5JWEYA4YR",
+        "01HQ4FWET6G5PK1DW5JWEYA4YS"
       ],
       "contacts": [
-        {
-          "$ref": {}
-        },
-        {
-          "$ref": {}
-        }
+        {},
+        {}
       ],
-      "title": "vapulus adhuc arca",
-      "description": "Constans cometes doloribus exercitationem crapula soleo audio.",
-      "amount": 4223097555124224,
-      "currency": "XOF",
-      "assignedTo": "01HPY71V5XJFNBHT1EJV69V443",
+      "title": "magni dignissimos suscipio",
+      "description": "Tantillus bibo iusto.",
+      "amount": 8366564619321344,
+      "currency": "MNT",
       "notes": [
         {
-          "text": "Nobis cado decens summa conscendo valeo. Hic careo calcar. Dedecor auctor pariatur est vociferor clam tergo defero.",
-          "createdAt": "2023-08-02T07:43:31.184Z",
-          "updatedAt": "2024-02-18T03:52:53.609Z"
+          "text": "Repellat terra usus aurum circumvenio solio surgo colo conservo. Utor repudiandae demulceo tenetur. Torrens tergo cubo cur altus voluptates vaco ratione turpis.",
+          "createdAt": "2023-05-31T05:24:04.601Z",
+          "updatedAt": "2024-02-20T21:34:00.719Z"
         },
         {
-          "text": "Volubilis dapifer cruentus vere volaticus. Valde deduco compello conqueror. Tumultus tremo calcar benevolentia.",
-          "createdAt": "2023-03-13T00:27:09.083Z",
-          "updatedAt": "2024-02-17T22:27:52.260Z"
+          "text": "Aliqua abduco solutio viriliter eum articulus cras. Verto astrum beneficium stabilis tristis. Aperiam censura undique cohors sono vespillo aufero templum.",
+          "createdAt": "2023-08-20T08:40:27.459Z",
+          "updatedAt": "2024-02-20T12:52:26.739Z"
         },
         {
-          "text": "Valens baiulus corporis. Claro barba sordeo suffragium minima arguo temptatio acervus cui. Possimus ciminatio pel calculus cresco tres culpo cariosus.",
-          "createdAt": "2023-08-27T21:47:13.335Z",
-          "updatedAt": "2024-02-18T04:30:07.671Z"
+          "text": "Veritas tremo quibusdam verus calco quas aurum summisse aranea theologus. Ambulo crapula rem traho deleniti fuga. Sublime dedecor deficio.",
+          "createdAt": "2023-06-09T14:57:46.627Z",
+          "updatedAt": "2024-02-20T09:48:38.339Z"
         }
       ],
       "tasks": [
         {
-          "type": "repellendus",
+          "type": "subito",
           "status": "in-progress",
-          "title": "Adopto ambulo sum dicta doloremque adsuesco vacuus calculus careo.",
-          "description": "Thermae avarus surgo terror impedit. Vereor quae advoco defungo chirographum tandem stips vilicus tamquam. Delectus clarus thalassinus harum.",
-          "assigneeIds": [
-            "01HPY71V5YEEA421C768PWMJQZ",
-            "01HPY71V5YEEA421C768PWMJR0"
-          ],
-          "assignees": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "assignerIds": [
-            "01HPY71V5YEEA421C768PWMJR1",
-            "01HPY71V5YEEA421C768PWMJR2"
-          ],
-          "assigners": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "dateDue": "2024-08-25T11:20:39.541Z",
-          "dateCompleted": "2024-02-18T04:23:09.825Z",
-          "createdAt": "2023-06-12T20:13:44.567Z",
-          "updatedAt": "2024-02-18T00:16:43.686Z"
+          "title": "Nobis consequatur congregatio sordeo victus appositus.",
+          "description": "Accendo suppono causa comburo aperio cado tabula charisma nam. Accusator caelestis laboriosam aequus spargo condico. Curis caste blandior via commodi quis.",
+          "dateDue": "2024-11-03T06:47:49.582Z",
+          "dateCompleted": "2024-02-20T01:54:24.506Z",
+          "createdAt": "2023-05-30T06:59:24.263Z",
+          "updatedAt": "2024-02-20T23:15:25.300Z"
         },
         {
-          "type": "vigilo",
+          "type": "soluta",
           "status": "in-progress",
-          "title": "Abbas coepi curvo placeat vitiosus quas via occaecati a ager.",
-          "description": "Vado cupiditate spero turbo turbo viriliter tracto degenero deficio carcer. Dolorem crur sulum animus tracto tam totus adduco tamen. Autus vulariter accommodo decipio crustulum sopor speciosus spoliatio texo deduco.",
-          "assigneeIds": [
-            "01HPY71V5YEEA421C768PWMJR3",
-            "01HPY71V5YEEA421C768PWMJR4"
-          ],
-          "assignees": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "assignerIds": [
-            "01HPY71V5YEEA421C768PWMJR5",
-            "01HPY71V5YEEA421C768PWMJR6"
-          ],
-          "assigners": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "dateDue": "2024-09-17T19:15:27.182Z",
-          "dateCompleted": "2024-02-18T01:57:58.231Z",
-          "createdAt": "2023-03-11T13:35:18.259Z",
-          "updatedAt": "2024-02-17T18:29:55.271Z"
+          "title": "Nihil pariatur adaugeo teres.",
+          "description": "Esse vallum ventosus fugit vetus vulgus cultura utrimque vesco. Amitto cui sortitus accusantium conitor recusandae terebro. Aranea ultra adopto impedit trepide vis.",
+          "dateDue": "2025-01-28T21:42:59.247Z",
+          "dateCompleted": "2024-02-20T00:20:23.144Z",
+          "createdAt": "2023-10-10T17:47:28.468Z",
+          "updatedAt": "2024-02-20T12:02:13.377Z"
         }
       ],
-      "createdAt": "2023-03-04T09:43:09.473Z",
-      "updatedAt": "2024-02-17T18:16:55.135Z"
-    }
-  },
-  {
-    "key": [
-      "deals",
-      "01HPY71V5YEEA421C768PWMJR7"
-    ],
-    "value": {
-      "id": "01HPY71V5YEEA421C768PWMJR7",
-      "status": "in-progress",
-      "accountIds": [
-        "01HPY71V5YEEA421C768PWMJR8",
-        "01HPY71V5YEEA421C768PWMJR9"
-      ],
-      "accounts": [
-        {
-          "$ref": {}
-        },
-        {
-          "$ref": {}
-        }
-      ],
-      "contactIds": [
-        "01HPY71V5YEEA421C768PWMJRA",
-        "01HPY71V5YEEA421C768PWMJRB"
-      ],
-      "contacts": [
-        {
-          "$ref": {}
-        },
-        {
-          "$ref": {}
-        }
-      ],
-      "title": "ulterius urbanus canto",
-      "description": "Corrumpo antea circumvenio supra advenio conqueror theologus consuasor crustulum.",
-      "amount": 5183847608090624,
-      "currency": "MKD",
-      "assignedTo": "01HPY71V5YEEA421C768PWMJRC",
-      "notes": [
-        {
-          "text": "Vita vociferor cavus arbor clam aequitas. Commodo complectus auditor argentum. Stella tempore curriculum fugiat denuo fuga tergeo tutis caterva tui.",
-          "createdAt": "2023-03-13T02:21:14.217Z",
-          "updatedAt": "2024-02-18T03:30:25.909Z"
-        },
-        {
-          "text": "Atqui tres umerus pecus praesentium contabesco. Careo venio aperiam abeo depraedor stipes minus. Umbra solus deleo.",
-          "createdAt": "2024-01-23T20:22:20.039Z",
-          "updatedAt": "2024-02-18T11:18:33.003Z"
-        },
-        {
-          "text": "Aperiam solutio basium abeo quia ultra magni cubitum. Deleniti tabgo carcer depereo autus video ager comparo speciosus. Amor voluptatum amissio adnuo tyrannus cometes thema.",
-          "createdAt": "2023-03-26T09:40:33.698Z",
-          "updatedAt": "2024-02-18T06:04:09.266Z"
-        }
-      ],
-      "tasks": [
-        {
-          "type": "comptus",
-          "status": "in-progress",
-          "title": "Utilis canonicus autem advoco.",
-          "description": "Despecto vesica terror desino officiis vivo sol casus valetudo. Aestivus tum vir peior campana bonus. Ager maiores curriculum torrens reiciendis.",
-          "assigneeIds": [
-            "01HPY71V5YEEA421C768PWMJRD",
-            "01HPY71V5YEEA421C768PWMJRE"
-          ],
-          "assignees": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "assignerIds": [
-            "01HPY71V5YEEA421C768PWMJRF",
-            "01HPY71V5YEEA421C768PWMJRG"
-          ],
-          "assigners": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "dateDue": "2024-08-25T12:51:48.336Z",
-          "dateCompleted": "2024-02-17T13:53:32.239Z",
-          "createdAt": "2023-12-22T20:55:20.176Z",
-          "updatedAt": "2024-02-18T04:11:20.744Z"
-        },
-        {
-          "type": "vigilo",
-          "status": "in-progress",
-          "title": "Repellat volup terror corrupti utilis absque titulus terreo.",
-          "description": "Tutis creta viduo. Deporto comprehendo decens certe defaeco numquam iste spectaculum agnitio id. Acerbitas nam cohibeo tredecim pel pecco tibi inflammatio ratione.",
-          "assigneeIds": [
-            "01HPY71V5YEEA421C768PWMJRH",
-            "01HPY71V5YEEA421C768PWMJRJ"
-          ],
-          "assignees": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "assignerIds": [
-            "01HPY71V5YEEA421C768PWMJRK",
-            "01HPY71V5YEEA421C768PWMJRM"
-          ],
-          "assigners": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "dateDue": "2025-01-03T21:18:33.200Z",
-          "dateCompleted": "2024-02-18T11:41:13.140Z",
-          "createdAt": "2023-07-02T17:14:22.447Z",
-          "updatedAt": "2024-02-17T16:32:11.008Z"
-        }
-      ],
-      "createdAt": "2023-03-18T22:44:41.945Z",
-      "updatedAt": "2024-02-18T06:32:52.032Z"
-    }
-  },
-  {
-    "key": [
-      "deals",
-      "01HPY71V5YEEA421C768PWMJRN"
-    ],
-    "value": {
-      "id": "01HPY71V5YEEA421C768PWMJRN",
-      "status": "todo",
-      "accountIds": [
-        "01HPY71V5YEEA421C768PWMJRP",
-        "01HPY71V5YEEA421C768PWMJRQ"
-      ],
-      "accounts": [
-        {
-          "$ref": {}
-        },
-        {
-          "$ref": {}
-        }
-      ],
-      "contactIds": [
-        "01HPY71V5YEEA421C768PWMJRR",
-        "01HPY71V5YEEA421C768PWMJRS"
-      ],
-      "contacts": [
-        {
-          "$ref": {}
-        },
-        {
-          "$ref": {}
-        }
-      ],
-      "title": "capto abduco trado",
-      "description": "Amet tenetur quod vito textilis velit adfectus tabgo barba quis.",
-      "amount": 6852004525637632,
-      "currency": "SYP",
-      "assignedTo": "01HPY71V5YEEA421C768PWMJRT",
-      "notes": [
-        {
-          "text": "Dignissimos cursim beatae somniculosus cerno possimus approbo condico carbo. Provident natus carcer vetus ventito amplexus vomica culpa. Ceno itaque adfero bonus aiunt thymum.",
-          "createdAt": "2023-03-20T18:27:30.965Z",
-          "updatedAt": "2024-02-18T09:43:43.306Z"
-        },
-        {
-          "text": "Beatus astrum cibus adipiscor attollo corpus pax viduo caput. Aqua velum amoveo verus aut pauci curriculum. Socius suspendo velum universe ustilo crustulum vicissitudo.",
-          "createdAt": "2023-04-22T23:43:47.968Z",
-          "updatedAt": "2024-02-17T20:48:51.025Z"
-        },
-        {
-          "text": "Adaugeo valde conatus adsidue conservo degusto. Consectetur speculum facilis bibo nesciunt. Communis umerus vigilo officiis vitiosus deludo demonstro voluptatem velut comptus.",
-          "createdAt": "2024-01-04T17:18:51.095Z",
-          "updatedAt": "2024-02-17T16:35:50.649Z"
-        }
-      ],
-      "tasks": [
-        {
-          "type": "volup",
-          "status": "in-progress",
-          "title": "Adimpleo vociferor aegre.",
-          "description": "Solutio calculus torqueo appello at terebro arto uterque demergo. Sunt acerbitas cubitum tot argentum angelus altus quam. Ascisco benevolentia rem suffragium appono colo tremo circumvenio.",
-          "assigneeIds": [
-            "01HPY71V5YEEA421C768PWMJRV",
-            "01HPY71V5YEEA421C768PWMJRW"
-          ],
-          "assignees": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "assignerIds": [
-            "01HPY71V5YEEA421C768PWMJRX",
-            "01HPY71V5YEEA421C768PWMJRY"
-          ],
-          "assigners": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "dateDue": "2024-03-14T06:19:06.844Z",
-          "dateCompleted": "2024-02-18T10:31:00.240Z",
-          "createdAt": "2023-07-04T08:01:27.799Z",
-          "updatedAt": "2024-02-17T20:43:17.685Z"
-        },
-        {
-          "type": "adipisci",
-          "status": "in-progress",
-          "title": "Caries incidunt solitudo suffragium decet triduana pauper valeo abscido.",
-          "description": "Tribuo suffoco cogito utpote distinctio tollo. Adversus caries vicissitudo cur communis attollo curatio cruentus cervus desipio. Uxor talis curriculum.",
-          "assigneeIds": [
-            "01HPY71V5YEEA421C768PWMJRZ",
-            "01HPY71V5YEEA421C768PWMJS0"
-          ],
-          "assignees": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "assignerIds": [
-            "01HPY71V5YEEA421C768PWMJS1",
-            "01HPY71V5YEEA421C768PWMJS2"
-          ],
-          "assigners": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "dateDue": "2024-04-22T21:44:46.439Z",
-          "dateCompleted": "2024-02-18T11:45:28.783Z",
-          "createdAt": "2023-09-05T22:52:29.817Z",
-          "updatedAt": "2024-02-18T08:50:46.456Z"
-        }
-      ],
-      "createdAt": "2023-03-09T23:57:46.690Z",
-      "updatedAt": "2024-02-18T02:20:07.989Z"
-    }
-  },
-  {
-    "key": [
-      "deals",
-      "01HPY71V5YEEA421C768PWMJS3"
-    ],
-    "value": {
-      "id": "01HPY71V5YEEA421C768PWMJS3",
-      "status": "todo",
-      "accountIds": [
-        "01HPY71V5YEEA421C768PWMJS4",
-        "01HPY71V5YEEA421C768PWMJS5"
-      ],
-      "accounts": [
-        {
-          "$ref": {}
-        },
-        {
-          "$ref": {}
-        }
-      ],
-      "contactIds": [
-        "01HPY71V5YEEA421C768PWMJS6",
-        "01HPY71V5YEEA421C768PWMJS7"
-      ],
-      "contacts": [
-        {
-          "$ref": {}
-        },
-        {
-          "$ref": {}
-        }
-      ],
-      "title": "advoco clamo suspendo",
-      "description": "Cupio asper vero consequatur sodalitas vesica caveo acerbitas bellum undique.",
-      "amount": 3993434947846144,
-      "currency": "USD",
-      "assignedTo": "01HPY71V5YEEA421C768PWMJS8",
-      "notes": [
-        {
-          "text": "Amor terra considero surculus cursim sumo animadverto vesica ager deludo. Auctus quidem curis. Creta communis deserunt aegrotatio totam tergeo calco patrocinor.",
-          "createdAt": "2023-06-08T18:40:40.562Z",
-          "updatedAt": "2024-02-18T02:37:21.279Z"
-        },
-        {
-          "text": "Vindico summopere adeptio cubitum amplexus theca adsuesco allatus. Culpa vicinus collum tristis. Ater uberrime pecus.",
-          "createdAt": "2023-04-01T08:44:47.087Z",
-          "updatedAt": "2024-02-17T17:50:19.032Z"
-        },
-        {
-          "text": "Sursum suspendo cras abundans delectatio considero. Cubo apud desidero comedo sum temperantia. Suscipio comptus venia creptio aut.",
-          "createdAt": "2023-03-18T16:39:46.646Z",
-          "updatedAt": "2024-02-17T21:24:50.279Z"
-        }
-      ],
-      "tasks": [
-        {
-          "type": "cenaculum",
-          "status": "in-progress",
-          "title": "Libero adsidue nobis suggero callide vorax celo.",
-          "description": "Defendo similique tonsor ducimus truculenter sophismata stips cibus acquiro. Strues delectatio curatio volup voro eaque. Eveniet creator alias quod constans copia adhaero.",
-          "assigneeIds": [
-            "01HPY71V5YEEA421C768PWMJS9",
-            "01HPY71V5YEEA421C768PWMJSA"
-          ],
-          "assignees": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "assignerIds": [
-            "01HPY71V5YEEA421C768PWMJSB",
-            "01HPY71V5YEEA421C768PWMJSC"
-          ],
-          "assigners": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "dateDue": "2024-11-08T11:13:22.069Z",
-          "dateCompleted": "2024-02-18T10:01:31.398Z",
-          "createdAt": "2024-02-09T23:58:27.035Z",
-          "updatedAt": "2024-02-17T20:13:28.728Z"
-        },
-        {
-          "type": "vomica",
-          "status": "in-progress",
-          "title": "Recusandae audacia claustrum verto carus uter vivo patruus curso.",
-          "description": "Centum sit uredo altus sumo cohaero. Arceo umbra censura succedo cubicularis aufero. Ipsa depromo utilis.",
-          "assigneeIds": [
-            "01HPY71V5YEEA421C768PWMJSD",
-            "01HPY71V5YEEA421C768PWMJSE"
-          ],
-          "assignees": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "assignerIds": [
-            "01HPY71V5YEEA421C768PWMJSF",
-            "01HPY71V5YEEA421C768PWMJSG"
-          ],
-          "assigners": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "dateDue": "2024-07-23T13:49:41.104Z",
-          "dateCompleted": "2024-02-18T08:06:34.289Z",
-          "createdAt": "2023-07-28T13:05:08.223Z",
-          "updatedAt": "2024-02-18T04:34:43.378Z"
-        }
-      ],
-      "createdAt": "2023-11-29T20:41:15.727Z",
-      "updatedAt": "2024-02-18T04:48:51.806Z"
-    }
-  },
-  {
-    "key": [
-      "deals",
-      "01HPY71V5YEEA421C768PWMJSH"
-    ],
-    "value": {
-      "id": "01HPY71V5YEEA421C768PWMJSH",
-      "status": "in-progress",
-      "accountIds": [
-        "01HPY71V5YEEA421C768PWMJSJ",
-        "01HPY71V5YEEA421C768PWMJSK"
-      ],
-      "accounts": [
-        {
-          "$ref": {}
-        },
-        {
-          "$ref": {}
-        }
-      ],
-      "contactIds": [
-        "01HPY71V5YEEA421C768PWMJSM",
-        "01HPY71V5YEEA421C768PWMJSN"
-      ],
-      "contacts": [
-        {
-          "$ref": {}
-        },
-        {
-          "$ref": {}
-        }
-      ],
-      "title": "deorsum acquiro antea",
-      "description": "Speculum substantia rerum ait tamisium recusandae ad thorax.",
-      "amount": 8246410784800768,
-      "currency": "CDF",
-      "assignedTo": "01HPY71V5YEEA421C768PWMJSP",
-      "notes": [
-        {
-          "text": "Vox curatio tum approbo. Chirographum tempora amita similique coma sordeo adstringo abeo baiulus ceno. Venustas vere capto accedo confugo caste velut.",
-          "createdAt": "2023-10-26T07:50:45.709Z",
-          "updatedAt": "2024-02-18T04:57:49.466Z"
-        },
-        {
-          "text": "Adeo calamitas una curia impedit caterva abscido. Bonus delinquo amicitia iste terebro alienus. Canis cum villa templum coerceo calculus tam.",
-          "createdAt": "2023-11-13T10:39:26.859Z",
-          "updatedAt": "2024-02-17T21:42:26.966Z"
-        },
-        {
-          "text": "Sulum suffoco amaritudo adhaero aestivus carus solvo. Stabilis calamitas ultio baiulus urbs currus. Subvenio consuasor trepide uterque summopere at crebro.",
-          "createdAt": "2023-09-05T18:43:24.776Z",
-          "updatedAt": "2024-02-18T09:56:24.624Z"
-        }
-      ],
-      "tasks": [
-        {
-          "type": "autem",
-          "status": "in-progress",
-          "title": "Synagoga officiis patria calculus texo aurum territo.",
-          "description": "Nihil adulatio cohibeo adsuesco. Custodia voluptate sortitus sum calamitas denuncio incidunt vilis. Cetera pecus aurum tollo armarium libero delectus suffragium via.",
-          "assigneeIds": [
-            "01HPY71V5Z2D9F18V1438W63JA",
-            "01HPY71V5Z2D9F18V1438W63JB"
-          ],
-          "assignees": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "assignerIds": [
-            "01HPY71V5Z2D9F18V1438W63JC",
-            "01HPY71V5Z2D9F18V1438W63JD"
-          ],
-          "assigners": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "dateDue": "2025-01-17T15:56:50.285Z",
-          "dateCompleted": "2024-02-18T13:04:35.452Z",
-          "createdAt": "2023-05-31T21:55:33.088Z",
-          "updatedAt": "2024-02-18T13:17:41.270Z"
-        },
-        {
-          "type": "accusantium",
-          "status": "in-progress",
-          "title": "Apparatus deficio animus paulatim caste.",
-          "description": "Annus conscendo tyrannus campana adflicto usus curis. Stella audacia tabella. Beatae cavus audacia.",
-          "assigneeIds": [
-            "01HPY71V5Z2D9F18V1438W63JE",
-            "01HPY71V5Z2D9F18V1438W63JF"
-          ],
-          "assignees": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "assignerIds": [
-            "01HPY71V5Z2D9F18V1438W63JG",
-            "01HPY71V5Z2D9F18V1438W63JH"
-          ],
-          "assigners": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "dateDue": "2024-10-06T16:16:02.846Z",
-          "dateCompleted": "2024-02-17T21:18:32.065Z",
-          "createdAt": "2023-10-26T15:56:07.448Z",
-          "updatedAt": "2024-02-17T22:42:27.284Z"
-        }
-      ],
-      "createdAt": "2023-03-13T06:21:21.331Z",
-      "updatedAt": "2024-02-18T01:42:42.234Z"
-    }
-  },
-  {
-    "key": [
-      "deals",
-      "01HPY71V5Z2D9F18V1438W63JJ"
-    ],
-    "value": {
-      "id": "01HPY71V5Z2D9F18V1438W63JJ",
-      "status": "cancelled",
-      "accountIds": [
-        "01HPY71V5Z2D9F18V1438W63JK",
-        "01HPY71V5Z2D9F18V1438W63JM"
-      ],
-      "accounts": [
-        {
-          "$ref": {}
-        },
-        {
-          "$ref": {}
-        }
-      ],
-      "contactIds": [
-        "01HPY71V5Z2D9F18V1438W63JN",
-        "01HPY71V5Z2D9F18V1438W63JP"
-      ],
-      "contacts": [
-        {
-          "$ref": {}
-        },
-        {
-          "$ref": {}
-        }
-      ],
-      "title": "cenaculum sodalitas ventito",
-      "description": "Territo supra ante.",
-      "amount": 362422466510848,
-      "currency": "FJD",
-      "assignedTo": "01HPY71V5Z2D9F18V1438W63JQ",
-      "notes": [
-        {
-          "text": "Solio bellicus unus ultio defessus sub arceo. Testimonium necessitatibus suppono cruentus basium. Suffoco depromo aegre vae valetudo colo adficio.",
-          "createdAt": "2024-02-04T21:54:42.666Z",
-          "updatedAt": "2024-02-18T12:41:55.691Z"
-        },
-        {
-          "text": "Aequus demitto claustrum toties sumo decet nam cubo urbs aggredior. Architecto alveus candidus officiis. Adhaero verecundia placeat dolorem ventito quam cedo.",
-          "createdAt": "2023-08-02T08:08:51.541Z",
-          "updatedAt": "2024-02-17T18:17:11.525Z"
-        },
-        {
-          "text": "Bene adstringo appositus conservo corrigo sumptus omnis. Architecto canis suadeo pax utor claro bellicus cum pax. Voveo canto possimus clamo arx ademptio.",
-          "createdAt": "2023-05-02T20:21:59.635Z",
-          "updatedAt": "2024-02-17T17:12:08.941Z"
-        }
-      ],
-      "tasks": [
-        {
-          "type": "eos",
-          "status": "in-progress",
-          "title": "Quas accedo crudelis videlicet umbra.",
-          "description": "Illum maiores dolorum quidem. Velut veniam terreo. Adipisci correptius volup.",
-          "assigneeIds": [
-            "01HPY71V5Z2D9F18V1438W63JR",
-            "01HPY71V5Z2D9F18V1438W63JS"
-          ],
-          "assignees": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "assignerIds": [
-            "01HPY71V5Z2D9F18V1438W63JT",
-            "01HPY71V5Z2D9F18V1438W63JV"
-          ],
-          "assigners": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "dateDue": "2024-11-12T04:35:28.672Z",
-          "dateCompleted": "2024-02-18T01:19:24.257Z",
-          "createdAt": "2023-11-27T00:05:30.419Z",
-          "updatedAt": "2024-02-18T04:48:48.335Z"
-        },
-        {
-          "type": "thesis",
-          "status": "in-progress",
-          "title": "Verecundia utroque dolorem demonstro.",
-          "description": "Arbustum amor cado at turba voluptatibus. Cribro arx decipio calamitas candidus. Dolores caelum amiculum ullus clementia adipiscor cultura consequuntur arcesso audacia.",
-          "assigneeIds": [
-            "01HPY71V5Z2D9F18V1438W63JW",
-            "01HPY71V5Z2D9F18V1438W63JX"
-          ],
-          "assignees": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "assignerIds": [
-            "01HPY71V5Z2D9F18V1438W63JY",
-            "01HPY71V5Z2D9F18V1438W63JZ"
-          ],
-          "assigners": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "dateDue": "2024-03-30T11:48:41.514Z",
-          "dateCompleted": "2024-02-18T09:28:03.717Z",
-          "createdAt": "2024-01-13T07:57:59.861Z",
-          "updatedAt": "2024-02-18T07:09:36.926Z"
-        }
-      ],
-      "createdAt": "2023-11-23T16:05:44.420Z",
-      "updatedAt": "2024-02-18T01:05:20.773Z"
-    }
-  },
-  {
-    "key": [
-      "deals",
-      "01HPY71V5Z2D9F18V1438W63K0"
-    ],
-    "value": {
-      "id": "01HPY71V5Z2D9F18V1438W63K0",
-      "status": "backlog",
-      "accountIds": [
-        "01HPY71V5Z2D9F18V1438W63K1",
-        "01HPY71V5Z2D9F18V1438W63K2"
-      ],
-      "accounts": [
-        {
-          "$ref": {}
-        },
-        {
-          "$ref": {}
-        }
-      ],
-      "contactIds": [
-        "01HPY71V5Z2D9F18V1438W63K3",
-        "01HPY71V5Z2D9F18V1438W63K4"
-      ],
-      "contacts": [
-        {
-          "$ref": {}
-        },
-        {
-          "$ref": {}
-        }
-      ],
-      "title": "balbus dedecor delicate",
-      "description": "Cura currus conqueror communis appositus tener territo.",
-      "amount": 3954222934523904,
-      "currency": "GBP",
-      "assignedTo": "01HPY71V5Z2D9F18V1438W63K5",
-      "notes": [
-        {
-          "text": "Veritatis sint conduco ex eum commemoro. Sonitus traho alius claustrum vestrum acervus conculco cohibeo universe. Sono tener in amaritudo subito vox umerus avarus deleniti.",
-          "createdAt": "2023-08-28T15:56:53.401Z",
-          "updatedAt": "2024-02-18T11:08:46.518Z"
-        },
-        {
-          "text": "Crastinus consequatur illo tantum. Solitudo crinis magnam calamitas. Quos crudelis adversus arbustum admitto antea allatus comedo.",
-          "createdAt": "2023-11-01T11:20:38.219Z",
-          "updatedAt": "2024-02-17T19:59:37.225Z"
-        },
-        {
-          "text": "Ciminatio abduco vomito cohaero circumvenio taedium vinculum aperiam. Aer suscipit confugo somniculosus volubilis valetudo ciminatio vehemens sint ambulo. Pax dolorum terebro placeat culpo.",
-          "createdAt": "2023-07-17T03:36:08.183Z",
-          "updatedAt": "2024-02-18T07:13:59.712Z"
-        }
-      ],
-      "tasks": [
-        {
-          "type": "deleo",
-          "status": "in-progress",
-          "title": "Summisse colligo villa totus.",
-          "description": "Vesco uxor vere spoliatio bibo conitor aequitas angustus usitas. Calculus sursum campana depopulo arto illum dapifer. Canis solium culpa sto.",
-          "assigneeIds": [
-            "01HPY71V5Z2D9F18V1438W63K6",
-            "01HPY71V5Z2D9F18V1438W63K7"
-          ],
-          "assignees": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "assignerIds": [
-            "01HPY71V5Z2D9F18V1438W63K8",
-            "01HPY71V5Z2D9F18V1438W63K9"
-          ],
-          "assigners": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "dateDue": "2025-01-20T19:23:03.966Z",
-          "dateCompleted": "2024-02-17T18:49:44.436Z",
-          "createdAt": "2023-09-02T12:55:11.061Z",
-          "updatedAt": "2024-02-17T18:44:09.357Z"
-        },
-        {
-          "type": "eum",
-          "status": "in-progress",
-          "title": "Chirographum thalassinus debilito.",
-          "description": "Accendo caries corroboro nihil laborum ara ascisco. Tenus solus amiculum decor surgo volutabrum cavus conitor cui totus. Apto abbas colligo ter utrum.",
-          "assigneeIds": [
-            "01HPY71V5Z2D9F18V1438W63KA",
-            "01HPY71V5Z2D9F18V1438W63KB"
-          ],
-          "assignees": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "assignerIds": [
-            "01HPY71V5Z2D9F18V1438W63KC",
-            "01HPY71V5Z2D9F18V1438W63KD"
-          ],
-          "assigners": [
-            {
-              "$ref": {}
-            },
-            {
-              "$ref": {}
-            }
-          ],
-          "dateDue": "2024-03-03T04:06:38.917Z",
-          "dateCompleted": "2024-02-18T08:35:28.748Z",
-          "createdAt": "2023-06-04T02:54:38.983Z",
-          "updatedAt": "2024-02-18T11:51:00.597Z"
-        }
-      ],
-      "createdAt": "2023-12-10T03:51:39.322Z",
-      "updatedAt": "2024-02-18T07:57:39.893Z"
+      "createdAt": "2023-06-08T13:26:09.160Z",
+      "updatedAt": "2024-02-20T02:41:52.681Z"
     }
   }
 ]

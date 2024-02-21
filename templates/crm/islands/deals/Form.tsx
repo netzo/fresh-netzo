@@ -1,23 +1,23 @@
 import { useSignal } from "@preact/signals";
 import { createOnSubmit, Form } from "netzo/components/blocks/form/form.tsx";
 import { Button } from "netzo/components/button.tsx";
-import { Contact, contactSchema } from "../../data/contacts.ts";
-// import { I18N } from "../../data/contacts.ts";
+import { Deal, dealSchema } from "../../data/deals.ts";
+// import { I18N } from "../../data/deals.ts";
 
 type FormProps = {
-  data?: Contact;
+  data?: Deal;
   action: string;
   method: "POST" | "PATCH";
 };
 
 // use z.omit()/z.pick() to filter out fields
-const formSchema = contactSchema.omit({
+const formSchema = dealSchema.omit({
   id: true,
   updatedAt: true,
   createdAt: true,
 });
 
-export function FormContact({ data = {}, method, action }: FormProps) {
+export function FormDeal({ data = {}, method, action }: FormProps) {
   const values = useSignal(data);
 
   return (

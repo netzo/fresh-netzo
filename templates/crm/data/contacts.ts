@@ -12,33 +12,23 @@ export const contactSchema = z.object({
   image: z.string().url(),
   position: z.string(),
   department: z.string(),
-  phone: z.array(
-    z.object({
-      type: z.string(), // "work", "mobile", "whatsapp",
-      name: z.string(), // "Personal whatsapp", "Work phone", "Home phone", "Mobile phone", "Fax", "Other"
-      value: z.string(),
-    }),
-  ),
-  emails: z.array(
-    z.object({
-      type: z.string(), // "personal", "work"
-      name: z.string(), // "Personal email", "Work email", "Other"
-      value: z.string().email(),
-    }),
-  ),
-  links: z.array(
-    z.object({
-      name: z.string(), // "website", "facebook", "linkedin", "twitter", "other"
-      value: z.string().url(),
-    }),
-  ),
-  notes: z.array(
-    z.object({
-      text: z.string(),
-      createdAt: z.string().datetime(),
-      updatedAt: z.string().datetime(),
-    }),
-  ),
+  phones: z.array(z.object({
+    name: z.string(),
+    value: z.string(),
+  })),
+  emails: z.array(z.object({
+    name: z.string(),
+    value: z.string().email(),
+  })),
+  links: z.array(z.object({
+    name: z.string(),
+    value: z.string().url(),
+  })),
+  notes: z.array(z.object({
+    text: z.string(),
+    createdAt: z.string().datetime(),
+    updatedAt: z.string().datetime(),
+  })),
   consent: z.object({
     documents: z.boolean(),
     documentsTimestamp: z.number(),
@@ -67,32 +57,23 @@ export const mock = (idField = "id") => ({
   image: faker.image.avatar(),
   position: faker.person.jobTitle(),
   department: faker.person.jobArea(),
-  phone: [
+  phones: [
     {
-      type: "work",
-      name: "Work phone",
+      name: "Work",
       value: faker.phone.number(),
     },
     {
-      type: "mobile",
-      name: "Mobile phone",
-      value: faker.phone.number(),
-    },
-    {
-      type: "whatsapp",
-      name: "Personal whatsapp",
+      name: "Personal",
       value: faker.phone.number(),
     },
   ],
   emails: [
     {
-      type: "work",
-      name: "Work email",
+      name: "Work",
       value: faker.internet.email(),
     },
     {
-      type: "personal",
-      name: "Personal email",
+      name: "Personal",
       value: faker.internet.email(),
     },
   ],
@@ -147,8 +128,8 @@ export const I18N = {
   image: "Image",
   position: "Position",
   department: "Department",
+  phones: "Phones",
   emails: "Emails",
-  phones: "Phone Numbers",
   links: "Links",
   notes: {
     text: "Text",

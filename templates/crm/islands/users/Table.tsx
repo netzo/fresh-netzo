@@ -3,7 +3,7 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "netzo/components/avatar.tsx";
-import { toDateTime } from "netzo/components/blocks/format.ts";
+import { Badge } from "netzo/components/badge.tsx";
 import { Gallery } from "netzo/components/blocks/table/table.gallery.tsx";
 import {
   TableColumnCell,
@@ -15,7 +15,8 @@ import {
   useTable,
 } from "netzo/components/blocks/table/table.tsx";
 import { IconCopy } from "netzo/components/icon-copy.tsx";
-import { type Contact, I18N } from "../../data/contacts.ts";
+import { I18N, type User } from "../../data/users.ts";
+// import { emailSchema } from "../../data/utils/global.types.ts";
 
 // NOTE: define columns in island (route to island function serialization unsupported)
 export const getColumns = ({ options }: TableProps): TableProps["columns"] => [
@@ -36,53 +37,45 @@ export const getColumns = ({ options }: TableProps): TableProps["columns"] => [
             <AvatarImage src={image} />
             <AvatarFallback>{initials}</AvatarFallback>
           </Avatar>
-          <a
-            href={`/contacts/${id}`}
-            className="whitespace-nowrap text-center font-medium text-primary hover:underline"
-          >
-            {name}
-          </a>
+          {name}
           <IconCopy value={id} tooltip="Copy ID" />
         </div>
       );
     },
   },
   {
-    accessorKey: "accountId",
-    header: (props) => <TableColumnHeader {...props} title={I18N.accountId} />,
-    cell: ({ row }) => {
-      const { accountId, account } = row.original;
-      return (
-        <a
-          href={`/accounts/${accountId}`}
-          className="whitespace-nowrap text-center font-medium text-primary hover:underline"
-        >
-          {account?.name ? account.name : accountId}
-        </a>
-      );
-    },
-  },
-  {
-    accessorKey: "phones",
-    header: (props) => <TableColumnHeader {...props} title={I18N.phones} />,
+    accessorKey: "email",
+    header: (props) => <TableColumnHeader {...props} title={I18N.email} />,
     cell: (props) => <TableColumnCell {...props} />,
   },
   {
-    accessorKey: "emails",
-    header: (props) => <TableColumnHeader {...props} title={I18N.emails} />,
-    cell: (props) => <TableColumnCell {...props} />,
-  },
-  {
-    accessorKey: "updatedAt",
-    header: (props) => <TableColumnHeader {...props} title={I18N.updatedAt} />,
+    accessorKey: "roles",
+    header: (props) => <TableColumnHeader {...props} title={I18N.roles} />,
     cell: ({ row }) => {
-      const { updatedAt } = row.original;
-      return <div>{toDateTime(updatedAt)}</div>;
+      const { roles } = row.original;
+      const props = {
+        admin: {
+          className: "bg-blue-500 hover:bg-blue-600 bg-opacity-80 text-white",
+        },
+        edit: {
+          className:
+            "bg-yellow-500 hover:bg-yellow-600 bg-opacity-80 text-white",
+        },
+        view: {
+          className: "bg-green-500 hover:bg-green-600 bg-opacity-80 text-white",
+        },
+      };
+      return roles?.map((role) => (
+        <Badge variant="default" {...props[role]}>
+          {roles}
+        </Badge>
+      ));
     },
+    filterFn: (row, id, value) => value.includes(row.getValue(id)),
   },
 ];
 
-export function Table(props: Omit<TableProps<Contact, unknown>, "columns">) {
+export function Table(props: Omit<TableProps<User, unknown>, "columns">) {
   const columns = getColumns(props);
 
   const table = useTable<TData, TValue>({ ...props, columns });

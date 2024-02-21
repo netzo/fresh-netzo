@@ -6,7 +6,6 @@ import {
 import { toDateTime } from "netzo/components/blocks/format.ts";
 import { Gallery } from "netzo/components/blocks/table/table.gallery.tsx";
 import {
-  TableColumnCell,
   TableColumnHeader,
   TablePagination,
   type TableProps,
@@ -15,7 +14,7 @@ import {
   useTable,
 } from "netzo/components/blocks/table/table.tsx";
 import { IconCopy } from "netzo/components/icon-copy.tsx";
-import { type Contact, I18N } from "../../data/contacts.ts";
+import { I18N, type Product } from "../../data/products.ts";
 
 // NOTE: define columns in island (route to island function serialization unsupported)
 export const getColumns = ({ options }: TableProps): TableProps["columns"] => [
@@ -37,7 +36,7 @@ export const getColumns = ({ options }: TableProps): TableProps["columns"] => [
             <AvatarFallback>{initials}</AvatarFallback>
           </Avatar>
           <a
-            href={`/contacts/${id}`}
+            href={`/products/${id}`}
             className="whitespace-nowrap text-center font-medium text-primary hover:underline"
           >
             {name}
@@ -46,31 +45,6 @@ export const getColumns = ({ options }: TableProps): TableProps["columns"] => [
         </div>
       );
     },
-  },
-  {
-    accessorKey: "accountId",
-    header: (props) => <TableColumnHeader {...props} title={I18N.accountId} />,
-    cell: ({ row }) => {
-      const { accountId, account } = row.original;
-      return (
-        <a
-          href={`/accounts/${accountId}`}
-          className="whitespace-nowrap text-center font-medium text-primary hover:underline"
-        >
-          {account?.name ? account.name : accountId}
-        </a>
-      );
-    },
-  },
-  {
-    accessorKey: "phones",
-    header: (props) => <TableColumnHeader {...props} title={I18N.phones} />,
-    cell: (props) => <TableColumnCell {...props} />,
-  },
-  {
-    accessorKey: "emails",
-    header: (props) => <TableColumnHeader {...props} title={I18N.emails} />,
-    cell: (props) => <TableColumnCell {...props} />,
   },
   {
     accessorKey: "updatedAt",
@@ -82,7 +56,7 @@ export const getColumns = ({ options }: TableProps): TableProps["columns"] => [
   },
 ];
 
-export function Table(props: Omit<TableProps<Contact, unknown>, "columns">) {
+export function Table(props: Omit<TableProps<Product, unknown>, "columns">) {
   const columns = getColumns(props);
 
   const table = useTable<TData, TValue>({ ...props, columns });
