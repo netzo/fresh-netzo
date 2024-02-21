@@ -1,6 +1,6 @@
 const kv = await Deno.openKv(Deno.env.get("DENO_KV_PATH"));
 
-export const FILEPATH = "../data/data.entries.json";
+export const FILEPATH = "../data/db.entries.json";
 
 const RESOURCES = {
   accounts: 25,
@@ -39,7 +39,7 @@ export const dbMock = async () => {
   const filepath = import.meta.resolve(FILEPATH).replace("file://", "");
   await Deno.writeTextFile(filepath, `${JSON.stringify(entries, null, 2)}\n`);
 
-  console.log(`Mock data written to "data/data.entries.json".`);
+  console.log(`Mock data written to "data/db.entries.json".`);
   console.log(`Run "deno task db:load" to load entries into the database.`);
 
   Deno.exit(0);
