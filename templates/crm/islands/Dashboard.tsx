@@ -8,13 +8,13 @@ import {
 import { Overview } from "../components/dashboard/overview.tsx";
 import { RecentSales } from "../components/dashboard/recent-sales.tsx";
 
-export function Dashboard(props) {
+export function Dashboard(props: { data: unknown[][] }) {
   const [
     accounts,
     contacts,
     deals,
     quotes,
-    transactions,
+    products,
     users,
   ] = props.data;
   return (

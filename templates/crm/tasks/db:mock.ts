@@ -6,9 +6,8 @@ const RESOURCES = {
   accounts: 25,
   contacts: 25,
   deals: 25,
-  // quotes: 25,
-  // products: 25,
-  // transactions: 25,
+  products: 25,
+  quotes: 25,
   users: 10,
 } as const;
 
@@ -17,12 +16,14 @@ export const dbMock = async () => {
   const data = {} as Record<string, Omit<Deno.KvEntry<any>, "versionstamp">[]>;
 
   for (const [resource, length] of Object.entries(RESOURCES)) {
-    const { mock } = await import(`@/data/${resource}.ts`);
+    const { mockAll, mock } = await import(`@/data/${resource}.ts`);
     // Generate mock data and prepare for KV store
-    data[resource] = Array.from({ length }, () => mock()).map((entry) => ({
-      key: [resource, entry.id],
-      value: entry,
-    }));
+    data[resource] = mockAll
+      ? await mockAll() // (optional) generate all entries at once
+      : Array.from({ length }, () => mock()).map((entry) => ({
+        key: [resource, entry.id],
+        value: entry,
+      }));
 
     // [optional] modify entries e.g. to link with other resources
     if (resource === "contacts") {

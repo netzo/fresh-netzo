@@ -68,7 +68,7 @@ export const accountSchema = z.object({
   })),
   bankAccounts: z.array(z.object({
     name: z.string(),
-    currency: z.string(),
+    currencyCode: z.string(),
     type: z.string(),
     beneficiary: z.string(),
     number: z.string(),
@@ -86,7 +86,7 @@ export const accountSchema = z.object({
   defaults: z.object({
     expensesAccount: z.number(),
     language: z.string(),
-    currency: z.string(),
+    currencyCode: z.string(),
     paymentMethod: z.string(),
     paymentForm: z.string(),
     paymentDeadline: z.string(),
@@ -116,15 +116,15 @@ export const mock = (idField = "id") => ({
   emails: [
     {
       name: "Contact",
-      value: faker.internet.email(),
+      value: faker.internet.email().toLowerCase(),
     },
     {
       name: "Sales",
-      value: faker.internet.email(),
+      value: faker.internet.email().toLowerCase(),
     },
     {
       name: "Billing",
-      value: faker.internet.email(),
+      value: faker.internet.email().toLowerCase(),
     },
   ],
   phones: [
@@ -209,7 +209,7 @@ export const mock = (idField = "id") => ({
   bankAccounts: [
     {
       name: faker.finance.accountName(),
-      currency: faker.finance.currencyCode(),
+      currencyCode: "USD",
       type: "account",
       beneficiary: faker.finance.accountName(),
       number: faker.finance.accountName(),
@@ -228,7 +228,7 @@ export const mock = (idField = "id") => ({
   defaults: {
     expensesAccount: faker.finance.accountNumber(),
     language: faker.location.countryCode(),
-    currency: faker.finance.currencyCode(),
+    currencyCode: "USD",
     paymentMethod: faker.lorem.word(),
     paymentForm: faker.lorem.word(),
     paymentDeadline: faker.lorem.word(),

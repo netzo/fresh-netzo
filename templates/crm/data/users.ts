@@ -25,7 +25,7 @@ export type User = z.infer<typeof userSchema>;
 export const mock = (idField = "id") => ({
   [idField]: ulid(),
   name: faker.person.fullName(),
-  email: faker.internet.email(),
+  email: faker.internet.email().toLowerCase(),
   image: faker.image.avatarGitHub(),
   roles: [faker.helpers.arrayElement(ROLES)],
   createdAt: faker.date.past().toISOString(),

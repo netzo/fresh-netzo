@@ -70,11 +70,11 @@ export const mock = (idField = "id") => ({
   emails: [
     {
       name: "Work",
-      value: faker.internet.email(),
+      value: faker.internet.email().toLowerCase(),
     },
     {
       name: "Personal",
-      value: faker.internet.email(),
+      value: faker.internet.email().toLowerCase(),
     },
   ],
   links: [

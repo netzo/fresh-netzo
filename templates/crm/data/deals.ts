@@ -20,7 +20,7 @@ export const dealSchema = z.object({
   title: z.string(),
   description: z.string(),
   amount: z.number(),
-  currency: z.string(),
+  currencyCode: z.enum(["USD"]),
   notes: z.array(z.object({
     text: z.string(),
     createdAt: z.string().datetime(),
@@ -67,8 +67,8 @@ export const mock = (idField = "id") => ({
   contacts: Array.from(Array(2)).map(() => ({})),
   title: faker.lorem.words(),
   description: faker.lorem.sentence(),
-  amount: faker.number.int(),
-  currency: faker.finance.currencyCode(),
+  amount: faker.commerce.price({ min: 99, max: 99_999 }),
+  currencyCode: "USD",
   notes: Array.from(Array(3)).map(() => ({
     text: faker.lorem.paragraph(),
     createdAt: faker.date.past().toISOString(),
@@ -106,7 +106,7 @@ export const I18N = {
   title: "Title",
   description: "Description",
   amount: "Amount",
-  currency: "Currency",
+  currencyCode: "Currency",
   notes: {
     text: "Text",
     createdAt: "Created at",
