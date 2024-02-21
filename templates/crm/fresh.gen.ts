@@ -12,7 +12,6 @@ import * as $api_accounts from "./routes/api/accounts.ts";
 import * as $api_contacts from "./routes/api/contacts.ts";
 import * as $api_deals from "./routes/api/deals.ts";
 import * as $api_mod from "./routes/api/mod.ts";
-import * as $api_products from "./routes/api/products.ts";
 import * as $api_quotes from "./routes/api/quotes.ts";
 import * as $api_users from "./routes/api/users.ts";
 import * as $contacts_id_ from "./routes/contacts/[id].tsx";
@@ -20,8 +19,6 @@ import * as $contacts_index from "./routes/contacts/index.tsx";
 import * as $deals_id_ from "./routes/deals/[id].tsx";
 import * as $deals_index from "./routes/deals/index.tsx";
 import * as $index from "./routes/index.tsx";
-import * as $products_id_ from "./routes/products/[id].tsx";
-import * as $products_index from "./routes/products/index.tsx";
 import * as $quotes_id_ from "./routes/quotes/[id].tsx";
 import * as $quotes_index from "./routes/quotes/index.tsx";
 import * as $users_index from "./routes/users/index.tsx";
@@ -33,8 +30,6 @@ import * as $contacts_Table from "./islands/contacts/Table.tsx";
 import * as $deals_Form from "./islands/deals/Form.tsx";
 import * as $deals_Kanban from "./islands/deals/Kanban.tsx";
 import * as $mod from "./islands/mod.ts";
-import * as $products_Form from "./islands/products/Form.tsx";
-import * as $products_Table from "./islands/products/Table.tsx";
 import * as $quotes_Form from "./islands/quotes/Form.tsx";
 import * as $quotes_Table from "./islands/quotes/Table.tsx";
 import * as $users_Table from "./islands/users/Table.tsx";
@@ -52,7 +47,6 @@ const manifest = {
     "./routes/api/contacts.ts": $api_contacts,
     "./routes/api/deals.ts": $api_deals,
     "./routes/api/mod.ts": $api_mod,
-    "./routes/api/products.ts": $api_products,
     "./routes/api/quotes.ts": $api_quotes,
     "./routes/api/users.ts": $api_users,
     "./routes/contacts/[id].tsx": $contacts_id_,
@@ -60,8 +54,6 @@ const manifest = {
     "./routes/deals/[id].tsx": $deals_id_,
     "./routes/deals/index.tsx": $deals_index,
     "./routes/index.tsx": $index,
-    "./routes/products/[id].tsx": $products_id_,
-    "./routes/products/index.tsx": $products_index,
     "./routes/quotes/[id].tsx": $quotes_id_,
     "./routes/quotes/index.tsx": $quotes_index,
     "./routes/users/index.tsx": $users_index,
@@ -75,8 +67,6 @@ const manifest = {
     "./islands/deals/Form.tsx": $deals_Form,
     "./islands/deals/Kanban.tsx": $deals_Kanban,
     "./islands/mod.ts": $mod,
-    "./islands/products/Form.tsx": $products_Form,
-    "./islands/products/Table.tsx": $products_Table,
     "./islands/quotes/Form.tsx": $quotes_Form,
     "./islands/quotes/Table.tsx": $quotes_Table,
     "./islands/users/Table.tsx": $users_Table,

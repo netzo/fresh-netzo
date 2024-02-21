@@ -9,14 +9,7 @@ import { Overview } from "../components/dashboard/overview.tsx";
 import { RecentSales } from "../components/dashboard/recent-sales.tsx";
 
 export function Dashboard(props: { data: unknown[][] }) {
-  const [
-    accounts,
-    contacts,
-    deals,
-    quotes,
-    products,
-    users,
-  ] = props.data;
+  const [accounts, contacts, deals, quotes, users] = props.data;
   return (
     <div className="p-4 space-y-4">
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
