@@ -29,6 +29,7 @@ import * as $contacts_Form from "./islands/contacts/Form.tsx";
 import * as $contacts_Table from "./islands/contacts/Table.tsx";
 import * as $deals_Form from "./islands/deals/Form.tsx";
 import * as $deals_Kanban from "./islands/deals/Kanban.tsx";
+import * as $deals_KanbanCard from "./islands/deals/KanbanCard.tsx";
 import * as $mod from "./islands/mod.ts";
 import * as $quotes_Form from "./islands/quotes/Form.tsx";
 import * as $quotes_Table from "./islands/quotes/Table.tsx";
@@ -66,6 +67,7 @@ const manifest = {
     "./islands/contacts/Table.tsx": $contacts_Table,
     "./islands/deals/Form.tsx": $deals_Form,
     "./islands/deals/Kanban.tsx": $deals_Kanban,
+    "./islands/deals/KanbanCard.tsx": $deals_KanbanCard,
     "./islands/mod.ts": $mod,
     "./islands/quotes/Form.tsx": $quotes_Form,
     "./islands/quotes/Table.tsx": $quotes_Table,
