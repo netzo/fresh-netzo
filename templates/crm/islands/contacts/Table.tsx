@@ -9,13 +9,13 @@ import {
   TableColumnCell,
   TableColumnHeader,
   TablePagination,
-  type TableProps,
   TableRowActions,
   TableToolbar,
   useTable,
+  type TableProps,
 } from "netzo/components/blocks/table/table.tsx";
 import { IconCopy } from "netzo/components/icon-copy.tsx";
-import { type Contact, I18N } from "../../data/contacts.ts";
+import { I18N, type Contact } from "../../data/contacts.ts";
 
 // NOTE: define columns in island (route to island function serialization unsupported)
 export const getColumns = ({ options }: TableProps): TableProps["columns"] => [
@@ -63,22 +63,14 @@ export const getColumns = ({ options }: TableProps): TableProps["columns"] => [
     },
   },
   {
-    accessorKey: "emails",
-    header: (props) => <TableColumnHeader {...props} title={I18N.emails} />,
-    cell: (props) => <TableColumnCell {...props} />,
-  },
-  {
     accessorKey: "phones",
     header: (props) => <TableColumnHeader {...props} title={I18N.phones} />,
     cell: (props) => <TableColumnCell {...props} />,
   },
   {
-    accessorKey: "createdAt",
-    header: (props) => <TableColumnHeader {...props} title={I18N.createdAt} />,
-    cell: ({ row }) => {
-      const { createdAt } = row.original;
-      return <div>{toDateTime(createdAt)}</div>;
-    },
+    accessorKey: "emails",
+    header: (props) => <TableColumnHeader {...props} title={I18N.emails} />,
+    cell: (props) => <TableColumnCell {...props} />,
   },
   {
     accessorKey: "updatedAt",

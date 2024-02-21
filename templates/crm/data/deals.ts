@@ -19,8 +19,8 @@ export const dealSchema = z.object({
   contacts: z.array(z.any()), // contactSchema causes circular dependency
   title: z.string(),
   description: z.string(),
-  amount: faker.finance.amount(),
-  currency: faker.finance.currencyCode(),
+  amount: z.number(),
+  currency: z.string(),
   notes: z.array(z.object({
     text: z.string(),
     createdAt: z.string().datetime(),

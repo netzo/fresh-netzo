@@ -4,10 +4,10 @@ import { Grid } from "netzo/components/blocks/table/table.grid.tsx";
 import {
   TableColumnHeader,
   TablePagination,
-  type TableProps,
   TableRowActions,
   TableToolbar,
   useTable,
+  type TableProps,
 } from "netzo/components/blocks/table/table.tsx";
 import { IconCopy } from "netzo/components/icon-copy.tsx";
 import { I18N, type Quote } from "../../data/quotes.ts";
@@ -59,14 +59,6 @@ export const getColumns = ({ options }: TableProps): TableProps["columns"] => [
         : <></>;
     },
     filterFn: (row, id, value) => value.includes(row.getValue(id)),
-  },
-  {
-    accessorKey: "createdAt",
-    header: (props) => <TableColumnHeader {...props} title={I18N.createdAt} />,
-    cell: ({ row }) => {
-      const { createdAt } = row.original;
-      return <div>{toDateTime(createdAt)}</div>;
-    },
   },
   {
     accessorKey: "updatedAt",

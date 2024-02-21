@@ -8,10 +8,10 @@ import { Gallery } from "netzo/components/blocks/table/table.gallery.tsx";
 import {
   TableColumnHeader,
   TablePagination,
-  type TableProps,
   TableRowActions,
   TableToolbar,
   useTable,
+  type TableProps,
 } from "netzo/components/blocks/table/table.tsx";
 import { IconCopy } from "netzo/components/icon-copy.tsx";
 import { I18N, type Product } from "../../data/products.ts";
@@ -44,14 +44,6 @@ export const getColumns = ({ options }: TableProps): TableProps["columns"] => [
           <IconCopy value={id} tooltip="Copy ID" />
         </div>
       );
-    },
-  },
-  {
-    accessorKey: "createdAt",
-    header: (props) => <TableColumnHeader {...props} title={I18N.createdAt} />,
-    cell: ({ row }) => {
-      const { createdAt } = row.original;
-      return <div>{toDateTime(createdAt)}</div>;
     },
   },
   {
