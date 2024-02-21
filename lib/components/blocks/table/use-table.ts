@@ -36,20 +36,15 @@ export type TableProps<TData = unknown, TValue = unknown> = {
       title: string;
       options: { label: string; value: string }[];
     }[];
-    layouts: {
-      grid?: Record<string | number | symbol, never>;
-      gallery?: Record<string | number | symbol, never>;
-      kanban?: Record<string | number | symbol, never>;
-    };
+    columns: ColumnDef<TData, TValue>[];
   };
-  columns: ColumnDef<TData, TValue>[];
 };
 
 export type { Table };
 
 export const useTable = <TData = unknown, TValue = unknown>({
   data,
-  columns,
+  options,
   meta = {},
 }: TableProps<TData, TValue>): Table<TData> => {
   const [rowSelection, setRowSelection] = useState({});
@@ -65,7 +60,7 @@ export const useTable = <TData = unknown, TValue = unknown>({
 
   const table = useReactTable<TData>({
     data,
-    columns,
+    columns: options.columns,
     state: {
       sorting,
       columnVisibility,

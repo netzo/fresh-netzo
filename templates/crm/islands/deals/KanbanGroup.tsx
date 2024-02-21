@@ -1,48 +1,25 @@
-import { useComputed } from "@preact/signals";
-import type { ComponentChildren } from "preact";
 // adapted from https://github.com/Georgegriff/react-dnd-kit-tailwind-shadcn-ui/blob/main/src/components/BoardGroup.tsx
-import {
-  type UniqueIdentifier,
-  useDndContext,
-} from "../../../deps/@dnd-kit/core.ts";
-import {
-  SortableContext,
-  useSortable,
-} from "../../../deps/@dnd-kit/sortable.ts";
-import { CSS } from "../../../deps/@dnd-kit/utilities.ts";
-import { cva } from "../../../deps/class-variance-authority.ts";
-import type { BadgeProps } from "../../badge.tsx";
-import { Button } from "../../button.tsx";
-import { Card, CardContent, CardHeader } from "../../card.tsx";
-import { ScrollArea, ScrollBar } from "../../scroll-area.tsx";
-import { cn } from "../../utils.ts";
-import { KanbanCard } from "./kanban-card.tsx";
-import type { Item, KanbanProps } from "./kanban.tsx";
+import { useComputed } from "@preact/signals";
+import type {
+  GroupDragData,
+  KanbanGroupProps,
+} from "netzo/components/blocks/kanban/kanban.tsx";
+import { Button } from "netzo/components/button.tsx";
+import { Card, CardContent, CardHeader } from "netzo/components/card.tsx";
+import { ScrollArea } from "netzo/components/scroll-area.tsx";
+import { cn } from "netzo/components/utils.ts";
+import { type UniqueIdentifier } from "netzo/deps/@dnd-kit/core.ts";
+import { SortableContext, useSortable } from "netzo/deps/@dnd-kit/sortable.ts";
+import { CSS } from "netzo/deps/@dnd-kit/utilities.ts";
+import { cva } from "netzo/deps/class-variance-authority.ts";
 
-export type Group = {
-  id: UniqueIdentifier;
-  title: string;
-  icon?: JSX.IntrinsicElements["div"];
-  badge?: BadgeProps;
-};
-
-export type GroupType = "Group";
-
-export type GroupDragData = {
-  type: GroupType;
-  group: Group;
-};
-
-type KanbanGroupProps = {
-  group: Group;
-  items: Item[];
-  isOverlay?: boolean;
-  options: KanbanProps["options"];
-};
-
-export function KanbanGroup(
-  { group, items, isOverlay, options }: KanbanGroupProps,
-) {
+export function KanbanGroup({
+  group,
+  items,
+  isOverlay,
+  options,
+  renderCard,
+}: KanbanGroupProps) {
   const itemsIds = useComputed(() =>
     items.map((item) => item[options.fieldIds.id])
   );
@@ -128,42 +105,10 @@ export function KanbanGroup(
       <ScrollArea>
         <CardContent className="flex flex-col flex-grow gap-2 p-2">
           <SortableContext items={itemsIds.value}>
-            {items.map((item) => (
-              <KanbanCard
-                key={item[options.fieldIds.id]}
-                item={item}
-                options={options}
-              />
-            ))}
+            {items.map((item, index) => renderCard({ item, options }))}
           </SortableContext>
         </CardContent>
       </ScrollArea>
     </Card>
-  );
-}
-
-export function BoardContainer({ children }: { children: ComponentChildren }) {
-  const dndContext = useDndContext();
-
-  const variations = cva("h-full px-2 md:px-0 flex lg:justify-center", {
-    variants: {
-      dragging: {
-        default: "snap-x snap-mandatory",
-        active: "snap-none",
-      },
-    },
-  });
-
-  return (
-    <ScrollArea
-      className={variations({
-        dragging: dndContext.active ? "active" : "default",
-      })}
-    >
-      <div className="flex flex-row items-center justify-center gap-4 h-full">
-        {children}
-      </div>
-      <ScrollBar orientation="horizontal" />
-    </ScrollArea>
   );
 }

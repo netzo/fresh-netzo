@@ -2,18 +2,70 @@ import {
   Kanban as _Kanban,
   type KanbanProps,
 } from "netzo/components/blocks/kanban/kanban.tsx";
-import {
-  type TableProps,
-  useTable,
-} from "netzo/components/blocks/table/table.tsx";
+import { useTable } from "netzo/components/blocks/table/table.tsx";
+import { I18N, type Deal } from "../../data/deals.ts";
+import { KanbanCard } from "./KanbanCard.tsx";
+import { KanbanGroup } from "./KanbanGroup.tsx";
 
-// NOTE: define columns in island (route to island function serialization unsupported)
-export const getColumns = (_props: TableProps): TableProps["columns"] => [];
+export const getKanbanOptions = (
+  data: Deal[],
+): KanbanProps<Deal, unknown>["options"] => {
+  return {
+    resource: "deals",
+    fieldIds: {
+      id: "id",
+      group: "status",
+      name: "title",
+      description: "description",
+      image: "image",
+    },
+    groups: [
+      {
+        id: "lead",
+        title: I18N.status.lead,
+        icon: { className: "i-mdi-circle-outline bg-lightgray-500" },
+        badge: { className: "bg-lightgray-500" },
+      },
+      {
+        id: "qualified",
+        title: I18N.status.qualified,
+        icon: { className: "i-mdi-circle-slice-2 bg-orange-500" },
+        badge: { className: "bg-orange-500" },
+      },
+      {
+        id: "negotiation",
+        title: I18N.status.negotiation,
+        icon: { className: "i-mdi-circle-slice-6 bg-yellow-500" },
+        badge: { className: "bg-yellow-500" },
+      },
+      {
+        id: "won",
+        title: I18N.status.won,
+        icon: { className: "i-mdi-check-circle bg-green-500" },
+        badge: { className: "bg-green-500" },
+      },
+      {
+        id: "lost",
+        title: I18N.status.lost,
+        icon: { className: "i-mdi-close-circle bg-red-500" },
+        badge: { className: "bg-red-500" },
+      },
+    ],
+    columns: [],
+  };
+};
 
-export function Kanban<TData, TValue>(props: KanbanProps<TData, TValue>) {
-  const columns = getColumns(props);
+export function Kanban(props: KanbanProps<Deal, unknown>) {
+  const options = getKanbanOptions(props.data);
 
-  const table = useTable<TData, TValue>({ ...props, columns });
+  const table = useTable<Deal, unknown>({ ...props, options });
 
-  return <_Kanban {...props} columns={columns} table={table} />;
+  return (
+    <_Kanban
+      options={options}
+      table={table}
+      renderGroup={(props) => <KanbanGroup {...props} />}
+      renderCard={(props) => <KanbanCard {...props} />}
+    />
+  );
 }

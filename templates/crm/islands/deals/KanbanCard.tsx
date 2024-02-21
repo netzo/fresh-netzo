@@ -1,26 +1,21 @@
 // adapted from https://github.com/Georgegriff/react-dnd-kit-tailwind-shadcn-ui/blob/main/src/components/TaskCard.tsx
-import { useSortable } from "../../../deps/@dnd-kit/sortable.ts";
-import { CSS } from "../../../deps/@dnd-kit/utilities.ts";
-import { cva } from "../../../deps/class-variance-authority.ts";
-import { Badge } from "../../badge.tsx";
-import { Button } from "../../button.tsx";
-import { Card, CardContent, CardHeader, CardTitle } from "../../card.tsx";
-import { cn } from "../../utils.ts";
-import { TableRowActions } from "../table/table.tsx";
-import type { Item, KanbanProps } from "./kanban.tsx";
-
-type KanbanCardProps = {
-  item: Item;
-  isOverlay?: boolean;
-  options: KanbanProps["options"];
-};
-
-export type ItemType = "Item";
-
-export type ItemDragData = {
-  type: ItemType;
-  item: Item;
-};
+import { Badge } from "netzo/components/badge.tsx";
+import {
+  CardDragData,
+  KanbanCardProps,
+} from "netzo/components/blocks/kanban/kanban.tsx";
+import { TableRowActions } from "netzo/components/blocks/table/table.tsx";
+import { Button } from "netzo/components/button.tsx";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "netzo/components/card.tsx";
+import { cn } from "netzo/components/utils.ts";
+import { useSortable } from "netzo/deps/@dnd-kit/sortable.ts";
+import { CSS } from "netzo/deps/@dnd-kit/utilities.ts";
+import { cva } from "netzo/deps/class-variance-authority.ts";
 
 export function KanbanCard({ item, isOverlay, options }: KanbanCardProps) {
   const {
@@ -35,7 +30,7 @@ export function KanbanCard({ item, isOverlay, options }: KanbanCardProps) {
     data: {
       type: "Item",
       item,
-    } satisfies ItemDragData,
+    } satisfies CardDragData,
     attributes: {
       roleDescription: "Item",
     },
@@ -97,13 +92,23 @@ export function KanbanCard({ item, isOverlay, options }: KanbanCardProps) {
       </CardHeader>
       <CardContent className="flex flex-col gap-2 px-4 pt-2 pb-4 text-xs whitespace-pre-wrap text-secondary-foreground">
         {item?.[options.fieldIds.description]}
-        <Badge
-          variant={"outline"}
-          {...badge}
-          className={cn("mr-auto font-medium", badge?.className)}
-        >
-          {item?.[options.fieldIds.group]}
-        </Badge>
+        <div className="flex items-center justify-between w-full">
+          <Badge
+            variant={"outline"}
+            {...badge}
+            className={cn("font-medium", badge?.className)}
+          >
+            {item?.[options.fieldIds.group]}
+          </Badge>
+          <span className="font-medium">
+            {Number(item?.amount).toLocaleString("en-US", {
+              style: "currency",
+              currency: item?.currencyCode || "USD",
+              maximumFractionDigits: 2,
+              minimumFractionDigits: 2,
+            })}
+          </span>
+        </div>
       </CardContent>
     </Card>
   );

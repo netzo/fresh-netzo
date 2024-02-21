@@ -1,9 +1,12 @@
 export const FILEPATH = "../data/db.entries.json";
 
+export const ID_FIELD = "id" as const;
+
 export const RESOURCES = {
   accounts: 25,
   contacts: 25,
   deals: 25,
+  notes: 25 * 3, // 3: accounts, contacts and deals
   quotes: 25,
   users: 10,
 } as const;
@@ -18,7 +21,7 @@ export const dbMock = async () => {
     data[resource] = mockAll
       ? await mockAll() // (optional) generate all entries at once
       : Array.from({ length }, () => mock()).map((entry) => ({
-        key: [resource, entry.id],
+        key: [resource, entry[ID_FIELD]],
         value: entry,
       }));
 
@@ -27,7 +30,7 @@ export const dbMock = async () => {
       data[resource].forEach((entry, index) => {
         // const index = Math.floor(Math.random() * data["accounts"].length);
         const account = data["accounts"][index];
-        entry.value.accountId = account.value.id;
+        entry.value.accountId = account.value[ID_FIELD];
       });
     }
   }

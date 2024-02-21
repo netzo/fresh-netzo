@@ -65,7 +65,7 @@ export default defineApp<NetzoState>((req, ctx) => {
         )}
       >
         {!mustAuth && <Layout.Nav {...NAV} />}
-        <div className="flex flex-col w-full h-full overflow-x-hidden">
+        <div className="flex flex-col w-full h-full overflow-hidden">
           <Layout.Header {...HEADER} />
 
           <main className="flex-1">
