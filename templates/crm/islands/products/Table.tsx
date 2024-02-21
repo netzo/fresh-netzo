@@ -8,10 +8,10 @@ import { Gallery } from "netzo/components/blocks/table/table.gallery.tsx";
 import {
   TableColumnHeader,
   TablePagination,
+  type TableProps,
   TableRowActions,
   TableToolbar,
   useTable,
-  type TableProps,
 } from "netzo/components/blocks/table/table.tsx";
 import { IconCopy } from "netzo/components/icon-copy.tsx";
 import { I18N, type Product } from "../../data/products.ts";

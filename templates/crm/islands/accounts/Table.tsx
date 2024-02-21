@@ -5,13 +5,13 @@ import { Grid } from "netzo/components/blocks/table/table.grid.tsx";
 import {
   TableColumnHeader,
   TablePagination,
+  type TableProps,
   TableRowActions,
   TableToolbar,
   useTable,
-  type TableProps,
 } from "netzo/components/blocks/table/table.tsx";
 import { IconCopy } from "netzo/components/icon-copy.tsx";
-import { I18N, accountSchema, type Account } from "../../data/accounts.ts";
+import { type Account, accountSchema, I18N } from "../../data/accounts.ts";
 
 // NOTE: define columns in island (route to island function serialization unsupported)
 export const getColumns = ({ options }: TableProps): TableProps["columns"] => [

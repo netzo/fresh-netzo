@@ -48,8 +48,16 @@ export function Gallery<TData, TValue>(
             ).map((cell) => (
               <div key={cell.column.id}>
                 <div className="mb-1 flex justify-between text-sm">
-                  <Header className="text-muted-secondary !truncate" id={cell.column.id} row={row} />
-                  <Cell className="flex-1 text-right !truncate" id={cell.column.id} row={row} />
+                  <Header
+                    className="text-muted-secondary !truncate"
+                    id={cell.column.id}
+                    row={row}
+                  />
+                  <Cell
+                    className="flex-1 text-right !truncate"
+                    id={cell.column.id}
+                    row={row}
+                  />
                 </div>
               </div>
             ))}
