@@ -11,20 +11,10 @@ export type FooterProps = JSX.IntrinsicElements["footer"] & {
   children?: ComponentChildren;
 };
 
-export const Footer = ({ className, ui = {}, ...props }: FooterProps) => {
-  const { root } = useUI(ui, {
-    root: {
-      ...props,
-      className: cn(
-        "sticky bottom-0 w-full flex items-center justify-center md:justify-between bg-background p-3 text-muted-foreground",
-        className,
-      ),
-    },
-  });
-
+export const NetzoLogo = () => {
   const { isDarkMode } = useDarkMode();
 
-  const NetzoLogo = () => (
+  return (
     <a href="https://netzo.io/" target="_blank" className="mx-auto">
       <img
         src={`https://netzo.io/logos/built-with-netzo-${
@@ -35,6 +25,18 @@ export const Footer = ({ className, ui = {}, ...props }: FooterProps) => {
       />
     </a>
   );
+};
+
+export const Footer = ({ className, ui = {}, ...props }: FooterProps) => {
+  const { root } = useUI(ui, {
+    root: {
+      ...props,
+      className: cn(
+        "sticky bottom-0 w-full flex items-center justify-center md:justify-between bg-background p-3 text-muted-foreground",
+        className,
+      ),
+    },
+  });
 
   return (
     <footer {...root}>

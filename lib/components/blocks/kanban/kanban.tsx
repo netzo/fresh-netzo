@@ -1,5 +1,7 @@
 // adapted from https://github.com/Georgegriff/react-dnd-kit-tailwind-shadcn-ui/blob/main/src/components/kanban.tsx
 import { useComputed, useSignal } from "@preact/signals";
+import { BadgeProps } from "netzo/components/badge.tsx";
+import type { ComponentChildren } from "preact";
 import { createPortal } from "preact/compat";
 import {
   Announcements,
@@ -17,19 +19,73 @@ import {
 } from "../../../deps/@dnd-kit/core.ts";
 import { arrayMove, SortableContext } from "../../../deps/@dnd-kit/sortable.ts";
 import type { Table, TableProps } from "../table/use-table.ts";
-import { KanbanCard } from "./kanban-card.tsx";
-import { BoardContainer, type Group, KanbanGroup } from "./kanban-group.tsx";
+import { KanbanContainer } from "./kanban-container.tsx";
 import { coordinateGetter } from "./multiple-containers-keyboard-preset.ts";
 import { hasDraggableData } from "./utils.ts";
+
+// kanban-group:
+
+export type Group = {
+  id: UniqueIdentifier;
+  title: string;
+  icon?: JSX.IntrinsicElements["div"];
+  badge?: BadgeProps;
+};
+
+export type GroupDragData = {
+  type: "Group";
+  group: Group;
+};
+
+export type KanbanGroupProps<
+  TData = unknown,
+  TValue = unknown,
+> = TableProps<TData, TValue> & {
+  group: Group;
+  items: TData[];
+  isOverlay?: boolean;
+  options: KanbanProps["options"];
+};
+
+// kanban-card:
+
+export type CardDragData = {
+  type: "Item";
+  item: TData;
+};
+
+export type KanbanCardProps<
+  TData = unknown,
+  TValue = unknown,
+> = TableProps<TData, TValue> & {
+  table: Table<TData>;
+  item: TData;
+  isOverlay?: boolean;
+  options: KanbanProps["options"];
+};
+
+// kanban:
 
 export type KanbanProps<
   TData = unknown,
   TValue = unknown,
-> = TableProps<TData, TValue> & { table: Table<TData> };
+> = TableProps<TData, TValue> & {
+  table: Table<TData>;
+  groups: {
+    id: string;
+    title: string;
+    icon?: JSX.IntrinsicElements["i"];
+    badge?: BadgeProps;
+  }[];
+  renderGroup?: (props: KanbanGroupProps<TData, TValue>) => ComponentChildren;
+  renderCard?: (props: KanbanCardProps<TData, TValue>) => ComponentChildren;
+};
 
 export function Kanban<TData, TValue>({
   table,
   options,
+  renderGroup = (props) => JSON.stringify(props),
+  renderCard = (props) => JSON.stringify(props),
 }: KanbanProps<TData, TValue>) {
   const data = table.getFilteredRowModel().rows.map((row) => row.original);
 
@@ -194,42 +250,38 @@ export function Kanban<TData, TValue>({
       onDragEnd={onDragEnd}
       onDragOver={onDragOver}
     >
-      <BoardContainer>
+      <KanbanContainer>
         <SortableContext items={groupsId.value}>
-          {groups.value.map((col) => (
-            <KanbanGroup
-              key={col[options.fieldIds.id]}
-              group={col}
-              items={items.value.filter((item) =>
-                item[options.fieldIds.group] === col[options.fieldIds.id]
-              )}
-              options={options}
-            />
-          ))}
+          {groups.value.map((group, index) =>
+            renderGroup({
+              key: `group-${index}`,
+              group,
+              items: items.value.filter((item) =>
+                item[options.fieldIds.group] === group[options.fieldIds.id]
+              ),
+              options,
+              renderCard,
+            })
+          )}
         </SortableContext>
-      </BoardContainer>
+      </KanbanContainer>
 
       {"document" in window &&
         createPortal(
           <DragOverlay>
-            {activeGroup.value && (
-              <KanbanGroup
-                isOverlay
-                group={activeGroup.value}
-                items={items.value.filter(
-                  (item) =>
-                    item[options.fieldIds.group] ===
-                      activeGroup.value[options.fieldIds.id],
-                )}
-              />
-            )}
-            {activeItem.value && (
-              <KanbanCard
-                item={activeItem.value}
-                options={options}
-                isOverlay
-              />
-            )}
+            {activeGroup.value && renderGroup({
+              group: activeGroup.value,
+              items: items.value.filter(
+                (item) =>
+                  item[options.fieldIds.group] ===
+                    activeGroup.value[options.fieldIds.id],
+              ),
+              isOverlay: true,
+              options,
+              renderCard,
+            })}
+            {activeItem.value &&
+              renderCard({ item: activeItem.value, options, isOverlay: true })}
           </DragOverlay>,
           document.body,
         )}

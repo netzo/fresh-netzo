@@ -3,9 +3,8 @@ import type { Account } from "../data/accounts.ts";
 import type { Contact } from "../data/contacts.ts";
 import type { Deal } from "../data/deals.ts";
 import type { Quote } from "../data/quotes.ts";
-import type { Transaction } from "../data/transactions.ts";
 import type { User } from "../data/users.ts";
-import { Dashboard } from "../islands/Dashboard.tsx";
+import { Dashboard } from "../islands/dashboard/Dashboard.tsx";
 import { $client } from "../netzo.config.ts";
 
 export default defineRoute(async (req, ctx) => {
@@ -14,11 +13,8 @@ export default defineRoute(async (req, ctx) => {
     $client.contacts.find() as Contact[],
     $client.deals.find() as Deal[],
     $client.quotes.find() as Quote[],
-    $client.transactions.find() as Transaction[],
     $client.users.find() as User[],
   ]);
-
-  // if (!data) return ctx.renderNotFound();
 
   return <Dashboard data={data} />;
 });

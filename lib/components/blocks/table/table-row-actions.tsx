@@ -22,15 +22,16 @@ import type { TableProps } from "./use-table.ts";
 
 type TableRowActionsProps<TData> = TableProps<TData> & {
   row: Row<TData>;
+  resource: string;
+  idField?: string;
 };
 
 export function TableRowActions<TData>({
   table,
-  options,
+  resource,
+  idField = "id",
   row,
 }: TableRowActionsProps<TData>) {
-  const { resource, idField = "id" } = options;
-
   const onSelectOpen = () => {
     window.location.pathname = `/${resource}/${row.original[idField]}`;
   };

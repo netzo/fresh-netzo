@@ -9,6 +9,7 @@ export const contactSchema = z.object({
   accountId: z.string(),
   accountDomain: z.string(), // Will be used to match records from email domain, once associated with an account, it will be removed from here
   name: z.string(),
+  tags: z.array(z.string()),
   image: z.string().url(),
   position: z.string(),
   department: z.string(),
@@ -54,7 +55,8 @@ export const mock = (idField = "id") => ({
   accountId: ulid() as string,
   accountDomain: faker.internet.domainName(),
   name: faker.person.fullName(),
-  image: faker.image.avatar(),
+  tags: Array.from(Array(3)).map(() => faker.lorem.word()),
+  image: faker.image.avatarGitHub(),
   position: faker.person.jobTitle(),
   department: faker.person.jobArea(),
   phones: [
@@ -70,11 +72,11 @@ export const mock = (idField = "id") => ({
   emails: [
     {
       name: "Work",
-      value: faker.internet.email(),
+      value: faker.internet.email().toLowerCase(),
     },
     {
       name: "Personal",
-      value: faker.internet.email(),
+      value: faker.internet.email().toLowerCase(),
     },
   ],
   links: [
@@ -125,6 +127,7 @@ export const I18N = {
   accountId: "Account ID",
   accountDomain: "Account Domain",
   name: "Full Name",
+  tags: "Tags",
   image: "Image",
   position: "Position",
   department: "Department",
