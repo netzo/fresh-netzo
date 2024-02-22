@@ -5,6 +5,7 @@ import { Separator } from "../separator.tsx";
 import { Sheet, SheetContent, SheetTrigger } from "../sheet.tsx";
 import { cn, useUI } from "../utils.ts";
 import { NetzoLogo } from "./footer.tsx";
+import { HeaderDarkMode } from "./header.dark-mode.tsx";
 
 export type NavItem = Array<
   | { text: string } // header
@@ -208,7 +209,8 @@ function NavBase({ className, ui = {}, ...props }: NavProps) {
         )}
       </nav>
 
-      <footer className="w-full flex items-center justify-center p-3 b-t-1">
+      <footer className="w-full flex items-center justify-between p-3 b-t-1">
+        <HeaderDarkMode />
         <NetzoLogo />
       </footer>
     </div>

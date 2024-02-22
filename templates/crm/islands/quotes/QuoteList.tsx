@@ -4,14 +4,14 @@ import { cn } from "netzo/components/utils.ts";
 import formatDistanceToNow from "npm:date-fns/formatDistanceToNow";
 import type { ComponentProps } from "preact";
 import { useState } from "preact/hooks";
-import { Note } from "./Notes.tsx";
+import { Quote } from "../../data/quotes.ts";
 
-interface NoteListProps {
-  items: Note[];
+interface QuoteListProps {
+  items: Quote[];
 }
 
-export function NoteList({ items }: NoteListProps) {
-  const [note, setNote] = useState(items[0]);
+export function QuoteList({ items }: QuoteListProps) {
+  const [quote, setQuote] = useState(items[0]);
 
   return (
     <ScrollArea className="h-screen">
@@ -21,11 +21,11 @@ export function NoteList({ items }: NoteListProps) {
             key={item.id}
             className={cn(
               "flex flex-col items-start gap-2 rounded-lg border p-3 text-left text-sm transition-all hover:bg-accent",
-              note.selected === item.id && "bg-muted",
+              quote.selected === item.id && "bg-muted",
             )}
             onClick={() =>
-              setNote({
-                ...note,
+              setQuote({
+                ...quote,
                 selected: item.id,
               })}
           >
@@ -40,7 +40,7 @@ export function NoteList({ items }: NoteListProps) {
                 <div
                   className={cn(
                     "ml-auto text-xs",
-                    note.selected === item.id
+                    quote.selected === item.id
                       ? "text-foreground"
                       : "text-muted-foreground",
                   )}

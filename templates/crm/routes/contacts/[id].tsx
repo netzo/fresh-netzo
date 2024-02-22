@@ -6,7 +6,7 @@ import { $client } from "../../netzo.config.ts";
 
 export default defineRoute(async (req, ctx) => {
   const { id } = ctx.params;
-  const data = (id === "new" ? {} : await $client.contacts.get(id)) as TData;
+  const data = await $client.contacts.get(id) as TData;
 
   return (
     <div className="overflow-auto">
@@ -15,14 +15,14 @@ export default defineRoute(async (req, ctx) => {
       <div className="p-10 max-w-500px">
         {id === "new"
           ? (
-            <Contact.CardFormMain
+            <Contact.CardFormGeneral
               data={data}
               method="POST"
               action={`/api/contacts`}
             />
           )
           : (
-            <Contact.CardFormMain
+            <Contact.CardFormGeneral
               data={data}
               method="PATCH"
               action={`/api/contacts/${id}`}

@@ -5,15 +5,15 @@ import { type NetzoState } from "netzo/mod.ts";
 import { useAuth } from "netzo/plugins/auth/plugin.ts";
 import * as Layout from "../islands/mod.ts";
 
+const HEAD = {
+  title: "Company CRM",
+  description: "A starter template for a custom CRM app",
+  favicon: "/favicon.svg",
+  image: "/cover.svg",
+};
+
 export default defineApp<NetzoState>((req, ctx) => {
   const { sessionId, sessionUser, mustAuth } = useAuth(ctx);
-
-  const HEAD = {
-    title: "Company CRM",
-    description: "A starter template for a custom CRM app",
-    favicon: "/favicon.svg",
-    image: "/cover.svg",
-  };
 
   const HEADER = {
     title: HEAD.title,

@@ -23,10 +23,5 @@
   "[jsonc]": {
     "editor.defaultFormatter": "denoland.vscode-deno"
   },
-  "editor.defaultFormatter": "denoland.vscode-deno",
-  "editor.formatOnSave": true,
-  "editor.codeActionsOnSave": {
-    "source.organizeImports": "explicit",
-    "source.fixAll": "explicit"
-  }
+  "editor.formatOnSave": true
 }

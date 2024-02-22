@@ -13,10 +13,18 @@ import {
   CardHeader,
   CardTitle,
 } from "netzo/components/card.tsx";
+import { Separator } from "netzo/components/separator.tsx";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "netzo/components/tabs.tsx";
+import type { ComponentChildren } from "preact";
 import { Account, accountSchema } from "../data/accounts.ts";
 // import { I18N } from "../../data/accounts.ts";
 
-export function Header(props: { data: Account }) {
+export function Header(props: { id: string; data: Account }) {
   const { name = "", description, tags, image } = props.data;
   const [first = "", last = ""] = name.split(" ");
   const initials = `${first[0]}${last[0]}`?.toUpperCase();
@@ -26,6 +34,14 @@ export function Header(props: { data: Account }) {
       await fetch(`/api/accounts/${props.data.id}`, { method: "DELETE" });
       window.location.href = "/accounts";
     }
+  };
+
+  const onClickSave = async () => {
+    await fetch(`/api/accounts/${props.data.id}`, {
+      method: "PATCH",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ name: "Updated Name" }),
+    });
   };
 
   return (
@@ -52,38 +68,71 @@ export function Header(props: { data: Account }) {
         </div>
       </div>
       <div className="flex flex-row align-center gap-4">
-        <Button variant="destructive">Delete</Button>
+        <Button variant="destructive" onClick={onClickDelete}>Delete</Button>
+        <Button variant="default" onClick={onClickSave}>Save</Button>
       </div>
     </header>
   );
 }
 
-export function CardFormMain(props: {
-  data: Account;
-  action: string;
-  method: "POST" | "PATCH";
+export function Content(props: { id: string; data: Account }) {
+  return (
+    <Tabs defaultValue="general">
+      <TabsList variant="outline">
+        <TabsTrigger value="general" variant="outline">General</TabsTrigger>
+        <TabsTrigger value="notes" variant="outline">Notes</TabsTrigger>
+      </TabsList>
+      <Separator />
+      <TabsContent value="general">
+        <CardForm title="Update Account">
+          <Form
+            values={props.data}
+            formSchema={accountSchema.omit({
+              id: true,
+              updatedAt: true,
+              createdAt: true,
+            })}
+            onSubmit={createOnSubmit("PATCH", `/api/accounts/${props.id}`)}
+          />
+        </CardForm>
+      </TabsContent>
+      <TabsContent value="notes">
+        <CardForm title="Update Account">
+          <Form
+            values={props.data}
+            formSchema={accountSchema.pick({ notes: true })}
+            onSubmit={createOnSubmit("PATCH", `/api/accounts/${props.id}`)}
+          />
+        </CardForm>
+        {/* <Notes data={props.data.notes} /> */}
+      </TabsContent>
+      <TabsContent value="notes">
+        <CardForm title="Update Account">
+          <Form
+            values={props.data}
+            formSchema={accountSchema.pick({ notes: true })}
+            onSubmit={createOnSubmit("PATCH", `/api/accounts/${props.id}`)}
+          />
+        </CardForm>
+        {/* <Notes data={props.data.notes} /> */}
+      </TabsContent>
+    </Tabs>
+  );
+}
+
+export function CardForm(props: {
+  title: string;
+  children: ComponentChildren;
 }) {
   return (
     <Card className="border-none">
       <CardHeader>
         <CardTitle>
-          {props.method === "POST" ? "Create" : "Update"} Account
+          {props.title}
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <Form
-          values={props.data}
-          formSchema={accountSchema.omit({
-            id: true,
-            updatedAt: true,
-            createdAt: true,
-          })}
-          onSubmit={createOnSubmit(props.method, props.action)}
-        >
-          <Button type="submit" className="mt-8">
-            {props.method === "POST" ? "Create" : "Update"}
-          </Button>
-        </Form>
+        {props.children}
       </CardContent>
     </Card>
   );

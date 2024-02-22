@@ -85,9 +85,9 @@ export function KanbanCard({ item, isOverlay, options }: KanbanCardProps) {
           </CardTitle>
         </div>
         <TableRowActions
-          className={cn("h-auto p-1 -mr-2 text-secondary-foreground/50")}
           row={{ original: item }}
-          options={options}
+          resource="deals"
+          className={cn("h-auto p-1 -mr-2 text-secondary-foreground/50")}
         />
       </CardHeader>
       <CardContent className="flex flex-col gap-2 px-4 pt-2 pb-4 text-xs whitespace-pre-wrap text-secondary-foreground">

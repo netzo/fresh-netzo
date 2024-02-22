@@ -29,13 +29,13 @@ import addDays from "npm:date-fns/addDays";
 import addHours from "npm:date-fns/addHours";
 import format from "npm:date-fns/format";
 import nextSaturday from "npm:date-fns/nextSaturday";
-import { Note } from "./Notes.tsx";
+import { Quote } from "../../data/quotes.ts";
 
-interface NoteDisplayProps {
-  note: Note | null;
+interface QuoteDisplayProps {
+  quote: Quote | null;
 }
 
-export function NoteDisplay({ note }: NoteDisplayProps) {
+export function QuoteDisplay({ quote }: QuoteDisplayProps) {
   const today = new Date();
 
   return (
@@ -44,7 +44,7 @@ export function NoteDisplay({ note }: NoteDisplayProps) {
         <div className="flex items-center gap-2">
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button variant="ghost" size="icon" disabled={!note}>
+              <Button variant="ghost" size="icon" disabled={!quote}>
                 <i className="mdi-archive h-4 w-4" />
                 <span className="sr-only">Archive</span>
               </Button>
@@ -53,7 +53,7 @@ export function NoteDisplay({ note }: NoteDisplayProps) {
           </Tooltip>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button variant="ghost" size="icon" disabled={!note}>
+              <Button variant="ghost" size="icon" disabled={!quote}>
                 <i className="mdi-unarchive-remove h-4 w-4" />
                 <span className="sr-only">Move to junk</span>
               </Button>
@@ -62,7 +62,7 @@ export function NoteDisplay({ note }: NoteDisplayProps) {
           </Tooltip>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button variant="ghost" size="icon" disabled={!note}>
+              <Button variant="ghost" size="icon" disabled={!quote}>
                 <i className="mdi-delete h-4 w-4" />
                 <span className="sr-only">Move to trash</span>
               </Button>
@@ -74,7 +74,7 @@ export function NoteDisplay({ note }: NoteDisplayProps) {
             <Popover>
               <PopoverTrigger asChild>
                 <TooltipTrigger asChild>
-                  <Button variant="ghost" size="icon" disabled={!note}>
+                  <Button variant="ghost" size="icon" disabled={!quote}>
                     <i className="mdi-clock h-4 w-4" />
                     <span className="sr-only">Snooze</span>
                   </Button>
@@ -133,7 +133,7 @@ export function NoteDisplay({ note }: NoteDisplayProps) {
         <div className="ml-auto flex items-center gap-2">
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button variant="ghost" size="icon" disabled={!note}>
+              <Button variant="ghost" size="icon" disabled={!quote}>
                 <i className="mdi-reply h-4 w-4" />
                 <span className="sr-only">Reply</span>
               </Button>
@@ -142,7 +142,7 @@ export function NoteDisplay({ note }: NoteDisplayProps) {
           </Tooltip>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button variant="ghost" size="icon" disabled={!note}>
+              <Button variant="ghost" size="icon" disabled={!quote}>
                 <i className="mdi-reply-all h-4 w-4" />
                 <span className="sr-only">Reply all</span>
               </Button>
@@ -151,7 +151,7 @@ export function NoteDisplay({ note }: NoteDisplayProps) {
           </Tooltip>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button variant="ghost" size="icon" disabled={!note}>
+              <Button variant="ghost" size="icon" disabled={!quote}>
                 <i className="mdi-forward h-4 w-4" />
                 <span className="sr-only">Forward</span>
               </Button>
@@ -162,7 +162,7 @@ export function NoteDisplay({ note }: NoteDisplayProps) {
         <Separator orientation="vertical" className="mx-2 h-6" />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" size="icon" disabled={!note}>
+            <Button variant="ghost" size="icon" disabled={!quote}>
               <i className="mdi-dots-vertical h-4 w-4" />
               <span className="sr-only">More</span>
             </Button>
@@ -176,37 +176,38 @@ export function NoteDisplay({ note }: NoteDisplayProps) {
         </DropdownMenu>
       </div>
       <Separator />
-      {note
+      {quote
         ? (
           <div className="flex flex-1 flex-col">
             <div className="flex items-start p-4">
               <div className="flex items-start gap-4 text-sm">
                 <Avatar>
-                  <AvatarImage alt={note.name} />
+                  <AvatarImage alt={quote.name} />
                   <AvatarFallback>
-                    {note.name
+                    {quote.name
                       .split(" ")
                       .map((chunk) => chunk[0])
                       .join("")}
                   </AvatarFallback>
                 </Avatar>
                 <div className="grid gap-1">
-                  <div className="font-semibold">{note.name}</div>
-                  <div className="line-clamp-1 text-xs">{note.subject}</div>
+                  <div className="font-semibold">{quote.name}</div>
+                  <div className="line-clamp-1 text-xs">{quote.subject}</div>
                   <div className="line-clamp-1 text-xs">
-                    <span className="font-medium">Reply-To:</span> {note.enote}
+                    <span className="font-medium">Reply-To:</span>{" "}
+                    {quote.equote}
                   </div>
                 </div>
               </div>
-              {note.updatedAt && (
+              {quote.date && (
                 <div className="ml-auto text-xs text-muted-foreground">
-                  {format(new Date(note.updatedAt), "PPpp")}
+                  {format(new Date(quote.date), "PPpp")}
                 </div>
               )}
             </div>
             <Separator />
             <div className="flex-1 whitespace-pre-wrap p-4 text-sm">
-              {note.text}
+              {quote.text}
             </div>
             <Separator className="mt-auto" />
             <div className="p-4">
@@ -214,7 +215,7 @@ export function NoteDisplay({ note }: NoteDisplayProps) {
                 <div className="grid gap-4">
                   <Textarea
                     className="p-4"
-                    placeholder={`Reply ${note.name}...`}
+                    placeholder={`Reply ${quote.name}...`}
                   />
                   <div className="flex items-center">
                     <Label

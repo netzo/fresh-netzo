@@ -58,7 +58,7 @@ export function Header(props: { data: Contact }) {
   );
 }
 
-export function CardFormMain(props: {
+export function CardFormGeneral(props: {
   data: Contact;
   action: string;
   method: "POST" | "PATCH";

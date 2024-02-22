@@ -101,7 +101,7 @@ export const mock = (idField = "id") => ({
       value: faker.internet.url(),
     },
   ],
-  notes: Array.from(Array(3)).map(() => ({
+  notes: Array.from(Array(5)).map(() => ({
     text: faker.lorem.paragraph(),
     createdAt: faker.date.past().toISOString(),
     updatedAt: faker.date.recent().toISOString(),

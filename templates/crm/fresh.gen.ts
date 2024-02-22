@@ -6,14 +6,12 @@ import * as $_404 from "./routes/_404.tsx";
 import * as $_500 from "./routes/_500.tsx";
 import * as $_app from "./routes/_app.tsx";
 import * as $_layout from "./routes/_layout.tsx";
-import * as $accounts_id_ from "./routes/accounts/[id].tsx";
+import * as $accounts_id_index from "./routes/accounts/[id]/index.tsx";
 import * as $accounts_index from "./routes/accounts/index.tsx";
-import * as $accounts_notes from "./routes/accounts/notes.tsx";
 import * as $api_accounts from "./routes/api/accounts.ts";
 import * as $api_contacts from "./routes/api/contacts.ts";
 import * as $api_deals from "./routes/api/deals.ts";
 import * as $api_mod from "./routes/api/mod.ts";
-import * as $api_notes from "./routes/api/notes.ts";
 import * as $api_quotes from "./routes/api/quotes.ts";
 import * as $api_users from "./routes/api/users.ts";
 import * as $contacts_id_ from "./routes/contacts/[id].tsx";
@@ -36,6 +34,9 @@ import * as $notes_NoteDisplay from "./islands/notes/NoteDisplay.tsx";
 import * as $notes_NoteEditor from "./islands/notes/NoteEditor.tsx";
 import * as $notes_NoteList from "./islands/notes/NoteList.tsx";
 import * as $notes_Notes from "./islands/notes/Notes.tsx";
+import * as $quotes_QuoteDisplay from "./islands/quotes/QuoteDisplay.tsx";
+import * as $quotes_QuoteList from "./islands/quotes/QuoteList.tsx";
+import * as $quotes_quotes from "./islands/quotes/quotes.tsx";
 import { type Manifest } from "$fresh/server.ts";
 
 const manifest = {
@@ -44,14 +45,12 @@ const manifest = {
     "./routes/_500.tsx": $_500,
     "./routes/_app.tsx": $_app,
     "./routes/_layout.tsx": $_layout,
-    "./routes/accounts/[id].tsx": $accounts_id_,
+    "./routes/accounts/[id]/index.tsx": $accounts_id_index,
     "./routes/accounts/index.tsx": $accounts_index,
-    "./routes/accounts/notes.tsx": $accounts_notes,
     "./routes/api/accounts.ts": $api_accounts,
     "./routes/api/contacts.ts": $api_contacts,
     "./routes/api/deals.ts": $api_deals,
     "./routes/api/mod.ts": $api_mod,
-    "./routes/api/notes.ts": $api_notes,
     "./routes/api/quotes.ts": $api_quotes,
     "./routes/api/users.ts": $api_users,
     "./routes/contacts/[id].tsx": $contacts_id_,
@@ -76,6 +75,9 @@ const manifest = {
     "./islands/notes/NoteEditor.tsx": $notes_NoteEditor,
     "./islands/notes/NoteList.tsx": $notes_NoteList,
     "./islands/notes/Notes.tsx": $notes_Notes,
+    "./islands/quotes/QuoteDisplay.tsx": $quotes_QuoteDisplay,
+    "./islands/quotes/QuoteList.tsx": $quotes_QuoteList,
+    "./islands/quotes/quotes.tsx": $quotes_quotes,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;

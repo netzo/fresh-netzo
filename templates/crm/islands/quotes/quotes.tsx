@@ -13,23 +13,17 @@ import {
 } from "netzo/components/tabs.tsx";
 import { TooltipProvider } from "netzo/components/tooltip.tsx";
 import { useState } from "preact/hooks";
-import { NoteDisplay } from "./NoteDisplay.tsx";
-import { NoteEditor } from "./NoteEditor.tsx";
-import { NoteList } from "./NoteList.tsx";
+import { Quote } from "../../data/quotes.ts";
+import { QuoteDisplay } from "./QuoteDisplay.tsx";
+import { QuoteList } from "./QuoteList.tsx";
 
-export type Note = {
-  text: string;
-  createdAt: string;
-  updatedAt: string;
-};
-
-type NoteProps = {
-  data: Note[];
+interface QuoteProps {
+  data: Quote[];
   defaultLayout: number[] | undefined;
-};
+}
 
-export function Notes({ data, defaultLayout = [50, 50] }: NoteProps) {
-  const [note] = useState(data[0]);
+export function Quotes({ data, defaultLayout = [50, 50] }: QuoteProps) {
+  const [quote] = useState(data[0]);
 
   return (
     <TooltipProvider delayDuration={0}>
@@ -53,7 +47,7 @@ export function Notes({ data, defaultLayout = [50, 50] }: NoteProps) {
                   value="all"
                   className="text-zinc-600 dark:text-zinc-200"
                 >
-                  All note
+                  All quote
                 </TabsTrigger>
                 <TabsTrigger
                   value="unread"
@@ -73,18 +67,17 @@ export function Notes({ data, defaultLayout = [50, 50] }: NoteProps) {
               </form>
             </div>
             <TabsContent value="all" className="m-0">
-              <NoteList items={data} />
+              <QuoteList items={data} />
             </TabsContent>
             <TabsContent value="unread" className="m-0">
-              <NoteList items={data.filter(({ read }) => !read)} />
+              <QuoteList items={data.filter(({ read }) => !read)} />
             </TabsContent>
           </Tabs>
         </ResizablePanel>
         <ResizableHandle withHandle />
         <ResizablePanel defaultSize={defaultLayout[1]}>
-          <NoteEditor note={note} />
-          <NoteDisplay
-            note={data.find(({ id }) => id === note.selected) || null}
+          <QuoteDisplay
+            quote={data.find(({ id }) => id === quote.selected) || null}
           />
         </ResizablePanel>
       </ResizablePanelGroup>

@@ -53,7 +53,7 @@ export const mock = (idField = "id") => ({
   tags: Array.from(Array(3)).map(() => faker.lorem.word()),
   amount: faker.commerce.price({ min: 99, max: 99_999 }),
   currencyCode: "USD",
-  notes: Array.from(Array(3)).map(() => ({
+  notes: Array.from(Array(5)).map(() => ({
     text: faker.lorem.paragraph(),
     createdAt: faker.date.past().toISOString(),
     updatedAt: faker.date.recent().toISOString(),

@@ -6,7 +6,6 @@ export const RESOURCES = {
   accounts: 25,
   contacts: 25,
   deals: 25,
-  notes: 25 * 3, // 3: accounts, contacts and deals
   quotes: 25,
   users: 5,
 } as const;
