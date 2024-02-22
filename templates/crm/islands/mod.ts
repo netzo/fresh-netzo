@@ -1,6 +1,3 @@
-// NOTE: re-export specific components from islands/ for reactivity
-export * from "netzo/components/layout/mod.ts";
-
 export const toDateTime = (dateTime: string) =>
   new Date(dateTime).toLocaleString("en-GB", {
     year: "numeric",

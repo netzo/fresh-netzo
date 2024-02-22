@@ -1,9 +1,9 @@
 import { useEffect } from "preact/hooks";
-import { useDarkMode } from "../../deps/usehooks-ts.ts";
-import { Button } from "../button.tsx";
+import { useDarkMode } from "../deps/usehooks-ts.ts";
 import { cn } from "../utils.ts";
+import { Button } from "./button.tsx";
 
-export function HeaderDarkMode() {
+export function ButtonDarkMode() {
   const { isDarkMode, toggle } = useDarkMode();
   useEffect(() => {
     document.documentElement.classList.toggle("dark", isDarkMode);

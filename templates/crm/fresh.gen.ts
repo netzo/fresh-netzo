@@ -30,6 +30,7 @@ import * as $deals_Kanban from "./islands/deals/Kanban.tsx";
 import * as $deals_KanbanCard from "./islands/deals/KanbanCard.tsx";
 import * as $deals_KanbanGroup from "./islands/deals/KanbanGroup.tsx";
 import * as $mod from "./islands/mod.ts";
+import * as $nav from "./islands/nav.tsx";
 import * as $notes_NoteDisplay from "./islands/notes/NoteDisplay.tsx";
 import * as $notes_NoteEditor from "./islands/notes/NoteEditor.tsx";
 import * as $notes_NoteList from "./islands/notes/NoteList.tsx";
@@ -71,6 +72,7 @@ const manifest = {
     "./islands/deals/KanbanCard.tsx": $deals_KanbanCard,
     "./islands/deals/KanbanGroup.tsx": $deals_KanbanGroup,
     "./islands/mod.ts": $mod,
+    "./islands/nav.tsx": $nav,
     "./islands/notes/NoteDisplay.tsx": $notes_NoteDisplay,
     "./islands/notes/NoteEditor.tsx": $notes_NoteEditor,
     "./islands/notes/NoteList.tsx": $notes_NoteList,

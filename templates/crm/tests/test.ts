@@ -9,7 +9,7 @@ Deno.test("index test", async () => {
       doc.querySelector(
         "body > div.flex.flex-col.w-full.h-full.overflow-x-hidden > header > div.flex.items-center.gap-2.\!my-auto > h1",
       )?.textContent,
-      "Company CRM",
+      "Netzo CRM",
     );
   });
 });

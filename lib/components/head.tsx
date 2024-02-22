@@ -1,5 +1,5 @@
 import type { ComponentChildren } from "preact";
-import { Head as _Head } from "../../deps/$fresh/runtime.ts";
+import { Head as _Head } from "../deps/$fresh/runtime.ts";
 
 export type HeadProps = {
   /** A short title for the app to be used in head of the page. */
