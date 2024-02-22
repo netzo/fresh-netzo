@@ -1,3 +1,4 @@
+import { Button } from "netzo/components/button.tsx";
 import {
   Card,
   CardContent,
@@ -5,13 +6,26 @@ import {
   CardHeader,
   CardTitle,
 } from "netzo/components/card.tsx";
-import { Overview } from "../components/dashboard/overview.tsx";
-import { RecentSales } from "../components/dashboard/recent-sales.tsx";
+import { Overview } from "../../components/dashboard/overview.tsx";
+import { RecentSales } from "../../components/dashboard/recent-sales.tsx";
+import { UserSelect } from "./UserSelect.tsx";
 
 export function Dashboard(props: { data: unknown[][] }) {
   const [accounts, contacts, deals, quotes, users] = props.data;
+
   return (
     <div className="p-4 space-y-4">
+      <div className="flex items-center">
+        <UserSelect users={users} />
+        {/* <MainNav className="mx-6" /> */}
+        <div className="ml-auto flex items-center space-x-4">
+          <Button onClick={() => window.print()}>
+            <i className="mdi-printer w-4 h-4 mr-2" />
+            Print PDF
+          </Button>
+        </div>
+      </div>
+
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">

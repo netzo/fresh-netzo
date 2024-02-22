@@ -14,6 +14,7 @@ export const accountSchema = z.object({
     "other",
   ]),
   name: z.string(),
+  tags: z.array(z.string()),
   legalName: z.string(),
   emails: z.array(z.object({
     name: z.string(),
@@ -83,15 +84,6 @@ export const accountSchema = z.object({
     }),
     other: z.string(),
   })),
-  defaults: z.object({
-    expensesAccount: z.number(),
-    language: z.string(),
-    currencyCode: z.string(),
-    paymentMethod: z.string(),
-    paymentForm: z.string(),
-    paymentDeadline: z.string(),
-    paymentTerms: z.string(),
-  }),
   createdAt: z.string().datetime(),
   updatedAt: z.string().datetime(),
 });
@@ -112,6 +104,7 @@ export const mock = (idField = "id") => ({
     "other",
   ]),
   name: faker.company.name(),
+  tags: Array.from(Array(3)).map(() => faker.lorem.word()),
   legalName: faker.company.name(),
   emails: [
     {
@@ -225,15 +218,6 @@ export const mock = (idField = "id") => ({
       other: faker.lorem.words(),
     },
   ],
-  defaults: {
-    expensesAccount: faker.finance.accountNumber(),
-    language: faker.location.countryCode(),
-    currencyCode: "USD",
-    paymentMethod: faker.lorem.word(),
-    paymentForm: faker.lorem.word(),
-    paymentDeadline: faker.lorem.word(),
-    paymentTerms: faker.lorem.word(),
-  },
   createdAt: faker.date.past().toISOString(),
   updatedAt: faker.date.recent().toISOString(),
 });
@@ -244,6 +228,7 @@ export const I18N = {
   "id": "Account ID",
   "type": "Type",
   "name": "Name",
+  "tags": "Tags",
   "legalName": "Legal Name",
   "email": "Emails",
   "phones": "Phones",
@@ -320,15 +305,6 @@ export const I18N = {
       "info": "Info",
     },
   ],
-  "defaults": {
-    "expensesAccount": "Expenses Account",
-    "language": "Language",
-    "currency": "Currency",
-    "paymentMethod": "Payment Method",
-    "paymentForm": "Payment Form",
-    "paymentDeadline": "Payment Deadline",
-    "paymentTerms": "Payment Terms",
-  },
   "createdAt": "Created At",
   "updatedAt": "Updated At",
 };

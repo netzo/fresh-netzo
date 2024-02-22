@@ -3,7 +3,7 @@ import {
   type KanbanProps,
 } from "netzo/components/blocks/kanban/kanban.tsx";
 import { useTable } from "netzo/components/blocks/table/table.tsx";
-import { I18N, type Deal } from "../../data/deals.ts";
+import { type Deal, I18N } from "../../data/deals.ts";
 import { KanbanCard } from "./KanbanCard.tsx";
 import { KanbanGroup } from "./KanbanGroup.tsx";
 

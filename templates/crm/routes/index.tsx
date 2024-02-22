@@ -4,7 +4,7 @@ import type { Contact } from "../data/contacts.ts";
 import type { Deal } from "../data/deals.ts";
 import type { Quote } from "../data/quotes.ts";
 import type { User } from "../data/users.ts";
-import { Dashboard } from "../islands/Dashboard.tsx";
+import { Dashboard } from "../islands/dashboard/Dashboard.tsx";
 import { $client } from "../netzo.config.ts";
 
 export default defineRoute(async (req, ctx) => {

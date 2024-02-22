@@ -1,6 +1,6 @@
 import { defineRoute } from "$fresh/server.ts";
 import { type Contact } from "../../data/contacts.ts";
-import { Table } from "../../islands/contacts/Table.tsx";
+import { Table } from "../../islands/contacts.tsx";
 import { $client } from "../../netzo.config.ts";
 
 // NOTE: cannot pass functions as props from routes (server) to islands (client)

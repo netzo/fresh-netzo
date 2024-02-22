@@ -8,7 +8,7 @@ export const RESOURCES = {
   deals: 25,
   notes: 25 * 3, // 3: accounts, contacts and deals
   quotes: 25,
-  users: 10,
+  users: 5,
 } as const;
 
 export const dbMock = async () => {
@@ -24,13 +24,32 @@ export const dbMock = async () => {
         key: [resource, entry[ID_FIELD]],
         value: entry,
       }));
+  }
 
+  for (const [resource, _entries] of Object.entries(data)) {
     // [optional] modify entries e.g. to link with other resources
     if (resource === "contacts") {
       data[resource].forEach((entry, index) => {
-        // const index = Math.floor(Math.random() * data["accounts"].length);
+        // associate random account from contact.accountId
         const account = data["accounts"][index];
         entry.value.accountId = account.value[ID_FIELD];
+      });
+    }
+    if (resource === "deals") {
+      data[resource].forEach((entry, _index) => {
+        // associate random user from deal.userId
+        const indexUsers = Math.floor(Math.random() * data["users"].length);
+        entry.value.userId = data["users"][indexUsers].value[ID_FIELD];
+        // associate random accounts from deal.accountIds
+        entry.value.accountIds = entry.value.accountIds.map(() => {
+          const index = Math.floor(Math.random() * data["accounts"].length);
+          return data["accounts"][index].value[ID_FIELD];
+        });
+        // associate random contacts from deal.contactIds
+        entry.value.contactIds = entry.value.contactIds.map(() => {
+          const index = Math.floor(Math.random() * data["contacts"].length);
+          return data["contacts"][index].value[ID_FIELD];
+        });
       });
     }
   }

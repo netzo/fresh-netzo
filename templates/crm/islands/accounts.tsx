@@ -1,4 +1,8 @@
-import { Avatar, AvatarFallback } from "netzo/components/avatar.tsx";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "netzo/components/avatar.tsx";
 import { Badge } from "netzo/components/badge.tsx";
 import { Grid } from "netzo/components/blocks/table/table.grid.tsx";
 import {
@@ -10,8 +14,8 @@ import {
   useTable,
 } from "netzo/components/blocks/table/table.tsx";
 import { IconCopy } from "netzo/components/icon-copy.tsx";
-import { type Account, I18N } from "../../data/accounts.ts";
-import { toDateTime } from "../mod.ts";
+import { type Account, I18N } from "../data/accounts.ts";
+import { toDateTime } from "./mod.ts";
 
 export const getTableOptions = (
   data: Account[],
@@ -40,13 +44,13 @@ export const getTableOptions = (
         accessorKey: "name",
         header: (props) => <TableColumnHeader {...props} title={I18N.name} />,
         cell: ({ row }) => {
-          const { id, name = "" /*avatar*/ } = row.original;
+          const { id, name = "", image } = row.original;
           const [first = "", last = ""] = name.split(" ");
           const initials = `${first[0]}${last[0]}`?.toUpperCase();
           return (
             <div className="flex items-center py-1">
               <Avatar className="h-9 w-9 mr-3">
-                {/* <AvatarImage src={avatar} /> */}
+                <AvatarImage src={image} />
                 <AvatarFallback>{initials}</AvatarFallback>
               </Avatar>
               <a

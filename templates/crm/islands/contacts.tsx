@@ -13,8 +13,8 @@ import {
   useTable,
 } from "netzo/components/blocks/table/table.tsx";
 import { IconCopy } from "netzo/components/icon-copy.tsx";
-import { type Contact, I18N } from "../../data/contacts.ts";
-import { toDateTime } from "../mod.ts";
+import { type Contact, I18N } from "../data/contacts.ts";
+import { toDateTime } from "./mod.ts";
 
 export const getTableOptions = (
   data: Contact[],
@@ -131,7 +131,7 @@ export const getTableOptions = (
   };
 };
 
-export function Table(props: TableProps<Contact, unknown>) {
+export function Table(props: { data: Contact[] }) {
   const options = getTableOptions(props.data);
 
   const table = useTable<Contact, unknown>({ ...props, options });

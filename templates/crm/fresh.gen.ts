@@ -2,24 +2,6 @@
 // This file SHOULD be checked into source version control.
 // This file is automatically updated during development when running `dev.ts`.
 
-import { type Manifest } from "$fresh/server.ts";
-import * as $Dashboard from "./islands/Dashboard.tsx";
-import * as $accounts_Form from "./islands/accounts/Form.tsx";
-import * as $accounts_Table from "./islands/accounts/Table.tsx";
-import * as $contacts_Form from "./islands/contacts/Form.tsx";
-import * as $contacts_Table from "./islands/contacts/Table.tsx";
-import * as $deals_Form from "./islands/deals/Form.tsx";
-import * as $deals_Kanban from "./islands/deals/Kanban.tsx";
-import * as $deals_KanbanCard from "./islands/deals/KanbanCard.tsx";
-import * as $deals_KanbanGroup from "./islands/deals/KanbanGroup.tsx";
-import * as $mod from "./islands/mod.ts";
-import * as $notes_NoteDisplay from "./islands/notes/NoteDisplay.tsx";
-import * as $notes_NoteEditor from "./islands/notes/NoteEditor.tsx";
-import * as $notes_NoteList from "./islands/notes/NoteList.tsx";
-import * as $notes_Notes from "./islands/notes/Notes.tsx";
-import * as $quotes_Form from "./islands/quotes/Form.tsx";
-import * as $quotes_Table from "./islands/quotes/Table.tsx";
-import * as $users_Table from "./islands/users/Table.tsx";
 import * as $_404 from "./routes/_404.tsx";
 import * as $_500 from "./routes/_500.tsx";
 import * as $_app from "./routes/_app.tsx";
@@ -39,9 +21,22 @@ import * as $contacts_index from "./routes/contacts/index.tsx";
 import * as $deals_id_ from "./routes/deals/[id].tsx";
 import * as $deals_index from "./routes/deals/index.tsx";
 import * as $index from "./routes/index.tsx";
-import * as $quotes_id_ from "./routes/quotes/[id].tsx";
-import * as $quotes_index from "./routes/quotes/index.tsx";
-import * as $users_index from "./routes/users/index.tsx";
+import * as $account from "./islands/account.tsx";
+import * as $accounts from "./islands/accounts.tsx";
+import * as $contact from "./islands/contact.tsx";
+import * as $contacts from "./islands/contacts.tsx";
+import * as $dashboard_Dashboard from "./islands/dashboard/Dashboard.tsx";
+import * as $dashboard_UserSelect from "./islands/dashboard/UserSelect.tsx";
+import * as $deals_Form from "./islands/deals/Form.tsx";
+import * as $deals_Kanban from "./islands/deals/Kanban.tsx";
+import * as $deals_KanbanCard from "./islands/deals/KanbanCard.tsx";
+import * as $deals_KanbanGroup from "./islands/deals/KanbanGroup.tsx";
+import * as $mod from "./islands/mod.ts";
+import * as $notes_NoteDisplay from "./islands/notes/NoteDisplay.tsx";
+import * as $notes_NoteEditor from "./islands/notes/NoteEditor.tsx";
+import * as $notes_NoteList from "./islands/notes/NoteList.tsx";
+import * as $notes_Notes from "./islands/notes/Notes.tsx";
+import { type Manifest } from "$fresh/server.ts";
 
 const manifest = {
   routes: {
@@ -64,28 +59,23 @@ const manifest = {
     "./routes/deals/[id].tsx": $deals_id_,
     "./routes/deals/index.tsx": $deals_index,
     "./routes/index.tsx": $index,
-    "./routes/quotes/[id].tsx": $quotes_id_,
-    "./routes/quotes/index.tsx": $quotes_index,
-    "./routes/users/index.tsx": $users_index,
   },
   islands: {
-    "./islands/Dashboard.tsx": $Dashboard,
-    "./islands/accounts/Form.tsx": $accounts_Form,
-    "./islands/accounts/Table.tsx": $accounts_Table,
-    "./islands/contacts/Form.tsx": $contacts_Form,
-    "./islands/contacts/Table.tsx": $contacts_Table,
+    "./islands/account.tsx": $account,
+    "./islands/accounts.tsx": $accounts,
+    "./islands/contact.tsx": $contact,
+    "./islands/contacts.tsx": $contacts,
+    "./islands/dashboard/Dashboard.tsx": $dashboard_Dashboard,
+    "./islands/dashboard/UserSelect.tsx": $dashboard_UserSelect,
     "./islands/deals/Form.tsx": $deals_Form,
     "./islands/deals/Kanban.tsx": $deals_Kanban,
     "./islands/deals/KanbanCard.tsx": $deals_KanbanCard,
     "./islands/deals/KanbanGroup.tsx": $deals_KanbanGroup,
     "./islands/mod.ts": $mod,
     "./islands/notes/NoteDisplay.tsx": $notes_NoteDisplay,
+    "./islands/notes/NoteEditor.tsx": $notes_NoteEditor,
     "./islands/notes/NoteList.tsx": $notes_NoteList,
     "./islands/notes/Notes.tsx": $notes_Notes,
-    "./islands/notes/NoteEditor.tsx": $notes_NoteEditor,
-    "./islands/quotes/Form.tsx": $quotes_Form,
-    "./islands/quotes/Table.tsx": $quotes_Table,
-    "./islands/users/Table.tsx": $users_Table,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;
