@@ -88,7 +88,7 @@ export function installPreactHook(classes: Set<string>) {
       }
     }
 
-    originalHook?.(vnode);
+    if (vnode) originalHook?.(vnode);
   };
 }
 

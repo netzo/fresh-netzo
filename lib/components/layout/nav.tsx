@@ -4,10 +4,17 @@ import { buttonVariants } from "../button.tsx";
 import { Separator } from "../separator.tsx";
 import { Sheet, SheetContent, SheetTrigger } from "../sheet.tsx";
 import { cn, useUI } from "../utils.ts";
+import { NetzoLogo } from "./footer.tsx";
 
 export type NavItem = Array<
   | { text: string } // header
-  | { icon?: string; text: string; href?: string; target?: string } // link
+  | {
+    icon?: string;
+    text: string;
+    href?: string;
+    target?: string;
+    exact?: boolean; // do not style as active if not exact
+  } // link
   | Record<string | number | symbol, never> // divider (empty object)
 >;
 
@@ -99,7 +106,7 @@ function NavBase({ className, ui = {}, ...props }: NavProps) {
     root: {
       ...props,
       className: cn(
-        "h-full group flex flex-col gap-4",
+        "h-full group flex flex-col gap-2 bg-primary-foreground",
         className,
       ),
     },
@@ -119,9 +126,9 @@ function NavBase({ className, ui = {}, ...props }: NavProps) {
       className: cn(
         buttonVariants({ variant: "ghost" }),
         "flex w-full justify-start",
-        "hover:cursor-pointer hover:bg-accent", // hover
-        // `aria-[current='true']:bg-accent`, // ancestor links
-        `aria-[current='page']:bg-accent`, // current page
+        "hover:cursor-pointer hover:bg-muted", // hover
+        `aria-[current='true']:bg-border`, // ancestor links (disabled below if exact=true)
+        `aria-[current='page']:bg-border`, // current page
       ),
     },
     navItemIcon: {
@@ -140,11 +147,19 @@ function NavBase({ className, ui = {}, ...props }: NavProps) {
       ? <img {...navItemIcon} src={icon} />
       : <div {...navItemIcon} className={cn(navItemIcon?.className, icon)} />;
 
-  const getNavItem = (item: NavProps["items"][number], index: number) => {
+  const getNavItem = (item: NavItem[number], index: number) => {
     if ("href" in item) {
       return (
         <div key={`nav-item-${index}`} {...navItemRoot}>
-          <a {...navItem} href={item.href} target={item.target}>
+          <a
+            {...navItem}
+            className={cn(
+              navItem?.className,
+              item.exact ? "aria-[current='true']:bg-transparent" : "",
+            )}
+            href={item.href}
+            target={item.target}
+          >
             {item.icon && getIcon(item.icon)}
             {item.text}
           </a>
@@ -192,6 +207,10 @@ function NavBase({ className, ui = {}, ...props }: NavProps) {
             : getNavItem(item, index)
         )}
       </nav>
+
+      <footer className="w-full flex items-center justify-center p-3 b-t-1">
+        <NetzoLogo />
+      </footer>
     </div>
   );
 }

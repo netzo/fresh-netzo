@@ -6,10 +6,10 @@ import { $client } from "../../netzo.config.ts";
 
 export default defineRoute(async (req, ctx) => {
   const { id } = ctx.params;
-  const data = id === "new" ? {} : await $client.deals.get(id) as Deal;
+  const data = (id === "new" ? {} : await $client.deals.get(id)) as Deal;
 
   return (
-    <div className="my-4 overflow-auto">
+    <div className="overflow-auto">
       <Separator />
       <div className="p-10 max-w-500px">
         {id === "new"

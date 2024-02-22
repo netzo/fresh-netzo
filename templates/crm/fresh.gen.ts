@@ -8,41 +8,34 @@ import * as $_app from "./routes/_app.tsx";
 import * as $_layout from "./routes/_layout.tsx";
 import * as $accounts_id_ from "./routes/accounts/[id].tsx";
 import * as $accounts_index from "./routes/accounts/index.tsx";
+import * as $accounts_notes from "./routes/accounts/notes.tsx";
 import * as $api_accounts from "./routes/api/accounts.ts";
 import * as $api_contacts from "./routes/api/contacts.ts";
 import * as $api_deals from "./routes/api/deals.ts";
 import * as $api_mod from "./routes/api/mod.ts";
-import * as $api_products from "./routes/api/products.ts";
+import * as $api_notes from "./routes/api/notes.ts";
 import * as $api_quotes from "./routes/api/quotes.ts";
-import * as $api_transactions from "./routes/api/transactions.ts";
 import * as $api_users from "./routes/api/users.ts";
 import * as $contacts_id_ from "./routes/contacts/[id].tsx";
 import * as $contacts_index from "./routes/contacts/index.tsx";
 import * as $deals_id_ from "./routes/deals/[id].tsx";
 import * as $deals_index from "./routes/deals/index.tsx";
 import * as $index from "./routes/index.tsx";
-import * as $products_id_ from "./routes/products/[id].tsx";
-import * as $products_index from "./routes/products/index.tsx";
-import * as $quotes_id_ from "./routes/quotes/[id].tsx";
-import * as $quotes_index from "./routes/quotes/index.tsx";
-import * as $transactions_id_ from "./routes/transactions/[id].tsx";
-import * as $transactions_index from "./routes/transactions/index.tsx";
-import * as $users_index from "./routes/users/index.tsx";
-import * as $Dashboard from "./islands/Dashboard.tsx";
-import * as $accounts_Form from "./islands/accounts/Form.tsx";
-import * as $accounts_Table from "./islands/accounts/Table.tsx";
-import * as $contacts_Form from "./islands/contacts/Form.tsx";
-import * as $contacts_Table from "./islands/contacts/Table.tsx";
+import * as $account from "./islands/account.tsx";
+import * as $accounts from "./islands/accounts.tsx";
+import * as $contact from "./islands/contact.tsx";
+import * as $contacts from "./islands/contacts.tsx";
+import * as $dashboard_Dashboard from "./islands/dashboard/Dashboard.tsx";
+import * as $dashboard_UserSelect from "./islands/dashboard/UserSelect.tsx";
 import * as $deals_Form from "./islands/deals/Form.tsx";
 import * as $deals_Kanban from "./islands/deals/Kanban.tsx";
+import * as $deals_KanbanCard from "./islands/deals/KanbanCard.tsx";
+import * as $deals_KanbanGroup from "./islands/deals/KanbanGroup.tsx";
 import * as $mod from "./islands/mod.ts";
-import * as $products_Form from "./islands/products/Form.tsx";
-import * as $products_Table from "./islands/products/Table.tsx";
-import * as $quotes_Form from "./islands/quotes/Form.tsx";
-import * as $quotes_Table from "./islands/quotes/Table.tsx";
-import * as $transactions_Form from "./islands/transactions/Form.tsx";
-import * as $transactions_Table from "./islands/transactions/Table.tsx";
-import * as $users_Table from "./islands/users/Table.tsx";
+import * as $notes_NoteDisplay from "./islands/notes/NoteDisplay.tsx";
+import * as $notes_NoteEditor from "./islands/notes/NoteEditor.tsx";
+import * as $notes_NoteList from "./islands/notes/NoteList.tsx";
+import * as $notes_Notes from "./islands/notes/Notes.tsx";
 import { type Manifest } from "$fresh/server.ts";
 
 const manifest = {
@@ -53,43 +46,36 @@ const manifest = {
     "./routes/_layout.tsx": $_layout,
     "./routes/accounts/[id].tsx": $accounts_id_,
     "./routes/accounts/index.tsx": $accounts_index,
+    "./routes/accounts/notes.tsx": $accounts_notes,
     "./routes/api/accounts.ts": $api_accounts,
     "./routes/api/contacts.ts": $api_contacts,
     "./routes/api/deals.ts": $api_deals,
     "./routes/api/mod.ts": $api_mod,
-    "./routes/api/products.ts": $api_products,
+    "./routes/api/notes.ts": $api_notes,
     "./routes/api/quotes.ts": $api_quotes,
-    "./routes/api/transactions.ts": $api_transactions,
     "./routes/api/users.ts": $api_users,
     "./routes/contacts/[id].tsx": $contacts_id_,
     "./routes/contacts/index.tsx": $contacts_index,
     "./routes/deals/[id].tsx": $deals_id_,
     "./routes/deals/index.tsx": $deals_index,
     "./routes/index.tsx": $index,
-    "./routes/products/[id].tsx": $products_id_,
-    "./routes/products/index.tsx": $products_index,
-    "./routes/quotes/[id].tsx": $quotes_id_,
-    "./routes/quotes/index.tsx": $quotes_index,
-    "./routes/transactions/[id].tsx": $transactions_id_,
-    "./routes/transactions/index.tsx": $transactions_index,
-    "./routes/users/index.tsx": $users_index,
   },
   islands: {
-    "./islands/Dashboard.tsx": $Dashboard,
-    "./islands/accounts/Form.tsx": $accounts_Form,
-    "./islands/accounts/Table.tsx": $accounts_Table,
-    "./islands/contacts/Form.tsx": $contacts_Form,
-    "./islands/contacts/Table.tsx": $contacts_Table,
+    "./islands/account.tsx": $account,
+    "./islands/accounts.tsx": $accounts,
+    "./islands/contact.tsx": $contact,
+    "./islands/contacts.tsx": $contacts,
+    "./islands/dashboard/Dashboard.tsx": $dashboard_Dashboard,
+    "./islands/dashboard/UserSelect.tsx": $dashboard_UserSelect,
     "./islands/deals/Form.tsx": $deals_Form,
     "./islands/deals/Kanban.tsx": $deals_Kanban,
+    "./islands/deals/KanbanCard.tsx": $deals_KanbanCard,
+    "./islands/deals/KanbanGroup.tsx": $deals_KanbanGroup,
     "./islands/mod.ts": $mod,
-    "./islands/products/Form.tsx": $products_Form,
-    "./islands/products/Table.tsx": $products_Table,
-    "./islands/quotes/Form.tsx": $quotes_Form,
-    "./islands/quotes/Table.tsx": $quotes_Table,
-    "./islands/transactions/Form.tsx": $transactions_Form,
-    "./islands/transactions/Table.tsx": $transactions_Table,
-    "./islands/users/Table.tsx": $users_Table,
+    "./islands/notes/NoteDisplay.tsx": $notes_NoteDisplay,
+    "./islands/notes/NoteEditor.tsx": $notes_NoteEditor,
+    "./islands/notes/NoteList.tsx": $notes_NoteList,
+    "./islands/notes/Notes.tsx": $notes_Notes,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;

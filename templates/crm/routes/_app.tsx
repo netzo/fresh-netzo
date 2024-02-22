@@ -26,15 +26,17 @@ export default defineApp<NetzoState>((req, ctx) => {
     image: "/logo.svg",
     items: [
       [
-        { text: "Dashboard", href: "/", icon: "mdi-view-dashboard" },
+        {
+          text: "Dashboard",
+          href: "/",
+          icon: "mdi-view-dashboard",
+          exact: true,
+        },
         { text: "Deals", href: "/deals", icon: "mdi-tag" },
         {},
         { text: "Accounts", href: "/accounts", icon: "mdi-storefront" },
         { text: "Contacts", href: "/contacts", icon: "mdi-contacts" },
-        // { text: "Products", href: "/products", icon: "mdi-barcode" },
         // { text: "Quotes", href: "/quotes", icon: "mdi-file-document" },
-        {},
-        { text: "Users", href: "/users", icon: "mdi-account-multiple" },
       ],
       [
         {
@@ -76,8 +78,6 @@ export default defineApp<NetzoState>((req, ctx) => {
               </Partial>
             )}
           </main>
-
-          <Layout.Footer />
         </div>
       </body>
     </html>
