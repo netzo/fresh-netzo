@@ -138,8 +138,8 @@ export const unocss = ({
   ssr = true,
   csr = true,
 }: UnocssConfig): Plugin<NetzoState> => {
-  // A uno.config.ts file is required in the project directory if
-  // a config object is not provided, or to use the browser runtime
+  // The "config" option is required. If using CSR mode this must come
+  // from an "uno.config.ts" in the project directory (not an inline object)
   const configFileURL = new URL("./uno.config.ts", Deno.mainModule).href;
 
   // NOTE: Subhosting somehow fails when operating with and/or importing from
