@@ -18,7 +18,6 @@ export const Nav = (props: { state: NetzoState }) => {
       <NavSeparator />
       <NavItem icon="mdi-storefront" text="Accounts" href="/accounts" />
       <NavItem icon="mdi-contacts" text="Contacts" href="/contacts" />
-      {/* <NavItem icon="mdi-file-document" text="Quotes" href="/quotes" /> */}
       <NavSpacer />
       <NavItem
         icon="mdi-comment-question"

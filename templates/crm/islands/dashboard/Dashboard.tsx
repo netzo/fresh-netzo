@@ -11,7 +11,7 @@ import { RecentSales } from "../../components/dashboard/recent-sales.tsx";
 import { UserSelect } from "./UserSelect.tsx";
 
 export function Dashboard(props: { data: unknown[][] }) {
-  const [accounts, contacts, deals, quotes, users] = props.data;
+  const [accounts, contacts, deals, users] = props.data;
 
   return (
     <div className="p-4 space-y-4">

@@ -12,7 +12,6 @@ import * as $api_accounts from "./routes/api/accounts.ts";
 import * as $api_contacts from "./routes/api/contacts.ts";
 import * as $api_deals from "./routes/api/deals.ts";
 import * as $api_mod from "./routes/api/mod.ts";
-import * as $api_quotes from "./routes/api/quotes.ts";
 import * as $api_users from "./routes/api/users.ts";
 import * as $contacts_id_ from "./routes/contacts/[id].tsx";
 import * as $contacts_index from "./routes/contacts/index.tsx";
@@ -34,9 +33,6 @@ import * as $notes_NoteDisplay from "./islands/notes/NoteDisplay.tsx";
 import * as $notes_NoteEditor from "./islands/notes/NoteEditor.tsx";
 import * as $notes_NoteList from "./islands/notes/NoteList.tsx";
 import * as $notes_Notes from "./islands/notes/Notes.tsx";
-import * as $quotes_QuoteDisplay from "./islands/quotes/QuoteDisplay.tsx";
-import * as $quotes_QuoteList from "./islands/quotes/QuoteList.tsx";
-import * as $quotes_quotes from "./islands/quotes/quotes.tsx";
 import { type Manifest } from "$fresh/server.ts";
 
 const manifest = {
@@ -51,7 +47,6 @@ const manifest = {
     "./routes/api/contacts.ts": $api_contacts,
     "./routes/api/deals.ts": $api_deals,
     "./routes/api/mod.ts": $api_mod,
-    "./routes/api/quotes.ts": $api_quotes,
     "./routes/api/users.ts": $api_users,
     "./routes/contacts/[id].tsx": $contacts_id_,
     "./routes/contacts/index.tsx": $contacts_index,
@@ -75,9 +70,6 @@ const manifest = {
     "./islands/notes/NoteEditor.tsx": $notes_NoteEditor,
     "./islands/notes/NoteList.tsx": $notes_NoteList,
     "./islands/notes/Notes.tsx": $notes_Notes,
-    "./islands/quotes/QuoteDisplay.tsx": $quotes_QuoteDisplay,
-    "./islands/quotes/QuoteList.tsx": $quotes_QuoteList,
-    "./islands/quotes/quotes.tsx": $quotes_quotes,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;
