@@ -6,7 +6,7 @@ import * as $_404 from "./routes/_404.tsx";
 import * as $_500 from "./routes/_500.tsx";
 import * as $_app from "./routes/_app.tsx";
 import * as $_layout from "./routes/_layout.tsx";
-import * as $accounts_id_index from "./routes/accounts/[id]/index.tsx";
+import * as $accounts_id_ from "./routes/accounts/[id].tsx";
 import * as $accounts_index from "./routes/accounts/index.tsx";
 import * as $api_accounts from "./routes/api/accounts.ts";
 import * as $api_contacts from "./routes/api/contacts.ts";
@@ -29,7 +29,6 @@ import * as $deals_Form from "./islands/deals/Form.tsx";
 import * as $deals_Kanban from "./islands/deals/Kanban.tsx";
 import * as $deals_KanbanCard from "./islands/deals/KanbanCard.tsx";
 import * as $deals_KanbanGroup from "./islands/deals/KanbanGroup.tsx";
-import * as $mod from "./islands/mod.ts";
 import * as $nav from "./islands/nav.tsx";
 import * as $notes_NoteDisplay from "./islands/notes/NoteDisplay.tsx";
 import * as $notes_NoteEditor from "./islands/notes/NoteEditor.tsx";
@@ -46,7 +45,7 @@ const manifest = {
     "./routes/_500.tsx": $_500,
     "./routes/_app.tsx": $_app,
     "./routes/_layout.tsx": $_layout,
-    "./routes/accounts/[id]/index.tsx": $accounts_id_index,
+    "./routes/accounts/[id].tsx": $accounts_id_,
     "./routes/accounts/index.tsx": $accounts_index,
     "./routes/api/accounts.ts": $api_accounts,
     "./routes/api/contacts.ts": $api_contacts,
@@ -71,7 +70,6 @@ const manifest = {
     "./islands/deals/Kanban.tsx": $deals_Kanban,
     "./islands/deals/KanbanCard.tsx": $deals_KanbanCard,
     "./islands/deals/KanbanGroup.tsx": $deals_KanbanGroup,
-    "./islands/mod.ts": $mod,
     "./islands/nav.tsx": $nav,
     "./islands/notes/NoteDisplay.tsx": $notes_NoteDisplay,
     "./islands/notes/NoteEditor.tsx": $notes_NoteEditor,

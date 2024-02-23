@@ -20,6 +20,9 @@ import {
 import { Label } from "./label.tsx";
 import { cn } from "./utils.ts";
 
+export { zodResolver } from "../deps/@hookform/resolvers/zod.ts";
+export { useForm } from "../deps/react-hook-form.ts";
+
 const Form = FormProvider;
 
 type FormFieldContextValue<

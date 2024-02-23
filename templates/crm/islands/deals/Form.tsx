@@ -1,8 +1,10 @@
 import { useSignal } from "@preact/signals";
-import { createOnSubmit, Form } from "netzo/components/blocks/form/form.tsx";
+import {
+  AutoForm,
+  createOnSubmit,
+} from "netzo/components/blocks/auto-form/auto-form.tsx";
 import { Button } from "netzo/components/button.tsx";
 import { Deal, dealSchema } from "../../data/deals.ts";
-// import { I18N } from "../../data/deals.ts";
 
 type FormProps = {
   data?: Deal;
@@ -21,7 +23,7 @@ export function FormDeal({ data = {}, method, action }: FormProps) {
   const values = useSignal(data);
 
   return (
-    <Form
+    <AutoForm
       values={values.value}
       formSchema={formSchema}
       onSubmit={createOnSubmit(method, action)}
@@ -29,6 +31,6 @@ export function FormDeal({ data = {}, method, action }: FormProps) {
       <Button type="submit" className="mt-8">
         {method === "POST" ? "Create" : "Update"}
       </Button>
-    </Form>
+    </AutoForm>
   );
 }

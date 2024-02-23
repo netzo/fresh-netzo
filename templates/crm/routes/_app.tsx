@@ -2,12 +2,11 @@ import { Partial } from "$fresh/runtime.ts";
 import { defineApp } from "$fresh/server.ts";
 import { Head } from "netzo/components/head.tsx";
 import { cn } from "netzo/components/utils.ts";
-import { type NetzoState } from "netzo/mod.ts";
-import { useAuth } from "netzo/plugins/auth/plugin.ts";
+import type { NetzoState } from "netzo/mod.ts";
 import { Nav } from "../islands/nav.tsx";
 
 export default defineApp<NetzoState>((req, ctx) => {
-  const { sessionId, sessionUser, mustAuth } = useAuth(ctx);
+  const mustAuth = !!ctx.state?.auth && !ctx.state?.auth?.sessionId;
 
   return (
     <html className="h-full overflow-hidden">
@@ -36,7 +35,7 @@ export default defineApp<NetzoState>((req, ctx) => {
               "md:grid md:grid-cols-[250px_auto]",
             )}
           >
-            <Nav sessionUser={sessionUser} />
+            <Nav state={ctx.state} />
             <div className="flex flex-col w-full h-full overflow-x-hidden">
               <main className="flex-1">
                 <Partial name="main">

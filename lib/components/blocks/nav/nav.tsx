@@ -2,7 +2,7 @@ import { signal } from "@preact/signals";
 import type { ComponentChildren, JSX } from "preact";
 import { useEffect } from "preact/hooks";
 import { useDarkMode } from "../../../deps/usehooks-ts.ts";
-import type { AuthUser } from "../../../plugins/auth/utils/db.ts";
+import type { NetzoState } from "../../../mod.ts";
 import { Avatar, AvatarFallback, AvatarImage } from "../../avatar.tsx";
 import { buttonVariants } from "../../button.tsx";
 import {
@@ -21,11 +21,10 @@ import { cn } from "../../utils.ts";
 export const open = signal<boolean>(false);
 
 type NavRootProps = JSX.IntrinsicElements["nav"] & {
-  sessionUser?: AuthUser;
   children?: ComponentChildren;
 };
 
-export function NavRoot({ className, sessionUser, ...props }: NavRootProps) {
+export function NavRoot({ className, ...props }: NavRootProps) {
   const { isDarkMode } = useDarkMode();
 
   const logoSrc = isDarkMode
@@ -183,15 +182,18 @@ export function NavItem({ className, ...props }: NavItemProps) {
   );
 }
 
-export function NavItemAuth(props: { sessionUser?: AuthUser }) {
+export function NavItemUser(props: { state: NetzoState }) {
+  const { auth } = props.state ?? {};
+
   const { isDarkMode, set: setDarkMode } = useDarkMode();
+
   useEffect(() => {
     document.documentElement.classList.toggle("dark", isDarkMode);
   }, [isDarkMode]);
 
-  if (!props.sessionUser) return null;
+  if (!auth?.sessionUser) return null;
 
-  const { name, authId, email } = props.sessionUser ?? {};
+  const { name, authId, email } = auth?.sessionUser ?? {};
   const initials = name || authId || email || "?";
   const initial = initials?.[0]?.toUpperCase();
 
@@ -208,18 +210,18 @@ export function NavItemAuth(props: { sessionUser?: AuthUser }) {
           {/* <Button variant="ghost" className="relative w-8 h-8 rounded-full"> */}
           <Avatar className="h-9 w-9 mr-2">
             <AvatarImage
-              src={props.sessionUser.avatar}
-              alt={`@${props.sessionUser.authId}}`}
+              src={auth?.sessionUser.avatar}
+              alt={`@${auth?.sessionUser.authId}}`}
             />
             <AvatarFallback>{initial}</AvatarFallback>
           </Avatar>
           <div className="flex flex-col space-y-1">
             <p className="text-sm font-medium leading-none">
-              {props.sessionUser.name}
+              {auth?.sessionUser.name}
             </p>
-            {props.sessionUser.email && (
+            {auth?.sessionUser.email && (
               <p className="text-xs leading-none text-muted-foreground">
-                {props.sessionUser.email}
+                {auth?.sessionUser.email}
               </p>
             )}
           </div>
@@ -228,16 +230,16 @@ export function NavItemAuth(props: { sessionUser?: AuthUser }) {
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent side="right" align="end" forceMount>
-        {props.sessionUser.name && (
+        {auth?.sessionUser.name && (
           <>
             <DropdownMenuLabel className="font-normal">
               <div className="flex flex-col space-y-1">
                 <p className="text-sm font-medium leading-none">
-                  {props.sessionUser.name}
+                  {auth?.sessionUser.name}
                 </p>
-                {props.sessionUser.email && (
+                {auth?.sessionUser.email && (
                   <p className="text-xs leading-none text-muted-foreground">
-                    {props.sessionUser.email}
+                    {auth?.sessionUser.email}
                   </p>
                 )}
               </div>

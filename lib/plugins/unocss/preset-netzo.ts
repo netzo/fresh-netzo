@@ -50,9 +50,12 @@ export function presetNetzo(
           "simple-icons": () =>
             import(
               "https://esm.sh/@iconify-json/simple-icons@1.1.91/icons.json",
-              {
-                with: { type: "json" },
-              }
+              { with: { type: "json" } }
+            ).then((i) => i.default),
+          "circle-flags": () =>
+            import(
+              "https://esm.sh/@iconify-json/circle-flags@1.1.46/icons.json",
+              { with: { type: "json" } }
             ).then((i) => i.default),
           netzo: {
             symbol:

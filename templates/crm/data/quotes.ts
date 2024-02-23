@@ -6,6 +6,8 @@ import { z } from "zod";
 
 export const quoteSchema = z.object({
   id: z.string(),
+  createdAt: z.string().datetime(),
+  updatedAt: z.string().datetime(),
   status: z.enum([
     "pending",
     "paid",
@@ -20,8 +22,6 @@ export const quoteSchema = z.object({
   })), // item could eventually come from external system (e.g. WMS/PIM/ERP)
   xml: z.string(),
   pdf: z.string().url(),
-  createdAt: z.string().datetime(),
-  updatedAt: z.string().datetime(),
 });
 
 // types:
@@ -31,7 +31,9 @@ export type Quote = z.infer<typeof quoteSchema>;
 // data:
 
 export const mock = (idField = "id") => ({
-  [idField]: ulid(),
+  [idField]: ulid() as string,
+  createdAt: faker.date.past().toISOString(),
+  updatedAt: faker.date.recent().toISOString(),
   status: faker.helpers.arrayElement(["pending", "paid", "lost"]),
   items: Array.from({ length: faker.number.int({ min: 1, max: 5 }) }, () => ({
     name: faker.commerce.productName(),
@@ -42,17 +44,4 @@ export const mock = (idField = "id") => ({
   })),
   xml: faker.lorem.paragraph(),
   pdf: faker.internet.url(),
-  createdAt: faker.date.past().toISOString(),
-  updatedAt: faker.date.recent().toISOString(),
 });
-
-// i18n:
-
-export const I18N = {
-  id: "Quote ID",
-  status: "Status",
-  xml: "XML",
-  pdf: "PDF",
-  createdAt: "Created At",
-  updatedAt: "Updated At",
-};

@@ -13,8 +13,8 @@ import {
   useTable,
 } from "netzo/components/blocks/table/table.tsx";
 import { IconCopy } from "netzo/components/icon-copy.tsx";
-import { type Contact, I18N } from "../data/contacts.ts";
-import { toDateTime } from "./mod.ts";
+import type { Contact } from "../data/contacts.ts";
+import { I18N, toDateTime } from "../data/mod.ts";
 
 export const getTableOptions = (
   data: Contact[],
@@ -81,16 +81,24 @@ export const getTableOptions = (
         accessorKey: "phones",
         header: (props) => <TableColumnHeader {...props} title={I18N.phones} />,
         cell: ({ row }) => {
-          const { phones = [] } = row.original;
+          const { phones = {} } = row.original;
+          const ICONS = {
+            work: "mdi-phone",
+            mobile: "mdi-cellphone",
+            personal: "mdi-cellphone-lock",
+          } as const;
+          const items = Object.entries(phones)
+            .filter(([name, value]) => value)
+            .map(([name, value]) => ({ name, value, className: ICONS[name] }));
           return (
             <div className="flex gap-1">
-              {phones.map((phone, index) => (
+              {items.map((item, index) => (
                 <a
                   key={`phone-${index}`}
-                  href={`tel:${phone.value}`}
+                  href={`tel:${item.value}`}
                   target="_blank"
-                  title={`${phone.name}: ${phone.value}`}
-                  className="mdi-phone"
+                  title={`${item.name}: ${item.value}`}
+                  className={item.className}
                 />
               ))}
             </div>
@@ -101,16 +109,23 @@ export const getTableOptions = (
         accessorKey: "emails",
         header: (props) => <TableColumnHeader {...props} title={I18N.emails} />,
         cell: ({ row }) => {
-          const { emails = [] } = row.original;
+          const { emails = {} } = row.original;
+          const ICONS = {
+            work: "mdi-email",
+            personal: "mdi-email-lock",
+          } as const;
+          const items = Object.entries(emails)
+            .filter(([name, value]) => value)
+            .map(([name, value]) => ({ name, value, className: ICONS[name] }));
           return (
             <div className="flex gap-1">
-              {emails.map((email, index) => (
+              {items.map((item, index) => (
                 <a
                   key={`mail-${index}`}
-                  href={`mailto:${email.value}`}
+                  href={`mailto:${item.value}`}
                   target="_blank"
-                  title={`${email.name}: ${email.value}`}
-                  className="mdi-email"
+                  title={`${item.name}: ${item.value}`}
+                  className={item.className}
                 />
               ))}
             </div>

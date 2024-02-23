@@ -3,7 +3,8 @@ import {
   type KanbanProps,
 } from "netzo/components/blocks/kanban/kanban.tsx";
 import { useTable } from "netzo/components/blocks/table/table.tsx";
-import { type Deal, I18N } from "../../data/deals.ts";
+import { type Deal } from "../../data/deals.ts";
+import { I18N } from "../../data/mod.ts";
 import { KanbanCard } from "./KanbanCard.tsx";
 import { KanbanGroup } from "./KanbanGroup.tsx";
 
@@ -22,31 +23,31 @@ export const getKanbanOptions = (
     groups: [
       {
         id: "lead",
-        title: I18N.status.lead,
+        title: I18N["status.lead"],
         icon: { className: "i-mdi-circle-outline bg-lightgray-500" },
         badge: { className: "bg-lightgray-500" },
       },
       {
         id: "qualified",
-        title: I18N.status.qualified,
+        title: I18N["status.qualified"],
         icon: { className: "i-mdi-circle-slice-2 bg-orange-500" },
         badge: { className: "bg-orange-500" },
       },
       {
         id: "negotiation",
-        title: I18N.status.negotiation,
+        title: I18N["status.negotiation"],
         icon: { className: "i-mdi-circle-slice-6 bg-yellow-500" },
         badge: { className: "bg-yellow-500" },
       },
       {
         id: "won",
-        title: I18N.status.won,
+        title: I18N["status.won"],
         icon: { className: "i-mdi-check-circle bg-green-500" },
         badge: { className: "bg-green-500" },
       },
       {
         id: "lost",
-        title: I18N.status.lost,
+        title: I18N["status.lost"],
         icon: { className: "i-mdi-close-circle bg-red-500" },
         badge: { className: "bg-red-500" },
       },

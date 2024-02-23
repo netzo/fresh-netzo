@@ -4,7 +4,7 @@ import { zodResolver } from "../../../deps/@hookform/resolvers/zod.ts";
 import { DefaultValues, useForm } from "../../../deps/react-hook-form.ts";
 import { z } from "../../../deps/zod/mod.ts";
 import { Button } from "../../button.tsx";
-import { Form as _Form } from "../../form.tsx";
+import { Form } from "../../form.tsx";
 import { cn } from "../../utils.ts";
 import AutoFormObject from "./fields/object.tsx";
 import { FieldConfig } from "./types.ts";
@@ -16,11 +16,11 @@ import {
 
 export { createOnSubmit } from "./utils.ts";
 
-export function FormSubmit({ children }: { children?: ComponentChildren }) {
+export function AutoFormSubmit({ children }: { children?: ComponentChildren }) {
   return <Button type="submit">{children ?? "Submit"}</Button>;
 }
 
-export function Form<SchemaType extends ZodObjectOrWrapped>({
+export function AutoForm<SchemaType extends ZodObjectOrWrapped>({
   formSchema,
   values: valuesProp,
   onValuesChange: onValuesChangeProp,
@@ -57,7 +57,7 @@ export function Form<SchemaType extends ZodObjectOrWrapped>({
   }
 
   return (
-    <_Form {...form}>
+    <Form {...form}>
       <form
         onSubmit={(e) => {
           form.handleSubmit(onSubmit)(e);
@@ -80,6 +80,6 @@ export function Form<SchemaType extends ZodObjectOrWrapped>({
 
         {children}
       </form>
-    </_Form>
+    </Form>
   );
 }

@@ -14,8 +14,8 @@ import {
   useTable,
 } from "netzo/components/blocks/table/table.tsx";
 import { IconCopy } from "netzo/components/icon-copy.tsx";
-import { type Account, I18N } from "../data/accounts.ts";
-import { toDateTime } from "./mod.ts";
+import { type Account } from "../data/accounts.ts";
+import { I18N, toDateTime } from "../data/mod.ts";
 
 export const getTableOptions = (
   data: Account[],

@@ -4,7 +4,10 @@ import {
   AvatarImage,
 } from "netzo/components/avatar.tsx";
 import { Badge } from "netzo/components/badge.tsx";
-import { createOnSubmit, Form } from "netzo/components/blocks/form/form.tsx";
+import {
+  AutoForm,
+  createOnSubmit,
+} from "netzo/components/blocks/auto-form/auto-form.tsx";
 import { Button } from "netzo/components/button.tsx";
 import {
   Card,
@@ -14,7 +17,6 @@ import {
   CardTitle,
 } from "netzo/components/card.tsx";
 import { Contact, contactSchema } from "../data/contacts.ts";
-// import { I18N } from "../../data/contacts.ts";
 
 export function Header(props: { data: Contact }) {
   const { name = "", description, tags, image } = props.data;
@@ -71,7 +73,7 @@ export function CardFormGeneral(props: {
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <Form
+        <AutoForm
           values={props.data}
           formSchema={contactSchema.omit({
             id: true,
@@ -83,7 +85,7 @@ export function CardFormGeneral(props: {
           <Button type="submit" className="mt-8">
             {props.method === "POST" ? "Create" : "Update"}
           </Button>
-        </Form>
+        </AutoForm>
       </CardContent>
     </Card>
   );
