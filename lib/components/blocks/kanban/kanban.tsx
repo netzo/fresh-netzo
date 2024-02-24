@@ -25,7 +25,6 @@ import { hasDraggableData } from "./utils.ts";
 
 export { KanbanCardContainer } from "./kanban-card-container.tsx";
 export { KanbanContainer } from "./kanban-container.tsx";
-export { KanbanGroupContainer } from "./kanban-group-container.tsx";
 
 // kanban:
 
@@ -275,17 +274,6 @@ export function Kanban<TData, TValue>({
       {"document" in window &&
         createPortal(
           <DragOverlay>
-            {activeGroup.value && renderGroup({
-              group: activeGroup.value,
-              items: items.value.filter(
-                (item) =>
-                  item[options.fieldIds.group] ===
-                    activeGroup.value[options.fieldIds.id],
-              ),
-              isOverlay: true,
-              options,
-              renderCard,
-            })}
             {activeItem.value &&
               renderCard({ item: activeItem.value, options, isOverlay: true })}
           </DragOverlay>,
