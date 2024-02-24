@@ -4,14 +4,14 @@ import {
   CardDragData,
   KanbanCardProps,
 } from "netzo/components/blocks/kanban/kanban.tsx";
-import {
-  Card
-} from "netzo/components/card.tsx";
+import { Card } from "netzo/components/card.tsx";
 import { useSortable } from "netzo/deps/@dnd-kit/sortable.ts";
 import { CSS } from "netzo/deps/@dnd-kit/utilities.ts";
 import { cva } from "netzo/deps/class-variance-authority.ts";
 
-export function KanbanCardContainer({ item, isOverlay, options, ...props }: KanbanCardProps) {
+export function KanbanCardContainer(
+  { item, isOverlay, options, ...props }: KanbanCardProps,
+) {
   const {
     setNodeRef,
     attributes,

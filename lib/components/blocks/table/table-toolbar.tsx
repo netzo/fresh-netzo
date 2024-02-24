@@ -92,32 +92,31 @@ export function TableToolbar<TData>({
       <div className="flex items-center space-x-2">
         <TableOptions table={table} />
 
-
         {props.children ?? (
           <Dialog>
-          <DialogTrigger asChild>
-            <Button variant="default" className="ml-2">Create</Button>
-          </DialogTrigger>
-          <DialogContent className="sm:max-w-[425px]">
-            <DialogHeader className="text-left">
-              <DialogTitle>Create new</DialogTitle>
-            </DialogHeader>
-            <div className="space-y-4 py-2 pb-4">
-              <div className="space-y-2">
-                <Label htmlFor="name">Name</Label>
-                <Input
-                  id="name"
-                  className="col-span-3"
-                  value={data.value.name}
-                  onInput={(e) => data.value.name = e.target.value}
-                />
+            <DialogTrigger asChild>
+              <Button variant="default" className="ml-2">Create</Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[425px]">
+              <DialogHeader className="text-left">
+                <DialogTitle>Create new</DialogTitle>
+              </DialogHeader>
+              <div className="space-y-4 py-2 pb-4">
+                <div className="space-y-2">
+                  <Label htmlFor="name">Name</Label>
+                  <Input
+                    id="name"
+                    className="col-span-3"
+                    value={data.value.name}
+                    onInput={(e) => data.value.name = e.target.value}
+                  />
+                </div>
               </div>
-            </div>
-            <DialogFooter>
-              <Button onClick={onClickCreate}>Create</Button>
-            </DialogFooter>
-          </DialogContent>
-        </Dialog>
+              <DialogFooter>
+                <Button onClick={onClickCreate}>Create</Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
         )}
       </div>
     </div>

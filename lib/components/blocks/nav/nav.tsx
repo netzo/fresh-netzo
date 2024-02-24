@@ -206,37 +206,37 @@ export function NavItemUser(props: { state: NetzoState }) {
           )}
         >
           {auth?.sessionUser
-           ? (
-           <>
-            <Avatar className="h-9 w-9 mr-2">
-            <AvatarImage
-              src={auth?.sessionUser.avatar}
-              alt={`@${auth?.sessionUser.authId}}`}
-            />
-            <AvatarFallback>{initial}</AvatarFallback>
-          </Avatar>
-          <div className="flex flex-col space-y-1">
-            <p className="text-sm font-medium leading-none">
-              {auth?.sessionUser.name}
-            </p>
-            {auth?.sessionUser.email && (
-              <p className="text-xs leading-none text-muted-foreground">
-                {auth?.sessionUser.email}
-              </p>
+            ? (
+              <>
+                <Avatar className="h-9 w-9 mr-2">
+                  <AvatarImage
+                    src={auth?.sessionUser.avatar}
+                    alt={`@${auth?.sessionUser.authId}}`}
+                  />
+                  <AvatarFallback>{initial}</AvatarFallback>
+                </Avatar>
+                <div className="flex flex-col space-y-1">
+                  <p className="text-sm font-medium leading-none">
+                    {auth?.sessionUser.name}
+                  </p>
+                  {auth?.sessionUser.email && (
+                    <p className="text-xs leading-none text-muted-foreground">
+                      {auth?.sessionUser.email}
+                    </p>
+                  )}
+                </div>
+              </>
+            )
+            : (
+              <>
+                <i className="mdi-account-circle h-7 w-7 ml-0.5 mr-1.5" />
+                <div className="flex flex-col space-y-1">
+                  <p className="text-sm font-medium leading-none">
+                    User Settings
+                  </p>
+                </div>
+              </>
             )}
-            </div>
-            </>
-           )
-           : (
-           <>
-            <i className="mdi-account-circle h-7 w-7 ml-0.5 mr-1.5" />
-            <div className="flex flex-col space-y-1">
-              <p className="text-sm font-medium leading-none">
-                User Settings
-              </p>
-            </div>
-            </>
-           )}
           <i className="mdi-unfold-more-horizontal h-6 w-6 ml-auto" />
         </div>
       </DropdownMenuTrigger>
