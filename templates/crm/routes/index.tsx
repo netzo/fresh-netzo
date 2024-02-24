@@ -1,18 +1,18 @@
 import { defineRoute } from "$fresh/server.ts";
 import type { Account } from "../data/accounts.ts";
-import type { Contact } from "../data/contacts.ts";
-import type { Deal } from "../data/deals.ts";
-import type { User } from "../data/users.ts";
-import { Dashboard } from "../islands/dashboard/Dashboard.tsx";
+import type { Metric } from "../data/metrics.ts";
+import { Dashboard } from "../islands/dashboard.tsx";
 import { $client } from "../netzo.config.ts";
 
 export default defineRoute(async (req, ctx) => {
-  const data = await Promise.all([
+  const accountId = ctx.url.searchParams.get("accountId");
+  const [metrics, accounts] = await Promise.all([
+    $client.metrics.find({ accountId }) as Metric,
     $client.accounts.find() as Account[],
-    $client.contacts.find() as Contact[],
-    $client.deals.find() as Deal[],
-    $client.users.find() as User[],
   ]);
 
-  return <Dashboard data={data} />;
+  const account = accounts.find((account) => account.id === accountId) ??
+    { id: "sales-team" };
+
+  return <Dashboard data={[metrics, accounts, account]} />;
 });

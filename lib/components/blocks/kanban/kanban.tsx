@@ -6,22 +6,42 @@ import { createPortal } from "preact/compat";
 import {
   Announcements,
   DndContext,
-  type DragEndEvent,
-  type DragOverEvent,
   DragOverlay,
-  type DragStartEvent,
   KeyboardSensor,
   MouseSensor,
   TouchSensor,
-  type UniqueIdentifier,
   useSensor,
   useSensors,
+  type DragEndEvent,
+  type DragOverEvent,
+  type DragStartEvent,
+  type UniqueIdentifier,
 } from "../../../deps/@dnd-kit/core.ts";
-import { arrayMove, SortableContext } from "../../../deps/@dnd-kit/sortable.ts";
+import { SortableContext, arrayMove } from "../../../deps/@dnd-kit/sortable.ts";
 import type { Table, TableProps } from "../table/use-table.ts";
 import { KanbanContainer } from "./kanban-container.tsx";
 import { coordinateGetter } from "./multiple-containers-keyboard-preset.ts";
 import { hasDraggableData } from "./utils.ts";
+
+export { KanbanCardContainer } from "./kanban-card-container.tsx";
+export { KanbanContainer } from "./kanban-container.tsx";
+
+// kanban:
+
+export type KanbanProps<
+  TData = unknown,
+  TValue = unknown,
+> = TableProps<TData, TValue> & {
+  table: Table<TData>;
+  groups: {
+    id: string;
+    title: string;
+    icon?: JSX.IntrinsicElements["i"];
+    badge?: BadgeProps;
+  }[];
+  renderGroup?: (props: KanbanGroupProps<TData, TValue>) => ComponentChildren;
+  renderCard?: (props: KanbanCardProps<TData, TValue>) => ComponentChildren;
+};
 
 // kanban-group:
 
@@ -45,6 +65,7 @@ export type KanbanGroupProps<
   items: TData[];
   isOverlay?: boolean;
   options: KanbanProps["options"];
+  renderCard: KanbanProps["renderCard"];
 };
 
 // kanban-card:
@@ -62,23 +83,6 @@ export type KanbanCardProps<
   item: TData;
   isOverlay?: boolean;
   options: KanbanProps["options"];
-};
-
-// kanban:
-
-export type KanbanProps<
-  TData = unknown,
-  TValue = unknown,
-> = TableProps<TData, TValue> & {
-  table: Table<TData>;
-  groups: {
-    id: string;
-    title: string;
-    icon?: JSX.IntrinsicElements["i"];
-    badge?: BadgeProps;
-  }[];
-  renderGroup?: (props: KanbanGroupProps<TData, TValue>) => ComponentChildren;
-  renderCard?: (props: KanbanCardProps<TData, TValue>) => ComponentChildren;
 };
 
 export function Kanban<TData, TValue>({

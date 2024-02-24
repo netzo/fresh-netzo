@@ -4,7 +4,7 @@ import {
   createOnSubmit,
 } from "netzo/components/blocks/auto-form/auto-form.tsx";
 import { Button } from "netzo/components/button.tsx";
-import { Deal, dealSchema } from "../../data/deals.ts";
+import { Deal, dealSchema } from "../data/deals.ts";
 
 type FormProps = {
   data?: Deal;

@@ -6,17 +6,18 @@ import {
   CardHeader,
   CardTitle,
 } from "netzo/components/card.tsx";
-import { Overview } from "../../components/dashboard/overview.tsx";
-import { RecentSales } from "../../components/dashboard/recent-sales.tsx";
-import { UserSelect } from "./UserSelect.tsx";
+import { DashboardDealsRecent } from "../components/dashboard.deals-recent.tsx";
+import { DashboardOverview } from "../components/dashboard.overview.tsx";
+import type { Account } from "../data/accounts.ts";
+import type { Metric } from "../data/metrics.ts";
+import { DashboardAccountSelect } from "../islands/dashboard.account-select.tsx";
 
-export function Dashboard(props: { data: unknown[][] }) {
-  const [accounts, contacts, deals, users] = props.data;
-
+export function Dashboard(props: { data: [Metric[], Account[]] }) {
+  const [metrics, accounts, account] = props.data;
   return (
     <div className="p-4 space-y-4">
       <div className="flex items-center">
-        <UserSelect users={users} />
+        <DashboardAccountSelect accounts={accounts} account={account} />
         {/* <MainNav className="mx-6" /> */}
         <div className="ml-auto flex items-center space-x-4">
           <Button onClick={() => window.print()}>
@@ -26,7 +27,7 @@ export function Dashboard(props: { data: unknown[][] }) {
         </div>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
             <CardTitle className="text-sm font-medium">
@@ -43,7 +44,9 @@ export function Dashboard(props: { data: unknown[][] }) {
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-            <CardTitle className="text-sm font-medium">Total Sales</CardTitle>
+            <CardTitle className="text-sm font-medium">
+              Total Closed (sold)
+            </CardTitle>
             <div className="w-4 h-4 mdi-currency-usd text-muted-foreground" />
           </CardHeader>
           <CardContent>
@@ -56,7 +59,7 @@ export function Dashboard(props: { data: unknown[][] }) {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
             <CardTitle className="text-sm font-medium">
-              Average Sale Value
+              Average Deal Value
             </CardTitle>
             <div className="w-4 h-4 mdi-currency-usd-circle text-muted-foreground" />
           </CardHeader>
@@ -83,24 +86,24 @@ export function Dashboard(props: { data: unknown[][] }) {
         </Card>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
+      <div className="grid md:grid-cols-2 lg:grid-cols-7 gap-4">
         <Card className="col-span-4">
           <CardHeader>
             <CardTitle>Overview</CardTitle>
           </CardHeader>
           <CardContent className="pl-2">
-            <Overview />
+            <DashboardOverview data={metrics.dealsPerMonth} />
           </CardContent>
         </Card>
         <Card className="col-span-3">
           <CardHeader>
-            <CardTitle>Recent Sales</CardTitle>
+            <CardTitle>Recent Deals</CardTitle>
             <CardDescription>
-              You made 265 sales this month.
+              You made 265 deals this month.
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <RecentSales />
+            <DashboardDealsRecent />
           </CardContent>
         </Card>
       </div>

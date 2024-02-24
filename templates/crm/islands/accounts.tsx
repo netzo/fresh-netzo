@@ -8,10 +8,10 @@ import { Grid } from "netzo/components/blocks/table/table.grid.tsx";
 import {
   TableColumnHeader,
   TablePagination,
-  type TableProps,
   TableRowActions,
   TableToolbar,
   useTable,
+  type TableProps,
 } from "netzo/components/blocks/table/table.tsx";
 import { IconCopy } from "netzo/components/icon-copy.tsx";
 import { type Account } from "../data/accounts.ts";
@@ -28,9 +28,20 @@ export const getTableOptions = (
     },
     filters: [
       {
-        column: "type",
-        title: I18N.type,
-        options: [...new Set(data.map((item) => item.type))].sort().map((
+        column: "status",
+        title: I18N.status,
+        options: [
+          { label: I18N["status.lead"], value: "lead" },
+          { label: I18N["status.qualified"], value: "qualified" },
+          { label: I18N["status.negotiation"], value: "negotiation" },
+          { label: I18N["status.won"], value: "won" },
+          { label: I18N["status.lost"], value: "lost" },
+        ],
+      },
+      {
+        column: "tag",
+        title: I18N.tags,
+        options: [...new Set(data.map((item) => item.tags).flat())].sort().map((
           value,
         ) => (value ? { label: value, value } : { label: "*no data", value })),
       },
@@ -65,28 +76,20 @@ export const getTableOptions = (
         },
       },
       {
-        accessorKey: "type",
-        header: (props) => <TableColumnHeader {...props} title={I18N.type} />,
+        accessorKey: "tags",
+        header: (props) => <TableColumnHeader {...props} title={I18N.tags} />,
         cell: ({ row }) => {
-          const { type } = row.original;
-          const colors = {
-            prospect: "yellow",
-            customer: "green",
-            supplier: "red",
-            partner: "blue",
-            other: "gray",
-          };
-          const background = `bg-${colors[type]}-500`;
-          return type
-            ? (
-              <Badge
-                variant="default"
-                className={`${background} hover:${background} bg-opacity-80 text-white`}
-              >
-                {type}
-              </Badge>
-            )
-            : <></>;
+          const { tags = [] } = row.original;
+          // FIXME: unocss fails to pickup dynamic `bg-${toHslColor(tag)}` className
+          return (
+            <div className="flex gap-1">
+              {tags.map((tag) => (
+                <Badge variant="secondary">
+                  {tag}
+                </Badge>
+              ))}
+            </div>
+          );
         },
         filterFn: (row, id, value) => value.includes(row.getValue(id)),
       },
@@ -111,7 +114,7 @@ export function Table(props: { data: Account[] }) {
 
   return (
     <div className="space-y-4">
-      <TableToolbar options={options} table={table} />
+      <TableToolbar options={options} table={table}/>
       <div className="border rounded-md">
         <Grid options={options} table={table} />
       </div>

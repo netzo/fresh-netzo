@@ -4,7 +4,7 @@ import { cn } from "netzo/components/utils.ts";
 import formatDistanceToNow from "npm:date-fns/formatDistanceToNow";
 import type { ComponentProps } from "preact";
 import { useState } from "preact/hooks";
-import { Note } from "./Notes.tsx";
+import type { Note } from "../data/mod.tsx";
 
 interface NoteListProps {
   items: Note[];
@@ -50,15 +50,15 @@ export function NoteList({ items }: NoteListProps) {
                   })}
                 </div>
               </div>
-              <div className="text-xs font-medium">{item.subject}</div>
+              <div className="text-xs font-medium">{item.name}</div>
             </div>
             <div className="line-clamp-2 text-xs text-muted-foreground">
-              {item.text.substring(0, 300)}
+              {item.content.substring(0, 300)}
             </div>
-            {item.labels.length
+            {item.tags.length
               ? (
                 <div className="flex items-center gap-2">
-                  {item.labels.map((label) => (
+                  {item.tags.map((label) => (
                     <Badge
                       key={label}
                       variant={getBadgeVariantFromLabel(label)}

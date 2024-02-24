@@ -191,8 +191,6 @@ export function NavItemUser(props: { state: NetzoState }) {
     document.documentElement.classList.toggle("dark", isDarkMode);
   }, [isDarkMode]);
 
-  if (!auth?.sessionUser) return null;
-
   const { name, authId, email } = auth?.sessionUser ?? {};
   const initials = name || authId || email || "?";
   const initial = initials?.[0]?.toUpperCase();
@@ -207,8 +205,10 @@ export function NavItemUser(props: { state: NetzoState }) {
             "hover:cursor-pointer hover:bg-muted", // hover
           )}
         >
-          {/* <Button variant="ghost" className="relative w-8 h-8 rounded-full"> */}
-          <Avatar className="h-9 w-9 mr-2">
+          {auth?.sessionUser
+           ? (
+           <>
+            <Avatar className="h-9 w-9 mr-2">
             <AvatarImage
               src={auth?.sessionUser.avatar}
               alt={`@${auth?.sessionUser.authId}}`}
@@ -224,9 +224,20 @@ export function NavItemUser(props: { state: NetzoState }) {
                 {auth?.sessionUser.email}
               </p>
             )}
-          </div>
+            </div>
+            </>
+           )
+           : (
+           <>
+            <i className="mdi-account-circle h-7 w-7 ml-0.5 mr-1.5" />
+            <div className="flex flex-col space-y-1">
+              <p className="text-sm font-medium leading-none">
+                User Settings
+              </p>
+            </div>
+            </>
+           )}
           <i className="mdi-unfold-more-horizontal h-6 w-6 ml-auto" />
-          {/* </Button> */}
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent side="right" align="end" forceMount>
@@ -248,17 +259,21 @@ export function NavItemUser(props: { state: NetzoState }) {
           </>
         )}
         <DropdownMenuItem>
-          <div className="flex w-full items-center justify-between">
+          <div className="flex gap-4 w-full items-center justify-between">
             Dark mode
             <Switch checked={isDarkMode} onCheckedChange={setDarkMode} />
           </div>
         </DropdownMenuItem>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem>
-          <a href="/auth/signout" title="Sign out" className="w-full">
-            Log out
-          </a>
-        </DropdownMenuItem>
+        {auth?.sessionUser.name && (
+          <>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>
+              <a href="/auth/signout" title="Sign out" className="w-full">
+                Log out
+              </a>
+            </DropdownMenuItem>
+          </>
+        )}
       </DropdownMenuContent>
     </DropdownMenu>
   );

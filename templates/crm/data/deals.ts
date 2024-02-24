@@ -1,6 +1,7 @@
 import { ulid } from "netzo/plugins/api/utils.ts";
 import { faker } from "npm:@faker-js/faker@8.4.0";
 import { z } from "zod";
+import { noteSchema } from "./mod.ts";
 
 // schemas:
 
@@ -10,13 +11,7 @@ export const dealSchema = z.object({
   updatedAt: z.string().datetime(),
   name: z.string(),
   tags: z.array(z.string()),
-  notes: z.array(z.object({
-    name: z.string(),
-    tags: z.array(z.string()),
-    content: z.string(),
-    createdAt: z.string().datetime(),
-    updatedAt: z.string().datetime(),
-  })),
+  notes: z.array(noteSchema),
   status: z.enum([
     "lead",
     "qualified",
@@ -27,8 +22,8 @@ export const dealSchema = z.object({
   amount: z.number(),
   currencyCode: z.enum(["USD"]),
   accountId: z.string(),
-  userIds: z.array(z.string()),
   contactIds: z.array(z.string()),
+  userIds: z.array(z.string()),
 });
 
 // types:
@@ -60,6 +55,6 @@ export const mock = (idField = "id") => ({
   amount: faker.commerce.price({ min: 99, max: 99_999 }),
   currencyCode: "USD",
   accountId: ulid(),
-  userIds: Array.from(Array(2)).map(() => ulid()),
   contactIds: Array.from(Array(2)).map(() => ulid()),
+  userIds: Array.from(Array(2)).map(() => ulid()),
 });

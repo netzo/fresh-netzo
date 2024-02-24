@@ -1,6 +1,7 @@
 import { ulid } from "netzo/plugins/api/utils.ts";
 import { faker } from "npm:@faker-js/faker@8.4.0";
 import { z } from "zod";
+import { linkSchema, noteSchema } from "./mod.ts";
 
 // schemas:
 
@@ -20,20 +21,8 @@ export const contactSchema = z.object({
     mobile: z.string(),
     personal: z.string(),
   }),
-  links: z.object({
-    website: z.string().url(),
-    facebook: z.string().url(),
-    linkedin: z.string().url(),
-    twitter: z.string().url(),
-    other: z.string().url(),
-  }),
-  notes: z.array(z.object({
-    name: z.string(),
-    tags: z.array(z.string()),
-    content: z.string(),
-    createdAt: z.string().datetime(),
-    updatedAt: z.string().datetime(),
-  })),
+  links: linkSchema,
+  notes: z.array(noteSchema),
   position: z.string(),
   department: z.string(),
   accountId: z.string(),
@@ -51,7 +40,7 @@ export const mock = (idField = "id") => ({
   updatedAt: faker.date.recent().toISOString(),
   name: faker.person.fullName(),
   tags: Array.from(Array(3)).map(() => faker.lorem.word()),
-  image: faker.image.avatarGitHub(),
+  image: `https://avatar.vercel.sh/${ulid()}.png`, // faker.image.avatarGitHub(),
   emails: {
     work: faker.internet.email().toLowerCase(),
     personal: faker.internet.email().toLowerCase(),

@@ -18,7 +18,8 @@ export function TablePagination<TData>({
   return (
     <div className="flex items-center justify-between px-2">
       <div className="hidden md:block flex-1 text-sm text-muted-foreground">
-        Showing {table.getRowModel().rows.length}{" / "}
+        Showing {table.getRowModel().rows.length}
+        {" / "}
         {table.getFilteredRowModel().rows.length} rows
       </div>
       <div className="flex items-center space-x-6 lg:space-x-8">

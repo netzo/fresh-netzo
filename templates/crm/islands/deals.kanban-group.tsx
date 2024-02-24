@@ -23,7 +23,6 @@ export function KanbanGroup({
   const itemsIds = useComputed(() =>
     items.map((item) => item[options.fieldIds.id])
   );
-
   const {
     setNodeRef,
     attributes,

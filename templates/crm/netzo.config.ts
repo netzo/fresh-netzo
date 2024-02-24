@@ -7,16 +7,19 @@ import unoConfig from "./uno.config.ts";
 // server-side: use server-only $client object ($ = server-only).
 // client-side: use fetch() or custom createApi() client.
 export const $client = {
+  // denokv:
   accounts: endpoints.accounts.resource,
   contacts: endpoints.contacts.resource,
   deals: endpoints.deals.resource,
   users: endpoints.users.resource,
+  // custom:
+  metrics: endpoints.metrics.resource,
 };
 
 export default defineConfig({
   plugins: [
     netzo.environments(),
-    netzo.auth({ providers: { netzo: {} } }),
+    // netzo.auth({ providers: { netzo: {} } }),
     netzo.api({
       path: "/api",
       endpoints: [
@@ -24,6 +27,7 @@ export default defineConfig({
         endpoints.contacts,
         endpoints.deals,
         endpoints.users,
+        endpoints.metrics,
       ],
     }),
     unocss({ config: unoConfig }),

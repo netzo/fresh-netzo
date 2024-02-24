@@ -1,7 +1,7 @@
 import { defineRoute } from "$fresh/server.ts";
 import { Separator } from "netzo/components/separator.tsx";
 import type { Deal } from "../../data/deals.ts";
-import { FormDeal } from "../../islands/deals/Form.tsx";
+import { FormDeal } from "../../islands/deal.tsx";
 import { $client } from "../../netzo.config.ts";
 
 export default defineRoute(async (req, ctx) => {

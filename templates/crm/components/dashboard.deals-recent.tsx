@@ -4,7 +4,7 @@ import {
   AvatarImage,
 } from "netzo/components/avatar.tsx";
 
-export function RecentSales() {
+export function DashboardDealsRecent(props: { deals: Deal[] }) {
   return (
     <div className="space-y-8">
       <div className="flex items-center">

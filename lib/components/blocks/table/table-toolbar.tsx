@@ -1,4 +1,5 @@
 import { useSignal } from "@preact/signals";
+import type { ComponentChildren } from "preact";
 import { Button } from "../../button.tsx";
 import {
   Dialog,
@@ -15,13 +16,15 @@ import { TableFacetedFilter, TableOptions, type TableProps } from "./table.tsx";
 type TableToolbarProps<TData> = {
   table: Table<TData>;
   options: TableProps<TData, unknown>["options"];
+  children?: ComponentChildren;
 };
 
 export function TableToolbar<TData>({
   table,
   options,
+  ...props
 }: TableToolbarProps<TData>) {
-  const { resource } = options;
+  const { resource, idField = "id" } = options;
 
   const isFiltered = table.getState().columnFilters.length > 0;
 
@@ -33,9 +36,9 @@ export function TableToolbar<TData>({
       headers: { "content-type": "application/json" },
       body: JSON.stringify(data.value),
     });
-
     if (response.ok) {
-      window.location.reload();
+      const data = await response.json();
+      window.location.href = `/${resource}/${data[idField]}`;
     }
   };
 
@@ -89,19 +92,19 @@ export function TableToolbar<TData>({
       <div className="flex items-center space-x-2">
         <TableOptions table={table} />
 
-        <Dialog>
+
+        {props.children ?? (
+          <Dialog>
           <DialogTrigger asChild>
-            <Button variant="default" size="sm">Create</Button>
+            <Button variant="default" className="ml-2">Create</Button>
           </DialogTrigger>
           <DialogContent className="sm:max-w-[425px]">
             <DialogHeader className="text-left">
               <DialogTitle>Create new</DialogTitle>
             </DialogHeader>
-            <div className="grid gap-4 py-4">
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="name" className="text-right">
-                  Name
-                </Label>
+            <div className="space-y-4 py-2 pb-4">
+              <div className="space-y-2">
+                <Label htmlFor="name">Name</Label>
                 <Input
                   id="name"
                   className="col-span-3"
@@ -115,6 +118,7 @@ export function TableToolbar<TData>({
             </DialogFooter>
           </DialogContent>
         </Dialog>
+        )}
       </div>
     </div>
   );

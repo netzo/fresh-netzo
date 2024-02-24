@@ -45,7 +45,6 @@ export type { Table };
 export const useTable = <TData = unknown, TValue = unknown>({
   data,
   options,
-  meta = {},
 }: TableProps<TData, TValue>): Table<TData> => {
   const [rowSelection, setRowSelection] = useState({});
   const [
@@ -81,7 +80,6 @@ export const useTable = <TData = unknown, TValue = unknown>({
     initialState: {
       pagination: { pageSize: 25 },
     },
-    meta,
   });
 
   return table;

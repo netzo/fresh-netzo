@@ -3,6 +3,7 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "netzo/components/avatar.tsx";
+import { Badge } from "netzo/components/badge.tsx";
 import { Gallery } from "netzo/components/blocks/table/table.gallery.tsx";
 import {
   TableColumnHeader,
@@ -30,7 +31,15 @@ export const getTableOptions = (
       column: "name",
       placeholder: "Search by name...",
     },
-    filters: [],
+    filters: [
+      {
+        column: "tag",
+        title: I18N.tags,
+        options: [...new Set(data.map((item) => item.tags).flat())].sort().map((
+          value,
+        ) => (value ? { label: value, value } : { label: "*no data", value })),
+      },
+    ],
     columns: [
       {
         id: "actions",
@@ -59,6 +68,24 @@ export const getTableOptions = (
             </div>
           );
         },
+      },
+      {
+        accessorKey: "tags",
+        header: (props) => <TableColumnHeader {...props} title={I18N.tags} />,
+        cell: ({ row }) => {
+          const { tags = [] } = row.original;
+          // FIXME: unocss fails to pickup dynamic `bg-${toHslColor(tag)}` className
+          return (
+            <div className="flex gap-1">
+              {tags.map((tag) => (
+                <Badge variant="secondary">
+                  {tag}
+                </Badge>
+              ))}
+            </div>
+          );
+        },
+        filterFn: (row, id, value) => value.includes(row.getValue(id)),
       },
       {
         accessorKey: "accountId",

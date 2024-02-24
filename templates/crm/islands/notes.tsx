@@ -13,15 +13,10 @@ import {
 } from "netzo/components/tabs.tsx";
 import { TooltipProvider } from "netzo/components/tooltip.tsx";
 import { useState } from "preact/hooks";
-import { NoteDisplay } from "./NoteDisplay.tsx";
-import { NoteEditor } from "./NoteEditor.tsx";
-import { NoteList } from "./NoteList.tsx";
-
-export type Note = {
-  text: string;
-  createdAt: string;
-  updatedAt: string;
-};
+import type { Note } from "../data/mod.tsx";
+import { NoteDisplay } from "./notes.display.tsx";
+import { NoteEditor } from "./notes.editor.tsx";
+import { NoteList } from "./notes.list.tsx";
 
 type NoteProps = {
   data: Note[];

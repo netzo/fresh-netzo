@@ -29,7 +29,7 @@ import addDays from "npm:date-fns/addDays";
 import addHours from "npm:date-fns/addHours";
 import format from "npm:date-fns/format";
 import nextSaturday from "npm:date-fns/nextSaturday";
-import { Note } from "./Notes.tsx";
+import type { Note } from "../data/mod.tsx";
 
 interface NoteDisplayProps {
   note: Note | null;
@@ -192,7 +192,7 @@ export function NoteDisplay({ note }: NoteDisplayProps) {
                 </Avatar>
                 <div className="grid gap-1">
                   <div className="font-semibold">{note.name}</div>
-                  <div className="line-clamp-1 text-xs">{note.subject}</div>
+                  <div className="line-clamp-1 text-xs">{note.name}</div>
                   <div className="line-clamp-1 text-xs">
                     <span className="font-medium">Reply-To:</span> {note.enote}
                   </div>
@@ -206,7 +206,7 @@ export function NoteDisplay({ note }: NoteDisplayProps) {
             </div>
             <Separator />
             <div className="flex-1 whitespace-pre-wrap p-4 text-sm">
-              {note.text}
+              {note.content}
             </div>
             <Separator className="mt-auto" />
             <div className="p-4">
