@@ -8,10 +8,10 @@ import { Grid } from "netzo/components/blocks/table/table.grid.tsx";
 import {
   TableColumnHeader,
   TablePagination,
+  type TableProps,
   TableRowActions,
   TableToolbar,
   useTable,
-  type TableProps,
 } from "netzo/components/blocks/table/table.tsx";
 import { IconCopy } from "netzo/components/icon-copy.tsx";
 import { type Account } from "../data/accounts.ts";
@@ -114,7 +114,7 @@ export function Table(props: { data: Account[] }) {
 
   return (
     <div className="space-y-4">
-      <TableToolbar options={options} table={table}/>
+      <TableToolbar options={options} table={table} />
       <div className="border rounded-md">
         <Grid options={options} table={table} />
       </div>

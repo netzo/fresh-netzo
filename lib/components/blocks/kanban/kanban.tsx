@@ -25,6 +25,7 @@ import { hasDraggableData } from "./utils.ts";
 
 export { KanbanCardContainer } from "./kanban-card-container.tsx";
 export { KanbanContainer } from "./kanban-container.tsx";
+export { KanbanGroupContainer } from "./kanban-group-container.tsx";
 
 // kanban:
 
@@ -66,6 +67,7 @@ export type KanbanGroupProps<
   isOverlay?: boolean;
   options: KanbanProps["options"];
   renderCard: KanbanProps["renderCard"];
+  children: ComponentChildren;
 };
 
 // kanban-card:
