@@ -16,7 +16,7 @@ import {
 import { Spinner, wait } from "../../../deps/wait/mod.ts";
 // vendored x/question@0.0.2 to silence deprecated API warnings (Deno>=1.4)
 import { question } from "../../../deps/question/mod.ts";
-import { netzo } from "../../../integrations/apis/netzo/mod.ts";
+import { netzo } from "../../../integrations/apis/netzo.ts";
 import { error, LOGS } from "../../../plugins/utils.ts";
 import type { Args as RawArgs } from "../args.ts";
 import { APIError } from "../utils/api.ts";

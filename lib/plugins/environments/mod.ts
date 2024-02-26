@@ -1,5 +1,5 @@
 // deno-lint-ignore-file no-explicit-any
-import { netzo } from "../../integrations/apis/netzo/mod.ts";
+import { netzo } from "../../integrations/apis/netzo.ts";
 import type { Project } from "../types.ts";
 import { logInfo, LOGS } from "../utils.ts";
 

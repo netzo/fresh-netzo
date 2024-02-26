@@ -21,7 +21,7 @@ export const RichTextEditor = (
     editorProps: {
       attributes: {
         class: cn(
-          "min-h-[80px] max-h-[180px] w-full rounded-md rounded-br-none rounded-bl-none border border-input bg-transparent px-3 py-2 border-b-0 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 overflow-auto",
+          "w-full h-full bg-transparent px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 overflow-auto",
           className,
         ),
       },
@@ -46,7 +46,8 @@ export const RichTextEditor = (
 
   return (
     <>
-      {editor ? <RichTextEditorToolbar editor={editor} /> : null}
+      <RichTextEditorToolbar editor={editor} />
+      <Separator />
       <EditorContent editor={editor} />
     </>
   );
@@ -54,40 +55,41 @@ export const RichTextEditor = (
 
 export const RichTextEditorToolbar = ({ editor }: { editor: Editor }) => {
   return (
-    <div className="border border-input bg-transparent rounded-br-md rounded-bl-md p-1 flex flex-row items-center gap-1">
+    <div className="bg-transparent p-1 flex flex-row items-center gap-1">
       <Toggle
         size="sm"
-        pressed={editor.isActive("bold")}
-        onPressedChange={() => editor.chain().focus().toggleBold().run()}
+        pressed={editor?.isActive("bold")}
+        onPressedChange={() => editor?.chain().focus().toggleBold().run()}
       >
         <i className="mdi-format-bold h-4 w-4" />
       </Toggle>
       <Toggle
         size="sm"
-        pressed={editor.isActive("italic")}
-        onPressedChange={() => editor.chain().focus().toggleItalic().run()}
+        pressed={editor?.isActive("italic")}
+        onPressedChange={() => editor?.chain().focus().toggleItalic().run()}
       >
         <i className="mdi-format-italic h-4 w-4" />
       </Toggle>
       <Toggle
         size="sm"
-        pressed={editor.isActive("strike")}
-        onPressedChange={() => editor.chain().focus().toggleStrike().run()}
+        pressed={editor?.isActive("strike")}
+        onPressedChange={() => editor?.chain().focus().toggleStrike().run()}
       >
         <i className="mdi-format-strikethrough h-4 w-4" />
       </Toggle>
       <Separator orientation="vertical" className="w-[1px] h-8" />
       <Toggle
         size="sm"
-        pressed={editor.isActive("bulletList")}
-        onPressedChange={() => editor.chain().focus().toggleBulletList().run()}
+        pressed={editor?.isActive("bulletList")}
+        onPressedChange={() => editor?.chain().focus().toggleBulletList().run()}
       >
         <i className="mdi-format-list-bulleted h-4 w-4" />
       </Toggle>
       <Toggle
         size="sm"
-        pressed={editor.isActive("orderedList")}
-        onPressedChange={() => editor.chain().focus().toggleOrderedList().run()}
+        pressed={editor?.isActive("orderedList")}
+        onPressedChange={() =>
+          editor?.chain().focus().toggleOrderedList().run()}
       >
         <i className="mdi-format-list-numbered h-4 w-4" />
       </Toggle>

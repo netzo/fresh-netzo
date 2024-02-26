@@ -1,12 +1,12 @@
 import { defineRoute } from "$fresh/server.ts";
 import { Separator } from "netzo/components/separator.tsx";
 import type { Deal } from "../../data/deals.ts";
-import { FormDeal } from "../../islands/deals/Form.tsx";
+import { FormDeal } from "../../islands/deal.tsx";
 import { $client } from "../../netzo.config.ts";
 
 export default defineRoute(async (req, ctx) => {
   const { id } = ctx.params;
-  const data = (id === "new" ? {} : await $client.deals.get(id)) as Deal;
+  const data = await $client.deals.get(id) as Deal;
 
   return (
     <div className="overflow-auto">

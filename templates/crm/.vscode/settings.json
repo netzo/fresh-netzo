@@ -18,15 +18,6 @@
     "editor.defaultFormatter": "denoland.vscode-deno"
   },
   "[json]": {
-    "editor.defaultFormatter": "denoland.vscode-deno"
-  },
-  "[jsonc]": {
-    "editor.defaultFormatter": "denoland.vscode-deno"
-  },
-  "editor.defaultFormatter": "denoland.vscode-deno",
-  "editor.formatOnSave": true,
-  "editor.codeActionsOnSave": {
-    "source.organizeImports": "explicit",
-    "source.fixAll": "explicit"
+    "editor.defaultFormatter": "vscode.json-language-features"
   }
 }

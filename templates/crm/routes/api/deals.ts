@@ -12,25 +12,22 @@ export const deals = defineApiEndpoint({
   idField: "id",
   resource: DenoKvResource({ prefix: ["deals"] }),
   hooks: {
-    all: [
-      authenticate(),
-      log(),
+    all: [authenticate(), log()],
+    find: [],
+    get: [
       resolve({
         after: {
-          user: (data: Deal) => $client.users.get(data.userId) as User,
-          accounts: (data: Deal) =>
-            Promise.all<Account>(
-              data.accountIds.map((id) => $client.accounts.get(id)),
-            ),
+          account: (data: Deal) =>
+            $client.accounts.get(data.accountId) as Account,
           contacts: (data: Deal) =>
             Promise.all<Contact>(
-              data.contactIds.map((id) => $client.contacts.get(id)),
+              data.contactIds?.map((id) => $client.contacts.get(id)),
             ),
+          users: (data: Deal) =>
+            Promise.all<User>(data.userIds?.map((id) => $client.users.get(id))),
         },
       }),
     ],
-    find: [],
-    get: [],
     create: [],
     update: [],
     patch: [],

@@ -1,4 +1,5 @@
 import { KeyCombos } from "./KeyCombo.ts";
+import { TextRange, textSearch } from "./text-util.ts";
 import {
   asPromptText,
   CLEAR_LINE,
@@ -14,7 +15,6 @@ import {
   RESET_COLOR,
   SHOW_CURSOR,
 } from "./util.ts";
-import { TextRange, textSearch } from "./text-util.ts";
 
 export interface ListOptions {
   /**
@@ -25,14 +25,14 @@ export interface ListOptions {
   windowSize?: number;
   /**
    * The pattern to repeat for when there are more items either above or below
-   * the current window.
+   * the current globalThis.
    *
    * Default: `-`
    */
   moreContentPattern?: string;
   /**
    * The pattern to repeat for when there are no additional items either above
-   * or below the current window.
+   * or below the current globalThis.
    *
    * Default: `=`
    */

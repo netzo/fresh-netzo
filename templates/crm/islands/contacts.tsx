@@ -1,36 +1,58 @@
+import { useSignal } from "@preact/signals";
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
 } from "netzo/components/avatar.tsx";
-import { Gallery } from "netzo/components/blocks/table/table.gallery.tsx";
+import { Badge } from "netzo/components/badge.tsx";
 import {
+  TableActionsReload,
   TableColumnHeader,
+  TableFilters,
   TablePagination,
-  type TableProps,
   TableRowActions,
-  TableToolbar,
+  TableSearch,
+  TableView,
+  TableViewOptions,
   useTable,
 } from "netzo/components/blocks/table/table.tsx";
+import { Button } from "netzo/components/button.tsx";
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "netzo/components/dialog.tsx";
 import { IconCopy } from "netzo/components/icon-copy.tsx";
-import { type Contact, I18N } from "../data/contacts.ts";
-import { toDateTime } from "./mod.ts";
+import { Input } from "netzo/components/input.tsx";
+import { Label } from "netzo/components/label.tsx";
+import type { Contact } from "../data/contacts.ts";
+import { I18N, toDateTime } from "../data/mod.ts";
 
-export const getTableOptions = (
-  data: Contact[],
-): TableProps<Contact, unknown>["options"] => {
-  return {
+export function Table({ data }: { data: Contact[] }) {
+  const table = useTable<Contact>(data, {
     resource: "contacts",
-    fieldIds: {
-      id: "id",
-      name: "name",
-      image: "image",
-    },
+    idField: "id",
     search: {
       column: "name",
       placeholder: "Search by name...",
     },
-    filters: [],
+    filters: [
+      {
+        column: "accountId",
+        title: I18N.account,
+        options: [...new Set(data.map((item) => item.account).flat())].sort()
+          .map(
+            (
+              value,
+            ) => (value
+              ? { label: value.name, value: value.id }
+              : { label: "*no data", value: "" }),
+          ),
+      },
+    ],
     columns: [
       {
         id: "actions",
@@ -63,16 +85,45 @@ export const getTableOptions = (
       {
         accessorKey: "accountId",
         header: (props) => (
-          <TableColumnHeader {...props} title={I18N.accountId} />
+          <TableColumnHeader
+            {...props}
+            title={I18N.account}
+          />
         ),
         cell: ({ row }) => {
-          const { accountId, account } = row.original;
+          const { id, name = "", image } = row.original.account ?? {};
+          return (
+            <div className="flex items-center py-1">
+              <Avatar className="h-9 w-9 mr-3">
+                <AvatarImage src={image} />
+                <AvatarFallback>{name[0]?.toUpperCase()}</AvatarFallback>
+              </Avatar>
+              <a
+                href={`/accounts/${id}`}
+                className="whitespace-nowrap text-center font-medium text-primary hover:underline"
+              >
+                {name}
+              </a>
+              <IconCopy value={id} tooltip="Copy ID" />
+            </div>
+          );
+        },
+        filterFn: (row, id, value) => value.includes(row.getValue(id)),
+      },
+      {
+        accessorKey: "notes",
+        header: (props) => <TableColumnHeader {...props} title={I18N.notes} />,
+        cell: ({ row }) => {
+          const { notes = [] } = row.original;
           return (
             <a
-              href={`/accounts/${accountId}`}
-              className="whitespace-nowrap text-center font-medium text-primary hover:underline"
+              href={`/contacts/${row.original.id}/notes`}
+              className="hover:underline"
             >
-              {account?.name ? account.name : accountId}
+              <Badge variant="secondary">
+                <i className="mdi-note-text mr-1" />
+                {notes.length} Notes
+              </Badge>
             </a>
           );
         },
@@ -81,16 +132,24 @@ export const getTableOptions = (
         accessorKey: "phones",
         header: (props) => <TableColumnHeader {...props} title={I18N.phones} />,
         cell: ({ row }) => {
-          const { phones = [] } = row.original;
+          const { phones = {} } = row.original;
+          const ICONS = {
+            work: "mdi-phone",
+            mobile: "mdi-cellphone",
+            personal: "mdi-cellphone-lock",
+          } as const;
+          const items = Object.entries(phones)
+            .filter(([name, value]) => value)
+            .map(([name, value]) => ({ name, value, className: ICONS[name] }));
           return (
             <div className="flex gap-1">
-              {phones.map((phone, index) => (
+              {items.map((item, index) => (
                 <a
                   key={`phone-${index}`}
-                  href={`tel:${phone.value}`}
+                  href={`tel:${item.value}`}
                   target="_blank"
-                  title={`${phone.name}: ${phone.value}`}
-                  className="mdi-phone"
+                  title={`${item.name}: ${item.value}`}
+                  className={item.className}
                 />
               ))}
             </div>
@@ -101,16 +160,23 @@ export const getTableOptions = (
         accessorKey: "emails",
         header: (props) => <TableColumnHeader {...props} title={I18N.emails} />,
         cell: ({ row }) => {
-          const { emails = [] } = row.original;
+          const { emails = {} } = row.original;
+          const ICONS = {
+            work: "mdi-email",
+            personal: "mdi-email-lock",
+          } as const;
+          const items = Object.entries(emails)
+            .filter(([name, value]) => value)
+            .map(([name, value]) => ({ name, value, className: ICONS[name] }));
           return (
             <div className="flex gap-1">
-              {emails.map((email, index) => (
+              {items.map((item, index) => (
                 <a
                   key={`mail-${index}`}
-                  href={`mailto:${email.value}`}
+                  href={`mailto:${item.value}`}
                   target="_blank"
-                  title={`${email.name}: ${email.value}`}
-                  className="mdi-email"
+                  title={`${item.name}: ${item.value}`}
+                  className={item.className}
                 />
               ))}
             </div>
@@ -128,19 +194,69 @@ export const getTableOptions = (
         },
       },
     ],
-  };
-};
-
-export function Table(props: { data: Contact[] }) {
-  const options = getTableOptions(props.data);
-
-  const table = useTable<Contact, unknown>({ ...props, options });
+  });
 
   return (
     <div className="space-y-4">
-      <TableToolbar options={options} table={table} />
-      <Gallery options={options} table={table} />
+      <header className="flex items-center justify-between">
+        <div className="flex items-center flex-1 space-x-2">
+          <TableActionsReload table={table} />
+          <TableSearch table={table} />
+          <TableFilters table={table} />
+        </div>
+
+        <div className="flex items-center space-x-2">
+          <TableViewOptions table={table} />
+          <ContactsFormCreate />
+        </div>
+      </header>
+      <div className="border rounded-md">
+        <TableView table={table} />
+      </div>
       <TablePagination table={table} />
     </div>
+  );
+}
+
+export function ContactsFormCreate() {
+  const data = useSignal<Partial<Contact>>({ name: "" });
+
+  const onClickCreate = async () => {
+    const response = await fetch(`/api/contacts`, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(data.value),
+    });
+    if (response.ok) {
+      const data = await response.json();
+      globalThis.location.href = `/contacts/${data.id}`;
+    }
+  };
+
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button variant="default" className="ml-2">Create</Button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[425px]">
+        <DialogHeader className="text-left">
+          <DialogTitle>Create New</DialogTitle>
+        </DialogHeader>
+        <div className="space-y-4 py-2 pb-4">
+          <div className="space-y-2">
+            <Label htmlFor="name">Name</Label>
+            <Input
+              id="name"
+              className="col-span-3"
+              value={data.value.name}
+              onInput={(e) => data.value.name = e.target.value}
+            />
+          </div>
+        </div>
+        <DialogFooter>
+          <Button onClick={onClickCreate}>Create</Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
 }
