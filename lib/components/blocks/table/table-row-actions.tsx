@@ -24,13 +24,14 @@ type TableRowActionsProps<TData> = TableProps<TData> & {
   row: Row<TData>;
   resource: string;
   idField?: string;
+  actions?: ("open" | "duplicate" | "copyId" | "remove")[];
 };
 
 export function TableRowActions<TData>({
-  table,
   resource,
   idField = "id",
   row,
+  actions = ["open", "duplicate", "copyId", "remove"],
 }: TableRowActionsProps<TData>) {
   const onSelectOpen = () => {
     window.location.pathname = `/${resource}/${row.original[idField]}`;
@@ -72,24 +73,29 @@ export function TableRowActions<TData>({
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="w-[160px]">
-          <DropdownMenuItem onSelect={onSelectOpen}>
-            Open
-          </DropdownMenuItem>
-
-          <DropdownMenuItem onSelect={onSelectDuplicate}>
-            Duplicate
-          </DropdownMenuItem>
-
-          <DropdownMenuItem onSelect={onSelectCopyId}>
-            Copy ID
-          </DropdownMenuItem>
-
-          <DropdownMenuSeparator />
-          <AlertDialogTrigger asChild>
-            <DropdownMenuItem className="!text-red-500">
-              Delete
+          {actions.includes("open") && (
+            <DropdownMenuItem onSelect={onSelectOpen}>
+              Open
             </DropdownMenuItem>
-          </AlertDialogTrigger>
+          )}
+          {actions.includes("duplicate") && (
+            <DropdownMenuItem onSelect={onSelectDuplicate}>
+              Duplicate
+            </DropdownMenuItem>
+          )}
+          {actions.includes("copyId") && (
+            <DropdownMenuItem onSelect={onSelectCopyId}>
+              Copy ID
+            </DropdownMenuItem>
+            )}
+          <DropdownMenuSeparator />
+          {actions.includes("remove") && (
+            <AlertDialogTrigger asChild>
+              <DropdownMenuItem className="!text-red-500">
+                Delete
+              </DropdownMenuItem>
+            </AlertDialogTrigger>
+          )}
         </DropdownMenuContent>
       </DropdownMenu>
 

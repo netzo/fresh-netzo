@@ -6,7 +6,9 @@ import * as $_404 from "./routes/_404.tsx";
 import * as $_500 from "./routes/_500.tsx";
 import * as $_app from "./routes/_app.tsx";
 import * as $_layout from "./routes/_layout.tsx";
-import * as $accounts_id_ from "./routes/accounts/[id].tsx";
+import * as $accounts_id_layout from "./routes/accounts/[id]/_layout.tsx";
+import * as $accounts_id_index from "./routes/accounts/[id]/index.tsx";
+import * as $accounts_id_notes from "./routes/accounts/[id]/notes.tsx";
 import * as $accounts_index from "./routes/accounts/index.tsx";
 import * as $api_accounts from "./routes/api/accounts.ts";
 import * as $api_contacts from "./routes/api/contacts.ts";
@@ -30,9 +32,6 @@ import * as $deals_kanban_card from "./islands/deals.kanban-card.tsx";
 import * as $deals_kanban_group from "./islands/deals.kanban-group.tsx";
 import * as $deals from "./islands/deals.tsx";
 import * as $nav from "./islands/nav.tsx";
-import * as $notes_display from "./islands/notes.display.tsx";
-import * as $notes_editor from "./islands/notes.editor.tsx";
-import * as $notes_list from "./islands/notes.list.tsx";
 import * as $notes from "./islands/notes.tsx";
 import { type Manifest } from "$fresh/server.ts";
 
@@ -42,7 +41,9 @@ const manifest = {
     "./routes/_500.tsx": $_500,
     "./routes/_app.tsx": $_app,
     "./routes/_layout.tsx": $_layout,
-    "./routes/accounts/[id].tsx": $accounts_id_,
+    "./routes/accounts/[id]/_layout.tsx": $accounts_id_layout,
+    "./routes/accounts/[id]/index.tsx": $accounts_id_index,
+    "./routes/accounts/[id]/notes.tsx": $accounts_id_notes,
     "./routes/accounts/index.tsx": $accounts_index,
     "./routes/api/accounts.ts": $api_accounts,
     "./routes/api/contacts.ts": $api_contacts,
@@ -68,9 +69,6 @@ const manifest = {
     "./islands/deals.kanban-group.tsx": $deals_kanban_group,
     "./islands/deals.tsx": $deals,
     "./islands/nav.tsx": $nav,
-    "./islands/notes.display.tsx": $notes_display,
-    "./islands/notes.editor.tsx": $notes_editor,
-    "./islands/notes.list.tsx": $notes_list,
     "./islands/notes.tsx": $notes,
   },
   baseUrl: import.meta.url,

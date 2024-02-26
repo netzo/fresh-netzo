@@ -1,3 +1,4 @@
+import { useSignal } from "@preact/signals";
 import {
   Avatar,
   AvatarFallback,
@@ -20,7 +21,6 @@ import {
 } from "netzo/components/popover.tsx";
 import { cn } from "netzo/components/utils.ts";
 import type { ComponentProps } from "preact";
-import { useState } from "preact/hooks";
 import type { Account } from "../data/accounts.ts";
 
 type PopoverTriggerProps = ComponentProps<typeof PopoverTrigger>;
@@ -32,8 +32,8 @@ interface DashboardAccountSelectProps extends PopoverTriggerProps {
 export function DashboardAccountSelect(
   { className, accounts, account }: DashboardAccountSelectProps,
 ) {
-  const [open, setOpen] = useState(false);
-  const [selectedAccount, setSelectedAccount] = useState<Account>(account);
+  const open = useSignal(false);
+  const selectedAccount = useSignal<Account>(account);
 
   const groups = [
     {
@@ -44,24 +44,27 @@ export function DashboardAccountSelect(
   ];
 
   return (
-    <Popover open={open} onOpenChange={setOpen}>
+    <Popover
+      open={open.value}
+      onOpenChange={(value) => open.value = value}
+    >
       <PopoverTrigger asChild>
         <Button
           variant="outline"
           role="combobox"
-          aria-expanded={open}
+          aria-expanded={open.value}
           aria-label="Select a account"
           className={cn("w-auto justify-between", className)}
         >
           <Avatar className="mr-2 h-5 w-5">
             <AvatarImage
-              src={`https://avatar.vercel.sh/${selectedAccount.id}.png`}
-              alt={selectedAccount.name}
+              src={`https://avatar.vercel.sh/${selectedAccount.value.id}.png`}
+              alt={selectedAccount.value.name}
               className="grayscale"
             />
             <AvatarFallback>SC</AvatarFallback>
           </Avatar>
-          {selectedAccount.name}
+          {selectedAccount.value.name}
           <i className="mdi-unfold-more-horizontal ml-auto h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
@@ -77,13 +80,13 @@ export function DashboardAccountSelect(
                     key={item.id}
                     onSelect={() => {
                       if (["Teams"].includes(group.name)) {
-                        setSelectedAccount(undefined);
+                        selectedAccount.value = undefined;
                         window.location.href = "";
                       } else {
-                        setSelectedAccount(item);
+                        selectedAccount.value = item;
                         window.location.href = `?accountId=${item.id}`;
                       }
-                      setOpen(false);
+                      open.value = false;
                     }}
                     className="text-sm"
                   >
@@ -99,7 +102,7 @@ export function DashboardAccountSelect(
                     <i
                       className={cn(
                         "mdi-check ml-auto h-4 w-4",
-                        selectedAccount.id === item.id
+                        selectedAccount.value.id === item.id
                           ? "opacity-100"
                           : "opacity-0",
                       )}
@@ -114,7 +117,7 @@ export function DashboardAccountSelect(
             <CommandGroup>
               <CommandItem
                 onSelect={() => {
-                  setOpen(false);
+                  open.value = false;
                   window.location.href = "/accounts";
                 }}
               >

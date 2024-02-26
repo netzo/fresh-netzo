@@ -10,7 +10,6 @@ export const dealSchema = z.object({
   createdAt: z.string().datetime(),
   updatedAt: z.string().datetime(),
   name: z.string(),
-  tags: z.array(z.string()),
   notes: z.array(noteSchema),
   status: z.enum([
     "lead",
@@ -37,10 +36,8 @@ export const mock = (idField = "id") => ({
   createdAt: faker.date.past().toISOString(),
   updatedAt: faker.date.recent().toISOString(),
   name: faker.lorem.words(),
-  tags: Array.from(Array(3)).map(() => faker.lorem.word()),
   notes: Array.from(Array(5)).map(() => ({
     name: faker.lorem.paragraph(),
-    tags: Array.from(Array(2)).map(() => faker.lorem.word()),
     content: faker.lorem.paragraph(),
     createdAt: faker.date.past().toISOString(),
     updatedAt: faker.date.recent().toISOString(),

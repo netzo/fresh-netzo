@@ -2,7 +2,10 @@ import {
   Kanban as _Kanban,
   type KanbanProps,
 } from "netzo/components/blocks/kanban/kanban.tsx";
-import { useTable } from "netzo/components/blocks/table/table.tsx";
+import {
+  TablePagination,
+  TableToolbar, useTable
+} from "netzo/components/blocks/table/table.tsx";
 import { type Deal } from "../data/deals.ts";
 import { I18N } from "../data/mod.ts";
 import { KanbanCard } from "./deals.kanban-card.tsx";
@@ -53,8 +56,27 @@ export const getKanbanOptions = (
       description: "description",
       image: "image",
     },
+    filters: [
+      {
+        column: "accountId",
+        title: I18N.account,
+        options: [...new Set(data.map((item) => item.account).flat())].sort()
+          .map(
+            (
+              value,
+            ) => (value
+              ? { label: value.name, value: value.id }
+              : { label: "*no data", value: "" }),
+          ),
+      },
+    ],
+    columns: [
+      {
+        accessorKey: "accountId",
+        filterFn: (row, id, value) => value.includes(row.getValue(id)),
+      },
+    ],
     groups: GROUPS,
-    columns: [],
   };
 };
 
@@ -64,11 +86,17 @@ export function Kanban(props: KanbanProps<Deal, unknown>) {
   const table = useTable<Deal, unknown>({ ...props, options });
 
   return (
-    <_Kanban
-      options={options}
-      table={table}
-      renderGroup={(props) => <KanbanGroup {...props} />}
-      renderCard={(props) => <KanbanCard {...props} />}
-    />
+    <div className="space-y-4">
+      <TableToolbar options={options} table={table} />
+      <div>
+        <_Kanban
+          options={options}
+          table={table}
+          renderGroup={(props) => <KanbanGroup {...props} />}
+          renderCard={(props) => <KanbanCard {...props} />}
+        />
+      </div>
+      <TablePagination table={table} />
+    </div>
   );
 }

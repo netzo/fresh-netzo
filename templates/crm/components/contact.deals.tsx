@@ -3,7 +3,7 @@ import { cn } from "netzo/components/utils.ts";
 import type { Deal } from "../data/deals.ts";
 import { GROUPS } from "../islands/deals.tsx";
 
-export function AccountDeals(props: { deals: Deal[] }) {
+export function ContactDeals(props: { deals: Deal[] }) {
   const getGroup = (deal: Deal) => {
     return GROUPS.find((group) => group.id === deal.status);
   };

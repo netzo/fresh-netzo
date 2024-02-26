@@ -99,7 +99,7 @@ export function TableToolbar<TData>({
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
               <DialogHeader className="text-left">
-                <DialogTitle>Create new</DialogTitle>
+                <DialogTitle>Create New</DialogTitle>
               </DialogHeader>
               <div className="space-y-4 py-2 pb-4">
                 <div className="space-y-2">

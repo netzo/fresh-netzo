@@ -69,7 +69,7 @@ export function NavRoot({ className, ...props }: NavRootProps) {
             <nav
               f-client-nav
               className={cn(
-                "h-full group flex flex-col bg-primary-foreground",
+                "h-full overflow-y-auto group flex flex-col bg-primary-foreground",
                 className,
               )}
             >
@@ -85,7 +85,7 @@ export function NavRoot({ className, ...props }: NavRootProps) {
         f-client-nav
         className={cn(
           "!hidden !md:flex md:b-r-1",
-          "h-full group flex flex-col bg-primary-foreground",
+          "h-full overflow-y-auto group flex flex-col bg-primary-foreground",
           className,
         )}
       >

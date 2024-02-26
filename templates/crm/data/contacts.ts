@@ -10,8 +10,10 @@ export const contactSchema = z.object({
   createdAt: z.string().datetime(),
   updatedAt: z.string().datetime(),
   name: z.string(),
-  tags: z.array(z.string()),
   image: z.string().url(),
+  position: z.string(),
+  department: z.string(),
+  accountId: z.string(),
   emails: z.object({
     work: z.string().email(),
     personal: z.string().email(),
@@ -23,9 +25,6 @@ export const contactSchema = z.object({
   }),
   links: linkSchema,
   notes: z.array(noteSchema),
-  position: z.string(),
-  department: z.string(),
-  accountId: z.string(),
 });
 
 // types:
@@ -39,8 +38,10 @@ export const mock = (idField = "id") => ({
   createdAt: faker.date.past().toISOString(),
   updatedAt: faker.date.recent().toISOString(),
   name: faker.person.fullName(),
-  tags: Array.from(Array(3)).map(() => faker.lorem.word()),
   image: `https://avatar.vercel.sh/${ulid()}.png`, // faker.image.avatarGitHub(),
+  position: faker.person.jobTitle(),
+  department: faker.person.jobArea(),
+  accountId: ulid() as string,
   emails: {
     work: faker.internet.email().toLowerCase(),
     personal: faker.internet.email().toLowerCase(),
@@ -58,13 +59,9 @@ export const mock = (idField = "id") => ({
     other: faker.internet.url(),
   },
   notes: Array.from(Array(5)).map(() => ({
-    name: faker.lorem.paragraph(),
-    tags: Array.from(Array(2)).map(() => faker.lorem.word()),
+    name: faker.lorem.sentence(),
     content: faker.lorem.paragraph(),
     createdAt: faker.date.past().toISOString(),
     updatedAt: faker.date.recent().toISOString(),
   })),
-  position: faker.person.jobTitle(),
-  department: faker.person.jobArea(),
-  accountId: ulid() as string,
 });

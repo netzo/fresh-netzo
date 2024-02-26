@@ -10,7 +10,6 @@ export const accountSchema = z.object({
   createdAt: z.string().datetime(),
   updatedAt: z.string().datetime(),
   name: z.string(),
-  tags: z.array(z.string()),
   image: z.string().url(),
   email: z.string().email(),
   phone: z.string(),
@@ -29,7 +28,6 @@ export const mock = (idField = "id") => ({
   createdAt: faker.date.past().toISOString(),
   updatedAt: faker.date.recent().toISOString(),
   name: faker.company.name(),
-  tags: Array.from(Array(3)).map(() => faker.lorem.word()),
   image: `https://avatar.vercel.sh/${ulid()}.png`, // faker.image.avatarGitHub(),
   email: faker.internet.email().toLowerCase(),
   phone: faker.phone.number(),
@@ -42,7 +40,6 @@ export const mock = (idField = "id") => ({
   },
   notes: Array.from(Array(5)).map(() => ({
     name: faker.lorem.paragraph(),
-    tags: Array.from(Array(2)).map(() => faker.lorem.word()),
     content: faker.lorem.paragraph(),
     createdAt: faker.date.past().toISOString(),
     updatedAt: faker.date.recent().toISOString(),

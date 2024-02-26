@@ -26,26 +26,7 @@ export const getTableOptions = (
       column: "name",
       placeholder: "Search by name...",
     },
-    filters: [
-      {
-        column: "status",
-        title: I18N.status,
-        options: [
-          { label: I18N["status.lead"], value: "lead" },
-          { label: I18N["status.qualified"], value: "qualified" },
-          { label: I18N["status.negotiation"], value: "negotiation" },
-          { label: I18N["status.won"], value: "won" },
-          { label: I18N["status.lost"], value: "lost" },
-        ],
-      },
-      {
-        column: "tag",
-        title: I18N.tags,
-        options: [...new Set(data.map((item) => item.tags).flat())].sort().map((
-          value,
-        ) => (value ? { label: value, value } : { label: "*no data", value })),
-      },
-    ],
+    filters: [],
     columns: [
       {
         id: "actions",
@@ -56,13 +37,11 @@ export const getTableOptions = (
         header: (props) => <TableColumnHeader {...props} title={I18N.name} />,
         cell: ({ row }) => {
           const { id, name = "", image } = row.original;
-          const [first = "", last = ""] = name.split(" ");
-          const initials = `${first[0]}${last[0]}`?.toUpperCase();
           return (
             <div className="flex items-center py-1">
               <Avatar className="h-9 w-9 mr-3">
                 <AvatarImage src={image} />
-                <AvatarFallback>{initials}</AvatarFallback>
+                <AvatarFallback>{name[0]?.toUpperCase()}</AvatarFallback>
               </Avatar>
               <a
                 href={`/accounts/${id}`}
@@ -76,22 +55,84 @@ export const getTableOptions = (
         },
       },
       {
-        accessorKey: "tags",
-        header: (props) => <TableColumnHeader {...props} title={I18N.tags} />,
+        accessorKey: "notes",
+        header: (props) => <TableColumnHeader {...props} title={I18N.notes} />,
         cell: ({ row }) => {
-          const { tags = [] } = row.original;
-          // FIXME: unocss fails to pickup dynamic `bg-${toHslColor(tag)}` className
+          const { notes = [] } = row.original;
           return (
-            <div className="flex gap-1">
-              {tags.map((tag) => (
-                <Badge variant="secondary">
-                  {tag}
-                </Badge>
+            <a
+              href={`/accounts/${row.original.id}/notes`}
+              className="hover:underline"
+            >
+              <Badge variant="secondary">
+                <i className="mdi-note-text mr-1" />
+                {notes.length} Notes
+              </Badge>
+            </a>
+          );
+        },
+      },
+      {
+        accessorKey: "contact",
+        header: (props) => (
+          <TableColumnHeader
+            {...props}
+            title={I18N.contact}
+          />
+        ),
+        cell: ({ row }) => {
+          const { email, phone } = row.original;
+          return (
+            <div className="flex gap-2">
+              {email && (
+                <a
+                  href={`mailto:${email}`}
+                  title={email}
+                  target="_blank"
+                  className="mdi-email"
+                />
+              )}
+              {phone && (
+                <a
+                  href={`tel:${phone}`}
+                  title={email}
+                  target="_blank"
+                  className="mdi-phone"
+                />
+              )}
+            </div>
+          );
+        },
+      },
+      {
+        accessorKey: "links",
+        header: (props) => <TableColumnHeader {...props} title={I18N.links} />,
+        cell: ({ row }) => {
+          const { links = {} } = row.original;
+          const ICONS = {
+            website: "mdi-web",
+            facebook: "mdi-facebook",
+            linkedin: "mdi-linkedin",
+            twitter: "mdi-twitter",
+            other: "mdi-link",
+          } as const;
+          const items = Object.entries(links)
+            .filter(([name, value]) => value)
+            .map(([name, value]) => ({ name, value, className: ICONS[name] }));
+          return (
+            <div className="flex gap-2">
+              {items.map((item, index) => (
+                <a
+                  key={`link-${index}`}
+                  href={item.value}
+                  target="_blank"
+                  title={`${item.name}: ${item.value}`}
+                  className={item.className}
+                />
               ))}
             </div>
           );
         },
-        filterFn: (row, id, value) => value.includes(row.getValue(id)),
       },
       {
         accessorKey: "updatedAt",

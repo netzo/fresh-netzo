@@ -4,7 +4,7 @@ import {
   AvatarImage,
 } from "netzo/components/avatar.tsx";
 import { Badge } from "netzo/components/badge.tsx";
-import { Gallery } from "netzo/components/blocks/table/table.gallery.tsx";
+import { Grid } from "netzo/components/blocks/table/table.grid.tsx";
 import {
   TableColumnHeader,
   TablePagination,
@@ -14,7 +14,7 @@ import {
   useTable,
 } from "netzo/components/blocks/table/table.tsx";
 import { IconCopy } from "netzo/components/icon-copy.tsx";
-import type { Contact } from "../data/contacts.ts";
+import { type Contact } from "../data/contacts.ts";
 import { I18N, toDateTime } from "../data/mod.ts";
 
 export const getTableOptions = (
@@ -22,22 +22,22 @@ export const getTableOptions = (
 ): TableProps<Contact, unknown>["options"] => {
   return {
     resource: "contacts",
-    fieldIds: {
-      id: "id",
-      name: "name",
-      image: "image",
-    },
     search: {
       column: "name",
       placeholder: "Search by name...",
     },
     filters: [
       {
-        column: "tag",
-        title: I18N.tags,
-        options: [...new Set(data.map((item) => item.tags).flat())].sort().map((
-          value,
-        ) => (value ? { label: value, value } : { label: "*no data", value })),
+        column: "accountId",
+        title: I18N.account,
+        options: [...new Set(data.map((item) => item.account).flat())].sort()
+          .map(
+            (
+              value,
+            ) => (value
+              ? { label: value.name, value: value.id }
+              : { label: "*no data", value: "" }),
+          ),
       },
     ],
     columns: [
@@ -70,36 +70,47 @@ export const getTableOptions = (
         },
       },
       {
-        accessorKey: "tags",
-        header: (props) => <TableColumnHeader {...props} title={I18N.tags} />,
+        accessorKey: "accountId",
+        header: (props) => (
+          <TableColumnHeader
+            {...props}
+            title={I18N.account}
+          />
+        ),
         cell: ({ row }) => {
-          const { tags = [] } = row.original;
-          // FIXME: unocss fails to pickup dynamic `bg-${toHslColor(tag)}` className
+          const { id, name = "", image } = row.original.account ?? {};
           return (
-            <div className="flex gap-1">
-              {tags.map((tag) => (
-                <Badge variant="secondary">
-                  {tag}
-                </Badge>
-              ))}
+            <div className="flex items-center py-1">
+              <Avatar className="h-9 w-9 mr-3">
+                <AvatarImage src={image} />
+                <AvatarFallback>{name[0]?.toUpperCase()}</AvatarFallback>
+              </Avatar>
+              <a
+                href={`/accounts/${id}`}
+                className="whitespace-nowrap text-center font-medium text-primary hover:underline"
+              >
+                {name}
+              </a>
+              <IconCopy value={id} tooltip="Copy ID" />
             </div>
           );
         },
         filterFn: (row, id, value) => value.includes(row.getValue(id)),
       },
       {
-        accessorKey: "accountId",
-        header: (props) => (
-          <TableColumnHeader {...props} title={I18N.accountId} />
-        ),
+        accessorKey: "notes",
+        header: (props) => <TableColumnHeader {...props} title={I18N.notes} />,
         cell: ({ row }) => {
-          const { accountId, account } = row.original;
+          const { notes = [] } = row.original;
           return (
             <a
-              href={`/accounts/${accountId}`}
-              className="whitespace-nowrap text-center font-medium text-primary hover:underline"
+              href={`/contacts/${row.original.id}/notes`}
+              className="hover:underline"
             >
-              {account?.name ? account.name : accountId}
+              <Badge variant="secondary">
+                <i className="mdi-note-text mr-1" />
+                {notes.length} Notes
+              </Badge>
             </a>
           );
         },
@@ -181,7 +192,9 @@ export function Table(props: { data: Contact[] }) {
   return (
     <div className="space-y-4">
       <TableToolbar options={options} table={table} />
-      <Gallery options={options} table={table} />
+      <div className="border rounded-md">
+        <Grid options={options} table={table} />
+      </div>
       <TablePagination table={table} />
     </div>
   );

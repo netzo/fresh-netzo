@@ -12,7 +12,6 @@ export const linkSchema = z.object({
 
 export const noteSchema = z.object({
   name: z.string(),
-  tags: z.array(z.string()),
   content: z.string(),
   createdAt: z.string().datetime(),
   updatedAt: z.string().datetime(),
@@ -34,7 +33,6 @@ export const I18N: Record<string, string> = {
   "type": "Type",
   "name": "Name",
   "description": "Description",
-  "tags": "Tags",
   "image": "Image",
   "emails": "Emails",
   "email": "Email",
@@ -65,12 +63,16 @@ export const I18N: Record<string, string> = {
   "xml": "XML",
   "pdf": "PDF",
   // relations:
+  "account": "Account",
   "accountId": "Account ID",
   "accountIds": "Accounts IDs",
+  "contact": "Contact",
   "contactId": "Contact ID",
   "contactIds": "Contacts IDs",
+  "deal": "Deal",
   "dealId": "Deal ID",
   "dealIds": "Deals IDs",
+  "user": "User",
   "userId": "User ID",
   "userIds": "Users IDs",
 };
@@ -85,6 +87,18 @@ export const toDateTime = (dateTime: string) =>
     hour: "2-digit",
     minute: "2-digit",
   });
+
+export const toUSD = (amount: number) =>
+  new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  }).format(amount);
+
+export const toPercent = (value: number) =>
+  new Intl.NumberFormat("en-US", {
+    style: "percent",
+    minimumFractionDigits: 2,
+  }).format(value);
 
 // adapted from https://stackoverflow.com/a/66494926 (space-separated hsl syntax for unocss)
 export const toHslColor = (value: string, saturation = 75, lightness = 50) => {
