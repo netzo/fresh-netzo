@@ -27,7 +27,7 @@ export type TableFilter<TData = unknown, TValue = unknown> = {
 
 export function TableFilters<TData>({
   className,
-  table
+  table,
 }: JSX.IntrinsicElements["div"] & { table: Table<TData> }) {
   const filters = table.options.meta?.filters as TableFilter<TData, unknown>[];
 

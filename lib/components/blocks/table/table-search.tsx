@@ -13,11 +13,12 @@ export function TableSearch<TData = unknown>({
   table,
 }: JSX.IntrinsicElements["input"] & { table: Table<TData> }) {
   const search = table.options.meta?.search as TableSearch;
-  const value = table.getColumn(search.column)?.getFilterValue() as string ?? "";
+  const value = table.getColumn(search.column)?.getFilterValue() as string ??
+    "";
   const onChange = (e: Event) => {
     const target = e.target as HTMLInputElement;
     table.getColumn(search.column)?.setFilterValue(target.value);
-  }
+  };
   return (
     <Input
       placeholder={search.placeholder}

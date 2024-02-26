@@ -14,7 +14,7 @@ import {
   TableSearch,
   TableView,
   TableViewOptions,
-  useTable
+  useTable,
 } from "netzo/components/blocks/table/table.tsx";
 import { Button } from "netzo/components/button.tsx";
 import {

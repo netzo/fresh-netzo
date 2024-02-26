@@ -129,7 +129,6 @@ export function Kanban({ data }: KanbanProps<Deal>) {
   );
 }
 
-
 export function DealsFormCreate() {
   const data = useSignal<Partial<Deal>>({ name: "" });
 
