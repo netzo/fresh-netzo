@@ -1,5 +1,5 @@
-import type { ComponentType } from "preact";
-import { Column } from "../../../deps/@tanstack/react-table.ts";
+import type { ComponentType, JSX } from "preact";
+import type { Column, Table } from "../../../deps/@tanstack/react-table.ts";
 import { Badge } from "../../badge.tsx";
 import { Button } from "../../button.tsx";
 import {
@@ -15,7 +15,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "../../popover.tsx";
 import { Separator } from "../../separator.tsx";
 import { cn } from "../../utils.ts";
 
-type TableFacetedFilter<TData, TValue> = {
+export type TableFilter<TData = unknown, TValue = unknown> = {
   column?: Column<TData, TValue>;
   title?: string;
   options: {
@@ -25,11 +25,47 @@ type TableFacetedFilter<TData, TValue> = {
   }[];
 };
 
-export function TableFacetedFilter<TData, TValue>({
+export function TableFilters<TData>({
+  className,
+  table
+}: JSX.IntrinsicElements["div"] & { table: Table<TData> }) {
+  const filters = table.options.meta?.filters as TableFilter<TData, unknown>[];
+
+  if (!filters?.length) return null;
+
+  const isFiltered = table.getState().columnFilters.length > 0;
+
+  return (
+    <div className={cn(className)}>
+      {filters?.map(({ column, title, options }) =>
+        table.getColumn(column) && (
+          <TableFilter
+            column={table.getColumn(column)}
+            title={title}
+            options={options}
+          />
+        )
+      )}
+
+      {isFiltered && (
+        <Button
+          variant="ghost"
+          onClick={() => table.resetColumnFilters()}
+          className="h-8 px-2 lg:px-3"
+        >
+          Reset
+          <i className="mdi-close w-4 h-4 ml-2" />
+        </Button>
+      )}
+    </div>
+  );
+}
+
+export function TableFilter<TData, TValue>({
   column,
   title,
   options,
-}: TableFacetedFilter<TData, TValue>) {
+}: TableFilter<TData, TValue>) {
   const facets = column?.getFacetedUniqueValues();
   const selectedValues = new Set(column?.getFilterValue() as string[]);
 

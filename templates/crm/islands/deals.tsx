@@ -1,17 +1,33 @@
+import { useSignal } from "@preact/signals";
 import {
   Kanban as _Kanban,
-  type KanbanProps,
+  type UseKanbanOptions,
 } from "netzo/components/blocks/kanban/kanban.tsx";
 import {
+  TableActionsReload,
+  TableFilters,
   TablePagination,
-  TableToolbar, useTable
+  TableSearch,
+  TableViewOptions,
+  useTable,
 } from "netzo/components/blocks/table/table.tsx";
+import { Button } from "netzo/components/button.tsx";
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "netzo/components/dialog.tsx";
+import { Input } from "netzo/components/input.tsx";
+import { Label } from "netzo/components/label.tsx";
 import { type Deal } from "../data/deals.ts";
 import { I18N } from "../data/mod.ts";
 import { KanbanCard } from "./deals.kanban-card.tsx";
 import { KanbanGroup } from "./deals.kanban-group.tsx";
 
-export const GROUPS: KanbanProps<Deal, unknown>["options"]["groups"] = [
+export const GROUPS: UseKanbanOptions<Deal>["groups"] = [
   {
     id: "lead",
     title: I18N["status.lead"],
@@ -44,17 +60,15 @@ export const GROUPS: KanbanProps<Deal, unknown>["options"]["groups"] = [
   },
 ];
 
-export const getKanbanOptions = (
+export const getKanbanBlockOptions = (
   data: Deal[],
-): KanbanProps<Deal, unknown>["options"] => {
+): UseKanbanOptions<Deal> => {
   return {
     resource: "deals",
-    fieldIds: {
-      id: "id",
-      group: "status",
-      name: "name",
-      description: "description",
-      image: "image",
+    idField: "id",
+    search: {
+      column: "name",
+      placeholder: "Search by name...",
     },
     filters: [
       {
@@ -76,18 +90,32 @@ export const getKanbanOptions = (
         filterFn: (row, id, value) => value.includes(row.getValue(id)),
       },
     ],
-    groups: GROUPS,
+    group: {
+      column: "status",
+      groups: GROUPS,
+    },
   };
 };
 
-export function Kanban(props: KanbanProps<Deal, unknown>) {
-  const options = getKanbanOptions(props.data);
+export function Kanban({ data }: KanbanProps<Deal>) {
+  const options = getKanbanBlockOptions(data);
 
-  const table = useTable<Deal, unknown>({ ...props, options });
+  const table = useTable<Deal>(data, options);
 
   return (
     <div className="space-y-4">
-      <TableToolbar options={options} table={table} />
+      <header className="flex items-center justify-between">
+        <div className="flex items-center flex-1 space-x-2">
+          <TableActionsReload table={table} />
+          <TableSearch table={table} />
+          <TableFilters table={table} />
+        </div>
+
+        <div className="flex items-center space-x-2">
+          <TableViewOptions table={table} />
+          <DealsFormCreate />
+        </div>
+      </header>
       <div>
         <_Kanban
           options={options}
@@ -98,5 +126,49 @@ export function Kanban(props: KanbanProps<Deal, unknown>) {
       </div>
       <TablePagination table={table} />
     </div>
+  );
+}
+
+
+export function DealsFormCreate() {
+  const data = useSignal<Partial<Deal>>({ name: "" });
+
+  const onClickCreate = async () => {
+    const response = await fetch(`/api/deals`, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(data.value),
+    });
+    if (response.ok) {
+      const data = await response.json();
+      window.location.href = `/deals/${data.id}`;
+    }
+  };
+
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button variant="default" className="ml-2">Create</Button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[425px]">
+        <DialogHeader className="text-left">
+          <DialogTitle>Create New</DialogTitle>
+        </DialogHeader>
+        <div className="space-y-4 py-2 pb-4">
+          <div className="space-y-2">
+            <Label htmlFor="name">Name</Label>
+            <Input
+              id="name"
+              className="col-span-3"
+              value={data.value.name}
+              onInput={(e) => data.value.name = e.target.value}
+            />
+          </div>
+        </div>
+        <DialogFooter>
+          <Button onClick={onClickCreate}>Create</Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
 }

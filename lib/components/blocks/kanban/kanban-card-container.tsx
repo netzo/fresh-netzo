@@ -9,9 +9,12 @@ import { useSortable } from "netzo/deps/@dnd-kit/sortable.ts";
 import { CSS } from "netzo/deps/@dnd-kit/utilities.ts";
 import { cva } from "netzo/deps/class-variance-authority.ts";
 
-export function KanbanCardContainer(
-  { item, isOverlay, options, ...props }: KanbanCardProps,
-) {
+export function KanbanCardContainer({
+  item,
+  isOverlay,
+  options,
+  ...props
+}: KanbanCardProps) {
   const {
     setNodeRef,
     attributes,
@@ -20,7 +23,7 @@ export function KanbanCardContainer(
     transition,
     isDragging,
   } = useSortable({
-    id: item[options.fieldIds.id],
+    id: item[options.idField],
     data: {
       type: "Item",
       item,

@@ -18,7 +18,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../../dropdown-menu.tsx";
-import type { TableProps } from "./use-table.ts";
+import type { TableProps } from "./table.tsx";
 
 type TableRowActionsProps<TData> = TableProps<TData> & {
   row: Row<TData>;
@@ -87,7 +87,7 @@ export function TableRowActions<TData>({
             <DropdownMenuItem onSelect={onSelectCopyId}>
               Copy ID
             </DropdownMenuItem>
-            )}
+          )}
           <DropdownMenuSeparator />
           {actions.includes("remove") && (
             <AlertDialogTrigger asChild>

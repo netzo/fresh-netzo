@@ -18,20 +18,22 @@ export function KanbanGroup({
   renderCard,
 }: KanbanGroupProps) {
   const itemsIds = useComputed(() =>
-    items.map((item) => item[options.fieldIds.id])
+    items.map((item) => item[options.idField])
   );
 
   const onClickCreate = async (groupId: UniqueIdentifier) => {
     const name = globalThis.prompt("Enter a name");
     if (name) {
       const description = globalThis.prompt("Enter a description");
+      const amount = globalThis.prompt("Enter an amount");
       await fetch(`/api/${options.resource}`, {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({
-          [options.fieldIds.name]: name,
-          [options.fieldIds.description]: description,
-          [options.fieldIds.group]: groupId,
+          name,
+          description,
+          amount,
+          [options.group.column]: groupId,
         }),
       });
       globalThis.location.reload();

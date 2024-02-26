@@ -7,21 +7,13 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../../dropdown-menu.tsx";
-import type { Table } from "./use-table.ts";
+import { cn } from "../../utils.ts";
+import type { Table } from "./table.tsx";
 
-type TableOptionsProps<TData> = {
-  table: Table<TData>;
-};
-
-export const LAYOUTS = {
-  grid: "mdi-table",
-  gallery: "mdi-view-grid",
-  kanban: "mdi-view-column",
-};
-
-export function TableOptions<TData>({
+export function TableViewOptions<TData>({
+  className,
   table,
-}: TableOptionsProps<TData>) {
+}: JSX.IntrinsicElements["button"] & { table: Table<TData> }) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -30,7 +22,7 @@ export function TableOptions<TData>({
           size="sm"
           className="ml-3 hidden lg:flex"
         >
-          <i className="mdi-tune-variant h-4 w-4" />
+          <i className={cn("mdi-tune-variant h-4 w-4", className)} />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[150px]">

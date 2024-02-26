@@ -1,27 +1,40 @@
+import { useSignal } from "@preact/signals";
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
 } from "netzo/components/avatar.tsx";
 import { Badge } from "netzo/components/badge.tsx";
-import { Grid } from "netzo/components/blocks/table/table.grid.tsx";
 import {
+  TableActionsReload,
   TableColumnHeader,
+  TableFilters,
   TablePagination,
-  type TableProps,
   TableRowActions,
-  TableToolbar,
-  useTable,
+  TableSearch,
+  TableView,
+  TableViewOptions,
+  useTable
 } from "netzo/components/blocks/table/table.tsx";
+import { Button } from "netzo/components/button.tsx";
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "netzo/components/dialog.tsx";
 import { IconCopy } from "netzo/components/icon-copy.tsx";
-import { type Contact } from "../data/contacts.ts";
+import { Input } from "netzo/components/input.tsx";
+import { Label } from "netzo/components/label.tsx";
+import type { Contact } from "../data/contacts.ts";
 import { I18N, toDateTime } from "../data/mod.ts";
 
-export const getTableOptions = (
-  data: Contact[],
-): TableProps<Contact, unknown>["options"] => {
-  return {
+export function Table({ data }: { data: Contact[] }) {
+  const table = useTable<Contact>(data, {
     resource: "contacts",
+    idField: "id",
     search: {
       column: "name",
       placeholder: "Search by name...",
@@ -181,21 +194,69 @@ export const getTableOptions = (
         },
       },
     ],
-  };
-};
-
-export function Table(props: { data: Contact[] }) {
-  const options = getTableOptions(props.data);
-
-  const table = useTable<Contact, unknown>({ ...props, options });
+  });
 
   return (
     <div className="space-y-4">
-      <TableToolbar options={options} table={table} />
+      <header className="flex items-center justify-between">
+        <div className="flex items-center flex-1 space-x-2">
+          <TableActionsReload table={table} />
+          <TableSearch table={table} />
+          <TableFilters table={table} />
+        </div>
+
+        <div className="flex items-center space-x-2">
+          <TableViewOptions table={table} />
+          <ContactsFormCreate />
+        </div>
+      </header>
       <div className="border rounded-md">
-        <Grid options={options} table={table} />
+        <TableView table={table} />
       </div>
       <TablePagination table={table} />
     </div>
+  );
+}
+
+export function ContactsFormCreate() {
+  const data = useSignal<Partial<Contact>>({ name: "" });
+
+  const onClickCreate = async () => {
+    const response = await fetch(`/api/contacts`, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(data.value),
+    });
+    if (response.ok) {
+      const data = await response.json();
+      window.location.href = `/contacts/${data.id}`;
+    }
+  };
+
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button variant="default" className="ml-2">Create</Button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[425px]">
+        <DialogHeader className="text-left">
+          <DialogTitle>Create New</DialogTitle>
+        </DialogHeader>
+        <div className="space-y-4 py-2 pb-4">
+          <div className="space-y-2">
+            <Label htmlFor="name">Name</Label>
+            <Input
+              id="name"
+              className="col-span-3"
+              value={data.value.name}
+              onInput={(e) => data.value.name = e.target.value}
+            />
+          </div>
+        </div>
+        <DialogFooter>
+          <Button onClick={onClickCreate}>Create</Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
 }

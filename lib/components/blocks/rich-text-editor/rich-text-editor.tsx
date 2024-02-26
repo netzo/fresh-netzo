@@ -1,9 +1,9 @@
 // adapted from https://github.com/shadcn-ui/ui/issues/876#issuecomment-1627395691
 import {
-  EditorContent,
-  useEditor,
   type Editor,
+  EditorContent,
   type EditorOptions,
+  useEditor,
 } from "../../../deps/@tiptap/react.ts";
 import { StarterKit } from "../../../deps/@tiptap/starter-kit.ts";
 import { Separator } from "../../separator.tsx";
@@ -14,7 +14,9 @@ export type RichTextEditorProps = HTMLDivElement & Partial<EditorOptions> & {
   content?: string;
 };
 
-export const RichTextEditor = ({ className, ...props }: RichTextEditorProps) => {
+export const RichTextEditor = (
+  { className, ...props }: RichTextEditorProps,
+) => {
   const editor = useEditor({
     editorProps: {
       attributes: {
@@ -86,7 +88,8 @@ export const RichTextEditorToolbar = ({ editor }: { editor: Editor }) => {
       <Toggle
         size="sm"
         pressed={editor?.isActive("orderedList")}
-        onPressedChange={() => editor?.chain().focus().toggleOrderedList().run()}
+        onPressedChange={() =>
+          editor?.chain().focus().toggleOrderedList().run()}
       >
         <i className="mdi-format-list-numbered h-4 w-4" />
       </Toggle>

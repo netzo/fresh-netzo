@@ -6,33 +6,31 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../../select.tsx";
-import type { Table } from "./use-table.ts";
-
-type TablePaginationProps<TData> = {
-  table: Table<TData>;
-};
+import type { Table } from "./table.tsx";
 
 export function TablePagination<TData>({
   table,
-}: TablePaginationProps<TData>) {
+}: JSX.IntrinsicElements["button"] & { table: Table<TData> }) {
+  const { pageIndex, pageSize } = table.getState().pagination;
+  const from = pageIndex * pageSize + 1;
+  const to = from + pageSize - 1;
+  const total = table.getFilteredRowModel().rows.length;
   return (
     <div className="flex items-center justify-between px-2">
       <div className="hidden md:block flex-1 text-sm text-muted-foreground">
-        Showing {table.getRowModel().rows.length}
-        {" / "}
-        {table.getFilteredRowModel().rows.length} rows
+        {`${from} - ${to > total ? total : to} of ${total} rows`}
       </div>
       <div className="flex items-center space-x-6 lg:space-x-8">
         <div className="flex items-center space-x-2">
           <p className="hidden md:block text-sm font-medium">Rows per page</p>
           <Select
-            value={`${table.getState().pagination.pageSize}`}
+            value={`${pageSize}`}
             onValueChange={(value) => {
               table.setPageSize(Number(value));
             }}
           >
             <SelectTrigger className="h-8 w-[70px]">
-              <SelectValue placeholder={table.getState().pagination.pageSize} />
+              <SelectValue placeholder={pageSize} />
             </SelectTrigger>
             <SelectContent side="top">
               {[10, 25, 50, 100].map((pageSize) => (
@@ -44,7 +42,7 @@ export function TablePagination<TData>({
           </Select>
         </div>
         <div className="flex w-[100px] items-center justify-center text-sm font-medium">
-          Page {table.getState().pagination.pageIndex + 1} of{" "}
+          Page {pageIndex + 1} of{" "}
           {table.getPageCount()}
         </div>
         <div className="flex items-center space-x-2">

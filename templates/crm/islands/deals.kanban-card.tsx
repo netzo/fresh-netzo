@@ -10,9 +10,9 @@ import { CardContent, CardHeader, CardTitle } from "netzo/components/card.tsx";
 import { cn } from "netzo/components/utils.ts";
 
 export function KanbanCard({ item, isOverlay, options }: KanbanCardProps) {
-  const { badge } = options.groups.find((c) =>
-    c.id === item?.[options.fieldIds.group]
-  );
+  const groupBy = options.group.column;
+
+  const { badge } = options.group.groups.find((c) => c.id === item?.[groupBy]);
 
   return (
     <KanbanCardContainer {...{ item, isOverlay, options }}>
@@ -25,9 +25,9 @@ export function KanbanCard({ item, isOverlay, options }: KanbanCardProps) {
         isDragging,
       }) => (
         <>
-          {item?.[options.fieldIds.image] && (
+          {item?.image && (
             <img
-              src={item[options.fieldIds.image]}
+              src={item.image}
               className="w-full h-auto p-1"
             />
           )}
@@ -43,7 +43,7 @@ export function KanbanCard({ item, isOverlay, options }: KanbanCardProps) {
                 <div className="w-6 h-6 mdi-drag" />
               </Button>
               <CardTitle className="ml-1 text-sm font-medium">
-                {item?.[options.fieldIds.name]}
+                {item?.name}
               </CardTitle>
             </div>
             <TableRowActions
@@ -53,14 +53,14 @@ export function KanbanCard({ item, isOverlay, options }: KanbanCardProps) {
             />
           </CardHeader>
           <CardContent className="flex flex-col gap-2 px-4 pt-2 pb-4 text-xs whitespace-pre-wrap text-secondary-foreground">
-            {item?.[options.fieldIds.description]}
+            {item?.description}
             <div className="flex items-center justify-between w-full">
               <Badge
                 variant={"outline"}
                 {...badge}
                 className={cn("font-medium", badge?.className)}
               >
-                {item?.[options.fieldIds.group]}
+                {item?.[groupBy]}
               </Badge>
               <span className="font-medium">
                 {Number(item?.amount).toLocaleString("en-US", {
