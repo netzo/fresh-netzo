@@ -37,7 +37,7 @@ export function ContactHeader(props: { contact: Contact }) {
       await fetch(`/api/contacts/${props.contact.id}`, {
         method: "DELETE",
       });
-      window.location.href = "/contacts";
+      globalThis.location.href = "/contacts";
     }
   };
 
@@ -301,7 +301,7 @@ export function ContactCardDeals(props: { contact: Contact; deals: Deal[] }) {
         body: JSON.stringify(deal.value),
       });
       setTimeout(() => status.value = "disabled", 1000);
-      window.location.reload();
+      globalThis.location.reload();
     } catch (error) {
       setTimeout(() => status.value = "enabled", 1000);
     }

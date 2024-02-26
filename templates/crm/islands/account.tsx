@@ -37,7 +37,7 @@ export function AccountHeader(props: { account: Account }) {
       await fetch(`/api/accounts/${props.account.id}`, {
         method: "DELETE",
       });
-      window.location.href = "/accounts";
+      globalThis.location.href = "/accounts";
     }
   };
 
@@ -298,7 +298,7 @@ export function AccountCardDeals(props: { account: Account; deals: Deal[] }) {
         body: JSON.stringify(deal.value),
       });
       setTimeout(() => status.value = "disabled", 1000);
-      window.location.reload();
+      globalThis.location.reload();
     } catch (error) {
       setTimeout(() => status.value = "enabled", 1000);
     }

@@ -81,10 +81,10 @@ export function DashboardAccountSelect(
                     onSelect={() => {
                       if (["Teams"].includes(group.name)) {
                         selectedAccount.value = undefined;
-                        window.location.href = "";
+                        globalThis.location.href = "";
                       } else {
                         selectedAccount.value = item;
-                        window.location.href = `?accountId=${item.id}`;
+                        globalThis.location.href = `?accountId=${item.id}`;
                       }
                       open.value = false;
                     }}
@@ -118,7 +118,7 @@ export function DashboardAccountSelect(
               <CommandItem
                 onSelect={() => {
                   open.value = false;
-                  window.location.href = "/accounts";
+                  globalThis.location.href = "/accounts";
                 }}
               >
                 <i className="mdi-plus-circle-outline mr-2 h-5 w-5" />

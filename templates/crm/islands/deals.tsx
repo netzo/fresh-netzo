@@ -140,7 +140,7 @@ export function DealsFormCreate() {
     });
     if (response.ok) {
       const data = await response.json();
-      window.location.href = `/deals/${data.id}`;
+      globalThis.location.href = `/deals/${data.id}`;
     }
   };
 

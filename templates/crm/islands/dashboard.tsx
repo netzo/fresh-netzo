@@ -20,7 +20,7 @@ export function Dashboard(props: { data: [Metric[], Account[]] }) {
         <DashboardAccountSelect accounts={accounts} account={account} />
         {/* <MainNav className="mx-6" /> */}
         <div className="ml-auto flex items-center space-x-4">
-          <Button onClick={() => window.print()}>
+          <Button onClick={() => globalThis.print()}>
             <i className="mdi-printer w-4 h-4 mr-2" />
             Print PDF
           </Button>

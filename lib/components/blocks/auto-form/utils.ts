@@ -16,7 +16,7 @@ export const createOnSubmit = (method: Request["method"], action: string) => {
           updatedAt,
         }),
       });
-      window.location.reload();
+      globalThis.location.reload();
     } catch (error) {
       console.error(error);
     }

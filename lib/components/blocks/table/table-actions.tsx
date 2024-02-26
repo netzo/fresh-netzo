@@ -11,7 +11,7 @@ export function TableActionsReload<TData = unknown>({
     <Button
       variant="outline"
       size="sm"
-      onClick={() => window.location.reload()}
+      onClick={() => globalThis.location.reload()}
       className={cn("h-8 px-2 lg:px-3", className)}
     >
       <i className="mdi-reload w-4 h-4" />

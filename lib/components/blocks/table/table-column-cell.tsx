@@ -26,7 +26,7 @@ export function TableColumnCell<TData, TValue>({
   //     e.target.blur();
   //     const value = e.target.textContent;
   //     console.log(value);
-  //     const url = new URL(`/`, window.location.origin);
+  //     const url = new URL(`/`, globalThis.location.origin);
   //     const response = await fetch();
   //   }
   // };

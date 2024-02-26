@@ -229,7 +229,7 @@ export function ContactsFormCreate() {
     });
     if (response.ok) {
       const data = await response.json();
-      window.location.href = `/contacts/${data.id}`;
+      globalThis.location.href = `/contacts/${data.id}`;
     }
   };
 

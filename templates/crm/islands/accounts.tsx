@@ -14,7 +14,7 @@ import {
   TableSearch,
   TableView,
   TableViewOptions,
-  useTable,
+  useTable
 } from "netzo/components/blocks/table/table.tsx";
 import { Button } from "netzo/components/button.tsx";
 import {
@@ -193,7 +193,7 @@ export function AccountsFormCreate() {
     });
     if (response.ok) {
       const data = await response.json();
-      window.location.href = `/accounts/${data.id}`;
+      globalThis.location.href = `/accounts/${data.id}`;
     }
   };
 

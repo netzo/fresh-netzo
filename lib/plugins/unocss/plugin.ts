@@ -189,7 +189,7 @@ export const unocss = ({
         }";
         import init from "https://esm.sh/@unocss/runtime@0.58.5";
         export default function() {
-          window.__unocss = config;
+          globalThis.__unocss = config;
           init();
         }`,
       }

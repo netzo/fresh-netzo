@@ -34,7 +34,7 @@ export function TableRowActions<TData>({
   actions = ["open", "duplicate", "copyId", "remove"],
 }: TableRowActionsProps<TData>) {
   const onSelectOpen = () => {
-    window.location.pathname = `/${resource}/${row.original[idField]}`;
+    globalThis.location.pathname = `/${resource}/${row.original[idField]}`;
   };
 
   const onSelectDuplicate = async () => {
@@ -44,7 +44,7 @@ export function TableRowActions<TData>({
       headers: { "content-type": "application/json" },
       body: JSON.stringify(data),
     });
-    window.location.reload();
+    globalThis.location.reload();
   };
 
   const onSelectCopyId = () => {
@@ -55,7 +55,7 @@ export function TableRowActions<TData>({
     await fetch(`/api/${resource}/${row.original[idField]}`, {
       method: "DELETE",
     });
-    window.location.reload();
+    globalThis.location.reload();
   };
 
   // NOTE: to activate the Dialog component from within ContextMenu we must
