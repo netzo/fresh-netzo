@@ -32,15 +32,6 @@ export function ContactHeader(props: { contact: Contact }) {
   const [first = "", last = ""] = name.split(" ");
   const initials = `${first[0]}${last[0]}`?.toUpperCase();
 
-  const onClickDelete = async () => {
-    if (confirm("Are you sure you want to delete this contact?")) {
-      await fetch(`/api/contacts/${props.contact.id}`, {
-        method: "DELETE",
-      });
-      globalThis.location.href = "/contacts";
-    }
-  };
-
   return (
     <header className="flex items-center justify-between p-4">
       <div className="flex flex-row items-center justify-between gap-4">
@@ -58,7 +49,7 @@ export function ContactHeader(props: { contact: Contact }) {
         <TableRowActions
           row={{ original: props.contact }}
           resource="contacts"
-          actions={["duplicate", "copyId", "delete"]}
+          actions={["duplicate", "copyId", "remove"]}
         />
       </div>
     </header>

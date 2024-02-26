@@ -4,9 +4,6 @@ import { Slot } from "../deps/@radix-ui/react-slot.ts";
 import { cva, type VariantProps } from "../deps/class-variance-authority.ts";
 import { cn } from "./utils.ts";
 
-// WORKAROUND: `bg-opacity-90` instead of `bg-primary/90`, `bg-secondary-80`
-// instead of `bg-secondary/80` and `bg-destructive/90` instead of `bg-destructive/90`
-
 const buttonVariants = cva(
   "inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
   {

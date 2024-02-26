@@ -32,15 +32,6 @@ export function AccountHeader(props: { account: Account }) {
   const [first = "", last = ""] = name.split(" ");
   const initials = `${first[0]}${last[0]}`?.toUpperCase();
 
-  const onClickDelete = async () => {
-    if (confirm("Are you sure you want to delete this account?")) {
-      await fetch(`/api/accounts/${props.account.id}`, {
-        method: "DELETE",
-      });
-      globalThis.location.href = "/accounts";
-    }
-  };
-
   return (
     <header className="flex items-center justify-between p-4">
       <div className="flex flex-row items-center justify-between gap-4">
@@ -58,7 +49,7 @@ export function AccountHeader(props: { account: Account }) {
         <TableRowActions
           row={{ original: props.account }}
           resource="accounts"
-          actions={["duplicate", "copyId", "delete"]}
+          actions={["duplicate", "copyId", "remove"]}
         />
       </div>
     </header>

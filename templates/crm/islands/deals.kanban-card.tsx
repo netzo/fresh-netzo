@@ -43,7 +43,12 @@ export function KanbanCard({ item, isOverlay, options }: KanbanCardProps) {
                 <div className="w-6 h-6 mdi-drag" />
               </Button>
               <CardTitle className="ml-1 text-sm font-medium">
-                {item?.name}
+                <a
+                  href={`/deals/${item.id}`}
+                  className="whitespace-nowrap text-center font-medium text-primary hover:underline"
+                >
+                  {item?.name}
+                </a>
               </CardTitle>
             </div>
             <TableRowActions

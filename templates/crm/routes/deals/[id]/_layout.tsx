@@ -2,35 +2,34 @@ import { defineLayout } from "$fresh/server.ts";
 import { NavLink } from "netzo/components/nav-link.tsx";
 import { Separator } from "netzo/components/separator.tsx";
 import type { NetzoState } from "netzo/mod.ts";
-import type { Contact as TContact } from "../../../data/contacts.ts";
-import type { Deal } from "../../../data/deals.ts";
-import { ContactHeader } from "../../../islands/contact.tsx";
+import type { Deal, Deal as TDeal } from "../../../data/deals.ts";
+import { DealHeader } from "../../../islands/deal.tsx";
 import { $client } from "../../../netzo.config.ts";
 
-export type ContactState = NetzoState & {
+export type DealState = NetzoState & {
   id: string;
-  contact: TContact;
+  deal: TDeal;
   deals: Deal[];
 };
 
-export default defineLayout<ContactState>(async (req, ctx) => {
+export default defineLayout<DealState>(async (req, ctx) => {
   const { id } = ctx.params;
-  const [contact, deals] = await Promise.all([
-    $client.contacts.get(id) as TContact,
+  const [deal, deals] = await Promise.all([
+    $client.deals.get(id) as TDeal,
     $client.deals.find() as Deal[],
   ]);
 
-  ctx.state.data = { id, contact, deals };
+  ctx.state.data = { id, deal, deals };
 
   return (
     <>
-      <ContactHeader contact={contact} />
+      <DealHeader deal={deal} />
 
       <nav className="sticky top-0 bg-background z-10">
-        <NavLink href={`/contacts/${id}`}>
+        <NavLink href={`/deals/${id}`}>
           Overview
         </NavLink>
-        <NavLink href={`/contacts/${id}/notes`}>
+        <NavLink href={`/deals/${id}/notes`}>
           Notes
         </NavLink>
         <Separator />

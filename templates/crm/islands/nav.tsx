@@ -14,7 +14,9 @@ export const Nav = (props: { state: NetzoState }) => {
       <NavHeader title="Netzo CRM" image="/logo.svg" />
       <NavSeparator />
       <NavItem icon="mdi-view-dashboard" text="Dashboard" href="/" exact />
+      <NavSeparator />
       <NavItem icon="mdi-tag" text="Deals" href="/deals" />
+      <NavItem icon="mdi-radiobox-marked" text="Events" href="/events" />
       <NavSeparator />
       <NavItem icon="mdi-storefront" text="Accounts" href="/accounts" />
       <NavItem icon="mdi-contacts" text="Contacts" href="/contacts" />

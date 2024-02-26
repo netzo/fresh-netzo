@@ -20,7 +20,9 @@ import * as $contacts_id_layout from "./routes/contacts/[id]/_layout.tsx";
 import * as $contacts_id_index from "./routes/contacts/[id]/index.tsx";
 import * as $contacts_id_notes from "./routes/contacts/[id]/notes.tsx";
 import * as $contacts_index from "./routes/contacts/index.tsx";
-import * as $deals_id_ from "./routes/deals/[id].tsx";
+import * as $deals_id_layout from "./routes/deals/[id]/_layout.tsx";
+import * as $deals_id_index from "./routes/deals/[id]/index.tsx";
+import * as $deals_id_notes from "./routes/deals/[id]/notes.tsx";
 import * as $deals_index from "./routes/deals/index.tsx";
 import * as $index from "./routes/index.tsx";
 import * as $account from "./islands/account.tsx";
@@ -57,7 +59,9 @@ const manifest = {
     "./routes/contacts/[id]/index.tsx": $contacts_id_index,
     "./routes/contacts/[id]/notes.tsx": $contacts_id_notes,
     "./routes/contacts/index.tsx": $contacts_index,
-    "./routes/deals/[id].tsx": $deals_id_,
+    "./routes/deals/[id]/_layout.tsx": $deals_id_layout,
+    "./routes/deals/[id]/index.tsx": $deals_id_index,
+    "./routes/deals/[id]/notes.tsx": $deals_id_notes,
     "./routes/deals/index.tsx": $deals_index,
     "./routes/index.tsx": $index,
   },

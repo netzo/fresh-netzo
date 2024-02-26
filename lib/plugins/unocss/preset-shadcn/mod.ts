@@ -16,6 +16,9 @@ import { generateCSSVars } from "./generate.ts";
 // DISABLED: breaks bundle.task.ts due to bundle's partial support of compilerOptions
 // import { sheetVariants } from "../../../components/sheet.tsx";
 
+// WORKAROUND: `bg-opacity-90` instead of `bg-primary/90`, `bg-secondary-80`
+// instead of `bg-secondary/80` and `bg-destructive/90` instead of `bg-destructive/90`
+
 export type PresetShadcnOptions = PresetMiniOptions;
 
 const variantGroupDataAttribute: VariantObject = {
