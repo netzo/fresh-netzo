@@ -5,10 +5,7 @@
   },
   "compilerOptions": {
     "jsx": "react-jsx",
-    "jsxImportSource": "preact",
-    "types": [
-      "npm:@types/react@18.2.60"
-    ]
+    "jsxImportSource": "preact"
   },
   "imports": {
     "@/": "./",
