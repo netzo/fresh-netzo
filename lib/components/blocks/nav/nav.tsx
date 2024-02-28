@@ -65,18 +65,16 @@ export function NavRoot({ className, ...props }: NavRootProps) {
           </div>
         </SheetTrigger>
         <SheetContent side="left" className="w-[250px] p-0">
-          <div className="h-full">
-            <nav
-              f-client-nav
-              className={cn(
-                "h-full overflow-y-auto group flex flex-col bg-primary-foreground",
-                className,
-              )}
-            >
-              {props.children}
-              <NavFooter />
-            </nav>
-          </div>
+          <nav
+            f-client-nav
+            className={cn(
+              "h-screen overflow-y-auto group flex flex-col bg-primary-foreground",
+              className,
+            )}
+          >
+            {props.children}
+            <NavFooter />
+          </nav>
         </SheetContent>
       </Sheet>
 
@@ -85,7 +83,7 @@ export function NavRoot({ className, ...props }: NavRootProps) {
         f-client-nav
         className={cn(
           "!hidden !md:flex md:b-r-1",
-          "h-full overflow-y-auto group flex flex-col bg-primary-foreground",
+          "h-screen overflow-y-auto group flex flex-col bg-primary-foreground",
           className,
         )}
       >
@@ -210,18 +208,18 @@ export function NavItemUser(props: { state: NetzoState }) {
               <>
                 <Avatar className="h-9 w-9 mr-2">
                   <AvatarImage
-                    src={auth?.sessionUser.avatar}
-                    alt={`@${auth?.sessionUser.authId}}`}
+                    src={auth?.sessionUser?.avatar}
+                    alt={`@${auth?.sessionUser?.authId}}`}
                   />
                   <AvatarFallback>{initial}</AvatarFallback>
                 </Avatar>
                 <div className="flex flex-col space-y-1">
                   <p className="text-sm font-medium leading-none">
-                    {auth?.sessionUser.name}
+                    {auth?.sessionUser?.name}
                   </p>
-                  {auth?.sessionUser.email && (
+                  {auth?.sessionUser?.email && (
                     <p className="text-xs leading-none text-muted-foreground">
-                      {auth?.sessionUser.email}
+                      {auth?.sessionUser?.email}
                     </p>
                   )}
                 </div>
@@ -241,16 +239,16 @@ export function NavItemUser(props: { state: NetzoState }) {
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent side="right" align="end" forceMount>
-        {auth?.sessionUser.name && (
+        {auth?.sessionUser?.name && (
           <>
             <DropdownMenuLabel className="font-normal">
               <div className="flex flex-col space-y-1">
                 <p className="text-sm font-medium leading-none">
-                  {auth?.sessionUser.name}
+                  {auth?.sessionUser?.name}
                 </p>
-                {auth?.sessionUser.email && (
+                {auth?.sessionUser?.email && (
                   <p className="text-xs leading-none text-muted-foreground">
-                    {auth?.sessionUser.email}
+                    {auth?.sessionUser?.email}
                   </p>
                 )}
               </div>
@@ -264,7 +262,7 @@ export function NavItemUser(props: { state: NetzoState }) {
             <Switch checked={isDarkMode} onCheckedChange={setDarkMode} />
           </div>
         </DropdownMenuItem>
-        {auth?.sessionUser.name && (
+        {auth?.sessionUser?.name && (
           <>
             <DropdownMenuSeparator />
             <DropdownMenuItem>

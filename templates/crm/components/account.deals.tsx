@@ -10,7 +10,7 @@ export function AccountDeals(props: { deals: Deal[] }) {
 
   if (!props.deals.length) {
     return (
-      <div className="grid place-items-center w-full py-20">
+      <div className="grid place-items-center w-full h-full py-20">
         <div className="text-center">
           <i className="mdi-tag text-4xl text-muted-foreground mb-2" />
           <h2 className="text-xl font-medium text-muted-foreground mb-1">

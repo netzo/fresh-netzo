@@ -1,6 +1,6 @@
 import { useSignal } from "@preact/signals";
 import {
-  Kanban as _Kanban,
+  KanbanView,
   type UseKanbanOptions,
 } from "netzo/components/blocks/kanban/kanban.tsx";
 import {
@@ -27,7 +27,7 @@ import { I18N } from "../data/mod.ts";
 import { KanbanCard } from "./deals.kanban-card.tsx";
 import { KanbanGroup } from "./deals.kanban-group.tsx";
 
-export const GROUPS: UseKanbanOptions<Deal>["groups"] = [
+export const GROUPS: UseKanbanOptions<Deal>["group"]["groups"] = [
   {
     id: "lead",
     title: I18N["status.lead"],
@@ -60,10 +60,8 @@ export const GROUPS: UseKanbanOptions<Deal>["groups"] = [
   },
 ];
 
-export const getKanbanBlockOptions = (
-  data: Deal[],
-): UseKanbanOptions<Deal> => {
-  return {
+export function Kanban({ data }: { data: Deal[] }) {
+  const table = useTable<Deal>(data, {
     resource: "deals",
     idField: "id",
     search: {
@@ -94,13 +92,7 @@ export const getKanbanBlockOptions = (
       column: "status",
       groups: GROUPS,
     },
-  };
-};
-
-export function Kanban({ data }: KanbanProps<Deal>) {
-  const options = getKanbanBlockOptions(data);
-
-  const table = useTable<Deal>(data, options);
+  });
 
   return (
     <div className="space-y-4">
@@ -117,8 +109,7 @@ export function Kanban({ data }: KanbanProps<Deal>) {
         </div>
       </header>
       <div>
-        <_Kanban
-          options={options}
+        <KanbanView
           table={table}
           renderGroup={(props) => <KanbanGroup {...props} />}
           renderCard={(props) => <KanbanCard {...props} />}

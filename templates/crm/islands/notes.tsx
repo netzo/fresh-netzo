@@ -1,5 +1,5 @@
 import { useComputed, useSignal } from "@preact/signals";
-import { RichTextEditor } from "netzo/components/blocks/rich-text-editor/rich-text-editor.tsx";
+import { ProseEditor } from "netzo/components/blocks/prose-editor/prose-editor.tsx";
 import { Button } from "netzo/components/button.tsx";
 import { Input } from "netzo/components/input.tsx";
 import {
@@ -15,7 +15,7 @@ type NoteProps = {
   defaultLayout: number[] | undefined;
 };
 
-export function Notes({ data, defaultLayout = [50, 50] }: NoteProps) {
+export function Notes({ data, defaultLayout = [40, 60] }: NoteProps) {
   const note = useSignal(data[0]);
   const search = useSignal("");
 
@@ -94,13 +94,13 @@ export function NotesDisplay({ note }: { note: Note | null }) {
       <div className="flex-1">
         {note
           ? (
-            <RichTextEditor
+            <ProseEditor
               className="h-[calc(100%-42px)]"
               content={note.content}
             />
           )
           : (
-            <div className="grid place-items-center w-full py-20">
+            <div className="grid place-items-center w-full h-full py-20">
               <div className="text-center">
                 <i className="mdi-note-text text-4xl text-muted-foreground mb-2" />
                 <h2 className="text-xl font-medium text-muted-foreground mb-1">

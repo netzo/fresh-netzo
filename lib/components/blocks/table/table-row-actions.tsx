@@ -18,9 +18,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../../dropdown-menu.tsx";
-import type { TableProps } from "./table.tsx";
+import type { UseTableOptions } from "./table.tsx";
 
-type TableRowActionsProps<TData> = TableProps<TData> & {
+type TableRowActionsProps<TData> = UseTableOptions<TData> & {
   row: Row<TData>;
   resource: string;
   idField?: string;

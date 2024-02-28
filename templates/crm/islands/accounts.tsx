@@ -77,7 +77,7 @@ export function Table({ data }: { data: Account[] }) {
               href={`/accounts/${row.original.id}/notes`}
               className="hover:underline"
             >
-              <Badge variant="secondary">
+              <Badge variant="secondary" className="w-max">
                 <i className="mdi-note-text mr-1" />
                 {notes.length} Notes
               </Badge>
