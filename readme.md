@@ -31,7 +31,7 @@ Netzo is a batteries-included meta-framework for Deno Fresh. It offers a collect
 - **Framework:** built on **Deno Fresh**, a next-gen web framework designed for rapid development.
 - **Database:** built-in **Deno KV** database, a fast, reliable, and secure key-value database.
 - **Authentication:** built-in user management and role-based access control (RBAC).
-- **Components:** collection of beautifully designed, accessible, and customizable components based on [`shadcn/ui`](https://ui.shadcn.com/)
+- **Components:** beautifully designed, accessible, and customizable components based on [`shadcn/ui`](https://ui.shadcn.com/)
 - **Integrations:** a growing list of plug-and-play integrations for popular APIs and Databases.
 - **CSS/Styling:** built-in, pre-defined themes powered by **UnoCSS**, an instant, on-demand atomic CSS engine.
 - **CLI:** command-line interface (CLI) to help you develop and deploy Netzo applications.
