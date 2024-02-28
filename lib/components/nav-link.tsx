@@ -1,3 +1,6 @@
+// @deno-types="npm:@types/react@18.2.60"
+import * as React from "react";
+
 // adapted from https://github.com/shadcn-ui/ui/issues/414#issuecomment-1772421366
 import type { JSX } from "preact";
 import { forwardRef } from "preact/compat";

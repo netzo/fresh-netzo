@@ -1,15 +1,17 @@
-import { type ComponentProps, forwardRef, type Ref } from "preact/compat";
+// @deno-types="npm:@types/react@18.2.60"
+import * as React from "react";
+
 import * as ProgressPrimitive from "../deps/@radix-ui/react-progress.ts";
 import { cn } from "./utils.ts";
 
-const Progress = forwardRef<
-  Ref<typeof ProgressPrimitive.Root>,
-  ComponentProps<typeof ProgressPrimitive.Root>
+const Progress = React.forwardRef<
+  React.ElementRef<typeof ProgressPrimitive.Root>,
+  React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root>
 >(({ className, value, ...props }, ref) => (
   <ProgressPrimitive.Root
     ref={ref}
     className={cn(
-      "relative h-2 w-full overflow-hidden rounded-full bg-primary/20",
+      "relative h-2 w-full overflow-hidden rounded-full bg-opacity-20",
       className,
     )}
     {...props}

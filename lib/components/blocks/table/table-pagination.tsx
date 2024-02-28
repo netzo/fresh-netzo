@@ -15,7 +15,7 @@ export function TablePagination<TData>({
 }: JSX.IntrinsicElements["button"] & { table: Table<TData> }) {
   const { pageIndex, pageSize, from, to, total } = useTablePagination(table);
   return (
-    <div className="flex flex-wrap gap-y-2 gap-x- items-center justify-between">
+    <div className="flex flex-wrap gap-y-2 gap-x-8 items-center justify-between">
       <TablePaginationPageRange table={table} className="flex-1" />
       <TablePaginationPageSize table={table} />
       <TablePaginationPageCurrent table={table} />
@@ -81,7 +81,7 @@ export function TablePaginationPageCurrent<TData>({
 }: JSX.IntrinsicElements["div"] & { table: Table<TData> }) {
   const { pageIndex, pageSize, from, to, total } = useTablePagination(table);
   return (
-    <div className={cn("h-[48px] min-w-fit !my-auto", className)}>
+    <div className={cn("contents h-[48px] min-w-fit !my-auto", className)}>
       <span className="text-sm font-medium">
         Page {pageIndex + 1} of {table.getPageCount()}
       </span>

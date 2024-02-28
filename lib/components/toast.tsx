@@ -1,14 +1,15 @@
-import type { VNode } from "preact";
-import { type ComponentProps, forwardRef, type Ref } from "preact/compat";
+// @deno-types="npm:@types/react@18.2.60"
+import * as React from "react";
+
 import * as ToastPrimitives from "../deps/@radix-ui/react-toast.ts";
 import { cva, type VariantProps } from "../deps/class-variance-authority.ts";
 import { cn } from "./utils.ts";
 
 const ToastProvider = ToastPrimitives.Provider;
 
-const ToastViewport = forwardRef<
-  Ref<typeof ToastPrimitives.Viewport>,
-  ComponentProps<typeof ToastPrimitives.Viewport>
+const ToastViewport = React.forwardRef<
+  React.ElementRef<typeof ToastPrimitives.Viewport>,
+  React.ComponentPropsWithoutRef<typeof ToastPrimitives.Viewport>
 >(({ className, ...props }, ref) => (
   <ToastPrimitives.Viewport
     ref={ref}
@@ -26,7 +27,7 @@ const toastVariants = cva(
   {
     variants: {
       variant: {
-        default: "border bg-background",
+        default: "border bg-background text-foreground",
         destructive:
           "destructive group border-destructive bg-destructive text-destructive-foreground",
       },
@@ -37,9 +38,9 @@ const toastVariants = cva(
   },
 );
 
-const Toast = forwardRef<
-  Ref<typeof ToastPrimitives.Root>,
-  & ComponentProps<typeof ToastPrimitives.Root>
+const Toast = React.forwardRef<
+  React.ElementRef<typeof ToastPrimitives.Root>,
+  & React.ComponentPropsWithoutRef<typeof ToastPrimitives.Root>
   & VariantProps<typeof toastVariants>
 >(({ className, variant, ...props }, ref) => {
   return (
@@ -52,9 +53,9 @@ const Toast = forwardRef<
 });
 Toast.displayName = ToastPrimitives.Root.displayName;
 
-const ToastAction = forwardRef<
-  Ref<typeof ToastPrimitives.Action>,
-  ComponentProps<typeof ToastPrimitives.Action>
+const ToastAction = React.forwardRef<
+  React.ElementRef<typeof ToastPrimitives.Action>,
+  React.ComponentPropsWithoutRef<typeof ToastPrimitives.Action>
 >(({ className, ...props }, ref) => (
   <ToastPrimitives.Action
     ref={ref}
@@ -67,9 +68,9 @@ const ToastAction = forwardRef<
 ));
 ToastAction.displayName = ToastPrimitives.Action.displayName;
 
-const ToastClose = forwardRef<
-  Ref<typeof ToastPrimitives.Close>,
-  ComponentProps<typeof ToastPrimitives.Close>
+const ToastClose = React.forwardRef<
+  React.ElementRef<typeof ToastPrimitives.Close>,
+  React.ComponentPropsWithoutRef<typeof ToastPrimitives.Close>
 >(({ className, ...props }, ref) => (
   <ToastPrimitives.Close
     ref={ref}
@@ -85,9 +86,9 @@ const ToastClose = forwardRef<
 ));
 ToastClose.displayName = ToastPrimitives.Close.displayName;
 
-const ToastTitle = forwardRef<
-  Ref<typeof ToastPrimitives.Title>,
-  ComponentProps<typeof ToastPrimitives.Title>
+const ToastTitle = React.forwardRef<
+  React.ElementRef<typeof ToastPrimitives.Title>,
+  React.ComponentPropsWithoutRef<typeof ToastPrimitives.Title>
 >(({ className, ...props }, ref) => (
   <ToastPrimitives.Title
     ref={ref}
@@ -97,9 +98,9 @@ const ToastTitle = forwardRef<
 ));
 ToastTitle.displayName = ToastPrimitives.Title.displayName;
 
-const ToastDescription = forwardRef<
-  Ref<typeof ToastPrimitives.Description>,
-  ComponentProps<typeof ToastPrimitives.Description>
+const ToastDescription = React.forwardRef<
+  React.ElementRef<typeof ToastPrimitives.Description>,
+  React.ComponentPropsWithoutRef<typeof ToastPrimitives.Description>
 >(({ className, ...props }, ref) => (
   <ToastPrimitives.Description
     ref={ref}
@@ -109,18 +110,15 @@ const ToastDescription = forwardRef<
 ));
 ToastDescription.displayName = ToastPrimitives.Description.displayName;
 
-type ToastProps = ComponentProps<typeof Toast>;
+type ToastProps = React.ComponentPropsWithoutRef<typeof Toast>;
 
-type ToastActionElement = VNode<typeof ToastAction>;
+type ToastActionElement = React.ReactElement<typeof ToastAction>;
 
 export {
   Toast,
-  ToastAction,
-  type ToastActionElement,
-  ToastClose,
-  ToastDescription,
-  type ToastProps,
-  ToastProvider,
+  ToastAction, ToastClose,
+  ToastDescription, ToastProvider,
   ToastTitle,
-  ToastViewport,
+  ToastViewport, type ToastActionElement, type ToastProps
 };
+

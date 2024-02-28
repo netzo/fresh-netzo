@@ -1,10 +1,12 @@
-import type { JSX } from "preact";
-import { forwardRef } from "preact/compat";
+// @deno-types="npm:@types/react@18.2.60"
+import * as React from "react";
+
 import { cn } from "./utils.ts";
 
-export type TextareaProps = JSX.HTMLAttributes<HTMLTextAreaElement>;
+export interface TextareaProps
+  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {}
 
-const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
+const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
   ({ className, ...props }, ref) => {
     return (
       <textarea

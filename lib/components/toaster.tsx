@@ -1,3 +1,6 @@
+// @deno-types="npm:@types/react@18.2.60"
+import * as React from "react";
+
 import {
   Toast,
   ToastClose,

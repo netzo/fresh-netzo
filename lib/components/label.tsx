@@ -1,4 +1,6 @@
-import { type ComponentProps, forwardRef, type Ref } from "preact/compat";
+// @deno-types="npm:@types/react@18.2.60"
+import * as React from "react";
+
 import * as LabelPrimitive from "../deps/@radix-ui/react-label.ts";
 import { cva, type VariantProps } from "../deps/class-variance-authority.ts";
 import { cn } from "./utils.ts";
@@ -7,9 +9,9 @@ const labelVariants = cva(
   "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
 );
 
-const Label = forwardRef<
-  Ref<typeof LabelPrimitive.Root>,
-  & ComponentProps<typeof LabelPrimitive.Root>
+const Label = React.forwardRef<
+  React.ElementRef<typeof LabelPrimitive.Root>,
+  & React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root>
   & VariantProps<typeof labelVariants>
 >(({ className, ...props }, ref) => (
   <LabelPrimitive.Root

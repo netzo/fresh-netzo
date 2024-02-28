@@ -1,4 +1,6 @@
-import { type ComponentProps, forwardRef, type Ref } from "preact/compat";
+// @deno-types="npm:@types/react@18.2.60"
+import * as React from "react";
+
 import * as HoverCardPrimitive from "../deps/@radix-ui/react-hover-card.ts";
 import { cn } from "./utils.ts";
 
@@ -6,9 +8,9 @@ const HoverCard = HoverCardPrimitive.Root;
 
 const HoverCardTrigger = HoverCardPrimitive.Trigger;
 
-const HoverCardContent = forwardRef<
-  Ref<typeof HoverCardPrimitive.Content>,
-  ComponentProps<typeof HoverCardPrimitive.Content>
+const HoverCardContent = React.forwardRef<
+  React.ElementRef<typeof HoverCardPrimitive.Content>,
+  React.ComponentPropsWithoutRef<typeof HoverCardPrimitive.Content>
 >(({ className, align = "center", sideOffset = 4, ...props }, ref) => (
   <HoverCardPrimitive.Content
     ref={ref}
