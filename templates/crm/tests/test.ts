@@ -6,9 +6,7 @@ Deno.test("index test", async () => {
   await withFresh("./dev.ts", [], async (address) => {
     const doc = await fetchHtml(address);
     assertEquals(
-      doc.querySelector(
-        "body > div.flex.flex-col.w-full.h-full.overflow-x-hidden > header > div.flex.items-center.gap-2.\!my-auto > h1",
-      )?.textContent,
+      doc.querySelector("body > nav > header > h2")?.textContent,
       "Netzo CRM",
     );
   });
