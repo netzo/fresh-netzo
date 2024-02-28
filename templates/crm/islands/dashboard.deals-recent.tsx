@@ -3,6 +3,7 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "netzo/components/avatar.tsx";
+import { Deal } from "../data/deals.ts";
 
 export function DashboardDealsRecent(props: { deals: Deal[] }) {
   return (

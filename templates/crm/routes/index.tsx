@@ -1,6 +1,6 @@
 import { defineRoute } from "$fresh/server.ts";
+import { Dashboard } from "../components/dashboard.tsx";
 import type { Account } from "../data/accounts.ts";
-import { Dashboard } from "../islands/dashboard.tsx";
 import { $client } from "../netzo.config.ts";
 
 export default defineRoute(async (req, ctx) => {
