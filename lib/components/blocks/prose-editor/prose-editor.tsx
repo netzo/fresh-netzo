@@ -40,7 +40,7 @@ export const ProseEditor = (
 };
 
 type ToggleButtonProps = {
-  editor?: Editor;
+  editor: Editor | null; // set to null on the server and initialize on the client
   className?: string;
 };
 

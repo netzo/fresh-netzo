@@ -43,5 +43,5 @@ export const mock = (idField = "id") => ({
     content: faker.lorem.paragraph(),
     createdAt: faker.date.past().toISOString(),
     updatedAt: faker.date.recent().toISOString(),
-  }
+  },
 });

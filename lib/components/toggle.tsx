@@ -1,4 +1,5 @@
-import { type ComponentProps, forwardRef, type Ref } from "preact/compat";
+// @deno-types="npm:@types/react@18.2.60"
+import * as React from "react";
 import * as TogglePrimitive from "../deps/@radix-ui/react-toggle.ts";
 import { cva, type VariantProps } from "../deps/class-variance-authority.ts";
 import { cn } from "./utils.ts";
@@ -25,19 +26,11 @@ const toggleVariants = cva(
   },
 );
 
-export interface ToggleProps
-  extends
-    ComponentProps<typeof TogglePrimitive.Root>,
-    VariantProps<typeof toggleVariants> {
-  asChild?: boolean;
-}
-
-const Toggle = forwardRef<Ref<typeof TogglePrimitive.Root>, ToggleProps>(({
-  className,
-  variant,
-  size,
-  ...props
-}, ref) => (
+const Toggle = React.forwardRef<
+  React.ElementRef<typeof TogglePrimitive.Root>,
+  & React.ComponentPropsWithoutRef<typeof TogglePrimitive.Root>
+  & VariantProps<typeof toggleVariants>
+>(({ className, variant, size, ...props }, ref) => (
   <TogglePrimitive.Root
     ref={ref}
     className={cn(toggleVariants({ variant, size, className }))}
