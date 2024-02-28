@@ -1,10 +1,11 @@
-import type { JSX } from "preact";
-import { forwardRef } from "preact/compat";
+// @deno-types="npm:@types/react@18.2.60"
+import * as React from "react";
+
 import { cva, type VariantProps } from "../deps/class-variance-authority.ts";
 import { cn } from "./utils.ts";
 
 const alertVariants = cva(
-  "relative w-full rounded-lg border px-4 py-3 text-sm [&>svg~*]:pl-7 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground",
+  "relative w-full rounded-lg border px-4 py-3 text-sm [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground [&>svg~*]:pl-7",
   {
     variants: {
       variant: {
@@ -19,9 +20,9 @@ const alertVariants = cva(
   },
 );
 
-const Alert = forwardRef<
+const Alert = React.forwardRef<
   HTMLDivElement,
-  JSX.HTMLAttributes<HTMLDivElement> & VariantProps<typeof alertVariants>
+  React.HTMLAttributes<HTMLDivElement> & VariantProps<typeof alertVariants>
 >(({ className, variant, ...props }, ref) => (
   <div
     ref={ref}
@@ -32,9 +33,9 @@ const Alert = forwardRef<
 ));
 Alert.displayName = "Alert";
 
-const AlertTitle = forwardRef<
+const AlertTitle = React.forwardRef<
   HTMLParagraphElement,
-  JSX.HTMLAttributes<HTMLHeadingElement>
+  React.HTMLAttributes<HTMLHeadingElement>
 >(({ className, ...props }, ref) => (
   <h5
     ref={ref}
@@ -44,9 +45,9 @@ const AlertTitle = forwardRef<
 ));
 AlertTitle.displayName = "AlertTitle";
 
-const AlertDescription = forwardRef<
+const AlertDescription = React.forwardRef<
   HTMLParagraphElement,
-  JSX.HTMLAttributes<HTMLParagraphElement>
+  React.HTMLAttributes<HTMLParagraphElement>
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}

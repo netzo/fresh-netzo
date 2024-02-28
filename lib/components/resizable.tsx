@@ -1,11 +1,13 @@
-import { type ComponentProps } from "preact/compat";
+// @deno-types="npm:@types/react@18.2.60"
+import * as React from "react";
+
 import * as ResizablePrimitive from "../deps/react-resizable-panels.ts";
 import { cn } from "./utils.ts";
 
 const ResizablePanelGroup = ({
   className,
   ...props
-}: ComponentProps<typeof ResizablePrimitive.PanelGroup>) => (
+}: React.ComponentProps<typeof ResizablePrimitive.PanelGroup>) => (
   <ResizablePrimitive.PanelGroup
     className={cn(
       "flex h-full w-full data-[panel-group-direction=vertical]:flex-col",
@@ -21,7 +23,7 @@ const ResizableHandle = ({
   withHandle,
   className,
   ...props
-}: ComponentProps<typeof ResizablePrimitive.PanelResizeHandle> & {
+}: React.ComponentProps<typeof ResizablePrimitive.PanelResizeHandle> & {
   withHandle?: boolean;
 }) => (
   <ResizablePrimitive.PanelResizeHandle
@@ -32,7 +34,7 @@ const ResizableHandle = ({
     {...props}
   >
     {withHandle && (
-      <div className="z-10 flex items-center justify-center w-3 h-4 border rounded-sm bg-border">
+      <div className="z-10 flex h-4 w-3 items-center justify-center rounded-sm border bg-border">
         <i className="mdi-drag h-2.5 w-2.5" />
       </div>
     )}

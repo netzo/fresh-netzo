@@ -1,10 +1,12 @@
-import { type ComponentProps, forwardRef, type Ref } from "preact/compat";
+// @deno-types="npm:@types/react@18.2.60"
+import * as React from "react";
+
 import * as AvatarPrimitive from "../deps/@radix-ui/react-avatar.ts";
 import { cn } from "./utils.ts";
 
-const Avatar = forwardRef<
-  Ref<typeof AvatarPrimitive.Root>,
-  ComponentProps<typeof AvatarPrimitive.Root>
+const Avatar = React.forwardRef<
+  React.ElementRef<typeof AvatarPrimitive.Root>,
+  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root>
 >(({ className, ...props }, ref) => (
   <AvatarPrimitive.Root
     ref={ref}
@@ -17,9 +19,9 @@ const Avatar = forwardRef<
 ));
 Avatar.displayName = AvatarPrimitive.Root.displayName;
 
-const AvatarImage = forwardRef<
-  Ref<typeof AvatarPrimitive.Image>,
-  ComponentProps<typeof AvatarPrimitive.Image>
+const AvatarImage = React.forwardRef<
+  React.ElementRef<typeof AvatarPrimitive.Image>,
+  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Image>
 >(({ className, ...props }, ref) => (
   <AvatarPrimitive.Image
     ref={ref}
@@ -29,9 +31,9 @@ const AvatarImage = forwardRef<
 ));
 AvatarImage.displayName = AvatarPrimitive.Image.displayName;
 
-const AvatarFallback = forwardRef<
-  Ref<typeof AvatarPrimitive.Fallback>,
-  ComponentProps<typeof AvatarPrimitive.Fallback>
+const AvatarFallback = React.forwardRef<
+  React.ElementRef<typeof AvatarPrimitive.Fallback>,
+  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Fallback>
 >(({ className, ...props }, ref) => (
   <AvatarPrimitive.Fallback
     ref={ref}

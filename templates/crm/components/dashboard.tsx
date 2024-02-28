@@ -6,11 +6,11 @@ import {
   CardHeader,
   CardTitle,
 } from "netzo/components/card.tsx";
-import { DashboardDealsRecent } from "../components/dashboard.deals-recent.tsx";
 import { DashboardOverview } from "../components/dashboard.overview.tsx";
 import type { Account } from "../data/accounts.ts";
 import type { Metric } from "../data/metrics.ts";
 import { DashboardAccountSelect } from "../islands/dashboard.account-select.tsx";
+import { DashboardDealsRecent } from "../islands/dashboard.deals-recent.tsx";
 
 export function Dashboard(props: { data: [Metric[], Account[]] }) {
   const [metrics, accounts, account] = props.data;

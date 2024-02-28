@@ -1,10 +1,12 @@
-import { type ComponentProps, forwardRef, type Ref } from "preact/compat";
+// @deno-types="npm:@types/react@18.2.60"
+import * as React from "react";
+
 import * as SeparatorPrimitive from "../deps/@radix-ui/react-separator.ts";
 import { cn } from "./utils.ts";
 
-const Separator = forwardRef<
-  Ref<typeof SeparatorPrimitive.Root>,
-  ComponentProps<typeof SeparatorPrimitive.Root>
+const Separator = React.forwardRef<
+  React.ElementRef<typeof SeparatorPrimitive.Root>,
+  React.ComponentPropsWithoutRef<typeof SeparatorPrimitive.Root>
 >(
   (
     { className, orientation = "horizontal", decorative = true, ...props },

@@ -1,3 +1,6 @@
+// @deno-types="npm:@types/react@18.2.60"
+import * as React from "react";
+
 import { cva, type VariantProps } from "../deps/class-variance-authority.ts";
 import { cn } from "./utils.ts";
 
@@ -7,11 +10,11 @@ const badgeVariants = cva(
     variants: {
       variant: {
         default:
-          "border-transparent bg-primary text-primary-foreground shadow hover:bg-primary/80",
+          "border-transparent bg-primary text-primary-foreground shadow hover:bg-opacity-80",
         secondary:
-          "border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80",
+          "border-transparent bg-secondary text-secondary-foreground hover:bg-opacity-80",
         destructive:
-          "border-transparent bg-destructive text-destructive-foreground shadow hover:bg-destructive/80",
+          "border-transparent bg-destructive text-destructive-foreground shadow hover:bg-opacity-80",
         outline: "text-foreground",
       },
     },
@@ -23,7 +26,7 @@ const badgeVariants = cva(
 
 export interface BadgeProps
   extends
-    JSX.HTMLAttributes<HTMLDivElement>,
+    React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof badgeVariants> {}
 
 function Badge({ className, variant, ...props }: BadgeProps) {

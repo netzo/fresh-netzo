@@ -31,7 +31,7 @@ import * as $accounts from "./islands/accounts.tsx";
 import * as $contact from "./islands/contact.tsx";
 import * as $contacts from "./islands/contacts.tsx";
 import * as $dashboard_account_select from "./islands/dashboard.account-select.tsx";
-import * as $dashboard from "./islands/dashboard.tsx";
+import * as $dashboard_deals_recent from "./islands/dashboard.deals-recent.tsx";
 import * as $deal from "./islands/deal.tsx";
 import * as $deals_kanban_card from "./islands/deals.kanban-card.tsx";
 import * as $deals_kanban_group from "./islands/deals.kanban-group.tsx";
@@ -76,7 +76,7 @@ const manifest = {
     "./islands/contact.tsx": $contact,
     "./islands/contacts.tsx": $contacts,
     "./islands/dashboard.account-select.tsx": $dashboard_account_select,
-    "./islands/dashboard.tsx": $dashboard,
+    "./islands/dashboard.deals-recent.tsx": $dashboard_deals_recent,
     "./islands/deal.tsx": $deal,
     "./islands/deals.kanban-card.tsx": $deals_kanban_card,
     "./islands/deals.kanban-group.tsx": $deals_kanban_group,

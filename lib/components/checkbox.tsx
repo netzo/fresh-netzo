@@ -1,10 +1,12 @@
-import { type ComponentProps, forwardRef, type Ref } from "preact/compat";
+// @deno-types="npm:@types/react@18.2.60"
+import * as React from "react";
+
 import * as CheckboxPrimitive from "../deps/@radix-ui/react-checkbox.ts";
 import { cn } from "./utils.ts";
 
-const Checkbox = forwardRef<
-  Ref<typeof CheckboxPrimitive.Root>,
-  ComponentProps<typeof CheckboxPrimitive.Root>
+const Checkbox = React.forwardRef<
+  React.ElementRef<typeof CheckboxPrimitive.Root>,
+  React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>
 >(({ className, ...props }, ref) => (
   <CheckboxPrimitive.Root
     ref={ref}
@@ -17,7 +19,7 @@ const Checkbox = forwardRef<
     <CheckboxPrimitive.Indicator
       className={cn("flex items-center justify-center text-current")}
     >
-      <i className="mdi-check w-4 h-4" />
+      <i className="mdi-check h-4 w-4" />
     </CheckboxPrimitive.Indicator>
   </CheckboxPrimitive.Root>
 ));

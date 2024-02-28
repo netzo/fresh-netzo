@@ -1,4 +1,6 @@
-import { type ComponentProps, forwardRef, type Ref } from "preact/compat";
+// @deno-types="npm:@types/react@18.2.60"
+import * as React from "react";
+
 import * as PopoverPrimitive from "../deps/@radix-ui/react-popover.ts";
 import { cn } from "./utils.ts";
 
@@ -6,9 +8,11 @@ const Popover = PopoverPrimitive.Root;
 
 const PopoverTrigger = PopoverPrimitive.Trigger;
 
-const PopoverContent = forwardRef<
-  Ref<typeof PopoverPrimitive.Content>,
-  ComponentProps<typeof PopoverPrimitive.Content>
+const PopoverAnchor = PopoverPrimitive.Anchor;
+
+const PopoverContent = React.forwardRef<
+  React.ElementRef<typeof PopoverPrimitive.Content>,
+  React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Content>
 >(({ className, align = "center", sideOffset = 4, ...props }, ref) => (
   <PopoverPrimitive.Portal>
     <PopoverPrimitive.Content
@@ -25,4 +29,4 @@ const PopoverContent = forwardRef<
 ));
 PopoverContent.displayName = PopoverPrimitive.Content.displayName;
 
-export { Popover, PopoverContent, PopoverTrigger };
+export { Popover, PopoverAnchor, PopoverContent, PopoverTrigger };

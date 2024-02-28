@@ -1,6 +1,6 @@
-import "../../../deps/std/dotenv/load.ts";
-import { assertExists } from "../../../deps/std/assert/mod.ts";
-import { mongodb } from "./mod.ts";
+import { assertExists } from "../../deps/std/assert/mod.ts";
+import "../../deps/std/dotenv/load.ts";
+import { mongodb } from "./mongodb.ts";
 
 Deno.test("[dbs] mongodb", {
   ignore: !Deno.env.get("MONGODB_URL")! || !Deno.env.get("MONGODB_DATABASE")!,

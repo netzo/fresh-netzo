@@ -1,11 +1,12 @@
-import type { JSX } from "preact";
-import { forwardRef } from "preact/compat";
+// @deno-types="npm:@types/react@18.2.60"
+import * as React from "react";
+
 import { Slot } from "../deps/@radix-ui/react-slot.ts";
 import { cva, type VariantProps } from "../deps/class-variance-authority.ts";
 import { cn } from "./utils.ts";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
@@ -37,17 +38,17 @@ const buttonVariants = cva(
 
 export interface ButtonProps
   extends
-    Omit<JSX.HTMLAttributes<HTMLButtonElement>, "size">,
+    React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean;
 }
 
-const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, asChild = false, ...props }, ref) => {
     const Comp = asChild ? Slot : "button";
     return (
       <Comp
-        className={cn(buttonVariants({ variant, size, className }), className)}
+        className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
         {...props}
       />

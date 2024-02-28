@@ -1,10 +1,12 @@
-import { type ComponentProps, forwardRef, type Ref } from "preact/compat";
+// @deno-types="npm:@types/react@18.2.60"
+import * as React from "react";
+
 import * as RadioGroupPrimitive from "../deps/@radix-ui/react-radio-group.ts";
 import { cn } from "./utils.ts";
 
-const RadioGroup = forwardRef<
-  Ref<typeof RadioGroupPrimitive.Root>,
-  ComponentProps<typeof RadioGroupPrimitive.Root>
+const RadioGroup = React.forwardRef<
+  React.ElementRef<typeof RadioGroupPrimitive.Root>,
+  React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Root>
 >(({ className, ...props }, ref) => {
   return (
     <RadioGroupPrimitive.Root
@@ -16,10 +18,10 @@ const RadioGroup = forwardRef<
 });
 RadioGroup.displayName = RadioGroupPrimitive.Root.displayName;
 
-const RadioGroupItem = forwardRef<
-  Ref<typeof RadioGroupPrimitive.Item>,
-  ComponentProps<typeof RadioGroupPrimitive.Item>
->(({ className, children, ...props }, ref) => {
+const RadioGroupItem = React.forwardRef<
+  React.ElementRef<typeof RadioGroupPrimitive.Item>,
+  React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Item>
+>(({ className, ...props }, ref) => {
   return (
     <RadioGroupPrimitive.Item
       ref={ref}
