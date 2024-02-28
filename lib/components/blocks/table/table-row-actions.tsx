@@ -18,9 +18,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../../dropdown-menu.tsx";
-import type { TableProps } from "./table.tsx";
+import type { UseTableOptions } from "./table.tsx";
 
-type TableRowActionsProps<TData> = TableProps<TData> & {
+type TableRowActionsProps<TData> = UseTableOptions<TData> & {
   row: Row<TData>;
   resource: string;
   idField?: string;
@@ -105,7 +105,7 @@ export function TableRowActions<TData>({
             Delete
           </AlertDialogTitle>
           <AlertDialogDescription>
-            You are about to delete the data permanently.
+            Are you sure you want to delete this item?
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>

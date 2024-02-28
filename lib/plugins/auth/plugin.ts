@@ -3,7 +3,7 @@ import type { OAuth2ClientConfig } from "../../deps/oauth2_client/src/oauth2_cli
 import type { NetzoState } from "../../mod.ts";
 import {
   ensureSignedIn,
-  setAppState,
+  setRequestState,
   setSessionState,
 } from "./middlewares/mod.ts";
 import createAuth from "./routes/auth.tsx";
@@ -35,12 +35,17 @@ export type AuthConfig = {
 };
 
 export type AuthState = {
-  // session:
+  /* Session ID used internally by the auth plugin. */
   sessionId?: string;
+  /* The user object associated with the session ID. */
   sessionUser?: AuthUser;
-  // app:
+  /* Whether the user is authenticated (if sessionId not expired and sessionUser defined). */
+  isAuthenticated?: boolean;
+  /* The origin of the request (e.g. https://my-project-906698.netzo.io). */
   origin?: string;
+  /* The referer of the request (e.g. https://app.netzo.io/some-path). */
   referer?: string;
+  /* Wether the request is coming from the Netzo app (e.g. app.netzo.io). */
   isApp?: boolean;
 };
 
@@ -92,7 +97,7 @@ export const auth = (config: AuthConfig): Plugin<NetzoState> => {
       },
       {
         path: "/",
-        middleware: { handler: setAppState },
+        middleware: { handler: setRequestState },
       },
       {
         path: "/",

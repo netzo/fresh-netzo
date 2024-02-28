@@ -37,7 +37,11 @@
   "fmt": {},
   "compilerOptions": {
     "jsx": "react-jsx",
-    "jsxImportSource": "preact"
+    // NOTE: alias "preact" is not being resolved for deno.json(c) of monorepo
+    // therefore we use react here (this is not needed withing the individual
+    // projects e.g. under templates/crm/deno.json, since "preact" resolves properly)
+    // see https://github.com/denoland/deno/issues/20582#issuecomment-1751454928
+    "jsxImportSource": "https://esm.sh/react@18.2.0"
   },
   "imports": {
     "@/": "./",
@@ -50,6 +54,7 @@
     "react": "https://esm.sh/v135/preact@10.19.3/compat",
     "react-dom": "https://esm.sh/v135/preact@10.19.3/compat",
     "std/": "https://deno.land/std@0.208.0/",
+    "react/jsx-runtime": "https://esm.sh/v135/preact@10.19.3/compat",
     "zod": "https://deno.land/x/zod@v3.22.4/mod.ts",
     "deno_kv_oauth/": "https://deno.land/x/deno_kv_oauth@v0.9.1/"
   }

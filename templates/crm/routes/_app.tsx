@@ -6,7 +6,8 @@ import type { NetzoState } from "netzo/mod.ts";
 import { Nav } from "../islands/nav.tsx";
 
 export default defineApp<NetzoState>((req, ctx) => {
-  const mustAuth = !!ctx.state?.auth && !ctx.state?.auth?.sessionId;
+  // assert isAuthenticated explicitly (undefined if auth not enabled)
+  const mustAuth = ctx.state?.auth?.isAuthenticated === false;
 
   return (
     <html className="h-full overflow-hidden">
@@ -20,12 +21,10 @@ export default defineApp<NetzoState>((req, ctx) => {
       </head>
       {mustAuth
         ? (
-          <body className={cn("h-full bg-background")}>
-            <div className="flex flex-col w-full h-full overflow-x-hidden">
-              <main className="flex-1">
-                <ctx.Component />
-              </main>
-            </div>
+          <body className={cn("h-screen bg-background")}>
+            <main className="grid h-screen">
+              <ctx.Component />
+            </main>
           </body>
         )
         : (
@@ -36,13 +35,11 @@ export default defineApp<NetzoState>((req, ctx) => {
             )}
           >
             <Nav state={ctx.state} />
-            <div className="flex flex-col w-full h-full overflow-x-hidden">
-              <main className="flex-1">
-                <Partial name="main">
-                  <ctx.Component />
-                </Partial>
+            <Partial name="main">
+              <main className="grid h-screen">
+                <ctx.Component />
               </main>
-            </div>
+            </Partial>
           </body>
         )}
     </html>

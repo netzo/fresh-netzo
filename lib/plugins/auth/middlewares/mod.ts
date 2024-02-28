@@ -20,20 +20,25 @@ export async function setSessionState(
   const sessionId = await getSessionId(req);
   ctx.state.auth = {
     ...ctx.state.auth,
-    sessionId,
+    sessionId, // DO NOTE use to assert if authenticated (might be set but expired)
     sessionUser: undefined, // reset each request (before next())
+    isAuthenticated: false, // reset each request (before next())
   };
 
-  if (sessionId === undefined) return await ctx.next();
+  if (sessionId === undefined) return await ctx.next(); // A) not authenticated
+
   const user = await getUserBySession(sessionId);
-  if (!user) return await ctx.next();
+  if (!user) return await ctx.next(); // B) user not found
 
+  // set authenticated state (sessionId could be set but expired,
+  // so check for user to be defined to ensure authenticated state)
   ctx.state.auth.sessionUser = user;
+  ctx.state.auth.isAuthenticated = true;
 
-  return await ctx.next();
+  return await ctx.next(); // C) authenticated
 }
 
-export async function setAppState(
+export async function setRequestState(
   req: Request,
   ctx: FreshContext<NetzoState>,
 ) {
@@ -62,9 +67,8 @@ export async function ensureSignedIn(
   // IMPORTANT: disable client-side navigation for around logout links to
   // skip partials which cause infinite redirects in auth middleware
 
-  // check auth state
-  const sessionId = ctx.state.auth?.sessionId;
-  const isAuthenticated = sessionId !== undefined;
+  // check isAuthenticated state explicitly (sessionId could be set yet expired)
+  const { isAuthenticated } = ctx.state.auth ?? {};
 
   // redirect to /auth if not authenticated or to / if authenticated
   if (ctx.url.pathname !== "/auth" && !isAuthenticated) {

@@ -2,7 +2,7 @@ import { z } from "zod";
 
 // schemas:
 
-export const linkSchema = z.object({
+export const linksSchema = z.object({
   website: z.string().url(),
   facebook: z.string().url(),
   linkedin: z.string().url(),
@@ -21,7 +21,7 @@ export const noteSchema = z.object({
 
 export type Note = z.infer<typeof noteSchema>;
 
-export type Link = z.infer<typeof linkSchema>;
+export type Link = z.infer<typeof linksSchema>;
 
 // i18n:
 
@@ -49,7 +49,7 @@ export const I18N: Record<string, string> = {
   "links.linkedin": "LinkedIn",
   "links.twitter": "Twitter",
   "links.other": "Other",
-  "notes": "Notes",
+  "note": "Note",
   "position": "Position",
   "department": "Department",
   "status": "Status",

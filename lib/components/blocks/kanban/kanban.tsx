@@ -1,5 +1,5 @@
 // adapted from https://github.com/Georgegriff/react-dnd-kit-tailwind-shadcn-ui/blob/main/src/components/kanban.tsx
-import { effect, useComputed, useSignal } from "@preact/signals";
+import { useComputed, useSignal } from "@preact/signals";
 import { BadgeProps } from "netzo/components/badge.tsx";
 import type { ComponentChildren } from "preact";
 import { createPortal } from "preact/compat";
@@ -18,7 +18,7 @@ import {
   useSensors,
 } from "../../../deps/@dnd-kit/core.ts";
 import { arrayMove, SortableContext } from "../../../deps/@dnd-kit/sortable.ts";
-import type { Table, TableProps } from "../table/table.tsx";
+import type { Table, UseTableOptions } from "../table/table.tsx";
 import { KanbanContainer } from "./kanban-container.tsx";
 import { coordinateGetter } from "./multiple-containers-keyboard-preset.ts";
 import { hasDraggableData } from "./utils.ts";
@@ -57,12 +57,12 @@ export type GroupDragData = {
   group: Group;
 };
 
-export type KanbanGroupProps<TData = unknown> = TableProps<TData> & {
+export type KanbanGroupProps<TData = unknown> = UseTableOptions<TData> & {
   group: Group;
   items: TData[];
   isOverlay?: boolean;
-  options: KanbanProps["options"];
-  renderCard: KanbanProps["renderCard"];
+  options: UseKanbanOptions;
+  renderCard: UseKanbanOptions["renderCard"];
   children: ComponentChildren;
 };
 
@@ -73,22 +73,19 @@ export type CardDragData<TData = unknown> = {
   item: TData;
 };
 
-export type KanbanCardProps<TData = unknown> = TableProps<TData> & {
+export type KanbanCardProps<TData = unknown> = UseTableOptions<TData> & {
   table: Table<TData>;
   item: TData;
   isOverlay?: boolean;
-  options: KanbanProps["options"];
+  options: UseKanbanOptions["options"];
 };
 
-export function Kanban<TData>({
+export function KanbanView<TData>({
   table,
-  options,
   renderGroup = (props) => JSON.stringify(props),
   renderCard = (props) => JSON.stringify(props),
-}: KanbanProps<TData>) {
-  const data = useComputed(
-    () => table.getRowModel().rows.map((row) => row.original),
-  );
+}: UseKanbanOptions<TData>) {
+  const options = table.options.meta as UseKanbanOptions<TData>;
 
   const groups = useSignal<Group[]>(options.group.groups);
   const pickedUpItemGroup = useSignal<string | null>(null);
@@ -96,18 +93,9 @@ export function Kanban<TData>({
     groups.value.map((col) => col[options.idField])
   );
 
-  const items = useSignal<TData[]>(data.value);
-
-  effect(() => {
-    items.value = data.value;
-  });
-
-  effect(() => {
-    console.log({
-      data: data.value.length,
-      items: items.value.length,
-    });
-  });
+  const items = useSignal<TData[]>(
+    table.getRowModel().rows.map((row) => row.original),
+  );
 
   const activeGroup = useSignal<Group | null>(null);
 

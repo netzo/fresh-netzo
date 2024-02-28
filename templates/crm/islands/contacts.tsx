@@ -111,18 +111,18 @@ export function Table({ data }: { data: Contact[] }) {
         filterFn: (row, id, value) => value.includes(row.getValue(id)),
       },
       {
-        accessorKey: "notes",
-        header: (props) => <TableColumnHeader {...props} title={I18N.notes} />,
+        accessorKey: "events",
+        header: (props) => <TableColumnHeader {...props} title={I18N.events} />,
         cell: ({ row }) => {
-          const { notes = [] } = row.original;
+          const { events = [] } = row.original;
           return (
             <a
-              href={`/contacts/${row.original.id}/notes`}
+              href={`/contacts/${row.original.id}/events`}
               className="hover:underline"
             >
-              <Badge variant="secondary">
-                <i className="mdi-note-text mr-1" />
-                {notes.length} Notes
+              <Badge variant="secondary" className="w-max">
+                <i className="mdi-radiobox-marked mr-1" />
+                {events.length} Events
               </Badge>
             </a>
           );
