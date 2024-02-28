@@ -1,8 +1,8 @@
 // adapted from https://github.com/shadcn-ui/ui/issues/876#issuecomment-1627395691
 import { IS_BROWSER } from "$fresh/runtime.ts";
-import { EditorContent, type Editor } from "../../../deps/@tiptap/react.ts";
+import * as React from "react";
+import { type Editor, EditorContent } from "../../../deps/@tiptap/react.ts";
 import { Separator } from "../../separator.tsx";
-import type { ToggleProps } from "../../toggle.tsx";
 import { Toggle } from "../../toggle.tsx";
 import { cn } from "../../utils.ts";
 
@@ -18,7 +18,9 @@ type ProseEditorProps = HTMLDivElement & {
   editable?: boolean;
 };
 
-export const ProseEditor = ({ className, editor, content }: ProseEditorProps) => {
+export const ProseEditor = (
+  { className, editor, content }: ProseEditorProps,
+) => {
   // server-side render content once
   if (!IS_BROWSER || !editor) {
     return (
@@ -37,8 +39,9 @@ export const ProseEditor = ({ className, editor, content }: ProseEditorProps) =>
   );
 };
 
-type ToggleButtonProps = ToggleProps & {
+type ToggleButtonProps = {
   editor?: Editor;
+  className?: string;
 };
 
 export const ToggleBold = ({ className, editor }: ToggleButtonProps) => (
@@ -123,7 +126,8 @@ const ToggleH = ({
     size="sm"
     pressed={editor?.isActive("heading", { level })}
     disabled={!editor}
-    onPressedChange={() => editor?.chain().focus().toggleHeading({ level }).run()}
+    onPressedChange={() =>
+      editor?.chain().focus().toggleHeading({ level }).run()}
     className={cn("grid", className)}
   >
     <i className={`mdi-format-header-${level} h-4 w-4`} />
