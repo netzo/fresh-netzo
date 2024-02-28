@@ -25,30 +25,25 @@ Productive open-source framework for building business web apps.
 
 ## What is Netzo?
 
-Netzo is a batteries-included meta-framework for Deno Fresh. It offers a collection of modules and opinionated best practices, empowering developers to build web apps faster without sacrificing flexibility.
+Netzo is a platform and batteries-included meta-framework for Deno Fresh. It offers a collection of modules and opinionated best practices, empowering developers to build web apps faster without sacrificing flexibility.
 
-- **Runtime:** powered by **Deno**, the modern and secure JavaScript runtime.
+- **Platform:** a cloud platform to deploy, manage, and scale your apps.
 - **Framework:** built on **Deno Fresh**, a next-gen web framework designed for rapid development.
-- **Database:** built-in **Deno KV** database, a fast, reliable, and secure key-value database.
-- **Authentication:** built-in user management and role-based access control (RBAC).
-- **Components:** beautifully designed, accessible, and customizable components based on [`shadcn/ui`](https://ui.shadcn.com/)
-- **Integrations:** a growing list of plug-and-play integrations for popular APIs and Databases.
-- **CSS/Styling:** built-in, pre-defined themes powered by **UnoCSS**, an instant, on-demand atomic CSS engine.
-- **CLI:** command-line interface (CLI) to help you develop and deploy Netzo applications.
-
-## Main Features
-
-- **Integrations**: Collection of integrations for popular APIs and Databases.
-- **Authentication**: Simple user management and role-based access control (RBAC).
-- **Database**: Simple data management for the multi-model, real-time database that powers apps.
-- **Components**: Customizable UI components, blocks and layouts to import/copy-paste into apps.
-- **CLI**: Command-line interface (CLI) to help you develop and deploy Netzo applications.
 
 ## Why Netzo?
 
 > "Low-code tools make the first 60% easy, and the remaining 40% impossible."
 
 Custom business app development has challenges. Traditional development is complex and time-consuming. In business software flexibility but speed and efficiency are paramount. Our goal is to provide full-code flexibility at no-code speeds boosting developer productivity and enabling them to build apps 10x faster.
+
+## Main Features
+
+- **Authentication:** built-in user management and role-based access control (RBAC).
+- **Database:** built-in **Deno KV** database, a fast, reliable, and secure key-value database.
+- **Components:** beautifully designed, accessible, and customizable components based on [`shadcn/ui`](https://ui.shadcn.com/)
+- **Integrations:** a growing list of plug-and-play integrations for popular APIs and Databases.
+- **CSS/Styling:** built-in, pre-defined themes powered by **UnoCSS**, an instant, on-demand atomic CSS engine.
+- **CLI:** command-line interface (CLI) to help you develop and deploy Netzo applications.
 
 ## Quick start
 
