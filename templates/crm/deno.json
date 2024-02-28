@@ -34,7 +34,10 @@
   "fmt": {},
   "compilerOptions": {
     "jsx": "react-jsx",
-    "jsxImportSource": "preact"
+    "jsxImportSource": "preact",
+    "types": [
+      "npm:@types/react@18.2.60"
+    ]
   },
   "imports": {
     "@/": "./",
