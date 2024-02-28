@@ -3,6 +3,7 @@ import * as React from "react";
 
 import { cn } from "./utils.ts";
 
+// deno-lint-ignore no-empty-interface
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {}
 
