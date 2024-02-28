@@ -259,10 +259,10 @@ export function AccountCardForm(props: { account: Account }) {
 export function AccountCardDeals(props: { account: Account; deals: Deal[] }) {
   const deal = useSignal<Partial<Deal>>({
     name: "",
-    notes: [],
     status: "lead",
     amount: 0,
     currencyCode: "USD",
+    note: {},
     accountId: props.account.id,
     contactIds: [],
     userIds: [],

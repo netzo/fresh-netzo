@@ -11,7 +11,7 @@ import type { Event } from "../data/events.ts";
 import { EventEditor } from "./events.editor.tsx";
 import { EventsList } from "./events.list.tsx";
 
-export function Events({ data, defaultLayout = [40, 60] }: {
+export function Panels({ data, defaultLayout = [40, 60] }: {
   data: Event[];
   defaultLayout?: [number, number];
 }) {

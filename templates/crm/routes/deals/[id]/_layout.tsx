@@ -29,8 +29,8 @@ export default defineLayout<DealState>(async (req, ctx) => {
         <NavLink href={`/deals/${id}`}>
           Overview
         </NavLink>
-        <NavLink href={`/deals/${id}/notes`}>
-          Notes
+        <NavLink href={`/deals/${id}/events`}>
+          Events
         </NavLink>
         <Separator />
       </nav>

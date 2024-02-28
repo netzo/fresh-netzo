@@ -68,18 +68,18 @@ export function Table({ data }: { data: Account[] }) {
         },
       },
       {
-        accessorKey: "notes",
-        header: (props) => <TableColumnHeader {...props} title={I18N.notes} />,
+        accessorKey: "events",
+        header: (props) => <TableColumnHeader {...props} title={I18N.events} />,
         cell: ({ row }) => {
-          const { notes = [] } = row.original;
+          const { events = [] } = row.original;
           return (
             <a
-              href={`/accounts/${row.original.id}/notes`}
+              href={`/accounts/${row.original.id}/events`}
               className="hover:underline"
             >
               <Badge variant="secondary" className="w-max">
-                <i className="mdi-note-text mr-1" />
-                {notes.length} Notes
+                <i className="mdi-radiobox-marked mr-1" />
+                {events.length} Events
               </Badge>
             </a>
           );

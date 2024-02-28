@@ -1,7 +1,7 @@
 import { defineRoute } from "$fresh/server.ts";
 import type { Account } from "../../data/accounts.ts";
 import type { Contact } from "../../data/contacts.ts";
-import * as Contacts from "../../islands/contacts.tsx";
+import * as ContactsIslands from "../../islands/contacts.tsx";
 import { $client } from "../../netzo.config.ts";
 
 // NOTE: cannot pass functions as props from routes (server) to islands (client)
@@ -18,7 +18,7 @@ export default defineRoute(async (req, ctx) => {
 
   return (
     <div className="h-screen overflow-y-auto p-4">
-      <Contacts.Table data={data} />
+      <ContactsIslands.Table data={data} />
     </div>
   );
 });

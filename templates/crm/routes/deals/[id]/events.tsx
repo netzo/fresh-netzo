@@ -1,18 +1,20 @@
 import { defineRoute } from "$fresh/server.ts";
 import type { NetzoState } from "netzo/mod.ts";
-import type { Account } from "../../data/accounts.ts";
-import type { Contact } from "../../data/contacts.ts";
-import type { Deal } from "../../data/deals.ts";
-import type { Event } from "../../data/events.ts";
-import type { User } from "../../data/users.ts";
-import * as EventsIslands from "../../islands/events.tsx";
-import { $client } from "../../netzo.config.ts";
+import type { Account } from "../../../data/accounts.ts";
+import type { Contact } from "../../../data/contacts.ts";
+import type { Deal } from "../../../data/deals.ts";
+import type { Event } from "../../../data/events.ts";
+import type { User } from "../../../data/users.ts";
+import * as EventsIslands from "../../../islands/events.tsx";
+import { $client } from "../../../netzo.config.ts";
 
 type EventsState = NetzoState & {
   events: Event[];
 };
 
 export default defineRoute<EventsState>(async (req, ctx) => {
+  // const { id, deal } = ctx.state.data;
+
   const [accounts, contacts, deals, events, users] = await Promise.all([
     $client.accounts.find() as Account[],
     $client.contacts.find() as Contact[],

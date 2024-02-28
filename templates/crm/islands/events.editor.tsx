@@ -10,7 +10,7 @@ export function EventEditor({ editor, content }: {
     return (
       <div className="grid place-items-center w-full h-full py-20">
         <div className="text-center">
-          <i className="mdi-note-text text-4xl text-muted-foreground mb-2" />
+          <i className="mdi-radiobox-marked text-4xl text-muted-foreground mb-2" />
           <h2 className="text-xl font-medium text-muted-foreground mb-1">
             No event selected
           </h2>

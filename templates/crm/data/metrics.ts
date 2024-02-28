@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { dealSchema } from "./deals";
+import { dealSchema } from "./deals.ts";
 
 // schemas:
 

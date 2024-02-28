@@ -1,7 +1,7 @@
 import { ulid } from "netzo/plugins/api/utils.ts";
 import { faker } from "npm:@faker-js/faker@8.4.0";
 import { z } from "zod";
-import { linkSchema, noteSchema } from "./mod.ts";
+import { linksSchema, noteSchema } from "./mod.ts";
 
 // schemas:
 
@@ -13,8 +13,8 @@ export const accountSchema = z.object({
   image: z.string().url(),
   email: z.string().email(),
   phone: z.string(),
-  links: linkSchema,
-  notes: z.array(noteSchema),
+  links: linksSchema,
+  note: noteSchema,
 });
 
 // types:
@@ -38,10 +38,10 @@ export const mock = (idField = "id") => ({
     twitter: faker.internet.url(),
     other: faker.internet.url(),
   },
-  notes: Array.from(Array(5)).map(() => ({
+  note: {
     name: faker.lorem.paragraph(),
     content: faker.lorem.paragraph(),
     createdAt: faker.date.past().toISOString(),
     updatedAt: faker.date.recent().toISOString(),
-  })),
+  }
 });

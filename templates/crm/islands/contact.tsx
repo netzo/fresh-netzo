@@ -262,10 +262,10 @@ export function ContactCardForm(props: { contact: Contact }) {
 export function ContactCardDeals(props: { contact: Contact; deals: Deal[] }) {
   const deal = useSignal<Partial<Deal>>({
     name: "",
-    notes: [],
     status: "lead",
     amount: 0,
     currencyCode: "USD",
+    note: {},
     contactId: props.contact.id,
     contactIds: [],
     userIds: [],
