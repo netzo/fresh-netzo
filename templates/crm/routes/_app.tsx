@@ -41,7 +41,7 @@ export default defineApp<NetzoState>((req, ctx) => {
                 <ctx.Component />
               </main>
             </Partial>
-            <NetzoToolbar />
+            <NetzoToolbar className="hidden md:flex" />
           </body>
         )}
     </html>

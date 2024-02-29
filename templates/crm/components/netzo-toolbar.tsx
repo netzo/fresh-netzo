@@ -2,12 +2,16 @@
 import * as React from "react";
 
 import { Button } from "netzo/components/button.tsx";
+import { cn } from "netzo/components/utils.ts";
 
 // created using v0 by Vercel see https://v0.dev/t/aLUPWlh
 
-export function NetzoToolbar() {
+export function NetzoToolbar({ className }) {
   return (
-    <div className="fixed bottom-20px -translate-x-2/4 translate-y-0 left-2/4 ml-auto mr-auto flex items-center justify-between rounded-full bg-zinc-800 p-2 max-w-max">
+    <div className={cn(
+      "fixed bottom-20px -translate-x-2/4 translate-y-0 left-2/4 ml-auto mr-auto flex items-center justify-between rounded-full bg-zinc-800 p-2 max-w-max",
+      className,
+    )}>
       <div className="flex space-x-2 border-r border-zinc-600 pr-1">
         <Button
           className="text-zinc-100 rounded-full hover:bg-gray-600 hover:text-zinc-100"
