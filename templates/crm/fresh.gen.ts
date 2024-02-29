@@ -2,6 +2,23 @@
 // This file SHOULD be checked into source version control.
 // This file is automatically updated during development when running `dev.ts`.
 
+import { type Manifest } from "$fresh/server.ts";
+import * as $netzo_toolbar from "./components/netzo-toolbar.tsx";
+import * as $account from "./islands/account.tsx";
+import * as $accounts from "./islands/accounts.tsx";
+import * as $contact from "./islands/contact.tsx";
+import * as $contacts from "./islands/contacts.tsx";
+import * as $dashboard_account_select from "./islands/dashboard.account-select.tsx";
+import * as $dashboard_deals_recent from "./islands/dashboard.deals-recent.tsx";
+import * as $deal from "./islands/deal.tsx";
+import * as $deals_kanban_card from "./islands/deals.kanban-card.tsx";
+import * as $deals_kanban_group from "./islands/deals.kanban-group.tsx";
+import * as $deals from "./islands/deals.tsx";
+import * as $events_editor from "./islands/events.editor.tsx";
+import * as $events_forms from "./islands/events.forms.tsx";
+import * as $events_list from "./islands/events.list.tsx";
+import * as $events from "./islands/events.tsx";
+import * as $nav from "./islands/nav.tsx";
 import * as $_404 from "./routes/_404.tsx";
 import * as $_500 from "./routes/_500.tsx";
 import * as $_app from "./routes/_app.tsx";
@@ -26,22 +43,6 @@ import * as $deals_id_index from "./routes/deals/[id]/index.tsx";
 import * as $deals_index from "./routes/deals/index.tsx";
 import * as $events_index from "./routes/events/index.tsx";
 import * as $index from "./routes/index.tsx";
-import * as $account from "./islands/account.tsx";
-import * as $accounts from "./islands/accounts.tsx";
-import * as $contact from "./islands/contact.tsx";
-import * as $contacts from "./islands/contacts.tsx";
-import * as $dashboard_account_select from "./islands/dashboard.account-select.tsx";
-import * as $dashboard_deals_recent from "./islands/dashboard.deals-recent.tsx";
-import * as $deal from "./islands/deal.tsx";
-import * as $deals_kanban_card from "./islands/deals.kanban-card.tsx";
-import * as $deals_kanban_group from "./islands/deals.kanban-group.tsx";
-import * as $deals from "./islands/deals.tsx";
-import * as $events_editor from "./islands/events.editor.tsx";
-import * as $events_forms from "./islands/events.forms.tsx";
-import * as $events_list from "./islands/events.list.tsx";
-import * as $events from "./islands/events.tsx";
-import * as $nav from "./islands/nav.tsx";
-import { type Manifest } from "$fresh/server.ts";
 
 const manifest = {
   routes: {
@@ -86,6 +87,7 @@ const manifest = {
     "./islands/events.list.tsx": $events_list,
     "./islands/events.tsx": $events,
     "./islands/nav.tsx": $nav,
+    "./islands/netzo-toolbar.tsx": $netzo_toolbar,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;
