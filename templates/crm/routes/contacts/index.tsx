@@ -17,8 +17,8 @@ export default defineRoute(async (req, ctx) => {
   }));
 
   return (
-    <div className="h-screen overflow-y-auto p-4">
-      <ContactsIslands.Table data={data} />
+    <div className="flex flex-col space-y-4 py-4 h-screen">
+      <ContactsIslands.Main data={data} />
     </div>
   );
 });

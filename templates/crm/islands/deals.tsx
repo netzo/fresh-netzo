@@ -60,7 +60,7 @@ export const GROUPS: UseKanbanOptions<Deal>["group"]["groups"] = [
   },
 ];
 
-export function Kanban({ data }: { data: Deal[] }) {
+export function Main({ data }: { data: Deal[] }) {
   const table = useTable<Deal>(data, {
     resource: "deals",
     idField: "id",
@@ -95,28 +95,31 @@ export function Kanban({ data }: { data: Deal[] }) {
   });
 
   return (
-    <div className="space-y-4">
-      <header className="flex items-center justify-between">
+    <>
+      <header className="flex items-center justify-between mx-4">
         <div className="flex items-center flex-1 space-x-2">
           <TableActionsReload table={table} />
           <TableSearch table={table} />
           <TableFilters table={table} />
         </div>
-
         <div className="flex items-center space-x-2">
           <TableViewOptions table={table} />
           <DealsFormCreate />
         </div>
       </header>
-      <div>
-        <KanbanView
-          table={table}
-          renderGroup={(props) => <KanbanGroup {...props} />}
-          renderCard={(props) => <KanbanCard {...props} />}
-        />
+      <div className="flex-1 overflow-y-auto">
+        <div className="mx-4">
+          <KanbanView
+            table={table}
+            renderGroup={(props) => <KanbanGroup {...props} />}
+            renderCard={(props) => <KanbanCard {...props} />}
+          />
+        </div>
       </div>
-      <TablePagination table={table} />
-    </div>
+      <footer className="flex items-center justify-between mx-4">
+        <TablePagination table={table} />
+      </footer>
+    </>
   );
 }
 

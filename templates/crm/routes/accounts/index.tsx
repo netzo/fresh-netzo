@@ -8,8 +8,8 @@ export default defineRoute(async (req, ctx) => {
   const data = await $client.accounts.find() as Account[];
 
   return (
-    <div className="h-screen overflow-y-auto p-4">
-      <AccountsIslands.Table data={data} />
+    <div className="flex flex-col space-y-4 py-4 h-screen">
+      <AccountsIslands.Main data={data} />
     </div>
   );
 });

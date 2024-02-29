@@ -31,7 +31,7 @@ import { Label } from "netzo/components/label.tsx";
 import type { Account } from "../data/accounts.ts";
 import { I18N, toDateTime } from "../data/mod.ts";
 
-export function Table({ data }: { data: Account[] }) {
+export function Main({ data }: { data: Account[] }) {
   const table = useTable<Account>(data, {
     resource: "accounts",
     idField: "id",
@@ -161,24 +161,27 @@ export function Table({ data }: { data: Account[] }) {
   });
 
   return (
-    <div className="space-y-4">
-      <header className="flex items-center justify-between">
+    <>
+      <header className="flex items-center justify-between mx-4">
         <div className="flex items-center flex-1 space-x-2">
           <TableActionsReload table={table} />
           <TableSearch table={table} />
           <TableFilters table={table} />
         </div>
-
         <div className="flex items-center space-x-2">
           <TableViewOptions table={table} />
           <AccountsFormCreate />
         </div>
       </header>
-      <div className="border rounded-md">
-        <TableView table={table} />
+      <div className="flex-1 overflow-y-auto">
+        <div className="border rounded-md mx-4">
+          <TableView table={table} />
+        </div>
       </div>
-      <TablePagination table={table} />
-    </div>
+      <footer className="flex items-center justify-between mx-4">
+        <TablePagination table={table} />
+      </footer>
+    </>
   );
 }
 

@@ -3,6 +3,7 @@ import { defineApp } from "$fresh/server.ts";
 import { Head } from "netzo/components/head.tsx";
 import { cn } from "netzo/components/utils.ts";
 import type { NetzoState } from "netzo/mod.ts";
+import { NetzoToolbar } from "../components/netzo-toolbar.tsx";
 import { Nav } from "../islands/nav.tsx";
 
 export default defineApp<NetzoState>((req, ctx) => {
@@ -40,6 +41,7 @@ export default defineApp<NetzoState>((req, ctx) => {
                 <ctx.Component />
               </main>
             </Partial>
+            <NetzoToolbar className="hidden md:flex" />
           </body>
         )}
     </html>

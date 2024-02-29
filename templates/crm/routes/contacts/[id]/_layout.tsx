@@ -1,3 +1,4 @@
+import { Partial } from "$fresh/runtime.ts";
 import { defineLayout } from "$fresh/server.ts";
 import { NavLink } from "netzo/components/nav-link.tsx";
 import { Separator } from "netzo/components/separator.tsx";
@@ -26,7 +27,7 @@ export default defineLayout<ContactState>(async (req, ctx) => {
     <>
       <ContactHeader contact={contact} />
 
-      <nav className="sticky top-0 bg-background z-10">
+      <nav f-client-nav className="sticky top-0 bg-background z-10">
         <NavLink href={`/contacts/${id}`}>
           Overview
         </NavLink>
@@ -36,9 +37,11 @@ export default defineLayout<ContactState>(async (req, ctx) => {
         <Separator />
       </nav>
 
-      <div className="h-full overflow-y-auto">
-        <ctx.Component />
-      </div>
+      <Partial name="main-content">
+        <div className="h-screen">
+          <ctx.Component />
+        </div>
+      </Partial>
     </>
   );
 });
