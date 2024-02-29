@@ -37,7 +37,7 @@ export default defineRoute<EventsState>(async (req, ctx) => {
 
   return (
     <div className="h-screen overflow-y-auto">
-      <EventsIslands.Panels data={data} />
+      <EventsIslands.Main data={data} />
     </div>
   );
 });

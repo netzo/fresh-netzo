@@ -31,7 +31,7 @@ import { Label } from "netzo/components/label.tsx";
 import type { Contact } from "../data/contacts.ts";
 import { I18N, toDateTime } from "../data/mod.ts";
 
-export function Table({ data }: { data: Contact[] }) {
+export function Main({ data }: { data: Contact[] }) {
   const table = useTable<Contact>(data, {
     resource: "contacts",
     idField: "id",

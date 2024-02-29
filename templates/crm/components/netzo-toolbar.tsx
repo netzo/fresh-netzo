@@ -14,7 +14,7 @@ export function NetzoToolbar() {
           size="icon"
           variant="ghost"
         >
-          <i className="mdi-chat-outline h-6 w-6 stroke-1" />
+          <i className="mdi-message-text h-6 w-6" />
           <span className="sr-only">Create a comment</span>
         </Button>
         <div className="relative">
@@ -23,7 +23,7 @@ export function NetzoToolbar() {
             size="icon"
             variant="ghost"
           >
-            <i className="mdi-inbox-outline h-6 w-6 stroke-1" />
+            <i className="mdi-inbox h-6 w-6" />
             <span className="sr-only">Open inbox</span>
             <span className="absolute top-2 right-2 block h-2 w-2 rounded-full bg-blue-500" />
           </Button>
@@ -33,7 +33,7 @@ export function NetzoToolbar() {
           size="icon"
           variant="ghost"
         >
-          <i className="mdi-layers-outline h-6 w-6 stroke-1" />
+          <i className="mdi-layers h-6 w-6" />
           <span className="sr-only">Edit</span>
         </Button>
       </div>
@@ -83,7 +83,7 @@ export function NetzoToolbar() {
           size="icon"
           variant="ghost"
         >
-          <i className="mdi-export-variant h-6 w-6 stroke-1" />
+          <i className="mdi-export-variant h-6 w-6" />
           <span className="sr-only">Open share UI</span>
         </Button>
         <Button
@@ -91,10 +91,10 @@ export function NetzoToolbar() {
           size="icon"
           variant="ghost"
         >
-          <i className="mdi-menu h-6 w-6 stroke-1" />
+          <i className="mdi-menu h-6 w-6" />
           <span className="sr-only">Open menu</span>
         </Button>
       </div>
     </div>
-  )
+  );
 }

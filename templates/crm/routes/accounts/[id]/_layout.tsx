@@ -1,3 +1,4 @@
+import { Partial } from "$fresh/runtime.ts";
 import { defineLayout } from "$fresh/server.ts";
 import { NavLink } from "netzo/components/nav-link.tsx";
 import { Separator } from "netzo/components/separator.tsx";
@@ -26,7 +27,7 @@ export default defineLayout<AccountState>(async (req, ctx) => {
     <>
       <AccountHeader account={account} />
 
-      <nav className="sticky top-0 bg-background z-10">
+      <nav f-client-nav className="sticky top-0 bg-background z-10">
         <NavLink href={`/accounts/${id}`}>
           Overview
         </NavLink>
@@ -36,8 +37,10 @@ export default defineLayout<AccountState>(async (req, ctx) => {
         <Separator />
       </nav>
 
-      <div className="h-full overflow-y-auto">
-        <ctx.Component />
+      <div className="h-screen">
+        <Partial name="main-content">
+          <ctx.Component />
+        </Partial>
       </div>
     </>
   );

@@ -9,7 +9,7 @@ export default defineRoute(async (req, ctx) => {
 
   return (
     <div className="h-screen overflow-y-auto p-4">
-      <AccountsIslands.Table data={data} />
+      <AccountsIslands.Main data={data} />
     </div>
   );
 });

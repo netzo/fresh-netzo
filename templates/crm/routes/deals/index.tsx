@@ -18,7 +18,7 @@ export default defineRoute(async (req, ctx) => {
 
   return (
     <div className="h-screen overflow-y-auto p-4">
-      <DealsIslands.Kanban data={data} />
+      <DealsIslands.Main data={data} />
     </div>
   );
 });

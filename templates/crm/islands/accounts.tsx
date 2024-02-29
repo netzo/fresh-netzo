@@ -31,7 +31,7 @@ import { Label } from "netzo/components/label.tsx";
 import type { Account } from "../data/accounts.ts";
 import { I18N, toDateTime } from "../data/mod.ts";
 
-export function Table({ data }: { data: Account[] }) {
+export function Main({ data }: { data: Account[] }) {
   const table = useTable<Account>(data, {
     resource: "accounts",
     idField: "id",

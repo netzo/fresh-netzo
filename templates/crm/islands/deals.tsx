@@ -60,7 +60,7 @@ export const GROUPS: UseKanbanOptions<Deal>["group"]["groups"] = [
   },
 ];
 
-export function Kanban({ data }: { data: Deal[] }) {
+export function Main({ data }: { data: Deal[] }) {
   const table = useTable<Deal>(data, {
     resource: "deals",
     idField: "id",
