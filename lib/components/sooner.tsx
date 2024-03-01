@@ -2,14 +2,14 @@
 import * as React from "react";
 
 import { Toaster as Sonner } from "../deps/sonner.ts";
-import { useDarkMode } from "../deps/usehooks-ts.ts";
+import { useDarkMode } from "./use-dark-mode.ts";
 
 type ToasterProps = React.ComponentProps<typeof Sonner>;
 
 const Toaster = ({ ...props }: ToasterProps) => {
-  const { isDarkMode } = useDarkMode();
+  const darkMode = useDarkMode();
 
-  const theme = isDarkMode ? "dark" : "light";
+  const theme = darkMode.value ? "dark" : "light";
 
   return (
     <Sonner

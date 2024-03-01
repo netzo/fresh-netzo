@@ -8,28 +8,88 @@ export const metrics = defineApiEndpoint({
   name: "metrics",
   idField: "id",
   resource: CustomResource({
-    find: async ({ accountId }) => {
-      const allDeals = await $client.deals.find() as Deal[];
-      const deals = accountId
-        ? allDeals.filter((deal) => deal.accountId === accountId)
+    find: async (query: { accountId?: string }) => {
+      const allDealsUnsorted = await $client.deals.find() as Deal[];
+      const allDeals = allDealsUnsorted.sort((a, b) =>
+        a.createdAt - b.createdAt
+      );
+      const deals = query?.accountId
+        ? allDeals.filter((deal) => deal.accountId === query.accountId)
         : allDeals;
       return {
-        totalAmount: allDeals.reduce(
-          (acc, deal) => acc + Number(deal.amount),
-          0,
-        ),
-        totalAmountOfAccount: deals.reduce(
-          (acc, deal) => acc + Number(deal.amount),
-          0,
-        ),
-        totalDeals: allDeals.length,
-        totalDealsOfAccount: deals.length,
-        allDeals,
+        count: {
+          all: allDeals.length,
+          ofAccount: deals.length,
+          perStatus: {
+            lead: deals.filter((deal) => deal.status === "lead").length,
+            qualified: deals.filter((deal) =>
+              deal.status === "qualified"
+            ).length,
+            negotiation: deals.filter((deal) =>
+              deal.status === "negotiation"
+            ).length,
+            won: deals.filter((deal) => deal.status === "won").length,
+            lost: deals.filter((deal) => deal.status === "lost").length,
+          },
+          perMonth: deals.reduce(
+            (acc, deal) => {
+              const date = new Date(deal["createdAt"]);
+              const month = date.getMonth();
+              acc[month].amount = acc[month].amount + Number(deal.amount);
+              return acc;
+            },
+            Array.from({ length: 12 }).map((_, i) => ({ month: i, amount: 0 })),
+          ),
+        },
+        amount: {
+          all: allDeals.reduce((acc, deal) => acc + Number(deal.amount), 0),
+          ofAccount: deals.reduce(
+            (acc, deal) => acc + Number(deal.amount),
+            0,
+          ),
+          perStatus: {
+            lead: deals.filter((deal) => deal.status === "lead").reduce(
+              (acc, deal) => acc + Number(deal.amount),
+              0,
+            ),
+            qualified: deals.filter((deal) => deal.status === "qualified")
+              .reduce((acc, deal) => acc + Number(deal.amount), 0),
+            negotiation: deals.filter((deal) => deal.status === "negotiation")
+              .reduce((acc, deal) => acc + Number(deal.amount), 0),
+            won: deals.filter((deal) => deal.status === "won").reduce(
+              (acc, deal) => acc + Number(deal.amount),
+              0,
+            ),
+            lost: deals.filter((deal) => deal.status === "lost").reduce(
+              (acc, deal) => acc + Number(deal.amount),
+              0,
+            ),
+          },
+          perMonth: deals.reduce(
+            (acc, deal) => {
+              const date = new Date(deal["createdAt"]);
+              const month = date.getMonth();
+              acc[month].amount = acc[month].amount + Number(deal.amount);
+              return acc;
+            },
+            Array.from({ length: 12 }).map((_, i) => ({ month: i, amount: 0 })),
+          ),
+        },
         deals,
-        dealsPerMonth: Array.from({ length: 12 }, (_, month) => ({
-          month,
-          total: Math.floor(Math.random() * 5000) + 1000,
-        })),
+        dealsPerMonth: deals.reduce((acc, deal) => {
+          const date = new Date(deal["createdAt"]);
+          const month = date.getMonth();
+          acc[month].amount = acc[month].amount + Number(deal.amount);
+          return acc;
+        }, Array.from({ length: 12 }).map((_, i) => ({ month: i, amount: 0 }))),
+        dealsAmountThroughTime: deals
+          .sort((a, b) =>
+            new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+          )
+          .map((deal) => ({
+            createdAt: deal["createdAt"],
+            amount: getTotalAmountThroughTime(deals, deal.createdAt),
+          })),
       };
     },
   }),
@@ -43,3 +103,11 @@ export const metrics = defineApiEndpoint({
     remove: [],
   },
 });
+
+function getTotalAmountThroughTime(deals: Deal[], isoDate: string) {
+  return deals
+    .filter((deal) =>
+      new Date(deal.createdAt).getTime() <= new Date(isoDate).getTime()
+    )
+    .reduce((acc, deal) => acc + Number(deal.amount), 0);
+}

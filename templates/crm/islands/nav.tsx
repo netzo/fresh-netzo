@@ -6,6 +6,7 @@ import {
   NavSeparator,
   NavSpacer,
 } from "netzo/components/blocks/nav/nav.tsx";
+// import { NetzoToolbar } from "netzo/components/blocks/netzo-toolbar/netzo-toolbar.tsx";
 import type { NetzoState } from "netzo/mod.ts";
 
 export const Nav = (props: { state: NetzoState }) => {
@@ -35,6 +36,7 @@ export const Nav = (props: { state: NetzoState }) => {
       />
       <NavSeparator />
       <NavItemUser state={props.state} />
+      {/* <NetzoToolbar /> */}
     </NavRoot>
   );
 };

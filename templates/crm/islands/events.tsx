@@ -16,7 +16,7 @@ export function Main({ data, defaultLayout = [40, 60] }: {
   defaultLayout?: [number, number];
 }) {
   const event = useSignal(data[0]);
-  const { width = 0, height = 0 } = useWindowSize();
+  const { width = 0 } = useWindowSize();
 
   const table = useTable<Event>(data, {
     resource: "events",
@@ -29,7 +29,7 @@ export function Main({ data, defaultLayout = [40, 60] }: {
     columns: [],
   });
 
-  const editor = useProseEditor({ content: event.value.content });
+  const editor = useProseEditor({ content: event.value?.content });
 
   return (
     <ResizablePanelGroup
@@ -41,7 +41,7 @@ export function Main({ data, defaultLayout = [40, 60] }: {
       <ResizableHandle withHandle />
       <ResizablePanel defaultSize={defaultLayout[1]}>
         <div className="grid h-full">
-          <EventEditor editor={editor} content={event.value.content} />
+          <EventEditor editor={editor} content={event.value?.content ?? ""} />
         </div>
       </ResizablePanel>
     </ResizablePanelGroup>

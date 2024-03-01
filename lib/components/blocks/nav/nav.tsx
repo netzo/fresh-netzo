@@ -1,7 +1,5 @@
 import { signal } from "@preact/signals";
 import type { ComponentChildren, JSX } from "preact";
-import { useEffect } from "preact/hooks";
-import { useDarkMode } from "../../../deps/usehooks-ts.ts";
 import type { NetzoState } from "../../../mod.ts";
 import { Avatar, AvatarFallback, AvatarImage } from "../../avatar.tsx";
 import { buttonVariants } from "../../button.tsx";
@@ -16,6 +14,7 @@ import {
 import { Separator } from "../../separator.tsx";
 import { Sheet, SheetContent, SheetTrigger } from "../../sheet.tsx";
 import { Switch } from "../../switch.tsx";
+import { useDarkMode } from "../../use-dark-mode.ts";
 import { cn } from "../../utils.ts";
 
 export const open = signal<boolean>(false);
@@ -25,9 +24,9 @@ type NavRootProps = JSX.IntrinsicElements["nav"] & {
 };
 
 export function NavRoot({ className, ...props }: NavRootProps) {
-  const { isDarkMode } = useDarkMode();
+  const darkMode = useDarkMode();
 
-  const logoSrc = isDarkMode
+  const logoSrc = darkMode.value
     ? `https://netzo.io/logos/built-with-netzo-dark.svg`
     : `https://netzo.io/logos/built-with-netzo-light.svg`;
 
@@ -183,11 +182,7 @@ export function NavItem({ className, ...props }: NavItemProps) {
 export function NavItemUser(props: { state: NetzoState }) {
   const { auth } = props.state ?? {};
 
-  const { isDarkMode, set: setDarkMode } = useDarkMode();
-
-  useEffect(() => {
-    document.documentElement.classList.toggle("dark", isDarkMode);
-  }, [isDarkMode]);
+  const darkMode = useDarkMode();
 
   const { name, authId, email } = auth?.sessionUser ?? {};
   const initials = name || authId || email || "?";
@@ -259,7 +254,10 @@ export function NavItemUser(props: { state: NetzoState }) {
         <DropdownMenuItem>
           <div className="flex gap-4 w-full items-center justify-between">
             Dark mode
-            <Switch checked={isDarkMode} onCheckedChange={setDarkMode} />
+            <Switch
+              checked={darkMode.value}
+              onCheckedChange={(value) => darkMode.value = value}
+            />
           </div>
         </DropdownMenuItem>
         {auth?.sessionUser?.name && (
