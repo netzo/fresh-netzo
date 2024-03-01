@@ -191,7 +191,7 @@ export function DashboardCardPlotDealsThroughTime(props: { data: Metric }) {
   const data = dealsAmountThroughTime.map((d) => ({
     createdAt: new Date(d.createdAt),
     amount: Number(d.amount),
-  }))
+  }));
   return (
     <Card className="col-span-3">
       <CardHeader>

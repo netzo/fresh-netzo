@@ -83,7 +83,9 @@ export const metrics = defineApiEndpoint({
           return acc;
         }, Array.from({ length: 12 }).map((_, i) => ({ month: i, amount: 0 }))),
         dealsAmountThroughTime: deals
-          .sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime())
+          .sort((a, b) =>
+            new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+          )
           .map((deal) => ({
             createdAt: deal["createdAt"],
             amount: getTotalAmountThroughTime(deals, deal.createdAt),
