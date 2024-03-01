@@ -40,7 +40,7 @@ developers to build web apps faster without sacrificing flexibility.
 > "Low-code tools make the first 60% easy, and the remaining 40% impossible."
 
 Custom business app development has challenges. Traditional development is
-complex and time-consuming. In business software flexibility but speed and
+complex and time-consuming. In business software not only is flexibility but speed and
 efficiency are paramount. Our goal is to provide full-code flexibility at
 no-code speeds boosting developer productivity and enabling them to build apps
 10x faster.
