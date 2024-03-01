@@ -16,7 +16,7 @@ export function EventsList({ table, event }: {
   table: ReturnType<typeof useTable>;
   event: Signal<Event>;
 }) {
-  const selected = useSignal(event.value.id);
+  const selected = useSignal(event.value?.id);
 
   return (
     <div className="h-full overflow-y-auto p-4">

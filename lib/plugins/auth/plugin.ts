@@ -105,5 +105,11 @@ export const auth = (config: AuthConfig): Plugin<NetzoState> => {
       },
     ],
     routes: authRoutes,
+    islands: {
+      baseLocation: import.meta.url,
+      paths: [
+        "../../components/blocks/netzo-toolbar/netzo-toolbar.tsx",
+      ],
+    },
   };
 };
