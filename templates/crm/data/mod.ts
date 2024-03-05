@@ -72,6 +72,7 @@ export const I18N: Record<string, string> = {
   "type.other": "Other",
   "amount": "Amount",
   "currencyCode": "Currency",
+  "content": "Content",
   "xml": "XML",
   "pdf": "PDF",
   // relations:

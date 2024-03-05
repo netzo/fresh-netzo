@@ -1,6 +1,5 @@
 import { useSignal } from "@preact/signals";
 import { Badge } from "netzo/components/badge.tsx";
-import { FetchForm } from "netzo/components/blocks/fetch-form/fetch-form.tsx";
 import type { Editor } from "netzo/components/blocks/prose-editor/prose-editor.tsx";
 import * as ProseEditor from "netzo/components/blocks/prose-editor/prose-editor.tsx";
 import { useProseEditor } from "netzo/components/blocks/prose-editor/use-prose-editor.tsx";
@@ -10,7 +9,6 @@ import {
   TablePagination,
   TableSearch,
   TableView,
-  TableViewOptions,
   useTable,
 } from "netzo/components/blocks/table/table.tsx";
 import { Button } from "netzo/components/button.tsx";
@@ -44,7 +42,7 @@ import {
 import type { Deal } from "../data/deals.ts";
 import { I18N, toDateTime } from "../data/mod.ts";
 
-export function Main({ data, defaultLayout = [40, 60] }: {
+export function Main({ data, defaultLayout = [50, 50] }: {
   data: {
     activity: Activity;
     accounts: Account[];
@@ -128,115 +126,112 @@ export function Main({ data, defaultLayout = [40, 60] }: {
       });
       if (response.ok) {
         const data = await response.json();
-        globalThis.location.href = `/activities/${data.id}`;
+        // globalThis.location.href = `/activities/${data.id}`;
       }
     }
   };
 
   return (
-    <>
-      <header className="flex items-center justify-between p-4">
-        <div className="flex items-center flex-1 space-x-2">
-          <TableActionsReload table={table} />
-          <TableSearch table={table} />
-          <TableFilters table={table} />
-        </div>
-        <div className="flex items-center space-x-2">
-          <TableViewOptions table={table} />
-          <Button
-            variant="default"
-            className="ml-2"
-            onClick={onClickCreate}
-          >
-            Create
-          </Button>
-        </div>
-      </header>
+    <ResizablePanelGroup
+      direction={(!width || width > 768) ? "horizontal" : "vertical"}
+    >
+      <ResizablePanel defaultSize={defaultLayout[0]} minSize={30}>
+        <header className="p-4 space-y-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center flex-1 space-x-2">
+              <TableActionsReload table={table} />
+              <TableSearch table={table} />
+            </div>
+            <div className="flex items-center space-x-2">
+              <Button className="ml-2" onClick={onClickCreate}>
+                Create
+              </Button>
+            </div>
+          </div>
+          <div className="flex items-center flex-1 space-x-2">
+            <TableFilters table={table} />
+          </div>
+        </header>
 
-      <Separator />
+        <Separator />
 
-      <div className="h-full flex-1 overflow-y-auto">
-        <ResizablePanelGroup
-          direction={(!width || width > 768) ? "horizontal" : "vertical"}
-        >
-          <ResizablePanel defaultSize={defaultLayout[0]} minSize={30}>
-            <div className="h-full overflow-y-auto p-4">
-              <div className="space-y-4">
-                <div className="space-y-2">
-                  <TableView table={table}>
-                    {(table) =>
-                      table.getRowModel().rows?.length
-                        ? table.getRowModel().rows.map((row) => (
-                          <div
-                            key={`activities-${row.original.id}`}
-                            className={cn(
-                              "space-y-2 rounded-lg border p-3 text-sm hover:bg-accent hover:cursor-pointer",
-                              activity.value.id === row.original.id &&
-                                "bg-muted",
-                            )}
-                            onClick={() => onClickSelect(row.original)}
-                          >
-                            <div className="flex gap-4 items-center pb-2">
-                              <h4 className="font-semibold line-clamp-1">
-                                {row.original.name}
-                              </h4>
-                              <span
-                                className={cn(
-                                  "ml-auto text-xs min-w-fit",
-                                  activity.value.id === row.original.id
-                                    ? "text-foreground"
-                                    : "text-muted-foreground",
-                                )}
-                              >
-                                {toDateTime(row.original.updatedAt)}
-                              </span>
-                            </div>
-                            <p className="line-clamp-2 text-xs text-muted-foreground">
-                              {row.original.content.substring(0, 300)}
-                            </p>
-                            <div className="flex gap-2">
-                              <ActivityIcon type={row.original.type} />
-                              {row.original.accountIds.map((id: string) => (
-                                <Badge variant="secondary">
-                                  {data.accounts.find((account) =>
-                                    account.id === id
-                                  )?.name}
-                                </Badge>
-                              ))}
-                            </div>
+        <div className="h-full flex-1 overflow-y-auto">
+          <div className="h-full overflow-y-auto p-4">
+            <div className="space-y-4">
+              <div className="space-y-2">
+                <TableView table={table}>
+                  {(table) =>
+                    table.getRowModel().rows?.length
+                      ? table.getRowModel().rows.map((row) => (
+                        <div
+                          key={`activities-${row.original.id}`}
+                          className={cn(
+                            "space-y-2 rounded-lg border p-3 text-sm hover:bg-accent hover:cursor-pointer",
+                            activity.value.id === row.original.id &&
+                              "bg-muted",
+                          )}
+                          onClick={() => onClickSelect(row.original)}
+                        >
+                          <div className="flex gap-4 items-center pb-2">
+                            <h4 className="font-semibold line-clamp-1">
+                              {row.original.name}
+                            </h4>
+                            <span
+                              className={cn(
+                                "ml-auto text-xs min-w-fit",
+                                activity.value.id === row.original.id
+                                  ? "text-foreground"
+                                  : "text-muted-foreground",
+                              )}
+                            >
+                              {toDateTime(row.original.updatedAt)}
+                            </span>
                           </div>
-                        ))
-                        : (
-                          <div className="grid place-items-center h-full w-full">
-                            No results.
+                          <p className="line-clamp-2 text-xs text-muted-foreground">
+                            {row.original.content.substring(0, 300)}
+                          </p>
+                          <div className="flex gap-2">
+                            <ActivityIcon type={row.original.type} />
+                            {row.original.accountIds.map((id: string) => (
+                              <Badge variant="secondary">
+                                {data.accounts.find((account) =>
+                                  account.id === id
+                                )?.name}
+                              </Badge>
+                            ))}
                           </div>
-                        )}
-                  </TableView>
-                </div>
+                        </div>
+                      ))
+                      : (
+                        <div className="grid place-items-center h-full w-full">
+                          No results.
+                        </div>
+                      )}
+                </TableView>
               </div>
             </div>
-          </ResizablePanel>
-          <ResizableHandle withHandle />
-          <ResizablePanel defaultSize={defaultLayout[1]}>
-            <div className="grid h-full">
-              <ActivitiesCardForm
-                key={activity.value.id}
-                activity={activity.value}
-                accounts={accounts}
-                contacts={contacts}
-                deals={deals}
-                activities={activities}
-                editor={editor}
-              />
-            </div>
-          </ResizablePanel>
-        </ResizablePanelGroup>
-      </div>
+          </div>
+        </div>
 
-      <footer className="flex items-center justify-between p-4">
-        <TablePagination table={table} />
-      </footer>
-    </>
+        <footer className="flex items-center justify-between p-4">
+          <TablePagination table={table} />
+        </footer>
+      </ResizablePanel>
+      <ResizableHandle withHandle />
+      <ResizablePanel defaultSize={defaultLayout[1]}>
+        <div className="grid h-full">
+          <ActivitiesCardForm
+            key={activity.value.id}
+            activity={activity.value}
+            accounts={accounts}
+            contacts={contacts}
+            deals={deals}
+            activities={activities}
+            editor={editor}
+          />
+        </div>
+      </ResizablePanel>
+    </ResizablePanelGroup>
   );
 }
 
@@ -250,6 +245,8 @@ export function ActivitiesCardForm(
     editor: Editor | null;
   },
 ) {
+  const isLoading = useSignal(false);
+
   const form = useForm<Activity>({
     resolver: zodResolver(activitySchema),
     defaultValues: activitySchema.parse(props.activity ?? {}), // sets default values
@@ -260,14 +257,32 @@ export function ActivitiesCardForm(
   const contactOptions = props.contacts.map(toOptions);
   const dealOptions = props.deals.map(toOptions);
 
+  const onSubmit = async (data: Activity) => {
+    isLoading.value = true;
+    await fetch(`/api/activities/${data.id}`, {
+      method: "PATCH",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    setTimeout(() => isLoading.value = false, 500);
+  }
+
   return (
     <Form {...form}>
-      <FetchForm
-        id="activities.create"
-        action={`/api/activities/${props.activity.id}`}
-        method="patch"
-        className="space-y-2"
-      >
+      <form className="space-y-2" onSubmit={form.handleSubmit(onSubmit)}>
+        <header className="flex items-center justify-between p-4">
+          <div className="flex items-center flex-1 space-x-2">
+            <h3 className="text-lg font-semibold line-clamp-1 mr-4">
+              {props.activity.name}
+            </h3>
+            <ActivityIcon type={props.activity.type} />
+          </div>
+          <div className="flex items-center space-x-2">
+            <Button type="submit" className="ml-auto">
+              {isLoading.value ? "Saving..." : "Save"}
+            </Button>
+          </div>
+        </header>
         <FormField
           control={form.control}
           name="name"
@@ -373,13 +388,14 @@ export function ActivitiesCardForm(
                 <ActivityEditor
                   editor={props.editor}
                   content={props.activity.content ?? ""}
+
                 />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-      </FetchForm>
+      </form>
     </Form>
   );
 }
