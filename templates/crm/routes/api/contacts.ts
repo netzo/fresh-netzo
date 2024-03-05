@@ -1,8 +1,13 @@
-import { authenticate, log, resolve } from "netzo/plugins/api/hooks/mod.ts";
+import {
+  authenticate,
+  log,
+  resolve,
+  validate,
+} from "netzo/plugins/api/hooks/mod.ts";
 import { defineApiEndpoint } from "netzo/plugins/api/plugin.ts";
 import { DenoKvResource } from "netzo/plugins/api/resources/mod.ts";
 import type { Account } from "../../data/accounts.ts";
-import type { Contact } from "../../data/contacts.ts";
+import { type Contact, contactSchema } from "../../data/contacts.ts";
 import { $client } from "../../netzo.config.ts";
 
 export const contacts = defineApiEndpoint({
@@ -13,6 +18,7 @@ export const contacts = defineApiEndpoint({
     all: [
       authenticate(),
       log(),
+      validate(contactSchema),
       resolve({
         after: {
           account: (data: Contact) =>

@@ -1,9 +1,15 @@
-import { authenticate, log, resolve } from "netzo/plugins/api/hooks/mod.ts";
+import {
+  authenticate,
+  log,
+  resolve,
+  validate,
+} from "netzo/plugins/api/hooks/mod.ts";
 import { defineApiEndpoint } from "netzo/plugins/api/plugin.ts";
 import { DenoKvResource } from "netzo/plugins/api/resources/mod.ts";
 import type { Account } from "../../data/accounts.ts";
 import type { Contact } from "../../data/contacts.ts";
 import type { Event } from "../../data/events.ts";
+import { eventSchema } from "../../data/events.ts";
 import type { User } from "../../data/users.ts";
 import { $client } from "../../netzo.config.ts";
 
@@ -12,7 +18,7 @@ export const events = defineApiEndpoint({
   idField: "id",
   resource: DenoKvResource({ prefix: ["events"] }),
   hooks: {
-    all: [authenticate(), log()],
+    all: [authenticate(), log(), validate(eventSchema)],
     find: [],
     get: [
       resolve({

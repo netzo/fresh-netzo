@@ -1,30 +1,30 @@
 import { ulid } from "netzo/plugins/api/utils.ts";
 import { faker } from "npm:@faker-js/faker@8.4.0";
 import { z } from "zod";
-import { linksSchema, noteSchema } from "./mod.ts";
+import { linksSchema } from "./mod.ts";
 
 // schemas:
 
 export const contactSchema = z.object({
-  id: z.string(),
-  createdAt: z.string().datetime(),
-  updatedAt: z.string().datetime(),
-  name: z.string(),
-  image: z.string().url(),
-  position: z.string(),
-  department: z.string(),
-  accountId: z.string(),
+  id: z.string().ulid().default(() => ulid()),
+  createdAt: z.string().datetime().default(() => new Date().toISOString()),
+  updatedAt: z.string().datetime().default(() => new Date().toISOString()),
+  name: z.string().default(""),
+  description: z.string().default(""),
+  image: z.string().url().default(""),
+  position: z.string().default(""),
+  department: z.string().default(""),
+  accountId: z.string().default(""),
   emails: z.object({
-    work: z.string().email(),
-    personal: z.string().email(),
-  }),
+    work: z.string().email().default(""),
+    personal: z.string().email().default(""),
+  }).default(() => ({})),
   phones: z.object({
-    work: z.string(),
-    mobile: z.string(),
-    personal: z.string(),
-  }),
+    work: z.string().default(""),
+    mobile: z.string().default(""),
+    personal: z.string().default(""),
+  }).default(() => ({})),
   links: linksSchema,
-  note: noteSchema,
 });
 
 // types:
@@ -38,6 +38,7 @@ export const mock = (idField = "id") => ({
   createdAt: faker.date.past().toISOString(),
   updatedAt: faker.date.recent().toISOString(),
   name: faker.person.fullName(),
+  description: faker.lorem.sentences(),
   image: `https://avatar.vercel.sh/${ulid()}.png`, // faker.image.avatarGitHub(),
   position: faker.person.jobTitle(),
   department: faker.person.jobArea(),
@@ -57,11 +58,5 @@ export const mock = (idField = "id") => ({
     linkedin: faker.internet.url(),
     twitter: faker.internet.url(),
     other: faker.internet.url(),
-  },
-  note: {
-    name: faker.lorem.paragraph(),
-    content: faker.lorem.paragraph(),
-    createdAt: faker.date.past().toISOString(),
-    updatedAt: faker.date.recent().toISOString(),
   },
 });

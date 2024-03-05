@@ -108,7 +108,7 @@ export function Main({ data }: { data: Deal[] }) {
         </div>
       </header>
       <div className="flex-1 overflow-y-auto">
-        <div className="mx-4">
+        <div className="h-full mx-4">
           <KanbanView
             table={table}
             renderGroup={(props) => <KanbanGroup {...props} />}

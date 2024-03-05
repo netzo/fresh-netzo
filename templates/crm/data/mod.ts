@@ -3,23 +3,14 @@ import { z } from "zod";
 // schemas:
 
 export const linksSchema = z.object({
-  website: z.string().url(),
-  facebook: z.string().url(),
-  linkedin: z.string().url(),
-  twitter: z.string().url(),
-  other: z.string().url(),
-});
-
-export const noteSchema = z.object({
-  name: z.string(),
-  content: z.string(),
-  createdAt: z.string().datetime(),
-  updatedAt: z.string().datetime(),
-});
+  website: z.string().url().default(""),
+  facebook: z.string().url().default(""),
+  linkedin: z.string().url().default(""),
+  twitter: z.string().url().default(""),
+  other: z.string().url().default(""),
+}).default(() => ({}));
 
 // types:
-
-export type Note = z.infer<typeof noteSchema>;
 
 export type Link = z.infer<typeof linksSchema>;
 
@@ -49,7 +40,6 @@ export const I18N: Record<string, string> = {
   "links.linkedin": "LinkedIn",
   "links.twitter": "Twitter",
   "links.other": "Other",
-  "note": "Note",
   "position": "Position",
   "department": "Department",
   "status": "Status",
@@ -58,6 +48,17 @@ export const I18N: Record<string, string> = {
   "status.negotiation": "Negotiation",
   "status.won": "Won",
   "status.lost": "Lost",
+  "type.email": "Email",
+  "type.call": "Call",
+  "type.videocall": "Videocall",
+  "type.meeting": "Meeting",
+  "type.whatsapp": "WhatsApp",
+  "type.livechat": "Livechat",
+  "type.facebook": "Facebook",
+  "type.instagram": "Instagram",
+  "type.linkedin": "LinkedIn",
+  "type.twitter": "Twitter",
+  "type.other": "Other",
   "amount": "Amount",
   "currencyCode": "Currency",
   "xml": "XML",

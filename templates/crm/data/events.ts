@@ -5,9 +5,9 @@ import { z } from "zod";
 // schemas:
 
 export const eventSchema = z.object({
-  id: z.string(),
-  createdAt: z.string().datetime(),
-  updatedAt: z.string().datetime(),
+  id: z.string().ulid().default(() => ulid()),
+  createdAt: z.string().datetime().default(() => new Date().toISOString()),
+  updatedAt: z.string().datetime().default(() => new Date().toISOString()),
   type: z.enum([
     "email",
     "call",
@@ -20,13 +20,13 @@ export const eventSchema = z.object({
     "linkedin",
     "twitter",
     "other",
-  ]),
-  name: z.string(),
-  content: z.string(),
-  accountIds: z.array(z.string()),
-  contactIds: z.array(z.string()),
-  dealIds: z.array(z.string()),
-  userIds: z.array(z.string()),
+  ]).default("other"),
+  name: z.string().default(""),
+  content: z.string().default(""),
+  accountIds: z.array(z.string()).default([]),
+  contactIds: z.array(z.string()).default([]),
+  dealIds: z.array(z.string()).default([]),
+  userIds: z.array(z.string()).default([]),
 });
 
 // types:

@@ -21,17 +21,26 @@ export default defineRoute<EventsState>(async (req, ctx) => {
     $client.users.find() as User[],
   ]);
 
-  const data = events.map((event) => ({
-    ...event,
-    accounts: accounts.filter((account) =>
-      event.accountIds.includes(account.id)
-    ),
-    contact: contacts.find((contact) => event.contactIds.includes(contact.id)),
-    deals: deals.filter((deal) => event.dealIds.includes(deal.id)),
-    users: users.filter((user) => event.userIds.includes(user.id)),
-  }));
+  const data = {
+    event: events.find((event) => event.id === ctx.params.id) ?? events[0],
+    events: events.map((event) => ({
+      ...event,
+      accounts: accounts.filter((account) =>
+        event.accountIds.includes(account.id)
+      ),
+      contacts: contacts.filter((contact) =>
+        event.contactIds.includes(contact.id)
+      ),
+      deals: deals.filter((deal) => event.dealIds.includes(deal.id)),
+      users: users.filter((user) => event.userIds.includes(user.id)),
+    })),
+    accounts,
+    contacts,
+    deals,
+    users,
+  };
 
-  ctx.state.data = { events: data };
+  ctx.state.data = data;
 
   return (
     <div className="h-screen overflow-y-auto">

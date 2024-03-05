@@ -55,7 +55,7 @@ export function TableRowActions<TData>({
     await fetch(`/api/${resource}/${row.original[idField]}`, {
       method: "DELETE",
     });
-    globalThis.location.reload();
+    globalThis.location.pathname = `/${resource}`;
   };
 
   // NOTE: to activate the Dialog component from within ContextMenu we must

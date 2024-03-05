@@ -195,7 +195,7 @@ export function DashboardCardPlotDealsThroughTime(props: { data: Metric }) {
   return (
     <Card className="col-span-3">
       <CardHeader>
-        <CardTitle>Deals total through Time</CardTitle>
+        <CardTitle>Deals total through time</CardTitle>
       </CardHeader>
       <CardContent>
         {data?.length

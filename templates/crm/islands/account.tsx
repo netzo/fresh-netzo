@@ -262,7 +262,6 @@ export function AccountCardDeals(props: { account: Account; deals: Deal[] }) {
     status: "lead",
     amount: 0,
     currencyCode: "USD",
-    note: {},
     accountId: props.account.id,
     contactIds: [],
     userIds: [],

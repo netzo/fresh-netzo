@@ -3,7 +3,10 @@ import { defineLayout } from "$fresh/server.ts";
 import { NavLink } from "netzo/components/nav-link.tsx";
 import { Separator } from "netzo/components/separator.tsx";
 import type { NetzoState } from "netzo/mod.ts";
-import type { Deal, Deal as TDeal } from "../../../data/deals.ts";
+import type { Account } from "../../../data/accounts.ts";
+import type { Contact } from "../../../data/contacts.ts";
+import type { Deal } from "../../../data/deals.ts";
+import type { User } from "../../../data/users.ts";
 import { DealHeader } from "../../../islands/deal.tsx";
 import { $client } from "../../../netzo.config.ts";
 
@@ -15,18 +18,20 @@ export type DealState = NetzoState & {
 
 export default defineLayout<DealState>(async (req, ctx) => {
   const { id } = ctx.params;
-  const [deal, deals] = await Promise.all([
-    $client.deals.get(id) as TDeal,
-    $client.deals.find() as Deal[],
+  const [deal, accounts, contacts, users] = await Promise.all([
+    $client.deals.get(id) as Deal,
+    $client.accounts.find() as unknown as Account[],
+    $client.contacts.find() as unknown as Contact[],
+    $client.users.find() as unknown as User[],
   ]);
 
-  ctx.state.data = { id, deal, deals };
+  ctx.state.data = { id, deal, accounts, contacts, users };
 
   return (
     <>
       <DealHeader deal={deal} />
 
-      <nav f-client-nav className="sticky top-0 bg-background z-10">
+      <nav f-client-nav className="sticky top-0 bg-background">
         <NavLink href={`/deals/${id}`}>
           Overview
         </NavLink>
@@ -37,9 +42,7 @@ export default defineLayout<DealState>(async (req, ctx) => {
       </nav>
 
       <Partial name="main-content">
-        <div className="h-screen">
-          <ctx.Component />
-        </div>
+        <ctx.Component />
       </Partial>
     </>
   );

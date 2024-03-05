@@ -1,7 +1,8 @@
-import { authenticate, log } from "netzo/plugins/api/hooks/mod.ts";
+import { authenticate, log, validate } from "netzo/plugins/api/hooks/mod.ts";
 import { defineApiEndpoint } from "netzo/plugins/api/plugin.ts";
 import { CustomResource } from "netzo/plugins/api/resources/mod.ts";
 import type { Deal } from "../../data/deals.ts";
+import { metricSchema } from "../../data/metrics.ts";
 import { $client } from "../../netzo.config.ts";
 
 export const metrics = defineApiEndpoint({
@@ -35,7 +36,7 @@ export const metrics = defineApiEndpoint({
             (acc, deal) => {
               const date = new Date(deal["createdAt"]);
               const month = date.getMonth();
-              acc[month].amount = acc[month].amount + Number(deal.amount);
+              acc[month].amount = acc[month]?.amount + Number(deal.amount);
               return acc;
             },
             Array.from({ length: 12 }).map((_, i) => ({ month: i, amount: 0 })),
@@ -94,7 +95,7 @@ export const metrics = defineApiEndpoint({
     },
   }),
   hooks: {
-    all: [authenticate(), log()],
+    all: [authenticate(), log(), validate(metricSchema)],
     find: [],
     get: [],
     create: [],

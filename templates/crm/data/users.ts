@@ -5,12 +5,12 @@ import { z } from "zod";
 // schemas:
 
 export const userSchema = z.object({
-  id: z.string(),
-  createdAt: z.string().datetime(),
-  updatedAt: z.string().datetime(),
-  name: z.string(),
-  email: z.string().email(),
-  image: z.string().url(),
+  id: z.string().ulid().default(() => ulid()),
+  createdAt: z.string().datetime().default(() => new Date().toISOString()),
+  updatedAt: z.string().datetime().default(() => new Date().toISOString()),
+  name: z.string().default(""),
+  email: z.string().email().default(""),
+  image: z.string().url().default(""),
 });
 
 // types:

@@ -265,7 +265,6 @@ export function ContactCardDeals(props: { contact: Contact; deals: Deal[] }) {
     status: "lead",
     amount: 0,
     currencyCode: "USD",
-    note: {},
     contactId: props.contact.id,
     contactIds: [],
     userIds: [],
