@@ -11,8 +11,7 @@ export const $client = {
   accounts: endpoints.accounts.resource,
   contacts: endpoints.contacts.resource,
   deals: endpoints.deals.resource,
-  events: endpoints.events.resource,
-  users: endpoints.users.resource,
+  activities: endpoints.activities.resource,
   // custom:
   metrics: endpoints.metrics.resource,
 };
@@ -20,15 +19,14 @@ export const $client = {
 export default defineConfig({
   plugins: [
     netzo.environments(),
-    netzo.auth({ providers: { netzo: {} } }),
+    // netzo.auth({ providers: { netzo: {} } }),
     netzo.api({
       path: "/api",
       endpoints: [
         endpoints.accounts,
         endpoints.contacts,
         endpoints.deals,
-        endpoints.events,
-        endpoints.users,
+        endpoints.activities,
         endpoints.metrics,
       ],
     }),

@@ -10,18 +10,20 @@ export const linksSchema = z.object({
   other: z.string().url(),
 });
 
-export const noteSchema = z.object({
-  name: z.string(),
-  content: z.string(),
-  createdAt: z.string().datetime(),
-  updatedAt: z.string().datetime(),
-});
-
 // types:
 
-export type Note = z.infer<typeof noteSchema>;
-
 export type Link = z.infer<typeof linksSchema>;
+
+// defaults:
+
+export const getLinks = (data?: Partial<Link>) => ({
+  website: "",
+  facebook: "",
+  linkedin: "",
+  twitter: "",
+  other: "",
+  ...data,
+});
 
 // i18n:
 
@@ -49,7 +51,6 @@ export const I18N: Record<string, string> = {
   "links.linkedin": "LinkedIn",
   "links.twitter": "Twitter",
   "links.other": "Other",
-  "note": "Note",
   "position": "Position",
   "department": "Department",
   "status": "Status",
@@ -58,23 +59,35 @@ export const I18N: Record<string, string> = {
   "status.negotiation": "Negotiation",
   "status.won": "Won",
   "status.lost": "Lost",
+  "type.email": "Email",
+  "type.call": "Call",
+  "type.videocall": "Videocall",
+  "type.meeting": "Meeting",
+  "type.whatsapp": "WhatsApp",
+  "type.livechat": "Livechat",
+  "type.facebook": "Facebook",
+  "type.instagram": "Instagram",
+  "type.linkedin": "LinkedIn",
+  "type.twitter": "Twitter",
+  "type.other": "Other",
   "amount": "Amount",
   "currencyCode": "Currency",
+  "notes": "Notes",
   "xml": "XML",
   "pdf": "PDF",
   // relations:
+  "accounts": "Accounts",
   "account": "Account",
   "accountId": "Account ID",
   "accountIds": "Accounts IDs",
+  "contacts": "Contacts",
   "contact": "Contact",
   "contactId": "Contact ID",
   "contactIds": "Contacts IDs",
+  "deals": "Deals",
   "deal": "Deal",
   "dealId": "Deal ID",
   "dealIds": "Deals IDs",
-  "user": "User",
-  "userId": "User ID",
-  "userIds": "Users IDs",
 };
 
 // utils:

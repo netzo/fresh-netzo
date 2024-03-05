@@ -26,10 +26,16 @@ export function NetzoToolbar({ className }: { className?: string }) {
 
   const onClickShare = () => {
     globalThis.navigator.share({
-      title: document.title,
+      title: globalThis.document.title,
       text: "Open in Netzo",
       url: globalThis.location.href,
     });
+  };
+
+  const onClickFeedback = () => {
+    const url =
+      "https://github.com/netzo/netzo/issues/new?title=[templates/crm]%20general%20feedback";
+    globalThis.open(url, "_blank").focus();
   };
 
   return (
@@ -59,6 +65,16 @@ export function NetzoToolbar({ className }: { className?: string }) {
             >
               <i className="mdi-share-variant h-6 w-6" />
               <span className="sr-only">Share</span>
+            </Button>
+            <Button
+              size="icon"
+              variant="ghost"
+              title="Feedback"
+              className={cn(styles.toolbarButton)}
+              onClick={onClickFeedback}
+            >
+              <i className="mdi-comment-question h-6 w-6" />
+              <span className="sr-only">Feedback</span>
             </Button>
           </div>
 

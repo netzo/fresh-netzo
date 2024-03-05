@@ -3,21 +3,21 @@ import { defineLayout } from "$fresh/server.ts";
 import { NavLink } from "netzo/components/nav-link.tsx";
 import { Separator } from "netzo/components/separator.tsx";
 import type { NetzoState } from "netzo/mod.ts";
-import type { Account as TAccount } from "../../../data/accounts.ts";
+import type { Account } from "../../../data/accounts.ts";
 import type { Deal } from "../../../data/deals.ts";
 import { AccountHeader } from "../../../islands/account.tsx";
 import { $client } from "../../../netzo.config.ts";
 
 export type AccountState = NetzoState & {
   id: string;
-  account: TAccount;
+  account: Account;
   deals: Deal[];
 };
 
 export default defineLayout<AccountState>(async (req, ctx) => {
   const { id } = ctx.params;
   const [account, deals] = await Promise.all([
-    $client.accounts.get(id) as TAccount,
+    $client.accounts.get(id) as Account,
     $client.deals.find() as Deal[],
   ]);
 
@@ -27,21 +27,16 @@ export default defineLayout<AccountState>(async (req, ctx) => {
     <>
       <AccountHeader account={account} />
 
-      <nav f-client-nav className="sticky top-0 bg-background z-10">
+      <nav f-client-nav className="sticky top-0 bg-background">
         <NavLink href={`/accounts/${id}`}>
           Overview
-        </NavLink>
-        <NavLink href={`/accounts/${id}/events`}>
-          Events
         </NavLink>
         <Separator />
       </nav>
 
-      <div className="h-screen">
-        <Partial name="main-content">
-          <ctx.Component />
-        </Partial>
-      </div>
+      <Partial name="main-content">
+        <ctx.Component />
+      </Partial>
     </>
   );
 });

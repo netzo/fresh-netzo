@@ -22,7 +22,7 @@ import {
   DialogTrigger,
 } from "netzo/components/dialog.tsx";
 import { useForm, zodResolver } from "netzo/components/form.tsx";
-import { AccountDeals } from "../components/account.deals.tsx";
+import { AccountDeals } from "../components/account.tsx";
 import { Account, accountSchema } from "../data/accounts.ts";
 import { Deal, dealSchema } from "../data/deals.ts";
 import { toPercent, toUSD } from "../data/mod.ts";
@@ -262,10 +262,8 @@ export function AccountCardDeals(props: { account: Account; deals: Deal[] }) {
     status: "lead",
     amount: 0,
     currencyCode: "USD",
-    note: {},
     accountId: props.account.id,
     contactIds: [],
-    userIds: [],
   });
   const status = useSignal<"disabled" | "enabled" | "loading">("disabled");
 

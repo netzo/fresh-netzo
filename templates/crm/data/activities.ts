@@ -4,8 +4,8 @@ import { z } from "zod";
 
 // schemas:
 
-export const eventSchema = z.object({
-  id: z.string(),
+export const activitySchema = z.object({
+  id: z.string().ulid(),
   createdAt: z.string().datetime(),
   updatedAt: z.string().datetime(),
   type: z.enum([
@@ -22,16 +22,30 @@ export const eventSchema = z.object({
     "other",
   ]),
   name: z.string(),
-  content: z.string(),
+  notes: z.string(),
   accountIds: z.array(z.string()),
   contactIds: z.array(z.string()),
   dealIds: z.array(z.string()),
-  userIds: z.array(z.string()),
 });
 
 // types:
 
-export type Event = z.infer<typeof eventSchema>;
+export type Activity = z.infer<typeof activitySchema>;
+
+// defaults:
+
+export const getActivity = (data?: Partial<Activity>) => ({
+  id: ulid(),
+  createdAt: new Date().toISOString(),
+  updatedAt: new Date().toISOString(),
+  type: "other",
+  name: "",
+  notes: "",
+  accountIds: [],
+  contactIds: [],
+  dealIds: [],
+  ...data,
+});
 
 // data:
 
@@ -53,9 +67,8 @@ export const mock = (idField = "id") => ({
     "other",
   ]),
   name: faker.lorem.words(),
-  content: faker.lorem.paragraph(),
+  notes: faker.lorem.paragraph(),
   accountIds: Array.from(Array(2)).map(() => ulid()),
   contactIds: Array.from(Array(2)).map(() => ulid()),
   dealIds: Array.from(Array(2)).map(() => ulid()),
-  userIds: Array.from(Array(2)).map(() => ulid()),
 });

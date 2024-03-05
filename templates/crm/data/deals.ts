@@ -1,15 +1,15 @@
 import { ulid } from "netzo/plugins/api/utils.ts";
 import { faker } from "npm:@faker-js/faker@8.4.0";
 import { z } from "zod";
-import { noteSchema } from "./mod.ts";
 
 // schemas:
 
 export const dealSchema = z.object({
-  id: z.string(),
+  id: z.string().ulid(),
   createdAt: z.string().datetime(),
   updatedAt: z.string().datetime(),
   name: z.string(),
+  description: z.string(),
   status: z.enum([
     "lead",
     "qualified",
@@ -17,17 +17,31 @@ export const dealSchema = z.object({
     "won",
     "lost",
   ]),
-  amount: z.number(),
+  amount: z.coerce.number(),
   currencyCode: z.enum(["USD"]),
-  note: noteSchema,
   accountId: z.string(),
   contactIds: z.array(z.string()),
-  userIds: z.array(z.string()),
 });
 
 // types:
 
 export type Deal = z.infer<typeof dealSchema>;
+
+// defaults:
+
+export const getDeal = (data?: Partial<Deal>) => ({
+  id: ulid(),
+  createdAt: new Date().toISOString(),
+  updatedAt: new Date().toISOString(),
+  name: "",
+  description: "",
+  status: "lead",
+  amount: 0,
+  currencyCode: "USD",
+  accountId: "",
+  contactIds: [],
+  ...data,
+});
 
 // data:
 
@@ -36,6 +50,7 @@ export const mock = (idField = "id") => ({
   createdAt: faker.date.past().toISOString(),
   updatedAt: faker.date.recent().toISOString(),
   name: faker.lorem.words(),
+  description: faker.lorem.sentences(),
   status: faker.helpers.arrayElement([
     "lead",
     "qualified",
@@ -45,13 +60,6 @@ export const mock = (idField = "id") => ({
   ]),
   amount: faker.commerce.price({ min: 99, max: 99_999 }),
   currencyCode: "USD",
-  note: {
-    name: faker.lorem.paragraph(),
-    content: faker.lorem.paragraph(),
-    createdAt: faker.date.past().toISOString(),
-    updatedAt: faker.date.recent().toISOString(),
-  },
   accountId: ulid(),
   contactIds: Array.from(Array(2)).map(() => ulid()),
-  userIds: Array.from(Array(2)).map(() => ulid()),
 });

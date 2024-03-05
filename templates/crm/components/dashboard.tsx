@@ -10,7 +10,7 @@ import type { Account } from "../data/accounts.ts";
 import type { Deal } from "../data/deals.ts";
 import type { Metric } from "../data/metrics.ts";
 import { toPercent, toUSD } from "../data/mod.ts";
-import { DashboardAccountSelect } from "../islands/dashboard.account-select.tsx";
+import { DashboardAccountSelect } from "../islands/dashboard.tsx";
 
 export function Dashboard(
   props: { data: [Metric, Account[], Deal[], Account] },
@@ -195,7 +195,7 @@ export function DashboardCardPlotDealsThroughTime(props: { data: Metric }) {
   return (
     <Card className="col-span-3">
       <CardHeader>
-        <CardTitle>Deals total through Time</CardTitle>
+        <CardTitle>Deals total through time</CardTitle>
       </CardHeader>
       <CardContent>
         {data?.length

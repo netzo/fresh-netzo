@@ -4,7 +4,6 @@ import { DenoKvResource } from "netzo/plugins/api/resources/mod.ts";
 import type { Account } from "../../data/accounts.ts";
 import type { Contact } from "../../data/contacts.ts";
 import type { Deal } from "../../data/deals.ts";
-import type { User } from "../../data/users.ts";
 import { $client } from "../../netzo.config.ts";
 
 export const deals = defineApiEndpoint({
@@ -23,8 +22,6 @@ export const deals = defineApiEndpoint({
             Promise.all<Contact>(
               data.contactIds?.map((id) => $client.contacts.get(id)),
             ),
-          users: (data: Deal) =>
-            Promise.all<User>(data.userIds?.map((id) => $client.users.get(id))),
         },
       }),
     ],

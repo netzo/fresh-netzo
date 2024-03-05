@@ -35,7 +35,7 @@ export const metrics = defineApiEndpoint({
             (acc, deal) => {
               const date = new Date(deal["createdAt"]);
               const month = date.getMonth();
-              acc[month].amount = acc[month].amount + Number(deal.amount);
+              acc[month].amount = acc[month]?.amount + Number(deal.amount);
               return acc;
             },
             Array.from({ length: 12 }).map((_, i) => ({ month: i, amount: 0 })),

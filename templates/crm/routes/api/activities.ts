@@ -2,33 +2,30 @@ import { authenticate, log, resolve } from "netzo/plugins/api/hooks/mod.ts";
 import { defineApiEndpoint } from "netzo/plugins/api/plugin.ts";
 import { DenoKvResource } from "netzo/plugins/api/resources/mod.ts";
 import type { Account } from "../../data/accounts.ts";
+import type { Activity } from "../../data/activities.ts";
 import type { Contact } from "../../data/contacts.ts";
-import type { Event } from "../../data/events.ts";
-import type { User } from "../../data/users.ts";
 import { $client } from "../../netzo.config.ts";
 
-export const events = defineApiEndpoint({
-  name: "events",
+export const activities = defineApiEndpoint({
+  name: "activities",
   idField: "id",
-  resource: DenoKvResource({ prefix: ["events"] }),
+  resource: DenoKvResource({ prefix: ["activities"] }),
   hooks: {
     all: [authenticate(), log()],
     find: [],
     get: [
       resolve({
         after: {
-          accounts: (data: Event) =>
+          accounts: (data: Activity) =>
             Promise.all<Account>(
               data.accountIds?.map((id) => $client.accounts.get(id)),
             ),
-          contacts: (data: Event) =>
+          contacts: (data: Activity) =>
             Promise.all<Contact>(
               data.contactIds?.map((id) => $client.contacts.get(id)),
             ),
-          deals: (data: Event) =>
+          deals: (data: Activity) =>
             Promise.all(data.dealIds?.map((id) => $client.deals.get(id))),
-          users: (data: Event) =>
-            Promise.all<User>(data.userIds?.map((id) => $client.users.get(id))),
         },
       }),
     ],

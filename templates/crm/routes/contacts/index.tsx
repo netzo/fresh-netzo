@@ -17,7 +17,7 @@ export default defineRoute(async (req, ctx) => {
   }));
 
   return (
-    <div className="flex flex-col space-y-4 py-4 h-screen">
+    <div className="flex flex-col h-screen">
       <ContactsIslands.Main data={data} />
     </div>
   );

@@ -3,19 +3,21 @@ import { BadRequest } from "../errors.ts";
 import { defineHook } from "./mod.ts";
 
 /**
- * A hook that validates the request data using the provided Zod schema.
+ * A hook that validates data (and sets defaults) using the provided Zod schema.
  *
- * @param schema {ZodSchema} - the Zod schema to validate the request data
+ * @param schema {ZodSchema} - the Zod schema to validate the data
  * @returns a hook function
  */
 export const validate = (schema: ZodSchema) => {
   return defineHook(async (ctx, next) => {
-    const result = schema.safeParse(ctx.data);
-    if (!result.success) {
-      ctx.error = result.error;
-      const error = new BadRequest(result.error);
-      console.error(error);
-      throw error;
+    if (["create", "update", "patch"].includes(ctx.method)) {
+      try {
+        ctx.data = await schema.parseAsync(ctx.data);
+      } catch (error) {
+        ctx.error = error;
+        console.error(error);
+        throw new BadRequest(error);
+      }
     }
     await next();
   });

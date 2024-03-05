@@ -1,15 +1,16 @@
 import { ulid } from "netzo/plugins/api/utils.ts";
 import { faker } from "npm:@faker-js/faker@8.4.0";
 import { z } from "zod";
-import { linksSchema, noteSchema } from "./mod.ts";
+import { getLinks, linksSchema } from "./mod.ts";
 
 // schemas:
 
 export const contactSchema = z.object({
-  id: z.string(),
+  id: z.string().ulid(),
   createdAt: z.string().datetime(),
   updatedAt: z.string().datetime(),
   name: z.string(),
+  description: z.string(),
   image: z.string().url(),
   position: z.string(),
   department: z.string(),
@@ -24,12 +25,36 @@ export const contactSchema = z.object({
     personal: z.string(),
   }),
   links: linksSchema,
-  note: noteSchema,
 });
 
 // types:
 
 export type Contact = z.infer<typeof contactSchema>;
+
+// defaults:
+
+export const getContact = (data?: Partial<Contact>) => ({
+  id: ulid(),
+  createdAt: new Date().toISOString(),
+  updatedAt: new Date().toISOString(),
+  name: "",
+  description: "",
+  image: "",
+  position: "",
+  department: "",
+  accountId: "",
+  emails: {
+    work: "",
+    personal: "",
+  },
+  phones: {
+    work: "",
+    mobile: "",
+    personal: "",
+  },
+  links: getLinks(data?.links),
+  ...data,
+});
 
 // data:
 
@@ -38,6 +63,7 @@ export const mock = (idField = "id") => ({
   createdAt: faker.date.past().toISOString(),
   updatedAt: faker.date.recent().toISOString(),
   name: faker.person.fullName(),
+  description: faker.lorem.sentences(),
   image: `https://avatar.vercel.sh/${ulid()}.png`, // faker.image.avatarGitHub(),
   position: faker.person.jobTitle(),
   department: faker.person.jobArea(),
@@ -57,11 +83,5 @@ export const mock = (idField = "id") => ({
     linkedin: faker.internet.url(),
     twitter: faker.internet.url(),
     other: faker.internet.url(),
-  },
-  note: {
-    name: faker.lorem.paragraph(),
-    content: faker.lorem.paragraph(),
-    createdAt: faker.date.past().toISOString(),
-    updatedAt: faker.date.recent().toISOString(),
   },
 });

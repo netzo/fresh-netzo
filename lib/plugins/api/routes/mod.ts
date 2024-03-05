@@ -36,6 +36,7 @@ export const getRoutesByEndpoint = (
             resource,
             request,
             url: ctx.url,
+            data: undefined,
           });
           const { params: _, query } = parseSearchParams(
             ctx.url.searchParams,
@@ -49,6 +50,8 @@ export const getRoutesByEndpoint = (
             resource.create,
             middleware([...allHooks, ...createHooks]),
           );
+          const { params: _ } = parseSearchParams(ctx.url.searchParams);
+          const data = await parseRequestBody(request);
           const createCtx = create.createContext({
             method: "create",
             name,
@@ -57,9 +60,8 @@ export const getRoutesByEndpoint = (
             resource,
             request,
             url: ctx.url,
+            data,
           });
-          const { params: _ } = parseSearchParams(ctx.url.searchParams);
-          const data = await parseRequestBody(request);
           const finalCtx = await create(data, createCtx);
           return Response.json(finalCtx.result);
         },
@@ -73,6 +75,7 @@ export const getRoutesByEndpoint = (
             resource.get,
             middleware([...allHooks, ...getHooks]),
           );
+          const { params: _ } = parseSearchParams(ctx.url.searchParams);
           const getCtx = get.createContext({
             method: "get",
             name,
@@ -81,8 +84,8 @@ export const getRoutesByEndpoint = (
             resource,
             request,
             url: ctx.url,
+            data: undefined,
           });
-          const { params: _ } = parseSearchParams(ctx.url.searchParams);
           const finalCtx = await get(ctx.params[idField], getCtx);
           return Response.json(finalCtx.result);
         },
@@ -91,6 +94,8 @@ export const getRoutesByEndpoint = (
             resource.update,
             middleware([...allHooks, ...updateHooks]),
           );
+          const { params: _ } = parseSearchParams(ctx.url.searchParams);
+          const data = await parseRequestBody(request);
           const updateCtx = update.createContext({
             method: "update",
             name,
@@ -99,9 +104,8 @@ export const getRoutesByEndpoint = (
             resource,
             request,
             url: ctx.url,
+            data,
           });
-          const { params: _ } = parseSearchParams(ctx.url.searchParams);
-          const data = await parseRequestBody(request);
           const finalCtx = await update(ctx.params[idField], data, updateCtx);
           return Response.json(finalCtx.result);
         },
@@ -110,6 +114,8 @@ export const getRoutesByEndpoint = (
             resource.patch,
             middleware([...allHooks, ...patchHooks]),
           );
+          const { params: _ } = parseSearchParams(ctx.url.searchParams);
+          const data = await parseRequestBody(request);
           const patchCtx = patch.createContext({
             method: "patch",
             name,
@@ -118,9 +124,8 @@ export const getRoutesByEndpoint = (
             resource,
             request,
             url: ctx.url,
+            data,
           });
-          const { params: _ } = parseSearchParams(ctx.url.searchParams);
-          const data = await parseRequestBody(request);
           const finalCtx = await patch(ctx.params[idField], data, patchCtx);
           return Response.json(finalCtx.result);
         },
@@ -129,6 +134,7 @@ export const getRoutesByEndpoint = (
             resource.remove,
             middleware([...allHooks, ...removeHooks]),
           );
+          const { params: _ } = parseSearchParams(ctx.url.searchParams);
           const removeCtx = remove.createContext({
             method: "remove",
             name,
@@ -137,8 +143,8 @@ export const getRoutesByEndpoint = (
             resource,
             request,
             url: ctx.url,
+            data: undefined,
           });
-          const { params: _ } = parseSearchParams(ctx.url.searchParams);
           const finalCtx = await remove(ctx.params[idField], removeCtx);
           return Response.json(finalCtx.result);
         },
