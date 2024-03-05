@@ -33,9 +33,9 @@ import { cn } from "netzo/components/utils.ts";
 import type { Account } from "netzo/data/accounts.ts";
 import type { Contact } from "netzo/data/contacts.ts";
 import {
+  type Activity,
   activitySchema,
   getActivity,
-  type Activity,
 } from "../data/activities.ts";
 import type { Deal } from "../data/deals.ts";
 import { I18N, toDateTime } from "../data/mod.ts";
@@ -254,7 +254,7 @@ export function FormUpdate(
       body: JSON.stringify(data),
     });
     setTimeout(() => status.value = "disabled", 500);
-  }
+  };
 
   return (
     <Form {...form}>
@@ -269,7 +269,7 @@ export function FormUpdate(
           <div className="flex items-center space-x-2">
             <Button type="submit" className="ml-auto">
               {["loading"].includes(status.value)
-               ? <i className="mdi-loading h-4 w-4 animate-spin" />
+                ? <i className="mdi-loading h-4 w-4 animate-spin" />
                 : "Save"}
             </Button>
           </div>
