@@ -22,7 +22,7 @@ import {
   DialogTrigger,
 } from "netzo/components/dialog.tsx";
 import { useForm, zodResolver } from "netzo/components/form.tsx";
-import { ContactDeals } from "../components/contact.deals.tsx";
+import { ContactDeals } from "../components/contact.tsx";
 import { Contact, contactSchema } from "../data/contacts.ts";
 import { Deal, dealSchema } from "../data/deals.ts";
 import { toPercent, toUSD } from "../data/mod.ts";
@@ -267,7 +267,6 @@ export function ContactCardDeals(props: { contact: Contact; deals: Deal[] }) {
     currencyCode: "USD",
     contactId: props.contact.id,
     contactIds: [],
-    userIds: [],
   });
   const status = useSignal<"disabled" | "enabled" | "loading">("disabled");
 

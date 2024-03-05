@@ -46,7 +46,7 @@ export const metricSchema = z.object({
     amount: z.coerce.number(),
   })),
   dealsAmountThroughTime: z.array(z.object({
-    createdAt: z.string().datetime().default(() => new Date().toISOString()),
+    createdAt: z.string().datetime(),
     amount: z.coerce.number(),
   })),
 });

@@ -3,16 +3,27 @@ import { z } from "zod";
 // schemas:
 
 export const linksSchema = z.object({
-  website: z.string().url().default(""),
-  facebook: z.string().url().default(""),
-  linkedin: z.string().url().default(""),
-  twitter: z.string().url().default(""),
-  other: z.string().url().default(""),
-}).default(() => ({}));
+  website: z.string().url(),
+  facebook: z.string().url(),
+  linkedin: z.string().url(),
+  twitter: z.string().url(),
+  other: z.string().url(),
+});
 
 // types:
 
 export type Link = z.infer<typeof linksSchema>;
+
+// defaults:
+
+export const getLinks = (data?: Partial<Link>) => ({
+  website: "",
+  facebook: "",
+  linkedin: "",
+  twitter: "",
+  other: "",
+  ...data,
+});
 
 // i18n:
 
@@ -64,18 +75,18 @@ export const I18N: Record<string, string> = {
   "xml": "XML",
   "pdf": "PDF",
   // relations:
+  "accounts": "Accounts",
   "account": "Account",
   "accountId": "Account ID",
   "accountIds": "Accounts IDs",
+  "contacts": "Contacts",
   "contact": "Contact",
   "contactId": "Contact ID",
   "contactIds": "Contacts IDs",
+  "deals": "Deals",
   "deal": "Deal",
   "dealId": "Deal ID",
   "dealIds": "Deals IDs",
-  "user": "User",
-  "userId": "User ID",
-  "userIds": "Users IDs",
 };
 
 // utils:

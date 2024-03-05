@@ -5,28 +5,43 @@ import { z } from "zod";
 // schemas:
 
 export const dealSchema = z.object({
-  id: z.string().ulid().default(() => ulid()),
-  createdAt: z.string().datetime().default(() => new Date().toISOString()),
-  updatedAt: z.string().datetime().default(() => new Date().toISOString()),
-  name: z.string().default(""),
-  description: z.string().default(""),
+  id: z.string().ulid(),
+  createdAt: z.string().datetime(),
+  updatedAt: z.string().datetime(),
+  name: z.string(),
+  description: z.string(),
   status: z.enum([
     "lead",
     "qualified",
     "negotiation",
     "won",
     "lost",
-  ]).default("lead"),
-  amount: z.coerce.number().default(0),
-  currencyCode: z.enum(["USD"]).default("USD"),
-  accountId: z.string().default(""),
-  contactIds: z.array(z.string()).default([]),
-  userIds: z.array(z.string()).default([]),
+  ]),
+  amount: z.coerce.number(),
+  currencyCode: z.enum(["USD"]),
+  accountId: z.string(),
+  contactIds: z.array(z.string()),
 });
 
 // types:
 
 export type Deal = z.infer<typeof dealSchema>;
+
+// defaults:
+
+export const getDeal = (data?: Partial<Deal>) => ({
+  id: ulid(),
+  createdAt: new Date().toISOString(),
+  updatedAt: new Date().toISOString(),
+  name: "",
+  description: "",
+  status: "lead",
+  amount: 0,
+  currencyCode: "USD",
+  accountId: "",
+  contactIds: [],
+  ...data,
+});
 
 // data:
 
@@ -47,5 +62,4 @@ export const mock = (idField = "id") => ({
   currencyCode: "USD",
   accountId: ulid(),
   contactIds: Array.from(Array(2)).map(() => ulid()),
-  userIds: Array.from(Array(2)).map(() => ulid()),
 });

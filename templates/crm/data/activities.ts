@@ -4,10 +4,10 @@ import { z } from "zod";
 
 // schemas:
 
-export const eventSchema = z.object({
-  id: z.string().ulid().default(() => ulid()),
-  createdAt: z.string().datetime().default(() => new Date().toISOString()),
-  updatedAt: z.string().datetime().default(() => new Date().toISOString()),
+export const activitySchema = z.object({
+  id: z.string().ulid(),
+  createdAt: z.string().datetime(),
+  updatedAt: z.string().datetime(),
   type: z.enum([
     "email",
     "call",
@@ -20,18 +20,32 @@ export const eventSchema = z.object({
     "linkedin",
     "twitter",
     "other",
-  ]).default("other"),
-  name: z.string().default(""),
-  content: z.string().default(""),
-  accountIds: z.array(z.string()).default([]),
-  contactIds: z.array(z.string()).default([]),
-  dealIds: z.array(z.string()).default([]),
-  userIds: z.array(z.string()).default([]),
+  ]),
+  name: z.string(),
+  content: z.string(),
+  accountIds: z.array(z.string()),
+  contactIds: z.array(z.string()),
+  dealIds: z.array(z.string()),
 });
 
 // types:
 
-export type Event = z.infer<typeof eventSchema>;
+export type Activity = z.infer<typeof activitySchema>;
+
+// defaults:
+
+export const getActivity = (data?: Partial<Activity>) => ({
+  id: ulid(),
+  createdAt: new Date().toISOString(),
+  updatedAt: new Date().toISOString(),
+  type: "other",
+  name: "",
+  content: "",
+  accountIds: [],
+  contactIds: [],
+  dealIds: [],
+  ...data,
+});
 
 // data:
 
@@ -57,5 +71,4 @@ export const mock = (idField = "id") => ({
   accountIds: Array.from(Array(2)).map(() => ulid()),
   contactIds: Array.from(Array(2)).map(() => ulid()),
   dealIds: Array.from(Array(2)).map(() => ulid()),
-  userIds: Array.from(Array(2)).map(() => ulid()),
 });

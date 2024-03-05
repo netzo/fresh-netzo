@@ -1,4 +1,5 @@
 // from https://github.com/hyoban/unocss-preset-shadcn/blob/main/src/index.ts
+import { sheetVariants } from "../../../components/sheet.tsx";
 import type {
   Preset,
   VariantContext,
@@ -13,8 +14,6 @@ import {
   variantGetParameter,
 } from "../../../deps/@unocss/preset-mini/utils.ts";
 import { generateCSSVars } from "./generate.ts";
-// DISABLED: breaks bundle.task.ts due to bundle's partial support of compilerOptions
-// import { sheetVariants } from "../../../components/sheet.tsx";
 
 // WORKAROUND: `bg-opacity-90` instead of `bg-primary/90`, `bg-opacity-80`
 // instead of `bg-secondary/80` and `bg-opacity/90` instead of `bg-destructive/90`
@@ -179,16 +178,14 @@ export function presetShadcn(
     // WORKAROUND: force include dynamically injected classes (e.g. when opening sheet)
     // by certain shadcn-ui components like sheet, dialog and popover so that unocss
     // can generate the correct CSS at AoT/SSR without needing to enable CSR mode bundle
-    // DISABLED: since import of sheet.tsx breaks bundle.task.ts probably due std/emit's
-    // function only supporting a subset of compilerOptions so cannot properly compile sheet.tsx
-    // safelist: [
-    //   ...new Set([
-    //     ...sheetVariants({ side: "top" }).split(" "),
-    //     ...sheetVariants({ side: "right" }).split(" "),
-    //     ...sheetVariants({ side: "bottom" }).split(" "),
-    //     ...sheetVariants({ side: "left" }).split(" "),
-    //   ]),
-    // ],
+    safelist: [
+      ...new Set([
+        ...sheetVariants({ side: "top" }).split(" "),
+        ...sheetVariants({ side: "right" }).split(" "),
+        ...sheetVariants({ side: "bottom" }).split(" "),
+        ...sheetVariants({ side: "left" }).split(" "),
+      ]),
+    ],
 
     variants: [variantGroupDataAttribute.match],
 

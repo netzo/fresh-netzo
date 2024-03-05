@@ -1,25 +1,40 @@
 import { ulid } from "netzo/plugins/api/utils.ts";
 import { faker } from "npm:@faker-js/faker@8.4.0";
 import { z } from "zod";
-import { linksSchema } from "./mod.ts";
+import { getLinks, linksSchema } from "./mod.ts";
 
 // schemas:
 
 export const accountSchema = z.object({
-  id: z.string().ulid().default(() => ulid()),
-  createdAt: z.string().datetime().default(() => new Date().toISOString()),
-  updatedAt: z.string().datetime().default(() => new Date().toISOString()),
-  name: z.string().default(""),
-  description: z.string().default(""),
-  image: z.string().url().default(""),
-  email: z.string().email().default(""),
-  phone: z.string().default(""),
+  id: z.string().ulid(),
+  createdAt: z.string().datetime(),
+  updatedAt: z.string().datetime(),
+  name: z.string(),
+  description: z.string(),
+  image: z.string().url(),
+  email: z.string().email(),
+  phone: z.string(),
   links: linksSchema,
 });
 
 // types:
 
 export type Account = z.infer<typeof accountSchema>;
+
+// defaults:
+
+export const getAccount = (data?: Partial<Account>) => ({
+  id: ulid(),
+  createdAt: new Date().toISOString(),
+  updatedAt: new Date().toISOString(),
+  name: "",
+  description: "",
+  image: "",
+  email: "",
+  phone: "",
+  links: getLinks(data?.links),
+  ...data,
+});
 
 // data:
 

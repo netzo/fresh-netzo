@@ -6,26 +6,25 @@ import type { NetzoState } from "netzo/mod.ts";
 import type { Account } from "../../../data/accounts.ts";
 import type { Contact } from "../../../data/contacts.ts";
 import type { Deal } from "../../../data/deals.ts";
-import type { User } from "../../../data/users.ts";
 import { DealHeader } from "../../../islands/deal.tsx";
 import { $client } from "../../../netzo.config.ts";
 
 export type DealState = NetzoState & {
   id: string;
-  deal: TDeal;
-  deals: Deal[];
+  deal: Deal;
+  accounts: Account[];
+  contacts: Contact[];
 };
 
 export default defineLayout<DealState>(async (req, ctx) => {
   const { id } = ctx.params;
-  const [deal, accounts, contacts, users] = await Promise.all([
+  const [deal, accounts, contacts] = await Promise.all([
     $client.deals.get(id) as Deal,
     $client.accounts.find() as unknown as Account[],
     $client.contacts.find() as unknown as Contact[],
-    $client.users.find() as unknown as User[],
   ]);
 
-  ctx.state.data = { id, deal, accounts, contacts, users };
+  ctx.state.data = { id, deal, accounts, contacts };
 
   return (
     <>
@@ -34,9 +33,6 @@ export default defineLayout<DealState>(async (req, ctx) => {
       <nav f-client-nav className="sticky top-0 bg-background">
         <NavLink href={`/deals/${id}`}>
           Overview
-        </NavLink>
-        <NavLink href={`/deals/${id}/events`}>
-          Events
         </NavLink>
         <Separator />
       </nav>

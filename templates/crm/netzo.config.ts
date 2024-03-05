@@ -11,8 +11,7 @@ export const $client = {
   accounts: endpoints.accounts.resource,
   contacts: endpoints.contacts.resource,
   deals: endpoints.deals.resource,
-  events: endpoints.events.resource,
-  users: endpoints.users.resource,
+  activities: endpoints.activities.resource,
   // custom:
   metrics: endpoints.metrics.resource,
 };
@@ -27,8 +26,7 @@ export default defineConfig({
         endpoints.accounts,
         endpoints.contacts,
         endpoints.deals,
-        endpoints.events,
-        endpoints.users,
+        endpoints.activities,
         endpoints.metrics,
       ],
     }),

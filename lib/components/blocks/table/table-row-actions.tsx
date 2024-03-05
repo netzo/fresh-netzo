@@ -38,13 +38,16 @@ export function TableRowActions<TData>({
   };
 
   const onSelectDuplicate = async () => {
-    const { [idField]: _id, ...data } = row.original;
-    await fetch(`/api/${resource}`, {
+    const { [idField]: id, ...data } = row.original;
+    const response = await fetch(`/api/${resource}`, {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(data),
     });
-    globalThis.location.reload();
+    const result = await response.json();
+    if (globalThis.location.pathname.includes(id)) {
+      globalThis.location.pathname = `/${resource}/${result.id}`;
+    } else globalThis.location.reload();
   };
 
   const onSelectCopyId = () => {

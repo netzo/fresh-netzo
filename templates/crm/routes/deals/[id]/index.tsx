@@ -3,7 +3,7 @@ import { DealCardForm } from "../../../islands/deal.tsx";
 import { DealState } from "./_layout.tsx";
 
 export default defineRoute<DealState>((req, ctx) => {
-  const { id, deal, deals, accounts, contacts, users } = ctx.state.data;
+  const { id, deal, deals, accounts, contacts } = ctx.state.data;
 
   return (
     <div className="h-full overflow-y-auto">
@@ -13,7 +13,6 @@ export default defineRoute<DealState>((req, ctx) => {
             deal={deal}
             accounts={accounts}
             contacts={contacts}
-            users={users}
           />
         </div>
       </div>

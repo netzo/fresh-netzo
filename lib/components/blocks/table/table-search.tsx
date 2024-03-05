@@ -16,9 +16,8 @@ export function TableSearch<TData = unknown>({
   const value = table.getColumn(
     search.column,
   )?.getFilterValue() as string ?? "";
-  const onChange = (e: Event) => {
-    const target = e.target as HTMLInputElement;
-    table.getColumn(search.column)?.setFilterValue(target.value);
+  const onChange = (e: JSX.ChangeEvent) => {
+    table.getColumn(search.column)?.setFilterValue(e.target.value);
   };
   return (
     <Input

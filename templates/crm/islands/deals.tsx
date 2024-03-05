@@ -1,5 +1,9 @@
-import { useSignal } from "@preact/signals";
+import { useComputed, useSignal } from "@preact/signals";
+import { Badge } from "netzo/components/badge.tsx";
 import {
+  KanbanCardContainer,
+  type KanbanCardProps,
+  type KanbanGroupProps,
   KanbanView,
   type UseKanbanOptions,
 } from "netzo/components/blocks/kanban/kanban.tsx";
@@ -7,25 +11,23 @@ import {
   TableActionsReload,
   TableFilters,
   TablePagination,
+  TableRowActions,
   TableSearch,
   TableViewOptions,
   useTable,
 } from "netzo/components/blocks/table/table.tsx";
 import { Button } from "netzo/components/button.tsx";
 import {
-  Dialog,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "netzo/components/dialog.tsx";
-import { Input } from "netzo/components/input.tsx";
-import { Label } from "netzo/components/label.tsx";
-import { type Deal } from "../data/deals.ts";
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "netzo/components/card.tsx";
+import { ScrollArea } from "netzo/components/scroll-area.tsx";
+import { cn } from "netzo/components/utils.ts";
+import { SortableContext } from "netzo/deps/@dnd-kit/sortable.ts";
+import { type Deal, getDeal } from "../data/deals.ts";
 import { I18N } from "../data/mod.ts";
-import { KanbanCard } from "./deals.kanban-card.tsx";
-import { KanbanGroup } from "./deals.kanban-group.tsx";
 
 export const GROUPS: UseKanbanOptions<Deal>["group"]["groups"] = [
   {
@@ -94,9 +96,24 @@ export function Main({ data }: { data: Deal[] }) {
     },
   });
 
+  const onClickCreate = async () => {
+    const name = globalThis.prompt("Enter deal name");
+    if (name) {
+      const response = await fetch(`/api/deals`, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(getDeal({ name })),
+      });
+      if (response.ok) {
+        const data = await response.json();
+        globalThis.location.href = `/deals/${data.id}`;
+      }
+    }
+  };
+
   return (
     <>
-      <header className="flex items-center justify-between mx-4">
+      <header className="flex items-center justify-between p-4">
         <div className="flex items-center flex-1 space-x-2">
           <TableActionsReload table={table} />
           <TableSearch table={table} />
@@ -104,7 +121,13 @@ export function Main({ data }: { data: Deal[] }) {
         </div>
         <div className="flex items-center space-x-2">
           <TableViewOptions table={table} />
-          <DealsFormCreate />
+          <Button
+            variant="default"
+            className="ml-2"
+            onClick={onClickCreate}
+          >
+            Create
+          </Button>
         </div>
       </header>
       <div className="flex-1 overflow-y-auto">
@@ -116,52 +139,132 @@ export function Main({ data }: { data: Deal[] }) {
           />
         </div>
       </div>
-      <footer className="flex items-center justify-between mx-4">
+      <footer className="flex items-center justify-between p-4">
         <TablePagination table={table} />
       </footer>
     </>
   );
 }
 
-export function DealsFormCreate() {
-  const data = useSignal<Partial<Deal>>({ name: "" });
+// adapted from https://github.com/Georgegriff/react-dnd-kit-tailwind-shadcn-ui/blob/main/src/components/BoardGroup.tsx
+export function KanbanGroup({
+  group,
+  items,
+  isOverlay,
+  options,
+  renderCard,
+}: KanbanGroupProps) {
+  const selected = useSignal<string[]>([]);
 
-  const onClickCreate = async () => {
-    const response = await fetch(`/api/deals`, {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(data.value),
-    });
-    if (response.ok) {
-      const data = await response.json();
-      globalThis.location.href = `/deals/${data.id}`;
-    }
-  };
+  const itemsIds = useComputed(() =>
+    items.map((item) => item[options.idField])
+  );
+
+  const itemsAmount = useComputed(() =>
+    items.reduce((acc, item) => acc + Number(item.amount), 0)
+  );
 
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button variant="default" className="ml-2">Create</Button>
-      </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
-        <DialogHeader className="text-left">
-          <DialogTitle>Create New</DialogTitle>
-        </DialogHeader>
-        <div className="space-y-4 py-2 pb-4">
-          <div className="space-y-2">
-            <Label htmlFor="name">Name</Label>
-            <Input
-              id="name"
-              className="col-span-3"
-              value={data.value.name}
-              onInput={(e) => data.value.name = e.target.value}
-            />
-          </div>
+    <Card className="h-full self-baseline w-[300px] max-w-full flex flex-col flex-shrink-0 snap-center">
+      <CardHeader className="flex flex-row items-center py-2 px-4 font-semibold text-left border-b-2 justify-between">
+        <div className="flex flex-1 items-center">
+          <div
+            {...group?.icon}
+            className={cn("w-6 h-6 mr-3", group?.icon?.className)}
+          />
+          <h3 className="mt-0">{group.title}</h3>
         </div>
-        <DialogFooter>
-          <Button onClick={onClickCreate}>Create</Button>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
+        <span className="text-sm font-medium">
+          {Number(itemsAmount.value).toLocaleString("en-US", {
+            style: "currency",
+            currency: items?.[0]?.currencyCode || "USD",
+            maximumFractionDigits: 2,
+            minimumFractionDigits: 2,
+          })}
+        </span>
+      </CardHeader>
+      <ScrollArea>
+        <CardContent className="flex flex-col flex-grow gap-2 p-2">
+          <SortableContext items={itemsIds.value}>
+            {items.map((item, index) => renderCard({ item, options }))}
+          </SortableContext>
+        </CardContent>
+      </ScrollArea>
+    </Card>
+  );
+}
+
+// see "Calling children as a function" from https://stackoverflow.com/a/32371612
+export function KanbanCard({ item, isOverlay, options }: KanbanCardProps) {
+  const groupBy = options.group.column;
+
+  const { badge } = options.group.groups.find((c) => c.id === item?.[groupBy]);
+
+  return (
+    <KanbanCardContainer {...{ item, isOverlay, options }}>
+      {({
+        setNodeRef,
+        attributes,
+        listeners,
+        transform,
+        transition,
+        isDragging,
+      }) => (
+        <>
+          {item?.image && (
+            <img
+              src={item.image}
+              className="w-full h-auto p-1"
+            />
+          )}
+          <CardHeader className="relative flex flex-row items-center px-3 py-1 justify-between">
+            <div className="flex flex-1 items-center">
+              <Button
+                variant={"ghost"}
+                {...attributes}
+                {...listeners}
+                className="h-auto p-1 -ml-2 text-secondary-foreground/50 cursor-grab"
+              >
+                <span className="sr-only">Move item</span>
+                <div className="w-6 h-6 mdi-drag" />
+              </Button>
+              <CardTitle className="ml-1 text-sm font-medium">
+                <a
+                  href={`/deals/${item.id}`}
+                  className="whitespace-nowrap text-center font-medium text-primary hover:underline"
+                >
+                  {item?.name}
+                </a>
+              </CardTitle>
+            </div>
+            <TableRowActions
+              row={{ original: item }}
+              resource="deals"
+              className={cn("h-auto p-1 -mr-2 text-secondary-foreground/50")}
+            />
+          </CardHeader>
+          <CardContent className="flex flex-col gap-2 px-4 pt-2 pb-4 text-xs whitespace-pre-wrap text-secondary-foreground">
+            {item?.description}
+            <div className="flex items-center justify-between w-full">
+              <Badge
+                variant={"outline"}
+                {...badge}
+                className={cn("font-medium", badge?.className)}
+              >
+                {item?.[groupBy]}
+              </Badge>
+              <span className="font-medium">
+                {Number(item?.amount).toLocaleString("en-US", {
+                  style: "currency",
+                  currency: item?.currencyCode || "USD",
+                  maximumFractionDigits: 2,
+                  minimumFractionDigits: 2,
+                })}
+              </span>
+            </div>
+          </CardContent>
+        </>
+      )}
+    </KanbanCardContainer>
   );
 }

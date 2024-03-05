@@ -1,4 +1,3 @@
-import { useSignal } from "@preact/signals";
 import {
   Avatar,
   AvatarFallback,
@@ -17,18 +16,9 @@ import {
   useTable,
 } from "netzo/components/blocks/table/table.tsx";
 import { Button } from "netzo/components/button.tsx";
-import {
-  Dialog,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "netzo/components/dialog.tsx";
 import { IconCopy } from "netzo/components/icon-copy.tsx";
-import { Input } from "netzo/components/input.tsx";
-import { Label } from "netzo/components/label.tsx";
 import type { Account } from "../data/accounts.ts";
+import { getAccount } from "../data/accounts.ts";
 import { I18N, toDateTime } from "../data/mod.ts";
 
 export function Main({ data }: { data: Account[] }) {
@@ -68,18 +58,20 @@ export function Main({ data }: { data: Account[] }) {
         },
       },
       {
-        accessorKey: "events",
-        header: (props) => <TableColumnHeader {...props} title={I18N.events} />,
+        accessorKey: "activities",
+        header: (props) => (
+          <TableColumnHeader {...props} title={I18N.activities} />
+        ),
         cell: ({ row }) => {
-          const { events = [] } = row.original;
+          const { activities = [] } = row.original;
           return (
             <a
-              href={`/accounts/${row.original.id}/events`}
+              href={`/accounts/${row.original.id}/activities`}
               className="hover:underline"
             >
               <Badge variant="secondary" className="w-max">
                 <i className="mdi-radiobox-marked mr-1" />
-                {events.length} Events
+                {activities.length} Activities
               </Badge>
             </a>
           );
@@ -160,9 +152,24 @@ export function Main({ data }: { data: Account[] }) {
     ],
   });
 
+  const onClickCreate = async () => {
+    const name = globalThis.prompt("Enter account name");
+    if (name) {
+      const response = await fetch(`/api/accounts`, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(getAccount({ name })),
+      });
+      if (response.ok) {
+        const data = await response.json();
+        globalThis.location.href = `/accounts/${data.id}`;
+      }
+    }
+  };
+
   return (
     <>
-      <header className="flex items-center justify-between mx-4">
+      <header className="flex items-center justify-between p-4">
         <div className="flex items-center flex-1 space-x-2">
           <TableActionsReload table={table} />
           <TableSearch table={table} />
@@ -170,7 +177,13 @@ export function Main({ data }: { data: Account[] }) {
         </div>
         <div className="flex items-center space-x-2">
           <TableViewOptions table={table} />
-          <AccountsFormCreate />
+          <Button
+            variant="default"
+            className="ml-2"
+            onClick={onClickCreate}
+          >
+            Create
+          </Button>
         </div>
       </header>
       <div className="flex-1 overflow-y-auto">
@@ -178,52 +191,9 @@ export function Main({ data }: { data: Account[] }) {
           <TableView table={table} />
         </div>
       </div>
-      <footer className="flex items-center justify-between mx-4">
+      <footer className="flex items-center justify-between p-4">
         <TablePagination table={table} />
       </footer>
     </>
-  );
-}
-
-export function AccountsFormCreate() {
-  const data = useSignal<Partial<Account>>({ name: "" });
-
-  const onClickCreate = async () => {
-    const response = await fetch(`/api/accounts`, {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(data.value),
-    });
-    if (response.ok) {
-      const data = await response.json();
-      globalThis.location.href = `/accounts/${data.id}`;
-    }
-  };
-
-  return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button variant="default" className="ml-2">Create</Button>
-      </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
-        <DialogHeader className="text-left">
-          <DialogTitle>Create New</DialogTitle>
-        </DialogHeader>
-        <div className="space-y-4 py-2 pb-4">
-          <div className="space-y-2">
-            <Label htmlFor="name">Name</Label>
-            <Input
-              id="name"
-              className="col-span-3"
-              value={data.value.name}
-              onInput={(e) => data.value.name = e.target.value}
-            />
-          </div>
-        </div>
-        <DialogFooter>
-          <Button onClick={onClickCreate}>Create</Button>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
   );
 }

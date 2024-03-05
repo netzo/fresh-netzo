@@ -31,9 +31,6 @@ export default defineLayout<AccountState>(async (req, ctx) => {
         <NavLink href={`/accounts/${id}`}>
           Overview
         </NavLink>
-        <NavLink href={`/accounts/${id}/events`}>
-          Events
-        </NavLink>
         <Separator />
       </nav>
 

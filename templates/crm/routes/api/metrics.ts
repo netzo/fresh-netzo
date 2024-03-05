@@ -1,8 +1,7 @@
-import { authenticate, log, validate } from "netzo/plugins/api/hooks/mod.ts";
+import { authenticate, log } from "netzo/plugins/api/hooks/mod.ts";
 import { defineApiEndpoint } from "netzo/plugins/api/plugin.ts";
 import { CustomResource } from "netzo/plugins/api/resources/mod.ts";
 import type { Deal } from "../../data/deals.ts";
-import { metricSchema } from "../../data/metrics.ts";
 import { $client } from "../../netzo.config.ts";
 
 export const metrics = defineApiEndpoint({
@@ -95,7 +94,7 @@ export const metrics = defineApiEndpoint({
     },
   }),
   hooks: {
-    all: [authenticate(), log(), validate(metricSchema)],
+    all: [authenticate(), log()],
     find: [],
     get: [],
     create: [],

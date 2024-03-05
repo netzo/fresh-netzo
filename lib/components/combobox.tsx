@@ -95,7 +95,8 @@ export const Combobox = React.forwardRef(
               {!props.multiple &&
                 props.value &&
                 props.value !== "" &&
-                props.options.find((option) => option.value === props.value)?.label}
+                props.options.find((option) => option.value === props.value)
+                  ?.label}
 
               {(!props.value || (props.multiple && props.value.length === 0)) &&
                 (props.selectPlaceholder ?? "Select an option")}

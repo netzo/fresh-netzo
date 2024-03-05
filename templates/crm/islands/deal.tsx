@@ -28,7 +28,6 @@ import { type Option } from "netzo/components/select-multiple.tsx";
 import { Textarea } from "netzo/components/textarea.tsx";
 import type { Account } from "netzo/data/accounts.ts";
 import type { Contact } from "netzo/data/contacts.ts";
-import type { User } from "netzo/data/users.ts";
 import { Deal, dealSchema } from "../data/deals.ts";
 import { I18N } from "../data/mod.ts";
 
@@ -66,7 +65,6 @@ export function DealCardForm(
     deal: Deal;
     accounts: Account[];
     contacts: Contact[];
-    users: User[];
   },
 ) {
   const form = useForm<Deal>({
@@ -77,7 +75,6 @@ export function DealCardForm(
   const toOptions = ({ id, name }): Option => ({ value: id, label: name });
   const accountOptions = props.accounts.map(toOptions);
   const contactOptions = props.contacts.map(toOptions);
-  const userOptions = props.users.map(toOptions);
 
   return (
     <Card>
@@ -92,7 +89,7 @@ export function DealCardForm(
             id="deals.patch"
             action={`/api/deals/${props.deal.id}`}
             method="patch"
-            className="space-y-8"
+            className="space-y-2"
           >
             <FormField
               control={form.control}
@@ -198,23 +195,6 @@ export function DealCardForm(
                       {...field}
                       multiple="true"
                       options={contactOptions}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="userIds"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{I18N["userIds"]}</FormLabel>
-                  <FormControl>
-                    <Combobox
-                      {...field}
-                      multiple="true"
-                      options={userOptions}
                     />
                   </FormControl>
                   <FormMessage />

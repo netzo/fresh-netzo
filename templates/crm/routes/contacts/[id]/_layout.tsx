@@ -31,9 +31,6 @@ export default defineLayout<ContactState>(async (req, ctx) => {
         <NavLink href={`/contacts/${id}`}>
           Overview
         </NavLink>
-        <NavLink href={`/contacts/${id}/events`}>
-          Events
-        </NavLink>
         <Separator />
       </nav>
 

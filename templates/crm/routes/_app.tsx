@@ -23,7 +23,7 @@ export default defineApp<NetzoState>((req, ctx) => {
       {mustAuth
         ? (
           <body className={cn("h-screen bg-background")}>
-            <main className="grid h-screen">
+            <main className="h-screen">
               <ctx.Component />
             </main>
           </body>
@@ -37,7 +37,7 @@ export default defineApp<NetzoState>((req, ctx) => {
           >
             <Nav state={ctx.state} />
             <Partial name="main">
-              <main className="grid h-screen">
+              <main className="h-screen">
                 <ctx.Component />
               </main>
             </Partial>

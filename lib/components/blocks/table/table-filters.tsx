@@ -36,7 +36,7 @@ export function TableFilters<TData>({
   const isFiltered = table.getState().columnFilters.length > 0;
 
   return (
-    <div className={cn(className)}>
+    <div className={cn("flex space-x-2", className)}>
       {filters?.map(({ column, title, options }) =>
         table.getColumn(column) && (
           <TableFilter
