@@ -19,7 +19,7 @@ export const $client = {
 export default defineConfig({
   plugins: [
     netzo.environments(),
-    netzo.auth({ providers: { netzo: {} } }),
+    // netzo.auth({ providers: { netzo: {} } }),
     netzo.api({
       path: "/api",
       endpoints: [
