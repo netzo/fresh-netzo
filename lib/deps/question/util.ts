@@ -2,7 +2,7 @@ import KeyCombo, { KeyCombos } from "./KeyCombo.ts";
 import {
   decodeKeypress,
   Keypress,
-} from "https://deno.land/x/keypress@0.0.7/mod.ts";
+} from "keypress/mod.ts";
 import { config as questionConfig } from "./config.ts";
 
 const [major, minor, _patch] = Deno.version.deno.split(".").map((it) =>

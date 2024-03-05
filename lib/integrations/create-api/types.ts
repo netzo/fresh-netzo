@@ -2,8 +2,8 @@
 import type {
   FetchContext,
   FetchOptions,
-} from "https://esm.sh/v135/ofetch@1.1.1";
-import type { QueryObject } from "https://esm.sh/v135/ufo@1.2.0";
+} from "ofetch";
+import type { QueryObject } from "ufo";
 
 export type { FetchContext, FetchOptions };
 

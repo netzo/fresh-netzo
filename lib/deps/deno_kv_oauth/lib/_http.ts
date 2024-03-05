@@ -1,1 +1,1 @@
-export * from "https://deno.land/x/deno_kv_oauth@v0.9.1/lib/_http.ts";
+export * from "deno_kv_oauth/lib/_http.ts";

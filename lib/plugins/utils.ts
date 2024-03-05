@@ -7,7 +7,7 @@ import {
   red,
   white,
   yellow,
-} from "https://deno.land/std@0.208.0/fmt/colors.ts";
+} from "jsr:@std/fmt/colors";
 import type { Project } from "./types.ts";
 
 /**

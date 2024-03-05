@@ -1,4 +1,4 @@
-import { Keypress } from "https://deno.land/x/keypress@0.0.7/mod.ts";
+import { Keypress } from "keypress/mod.ts";
 const keyToEventKeyMap = [
   ["Escape", "Esc"],
   [" ", "Space"],

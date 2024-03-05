@@ -1,9 +1,9 @@
 import {
   getToken,
   type GoogleAuth,
-} from "https://deno.land/x/googlejwtsa@v0.1.8/mod.ts";
+} from "googlejwtsa/mod.ts";
 import type { Authorization } from "./types.ts";
-import type { FetchContext } from "https://esm.sh/v135/ofetch@1.1.1";
+import type { FetchContext } from "ofetch";
 import { getToken as getTokenOauth2 } from "./oauth2/mod.ts";
 
 /**

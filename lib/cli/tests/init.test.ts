@@ -1,7 +1,7 @@
 import { join } from "std/path/mod.ts";
 import { assert, assertStringIncludes } from "std/assert/mod.ts";
 import { retry } from "std/async/retry.ts";
-import $, { CommandBuilder } from "https://deno.land/x/dax@0.39.1/mod.ts";
+import $, { CommandBuilder } from "dax/mod.ts";
 
 Deno.test("CLI init and task execution -- minimal", async (t) => {
   const tmpDirName = await Deno.makeTempDir();

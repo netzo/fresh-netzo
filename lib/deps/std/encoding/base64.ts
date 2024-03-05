@@ -1,1 +1,1 @@
-export { encodeBase64 } from "https://deno.land/std@0.208.0/encoding/base64.ts";
+export { encodeBase64 } from "jsr:@std/encoding/base64";

@@ -3,9 +3,9 @@ import { error } from "../../../plugins/utils.ts";
 import { question } from "../../../deps/question/mod.ts";
 import type { Args as RawArgs } from "../args.ts";
 // never try to use import maps here, since this will be executed in a context that doesn't have them
-import { copy } from "https://deno.land/std@0.214.0/fs/copy.ts";
-import { join } from "https://deno.land/std@0.214.0/path/mod.ts";
-import $ from "https://deno.land/x/dax@0.39.1/mod.ts";
+import $ from "dax/mod.ts";
+import { copy } from "jsr:@std/fs/copy";
+import { join } from "jsr:@std/path";
 
 const help = `netzo init: create a new project from an existing template.
 
