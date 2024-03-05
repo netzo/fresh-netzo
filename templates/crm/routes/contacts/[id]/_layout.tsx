@@ -6,7 +6,7 @@ import type { NetzoState } from "netzo/mod.ts";
 import type { Contact } from "../../../data/contacts.ts";
 import type { Deal } from "../../../data/deals.ts";
 import { ContactHeader } from "../../../islands/contact.tsx";
-import { $client } from "../../../netzo.config.ts";
+import { $api } from "../../api.ts";
 
 export type ContactState = NetzoState & {
   id: string;
@@ -17,8 +17,8 @@ export type ContactState = NetzoState & {
 export default defineLayout<ContactState>(async (req, ctx) => {
   const { id } = ctx.params;
   const [contact, deals] = await Promise.all([
-    $client.contacts.get(id) as Contact,
-    $client.deals.find() as Deal[],
+    $api.contacts.get(id) as Contact,
+    $api.deals.find() as Deal[],
   ]);
 
   ctx.state.data = { id, contact, deals };
