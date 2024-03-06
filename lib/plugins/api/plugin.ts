@@ -65,7 +65,7 @@ export const api = (config: ApiConfig): Plugin<NetzoState> => {
   ];
 
   return {
-    name: "api",
+    name: "netzo.api",
     middlewares: [
       {
         path: config.path!,

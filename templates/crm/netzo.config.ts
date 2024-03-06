@@ -7,7 +7,7 @@ import unocssConfig from "./plugins/unocss.config.ts";
 export default defineConfig({
   plugins: [
     netzo.environments(),
-    // netzo.auth({ providers: { netzo: {} } }),
+    netzo.auth({ providers: { netzo: {} } }),
     netzo.api(apiConfig),
     unocss(unocssConfig),
   ],
