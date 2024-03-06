@@ -26,12 +26,11 @@ const unoResetCSS = `/* reset */
 a,hr{color:inherit}progress,sub,sup{vertical-align:baseline}blockquote,body,dd,dl,fieldset,figure,h1,h2,h3,h4,h5,h6,hr,menu,ol,p,pre,ul{margin:0}fieldset,legend,menu,ol,ul{padding:0}*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:var(--un-default-border-color,#e5e7eb)}html{line-height:1.5;-webkit-text-size-adjust:100%;text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"}body{line-height:inherit}hr{height:0;border-top-width:1px}abbr:where([title]){text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}menu,ol,ul{list-style:none}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]{display:none}
 `;
 
-export type UnocssConfig = {
+export type UnocssConfig<T extends object = Theme> = UserConfig<T> & {
   /**
-   * Inline UnoCSS config object, alternative to `uno.config.ts` file.
-   * This cannot be used with CSR mode enabled which requires an `uno.config.ts` file.
+   * File URL to the UnoCSS config file (MUST be set to `import.meta.url`)
    */
-  config: UserConfig<Theme>;
+  url: string;
   /**
    * Enable AOT mode - run UnoCSS to extract styles during the build task.
    * Enabled by default.
@@ -50,12 +49,9 @@ export type UnocssConfig = {
   csr?: boolean;
 };
 
-/**
- * Helper function for typing of config objects
- */
-export function defineConfig<T extends object = Theme>(config: UserConfig<T>) {
-  return config;
-}
+export const defineUnocssConfig = <T extends object = Theme>(
+  config: UnocssConfig<T>,
+): UnocssConfig<T> => config;
 
 declare module "preact" {
   namespace JSX {
@@ -125,38 +121,37 @@ async function runOverSource(uno: UnoGenerator): Promise<string> {
 /**
  * Plugin to automatically generates CSS utility classes
  *
- * IMPORTANT: must declare a valid "uno.config.ts" file and pass it as the "config" option.
+ * IMPORTANT: must declare a valid UnoCSS configuration file and pass it as the "config" option.
  *
- * @param config (UserConfig<Theme>) - inline UnoCSS config object declared at "uno.config.ts".
- * @param aot (boolean) - enables ahead-of-time (AOT) mode to run UnoCSS to extract styles during the build task (default: true)
- * @param ssr (boolean) - enables server-side rendering (SSR) mode to run UnoCSS live to extract styles during server renders (default: true)
- * @param csr (boolean) - enables client-side rendering (CSR) mode to run the UnoCSS runtime on the client to generate styles live in response to DOM events (default: true)
+ * @param config (UserConfig<Theme>) - inline UnoCSS config object extended with UnoCSS plugin options.
+ * @param config.url (string) - file URL to the UnoCSS config file (MUST be set to `import.meta.url`)
+ * @param config.aot (boolean) - enables ahead-of-time (AOT) mode to run UnoCSS to extract styles during the build task (default: true)
+ * @param config.ssr (boolean) - enables server-side rendering (SSR) mode to run UnoCSS live to extract styles during server renders (default: true)
+ * @param config.csr (boolean) - enables client-side rendering (CSR) mode to run the UnoCSS runtime on the client to generate styles live in response to DOM events (default: true)
  */
 export const unocss = ({
-  config,
+  url,
   aot = true,
   ssr = true,
   csr = true,
+  ...config
 }: UnocssConfig): Plugin<NetzoState> => {
-  // The "config" option is required. If using CSR mode this must come
-  // from an "uno.config.ts" in the project directory (not an inline object)
-  const configFileURL = new URL("./uno.config.ts", Deno.mainModule).href;
-
   // NOTE: Subhosting somehow fails when operating with and/or importing from
   // file:// URLs, so we remove the file:// prefix to avoid build/deployment errors
-  const configURL = configFileURL.replace("file://", "");
+  const configURL = url.replace("file://", "");
 
-  const configFileExists = existsSync(configURL, {
-    isFile: true,
-    isReadable: true,
-  });
-  // Serialize uno.config.ts contents to base64 ES import since default fresh serialization
+  // Serialize UnoCSS config contents to base64 ES import since default fresh serialization
   // (via esbuild) looses functions when bundling the client runtime script for CSR mode
-  if (csr && !configFileExists) {
-    throw new Error(`Missing "uno.config.ts" file in the project directory.`);
+  const exists = existsSync(configURL, { isFile: true, isReadable: true });
+  if (csr && !exists) {
+    throw new Error(
+      `Missing UnoCSS configuration file in the project directory.`,
+    );
   }
   if ((aot || ssr) && !config) {
-    throw new Error(`Missing "uno.config.ts" file in the project directory.`);
+    throw new Error(
+      `Missing UnoCSS configuration file in the project directory.`,
+    );
   }
 
   // Link to CSS file, if AOT mode is enabled

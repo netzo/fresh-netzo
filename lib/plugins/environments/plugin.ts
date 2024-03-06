@@ -13,7 +13,7 @@ export type EnvironmentsState = {};
  */
 export const environments = (): Plugin<NetzoState> => {
   return {
-    name: "environments",
+    name: "netzo.environments",
     configResolved: async (_config) => {
       if (!Deno.env.get("DENO_REGION")) await setEnvVarsIfRemoteProject();
     },

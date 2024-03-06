@@ -78,16 +78,16 @@ export const I18N: Record<string, string> = {
   // relations:
   "accounts": "Accounts",
   "account": "Account",
-  "accountId": "Account ID",
-  "accountIds": "Accounts IDs",
+  "accountId": "Account",
+  "accountIds": "Accounts",
   "contacts": "Contacts",
   "contact": "Contact",
-  "contactId": "Contact ID",
-  "contactIds": "Contacts IDs",
+  "contactId": "Contact",
+  "contactIds": "Contacts",
   "deals": "Deals",
   "deal": "Deal",
-  "dealId": "Deal ID",
-  "dealIds": "Deals IDs",
+  "dealId": "Deal",
+  "dealIds": "Deals",
 };
 
 // utils:

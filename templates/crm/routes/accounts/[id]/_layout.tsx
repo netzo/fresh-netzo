@@ -6,7 +6,7 @@ import type { NetzoState } from "netzo/mod.ts";
 import type { Account } from "../../../data/accounts.ts";
 import type { Deal } from "../../../data/deals.ts";
 import { AccountHeader } from "../../../islands/account.tsx";
-import { $client } from "../../../netzo.config.ts";
+import { $api } from "../../../plugins/api.config.ts";
 
 export type AccountState = NetzoState & {
   id: string;
@@ -17,8 +17,8 @@ export type AccountState = NetzoState & {
 export default defineLayout<AccountState>(async (req, ctx) => {
   const { id } = ctx.params;
   const [account, deals] = await Promise.all([
-    $client.accounts.get(id) as Account,
-    $client.deals.find() as Deal[],
+    $api.accounts.get(id) as Account,
+    $api.deals.find() as Deal[],
   ]);
 
   ctx.state.data = { id, account, deals };

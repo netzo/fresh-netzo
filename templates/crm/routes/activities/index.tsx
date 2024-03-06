@@ -5,7 +5,7 @@ import type { Activity } from "../../data/activities.ts";
 import type { Contact } from "../../data/contacts.ts";
 import type { Deal } from "../../data/deals.ts";
 import * as ActivitiesIslands from "../../islands/activities.tsx";
-import { $client } from "../../netzo.config.ts";
+import { $api } from "../../plugins/api.config.ts";
 
 type ActivitiesState = NetzoState & {
   activity: Activity;
@@ -18,10 +18,10 @@ type ActivitiesState = NetzoState & {
 export default defineRoute<ActivitiesState>(async (req, ctx) => {
   const { id } = ctx.params;
   const [accounts, contacts, deals, activities] = await Promise.all([
-    $client.accounts.find() as Account[],
-    $client.contacts.find() as Contact[],
-    $client.deals.find() as Deal[],
-    $client.activities.find() as Activity[],
+    $api.accounts.find() as Account[],
+    $api.contacts.find() as Contact[],
+    $api.deals.find() as Deal[],
+    $api.activities.find() as Activity[],
   ]);
 
   const data = {

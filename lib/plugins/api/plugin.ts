@@ -33,6 +33,8 @@ export type ApiConfig = {
   endpoints: ApiEndpoint[];
 };
 
+export const defineApiConfig = (config: ApiConfig): ApiConfig => config;
+
 export type ApiState = {
   [key: string]: Resource;
 };
@@ -63,7 +65,7 @@ export const api = (config: ApiConfig): Plugin<NetzoState> => {
   ];
 
   return {
-    name: "api",
+    name: "netzo.api",
     middlewares: [
       {
         path: config.path!,

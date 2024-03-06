@@ -72,7 +72,7 @@ export const auth = (config: AuthConfig): Plugin<NetzoState> => {
     "auth0",
     "okta",
   ].some((key) => !!config?.providers?.[key as AuthProvider]);
-  if (!authEnabled) return { name: "auth" }; // skip if auth but no providers are set
+  if (!authEnabled) return { name: "netzo.auth" }; // skip if auth but no providers are set
 
   config.title ??= "Sign In";
   config.description ??= "Sign in to access the app";
@@ -89,7 +89,7 @@ export const auth = (config: AuthConfig): Plugin<NetzoState> => {
   ];
 
   return {
-    name: "auth",
+    name: "netzo.auth",
     middlewares: [
       {
         path: "/",

@@ -9,12 +9,6 @@ import * as $accounts_id_layout from "./routes/accounts/[id]/_layout.tsx";
 import * as $accounts_id_index from "./routes/accounts/[id]/index.tsx";
 import * as $accounts_index from "./routes/accounts/index.tsx";
 import * as $activities_index from "./routes/activities/index.tsx";
-import * as $api_accounts from "./routes/api/accounts.ts";
-import * as $api_activities from "./routes/api/activities.ts";
-import * as $api_contacts from "./routes/api/contacts.ts";
-import * as $api_deals from "./routes/api/deals.ts";
-import * as $api_metrics from "./routes/api/metrics.ts";
-import * as $api_mod from "./routes/api/mod.ts";
 import * as $contacts_id_layout from "./routes/contacts/[id]/_layout.tsx";
 import * as $contacts_id_index from "./routes/contacts/[id]/index.tsx";
 import * as $contacts_index from "./routes/contacts/index.tsx";
@@ -42,12 +36,6 @@ const manifest = {
     "./routes/accounts/[id]/index.tsx": $accounts_id_index,
     "./routes/accounts/index.tsx": $accounts_index,
     "./routes/activities/index.tsx": $activities_index,
-    "./routes/api/accounts.ts": $api_accounts,
-    "./routes/api/activities.ts": $api_activities,
-    "./routes/api/contacts.ts": $api_contacts,
-    "./routes/api/deals.ts": $api_deals,
-    "./routes/api/metrics.ts": $api_metrics,
-    "./routes/api/mod.ts": $api_mod,
     "./routes/contacts/[id]/_layout.tsx": $contacts_id_layout,
     "./routes/contacts/[id]/index.tsx": $contacts_id_index,
     "./routes/contacts/index.tsx": $contacts_index,

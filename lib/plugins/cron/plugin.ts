@@ -18,5 +18,5 @@ export type CronState = {};
 export const cron = (config: CronConfig): Plugin<NetzoState> => {
   Deno.cron = proxyCron(config.kv); // [deno] proxy deno primitive
 
-  return { name: "cron" };
+  return { name: "netzo.cron" };
 };
