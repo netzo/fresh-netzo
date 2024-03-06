@@ -1,5 +1,5 @@
 import { authenticate, log, resolve } from "netzo/plugins/api/hooks/mod.ts";
-import { ApiConfig } from "netzo/plugins/api/plugin.ts";
+import { defineApiConfig } from "netzo/plugins/api/plugin.ts";
 import { DenoKvResource, Resource } from "netzo/plugins/api/resources/mod.ts";
 import type { Activity } from "../data/activities.ts";
 import { Contact } from "../data/contacts.ts";
@@ -14,7 +14,7 @@ export const $api = {
   activities: DenoKvResource({ prefix: ["activities"] }),
 };
 
-export default {
+export default defineApiConfig({
   path: "/api",
   endpoints: [
     {
@@ -75,7 +75,7 @@ export default {
       },
     },
   ],
-} satisfies ApiConfig;
+});
 
 // utils:
 

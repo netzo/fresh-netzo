@@ -9,7 +9,6 @@ import * as $accounts_id_layout from "./routes/accounts/[id]/_layout.tsx";
 import * as $accounts_id_index from "./routes/accounts/[id]/index.tsx";
 import * as $accounts_index from "./routes/accounts/index.tsx";
 import * as $activities_index from "./routes/activities/index.tsx";
-import * as $api from "./routes/api.ts";
 import * as $contacts_id_layout from "./routes/contacts/[id]/_layout.tsx";
 import * as $contacts_id_index from "./routes/contacts/[id]/index.tsx";
 import * as $contacts_index from "./routes/contacts/index.tsx";
@@ -37,7 +36,6 @@ const manifest = {
     "./routes/accounts/[id]/index.tsx": $accounts_id_index,
     "./routes/accounts/index.tsx": $accounts_index,
     "./routes/activities/index.tsx": $activities_index,
-    "./routes/api.ts": $api,
     "./routes/contacts/[id]/_layout.tsx": $contacts_id_layout,
     "./routes/contacts/[id]/index.tsx": $contacts_id_index,
     "./routes/contacts/index.tsx": $contacts_index,

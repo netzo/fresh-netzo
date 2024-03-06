@@ -2,7 +2,7 @@ import { defineRoute } from "$fresh/server.ts";
 import type { Account } from "../../data/accounts.ts";
 import { type Deal } from "../../data/deals.ts";
 import * as DealsIslands from "../../islands/deals.tsx";
-import { $api } from "../api.ts";
+import { $api } from "../../plugins/api.config.ts";
 
 // NOTE: cannot pass functions as props from routes (server) to islands (client)
 export default defineRoute(async (req, ctx) => {

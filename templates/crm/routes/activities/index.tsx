@@ -5,7 +5,7 @@ import type { Activity } from "../../data/activities.ts";
 import type { Contact } from "../../data/contacts.ts";
 import type { Deal } from "../../data/deals.ts";
 import * as ActivitiesIslands from "../../islands/activities.tsx";
-import { $api } from "../api.ts";
+import { $api } from "../../plugins/api.config.ts";
 
 type ActivitiesState = NetzoState & {
   activity: Activity;

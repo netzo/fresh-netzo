@@ -7,7 +7,7 @@ import type { Account } from "../../../data/accounts.ts";
 import type { Contact } from "../../../data/contacts.ts";
 import type { Deal } from "../../../data/deals.ts";
 import { DealHeader } from "../../../islands/deal.tsx";
-import { $api } from "../../api.ts";
+import { $api } from "../../../plugins/api.config.ts";
 
 export type DealState = NetzoState & {
   id: string;

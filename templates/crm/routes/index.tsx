@@ -2,7 +2,7 @@ import { defineRoute } from "$fresh/server.ts";
 import { Dashboard } from "../components/dashboard.tsx";
 import type { Account } from "../data/accounts.ts";
 import type { Deal } from "../data/deals.ts";
-import { $api } from "./api.ts";
+import { $api } from "../plugins/api.config.ts";
 
 export default defineRoute(async (req, ctx) => {
   const accountId = ctx.url.searchParams.get("accountId");

@@ -6,7 +6,7 @@ import type { NetzoState } from "netzo/mod.ts";
 import type { Contact } from "../../../data/contacts.ts";
 import type { Deal } from "../../../data/deals.ts";
 import { ContactHeader } from "../../../islands/contact.tsx";
-import { $api } from "../../api.ts";
+import { $api } from "../../../plugins/api.config.ts";
 
 export type ContactState = NetzoState & {
   id: string;

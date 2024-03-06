@@ -33,6 +33,8 @@ export type ApiConfig = {
   endpoints: ApiEndpoint[];
 };
 
+export const defineApiConfig = (config: ApiConfig): ApiConfig => config;
+
 export type ApiState = {
   [key: string]: Resource;
 };
