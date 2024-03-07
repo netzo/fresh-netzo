@@ -1,10 +1,8 @@
-import { type Signal } from "@preact/signals";
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
 } from "netzo/components/avatar.tsx";
-import { AutoForm } from "netzo/components/blocks/auto-form/auto-form.tsx";
 import { TableRowActions } from "netzo/components/blocks/table/table.tsx";
 import { Button } from "netzo/components/button.tsx";
 import {
@@ -13,11 +11,23 @@ import {
   CardHeader,
   CardTitle,
 } from "netzo/components/card.tsx";
-import { Form, useForm, zodResolver, type UseFormReturn } from "netzo/components/form.tsx";
+import { Combobox } from "netzo/components/combobox.tsx";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+  useForm,
+  zodResolver,
+  type UseFormReturn,
+} from "netzo/components/form.tsx";
+import { Input } from "netzo/components/input.tsx";
+import { Textarea } from "netzo/components/textarea.tsx";
 import { Contact, contactSchema, getContact } from "../data/contacts.ts";
 import type { Deal } from "../data/deals.ts";
-import { toPercent, toUSD } from "../data/mod.ts";
-import { useFormState } from "../utils.ts";
+import { I18N, toPercent, toUSD } from "../data/mod.ts";
 import { CardDeals } from "./account.tsx";
 
 type PageContactProps = {
@@ -32,15 +42,14 @@ export function PageContact(props: PageContactProps) {
     defaultValues: getContact(props.contact),
   });
 
-  const { values, status, onInput, onReset, onSubmit } = useFormState<Contact>(
-    form,
-    (data) =>
-      fetch(`/api/contacts/${props.contact.id}`, {
-        method: "PATCH",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(data),
-      }),
-  );
+  const onSubmit = async (data: Contact) => {
+    const response = await fetch(`/api/contacts/${props.contact.id}`, {
+      method: "PATCH",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    if (response.ok) globalThis.location.reload();
+  };
 
   return (
     <Form {...form}>
@@ -49,12 +58,12 @@ export function PageContact(props: PageContactProps) {
         className="h-full overflow-y-auto"
         onSubmit={form.handleSubmit(onSubmit)}
       >
-        <ContactHeader form={form} values={values} />
+        <ContactHeader form={form} />
 
         <div className="flex flex-col gap-4 p-4">
           <ContactMetrics {...props} />
           <div className="grid lg:grid-cols-2 gap-4">
-            <ContactCardFormUpdate values={values} />
+            <ContactCardFormUpdate {...props} form={form} />
             <CardDeals
               {...props}
               defaultValues={{
@@ -69,45 +78,42 @@ export function PageContact(props: PageContactProps) {
   );
 }
 
-function ContactHeader(props: {
-  form: UseFormReturn<Contact>;
-  values: Signal<Contact>;
-}) {
+function ContactHeader(props: { form: UseFormReturn<Contact> }) {
+  const original = props.form.getValues();
+  const { name, image } = original;
   return (
     <header className="flex items-center justify-between p-4">
       <div className="flex flex-row items-center justify-between gap-4">
         <Avatar className="h-12 w-12">
-          <AvatarImage src={props.values.value.image} />
+          <AvatarImage src={image} />
           <AvatarFallback>
-            {props.values.value.name[0].toUpperCase()}
+            {name?.[0].toUpperCase()}
           </AvatarFallback>
         </Avatar>
         <div className="grid gap-2">
           <CardTitle className="text-xl">
-            {props.values.value.name}
+            {name}
           </CardTitle>
         </div>
       </div>
       <div className="flex flex-row items-center gap-4">
         <TableRowActions
-          row={{ original: props.values.value }}
+          row={{ original }}
           resource="contacts"
           actions={["duplicate", "copyId", "remove"]}
         />
         <Button
-          form="contacts.patch"
-          variant="secondary"
           type="reset"
+          variant="secondary"
           disabled={!props.form.formState.isDirty}
         >
           Discard
         </Button>
         <Button
-          form="contacts.patch"
           type="submit"
           disabled={!props.form.formState.isDirty}
         >
-          {["loading"].includes(props.status.value)
+          {props.form.formState.isLoading
             ? <i className="mdi-loading h-4 w-4 animate-spin" />
             : "Save"}
         </Button>
@@ -253,23 +259,228 @@ function getMetricsContact(deals: Deal[]) {
   };
 }
 
-function ContactCardFormUpdate(props: { values: Signal<Contact> }) {
+function ContactCardFormUpdate(
+  { form, ...props }: PageContactProps & { form: UseFormReturn<Contact> },
+) {
+  const toOptions = ({ id, name }): Option => ({ value: id, label: name });
+  const accountOptions = props.accounts.map(toOptions);
+
   return (
     <CardContent>
-      <AutoForm
-        values={props.values.value}
-        formSchema={contactSchema.pick({
-          name: true,
-          image: true,
-          position: true,
-          department: true,
-          accountId: true,
-          emails: true,
-          phones: true,
-          links: true,
-        })}
-        onValuesChange={(v: Contact) => props.values.value = v}
+      <FormField
+        control={form.control}
+        name="name"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>{I18N["name"]}</FormLabel>
+            <FormControl>
+              <Input {...field} />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
       />
+      <FormField
+        control={form.control}
+        name="description"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>{I18N["description"]}</FormLabel>
+            <FormControl>
+              <Textarea {...field} />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+      <FormField
+        control={form.control}
+        name="image"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>{I18N["image"]}</FormLabel>
+            <FormControl>
+              <Input {...field} />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+      <FormField
+        control={form.control}
+        name="position"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>{I18N["position"]}</FormLabel>
+            <FormControl>
+              <Input {...field} />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+      <FormField
+        control={form.control}
+        name="department"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>{I18N["department"]}</FormLabel>
+            <FormControl>
+              <Input {...field} />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+      <FormField
+        control={form.control}
+        name="accountId"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>{I18N["accountId"]}</FormLabel>
+            <FormControl>
+              <Combobox {...field} options={accountOptions} />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+      <fielset>
+        <FormField
+          control={form.control}
+          name="emails.work"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{I18N["emails.work"]}</FormLabel>
+              <FormControl>
+                <Input {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="emails.personal"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{I18N["emails.personal"]}</FormLabel>
+              <FormControl>
+                <Input {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+      </fielset>
+      <fieldset>
+        <FormField
+          control={form.control}
+          name="phone.work"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{I18N["phone.work"]}</FormLabel>
+              <FormControl>
+                <Input {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="phone.mobile"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{I18N["phone.mobile"]}</FormLabel>
+              <FormControl>
+                <Input {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="phone.personal"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{I18N["phone.personal"]}</FormLabel>
+              <FormControl>
+                <Input {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+      </fieldset>
+      <fieldset>
+        <FormField
+          control={form.control}
+          name="links.website"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{I18N["links.website"]}</FormLabel>
+              <FormControl>
+                <Input {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="links.facebook"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{I18N["links.facebook"]}</FormLabel>
+              <FormControl>
+                <Input {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="links.linkedin"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{I18N["links.linkedin"]}</FormLabel>
+              <FormControl>
+                <Input {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="links.twitter"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{I18N["links.twitter"]}</FormLabel>
+              <FormControl>
+                <Input {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="links.other"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{I18N["links.other"]}</FormLabel>
+              <FormControl>
+                <Input {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+      </fieldset>
     </CardContent>
   );
 }

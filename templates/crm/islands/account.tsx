@@ -1,10 +1,8 @@
-import { type Signal } from "@preact/signals";
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
 } from "netzo/components/avatar.tsx";
-import { AutoForm } from "netzo/components/blocks/auto-form/auto-form.tsx";
 import { TableRowActions } from "netzo/components/blocks/table/table.tsx";
 import { Button } from "netzo/components/button.tsx";
 import {
@@ -30,19 +28,18 @@ import {
   FormLabel,
   FormMessage,
   useForm,
-  zodResolver,
   type UseFormReturn,
+  zodResolver,
 } from "netzo/components/form.tsx";
 import { IconCopy } from "netzo/components/icon-copy.tsx";
 import { Input } from "netzo/components/input.tsx";
 import { Textarea } from "netzo/components/textarea.tsx";
 import { cn } from "netzo/components/utils.ts";
-import { Account, accountSchema, getAccount } from "../data/accounts.ts";
-import type { Deal } from "../data/deals.ts";
-import { dealSchema, getDeal } from "../data/deals.ts";
+import type { Account } from "netzo/data/accounts.ts";
+import { accountSchema, getAccount } from "../data/accounts.ts";
+import { Deal, dealSchema, getDeal } from "../data/deals.ts";
 import { I18N, toPercent, toUSD } from "../data/mod.ts";
-import { GROUPS } from "../islands/deals.tsx";
-import { useFormState } from "../utils.ts";
+import { GROUPS } from "./deals.tsx";
 
 type PageAccountProps = {
   id: string;
@@ -56,15 +53,14 @@ export function PageAccount(props: PageAccountProps) {
     defaultValues: getAccount(props.account),
   });
 
-  const { values, status, onInput, onReset, onSubmit } = useFormState<Account>(
-    form,
-    (data) =>
-      fetch(`/api/accounts/${props.account.id}`, {
-        method: "PATCH",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(data),
-      }),
-  );
+  const onSubmit = async (data: Account) => {
+    const response = await fetch(`/api/accounts/${props.account.id}`, {
+      method: "PATCH",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    if (response.ok) globalThis.location.reload();
+  };
 
   return (
     <Form {...form}>
@@ -73,12 +69,12 @@ export function PageAccount(props: PageAccountProps) {
         className="h-full overflow-y-auto"
         onSubmit={form.handleSubmit(onSubmit)}
       >
-        <AccountHeader form={form} values={values} />
+        <AccountHeader form={form} />
 
         <div className="flex flex-col gap-4 p-4">
           <AccountMetrics {...props} />
           <div className="grid lg:grid-cols-2 gap-4">
-            <AccountCardFormUpdate values={values} />
+            <AccountCardFormUpdate {...props} form={form} />
             <CardDeals
               {...props}
               defaultValues={{ accountId: props.account.id }}
@@ -90,45 +86,42 @@ export function PageAccount(props: PageAccountProps) {
   );
 }
 
-function AccountHeader(props: {
-  form: UseFormReturn<Account>;
-  values: Signal<Account>;
-}) {
+function AccountHeader(props: { form: UseFormReturn<Account> }) {
+  const original = props.form.getValues();
+  const { name, image } = original;
   return (
     <header className="flex items-center justify-between p-4">
       <div className="flex flex-row items-center justify-between gap-4">
         <Avatar className="h-12 w-12">
-          <AvatarImage src={props.values.value.image} />
+          <AvatarImage src={image} />
           <AvatarFallback>
-            {props.values.value.name[0].toUpperCase()}
+            {name?.[0].toUpperCase()}
           </AvatarFallback>
         </Avatar>
         <div className="grid gap-2">
           <CardTitle className="text-xl">
-            {props.values.value.name}
+            {name}
           </CardTitle>
         </div>
       </div>
       <div className="flex flex-row items-center gap-4">
         <TableRowActions
-          row={{ original: props.values.value }}
+          row={{ original }}
           resource="accounts"
           actions={["duplicate", "copyId", "remove"]}
         />
         <Button
-          form="accounts.patch"
-          variant="secondary"
           type="reset"
+          variant="secondary"
           disabled={!props.form.formState.isDirty}
         >
           Discard
         </Button>
         <Button
-          form="accounts.patch"
           type="submit"
           disabled={!props.form.formState.isDirty}
         >
-          {["loading"].includes(props.status.value)
+          {props.form.formState.isLoading
             ? <i className="mdi-loading h-4 w-4 animate-spin" />
             : "Save"}
         </Button>
@@ -274,20 +267,141 @@ function getMetricsAccount(deals: Deal[]) {
   };
 }
 
-function AccountCardFormUpdate(props: { values: Signal<Account> }) {
+function AccountCardFormUpdate({ form }: { form: UseFormReturn<Account> }) {
   return (
     <CardContent>
-      <AutoForm
-        values={props.values.value}
-        formSchema={accountSchema.pick({
-          name: true,
-          image: true,
-          email: true,
-          phone: true,
-          links: true,
-        })}
-        onValuesChange={(v: Account) => props.values.value = v}
+      <FormField
+        control={form.control}
+        name="name"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>{I18N["name"]}</FormLabel>
+            <FormControl>
+              <Input {...field} />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
       />
+      <FormField
+        control={form.control}
+        name="description"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>{I18N["description"]}</FormLabel>
+            <FormControl>
+              <Textarea {...field} />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+      <FormField
+        control={form.control}
+        name="image"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>{I18N["image"]}</FormLabel>
+            <FormControl>
+              <Input {...field} />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+      <FormField
+        control={form.control}
+        name="email"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>{I18N["email"]}</FormLabel>
+            <FormControl>
+              <Input {...field} />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+      <FormField
+        control={form.control}
+        name="phone"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>{I18N["phone"]}</FormLabel>
+            <FormControl>
+              <Input {...field} />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+      <fieldset>
+        <FormField
+          control={form.control}
+          name="links.website"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{I18N["links.website"]}</FormLabel>
+              <FormControl>
+                <Input {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="links.facebook"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{I18N["links.facebook"]}</FormLabel>
+              <FormControl>
+                <Input {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="links.linkedin"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{I18N["links.linkedin"]}</FormLabel>
+              <FormControl>
+                <Input {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="links.twitter"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{I18N["links.twitter"]}</FormLabel>
+              <FormControl>
+                <Input {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="links.other"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{I18N["links.other"]}</FormLabel>
+              <FormControl>
+                <Input {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+      </fieldset>
     </CardContent>
   );
 }
@@ -300,15 +414,15 @@ export function CardDeals(
     defaultValues: getDeal(props.defaultValues),
   });
 
-  const { values, status, onInput, onReset, onSubmit } = useFormState<Deal>(
-    form,
-    (data) =>
-      fetch(`/api/deals`, {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(data),
-      }).then(() => globalThis.location.reload()),
-  );
+  const onSubmit = async (data: Deal) => {
+    const response = await fetch(`/api/deals`, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(data),
+    });
+
+    if (response.ok) globalThis.location.reload();
+  };
 
   // NOTE: must manually invoke submit because submit button isteleported
   // by dialog out of form (see https://github.com/shadcn-ui/ui/issues/709)
@@ -332,8 +446,6 @@ export function CardDeals(
             <Form {...form}>
               <form
                 id="deals.create"
-                onInput={onInput}
-                onReset={onReset}
                 onSubmit={form.handleSubmit(onSubmit)}
               >
                 <FormField
@@ -421,7 +533,7 @@ export function CardDeals(
 
             <DialogFooter>
               <Button form="deals.create" type="submit">
-                {["loading"].includes(status.value)
+                {form.formState.isLoading
                   ? <i className="mdi-loading h-4 w-4 animate-spin" />
                   : "Create"}
               </Button>

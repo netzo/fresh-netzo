@@ -34,13 +34,12 @@ import { cn } from "netzo/components/utils.ts";
 import type { Account } from "netzo/data/accounts.ts";
 import type { Contact } from "netzo/data/contacts.ts";
 import {
+  type Activity,
   activitySchema,
   getActivity,
-  type Activity,
 } from "../data/activities.ts";
 import type { Deal } from "../data/deals.ts";
 import { I18N, toDateTime } from "../data/mod.ts";
-import { useFormState } from "../utils.ts";
 
 const defaultLayout = [50, 50];
 
@@ -238,15 +237,15 @@ function FormUpdate(props: {
     defaultValues: getActivity(props.activity),
   });
 
-  const { values, status, onInput, onReset, onSubmit } = useFormState<Activity>(
-    form,
-    (data) =>
-      fetch(`/api/activities/${props.activity.id}`, {
-        method: "PATCH",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(data),
-      }).then(() => globalThis.location.reload()),
-  );
+  const onSubmit = async (data: Activity) => {
+    const response = await fetch(`/api/activities/${props.activity.id}`, {
+      method: "PATCH",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(data),
+    });
+
+    if (response.ok) globalThis.location.reload();
+  };
 
   const toOptions = ({ id, name }): Option => ({ value: id, label: name });
   const accountOptions = props.accounts.map(toOptions);
@@ -258,8 +257,6 @@ function FormUpdate(props: {
       <form
         id="activities.patch"
         className="space-y-2"
-        onChange={onInput}
-        onReset={onReset}
         onSubmit={form.handleSubmit(onSubmit)}
       >
         <header className="flex items-center justify-between p-4">
@@ -271,7 +268,7 @@ function FormUpdate(props: {
           </div>
           <div className="flex items-center space-x-2">
             <TableRowActions
-              row={{ original: values.value }}
+              row={{ original: form.getValues() }}
               resource="accounts"
               actions={["duplicate", "copyId", "remove"]}
             />
@@ -288,7 +285,7 @@ function FormUpdate(props: {
               type="submit"
               disabled={!form.formState.isDirty}
             >
-              {["loading"].includes(status.value)
+              {form.formState.isLoading
                 ? <i className="mdi-loading h-4 w-4 animate-spin" />
                 : "Save"}
             </Button>
@@ -421,7 +418,7 @@ function ActivityIcon({ type }: { type: string }) {
     },
     videocall: {
       icon: "mdi-video",
-      text: "Call",
+      text: "Videocall",
       className: `bg-purple hover:bg-purple bg-opacity-80 text-white`,
     },
     meeting: {
