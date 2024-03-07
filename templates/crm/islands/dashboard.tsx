@@ -4,7 +4,7 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "netzo/components/avatar.tsx";
-import { Plot } from "netzo/components/blocks/plot/mod.ts";
+import * as Plot from "netzo/components/blocks/plot.tsx";
 import { Button } from "netzo/components/button.tsx";
 import {
   Card,

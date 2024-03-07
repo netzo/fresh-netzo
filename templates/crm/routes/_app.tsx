@@ -1,6 +1,6 @@
 import { Partial } from "$fresh/runtime.ts";
 import { defineApp } from "$fresh/server.ts";
-import { NetzoToolbar } from "netzo/components/blocks/netzo-toolbar/netzo-toolbar.tsx";
+import { NetzoToolbar } from "netzo/components/blocks/netzo-toolbar.tsx";
 import { Head } from "netzo/components/head.tsx";
 import { cn } from "netzo/components/utils.ts";
 import type { NetzoState } from "netzo/mod.ts";
