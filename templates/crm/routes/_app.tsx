@@ -11,7 +11,7 @@ export default defineApp<NetzoState>((req, ctx) => {
   const mustAuth = ctx.state?.auth?.isAuthenticated === false;
 
   return (
-    <html className="h-full overflow-hidden">
+    <html>
       <head>
         <Head
           title="Netzo CRM"

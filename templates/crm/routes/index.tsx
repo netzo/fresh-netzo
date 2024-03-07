@@ -1,15 +1,15 @@
 import { Partial } from "$fresh/runtime.ts";
 import { defineRoute } from "$fresh/server.ts";
 import { Button } from "netzo/components/button.tsx";
+import type { Account } from "../data/accounts.ts";
+import type { Deal } from "../data/deals.ts";
 import {
+  DashboardAccountSelect,
   DashboardCardPlotDealsPerMonth,
   DashboardCardPlotDealsPerStatus,
   DashboardCardPlotDealsThroughTime,
   DashboardCards,
-} from "../components/dashboard.tsx";
-import type { Account } from "../data/accounts.ts";
-import type { Deal } from "../data/deals.ts";
-import { DashboardAccountSelect } from "../islands/dashboard.tsx";
+} from "../islands/dashboard.tsx";
 import { $api } from "../plugins/api.config.ts";
 
 export default defineRoute(async (req, ctx) => {
@@ -23,7 +23,7 @@ export default defineRoute(async (req, ctx) => {
   const account = accounts.find(({ id }) => id === accountId) as Account;
 
   return (
-    <div className="h-screen overflow-y-auto p-4">
+    <div className="h-100vh overflow-y-auto p-4">
       <div className="p-4 space-y-4">
         <div f-client-nav className="flex items-center">
           <DashboardAccountSelect accounts={accounts} account={account} />
