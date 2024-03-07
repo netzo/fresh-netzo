@@ -1,10 +1,8 @@
-import { useSignal } from "@preact/signals";
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
 } from "netzo/components/avatar.tsx";
-import { AutoForm } from "netzo/components/blocks/auto-form/auto-form.tsx";
 import { TableRowActions } from "netzo/components/blocks/table/table.tsx";
 import { Button } from "netzo/components/button.tsx";
 import {
@@ -13,31 +11,84 @@ import {
   CardHeader,
   CardTitle,
 } from "netzo/components/card.tsx";
+import { Combobox } from "netzo/components/combobox.tsx";
 import {
-  Dialog,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "netzo/components/dialog.tsx";
-import { useForm, zodResolver } from "netzo/components/form.tsx";
-import { ContactDeals } from "../components/contact.tsx";
-import { Contact, contactSchema } from "../data/contacts.ts";
-import { Deal, dealSchema } from "../data/deals.ts";
-import { toPercent, toUSD } from "../data/mod.ts";
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+  useForm,
+  type UseFormReturn,
+  zodResolver,
+} from "netzo/components/form.tsx";
+import { Input } from "netzo/components/input.tsx";
+import { Textarea } from "netzo/components/textarea.tsx";
+import { Contact, contactSchema, getContact } from "../data/contacts.ts";
+import type { Deal } from "../data/deals.ts";
+import { I18N, toPercent, toUSD } from "../data/mod.ts";
+import { CardDeals } from "./account.tsx";
 
-export function ContactHeader(props: { contact: Contact }) {
-  const { name = "", image, email, phone } = props.contact;
-  const [first = "", last = ""] = name.split(" ");
-  const initials = `${first[0]}${last[0]}`?.toUpperCase();
+type PageContactProps = {
+  id: string;
+  contact: Contact;
+  deals: Deal[];
+};
 
+export function PageContact(props: PageContactProps) {
+  const form = useForm<Contact>({
+    resolver: zodResolver(contactSchema),
+    defaultValues: getContact(props.contact),
+  });
+
+  const onSubmit = async (data: Contact) => {
+    const response = await fetch(`/api/contacts/${props.contact.id}`, {
+      method: "PATCH",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    if (response.ok) globalThis.location.reload();
+  };
+
+  return (
+    <Form {...form}>
+      <form
+        id="contacts.patch"
+        className="h-full overflow-y-auto"
+        onSubmit={form.handleSubmit(onSubmit)}
+      >
+        <ContactHeader form={form} />
+
+        <div className="flex flex-col gap-4 p-4">
+          <ContactMetrics {...props} />
+          <div className="grid lg:grid-cols-2 gap-4">
+            <ContactCardFormUpdate {...props} form={form} />
+            <CardDeals
+              {...props}
+              defaultValues={{
+                accountId: props.contact.accountId,
+                contactIds: [props.contact.id],
+              }}
+            />
+          </div>
+        </div>
+      </form>
+    </Form>
+  );
+}
+
+function ContactHeader(props: { form: UseFormReturn<Contact> }) {
+  const original = props.form.getValues();
+  const { name, image } = original;
   return (
     <header className="flex items-center justify-between p-4">
       <div className="flex flex-row items-center justify-between gap-4">
         <Avatar className="h-12 w-12">
           <AvatarImage src={image} />
-          <AvatarFallback>{initials}</AvatarFallback>
+          <AvatarFallback>
+            {name?.[0].toUpperCase()}
+          </AvatarFallback>
         </Avatar>
         <div className="grid gap-2">
           <CardTitle className="text-xl">
@@ -47,17 +98,32 @@ export function ContactHeader(props: { contact: Contact }) {
       </div>
       <div className="flex flex-row items-center gap-4">
         <TableRowActions
-          row={{ original: props.contact }}
+          row={{ original }}
           resource="contacts"
           actions={["duplicate", "copyId", "remove"]}
         />
+        <Button
+          type="reset"
+          variant="secondary"
+          disabled={!props.form.formState.isDirty}
+        >
+          Discard
+        </Button>
+        <Button
+          type="submit"
+          disabled={!props.form.formState.isDirty}
+        >
+          {props.form.formState.isLoading
+            ? <i className="mdi-loading h-4 w-4 animate-spin" />
+            : "Save"}
+        </Button>
       </div>
     </header>
   );
 }
 
-export function ContactMetrics(props: { contact: Contact; deals: Deal[] }) {
-  const metrics = resolveContactMetrics(props.deals);
+function ContactMetrics(props: PageContactProps) {
+  const metrics = getMetricsContact(props.deals);
 
   return (
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
@@ -129,7 +195,7 @@ export function ContactMetrics(props: { contact: Contact; deals: Deal[] }) {
   );
 }
 
-function resolveContactMetrics(deals: Deal[]) {
+function getMetricsContact(deals: Deal[]) {
   // Total Number of Deals: represents the total number of deals associated with the data.
   const totalDeals = deals.length;
 
@@ -193,151 +259,228 @@ function resolveContactMetrics(deals: Deal[]) {
   };
 }
 
-export function ContactCardForm(props: { contact: Contact }) {
-  const contact = useSignal(props.contact);
-  const status = useSignal<"disabled" | "enabled" | "loading">("disabled");
-
-  const form = useForm<Contact>({
-    resolver: zodResolver(contactSchema),
-    defaultValues: contact.value,
-  });
-
-  const onValuesChange = (values: Contact) => {
-    if (!["enabled"].includes(status.value)) status.value = "enabled";
-    contact.value = values;
-  };
-
-  const onClickUpdate = async () => {
-    status.value = "loading";
-    try {
-      // ✅ This will be type-safe and validated.
-      await fetch(`/api/contacts/${contact.value.id}`, {
-        method: "PATCH",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(contact.value),
-      });
-      setTimeout(() => status.value = "disabled", 1000);
-    } catch (error) {
-      setTimeout(() => status.value = "enabled", 1000);
-    }
-  };
+function ContactCardFormUpdate(
+  { form, ...props }: PageContactProps & { form: UseFormReturn<Contact> },
+) {
+  const toOptions = ({ id, name }): Option => ({ value: id, label: name });
+  const accountOptions = props.accounts.map(toOptions);
 
   return (
-    <Card>
-      <CardHeader className="flex flex-row items-center justify-between pt-2">
-        <CardTitle>
-          General
-        </CardTitle>
-        <Button
-          variant="default"
-          size="sm"
-          disabled={status.value === "disabled"}
-          onClick={onClickUpdate}
-        >
-          {["loading"].includes(status.value)
-            ? <i className="mdi-loading h-4 w-4 animate-spin" />
-            : "Update"}
-        </Button>
-      </CardHeader>
-      <CardContent>
-        <AutoForm
-          values={contact.value}
-          formSchema={contactSchema.pick({
-            name: true,
-            image: true,
-            position: true,
-            department: true,
-            accountId: true,
-            emails: true,
-            phones: true,
-            links: true,
-          })}
-          onValuesChange={onValuesChange}
+    <CardContent>
+      <FormField
+        control={form.control}
+        name="name"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>{I18N["name"]}</FormLabel>
+            <FormControl>
+              <Input {...field} />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+      <FormField
+        control={form.control}
+        name="description"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>{I18N["description"]}</FormLabel>
+            <FormControl>
+              <Textarea {...field} />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+      <FormField
+        control={form.control}
+        name="image"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>{I18N["image"]}</FormLabel>
+            <FormControl>
+              <Input {...field} />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+      <FormField
+        control={form.control}
+        name="position"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>{I18N["position"]}</FormLabel>
+            <FormControl>
+              <Input {...field} />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+      <FormField
+        control={form.control}
+        name="department"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>{I18N["department"]}</FormLabel>
+            <FormControl>
+              <Input {...field} />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+      <FormField
+        control={form.control}
+        name="accountId"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>{I18N["accountId"]}</FormLabel>
+            <FormControl>
+              <Combobox {...field} options={accountOptions} />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+      <fielset>
+        <FormField
+          control={form.control}
+          name="emails.work"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{I18N["emails.work"]}</FormLabel>
+              <FormControl>
+                <Input {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
         />
-      </CardContent>
-    </Card>
-  );
-}
-
-export function ContactCardDeals(props: { contact: Contact; deals: Deal[] }) {
-  const deal = useSignal<Partial<Deal>>({
-    name: "",
-    status: "lead",
-    amount: 0,
-    currencyCode: "USD",
-    contactId: props.contact.id,
-    contactIds: [],
-  });
-  const status = useSignal<"disabled" | "enabled" | "loading">("disabled");
-
-  const form = useForm<Deal>({
-    resolver: zodResolver(dealSchema),
-    defaultValues: deal.value,
-  });
-
-  const onValuesChange = (values: Deal) => {
-    if (!["enabled"].includes(status.value)) status.value = "enabled";
-    deal.value = values;
-  };
-
-  const onClickCreate = async () => {
-    status.value = "loading";
-    try {
-      // ✅ This will be type-safe and validated.
-      await fetch(`/api/deals`, {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(deal.value),
-      });
-      setTimeout(() => status.value = "disabled", 1000);
-      globalThis.location.reload();
-    } catch (error) {
-      setTimeout(() => status.value = "enabled", 1000);
-    }
-  };
-
-  return (
-    <Card>
-      <CardHeader className="flex flex-row items-center justify-between pt-2">
-        <CardTitle>
-          Contact Deals
-        </CardTitle>
-        <Dialog>
-          <DialogTrigger asChild>
-            <Button variant="default" size="sm" className="ml-2">
-              Create Deal
-            </Button>
-          </DialogTrigger>
-          <DialogContent className="h-[calc(100%-70px)] overflow-y-auto">
-            <DialogHeader className="text-left">
-              <DialogTitle>Create Deal</DialogTitle>
-            </DialogHeader>
-            <AutoForm
-              values={deal.value}
-              formSchema={dealSchema.pick({
-                name: true,
-                status: true,
-                amount: true,
-              })}
-              onValuesChange={onValuesChange}
-            />
-            <DialogFooter>
-              <Button
-                variant="default"
-                disabled={status.value === "disabled"}
-                onClick={onClickCreate}
-              >
-                {["loading"].includes(status.value)
-                  ? <i className="mdi-loading h-4 w-4 animate-spin" />
-                  : "Create"}
-              </Button>
-            </DialogFooter>
-          </DialogContent>
-        </Dialog>
-      </CardHeader>
-      <CardContent>
-        <ContactDeals deals={props.deals} />
-      </CardContent>
-    </Card>
+        <FormField
+          control={form.control}
+          name="emails.personal"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{I18N["emails.personal"]}</FormLabel>
+              <FormControl>
+                <Input {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+      </fielset>
+      <fieldset>
+        <FormField
+          control={form.control}
+          name="phone.work"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{I18N["phone.work"]}</FormLabel>
+              <FormControl>
+                <Input {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="phone.mobile"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{I18N["phone.mobile"]}</FormLabel>
+              <FormControl>
+                <Input {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="phone.personal"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{I18N["phone.personal"]}</FormLabel>
+              <FormControl>
+                <Input {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+      </fieldset>
+      <fieldset>
+        <FormField
+          control={form.control}
+          name="links.website"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{I18N["links.website"]}</FormLabel>
+              <FormControl>
+                <Input {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="links.facebook"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{I18N["links.facebook"]}</FormLabel>
+              <FormControl>
+                <Input {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="links.linkedin"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{I18N["links.linkedin"]}</FormLabel>
+              <FormControl>
+                <Input {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="links.twitter"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{I18N["links.twitter"]}</FormLabel>
+              <FormControl>
+                <Input {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="links.other"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{I18N["links.other"]}</FormLabel>
+              <FormControl>
+                <Input {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+      </fieldset>
+    </CardContent>
   );
 }

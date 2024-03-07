@@ -132,11 +132,15 @@ export default async function (rawArgs: RawArgs): Promise<void> {
     error("Too many positional arguments given.");
   }
 
+  // TODO: see https://github.com/netzo/app/issues/419
+  // const url = `${Deno.cwd()}/netzo.config.ts`;
+  // const netzoConfig: NetzoConfig = await $`deno eval "console.log(JSON.stringify((await import(${url})).default))"`.json();
+
   const entrypoint = rawArgs._[0] || (await exists("main.ts"))
     ? "main.ts" // assume main.ts if it exists (skip prompt)
     : await question("input", "Enter the entrypoint file path:", "main.ts");
   if (!entrypoint) Deno.exit(1); // exit directly if cancelled/escaped
-  if (!await exists(entrypoint)) error(LOGS.entrypointNotFound(entrypoint));
+  if (!await exists(entrypoint)) error(LOGS.notFoundEntrypoint(entrypoint));
 
   let project = args.project;
   if (!project) {

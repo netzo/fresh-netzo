@@ -62,8 +62,8 @@ export const GROUPS: UseKanbanOptions<Deal>["group"]["groups"] = [
   },
 ];
 
-export function Main({ data }: { data: Deal[] }) {
-  const table = useTable<Deal>(data, {
+export function PageDeals(props: { deals: Deal[] }) {
+  const table = useTable<Deal>(props.deals, {
     resource: "deals",
     idField: "id",
     search: {
@@ -74,7 +74,8 @@ export function Main({ data }: { data: Deal[] }) {
       {
         column: "accountId",
         title: I18N.account,
-        options: [...new Set(data.map((item) => item.account).flat())].sort()
+        options: [...new Set(props.deals.map((item) => item.account).flat())]
+          .sort()
           .map(
             (
               value,
@@ -147,7 +148,7 @@ export function Main({ data }: { data: Deal[] }) {
 }
 
 // adapted from https://github.com/Georgegriff/react-dnd-kit-tailwind-shadcn-ui/blob/main/src/components/BoardGroup.tsx
-export function KanbanGroup({
+function KanbanGroup({
   group,
   items,
   isOverlay,
@@ -195,7 +196,7 @@ export function KanbanGroup({
 }
 
 // see "Calling children as a function" from https://stackoverflow.com/a/32371612
-export function KanbanCard({ item, isOverlay, options }: KanbanCardProps) {
+function KanbanCard({ item, isOverlay, options }: KanbanCardProps) {
   const groupBy = options.group.column;
 
   const { badge } = options.group.groups.find((c) => c.id === item?.[groupBy]);

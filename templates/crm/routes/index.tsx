@@ -1,7 +1,15 @@
+import { Partial } from "$fresh/runtime.ts";
 import { defineRoute } from "$fresh/server.ts";
-import { Dashboard } from "../components/dashboard.tsx";
+import { Button } from "netzo/components/button.tsx";
+import {
+  DashboardCardPlotDealsPerMonth,
+  DashboardCardPlotDealsPerStatus,
+  DashboardCardPlotDealsThroughTime,
+  DashboardCards,
+} from "../components/dashboard.tsx";
 import type { Account } from "../data/accounts.ts";
 import type { Deal } from "../data/deals.ts";
+import { DashboardAccountSelect } from "../islands/dashboard.tsx";
 import { $api } from "../plugins/api.config.ts";
 
 export default defineRoute(async (req, ctx) => {
@@ -16,7 +24,30 @@ export default defineRoute(async (req, ctx) => {
 
   return (
     <div className="h-screen overflow-y-auto p-4">
-      <Dashboard data={[metrics, accounts, deals, account]} />
+      <div className="p-4 space-y-4">
+        <div f-client-nav className="flex items-center">
+          <DashboardAccountSelect accounts={accounts} account={account} />
+          {/* <MainNav className="mx-6" /> */}
+          <div className="ml-auto flex items-center space-x-4">
+            <Button onClick={() => globalThis.print()}>
+              <i className="mdi-printer w-4 h-4 mr-2" />
+              Print PDF
+            </Button>
+          </div>
+        </div>
+
+        <Partial name="main-content">
+          <DashboardCards data={metrics} account={account} />
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-7 gap-4">
+            <DashboardCardPlotDealsPerMonth data={metrics} />
+
+            <DashboardCardPlotDealsPerStatus data={metrics} />
+
+            <DashboardCardPlotDealsThroughTime data={metrics} />
+          </div>
+        </Partial>
+      </div>
     </div>
   );
 });
