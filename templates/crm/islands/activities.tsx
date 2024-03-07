@@ -4,6 +4,7 @@ import {
   TableActionsReload,
   TableFilters,
   TablePagination,
+  TableRowActions,
   TableSearch,
   TableView,
   useTable,
@@ -33,30 +34,29 @@ import { cn } from "netzo/components/utils.ts";
 import type { Account } from "netzo/data/accounts.ts";
 import type { Contact } from "netzo/data/contacts.ts";
 import {
-  type Activity,
   activitySchema,
   getActivity,
+  type Activity,
 } from "../data/activities.ts";
 import type { Deal } from "../data/deals.ts";
 import { I18N, toDateTime } from "../data/mod.ts";
+import { useFormState } from "../utils.ts";
 
-export function Main({ data, defaultLayout = [50, 50] }: {
-  data: {
-    activity: Activity;
-    accounts: Account[];
-    contacts: Contact[];
-    deals: Deal[];
-    activities: Activity[];
-  };
-  defaultLayout?: [number, number];
+const defaultLayout = [50, 50];
+
+export function PageActivities(props: {
+  activity: Activity;
+  accounts: Account[];
+  contacts: Contact[];
+  deals: Deal[];
+  activities: Activity[];
 }) {
-  const { accounts, contacts, deals, activities } = data;
-  const activity = useSignal(data.activity);
+  const activity = useSignal(props.activity);
 
   // const { width = 0 } = useWindowSize(); causes unnecessary re-renders
   const width = globalThis?.innerWidth;
 
-  const table = useTable<Activity>(data.activities, {
+  const table = useTable<Activity>(props.activities, {
     resource: "activities",
     idField: "id",
     search: {
@@ -67,7 +67,7 @@ export function Main({ data, defaultLayout = [50, 50] }: {
       {
         column: "type",
         title: I18N.type,
-        options: [...new Set(data.activities.map((item) => item.type).flat())]
+        options: [...new Set(props.activities.map((item) => item.type).flat())]
           .sort()
           .map((
             value,
@@ -79,7 +79,7 @@ export function Main({ data, defaultLayout = [50, 50] }: {
       {
         column: "accountIds",
         title: I18N.accountIds,
-        options: data.accounts
+        options: props.accounts
           .sort((a, b) => a.name.localeCompare(b.name))
           .map((
             { id, name },
@@ -119,7 +119,7 @@ export function Main({ data, defaultLayout = [50, 50] }: {
       });
       if (response.ok) {
         const data = await response.json();
-        // globalThis.location.href = `/activities/${data.id}`;
+        // globalThis.location.href = `/activities/${props.id}`;
       }
     }
   };
@@ -128,7 +128,11 @@ export function Main({ data, defaultLayout = [50, 50] }: {
     <ResizablePanelGroup
       direction={(!width || width > 768) ? "horizontal" : "vertical"}
     >
-      <ResizablePanel defaultSize={defaultLayout[0]} minSize={30}>
+      <ResizablePanel
+        defaultSize={defaultLayout[0]}
+        minSize={30}
+        className="grid"
+      >
         <header className="p-4 space-y-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center flex-1 space-x-2">
@@ -186,7 +190,7 @@ export function Main({ data, defaultLayout = [50, 50] }: {
                           <ActivityIcon type={row.original.type} />
                           {row.original.accountIds.map((id: string) => (
                             <Badge variant="secondary">
-                              {data.accounts.find((account) =>
+                              {props.accounts.find((account) =>
                                 account.id === id
                               )?.name}
                             </Badge>
@@ -212,12 +216,9 @@ export function Main({ data, defaultLayout = [50, 50] }: {
       <ResizablePanel defaultSize={defaultLayout[1]}>
         <div className="grid h-full overflow-y-auto">
           <FormUpdate
+            {...props}
             key={activity.value.id}
             activity={activity.value}
-            accounts={accounts}
-            contacts={contacts}
-            deals={deals}
-            activities={activities}
           />
         </div>
       </ResizablePanel>
@@ -225,40 +226,42 @@ export function Main({ data, defaultLayout = [50, 50] }: {
   );
 }
 
-export function FormUpdate(
-  props: {
-    activity: Activity;
-    accounts: Account[];
-    contacts: Contact[];
-    deals: Deal[];
-    activities: Activity[];
-  },
-) {
-  const status = useSignal<"disabled" | "loading">("disabled");
-
+function FormUpdate(props: {
+  activity: Activity;
+  accounts: Account[];
+  contacts: Contact[];
+  deals: Deal[];
+  activities: Activity[];
+}) {
   const form = useForm<Activity>({
     resolver: zodResolver(activitySchema),
-    defaultValues: activitySchema.parse(props.activity ?? {}), // sets default values
+    defaultValues: getActivity(props.activity),
   });
+
+  const { values, status, onInput, onReset, onSubmit } = useFormState<Activity>(
+    form,
+    (data) =>
+      fetch(`/api/activities/${props.activity.id}`, {
+        method: "PATCH",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(data),
+      }).then(() => globalThis.location.reload()),
+  );
 
   const toOptions = ({ id, name }): Option => ({ value: id, label: name });
   const accountOptions = props.accounts.map(toOptions);
   const contactOptions = props.contacts.map(toOptions);
   const dealOptions = props.deals.map(toOptions);
 
-  const onSubmit = async (data: Activity) => {
-    status.value = "loading";
-    await fetch(`/api/activities/${data.id}`, {
-      method: "PATCH",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(data),
-    });
-    setTimeout(() => status.value = "disabled", 500);
-  };
-
   return (
     <Form {...form}>
-      <form className="space-y-2" onSubmit={form.handleSubmit(onSubmit)}>
+      <form
+        id="activities.patch"
+        className="space-y-2"
+        onChange={onInput}
+        onReset={onReset}
+        onSubmit={form.handleSubmit(onSubmit)}
+      >
         <header className="flex items-center justify-between p-4">
           <div className="flex items-center flex-1 space-x-2">
             <h3 className="text-lg font-semibold line-clamp-1 mr-4">
@@ -267,7 +270,24 @@ export function FormUpdate(
             <ActivityIcon type={props.activity.type} />
           </div>
           <div className="flex items-center space-x-2">
-            <Button type="submit" className="ml-auto">
+            <TableRowActions
+              row={{ original: values.value }}
+              resource="accounts"
+              actions={["duplicate", "copyId", "remove"]}
+            />
+            <Button
+              form="activities.patch"
+              variant="secondary"
+              type="reset"
+              disabled={!form.formState.isDirty}
+            >
+              Discard
+            </Button>
+            <Button
+              form="activities.patch"
+              type="submit"
+              disabled={!form.formState.isDirty}
+            >
               {["loading"].includes(status.value)
                 ? <i className="mdi-loading h-4 w-4 animate-spin" />
                 : "Save"}

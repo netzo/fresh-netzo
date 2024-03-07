@@ -1,7 +1,7 @@
 import { defineRoute } from "$fresh/server.ts";
 import type { Account } from "../../data/accounts.ts";
 import type { Contact } from "../../data/contacts.ts";
-import * as ContactsIslands from "../../islands/contacts.tsx";
+import { PageContacts } from "../../islands/contacts.tsx";
 import { $api } from "../../plugins/api.config.ts";
 
 // NOTE: cannot pass functions as props from routes (server) to islands (client)
@@ -11,14 +11,13 @@ export default defineRoute(async (req, ctx) => {
     $api.accounts.find() as Account[],
   ]);
 
-  const data = contacts.map((contact) => ({
-    ...contact,
-    account: accounts.find((account) => account.id === contact.accountId),
-  }));
-
+  // render entire page as island for simplicity
   return (
-    <div className="flex flex-col h-screen">
-      <ContactsIslands.Main data={data} />
-    </div>
+    <PageContacts
+      contacts={contacts.map((contact) => ({
+        ...contact,
+        account: accounts.find((a) => a.id === contact.accountId),
+      }))}
+    />
   );
 });

@@ -1,4 +1,4 @@
-import { useSignal } from "@preact/signals";
+import { type Signal } from "@preact/signals";
 import {
   Avatar,
   AvatarFallback,
@@ -13,6 +13,7 @@ import {
   CardHeader,
   CardTitle,
 } from "netzo/components/card.tsx";
+import { Combobox } from "netzo/components/combobox.tsx";
 import {
   Dialog,
   DialogContent,
@@ -21,43 +22,123 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "netzo/components/dialog.tsx";
-import { useForm, zodResolver } from "netzo/components/form.tsx";
-import { AccountDeals } from "../components/account.tsx";
-import { Account, accountSchema } from "../data/accounts.ts";
-import { Deal, dealSchema } from "../data/deals.ts";
-import { toPercent, toUSD } from "../data/mod.ts";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+  useForm,
+  zodResolver,
+  type UseFormReturn,
+} from "netzo/components/form.tsx";
+import { IconCopy } from "netzo/components/icon-copy.tsx";
+import { Input } from "netzo/components/input.tsx";
+import { Textarea } from "netzo/components/textarea.tsx";
+import { cn } from "netzo/components/utils.ts";
+import { Account, accountSchema, getAccount } from "../data/accounts.ts";
+import type { Deal } from "../data/deals.ts";
+import { dealSchema, getDeal } from "../data/deals.ts";
+import { I18N, toPercent, toUSD } from "../data/mod.ts";
+import { GROUPS } from "../islands/deals.tsx";
+import { useFormState } from "../utils.ts";
 
-export function AccountHeader(props: { account: Account }) {
-  const { name = "", image, email, phone } = props.account;
-  const [first = "", last = ""] = name.split(" ");
-  const initials = `${first[0]}${last[0]}`?.toUpperCase();
+type PageAccountProps = {
+  id: string;
+  account: Account;
+  deals: Deal[];
+};
 
+export function PageAccount(props: PageAccountProps) {
+  const form = useForm<Account>({
+    resolver: zodResolver(accountSchema),
+    defaultValues: getAccount(props.account),
+  });
+
+  const { values, status, onInput, onReset, onSubmit } = useFormState<Account>(
+    form,
+    (data) =>
+      fetch(`/api/accounts/${props.account.id}`, {
+        method: "PATCH",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(data),
+      }),
+  );
+
+  return (
+    <Form {...form}>
+      <form
+        id="accounts.patch"
+        className="h-full overflow-y-auto"
+        onSubmit={form.handleSubmit(onSubmit)}
+      >
+        <AccountHeader form={form} values={values} />
+
+        <div className="flex flex-col gap-4 p-4">
+          <AccountMetrics {...props} />
+          <div className="grid lg:grid-cols-2 gap-4">
+            <AccountCardFormUpdate values={values} />
+            <CardDeals
+              {...props}
+              defaultValues={{ accountId: props.account.id }}
+            />
+          </div>
+        </div>
+      </form>
+    </Form>
+  );
+}
+
+function AccountHeader(props: {
+  form: UseFormReturn<Account>;
+  values: Signal<Account>;
+}) {
   return (
     <header className="flex items-center justify-between p-4">
       <div className="flex flex-row items-center justify-between gap-4">
         <Avatar className="h-12 w-12">
-          <AvatarImage src={image} />
-          <AvatarFallback>{initials}</AvatarFallback>
+          <AvatarImage src={props.values.value.image} />
+          <AvatarFallback>
+            {props.values.value.name[0].toUpperCase()}
+          </AvatarFallback>
         </Avatar>
         <div className="grid gap-2">
           <CardTitle className="text-xl">
-            {name}
+            {props.values.value.name}
           </CardTitle>
         </div>
       </div>
       <div className="flex flex-row items-center gap-4">
         <TableRowActions
-          row={{ original: props.account }}
+          row={{ original: props.values.value }}
           resource="accounts"
           actions={["duplicate", "copyId", "remove"]}
         />
+        <Button
+          form="accounts.patch"
+          variant="secondary"
+          type="reset"
+          disabled={!props.form.formState.isDirty}
+        >
+          Discard
+        </Button>
+        <Button
+          form="accounts.patch"
+          type="submit"
+          disabled={!props.form.formState.isDirty}
+        >
+          {["loading"].includes(props.status.value)
+            ? <i className="mdi-loading h-4 w-4 animate-spin" />
+            : "Save"}
+        </Button>
       </div>
     </header>
   );
 }
 
-export function AccountMetrics(props: { account: Account; deals: Deal[] }) {
-  const metrics = resolveAccountMetrics(props.deals);
+function AccountMetrics(props: PageAccountProps) {
+  const metrics = getMetricsAccount(props.deals);
 
   return (
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
@@ -129,7 +210,7 @@ export function AccountMetrics(props: { account: Account; deals: Deal[] }) {
   );
 }
 
-function resolveAccountMetrics(deals: Deal[]) {
+function getMetricsAccount(deals: Deal[]) {
   // Total Number of Deals: represents the total number of deals associated with the data.
   const totalDeals = deals.length;
 
@@ -193,148 +274,218 @@ function resolveAccountMetrics(deals: Deal[]) {
   };
 }
 
-export function AccountCardForm(props: { account: Account }) {
-  const account = useSignal(props.account);
-  const status = useSignal<"disabled" | "enabled" | "loading">("disabled");
-
-  const form = useForm<Account>({
-    resolver: zodResolver(accountSchema),
-    defaultValues: account.value,
-  });
-
-  const onValuesChange = (values: Account) => {
-    if (!["enabled"].includes(status.value)) status.value = "enabled";
-    account.value = values;
-  };
-
-  const onClickUpdate = async () => {
-    status.value = "loading";
-    try {
-      // ✅ This will be type-safe and validated.
-      await fetch(`/api/accounts/${account.value.id}`, {
-        method: "PATCH",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(account.value),
-      });
-      setTimeout(() => status.value = "disabled", 1000);
-    } catch (error) {
-      setTimeout(() => status.value = "enabled", 1000);
-    }
-  };
-
+function AccountCardFormUpdate(props: { values: Signal<Account> }) {
   return (
-    <Card>
-      <CardHeader className="flex flex-row items-center justify-between pt-2">
-        <CardTitle>
-          General
-        </CardTitle>
-        <Button
-          variant="default"
-          size="sm"
-          disabled={status.value === "disabled"}
-          onClick={onClickUpdate}
-        >
-          {["loading"].includes(status.value)
-            ? <i className="mdi-loading h-4 w-4 animate-spin" />
-            : "Update"}
-        </Button>
-      </CardHeader>
-      <CardContent>
-        <AutoForm
-          values={account.value}
-          formSchema={accountSchema.pick({
-            name: true,
-            image: true,
-            email: true,
-            phone: true,
-            links: true,
-          })}
-          onValuesChange={onValuesChange}
-        />
-      </CardContent>
-    </Card>
+    <CardContent>
+      <AutoForm
+        values={props.values.value}
+        formSchema={accountSchema.pick({
+          name: true,
+          image: true,
+          email: true,
+          phone: true,
+          links: true,
+        })}
+        onValuesChange={(v: Account) => props.values.value = v}
+      />
+    </CardContent>
   );
 }
 
-export function AccountCardDeals(props: { account: Account; deals: Deal[] }) {
-  const deal = useSignal<Partial<Deal>>({
-    name: "",
-    status: "lead",
-    amount: 0,
-    currencyCode: "USD",
-    accountId: props.account.id,
-    contactIds: [],
-  });
-  const status = useSignal<"disabled" | "enabled" | "loading">("disabled");
-
+export function CardDeals(
+  props: PageAccountProps & { defaultValues: Deal },
+) {
   const form = useForm<Deal>({
     resolver: zodResolver(dealSchema),
-    defaultValues: deal.value,
+    defaultValues: getDeal(props.defaultValues),
   });
 
-  const onValuesChange = (values: Deal) => {
-    if (!["enabled"].includes(status.value)) status.value = "enabled";
-    deal.value = values;
-  };
-
-  const onClickCreate = async () => {
-    status.value = "loading";
-    try {
-      // ✅ This will be type-safe and validated.
-      await fetch(`/api/deals`, {
+  const { values, status, onInput, onReset, onSubmit } = useFormState<Deal>(
+    form,
+    (data) =>
+      fetch(`/api/deals`, {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify(deal.value),
-      });
-      setTimeout(() => status.value = "disabled", 1000);
-      globalThis.location.reload();
-    } catch (error) {
-      setTimeout(() => status.value = "enabled", 1000);
-    }
-  };
+        body: JSON.stringify(data),
+      }).then(() => globalThis.location.reload()),
+  );
 
+  // NOTE: must manually invoke submit because submit button isteleported
+  // by dialog out of form (see https://github.com/shadcn-ui/ui/issues/709)
   return (
-    <Card>
-      <CardHeader className="flex flex-row items-center justify-between pt-2">
-        <CardTitle>
-          Account Deals
-        </CardTitle>
-        <Dialog>
+    <Dialog>
+      <Card>
+        <CardHeader className="flex flex-row items-center justify-between pt-2">
+          <CardTitle>
+            Account Deals
+          </CardTitle>
           <DialogTrigger asChild>
             <Button variant="default" size="sm" className="ml-2">
               Create Deal
             </Button>
           </DialogTrigger>
-          <DialogContent className="h-[calc(100%-70px)] overflow-y-auto">
+          <DialogContent>
             <DialogHeader className="text-left">
               <DialogTitle>Create Deal</DialogTitle>
             </DialogHeader>
-            <AutoForm
-              values={deal.value}
-              formSchema={dealSchema.pick({
-                name: true,
-                status: true,
-                amount: true,
-              })}
-              onValuesChange={onValuesChange}
-            />
-            <DialogFooter>
-              <Button
-                variant="default"
-                disabled={status.value === "disabled"}
-                onClick={onClickCreate}
+
+            <Form {...form}>
+              <form
+                id="deals.create"
+                onInput={onInput}
+                onReset={onReset}
+                onSubmit={form.handleSubmit(onSubmit)}
               >
+                <FormField
+                  control={form.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>{I18N["name"]}</FormLabel>
+                      <FormControl>
+                        <Input {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="description"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>{I18N["description"]}</FormLabel>
+                      <FormControl>
+                        <Textarea {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="status"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>{I18N["status"]}</FormLabel>
+                      <FormControl>
+                        <Combobox
+                          {...field}
+                          options={[
+                            "lead",
+                            "qualified",
+                            "negotiation",
+                            "won",
+                            "lost",
+                          ].map((value) => ({
+                            label: I18N[`status.${value}`],
+                            value,
+                          }))}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="amount"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>{I18N["amount"]}</FormLabel>
+                      <FormControl>
+                        <Input {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="currencyCode"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>{I18N["currencyCode"]}</FormLabel>
+                      <FormControl>
+                        <Combobox
+                          {...field}
+                          options={[{ label: "USD", value: "USD" }]}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </form>
+            </Form>
+
+            <DialogFooter>
+              <Button form="deals.create" type="submit">
                 {["loading"].includes(status.value)
                   ? <i className="mdi-loading h-4 w-4 animate-spin" />
                   : "Create"}
               </Button>
             </DialogFooter>
           </DialogContent>
-        </Dialog>
-      </CardHeader>
-      <CardContent>
-        <AccountDeals deals={props.deals} />
-      </CardContent>
-    </Card>
+        </CardHeader>
+        <CardContent>
+          <CardDealsList {...props} />
+        </CardContent>
+      </Card>
+    </Dialog>
+  );
+}
+
+function CardDealsList(props: PageAccountProps) {
+  const getGroup = (deal: Deal) => {
+    return GROUPS.find((group) => group.id === deal.status);
+  };
+
+  if (!props.deals.length) {
+    return (
+      <div className="grid place-items-center w-full h-full py-20">
+        <div className="text-center">
+          <i className="mdi-tag text-4xl text-muted-foreground mb-2" />
+          <h2 className="text-xl font-medium text-muted-foreground mb-1">
+            No deals found
+          </h2>
+          <p className="text-sm text-muted-foreground">
+            <a href="/deals">Create a new deal</a> to get started
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-4">
+      {props.deals.map((deal, index) => (
+        <div
+          className={cn(
+            "flex items-center",
+            (index < props.deals.length - 1) && "b-b-1 pb-4",
+          )}
+        >
+          <div
+            {...getGroup(deal)?.icon}
+            className={cn("w-6 h-6 mr-3", getGroup(deal)?.icon?.className)}
+          />
+          <div className="ml-4 space-y-1">
+            <div className="flex items-center py-1">
+              <a
+                href={`/deals/${deal.id}`}
+                className="whitespace-nowrap text-center font-medium text-primary hover:underline"
+              >
+                {deal.name}
+              </a>
+              <IconCopy value={deal.id} tooltip="Copy ID" />
+            </div>
+          </div>
+          <div className="ml-auto">
+            {toUSD(deal.amount)}
+          </div>
+        </div>
+      ))}
+    </div>
   );
 }

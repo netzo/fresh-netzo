@@ -21,8 +21,8 @@ import type { Account } from "../data/accounts.ts";
 import { getAccount } from "../data/accounts.ts";
 import { I18N, toDateTime } from "../data/mod.ts";
 
-export function Main({ data }: { data: Account[] }) {
-  const table = useTable<Account>(data, {
+export function PageAccounts(props: { accounts: Account[] }) {
+  const table = useTable<Account>(props.accounts, {
     resource: "accounts",
     idField: "id",
     search: {

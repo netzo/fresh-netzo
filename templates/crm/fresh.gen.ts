@@ -5,15 +5,12 @@
 import * as $_404 from "./routes/_404.tsx";
 import * as $_500 from "./routes/_500.tsx";
 import * as $_app from "./routes/_app.tsx";
-import * as $accounts_id_layout from "./routes/accounts/[id]/_layout.tsx";
-import * as $accounts_id_index from "./routes/accounts/[id]/index.tsx";
+import * as $accounts_id_ from "./routes/accounts/[id].tsx";
 import * as $accounts_index from "./routes/accounts/index.tsx";
 import * as $activities_index from "./routes/activities/index.tsx";
-import * as $contacts_id_layout from "./routes/contacts/[id]/_layout.tsx";
-import * as $contacts_id_index from "./routes/contacts/[id]/index.tsx";
+import * as $contacts_id_ from "./routes/contacts/[id].tsx";
 import * as $contacts_index from "./routes/contacts/index.tsx";
-import * as $deals_id_layout from "./routes/deals/[id]/_layout.tsx";
-import * as $deals_id_index from "./routes/deals/[id]/index.tsx";
+import * as $deals_id_ from "./routes/deals/[id].tsx";
 import * as $deals_index from "./routes/deals/index.tsx";
 import * as $index from "./routes/index.tsx";
 import * as $account from "./islands/account.tsx";
@@ -32,15 +29,12 @@ const manifest = {
     "./routes/_404.tsx": $_404,
     "./routes/_500.tsx": $_500,
     "./routes/_app.tsx": $_app,
-    "./routes/accounts/[id]/_layout.tsx": $accounts_id_layout,
-    "./routes/accounts/[id]/index.tsx": $accounts_id_index,
+    "./routes/accounts/[id].tsx": $accounts_id_,
     "./routes/accounts/index.tsx": $accounts_index,
     "./routes/activities/index.tsx": $activities_index,
-    "./routes/contacts/[id]/_layout.tsx": $contacts_id_layout,
-    "./routes/contacts/[id]/index.tsx": $contacts_id_index,
+    "./routes/contacts/[id].tsx": $contacts_id_,
     "./routes/contacts/index.tsx": $contacts_index,
-    "./routes/deals/[id]/_layout.tsx": $deals_id_layout,
-    "./routes/deals/[id]/index.tsx": $deals_id_index,
+    "./routes/deals/[id].tsx": $deals_id_,
     "./routes/deals/index.tsx": $deals_index,
     "./routes/index.tsx": $index,
   },

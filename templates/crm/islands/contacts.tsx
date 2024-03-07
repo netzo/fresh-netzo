@@ -20,8 +20,8 @@ import { IconCopy } from "netzo/components/icon-copy.tsx";
 import { type Contact, getContact } from "../data/contacts.ts";
 import { I18N, toDateTime } from "../data/mod.ts";
 
-export function Main({ data }: { data: Contact[] }) {
-  const table = useTable<Contact>(data, {
+export function PageContacts(props: { contacts: Contact[] }) {
+  const table = useTable<Contact>(props.contacts, {
     resource: "contacts",
     idField: "id",
     search: {
@@ -32,7 +32,8 @@ export function Main({ data }: { data: Contact[] }) {
       {
         column: "accountId",
         title: I18N.account,
-        options: [...new Set(data.map((item) => item.account).flat())].sort()
+        options: [...new Set(props.contacts.map((item) => item.account).flat())]
+          .sort()
           .map(
             (
               value,

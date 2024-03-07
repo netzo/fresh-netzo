@@ -1,9 +1,9 @@
+import { useSignal } from "@preact/signals";
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
 } from "netzo/components/avatar.tsx";
-import { FetchForm } from "netzo/components/blocks/fetch-form/fetch-form.tsx";
 import { TableRowActions } from "netzo/components/blocks/table/table.tsx";
 import { Button } from "netzo/components/button.tsx";
 import {
@@ -26,12 +26,38 @@ import {
 import { Input } from "netzo/components/input.tsx";
 import { type Option } from "netzo/components/select-multiple.tsx";
 import { Textarea } from "netzo/components/textarea.tsx";
+import { cn } from "netzo/components/utils.ts";
 import type { Account } from "netzo/data/accounts.ts";
 import type { Contact } from "netzo/data/contacts.ts";
-import { Deal, dealSchema } from "../data/deals.ts";
+import { Deal, dealSchema, getDeal } from "../data/deals.ts";
 import { I18N } from "../data/mod.ts";
+import { GROUPS } from "./deals.tsx";
 
-export function DealHeader(props: { deal: Deal }) {
+export function PageDeal(props: {
+  id: string;
+  deal: Deal;
+  deals: Deal[];
+  accounts: Account[];
+  contacts: Contact[];
+}) {
+  return (
+    <div className="h-full overflow-y-auto">
+      <DealHeader deal={props.deal} />
+      <div className="flex flex-col gap-4 p-4">
+        <DealStatusStepper deal={props.deal} deals={props.deals} />
+        <div className="grid lg:grid-cols-2 gap-4">
+          <DealCardFormUpdate
+            deal={props.deal}
+            accounts={props.accounts}
+            contacts={props.contacts}
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function DealHeader(props: { deal: Deal }) {
   const { name = "", image, email, phone } = props.deal;
   const [first = "", last = ""] = name.split(" ");
   const initials = `${first[0]}${last[0]}`?.toUpperCase();
@@ -60,37 +86,87 @@ export function DealHeader(props: { deal: Deal }) {
   );
 }
 
-export function DealCardForm(
+function DealStatusStepper(props: { deal: Deal; deals: Deal[] }) {
+  return (
+    <ol
+      className={cn(
+        "my-6 mb-4 mx-6",
+        "flex justify-around gap-6 border-l-0 border-t",
+      )}
+    >
+      {GROUPS.map((group) => (
+        <li className="-mt-[14px]">
+          <div className="block items-center pt-0 text-center">
+            <i
+              {...group.icon}
+              className={cn(
+                "rounded-full h-[24px] w-[24px] ml-0 mr-0",
+                props.deal.status === group.id ? group.badge.className : "",
+                group.icon.className,
+                props.deal.status !== group.id &&
+                  "!bg-gray-200 dark:!bg-gray-700",
+              )}
+            />
+            <h5
+              className={cn(
+                "mt-2 text-sm",
+                props.deal.status === group.id
+                  ? "text-primary-500 dark:text-primary-300 font-semibold"
+                  : "text-neutral-500 dark:text-neutral-300",
+              )}
+            >
+              {group.title}
+            </h5>
+          </div>
+        </li>
+      ))}
+    </ol>
+  );
+}
+
+function DealCardFormUpdate(
   props: {
     deal: Deal;
     accounts: Account[];
     contacts: Contact[];
   },
 ) {
+  const status = useSignal<"disabled" | "loading">("disabled");
+
   const form = useForm<Deal>({
     resolver: zodResolver(dealSchema),
-    defaultValues: dealSchema.parse(props.deal), // sets default values
+    defaultValues: getDeal(props.deal),
   });
 
   const toOptions = ({ id, name }): Option => ({ value: id, label: name });
   const accountOptions = props.accounts.map(toOptions);
   const contactOptions = props.contacts.map(toOptions);
 
+  const onSubmit = async (data: Deal) => {
+    status.value = "loading";
+    await fetch(`/api/deals/${data.id}`, {
+      method: "PATCH",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    setTimeout(() => status.value = "disabled", 500);
+  };
+
   return (
-    <Card>
-      <CardHeader className="flex flex-row items-center justify-between pt-2">
-        <CardTitle>
-          General
-        </CardTitle>
-      </CardHeader>
-      <CardContent>
-        <Form {...form}>
-          <FetchForm
-            id="deals.patch"
-            action={`/api/deals/${props.deal.id}`}
-            method="patch"
-            className="space-y-2"
-          >
+    <Form {...form}>
+      <form className="space-y-2" onSubmit={form.handleSubmit(onSubmit)}>
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between pt-2">
+            <CardTitle>
+              General
+            </CardTitle>
+            <Button type="submit" className="ml-auto">
+              {["loading"].includes(status.value)
+                ? <i className="mdi-loading h-4 w-4 animate-spin" />
+                : "Save"}
+            </Button>
+          </CardHeader>
+          <CardContent>
             <FormField
               control={form.control}
               name="name"
@@ -201,17 +277,9 @@ export function DealCardForm(
                 </FormItem>
               )}
             />
-            <Button
-              variant="default"
-              size="sm"
-              type="submit"
-              form="deals.patch"
-            >
-              Update
-            </Button>
-          </FetchForm>
-        </Form>
-      </CardContent>
-    </Card>
+          </CardContent>
+        </Card>
+      </form>
+    </Form>
   );
 }

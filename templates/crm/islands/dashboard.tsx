@@ -42,6 +42,12 @@ export function DashboardAccountSelect({
     { name: "Accounts", items: accounts },
   ];
 
+  const onSelect = (item: Account) => {
+    open.value = false;
+    selectedAccount.value = item;
+    globalThis.location.href = `?accountId=${item.id}`;
+  };
+
   return (
     <Popover
       open={open.value}
@@ -104,11 +110,7 @@ export function DashboardAccountSelect({
                 {group.items.map((item) => (
                   <CommandItem
                     key={item.id}
-                    onSelect={() => {
-                      selectedAccount.value = item;
-                      globalThis.location.href = `?accountId=${item.id}`;
-                      open.value = false;
-                    }}
+                    onSelect={() => onSelect(item)}
                     className="text-sm"
                   >
                     <Avatar className="mr-2 h-5 w-5">

@@ -1,5 +1,4 @@
 import * as Plot from "netzo/components/blocks/plot/plot.server.tsx";
-import { Button } from "netzo/components/button.tsx";
 import {
   Card,
   CardContent,
@@ -7,40 +6,8 @@ import {
   CardTitle,
 } from "netzo/components/card.tsx";
 import type { Account } from "../data/accounts.ts";
-import type { Deal } from "../data/deals.ts";
 import type { Metric } from "../data/metrics.ts";
 import { toPercent, toUSD } from "../data/mod.ts";
-import { DashboardAccountSelect } from "../islands/dashboard.tsx";
-
-export function Dashboard(
-  props: { data: [Metric, Account[], Deal[], Account] },
-) {
-  const [metrics, accounts, deals, account] = props.data;
-  return (
-    <div className="p-4 space-y-4">
-      <div className="flex items-center">
-        <DashboardAccountSelect accounts={accounts} account={account} />
-        {/* <MainNav className="mx-6" /> */}
-        <div className="ml-auto flex items-center space-x-4">
-          <Button onClick={() => globalThis.print()}>
-            <i className="mdi-printer w-4 h-4 mr-2" />
-            Print PDF
-          </Button>
-        </div>
-      </div>
-
-      <DashboardCards data={metrics} account={account} />
-
-      <div className="grid md:grid-cols-2 lg:grid-cols-7 gap-4">
-        <DashboardCardPlotDealsPerMonth data={metrics} />
-
-        <DashboardCardPlotDealsPerStatus data={metrics} />
-
-        <DashboardCardPlotDealsThroughTime data={metrics} />
-      </div>
-    </div>
-  );
-}
 
 export function DashboardCards(props: { data: Metric; account: Account }) {
   const { amount, count, deals } = props.data;
