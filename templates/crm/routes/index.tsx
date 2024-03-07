@@ -1,15 +1,15 @@
 import { Partial } from "$fresh/runtime.ts";
 import { defineRoute } from "$fresh/server.ts";
 import { Button } from "netzo/components/button.tsx";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "netzo/components/card.tsx";
 import type { Account } from "../data/accounts.ts";
 import type { Deal } from "../data/deals.ts";
-import {
-  DashboardAccountSelect,
-  DashboardCardPlotDealsPerMonth,
-  DashboardCardPlotDealsPerStatus,
-  DashboardCardPlotDealsThroughTime,
-  DashboardCards,
-} from "../islands/dashboard.tsx";
+import * as Dashboard from "../islands/dashboard.tsx";
 import { $api } from "../plugins/api.config.ts";
 
 export default defineRoute(async (req, ctx) => {
@@ -26,7 +26,7 @@ export default defineRoute(async (req, ctx) => {
     <div className="h-100vh overflow-y-auto p-4">
       <div className="p-4 space-y-4">
         <div f-client-nav className="flex items-center">
-          <DashboardAccountSelect accounts={accounts} account={account} />
+          <Dashboard.AccountSelect accounts={accounts} account={account} />
           {/* <MainNav className="mx-6" /> */}
           <div className="ml-auto flex items-center space-x-4">
             <Button onClick={() => globalThis.print()}>
@@ -37,14 +37,35 @@ export default defineRoute(async (req, ctx) => {
         </div>
 
         <Partial name="main-content">
-          <DashboardCards data={metrics} account={account} />
+          <Dashboard.Cards data={metrics} account={account} />
 
           <div className="grid md:grid-cols-2 lg:grid-cols-7 gap-4">
-            <DashboardCardPlotDealsPerMonth data={metrics} />
+            <Card className="col-span-4">
+              <CardHeader>
+                <CardTitle>Deals per month</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Dashboard.ChartDealsPerMonth data={metrics} />
+              </CardContent>
+            </Card>
 
-            <DashboardCardPlotDealsPerStatus data={metrics} />
+            <Card className="col-span-3">
+              <CardHeader>
+                <CardTitle>Deals per status</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Dashboard.ChartDealsPerStatus data={metrics} />
+              </CardContent>
+            </Card>
 
-            <DashboardCardPlotDealsThroughTime data={metrics} />
+            <Card className="col-span-3">
+              <CardHeader>
+                <CardTitle>Deals total through time</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Dashboard.ChartDealsThroughTime data={metrics} />
+              </CardContent>
+            </Card>
           </div>
         </Partial>
       </div>

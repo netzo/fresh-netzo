@@ -39,7 +39,7 @@ interface DashboardAccountSelectProps extends PopoverTriggerProps {
   account: Account;
 }
 
-export function DashboardAccountSelect({
+export function AccountSelect({
   accounts,
   account,
   className,
@@ -166,7 +166,7 @@ export function DashboardAccountSelect({
   );
 }
 
-export function DashboardCards(props: { data: Metric; account: Account }) {
+export function Cards(props: { data: Metric; account: Account }) {
   const { amount, count, deals } = props.data;
   const activeCount = props.account ? count.ofAccount : count.all;
   const dealAverageValue = props.account
@@ -249,69 +249,48 @@ export function DashboardCards(props: { data: Metric; account: Account }) {
   );
 }
 
-export function DashboardCardPlotDealsPerMonth(props: { data: Metric }) {
+export function ChartDealsPerMonth(props: { data: Metric }) {
   const { dealsPerMonth = [] } = props.data;
   const data = dealsPerMonth.map((d) => ({ ...d, amount: Number(d.amount) }));
 
   return (
-    <Card className="col-span-4">
-      <CardHeader>
-        <CardTitle>Deals per month</CardTitle>
-      </CardHeader>
-      <CardContent className="pl-2">
-        {data?.length
-          ? (
-            <Plot.Figure
-              options={{
-                x: { tickFormat: Plot.formatMonth(), ticks: 12 },
-                marks: [
-                  Plot.barY(data, { x: "month", y: "amount", tip: true }),
-                  Plot.ruleY([0]),
-                ],
-              }}
-            />
-          )
-          : <PlotPlaceholder />}
-      </CardContent>
-    </Card>
+    <Plot.Figure
+      options={{
+        x: { tickFormat: Plot.formatMonth(), ticks: 12 },
+        marks: [
+          Plot.barY(data, { x: "month", y: "amount", tip: true }),
+          Plot.ruleY([0]),
+        ],
+      }}
+    />
   );
 }
 
-export function DashboardCardPlotDealsPerStatus(props: { data: Metric }) {
+export function ChartDealsPerStatus(props: { data: Metric }) {
   const { deals } = props.data;
   const data = deals.map((d) => ({ ...d, amount: Number(d.amount) }));
+
   return (
-    <Card className="col-span-3">
-      <CardHeader>
-        <CardTitle>Deals per status</CardTitle>
-      </CardHeader>
-      <CardContent>
-        {data?.length
-          ? (
-            <Plot.Figure
-              options={{
-                color: { legend: true },
-                marks: [
-                  Plot.barY(
-                    data,
-                    Plot.groupX({ y: "count" }, {
-                      x: "status",
-                      fill: "status",
-                      tip: true,
-                    }),
-                  ),
-                  Plot.ruleY([0]),
-                ],
-              }}
-            />
-          )
-          : <PlotPlaceholder />}
-      </CardContent>
-    </Card>
+    <Plot.Figure
+      options={{
+        color: { legend: true },
+        marks: [
+          Plot.barY(
+            data,
+            Plot.groupX({ y: "count" }, {
+              x: "status",
+              fill: "status",
+              tip: true,
+            }),
+          ),
+          Plot.ruleY([0]),
+        ],
+      }}
+    />
   );
 }
 
-export function DashboardCardPlotDealsThroughTime(props: { data: Metric }) {
+export function ChartDealsThroughTime(props: { data: Metric }) {
   const { dealsAmountThroughTime = [] } = props.data;
   const currentYear = new Date().getFullYear();
   const data = dealsAmountThroughTime.map((d) => ({
@@ -319,25 +298,14 @@ export function DashboardCardPlotDealsThroughTime(props: { data: Metric }) {
     amount: Number(d.amount),
   }));
   return (
-    <Card className="col-span-3">
-      <CardHeader>
-        <CardTitle>Deals total through time</CardTitle>
-      </CardHeader>
-      <CardContent>
-        {data?.length
-          ? (
-            <Plot.Figure
-              options={{
-                marks: [
-                  Plot.lineX(data, { x: "createdAt", y: "amount", tip: true }),
-                  Plot.crosshair(data, { x: "createdAt", y: "amount" }),
-                ],
-              }}
-            />
-          )
-          : <PlotPlaceholder />}
-      </CardContent>
-    </Card>
+    <Plot.Figure
+      options={{
+        marks: [
+          Plot.lineX(data, { x: "createdAt", y: "amount", tip: true }),
+          Plot.crosshair(data, { x: "createdAt", y: "amount" }),
+        ],
+      }}
+    />
   );
 }
 
