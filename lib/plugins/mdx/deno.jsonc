@@ -1,0 +1,15 @@
+{
+  "lock": false,
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact"
+  },
+  "tasks": {
+    "check:types": "deno check **/*.ts && deno check **/*.tsx",
+    "coverage": "rm -rf coverage && deno test -A --parallel --no-check --coverage && deno coverage --html",
+    "fixture": "deno run -A --watch=static/,routes/ tests/fixture/dev.ts",
+    "ok": "deno fmt --check && deno lint && deno task check:types && deno task test",
+    "test": "deno test -A --parallel --no-check"
+  },
+  "importMap": "./.vscode/import_map.json"
+}
