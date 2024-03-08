@@ -29,8 +29,8 @@ import {
 import { cn } from "netzo/components/utils.ts";
 import type { ComponentProps } from "preact";
 import type { Account } from "../data/accounts.ts";
-import type { Metric } from "../data/metrics.ts";
 import { toPercent, toUSD } from "../data/mod.ts";
+import type { Metrics } from "../routes/index.tsx";
 
 type PopoverTriggerProps = ComponentProps<typeof PopoverTrigger>;
 
@@ -166,7 +166,7 @@ export function AccountSelect({
   );
 }
 
-export function Cards(props: { data: Metric; account: Account }) {
+export function Cards(props: { data: Metrics; account: Account }) {
   const { amount, count, deals } = props.data;
   const activeCount = props.account ? count.ofAccount : count.all;
   const dealAverageValue = props.account
@@ -249,7 +249,7 @@ export function Cards(props: { data: Metric; account: Account }) {
   );
 }
 
-export function ChartDealsPerMonth(props: { data: Metric }) {
+export function ChartDealsPerMonth(props: { data: Metrics }) {
   const { dealsPerMonth = [] } = props.data;
   const data = dealsPerMonth.map((d) => ({ ...d, amount: Number(d.amount) }));
 
@@ -266,7 +266,7 @@ export function ChartDealsPerMonth(props: { data: Metric }) {
   );
 }
 
-export function ChartDealsPerStatus(props: { data: Metric }) {
+export function ChartDealsPerStatus(props: { data: Metrics }) {
   const { deals } = props.data;
   const data = deals.map((d) => ({ ...d, amount: Number(d.amount) }));
 
@@ -290,7 +290,7 @@ export function ChartDealsPerStatus(props: { data: Metric }) {
   );
 }
 
-export function ChartDealsThroughTime(props: { data: Metric }) {
+export function ChartDealsThroughTime(props: { data: Metrics }) {
   const { dealsAmountThroughTime = [] } = props.data;
   const currentYear = new Date().getFullYear();
   const data = dealsAmountThroughTime.map((d) => ({

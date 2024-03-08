@@ -31,13 +31,13 @@ import { type Option } from "netzo/components/select-multiple.tsx";
 import { Separator } from "netzo/components/separator.tsx";
 import { Textarea } from "netzo/components/textarea.tsx";
 import { cn } from "netzo/components/utils.ts";
-import type { Account } from "netzo/data/accounts.ts";
-import type { Contact } from "netzo/data/contacts.ts";
+import type { Account } from "../data/accounts.ts";
 import {
   type Activity,
   activitySchema,
   getActivity,
 } from "../data/activities.ts";
+import type { Contact } from "../data/contacts.ts";
 import type { Deal } from "../data/deals.ts";
 import { I18N, toDateTime } from "../data/mod.ts";
 
@@ -52,8 +52,7 @@ export function PageActivities(props: {
 }) {
   const activity = useSignal(props.activity);
 
-  // const { width = 0 } = useWindowSize(); causes unnecessary re-renders
-  const width = globalThis?.innerWidth;
+  const width = globalThis?.innerWidth; // const { width = 0 } = useWindowSize(); causes unnecessary re-renders
 
   const table = useTable<Activity>(props.activities, {
     resource: "activities",
@@ -134,7 +133,7 @@ export function PageActivities(props: {
       <ResizablePanel
         defaultSize={defaultLayout[0]}
         minSize={30}
-        className="grid"
+        className="flex flex-col h-full"
       >
         <header className="p-4 space-y-4">
           <div className="flex items-center justify-between">
@@ -155,7 +154,7 @@ export function PageActivities(props: {
 
         <Separator />
 
-        <div className="h-full overflow-y-auto p-4">
+        <div className="flex-1 overflow-y-auto p-4">
           <div className="space-y-4">
             <div className="space-y-2">
               <TableView table={table}>

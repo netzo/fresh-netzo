@@ -117,7 +117,7 @@ export function PageDeals(props: { deals: Deal[] }) {
   };
 
   return (
-    <>
+    <div className="flex flex-col h-full">
       <header className="flex items-center justify-between p-4">
         <div className="flex items-center flex-1 space-x-2">
           <TableActionsReload table={table} />
@@ -147,7 +147,7 @@ export function PageDeals(props: { deals: Deal[] }) {
       <footer className="flex items-center justify-between p-4">
         <TablePagination table={table} />
       </footer>
-    </>
+    </div>
   );
 }
 
