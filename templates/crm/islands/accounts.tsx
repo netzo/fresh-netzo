@@ -29,6 +29,10 @@ export function PageAccounts(props: { accounts: Account[] }) {
       column: "name",
       placeholder: "Search by name...",
     },
+    sorting: [
+      { id: "updatedAt", desc: false },
+      { id: "name", desc: true },
+    ],
     filters: [],
     columns: [
       {

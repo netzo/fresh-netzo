@@ -26,7 +26,8 @@ export const microsoft365 = ({
   baseURL = Deno.env.get("MICROSOFT365_BASE_URL")!,
   clientId = Deno.env.get("MICROSOFT365_CLIENT_ID")!,
   clientSecret = Deno.env.get("MICROSOFT365_CLIENT_SECRET")!,
-  accessTokenUrl = "https://login.microsoftonline.com/common/oauth2/v2.0/token",
+  accessTokenUrl = Deno.env.get("MICROSOFT365_ACCESS_TOKEN_URL") ??
+    "https://login.microsoftonline.com/common/oauth2/v2.0/token",
   scope,
 }: Microsoft365Options) => {
   const api = createApi({

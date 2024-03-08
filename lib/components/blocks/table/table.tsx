@@ -3,6 +3,7 @@ import { useState } from "preact/hooks";
 import {
   type ColumnDef,
   type ColumnFiltersState,
+  type ColumnSort,
   flexRender,
   getCoreRowModel,
   getFacetedRowModel,
@@ -43,6 +44,7 @@ export type UseTableOptions<TData = unknown> = {
   resource: string;
   idField: string;
   search?: TableSearch;
+  sorting?: ColumnSort[];
   filters?: TableFilter<TData, unknown>[];
   columns: ColumnDef<TData, unknown>[];
 };
@@ -67,7 +69,7 @@ export function useTable<TData = unknown>(
     columnFilters,
     setColumnFilters,
   ] = useState<ColumnFiltersState>([]);
-  const [sorting, setSorting] = useState<SortingState>([]);
+  const [sorting, setSorting] = useState<SortingState>(options.sorting ?? []);
 
   const table = useReactTable<TData>({
     data,

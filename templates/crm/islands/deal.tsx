@@ -45,7 +45,7 @@ export function PageDeal(props: PageDealProps) {
     const response = await fetch(`/api/deals/${props.deal.id}`, {
       method: "PATCH",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify(data),
+      body: JSON.stringify(getDeal(data)),
     });
     if (response.ok) globalThis.location.reload();
   };

@@ -60,7 +60,7 @@ export const themes = [
         border: "240 5.9% 90%",
         input: "240 5.9% 90%",
         ring: "240 5.9% 10%",
-        radius: "0.5rem",
+        radius: "0.0rem",
       },
       dark: {
         background: "240 10% 3.9%",
@@ -113,7 +113,7 @@ export const themes = [
         border: "214.3 31.8% 91.4%",
         input: "214.3 31.8% 91.4%",
         ring: "222.2 84% 4.9%",
-        radius: "0.5rem",
+        radius: "0.0rem",
       },
       dark: {
         background: "222.2 84% 4.9%",
@@ -377,7 +377,7 @@ export const themes = [
         border: "240 5.9% 90%",
         input: "240 5.9% 90%",
         ring: "346.8 77.2% 49.8%",
-        radius: "0.5rem",
+        radius: "0.0rem",
       },
       dark: {
         background: "20 14.3% 4.1%",

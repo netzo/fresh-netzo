@@ -46,7 +46,7 @@ export function PageContact(props: PageContactProps) {
     const response = await fetch(`/api/contacts/${props.contact.id}`, {
       method: "PATCH",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify(data),
+      body: JSON.stringify(getContact(data)),
     });
     if (response.ok) globalThis.location.reload();
   };

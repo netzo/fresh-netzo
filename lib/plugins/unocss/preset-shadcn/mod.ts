@@ -51,7 +51,7 @@ const handleMatchRem = (v: string, defaultVal = "full") =>
 export function presetShadcn(
   options: PresetShadcnOptions = {},
 ): Preset<Theme> {
-  const { color = "blue", radius = 0.5 } = options;
+  const { color = "blue", radius = 0.0 } = options;
   const cssVars = generateCSSVars(color, radius);
 
   // IMPORTANT: note that functions are dropped for CSR mode due to by

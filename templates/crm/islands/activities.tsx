@@ -62,6 +62,10 @@ export function PageActivities(props: {
       column: "name",
       placeholder: "Search by name...",
     },
+    sorting: [
+      { id: "updatedAt", desc: false },
+      { id: "name", desc: true },
+    ],
     filters: [
       {
         column: "type",
@@ -118,7 +122,7 @@ export function PageActivities(props: {
       });
       if (response.ok) {
         const data = await response.json();
-        // globalThis.location.href = `/activities/${props.id}`;
+        globalThis.location.href = "/activities"; // `/activities/${props.id}`;
       }
     }
   };
@@ -241,7 +245,7 @@ function FormUpdate(props: {
     const response = await fetch(`/api/activities/${props.activity.id}`, {
       method: "PATCH",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify(data),
+      body: JSON.stringify(getActivity(data)),
     });
 
     if (response.ok) globalThis.location.reload();
@@ -269,7 +273,7 @@ function FormUpdate(props: {
           <div className="flex items-center space-x-2">
             <TableRowActions
               row={{ original: form.getValues() }}
-              resource="accounts"
+              resource="activities"
               actions={["duplicate", "copyId", "remove"]}
             />
             <Button

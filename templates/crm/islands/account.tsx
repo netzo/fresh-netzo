@@ -57,7 +57,7 @@ export function PageAccount(props: PageAccountProps) {
     const response = await fetch(`/api/accounts/${props.account.id}`, {
       method: "PATCH",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify(data),
+      body: JSON.stringify(getAccount(data)),
     });
     if (response.ok) globalThis.location.reload();
   };
@@ -418,7 +418,7 @@ export function CardDeals(
     const response = await fetch(`/api/deals`, {
       method: "POST",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify(data),
+      body: JSON.stringify(getAccount(data)),
     });
 
     if (response.ok) globalThis.location.reload();
