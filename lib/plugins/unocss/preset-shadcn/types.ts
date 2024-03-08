@@ -19,7 +19,7 @@ export type PresetShadcnOptions = {
    */
   color?: ColorOptions;
   /**
-   * @default 0.5
+   * @default 0.0
    */
   radius?: number;
 };

@@ -1,8 +1,8 @@
 import { signal } from "@preact/signals";
 import type { ComponentChildren, JSX } from "preact";
-import type { NetzoState } from "../../../mod.ts";
-import { Avatar, AvatarFallback, AvatarImage } from "../../avatar.tsx";
-import { buttonVariants } from "../../button.tsx";
+import type { NetzoState } from "../../mod.ts";
+import { Avatar, AvatarFallback, AvatarImage } from "../avatar.tsx";
+import { buttonVariants } from "../button.tsx";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,12 +10,12 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "../../dropdown-menu.tsx";
-import { Separator } from "../../separator.tsx";
-import { Sheet, SheetContent, SheetTrigger } from "../../sheet.tsx";
-import { Switch } from "../../switch.tsx";
-import { useDarkMode } from "../../use-dark-mode.ts";
-import { cn } from "../../utils.ts";
+} from "../dropdown-menu.tsx";
+import { Separator } from "../separator.tsx";
+import { Sheet, SheetContent, SheetTrigger } from "../sheet.tsx";
+import { Switch } from "../switch.tsx";
+import { useDarkMode } from "../use-dark-mode.ts";
+import { cn } from "../utils.ts";
 
 export const open = signal<boolean>(false);
 

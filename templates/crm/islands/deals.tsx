@@ -70,6 +70,10 @@ export function PageDeals(props: { deals: Deal[] }) {
       column: "name",
       placeholder: "Search by name...",
     },
+    sorting: [
+      { id: "updatedAt", desc: false },
+      { id: "name", desc: true },
+    ],
     filters: [
       {
         column: "accountId",

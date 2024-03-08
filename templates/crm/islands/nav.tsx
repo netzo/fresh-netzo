@@ -5,7 +5,7 @@ import {
   NavRoot,
   NavSeparator,
   NavSpacer,
-} from "netzo/components/blocks/nav/nav.tsx";
+} from "netzo/components/blocks/nav.tsx";
 import type { NetzoState } from "netzo/mod.ts";
 
 export const Nav = (props: { state: NetzoState }) => {

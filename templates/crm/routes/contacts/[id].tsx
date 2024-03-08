@@ -6,8 +6,9 @@ import { $api } from "../../plugins/api.config.ts";
 
 export default defineRoute(async (req, ctx) => {
   const { id } = ctx.params;
-  const [contact, allDeals] = await Promise.all([
+  const [contact, accounts, allDeals] = await Promise.all([
     $api.contacts.get(id) as Contact,
+    $api.accounts.find() as Account[],
     $api.deals.find() as Deal[],
   ]);
 
@@ -16,5 +17,5 @@ export default defineRoute(async (req, ctx) => {
   );
 
   // render entire page as island for simplicity
-  return <PageContact {...{ id, contact, deals }} />;
+  return <PageContact {...{ id, contact, accounts, deals }} />;
 });

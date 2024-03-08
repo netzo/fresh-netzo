@@ -28,6 +28,10 @@ export function PageContacts(props: { contacts: Contact[] }) {
       column: "name",
       placeholder: "Search by name...",
     },
+    sorting: [
+      { id: "updatedAt", desc: false },
+      { id: "name", desc: true },
+    ],
     filters: [
       {
         column: "accountId",

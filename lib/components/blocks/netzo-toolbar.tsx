@@ -3,10 +3,10 @@ import * as React from "react";
 
 import { IS_BROWSER } from "$fresh/runtime.ts";
 import { useSignal } from "@preact/signals";
-import { User as UserNetzo } from "../../../plugins/types.ts";
-import { ButtonDarkMode } from "../../button-dark-mode.tsx";
-import { Button } from "../../button.tsx";
-import { cn } from "../../utils.ts";
+import { User as UserNetzo } from "../../plugins/types.ts";
+import { ButtonDarkMode } from "../button-dark-mode.tsx";
+import { Button } from "../button.tsx";
+import { cn } from "../utils.ts";
 
 // created using v0 by Vercel see https://v0.dev/t/aLUPWlh
 

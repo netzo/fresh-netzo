@@ -1,10 +1,10 @@
 import {
-  getToken,
+  getToken as getTokenGoogleJwtSa,
   type GoogleAuth,
 } from "https://deno.land/x/googlejwtsa@v0.1.8/mod.ts";
-import type { Authorization } from "./types.ts";
 import type { FetchContext } from "https://esm.sh/v135/ofetch@1.1.1";
-import { getToken as getTokenOauth2 } from "./oauth2/mod.ts";
+import { getToken as getTokenOauth2 } from "./oauth2.ts";
+import type { Authorization } from "./types.ts";
 
 /**
  * Auth hook to mutate context based on authorization.type
@@ -35,7 +35,7 @@ export const auth = async (
   } else if (authorization.type === "googlejwtsa") {
     const { googleServiceAccountCredentials, googleAuthOptions } =
       authorization;
-    const { access_token }: GoogleAuth = await getToken(
+    const { access_token }: GoogleAuth = await getTokenGoogleJwtSa(
       googleServiceAccountCredentials,
       googleAuthOptions,
     );

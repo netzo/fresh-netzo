@@ -1,9 +1,53 @@
 import { createElement as h } from "preact";
-import * as Plot from "../../../deps/@observablehq/plot.ts";
+import { useEffect, useRef } from "preact/compat";
+import { IS_BROWSER } from "../../deps/$fresh/runtime.ts";
+import * as Plot from "../../deps/@observablehq/plot.ts";
 
-export * from "../../../deps/@observablehq/plot.ts";
+export * from "../../deps/@observablehq/plot.ts";
 
-export function Figure({ options }) {
+export function usePlot<T = Plot.Data>(options: Plot.PlotOptions) {
+  if (!IS_BROWSER) return;
+
+  const containerRef = useRef();
+
+  useEffect(() => {
+    const plot = Plot.plot(options);
+    // .replaceWith() to replace the server-side rendered plot with
+    // the client-side (hydrated) plot entirely (avoids flickering)
+    containerRef.current.replaceWith(plot);
+  }, []);
+
+  return containerRef;
+}
+
+/**
+ * Isomorphic Plot component for rendering charts on the server and
+ * hydrating them on the client for client-side interactivity.
+ *
+ * @example import * as Plot from "netzo/components/blocks/plot/plot.tsx";
+ * export default () => <Plot.Figure options={options} />;
+ *
+ * @param {Plot.PlotOptions} options - the plot options
+ * @returns {JSX.Element} the plot figure
+ */
+export function Figure({ options }: { options: Plot.PlotOptions }) {
+  // // server-side render: uses a virtual Document implementation to generate HTML
+  // if (!IS_BROWSER) return <PlotSSR options={options} />;
+
+  // // client-side render: uses a real DOM container and the usePlot() hook for mounting
+  // const containerRef = usePlot(options);
+  // return <figure ref={containerRef} />;
+
+  // client-side render: uses a real DOM container and the usePlot() hook for mounting
+  const containerRef = usePlot(options);
+  return (
+    <figure ref={containerRef}>
+      <PlotSSR options={options} />
+    </figure>
+  );
+}
+
+function PlotSSR({ options }: { options: Plot.PlotOptions }) {
   return Plot.plot({ ...options, document: new Document() }).toHyperScript();
 }
 
