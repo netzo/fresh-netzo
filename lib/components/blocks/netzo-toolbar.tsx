@@ -3,7 +3,7 @@ import * as React from "react";
 
 import { IS_BROWSER } from "$fresh/runtime.ts";
 import { useSignal } from "@preact/signals";
-import { User as UserNetzo } from "../../plugins/types.ts";
+import { AuthUser } from "../../plugins/auth/utils/db.ts";
 import { ButtonDarkMode } from "../button-dark-mode.tsx";
 import { Button } from "../button.tsx";
 import { cn } from "../utils.ts";
@@ -11,10 +11,10 @@ import { cn } from "../utils.ts";
 // created using v0 by Vercel see https://v0.dev/t/aLUPWlh
 
 export type NetzoToolbarProps = JSX.IntrinsicElements["menu"] & {
-  sessionUser: UserNetzo;
+  sessionUser?: AuthUser;
 };
 
-export function NetzoToolbar({ className }: { className?: string }) {
+export function NetzoToolbar({ className }: NetzoToolbarProps) {
   if (!IS_BROWSER) return null;
 
   const expanded = useSignal<boolean>(globalThis?.innerWidth >= 768);

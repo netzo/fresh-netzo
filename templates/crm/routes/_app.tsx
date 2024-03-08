@@ -1,14 +1,14 @@
 import { Partial } from "$fresh/runtime.ts";
 import { defineApp } from "$fresh/server.ts";
-import { NetzoToolbar } from "netzo/components/blocks/netzo-toolbar.tsx";
 import { Head } from "netzo/components/head.tsx";
 import { cn } from "netzo/components/utils.ts";
 import type { NetzoState } from "netzo/mod.ts";
-import { Nav } from "../islands/nav.tsx";
+import { Nav, NetzoToolbar } from "../islands/mod.tsx";
 
 export default defineApp<NetzoState>((req, ctx) => {
+  const { isAuthenticated, sessionUser } = ctx.state?.auth ?? {};
   // assert isAuthenticated explicitly (undefined if auth not enabled)
-  const mustAuth = ctx.state?.auth?.isAuthenticated === false;
+  const mustAuth = isAuthenticated === false;
 
   return (
     <html>
@@ -41,7 +41,7 @@ export default defineApp<NetzoState>((req, ctx) => {
                 <ctx.Component />
               </main>
             </Partial>
-            <NetzoToolbar />
+            <NetzoToolbar sessionUser={sessionUser} />
           </body>
         )}
     </html>
