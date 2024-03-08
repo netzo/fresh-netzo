@@ -43,7 +43,7 @@ export type AuthorizationOAuth2ClientCredentials = {
   type: "oauth2";
   grantType: "client_credentials";
   headerPrefix?: "Bearer" | string;
-  authorizationUrl: string;
+  accessTokenUrl: string; // exchanges client credentials for access token (directly)
   clientId: string;
   clientSecret: string;
   scope?: string;
@@ -67,8 +67,8 @@ export type AuthorizationOAuth2AccessTokenResult = {
 export type AuthorizationOAuth2PasswordCredentials = {
   type: "oauth2";
   grantType: "password_credentials";
-  headerPrefix?: "Bearer" | string;
-  accessTokenUrl: string;
+  headerPrefix?: "Basic" | string;
+  accessTokenUrl: string; // exchanges username and password for access token (directly)
   clientId: string;
   clientSecret: string;
   username: string;
@@ -84,10 +84,10 @@ export type AuthorizationOAuth2PasswordCredentials = {
 export type AuthorizationOAuth2AuthorizationCode = {
   type: "oauth2";
   grantType: "authorization_code";
-  headerPrefix?: "Bearer" | string;
-  redirectUrl: string;
-  authorizationUrl: string;
-  accessTokenUrl: string;
+  headerPrefix?: "Basic" | string;
+  redirectUrl: string; // requires user, so requires redirectUrl
+  authorizationUrl: string; // requires user, so requires authorizationUrl
+  accessTokenUrl: string; // exchanges authorization code for access token (indirectly)
   clientId: string;
   clientSecret: string;
   scope?: string;

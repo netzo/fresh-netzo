@@ -2,8 +2,7 @@ import {
   AuthorizationOAuth2,
   // AuthorizationOAuth2AuthorizationCode,
   AuthorizationOAuth2ClientCredentials,
-  // AuthorizationOAuth2PasswordCredentials,
-} from "../types.ts";
+} from "./types.ts";
 // import { OAuth2Client } from "https://deno.land/x/oauth2_client/mod.ts"
 
 /**
@@ -19,7 +18,7 @@ import {
 export const getTokenClientCredentialsFlow = async (
   authorization: AuthorizationOAuth2ClientCredentials,
 ) => {
-  const { clientId, clientSecret, authorizationUrl, scope } = authorization;
+  const { clientId, clientSecret, accessTokenUrl, scope } = authorization;
 
   let scopeString: string | undefined;
   if (scope) {
@@ -30,7 +29,9 @@ export const getTokenClientCredentialsFlow = async (
     }
   }
 
-  const response = await fetch(authorizationUrl, {
+  // NOTE: client_id and client_secret are passed both in the body and in
+  // the header just in case the server does not support one or the other
+  const response = await fetch(accessTokenUrl, {
     method: "POST",
     headers: new Headers({
       "content-type": "application/x-www-form-urlencoded",
@@ -38,6 +39,8 @@ export const getTokenClientCredentialsFlow = async (
     }),
     body: new URLSearchParams({
       "grant_type": "client_credentials",
+      client_id: clientId,
+      client_secret: clientSecret,
       ...(scopeString && { scope: scopeString }),
     }),
   });
