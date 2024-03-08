@@ -2,8 +2,11 @@ import { auth } from "../create-api/auth/mod.ts";
 import { createApi } from "../create-api/mod.ts";
 
 export type Microsoft365Options = {
+  baseURL: string;
   clientId: string;
   clientSecret: string;
+  accessTokenUrl?: string;
+  scope?: string;
 };
 
 /**

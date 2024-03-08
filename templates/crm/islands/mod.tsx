@@ -8,6 +8,8 @@ import {
 } from "netzo/components/blocks/nav.tsx";
 import type { NetzoState } from "netzo/mod.ts";
 
+export { NetzoToolbar } from "netzo/components/blocks/netzo-toolbar.tsx";
+
 export const Nav = (props: { state: NetzoState }) => {
   return (
     <NavRoot>

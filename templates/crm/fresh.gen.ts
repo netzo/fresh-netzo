@@ -21,7 +21,7 @@ import * as $contacts from "./islands/contacts.tsx";
 import * as $dashboard from "./islands/dashboard.tsx";
 import * as $deal from "./islands/deal.tsx";
 import * as $deals from "./islands/deals.tsx";
-import * as $nav from "./islands/nav.tsx";
+import * as $mod from "./islands/mod.tsx";
 import { type Manifest } from "$fresh/server.ts";
 
 const manifest = {
@@ -47,7 +47,7 @@ const manifest = {
     "./islands/dashboard.tsx": $dashboard,
     "./islands/deal.tsx": $deal,
     "./islands/deals.tsx": $deals,
-    "./islands/nav.tsx": $nav,
+    "./islands/mod.tsx": $mod,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;
