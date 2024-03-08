@@ -28,15 +28,14 @@ import {
   FormLabel,
   FormMessage,
   useForm,
-  type UseFormReturn,
   zodResolver,
+  type UseFormReturn,
 } from "netzo/components/form.tsx";
 import { IconCopy } from "netzo/components/icon-copy.tsx";
 import { Input } from "netzo/components/input.tsx";
 import { Textarea } from "netzo/components/textarea.tsx";
 import { cn } from "netzo/components/utils.ts";
-import type { Account } from "netzo/data/accounts.ts";
-import { accountSchema, getAccount } from "../data/accounts.ts";
+import { accountSchema, getAccount, type Account } from "../data/accounts.ts";
 import { Deal, dealSchema, getDeal } from "../data/deals.ts";
 import { I18N, toPercent, toUSD } from "../data/mod.ts";
 import { GROUPS } from "./deals.tsx";
