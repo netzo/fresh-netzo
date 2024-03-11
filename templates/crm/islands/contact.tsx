@@ -4,6 +4,13 @@ import {
   AvatarImage,
 } from "netzo/components/avatar.tsx";
 import { TableRowActions } from "netzo/components/blocks/table/table.tsx";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbSeparator
+} from "netzo/components/breadcrumb.tsx";
 import { Button } from "netzo/components/button.tsx";
 import {
   Card,
@@ -20,8 +27,8 @@ import {
   FormLabel,
   FormMessage,
   useForm,
-  type UseFormReturn,
   zodResolver,
+  type UseFormReturn,
 } from "netzo/components/form.tsx";
 import { Input } from "netzo/components/input.tsx";
 import { Textarea } from "netzo/components/textarea.tsx";
@@ -84,17 +91,25 @@ function ContactHeader(props: { form: UseFormReturn<Contact> }) {
   return (
     <header className="flex items-center justify-between p-4">
       <div className="flex flex-row items-center justify-between gap-4">
-        <Avatar className="h-12 w-12">
-          <AvatarImage src={image} />
-          <AvatarFallback>
-            {name?.[0].toUpperCase()}
-          </AvatarFallback>
-        </Avatar>
-        <div className="grid gap-2">
-          <CardTitle className="text-xl">
-            {name}
-          </CardTitle>
-        </div>
+        <Breadcrumb className="grid gap-2">
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink asChild>
+                <a href="/contacts">Contacts</a>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <Avatar className="h-6 w-6">
+                <AvatarImage src={image} />
+                <AvatarFallback>
+                  {name?.[0].toUpperCase()}
+                </AvatarFallback>
+              </Avatar>
+              {name}
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
       </div>
       <div className="flex flex-row items-center gap-4">
         <TableRowActions
