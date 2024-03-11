@@ -9,7 +9,7 @@ import {
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
-  BreadcrumbSeparator
+  BreadcrumbSeparator,
 } from "netzo/components/breadcrumb.tsx";
 import { Button } from "netzo/components/button.tsx";
 import { CardContent } from "netzo/components/card.tsx";
@@ -22,8 +22,8 @@ import {
   FormLabel,
   FormMessage,
   useForm,
-  zodResolver,
   type UseFormReturn,
+  zodResolver,
 } from "netzo/components/form.tsx";
 import { Input } from "netzo/components/input.tsx";
 import { Textarea } from "netzo/components/textarea.tsx";
