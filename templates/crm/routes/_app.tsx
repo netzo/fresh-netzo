@@ -10,6 +10,10 @@ export default defineApp<NetzoState>((req, ctx) => {
   // assert isAuthenticated explicitly (undefined if auth not enabled)
   const mustAuth = isAuthenticated === false;
 
+  // NOTE: until https://github.com/denoland/fresh/pull/2297 is merged
+  // the following check is required to handle /auth?error=... pages
+  const atAuthPage = ctx.url.pathname.startsWith("/auth");
+
   return (
     <html>
       <head>
@@ -20,7 +24,7 @@ export default defineApp<NetzoState>((req, ctx) => {
           image="/cover.svg"
         />
       </head>
-      {mustAuth
+      {mustAuth || atAuthPage
         ? (
           <body className={cn("h-screen bg-background")}>
             <main className="grid h-screen">

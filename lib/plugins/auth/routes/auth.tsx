@@ -1,12 +1,15 @@
-import { RouteConfig, defineRoute } from "../../../deps/$fresh/server.ts";
+import { defineRoute, type RouteConfig } from "../../../deps/$fresh/server.ts";
 import { AuthForm } from "../islands/auth-form.tsx";
 import { type AuthConfig } from "../plugin.ts";
 
 // FIXME: not working for plugin-injected routes
+// see https://github.com/denoland/fresh/issues/2296),
+// https://github.com/denoland/fresh/issues/2352
+// and https://github.com/denoland/fresh/pull/2297
 export const config: RouteConfig = {
   skipAppWrapper: true,
   skipInheritedLayouts: true,
- };
+};
 
 export default (config: AuthConfig) => {
   return defineRoute((req, ctx) => {

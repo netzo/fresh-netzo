@@ -2,6 +2,7 @@ import type { Plugin, PluginRoute } from "../../deps/$fresh/server.ts";
 import type { OAuth2ClientConfig } from "../../deps/oauth2_client/src/oauth2_client.ts";
 import type { NetzoState } from "../../mod.ts";
 import {
+  assertUserIsWorkspaceUserOfWorkspaceOfApiKeyIfProviderIsNetzo,
   ensureSignedIn,
   setRequestState,
   setSessionState,
@@ -94,6 +95,13 @@ export const auth = (config: AuthConfig): Plugin<NetzoState> => {
       {
         path: "/",
         middleware: { handler: setSessionState },
+      },
+      {
+        path: "/",
+        middleware: {
+          handler:
+            assertUserIsWorkspaceUserOfWorkspaceOfApiKeyIfProviderIsNetzo,
+        },
       },
       {
         path: "/",

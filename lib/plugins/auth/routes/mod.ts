@@ -55,27 +55,6 @@ export const getRoutesByProvider = (
           roles: ["admin"],
         } as unknown as AuthUser;
 
-        // [netzo] assert user is member of workspace this project belongs to (check apiKey)
-        if (["netzo"].includes(provider)) {
-          const {
-            NETZO_API_KEY,
-            NETZO_API_URL = "https://api.netzo.io",
-          } = Deno.env.toObject(); // MUST be set if using Netzo Auth Provider
-          const response = await fetch(
-            `${NETZO_API_URL}/api-keys?apiKey=${NETZO_API_KEY}`,
-            {
-              headers: { authorization: `Bearer ${tokens.accessToken}` },
-            },
-          );
-          const data = await response.json();
-          const userHasAccessToWorkspaceOfApiKey = data?.data?.length === 1;
-          if (!userHasAccessToWorkspaceOfApiKey) {
-            return Response.redirect(
-              "/auth?error=You do not have access to this application.",
-            );
-          }
-        }
-
         if (userCurrent === null) {
           await createUser(user);
         } else {
