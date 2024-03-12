@@ -1,6 +1,6 @@
 import { authenticate, log, resolve } from "netzo/plugins/api/hooks/mod.ts";
 import { defineApiConfig } from "netzo/plugins/api/plugin.ts";
-import { DenoKvResource, Resource } from "netzo/plugins/api/resources/mod.ts";
+import { DenoKvResource, type Resource } from "netzo/plugins/api/resources/mod.ts";
 import type { Activity } from "../data/activities.ts";
 import { Contact } from "../data/contacts.ts";
 import type { Deal } from "../data/deals.ts";

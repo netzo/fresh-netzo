@@ -1,9 +1,12 @@
-import { defineRoute } from "../../../deps/$fresh/server.ts";
+import { RouteConfig, defineRoute } from "../../../deps/$fresh/server.ts";
 import { AuthForm } from "../islands/auth-form.tsx";
 import { type AuthConfig } from "../plugin.ts";
 
 // FIXME: not working for plugin-injected routes
-// export const config: RouteConfig = { skipAppWrapper: true };
+export const config: RouteConfig = {
+  skipAppWrapper: true,
+  skipInheritedLayouts: true,
+ };
 
 export default (config: AuthConfig) => {
   return defineRoute((req, ctx) => {
