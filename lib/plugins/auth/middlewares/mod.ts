@@ -6,8 +6,8 @@ import { getUserBySession } from "../utils/db.ts";
 const skip = (_req: Request, ctx: FreshContext<NetzoState>) => {
   if (!["route"].includes(ctx.destination)) return true;
   if (ctx.url.pathname.startsWith("/auth/")) return true; // skip auth routes (signin, callback, signout)
-  if (ctx.url.pathname.startsWith("/db")) return true; // skip database API routes
   if (ctx.url.pathname.startsWith("/api")) return true; // skip user API routes
+  if (ctx.url.searchParams.has("error")) return true; // skip if error
   return false;
 };
 
@@ -36,6 +36,42 @@ export async function setSessionState(
   ctx.state.auth.isAuthenticated = true;
 
   return await ctx.next(); // C) authenticated
+}
+
+export async function assertUserIsWorkspaceUserOfWorkspaceOfApiKeyIfProviderIsNetzo(
+  req: Request,
+  ctx: FreshContext<NetzoState>,
+) {
+  if (skip(req, ctx)) return await ctx.next();
+
+  if (ctx.url.pathname.startsWith("/auth")) return await ctx.next(); // skip auth route
+
+  const { sessionUser } = ctx.state.auth ?? {};
+
+  // [netzo] assert user is member of workspace this project belongs to (check apiKey)
+  if (sessionUser?.provider === "netzo") {
+    const {
+      NETZO_API_KEY,
+      NETZO_API_URL = "https://api.netzo.io",
+    } = Deno.env.toObject(); // MUST be set if using Netzo Auth Provider
+    const response = await fetch(`${NETZO_API_URL}/workspace-users`, {
+      headers: { "x-api-key": NETZO_API_KEY },
+    });
+    const result = await response.json();
+    const userIsMemberOfWorkspaceOfApiKey = !!result?.data?.some?.(
+      (wu: { userId: string }) => wu.userId === sessionUser?.authId,
+    );
+    if (!userIsMemberOfWorkspaceOfApiKey) {
+      return new Response("", {
+        status: 307,
+        headers: {
+          Location: "/auth?error=You do not have access to this application.",
+        },
+      }); // redirect to relative path
+    } else ctx.url.searchParams.delete("error");
+  }
+
+  return await ctx.next();
 }
 
 export async function setRequestState(
@@ -77,6 +113,7 @@ export async function ensureSignedIn(
     return Response.redirect(ctx.url.href, 302);
   } else if (ctx.url.pathname === "/auth" && isAuthenticated) {
     // console.debug("[auth] User logged in, redirecting to /");
+    ctx.url.searchParams.delete("error");
     ctx.url.pathname = "/";
     return Response.redirect(ctx.url.href, 302);
   }

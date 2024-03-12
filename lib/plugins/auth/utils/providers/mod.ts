@@ -109,11 +109,11 @@ export const getAuthConfig = (
 export const getFunctionsByProvider = (provider: AuthProvider) => {
   switch (provider) {
     case "netzo":
-      return [signInNetzo, handleCallbackNetzo, signOut];
+      return [signInNetzo, handleCallbackNetzo, signOut] as const;
     case "email":
-      return [signInEmail, handleCallbackEmail, signOut];
+      return [signInEmail, handleCallbackEmail, signOut] as const;
     default:
-      return [signIn, handleCallback, signOut];
+      return [signIn, handleCallback, signOut] as const;
   }
 };
 
