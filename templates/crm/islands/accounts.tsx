@@ -172,7 +172,7 @@ export function PageAccounts(props: { accounts: Account[] }) {
   };
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-screen">
       <header className="flex items-center justify-between p-4">
         <div className="flex items-center flex-1 space-x-2">
           <TableActionsReload table={table} />

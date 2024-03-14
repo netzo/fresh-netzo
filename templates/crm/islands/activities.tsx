@@ -133,7 +133,7 @@ export function PageActivities(props: {
       <ResizablePanel
         defaultSize={defaultLayout[0]}
         minSize={30}
-        className="flex flex-col h-full"
+        className="flex flex-col h-screen"
       >
         <header className="p-4 space-y-4">
           <div className="flex items-center justify-between">

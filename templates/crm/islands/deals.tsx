@@ -117,7 +117,7 @@ export function PageDeals(props: { deals: Deal[] }) {
   };
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-screen">
       <header className="flex items-center justify-between p-4">
         <div className="flex items-center flex-1 space-x-2">
           <TableActionsReload table={table} />
@@ -136,13 +136,11 @@ export function PageDeals(props: { deals: Deal[] }) {
         </div>
       </header>
       <div className="flex-1 overflow-y-auto">
-        <div className="h-full mx-4">
-          <KanbanView
-            table={table}
-            renderGroup={(props) => <KanbanGroup {...props} />}
-            renderCard={(props) => <KanbanCard {...props} />}
-          />
-        </div>
+        <KanbanView
+          table={table}
+          renderGroup={(props) => <KanbanGroup {...props} />}
+          renderCard={(props) => <KanbanCard {...props} />}
+        />
       </div>
       <footer className="flex items-center justify-between p-4">
         <TablePagination table={table} />

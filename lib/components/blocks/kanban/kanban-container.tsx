@@ -9,7 +9,7 @@ export function KanbanContainer(
 ) {
   const dndContext = useDndContext();
 
-  const variations = cva("h-full px-2 md:px-0 flex lg:justify-center", {
+  const variations = cva("h-full px-2 md:px-4 flex lg:justify-center", {
     variants: {
       dragging: {
         default: "snap-x snap-mandatory",
