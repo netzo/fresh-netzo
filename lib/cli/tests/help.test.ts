@@ -1,7 +1,7 @@
 import {
-    assert,
-    assertEquals,
-    assertStringIncludes,
+  assert,
+  assertEquals,
+  assertStringIncludes,
 } from "../../deps/std/assert/mod.ts";
 import { netzo, output } from "./utils.ts";
 
