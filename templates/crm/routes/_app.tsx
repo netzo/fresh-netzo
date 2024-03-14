@@ -15,7 +15,7 @@ export default defineApp<NetzoState>((req, ctx) => {
   const atAuthPage = ctx.url.pathname.startsWith("/auth");
 
   return (
-    <html>
+    <html className="h-full overflow-hidden">
       <head>
         <Head
           title="Netzo CRM"

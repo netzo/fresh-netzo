@@ -1,23 +1,23 @@
 import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
+    Avatar,
+    AvatarFallback,
+    AvatarImage,
 } from "netzo/components/avatar.tsx";
 import { Badge } from "netzo/components/badge.tsx";
 import {
-  TableActionsReload,
-  TableColumnHeader,
-  TableFilters,
-  TablePagination,
-  TableRowActions,
-  TableSearch,
-  TableView,
-  TableViewOptions,
-  useTable,
+    TableActionsReload,
+    TableColumnHeader,
+    TableFilters,
+    TablePagination,
+    TableRowActions,
+    TableSearch,
+    TableView,
+    TableViewOptions,
+    useTable,
 } from "netzo/components/blocks/table/table.tsx";
 import { Button } from "netzo/components/button.tsx";
 import { IconCopy } from "netzo/components/icon-copy.tsx";
-import { type Contact, getContact } from "../data/contacts.ts";
+import { getContact, type Contact } from "../data/contacts.ts";
 import { I18N, toDateTime } from "../data/mod.ts";
 
 export function PageContacts(props: { contacts: Contact[] }) {
@@ -208,7 +208,7 @@ export function PageContacts(props: { contacts: Contact[] }) {
   };
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-screen">
       <header className="flex items-center justify-between p-4">
         <div className="flex items-center flex-1 space-x-2">
           <TableActionsReload table={table} />
