@@ -1,5 +1,4 @@
 import { assertExists } from "../../deps/std/assert/mod.ts";
-import "../../deps/std/dotenv/load.ts";
 import { mongodb } from "./mongodb.ts";
 
 Deno.test("[dbs] mongodb", {

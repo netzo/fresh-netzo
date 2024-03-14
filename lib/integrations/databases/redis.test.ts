@@ -1,5 +1,4 @@
 import { assertExists } from "../../deps/std/assert/mod.ts";
-import "../../deps/std/dotenv/load.ts";
 import { redis } from "./redis.ts";
 
 Deno.test("[dbs] redis", { ignore: !Deno.env.get("REDIS_URL")! }, async (t) => {

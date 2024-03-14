@@ -1,8 +1,7 @@
-import "../../deps/std/dotenv/load.ts";
 import {
-  assert,
-  assertEquals,
-  assertStringIncludes,
+    assert,
+    assertEquals,
+    assertStringIncludes,
 } from "../../deps/std/assert/mod.ts";
 import { netzo, output } from "./utils.ts";
 
