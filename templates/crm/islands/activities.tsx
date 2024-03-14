@@ -1,31 +1,31 @@
 import { useSignal } from "@preact/signals";
 import { Badge } from "netzo/components/badge.tsx";
 import {
-    TableActionsReload,
-    TableFilters,
-    TablePagination,
-    TableRowActions,
-    TableSearch,
-    TableView,
-    useTable,
+  TableActionsReload,
+  TableFilters,
+  TablePagination,
+  TableRowActions,
+  TableSearch,
+  TableView,
+  useTable,
 } from "netzo/components/blocks/table/table.tsx";
 import { Button } from "netzo/components/button.tsx";
 import { Combobox } from "netzo/components/combobox.tsx";
 import {
-    Form,
-    FormControl,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage,
-    useForm,
-    zodResolver,
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+  useForm,
+  zodResolver,
 } from "netzo/components/form.tsx";
 import { Input } from "netzo/components/input.tsx";
 import {
-    ResizableHandle,
-    ResizablePanel,
-    ResizablePanelGroup,
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
 } from "netzo/components/resizable.tsx";
 import { type Option } from "netzo/components/select-multiple.tsx";
 import { Separator } from "netzo/components/separator.tsx";
@@ -33,9 +33,9 @@ import { Textarea } from "netzo/components/textarea.tsx";
 import { cn } from "netzo/components/utils.ts";
 import type { Account } from "../data/accounts.ts";
 import {
-    activitySchema,
-    getActivity,
-    type Activity,
+  type Activity,
+  activitySchema,
+  getActivity,
 } from "../data/activities.ts";
 import type { Contact } from "../data/contacts.ts";
 import type { Deal } from "../data/deals.ts";

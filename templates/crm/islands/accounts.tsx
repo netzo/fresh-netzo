@@ -1,19 +1,19 @@
 import {
-    Avatar,
-    AvatarFallback,
-    AvatarImage,
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
 } from "netzo/components/avatar.tsx";
 import { Badge } from "netzo/components/badge.tsx";
 import {
-    TableActionsReload,
-    TableColumnHeader,
-    TableFilters,
-    TablePagination,
-    TableRowActions,
-    TableSearch,
-    TableView,
-    TableViewOptions,
-    useTable,
+  TableActionsReload,
+  TableColumnHeader,
+  TableFilters,
+  TablePagination,
+  TableRowActions,
+  TableSearch,
+  TableView,
+  TableViewOptions,
+  useTable,
 } from "netzo/components/blocks/table/table.tsx";
 import { Button } from "netzo/components/button.tsx";
 import { IconCopy } from "netzo/components/icon-copy.tsx";
