@@ -1,14 +1,13 @@
 #!/usr/bin/env -S deno run --allow-read --allow-write --allow-env --allow-net --allow-run
 
-import { parseArgs } from "./src/args.ts";
 import { parse, semverGreaterThanOrEquals } from "../deps/semver/mod.ts";
 import { error } from "../plugins/utils.ts";
-import initSubcommand from "./src/subcommands/init.ts";
-import addSubcommand from "./src/subcommands/add.ts";
+import { parseArgs } from "./src/args.ts";
 import deploySubcommand from "./src/subcommands/deploy.ts";
+import initSubcommand from "./src/subcommands/init.ts";
 import upgradeSubcommand from "./src/subcommands/upgrade.ts";
-import { MINIMUM_DENO_VERSION, VERSION } from "./src/version.ts";
 import { fetchReleases, getConfigPaths } from "./src/utils/info.ts";
+import { MINIMUM_DENO_VERSION, VERSION } from "./src/version.ts";
 
 import "../deps/std/dotenv/load.ts"; // ensure .env is loaded (even if not using --env)
 
@@ -88,9 +87,6 @@ const subcommand = args._.shift();
 switch (subcommand) {
   case "init":
     await initSubcommand(args);
-    break;
-  case "add":
-    await addSubcommand(args);
     break;
   case "deploy":
     await deploySubcommand(args);
