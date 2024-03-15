@@ -1,5 +1,4 @@
 import { ulid } from "netzo/plugins/api/utils.ts";
-import { faker } from "npm:@faker-js/faker@8.4.0";
 import { z } from "zod";
 
 // schemas:
@@ -41,25 +40,4 @@ export const getDeal = (data?: Partial<Deal>) => ({
   accountId: "",
   contactIds: [],
   ...data,
-});
-
-// data:
-
-export const mock = (idField = "id") => ({
-  [idField]: ulid() as string,
-  createdAt: faker.date.past().toISOString(),
-  updatedAt: faker.date.recent().toISOString(),
-  name: faker.lorem.words(),
-  description: faker.lorem.sentences(),
-  status: faker.helpers.arrayElement([
-    "lead",
-    "qualified",
-    "negotiation",
-    "won",
-    "lost",
-  ]),
-  amount: faker.commerce.price({ min: 99, max: 99_999 }),
-  currencyCode: "USD",
-  accountId: ulid(),
-  contactIds: Array.from(Array(2)).map(() => ulid()),
 });
