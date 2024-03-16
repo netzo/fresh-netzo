@@ -1,4 +1,3 @@
-import "../../../deps/std/dotenv/load.ts";
 import { assertEquals, assertExists } from "../../../deps/std/assert/mod.ts";
 import { z } from "../../../deps/zod/mod.ts";
 import { DenoKvResource } from "./denokv.ts";

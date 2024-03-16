@@ -10,7 +10,6 @@
     "cov:gen": "deno coverage ./cov/ --lcov --exclude='.tsx' --output=cov.lcov",
     "cov:view": "genhtml -o html_cov cov.lcov && open html_cov/index.html",
     "check:types": "deno check **/*.ts **/*.tsx",
-    "db:mock": "deno run -A --env tasks/db:mock.ts",
     "db:load": "deno run -A --env tasks/db:load.ts",
     "db:reset": "deno run -A --env tasks/db:reset.ts",
     "ok": "deno fmt --check && deno lint && deno task check:types && deno task test",

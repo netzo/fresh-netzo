@@ -1,4 +1,4 @@
-import { FILEPATH } from "./db:mock.ts";
+export const FILEPATH = "../data/db.entries.json";
 
 const kv = await Deno.openKv(Deno.env.get("DENO_KV_PATH"));
 

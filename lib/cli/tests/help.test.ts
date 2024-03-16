@@ -1,4 +1,3 @@
-import "../../deps/std/dotenv/load.ts";
 import {
   assert,
   assertEquals,

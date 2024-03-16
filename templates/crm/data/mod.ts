@@ -113,11 +113,12 @@ export const toPercent = (value: number) =>
     minimumFractionDigits: 2,
   }).format(value);
 
-// adapted from https://stackoverflow.com/a/66494926 (space-separated hsl syntax for unocss)
+// adapted from https://stackoverflow.com/a/66494926 (underscore-separated hsl syntax for unocss)
+// usage: add to className e.g. `bg-[toHslColor(category)]`
 export const toHslColor = (value: string, saturation = 75, lightness = 50) => {
   const stringUniqueHash = [...value].reduce((acc, char) => {
     return char.charCodeAt(0) + ((acc << 5) - acc);
   }, 0);
   const hue = Math.abs(stringUniqueHash % 360);
-  return `hsl(${hue} ${saturation}% ${lightness}%)`;
+  return `hsl(${hue}_${saturation}%_${lightness}%)`;
 };
