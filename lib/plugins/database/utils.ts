@@ -1,19 +1,10 @@
 import { _get } from "../../deps/lodash.get.ts";
-import { monotonicFactory } from "../../deps/ulid.ts";
 
 export const ERRORS = {
-  missingProperty: (name: string) => `Missing "${name}" property in options.`,
-  invalidProperty: (name: string) => `Invalid "${name}" property in options.`,
-};
-
-// ulid:
-
-export const ulid = monotonicFactory();
-
-export const isUlid = (str: string) => {
-  // from https://regex101.com/library/ik6xZx
-  const ULID = /[0-7][0-9A-HJKMNP-TV-Z]{25}/gm;
-  return ULID.test(str);
+  missingApiKey: () => new Response("Missing API key", { status: 401 }),
+  invalidApiKey: () => new Response("Invalid API key", { status: 401 }),
+  notAllowed: () => new Response("Method not allowed", { status: 405 }),
+  invalidRequest: () => new Response("Invalid request", { status: 400 }),
 };
 
 // request:
@@ -61,7 +52,7 @@ export async function parseRequestBody(req: Request) {
   }
 }
 
-export function filterObjectsByKeyValues<T = any>(
+export function filterObjectsByKeyValues<T = unknown>(
   data: T[],
   filters: Record<string, any> = {},
 ) {

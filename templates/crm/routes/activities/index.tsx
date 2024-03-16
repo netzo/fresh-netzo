@@ -4,15 +4,15 @@ import type { Activity } from "../../data/activities.ts";
 import type { Contact } from "../../data/contacts.ts";
 import type { Deal } from "../../data/deals.ts";
 import { PageActivities } from "../../islands/activities.tsx";
-import { $api } from "../../plugins/api.config.ts";
+import { db } from "../../plugins/database.config.ts";
 
 export default defineRoute(async (req, ctx) => {
   const { id } = ctx.params;
   const [activities, accounts, contacts, deals] = await Promise.all([
-    $api.activities.find() as Activity[],
-    $api.accounts.find() as Account[],
-    $api.contacts.find() as Contact[],
-    $api.deals.find() as Deal[],
+    db.find<Activity>("activities"),
+    db.find<Account>("accounts"),
+    db.find<Contact>("contacts"),
+    db.find<Deal>("deals"),
   ]);
 
   // render entire page as island for simplicity

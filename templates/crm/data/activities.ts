@@ -1,4 +1,4 @@
-import { ulid } from "netzo/plugins/api/utils.ts";
+import { ulid } from "netzo/plugins/database/database.ts";
 import { z } from "zod";
 
 // schemas:

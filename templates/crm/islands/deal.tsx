@@ -22,8 +22,8 @@ import {
   FormLabel,
   FormMessage,
   useForm,
-  type UseFormReturn,
   zodResolver,
+  type UseFormReturn,
 } from "netzo/components/form.tsx";
 import { Input } from "netzo/components/input.tsx";
 import { Textarea } from "netzo/components/textarea.tsx";
@@ -49,7 +49,7 @@ export function PageDeal(props: PageDealProps) {
   });
 
   const onSubmit = async (data: Deal) => {
-    const response = await fetch(`/api/deals/${props.deal.id}`, {
+    const response = await fetch(`/db/deals/${props.deal.id}`, {
       method: "PATCH",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(getDeal(data)),

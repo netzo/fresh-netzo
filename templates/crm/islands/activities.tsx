@@ -33,9 +33,9 @@ import { Textarea } from "netzo/components/textarea.tsx";
 import { cn } from "netzo/components/utils.ts";
 import type { Account } from "../data/accounts.ts";
 import {
-  type Activity,
   activitySchema,
   getActivity,
+  type Activity,
 } from "../data/activities.ts";
 import type { Contact } from "../data/contacts.ts";
 import type { Deal } from "../data/deals.ts";
@@ -114,7 +114,7 @@ export function PageActivities(props: {
   const onClickCreate = async () => {
     const name = globalThis.prompt("Enter activity name");
     if (name) {
-      const response = await fetch(`/api/activities`, {
+      const response = await fetch(`/db/activities`, {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(getActivity({ name })),
@@ -241,7 +241,7 @@ function FormUpdate(props: {
   });
 
   const onSubmit = async (data: Activity) => {
-    const response = await fetch(`/api/activities/${props.activity.id}`, {
+    const response = await fetch(`/db/activities/${props.activity.id}`, {
       method: "PATCH",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(getActivity(data)),

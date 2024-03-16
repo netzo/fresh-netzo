@@ -1,4 +1,4 @@
-import { ulid } from "../../api/utils.ts";
+import { ulid } from "../../database/database.ts";
 import type { AuthProvider } from "./providers/mod.ts";
 
 const kv = await Deno.openKv(Deno.env.get("DENO_KV_PATH"));

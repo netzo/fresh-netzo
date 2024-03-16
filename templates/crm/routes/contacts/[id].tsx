@@ -2,14 +2,14 @@ import { defineRoute } from "$fresh/server.ts";
 import type { Contact } from "../../data/contacts.ts";
 import type { Deal } from "../../data/deals.ts";
 import { PageContact } from "../../islands/contact.tsx";
-import { $api } from "../../plugins/api.config.ts";
+import { db } from "../../plugins/database.config.ts";
 
 export default defineRoute(async (req, ctx) => {
   const { id } = ctx.params;
   const [contact, accounts, allDeals] = await Promise.all([
-    $api.contacts.get(id) as Contact,
-    $api.accounts.find() as Account[],
-    $api.deals.find() as Deal[],
+    db.get<Contact>("contacts", id),
+    db.find<Account>("accounts"),
+    db.find<Deal>("deals"),
   ]);
 
   const deals = allDeals.filter((deal) =>
