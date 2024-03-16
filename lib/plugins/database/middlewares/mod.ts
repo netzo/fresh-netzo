@@ -8,7 +8,10 @@ export const getMiddlewaresByCollection = (
   collection: DatabaseCollection,
   options: DatabaseConfig,
 ): PluginMiddleware[] => {
-  const { kv, name, apiKey = Deno.env.get("NETZO_API_KEY") } = { ...options, ...collection };
+  const { kv, name, apiKey = Deno.env.get("NETZO_API_KEY") } = {
+    ...options,
+    ...collection,
+  };
 
   const db = createDatabase(kv);
 
