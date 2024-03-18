@@ -1,3 +1,4 @@
+import { ResponseError } from "../../errors.ts";
 import { defineHook } from "./mod.ts";
 
 export type AuthenticateOptions = {
@@ -42,8 +43,8 @@ export const authenticate = (options?: AuthenticateOptions) => {
     const apiKeyHeader = header && ctx.request.headers.get(header);
     const apiKeySearchParams = param && ctx.url.searchParams.get(param);
     const apiKeyValue = apiKeyHeader || apiKeySearchParams;
-    if (!apiKeyValue) throw new Error("Missing API key");
-    if (apiKeyValue !== apiKey) throw new Error("Invalid API key");
+    if (!apiKeyValue) throw new ResponseError("Unauthorized", "Missing API key");
+    if (apiKeyValue !== apiKey) throw new ResponseError("Unauthorized", "Invalid API key");
 
     await next();
   });

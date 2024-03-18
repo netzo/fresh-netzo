@@ -1,5 +1,6 @@
 import type { Plugin } from "../../deps/$fresh/server.ts";
 import { AsyncMiddleware } from "../../deps/@feathersjs/hooks.ts";
+import { handleErrors } from "./middlewares/mod.ts";
 import { getRoutesByCollection } from "./routes/mod.ts";
 
 export type DbCollection<T = Record<string, unknown>> = {
@@ -39,8 +40,7 @@ export type DbConfig = Omit<DbCollection, "name" | "hooks"> & {
   collections: DbCollection[];
 };
 
-export const defineDbConfig = (config: DbConfig): DbConfig =>
-  config;
+export const defineDbConfig = (config: DbConfig): DbConfig => config;
 
 export type DbState = {};
 
@@ -71,6 +71,12 @@ export const db = (config?: DbConfig): Plugin => {
 
   return {
     name: "netzo.db",
+    middlewares: [
+      {
+        path: config.path!,
+        middleware: { handler: handleErrors },
+      },
+    ],
     routes: dbRoutes,
   };
 };
