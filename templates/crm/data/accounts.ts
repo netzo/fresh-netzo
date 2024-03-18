@@ -1,4 +1,3 @@
-import { ulid } from "netzo/plugins/database/database.ts";
 import { z } from "zod";
 import { getLinks, linksSchema } from "./mod.ts";
 
@@ -23,7 +22,6 @@ export type Account = z.infer<typeof accountSchema>;
 // defaults:
 
 export const getAccount = (data?: Partial<Account>) => ({
-  id: ulid(),
   createdAt: new Date().toISOString(),
   updatedAt: new Date().toISOString(),
   name: "",

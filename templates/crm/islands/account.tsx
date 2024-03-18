@@ -35,14 +35,14 @@ import {
   FormLabel,
   FormMessage,
   useForm,
-  type UseFormReturn,
   zodResolver,
+  type UseFormReturn,
 } from "netzo/components/form.tsx";
 import { IconCopy } from "netzo/components/icon-copy.tsx";
 import { Input } from "netzo/components/input.tsx";
 import { Textarea } from "netzo/components/textarea.tsx";
 import { cn } from "netzo/components/utils.ts";
-import { type Account, accountSchema, getAccount } from "../data/accounts.ts";
+import { accountSchema, getAccount, type Account } from "../data/accounts.ts";
 import { Deal, dealSchema, getDeal } from "../data/deals.ts";
 import { I18N, toPercent, toUSD } from "../data/mod.ts";
 import { GROUPS } from "./deals.tsx";
@@ -60,7 +60,7 @@ export function PageAccount(props: PageAccountProps) {
   });
 
   const onSubmit = async (data: Account) => {
-    const response = await fetch(`/db/accounts/${props.account.id}`, {
+    const response = await fetch(`/api/accounts/${props.account.id}`, {
       method: "PATCH",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(getAccount(data)),
@@ -429,7 +429,7 @@ export function CardDeals(
   });
 
   const onSubmit = async (data: Deal) => {
-    const response = await fetch(`/db/deals`, {
+    const response = await fetch(`/api/deals`, {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(getAccount(data)),

@@ -17,7 +17,7 @@ import {
 } from "netzo/components/blocks/table/table.tsx";
 import { Button } from "netzo/components/button.tsx";
 import { IconCopy } from "netzo/components/icon-copy.tsx";
-import { type Contact, getContact } from "../data/contacts.ts";
+import { getContact, type Contact } from "../data/contacts.ts";
 import { I18N, toDateTime } from "../data/mod.ts";
 
 export function PageContacts(props: { contacts: Contact[] }) {
@@ -195,7 +195,7 @@ export function PageContacts(props: { contacts: Contact[] }) {
   const onClickCreate = async () => {
     const name = globalThis.prompt("Enter contact name");
     if (name) {
-      const response = await fetch(`/db/contacts`, {
+      const response = await fetch(`/api/contacts`, {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(getContact({ name })),

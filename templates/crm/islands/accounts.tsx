@@ -159,7 +159,7 @@ export function PageAccounts(props: { accounts: Account[] }) {
   const onClickCreate = async () => {
     const name = globalThis.prompt("Enter account name");
     if (name) {
-      const response = await fetch(`/db/accounts`, {
+      const response = await fetch(`/api/accounts`, {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(getAccount({ name })),

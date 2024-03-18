@@ -27,8 +27,8 @@ import {
   FormLabel,
   FormMessage,
   useForm,
-  type UseFormReturn,
   zodResolver,
+  type UseFormReturn,
 } from "netzo/components/form.tsx";
 import { Input } from "netzo/components/input.tsx";
 import { Textarea } from "netzo/components/textarea.tsx";
@@ -50,7 +50,7 @@ export function PageContact(props: PageContactProps) {
   });
 
   const onSubmit = async (data: Contact) => {
-    const response = await fetch(`/db/contacts/${props.contact.id}`, {
+    const response = await fetch(`/api/contacts/${props.contact.id}`, {
       method: "PATCH",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(getContact(data)),
