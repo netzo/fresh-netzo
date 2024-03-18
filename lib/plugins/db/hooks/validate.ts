@@ -1,5 +1,4 @@
 import type { ZodSchema } from "../../../deps/zod/mod.ts";
-import { ResponseError } from "../../errors.ts";
 import { defineHook } from "./mod.ts";
 
 /**
@@ -16,7 +15,7 @@ export const validate = (schema: ZodSchema) => {
       } catch (error) {
         ctx.error = error;
         console.error(error);
-        throw new ResponseError("BadRequest", error.message);
+        throw new Error(error);
       }
     }
     await next();
