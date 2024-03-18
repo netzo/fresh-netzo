@@ -1,150 +1,71 @@
 import type { PluginRoute } from "../../../deps/$fresh/server.ts";
-import {
-  hooks as hookify,
-  middleware,
-} from "../../../deps/@feathersjs/hooks.ts";
 import { join } from "../../../deps/std/path/mod.ts";
 import { createDatabase } from "../mod.ts";
-import type { DbCollection, DbConfig } from "../plugin.ts";
-import { ERRORS, parseRequestBody, parseSearchParams } from "../utils.ts";
+import type { DbConfig } from "../plugin.ts";
+import { parseRequestBody, parseSearchParams, RESPONSES } from "../utils.ts";
 
 export const getRoutesByCollection = (
-  collection: DbCollection,
+  collection: DbConfig["collections"][number],
   options: DbConfig,
 ): PluginRoute[] => {
-  const { kv, name, idField = "id", methods, hooks = {} } = {
-    ...options,
-    ...collection,
-  };
   const {
-    all: allHooks = [],
-    find: findHooks = [],
-    get: getHooks = [],
-    create: createHooks = [],
-    update: updateHooks = [],
-    patch: patchHooks = [],
-    remove: removeHooks = [],
-  } = hooks;
+    kv,
+    name,
+    idField = "id",
+    methods = ["find", "get", "create", "update", "patch", "remove"],
+  } = { ...options, ...collection };
 
   const db = createDatabase(kv);
 
   const routes: PluginRoute[] = [
     {
-      path: join(options.path!, name),
+      path: join("/api", name),
       handler: {
-        GET: async (request, ctx) => {
-          if (!methods!.includes("find")) return ERRORS.notAllowed();
+        GET: async (_req, ctx) => {
           const { params, query } = parseSearchParams(ctx.url.searchParams);
-          const find = hookify(
-            db.find,
-            middleware([...allHooks, ...findHooks]),
-          );
-          const findCtx = find.createContext({
-            method: "find",
-            name,
-            path: join(options.path!, name),
-            idField,
-            request,
-            url: ctx.url,
-            data: undefined,
-          });
-          const finalCtx = await find(name, query, findCtx);
-          // validate to against $collections in Deno KV
-          // const validate = await assertValid(result, query);
-          return Response.json(finalCtx.result);
+          if (!methods!.includes("find")) return RESPONSES.notAllowed();
+          const result = await db.find(name, query);
+          return Response.json(result);
         },
-        POST: async (request, ctx) => {
-          if (!methods!.includes("create")) return ERRORS.notAllowed();
+        POST: async (req, ctx) => {
           const { params } = parseSearchParams(ctx.url.searchParams);
-          const data = await parseRequestBody(request);
-          const create = hookify(
-            db.create,
-            middleware([...allHooks, ...createHooks]),
-          );
-          const createCtx = create.createContext({
-            method: "create",
-            name,
-            path: join(options.path!, name),
-            idField,
-            request,
-            url: ctx.url,
-            data,
-          });
-          const finalCtx = await create(name, data, idField, createCtx);
-          return Response.json(finalCtx.result);
+          if (!methods!.includes("create")) return RESPONSES.notAllowed();
+          const data = await parseRequestBody(req);
+          const result = await db.create(name, data, idField);
+          return Response.json(result);
         },
       },
     } satisfies PluginRoute,
     {
-      path: join(options.path!, name, "[id]"),
+      path: join("/api", name, "[id]"),
       handler: {
-        GET: async (request, ctx) => {
-          if (!methods!.includes("get")) return ERRORS.notAllowed();
+        GET: async (_req, ctx) => {
+          if (!methods!.includes("get")) return RESPONSES.notAllowed();
           const { [idField]: id } = ctx.params;
-          const get = hookify(db.get, middleware([...allHooks, ...getHooks]));
-          const getCtx = get.createContext({
-            method: "get",
-            name,
-            path: join(options.path!, name, "[id]"),
-            idField,
-            request,
-            url: ctx.url,
-            data: undefined,
-          });
-          const finalCtx = await get(name, id, getCtx);
-          return Response.json(finalCtx.result);
+          const result = await db.get(name, id);
+          return Response.json(result);
         },
-        PUT: async (request, ctx) => {
+        PUT: async (req, ctx) => {
           const { params } = parseSearchParams(ctx.url.searchParams);
-          if (!methods!.includes("update")) return ERRORS.notAllowed();
+          if (!methods!.includes("update")) return RESPONSES.notAllowed();
           const { [idField]: id } = ctx.params;
-          const data = await parseRequestBody(request);
-          const update = hookify(
-            db.update,
-            middleware([...allHooks, ...updateHooks]),
-          );
-          const updateCtx = update.createContext({
-            method: "update",
-            name,
-            path: join(options.path!, name, "[id]"),
-            idField,
-            request,
-            url: ctx.url,
-            data,
-          });
-          const finalCtx = await update(name, ctx.params.id, data, updateCtx);
-          return Response.json(finalCtx.result);
+          const data = await parseRequestBody(req);
+          const result = await db.update(name, id, data);
+          return Response.json(result);
         },
-        PATCH: async (request, ctx) => {
+        PATCH: async (req, ctx) => {
           const { params } = parseSearchParams(ctx.url.searchParams);
-          if (!methods!.includes("patch")) return ERRORS.notAllowed();
+          if (!methods!.includes("patch")) return RESPONSES.notAllowed();
           const { [idField]: id } = ctx.params;
-          const data = await parseRequestBody(request);
-          const patch = hookify(
-            db.patch,
-            middleware([...allHooks, ...patchHooks]),
-          );
-          const patchCtx = patch.createContext({
-            method: "patch",
-            name,
-            path: join(options.path!, name, "[id]"),
-            idField,
-            request,
-            url: ctx.url,
-            data,
-          });
-          const finalCtx = await patch(name, ctx.params.id, data, patchCtx);
-          return Response.json(finalCtx.result);
+          const data = await parseRequestBody(req);
+          const result = await db.patch(name, id, data);
+          return Response.json(result);
         },
-        DELETE: async (request, ctx) => {
+        DELETE: async (_req, ctx) => {
           const { params } = parseSearchParams(ctx.url.searchParams);
-          if (!methods!.includes("remove")) return ERRORS.notAllowed();
+          if (!methods!.includes("remove")) return RESPONSES.notAllowed();
           const { [idField]: id } = ctx.params;
-          const remove = hookify(
-            db.remove,
-            middleware([...allHooks, ...removeHooks]),
-          );
-          await remove(name, id);
+          await db.remove(name, id);
           return Response.json({ ok: true });
         },
       },

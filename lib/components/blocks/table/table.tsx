@@ -1,9 +1,7 @@
 import type { ComponentChildren } from "preact";
 import { useState } from "preact/hooks";
 import {
-  type ColumnDef,
-  type ColumnFiltersState,
-  type ColumnSort,
+  RowData,
   flexRender,
   getCoreRowModel,
   getFacetedRowModel,
@@ -11,11 +9,13 @@ import {
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  RowData,
+  useReactTable,
+  type ColumnDef,
+  type ColumnFiltersState,
+  type ColumnSort,
   type RowSelectionState,
   type SortingState,
   type Table as TTable,
-  useReactTable,
   type VisibilityState,
 } from "../../../deps/@tanstack/react-table.ts";
 import {
