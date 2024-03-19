@@ -1,4 +1,4 @@
-import { createDatabase } from "netzo/database.ts";
+import { createDatabase } from "netzo/database/mod.ts";
 import { defineConfig } from "netzo/mod.ts";
 import * as netzo from "netzo/plugins/mod.ts";
 import { unocss } from "netzo/plugins/unocss/plugin.ts";

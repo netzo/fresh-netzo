@@ -1,5 +1,5 @@
 // see https://github.com/netzo/netzo/issues/57
-import { createDatabase } from "../../database.ts";
+import { createDatabase } from "../../database/mod.ts";
 
 export type Run = {
   id: string;

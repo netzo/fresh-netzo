@@ -1,4 +1,4 @@
-import { monotonicFactory } from "./deps/ulid.ts";
+import { monotonicFactory } from "../deps/ulid.ts";
 
 export const ulid = monotonicFactory();
 

@@ -1,5 +1,5 @@
 import type { PluginRoute } from "$fresh/server.ts";
-import { createDatabase } from "../../../database.ts";
+import { createDatabase } from "../../../database/mod.ts";
 import { join } from "../../../deps/std/path/mod.ts";
 import type { ApiConfig } from "../plugin.ts";
 import { parseRequestBody, parseSearchParams, RESPONSES } from "../utils.ts";
