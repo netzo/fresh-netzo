@@ -2,6 +2,8 @@ import { filterObjectsByKeyValues, ulid } from "./netzodb.utils.ts";
 
 export { ulid };
 
+const KV = await Deno.openKv();
+
 export type NetzoDBOptions = {
   kv?: Deno.Kv;
 };
@@ -14,9 +16,7 @@ export type NetzoDBOptions = {
  * @param {Deno.Kv} kv - a Deno.Kv instance
  * @returns {object} - a DB client instance
  */
-export const netzodb = async (options: NetzoDBOptions = {}) => {
-  const { kv = await Deno.openKv() } = options;
-
+export const netzodb = ({ kv = KV }: NetzoDBOptions = {}) => {
   /**
    * Finds objects in the KV store that match the specified query.
    * @param collection - The name of the collection to search for.

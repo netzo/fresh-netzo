@@ -9,7 +9,6 @@ export const getRoutesByCollection = (
   options: ApiConfig,
 ): PluginRoute[] => {
   const {
-    kv,
     name,
     idField = "id",
     methods = ["find", "get", "create", "update", "patch", "remove"],
