@@ -2,7 +2,7 @@ import { defineRoute } from "$fresh/server.ts";
 import type { Account } from "../../data/accounts.ts";
 import { type Deal } from "../../data/deals.ts";
 import { PageDeals } from "../../islands/deals.tsx";
-import { db } from "../../plugins/db.config.ts";
+import { db } from "../../netzo.config.ts";
 
 // NOTE: cannot pass functions as props from routes (server) to islands (client)
 export default defineRoute(async (req, ctx) => {

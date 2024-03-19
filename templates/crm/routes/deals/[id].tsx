@@ -3,7 +3,7 @@ import type { Account } from "../../data/accounts.ts";
 import type { Contact } from "../../data/contacts.ts";
 import type { Deal } from "../../data/deals.ts";
 import { PageDeal } from "../../islands/deal.tsx";
-import { db } from "../../plugins/db.config.ts";
+import { db } from "../../netzo.config.ts";
 
 export default defineRoute(async (req, ctx) => {
   const { id } = ctx.params;

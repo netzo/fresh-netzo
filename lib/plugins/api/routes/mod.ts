@@ -1,12 +1,12 @@
 import type { PluginRoute } from "$fresh/server.ts";
+import { createDatabase } from "../../../database.ts";
 import { join } from "../../../deps/std/path/mod.ts";
-import { createDatabase } from "../mod.ts";
-import type { DbConfig } from "../plugin.ts";
+import type { ApiConfig } from "../plugin.ts";
 import { parseRequestBody, parseSearchParams, RESPONSES } from "../utils.ts";
 
 export const getRoutesByCollection = (
-  collection: DbConfig["collections"][number],
-  options: DbConfig,
+  collection: ApiConfig["collections"][number],
+  options: ApiConfig,
 ): PluginRoute[] => {
   const {
     kv,

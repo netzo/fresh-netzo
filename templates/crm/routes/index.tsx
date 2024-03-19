@@ -10,7 +10,7 @@ import {
 import type { Account } from "../data/accounts.ts";
 import type { Deal } from "../data/deals.ts";
 import * as Dashboard from "../islands/dashboard.tsx";
-import { db } from "../plugins/db.config.ts";
+import { db } from "../netzo.config.ts";
 
 export default defineRoute(async (req, ctx) => {
   const accountId = ctx.url.searchParams.get("accountId");

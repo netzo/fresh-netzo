@@ -4,7 +4,7 @@ import type { Activity } from "../../data/activities.ts";
 import type { Contact } from "../../data/contacts.ts";
 import type { Deal } from "../../data/deals.ts";
 import { PageActivities } from "../../islands/activities.tsx";
-import { db } from "../../plugins/db.config.ts";
+import { db } from "../../netzo.config.ts";
 
 export default defineRoute(async (req, ctx) => {
   const { id } = ctx.params;

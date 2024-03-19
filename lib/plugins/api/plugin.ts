@@ -2,7 +2,7 @@ import type { Plugin } from "$fresh/server.ts";
 import { apiKeyAuthentication } from "./middlewares/mod.ts";
 import { getRoutesByCollection } from "./routes/mod.ts";
 
-export type DbConfig = {
+export type ApiConfig = {
   /** A Deno KV instance to use for the database */
   kv: Deno.Kv;
   /** Wether to require authentication using the provided API key
@@ -20,10 +20,10 @@ export type DbConfig = {
   }[];
 };
 
-export const defineDbConfig = (config: DbConfig): DbConfig => config;
+export const defineApiConfig = (config: ApiConfig): ApiConfig => config;
 
 // deno-lint-ignore ban-types
-export type DbState = {};
+export type ApiState = {};
 
 /**
  * A fresh plugin that registers middleware and handlers to
@@ -36,20 +36,20 @@ export type DbState = {};
  * - `PATCH /api/:collection/:id` patch an entry by key
  * - `DELETE /api/:collection/:id` remove an entry by key
  */
-export const db = (config?: DbConfig): Plugin => {
-  if (!config) return { name: "netzo.db" };
+export const api = (config?: ApiConfig): Plugin => {
+  if (!config) return { name: "netzo.api" };
 
   config.apiKey ??= Deno.env.get("NETZO_API_KEY");
   config.collections ??= [];
 
-  const dbRoutes = [
+  const apiRoutes = [
     ...config.collections
       .filter((collection) => !!collection?.name)
       .flatMap((collection) => getRoutesByCollection(collection, config)),
   ];
 
   return {
-    name: "netzo.db",
+    name: "netzo.api",
     middlewares: [
       {
         path: "/api",
@@ -58,6 +58,6 @@ export const db = (config?: DbConfig): Plugin => {
         },
       },
     ],
-    routes: dbRoutes,
+    routes: apiRoutes,
   };
 };

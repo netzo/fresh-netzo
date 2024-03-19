@@ -33,9 +33,9 @@ import { Textarea } from "netzo/components/textarea.tsx";
 import { cn } from "netzo/components/utils.ts";
 import type { Account } from "../data/accounts.ts";
 import {
+  type Activity,
   activitySchema,
   getActivity,
-  type Activity,
 } from "../data/activities.ts";
 import type { Contact } from "../data/contacts.ts";
 import type { Deal } from "../data/deals.ts";

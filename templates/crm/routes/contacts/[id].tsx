@@ -2,7 +2,7 @@ import { defineRoute } from "$fresh/server.ts";
 import type { Contact } from "../../data/contacts.ts";
 import type { Deal } from "../../data/deals.ts";
 import { PageContact } from "../../islands/contact.tsx";
-import { db } from "../../plugins/db.config.ts";
+import { db } from "../../netzo.config.ts";
 
 export default defineRoute(async (req, ctx) => {
   const { id } = ctx.params;
