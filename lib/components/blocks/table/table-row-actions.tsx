@@ -22,31 +22,29 @@ import type { UseTableOptions } from "./table.tsx";
 
 type TableRowActionsProps<TData> = UseTableOptions<TData> & {
   row: Row<TData>;
-  resource: string;
+  endpoint: string;
   idField?: string;
-  actions?: ("open" | "duplicate" | "copyId" | "remove")[];
+  actions?: ("duplicate" | "copyId" | "remove")[];
 };
 
 export function TableRowActions<TData>({
-  resource,
+  endpoint,
   idField = "id",
   row,
-  actions = ["open", "duplicate", "copyId", "remove"],
+  actions = ["duplicate", "copyId", "remove"],
 }: TableRowActionsProps<TData>) {
-  const onSelectOpen = () => {
-    globalThis.location.pathname = `/${resource}/${row.original[idField]}`;
-  };
-
   const onSelectDuplicate = async () => {
     const { [idField]: id, ...data } = row.original;
-    const response = await fetch(`/api/${resource}`, {
+    const response = await fetch(endpoint, {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(data),
     });
     const result = await response.json();
-    if (globalThis.location.pathname.includes(id)) {
-      globalThis.location.pathname = `/${resource}/${result.id}`;
+    if (globalThis.location.href.includes(id)) {
+      // href.replaceAll to handle cases where id might be in pathname and/or search
+      const href = globalThis.location.href.replaceAll(id, result.id);
+      globalThis.location.href = href;
     } else globalThis.location.reload();
   };
 
@@ -55,10 +53,11 @@ export function TableRowActions<TData>({
   };
 
   const onClickRemove = async () => {
-    await fetch(`/api/${resource}/${row.original[idField]}`, {
-      method: "DELETE",
-    });
-    globalThis.location.pathname = `/${resource}`;
+    const { [idField]: id } = row.original;
+    await fetch(`${endpoint}/${id}`, { method: "DELETE" });
+    if (globalThis.location.href.includes(`/${id}`)) {
+      globalThis.location.href = globalThis.location.href.replace(`/${id}`, "");
+    } else globalThis.location.reload();
   };
 
   // NOTE: to activate the Dialog component from within ContextMenu we must
@@ -76,11 +75,6 @@ export function TableRowActions<TData>({
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="w-[160px]">
-          {actions.includes("open") && (
-            <DropdownMenuItem onSelect={onSelectOpen}>
-              Open
-            </DropdownMenuItem>
-          )}
           {actions.includes("duplicate") && (
             <DropdownMenuItem onSelect={onSelectDuplicate}>
               Duplicate

@@ -27,8 +27,8 @@ import {
   FormLabel,
   FormMessage,
   useForm,
-  type UseFormReturn,
   zodResolver,
+  type UseFormReturn,
 } from "netzo/components/form.tsx";
 import { Input } from "netzo/components/input.tsx";
 import { Textarea } from "netzo/components/textarea.tsx";
@@ -114,8 +114,7 @@ function ContactHeader(props: { form: UseFormReturn<Contact> }) {
       <div className="flex flex-row items-center gap-4">
         <TableRowActions
           row={{ original }}
-          resource="contacts"
-          actions={["duplicate", "copyId", "remove"]}
+          endpoint="/api/contacts"
         />
         <Button
           type="reset"

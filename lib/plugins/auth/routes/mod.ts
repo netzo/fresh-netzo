@@ -1,4 +1,4 @@
-import type { PluginRoute } from "../../../deps/$fresh/server.ts";
+import type { PluginRoute } from "$fresh/server.ts";
 import type { AuthConfig } from "../plugin.ts";
 import {
   type AuthUser,

@@ -1,7 +1,9 @@
 import type { ComponentChildren } from "preact";
 import { useState } from "preact/hooks";
 import {
-  RowData,
+  type ColumnDef,
+  type ColumnFiltersState,
+  type ColumnSort,
   flexRender,
   getCoreRowModel,
   getFacetedRowModel,
@@ -9,13 +11,11 @@ import {
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  useReactTable,
-  type ColumnDef,
-  type ColumnFiltersState,
-  type ColumnSort,
+  RowData,
   type RowSelectionState,
   type SortingState,
   type Table as TTable,
+  useReactTable,
   type VisibilityState,
 } from "../../../deps/@tanstack/react-table.ts";
 import {
@@ -41,8 +41,6 @@ export * from "./table-search.tsx";
 export * from "./table-view-options.tsx";
 
 export type UseTableOptions<TData = unknown> = {
-  resource: string;
-  idField: string;
   search?: TableSearch;
   sorting?: ColumnSort[];
   filters?: TableFilter<TData, unknown>[];

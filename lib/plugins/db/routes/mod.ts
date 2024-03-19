@@ -1,4 +1,4 @@
-import type { PluginRoute } from "../../../deps/$fresh/server.ts";
+import type { PluginRoute } from "$fresh/server.ts";
 import { join } from "../../../deps/std/path/mod.ts";
 import { createDatabase } from "../mod.ts";
 import type { DbConfig } from "../plugin.ts";

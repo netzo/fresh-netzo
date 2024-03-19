@@ -17,12 +17,12 @@ import {
 } from "netzo/components/blocks/table/table.tsx";
 import { Button } from "netzo/components/button.tsx";
 import { IconCopy } from "netzo/components/icon-copy.tsx";
-import { type Contact, getContact } from "../data/contacts.ts";
+import { getContact, type Contact } from "../data/contacts.ts";
 import { I18N, toDateTime } from "../data/mod.ts";
 
 export function PageContacts(props: { contacts: Contact[] }) {
   const table = useTable<Contact>(props.contacts, {
-    resource: "contacts",
+    endpoint: "/api/contacts",
     idField: "id",
     search: {
       column: "name",
@@ -50,7 +50,7 @@ export function PageContacts(props: { contacts: Contact[] }) {
     columns: [
       {
         id: "actions",
-        cell: (props) => <TableRowActions {...props} resource="contacts" />,
+        cell: (props) => <TableRowActions {...props} endpoint="/api/contacts" />,
       },
       {
         accessorKey: "name",

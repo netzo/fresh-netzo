@@ -22,8 +22,8 @@ import {
   FormLabel,
   FormMessage,
   useForm,
-  type UseFormReturn,
   zodResolver,
+  type UseFormReturn,
 } from "netzo/components/form.tsx";
 import { Input } from "netzo/components/input.tsx";
 import { Textarea } from "netzo/components/textarea.tsx";
@@ -104,11 +104,7 @@ function DealHeader(props: { form: UseFormReturn<Deal> }) {
         </Breadcrumb>
       </div>
       <div className="flex flex-row items-center gap-4">
-        <TableRowActions
-          row={{ original }}
-          resource="deals"
-          actions={["duplicate", "copyId", "remove"]}
-        />
+        <TableRowActions row={{ original }} endpoint="/api/deals" />
         <Button
           type="reset"
           variant="secondary"

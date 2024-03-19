@@ -2,9 +2,9 @@ import { useComputed, useSignal } from "@preact/signals";
 import { Badge } from "netzo/components/badge.tsx";
 import {
   KanbanCardContainer,
+  KanbanView,
   type KanbanCardProps,
   type KanbanGroupProps,
-  KanbanView,
   type UseKanbanOptions,
 } from "netzo/components/blocks/kanban/kanban.tsx";
 import {
@@ -26,7 +26,7 @@ import {
 import { ScrollArea } from "netzo/components/scroll-area.tsx";
 import { cn } from "netzo/components/utils.ts";
 import { SortableContext } from "netzo/deps/@dnd-kit/sortable.ts";
-import { type Deal, getDeal } from "../data/deals.ts";
+import { getDeal, type Deal } from "../data/deals.ts";
 import { I18N } from "../data/mod.ts";
 
 export const GROUPS: UseKanbanOptions<Deal>["group"]["groups"] = [
@@ -64,7 +64,7 @@ export const GROUPS: UseKanbanOptions<Deal>["group"]["groups"] = [
 
 export function PageDeals(props: { deals: Deal[] }) {
   const table = useTable<Deal>(props.deals, {
-    resource: "deals",
+    endpoint: "/api/deals",
     idField: "id",
     search: {
       column: "name",
@@ -242,7 +242,7 @@ function KanbanCard({ item, isOverlay, options }: KanbanCardProps) {
             </div>
             <TableRowActions
               row={{ original: item }}
-              resource="deals"
+              endpoint="/api/deals"
               className={cn("h-auto p-1 -mr-2 text-secondary-foreground/50")}
             />
           </CardHeader>

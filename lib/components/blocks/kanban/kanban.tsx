@@ -296,7 +296,7 @@ export function KanbanView<TData>({
 
     const activeData = active.data.current;
 
-    fetch(`/api/${options.resource}/${activeId}`, {
+    fetch(`${options.endpoint}/${activeId}`, {
       method: "PUT",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(activeData.item),

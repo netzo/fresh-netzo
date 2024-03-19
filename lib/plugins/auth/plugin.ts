@@ -1,4 +1,4 @@
-import type { Plugin, PluginRoute } from "../../deps/$fresh/server.ts";
+import type { Plugin, PluginRoute } from "$fresh/server.ts";
 import type { OAuth2ClientConfig } from "../../deps/oauth2_client/src/oauth2_client.ts";
 import type { NetzoState } from "../../mod.ts";
 import {
