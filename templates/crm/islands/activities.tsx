@@ -55,7 +55,7 @@ export function PageActivities(props: {
   const width = globalThis?.innerWidth; // const { width = 0 } = useWindowSize(); causes unnecessary re-renders
 
   const table = useTable<Activity>(props.activities, {
-    resource: "activities",
+    endpoint: "/api/activities",
     idField: "id",
     search: {
       column: "name",
@@ -272,8 +272,7 @@ function FormUpdate(props: {
           <div className="flex items-center space-x-2">
             <TableRowActions
               row={{ original: form.getValues() }}
-              resource="activities"
-              actions={["duplicate", "copyId", "remove"]}
+              endpoint="/api/activities"
             />
             <Button
               form="activities.patch"

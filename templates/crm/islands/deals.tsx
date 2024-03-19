@@ -64,7 +64,7 @@ export const GROUPS: UseKanbanOptions<Deal>["group"]["groups"] = [
 
 export function PageDeals(props: { deals: Deal[] }) {
   const table = useTable<Deal>(props.deals, {
-    resource: "deals",
+    endpoint: "/api/deals",
     idField: "id",
     search: {
       column: "name",
@@ -242,7 +242,7 @@ function KanbanCard({ item, isOverlay, options }: KanbanCardProps) {
             </div>
             <TableRowActions
               row={{ original: item }}
-              resource="deals"
+              endpoint="/api/deals"
               className={cn("h-auto p-1 -mr-2 text-secondary-foreground/50")}
             />
           </CardHeader>

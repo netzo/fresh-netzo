@@ -1,7 +1,7 @@
+import { type PluginRoute } from "$fresh/server.ts";
 import { compile } from "npm:@mdx-js/mdx";
 import { default as remarkFrontmatter } from "npm:remark-frontmatter@5.0.0";
 import { default as remarkGfm } from "npm:remark-gfm@4.0.0";
-import { type PluginRoute } from "../../deps/$fresh/server.ts";
 import { walk } from "../../deps/std/fs/walk.ts";
 
 export async function scanForMDXFiles(_directory: string): Promise<string[]> {

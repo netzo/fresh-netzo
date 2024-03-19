@@ -114,8 +114,7 @@ function ContactHeader(props: { form: UseFormReturn<Contact> }) {
       <div className="flex flex-row items-center gap-4">
         <TableRowActions
           row={{ original }}
-          resource="contacts"
-          actions={["duplicate", "copyId", "remove"]}
+          endpoint="/api/contacts"
         />
         <Button
           type="reset"

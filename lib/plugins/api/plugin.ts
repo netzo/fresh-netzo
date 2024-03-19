@@ -1,75 +1,59 @@
-import type { Plugin } from "../../deps/$fresh/server.ts";
-import { Middleware } from "../../deps/@feathersjs/hooks.ts";
-import type { NetzoState } from "../../mod.ts";
-import { handleErrors } from "./middlewares/mod.ts";
-import type { Resource } from "./resources/mod.ts";
-import { getRoutesByEndpoint } from "./routes/mod.ts";
-
-export type ApiEndpoint<T = Record<string, unknown>> = {
-  /** The name of the resource e.g. "users" (API endpoint will be mounted at `/api/{name}`). */
-  name: string;
-  /** The field name to use as the primary key. Defaults to "id". */
-  idField?: string;
-  /** The resource instance to use for performing RESTful operations. */
-  resource: Resource<T>;
-  /** An object mapping resource methods to an array of hooks to apply. */
-  hooks?: {
-    all?: Middleware[];
-    find?: Middleware[];
-    get?: Middleware[];
-    create?: Middleware[];
-    update?: Middleware[];
-    patch?: Middleware[];
-    remove?: Middleware[];
-  };
-};
-
-export const defineApiEndpoint = (options: ApiEndpoint): ApiEndpoint => options;
+import type { Plugin } from "$fresh/server.ts";
+import { apiKeyAuthentication } from "./middlewares/mod.ts";
+import { getRoutesByCollection } from "./routes/mod.ts";
 
 export type ApiConfig = {
-  /** The route path to mount the API on. Defaults to "/api". */
-  path?: `/${string}`;
-  /** An array of API endpoint objects. */
-  endpoints: ApiEndpoint[];
+  /** Wether to require authentication using the provided API key
+   * in the "x-api-key" header or "apiKey" query parameter.
+   * Defaults to Deno.env.get("NETZO_API_KEY"). */
+  apiKey?: string;
+  /** An array of database collections. */
+  collections: {
+    /** The name of the collection e.g. "users" `/api/users`. */
+    name: string;
+    /** The field name to use as the primary key. Defaults to "id". */
+    idField?: string;
+    /** The methods to enable. Defaults to all methods. */
+    methods?: ("find" | "get" | "create" | "update" | "patch" | "remove")[];
+  }[];
 };
 
 export const defineApiConfig = (config: ApiConfig): ApiConfig => config;
 
-export type ApiState = {
-  [key: string]: Resource;
-};
+// deno-lint-ignore ban-types
+export type ApiState = {};
 
 /**
  * A fresh plugin that registers middleware and handlers to
  * to mount RESTful API routes on the `/api` route path.
  *
- * A fresh plugin that creates handlers for the following routes:
- * - `GET /api/{endpoint}` find all records matching query
- * - `GET /api/{endpoint}/{id}` get an entry by key
- * - `POST /api/{endpoint}` create a new entry (auto-generates id)
- * - `PUT /api/{endpoint}/{id}` update an entry by key
- * - `PATCH /api/{endpoint}/{id}` patch an entry by key
- * - `DELETE /api/{endpoint}/{id}` remove an entry by key
- *
- * @param {ApiConfig} - configuration options for the plugin
- * @returns {Plugin} - a Plugin for Deno Fresh
+ * - `GET /api/:collection` find all records matching query
+ * - `GET /api/:collection/:id` get an entry by key
+ * - `POST /api/:collection` create a new entry (auto-generates id)
+ * - `PUT /api/:collection/:id` update an entry by key
+ * - `PATCH /api/:collection/:id` patch an entry by key
+ * - `DELETE /api/:collection/:id` remove an entry by key
  */
-export const api = (config: ApiConfig): Plugin<NetzoState> => {
-  config.path ||= "/api";
-  config.endpoints ||= [];
+export const api = (config?: ApiConfig): Plugin => {
+  if (!config) return { name: "netzo.api" };
+
+  config.apiKey ??= Deno.env.get("NETZO_API_KEY");
+  config.collections ??= [];
 
   const apiRoutes = [
-    ...config.endpoints
-      .filter((endpoint) => !!endpoint?.name)
-      .flatMap((endpoint) => getRoutesByEndpoint(endpoint, config)),
+    ...config.collections
+      .filter((collection) => !!collection?.name)
+      .flatMap((collection) => getRoutesByCollection(collection, config)),
   ];
 
   return {
     name: "netzo.api",
     middlewares: [
       {
-        path: config.path!,
-        middleware: { handler: handleErrors },
+        path: "/api",
+        middleware: {
+          handler: apiKeyAuthentication(config),
+        },
       },
     ],
     routes: apiRoutes,

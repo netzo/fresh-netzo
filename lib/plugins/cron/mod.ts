@@ -1,5 +1,5 @@
 // see https://github.com/netzo/netzo/issues/57
-import { DenoKvResource } from "../api/resources/denokv.ts";
+import { netzodb } from "../../integrations/databases/netzodb.ts";
 
 export type Run = {
   id: string;
@@ -20,11 +20,10 @@ export type CronParams = Parameters<typeof Deno.cron>;
 /**
  * Proxy Deno.cron to transparently integrate with Netzo
  *
- * @param db {object} - the Netzo database object (ReturnType of createDatabase factory)
  * @returns {Proxy} - a proxied Deno.cron object
  */
-export const proxyCron = (kv: Deno.Kv) => {
-  const $runs = DenoKvResource({ prefix: ["$runs"], kv });
+export const proxyCron = () => {
+  const db = netzodb();
   return new Proxy(Deno.cron, {
     apply(target, thisArg, argArray: CronParams) {
       const [name, schedule, opt1, opt2] = argArray;
@@ -43,7 +42,7 @@ export const proxyCron = (kv: Deno.Kv) => {
       async function run(): Promise<void> {
         console.time(`[cron] ${name}`);
         const startedAt = Date.now();
-        const data = await $runs.create({
+        const data = await db.create("$runs", {
           type: "cron",
           name,
           schedule,
@@ -64,7 +63,7 @@ export const proxyCron = (kv: Deno.Kv) => {
           const endedAt = Date.now();
           data.endedAt = new Date(endedAt).toISOString();
           data.duration = endedAt - startedAt;
-          await $runs.patch(data.id, data);
+          await db.patch("$runs", data.id, data);
         }
       }
 

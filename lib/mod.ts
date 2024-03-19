@@ -1,4 +1,4 @@
-import { type FreshConfig } from "./deps/$fresh/server.ts";
+import { type FreshConfig } from "$fresh/server.ts";
 import type { ApiState } from "./plugins/api/plugin.ts";
 import type { AuthState } from "./plugins/auth/plugin.ts";
 import type { CronState } from "./plugins/cron/plugin.ts";
@@ -16,8 +16,8 @@ export type NetzoConfig = FreshConfig;
 
 export type NetzoState = {
   auth?: AuthState;
-  api?: ApiState;
   cron?: CronState;
+  database?: ApiState;
   environments?: EnvironmentsState;
   [k: string]: unknown;
 };

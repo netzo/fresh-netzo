@@ -1,4 +1,3 @@
-import { ulid } from "netzo/plugins/api/utils.ts";
 import { z } from "zod";
 
 // schemas:
@@ -34,7 +33,6 @@ export type Activity = z.infer<typeof activitySchema>;
 // defaults:
 
 export const getActivity = (data?: Partial<Activity>) => ({
-  id: ulid(),
   createdAt: new Date().toISOString(),
   updatedAt: new Date().toISOString(),
   type: "other",

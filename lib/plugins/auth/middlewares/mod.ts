@@ -1,4 +1,4 @@
-import type { FreshContext } from "../../../deps/$fresh/server.ts";
+import type { FreshContext } from "$fresh/server.ts";
 import { getSessionId } from "../../../deps/deno_kv_oauth/mod.ts";
 import type { NetzoState } from "../../../mod.ts";
 import { getUserBySession } from "../utils/db.ts";

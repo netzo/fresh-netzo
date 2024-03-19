@@ -121,8 +121,7 @@ function AccountHeader(props: { form: UseFormReturn<Account> }) {
       <div className="flex flex-row items-center gap-4">
         <TableRowActions
           row={{ original }}
-          resource="accounts"
-          actions={["duplicate", "copyId", "remove"]}
+          endpoint="/api/accounts"
         />
         <Button
           type="reset"

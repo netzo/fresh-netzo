@@ -1,4 +1,4 @@
-import type { Plugin } from "../../deps/$fresh/server.ts";
+import type { Plugin } from "$fresh/server.ts";
 import type { NetzoState } from "../../mod.ts";
 import { setEnvVarsIfRemoteProject } from "./mod.ts";
 

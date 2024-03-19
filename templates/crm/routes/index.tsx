@@ -10,14 +10,14 @@ import {
 import type { Account } from "../data/accounts.ts";
 import type { Deal } from "../data/deals.ts";
 import * as Dashboard from "../islands/dashboard.tsx";
-import { $api } from "../plugins/api.config.ts";
+import { db } from "../netzo.config.ts";
 
 export default defineRoute(async (req, ctx) => {
   const accountId = ctx.url.searchParams.get("accountId");
   const [metrics, accounts, deals] = await Promise.all([
     getMetrics({ accountId }),
-    $api.accounts.find() as Account[],
-    $api.deals.find() as Deal[],
+    db.find<Account>("accounts"),
+    db.find<Deal>("deals"),
   ]);
 
   const account = accounts.find(({ id }) => id === accountId) as Account;
@@ -106,7 +106,7 @@ export type Metrics = {
 };
 
 async function getMetrics(query: { accountId?: string }): Promise<Metrics> {
-  const allDealsUnsorted = await $api.deals.find() as Deal[];
+  const allDealsUnsorted = await db.find<Deal>("deals");
   const allDeals = allDealsUnsorted.sort((a, b) => a.createdAt - b.createdAt);
   const deals = query?.accountId
     ? allDeals.filter((deal) => deal.accountId === query.accountId)

@@ -23,7 +23,7 @@ import { I18N, toDateTime } from "../data/mod.ts";
 
 export function PageAccounts(props: { accounts: Account[] }) {
   const table = useTable<Account>(props.accounts, {
-    resource: "accounts",
+    endpoint: "/api/accounts",
     idField: "id",
     search: {
       column: "name",
@@ -37,7 +37,9 @@ export function PageAccounts(props: { accounts: Account[] }) {
     columns: [
       {
         id: "actions",
-        cell: (props) => <TableRowActions {...props} resource="accounts" />,
+        cell: (props) => (
+          <TableRowActions {...props} endpoint="/api/accounts" />
+        ),
       },
       {
         accessorKey: "name",
@@ -126,7 +128,9 @@ export function PageAccounts(props: { accounts: Account[] }) {
             other: "mdi-link",
           } as const;
           const items = Object.entries(links)
-            .filter(([name, value]) => value)
+            .filter(([name, value]) =>
+              value
+            )
             .map(([name, value]) => ({ name, value, className: ICONS[name] }));
           return (
             <div className="flex gap-2">

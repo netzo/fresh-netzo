@@ -1,4 +1,3 @@
-import { ulid } from "netzo/plugins/api/utils.ts";
 import { z } from "zod";
 import { getLinks, linksSchema } from "./mod.ts";
 
@@ -33,7 +32,6 @@ export type Contact = z.infer<typeof contactSchema>;
 // defaults:
 
 export const getContact = (data?: Partial<Contact>) => ({
-  id: ulid(),
   createdAt: new Date().toISOString(),
   updatedAt: new Date().toISOString(),
   name: "",

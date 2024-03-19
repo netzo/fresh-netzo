@@ -1,4 +1,3 @@
-import { ulid } from "netzo/plugins/api/utils.ts";
 import { z } from "zod";
 
 // schemas:
@@ -29,7 +28,6 @@ export type Deal = z.infer<typeof dealSchema>;
 // defaults:
 
 export const getDeal = (data?: Partial<Deal>) => ({
-  id: ulid(),
   createdAt: new Date().toISOString(),
   updatedAt: new Date().toISOString(),
   name: "",

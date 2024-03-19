@@ -41,8 +41,6 @@ export * from "./table-search.tsx";
 export * from "./table-view-options.tsx";
 
 export type UseTableOptions<TData = unknown> = {
-  resource: string;
-  idField: string;
   search?: TableSearch;
   sorting?: ColumnSort[];
   filters?: TableFilter<TData, unknown>[];
