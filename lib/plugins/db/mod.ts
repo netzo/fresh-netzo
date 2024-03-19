@@ -1,4 +1,3 @@
-import { multiSet } from "https://deno.land/x/kv_utils@1.1.1/mod.ts";
 import { monotonicFactory } from "../../deps/ulid.ts";
 import { filterObjectsByKeyValues } from "./utils.ts";
 
@@ -45,34 +44,21 @@ export function createDatabase(kv: Deno.Kv) {
   /**
    * Creates one or more objects in the KV store.
    * @param collection - The name of the collection to create the objects in.
-   * @param data - The object or array of objects to create.
+   * @param data - The object to create.
    * @param idField - The name of the field to use as the ID for the objects.
-   * @returns The created object or array of objects.
+   * @returns The created object.
    */
   const create = async <T>(
     collection: string,
     data: T,
     idField: keyof T = "id" as keyof T,
   ) => {
-    if (Array.isArray(data)) {
-      const keyValues: Map<Deno.KvKey, unknown> = new Map();
-      data.forEach((value, i) => {
-        const id = (value?.[idField] ?? ulid()) as Deno.KvKeyPart;
-        keyValues.set([collection, id], { [idField]: id, ...value });
-      });
-      const result = await multiSet(keyValues);
-      if (!result.ok) {
-        throw new Error(`Failed to set keys: ${result.failedKeys}`);
-      }
-      return data;
-    } else {
-      const id = (data?.[idField] ?? ulid()) as Deno.KvKeyPart;
-      const key = [collection, id];
-      data = { [idField]: id, ...data };
-      const ok = await kv.atomic().set(key, data).commit();
-      if (!ok) throw new Error("Something went wrong.");
-      return data;
-    }
+    const id = (data?.[idField] ?? ulid()) as Deno.KvKeyPart;
+    const key = [collection, id];
+    data = { [idField]: id, ...data };
+    const ok = await kv.atomic().set(key, data).commit();
+    if (!ok) throw new Error("Failed to create entry");
+    return data;
   };
 
   /**
@@ -89,9 +75,9 @@ export function createDatabase(kv: Deno.Kv) {
   ) => {
     const key = [collection, id];
     const entry = await kv.get<T>(key);
-    if (!entry.value) throw new Error(`Record with id ${id} not found.`);
+    if (!entry.value) throw new Error(`Record with id "${id}" not found.`);
     const ok = await kv.atomic().check(entry).set(key, data).commit();
-    if (!ok) throw new Error("Something went wrong.");
+    if (!ok) throw new Error("Failed to create update entry");
     return data;
   };
 
@@ -109,10 +95,10 @@ export function createDatabase(kv: Deno.Kv) {
   ) => {
     const key = [collection, id];
     const entry = await kv.get<T>(key);
-    if (!entry.value) throw new Error(`Record with id ${id} not found.`);
+    if (!entry.value) throw new Error(`Record with id "${id}" not found.`);
     data = { ...entry.value, ...data };
     const ok = await kv.atomic().check(entry).set(key, data).commit();
-    if (!ok) throw new Error("Something went wrong.");
+    if (!ok) throw new Error("Failed to patch entry");
     return data;
   };
 
@@ -126,9 +112,9 @@ export function createDatabase(kv: Deno.Kv) {
     // return await kv.delete([collection, id]);
     const key = [collection, id];
     const entry = await kv.get<T>(key);
-    if (!entry.value) throw new Error(`Record with id ${id} not found.`);
+    if (!entry.value) throw new Error(`Record with id "${id}" not found.`);
     const ok = await kv.atomic().check(entry).delete(key).commit();
-    if (!ok) throw new Error("Something went wrong.");
+    if (!ok) throw new Error("Failed to remove entry");
     return id;
   };
 
