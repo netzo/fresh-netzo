@@ -6,13 +6,13 @@ export type MongoDBOptions = {
 };
 
 /**
- * Factory function for the MongoDB DB
+ * Factory function for the MongoDB database
  *
  * @see https://netzo.io/docs/modules/databases/mongodb
  *
  * @param {string} url - connection string URL to the MongoDB instance
  * @param {string} database - the name of the database to use
- * @returns {object} - an DB client instance
+ * @returns {object} - a DB client instance
  */
 export const mongodb = async ({
   url = Deno.env.get("MONGODB_URL")!,

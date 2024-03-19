@@ -1,5 +1,5 @@
 // see https://github.com/netzo/netzo/issues/57
-import { createDatabase } from "../../database/mod.ts";
+import { netzodb } from "../../integrations/databases/netzodb.ts";
 
 export type Run = {
   id: string;
@@ -20,11 +20,10 @@ export type CronParams = Parameters<typeof Deno.cron>;
 /**
  * Proxy Deno.cron to transparently integrate with Netzo
  *
- * @param db {object} - the Netzo database object (ReturnType of createDatabase factory)
  * @returns {Proxy} - a proxied Deno.cron object
  */
-export const proxyCron = (kv: Deno.Kv) => {
-  const db = createDatabase(kv);
+export const proxyCron = () => {
+  const db = netzodb();
   return new Proxy(Deno.cron, {
     apply(target, thisArg, argArray: CronParams) {
       const [name, schedule, opt1, opt2] = argArray;

@@ -1,6 +1,6 @@
 import type { PluginRoute } from "$fresh/server.ts";
-import { createDatabase } from "../../../database/mod.ts";
 import { join } from "../../../deps/std/path/mod.ts";
+import { netzodb } from "../../../integrations/databases/netzodb.ts";
 import type { ApiConfig } from "../plugin.ts";
 import { parseRequestBody, parseSearchParams, RESPONSES } from "../utils.ts";
 
@@ -15,7 +15,7 @@ export const getRoutesByCollection = (
     methods = ["find", "get", "create", "update", "patch", "remove"],
   } = { ...options, ...collection };
 
-  const db = createDatabase(kv);
+  const db = netzodb();
 
   const routes: PluginRoute[] = [
     {

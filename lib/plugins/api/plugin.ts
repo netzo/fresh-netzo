@@ -3,8 +3,6 @@ import { apiKeyAuthentication } from "./middlewares/mod.ts";
 import { getRoutesByCollection } from "./routes/mod.ts";
 
 export type ApiConfig = {
-  /** A Deno KV instance to use for the database */
-  kv: Deno.Kv;
   /** Wether to require authentication using the provided API key
    * in the "x-api-key" header or "apiKey" query parameter.
    * Defaults to Deno.env.get("NETZO_API_KEY"). */

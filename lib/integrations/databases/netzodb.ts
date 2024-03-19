@@ -1,19 +1,22 @@
-import { monotonicFactory } from "../deps/ulid.ts";
+import { filterObjectsByKeyValues, ulid } from "./netzodb.utils.ts";
 
-export const ulid = monotonicFactory();
+export { ulid };
 
-export const isUlid = (str: string) => {
-  // from https://regex101.com/library/ik6xZx
-  const ULID = /[0-7][0-9A-HJKMNP-TV-Z]{25}/gm;
-  return ULID.test(str);
+export type NetzoDBOptions = {
+  kv?: Deno.Kv;
 };
 
 /**
- * Creates a database object that can be used to perform CRUD operations on a Deno KV store.
- * @param kv - The Deno KV store to use.
- * @returns An object with methods for performing CRUD operations on the KV store.
+ * Factory function for the NetzoDB database
+ *
+ * @see https://netzo.io/docs/modules/databases/netzodb
+ *
+ * @param {Deno.Kv} kv - a Deno.Kv instance
+ * @returns {object} - a DB client instance
  */
-export function createDatabase(kv: Deno.Kv) {
+export const netzodb = async (options: NetzoDBOptions = {}) => {
+  const { kv = await Deno.openKv() } = options;
+
   /**
    * Finds objects in the KV store that match the specified query.
    * @param collection - The name of the collection to search for.
@@ -126,17 +129,4 @@ export function createDatabase(kv: Deno.Kv) {
     patch,
     remove,
   };
-}
-
-export function filterObjectsByKeyValues<T = unknown>(
-  data: T[],
-  filters: Record<string, any> = {},
-) {
-  // filter item out if any of the filters fail, otherwise keep it
-  return !Object.keys(filters).length ? data : data.filter((item) => {
-    return !Object.entries(filters).some(([key, value]) => {
-      const itemValue = _get(item, key, "").toString();
-      return itemValue?.toLowerCase() !== value?.toLowerCase(); // case insensitive
-    });
-  });
-}
+};

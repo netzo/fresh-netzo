@@ -1,5 +1,5 @@
-import { auth } from "../create-api/auth/mod.ts";
-import { createApi } from "../create-api/mod.ts";
+import { auth } from "./create-api/auth/mod.ts";
+import { createApi } from "./create-api/mod.ts";
 // TODO: import type { } from "./types.ts";
 
 export type PaddleOptions = {
