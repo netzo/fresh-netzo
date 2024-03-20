@@ -3,8 +3,9 @@ import { apiKeyAuthentication } from "./middlewares/mod.ts";
 import { getRoutesByCollection } from "./routes/mod.ts";
 
 export type ApiConfig = {
-  /** Wether to require authentication using the provided API key
-   * in the "x-api-key" header or "apiKey" query parameter.
+  /** Wether to require authentication using the provided API key in the
+   * "x-api-key" header or "apiKey" query parameter. To disable authentication
+   * set to `undefined`, otherwise it is recommended to set using Deno.env.get().
    * Defaults to Deno.env.get("NETZO_API_KEY"). */
   apiKey?: string;
   /** An array of database collections. */
@@ -37,7 +38,9 @@ export type ApiState = {};
 export const api = (config?: ApiConfig): Plugin => {
   if (!config) return { name: "netzo.api" };
 
-  config.apiKey ??= Deno.env.get("NETZO_API_KEY");
+  // allows explicitly disabling apiKey authentication by setting
+  // to `undefined` but defauls to NETZO_API_KEY for security
+  if (!("apiKey" in config)) config.apiKey = Deno.env.get("NETZO_API_KEY");
   config.collections ??= [];
 
   const apiRoutes = [
