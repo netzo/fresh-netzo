@@ -214,7 +214,9 @@ export function PageActivities(props: {
           <TablePagination table={table} />
         </footer>
       </ResizablePanel>
+
       <ResizableHandle withHandle />
+
       <ResizablePanel defaultSize={defaultLayout[1]}>
         <div className="grid h-full overflow-y-auto">
           <FormUpdate
