@@ -1,0 +1,19 @@
+---
+title: foobar
+---
+
+import { useSignal } from "https://esm.sh/*@preact/signals@1.2.3";
+import Foo, { Bar } from "../components/Bar.tsx";
+import Counter from "../islands/Counter.tsx";
+
+# Hello
+
+This is rendered from mdx!
+
+* one
+* two
+* three
+
+<Foo />
+<Bar />
+<Counter count={useSignal(3)} />
