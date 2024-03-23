@@ -2,42 +2,41 @@
 // @deno-types="npm:@types/react@18.2.60"
 import * as React from "react";
 
-import { cn } from "netzo/components/utils.ts";
-
-import { Badge } from "netzo/components/badge.tsx";
-import { Button } from "netzo/components/button.tsx";
+import { Badge } from "./badge.tsx";
+import { Button } from "./button.tsx";
 import {
   Command,
   CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandItem,
-} from "netzo/components/command.tsx";
+} from "./command.tsx";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "netzo/components/popover.tsx";
+} from "./popover.tsx";
+import { cn } from "./utils.ts";
 
 
-export type OptionType = {
+export type SelectMultipleOption = {
   label: string;
   value: string;
 }
 
 interface SelectMultipleProps {
-  options: OptionType[];
-  selected: string[];
+  options: SelectMultipleOption[];
+  value: string[];
   onChange: React.Dispatch<React.SetStateAction<string[]>>;
   className?: string;
 }
 
-function SelectMultiple({ options, selected, onChange, className, ...props }: SelectMultipleProps) {
+function SelectMultiple({ options, value, onChange, className, ...props }: SelectMultipleProps) {
 
   const [open, setOpen] = React.useState(false)
 
   const handleUnselect = (item: string) => {
-    onChange(selected.filter((i) => i !== item))
+    onChange(value.filter((i) => i !== item))
   }
 
   return (
@@ -47,11 +46,11 @@ function SelectMultiple({ options, selected, onChange, className, ...props }: Se
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className={`w-full justify-between ${selected.length > 1 ? "h-full" : "h-10"}`}
+          className={`w-full justify-between ${value.length > 1 ? "h-full" : "h-10"}`}
           onClick={() => setOpen(!open)}
         >
           <div className="flex gap-1 flex-wrap">
-            {selected.map((item) => (
+            {value.map((item) => (
               <Badge
                 variant="secondary"
                 key={item}
@@ -90,9 +89,9 @@ function SelectMultiple({ options, selected, onChange, className, ...props }: Se
                 key={option.value}
                 onSelect={() => {
                   onChange(
-                    selected.includes(option.value)
-                      ? selected.filter((item) => item !== option.value)
-                      : [...selected, option.value]
+                    value.includes(option.value)
+                      ? value.filter((item) => item !== option.value)
+                      : [...value, option.value]
                   )
                   setOpen(true)
                 }}
@@ -100,7 +99,7 @@ function SelectMultiple({ options, selected, onChange, className, ...props }: Se
                 <i
                   className={cn(
                     "mdi-check mr-2 h-4 w-4",
-                    selected.includes(option.value) ?
+                    value.includes(option.value) ?
                       "opacity-100" : "opacity-0"
                   )}
                 />
@@ -115,4 +114,3 @@ function SelectMultiple({ options, selected, onChange, className, ...props }: Se
 }
 
 export { SelectMultiple };
-
