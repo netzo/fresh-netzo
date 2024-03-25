@@ -13,8 +13,13 @@ import {
 } from "../deps/react-hook-form.ts";
 import { Label } from "./label.tsx";
 import { cn } from "./utils.ts";
+
 export { zodResolver } from "../deps/@hookform/resolvers/zod.ts";
-export { useForm } from "../deps/react-hook-form.ts";
+export {
+  useForm,
+  type UseFormProps,
+  type UseFormReturn,
+} from "../deps/react-hook-form.ts";
 
 const Form = FormProvider;
 

@@ -11,33 +11,29 @@ import {
   CommandInput,
   CommandItem,
 } from "./command.tsx";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "./popover.tsx";
+import { Popover, PopoverContent, PopoverTrigger } from "./popover.tsx";
 import { cn } from "./utils.ts";
 
-
 export type SelectMultipleOption = {
-  label: string;
   value: string;
-}
+  label: React.ReactNode;
+};
 
-interface SelectMultipleProps {
+export type SelectMultipleProps = {
   options: SelectMultipleOption[];
   value: string[];
   onChange: React.Dispatch<React.SetStateAction<string[]>>;
   className?: string;
-}
+};
 
-function SelectMultiple({ options, value, onChange, className, ...props }: SelectMultipleProps) {
-
-  const [open, setOpen] = React.useState(false)
+function SelectMultiple(
+  { options, value, onChange, className, ...props }: SelectMultipleProps,
+) {
+  const [open, setOpen] = React.useState(false);
 
   const handleUnselect = (item: string) => {
-    onChange(value.filter((i) => i !== item))
-  }
+    onChange(value.filter((i) => i !== item));
+  };
 
   return (
     <Popover open={open} onOpenChange={setOpen} {...props}>
@@ -46,7 +42,11 @@ function SelectMultiple({ options, value, onChange, className, ...props }: Selec
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className={`w-full justify-between ${value.length > 1 ? "h-full" : "h-10"}`}
+          className={cn(
+            `w-full justify-between`,
+            value.length > 1 ? "h-full" : "h-10",
+            className,
+          )}
           onClick={() => setOpen(!open)}
         >
           <div className="flex gap-1 flex-wrap">
@@ -83,7 +83,7 @@ function SelectMultiple({ options, value, onChange, className, ...props }: Selec
         <Command className={className}>
           <CommandInput placeholder="Search ..." />
           <CommandEmpty>No item found.</CommandEmpty>
-          <CommandGroup className='max-h-64 overflow-auto'>
+          <CommandGroup className="max-h-64 overflow-auto">
             {options.map((option) => (
               <CommandItem
                 key={option.value}
@@ -91,16 +91,15 @@ function SelectMultiple({ options, value, onChange, className, ...props }: Selec
                   onChange(
                     value.includes(option.value)
                       ? value.filter((item) => item !== option.value)
-                      : [...value, option.value]
-                  )
-                  setOpen(true)
+                      : [...value, option.value],
+                  );
+                  setOpen(true);
                 }}
               >
                 <i
                   className={cn(
                     "mdi-check mr-2 h-4 w-4",
-                    value.includes(option.value) ?
-                      "opacity-100" : "opacity-0"
+                    value.includes(option.value) ? "opacity-100" : "opacity-0",
                   )}
                 />
                 {option.label}
@@ -110,7 +109,7 @@ function SelectMultiple({ options, value, onChange, className, ...props }: Selec
         </Command>
       </PopoverContent>
     </Popover>
-  )
+  );
 }
 
 export { SelectMultiple };
