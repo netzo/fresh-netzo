@@ -6,27 +6,17 @@ export const ulid = monotonicFactory();
 
 export type Id = string | number | ULID;
 
-export type SignalDB<T = unknown> = Signal<T> & {
-  get: () => Promise<T>;
-  create: () => Promise<T>;
-  update: () => Promise<T>;
-  patch: () => Promise<T>;
-  remove: () => Promise<T>;
-  archive: () => Promise<T>;
-  duplicate: () => Promise<T>;
-};
-
-export function SignalDB<T = Record<string, unknown>>(
+export function SignalDB<T>(
   collection: string,
   model: Signal<T>,
-): SignalDB<T> {
+) {
   const endpoint = `/api/${collection}`;
 
   return Object.assign(model, {
     get: async () => {
       const response = await fetch(`${endpoint}/${model.value.id}`);
       if (!response.ok) throw new Error(response.statusText);
-      const data = (await response.json()) as T;
+      const data = (await response.json());
       model.value = data;
       return model.value;
     },
@@ -38,7 +28,7 @@ export function SignalDB<T = Record<string, unknown>>(
         body: JSON.stringify(value),
       });
       if (!response.ok) throw new Error(response.statusText);
-      const data = (await response.json()) as T;
+      const data = (await response.json());
       model.value = data;
       return model.value;
     },
@@ -49,7 +39,7 @@ export function SignalDB<T = Record<string, unknown>>(
         body: JSON.stringify(model.value),
       });
       if (!response.ok) throw new Error(response.statusText);
-      const data = (await response.json()) as T;
+      const data = (await response.json());
       model.value = data;
       return model.value;
     },
@@ -60,7 +50,7 @@ export function SignalDB<T = Record<string, unknown>>(
         body: JSON.stringify(model.value),
       });
       if (!response.ok) throw new Error(response.statusText);
-      const data = (await response.json()) as T;
+      const data = (await response.json());
       model.value = data;
       return model.value;
     },
@@ -69,7 +59,6 @@ export function SignalDB<T = Record<string, unknown>>(
         method: "DELETE",
       });
       if (!response.ok) throw new Error(response.statusText);
-      model.value = undefined as unknown as T;
       return model.value;
     },
     archive: async () => {
@@ -79,7 +68,7 @@ export function SignalDB<T = Record<string, unknown>>(
         body: JSON.stringify({ deletedAt: new Date().toISOString() }),
       });
       if (!response.ok) throw new Error(response.statusText);
-      const data = (await response.json()) as T;
+      const data = (await response.json());
       model.value = data;
       return model.value;
     },
@@ -90,7 +79,7 @@ export function SignalDB<T = Record<string, unknown>>(
         body: JSON.stringify(model.value),
       });
       if (!response.ok) throw new Error(response.statusText);
-      const data = (await response.json()) as T;
+      const data = (await response.json());
       model.value = data;
       return model.value;
     },
