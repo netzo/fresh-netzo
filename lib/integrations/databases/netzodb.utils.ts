@@ -1,4 +1,4 @@
-import { useSignal } from "@preact/signals";
+import { type Signal } from "@preact/signals";
 import { _get } from "../../deps/lodash.get.ts";
 import { monotonicFactory, type ULID } from "../../deps/ulid.ts";
 
@@ -6,10 +6,8 @@ export const ulid = monotonicFactory();
 
 export type Id = string | number | ULID;
 
-export function useSignalNetzoDB<T>(collection: string, data: T) {
+export function useSignalNetzoDB<T>(collection: string, model: Signal<T>) {
   const endpoint = `/api/${collection}`;
-
-  const model = useSignal<T>(data);
 
   return Object.assign(model, {
     get: async () => {
