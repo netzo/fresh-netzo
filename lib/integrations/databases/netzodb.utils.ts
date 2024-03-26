@@ -1,97 +1,51 @@
-import { type Signal } from "@preact/signals";
-import { _get } from "../../deps/lodash.get.ts";
-import { monotonicFactory, type ULID } from "../../deps/ulid.ts";
+import { deepParseJson } from "npm:deep-parse-json@2.0.0";
+import { unflatten } from "npm:flat@6.0.1";
+import mingo from "npm:mingo@6.4.13";
+import { monotonicFactory } from "../../deps/ulid.ts";
 
 export const ulid = monotonicFactory();
 
-export type Id = string | number | ULID;
-
-export function useSignalNetzoDB<T>(collection: string, model: Signal<T>) {
-  const endpoint = `/api/${collection}`;
-
-  return Object.assign(model, {
-    get: async () => {
-      const response = await fetch(`${endpoint}/${model.value.id}`);
-      if (!response.ok) throw new Error(response.statusText);
-      const data = await response.json();
-      model.value = data;
-      return model.value;
-    },
-    create: async () => {
-      const { id, ...value } = model.value;
-      const response = await fetch(endpoint, {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(value),
-      });
-      if (!response.ok) throw new Error(response.statusText);
-      const data = await response.json();
-      model.value = data;
-      return model.value;
-    },
-    update: async () => {
-      const response = await fetch(`${endpoint}/${model.value.id}`, {
-        method: "PUT",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(model.value),
-      });
-      if (!response.ok) throw new Error(response.statusText);
-      const data = await response.json();
-      model.value = data;
-      return model.value;
-    },
-    patch: async () => {
-      const response = await fetch(`${endpoint}/${model.value.id}`, {
-        method: "PATCH",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(model.value),
-      });
-      if (!response.ok) throw new Error(response.statusText);
-      const data = await response.json();
-      model.value = data;
-      return model.value;
-    },
-    remove: async () => {
-      const response = await fetch(`${endpoint}/${model.value.id}`, {
-        method: "DELETE",
-      });
-      if (!response.ok) throw new Error(response.statusText);
-      return model.value;
-    },
-    archive: async () => {
-      const response = await fetch(`${endpoint}/${model.value.id}`, {
-        method: "PATCH",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ deletedAt: new Date().toISOString() }),
-      });
-      if (!response.ok) throw new Error(response.statusText);
-      const data = await response.json();
-      model.value = data;
-      return model.value;
-    },
-    duplicate: async () => {
-      const response = await fetch(endpoint, {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(model.value),
-      });
-      if (!response.ok) throw new Error(response.statusText);
-      const data = await response.json();
-      model.value = data;
-      return model.value;
-    },
-  });
-}
-
+/**
+ * Filters an array of objects in-memory using MongoDB-like queries.
+ *
+ * @example basic querying
+ * GET /api/accounts?contactIds=01HS1HVHBT0XKD8X6BYJ956NR6
+ * @example advanced querying ($in, $nin, $exists, $regex, $gt, $lt, $gte, $lte)
+ * GET /api/accounts?contactIds.$in=["01HS1HVHBT0XKD8X6BYJ956NR6"]
+ * @example sorting (ascending)
+ * GET /api/accounts?$sort.name=1
+ * @example sorting (descending)
+ * GET /api/accounts?$sort.name=-1
+ *
+ * @param {Array} data - The array of objects to filter.
+ * @param {Object} flatQuery - The query object with flat keys.
+ * @returns {Array} The filtered array of objects.
+ */
 export function filterObjectsByKeyValues<T = unknown>(
   data: T[],
-  filters: Record<string, any> = {},
+  flatQuery: Record<string, any> = {},
 ) {
-  // filter item out if any of the filters fail, otherwise keep it
-  return !Object.keys(filters).length ? data : data.filter((item) => {
-    return !Object.entries(filters).some(([key, value]) => {
-      const itemValue = _get(item, key, "").toString();
-      return itemValue?.toLowerCase() !== value?.toLowerCase(); // case insensitive
-    });
-  });
+  if (!Object.keys(flatQuery).length) return data;
+
+  // 1) flatQuery: { "contactIds.$in": '["01HS1HVHBT0XKD8X6BYJ956NR6"]' }
+  const nestedQuery = unflatten(flatQuery) as Record<string, unknown>;
+  // 2) nestedQuery: { "contactIds.$in": '["01HS1HVHBT0XKD8X6BYJ956NR6"]' }
+  const parsedQuery = deepParseJson(nestedQuery) as Record<string, any>;
+  // 3) parsedQuery: { contactIds: { "$in": [ "01HS1HVHBT0XKD8X6BYJ956NR6" ] } }
+
+  // 4) separate pipeline operators ($skip, $limit, $sort) from query operators
+  // ($sort requires having nested keys so we do this last after parsing query)
+  const { $skip, $limit, $sort = {}, ...query } = parsedQuery;
+  console.log({ $skip, $limit, $sort, query });
+
+  // parse pipeline operators accordingly and apply them to the cursor
+  const cursor = mingo.find(data, query)
+    .sort(Object.fromEntries(Object.entries($sort).map(([key, value]) => [
+      key,
+      Number(value),
+    ]))) // e.g. ?$sort.name=1 (ascending) or ?$sort.name=-1 (descending)
+    .skip(Number($skip)) // e.g. ?$skip=10
+    .limit(Number($limit)); // e.g. ?$limit=10
+
+  return cursor.all();
 }

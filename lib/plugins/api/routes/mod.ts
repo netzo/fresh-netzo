@@ -2,7 +2,7 @@ import type { PluginRoute } from "$fresh/server.ts";
 import { join } from "../../../deps/std/path/mod.ts";
 import { netzodb } from "../../../integrations/databases/netzodb.ts";
 import type { ApiConfig } from "../plugin.ts";
-import { parseRequestBody, parseSearchParams, RESPONSES } from "../utils.ts";
+import { parseRequestBody, RESPONSES } from "../utils.ts";
 
 export const getRoutesByCollection = (
   collection: ApiConfig["collections"][number],
@@ -21,13 +21,14 @@ export const getRoutesByCollection = (
       path: join("/api", name),
       handler: {
         GET: async (_req, ctx) => {
-          const { params: _, query } = parseSearchParams(ctx.url.searchParams);
+          // supports MongoDB-like URL queries via dot-notation (powered by mingo)
+          // e.g. GET /api/deals?contactIds.$in=["01HS1HVHBT0XKD8X6BYJ956NR6"]
+          const query = Object.fromEntries(ctx.url.searchParams);
           if (!methods!.includes("find")) return RESPONSES.notAllowed();
           const result = await db.find(name, query);
           return Response.json(result);
         },
-        POST: async (req, ctx) => {
-          const { params: _ } = parseSearchParams(ctx.url.searchParams);
+        POST: async (req, _ctx) => {
           if (!methods!.includes("create")) return RESPONSES.notAllowed();
           const data = await parseRequestBody(req);
           const result = await db.create(name, data, idField);
@@ -39,14 +40,12 @@ export const getRoutesByCollection = (
       path: join("/api", name, "[id]"),
       handler: {
         GET: async (_req, ctx) => {
-          const { params: _ } = parseSearchParams(ctx.url.searchParams);
           if (!methods!.includes("get")) return RESPONSES.notAllowed();
           const { [idField]: id } = ctx.params;
           const result = await db.get(name, id);
           return Response.json(result);
         },
         PUT: async (req, ctx) => {
-          const { params: _ } = parseSearchParams(ctx.url.searchParams);
           if (!methods!.includes("update")) return RESPONSES.notAllowed();
           const { [idField]: id } = ctx.params;
           const data = await parseRequestBody(req);
@@ -54,7 +53,6 @@ export const getRoutesByCollection = (
           return Response.json(result);
         },
         PATCH: async (req, ctx) => {
-          const { params: _ } = parseSearchParams(ctx.url.searchParams);
           if (!methods!.includes("patch")) return RESPONSES.notAllowed();
           const { [idField]: id } = ctx.params;
           const data = await parseRequestBody(req);
@@ -62,7 +60,6 @@ export const getRoutesByCollection = (
           return Response.json(result);
         },
         DELETE: async (_req, ctx) => {
-          const { params: _ } = parseSearchParams(ctx.url.searchParams);
           if (!methods!.includes("remove")) return RESPONSES.notAllowed();
           const { [idField]: id } = ctx.params;
           await db.remove(name, id);

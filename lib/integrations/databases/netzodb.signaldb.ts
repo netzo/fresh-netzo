@@ -4,7 +4,7 @@ import {
   PersistentCollection,
 } from "npm:signaldb@0.8.7";
 
-const createNetzoDBAdapter = <T = unknown>(name: string) => {
+const createNetzoDBAdapter = (name: string) => {
   return createPersistenceAdapter({
     async load() {
       const response = await fetch(`/api/${name}`);
@@ -38,8 +38,8 @@ const createNetzoDBAdapter = <T = unknown>(name: string) => {
   });
 };
 
-export const createCollection = <T = unknown>(name: string) => {
-  return new PersistentCollection<T>(name, {
+export const createCollection = (name: string) => {
+  return new PersistentCollection(name, {
     reactivity: preactReactivityAdapter,
     persistence: createNetzoDBAdapter(name),
   });

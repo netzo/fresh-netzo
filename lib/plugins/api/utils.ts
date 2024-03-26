@@ -4,21 +4,6 @@ export const RESPONSES = {
   notAllowed: () => new Response("Method not allowed", { status: 405 }),
 };
 
-// request:
-
-export function parseSearchParams(
-  searchParams: URLSearchParams,
-): { query: Record<string, string>; params: Record<string, string> } {
-  return Object.entries(Object.fromEntries(searchParams)).reduce(
-    (acc, [key, value]) => (
-      key.startsWith("$")
-        ? { ...acc, params: { ...acc.params, [key]: value } }
-        : { ...acc, query: { ...acc.query, [key]: value } }
-    ),
-    { query: {}, params: {} },
-  );
-}
-
 export async function parseRequestBody(req: Request) {
   const contentType = req.headers.get("content-type"); // case insensitive
   if (contentType?.includes("application/json")) {
