@@ -1,4 +1,4 @@
-import { filterObjectsByKeyValues, ulid } from "./netzodb.utils.ts";
+import { queryData, ulid } from "./netzodb.utils.ts";
 
 export { ulid };
 
@@ -25,12 +25,12 @@ export const netzodb = ({ kv = KV }: NetzoDBOptions = {}) => {
    */
   const find = async <T>(
     collection: string,
-    query: Record<string, string> = {},
+    query: Record<string, unknown> = {},
   ) => {
     const iterator = kv.list<T>({ prefix: [collection] });
     const data = [];
     for await (const res of iterator) data.push(res.value as T);
-    return filterObjectsByKeyValues<T>(data, query);
+    return queryData<T>(data, query);
   };
 
   /**

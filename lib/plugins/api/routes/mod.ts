@@ -1,4 +1,6 @@
 import type { PluginRoute } from "$fresh/server.ts";
+import { deepParseJson } from "npm:deep-parse-json@2.0.0";
+import { unflatten } from "npm:flat@6.0.1";
 import { join } from "../../../deps/std/path/mod.ts";
 import { netzodb } from "../../../integrations/databases/netzodb.ts";
 import type { ApiConfig } from "../plugin.ts";
@@ -21,10 +23,15 @@ export const getRoutesByCollection = (
       path: join("/api", name),
       handler: {
         GET: async (_req, ctx) => {
+          if (!methods!.includes("find")) return RESPONSES.notAllowed();
           // supports MongoDB-like URL queries via dot-notation (powered by mingo)
           // e.g. GET /api/deals?contactIds.$in=["01HS1HVHBT0XKD8X6BYJ956NR6"]
-          const query = Object.fromEntries(ctx.url.searchParams);
-          if (!methods!.includes("find")) return RESPONSES.notAllowed();
+          // flatQuery: { "contactIds.$in": '["01HS1HVHBT0XKD8X6BYJ956NR6"]' }
+          // nestedQuery: { "contactIds.$in": '["01HS1HVHBT0XKD8X6BYJ956NR6"]' }
+          // query: { contactIds: { "$in": [ "01HS1HVHBT0XKD8X6BYJ956NR6" ] } }
+          const flatQuery = Object.fromEntries(ctx.url.searchParams);
+          const nestedQuery = unflatten(flatQuery) as Record<string, unknown>;
+          const query = deepParseJson(nestedQuery) as Record<string, unknown>;
           const result = await db.find(name, query);
           return Response.json(result);
         },
