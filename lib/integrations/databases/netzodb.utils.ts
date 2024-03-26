@@ -13,7 +13,7 @@ export function useSignalNetzoDB<T>(collection: string, model: Signal<T>) {
     get: async () => {
       const response = await fetch(`${endpoint}/${model.value.id}`);
       if (!response.ok) throw new Error(response.statusText);
-      const data = (await response.json());
+      const data = await response.json();
       model.value = data;
       return model.value;
     },
@@ -25,7 +25,7 @@ export function useSignalNetzoDB<T>(collection: string, model: Signal<T>) {
         body: JSON.stringify(value),
       });
       if (!response.ok) throw new Error(response.statusText);
-      const data = (await response.json());
+      const data = await response.json();
       model.value = data;
       return model.value;
     },
@@ -36,7 +36,7 @@ export function useSignalNetzoDB<T>(collection: string, model: Signal<T>) {
         body: JSON.stringify(model.value),
       });
       if (!response.ok) throw new Error(response.statusText);
-      const data = (await response.json());
+      const data = await response.json();
       model.value = data;
       return model.value;
     },
@@ -47,7 +47,7 @@ export function useSignalNetzoDB<T>(collection: string, model: Signal<T>) {
         body: JSON.stringify(model.value),
       });
       if (!response.ok) throw new Error(response.statusText);
-      const data = (await response.json());
+      const data = await response.json();
       model.value = data;
       return model.value;
     },
@@ -65,7 +65,7 @@ export function useSignalNetzoDB<T>(collection: string, model: Signal<T>) {
         body: JSON.stringify({ deletedAt: new Date().toISOString() }),
       });
       if (!response.ok) throw new Error(response.statusText);
-      const data = (await response.json());
+      const data = await response.json();
       model.value = data;
       return model.value;
     },
@@ -76,12 +76,12 @@ export function useSignalNetzoDB<T>(collection: string, model: Signal<T>) {
         body: JSON.stringify(model.value),
       });
       if (!response.ok) throw new Error(response.statusText);
-      const data = (await response.json());
+      const data = await response.json();
       model.value = data;
       return model.value;
     },
   });
-};
+}
 
 export function filterObjectsByKeyValues<T = unknown>(
   data: T[],

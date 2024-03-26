@@ -5,9 +5,7 @@ import type {
   VariantContext,
   VariantObject,
 } from "../../../deps/@unocss/core.ts";
-import type {
-  Theme
-} from "../../../deps/@unocss/preset-mini/mod.ts";
+import type { Theme } from "../../../deps/@unocss/preset-mini/mod.ts";
 import {
   h,
   variantGetParameter,
@@ -37,7 +35,6 @@ const variantGroupDataAttribute: VariantObject = {
     }
   },
 };
-
 
 export function presetShadcn(options: PresetShadcnOptions = {}): Preset<Theme> {
   // IMPORTANT: note that functions are dropped for CSR mode due to by
@@ -83,71 +80,71 @@ export function presetShadcn(options: PresetShadcnOptions = {}): Preset<Theme> {
 
     rules: [
       [
-        'animate-accordion-down',
+        "animate-accordion-down",
         {
-          animation: 'shadcn-down 0.2s ease-out',
+          animation: "shadcn-down 0.2s ease-out",
         },
       ],
       [
-        'animate-accordion-up',
+        "animate-accordion-up",
         {
-          animation: 'shadcn-up 0.2s ease-out',
+          animation: "shadcn-up 0.2s ease-out",
         },
       ],
       [
-        'animate-collapsible-down',
+        "animate-collapsible-down",
         {
-          animation: 'shadcn-collapsible-down 0.2s ease-out',
+          animation: "shadcn-collapsible-down 0.2s ease-out",
         },
       ],
       [
-        'animate-collapsible-up',
+        "animate-collapsible-up",
         {
-          animation: 'shadcn-collapsible-up 0.2s ease-out',
+          animation: "shadcn-collapsible-up 0.2s ease-out",
         },
       ],
     ],
 
-   theme: {
+    theme: {
       colors: {
-        border: 'hsl(var(--border))',
-        input: 'hsl(var(--input))',
-        ring: 'hsl(var(--ring))',
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))',
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
-          DEFAULT: 'hsl(var(--secondary))',
-          foreground: 'hsl(var(--secondary-foreground))',
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
         },
         destructive: {
-          DEFAULT: 'hsl(var(--destructive))',
-          foreground: 'hsl(var(--destructive-foreground))',
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
         },
         muted: {
-          DEFAULT: 'hsl(var(--muted))',
-          foreground: 'hsl(var(--muted-foreground))',
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
         },
         accent: {
-          DEFAULT: 'hsl(var(--accent))',
-          foreground: 'hsl(var(--accent-foreground))',
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
         },
         popover: {
-          DEFAULT: 'hsl(var(--popover))',
-          foreground: 'hsl(var(--popover-foreground))',
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
         },
         card: {
-          DEFAULT: 'hsl(var(--card))',
-          foreground: 'hsl(var(--card-foreground))',
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
         },
       },
       borderRadius: {
         lg: `var(--radius)`,
         md: `calc(var(--radius) - 2px)`,
-        sm: 'calc(var(--radius) - 4px)',
+        sm: "calc(var(--radius) - 4px)",
       },
     },
     // NOTE: build step required for transformers (see @unocss/unocss#1673)
