@@ -6,9 +6,6 @@
   "lock": false,
   "tasks": {
     "build": "deno run -A --env dev.ts build",
-    "cov:clean": "rm -rf cov html_cov cov.lcov",
-    "cov:gen": "deno coverage ./cov/ --lcov --exclude='.tsx' --output=cov.lcov",
-    "cov:view": "genhtml -o html_cov cov.lcov && open html_cov/index.html",
     "check:types": "deno check **/*.ts **/*.tsx",
     "db:load": "deno run -A --env tasks/db:load.ts",
     "db:reset": "deno run -A --env tasks/db:reset.ts",
