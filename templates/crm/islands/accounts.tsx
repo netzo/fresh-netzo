@@ -176,7 +176,7 @@ export function PageAccounts(props: { accounts: Account[] }) {
   };
 
   return (
-    <div className="flex flex-col h-screen">
+    <div className="grid grid-rows-[min-content_auto_min-content]">
       <header className="flex items-center justify-between p-4">
         <div className="flex items-center flex-1 space-x-2">
           <TableActionsReload table={table} />
@@ -194,7 +194,7 @@ export function PageAccounts(props: { accounts: Account[] }) {
           </Button>
         </div>
       </header>
-      <div className="flex-1 overflow-y-auto">
+      <div className="overflow-y-auto">
         <div className="border rounded-md mx-4">
           <TableView table={table} />
         </div>
