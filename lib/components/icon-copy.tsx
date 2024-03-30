@@ -22,7 +22,7 @@ export function IconCopy({ value, tooltip = "Copy" }: IconCopyProps) {
       onClick={handleCopy}
       title={tooltip}
       className={cn(
-        "mdi-content-copy mx-2 text-xs",
+        "mdi-content-copy mx-2 text-[10px]",
         isCopied.value ? "text-primary" : "text-gray-500 cursor-pointer",
       )}
     />

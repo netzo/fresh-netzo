@@ -47,6 +47,7 @@ declare module "../../../deps/@tanstack/react-table.ts" {
     sorting?: ColumnSort[];
     filters?: TableFilter<TData, unknown>[];
     columns: ColumnDef<TData, unknown>[];
+    // actions:
     create?: (value: TData) => TData | Promise<TData>;
     update?: (value: TData) => TData | Promise<TData>;
     remove?: (value: TData) => TData | Promise<TData>;

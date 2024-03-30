@@ -1,9 +1,6 @@
 // deno-lint-ignore-file no-explicit-any
-import type {
-  FetchContext,
-  FetchOptions,
-} from "https://esm.sh/v135/ofetch@1.1.1";
-import type { QueryObject } from "https://esm.sh/v135/ufo@1.2.0";
+import type { FetchContext, FetchOptions } from "https://esm.sh/ofetch@1.1.1";
+import type { QueryObject } from "https://esm.sh/ufo@1.2.0";
 
 export type { FetchContext, FetchOptions };
 

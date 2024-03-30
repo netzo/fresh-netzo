@@ -18,6 +18,7 @@ import {
   useSensors,
 } from "../../../deps/@dnd-kit/core.ts";
 import { arrayMove, SortableContext } from "../../../deps/@dnd-kit/sortable.ts";
+import { type TableOptions } from "../../../deps/@tanstack/react-table.ts";
 import type { Table } from "../table/table.tsx";
 import { KanbanContainer } from "./kanban-container.tsx";
 import { coordinateGetter } from "./multiple-containers-keyboard-preset.ts";
@@ -25,8 +26,6 @@ import { hasDraggableData } from "./utils.ts";
 
 export { KanbanCardContainer } from "./kanban-card-container.tsx";
 export { KanbanContainer } from "./kanban-container.tsx";
-
-// kanban:
 
 export type UseKanbanOptions<TData = unknown> = {
   table: Table<TData>;
