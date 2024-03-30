@@ -1,9 +1,9 @@
-import { error } from "../../../plugins/utils.ts";
 import {
   isSemVer,
   parse,
   semverGreaterThanOrEquals,
 } from "../../../deps/semver/mod.ts";
+import { error } from "../../../plugins/utils.ts";
 import type { Args as RawArgs } from "../args.ts";
 import { VERSION } from "../version.ts";
 
@@ -71,6 +71,7 @@ export default async function (rawArgs: RawArgs): Promise<void> {
         "--allow-net",
         "--allow-run",
         "--no-check",
+        "--global",
         "-f",
         `https://deno.land/x/netzo@${version ? version : latest}/cli/netzo.ts`,
       ],
