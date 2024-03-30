@@ -2,9 +2,9 @@ import { useComputed, useSignal } from "@preact/signals";
 import { Badge } from "netzo/components/badge.tsx";
 import {
   KanbanCardContainer,
-  KanbanView,
   type KanbanCardProps,
   type KanbanGroupProps,
+  KanbanView,
   type UseKanbanOptions,
 } from "netzo/components/blocks/kanban/kanban.tsx";
 import {
@@ -26,7 +26,7 @@ import {
 import { ScrollArea } from "netzo/components/scroll-area.tsx";
 import { cn } from "netzo/components/utils.ts";
 import { SortableContext } from "netzo/deps/@dnd-kit/sortable.ts";
-import { getDeal, type Deal } from "../data/deals.ts";
+import { type Deal, getDeal } from "../data/deals.ts";
 import { I18N } from "../data/mod.ts";
 
 export const GROUPS: UseKanbanOptions<Deal>["group"]["groups"] = [

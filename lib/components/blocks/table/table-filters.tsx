@@ -29,9 +29,12 @@ export function TableFilters<TData>({
   className,
   table,
 }: JSX.IntrinsicElements["div"] & { table: Table<TData> }) {
-  const filters = table.options.meta?.filters as TableFilter<TData, unknown>[];
+  if (!table.options?.meta?.filters) {
+    console.error(`Missing "filters" property in table.options.meta`);
+    return null;
+  }
 
-  if (!filters?.length) return null;
+  const filters = table.options.meta?.filters as TableFilter<TData, unknown>[];
 
   const isFiltered = table.getState().columnFilters.length > 0;
 

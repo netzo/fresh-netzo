@@ -18,7 +18,7 @@ import {
   useSensors,
 } from "../../../deps/@dnd-kit/core.ts";
 import { arrayMove, SortableContext } from "../../../deps/@dnd-kit/sortable.ts";
-import type { Table, UseTableOptions } from "../table/table.tsx";
+import type { Table } from "../table/table.tsx";
 import { KanbanContainer } from "./kanban-container.tsx";
 import { coordinateGetter } from "./multiple-containers-keyboard-preset.ts";
 import { hasDraggableData } from "./utils.ts";
@@ -57,7 +57,7 @@ export type GroupDragData = {
   group: Group;
 };
 
-export type KanbanGroupProps<TData = unknown> = UseTableOptions<TData> & {
+export type KanbanGroupProps<TData = unknown> = TableOptions<TData> & {
   group: Group;
   items: TData[];
   isOverlay?: boolean;
@@ -73,7 +73,7 @@ export type CardDragData<TData = unknown> = {
   item: TData;
 };
 
-export type KanbanCardProps<TData = unknown> = UseTableOptions<TData> & {
+export type KanbanCardProps<TData = unknown> = TableOptions<TData> & {
   table: Table<TData>;
   item: TData;
   isOverlay?: boolean;

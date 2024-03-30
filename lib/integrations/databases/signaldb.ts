@@ -4,9 +4,14 @@ import {
   PersistentCollection,
 } from "npm:signaldb@0.8.7";
 
-const createNetzoDBAdapter = (name: string) => {
+const createNetzoDBAdapter = (name: string, data: any[]) => {
+  let firstRender = true;
   return createPersistenceAdapter({
     async load() {
+      if (firstRender) {
+        firstRender = false;
+        return { items: data };
+      }
       const response = await fetch(`/api/${name}`);
       const items = await response.json();
       return { items };
@@ -38,9 +43,9 @@ const createNetzoDBAdapter = (name: string) => {
   });
 };
 
-export const createCollection = (name: string) => {
+export const createCollection = (name: string, data: any[]) => {
   return new PersistentCollection(name, {
     reactivity: preactReactivityAdapter,
-    persistence: createNetzoDBAdapter(name),
+    persistence: createNetzoDBAdapter(name, data),
   });
 };

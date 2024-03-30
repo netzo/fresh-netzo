@@ -18,13 +18,8 @@ export default defineRoute(async (req, ctx) => {
   // render entire page as island for simplicity
   return (
     <PageActivities
+      activities={activities}
       activity={activities.find((a) => a.id === id) ?? activities[0]}
-      activities={activities.map((activity) => ({
-        ...activity,
-        accounts: accounts.filter((a) => activity.accountIds.includes(a.id)),
-        contacts: contacts.filter((c) => activity.contactIds.includes(c.id)),
-        deals: deals.filter((d) => activity.dealIds.includes(d.id)),
-      }))}
       accounts={accounts}
       contacts={contacts}
       deals={deals}

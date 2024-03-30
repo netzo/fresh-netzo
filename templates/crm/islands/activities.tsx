@@ -1,6 +1,7 @@
-import { useSignal } from "@preact/signals";
+import { type Signal, useSignal } from "@preact/signals";
 import { Badge } from "netzo/components/badge.tsx";
 import {
+  type Table,
   TableActionsReload,
   TableFilters,
   TablePagination,
@@ -10,32 +11,22 @@ import {
   useTable,
 } from "netzo/components/blocks/table/table.tsx";
 import { Button } from "netzo/components/button.tsx";
-import { Combobox } from "netzo/components/combobox.tsx";
 import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-  useForm,
-  zodResolver,
-} from "netzo/components/form.tsx";
-import { Input } from "netzo/components/input.tsx";
+  FormFieldCombobox,
+  FormFieldInput,
+  FormFieldSelectMultiple,
+  FormFieldTextarea,
+} from "netzo/components/form-fields.tsx";
+import { Form, useForm } from "netzo/components/form.tsx";
 import {
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
 } from "netzo/components/resizable.tsx";
-import { type Option } from "netzo/components/select-multiple.tsx";
-import { Textarea } from "netzo/components/textarea.tsx";
 import { cn } from "netzo/components/utils.ts";
+import { useState } from "preact/hooks";
 import type { Account } from "../data/accounts.ts";
-import {
-  activitySchema,
-  getActivity,
-  type Activity,
-} from "../data/activities.ts";
+import { type Activity, getActivity } from "../data/activities.ts";
 import type { Contact } from "../data/contacts.ts";
 import type { Deal } from "../data/deals.ts";
 import { I18N, toDateTime } from "../data/mod.ts";
@@ -43,53 +34,21 @@ import { I18N, toDateTime } from "../data/mod.ts";
 const defaultLayout = [50, 50];
 
 export function PageActivities(props: {
+  activities: Activity[];
   activity: Activity;
   accounts: Account[];
   contacts: Contact[];
   deals: Deal[];
-  activities: Activity[];
 }) {
-  const activity = useSignal(props.activity);
+  const [data, setData] = useState<Activity[]>(props.activities ?? []);
+  const activity = useSignal<Activity>(props.activity ?? getActivity());
 
   const width = globalThis?.innerWidth; // const { width = 0 } = useWindowSize(); causes unnecessary re-renders
 
-  const table = useTable<Activity>(props.activities, {
-    endpoint: "/api/activities",
-    idField: "id",
-    search: {
-      column: "name",
-      placeholder: "Search by name...",
-    },
-    sorting: [
-      { id: "updatedAt", desc: false },
-      { id: "name", desc: true },
-    ],
-    filters: [
-      {
-        column: "type",
-        title: I18N.type,
-        options: [...new Set(props.activities.map((item) => item.type).flat())]
-          .sort()
-          .map((
-            value,
-          ) => (value
-            ? { label: I18N[`type.${value}`], value }
-            : { label: "*no data", value: "" })
-          ),
-      },
-      {
-        column: "accountIds",
-        title: I18N.accountIds,
-        options: props.accounts
-          .sort((a, b) => a.name.localeCompare(b.name))
-          .map((
-            { id, name },
-          ) => (id
-            ? { label: name, value: id }
-            : { label: "*no data", value: "" })
-          ),
-      },
-    ],
+  const toOptions = ({ id, name }) => ({ value: id, label: name });
+
+  const table = useTable<Activity>({
+    data,
     // IMPORTANT: columns are required for search and filters
     columns: [
       {
@@ -106,24 +65,111 @@ export function PageActivities(props: {
           value.some((v) => row.getValue(id).includes(v)),
       },
     ],
+    meta: {
+      endpoint: "/api/activities",
+      idField: "id",
+      search: {
+        column: "name",
+        placeholder: "Search by name...",
+      },
+      sorting: [
+        { id: "updatedAt", desc: false },
+        { id: "name", desc: true },
+      ],
+      filters: [
+        {
+          column: "type",
+          title: I18N.type,
+          options: [
+            ...new Set(props.activities.map((item) => item.type).flat()),
+          ]
+            .sort()
+            .map((
+              value,
+            ) => (value
+              ? { label: I18N[`type.${value}`], value }
+              : { label: "*no data", value: "" })
+            ),
+        },
+        {
+          column: "accountIds",
+          title: I18N.accountIds,
+          options: props.accounts
+            .sort((a, b) => a.name.localeCompare(b.name))
+            .map((
+              { id, name },
+            ) => (id
+              ? { label: name, value: id }
+              : { label: "*no data", value: "" })
+            ),
+        },
+      ],
+      select: (value: Activity) => activity.value = value,
+      create: async () => {
+        const name = globalThis.prompt("Enter activity name");
+        if (name) {
+          const response = await fetch("/api/activities", {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify(getActivity({ name })),
+          });
+          if (response.ok) {
+            const result = await response.json();
+            setData([result, ...data]);
+            activity.value = result;
+            return result;
+          }
+        }
+      },
+      update: async (value: Activity) => {
+        const response = await fetch(`/api/activities/${value.id}`, {
+          method: "PATCH",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(value),
+        });
+        const result = await response.json();
+        activity.value = result;
+        setData(data.map((value) => value.id === result.id ? result : value));
+        return result;
+      },
+      remove: async ({ id }: Activity) => {
+        const response = await fetch(`/api/activities/${id}`, {
+          method: "DELETE",
+        });
+        if (response.ok) {
+          const result = await response.json();
+          setData(data.filter((value) => value.id !== id));
+          activity.value = undefined;
+          return result;
+          // if (globalThis.location.href.includes(`/${id}`)) {
+          //   globalThis.location.href = globalThis.location.href.replace(`/${id}`, "");
+          // } else globalThis.location.reload();
+        }
+      },
+      duplicate: async ({ id, ...value }: Activity) => {
+        const response = await fetch("/api/activities", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(value),
+        });
+        if (response.ok) {
+          const result = await response.json();
+          setData([result, ...data]);
+          activity.value = result;
+          return result;
+          // if (globalThis.location.href.includes(id)) {
+          //   // href.replaceAll to handle cases where id might be in pathname and/or search
+          //   const href = globalThis.location.href.replaceAll(id, result.id);
+          //   globalThis.location.href = href;
+          // } else globalThis.location.reload();
+        }
+      },
+      copyId: ({ id }: Activity) => navigator.clipboard.writeText(id),
+      accountOptions: props.accounts.map(toOptions),
+      contactOptions: props.contacts.map(toOptions),
+      dealOptions: props.deals.map(toOptions),
+    },
   });
-
-  const onClickSelect = (value: Activity) => activity.value = value;
-
-  const onClickCreate = async () => {
-    const name = globalThis.prompt("Enter activity name");
-    if (name) {
-      const response = await fetch(`/api/activities`, {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(getActivity({ name })),
-      });
-      if (response.ok) {
-        const data = await response.json();
-        globalThis.location.href = "/activities"; // `/activities/${props.id}`;
-      }
-    }
-  };
 
   return (
     <ResizablePanelGroup
@@ -141,7 +187,7 @@ export function PageActivities(props: {
               <TableSearch table={table} />
             </div>
             <div className="flex items-center space-x-2">
-              <Button className="ml-2" onClick={onClickCreate}>
+              <Button className="ml-2" onClick={table.options.meta!.create}>
                 Create
               </Button>
             </div>
@@ -165,7 +211,7 @@ export function PageActivities(props: {
                           activity.value.id === row.original.id &&
                             "bg-muted",
                         )}
-                        onClick={() => onClickSelect(row.original)}
+                        onClick={() => table.options.meta!.select(row.original)}
                       >
                         <div className="flex gap-4 items-center pb-2">
                           <h4 className="font-semibold line-clamp-1">
@@ -198,8 +244,13 @@ export function PageActivities(props: {
                       </div>
                     ))
                     : (
-                      <div className="grid place-items-center h-full w-full">
-                        No results.
+                      <div className="grid place-items-center w-full h-full py-20">
+                        <div className="text-center">
+                          <i className="mdi-radiobox-marked text-4xl text-muted-foreground mb-2" />
+                          <h2 className="text-xl font-medium text-muted-foreground mb-1">
+                            No activities found
+                          </h2>
+                        </div>
                       </div>
                     )}
               </TableView>
@@ -215,44 +266,45 @@ export function PageActivities(props: {
       <ResizableHandle withHandle />
 
       <ResizablePanel defaultSize={defaultLayout[1]}>
-        <div className="grid h-full overflow-y-auto">
-          <FormUpdate
-            {...props}
-            key={activity.value.id}
-            activity={activity.value}
-          />
-        </div>
+        {activity.value?.id
+          ? (
+            <div className="grid h-full overflow-y-auto">
+              <FormUpdate
+                key={activity.value?.id}
+                table={table}
+                activity={activity}
+              />
+            </div>
+          )
+          : (
+            <div className="grid place-items-center w-full h-full py-20">
+              <div className="text-center">
+                <i className="mdi-radiobox-marked text-4xl text-muted-foreground mb-2" />
+                <h2 className="text-xl font-medium text-muted-foreground mb-1">
+                  Selecciona una actividad
+                </h2>
+              </div>
+            </div>
+          )}
       </ResizablePanel>
     </ResizablePanelGroup>
   );
 }
 
 function FormUpdate(props: {
-  activity: Activity;
-  accounts: Account[];
-  contacts: Contact[];
-  deals: Deal[];
-  activities: Activity[];
+  table: Table<Account>;
+  activity: Signal<Activity>;
 }) {
   const form = useForm<Activity>({
-    resolver: zodResolver(activitySchema),
-    defaultValues: getActivity(props.activity),
+    defaultValues: getActivity(props.activity.value),
   });
 
   const onSubmit = async (data: Activity) => {
-    const response = await fetch(`/api/activities/${props.activity.id}`, {
-      method: "PATCH",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(getActivity(data)),
-    });
-
-    if (response.ok) globalThis.location.reload();
+    const result = await props.table.options.meta!.update(data);
+    form.reset(result);
   };
 
-  const toOptions = ({ id, name }): Option => ({ value: id, label: name });
-  const accountOptions = props.accounts.map(toOptions);
-  const contactOptions = props.contacts.map(toOptions);
-  const dealOptions = props.deals.map(toOptions);
+  const FIELD = "grid grid-cols-[100px_auto] items-center px-4";
 
   return (
     <Form {...form}>
@@ -260,18 +312,20 @@ function FormUpdate(props: {
         id="activities.patch"
         className="space-y-2"
         onSubmit={form.handleSubmit(onSubmit)}
+        onReset={() => form.reset(getActivity(props.activity.value))}
       >
         <header className="flex items-center justify-between p-4">
           <div className="flex items-center flex-1 space-x-2">
             <h3 className="text-lg font-semibold line-clamp-1 mr-4">
-              {props.activity.name}
+              {props.activity.value.name}
             </h3>
-            <ActivityIcon type={props.activity.type} />
+            <ActivityIcon type={props.activity.value.type} />
           </div>
           <div className="flex items-center space-x-2">
             <TableRowActions
               row={{ original: form.getValues() }}
               endpoint="/api/activities"
+              actions={["duplicate", "copyId", "remove"]}
             />
             <Button
               form="activities.patch"
@@ -292,113 +346,62 @@ function FormUpdate(props: {
             </Button>
           </div>
         </header>
-        <FormField
-          control={form.control}
+
+        <FormFieldInput
           name="name"
-          render={({ field }) => (
-            <FormItem className="flex items-center space-x-6 px-4">
-              <FormLabel className="w-[100px]">{I18N["name"]}</FormLabel>
-              <FormControl>
-                <Input {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
+          label="Name"
+          form={form}
+          className={FIELD}
         />
-        <FormField
-          control={form.control}
+        <FormFieldCombobox
           name="type"
-          render={({ field }) => (
-            <FormItem className="flex items-center space-x-6 px-4">
-              <FormLabel className="w-[100px]">{I18N["type"]}</FormLabel>
-              <FormControl>
-                <Combobox
-                  {...field}
-                  options={[
-                    "email",
-                    "call",
-                    "videocall",
-                    "meeting",
-                    "whatsapp",
-                    "livechat",
-                    "facebook",
-                    "instagram",
-                    "linkedin",
-                    "twitter",
-                    "other",
-                  ].map((value) => ({
-                    label: I18N[`type.${value}`],
-                    value,
-                  }))}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
+          label="Type"
+          form={form}
+          options={[
+            "email",
+            "call",
+            "videocall",
+            "meeting",
+            "whatsapp",
+            "livechat",
+            "facebook",
+            "instagram",
+            "linkedin",
+            "x",
+            "other",
+          ].map((value) => ({
+            label: ({/* TODO */})?.[value] ?? value,
+            value,
+          }))}
+          className={FIELD}
         />
-        <FormField
-          control={form.control}
+        <FormFieldSelectMultiple
           name="accountIds"
-          render={({ field }) => (
-            <FormItem className="flex items-center space-x-6 px-4">
-              <FormLabel className="w-[100px]">{I18N["accountIds"]}</FormLabel>
-              <FormControl>
-                <Combobox
-                  {...field}
-                  multiple="true"
-                  options={accountOptions}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
+          label="Accounts"
+          form={form}
+          className={FIELD}
+          options={props.table.options.meta!.accountOptions}
         />
-        <FormField
-          control={form.control}
+        <FormFieldSelectMultiple
           name="contactIds"
-          render={({ field }) => (
-            <FormItem className="flex items-center space-x-6 px-4">
-              <FormLabel className="w-[100px]">{I18N["contactIds"]}</FormLabel>
-              <FormControl>
-                <Combobox
-                  {...field}
-                  multiple="true"
-                  options={contactOptions}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
+          label="Contacts"
+          form={form}
+          className={FIELD}
+          options={props.table.options.meta!.contactOptions}
         />
-        <FormField
-          control={form.control}
+        <FormFieldSelectMultiple
           name="dealIds"
-          render={({ field }) => (
-            <FormItem className="flex items-center space-x-6 px-4">
-              <FormLabel className="w-[100px]">{I18N["dealIds"]}</FormLabel>
-              <FormControl>
-                <Combobox
-                  {...field}
-                  multiple="true"
-                  options={dealOptions}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
+          label="Deals"
+          form={form}
+          className={FIELD}
+          options={props.table.options.meta!.dealOptions}
         />
-        <FormField
-          control={form.control}
+        <FormFieldTextarea
           name="notes"
-          render={({ field }) => (
-            <FormItem className="flex items-center space-x-6 px-4">
-              <FormLabel className="w-[100px]">{I18N["notes"]}</FormLabel>
-              <FormControl>
-                <Textarea {...field} rows="20" />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
+          label="Notes"
+          form={form}
+          className={FIELD}
+          rows="20"
         />
       </form>
     </Form>
@@ -452,9 +455,9 @@ function ActivityIcon({ type }: { type: string }) {
       text: "LinkedIn",
       className: `bg-blue hover:bg-blue bg-opacity-80 text-white`,
     },
-    "twitter": {
+    "x": {
       icon: "mdi-twitter",
-      text: "Twitter",
+      text: "X (Twitter)",
       className: `bg-blue hover:bg-blue bg-opacity-80 text-white`,
     },
     other: {

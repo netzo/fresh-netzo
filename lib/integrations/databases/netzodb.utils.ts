@@ -30,10 +30,12 @@ export function queryData<T = unknown>(
 
   // parse pipeline operators accordingly and apply them to the cursor
   const cursor = mingo.find(data, criteria)
-    .sort(Object.fromEntries(Object.entries($sort).map(([key, value]) => [
-      key,
-      Number(value),
-    ]))) // e.g. ?$sort.name=1 (ascending) or ?$sort.name=-1 (descending)
+    .sort(Object.fromEntries(
+      Object.entries($sort).map(([key, value]) => [
+        key,
+        Number(value),
+      ]),
+    )) // e.g. ?$sort.name=1 (ascending) or ?$sort.name=-1 (descending)
     .skip(Number($skip)) // e.g. ?$skip=10
     .limit(Number($limit)); // e.g. ?$limit=10
 

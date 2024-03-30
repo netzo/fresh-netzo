@@ -15,6 +15,7 @@ import {
   type RowSelectionState,
   type SortingState,
   type Table as TTable,
+  type TableOptions,
   useReactTable,
   type VisibilityState,
 } from "../../../deps/@tanstack/react-table.ts";
@@ -40,24 +41,23 @@ export * from "./table-row-actions.tsx";
 export * from "./table-search.tsx";
 export * from "./table-view-options.tsx";
 
-export type UseTableOptions<TData = unknown> = {
-  search?: TableSearch;
-  sorting?: ColumnSort[];
-  filters?: TableFilter<TData, unknown>[];
-  columns: ColumnDef<TData, unknown>[];
-};
-
 declare module "../../../deps/@tanstack/react-table.ts" {
-  // deno-lint-ignore no-empty-interface
-  interface TableMeta<TData extends RowData> extends UseTableOptions<TData> {}
+  interface TableMeta<TData extends RowData> {
+    search?: TableSearch;
+    sorting?: ColumnSort[];
+    filters?: TableFilter<TData, unknown>[];
+    columns: ColumnDef<TData, unknown>[];
+    create?: (value: TData) => TData | Promise<TData>;
+    update?: (value: TData) => TData | Promise<TData>;
+    remove?: (value: TData) => TData | Promise<TData>;
+    duplicate?: (value: TData) => TData | Promise<TData>;
+    [k: string]: unknown;
+  }
 }
 
 export function useTable<TData = unknown>(
-  data: TData[],
-  options: UseTableOptions<TData>,
-): TTable<TData> & {
-  Component: (props: { table: TTable<TData> }) => JSX.Element;
-} {
+  options: TableOptions<TData>,
+): TTable<TData> {
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
   const [
     columnVisibility,
@@ -69,8 +69,8 @@ export function useTable<TData = unknown>(
   ] = useState<ColumnFiltersState>([]);
   const [sorting, setSorting] = useState<SortingState>(options.sorting ?? []);
 
-  const table = useReactTable<TData>({
-    data,
+  const table = useReactTable<TData>(Object.assign({
+    data: options.data,
     columns: options.columns,
     state: {
       sorting,
@@ -92,8 +92,8 @@ export function useTable<TData = unknown>(
     initialState: {
       pagination: { pageSize: 25 },
     },
-    meta: options,
-  });
+    meta: options?.meta,
+  }, options));
 
   return table;
 }

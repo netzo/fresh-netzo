@@ -12,6 +12,11 @@ export function TableSearch<TData = unknown>({
   className,
   table,
 }: JSX.IntrinsicElements["input"] & { table: Table<TData> }) {
+  if (!table.options?.meta?.search) {
+    console.error(`Missing "search" property in table.options.meta`);
+    return null;
+  }
+
   const {
     column,
     placeholder,

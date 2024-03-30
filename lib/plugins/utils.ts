@@ -1,6 +1,4 @@
 import {
-  bgBlue,
-  black,
   blue,
   bold,
   green,
@@ -23,9 +21,6 @@ export const proxyConsole = (...substringsToSkip: string[]) => {
       // deno-lint-ignore no-explicit-any
       return (...args: any[]) => {
         const message = args.join(" ");
-        if (message.includes("🍋 Fresh ready")) {
-          return console.log(bgBlue(black(" Netzo ready ")));
-        }
         const skip = substringsToSkip.some((s) => message.includes(s));
         if (!skip) method.apply(target, args);
       };
