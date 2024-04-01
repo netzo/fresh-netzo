@@ -36,7 +36,7 @@ function SelectMultiple(
   };
 
   return (
-    <Popover open={open} onOpenChange={setOpen} {...props}>
+    <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <Button
           variant="outline"
@@ -48,6 +48,7 @@ function SelectMultiple(
             className,
           )}
           onClick={() => setOpen(!open)}
+          {...props}
         >
           <div className="flex gap-1 flex-wrap">
             {value.map((item) => (

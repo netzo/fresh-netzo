@@ -1,9 +1,7 @@
 import type { ComponentChildren } from "preact";
 import { useState } from "preact/hooks";
 import {
-  type ColumnDef,
-  type ColumnFiltersState,
-  type ColumnSort,
+  RowData,
   flexRender,
   getCoreRowModel,
   getFacetedRowModel,
@@ -11,13 +9,14 @@ import {
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  RowData,
+  useReactTable,
+  type ColumnFiltersState,
+  type ColumnSort,
   type RowSelectionState,
   type SortingState,
   type Table as TTable,
   type TableOptions,
-  useReactTable,
-  type VisibilityState,
+  type VisibilityState
 } from "../../../deps/@tanstack/react-table.ts";
 import {
   Table,
@@ -46,7 +45,6 @@ declare module "../../../deps/@tanstack/react-table.ts" {
     search?: TableSearch;
     sorting?: ColumnSort[];
     filters?: TableFilter<TData, unknown>[];
-    columns: ColumnDef<TData, unknown>[];
     // actions:
     create?: (value: TData) => TData | Promise<TData>;
     update?: (value: TData) => TData | Promise<TData>;
