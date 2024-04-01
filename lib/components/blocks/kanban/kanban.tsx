@@ -6,18 +6,18 @@ import { createPortal } from "preact/compat";
 import {
   Announcements,
   DndContext,
-  type DragEndEvent,
-  type DragOverEvent,
   DragOverlay,
-  type DragStartEvent,
   KeyboardSensor,
   MouseSensor,
   TouchSensor,
-  type UniqueIdentifier,
   useSensor,
   useSensors,
+  type DragEndEvent,
+  type DragOverEvent,
+  type DragStartEvent,
+  type UniqueIdentifier,
 } from "../../../deps/@dnd-kit/core.ts";
-import { arrayMove, SortableContext } from "../../../deps/@dnd-kit/sortable.ts";
+import { SortableContext, arrayMove } from "../../../deps/@dnd-kit/sortable.ts";
 import { type TableOptions } from "../../../deps/@tanstack/react-table.ts";
 import type { Table } from "../table/table.tsx";
 import { KanbanContainer } from "./kanban-container.tsx";
@@ -81,12 +81,13 @@ export type KanbanCardProps<TData = unknown> = TableOptions<TData> & {
 
 export function KanbanView<TData>({
   table,
+  group,
   renderGroup = (props) => JSON.stringify(props),
   renderCard = (props) => JSON.stringify(props),
 }: UseKanbanOptions<TData>) {
   const options = table.options.meta as UseKanbanOptions<TData>;
 
-  const groups = useSignal<Group[]>(options.group.groups);
+  const groups = useSignal<Group[]>(group.groups);
   const pickedUpItemGroup = useSignal<string | null>(null);
   const groupsId = useComputed(() =>
     groups.value.map((col) => col[options.idField])
@@ -113,7 +114,7 @@ export function KanbanView<TData>({
     groupIdValue: string,
   ) {
     const itemsInGroup = items.value.filter((item) =>
-      item[options.group.column] === groupIdValue
+      item[group.column] === groupIdValue
     );
     const itemPosition = itemsInGroup.findIndex((item) =>
       item[options.idField] === itemId
@@ -141,7 +142,7 @@ export function KanbanView<TData>({
         } of ${groupsId.value.length}`;
       } else if (active.data.current?.type === "Item") {
         pickedUpItemGroup.value =
-          active.data.current.item[options.group.column];
+          active.data.current.item[group.column];
         const { itemsInGroup, itemPosition, group } = getDraggingItemData(
           active[options.idField],
           pickedUpItemGroup.value as string,
@@ -170,10 +171,10 @@ export function KanbanView<TData>({
       ) {
         const { itemsInGroup, itemPosition, group } = getDraggingItemData(
           over[options.idField],
-          over.data.current.item[options.group.column],
+          over.data.current.item[group.column],
         );
         if (
-          over.data.current.item[options.group.column] !==
+          over.data.current.item[group.column] !==
             pickedUpItemGroup.value
         ) {
           return `Item ${active.data.current.item.name} was moved over group ${group?.title} in position ${
@@ -207,10 +208,10 @@ export function KanbanView<TData>({
       ) {
         const { itemsInGroup, itemPosition, group } = getDraggingItemData(
           over[options.idField],
-          over.data.current.item[options.group.column],
+          over.data.current.item[group.column],
         );
         if (
-          over.data.current.item[options.group.column] !==
+          over.data.current.item[group.column] !==
             pickedUpItemGroup.value
         ) {
           return `Item was dropped into group ${group?.title} in position ${
@@ -247,7 +248,7 @@ export function KanbanView<TData>({
               key: `group-${index}`,
               group,
               items: items.value.filter((item) =>
-                item[options.group.column] === group[options.idField]
+                item[group.column] === group[options.idField]
               ),
               options,
               renderCard,
@@ -353,10 +354,10 @@ export function KanbanView<TData>({
       if (
         activeItem &&
         overItem &&
-        activeItem[options.group.column] !==
-          overItem[options.group.column]
+        activeItem[group.column] !==
+          overItem[group.column]
       ) {
-        activeItem[options.group.column] = overItem[options.group.column];
+        activeItem[group.column] = overItem[group.column];
         items.value = arrayMove(items.value, activeIndex, overIndex - 1);
       }
 
@@ -372,7 +373,7 @@ export function KanbanView<TData>({
       );
       const activeItem = items.value[activeIndex];
       if (activeItem) {
-        activeItem[options.group.column] = overId as string;
+        activeItem[group.column] = overId as string;
         return arrayMove(items.value, activeIndex, activeIndex);
       }
     }

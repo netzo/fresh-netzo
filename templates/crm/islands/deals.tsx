@@ -2,9 +2,9 @@ import { useComputed, useSignal } from "@preact/signals";
 import { Badge } from "netzo/components/badge.tsx";
 import {
   KanbanCardContainer,
+  KanbanView,
   type KanbanCardProps,
   type KanbanGroupProps,
-  KanbanView,
   type UseKanbanOptions,
 } from "netzo/components/blocks/kanban/kanban.tsx";
 import {
@@ -26,7 +26,7 @@ import {
 import { ScrollArea } from "netzo/components/scroll-area.tsx";
 import { cn } from "netzo/components/utils.ts";
 import { SortableContext } from "netzo/deps/@dnd-kit/sortable.ts";
-import { type Deal, getDeal } from "../data/deals.ts";
+import { getDeal, type Deal } from "../data/deals.ts";
 import { I18N } from "../data/mod.ts";
 
 export const GROUPS: UseKanbanOptions<Deal>["group"]["groups"] = [
@@ -95,10 +95,6 @@ export function PageDeals(props: { deals: Deal[] }) {
         filterFn: (row, id, value) => value.includes(row.getValue(id)),
       },
     ],
-    group: {
-      column: "status",
-      groups: GROUPS,
-    },
   });
 
   const onClickCreate = async () => {
@@ -138,6 +134,7 @@ export function PageDeals(props: { deals: Deal[] }) {
       <div className="overflow-y-auto">
         <KanbanView
           table={table}
+          group={{ column: "status", groups: GROUPS }}
           renderGroup={(props) => <KanbanGroup {...props} />}
           renderCard={(props) => <KanbanCard {...props} />}
         />
