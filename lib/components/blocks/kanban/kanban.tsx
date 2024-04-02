@@ -1,4 +1,3 @@
-
 // adapted from https://github.com/Georgegriff/react-dnd-kit-tailwind-shadcn-ui/blob/main/src/components/kanban.tsx
 // see "Calling children as a function" from https://stackoverflow.com/a/32371612
 import { useComputed, useSignal } from "@preact/signals";
@@ -9,19 +8,21 @@ import { CSS } from "netzo/deps/@dnd-kit/utilities.ts";
 import { cva } from "netzo/deps/class-variance-authority.ts";
 import type { ComponentChildren } from "preact";
 import { createPortal } from "preact/compat";
-import { useState } from "preact/hooks";
+import type { StateUpdater } from "preact/hooks";
 import {
   Announcements,
   DndContext,
   DragOverlay,
   KeyboardSensor,
   MouseSensor,
-  TouchSensor, useDndContext, useSensor,
+  TouchSensor,
+  useDndContext,
+  useSensor,
   useSensors,
   type DragEndEvent,
   type DragOverEvent,
   type DragStartEvent,
-  type UniqueIdentifier
+  type UniqueIdentifier,
 } from "../../../deps/@dnd-kit/core.ts";
 import { SortableContext, arrayMove } from "../../../deps/@dnd-kit/sortable.ts";
 import { ScrollArea, ScrollBar } from "../../scroll-area.tsx";
@@ -67,6 +68,8 @@ export type KanbanCardProps<TData = unknown> = KanbanViewProps<TData> & {
 // kanban-view:
 
 export type KanbanViewProps<TData = unknown> = {
+  data: TData[];
+  setData: StateUpdater<TData[]>;
   table: Table<TData>;
   options: {
     column: string;
@@ -82,6 +85,8 @@ export type KanbanViewProps<TData = unknown> = {
 };
 
 export function KanbanView<TData>({
+  data,
+  setData,
   table,
   options,
   renderGroup = (props) => JSON.stringify(props),
@@ -90,10 +95,6 @@ export function KanbanView<TData>({
   const groups = useSignal<Group[]>(options.groups);
   const pickedUpItemGroup = useSignal<string | null>(null);
   const groupsId = useComputed(() => groups.value.map((col) => col.id));
-
-  const [items, setItems] = useState<TData[]>(
-    table.getRowModel().rows.map((row) => row.original),
-  );
 
   const activeGroup = useSignal<Group | null>(null);
 
@@ -111,7 +112,7 @@ export function KanbanView<TData>({
     itemId: UniqueIdentifier,
     groupIdValue: string,
   ) {
-    const itemsInGroup = items.filter((item) =>
+    const itemsInGroup = data.filter((item) =>
       item[options.column] === groupIdValue
     );
     const itemPosition = itemsInGroup.findIndex((item) => item.id === itemId);
@@ -242,9 +243,7 @@ export function KanbanView<TData>({
               renderCard,
               key: `group-${index}`,
               group,
-              items: items.filter((item) =>
-                item[options.column] === group.id
-              ),
+              items: data.filter((item) => item[options.column] === group.id),
               isOverlay: false,
             })
           )}
@@ -339,31 +338,32 @@ export function KanbanView<TData>({
 
     // Im dropping a Item over another Item
     if (isActiveAItem && isOverAItem) {
-      const activeIndex = items.findIndex((t) => t.id === activeId);
-      const overIndex = items.findIndex((t) => t.id === overId);
-      const activeItem = items[activeIndex];
-      const overItem = items[overIndex];
+      const activeIndex = data.findIndex((t) => t.id === activeId);
+      const overIndex = data.findIndex((t) => t.id === overId);
+      const activeItem = data[activeIndex];
+      const overItem = data[overIndex];
       if (
         activeItem &&
         overItem &&
         activeItem[options.column] !== overItem[options.column]
       ) {
         activeItem[options.column] = overItem[options.column];
-        setItems(arrayMove(items, activeIndex, overIndex - 1));
+        setData(arrayMove(data, activeIndex, overIndex - 1));
       }
 
-      setItems(arrayMove(items, activeIndex, overIndex));
+      setData(arrayMove(data, activeIndex, overIndex));
     }
 
     const isOverAGroup = overData?.type === "Group";
 
     // Im dropping a Item over a group
     if (isActiveAItem && isOverAGroup) {
-      const activeIndex = items.findIndex((t) => t.id === activeId);
-      const activeItem = items[activeIndex];
+      console.log("dropping item over group", { isActiveAItem, isOverAGroup });
+      const activeIndex = data.findIndex((t) => t.id === activeId);
+      const activeItem = data[activeIndex];
       if (activeItem) {
         activeItem[options.column] = overId as string;
-        return arrayMove(items, activeIndex, activeIndex);
+        return arrayMove(data, activeIndex, activeIndex);
       }
     }
   }
@@ -394,7 +394,6 @@ export function KanbanContainer({ children }: { children: ComponentChildren }) {
     </ScrollArea>
   );
 }
-
 
 export function KanbanCardContainer({
   table,

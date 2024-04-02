@@ -17,19 +17,13 @@ export function TableSearch<TData = unknown>({
     return null;
   }
 
-  const {
-    column,
-    placeholder,
-  } = table.options.meta?.search as TableSearch;
-  const value = table.getColumn(column)?.getFilterValue() as string ?? "";
-  const onChange = (e: JSX.ChangeEvent) => {
-    table.getColumn(column)?.setFilterValue(e.target.value);
-  };
+  const { column, placeholder } = table.options.meta?.search as TableSearch;
+
   return (
     <Input
       placeholder={placeholder}
-      value={value ?? ""}
-      onChange={onChange}
+      value={table.getColumn(column)?.getFilterValue() as string ?? ""}
+      onChange={(e) => table.getColumn(column)?.setFilterValue(e.target.value)}
       className={cn("h-8 w-[150px] lg:w-[250px]", className)}
       autocomplete="off"
     />
