@@ -134,10 +134,7 @@ export function TableView<TData = unknown>({ table, children }: {
                 className="hover:bg-#dddddd/50 data-[state=selected]:bg-#dddddd dark:hover:bg-#333333/50 dark:data-[state=selected]:bg-#333333"
               >
                 {row.getVisibleCells().map((cell) => (
-                  <TableCell
-                    key={cell.id}
-                    className={cn("py-1", cell.className)}
-                  >
+                  <TableCell key={cell.id} className={cn("py-1")}>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
                 ))}
