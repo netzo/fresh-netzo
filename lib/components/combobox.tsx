@@ -79,6 +79,7 @@ export const Combobox = React.forwardRef(
             role="combobox"
             variant="outline"
             aria-expanded={open}
+            disabled={props.disabled}
             className="w-full justify-between hover:bg-secondary/20 active:scale-100"
           >
             <span className="line-clamp-1 text-left font-normal">

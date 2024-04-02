@@ -6,18 +6,18 @@ import { createPortal } from "preact/compat";
 import {
   Announcements,
   DndContext,
+  type DragEndEvent,
+  type DragOverEvent,
   DragOverlay,
+  type DragStartEvent,
   KeyboardSensor,
   MouseSensor,
   TouchSensor,
+  type UniqueIdentifier,
   useSensor,
   useSensors,
-  type DragEndEvent,
-  type DragOverEvent,
-  type DragStartEvent,
-  type UniqueIdentifier,
 } from "../../../deps/@dnd-kit/core.ts";
-import { SortableContext, arrayMove } from "../../../deps/@dnd-kit/sortable.ts";
+import { arrayMove, SortableContext } from "../../../deps/@dnd-kit/sortable.ts";
 import { type TableOptions } from "../../../deps/@tanstack/react-table.ts";
 import type { Table } from "../table/table.tsx";
 import { KanbanContainer } from "./kanban-container.tsx";
@@ -141,8 +141,7 @@ export function KanbanView<TData>({
           startGroupIdx + 1
         } of ${groupsId.value.length}`;
       } else if (active.data.current?.type === "Item") {
-        pickedUpItemGroup.value =
-          active.data.current.item[group.column];
+        pickedUpItemGroup.value = active.data.current.item[group.column];
         const { itemsInGroup, itemPosition, group } = getDraggingItemData(
           active[options.idField],
           pickedUpItemGroup.value as string,

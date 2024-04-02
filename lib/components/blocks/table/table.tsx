@@ -1,7 +1,8 @@
 import type { ComponentChildren } from "preact";
 import { useState } from "preact/hooks";
 import {
-  RowData,
+  type ColumnFiltersState,
+  type ColumnSort,
   flexRender,
   getCoreRowModel,
   getFacetedRowModel,
@@ -9,14 +10,13 @@ import {
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  useReactTable,
-  type ColumnFiltersState,
-  type ColumnSort,
+  RowData,
   type RowSelectionState,
   type SortingState,
   type Table as TTable,
   type TableOptions,
-  type VisibilityState
+  useReactTable,
+  type VisibilityState,
 } from "../../../deps/@tanstack/react-table.ts";
 import {
   Table,
@@ -134,7 +134,10 @@ export function TableView<TData = unknown>({ table, children }: {
                 className="hover:bg-#dddddd/50 data-[state=selected]:bg-#dddddd dark:hover:bg-#333333/50 dark:data-[state=selected]:bg-#333333"
               >
                 {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id} className={cn("py-1")}>
+                  <TableCell
+                    key={cell.id}
+                    className={cn("py-1", cell.className)}
+                  >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
                 ))}
