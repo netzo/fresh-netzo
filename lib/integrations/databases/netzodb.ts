@@ -47,17 +47,12 @@ export const netzodb = ({ kv = KV }: NetzoDBOptions = {}) => {
    * Creates one or more objects in the KV store.
    * @param collection - The name of the collection to create the objects in.
    * @param data - The object to create.
-   * @param idField - The name of the field to use as the ID for the objects.
    * @returns The created object.
    */
-  const create = async <T>(
-    collection: string,
-    data: T,
-    idField: keyof T = "id" as keyof T,
-  ) => {
-    const id = (data?.[idField] ?? ulid()) as Deno.KvKeyPart;
+  const create = async <T>(collection: string, data: T) => {
+    const id = (data?.id ?? ulid()) as Deno.KvKeyPart;
     const key = [collection, id];
-    data = { [idField]: id, ...data };
+    data = { id, ...data };
     const ok = await kv.atomic().set(key, data).commit();
     if (!ok) throw new Error("Failed to create entry");
     return data;

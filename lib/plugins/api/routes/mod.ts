@@ -12,7 +12,6 @@ export const getRoutesByCollection = (
 ): PluginRoute[] => {
   const {
     name,
-    idField = "id",
     methods = ["find", "get", "create", "update", "patch", "remove"],
   } = { ...options, ...collection };
 
@@ -38,7 +37,7 @@ export const getRoutesByCollection = (
         POST: async (req, _ctx) => {
           if (!methods!.includes("create")) return RESPONSES.notAllowed();
           const data = await parseRequestBody(req);
-          const result = await db.create(name, data, idField);
+          const result = await db.create(name, data);
           return Response.json(result);
         },
       },
@@ -48,27 +47,27 @@ export const getRoutesByCollection = (
       handler: {
         GET: async (_req, ctx) => {
           if (!methods!.includes("get")) return RESPONSES.notAllowed();
-          const { [idField]: id } = ctx.params;
+          const { id } = ctx.params;
           const result = await db.get(name, id);
           return Response.json(result);
         },
         PUT: async (req, ctx) => {
           if (!methods!.includes("update")) return RESPONSES.notAllowed();
-          const { [idField]: id } = ctx.params;
+          const { id } = ctx.params;
           const data = await parseRequestBody(req);
           const result = await db.update(name, id, data);
           return Response.json(result);
         },
         PATCH: async (req, ctx) => {
           if (!methods!.includes("patch")) return RESPONSES.notAllowed();
-          const { [idField]: id } = ctx.params;
+          const { id } = ctx.params;
           const data = await parseRequestBody(req);
           const result = await db.patch(name, id, data);
           return Response.json(result);
         },
         DELETE: async (_req, ctx) => {
           if (!methods!.includes("remove")) return RESPONSES.notAllowed();
-          const { [idField]: id } = ctx.params;
+          const { id } = ctx.params;
           await db.remove(name, id);
           return Response.json({ ok: true });
         },

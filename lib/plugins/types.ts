@@ -1,5 +1,4 @@
-// NOTE: avoid importing from "./types.ts" which
-// bloats bundle with entire @netzo/api package
+// NOTE: avoid importing from @netzo/api package which bloats bundle
 
 export type User = {
   _id: string;

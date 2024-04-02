@@ -3,32 +3,6 @@ import type { AuthProvider } from "./providers/mod.ts";
 
 const kv = await Deno.openKv(Deno.env.get("DENO_KV_PATH"));
 
-/**
- * Returns an array of values of a given {@linkcode Deno.KvListIterator} that's
- * been iterated over.
- *
- * @example
- * ```ts
- * import { collectValues, listUsers, type User } from "../../../../auth/utils/db.ts";
- *
- * const users = await collectValues<User>(listUsers());
- * users[0].id; // Returns "01H9YD2RVCYTBVJEYEJEV5D1S1";
- * users[0].authId; // Returns "auth0|xxx"
- * users[0].sessionId; // Returns "xxx"
- * users[0].name; // Returns "Snoop Dogg"
- * users[0].email; // Returns "snoop.dogg@example"
- * users[0].roles; // Returns ["admin"]
- * users[0].provider; // Returns "github"
- * users[0].createdAt; // Returns "2021-08-31T00:00:00.000Z"
- * users[0].updatedAt; // Returns "2021-08-31T00:00:00.000Z"
- * ```
- */
-export async function collectValues<T>(iter: Deno.KvListIterator<T>) {
-  const values = [];
-  for await (const { value } of iter) values.push(value);
-  return values;
-}
-
 // users:
 
 export type AuthUser = {

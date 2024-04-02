@@ -66,7 +66,10 @@ export function useTable<TData = unknown>(
     columnFilters,
     setColumnFilters,
   ] = useState<ColumnFiltersState>([]);
-  const [sorting, setSorting] = useState<SortingState>(options.sorting ?? []);
+  const [
+    sorting,
+    setSorting,
+  ] = useState<SortingState>(options?.meta?.sorting ?? []);
 
   const table = useReactTable<TData>(Object.assign({
     data: options.data,

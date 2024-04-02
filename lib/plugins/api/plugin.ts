@@ -12,8 +12,6 @@ export type ApiConfig = {
   collections: {
     /** The name of the collection e.g. "users" `/api/users`. */
     name: string;
-    /** The field name to use as the primary key. Defaults to "id". */
-    idField?: string;
     /** The methods to enable. Defaults to all methods. */
     methods?: ("find" | "get" | "create" | "update" | "patch" | "remove")[];
   }[];
