@@ -7,13 +7,13 @@ export const ulid = monotonicFactory();
  * Query an array of objects in-memory using MongoDB-like queries.
  *
  * @example basic querying
- * GET /api/accounts?contactIds=01HS1HVHBT0XKD8X6BYJ956NR6
+ * GET /rest/accounts?contactIds=01HS1HVHBT0XKD8X6BYJ956NR6
  * @example advanced querying ($in, $nin, $exists, $regex, $gt, $lt, $gte, $lte)
- * GET /api/accounts?contactIds.$in=["01HS1HVHBT0XKD8X6BYJ956NR6"]
+ * GET /rest/accounts?contactIds.$in=["01HS1HVHBT0XKD8X6BYJ956NR6"]
  * @example sorting (ascending)
- * GET /api/accounts?$sort.name=1
+ * GET /rest/accounts?$sort.name=1
  * @example sorting (descending)
- * GET /api/accounts?$sort.name=-1
+ * GET /rest/accounts?$sort.name=-1
  *
  * @param {Array} data - The array of objects to query.
  * @param {Object} flatQuery - The query object with flat keys.

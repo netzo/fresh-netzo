@@ -12,19 +12,19 @@ import type { StateUpdater } from "preact/hooks";
 import {
   Announcements,
   DndContext,
+  type DragEndEvent,
+  type DragOverEvent,
   DragOverlay,
+  type DragStartEvent,
   KeyboardSensor,
   MouseSensor,
   TouchSensor,
+  type UniqueIdentifier,
   useDndContext,
   useSensor,
   useSensors,
-  type DragEndEvent,
-  type DragOverEvent,
-  type DragStartEvent,
-  type UniqueIdentifier,
 } from "../../../deps/@dnd-kit/core.ts";
-import { SortableContext, arrayMove } from "../../../deps/@dnd-kit/sortable.ts";
+import { arrayMove, SortableContext } from "../../../deps/@dnd-kit/sortable.ts";
 import { ScrollArea, ScrollBar } from "../../scroll-area.tsx";
 import type { Table } from "../table/table.tsx";
 import { coordinateGetter } from "./multiple-containers-keyboard-preset.ts";

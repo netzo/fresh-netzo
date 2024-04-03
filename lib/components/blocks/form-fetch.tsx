@@ -12,14 +12,14 @@ export type FormFetchProps = JSX.IntrinsicElements["form"] & {
  * An isomorphic form component that overrides the default submit (GET/POST)
  * with an HTTP Request using fetch to allow for GET/POST/PUT/PATCH/DELETE
  *
- * @example POST /api/users
- * <FormFetch id="users.post" action="/api/users" method="post">
+ * @example POST /rest/users
+ * <FormFetch id="users.post" action="/rest/users" method="post">
  *
- * @example PATCH /api/users/:id
- * <FormFetch id="users.patch" action={`/api/users/${user.id}`} method="patch">
+ * @example PATCH /rest/users/:id
+ * <FormFetch id="users.patch" action={`/rest/users/${user.id}`} method="patch">
  *
- * @example DELETE /api/users/:id
- * <FormFetch id="users.delete" action={`/api/users/${user.id}`} method="delete">
+ * @example DELETE /rest/users/:id
+ * <FormFetch id="users.delete" action={`/rest/users/${user.id}`} method="delete">
  *
  * @param {string} props.id - The id of the form
  * @param {string} props.action - The URL to send the form data to

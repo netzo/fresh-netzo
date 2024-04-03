@@ -3,12 +3,12 @@ import { deepParseJson } from "npm:deep-parse-json@2.0.0";
 import { unflatten } from "npm:flat@6.0.1";
 import { join } from "../../../deps/std/path/mod.ts";
 import { netzodb } from "../../../integrations/databases/netzodb.ts";
-import type { ApiConfig } from "../plugin.ts";
+import type { RestConfig } from "../plugin.ts";
 import { parseRequestBody, RESPONSES } from "../utils.ts";
 
 export const getRoutesByCollection = (
-  collection: ApiConfig["collections"][number],
-  options: ApiConfig,
+  collection: RestConfig["collections"][number],
+  options: RestConfig,
 ): PluginRoute[] => {
   const {
     name,
@@ -19,12 +19,12 @@ export const getRoutesByCollection = (
 
   const routes: PluginRoute[] = [
     {
-      path: join("/api", name),
+      path: join("/rest", name),
       handler: {
         GET: async (_req, ctx) => {
           if (!methods!.includes("find")) return RESPONSES.notAllowed();
           // supports MongoDB-like URL queries via dot-notation (powered by mingo)
-          // e.g. GET /api/deals?contactIds.$in=["01HS1HVHBT0XKD8X6BYJ956NR6"]
+          // e.g. GET /rest/deals?contactIds.$in=["01HS1HVHBT0XKD8X6BYJ956NR6"]
           // flatQuery: { "contactIds.$in": '["01HS1HVHBT0XKD8X6BYJ956NR6"]' }
           // nestedQuery: { "contactIds.$in": '["01HS1HVHBT0XKD8X6BYJ956NR6"]' }
           // query: { contactIds: { "$in": [ "01HS1HVHBT0XKD8X6BYJ956NR6" ] } }
@@ -43,7 +43,7 @@ export const getRoutesByCollection = (
       },
     } satisfies PluginRoute,
     {
-      path: join("/api", name, "[id]"),
+      path: join("/rest", name, "[id]"),
       handler: {
         GET: async (_req, ctx) => {
           if (!methods!.includes("get")) return RESPONSES.notAllowed();

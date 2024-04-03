@@ -1,8 +1,8 @@
 import { MiddlewareHandler } from "$fresh/server.ts";
-import type { ApiConfig } from "../plugin.ts";
+import type { RestConfig } from "../plugin.ts";
 import { RESPONSES } from "../utils.ts";
 
-export function apiKeyAuthentication(config: ApiConfig): MiddlewareHandler {
+export function apiKeyAuthentication(config: RestConfig): MiddlewareHandler {
   return async (req, ctx) => {
     const { apiKey } = config;
     try {
