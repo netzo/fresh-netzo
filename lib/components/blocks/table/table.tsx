@@ -1,8 +1,7 @@
 import type { ComponentChildren } from "preact";
 import { useState } from "preact/hooks";
 import {
-  type ColumnFiltersState,
-  type ColumnSort,
+  RowData,
   flexRender,
   getCoreRowModel,
   getFacetedRowModel,
@@ -10,12 +9,14 @@ import {
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  RowData,
+  useReactTable,
+  type ColumnFiltersState,
+  type ColumnPinningState,
+  type ColumnSort,
   type RowSelectionState,
   type SortingState,
   type Table as TTable,
   type TableOptions,
-  useReactTable,
   type VisibilityState,
 } from "../../../deps/@tanstack/react-table.ts";
 import {
@@ -57,34 +58,48 @@ declare module "../../../deps/@tanstack/react-table.ts" {
 export function useTable<TData = unknown>(
   options: TableOptions<TData>,
 ): TTable<TData> {
-  const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
+  const [
+    rowSelection,
+    setRowSelection
+  ] = useState<RowSelectionState>(options?.initialState?.rowSelection ??{});
   const [
     columnVisibility,
     setColumnVisibility,
-  ] = useState<VisibilityState>({});
+  ] = useState<VisibilityState>(options?.initialState?.columnVisibility ?? {});
   const [
     columnFilters,
     setColumnFilters,
-  ] = useState<ColumnFiltersState>([]);
+  ] = useState<ColumnFiltersState>(options?.initialState?.columnFilters ?? []);
+  const [
+    columnPinning,
+    setColumnPinning,
+  ] = useState<ColumnPinningState>({
+    left: [],
+    right: [],
+    ...options?.initialState?.columnPinning
+  });
   const [
     sorting,
     setSorting,
-  ] = useState<SortingState>(options?.meta?.sorting ?? []);
+  ] = useState<SortingState>(options?.initialState?.sorting ?? []);
 
-  const table = useReactTable<TData>(Object.assign({
+  const table = useReactTable<TData>({
+    ...options,
     data: options.data,
     columns: options.columns,
     state: {
-      sorting,
       columnVisibility,
       rowSelection,
       columnFilters,
+      columnPinning,
+      sorting,
     },
     enableRowSelection: true,
     onRowSelectionChange: setRowSelection,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
     onColumnVisibilityChange: setColumnVisibility,
+    onColumnPinningChange: setColumnPinning,
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
@@ -93,9 +108,10 @@ export function useTable<TData = unknown>(
     getFacetedUniqueValues: getFacetedUniqueValues(),
     initialState: {
       pagination: { pageSize: 25 },
+    ...options.initialState,
     },
     meta: options?.meta,
-  }, options));
+  });
 
   return table;
 }

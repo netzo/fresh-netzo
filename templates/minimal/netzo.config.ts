@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [
     netzo.rest({
       apiKey: Deno.env.get("NETZO_API_KEY"),
-      collections: [{ name: "users"}],
+      collections: [{ name: "users" }],
     }),
     unocss(unocssConfig),
   ],
