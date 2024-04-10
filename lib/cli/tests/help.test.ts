@@ -9,7 +9,6 @@ Deno.test("help command list", async () => {
   const proc = netzo([]);
   const [stdout, stderr, { code }] = await output(proc);
   assertStringIncludes(stderr, "SUBCOMMANDS:");
-  assertStringIncludes(stderr, "init ");
   assertStringIncludes(stderr, "deploy ");
   assertStringIncludes(stderr, "upgrade ");
   assertEquals(code, 1);
@@ -36,18 +35,8 @@ Deno.test("-h argument", async () => {
   const proc = netzo(["-h"]);
   const [stdout, stderr, { code }] = await output(proc);
   assertStringIncludes(stdout, "SUBCOMMANDS:");
-  assertStringIncludes(stdout, "init ");
   assertStringIncludes(stdout, "deploy ");
   assertStringIncludes(stdout, "upgrade ");
-  assertEquals(code, 0);
-  assertEquals(stderr, "");
-});
-
-Deno.test("init -h argument", async () => {
-  const proc = netzo(["init", "-h"]);
-  const [stdout, stderr, { code }] = await output(proc);
-  assertStringIncludes(stdout, "USAGE:");
-  assertStringIncludes(stdout, "netzo init");
   assertEquals(code, 0);
   assertEquals(stderr, "");
 });
