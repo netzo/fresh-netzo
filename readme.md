@@ -73,7 +73,8 @@ deno install -Arf https://deno.land/x/netzo/cli/netzo.ts
 3. [Initialize project](https://netzo.io/docs/get-started/initialize-project)
 
 ```bash
-netzo init
+git clone https://github.com/netzo/template-minimal
+cd template-minimal
 ```
 
 4. [Run project](https://netzo.io/docs/get-started/run-project)
