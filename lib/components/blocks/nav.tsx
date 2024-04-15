@@ -106,7 +106,7 @@ export function NavHeader({ className, ...props }: NavHeaderProps) {
       {props?.image && (
         <img
           src={props?.image}
-          className="w-auto h-9 my-auto mr-4"
+          className="w-auto h-9 my-auto mr-2"
         />
       )}
       {props?.title && <h2 className="text-xl font-bold">{props?.title}</h2>}
