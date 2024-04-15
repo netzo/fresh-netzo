@@ -1,6 +1,7 @@
 // @deno-types="npm:@types/react@18.2.60"
 import * as React from "react";
 
+import { IS_BROWSER } from "$fresh/runtime.ts";
 import { Button, type ButtonProps } from "./button.tsx";
 import { useDarkMode } from "./use-dark-mode.ts";
 import { cn } from "./utils.ts";
@@ -17,6 +18,7 @@ export function ButtonDarkMode({ className, ...props }: ButtonDarkModeProps) {
       onClick={() => darkMode.value = !darkMode.value}
       className={cn(className)}
       {...props}
+        disabled={IS_BROWSER ? !!props.disabled : true}
     >
       <div
         className={cn(
