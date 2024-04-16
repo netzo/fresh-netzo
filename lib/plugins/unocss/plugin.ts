@@ -1,6 +1,6 @@
 import type { Plugin } from "$fresh/server.ts";
 import { dirname, fromFileUrl, join, walk } from "$fresh/src/server/deps.ts";
-import { JSX, options as preactOptions, VNode } from "preact";
+import { JSX, VNode, options as preactOptions } from "preact";
 import { UnoGenerator, type UserConfig } from "../../deps/@unocss/core.ts";
 import type { Theme } from "../../deps/@unocss/preset-uno.ts";
 import { existsSync } from "../../deps/std/fs/exists.ts";
@@ -39,7 +39,9 @@ export type UnocssConfig<T extends object = Theme> = UserConfig<T> & {
   /**
    * Enable CSR mode - run the UnoCSS runtime on the client.
    * It will generate styles live in response to DOM events.
-   * Enabled by default.
+   * Note that this might signiticantly slow-down hydration, one
+   * can always use "safelist" in unocss.config as a workaround.
+   * Disabbled by default.
    */
   csr?: boolean;
 };
@@ -128,7 +130,13 @@ export const unocss = ({
   url,
   aot = true,
   ssr = true,
-  csr = true,
+  // IMPORTANT: csr mode is disabled by default since it significantly slows down hydration
+  // due primarily to the presetIcons() being used by presetShadcn(), which bloats the base64
+  // encoded ESM import of the entrypoint script to initialize the unocss runtime. To work around
+  // this, the presetShadcn() already safe-lists all dynamically injected classes (e.g. those from dialogs
+  // which are mounted dynamically), and additional ones can be specified in "safelist" of uno.config.
+  // see https://github.com/netzo/netzo/issues/172
+  csr = false,
   ...config
 }: UnocssConfig): Plugin<NetzoState> => {
   // NOTE: Subhosting somehow fails when operating with and/or importing from
@@ -136,7 +144,7 @@ export const unocss = ({
   const configURL = url.replace("file://", "");
 
   // Serialize UnoCSS config contents to base64 ES import since default fresh serialization
-  // (via esbuild) looses functions when bundling the client runtime script for CSR mode
+  // (via esbuild) looses functions when bundling the client runtime script for CSR mode.
   const exists = existsSync(configURL, { isFile: true, isReadable: true });
   if (csr && !exists) {
     throw new Error(
@@ -174,13 +182,18 @@ export const unocss = ({
       ? {
         "main": `
         data:application/javascript,
+        console.time("[unocss] imports");
         import config from "data:application/javascript;base64,${
           btoa(Deno.readTextFileSync(configURL))
         }";
-        import init from "https://esm.sh/@unocss/runtime@0.58.5";
+        import initUnocssRuntime from "https://esm.sh/@unocss/runtime@0.59.0";
+        console.timeEnd("[unocss] imports");
+        console.log(config);
         export default function() {
+          console.time("[unocss] initUnocssRuntime");
           globalThis.__unocss = config;
-          init();
+          initUnocssRuntime();
+          console.timeEnd("[unocss] initUnocssRuntime");
         }`,
       }
       : {},

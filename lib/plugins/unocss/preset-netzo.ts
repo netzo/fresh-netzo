@@ -37,6 +37,10 @@ export function presetNetzo(
       presetShadcn({ color, radius }),
       presetUno(),
       presetTypography(),
+      // IMPORTANT: the presetIcons() preset bloats bundle size of unocss config object so
+      // it results in very slow hydration when CSR mode is enabled with the netzo.unocss plugin.
+      // To avoid this, we omit the presetIcons() preset from the unocss config object in the
+      // entrypoint script of the plugin so it does not have bloat bundle after being serialized by esbuild.
       presetIcons({
         // NOTE: each added collection bloats bundle size (e.g. logos collection weights ~7MB)
         // see https://esbuild.github.io/analyze/ to analyze bundle size of _fresh/metafile.json
