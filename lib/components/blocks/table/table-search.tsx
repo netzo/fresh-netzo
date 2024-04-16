@@ -17,7 +17,8 @@ export function TableSearch<TData = unknown>({
     return null;
   }
 
-  const { column, placeholder } = table.options.initialState?.search as TableSearch;
+  const { column, placeholder } = table.options.initialState
+    ?.search as TableSearch;
 
   return (
     <Input

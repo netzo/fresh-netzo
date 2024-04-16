@@ -1,7 +1,9 @@
 import type { ComponentChildren } from "preact";
 import { useState } from "preact/hooks";
 import {
-  RowData,
+  type ColumnFiltersState,
+  type ColumnPinningState,
+  type ColumnSort,
   flexRender,
   getCoreRowModel,
   getFacetedRowModel,
@@ -9,14 +11,12 @@ import {
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  useReactTable,
-  type ColumnFiltersState,
-  type ColumnPinningState,
-  type ColumnSort,
+  RowData,
   type RowSelectionState,
   type SortingState,
   type Table as TTable,
   type TableOptions,
+  useReactTable,
   type VisibilityState,
 } from "../../../deps/@tanstack/react-table.ts";
 import {
@@ -60,8 +60,8 @@ export function useTable<TData = unknown>(
 ): TTable<TData> {
   const [
     rowSelection,
-    setRowSelection
-  ] = useState<RowSelectionState>(options?.initialState?.rowSelection ??{});
+    setRowSelection,
+  ] = useState<RowSelectionState>(options?.initialState?.rowSelection ?? {});
   const [
     columnVisibility,
     setColumnVisibility,
@@ -76,7 +76,7 @@ export function useTable<TData = unknown>(
   ] = useState<ColumnPinningState>({
     left: [],
     right: [],
-    ...options?.initialState?.columnPinning
+    ...options?.initialState?.columnPinning,
   });
   const [
     sorting,
@@ -108,7 +108,7 @@ export function useTable<TData = unknown>(
     getFacetedUniqueValues: getFacetedUniqueValues(),
     initialState: {
       pagination: { pageSize: 25 },
-    ...options.initialState,
+      ...options.initialState,
     },
     meta: options?.meta,
   });

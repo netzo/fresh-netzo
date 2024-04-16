@@ -18,7 +18,7 @@ export function ButtonDarkMode({ className, ...props }: ButtonDarkModeProps) {
       onClick={() => darkMode.value = !darkMode.value}
       className={cn(className)}
       {...props}
-        disabled={IS_BROWSER ? !!props.disabled : true}
+      disabled={IS_BROWSER ? !!props.disabled : true}
     >
       <div
         className={cn(

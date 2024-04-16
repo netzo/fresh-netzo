@@ -34,7 +34,10 @@ export function TableFilters<TData>({
     return null;
   }
 
-  const filters = table.options.initialState?.filters as TableFilter<TData, unknown>[];
+  const filters = table.options.initialState?.filters as TableFilter<
+    TData,
+    unknown
+  >[];
 
   const isFiltered = table.getState().columnFilters.length > 0;
 
