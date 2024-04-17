@@ -6,6 +6,15 @@ export function apiKeyAuthentication(config: RestConfig): MiddlewareHandler {
   return async (req, ctx) => {
     const { apiKey } = config;
     try {
+      if (req.method == "OPTIONS") {
+        const response = await ctx.next();
+        const origin = req.headers.get("Origin") || "*";
+        response.headers.set("Access-Control-Allow-Origin", origin);
+        response.headers.set("Access-Control-Allow-Credentials", "true");
+        response.headers.set("Access-Control-Allow-Headers", "*");
+        response.headers.set("Access-Control-Allow-Methods", "*");
+        return response;
+      }
       if (!["route"].includes(ctx.destination)) return await ctx.next();
       if (!apiKey) return await ctx.next();
 
