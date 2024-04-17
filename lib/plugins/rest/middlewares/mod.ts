@@ -18,6 +18,7 @@ export function apiKeyAuthentication(config: RestConfig): MiddlewareHandler {
   return async (req, ctx) => {
     const { apiKey } = config;
     try {
+      if (["OPTIONS"].includes(req.method)) return await ctx.next();
       if (!["route"].includes(ctx.destination)) return await ctx.next();
       if (!apiKey) return await ctx.next();
 
