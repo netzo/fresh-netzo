@@ -2,15 +2,24 @@ import { MiddlewareHandler } from "$fresh/server.ts";
 import type { RestConfig } from "../plugin.ts";
 import { RESPONSES } from "../utils.ts";
 
+const enableCors = (req: Request, res: Response) => {
+  const origin = req.headers.get("Origin") || "*";
+  res.headers.set("Access-Control-Allow-Origin", origin);
+  res.headers.set("Access-Control-Allow-Credentials", "true");
+  res.headers.set("Access-Control-Allow-Headers", "*");
+  res.headers.set("Access-Control-Allow-Methods", "*");
+}
+
 export function cors(_config: RestConfig): MiddlewareHandler {
   return async (req, ctx) => {
-    const response = await ctx.next();
-    const origin = req.headers.get("Origin") || "*";
-    response.headers.set("Access-Control-Allow-Origin", origin);
-    response.headers.set("Access-Control-Allow-Credentials", "true");
-    response.headers.set("Access-Control-Allow-Headers", "*");
-    response.headers.set("Access-Control-Allow-Methods", "*");
-    return response;
+     if (req.method == "OPTIONS") {
+      const res = new Response(null, { status: 204 });
+      enableCors(req, res);
+      return res;
+    }
+    const res = await ctx.next();
+    enableCors(req, res);
+    return res;
   };
 }
 
@@ -18,7 +27,6 @@ export function apiKeyAuthentication(config: RestConfig): MiddlewareHandler {
   return async (req, ctx) => {
     const { apiKey } = config;
     try {
-      if (["OPTIONS"].includes(req.method)) return await ctx.next();
       if (!["route"].includes(ctx.destination)) return await ctx.next();
       if (!apiKey) return await ctx.next();
 

@@ -2,7 +2,6 @@ export const RESPONSES = {
   missingApiKey: () => new Response("Missing API key", { status: 401 }),
   invalidApiKey: () => new Response("Invalid API key", { status: 401 }),
   notAllowed: () => new Response("Method not allowed", { status: 405 }),
-  options: () => new Response(null, { status: 204 }),
 };
 
 export async function parseRequestBody(req: Request) {
