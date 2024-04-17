@@ -1,5 +1,5 @@
 import type { Plugin } from "$fresh/server.ts";
-import { apiKeyAuthentication } from "./middlewares/mod.ts";
+import { apiKeyAuthentication, cors } from "./middlewares/mod.ts";
 import { getRoutesByCollection } from "./routes/mod.ts";
 
 export type RestConfig = {
@@ -50,6 +50,12 @@ export const rest = (config?: RestConfig): Plugin => {
   return {
     name: "netzo.rest",
     middlewares: [
+      {
+        path: "/rest",
+        middleware: {
+          handler: cors(config),
+        },
+      },
       {
         path: "/rest",
         middleware: {
