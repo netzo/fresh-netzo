@@ -1,6 +1,6 @@
 import type { Plugin } from "$fresh/server.ts";
 import { dirname, fromFileUrl, join, walk } from "$fresh/src/server/deps.ts";
-import { JSX, options as preactOptions, VNode } from "preact";
+import { JSX, VNode, options as preactOptions } from "preact";
 import { UnoGenerator, type UserConfig } from "../../deps/@unocss/core.ts";
 import type { Theme } from "../../deps/@unocss/preset-uno.ts";
 import { existsSync } from "../../deps/std/fs/exists.ts";
@@ -41,7 +41,7 @@ export type UnocssConfig<T extends object = Theme> = UserConfig<T> & {
    * It will generate styles live in response to DOM events.
    * Note that this might signiticantly slow-down hydration, one
    * can always use "safelist" in unocss.config as a workaround.
-   * Disabbled by default.
+   * Enabled by default.
    */
   csr?: boolean;
 };
@@ -130,13 +130,12 @@ export const unocss = ({
   url,
   aot = true,
   ssr = true,
-  // IMPORTANT: csr mode is disabled by default since it significantly slows down hydration
-  // due primarily to the presetIcons() being used by presetShadcn(), which bloats the base64
-  // encoded ESM import of the entrypoint script to initialize the unocss runtime. To work around
-  // this, the presetShadcn() already safe-lists all dynamically injected classes (e.g. those from dialogs
-  // which are mounted dynamically), and additional ones can be specified in "safelist" of uno.config.
-  // see https://github.com/netzo/netzo/issues/172
-  csr = false,
+  // IMPORTANT: csr mode is enabled by default despite it significantly slows down hydration
+  // due primarily to the presetUno() being used by presetNetzo(), which slows down the initUnocssRuntime()
+  // function from ~500ms to ~30s. To work around this, the presetShadcn() already safe-lists all dynamically
+  // injected classes (e.g. those from dialogs which are mounted dynamically), and additional ones can be
+  // specified in "safelist" of uno.config. (see https://github.com/netzo/netzo/issues/172)
+  csr = true,
   ...config
 }: UnocssConfig): Plugin<NetzoState> => {
   // NOTE: Subhosting somehow fails when operating with and/or importing from
