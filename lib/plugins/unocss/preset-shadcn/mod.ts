@@ -35,6 +35,23 @@ const variantGroupDataAttribute: VariantObject = {
   },
 };
 
+const generateColorClasses = (): string[] => {
+    const colors = ['gray', 'red', 'yellow', 'green', 'blue', 'indigo', 'purple', 'pink'];
+    const variants = ['text', 'bg'];
+    const increments = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950];
+    const classNames: string[] = [];
+
+    colors.forEach(color => {
+        variants.forEach(variant => {
+            increments.forEach(increment => {
+                classNames.push(`${variant}-${color}-${increment}`);
+            });
+        });
+    });
+
+    return classNames;
+};
+
 export function presetShadcn(options: PresetShadcnOptions = {}): Preset<Theme> {
   // IMPORTANT: note that functions are dropped for CSR mode due to by
   // esbuild serialization so we use non-function syntax where possible
@@ -71,6 +88,8 @@ export function presetShadcn(options: PresetShadcnOptions = {}): Preset<Theme> {
     // GPT PROMPT: "List all unique classNames in an array[] format fot the tsx file: <FILE>"
     safelist: [
       ...new Set([
+        // colors:
+        ...generateColorClasses(),
         // icons:
         ...[
           "mdi-checkbox-blank-outline",
