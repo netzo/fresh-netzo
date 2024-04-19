@@ -22,6 +22,7 @@ export function TableSearch<TData = unknown>({
 
   return (
     <Input
+      type="search"
       placeholder={placeholder}
       value={table.getColumn(column)?.getFilterValue() as string ?? ""}
       onChange={(e) => table.getColumn(column)?.setFilterValue(e.target.value)}
