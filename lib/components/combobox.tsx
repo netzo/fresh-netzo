@@ -122,12 +122,12 @@ export const Combobox = React.forwardRef(
                 <div className="max-h-60">
                   {props.options.map((option) => (
                     <CommandItem
-                      key={option.value}
-                      value={option.value.toLowerCase().trim()}
-                      onSelect={(selectedValue) => {
+                      key={option.value as string}
+                      value={(option.label as string).toLowerCase().trim()}
+                      onSelect={(selectedLabel) => {
                         const option = props.options.find(
                           (option) =>
-                            option.value.toLowerCase().trim() === selectedValue,
+                            (option.label as string).toLowerCase().trim() === selectedLabel,
                         );
 
                         if (!option) return null;
@@ -136,7 +136,6 @@ export const Combobox = React.forwardRef(
                           handleMultipleSelect(props, option);
                         } else {
                           handleSingleSelect(props, option);
-
                           setOpen(false);
                         }
                       }}
