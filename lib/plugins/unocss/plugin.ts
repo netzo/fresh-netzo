@@ -200,7 +200,7 @@ export const unocss = ({
         export default function() {
           globalThis.__unocss = config;
           console.time("[unocss] initUnocssRuntime");
-          setTimeout(() => initUnocssRuntime(), 100);
+          setTimeout(() => initUnocssRuntime(), 0);
           console.timeEnd("[unocss] initUnocssRuntime");
         }`,
       }

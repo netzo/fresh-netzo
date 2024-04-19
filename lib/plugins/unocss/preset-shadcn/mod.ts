@@ -6,8 +6,8 @@ import type {
 } from "../../../deps/@unocss/core.ts";
 import {
   h,
-  type Theme,
   variantGetParameter,
+  type Theme,
 } from "../../../deps/@unocss/preset-mini.ts";
 import { generateCSSVars } from "./generate.ts";
 import { PresetShadcnOptions } from "./types.ts";
@@ -71,6 +71,25 @@ export function presetShadcn(options: PresetShadcnOptions = {}): Preset<Theme> {
     // GPT PROMPT: "List all unique classNames in an array[] format fot the tsx file: <FILE>"
     safelist: [
       ...new Set([
+        // icons:
+        ...[
+          "mdi-checkbox-blank-outline",
+          "mdi-checkbox-marked",
+          "mdi-magnify",
+          "mdi-arrow-up",
+          "mdi-arrow-down",
+          "mdi-arrow-left",
+          "mdi-arrow-right",
+          "mdi-chevron-up",
+          "mdi-chevron-down",
+          "mdi-chevron-left",
+          "mdi-chevron-right",
+          "mdi-close",
+          "mdi-check",
+          "mdi-menu",
+          "mdi-dots-vertical",
+          "mdi-dots-horizontal",
+        ],
         // accordion:
         ...[
           "border-b",
