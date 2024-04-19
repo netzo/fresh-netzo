@@ -8,11 +8,11 @@ const enableCors = (req: Request, res: Response) => {
   res.headers.set("Access-Control-Allow-Credentials", "true");
   res.headers.set("Access-Control-Allow-Headers", "*");
   res.headers.set("Access-Control-Allow-Methods", "*");
-}
+};
 
 export function cors(_config: RestConfig): MiddlewareHandler {
   return async (req, ctx) => {
-     if (req.method == "OPTIONS") {
+    if (req.method == "OPTIONS") {
       const res = new Response(null, { status: 204 });
       enableCors(req, res);
       return res;

@@ -8,6 +8,14 @@ export type NetzoDBOptions = {
   kv?: Deno.Kv;
 };
 
+interface TData {
+  id?: string;
+  createdAt: string;
+  updatedAt: string;
+  deletedAt: "" | string;
+  [k: string]: unknown;
+}
+
 /**
  * Factory function for the NetzoDB database
  *
@@ -23,7 +31,7 @@ export const netzodb = ({ kv = KV }: NetzoDBOptions = {}) => {
    * @param query - An object containing key-value pairs to filter the results by.
    * @returns An array of objects that match the specified query.
    */
-  const find = async <T>(
+  const find = async <T extends TData>(
     collection: string,
     query: Record<string, unknown> = {},
   ) => {
@@ -39,7 +47,7 @@ export const netzodb = ({ kv = KV }: NetzoDBOptions = {}) => {
    * @param id - The ID of the object to get.
    * @returns The object with the specified ID.
    */
-  const get = async <T>(collection: string, id: string) => {
+  const get = async <T extends TData>(collection: string, id: string) => {
     return (await kv.get<T>([collection, id])).value;
   };
 
@@ -49,10 +57,17 @@ export const netzodb = ({ kv = KV }: NetzoDBOptions = {}) => {
    * @param data - The object to create.
    * @returns The created object.
    */
-  const create = async <T>(collection: string, data: T) => {
-    const id = (data?.id ?? ulid()) as Deno.KvKeyPart;
+  const create = async <T extends TData>(collection: string, {
+    id,
+    createdAt,
+    updatedAt,
+    ...rest
+  }: T) => {
+    id ||= ulid();
+    createdAt = new Date().toISOString();
+    updatedAt = createdAt;
     const key = [collection, id];
-    data = { id, ...data };
+    const data = { id, createdAt, updatedAt, deletedAt: "", ...rest };
     const ok = await kv.atomic().set(key, data).commit();
     if (!ok) throw new Error("Failed to create entry");
     return data;
@@ -65,7 +80,7 @@ export const netzodb = ({ kv = KV }: NetzoDBOptions = {}) => {
    * @param data - The updated data for the object.
    * @returns The updated object.
    */
-  const update = async <T>(
+  const update = async <T extends TData>(
     collection: string,
     id: string,
     data: T,
@@ -73,6 +88,7 @@ export const netzodb = ({ kv = KV }: NetzoDBOptions = {}) => {
     const key = [collection, id];
     const entry = await kv.get<T>(key);
     if (!entry.value) throw new Error(`Record with id "${id}" not found.`);
+    data.updatedAt = new Date().toISOString();
     const ok = await kv.atomic().check(entry).set(key, data).commit();
     if (!ok) throw new Error("Failed to create update entry");
     return data;
@@ -85,7 +101,7 @@ export const netzodb = ({ kv = KV }: NetzoDBOptions = {}) => {
    * @param data - The partial data to patch the object with.
    * @returns The patched object.
    */
-  const patch = async <T>(
+  const patch = async <T extends TData>(
     collection: string,
     id: string,
     data: Partial<T>,
@@ -93,6 +109,7 @@ export const netzodb = ({ kv = KV }: NetzoDBOptions = {}) => {
     const key = [collection, id];
     const entry = await kv.get<T>(key);
     if (!entry.value) throw new Error(`Record with id "${id}" not found.`);
+    data.updatedAt = new Date().toISOString();
     data = { ...entry.value, ...data };
     const ok = await kv.atomic().check(entry).set(key, data).commit();
     if (!ok) throw new Error("Failed to patch entry");
@@ -105,7 +122,7 @@ export const netzodb = ({ kv = KV }: NetzoDBOptions = {}) => {
    * @param id - The ID of the object to remove.
    * @returns The ID of the removed object.
    */
-  const remove = async <T>(collection: string, id: string) => {
+  const remove = async <T extends TData>(collection: string, id: string) => {
     // return await kv.delete([collection, id]);
     const key = [collection, id];
     const entry = await kv.get<T>(key);
@@ -113,6 +130,22 @@ export const netzodb = ({ kv = KV }: NetzoDBOptions = {}) => {
     const ok = await kv.atomic().check(entry).delete(key).commit();
     if (!ok) throw new Error("Failed to remove entry");
     return id;
+  };
+
+  /**
+   * Soft removes an object from the KV store.
+   * @param collection - The name of the collection to remove the object from.
+   * @param id The ID of the object to remove.
+   * @returns The removed object.
+   */
+  const removeSoft = async <T extends TData>(
+    collection: string,
+    id: string,
+  ) => {
+    const value = await patch<T>(collection, id, {
+      deletedAt: new Date().toISOString(),
+    } as T);
+    return value;
   };
 
   return {
@@ -123,5 +156,6 @@ export const netzodb = ({ kv = KV }: NetzoDBOptions = {}) => {
     update,
     patch,
     remove,
+    removeSoft,
   };
 };
