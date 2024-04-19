@@ -1,1 +1,1 @@
-export * from "https://esm.sh/@unocss/core@0.58.0?target=esnext";
+export * from "npm:@unocss/core@0.58.0";

@@ -35,7 +35,7 @@ export function presetNetzo(
 
     presets: [
       presetShadcn({ color, radius }),
-      presetUno(),
+      presetUno(), // IMPORTANT: slows hydration when CSR mode from ~600ms to ~30s (use presetMini() instead)
       presetTypography(),
       // IMPORTANT: the presetIcons() preset bloats bundle size of unocss config object so
       // it results in very slow hydration when CSR mode is enabled with the netzo.unocss plugin.

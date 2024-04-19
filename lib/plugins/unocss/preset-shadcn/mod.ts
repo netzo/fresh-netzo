@@ -4,11 +4,11 @@ import type {
   VariantContext,
   VariantObject,
 } from "../../../deps/@unocss/core.ts";
-import type { Theme } from "../../../deps/@unocss/preset-mini/mod.ts";
 import {
   h,
+  type Theme,
   variantGetParameter,
-} from "../../../deps/@unocss/preset-mini/utils.ts";
+} from "../../../deps/@unocss/preset-mini.ts";
 import { generateCSSVars } from "./generate.ts";
 import { PresetShadcnOptions } from "./types.ts";
 

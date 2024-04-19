@@ -180,19 +180,28 @@ export const unocss = ({
     // Optional client runtime
     entrypoints: csr
       ? {
+        // IMPORTANT: removes the uno-preset to avoid ~30s slow-down in hydration for CSR
+        // (it's not the base64 encoded config which slows the initUnocssRuntime() function down,
+        // but rather the use of presetUno() (registered internally by the presetNetzo()))
         "main": `
         data:application/javascript,
-        console.time("[unocss] imports");
         import config from "data:application/javascript;base64,${
           btoa(Deno.readTextFileSync(configURL))
         }";
         import initUnocssRuntime from "https://esm.sh/@unocss/runtime@0.59.0";
-        console.timeEnd("[unocss] imports");
-        console.log(config);
+
+        const SKIP = ["@unocss/preset-uno"];
+        config.presets?.forEach((p, i) => {
+          if (SKIP.includes(p.name)) delete config.presets[i];
+          config.presets?.[i]?.presets?.forEach((p, j) => {
+            if (SKIP.includes(p.name)) delete config.presets[i].presets[j];
+          });
+        });
+
         export default function() {
-          console.time("[unocss] initUnocssRuntime");
           globalThis.__unocss = config;
-          initUnocssRuntime();
+          console.time("[unocss] initUnocssRuntime");
+          setTimeout(() => initUnocssRuntime(), 100);
           console.timeEnd("[unocss] initUnocssRuntime");
         }`,
       }
