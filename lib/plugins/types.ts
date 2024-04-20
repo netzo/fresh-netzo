@@ -18,6 +18,7 @@ export type User = {
   roles?: Record<string, "owner" | "admin" | "developer" | "user">; // populated in external resolver
   createdAt: string;
   updatedAt: string;
+  deletedAt: "" | string;
 };
 
 export type Project = {

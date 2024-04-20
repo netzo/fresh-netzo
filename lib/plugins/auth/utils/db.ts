@@ -16,6 +16,7 @@ export type AuthUser = {
   roles: string[];
   createdAt: string;
   updatedAt: string;
+  deletedAt: "" | string;
 };
 
 export type AuthUserFromProvider = Pick<
@@ -41,6 +42,7 @@ export async function createUser(user: AuthUser) {
   user.id = ulid();
   user.createdAt = new Date().toISOString();
   user.updatedAt = user.createdAt;
+  user.deletedAt = "";
   const usersKey = ["$users", user.authId];
   const usersBySessionKey = ["$usersBySession", user.sessionId];
 
