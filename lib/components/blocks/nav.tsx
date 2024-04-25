@@ -20,10 +20,12 @@ import { cn } from "../utils.ts";
 export const open = signal<boolean>(false);
 
 type NavRootProps = JSX.IntrinsicElements["nav"] & {
+  state?: NetzoState;
   children?: ComponentChildren;
 };
 
 export function NavRoot({ className, ...props }: NavRootProps) {
+  const { denoJson } = props.state ?? {};
   const darkMode = useDarkMode();
 
   const logoSrc = darkMode.value
@@ -37,6 +39,22 @@ export function NavRoot({ className, ...props }: NavRootProps) {
       </a>
     </footer>
   );
+
+  const NavProjectVersion = () => {
+    if (!denoJson) return null;
+    // NOTE: uses style instead of className+unocss to avoid style flashing
+    return (
+      <>
+        <NavSeparator />
+        <div
+          title={denoJson.description}
+          style={{ textAlign: "center", fontSize: "10px", color: "hsl(var(--muted-foreground))" }}
+        >
+          {denoJson.name}@{denoJson.version}
+        </div>
+      </>
+    )
+  }
 
   return (
     <>
@@ -73,6 +91,7 @@ export function NavRoot({ className, ...props }: NavRootProps) {
           >
             {props.children}
             <NavFooter />
+            <NavProjectVersion />
           </nav>
         </SheetContent>
       </Sheet>
@@ -88,6 +107,7 @@ export function NavRoot({ className, ...props }: NavRootProps) {
       >
         {props.children}
         <NavFooter />
+        <NavProjectVersion />
       </nav>
     </>
   );

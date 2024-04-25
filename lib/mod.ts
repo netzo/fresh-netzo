@@ -15,6 +15,7 @@ console = proxyConsole(
 export type NetzoConfig = FreshConfig;
 
 export type NetzoState = {
+  denoJson?: Record<string, string>;
   auth?: AuthState;
   cron?: CronState;
   database?: RestState;
