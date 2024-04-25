@@ -127,7 +127,8 @@ export const Combobox = React.forwardRef(
                       onSelect={(selectedLabel) => {
                         const option = props.options.find(
                           (option) =>
-                            (option.label as string).toLowerCase().trim() === selectedLabel,
+                            (option.label as string).toLowerCase().trim() ===
+                              selectedLabel,
                         );
 
                         if (!option) return null;

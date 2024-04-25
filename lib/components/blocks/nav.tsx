@@ -48,13 +48,17 @@ export function NavRoot({ className, ...props }: NavRootProps) {
         <NavSeparator />
         <div
           title={denoJson.description}
-          style={{ textAlign: "center", fontSize: "10px", color: "hsl(var(--muted-foreground))" }}
+          style={{
+            textAlign: "center",
+            fontSize: "10px",
+            color: "hsl(var(--muted-foreground))",
+          }}
         >
           {denoJson.name}@{denoJson.version}
         </div>
       </>
-    )
-  }
+    );
+  };
 
   return (
     <>

@@ -6,8 +6,8 @@ import type {
 } from "../../../deps/@unocss/core.ts";
 import {
   h,
-  variantGetParameter,
   type Theme,
+  variantGetParameter,
 } from "../../../deps/@unocss/preset-mini.ts";
 import { generateCSSVars } from "./generate.ts";
 import { PresetShadcnOptions } from "./types.ts";
@@ -36,20 +36,29 @@ const variantGroupDataAttribute: VariantObject = {
 };
 
 const generateColorClasses = (): string[] => {
-    const colors = ['gray', 'red', 'yellow', 'green', 'blue', 'indigo', 'purple', 'pink'];
-    const variants = ['text', 'bg'];
-    const increments = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950];
-    const classNames: string[] = [];
+  const colors = [
+    "gray",
+    "red",
+    "yellow",
+    "green",
+    "blue",
+    "indigo",
+    "purple",
+    "pink",
+  ];
+  const variants = ["text", "bg"];
+  const increments = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950];
+  const classNames: string[] = [];
 
-    colors.forEach(color => {
-        variants.forEach(variant => {
-            increments.forEach(increment => {
-                classNames.push(`${variant}-${color}-${increment}`);
-            });
-        });
+  colors.forEach((color) => {
+    variants.forEach((variant) => {
+      increments.forEach((increment) => {
+        classNames.push(`${variant}-${color}-${increment}`);
+      });
     });
+  });
 
-    return classNames;
+  return classNames;
 };
 
 export function presetShadcn(options: PresetShadcnOptions = {}): Preset<Theme> {

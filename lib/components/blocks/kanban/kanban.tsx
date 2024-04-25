@@ -34,7 +34,7 @@ import { hasDraggableData } from "./utils.ts";
 
 export type Group = {
   id: UniqueIdentifier;
-  title: string;
+  label: string;
   icon?: JSX.IntrinsicElements["div"];
   badge?: BadgeProps;
 };
@@ -75,7 +75,7 @@ export type KanbanViewProps<TData = unknown> = {
     column: string;
     groups: {
       id: string;
-      title: string;
+      label: string;
       icon?: JSX.IntrinsicElements["i"];
       badge?: BadgeProps;
     }[];
@@ -132,7 +132,7 @@ export function KanbanView<TData>({
           id === active.id
         );
         const startGroup = groups.value[startGroupIdx];
-        return `Picked up Group ${startGroup?.title} at position: ${
+        return `Picked up Group ${startGroup?.label} at position: ${
           startGroupIdx + 1
         } of ${groupsId.value.length}`;
       } else if (active.data.current?.type === "Item") {
@@ -143,7 +143,7 @@ export function KanbanView<TData>({
         );
         return `Picked up Item ${active.data.current.item.name} at position: ${
           itemPosition + 1
-        } of ${itemsInGroup.length} in group ${group?.title}`;
+        } of ${itemsInGroup.length} in group ${group?.label}`;
       }
     },
     onDragOver({ active, over }) {
@@ -154,7 +154,7 @@ export function KanbanView<TData>({
         over.data.current?.type === "Group"
       ) {
         const overGroupIdx = groupsId.value.findIndex((id) => id === over.id);
-        return `Group ${active.data.current.group.title} was moved over ${over.data.current.group.title} at position ${
+        return `Group ${active.data.current.group.label} was moved over ${over.data.current.group.label} at position ${
           overGroupIdx + 1
         } of ${groupsId.value.length}`;
       } else if (
@@ -169,13 +169,13 @@ export function KanbanView<TData>({
           over.data.current.item[options.column] !==
             pickedUpItemGroup.value
         ) {
-          return `Item ${active.data.current.item.name} was moved over group ${group?.title} in position ${
+          return `Item ${active.data.current.item.name} was moved over group ${group?.label} in position ${
             itemPosition + 1
           } of ${itemsInGroup.length}`;
         }
         return `Item was moved over position ${
           itemPosition + 1
-        } of ${itemsInGroup.length} in group ${group?.title}`;
+        } of ${itemsInGroup.length} in group ${group?.label}`;
       }
     },
     onDragEnd({ active, over }) {
@@ -191,7 +191,7 @@ export function KanbanView<TData>({
           id === over.id
         );
 
-        return `Group ${active.data.current.group.title} was dropped into position ${
+        return `Group ${active.data.current.group.label} was dropped into position ${
           overGroupPosition + 1
         } of ${groupsId.value.length}`;
       } else if (
@@ -206,13 +206,13 @@ export function KanbanView<TData>({
           over.data.current.item[options.column] !==
             pickedUpItemGroup.value
         ) {
-          return `Item was dropped into group ${group?.title} in position ${
+          return `Item was dropped into group ${group?.label} in position ${
             itemPosition + 1
           } of ${itemsInGroup.length}`;
         }
         return `Item was dropped into position ${
           itemPosition + 1
-        } of ${itemsInGroup.length} in group ${group?.title}`;
+        } of ${itemsInGroup.length} in group ${group?.label}`;
       }
       pickedUpItemGroup.value = null;
     },

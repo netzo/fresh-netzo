@@ -64,17 +64,8 @@ export function presetNetzo(
         },
       }),
     ],
-
     // NOTE: build step required for transformers (see @unocss/unocss#1673)
     // transformers: [transformerDirectives(), transformerVariantGroup()],
-
-    safelist: [
-      ...new Set([
-        'text-center',
-        'text-xs',
-        'text-muted-foreground'
-      ]),
-    ]
   };
 }
 
