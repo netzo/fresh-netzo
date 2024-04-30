@@ -87,7 +87,6 @@ export function NavRoot({ className, ...props }: NavRootProps) {
         </SheetTrigger>
         <SheetContent side="left" className="w-[250px] p-0">
           <nav
-            f-client-nav
             className={cn(
               "h-screen overflow-y-auto group flex flex-col bg-primary-foreground",
               className,
@@ -102,7 +101,6 @@ export function NavRoot({ className, ...props }: NavRootProps) {
 
       {/* DESKTOP */}
       <nav
-        f-client-nav
         className={cn(
           "!hidden !md:flex md:b-r-1",
           "h-screen overflow-y-auto group flex flex-col bg-primary-foreground",
