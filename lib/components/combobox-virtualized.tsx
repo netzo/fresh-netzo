@@ -112,19 +112,19 @@ const VirtualizedCommand = ({
   );
 };
 
-interface VirtualizedComboboxProps {
+interface ComboboxVirtualizedProps {
   options: string[];
   searchPlaceholder?: string;
   width?: string;
   height?: string;
 }
 
-export function VirtualizedCombobox({
+export function ComboboxVirtualized({
   options,
   searchPlaceholder = "Search items...",
   width = "400px",
   height = "400px",
-}: VirtualizedComboboxProps) {
+}: ComboboxVirtualizedProps) {
   const [open, setOpen] = React.useState<boolean>(false);
   const [selectedOption, setSelectedOption] = React.useState<string>("");
 
