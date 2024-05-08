@@ -1,3 +1,4 @@
+import { ComboboxVirtualized, type ComboboxVirtualizedProps } from "netzo/components/combobox-virtualized.tsx";
 import { Checkbox } from "./checkbox.tsx";
 import { Combobox, ComboboxProps } from "./combobox.tsx";
 import type { UseFormReturn } from "./form.tsx";
@@ -95,6 +96,32 @@ export const FormFieldCombobox = ({
     />
   );
 };
+
+export const FormFieldComboboxVirtualized = ({
+  name,
+  label,
+  form,
+  options,
+  className,
+  ...props
+}: FormFieldProps & ComboboxVirtualizedProps) => {
+  return (
+    <FormField
+      control={form.control}
+      name={name}
+      render={({ field }) => (
+        <FormItem className={cn(className)}>
+          {label && <FormLabel>{label}</FormLabel>}
+          <FormControl>
+            <ComboboxVirtualized {...field} {...props} options={options} />
+          </FormControl>
+          <FormMessage />
+        </FormItem>
+      )}
+    />
+  );
+};
+
 
 export const FormFieldSelectMultiple = ({
   name,

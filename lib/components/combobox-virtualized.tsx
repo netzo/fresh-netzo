@@ -112,7 +112,7 @@ const VirtualizedCommand = ({
   );
 };
 
-interface ComboboxVirtualizedProps {
+export interface ComboboxVirtualizedProps {
   options: string[];
   searchPlaceholder?: string;
   width?: string;
@@ -121,7 +121,7 @@ interface ComboboxVirtualizedProps {
 
 export function ComboboxVirtualized({
   options,
-  searchPlaceholder = "Search items...",
+  searchPlaceholder = "Search for an option",
   width = "400px",
   height = "400px",
 }: ComboboxVirtualizedProps) {
