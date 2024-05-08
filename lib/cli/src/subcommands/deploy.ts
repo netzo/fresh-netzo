@@ -2,7 +2,6 @@ import type {
   DenoProjectDeploymentBuildLog,
   Deployment,
   DeploymentData,
-  Manifest,
   Paginated,
   Project,
 } from "../../../deps/@netzo/api/mod.ts";
@@ -15,8 +14,8 @@ import {
 } from "../../../deps/std/path/mod.ts";
 import { Spinner, wait } from "../../../deps/wait/mod.ts";
 // vendored x/question@0.0.2 to silence deprecated API warnings (Deno>=1.4)
+import { netzo } from "../../../apis/netzo.ts";
 import { question } from "../../../deps/question/mod.ts";
-import { netzo } from "../../../integrations/apis/netzo.ts";
 import { error, LOGS } from "../../../plugins/utils.ts";
 import type { Args as RawArgs } from "../args.ts";
 import { APIError } from "../utils/api.ts";
@@ -24,6 +23,7 @@ import { parseEntrypoint } from "../utils/entrypoint.ts";
 import {
   buildAssetsFromManifest,
   createClient,
+  type Manifest,
   readDecodeAndAddFileContentToAssets,
 } from "../utils/netzo.ts";
 import { walk } from "../utils/walk.ts";

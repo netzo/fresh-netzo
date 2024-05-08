@@ -1,4 +1,4 @@
-import { queryData, ulid } from "./netzodb.utils.ts";
+import { queryData, ulid } from "./mod.utils.ts";
 
 export { ulid };
 

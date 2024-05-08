@@ -1,5 +1,5 @@
 // see https://github.com/netzo/netzo/issues/57
-import { netzodb } from "../../integrations/databases/netzodb.ts";
+import { netzodb } from "../../datastore/mod.ts";
 
 export type Run = {
   id: string;

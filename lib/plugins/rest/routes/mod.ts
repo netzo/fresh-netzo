@@ -1,8 +1,8 @@
 import type { PluginRoute } from "$fresh/server.ts";
 import { deepParseJson } from "npm:deep-parse-json@2.0.0";
 import { unflatten } from "npm:flat@6.0.1";
+import { netzodb } from "../../../datastore/mod.ts";
 import { join } from "../../../deps/std/path/mod.ts";
-import { netzodb } from "../../../integrations/databases/netzodb.ts";
 import type { RestConfig } from "../plugin.ts";
 import { parseRequestBody, RESPONSES } from "../utils.ts";
 

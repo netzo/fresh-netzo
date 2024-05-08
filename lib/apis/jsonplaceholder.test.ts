@@ -1,4 +1,4 @@
-import { assertEquals, assertExists } from "../../deps/std/assert/mod.ts";
+import { assertEquals, assertExists } from "../deps/std/assert/mod.ts";
 import { jsonplaceholder } from "./jsonplaceholder.ts";
 
 Deno.test("[apis] jsonplaceholder", async (t) => {

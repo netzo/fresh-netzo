@@ -1,5 +1,5 @@
 import mingo from "npm:mingo@6.4.13";
-import { monotonicFactory } from "../../deps/ulid.ts";
+import { monotonicFactory } from "../deps/ulid.ts";
 
 export const ulid = monotonicFactory();
 

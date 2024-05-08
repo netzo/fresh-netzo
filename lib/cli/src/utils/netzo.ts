@@ -1,14 +1,9 @@
 import { isBinary } from "npm:istextorbinary@9.4.0";
-import { encodeBase64 } from "../../../deps/std/encoding/base64.ts";
-import { io } from "../../../deps/socket.io-client.ts";
 import { feathers } from "../../../deps/@feathersjs/feathers.ts";
 import { socketio } from "../../../deps/@feathersjs/socketio-client.ts";
-import {
-  Manifest,
-  ManifestEntryFile,
-  Project,
-  ProjectAssetsFile,
-} from "../../../deps/@netzo/api/mod.ts";
+import { Project, ProjectAssetsFile } from "../../../deps/@netzo/api/mod.ts";
+import { io } from "../../../deps/socket.io-client.ts";
+import { encodeBase64 } from "../../../deps/std/encoding/base64.ts";
 
 export const createClient = async ({
   apiKey = Deno.env.get("NETZO_API_KEY")!,
@@ -19,6 +14,33 @@ export const createClient = async ({
   const app = feathers().configure(connection);
   await app.service("authentication").create({ strategy: "apiKey", apiKey });
   return app;
+};
+
+// manifest:
+
+export type ManifestEntryDirectory = {
+  kind: "directory";
+  entries: Record<string, ManifestEntry>;
+};
+
+export type ManifestEntryFile = {
+  kind: "file";
+  gitSha1: string;
+  size: number;
+};
+
+export type ManifestEntrySymlink = {
+  kind: "symlink";
+  target: string;
+};
+
+export type ManifestEntry =
+  | ManifestEntryFile
+  | ManifestEntrySymlink
+  | ManifestEntryDirectory;
+
+export type Manifest = {
+  entries: Record<string, ManifestEntry>;
 };
 
 /**
