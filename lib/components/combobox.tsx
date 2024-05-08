@@ -102,12 +102,7 @@ export const Combobox = React.forwardRef(
               {(!props.value || (props.multiple && props.value.length === 0)) &&
                 (props.selectPlaceholder ?? "Select an option")}
             </span>
-            <i
-              className={cn(
-                "mdi-chevron-down ml-2 h-4 w-4 shrink-0 rotate-0 opacity-50 transition-transform",
-                open && "rotate-180",
-              )}
-            />
+            <i className="mdi-unfold-more-horizontal h-4 w-4 shrink-0 opacity-50" />
           </Button>
         </PopoverTrigger>
         <PopoverContent align="start" className="p-0">
