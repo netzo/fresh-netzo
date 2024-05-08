@@ -118,6 +118,8 @@ export interface ComboboxVirtualizedProps {
   options: ComboboxOption[];
   searchPlaceholder?: string;
   height?: string;
+  value?: string;
+  onChange?: (value: string) => void;
 }
 
 export function ComboboxVirtualized({
@@ -125,9 +127,11 @@ export function ComboboxVirtualized({
   searchPlaceholder = "Search for an option",
   height = "400px",
   disabled = false,
+  value = "",
+  onChange,
 }: ComboboxVirtualizedProps) {
   const [open, setOpen] = React.useState<boolean>(false);
-  const [selectedOption, setSelectedOption] = React.useState<string>("");
+  const [selectedOption, setSelectedOption] = React.useState<string>(value);
 
   const ref = React.useRef<HTMLDivElement>(null)
   const { width = 0 } = useResizeObserver({ ref, box: 'border-box' })
@@ -165,10 +169,11 @@ export function ComboboxVirtualized({
           placeholder={searchPlaceholder}
           selectedOption={selectedOption}
           onSelectOption={(currentValue) => {
-            if (currentValue === selectedOption) setSelectedOption("");
-            // WORKAROUND: somehow currentValue is returned in all lowercase, so we use
-            // toUpperCase() since ULIDs are all capital letters always
-            else setSelectedOption(currentValue.toUpperCase());
+            // WORKAROUND: somehow currentValue is returned in all lowercase, so
+            // we use toUpperCase() since ULIDs are all capital letters always
+            const value = currentValue === selectedOption ? "" : currentValue.toUpperCase();
+            setSelectedOption(value);
+            onChange!(value);
             setOpen(false);
           }}
         />
