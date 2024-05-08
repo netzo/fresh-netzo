@@ -1,4 +1,7 @@
-import { ComboboxVirtualized, type ComboboxVirtualizedProps } from "netzo/components/combobox-virtualized.tsx";
+import {
+  ComboboxVirtualized,
+  type ComboboxVirtualizedProps,
+} from "netzo/components/combobox-virtualized.tsx";
 import { Checkbox } from "./checkbox.tsx";
 import { Combobox, ComboboxProps } from "./combobox.tsx";
 import type { UseFormReturn } from "./form.tsx";
@@ -121,7 +124,6 @@ export const FormFieldComboboxVirtualized = ({
     />
   );
 };
-
 
 export const FormFieldSelectMultiple = ({
   name,

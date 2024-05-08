@@ -2,7 +2,8 @@
 // @deno-types="npm:@types/react@18.2.60"
 import * as React from "react";
 
-import { useVirtualizer } from "npm:@tanstack/react-virtual@3.5.0";
+import { useVirtualizer } from "../deps/@tanstack/react-virtual.ts";
+import { useResizeObserver } from "../deps/usehooks-ts.ts";
 import { Button } from "./button.tsx";
 import {
   Command,
@@ -14,14 +15,14 @@ import {
 import { Popover, PopoverContent, PopoverTrigger } from "./popover.tsx";
 import { cn } from "./utils.ts";
 
-type Option = {
+type ComboboxOption = {
   value: string;
   label: string;
 };
 
 interface VirtualizedCommandProps {
   height: string;
-  options: Option[];
+  options: ComboboxOption[];
   placeholder: string;
   selectedOption: string;
   onSelectOption?: (option: string) => void;
@@ -34,7 +35,7 @@ const VirtualizedCommand = ({
   selectedOption,
   onSelectOption,
 }: VirtualizedCommandProps) => {
-  const [filteredOptions, setFilteredOptions] = React.useState<Option[]>(
+  const [filteredOptions, setFilteredOptions] = React.useState<ComboboxOption[]>(
     options,
   );
   const parentRef = React.useRef(null);
@@ -51,7 +52,7 @@ const VirtualizedCommand = ({
   const handleSearch = (search: string) => {
     setFilteredOptions(
       options.filter((option) =>
-        option.value.toLowerCase().includes(search.toLowerCase() ?? [])
+        option.label.toLowerCase().includes(search.toLowerCase() ?? [])
       ),
     );
   };
@@ -94,6 +95,7 @@ const VirtualizedCommand = ({
               key={filteredOptions[virtualOption.index].value}
               value={filteredOptions[virtualOption.index].value}
               onSelect={onSelectOption}
+              className="w-full truncate"
             >
               <i
                 className={cn(
@@ -113,49 +115,60 @@ const VirtualizedCommand = ({
 };
 
 export interface ComboboxVirtualizedProps {
-  options: string[];
+  options: ComboboxOption[];
   searchPlaceholder?: string;
-  width?: string;
   height?: string;
 }
 
 export function ComboboxVirtualized({
   options,
   searchPlaceholder = "Search for an option",
-  width = "400px",
   height = "400px",
+  disabled = false,
 }: ComboboxVirtualizedProps) {
   const [open, setOpen] = React.useState<boolean>(false);
   const [selectedOption, setSelectedOption] = React.useState<string>("");
+
+  const ref = React.useRef<HTMLDivElement>(null)
+  const { width = 0 } = useResizeObserver({ ref, box: 'border-box' })
+
+  const selectedOptionLabel = options.find(({ value }) => value === selectedOption)?.label
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <Button
-          variant="outline"
+          ref={ref}
           role="combobox"
+          variant="outline"
           aria-expanded={open}
-          className="justify-between"
-          style={{
-            width: width,
-          }}
+          disabled={disabled}
+          className="w-full justify-between hover:bg-secondary/20 active:scale-100"
         >
+          <span className="line-clamp-1 text-left font-normal">
           {selectedOption
-            ? options.find((option) => option === selectedOption)
+            ? selectedOptionLabel
             : searchPlaceholder}
-          <i className="mdi-unfold-more-horizontal ml-2 h-4 w-4 shrink-0 opacity-50" />
+          </span>
+          <i
+            className={cn(
+              "mdi-chevron-down ml-2 h-4 w-4 shrink-0 rotate-0 opacity-50 transition-transform",
+              open && "rotate-180",
+            )}
+          />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="p-0" style={{ width: width }}>
+      <PopoverContent className="p-0" style={{ width: `${width}px` }}>
         <VirtualizedCommand
           height={height}
-          options={options.map((option) => ({ value: option, label: option }))}
+          options={options.map(({ value, label }) => ({ value, label }))}
           placeholder={searchPlaceholder}
           selectedOption={selectedOption}
           onSelectOption={(currentValue) => {
-            setSelectedOption(
-              currentValue === selectedOption ? "" : currentValue,
-            );
+            if (currentValue === selectedOption) setSelectedOption("");
+            // WORKAROUND: somehow currentValue is returned in all lowercase, so we use
+            // toUpperCase() since ULIDs are all capital letters always
+            else setSelectedOption(currentValue.toUpperCase());
             setOpen(false);
           }}
         />
