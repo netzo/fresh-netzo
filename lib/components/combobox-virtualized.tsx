@@ -35,7 +35,9 @@ const VirtualizedCommand = ({
   selectedOption,
   onSelectOption,
 }: VirtualizedCommandProps) => {
-  const [filteredOptions, setFilteredOptions] = React.useState<ComboboxOption[]>(
+  const [filteredOptions, setFilteredOptions] = React.useState<
+    ComboboxOption[]
+  >(
     options,
   );
   const parentRef = React.useRef(null);
@@ -133,10 +135,12 @@ export function ComboboxVirtualized({
   const [open, setOpen] = React.useState<boolean>(false);
   const [selectedOption, setSelectedOption] = React.useState<string>(value);
 
-  const ref = React.useRef<HTMLDivElement>(null)
-  const { width = 0 } = useResizeObserver({ ref, box: 'border-box' })
+  const ref = React.useRef<HTMLDivElement>(null);
+  const { width = 0 } = useResizeObserver({ ref, box: "border-box" });
 
-  const selectedOptionLabel = options.find(({ value }) => value === selectedOption)?.label
+  const selectedOptionLabel = options.find(({ value }) =>
+    value === selectedOption
+  )?.label;
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -150,9 +154,7 @@ export function ComboboxVirtualized({
           className="w-full justify-between hover:bg-secondary/20 active:scale-100"
         >
           <span className="line-clamp-1 text-left font-normal">
-          {selectedOption
-            ? selectedOptionLabel
-            : searchPlaceholder}
+            {selectedOption ? selectedOptionLabel : searchPlaceholder}
           </span>
           <i className="mdi-unfold-more-horizontal h-4 w-4 shrink-0 opacity-50" />
         </Button>
@@ -166,7 +168,9 @@ export function ComboboxVirtualized({
           onSelectOption={(currentValue) => {
             // WORKAROUND: somehow currentValue is returned in all lowercase, so
             // we use toUpperCase() since ULIDs are all capital letters always
-            const value = currentValue === selectedOption ? "" : currentValue.toUpperCase();
+            const value = currentValue === selectedOption
+              ? ""
+              : currentValue.toUpperCase();
             setSelectedOption(value);
             onChange!(value);
             setOpen(false);
