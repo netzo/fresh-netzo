@@ -6,7 +6,7 @@
   "lock": false,
   "tasks": {
     "cache:deps": "deno cache **/deps/**/*.ts",
-    "cli:install:dev": "deno install -Arf -n netzo-dev netzo.ts",
+    "cli:install:dev": "deno install -Arfg -n netzo-dev lib/cli/netzo.ts",
     "test": "deno test -A --parallel --coverage=./cov",
     "check:types": "deno check lib/**/*.ts && deno check lib/**/*.tsx",
     "ok": "deno fmt --check && deno lint && deno task check:types && deno task test",
