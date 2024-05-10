@@ -19,8 +19,6 @@ interface TData {
 /**
  * Factory function for the NetzoDB database
  *
- * @see https://netzo.io/docs/modules/databases/netzodb
- *
  * @param {Deno.Kv} kv - a Deno.Kv instance
  * @returns {object} - a DB client instance
  */
