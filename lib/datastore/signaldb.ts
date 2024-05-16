@@ -12,26 +12,26 @@ const createDatastoreAdapter = (name: string, data: any[]) => {
         firstRender = false;
         return { items: data };
       }
-      const response = await fetch(`/rest/${name}`);
+      const response = await fetch(`/datastore/${name}`);
       const items = await response.json();
       return { items };
     },
     async save(_items, { added, modified, removed }) {
       await Promise.all([
         ...added.map(({ id, ...item }) =>
-          fetch(`/rest/${name}`, {
+          fetch(`/datastore/${name}`, {
             method: "POST",
             body: JSON.stringify(item),
           })
         ),
         ...modified.map(({ id, ...item }) =>
-          fetch(`/rest/${name}/${id}`, {
+          fetch(`/datastore/${name}/${id}`, {
             method: "PATCH",
             body: JSON.stringify(item),
           })
         ),
         ...removed.map(({ id }) =>
-          fetch(`/rest/${name}/${id}`, {
+          fetch(`/datastore/${name}/${id}`, {
             method: "DELETE",
           })
         ),
