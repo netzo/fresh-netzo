@@ -85,8 +85,8 @@ export const datastore = (config?: DatastoreConfig): Plugin => {
                 return Response.json(result);
               }
               case "delete": {
-                await ds.kv.delete(key);
-                return Response.json({ ok: true });
+                const result = await ds.kv.delete(key);
+                return Response.json(result);
               }
               case "list": {
                 const { prefix, start, end, options } = data ?? {};
@@ -168,8 +168,8 @@ export const datastore = (config?: DatastoreConfig): Plugin => {
           },
           DELETE: async (_req, ctx) => {
             const { prefix, id } = ctx.params;
-            await ds.remove(prefix, id);
-            return Response.json({ ok: true });
+            const result = await ds.remove(prefix, id);
+            return Response.json(result);
           },
         },
       } satisfies PluginRoute,

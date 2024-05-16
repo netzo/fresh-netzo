@@ -84,6 +84,7 @@ export const RESPONSES = {
   missingApiKey: () => new Response("Missing API key", { status: 401 }),
   invalidApiKey: () => new Response("Invalid API key", { status: 401 }),
   notAllowed: () => new Response("Method not allowed", { status: 405 }),
+  notImplemented: () => new Response("Method not implemented", { status: 501 }),
   badRequest: (message: string) => new Response(message, { status: 400 }),
 };
 
