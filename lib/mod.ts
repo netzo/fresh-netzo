@@ -1,8 +1,12 @@
 import { type FreshConfig } from "$fresh/server.ts";
+import type { LoaderState } from "netzo/plugins/loader/plugin.ts";
+import type { MdxState } from "netzo/plugins/mdx/plugin.ts";
 import type { AuthState } from "./plugins/auth/plugin.ts";
 import type { CronState } from "./plugins/cron/plugin.ts";
+import type { DatabaseState } from "./plugins/database/plugin.ts";
+import type { DatastoreState } from "./plugins/datastore/plugin.ts";
 import type { EnvironmentsState } from "./plugins/environments/plugin.ts";
-import type { RestState } from "./plugins/rest/plugin.ts";
+import type { StorageState } from "./plugins/storage/plugin.ts";
 import { proxyConsole } from "./plugins/utils.ts";
 
 // deno-lint-ignore no-global-assign
@@ -15,11 +19,15 @@ console = proxyConsole(
 export type NetzoConfig = FreshConfig;
 
 export type NetzoState = {
-  denoJson?: Record<string, string>;
   auth?: AuthState;
   cron?: CronState;
-  database?: RestState;
+  database?: DatabaseState;
+  datastore?: DatastoreState;
   environments?: EnvironmentsState;
+  loader?: LoaderState;
+  mdx?: MdxState;
+  storage?: StorageState;
+  // unocss?: UnocssState;
   [k: string]: unknown;
 };
 

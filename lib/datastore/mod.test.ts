@@ -1,11 +1,11 @@
 import { assertExists } from "../deps/std/assert/mod.ts";
-import { netzodb } from "./mod.ts";
+import { datastore } from "./mod.ts";
 
-const db = netzodb({ kv: await Deno.openKv(":memory:") });
+const db = datastore({ kv: await Deno.openKv(":memory:") });
 
-Deno.test("[dbs] netzodb", { ignore: false }, async (t) => {
+Deno.test("[datastore] datastore", { ignore: false }, async (t) => {
   await t.step("declarations", () => {
-    assertExists(netzodb);
+    assertExists(datastore);
     assertExists(db);
   });
 });

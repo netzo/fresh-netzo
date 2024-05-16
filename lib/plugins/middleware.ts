@@ -1,6 +1,5 @@
 import { MiddlewareHandler } from "$fresh/server.ts";
-import type { RestConfig } from "../plugin.ts";
-import { RESPONSES } from "../utils.ts";
+import { RESPONSES } from "./utils.ts";
 
 const enableCors = (req: Request, res: Response) => {
   const origin = req.headers.get("Origin") || "*";
@@ -10,7 +9,7 @@ const enableCors = (req: Request, res: Response) => {
   res.headers.set("Access-Control-Allow-Methods", "*");
 };
 
-export function cors(_config: RestConfig): MiddlewareHandler {
+export function cors(): MiddlewareHandler {
   return async (req, ctx) => {
     if (req.method == "OPTIONS") {
       const res = new Response(null, { status: 204 });
@@ -23,9 +22,10 @@ export function cors(_config: RestConfig): MiddlewareHandler {
   };
 }
 
-export function apiKeyAuthentication(config: RestConfig): MiddlewareHandler {
+export function apiKeyAuthentication(
+  { apiKey }: { apiKey: string },
+): MiddlewareHandler {
   return async (req, ctx) => {
-    const { apiKey } = config;
     try {
       if (!["route"].includes(ctx.destination)) return await ctx.next();
       if (!apiKey) return await ctx.next();

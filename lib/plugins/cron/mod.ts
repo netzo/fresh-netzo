@@ -1,5 +1,5 @@
 // see https://github.com/netzo/netzo/issues/57
-import { netzodb } from "../../datastore/mod.ts";
+import { datastore } from "../../datastore/mod.ts";
 
 export type Run = {
   id: string;
@@ -23,7 +23,7 @@ export type CronParams = Parameters<typeof Deno.cron>;
  * @returns {Proxy} - a proxied Deno.cron object
  */
 export const proxyCron = () => {
-  const db = netzodb();
+  const ds = datastore();
   return new Proxy(Deno.cron, {
     apply(target, thisArg, argArray: CronParams) {
       const [name, schedule, opt1, opt2] = argArray;
@@ -42,7 +42,7 @@ export const proxyCron = () => {
       async function run(): Promise<void> {
         console.time(`[cron] ${name}`);
         const startedAt = Date.now();
-        const data = await db.create("$runs", {
+        const data = await ds.create("$runs", {
           type: "cron",
           name,
           schedule,
@@ -63,7 +63,7 @@ export const proxyCron = () => {
           const endedAt = Date.now();
           data.endedAt = new Date(endedAt).toISOString();
           data.duration = endedAt - startedAt;
-          await db.patch("$runs", data.id, data);
+          await ds.patch("$runs", data.id, data);
         }
       }
 

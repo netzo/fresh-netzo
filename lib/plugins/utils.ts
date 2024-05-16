@@ -79,3 +79,41 @@ export const LOGS = {
     return `Open at ${url}`;
   },
 } as const;
+
+export const RESPONSES = {
+  missingApiKey: () => new Response("Missing API key", { status: 401 }),
+  invalidApiKey: () => new Response("Invalid API key", { status: 401 }),
+  notAllowed: () => new Response("Method not allowed", { status: 405 }),
+  badRequest: (message: string) => new Response(message, { status: 400 }),
+};
+
+// deno-lint-ignore no-explicit-any
+export async function parseRequestBody<T = any>(req: Request) {
+  const contentType = req.headers.get("content-type"); // case insensitive
+  if (contentType?.includes("application/json")) {
+    return (await req.json()) as T;
+  } else if (
+    contentType?.includes("application/x-www-form-urlencoded") ||
+    contentType?.includes("multipart/form-data")
+  ) {
+    const formData = await req.formData();
+    return Object.fromEntries([...formData.entries()]) as T;
+  } else if (contentType?.includes("text/plain")) {
+    return JSON.parse(await req.text()) as T;
+  } else {
+    try {
+      return (await req.json()) as T;
+    } catch (_jsonError) {
+      try {
+        return Object.fromEntries((await req.formData()).entries()) as T;
+      } catch (_formDataError) {
+        try {
+          const url = new URL(req.url);
+          return Object.fromEntries(url.searchParams.entries()) as T;
+        } catch (_formDataError) {
+          return JSON.parse(await req.text()) as T;
+        }
+      }
+    }
+  }
+}

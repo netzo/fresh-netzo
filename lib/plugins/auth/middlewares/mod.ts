@@ -6,9 +6,10 @@ import { getUserBySession } from "../utils/db.ts";
 const skip = (_req: Request, ctx: FreshContext<NetzoState>) => {
   if (!["route"].includes(ctx.destination)) return true;
   if (ctx.url.pathname.startsWith("/auth/")) return true; // skip auth routes (signin, callback, signout)
-  if (ctx.url.pathname.startsWith("/rest")) return true; // skip user REST
-  if (ctx.url.pathname.startsWith("/realtime")) return true; // skip user realtime (SSE) routes
-  if (ctx.url.pathname.startsWith("/storage")) return true; // skip user storage routes
+  if (ctx.url.pathname.startsWith("/database")) return true; // skip database routes
+  if (ctx.url.pathname.startsWith("/datastore")) return true; // skip datastore routes
+  if (ctx.url.pathname.startsWith("/storage")) return true; // skip storage routes
+  // if (ctx.url.pathname.startsWith("/realtime")) return true; // skip realtime (SSE) routes
   if (ctx.url.searchParams.has("error")) return true; // skip if error
   return false;
 };

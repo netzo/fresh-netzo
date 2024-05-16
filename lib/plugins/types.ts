@@ -46,3 +46,25 @@ export type Project = {
   };
   [k: string]: unknown;
 };
+
+export type Object = {
+  _id: string;
+  createdAt: string;
+  updatedAt: string;
+  workspaceId: string;
+  key: string;
+  contentType: string;
+  size: number;
+  isPublic: boolean;
+  url?: string;
+};
+
+export type ObjectData = {
+  createdAt?: string;
+  updatedAt?: string;
+  workspaceId?: string;
+  key?: string;
+  contentType?: string;
+  size?: number;
+  isPublic?: boolean;
+};

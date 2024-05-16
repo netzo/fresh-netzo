@@ -223,8 +223,8 @@ export const unocss = ({
         // Craft a response for requests for the generated CSS file
         const resp = new Response(css, {
           headers: {
-            "Content-Type": "text/css",
-            "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+            "content-type": "text/css",
+            "cache-control": "no-cache, no-store, max-age=0, must-revalidate",
           },
         });
 

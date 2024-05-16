@@ -4,7 +4,7 @@ export { ulid };
 
 const KV = await Deno.openKv();
 
-export type NetzoDBOptions = {
+export type DatastoreOptions = {
   kv?: Deno.Kv;
 };
 
@@ -17,12 +17,12 @@ interface TData {
 }
 
 /**
- * Factory function for the NetzoDB database
+ * Factory function for the Datastore database
  *
  * @param {Deno.Kv} kv - a Deno.Kv instance
  * @returns {object} - a DB client instance
  */
-export const netzodb = ({ kv = KV }: NetzoDBOptions = {}) => {
+export const datastore = ({ kv = KV }: DatastoreOptions = {}) => {
   /**
    * Finds objects in the KV store that match the specified query.
    * @param collection - The name of the collection to search for.
