@@ -22,7 +22,6 @@ export async function setEnvVarsIfRemoteProject() {
     if (!project) throw new Error(LOGS.notFoundProject());
 
     const envVars = project.envVars?.development ?? {};
-    console.log(envVars);
     setEnvVars(envVars);
     logInfo(LOGS.envNoticeProduction(Object.keys(envVars).length));
     logInfo(LOGS.openInNetzo(NETZO_APP_URL, project));
@@ -36,7 +35,6 @@ export async function setEnvVarsIfRemoteProject() {
 export function setEnvVars(envVars: Record<string, any>) {
   for (const key in envVars) {
     Deno.env.set(key, envVars[key]);
-    console.log(key, Deno.env.get(key) === envVars[key], Deno.env.get(key));
   }
   return Deno.env.toObject();
 }

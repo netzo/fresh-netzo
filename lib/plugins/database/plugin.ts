@@ -73,7 +73,6 @@ export const database = (config?: DatabaseConfig): Plugin => {
               method,
             } = await parseRequestBody(req);
             const result = await client.execute({ sql, args });
-            console.log(result);
             // NOTE: Drizzle always waits for {rows: string[][]} or {rows: string[]}
             // for the return value. When the method is get, you should return a value
             // as { rows: string[] }. Otherwise, you should return { rows: string[][] }
@@ -98,8 +97,10 @@ export const database = (config?: DatabaseConfig): Plugin => {
             const { tableName } = ctx.params;
             const table = config.schema![tableName] as any;
             const data = await parseRequestBody(req);
-            const rows = await db.insert(table).values(data).returning();
-            return Response.json(Array.isArray(rows) ? rows[0] : rows.rows);
+            const result = await db.insert(table).values(data).returning();
+            return Response.json(
+              Array.isArray(result) ? result[0] : result.rows,
+            );
           },
         },
       } satisfies PluginRoute,
@@ -116,26 +117,32 @@ export const database = (config?: DatabaseConfig): Plugin => {
             const { tableName, id } = ctx.params;
             const table = config.schema![tableName] as any;
             const data = await parseRequestBody(req);
-            const [row] = await db.update(table).set(data).where(
+            const result = await db.update(table).set(data).where(
               eq(table.id, id),
             ).returning();
-            return Response.json(row);
+            return Response.json(
+              Array.isArray(result) ? result[0] : result.rows,
+            );
           },
           PATCH: async (req, ctx) => {
             const { tableName, id } = ctx.params;
             const table = config.schema![tableName] as any;
             const data = await parseRequestBody(req);
-            const [row] = await db.update(table).set(data).where(
+            const result = await db.update(table).set(data).where(
               eq(table.id, id),
             ).returning();
-            return Response.json(row);
+            return Response.json(
+              Array.isArray(result) ? result[0] : result.rows,
+            );
           },
           DELETE: async (_req, ctx) => {
             const { tableName, id } = ctx.params;
             const table = config.schema![tableName] as any;
-            const [row] = await db.delete(table).where(eq(table.id, id))
+            const result = await db.delete(table).where(eq(table.id, id))
               .returning();
-            return Response.json(row);
+            return Response.json(
+              Array.isArray(result) ? result[0] : result.rows,
+            );
           },
         },
       } satisfies PluginRoute,
