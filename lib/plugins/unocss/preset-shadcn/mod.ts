@@ -6,8 +6,8 @@ import type {
 } from "../../../deps/@unocss/core.ts";
 import {
   h,
-  type Theme,
   variantGetParameter,
+  type Theme,
 } from "../../../deps/@unocss/preset-mini.ts";
 import { generateCSSVars } from "./generate.ts";
 import { PresetShadcnOptions } from "./types.ts";
@@ -208,6 +208,8 @@ export function presetShadcn(options: PresetShadcnOptions = {}): Preset<Theme> {
           "border-transparent",
           "bg-primary",
           "text-primary-foreground",
+          "bg-secondary",
+          "text-secondary-foreground",
           "shadow",
           "hover:bg-opacity-80",
         ],
@@ -692,6 +694,13 @@ export function presetShadcn(options: PresetShadcnOptions = {}): Preset<Theme> {
           "max-h-64",
           "overflow-auto",
         ],
+        // separator:
+        "shrink-0",
+        "bg-border",
+        "h-[1px]",
+        "w-full",
+        "h-full",
+        "w-[1px]",
         // sheet:
         ...[
           "fixed",

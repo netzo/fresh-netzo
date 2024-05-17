@@ -21,13 +21,15 @@ export type SelectMultipleOption = {
 
 export type SelectMultipleProps = {
   options: SelectMultipleOption[];
+  searchPlaceholder?: string;
   value: string[];
   onChange: React.Dispatch<React.SetStateAction<string[]>>;
   className?: string;
 };
 
 function SelectMultiple(
-  { options, value, onChange, className, ...props }: SelectMultipleProps,
+  { options, searchPlaceholder, value, onChange, className, ...props }:
+    SelectMultipleProps,
 ) {
   const [open, setOpen] = React.useState(false);
 
@@ -82,7 +84,7 @@ function SelectMultiple(
       </PopoverTrigger>
       <PopoverContent className="w-full p-0">
         <Command className={className}>
-          <CommandInput placeholder="Search ..." />
+          <CommandInput placeholder={searchPlaceholder} />
           <CommandEmpty>No item found.</CommandEmpty>
           <CommandGroup className="max-h-64 overflow-auto">
             {options.map((option) => (

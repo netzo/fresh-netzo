@@ -25,7 +25,7 @@ export function TableViewOptions<TData>({
           <i className={cn("mdi-tune-variant h-4 w-4", className)} />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-[150px]">
+      <DropdownMenuContent align="end">
         <DropdownMenuLabel>
           Toggle columns
         </DropdownMenuLabel>

@@ -100,7 +100,7 @@ export const Combobox = React.forwardRef(
                   ?.label}
 
               {(!props.value || (props.multiple && props.value.length === 0)) &&
-                (props.selectPlaceholder ?? "Select an option")}
+                (props.selectPlaceholder ?? "")}
             </span>
             <i className="mdi-unfold-more-horizontal h-4 w-4 shrink-0 opacity-50" />
           </Button>
@@ -109,7 +109,7 @@ export const Combobox = React.forwardRef(
           <Command>
             <CommandInput
               ref={ref}
-              placeholder={props.searchPlaceholder ?? "Search for an option"}
+              placeholder={props.searchPlaceholder}
             />
             <CommandEmpty>{props.emptyText ?? "No results found"}</CommandEmpty>
             <CommandGroup>

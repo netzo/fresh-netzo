@@ -91,13 +91,13 @@ export function TableFilter<TData, TValue>({
                 {selectedValues.size}
               </Badge>
               <div className="hidden space-x-1 lg:flex">
-                {selectedValues.size > 2
+                {selectedValues.size > 1
                   ? (
                     <Badge
                       variant="secondary"
                       className="rounded-sm px-1 font-normal"
                     >
-                      {selectedValues.size} selected
+                      {selectedValues.size}
                     </Badge>
                   )
                   : (

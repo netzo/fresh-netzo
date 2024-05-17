@@ -54,7 +54,7 @@ const VirtualizedCommand = ({
   const handleSearch = (search: string) => {
     setFilteredOptions(
       options.filter((option) =>
-        option.label.toLowerCase().includes(search.toLowerCase() ?? [])
+        option.label?.toLowerCase().includes(search?.toLowerCase() ?? [])
       ),
     );
   };
@@ -126,7 +126,7 @@ export interface ComboboxVirtualizedProps {
 
 export function ComboboxVirtualized({
   options,
-  searchPlaceholder = "Search for an option",
+  searchPlaceholder,
   height = "400px",
   disabled = false,
   value = "",
