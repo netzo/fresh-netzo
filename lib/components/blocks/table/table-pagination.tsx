@@ -10,16 +10,19 @@ import { cn } from "../../utils.ts";
 import { useTablePagination } from "./hooks/use-table-pagination.ts";
 import type { Table } from "./table.tsx";
 
+type Props<TData> = { table: Table<TData>; locale?: "en" | "es" };
+
 export function TablePagination<TData>({
   table,
-}: JSX.IntrinsicElements["button"] & { table: Table<TData> }) {
+  locale = "es",
+}: JSX.IntrinsicElements["button"] & Props<TData>) {
   const { pageIndex, pageSize, from, to, total } = useTablePagination(table);
   return (
     <div className="flex flex-wrap w-full gap-y-2 gap-x-8 items-center justify-between">
-      <TablePaginationPageRange table={table} className="flex-1" />
-      <TablePaginationPageSize table={table} />
-      <TablePaginationPageCurrent table={table} />
-      <TablePaginationButtons table={table} />
+      <TablePaginationPageRange table={table} locale={locale} className="flex-1" />
+      <TablePaginationPageSize table={table} locale={locale} />
+      <TablePaginationPageCurrent table={table} locale={locale} />
+      <TablePaginationButtons table={table} locale={locale} />
     </div>
   );
 }
@@ -27,8 +30,12 @@ export function TablePagination<TData>({
 export function TablePaginationPageRange<TData>({
   className,
   table,
-}: JSX.IntrinsicElements["div"] & { table: Table<TData> }) {
+  locale = "es",
+}: JSX.IntrinsicElements["div"] & Props<TData>) {
   const { pageIndex, pageSize, from, to, total } = useTablePagination(table);
+  const text = locale === "en"
+    ? `${from} - ${to > total ? total : to} of ${total} rows`
+    : `${from} - ${to > total ? total : to} de ${total} filas`;
   return (
     <div
       className={cn(
@@ -36,7 +43,7 @@ export function TablePaginationPageRange<TData>({
         className,
       )}
     >
-      {`${from} - ${to > total ? total : to} of ${total} rows`}
+      {text}
     </div>
   );
 }
@@ -44,8 +51,10 @@ export function TablePaginationPageRange<TData>({
 export function TablePaginationPageSize<TData>({
   className,
   table,
-}: JSX.IntrinsicElements["div"] & { table: Table<TData> }) {
+  locale = "es",
+}: JSX.IntrinsicElements["div"] & Props<TData>) {
   const { pageIndex, pageSize, from, to, total } = useTablePagination(table);
+  const text = locale === "en" ? "Rows per page" : "Filas por página";
   return (
     <div
       className={cn(
@@ -53,7 +62,7 @@ export function TablePaginationPageSize<TData>({
         className,
       )}
     >
-      <p className="hidden md:block text-sm font-medium">Rows per page</p>
+      <p className="hidden md:block text-sm font-medium">{text}</p>
       <Select
         value={`${pageSize}`}
         onValueChange={(value) => {
@@ -78,12 +87,16 @@ export function TablePaginationPageSize<TData>({
 export function TablePaginationPageCurrent<TData>({
   className,
   table,
-}: JSX.IntrinsicElements["div"] & { table: Table<TData> }) {
+  locale = "es",
+}: JSX.IntrinsicElements["div"] & Props<TData>) {
   const { pageIndex, pageSize, from, to, total } = useTablePagination(table);
+  const text = locale === "en"
+   ? `Page ${pageIndex + 1} of ${table.getPageCount()}`
+    : `Página ${pageIndex + 1} de ${table.getPageCount()}`;
   return (
     <div className={cn("contents h-[48px] min-w-fit !my-auto", className)}>
       <span className="text-sm font-medium">
-        Page {pageIndex + 1} of {table.getPageCount()}
+        {text}
       </span>
     </div>
   );
@@ -92,9 +105,13 @@ export function TablePaginationPageCurrent<TData>({
 export function TablePaginationButtons<TData>({
   className,
   table,
-}: JSX.IntrinsicElements["div"] & { table: Table<TData> }) {
+  locale = "es",
+}: JSX.IntrinsicElements["div"] & Props<TData>) {
   const { pageIndex, pageSize, from, to, total } = useTablePagination(table);
-
+  const textFirst = locale === "en" ? "Go to first page" : "Ir a la primera página";
+  const textPrevious = locale === "en" ? "Go to previous page" : "Ir a la página anterior";
+  const textNext = locale === "en" ? "Go to next page" : "Ir a la página siguiente";
+  const textLast = locale === "en" ? "Go to last page" : "Ir a la última página";
   return (
     <div
       className={cn(
@@ -108,7 +125,7 @@ export function TablePaginationButtons<TData>({
         onClick={() => table.setPageIndex(0)}
         disabled={!table.getCanPreviousPage()}
       >
-        <span className="sr-only">Go to first page</span>
+        <span className="sr-only">{textFirst}</span>
         <i className="mdi-chevron-double-left w-4 h-4" />
       </Button>
       <Button
@@ -117,7 +134,7 @@ export function TablePaginationButtons<TData>({
         onClick={() => table.previousPage()}
         disabled={!table.getCanPreviousPage()}
       >
-        <span className="sr-only">Go to previous page</span>
+        <span className="sr-only">{textPrevious}e</span>
         <i className="mdi-chevron-left w-4 h-4" />
       </Button>
       <Button
@@ -126,7 +143,7 @@ export function TablePaginationButtons<TData>({
         onClick={() => table.nextPage()}
         disabled={!table.getCanNextPage()}
       >
-        <span className="sr-only">Go to next page</span>
+        <span className="sr-only">{textNext}</span>
         <i className="mdi-chevron-right w-4 h-4" />
       </Button>
       <Button
@@ -135,7 +152,7 @@ export function TablePaginationButtons<TData>({
         onClick={() => table.setPageIndex(table.getPageCount() - 1)}
         disabled={!table.getCanNextPage()}
       >
-        <span className="sr-only">Go to last page</span>
+        <span className="sr-only">{textLast}</span>
         <i className="mdi-chevron-double-right w-4 h-4" />
       </Button>
     </div>
