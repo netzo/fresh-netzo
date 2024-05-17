@@ -13,7 +13,7 @@ type TableColumnHeaderProps<TData, TValue> =
   & JSX.HTMLAttributes<HTMLDivElement>
   & {
     column: Column<TData, TValue>;
-    title: string;
+    title?: string;
   };
 
 export function TableColumnHeader<TData, TValue>({
@@ -22,7 +22,11 @@ export function TableColumnHeader<TData, TValue>({
   className,
 }: TableColumnHeaderProps<TData, TValue>) {
   if (!column.getCanSort()) {
-    return <div className={cn(className)}>{title}</div>;
+    return (
+      <div className={cn(className)}>
+        {title ?? column?.columnDef?.title}
+      </div>
+    );
   }
 
   return (
@@ -34,7 +38,7 @@ export function TableColumnHeader<TData, TValue>({
             size="sm"
             className="w-full h-full rounded-none bg-inherit justify-between"
           >
-            <span>{title}</span>
+            <span>{title ?? column?.columnDef?.title}</span>
             {column.getIsSorted() === "desc"
               ? <i className="mdi-arrow-down w-4 h-4 ml-2" />
               : column.getIsSorted() === "asc"

@@ -6,8 +6,8 @@ import type {
 } from "../../../deps/@unocss/core.ts";
 import {
   h,
-  variantGetParameter,
   type Theme,
+  variantGetParameter,
 } from "../../../deps/@unocss/preset-mini.ts";
 import { generateCSSVars } from "./generate.ts";
 import { PresetShadcnOptions } from "./types.ts";

@@ -47,7 +47,7 @@ export function TableViewOptions<TData>({
                   toggleColumn(column);
                 }}
               >
-                {column.id}
+                {column.columnDef?.title || column.id}
               </DropdownMenuCheckboxItem>
             );
           })}
