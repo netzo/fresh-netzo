@@ -118,11 +118,11 @@ export const Combobox = React.forwardRef(
                   {props.options.map((option) => (
                     <CommandItem
                       key={option.value as string}
-                      value={(option.label as string).toLowerCase().trim()}
+                      value={(option.label as string)?.toLowerCase().trim()}
                       onSelect={(selectedLabel) => {
                         const option = props.options.find(
                           (option) =>
-                            (option.label as string).toLowerCase().trim() ===
+                            (option.label as string)?.toLowerCase().trim() ===
                               selectedLabel,
                         );
 
