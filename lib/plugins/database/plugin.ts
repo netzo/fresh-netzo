@@ -39,7 +39,7 @@ export const database = (config?: DatabaseConfig): Plugin => {
   if (!config) return { name: "netzo.database" };
   if (!("apiKey" in config)) config.apiKey = NETZO_API_KEY;
 
-  const db = createDatabase();
+  const db = createDatabase(config);
 
   const client = createClient({
     url: NETZO_DATABASE_URL!,

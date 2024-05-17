@@ -14,6 +14,12 @@ export type DatabaseOptions = DrizzleConfig & {
 };
 
 export const database = (options: DatabaseOptions = {}) => {
+  const {
+    url = Deno.env.get("NETZO_DATABASE_URL")!,
+    authToken = Deno.env.get("NETZO_DATABASE_AUTH_TOKEN"),
+    ...drizzleConfig
+  } = options;
+
   // [client] use sqlite- proxy in browser to sent SQL queries via the netzo.database()
   // plugin which mounts a POST /database endpoint to proxy the SQL queries
   // see https://orm.drizzle.team/docs/get-started-sqlite#http-proxy
@@ -48,18 +54,15 @@ export const database = (options: DatabaseOptions = {}) => {
           return { rows: [] };
         }
       },
-      options, // pass drizzle config (schema and logger)
+      drizzleConfig!,
     );
 
     return db;
   } // [server] use drizzle-orm in deno to connect to a remote libSQL database directly
   else {
-    const client = createClient({
-      url: Deno.env.get("NETZO_DATABASE_URL")!,
-      authToken: Deno.env.get("NETZO_DATABASE_AUTH_TOKEN"),
-    });
+    const client = createClient({ url, authToken });
 
-    const db = drizzle(client, options!);
+    const db = drizzle(client, drizzleConfig!);
 
     return db;
   }
