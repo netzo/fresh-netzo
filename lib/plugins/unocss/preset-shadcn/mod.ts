@@ -6,8 +6,8 @@ import type {
 } from "../../../deps/@unocss/core.ts";
 import {
   h,
-  type Theme,
   variantGetParameter,
+  type Theme,
 } from "../../../deps/@unocss/preset-mini.ts";
 import { generateCSSVars } from "./generate.ts";
 import { PresetShadcnOptions } from "./types.ts";
@@ -245,6 +245,7 @@ export function presetShadcn(options: PresetShadcnOptions = {}): Preset<Theme> {
         ],
         // combobox:
         ...[
+          'whitespace-normal',
           "w-full",
           "justify-between",
           "hover:bg-secondary/20",
