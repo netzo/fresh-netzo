@@ -201,7 +201,9 @@ export function NavItem({ className, ...props }: NavItemProps) {
   );
 }
 
-export function NavItemUser(props: { state: NetzoState; showToggleDarkMode?: boolean }) {
+export function NavItemUser(
+  props: { state: NetzoState; showToggleDarkMode?: boolean },
+) {
   const { showToggleDarkMode = false } = props;
   const { auth } = props.state ?? {};
 
@@ -276,14 +278,14 @@ export function NavItemUser(props: { state: NetzoState; showToggleDarkMode?: boo
         )}
         {showToggleDarkMode && (
           <DropdownMenuItem>
-          <div className="flex gap-4 w-full items-center justify-between">
-            Dark mode
-            <Switch
-              checked={darkMode.value}
-              onCheckedChange={(value) => darkMode.value = value}
-            />
-          </div>
-        </DropdownMenuItem>
+            <div className="flex gap-4 w-full items-center justify-between">
+              Dark mode
+              <Switch
+                checked={darkMode.value}
+                onCheckedChange={(value) => darkMode.value = value}
+              />
+            </div>
+          </DropdownMenuItem>
         )}
         {auth?.sessionUser?.name && (
           <>

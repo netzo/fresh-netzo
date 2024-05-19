@@ -3,7 +3,7 @@ import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "../../dropdown-menu.tsx";
 import { cn } from "../../utils.ts";
 import type { Table } from "./table.tsx";
@@ -24,10 +24,12 @@ export function TableViewOptions<TData>({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        {/* <DropdownMenuLabel>
+        {
+          /* <DropdownMenuLabel>
           Toggle columns
         </DropdownMenuLabel>
-        <DropdownMenuSeparator /> */}
+        <DropdownMenuSeparator /> */
+        }
         {table
           .getAllColumns()
           .filter((column) => column.getCanHide())

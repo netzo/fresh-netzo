@@ -19,7 +19,11 @@ export function TablePagination<TData>({
   const { pageIndex, pageSize, from, to, total } = useTablePagination(table);
   return (
     <div className="flex flex-wrap w-full gap-y-2 gap-x-8 items-center justify-between">
-      <TablePaginationPageRange table={table} locale={locale} className="flex-1" />
+      <TablePaginationPageRange
+        table={table}
+        locale={locale}
+        className="flex-1"
+      />
       <TablePaginationPageSize table={table} locale={locale} />
       <TablePaginationPageCurrent table={table} locale={locale} />
       <TablePaginationButtons table={table} locale={locale} />
@@ -91,7 +95,7 @@ export function TablePaginationPageCurrent<TData>({
 }: JSX.IntrinsicElements["div"] & Props<TData>) {
   const { pageIndex, pageSize, from, to, total } = useTablePagination(table);
   const text = locale === "en"
-   ? `Page ${pageIndex + 1} of ${table.getPageCount()}`
+    ? `Page ${pageIndex + 1} of ${table.getPageCount()}`
     : `Página ${pageIndex + 1} de ${table.getPageCount()}`;
   return (
     <div className={cn("contents h-[48px] min-w-fit !my-auto", className)}>
@@ -108,10 +112,18 @@ export function TablePaginationButtons<TData>({
   locale = "es",
 }: JSX.IntrinsicElements["div"] & Props<TData>) {
   const { pageIndex, pageSize, from, to, total } = useTablePagination(table);
-  const textFirst = locale === "en" ? "Go to first page" : "Ir a la primera página";
-  const textPrevious = locale === "en" ? "Go to previous page" : "Ir a la página anterior";
-  const textNext = locale === "en" ? "Go to next page" : "Ir a la página siguiente";
-  const textLast = locale === "en" ? "Go to last page" : "Ir a la última página";
+  const textFirst = locale === "en"
+    ? "Go to first page"
+    : "Ir a la primera página";
+  const textPrevious = locale === "en"
+    ? "Go to previous page"
+    : "Ir a la página anterior";
+  const textNext = locale === "en"
+    ? "Go to next page"
+    : "Ir a la página siguiente";
+  const textLast = locale === "en"
+    ? "Go to last page"
+    : "Ir a la última página";
   return (
     <div
       className={cn(
