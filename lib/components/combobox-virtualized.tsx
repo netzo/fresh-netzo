@@ -153,7 +153,7 @@ export function ComboboxVirtualized({
           disabled={disabled}
           className="w-full justify-between hover:bg-secondary/20 active:scale-100"
         >
-          <span className="line-clamp-1 text-left font-normal">
+          <span className="text-wrap line-clamp-1 text-left font-normal">
             {selectedOption ? selectedOptionLabel : searchPlaceholder}
           </span>
           <i className="mdi-unfold-more-horizontal h-4 w-4 shrink-0 opacity-50" />

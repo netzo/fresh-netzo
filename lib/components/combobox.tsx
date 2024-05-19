@@ -4,11 +4,11 @@ import * as React from "react";
 
 import { Button } from "./button.tsx";
 import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
+    Command,
+    CommandEmpty,
+    CommandGroup,
+    CommandInput,
+    CommandItem,
 } from "./command.tsx";
 import { Popover, PopoverContent, PopoverTrigger } from "./popover.tsx";
 import { ScrollArea } from "./scroll-area.tsx";
@@ -82,7 +82,7 @@ export const Combobox = React.forwardRef(
             disabled={props.disabled}
             className="w-full justify-between hover:bg-secondary/20 active:scale-100"
           >
-            <span className="line-clamp-1 text-left font-normal">
+            <span className="text-wrap line-clamp-1 text-left font-normal">
               {props.multiple && props.value && props.value.length === 1 && (
                 <span className="mr-2">{props.value}</span>
               )}
