@@ -66,6 +66,7 @@ export const getAuthConfig = (
     case "google": {
       setFromOptionsIfNotInEnv("GOOGLE_CLIENT_ID", options.clientId);
       setFromOptionsIfNotInEnv("GOOGLE_CLIENT_SECRET", options.clientSecret);
+      options.scope ??= "https://www.googleapis.com/auth/userinfo.profile";
       if (!isGoogleSetup(options)) throw getError(provider);
       return createGoogleOAuthConfig(options);
     }
