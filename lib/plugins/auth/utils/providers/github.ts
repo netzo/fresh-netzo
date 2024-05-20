@@ -58,10 +58,11 @@ export async function getUserGithub(
     throw new Error(`${response.status}: ${message}`);
   }
   const userGithub: UserGithub = await response.json();
+  console.log(userGithub)
   return {
     provider: "github",
     authId: userGithub.login,
-    name: userGithub.name as string,
+    name: userGithub.name as string ?? userGithub.login,
     email: userGithub.email as string,
     avatar: userGithub.avatar_url,
   };

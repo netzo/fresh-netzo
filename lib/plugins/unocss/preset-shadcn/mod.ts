@@ -242,6 +242,8 @@ export function presetShadcn(options: PresetShadcnOptions = {}): Preset<Theme> {
         ],
         // combobox:
         ...[
+          "truncate",
+          "text-ellipsis",
           "whitespace-normal",
           "w-full",
           "justify-between",
