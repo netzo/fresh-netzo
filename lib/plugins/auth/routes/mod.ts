@@ -52,7 +52,7 @@ export const getRoutesByProvider = (
         if (userCurrent === null) {
           await ctx.state.auth.createUser(user);
         } else {
-          const data = { ...userCurrent, ...user };
+          const data = { ...user, ...userCurrent };
           await ctx.state.auth.updateUser(data);
           await ctx.state.auth.updateUserSession(data, sessionId);
         }
