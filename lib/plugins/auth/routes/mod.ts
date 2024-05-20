@@ -1,18 +1,11 @@
 import type { PluginRoute } from "$fresh/server.ts";
 import type { AuthConfig } from "../plugin.ts";
 import {
-  type AuthUser,
-  createUser,
-  getUser,
-  updateUser,
-  updateUserSession,
-} from "../utils/db.ts";
-import {
-  type AuthProvider,
   getAuthConfig,
   getFunctionsByProvider,
   getUserByProvider,
 } from "../utils/providers/mod.ts";
+import type { AuthProvider, AuthUser } from "../utils/types.ts";
 
 export const getRoutesByProvider = (
   provider: AuthProvider,
@@ -32,18 +25,19 @@ export const getRoutesByProvider = (
     },
     {
       path: `/auth/${provider}/callback`,
-      handler: async (req, _ctx) => {
+      handler: async (req, ctx) => {
         const authConfig = getAuthConfig(provider, providerOptions);
-        const { response, tokens, sessionId } = await handleCallback(
-          req,
-          authConfig,
-        );
+        const {
+          response,
+          tokens,
+          sessionId,
+        } = await handleCallback(req, authConfig);
 
         const userProvider = await getUserByProvider(
           provider,
           tokens.accessToken,
         );
-        const userCurrent = await getUser(userProvider.authId);
+        const userCurrent = await ctx.state.auth.getUser(userProvider.authId);
 
         const user = {
           sessionId,
@@ -56,10 +50,11 @@ export const getRoutesByProvider = (
         } as unknown as AuthUser;
 
         if (userCurrent === null) {
-          await createUser(user);
+          await ctx.state.auth.createUser(user);
         } else {
-          await updateUser({ ...user, ...userCurrent });
-          await updateUserSession({ ...user, ...userCurrent }, sessionId);
+          const data = { ...user, ...userCurrent };
+          await ctx.state.auth.updateUser(data);
+          await ctx.state.auth.updateUserSession(data, sessionId);
         }
 
         return response;

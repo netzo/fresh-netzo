@@ -4,15 +4,15 @@ import type { NetzoState } from "../../mod.ts";
 import {
   assertUserIsWorkspaceUserOfWorkspaceOfApiKeyIfProviderIsNetzo,
   ensureSignedIn,
+  setAuthState,
   setRequestState,
   setSessionState,
 } from "./middlewares/mod.ts";
 import createAuth from "./routes/auth.tsx";
 import { getRoutesByProvider } from "./routes/mod.ts";
-import type { AuthUser } from "./utils/db.ts";
 import type { EmailClientConfig } from "./utils/providers/email.ts";
-import type { AuthProvider } from "./utils/providers/mod.ts";
 import type { NetzoClientConfig } from "./utils/providers/netzo.ts";
+import type { Auth, AuthProvider, AuthUser } from "./utils/types.ts";
 
 export * from "../../deps/deno_kv_oauth/mod.ts";
 
@@ -23,6 +23,9 @@ export type AuthConfig = {
   description?: string;
   /** HTML content rendered below auth form e.g. to display a link to the terms of service via an a tag. */
   caption?: string;
+  /** An image URL to display to the right side of the login form at /auth. */
+  image?: React.ImgHTMLAttributes<HTMLImageElement>;
+  locale?: "en" | "es";
   providers: {
     netzo?: NetzoClientConfig;
     email?: EmailClientConfig;
@@ -35,7 +38,7 @@ export type AuthConfig = {
   };
 };
 
-export type AuthState = {
+export type AuthState = Auth & {
   /* Session ID used internally by the auth plugin. */
   sessionId?: string;
   /* The user object associated with the session ID. */
@@ -92,6 +95,10 @@ export const auth = (config: AuthConfig): Plugin<NetzoState> => {
   return {
     name: "netzo.auth",
     middlewares: [
+      {
+        path: "/",
+        middleware: { handler: setAuthState },
+      },
       {
         path: "/",
         middleware: { handler: setSessionState },

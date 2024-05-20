@@ -1,4 +1,4 @@
-import type { ComponentChildren, JSX } from "preact";
+import type { JSX } from "preact";
 import {
   Alert,
   AlertDescription,
@@ -26,6 +26,11 @@ export function AuthForm(props: AuthFormProps) {
     ([key, value]) => !["email"].includes(key) && !!value,
   );
   const showDivider = hasEmail && hasOAuth2;
+
+  const text = ({
+    en: "Sign In with",
+    es: "Inicia sesión con",
+  })[props.config.locale ?? "es"];
 
   return (
     <>
@@ -74,13 +79,13 @@ export function AuthForm(props: AuthFormProps) {
         )}
 
         {!!providers?.netzo && (
-          <ButtonNetzo text="Sign In with Netzo" href="/auth/netzo/signin">
+          <ButtonNetzo text={`${text} Netzo`} href="/auth/netzo/signin">
             <div className="mr-4 w-22px h-22px i-netzo-symbol" />
           </ButtonNetzo>
         )}
 
         {!!providers?.google && (
-          <ButtonOAuth2 text="Sign In with Google" href="/auth/google/signin">
+          <ButtonOAuth2 text={`${text} Google`} href="/auth/google/signin">
             {/* NOTE: use inline SVG instead of logos-google-icon to avoid having to load logos collection (7MB) */}
             <svg
               className="mr-4 w-20px h-20px"
@@ -108,19 +113,19 @@ export function AuthForm(props: AuthFormProps) {
         )}
 
         {!!providers?.github && (
-          <ButtonOAuth2 text="Sign In with GitHub" href="/auth/github/signin">
+          <ButtonOAuth2 text={`${text} GitHub`} href="/auth/github/signin">
             <div className="mr-4 w-20px h-20px mdi-github" />
           </ButtonOAuth2>
         )}
 
         {!!providers?.gitlab && (
-          <ButtonOAuth2 text="Sign In with GitLab" href="/auth/gitlab/signin">
+          <ButtonOAuth2 text={`${text} GitLab`} href="/auth/gitlab/signin">
             <div className="mr-4 w-20px h-20px mdi-gitlab" />
           </ButtonOAuth2>
         )}
 
         {!!providers?.slack && (
-          <ButtonOAuth2 text="Sign In with Slack" href="/auth/slack/signin">
+          <ButtonOAuth2 text={`${text} Slack`} href="/auth/slack/signin">
             {/* NOTE: use inline SVG instead of logos-slack-icon to avoid having to load logos collection (7MB) */}
             <svg
               className="mr-4 w-20px h-20px"
@@ -148,7 +153,7 @@ export function AuthForm(props: AuthFormProps) {
         )}
 
         {!!providers?.auth0 && (
-          <ButtonOAuth2 text="Sign In with Auth0" href="/auth/auth0/signin">
+          <ButtonOAuth2 text={`${text} Auth0`} href="/auth/auth0/signin">
             {/* NOTE: use inline SVG instead of simple-icons-auth0 to avoid having to load simple-icons collection (4.4MB) */}
             <svg
               className="mr-4 w-20px h-20px"
@@ -164,7 +169,7 @@ export function AuthForm(props: AuthFormProps) {
         )}
 
         {!!providers?.okta && (
-          <ButtonOAuth2 text="Sign In with Okta" href="/auth/okta/signin">
+          <ButtonOAuth2 text={`${text} Okta`} href="/auth/okta/signin">
             {/* NOTE: use inline SVG instead of simple-icons-okta to avoid having to load simple-icons collection (4.4MB) */}
             <svg
               className="mr-4 w-20px h-20px"
@@ -181,7 +186,7 @@ export function AuthForm(props: AuthFormProps) {
 
         {
           /* {!!providers?.oauth2 && (
-          <ButtonOAuth2 text="Sign In with Custom" href="/auth/oauth2/signin">
+          <ButtonOAuth2 text={`${text} Custom`} href="/auth/oauth2/signin">
             <div className="mr-4 w-20px h-20px mdi-code-json" />
           </ButtonOAuth2>
         )} */
@@ -218,7 +223,7 @@ function ButtonNetzo(
   props: {
     text: string;
     href: string;
-    children: ComponentChildren;
+    children: React.ReactNode;
   },
 ) {
   return (
@@ -235,7 +240,7 @@ function ButtonOAuth2(
   props: {
     text: string;
     href: string;
-    children: ComponentChildren;
+    children: React.ReactNode;
   },
 ) {
   return (

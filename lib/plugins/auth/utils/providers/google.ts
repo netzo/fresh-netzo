@@ -1,5 +1,5 @@
 import { createGoogleOAuthConfig } from "../../../../deps/deno_kv_oauth/mod.ts";
-import type { AuthUserFromProvider } from "../db.ts";
+import type { AuthUserFromProvider } from "../types.ts";
 
 export { createGoogleOAuthConfig };
 

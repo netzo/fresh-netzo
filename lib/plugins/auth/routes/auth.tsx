@@ -1,4 +1,5 @@
 import { defineRoute, type RouteConfig } from "$fresh/server.ts";
+import { cn } from "../../../components/utils.ts";
 import { AuthForm } from "../islands/auth-form.tsx";
 import { type AuthConfig } from "../plugin.ts";
 
@@ -13,11 +14,37 @@ export const config: RouteConfig = {
 
 export default (config: AuthConfig) => {
   return defineRoute((req, ctx) => {
+    const authFormWrapper = "grid gap-6 w-full xs:w-[350px] max-w-[350px]";
+    if (config.image) {
+      return (
+        <div className="w-full h-full lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px]">
+          <div className="h-full flex items-center justify-center py-12">
+            <div className={authFormWrapper}>
+              <AuthForm config={config} request={req} />
+            </div>
+          </div>
+          <div className="hidden bg-muted lg:block">
+            <img
+              src={config.image.src}
+              alt="Netzo Authentication"
+              width="1920"
+              height="1080"
+              className={cn(
+                "w-full h-full object-cover",
+                config.image?.className!,
+              )}
+              {...config.image}
+            />
+          </div>
+        </div>
+      );
+    }
+
     return (
       <div
-        className={`h-full w-full grid place-items-center p-4 bg-background`}
+        className={`w-full h-full grid place-items-center p-4 bg-background`}
       >
-        <div className="grid gap-6 w-full xs:w-[350px] max-w-[350px]">
+        <div className={authFormWrapper}>
           <AuthForm config={config} request={req} />
 
           {config?.caption && (

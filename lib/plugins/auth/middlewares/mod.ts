@@ -1,9 +1,14 @@
 import type { FreshContext } from "$fresh/server.ts";
+import { AuthState } from "netzo/plugins/auth/plugin.ts";
 import { getSessionId } from "../../../deps/deno_kv_oauth/mod.ts";
 import type { NetzoState } from "../../../mod.ts";
-import { getUserBySession } from "../utils/db.ts";
+import { createDatastoreAuth } from "../utils/adapters/datastore.ts";
 
-const skip = (_req: Request, ctx: FreshContext<NetzoState>) => {
+type NetzoStateWithAuth = NetzoState & {
+  auth: AuthState;
+};
+
+const skip = (_req: Request, ctx: FreshContext<NetzoStateWithAuth>) => {
   if (!["route"].includes(ctx.destination)) return true;
   if (ctx.url.pathname.startsWith("/auth/")) return true; // skip auth routes (signin, callback, signout)
   if (ctx.url.pathname.startsWith("/database")) return true; // skip database routes
@@ -14,9 +19,17 @@ const skip = (_req: Request, ctx: FreshContext<NetzoState>) => {
   return false;
 };
 
+export async function setAuthState(
+  _req: Request,
+  ctx: FreshContext<NetzoStateWithAuth>,
+) {
+  ctx.state.auth ??= createDatastoreAuth();
+  return await ctx.next();
+}
+
 export async function setSessionState(
   req: Request,
-  ctx: FreshContext<NetzoState>,
+  ctx: FreshContext<NetzoStateWithAuth>,
 ) {
   if (skip(req, ctx)) return await ctx.next();
 
@@ -30,7 +43,7 @@ export async function setSessionState(
 
   if (sessionId === undefined) return await ctx.next(); // A) not authenticated
 
-  const user = await getUserBySession(sessionId);
+  const user = await ctx.state.auth.getUserBySession(sessionId);
   if (!user) return await ctx.next(); // B) user not found
 
   // set authenticated state (sessionId could be set but expired,
@@ -43,7 +56,7 @@ export async function setSessionState(
 
 export async function assertUserIsWorkspaceUserOfWorkspaceOfApiKeyIfProviderIsNetzo(
   req: Request,
-  ctx: FreshContext<NetzoState>,
+  ctx: FreshContext<NetzoStateWithAuth>,
 ) {
   if (skip(req, ctx)) return await ctx.next();
 
@@ -79,7 +92,7 @@ export async function assertUserIsWorkspaceUserOfWorkspaceOfApiKeyIfProviderIsNe
 
 export async function setRequestState(
   req: Request,
-  ctx: FreshContext<NetzoState>,
+  ctx: FreshContext<NetzoStateWithAuth>,
 ) {
   if (skip(req, ctx)) return await ctx.next();
 
@@ -99,7 +112,7 @@ export async function setRequestState(
 
 export async function ensureSignedIn(
   req: Request,
-  ctx: FreshContext<NetzoState>,
+  ctx: FreshContext<NetzoStateWithAuth>,
 ) {
   if (skip(req, ctx)) return await ctx.next();
 

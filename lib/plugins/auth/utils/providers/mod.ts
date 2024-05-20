@@ -4,7 +4,7 @@ import {
   signOut,
 } from "../../../../deps/deno_kv_oauth/mod.ts";
 import type { AuthConfig } from "../../plugin.ts";
-import { type AuthUserFromProvider } from "../db.ts";
+import type { AuthProvider, AuthUserFromProvider } from "../types.ts";
 import { createAuth0OAuthConfig, getUserAuth0, isAuth0Setup } from "./auth0.ts";
 import {
   createEmailClientConfig,
@@ -37,8 +37,6 @@ import {
 } from "./netzo.ts";
 import { createOktaOAuthConfig, getUserOkta, isOktaSetup } from "./okta.ts";
 import { createSlackOAuthConfig, getUserSlack, isSlackSetup } from "./slack.ts";
-
-export type AuthProvider = keyof AuthConfig["providers"];
 
 const setFromOptionsIfNotInEnv = (name: string, value: string) => {
   if (!value) value = Deno.env.get(name)!;

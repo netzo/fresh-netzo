@@ -1,4 +1,4 @@
-import type { AuthUserFromProvider } from "../db.ts";
+import type { AuthUserFromProvider } from "../types.ts";
 
 type UserEmail = {
   _id: string;
