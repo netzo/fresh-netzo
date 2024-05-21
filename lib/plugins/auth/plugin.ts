@@ -1,9 +1,11 @@
-import type { Plugin, PluginRoute } from "$fresh/server.ts";
+import type { FreshContext, Plugin, PluginRoute } from "$fresh/server.ts";
 import type { OAuth2ClientConfig } from "../../deps/oauth2_client/src/oauth2_client.ts";
 import type { NetzoState } from "../../mod.ts";
 import {
-  assertUserIsWorkspaceUserOfWorkspaceOfApiKeyIfProviderIsNetzo,
+  assertUserIsMemberOfWorkspaceOfApiKeyIfProviderIsNetzo,
+  createAssertUserIsAuthorized,
   ensureSignedIn,
+  NetzoStateWithAuth,
   setAuthState,
   setRequestState,
   setSessionState,
@@ -38,6 +40,15 @@ export type AuthConfig = {
     auth0?: OAuth2ClientConfig;
     okta?: OAuth2ClientConfig;
   };
+  /** A function to check if a user is authorized to sign in. The function should
+   * throw an Error with an optional error message if not authorized.
+   * @example throw new Error("User is not authorized to sign in.");
+   */
+  assertAuthorization?: (
+    user: AuthUser,
+    req: Request,
+    ctx: FreshContext<NetzoStateWithAuth>,
+  ) => Error | unknown;
 };
 
 export type AuthState = Auth & {
@@ -85,6 +96,7 @@ export const auth = (config: AuthConfig): Plugin<NetzoState> => {
   config.description ??= "Sign in to access the app";
   config.caption ??= ""; // e.g. 'By signing in you agree to the <a href="/" target="_blank">Terms of Service</a>';
   config.providers ??= {};
+  config.assertAuthorization ??= () => true;
 
   const authRoutes: PluginRoute[] = [
     { path: "/auth", component: createAuth(config) },
@@ -109,9 +121,12 @@ export const auth = (config: AuthConfig): Plugin<NetzoState> => {
       {
         path: "/",
         middleware: {
-          handler:
-            assertUserIsWorkspaceUserOfWorkspaceOfApiKeyIfProviderIsNetzo,
+          handler: assertUserIsMemberOfWorkspaceOfApiKeyIfProviderIsNetzo,
         },
+      },
+      {
+        path: "/",
+        middleware: { handler: createAssertUserIsAuthorized(config) },
       },
       {
         path: "/",

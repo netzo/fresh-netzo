@@ -6,10 +6,10 @@ import {
 } from "../../../../deps/deno_kv_oauth/deps.ts";
 import {
   COOKIE_BASE,
-  OAUTH_COOKIE_NAME,
   getCookieName,
   getSuccessUrl,
   isHttps,
+  OAUTH_COOKIE_NAME,
   redirect,
 } from "../../../../deps/deno_kv_oauth/lib/_http.ts";
 import { setOAuthSession } from "../../../../deps/deno_kv_oauth/lib/_kv.ts";

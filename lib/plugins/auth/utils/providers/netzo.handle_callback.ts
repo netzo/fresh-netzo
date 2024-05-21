@@ -2,11 +2,11 @@
 import { getCookies, setCookie } from "../../../../deps/deno_kv_oauth/deps.ts";
 import {
   COOKIE_BASE,
-  OAUTH_COOKIE_NAME,
-  SITE_COOKIE_NAME,
   getCookieName,
   isHttps,
+  OAUTH_COOKIE_NAME,
   redirect,
+  SITE_COOKIE_NAME,
 } from "../../../../deps/deno_kv_oauth/lib/_http.ts";
 import { getAndDeleteOAuthSession } from "../../../../deps/deno_kv_oauth/lib/_kv.ts";
 import { handleCallback } from "../../../../deps/deno_kv_oauth/mod.ts";

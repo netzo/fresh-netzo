@@ -1,10 +1,11 @@
 import type { FreshContext } from "$fresh/server.ts";
-import { AuthState } from "netzo/plugins/auth/plugin.ts";
 import { getSessionId } from "../../../deps/deno_kv_oauth/mod.ts";
 import type { NetzoState } from "../../../mod.ts";
+import { AuthConfig, AuthState } from "../plugin.ts";
 import { createDatastoreAuth } from "../utils/adapters/datastore.ts";
+import { getFunctionsByProvider } from "../utils/providers/mod.ts";
 
-type NetzoStateWithAuth = NetzoState & {
+export type NetzoStateWithAuth = NetzoState & {
   auth: AuthState;
 };
 
@@ -54,7 +55,7 @@ export async function setSessionState(
   return await ctx.next(); // C) authenticated
 }
 
-export async function assertUserIsWorkspaceUserOfWorkspaceOfApiKeyIfProviderIsNetzo(
+export async function assertUserIsMemberOfWorkspaceOfApiKeyIfProviderIsNetzo(
   req: Request,
   ctx: FreshContext<NetzoStateWithAuth>,
 ) {
@@ -88,6 +89,33 @@ export async function assertUserIsWorkspaceUserOfWorkspaceOfApiKeyIfProviderIsNe
   }
 
   return await ctx.next();
+}
+
+export function createAssertUserIsAuthorized(config: AuthConfig) {
+  return async (req: Request, ctx: FreshContext<NetzoStateWithAuth>) => {
+    if (skip(req, ctx)) return await ctx.next();
+
+    if (ctx.url.pathname.startsWith("/auth")) return await ctx.next(); // skip auth route
+
+    const { sessionUser } = ctx.state.auth ?? {};
+
+    if (sessionUser) {
+      try {
+        await config?.assertAuthorization?.(sessionUser, req, ctx);
+        ctx.url.searchParams.delete("error");
+      } catch (e: Error | unknown) {
+        const [_, __, signOut] = getFunctionsByProvider(sessionUser.provider);
+        await signOut(req);
+        const { message = "You are not authorized to sign in." } = e as Error;
+        return new Response("", {
+          status: 307,
+          headers: { Location: `/auth?error=${message}` },
+        }); // redirect to relative path
+      }
+    }
+
+    return await ctx.next();
+  };
 }
 
 export async function setRequestState(
