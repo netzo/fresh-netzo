@@ -36,7 +36,7 @@ export const getAuthConfig = (provider: AuthProvider, ctx: FreshContext) => {
     case "google": {
       return createGoogleOAuthConfig({
         redirectUri,
-        scope: "https://www.googleapis.com/auth/userinfo.email",
+        scope: "https://www.googleapis.com/auth/userinfo.profile",
       });
     }
     case "github": {
