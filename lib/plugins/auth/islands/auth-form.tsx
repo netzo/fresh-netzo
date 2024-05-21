@@ -19,7 +19,7 @@ export function AuthForm(props: AuthFormProps) {
   const url = new URL(props.request.url);
   const error = url.searchParams.get("error");
 
-  const { title, description, providers } = props.config;
+  const { logo, title, description, providers } = props.config;
 
   const hasEmail = !!providers?.email;
   const hasOAuth2 = Object.entries(providers ?? {}).some(
@@ -35,6 +35,9 @@ export function AuthForm(props: AuthFormProps) {
   return (
     <>
       <div className="flex flex-col space-y-2 text-center">
+        {logo && (
+          <img src={logo} alt="Logo" className="mx-auto mb-4 w-16 h-16" />
+        )}
         {title && (
           <h1 className="text-2xl font-semibold">
             {title}

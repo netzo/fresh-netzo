@@ -14,7 +14,7 @@ export const config: RouteConfig = {
 
 export default (config: AuthConfig) => {
   return defineRoute((req, ctx) => {
-    const authFormWrapper = "grid gap-6 w-full xs:w-[350px] max-w-[350px]";
+    const authFormWrapper = "grid gap-6 w-full xs:w-[350px] max-w-[350px] pb-16";
     if (config.image) {
       return (
         <div className="w-full h-full lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px]">

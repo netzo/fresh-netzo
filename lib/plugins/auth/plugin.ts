@@ -17,6 +17,8 @@ import type { Auth, AuthProvider, AuthUser } from "./utils/types.ts";
 export * from "../../deps/deno_kv_oauth/mod.ts";
 
 export type AuthConfig = {
+  /** An image URL for the logo to appear above the login form at /auth. */
+  logo?: string;
   /** A short title for the app to appear above the login form at /auth. */
   title?: string;
   /** A short description for the app to appear above the login form at /auth. */
@@ -78,6 +80,7 @@ export const auth = (config: AuthConfig): Plugin<NetzoState> => {
   ].some((key) => !!config?.providers?.[key as AuthProvider]);
   if (!authEnabled) return { name: "netzo.auth" }; // skip if auth but no providers are set
 
+  config.logo ??= "";
   config.title ??= "Sign In";
   config.description ??= "Sign in to access the app";
   config.caption ??= ""; // e.g. 'By signing in you agree to the <a href="/" target="_blank">Terms of Service</a>';
