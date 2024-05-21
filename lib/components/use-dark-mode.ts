@@ -1,9 +1,10 @@
 import { IS_BROWSER } from "$fresh/runtime.ts";
 import { effect, signal } from "@preact/signals";
 
-export const darkMode = signal<boolean>(getDarkMode());
+// NOTE: initializes to false instead of getDarkMode() as default
+export const darkMode = signal<boolean>(false);
 
-export function useDarkMode(value?: boolean) {
+export function useDarkMode(value = false) {
   setDarkMode(value ?? getDarkMode());
 
   effect(() => setDarkMode(darkMode.value));
