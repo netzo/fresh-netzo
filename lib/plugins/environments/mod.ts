@@ -1,14 +1,17 @@
 // deno-lint-ignore-file no-explicit-any
+import { load } from "jsr:@std/dotenv";
 import { netzo } from "../../apis/netzo.ts";
 import type { Project } from "../types.ts";
 import { logInfo, LOGS } from "../utils.ts";
+
+const envVarsLocal = await load({ export: true });
 
 export async function setEnvVarsIfRemoteProject() {
   const {
     NETZO_PROJECT_ID,
     NETZO_API_KEY,
     NETZO_API_URL = "https://api.netzo.io",
-    NETZO_APP_URL = "https://app.netzo.io",
+    // NETZO_APP_URL = "https://app.netzo.io",
   } = Deno.env.toObject();
 
   if (NETZO_PROJECT_ID && NETZO_API_KEY) {
@@ -21,10 +24,15 @@ export async function setEnvVarsIfRemoteProject() {
 
     if (!project) throw new Error(LOGS.notFoundProject());
 
-    const envVars = project.envVars?.development ?? {};
+    const envVarsRemote = project.envVars?.development ?? {};
+    const envVars = { ...envVarsRemote, ...envVarsLocal };
     setEnvVars(envVars);
-    logInfo(LOGS.envNoticeProduction(Object.keys(envVars).length));
-    logInfo(LOGS.openInNetzo(NETZO_APP_URL, project));
+    logInfo(LOGS.loadedEnvsNotice(
+      Object.keys(envVarsLocal).length,
+      Object.keys(envVarsRemote).length,
+      Object.keys(envVars).length,
+    ));
+    // logInfo(LOGS.openInNetzo(NETZO_APP_URL, project));
 
     return;
   } else {

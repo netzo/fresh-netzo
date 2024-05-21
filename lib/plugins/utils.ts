@@ -65,8 +65,12 @@ export const LOGS = {
   envNoticeDevelopment: () => {
     return "Running locally... Set NETZO_PROJECT_ID and NETZO_API_KEY to connect to remote project.";
   },
-  envNoticeProduction: (count: number) => {
-    return `Connected to remote Netzo project. Loaded ${count} environment variables.`;
+  loadedEnvsNotice: (
+    countLocal: number,
+    countRemote: number,
+    countTotal: number,
+  ) => {
+    return `Loaded ${countTotal} environment variables from ${countLocal} local and ${countTotal - countLocal} remote (overwrote ${countTotal - countRemote}).`;
   },
   notFoundProject: () => {
     return "Project not found. Check the project ID and API key.";
@@ -77,6 +81,9 @@ export const LOGS = {
   openInNetzo: (appUrl: string, { _id, workspaceId }: Project) => {
     const url = `${appUrl}/workspaces/${workspaceId}/projects/${_id}`;
     return `Open at ${url}`;
+  },
+  localEnvVarSet: (key: string) => {
+    return `Overwrote remote environment variable "${key}" with local.`;
   },
 } as const;
 
