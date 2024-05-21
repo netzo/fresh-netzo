@@ -11,14 +11,14 @@ export const getRoutesByProvider = (
   provider: AuthProvider,
   options: AuthConfig,
 ): PluginRoute[] => {
-  const providerOptions = options.providers?.[provider] ?? {};
+  const _providerOptions = options.providers?.[provider] ?? {};
   const [signIn, handleCallback, signOut] = getFunctionsByProvider(provider);
 
   const routes: PluginRoute[] = [
     {
       path: `/auth/${provider}/signin`,
       handler: async (req, ctx) => {
-        const authConfig = getAuthConfig(provider, providerOptions, ctx);
+        const authConfig = getAuthConfig(provider, ctx);
         const response = await signIn(req, authConfig);
         return response;
       },
@@ -26,7 +26,7 @@ export const getRoutesByProvider = (
     {
       path: `/auth/${provider}/callback`,
       handler: async (req, ctx) => {
-        const authConfig = getAuthConfig(provider, providerOptions, ctx);
+        const authConfig = getAuthConfig(provider, ctx);
         const {
           response,
           tokens,

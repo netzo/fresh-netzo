@@ -1,27 +1,14 @@
 import type { User as UserNetzo } from "../../../types.ts";
 import type { AuthUserFromProvider } from "../types.ts";
-import { handleCallback } from "./netzo.handle_callback.ts";
-import { signIn } from "./netzo.sign_in.ts";
+import { handleCallbackNetzo } from "./netzo.handle_callback.ts";
+import { signInNetzo } from "./netzo.sign_in.ts";
 
-export { handleCallback, signIn };
+export { handleCallbackNetzo, signInNetzo };
 
-export type NetzoClientConfig = Record<string | number | symbol, never>; // (empty object)
-
-export const createNetzoClientConfig = () => {
-  return {
-    projectId: Deno.env.get("NETZO_PROJECT_ID")!,
-    apiKey: Deno.env.get("NETZO_API_KEY")!,
-  }; // MUST be set if using Netzo Auth Provider
+export type NetzoAuthConfig = {
+  projectId: string;
+  apiKey: string;
 };
-
-export function isNetzoSetup() {
-  try {
-    createNetzoClientConfig();
-    return true;
-  } catch {
-    return false;
-  }
-}
 
 export async function getUserNetzo(
   accessToken: string,

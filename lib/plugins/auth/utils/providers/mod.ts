@@ -1,105 +1,75 @@
+import { FreshContext } from "$fresh/server.ts";
 import {
+  createAuth0OAuthConfig,
+  createGitHubOAuthConfig,
+  createGitLabOAuthConfig,
+  createGoogleOAuthConfig,
+  createOktaOAuthConfig,
+  createSlackOAuthConfig,
   handleCallback,
   signIn,
   signOut,
 } from "../../../../deps/deno_kv_oauth/mod.ts";
-import type { AuthConfig } from "../../plugin.ts";
 import type { AuthProvider, AuthUserFromProvider } from "../types.ts";
-import { createAuth0OAuthConfig, getUserAuth0, isAuth0Setup } from "./auth0.ts";
-import {
-  createEmailClientConfig,
-  getUserEmail,
-  handleCallbackEmail,
-  isEmailSetup,
-  signInEmail,
-} from "./email.ts";
-import {
-  createGitHubOAuthConfig,
-  getUserGithub,
-  isGitHubSetup,
-} from "./github.ts";
-import {
-  createGitLabOAuthConfig,
-  getUserGitlab,
-  isGitlabSetup,
-} from "./gitlab.ts";
-import {
-  createGoogleOAuthConfig,
-  getUserGoogle,
-  isGoogleSetup,
-} from "./google.ts";
-import {
-  createNetzoClientConfig,
-  getUserNetzo,
-  handleCallback as handleCallbackNetzo,
-  isNetzoSetup,
-  signIn as signInNetzo,
-} from "./netzo.ts";
-import { createOktaOAuthConfig, getUserOkta, isOktaSetup } from "./okta.ts";
-import { createSlackOAuthConfig, getUserSlack, isSlackSetup } from "./slack.ts";
+import { getUserAuth0 } from "./auth0.ts";
+import { getUserEmail, handleCallbackEmail, signInEmail } from "./email.ts";
+import { getUserGithub } from "./github.ts";
+import { getUserGitlab } from "./gitlab.ts";
+import { getUserGoogle } from "./google.ts";
+import { getUserNetzo, handleCallbackNetzo, signInNetzo } from "./netzo.ts";
+import { getUserOkta } from "./okta.ts";
+import { getUserSlack } from "./slack.ts";
 
-const setFromOptionsIfNotInEnv = (name: string, value: string) => {
-  if (!value) value = Deno.env.get(name)!;
-  Deno.env.set(name, value);
-};
-
-export const getAuthConfig = (
-  provider: AuthProvider,
-  options: AuthConfig["providers"][AuthProvider],
-) => {
-  const getError = (provider: AuthProvider) =>
-    new Error(
-      `[auth] Missing or invalid configuration for "${provider}" provider`,
-    );
-
-  options.redirectUri = `/auth/${provider}/callback`;
+export const getAuthConfig = (provider: AuthProvider, ctx: FreshContext) => {
+  const redirectUri = `${ctx.url.origin}/auth/${provider}/callback`;
 
   switch (provider) {
     case "netzo": {
-      if (!isNetzoSetup()) throw getError(provider);
-      return createNetzoClientConfig();
+      return {
+        projectId: Deno.env.get("NETZO_PROJECT_ID")!,
+        apiKey: Deno.env.get("NETZO_API_KEY")!,
+      }; // MUST be set if using Netzo Auth Provider
     }
     case "email": {
-      if (!isEmailSetup()) throw getError(provider);
-      return createEmailClientConfig();
+      return {};
     }
     case "google": {
-      setFromOptionsIfNotInEnv("GOOGLE_CLIENT_ID", options.clientId);
-      setFromOptionsIfNotInEnv("GOOGLE_CLIENT_SECRET", options.clientSecret);
-      options.scope ??= "https://www.googleapis.com/auth/userinfo.profile";
-      if (!isGoogleSetup(options)) throw getError(provider);
-      return createGoogleOAuthConfig(options);
+      return createGoogleOAuthConfig({
+        redirectUri,
+        scope: "https://www.googleapis.com/auth/userinfo.email",
+      });
     }
     case "github": {
-      setFromOptionsIfNotInEnv("GITHUB_CLIENT_ID", options.clientId);
-      setFromOptionsIfNotInEnv("GITHUB_CLIENT_SECRET", options.clientSecret);
-      if (!isGitHubSetup()) throw getError(provider);
-      return createGitHubOAuthConfig();
+      return createGitHubOAuthConfig({ redirectUri, scope: "user:email" });
     }
     case "gitlab": {
-      setFromOptionsIfNotInEnv("GITLAB_CLIENT_ID", options.clientId);
-      setFromOptionsIfNotInEnv("GITLAB_CLIENT_SECRET", options.clientSecret);
-      if (!isGitlabSetup(options)) throw getError(provider);
-      return createGitLabOAuthConfig(options);
+      return createGitLabOAuthConfig({ redirectUri, scope: "profile" });
     }
     case "slack": {
-      setFromOptionsIfNotInEnv("SLACK_CLIENT_ID", options.clientId);
-      setFromOptionsIfNotInEnv("SLACK_CLIENT_SECRET", options.clientSecret);
-      if (!isSlackSetup(options)) throw getError(provider);
-      return createSlackOAuthConfig(options);
+      return createSlackOAuthConfig({
+        redirectUri,
+        scope: "users.profile:read",
+      });
     }
     case "auth0": {
-      setFromOptionsIfNotInEnv("CUSTOM_CLIENT_ID", options.clientId);
-      setFromOptionsIfNotInEnv("CUSTOM_CLIENT_SECRET", options.clientSecret);
-      if (!isAuth0Setup(options)) throw getError(provider);
-      return createAuth0OAuthConfig(options);
+      return createAuth0OAuthConfig({
+        redirectUri,
+        scope: "openid email profile",
+      });
     }
     case "okta": {
-      setFromOptionsIfNotInEnv("OKTA_CLIENT_ID", options.clientId);
-      setFromOptionsIfNotInEnv("OKTA_CLIENT_SECRET", options.clientSecret);
-      if (!isOktaSetup(options)) throw getError(provider);
-      return createOktaOAuthConfig(options);
+      return createOktaOAuthConfig({
+        redirectUri,
+        scope: "openid email profile",
+      });
     }
+    // case "aws-cognito":
+    // case "azure-ad":
+    // case "azure-adb2c":
+    // case "clerk":
+    // case "discord":
+    // case "dropbox":
+    // case "facebook":
     default:
       throw new Error(`Provider ${provider} not supported`);
   }

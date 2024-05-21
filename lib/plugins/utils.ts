@@ -70,7 +70,9 @@ export const LOGS = {
     countRemote: number,
     countTotal: number,
   ) => {
-    return `Loaded ${countTotal} environment variables from ${countLocal} local and ${countTotal - countLocal} remote (overwrote ${countTotal - countRemote}).`;
+    return `Loaded ${countTotal} environment variables from ${countLocal} local and ${
+      countTotal - countLocal
+    } remote (overwrote ${(countLocal + countRemote) - countTotal}).`;
   },
   notFoundProject: () => {
     return "Project not found. Check the project ID and API key.";

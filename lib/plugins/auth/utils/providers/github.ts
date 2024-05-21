@@ -1,16 +1,4 @@
-import { createGitHubOAuthConfig } from "../../../../deps/deno_kv_oauth/mod.ts";
 import type { AuthUserFromProvider } from "../types.ts";
-
-export { createGitHubOAuthConfig };
-
-export function isGitHubSetup() {
-  try {
-    createGitHubOAuthConfig();
-    return true;
-  } catch {
-    return false;
-  }
-}
 
 export type UserGithub = {
   login: string;

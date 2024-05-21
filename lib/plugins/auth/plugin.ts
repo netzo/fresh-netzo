@@ -10,8 +10,8 @@ import {
 } from "./middlewares/mod.ts";
 import createAuth from "./routes/auth.tsx";
 import { getRoutesByProvider } from "./routes/mod.ts";
-import type { EmailClientConfig } from "./utils/providers/email.ts";
-import type { NetzoClientConfig } from "./utils/providers/netzo.ts";
+import type { EmailAuthConfig } from "./utils/providers/email.ts";
+import type { NetzoAuthConfig } from "./utils/providers/netzo.ts";
 import type { Auth, AuthProvider, AuthUser } from "./utils/types.ts";
 
 export * from "../../deps/deno_kv_oauth/mod.ts";
@@ -29,8 +29,8 @@ export type AuthConfig = {
   image?: React.ImgHTMLAttributes<HTMLImageElement>;
   locale?: "en" | "es";
   providers: {
-    netzo?: NetzoClientConfig;
-    email?: EmailClientConfig;
+    netzo?: NetzoAuthConfig;
+    email?: EmailAuthConfig;
     google?: OAuth2ClientConfig;
     github?: OAuth2ClientConfig;
     gitlab?: OAuth2ClientConfig;

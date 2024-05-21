@@ -1,18 +1,4 @@
-import { createAuth0OAuthConfig } from "../../../../deps/deno_kv_oauth/mod.ts";
 import type { AuthUserFromProvider } from "../types.ts";
-
-export { createAuth0OAuthConfig };
-
-export function isAuth0Setup(
-  options: Parameters<typeof createAuth0OAuthConfig>[0],
-) {
-  try {
-    createAuth0OAuthConfig(options);
-    return true;
-  } catch {
-    return false;
-  }
-}
 
 export type UserAuth0 = {
   sub: string;

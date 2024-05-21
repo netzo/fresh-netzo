@@ -1,18 +1,4 @@
-import { createSlackOAuthConfig } from "../../../../deps/deno_kv_oauth/mod.ts";
 import type { AuthUserFromProvider } from "../types.ts";
-
-export { createSlackOAuthConfig };
-
-export function isSlackSetup(
-  options: Parameters<typeof createSlackOAuthConfig>[0],
-) {
-  try {
-    createSlackOAuthConfig(options);
-    return true;
-  } catch {
-    return false;
-  }
-}
 
 export type AuthSlackResponse = {
   ok: boolean;

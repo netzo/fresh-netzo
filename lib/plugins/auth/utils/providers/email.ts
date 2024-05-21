@@ -1,3 +1,4 @@
+import { handleCallback, signIn } from "../../../../deps/deno_kv_oauth/mod.ts";
 import type { AuthUserFromProvider } from "../types.ts";
 
 type UserEmail = {
@@ -7,35 +8,32 @@ type UserEmail = {
   avatar: string;
 };
 
-export type EmailClientConfig = Record<string | number | symbol, never>; // (empty object)
-
-export const createEmailClientConfig = () => {
-  return {};
-};
-
-export function isEmailSetup() {
-  try {
-    createEmailClientConfig();
-    return true;
-  } catch {
-    return false;
-  }
-}
+export type EmailAuthConfig = Record<string | number | symbol, never>; // (empty object)
 
 export async function signInEmail(
   _req: Request,
-  _authConfig: ReturnType<typeof createEmailClientConfig>,
-) {
+  _authConfig: EmailAuthConfig,
+): ReturnType<typeof signIn> {
   const response = await new Response("Not implemented");
   return response;
 }
 
 export async function handleCallbackEmail(
   _req: Request,
-  _authConfig: ReturnType<typeof createEmailClientConfig>,
-) {
+  _authConfig: EmailAuthConfig,
+): ReturnType<typeof handleCallback> {
   const response = await new Response("Not implemented");
-  return response;
+  return {
+    response,
+    sessionId: `x-x-x-x-x`,
+    tokens: {
+      accessToken: "",
+      tokenType: "",
+      expiresIn: 0,
+      refreshToken: "",
+      scope: [],
+    },
+  };
 }
 
 export async function getUserEmail(

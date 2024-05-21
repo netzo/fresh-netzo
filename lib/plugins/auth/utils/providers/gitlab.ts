@@ -1,18 +1,4 @@
-import { createGitLabOAuthConfig } from "../../../../deps/deno_kv_oauth/mod.ts";
 import type { AuthUserFromProvider } from "../types.ts";
-
-export { createGitLabOAuthConfig };
-
-export function isGitlabSetup(
-  options: Parameters<typeof createGitLabOAuthConfig>[0],
-) {
-  try {
-    createGitLabOAuthConfig(options);
-    return true;
-  } catch {
-    return false;
-  }
-}
 
 export type UserGitlab = {
   id: number;

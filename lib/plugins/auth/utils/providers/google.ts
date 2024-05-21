@@ -1,18 +1,4 @@
-import { createGoogleOAuthConfig } from "../../../../deps/deno_kv_oauth/mod.ts";
 import type { AuthUserFromProvider } from "../types.ts";
-
-export { createGoogleOAuthConfig };
-
-export function isGoogleSetup(
-  options: Parameters<typeof createGoogleOAuthConfig>[0],
-) {
-  try {
-    createGoogleOAuthConfig(options);
-    return true;
-  } catch {
-    return false;
-  }
-}
 
 export type UserGoogle = {
   sub: string;

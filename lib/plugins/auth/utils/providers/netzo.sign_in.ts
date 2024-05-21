@@ -6,14 +6,15 @@ import {
 } from "../../../../deps/deno_kv_oauth/deps.ts";
 import {
   COOKIE_BASE,
+  OAUTH_COOKIE_NAME,
   getCookieName,
   getSuccessUrl,
   isHttps,
-  OAUTH_COOKIE_NAME,
   redirect,
 } from "../../../../deps/deno_kv_oauth/lib/_http.ts";
 import { setOAuthSession } from "../../../../deps/deno_kv_oauth/lib/_kv.ts";
-import { NetzoClientConfig } from "./netzo.ts";
+import { signIn } from "../../../../deps/deno_kv_oauth/mod.ts";
+import { NetzoAuthConfig } from "./netzo.ts";
 
 export interface SignInOptions {
   /** URL parameters that are appended to the authorization URI, if defined. */
@@ -24,12 +25,12 @@ export interface SignInOptions {
  * Handles the sign-in request and process for the given Netzo configuration
  * and redirects the client to the authorization URL.
  */
-export async function signIn(
+export async function signInNetzo(
   request: Request,
-  /** @see {@linkcode NetzoClientConfig} */
-  _clientConfig: NetzoClientConfig,
+  /** @see {@linkcode NetzoAuthConfig} */
+  _clientConfig: NetzoAuthConfig,
   options?: SignInOptions,
-): Promise<Response> {
+): ReturnType<typeof signIn> {
   const state = crypto.randomUUID();
   const { NETZO_API_URL = "https://api.netzo.io" } = Deno.env.toObject();
   const url = new URL(request.url);

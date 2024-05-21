@@ -1,27 +1,28 @@
 // adapted from https://github.com/denoland/deno_kv_oauth/blob/main/lib/handle_callback.ts
-import type { Tokens } from "../../../../deps/oauth2_client/src/types.ts";
 import { getCookies, setCookie } from "../../../../deps/deno_kv_oauth/deps.ts";
 import {
   COOKIE_BASE,
+  OAUTH_COOKIE_NAME,
+  SITE_COOKIE_NAME,
   getCookieName,
   isHttps,
-  OAUTH_COOKIE_NAME,
   redirect,
-  SITE_COOKIE_NAME,
 } from "../../../../deps/deno_kv_oauth/lib/_http.ts";
 import { getAndDeleteOAuthSession } from "../../../../deps/deno_kv_oauth/lib/_kv.ts";
-import { NetzoClientConfig } from "./netzo.ts";
+import { handleCallback } from "../../../../deps/deno_kv_oauth/mod.ts";
+import type { Tokens } from "../../../../deps/oauth2_client/src/types.ts";
+import { NetzoAuthConfig } from "./netzo.ts";
 
 /**
  * Handles the OAuth callback request for the given Netzo configuration, and
  * then redirects the client to the success URL set in {@linkcode signIn}. The
  * request URL must match the redirect URL of the OAuth application.
  */
-export async function handleCallback(
+export async function handleCallbackNetzo(
   request: Request,
-  /** @see {@linkcode NetzoClientConfig} */
-  _clientConfig: NetzoClientConfig,
-) {
+  /** @see {@linkcode NetzoAuthConfig} */
+  _clientConfig: NetzoAuthConfig,
+): ReturnType<typeof handleCallback> {
   const oauthCookieName = getCookieName(
     OAUTH_COOKIE_NAME,
     isHttps(request.url),
@@ -53,9 +54,5 @@ export async function handleCallback(
       secure: isHttps(request.url),
     },
   );
-  return {
-    response,
-    sessionId,
-    tokens,
-  };
+  return { response, sessionId, tokens };
 }
