@@ -72,7 +72,7 @@ export function AuthForm(props: AuthFormProps) {
       <div className="grid gap-6">
         {!!providers?.email && (
           <form method="POST" action="/auth/email">
-            <ButtonEmail />
+            <ButtonEmail text={i18n.emailButton} />
           </form>
         )}
 
@@ -207,7 +207,7 @@ export function AuthForm(props: AuthFormProps) {
   );
 }
 
-function ButtonEmail() {
+function ButtonEmail(props: { text: string }) {
   return (
     <div className="grid gap-2">
       <div className="grid gap-1">
@@ -224,7 +224,7 @@ function ButtonEmail() {
         />
       </div>
       <Button variant="default" type="submit">
-        {i18n.emailButton}
+        {props.text}
       </Button>
     </div>
   );
