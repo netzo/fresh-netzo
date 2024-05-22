@@ -28,19 +28,17 @@ export function AuthForm(props: AuthFormProps) {
   const showDivider = hasEmail && hasOAuth2;
 
   const i18n = ({
-    emailButton: {
-      en: "Sign In with Email",
-      es: "Inicia sesión con Email",
+    en: {
+      emailButton: "Sign In with Email",
+      text: "Sign In with",
+      divider: "Or continue with",
     },
-    text: {
-      en: "Sign In with",
-      es: "Inicia sesión con",
+    es: {
+      emailButton: "Inicia sesión con Email",
+      text: "Inicia sesión con",
+      divider: "O continua con",
     },
-    divider: {
-      en: "Or continue with",
-      es: "O continua con",
-    },
-  })[props.config.locale ?? "es"];
+  })?.[props.config.locale ?? "es"]!;
 
   return (
     <>
