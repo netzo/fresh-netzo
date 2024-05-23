@@ -1,8 +1,8 @@
 import type { FreshContext } from "$fresh/server.ts";
+import { createDatabaseAuth } from "netzo/plugins/auth/utils/adapters/database.ts";
 import { getSessionId } from "../../../deps/deno_kv_oauth/mod.ts";
 import type { NetzoState } from "../../../mod.ts";
 import { AuthConfig, AuthState } from "../plugin.ts";
-import { createDatastoreAuth } from "../utils/adapters/datastore.ts";
 import { getFunctionsByProvider } from "../utils/providers/mod.ts";
 
 export type NetzoStateWithAuth = NetzoState & {
@@ -20,12 +20,12 @@ const skip = (_req: Request, ctx: FreshContext<NetzoStateWithAuth>) => {
   return false;
 };
 
-export async function setAuthState(
-  _req: Request,
-  ctx: FreshContext<NetzoStateWithAuth>,
-) {
-  ctx.state.auth ??= createDatastoreAuth();
-  return await ctx.next();
+export function createSetAuthState(config: AuthConfig) {
+  return async (_req: Request, ctx: FreshContext<NetzoStateWithAuth>) => {
+    ctx.state.auth ??= createDatabaseAuth(config);
+    // ctx.state.auth ??= createDatastoreAuth();
+    return await ctx.next();
+  };
 }
 
 export async function setSessionState(

@@ -9,8 +9,8 @@ export const createDatastoreAuth = (): Auth => ({
     user.createdAt = new Date().toISOString();
     user.updatedAt = user.createdAt;
     user.deletedAt = "";
-    const usersKey = ["$users", user.authId];
-    const usersBySessionKey = ["$usersBySession", user.sessionId];
+    const usersKey = ["users", user.authId];
+    const usersBySessionKey = ["usersBySession", user.sessionId];
 
     const atomicOp = kv.atomic()
       .check({ key: usersKey, versionstamp: null })
@@ -23,8 +23,8 @@ export const createDatastoreAuth = (): Auth => ({
   },
   updateUser: async (user: AuthUser) => {
     user.updatedAt ||= new Date().toISOString();
-    const usersKey = ["$users", user.authId];
-    const usersBySessionKey = ["$usersBySession", user.sessionId];
+    const usersKey = ["users", user.authId];
+    const usersBySessionKey = ["usersBySession", user.sessionId];
 
     const atomicOp = kv.atomic()
       .set(usersKey, user)
@@ -35,9 +35,9 @@ export const createDatastoreAuth = (): Auth => ({
   },
   updateUserSession: async (user: AuthUser, sessionId: string) => {
     user.updatedAt = new Date().toISOString();
-    const userKey = ["$users", user.authId];
-    const oldUserBySessionKey = ["$usersBySession", user.sessionId];
-    const newUserBySessionKey = ["$usersBySession", sessionId];
+    const userKey = ["users", user.authId];
+    const oldUserBySessionKey = ["usersBySession", user.sessionId];
+    const newUserBySessionKey = ["usersBySession", sessionId];
     const newUser: AuthUser = { ...user, sessionId };
 
     const atomicOp = kv.atomic()
@@ -50,21 +50,16 @@ export const createDatastoreAuth = (): Auth => ({
     if (!res.ok) throw new Error("Failed to update user session");
   },
   getUser: async (authId: string) => {
-    const res = await kv.get<AuthUser>(["$users", authId]);
+    const res = await kv.get<AuthUser>(["users", authId]);
     return res.value;
   },
   getUserBySession: async (sessionId: string) => {
-    const key = ["$usersBySession", sessionId];
+    const key = ["usersBySession", sessionId];
     const eventualRes = await kv.get<AuthUser>(key, {
       consistency: "eventual",
     });
     if (eventualRes.value !== null) return eventualRes.value;
     const res = await kv.get<AuthUser>(key);
     return res.value;
-  },
-  listUsers: async (options?: Deno.KvListOptions) => {
-    const iterator = kv.list<AuthUser>({ prefix: ["$users"] }, options);
-    const res = await Array.fromAsync(iterator);
-    return res.map((entry) => entry.value);
   },
 });

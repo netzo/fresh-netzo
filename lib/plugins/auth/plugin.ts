@@ -1,12 +1,13 @@
 import type { FreshContext, Plugin, PluginRoute } from "$fresh/server.ts";
-import type { OAuth2ClientConfig } from "../../deps/oauth2_client/src/oauth2_client.ts";
+import { DrizzleConfig } from "npm:drizzle-orm@0.30.10/utils";
+import { HTMLAttributes } from "preact/compat";
 import type { NetzoState } from "../../mod.ts";
 import {
   assertUserIsMemberOfWorkspaceOfApiKeyIfProviderIsNetzo,
   createAssertUserIsAuthorized,
+  createSetAuthState,
   ensureSignedIn,
   NetzoStateWithAuth,
-  setAuthState,
   setRequestState,
   setSessionState,
 } from "./middlewares/mod.ts";
@@ -28,17 +29,37 @@ export type AuthConfig = {
   /** HTML content rendered below auth form e.g. to display a link to the terms of service via an a tag. */
   caption?: string;
   /** An image URL to display to the right side of the login form at /auth. */
-  image?: React.ImgHTMLAttributes<HTMLImageElement>;
+  image?: HTMLAttributes<HTMLImageElement>;
   locale?: "en" | "es";
   providers: {
     netzo?: NetzoAuthConfig;
     email?: EmailAuthConfig;
-    google?: OAuth2ClientConfig;
-    github?: OAuth2ClientConfig;
-    gitlab?: OAuth2ClientConfig;
-    slack?: OAuth2ClientConfig;
-    auth0?: OAuth2ClientConfig;
-    okta?: OAuth2ClientConfig;
+    google?: {
+      clientId?: string;
+      clientSecret?: string;
+    };
+    github?: {
+      clientId?: string;
+      clientSecret?: string;
+    };
+    gitlab?: {
+      clientId?: string;
+      clientSecret?: string;
+    };
+    slack?: {
+      clientId?: string;
+      clientSecret?: string;
+    };
+    auth0?: {
+      clientId?: string;
+      clientSecret?: string;
+      auth0Domain?: string; // must set AUTH0_DOMAIN environment variable
+    };
+    okta?: {
+      clientId?: string;
+      clientSecret?: string;
+      oktaDomain?: string; // must set OKTA_DOMAIN environment variable
+    };
   };
   /** A function to check if a user is authorized to sign in. The function should
    * throw an Error with an optional error message if not authorized.
@@ -49,6 +70,8 @@ export type AuthConfig = {
     req: Request,
     ctx: FreshContext<NetzoStateWithAuth>,
   ) => Error | unknown;
+  /* The Drizzle schema declaring the users and sessions tables. */
+  schema: DrizzleConfig["schema"];
 };
 
 export type AuthState = Auth & {
@@ -112,7 +135,7 @@ export const auth = (config: AuthConfig): Plugin<NetzoState> => {
     middlewares: [
       {
         path: "/",
-        middleware: { handler: setAuthState },
+        middleware: { handler: createSetAuthState(config) },
       },
       {
         path: "/",

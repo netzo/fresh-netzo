@@ -10,7 +10,13 @@ export type AuthUser = {
   name: string;
   email: string;
   avatar: string;
-  roles: string[];
+  projects: {
+    [projectId: string]: {
+      roles: ("owner" | "admin" | "developer" | "user" | string)[];
+      // deno-lint-ignore no-explicit-any
+      [key: string]: any;
+    };
+  };
   createdAt: string;
   updatedAt: string;
   deletedAt: "" | string;
@@ -47,7 +53,6 @@ export type Auth = {
    * await updateUser({
    *   authId: "auth0|xxx",
    *   sessionId: crypto.randomUUID(),
-   *   roles: ["admin"],
    * });
    * ```
    */
@@ -62,7 +67,6 @@ export type Auth = {
    * await updateUserSession({
    *   authId: "auth0|xxx",
    *   sessionId: "xxx",
-   *   roles: ["admin"],
    * }, "yyy");
    * ```
    */
@@ -101,21 +105,4 @@ export type Auth = {
    * ```
    */
   getUserBySession: (sessionId: string) => Promise<AuthUser | null>;
-  /**
-   * Returns a {@linkcode Deno.KvListIterator} which can be used to iterate over
-   * the users in the database.
-   *
-   * @example
-   * ```ts
-   * import { listUsers } from "../../../../auth/utils/db.ts";
-   *
-   * for await (const entry of listUsers()) {
-   *   entry.value.authId; // Returns "auth0|xxx"
-   *   entry.value.sessionId; // Returns "xxx"
-   *   entry.value.roles; // Returns ["admin"]
-   *   entry.value.provider; // Returns "github"
-   * }
-   * ```
-   */
-  listUsers: (options?: Deno.KvListOptions) => Promise<AuthUser[]>;
 };
