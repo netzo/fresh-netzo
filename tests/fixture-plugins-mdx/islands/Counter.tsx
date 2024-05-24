@@ -1,5 +1,5 @@
+import { IS_BROWSER } from "@fresh/core";
 import { Signal } from "@preact/signals";
-import { IS_BROWSER } from "fresh/runtime.ts";
 
 interface CounterProps {
   count: Signal<number>;

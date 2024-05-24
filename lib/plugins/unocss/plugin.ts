@@ -1,6 +1,7 @@
-import type { Plugin } from "fresh/server.ts";
-import { dirname, fromFileUrl, join, walk } from "fresh/src/server/deps.ts";
-import { JSX, options as preactOptions, VNode } from "preact";
+import type { Plugin } from "@fresh/core";
+import { walk } from "@std/fs/walk";
+import { dirname, fromFileUrl, join } from "@std/path";
+import { JSX, VNode, options as preactOptions } from "preact";
 import { UnoGenerator, type UserConfig } from "../../deps/@unocss/core.ts";
 import type { Theme } from "../../deps/@unocss/preset-uno.ts";
 import { existsSync } from "../../deps/std/fs/exists.ts";

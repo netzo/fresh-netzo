@@ -1,8 +1,8 @@
 // @deno-types="npm:@types/react@18.2.60"
 import * as React from "react";
 
+import { IS_BROWSER } from "@fresh/core";
 import { useSignal } from "@preact/signals";
-import { IS_BROWSER } from "fresh/runtime.ts";
 import { AuthUser } from "../../plugins/auth/utils/db.ts";
 import { ButtonDarkMode } from "../button-dark-mode.tsx";
 import { Button } from "../button.tsx";

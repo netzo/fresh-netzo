@@ -1,5 +1,5 @@
 // deno-lint-ignore-file no-explicit-any
-import type { Plugin, PluginRoute } from "fresh/server.ts";
+import type { Plugin, PluginRoute } from "@fresh/core";
 import { createClient } from "npm:@libsql/client@0.6.0";
 import { eq, sql } from "npm:drizzle-orm@0.30.10";
 import { DrizzleConfig } from "npm:drizzle-orm@0.30.10/utils";

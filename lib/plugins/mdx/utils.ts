@@ -1,4 +1,4 @@
-import { type PluginRoute } from "fresh/server.ts";
+import { type PluginRoute } from "@fresh/core";
 import { compile } from "npm:@mdx-js/mdx";
 import { ImportDeclaration } from "npm:@types/estree-jsx@1.0.5";
 import { Root } from "npm:@types/hast@3.0.3";
