@@ -1,9 +1,9 @@
 import type { PluginRoute } from "fresh/server.ts";
 import type { AuthConfig } from "../plugin.ts";
 import {
-    getAuthConfig,
-    getFunctionsByProvider,
-    getUserByProvider,
+  getAuthConfig,
+  getFunctionsByProvider,
+  getUserByProvider,
 } from "../utils/providers/mod.ts";
 import type { AuthProvider, AuthUser } from "../utils/types.ts";
 

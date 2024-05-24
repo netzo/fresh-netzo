@@ -3,7 +3,7 @@ import { deepParseJson } from "npm:deep-parse-json@2.0.0";
 import { unflatten } from "npm:flat@6.0.1";
 import { datastore as createDatastore } from "../../datastore/mod.ts";
 import { apiKeyAuthentication, cors } from "../middleware.ts";
-import { RESPONSES, parseRequestBody } from "../utils.ts";
+import { parseRequestBody, RESPONSES } from "../utils.ts";
 
 export type DatastoreConfig = {
   /** Wether to require authentication using the provided API key in the
