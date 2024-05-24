@@ -2,10 +2,10 @@
 // This file SHOULD be checked into source version control.
 // This file is automatically updated during development when running `dev.ts`.
 
-import * as $index from "./routes/index.tsx";
+import { type Manifest } from "fresh/server.ts";
 import * as $CheckDuplication from "./islands/CheckDuplication.tsx";
 import * as $InsertCssRules from "./islands/InsertCssRules.tsx";
-import { type Manifest } from "$fresh/server.ts";
+import * as $index from "./routes/index.tsx";
 
 const manifest = {
   routes: {

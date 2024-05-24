@@ -1,4 +1,4 @@
-import type { Plugin, PluginRoute } from "../../deps/$fresh/server.ts";
+import type { Plugin, PluginRoute } from "../../deps/fresh/server.ts";
 import type { NetzoState } from "../../mod.ts";
 import { mdxPathsToRoutes, scanForMDXFiles } from "./utils.ts";
 

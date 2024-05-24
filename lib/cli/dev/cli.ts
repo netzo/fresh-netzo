@@ -1,6 +1,6 @@
 // adapted from https://github.com/denoland/fresh/blob/main/src/dev/cli.ts
-import { type FreshConfig } from "$fresh/server.ts";
-import { manifest } from "$fresh/src/dev/mod.ts";
+import { type FreshConfig } from "fresh/server.ts";
+import { manifest } from "fresh/src/dev/mod.ts";
 import { join, toFileUrl } from "../../deps/std/path/mod.ts";
 
 const [cmd, configURL] = Deno.args;

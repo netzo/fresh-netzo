@@ -1,5 +1,5 @@
 // deno-lint-ignore-file no-explicit-any
-import type { Plugin, PluginRoute } from "$fresh/server.ts";
+import type { Plugin, PluginRoute } from "fresh/server.ts";
 import { createClient } from "npm:@libsql/client@0.6.0";
 import { eq } from "npm:drizzle-orm@0.30.10";
 import { DrizzleConfig } from "npm:drizzle-orm@0.30.10/utils";
@@ -97,7 +97,15 @@ export const database = (config?: DatabaseConfig): Plugin => {
             const { tableName } = ctx.params;
             const table = config.schema![tableName] as any;
             const data = await parseRequestBody(req);
-            const result = await db.insert(table).values(data).returning();
+            // UPSERT: https://orm.drizzle.team/learn/guides/upsert
+            const result = await db
+              .insert(table)
+              .values(data)
+              .onConflictDoUpdate({
+                target: table.id,
+                set: { id: sql.raw(`excluded.${table.id}`) },
+              })
+              .returning();
             return Response.json(
               Array.isArray(result) ? result[0] : result.rows,
             );

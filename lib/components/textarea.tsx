@@ -1,7 +1,7 @@
 // @deno-types="npm:@types/react@18.2.60"
 import * as React from "react";
 
-import { IS_BROWSER } from "$fresh/runtime.ts";
+import { IS_BROWSER } from "fresh/runtime.ts";
 import { cn } from "./utils.ts";
 
 // deno-lint-ignore no-empty-interface

@@ -1,14 +1,14 @@
-import { FreshContext } from "$fresh/server.ts";
+import { FreshContext } from "fresh/server.ts";
 import {
-  createAuth0OAuthConfig,
-  createGitHubOAuthConfig,
-  createGitLabOAuthConfig,
-  createGoogleOAuthConfig,
-  createOktaOAuthConfig,
-  createSlackOAuthConfig,
-  handleCallback,
-  signIn,
-  signOut,
+    createAuth0OAuthConfig,
+    createGitHubOAuthConfig,
+    createGitLabOAuthConfig,
+    createGoogleOAuthConfig,
+    createOktaOAuthConfig,
+    createSlackOAuthConfig,
+    handleCallback,
+    signIn,
+    signOut,
 } from "../../../../deps/deno_kv_oauth/mod.ts";
 import type { AuthProvider, AuthUserFromProvider } from "../types.ts";
 import { getUserAuth0 } from "./auth0.ts";

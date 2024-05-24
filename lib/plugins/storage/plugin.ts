@@ -1,4 +1,4 @@
-import type { Plugin, PluginRoute } from "$fresh/server.ts";
+import type { Plugin, PluginRoute } from "fresh/server.ts";
 import { apiKeyAuthentication, cors } from "../middleware.ts";
 
 export type StorageConfig = {

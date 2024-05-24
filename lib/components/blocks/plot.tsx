@@ -1,4 +1,4 @@
-import { IS_BROWSER } from "$fresh/runtime.ts";
+import { IS_BROWSER } from "fresh/runtime.ts";
 import { createElement as h } from "preact";
 import { useEffect, useRef } from "preact/compat";
 import * as Plot from "../../deps/@observablehq/plot.ts";
