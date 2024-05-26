@@ -1,4 +1,4 @@
-import { IS_BROWSER } from "@fresh/core";
+import { IS_BROWSER } from "@fresh/core/runtime";
 import { effect, signal } from "@preact/signals";
 
 // NOTE: initializes to false instead of getDarkMode() as default

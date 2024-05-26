@@ -1,4 +1,4 @@
-import { IS_BROWSER } from "@fresh/core";
+import { IS_BROWSER } from "@fresh/core/runtime";
 import type { ComponentChildren } from "preact";
 
 export const ClientOnly = ({ children }: { children: ComponentChildren }) => {

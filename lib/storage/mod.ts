@@ -1,7 +1,6 @@
+import { IS_BROWSER } from "@fresh/core/runtime";
 import { netzo } from "../apis/netzo.ts";
 import type { ObjectData } from "../plugins/types.ts";
-
-const IS_BROWSER = typeof window !== "undefined";
 
 export type StorageOptions = {
   apiKey?: string;

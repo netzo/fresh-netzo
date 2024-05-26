@@ -1,4 +1,4 @@
-import { IS_BROWSER } from "@fresh/core";
+import { IS_BROWSER } from "@fresh/core/runtime";
 import { Signal } from "@preact/signals";
 
 interface CounterProps {
