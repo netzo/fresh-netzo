@@ -6,8 +6,8 @@ import { signInNetzo } from "./netzo.sign_in.ts";
 export { handleCallbackNetzo, signInNetzo };
 
 export type NetzoAuthConfig = {
-  projectId: string;
-  apiKey: string;
+  projectId?: string;
+  apiKey?: string;
 };
 
 export async function getUserNetzo(

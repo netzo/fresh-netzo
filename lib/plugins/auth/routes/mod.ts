@@ -1,4 +1,5 @@
-import type { PluginRoute } from "fresh/server.ts";
+import type { PluginRoute } from "$fresh/server.ts";
+import { deepMerge } from "../../../deps/std/collections/deep_merge.ts";
 import type { AuthConfig } from "../plugin.ts";
 import {
   getAuthConfig,
@@ -46,13 +47,22 @@ export const getRoutesByProvider = (
           name: userProvider.name,
           email: userProvider.email,
           avatar: userProvider.avatar,
-          roles: ["admin"],
+          projects: {
+            [Deno.env.get("NETZO_PROJECT_ID")!]: {
+              roles: {},
+            },
+          },
+          data: {},
         } as unknown as AuthUser;
 
-        if (userCurrent === null) {
+        if (!userCurrent) {
+          Object.keys(user).forEach((key) => {
+            // remove undefined values to let database handle setting defaults
+            if (user[key] === undefined) delete user[key];
+          });
           await ctx.state.auth.createUser(user);
         } else {
-          const data = { ...user, ...userCurrent };
+          const data = deepMerge(user, userCurrent);
           await ctx.state.auth.updateUser(data);
           await ctx.state.auth.updateUserSession(data, sessionId);
         }
