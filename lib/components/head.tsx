@@ -25,8 +25,9 @@ export const Head = (props: HeadProps) => {
       <Meta
         title={props.title}
         description={props.description}
-        href={props.href}
+        favicon={props.favicon}
         image={props.image}
+        href={props.href}
       />
       {props.children}
     </>
