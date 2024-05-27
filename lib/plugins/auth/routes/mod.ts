@@ -55,9 +55,10 @@ export const getRoutesByProvider = (
           data: {},
         } as unknown as AuthUser;
 
-        console.log({ userProvider, userCurrent, user });
-
-        if (userCurrent === null) {
+        if (!userCurrent) {
+          Object.keys(user).forEach((key) => {
+            if (user[key] === undefined) delete user[key];
+          });
           await ctx.state.auth.createUser(user);
         } else {
           const data = deepMerge(user, userCurrent);

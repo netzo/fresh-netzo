@@ -19,7 +19,7 @@ export type AuthUser = {
   };
   createdAt: string;
   updatedAt: string;
-  deletedAt: "" | string;
+  deletedAt: null | string;
 };
 
 export type AuthUserFromProvider = Pick<

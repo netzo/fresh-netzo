@@ -10,19 +10,11 @@ export const createDatabaseAuth = (config: AuthConfig): Auth => {
   return {
     createUser: async (user: AuthUser) => {
       user.id = id();
-      user.createdAt = new Date().toISOString();
-      user.updatedAt = user.createdAt;
-      user.deletedAt = "";
-
-      console.log(user);
-
       const newUser = await db.transaction(async (tx) => {
         const newUser = await tx.insert($users).values(user).returning();
         await tx.insert($sessions).values({
           id: user.sessionId,
-          userId: user.id,
-          projectId: Deno.env.get("NETZO_PROJECT_ID")!,
-          createdAt: user.createdAt,
+          $userId: user.id,
         });
         return newUser;
       });
@@ -47,10 +39,8 @@ export const createDatabaseAuth = (config: AuthConfig): Auth => {
         await tx.delete($sessions).where(eq($sessions.id, user.sessionId));
         await tx.insert($sessions).values({
           id: sessionId,
-          userId: user.id,
-          projectId: Deno.env.get("NETZO_PROJECT_ID")!,
-          createdAt: new Date().toISOString(),
-        }).where(eq($sessions.userId, sessionId));
+          $userId: user.id,
+        });
       });
     },
     getUser: async (authId: string) => {
@@ -63,9 +53,9 @@ export const createDatabaseAuth = (config: AuthConfig): Auth => {
       const session = await db.query.$sessions.findFirst({
         where: eq($sessions.id, sessionId),
       });
-      if (session?.userId) {
+      if (session?.$userId) {
         const user = await db.query.$users.findFirst({
-          where: eq($users.id, session.userId),
+          where: eq($users.id, session.$userId),
         });
         return user;
       } else {

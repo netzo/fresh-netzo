@@ -11,7 +11,6 @@ export const $users = sqliteTable("$users", {
   id: text("id").primaryKey().$default(() => id()),
   provider: text("provider").notNull(),
   authId: text("authId").notNull(),
-  $sessionId: text("$sessionId"),
   name: text("name"),
   email: text("email"),
   avatar: text("avatar"),
@@ -46,7 +45,6 @@ export type $UserData = typeof $users.$inferInsert;
 export const $sessions = sqliteTable("$sessions", {
   id: text("id").primaryKey().$default(() => id()),
   $userId: text("$userId").notNull().references(() => $users.id),
-  projectId: text("$sessionId").notNull(),
   createdAt: text("createdAt").notNull().$default(() =>
     new Date().toISOString()
   ),
