@@ -1,11 +1,10 @@
 import type { FreshContext, Plugin, PluginRoute } from "$fresh/server.ts";
-import { DrizzleConfig } from "npm:drizzle-orm@0.30.10/utils";
 import { HTMLAttributes } from "preact/compat";
 import type { NetzoState } from "../../mod.ts";
 import {
   assertUserIsMemberOfWorkspaceOfApiKeyIfProviderIsNetzo,
   createAssertUserIsAuthorized,
-  createSetAuthState,
+  createAuthState,
   ensureSignedIn,
   NetzoStateWithAuth,
   setRequestState,
@@ -18,6 +17,9 @@ import type { NetzoAuthConfig } from "./utils/providers/netzo.ts";
 import type { Auth, AuthProvider, AuthUser } from "./utils/types.ts";
 
 export * from "../../deps/deno_kv_oauth/mod.ts";
+
+export * from "./utils/adapters/database.ts";
+export * from "./utils/adapters/datastore.ts";
 
 export type AuthConfig = {
   /** An image URL for the logo to appear above the login form at /auth. */
@@ -70,8 +72,9 @@ export type AuthConfig = {
     req: Request,
     ctx: FreshContext<NetzoStateWithAuth>,
   ) => Error | unknown;
-  /* The Drizzle schema declaring the users and sessions tables. */
-  schema: DrizzleConfig["schema"];
+  /* The Drizzle schema declaring the users and sessions tables.
+  * For example: { adapter: createDatabaseAuth({ schema }) } */
+  adapter: Auth;
 };
 
 export type AuthState = Auth & {
@@ -135,7 +138,7 @@ export const auth = (config: AuthConfig): Plugin<NetzoState> => {
     middlewares: [
       {
         path: "/",
-        middleware: { handler: createSetAuthState(config) },
+        middleware: { handler: createAuthState(config) },
       },
       {
         path: "/",

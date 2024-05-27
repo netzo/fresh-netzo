@@ -1,33 +1,30 @@
 import { eq } from "drizzle-orm";
-import { AuthConfig } from "netzo/plugins/auth/plugin.ts";
 import { database, id } from "../../../../database/mod.ts";
 import type { Auth, AuthUser } from "../types.ts";
 
-export const createDatabaseAuth = (config: AuthConfig): Auth => {
-  const { $users, $sessions } = config.schema!;
-  const db = database({ schema: config.schema! });
+export const createDatabaseAuth = (db: ReturnType<typeof database>): Auth => {
+  const { $users, $sessions } = db?._?.fullSchema! ?? {}; // use fullSchema, not schema
+  if (!$users) throw new Error(`Missing "$users" table in database schema`);
+  if (!$sessions) {
+    throw new Error(`Missing "$sessions" table in database schema`);
+  }
 
   return {
     createUser: async (user: AuthUser) => {
       user.id = id();
-      const newUser = await db.transaction(async (tx) => {
-        const newUser = await tx.insert($users).values(user).returning();
+      await db.transaction(async (tx) => {
+        await tx.insert($users).values(user).returning();
         await tx.insert($sessions).values({
           id: user.sessionId,
           $userId: user.id,
         });
-        return newUser;
       });
-      return newUser;
     },
     updateUser: async (user: AuthUser) => {
       user.updatedAt = new Date().toISOString();
 
       await db.update($users).set(user).where(eq($users.id, user.id)).execute();
-      const updatedUser = await db.query.$users.findFirst({
-        where: eq($users.id, user.id),
-      });
-      return updatedUser;
+      await db.query.$users.findFirst({ where: eq($users.id, user.id) });
     },
     updateUserSession: async (user: AuthUser, sessionId: string) => {
       user.updatedAt = new Date().toISOString();
@@ -46,8 +43,8 @@ export const createDatabaseAuth = (config: AuthConfig): Auth => {
     getUser: async (authId: string) => {
       const user = await db.query.$users.findFirst({
         where: eq($users.authId, authId),
-      });
-      return user;
+      }) as AuthUser;
+      return user ?? null;
     },
     getUserBySession: async (sessionId: string) => {
       const session = await db.query.$sessions.findFirst({
@@ -56,7 +53,7 @@ export const createDatabaseAuth = (config: AuthConfig): Auth => {
       if (session?.$userId) {
         const user = await db.query.$users.findFirst({
           where: eq($users.id, session.$userId),
-        });
+        }) as AuthUser;
         return user;
       } else {
         return null;

@@ -57,6 +57,7 @@ export const getRoutesByProvider = (
 
         if (!userCurrent) {
           Object.keys(user).forEach((key) => {
+            // remove undefined values to let database handle setting defaults
             if (user[key] === undefined) delete user[key];
           });
           await ctx.state.auth.createUser(user);
