@@ -2,7 +2,7 @@
   "lock": false,
   "tasks": {
     "check": "deno fmt --check && deno lint && deno check **/*.ts && deno check **/*.tsx",
-    "cli": "echo \"import '\\$fresh/src/dev/cli.ts'\" | deno run --unstable -A -",
+    "cli": "echo \"import '\\fresh/src/dev/cli.ts'\" | deno run --unstable -A -",
     "manifest": "deno task cli manifest $(pwd)",
     "start": "deno run -A --watch=static/,routes/ dev.ts",
     "build": "deno run -A dev.ts build",
@@ -23,7 +23,7 @@
   "imports": {
     "@/": "./",
     "netzo/": "../../lib/",
-    "$fresh/": "https://deno.land/x/fresh@1.6.8/",
+    "fresh/": "https://deno.land/x/fresh@1.6.8/",
     "preact": "https://esm.sh/preact@10.20.0",
     "preact/": "https://esm.sh/preact@10.20.0/",
     "preact-render-to-string": "https://esm.sh/*preact-render-to-string@6.3.1",

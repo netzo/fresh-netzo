@@ -124,7 +124,7 @@ type NavHeaderProps = JSX.IntrinsicElements["header"] & {
 
 export function NavHeader({ className, ...props }: NavHeaderProps) {
   return (
-    <header className={cn("flex items-center py-3 px-2", className)}>
+    <header {...props} className={cn("flex items-center py-3 px-2", className)}>
       {props?.image && (
         <img
           src={props?.image}

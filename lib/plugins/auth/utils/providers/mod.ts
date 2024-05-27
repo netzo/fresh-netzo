@@ -1,4 +1,4 @@
-import { FreshContext } from "$fresh/server.ts";
+import { FreshContext } from "fresh/server.ts";
 import {
   createAuth0OAuthConfig,
   createGitHubOAuthConfig,

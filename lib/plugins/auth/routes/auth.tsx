@@ -1,4 +1,4 @@
-import { defineRoute, type RouteConfig } from "$fresh/server.ts";
+import { defineRoute, type RouteConfig } from "fresh/server.ts";
 import { cn } from "../../../components/utils.ts";
 import { AuthForm } from "../islands/auth-form.tsx";
 import { type AuthConfig } from "../plugin.ts";

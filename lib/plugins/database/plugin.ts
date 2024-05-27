@@ -1,7 +1,7 @@
 // deno-lint-ignore-file no-explicit-any
-import type { Plugin, PluginRoute } from "$fresh/server.ts";
+import type { Plugin, PluginRoute } from "fresh/server.ts";
 import { createClient } from "npm:@libsql/client@0.6.0";
-import { eq } from "npm:drizzle-orm@0.30.10";
+import { eq, sql } from "npm:drizzle-orm@0.30.10";
 import { DrizzleConfig } from "npm:drizzle-orm@0.30.10/utils";
 import { database as createDatabase } from "../../database/mod.ts";
 import { apiKeyAuthentication, cors } from "../middleware.ts";
@@ -96,8 +96,17 @@ export const database = (config?: DatabaseConfig): Plugin => {
           POST: async (req, ctx) => {
             const { tableName } = ctx.params;
             const table = config.schema![tableName] as any;
+            const pk = Object.entries(table).find(e => !!e[1]?.primary)?.[0];
             const data = await parseRequestBody(req);
-            const result = await db.insert(table).values(data).returning();
+            const result = await db
+              .insert(table)
+              .values(data)
+              // FIXME: this is not working somehow see https://discord.com/channels/1043890932593987624/1243571991945019402/1243571991945019402
+              .onConflictDoUpdate({
+                target: table[pk],
+                set: { [pk]: sql.raw(`excluded.${table[pk].name}`) },
+              })
+              .returning();
             return Response.json(
               Array.isArray(result) ? result[0] : result.rows,
             );
