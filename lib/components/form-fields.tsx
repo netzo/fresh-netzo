@@ -125,6 +125,31 @@ export const FormFieldComboboxVirtualized = ({
   );
 };
 
+export const FormFieldSelect = ({
+  name,
+  label,
+  form,
+  options,
+  className,
+  ...props
+}: FormFieldProps & ComboboxProps) => {
+  return (
+    <FormField
+      control={form.control}
+      name={name}
+      render={({ field }) => (
+        <FormItem className={cn(className)}>
+          {label && <FormLabel>{label}</FormLabel>}
+          <FormControl>
+            <Combobox {...field} {...props} options={options} />
+          </FormControl>
+          <FormMessage />
+        </FormItem>
+      )}
+    />
+  );
+};
+
 export const FormFieldSelectMultiple = ({
   name,
   label,
