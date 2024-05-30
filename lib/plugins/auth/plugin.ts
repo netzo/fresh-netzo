@@ -2,11 +2,11 @@ import type { FreshContext, Plugin, PluginRoute } from "$fresh/server.ts";
 import { HTMLAttributes } from "preact/compat";
 import type { NetzoState } from "../../mod.ts";
 import {
+  NetzoStateWithAuth,
   assertUserIsMemberOfWorkspaceOfApiKeyIfProviderIsNetzo,
   createAssertUserIsAuthorized,
   createAuthState,
   ensureSignedIn,
-  NetzoStateWithAuth,
   setRequestState,
   setSessionState,
 } from "./middlewares/mod.ts";
@@ -72,6 +72,15 @@ export type AuthConfig = {
     req: Request,
     ctx: FreshContext<NetzoStateWithAuth>,
   ) => Error | unknown;
+  /** A function to resolve the user data from the user object. The function should
+   * return an object with the user data. Note that the returned object will overwrite the
+   * existing user.data object in the database, so be sure to merge new and existing data.
+   * @example return { ...user.data, roles: user.email.endsWith("@example.com") ? ["admin"] : ["user"] }; */
+  resolveUserData?: (
+    user: AuthUser,
+    req: Request,
+    ctx: FreshContext<NetzoStateWithAuth>,
+  ) => AuthUser["data"];
   /* The Drizzle schema declaring the users and sessions tables.
   * For example: { adapter: createDatabaseAuth({ schema }) } */
   adapter: Auth;
@@ -123,6 +132,7 @@ export const auth = (config: AuthConfig): Plugin<NetzoState> => {
   config.caption ??= ""; // e.g. 'By signing in you agree to the <a href="/" target="_blank">Terms of Service</a>';
   config.providers ??= {};
   config.assertAuthorization ??= () => true;
+  config.resolveUserData ??= (user) => user?.data ?? {};
 
   const authRoutes: PluginRoute[] = [
     { path: "/auth", component: createAuth(config) },

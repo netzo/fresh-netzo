@@ -14,20 +14,7 @@ export const $users = sqliteTable("$users", {
   name: text("name"),
   email: text("email"),
   avatar: text("avatar"),
-  projects: text("projects", { mode: "json" }).$default(() => ({})).$type<{
-    roles: ("owner" | "admin" | "developer" | "user" | string)[];
-    // deno-lint-ignore no-explicit-any
-    [k: string]: any;
-  }>(),
-  data: text("data", { mode: "json" }).$default(() => ({
-    status: text("status"),
-    position: text("position"),
-    phone: text("phone"),
-  })).$type<{
-    status: string;
-    position: string;
-    phone: string;
-  }>(),
+  data: text("data", { mode: "json" }).$default(() => ({})),
   createdAt: text("createdAt").notNull().$default(() =>
     new Date().toISOString()
   ),
@@ -44,7 +31,7 @@ export type $UserData = typeof $users.$inferInsert;
 
 export const $sessions = sqliteTable("$sessions", {
   id: text("id").primaryKey().$default(() => id()),
-  $userId: text("$userId").notNull().references(() => $users.id),
+  $userId: text("$userId").notNull().references(() => $users.id, {onDelete: 'cascade'}),
   createdAt: text("createdAt").notNull().$default(() =>
     new Date().toISOString()
   ),
