@@ -37,10 +37,8 @@ const VirtualizedCommand = ({
 }: VirtualizedCommandProps) => {
   const [filteredOptions, setFilteredOptions] = React.useState<
     ComboboxOption[]
-  >(
-    options,
-  );
-  const parentRef = React.useRef(null);
+  >(options);
+  const parentRef = React.useRef<HTMLDivElement>(null);
 
   const virtualizer = useVirtualizer({
     count: filteredOptions.length,
@@ -54,7 +52,7 @@ const VirtualizedCommand = ({
   const handleSearch = (search: string) => {
     setFilteredOptions(
       options.filter((option) =>
-        option.label?.toLowerCase().includes(search?.toLowerCase() ?? [])
+        option.label?.toLowerCase().includes(search?.toLowerCase() ?? "")
       ),
     );
   };
@@ -96,7 +94,10 @@ const VirtualizedCommand = ({
               }}
               key={filteredOptions[virtualOption.index].value}
               value={filteredOptions[virtualOption.index].value}
-              onSelect={onSelectOption}
+              onSelect={() =>
+                onSelectOption &&
+                onSelectOption(filteredOptions[virtualOption.index].value)}
+              title={filteredOptions[virtualOption.index].label}
               className="w-full truncate"
             >
               <i
@@ -166,13 +167,18 @@ export function ComboboxVirtualized({
           placeholder={searchPlaceholder}
           selectedOption={selectedOption}
           onSelectOption={(currentValue) => {
-            // WORKAROUND: somehow currentValue is returned in all lowercase, so
-            // we use toUpperCase() since ULIDs are all capital letters always
-            const value = currentValue === selectedOption
-              ? ""
-              : currentValue.toUpperCase();
+            // IMPORTANT: somehow currentValue is returned in all lowercase,
+            // so we attempt finding a match and if that fails we convert to
+            // lowercase and find the first match (should always be the
+            // correct match since any ID is expected to be unique)
+            let value = options.find(({ value }) => value === currentValue)?.value as string;
+            if (!value) {
+              value = options.find(
+                ({ value }) => value === currentValue.toLowerCase()
+              )?.value as string;
+            }
             setSelectedOption(value);
-            onChange!(value);
+            onChange && onChange(value);
             setOpen(false);
           }}
         />
