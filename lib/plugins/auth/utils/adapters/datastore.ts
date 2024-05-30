@@ -23,7 +23,7 @@ export const createDatastoreAuth = (kv = KV): Auth => {
       if (!res.ok) throw new Error("Failed to create user");
     },
     updateUser: async (user: AuthUser) => {
-      user.updatedAt ||= new Date().toISOString();
+      user.updatedAt = new Date().toISOString();
       const usersKey = ["users", user.authId];
       const usersBySessionKey = ["usersBySession", user.sessionId];
 

@@ -24,18 +24,13 @@ export const createDatabaseAuth = (db: ReturnType<typeof database>): Auth => {
     },
     updateUser: async (user: AuthUser) => {
       user.updatedAt = new Date().toISOString();
-
-      await db.update($users).set(user).where(eq($users.id, user.id)).execute();
+      await db.update($users).set(user).where(eq($users.id, user.id));
       await db.query.$users.findFirst({ where: eq($users.id, user.id) });
     },
     updateUserSession: async (user: AuthUser, sessionId: string) => {
       user.updatedAt = new Date().toISOString();
-      const newUser: AuthUser = { ...user, sessionId };
       await db.transaction(async (tx) => {
-        await tx.update($users).set(newUser).where(
-          eq($users.authId, user.authId),
-        );
-        await tx.delete($sessions).where(eq($sessions.id, user.sessionId));
+        await tx.delete($sessions).where(eq($sessions.$userId, user.id));
         await tx.insert($sessions).values({
           id: sessionId,
           $userId: user.id,

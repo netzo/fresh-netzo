@@ -1,5 +1,4 @@
 import type { PluginRoute } from "$fresh/server.ts";
-import { deepMerge } from "../../../deps/std/collections/deep_merge.ts";
 import type { AuthConfig } from "../plugin.ts";
 import {
   getAuthConfig,
@@ -40,31 +39,35 @@ export const getRoutesByProvider = (
         );
         const userCurrent = await ctx.state.auth.getUser(userProvider.authId);
 
+        // IMPORTANT: must explicitly set all properties to prevent "undefined" values
         const user = {
+          id: userCurrent?.id,
           sessionId,
-          provider: userProvider.provider,
-          authId: userProvider.authId,
-          name: userProvider.name,
-          email: userProvider.email,
-          avatar: userProvider.avatar,
-          projects: {
-            [Deno.env.get("NETZO_PROJECT_ID")!]: {
-              roles: {},
-            },
-          },
-          data: {},
+          provider: userProvider?.provider,
+          authId: userProvider?.authId,
+          name: userProvider?.name,
+          email: userProvider?.email,
+          avatar: userProvider?.avatar,
+          data: options?.resolveUserData?.(userCurrent ?? {}, req, ctx) ?? {},
+          createdAt: userCurrent?.createdAt,
+          updatedAt: userCurrent?.updatedAt,
+          deletedAt: userCurrent?.deletedAt,
         } as unknown as AuthUser;
 
+        // IMPORTANT: remove undefined values to prevent "Unsupported type of value"
+        // and let the database handle setting defaults (e.g. null or anything else)
+        Object.keys(user).forEach((key) => {
+          console.log(key, user[key])
+          if (user[key] === undefined) delete user[key];
+        });
+
+        console.log({ userCurrent, user })
+
         if (!userCurrent) {
-          Object.keys(user).forEach((key) => {
-            // remove undefined values to let database handle setting defaults
-            if (user[key] === undefined) delete user[key];
-          });
           await ctx.state.auth.createUser(user);
         } else {
-          const data = deepMerge(user, userCurrent);
-          await ctx.state.auth.updateUser(data);
-          await ctx.state.auth.updateUserSession(data, sessionId);
+          await ctx.state.auth.updateUser(user);
+          await ctx.state.auth.updateUserSession(user, sessionId);
         }
 
         return response;
