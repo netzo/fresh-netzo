@@ -95,26 +95,33 @@ export const database = (config?: DatabaseConfig): Plugin => {
             return Response.json(rows);
           },
           POST: async (req, ctx) => {
+            const pk = ctx.url.searchParams.get("pk") || "id";
             const { tableName } = ctx.params;
             const table = config.schema![tableName] as any;
-            const pk = Object.entries(table).find((e) => !!e[1]?.primary)?.[0]!;
             const data = await parseRequestBody(req);
-            const { [pk]: id, ...rest } = data;
-            const result = await db
-              .insert(table)
-              .values({ id, ...rest })
-              // there is no option to exclude column in sql, that's why we have to specify the
-              // columns we want to update by using a custom function buildConflictUpdateColumns()
-              // see https://discord.com/channels/1043890932593987624/1243571991945019402/1243571991945019402
-              // and also https://orm.drizzle.team/learn/guides/upsert
-              .onConflictDoUpdate({
-                target: table[pk],
-                set: buildConflictUpdateColumns(table[pk], Object.keys(rest)),
-              })
-              .returning();
-            return Response.json(
-              Array.isArray(result) ? result[0] : result.rows,
-            );
+            try {
+              const result = await db
+                .insert(table)
+                .values(data)
+                // NOTE: there is no option to exclude column in sql, that's why we
+                // have to specify the columns we want to update by using a custom
+                // function buildConflictUpdateColumns() to allow for bulk upserts
+                // see https://discord.com/channels/1043890932593987624/1243571991945019402/1243571991945019402
+                // and also https://orm.drizzle.team/learn/guides/upsert
+                .onConflictDoUpdate({
+                  target: table[pk],
+                  set: { ...data, id: sql`${table[pk]}` }, // leave "id" as it was
+                  // set: buildConflictUpdateColumns(table[pk], columns),
+                })
+                .returning();
+              console.log(result);
+              return Response.json(
+                Array.isArray(result) ? result[0] : result.rows,
+              );
+            } catch (error) {
+              console.error(error);
+              return Response.json({ error: error.message }, { status: 400 });
+            }
           },
         },
       } satisfies PluginRoute,
@@ -173,8 +180,8 @@ function buildConflictUpdateColumns<
 ) {
   const cls = getTableColumns(table);
   return columns.reduce((acc, column) => {
-    const colName = cls[column].name;
-    acc[column] = sql.raw(`excluded.${colName}`);
+    const colName = cls?.[column]?.name;
+    if (colName) acc[column] = sql.raw(`excluded.${colName}`);
     return acc;
   }, {} as Record<Q, SQL>);
 }
