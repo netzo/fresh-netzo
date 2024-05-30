@@ -54,17 +54,15 @@ export const getRoutesByProvider = (
           deletedAt: userCurrent?.deletedAt,
         } as unknown as AuthUser;
 
-        // IMPORTANT: remove undefined values to prevent "Unsupported type of value"
+        // IMPORTANT: remove undefined values to prevent error "Unsupported type of value"
         // and let the database handle setting defaults (e.g. null or anything else)
         Object.keys(user).forEach((key) => {
-          console.log(key, user[key])
           if (user[key] === undefined) delete user[key];
         });
 
-        console.log({ userCurrent, user })
-
         if (!userCurrent) {
           await ctx.state.auth.createUser(user);
+          await ctx.state.auth.createUserSession(user, sessionId);
         } else {
           await ctx.state.auth.updateUser(user);
           await ctx.state.auth.updateUserSession(user, sessionId);

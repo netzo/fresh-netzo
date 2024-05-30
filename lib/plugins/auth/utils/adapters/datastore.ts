@@ -11,19 +11,27 @@ export const createDatastoreAuth = (kv = KV): Auth => {
       user.updatedAt = user.createdAt;
       user.deletedAt = "";
       const usersKey = ["users", user.authId];
-      const usersBySessionKey = ["usersBySession", user.sessionId];
 
       const atomicOp = kv.atomic()
         .check({ key: usersKey, versionstamp: null })
-        .check({ key: usersBySessionKey, versionstamp: null })
-        .set(usersKey, user)
-        .set(usersBySessionKey, user);
+        .set(usersKey, user);
 
       const res = await atomicOp.commit();
       if (!res.ok) throw new Error("Failed to create user");
     },
-    updateUser: async (user: AuthUser) => {
+    createUserSession: async (user: AuthUser, sessionId: string) => {
       user.updatedAt = new Date().toISOString();
+      const usersBySessionKey = ["usersBySession", sessionId];
+
+      const atomicOp = kv.atomic()
+        .check({ key: usersBySessionKey, versionstamp: null })
+        .set(usersBySessionKey, user);
+
+      const res = await atomicOp.commit();
+      if (!res.ok) throw new Error("Failed to create user session");
+    },
+    updateUser: async (user: AuthUser) => {
+      user.updatedAt ||= new Date().toISOString();
       const usersKey = ["users", user.authId];
       const usersBySessionKey = ["usersBySession", user.sessionId];
 

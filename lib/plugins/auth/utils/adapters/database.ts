@@ -14,27 +14,21 @@ export const createDatabaseAuth = (db: ReturnType<typeof database>): Auth => {
   return {
     createUser: async (user: AuthUser) => {
       user.id = id();
-      await db.transaction(async (tx) => {
-        await tx.insert($users).values(user).returning();
-        await tx.insert($sessions).values({
-          id: user.sessionId,
-          $userId: user.id,
-        });
-      });
+      await db.insert($users).values(user);
+    },
+    createUserSession: async (user: AuthUser, sessionId: string) => {
+      await db.insert($sessions).values({ id: sessionId, $userId: user.id });
     },
     updateUser: async (user: AuthUser) => {
-      user.updatedAt = new Date().toISOString();
       await db.update($users).set(user).where(eq($users.id, user.id));
       await db.query.$users.findFirst({ where: eq($users.id, user.id) });
     },
     updateUserSession: async (user: AuthUser, sessionId: string) => {
-      user.updatedAt = new Date().toISOString();
+        // IMPORTANT: this invalidates the old session and creates a new one.
+        // If multiple sessions per user are allowed, this should be adjusted.
       await db.transaction(async (tx) => {
         await tx.delete($sessions).where(eq($sessions.$userId, user.id));
-        await tx.insert($sessions).values({
-          id: sessionId,
-          $userId: user.id,
-        });
+        await tx.insert($sessions).values({ id: sessionId, $userId: user.id });
       });
     },
     getUser: async (authId: string) => {
