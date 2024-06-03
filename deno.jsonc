@@ -34,7 +34,7 @@
       "./templates"
     ]
   },
-  "fmt": {},
+  "fmt": { "lineWidth": 100 },
   "compilerOptions": {
     "jsx": "react-jsx",
     // NOTE: alias "preact" is not being resolved for deno.json(c) of monorepo
