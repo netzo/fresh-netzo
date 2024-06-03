@@ -969,6 +969,8 @@ export function presetShadcn(options: PresetShadcnOptions = {}): Preset<Theme> {
           "data-[side=right]:slide-in-from-left-2",
           "data-[side=top]:slide-in-from-bottom-2",
         ],
+        // destructive button:
+        ...['inline-flex', 'items-center', 'justify-center', 'whitespace-nowrap', 'font-medium', 'transition-colors', 'focus-visible:outline-none', 'focus-visible:ring-1', 'focus-visible:ring-ring', 'disabled:pointer-events-none', 'disabled:opacity-50', 'bg-destructive', 'text-destructive-foreground', 'shadow-sm', 'hover:bg-opacity-90', 'h-8', 'rounded-md', 'px-3', 'text-xs', 'mx-2']
       ]),
     ],
 
