@@ -198,9 +198,7 @@ export default async function list<T = string>(
   const filteringOptions: TextFilteringOptions = Object.assign(
     {},
     DEFAULT_TEXT_FILTERING,
-    typeof listOptions?.filtering === "object"
-      ? listOptions?.filtering ?? {}
-      : {},
+    typeof listOptions?.filtering === "object" ? listOptions?.filtering ?? {} : {},
   );
   const inlineOptions: InlineOptions = Object.assign(
     {},
@@ -272,9 +270,7 @@ export default async function list<T = string>(
           }/${possibleOptions.length}] Search: ${searchText}`;
         }
         const promptLineLength = 3 + label.length +
-          (!filteringEnabled
-            ? 0
-            : 12 + ("" + possibleOptions.length).length * 2);
+          (!filteringEnabled ? 0 : 12 + ("" + possibleOptions.length).length * 2);
         out += "\n";
         if (showNarrowWindow) {
           if (indexOffset !== 0) {
@@ -306,9 +302,7 @@ export default async function list<T = string>(
                 }) + lineColor + after;
             }
           }
-          out += `${lineColor}${current} ${label}${RESET_COLOR}${
-            index + 1 === len ? "" : "\n"
-          }`;
+          out += `${lineColor}${current} ${label}${RESET_COLOR}${index + 1 === len ? "" : "\n"}`;
         }
 
         if (showNarrowWindow) {
@@ -349,12 +343,8 @@ export default async function list<T = string>(
           (listOptions?.offsetWindowScroll ?? true);
 
         if (offsetWindowScroll && selectedIndex !== 0) {
-          indexOffset = selectedIndex - 1 < indexOffset
-            ? selectedIndex - 1
-            : indexOffset;
-        } else {indexOffset = selectedIndex < indexOffset
-            ? selectedIndex
-            : indexOffset;}
+          indexOffset = selectedIndex - 1 < indexOffset ? selectedIndex - 1 : indexOffset;
+        } else indexOffset = selectedIndex < indexOffset ? selectedIndex : indexOffset;
         await clear();
         await prompt();
       }],
@@ -378,10 +368,9 @@ export default async function list<T = string>(
           indexOffset = selectedIndex >= indexOffset + actualWindowSize - 2
             ? selectedIndex - actualWindowSize + 2
             : indexOffset;
-        } else {indexOffset =
-            selectedIndex >= indexOffset + actualWindowSize - 1
-              ? selectedIndex - actualWindowSize + 1
-              : indexOffset;}
+        } else {indexOffset = selectedIndex >= indexOffset + actualWindowSize - 1
+            ? selectedIndex - actualWindowSize + 1
+            : indexOffset;}
         await clear();
         await prompt();
       }],

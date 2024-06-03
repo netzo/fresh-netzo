@@ -1,11 +1,4 @@
-import {
-  blue,
-  bold,
-  green,
-  red,
-  white,
-  yellow,
-} from "https://deno.land/std@0.208.0/fmt/colors.ts";
+import { blue, bold, green, red, white, yellow } from "https://deno.land/std@0.208.0/fmt/colors.ts";
 import type { Project } from "./types.ts";
 
 /**

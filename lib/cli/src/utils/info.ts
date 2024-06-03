@@ -2,9 +2,7 @@ import { join } from "../../../deps/std/path/mod.ts";
 import { getVersions } from "../subcommands/upgrade.ts";
 
 export function getConfigPaths() {
-  const homeDir = Deno.build.os == "windows"
-    ? Deno.env.get("USERPROFILE")!
-    : Deno.env.get("HOME")!;
+  const homeDir = Deno.build.os == "windows" ? Deno.env.get("USERPROFILE")! : Deno.env.get("HOME")!;
   const configDir = join(homeDir, ".deno", "netzo");
 
   return {

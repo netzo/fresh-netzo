@@ -1,9 +1,5 @@
 // from https://github.com/hyoban/unocss-preset-shadcn
-import type {
-  Preset,
-  VariantContext,
-  VariantObject,
-} from "../../../deps/@unocss/core.ts";
+import type { Preset, VariantContext, VariantObject } from "../../../deps/@unocss/core.ts";
 import { h, type Theme } from "../../../deps/@unocss/preset-mini.ts";
 import { variantGetParameter } from "../../../deps/@unocss/utils.ts";
 import { generateCSSVars } from "./generate.ts";

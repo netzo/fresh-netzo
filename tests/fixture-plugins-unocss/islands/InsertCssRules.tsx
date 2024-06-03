@@ -32,18 +32,14 @@ export default function InsertCssRules() {
       <div>
         <p>Default Number of __FRSH_UNOCSS CssRules :</p>
         <p id="defaultNumCssRules" class={`text-xl`}>
-          {numDefCssRules.value
-            ? numDefCssRules.value
-            : "Error : Cannot get cssrules"}
+          {numDefCssRules.value ? numDefCssRules.value : "Error : Cannot get cssrules"}
         </p>
       </div>
 
       <div>
         <p>Current Number of __FRSH_UNOCSS CssRules :</p>
         <p id="currentNumCssRules" class={`text-xl ${insertedStyles.value}`}>
-          {numCssRules.value
-            ? numCssRules.value
-            : "Error : Cannot get cssrules"}
+          {numCssRules.value ? numCssRules.value : "Error : Cannot get cssrules"}
         </p>
       </div>
 

@@ -2,11 +2,11 @@ import type { FreshContext, Plugin, PluginRoute } from "$fresh/server.ts";
 import { HTMLAttributes } from "preact/compat";
 import type { NetzoState } from "../../mod.ts";
 import {
-  NetzoStateWithAuth,
   assertUserIsMemberOfWorkspaceOfApiKeyIfProviderIsNetzo,
   createAssertUserIsAuthorized,
   createAuthState,
   ensureSignedIn,
+  NetzoStateWithAuth,
   setRequestState,
   setSessionState,
 } from "./middlewares/mod.ts";
@@ -138,9 +138,7 @@ export const auth = (config: AuthConfig): Plugin<NetzoState> => {
     { path: "/auth", component: createAuth(config) },
     ...Object.keys(config.providers)
       .filter((provider) => !!config?.providers?.[provider as AuthProvider])
-      .flatMap((provider) =>
-        getRoutesByProvider(provider as AuthProvider, config)
-      ),
+      .flatMap((provider) => getRoutesByProvider(provider as AuthProvider, config)),
   ];
 
   return {

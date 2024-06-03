@@ -15,12 +15,10 @@ export const $users = sqliteTable("$users", {
   email: text("email"),
   avatar: text("avatar"),
   data: text("data", { mode: "json" }).$default(() => ({})),
-  createdAt: text("createdAt").notNull().$default(() =>
+  createdAt: text("createdAt").notNull().$default(() => new Date().toISOString()),
+  updatedAt: text("updatedAt").notNull().$default(() => new Date().toISOString()).$onUpdate(() =>
     new Date().toISOString()
   ),
-  updatedAt: text("updatedAt").notNull().$default(() =>
-    new Date().toISOString()
-  ).$onUpdate(() => new Date().toISOString()),
   deletedAt: text("deletedAt"),
 });
 
@@ -31,10 +29,8 @@ export type $UserData = typeof $users.$inferInsert;
 
 export const $sessions = sqliteTable("$sessions", {
   id: text("id").primaryKey().$default(() => id()),
-  $userId: text("$userId").notNull().references(() => $users.id, {onDelete: 'cascade'}),
-  createdAt: text("createdAt").notNull().$default(() =>
-    new Date().toISOString()
-  ),
+  $userId: text("$userId").notNull().references(() => $users.id, { onDelete: "cascade" }),
+  createdAt: text("createdAt").notNull().$default(() => new Date().toISOString()),
 });
 
 export type $Session = typeof $sessions.$inferSelect;

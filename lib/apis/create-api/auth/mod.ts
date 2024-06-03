@@ -33,8 +33,7 @@ export const auth = async (
     if (In === "query") query[name] = value;
     if (In === "header") headers[name] = value;
   } else if (authorization.type === "googlejwtsa") {
-    const { googleServiceAccountCredentials, googleAuthOptions } =
-      authorization;
+    const { googleServiceAccountCredentials, googleAuthOptions } = authorization;
     const { access_token }: GoogleAuth = await getTokenGoogleJwtSa(
       googleServiceAccountCredentials,
       googleAuthOptions,
@@ -45,9 +44,7 @@ export const auth = async (
     const { token_type = headerPrefix, access_token } = await getTokenOauth2(
       authorization,
     );
-    headers.Authorization = token_type
-      ? `${token_type} ${access_token}`
-      : access_token;
+    headers.Authorization = token_type ? `${token_type} ${access_token}` : access_token;
   }
 
   options.query = { ...options.query, ...query };

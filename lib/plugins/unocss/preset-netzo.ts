@@ -1,11 +1,7 @@
 import { /*mergeDeep*/ type PresetOrFactory } from "../../deps/@unocss/core.ts";
 import { presetIcons } from "../../deps/@unocss/preset-icons/browser.ts";
 import { presetTypography } from "../../deps/@unocss/preset-typography.ts";
-import {
-  presetUno,
-  type PresetUnoOptions,
-  type Theme,
-} from "../../deps/@unocss/preset-uno.ts";
+import { presetUno, type PresetUnoOptions, type Theme } from "../../deps/@unocss/preset-uno.ts";
 import { presetShadcn } from "./preset-shadcn/mod.ts";
 import type { PresetShadcnOptions } from "./preset-shadcn/types.ts";
 

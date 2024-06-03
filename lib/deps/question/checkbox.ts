@@ -191,9 +191,7 @@ export default async function checkbox<T = string>(
   const filteringOptions: TextFilteringOptions = Object.assign(
     {},
     DEFAULT_TEXT_FILTERING,
-    typeof checkboxOptions?.filtering === "object"
-      ? checkboxOptions?.filtering ?? {}
-      : {},
+    typeof checkboxOptions?.filtering === "object" ? checkboxOptions?.filtering ?? {} : {},
   );
   const filteringEnabled = checkboxOptions?.filtering === true ||
     typeof checkboxOptions?.filtering === "object";
@@ -322,12 +320,8 @@ export default async function checkbox<T = string>(
           (checkboxOptions?.offsetWindowScroll ?? true);
 
         if (offsetWindowScroll && cursorIndex !== 0) {
-          indexOffset = cursorIndex - 1 < indexOffset
-            ? cursorIndex - 1
-            : indexOffset;
-        } else {indexOffset = cursorIndex < indexOffset
-            ? cursorIndex
-            : indexOffset;}
+          indexOffset = cursorIndex - 1 < indexOffset ? cursorIndex - 1 : indexOffset;
+        } else indexOffset = cursorIndex < indexOffset ? cursorIndex : indexOffset;
         await clear();
         await prompt();
       }],
@@ -439,9 +433,7 @@ export default async function checkbox<T = string>(
       }],
       [KeyCombos.parse("enter"), async ({ clear }) => {
         await clear();
-        const result = selectedIds.map((id) =>
-          possibleOptions.find((option) => option.id === id)!
-        );
+        const result = selectedIds.map((id) => possibleOptions.find((option) => option.id === id)!);
         const text = result.length === 0
           ? highlightText("<empty>")
           : result.map((item) => highlightText(item.display)).join(", ");
@@ -517,8 +509,7 @@ export default async function checkbox<T = string>(
     indexOffset = 0;
     if (searchText.trim() === "") return visibleOptions = possibleOptions;
     const results = textSearch(searchText, possibleOptions, {
-      transformer: (item) =>
-        item.label + (item.tags.length ? "\t" + item.tags.join(" ") : ""),
+      transformer: (item) => item.label + (item.tags.length ? "\t" + item.tags.join(" ") : ""),
       matchCase: filteringOptions.matchCase,
     });
     const intermediate = filteringOptions.sorting === "rank"
@@ -531,9 +522,7 @@ export default async function checkbox<T = string>(
 
     visibleOptions = finalList.map((result) =>
       Object.assign({}, result.item, {
-        matchingTextRanges: result.matches.filter((it) =>
-          it.start < result.item.label.length
-        ),
+        matchingTextRanges: result.matches.filter((it) => it.start < result.item.label.length),
       })
     );
   }
@@ -617,23 +606,19 @@ function getOptionsFromObject<T>(
         unparsedDeps.push(objectOption.dependencies);
       } else if (
         Array.isArray(objectOption.dependencies) &&
-        objectOption.dependencies.every((dep) =>
-          ["string", "number"].includes(typeof dep)
-        )
+        objectOption.dependencies.every((dep) => ["string", "number"].includes(typeof dep))
       ) {
         unparsedDeps = objectOption.dependencies;
       }
 
       const deps = unparsedDeps
         .map((dep) =>
-          typeof dep === "number"
-            ? (allEntries[dep]?.[1]?.id ?? allEntries[dep]?.[0])
-            : (() => {
-              const item = allEntries.find(([l, oo], index) =>
-                oo.id === dep || l === dep || String(index) === dep
-              );
-              return item?.[1]?.id ?? item?.[0];
-            })()
+          typeof dep === "number" ? (allEntries[dep]?.[1]?.id ?? allEntries[dep]?.[0]) : (() => {
+            const item = allEntries.find(([l, oo], index) =>
+              oo.id === dep || l === dep || String(index) === dep
+            );
+            return item?.[1]?.id ?? item?.[0];
+          })()
         )
         .filter((it) => it !== option.id && it !== undefined)
         .map((id) => String(id));

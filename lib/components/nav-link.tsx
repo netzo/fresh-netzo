@@ -10,9 +10,7 @@ import { buttonVariants } from "./button.tsx"; // Assuming Button.tsx is in the 
 import { cn } from "./utils.ts";
 
 export interface NavLinkProps
-  extends
-    Omit<JSX.HTMLAttributes<HTMLAnchorElement>, "size">,
-    VariantProps<typeof buttonVariants> {
+  extends Omit<JSX.HTMLAttributes<HTMLAnchorElement>, "size">, VariantProps<typeof buttonVariants> {
   asChild?: boolean;
 }
 

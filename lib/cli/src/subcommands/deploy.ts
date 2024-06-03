@@ -6,12 +6,7 @@ import type {
   Project,
 } from "../../../deps/@netzo/api/mod.ts";
 import { exists } from "../../../deps/std/fs/exists.ts";
-import {
-  fromFileUrl,
-  globToRegExp,
-  isGlob,
-  normalize,
-} from "../../../deps/std/path/mod.ts";
+import { fromFileUrl, globToRegExp, isGlob, normalize } from "../../../deps/std/path/mod.ts";
 import { Spinner, wait } from "../../../deps/wait/mod.ts";
 // vendored x/question@0.0.2 to silence deprecated API warnings (Deno>=1.4)
 import { netzo } from "../../../apis/netzo.ts";

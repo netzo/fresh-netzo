@@ -64,16 +64,11 @@ export default async function confirm(
     _positiveText.substring(1).toLowerCase();
   const negativeText = _negativeText.substring(0, 1).toUpperCase() +
     _negativeText.substring(1).toLowerCase();
-  const _defaultValue =
-    typeof defaultValue === "boolean" || typeof defaultValue === "undefined"
-      ? defaultValue
-      : defaultValue.defaultValue;
-  const positiveChar = _defaultValue === true
-    ? positiveText[0]
-    : positiveText[0].toLowerCase();
-  const negativeChar = _defaultValue === false
-    ? negativeText[0]
-    : negativeText[0].toLowerCase();
+  const _defaultValue = typeof defaultValue === "boolean" || typeof defaultValue === "undefined"
+    ? defaultValue
+    : defaultValue.defaultValue;
+  const positiveChar = _defaultValue === true ? positiveText[0] : positiveText[0].toLowerCase();
+  const negativeChar = _defaultValue === false ? negativeText[0] : negativeText[0].toLowerCase();
   const prompt = label + ` [${positiveChar}/${negativeChar}]`;
   let text = "";
   return createRenderer({

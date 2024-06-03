@@ -4,13 +4,7 @@ import * as React from "react";
 
 import { Badge } from "./badge.tsx";
 import { Button } from "./button.tsx";
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-} from "./command.tsx";
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from "./command.tsx";
 import { Popover, PopoverContent, PopoverTrigger } from "./popover.tsx";
 import { cn } from "./utils.ts";
 
@@ -28,8 +22,7 @@ export type SelectMultipleProps = {
 };
 
 function SelectMultiple(
-  { options, searchPlaceholder, value, onChange, className, ...props }:
-    SelectMultipleProps,
+  { options, searchPlaceholder, value, onChange, className, ...props }: SelectMultipleProps,
 ) {
   const [open, setOpen] = React.useState(false);
 

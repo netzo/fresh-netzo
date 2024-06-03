@@ -50,8 +50,7 @@ if (Deno.stdin.isTerminal()) {
       lastFetched: number;
       latest: number;
     };
-    const moreThanADay =
-      Math.abs(Date.now() - updateInfo.lastFetched) > 24 * 60 * 60 * 1000;
+    const moreThanADay = Math.abs(Date.now() - updateInfo.lastFetched) > 24 * 60 * 60 * 1000;
     // Fetch the latest release if it has been more than a day since the last
     // time the information about new version is fetched.
     if (moreThanADay) {

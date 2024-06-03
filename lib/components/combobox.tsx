@@ -3,13 +3,7 @@
 import * as React from "react";
 
 import { Button } from "./button.tsx";
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-} from "./command.tsx";
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from "./command.tsx";
 import { Popover, PopoverContent, PopoverTrigger } from "./popover.tsx";
 import { ScrollArea } from "./scroll-area.tsx";
 import { cn } from "./utils.ts";

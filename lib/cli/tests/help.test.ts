@@ -1,8 +1,4 @@
-import {
-  assert,
-  assertEquals,
-  assertStringIncludes,
-} from "../../deps/std/assert/mod.ts";
+import { assert, assertEquals, assertStringIncludes } from "../../deps/std/assert/mod.ts";
 import { netzo, output } from "./utils.ts";
 
 Deno.test("help command list", async () => {

@@ -5,8 +5,7 @@ import { IS_BROWSER } from "fresh/runtime.ts";
 import { cn } from "./utils.ts";
 
 // deno-lint-ignore no-empty-interface
-export interface TextareaProps
-  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {}
+export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {}
 
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
   ({ className, ...props }, ref) => {

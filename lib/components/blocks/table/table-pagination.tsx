@@ -1,11 +1,5 @@
 import { Button } from "../../button.tsx";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "../../select.tsx";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../select.tsx";
 import { cn } from "../../utils.ts";
 import { useTablePagination } from "./hooks/use-table-pagination.ts";
 import type { Table } from "./table.tsx";
@@ -112,18 +106,10 @@ export function TablePaginationButtons<TData>({
   locale = "es",
 }: JSX.IntrinsicElements["div"] & Props<TData>) {
   const { pageIndex, pageSize, from, to, total } = useTablePagination(table);
-  const textFirst = locale === "en"
-    ? "Go to first page"
-    : "Ir a la primera página";
-  const textPrevious = locale === "en"
-    ? "Go to previous page"
-    : "Ir a la página anterior";
-  const textNext = locale === "en"
-    ? "Go to next page"
-    : "Ir a la página siguiente";
-  const textLast = locale === "en"
-    ? "Go to last page"
-    : "Ir a la última página";
+  const textFirst = locale === "en" ? "Go to first page" : "Ir a la primera página";
+  const textPrevious = locale === "en" ? "Go to previous page" : "Ir a la página anterior";
+  const textNext = locale === "en" ? "Go to next page" : "Ir a la página siguiente";
+  const textLast = locale === "en" ? "Go to last page" : "Ir a la última página";
   return (
     <div
       className={cn(

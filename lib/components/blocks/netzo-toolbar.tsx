@@ -20,8 +20,7 @@ export function NetzoToolbar({ className }: NetzoToolbarProps) {
   const expanded = useSignal<boolean>(globalThis?.innerWidth >= 768);
 
   const styles = {
-    toolbarButton:
-      "text-zinc-100 rounded-full hover:bg-gray-600 hover:text-zinc-100",
+    toolbarButton: "text-zinc-100 rounded-full hover:bg-gray-600 hover:text-zinc-100",
   };
 
   const onClickShare = () => {

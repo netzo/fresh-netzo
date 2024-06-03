@@ -24,8 +24,8 @@ export const createDatabaseAuth = (db: ReturnType<typeof database>): Auth => {
       await db.query.$users.findFirst({ where: eq($users.id, user.id) });
     },
     updateUserSession: async (user: AuthUser, sessionId: string) => {
-        // IMPORTANT: this invalidates the old session and creates a new one.
-        // If multiple sessions per user are allowed, this should be adjusted.
+      // IMPORTANT: this invalidates the old session and creates a new one.
+      // If multiple sessions per user are allowed, this should be adjusted.
       await db.transaction(async (tx) => {
         await tx.delete($sessions).where(eq($sessions.$userId, user.id));
         await tx.insert($sessions).values({ id: sessionId, $userId: user.id });

@@ -112,9 +112,7 @@ export function KanbanView<TData>({
     itemId: UniqueIdentifier,
     groupIdValue: string,
   ) {
-    const itemsInGroup = data.filter((item) =>
-      item[options.column] === groupIdValue
-    );
+    const itemsInGroup = data.filter((item) => item[options.column] === groupIdValue);
     const itemPosition = itemsInGroup.findIndex((item) => item.id === itemId);
     const group = groups.value.find((col) => col.id === groupIdValue);
     return {
@@ -128,9 +126,7 @@ export function KanbanView<TData>({
     onDragStart({ active }) {
       if (!hasDraggableData(active)) return;
       if (active.data.current?.type === "Group") {
-        const startGroupIdx = groupsId.value.findIndex((id) =>
-          id === active.id
-        );
+        const startGroupIdx = groupsId.value.findIndex((id) => id === active.id);
         const startGroup = groups.value[startGroupIdx];
         return `Picked up Group ${startGroup?.label} at position: ${
           startGroupIdx + 1
@@ -187,9 +183,7 @@ export function KanbanView<TData>({
         active.data.current?.type === "Group" &&
         over.data.current?.type === "Group"
       ) {
-        const overGroupPosition = groupsId.value.findIndex((id) =>
-          id === over.id
-        );
+        const overGroupPosition = groupsId.value.findIndex((id) => id === over.id);
 
         return `Group ${active.data.current.group.label} was dropped into position ${
           overGroupPosition + 1
@@ -304,9 +298,7 @@ export function KanbanView<TData>({
     const isActiveAGroup = activeData?.type === "Group";
     if (!isActiveAGroup) return;
 
-    const activeGroupIndex = groups.value.findIndex((col) =>
-      col.id === activeId
-    );
+    const activeGroupIndex = groups.value.findIndex((col) => col.id === activeId);
 
     const overGroupIndex = groups.value.findIndex((col) => col.id === overId);
 

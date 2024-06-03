@@ -1,9 +1,5 @@
 // adapted from https://github.com/denoland/deno_kv_oauth/blob/main/lib/sign_in.ts
-import {
-  Cookie,
-  SECOND,
-  setCookie,
-} from "../../../../deps/deno_kv_oauth/deps.ts";
+import { Cookie, SECOND, setCookie } from "../../../../deps/deno_kv_oauth/deps.ts";
 import {
   COOKIE_BASE,
   getCookieName,

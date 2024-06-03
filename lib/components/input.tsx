@@ -5,8 +5,7 @@ import { IS_BROWSER } from "fresh/runtime.ts";
 import { cn } from "./utils.ts";
 
 // deno-lint-ignore no-empty-interface
-export interface InputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {}
+export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {}
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, ...props }, ref) => {

@@ -11,8 +11,9 @@ export type ResponseMap = {
 };
 
 export type ResponseType = keyof ResponseMap | "json";
-export type MappedType<R extends ResponseType, JsonType = any> = R extends
-  keyof ResponseMap ? ResponseMap[R] : JsonType;
+export type MappedType<R extends ResponseType, JsonType = any> = R extends keyof ResponseMap
+  ? ResponseMap[R]
+  : JsonType;
 
 export type ApiMethodHandlerGET<Query = QueryObject> = <
   T = any,

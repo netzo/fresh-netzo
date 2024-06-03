@@ -298,9 +298,7 @@ export function question(
 
 export { questionConfig };
 
-const [major, minor, _patch] = Deno.version.deno.split(".").map((it) =>
-  parseInt(it)
-);
+const [major, minor, _patch] = Deno.version.deno.split(".").map((it) => parseInt(it));
 
 export interface ConfigureForUnixPipesOptions {
   /** From where the input will be received. */

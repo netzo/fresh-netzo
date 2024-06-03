@@ -127,8 +127,7 @@ export async function setRequestState(
   const referer = req.headers.get("referer")!; // SOMETIMES SET e.g. https://app.netzo.io/some-path
 
   // simple heuristics to determine source of request:
-  const assertIsApp = (url: string) =>
-    !!url && new URL(url).host.endsWith("netzo.io");
+  const assertIsApp = (url: string) => !!url && new URL(url).host.endsWith("netzo.io");
   const isApp = assertIsApp(origin!) || assertIsApp(referer!);
 
   ctx.state.auth = { ...ctx.state.auth, origin, referer, isApp };

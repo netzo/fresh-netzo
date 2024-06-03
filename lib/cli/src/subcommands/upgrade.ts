@@ -1,14 +1,9 @@
-import {
-  isSemVer,
-  parse,
-  semverGreaterThanOrEquals,
-} from "../../../deps/semver/mod.ts";
+import { isSemVer, parse, semverGreaterThanOrEquals } from "../../../deps/semver/mod.ts";
 import { error } from "../../../plugins/utils.ts";
 import type { Args as RawArgs } from "../args.ts";
 import { VERSION } from "../version.ts";
 
-const help =
-  `netzo upgrade: upgrade netzo CLI to the given version (defaults to latest).
+const help = `netzo upgrade: upgrade netzo CLI to the given version (defaults to latest).
 
 To upgrade to latest version:
 netzo upgrade

@@ -1,13 +1,8 @@
 import KeyCombo, { KeyCombos } from "./KeyCombo.ts";
-import {
-  decodeKeypress,
-  Keypress,
-} from "https://deno.land/x/keypress@0.0.7/mod.ts";
+import { decodeKeypress, Keypress } from "https://deno.land/x/keypress@0.0.7/mod.ts";
 import { config as questionConfig } from "./config.ts";
 
-const [major, minor, _patch] = Deno.version.deno.split(".").map((it) =>
-  parseInt(it)
-);
+const [major, minor, _patch] = Deno.version.deno.split(".").map((it) => parseInt(it));
 
 export const PRIMARY_COLOR = "\x1b[94m";
 export const RESET_COLOR = "\x1b[0m";

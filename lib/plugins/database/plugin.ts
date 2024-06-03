@@ -1,7 +1,7 @@
 // deno-lint-ignore-file no-explicit-any
 import type { Plugin, PluginRoute } from "fresh/server.ts";
 import { createClient } from "npm:@libsql/client@0.6.0";
-import { SQL, eq, getTableColumns, sql } from "npm:drizzle-orm@0.30.10";
+import { eq, getTableColumns, SQL, sql } from "npm:drizzle-orm@0.30.10";
 import { SQLiteTable } from "npm:drizzle-orm@0.30.10/sqlite-core";
 import { DrizzleConfig } from "npm:drizzle-orm@0.30.10/utils";
 import { database as createDatabase } from "../../database/mod.ts";

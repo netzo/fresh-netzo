@@ -15,11 +15,7 @@ import { Label } from "./label.tsx";
 import { cn } from "./utils.ts";
 
 export { zodResolver } from "../deps/@hookform/resolvers/zod.ts";
-export {
-  useForm,
-  type UseFormProps,
-  type UseFormReturn,
-} from "../deps/react-hook-form.ts";
+export { useForm, type UseFormProps, type UseFormReturn } from "../deps/react-hook-form.ts";
 
 const Form = FormProvider;
 
@@ -113,16 +109,13 @@ const FormControl = React.forwardRef<
   React.ElementRef<typeof Slot>,
   React.ComponentPropsWithoutRef<typeof Slot>
 >(({ ...props }, ref) => {
-  const { error, formItemId, formDescriptionId, formMessageId } =
-    useFormField();
+  const { error, formItemId, formDescriptionId, formMessageId } = useFormField();
 
   return (
     <Slot
       ref={ref}
       id={formItemId}
-      aria-describedby={!error
-        ? `${formDescriptionId}`
-        : `${formDescriptionId} ${formMessageId}`}
+      aria-describedby={!error ? `${formDescriptionId}` : `${formDescriptionId} ${formMessageId}`}
       aria-invalid={!!error}
       {...props}
     />

@@ -1,15 +1,6 @@
 import { $fetch, type FetchOptions } from "https://esm.sh/ofetch@1.1.1";
-import {
-  type QueryObject,
-  resolveURL,
-  withQuery,
-} from "https://esm.sh/ufo@1.2.0";
-import type {
-  ApiClient,
-  ApiMethodHandler,
-  ApiMethodHandlerGET,
-  ResponseType,
-} from "./types.ts";
+import { type QueryObject, resolveURL, withQuery } from "https://esm.sh/ufo@1.2.0";
+import type { ApiClient, ApiMethodHandler, ApiMethodHandlerGET, ResponseType } from "./types.ts";
 import { headersToObject } from "./utils.ts";
 
 const payloadMethods: ReadonlyArray<string> = [

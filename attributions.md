@@ -1,8 +1,8 @@
 # Open Source License Attribution
 
-This application uses Open Source components. You can find the source code of
-their open source projects along with license information below. We acknowledge
-and are grateful to these developers for their contributions to open source.
+This application uses Open Source components. You can find the source code of their open source
+projects along with license information below. We acknowledge and are grateful to these developers
+for their contributions to open source.
 
 ### [deployctl](https://github.com/denoland/fresh)
 
@@ -31,7 +31,5 @@ by [shadcn](https://github.com/shadcn-ui) is licensed under
 
 ### [@feathersjs/feathers](https://github.com/feathersjs/feathers)
 
-by
-[Feathers contributors](https://github.com/feathersjs/feathers/graphs/contributors)
-is licensed under
-[MIT License](https://github.com/feathersjs/feathers/blob/dove/LICENSE)
+by [Feathers contributors](https://github.com/feathersjs/feathers/graphs/contributors) is licensed
+under [MIT License](https://github.com/feathersjs/feathers/blob/dove/LICENSE)

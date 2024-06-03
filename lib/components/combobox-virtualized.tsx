@@ -5,13 +5,7 @@ import * as React from "react";
 import { useVirtualizer } from "../deps/@tanstack/react-virtual.ts";
 import { useResizeObserver } from "../deps/usehooks-ts.ts";
 import { Button } from "./button.tsx";
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-} from "./command.tsx";
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from "./command.tsx";
 import { Popover, PopoverContent, PopoverTrigger } from "./popover.tsx";
 import { cn } from "./utils.ts";
 
@@ -51,9 +45,7 @@ const VirtualizedCommand = ({
 
   const handleSearch = (search: string) => {
     setFilteredOptions(
-      options.filter((option) =>
-        option.label?.toLowerCase().includes(search?.toLowerCase() ?? "")
-      ),
+      options.filter((option) => option.label?.toLowerCase().includes(search?.toLowerCase() ?? "")),
     );
   };
 
@@ -139,9 +131,7 @@ export function ComboboxVirtualized({
   const ref = React.useRef<HTMLDivElement>(null);
   const { width = 0 } = useResizeObserver({ ref, box: "border-box" });
 
-  const selectedOptionLabel = options.find(({ value }) =>
-    value === selectedOption
-  )?.label;
+  const selectedOptionLabel = options.find(({ value }) => value === selectedOption)?.label;
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -174,7 +164,7 @@ export function ComboboxVirtualized({
             let value = options.find(({ value }) => value === currentValue)?.value as string;
             if (!value) {
               value = options.find(
-                ({ value }) => value === currentValue.toLowerCase()
+                ({ value }) => value === currentValue.toLowerCase(),
               )?.value as string;
             }
             setSelectedOption(value);

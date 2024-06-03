@@ -59,9 +59,7 @@ export function textSearch<T>(
     let lastSequenceMatch = -1;
     for (let i = 0; i < searchTerms.length; i++) {
       if (lastSequenceMatch === -1) {
-        lastSequenceMatch = itemParts.findIndex((part) =>
-          part === searchTerms[i]
-        );
+        lastSequenceMatch = itemParts.findIndex((part) => part === searchTerms[i]);
       } else {
         if (itemParts[lastSequenceMatch + 1] === searchTerms[i]) {
           specificity.exactWordMatchesInSequence++;
@@ -79,9 +77,7 @@ export function textSearch<T>(
           lastSequenceMatch = -1;
         }
       }
-      const itemPartIndex = itemParts.findIndex((part) =>
-        part === searchTerms[i]
-      );
+      const itemPartIndex = itemParts.findIndex((part) => part === searchTerms[i]);
       if (itemPartIndex !== -1) {
         specificity.exactWordMatches++;
         const start = itemAsStringSearchable.indexOf(

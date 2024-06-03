@@ -50,9 +50,8 @@ export default async function password(
     clear: () => print(CLEAR_LINE),
     prompt: () =>
       print(
-        PREFIX + asPromptText(prompt) + (sub.length === 0
-          ? ""
-          : sub.repeat(Math.ceil(text.length / sub.length)).slice(
+        PREFIX + asPromptText(prompt) +
+          (sub.length === 0 ? "" : sub.repeat(Math.ceil(text.length / sub.length)).slice(
             0,
             text.length,
           )) +

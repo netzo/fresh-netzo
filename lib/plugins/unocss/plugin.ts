@@ -232,8 +232,7 @@ export const unocss = ({
         middlewares.push({
           path: "/",
           middleware: {
-            handler: (_req, ctx) =>
-              ctx.url.pathname === "/uno.css" ? resp : ctx.next(),
+            handler: (_req, ctx) => ctx.url.pathname === "/uno.css" ? resp : ctx.next(),
           },
         });
       }

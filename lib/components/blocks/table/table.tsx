@@ -19,14 +19,7 @@ import {
   useReactTable,
   type VisibilityState,
 } from "../../../deps/@tanstack/react-table.ts";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "../../table.tsx";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../../table.tsx";
 import { cn } from "../../utils.ts";
 import type { TableFilter } from "./table-filters.tsx";
 import type { TableSearch } from "./table-search.tsx";

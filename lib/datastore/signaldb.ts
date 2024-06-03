@@ -1,8 +1,5 @@
 import preactReactivityAdapter from "npm:signaldb-plugin-preact@1.0.1";
-import {
-  createPersistenceAdapter,
-  PersistentCollection,
-} from "npm:signaldb@0.8.7";
+import { createPersistenceAdapter, PersistentCollection } from "npm:signaldb@0.8.7";
 
 const createDatastoreAdapter = (name: string, data: any[]) => {
   let firstRender = true;

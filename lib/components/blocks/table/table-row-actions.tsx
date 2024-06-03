@@ -2,11 +2,7 @@
 import * as React from "react";
 
 import { Button } from "../../button.tsx";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuTrigger,
-} from "../../dropdown-menu.tsx";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from "../../dropdown-menu.tsx";
 
 export function TableRowActions<TData>(props: { children?: React.ReactNode }) {
   return (

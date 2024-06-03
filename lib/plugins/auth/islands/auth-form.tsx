@@ -1,9 +1,5 @@
 import type { JSX } from "preact";
-import {
-  Alert,
-  AlertDescription,
-  AlertTitle,
-} from "../../../components/alert.tsx";
+import { Alert, AlertDescription, AlertTitle } from "../../../components/alert.tsx";
 import { Button, buttonVariants } from "../../../components/button.tsx";
 import { Input } from "../../../components/input.tsx";
 import { Label } from "../../../components/label.tsx";
@@ -43,9 +39,7 @@ export function AuthForm(props: AuthFormProps) {
   return (
     <>
       <div className="flex flex-col space-y-2 text-center">
-        {logo && (
-          <img src={logo} alt="Logo" className="mx-auto mb-4 w-16 h-16" />
-        )}
+        {logo && <img src={logo} alt="Logo" className="mx-auto mb-4 w-16 h-16" />}
         {title && (
           <h1 className="text-2xl font-semibold">
             {title}
