@@ -27,7 +27,8 @@ const TableHeader = React.forwardRef<
   <thead
     ref={ref}
     className={cn(
-      "[&_tr]:border-b",
+      // see https://github.com/shadcn-ui/ui/issues/1151#issuecomment-2061041509
+      "[&_tr]:border-0 [&_tr]:shadow-[inset_0_-1px_0] [&_tr]:shadow-border",
       "sticky top-0 bg-secondary border-b z-10",
       className,
     )}
