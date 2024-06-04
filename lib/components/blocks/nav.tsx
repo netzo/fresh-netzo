@@ -1,8 +1,9 @@
 import { signal } from "@preact/signals";
 import type { ComponentChildren, JSX } from "preact";
 import type { NetzoState } from "../../mod.ts";
+import { DialogIssuesCreate } from "../../plugins/netzolabs/islands/dialog-issues-create.tsx";
 import { Avatar, AvatarFallback, AvatarImage } from "../avatar.tsx";
-import { buttonVariants } from "../button.tsx";
+import { Button, buttonVariants } from "../button.tsx";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -25,7 +26,7 @@ type NavRootProps = JSX.IntrinsicElements["nav"] & {
 };
 
 export function NavRoot({ className, ...props }: NavRootProps) {
-  const { denoJson } = props.state ?? {};
+  const { denoJson } = props.state?.netzolabs ?? {};
   const darkMode = useDarkMode();
 
   const logoSrc = darkMode.value
@@ -299,5 +300,30 @@ export function NavItemUser(
         )}
       </DropdownMenuContent>
     </DropdownMenu>
+  );
+}
+
+export function NavItemFeedback(props: {
+  icon?: string;
+  text: string;
+  locale: "en" | "es";
+  state: NetzoState;
+}) {
+  return (
+    <DialogIssuesCreate locale={props.locale} state={props.state}>
+      <Button
+        variant="ghost"
+        className={cn(
+          "rounded-none",
+          "flex w-full justify-start h-[40px]",
+          "hover:cursor-pointer hover:bg-muted", // hover
+        )}
+      >
+        {props.icon && (props.icon.startsWith("http")
+          ? <img {...props} src={props.icon} className="w-4 h-4 mr-3" />
+          : <div {...props} className={cn("w-4 h-4 mr-3", props.icon)} />)}
+        {props.text}
+      </Button>
+    </DialogIssuesCreate>
   );
 }

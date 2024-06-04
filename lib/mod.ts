@@ -6,6 +6,7 @@ import type { CronState } from "./plugins/cron/plugin.ts";
 import type { DatabaseState } from "./plugins/database/plugin.ts";
 import type { DatastoreState } from "./plugins/datastore/plugin.ts";
 import type { EnvironmentsState } from "./plugins/environments/plugin.ts";
+import type { NetzolabsState } from "./plugins/netzolabs/plugin.ts";
 import type { StorageState } from "./plugins/storage/plugin.ts";
 import { proxyConsole } from "./plugins/utils.ts";
 
@@ -26,6 +27,7 @@ export type NetzoState = {
   environments?: EnvironmentsState;
   loader?: LoaderState;
   mdx?: MdxState;
+  netzolabs?: NetzolabsState;
   storage?: StorageState;
   // unocss?: UnocssState;
   [k: string]: unknown;

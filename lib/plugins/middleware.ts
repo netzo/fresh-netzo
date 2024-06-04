@@ -22,9 +22,7 @@ export function cors(): MiddlewareHandler {
   };
 }
 
-export function apiKeyAuthentication(
-  { apiKey }: { apiKey: string },
-): MiddlewareHandler {
+export function apiKeyAuthentication({ apiKey }: { apiKey: string }): MiddlewareHandler {
   return async (req, ctx) => {
     try {
       if (!["route"].includes(ctx.destination)) return await ctx.next();

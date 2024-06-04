@@ -10,6 +10,7 @@ export type NetzoStateWithAuth = NetzoState & {
 
 const skip = (_req: Request, ctx: FreshContext<NetzoStateWithAuth>) => {
   if (!["route"].includes(ctx.destination)) return true;
+  if (ctx.url.pathname.startsWith("/api")) return true; // skip api routes by  (custom endpoints)
   if (ctx.url.pathname.startsWith("/auth/")) return true; // skip auth routes (signin, callback, signout)
   if (ctx.url.pathname.startsWith("/database")) return true; // skip database routes
   if (ctx.url.pathname.startsWith("/datastore")) return true; // skip datastore routes
