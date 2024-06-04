@@ -3,25 +3,36 @@ import * as React from "react";
 
 import { cn } from "./utils.ts";
 
+// NOTE: table adapted by removing wrapping div with overflow to allow fixing table header
+// using sticky (see https://github.com/shadcn-ui/ui/issues/1151#issuecomment-1806990817)
 const Table = React.forwardRef<
   HTMLTableElement,
   React.HTMLAttributes<HTMLTableElement>
 >(({ className, ...props }, ref) => (
-  <div className="relative w-full overflow-auto">
-    <table
-      ref={ref}
-      className={cn("w-full caption-bottom text-sm", className)}
-      {...props}
-    />
-  </div>
+  <table
+    ref={ref}
+    className={cn("w-full caption-bottom text-sm", className)}
+    {...props}
+  />
 ));
 Table.displayName = "Table";
 
+// NOTE: add "sticky top-0 bg-secondary border-b z-10" to thead for when using sticky
+// header by wrapping the Table as follows <ScrollArea><Table /></ScrollArea>
+// (see https://github.com/shadcn-ui/ui/issues/1151#issuecomment-1806990817)
 const TableHeader = React.forwardRef<
   HTMLTableSectionElement,
   React.HTMLAttributes<HTMLTableSectionElement>
 >(({ className, ...props }, ref) => (
-  <thead ref={ref} className={cn("[&_tr]:border-b", className)} {...props} />
+  <thead
+    ref={ref}
+    className={cn(
+      "[&_tr]:border-b",
+      "sticky top-0 bg-secondary border-b z-10",
+      className,
+    )}
+    {...props}
+  />
 ));
 TableHeader.displayName = "TableHeader";
 
