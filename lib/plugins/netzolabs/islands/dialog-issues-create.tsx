@@ -102,7 +102,7 @@ export function DialogIssuesCreate(props: {
           options: [
             { value: "bug", label: "Reporte de error" },
             { value: "enhancement", label: "Solicitud de mejora" },
-            { value: "feature", label: "Solicitud de nueva función" },
+            { value: "feature", label: "Solicitud de nueva funcionalidad" },
             { value: "feedback", label: "Comentarios generales" },
             { value: "question", label: "Pregunta" },
           ],

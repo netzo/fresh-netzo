@@ -80,6 +80,9 @@ export const LOGS = {
   localEnvVarSet: (key: string) => {
     return `Overwrote remote environment variable "${key}" with local.`;
   },
+  deploymentError: (message: string) => {
+    return `DeploymentError: ${message}`;
+  },
 } as const;
 
 export const RESPONSES = {

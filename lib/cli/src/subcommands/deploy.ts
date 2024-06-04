@@ -227,9 +227,7 @@ async function deploy(
     Deno.exit(1);
   }
 
-  const { data: deployments } = await api.deployments.get<
-    Paginated<Deployment>
-  >({
+  const { data: deployments } = await api.deployments.get<Paginated<Deployment>>({
     projectId: project.denoId,
   });
   if (!deployments) {
@@ -395,9 +393,10 @@ async function deploy(
       },
     );
 
-    const _denoDeployment = await api.deployments.post<Deployment>(data, {
+    const denoDeployment = await api.deployments.post<Deployment | { message: string }>(data, {
       projectId: project._id,
     });
+    if ("message" in denoDeployment) error(LOGS.deploymentError(denoDeployment.message));
   } catch (err: unknown) {
     if (err instanceof APIError) {
       if (deploySpinner) {
