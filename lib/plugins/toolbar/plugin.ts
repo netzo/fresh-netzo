@@ -1,31 +1,53 @@
 import type { Plugin } from "fresh/server.ts";
 import type { NetzoState } from "../../mod.ts";
-import { createNetzolabsState } from "./middlewares/mod.ts";
+import { createToolbarState } from "./middlewares/mod.ts";
 
-export type NetzolabsConfig = {
+export type ToolbarConfig = {
+  /**
+   * The locale to use for the Toolbar plugin (defaults to "es")
+   */
+  locale?: "en" | "es";
   /**
    * The parsed `deno.json(c)` configuration file (MUST be set to `JSON.parse(await Deno.readTextFile(configURL))`)
    */
   denoJson: DenoConfigurationFile;
+  /**
+   * The project ID to use for the Toolbar plugin
+   */
+  links: React.HTMLAttributes<HTMLImageElement> & {
+    href: string;
+    target?: string;
+    src: string;
+    alt?: string;
+    className?: string;
+  }[];
 };
 
-export type NetzolabsState = {
+export type ToolbarState = {
   projectId: string;
+  locale?: "en" | "es";
   denoJson: DenoConfigurationFile;
+  links: React.HTMLAttributes<HTMLImageElement> & {
+    href: string;
+    target?: string;
+    src: string;
+    alt?: string;
+    className?: string;
+  }[];
 };
 
 /**
- * Plugin to register NetzoLabs functionality.
+ * Plugin to register Netzo Toolbar functionality.
  *
  * @returns {Plugin} - a Plugin for Deno Fresh
  */
-export const netzolabs = (config: NetzolabsConfig): Plugin<NetzoState> => {
+export const toolbar = (config: ToolbarConfig): Plugin<NetzoState> => {
   return {
-    name: "netzo.netzolabs",
+    name: "netzo.toolbar",
     middlewares: [
       {
         path: "/",
-        middleware: { handler: createNetzolabsState(config) },
+        middleware: { handler: createToolbarState(config) },
       },
     ],
   };

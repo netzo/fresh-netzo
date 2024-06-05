@@ -1,13 +1,15 @@
 import type { FreshContext } from "fresh/server.ts";
 import { NetzoState } from "../../../mod.ts";
-import type { NetzolabsConfig, NetzolabsState } from "../plugin.ts";
+import type { ToolbarConfig, ToolbarState } from "../plugin.ts";
 
-export function createNetzolabsState(config: NetzolabsConfig) {
+export function createToolbarState(config: ToolbarConfig) {
   return async (_req: Request, ctx: FreshContext<NetzoState>) => {
-    ctx.state.netzolabs ??= {
+    ctx.state.toolbar ??= {
       projectId: Deno.env.get("NETZO_PROJECT_ID")!,
+      locale: config.locale,
       denoJson: config.denoJson,
-    } satisfies NetzolabsState;
+      links: config.links,
+    } satisfies ToolbarState;
 
     return await ctx.next();
   };
