@@ -5,6 +5,9 @@ import { customAlphabet } from "nanoid";
 
 export const id = customAlphabet("0123456789abcdefghijklmnopqrstuvwxyz", 12);
 
+export const date = () => new Date().toISOString().split("T")[0];
+export const datetime = () => new Date().toISOString();
+
 // $users:
 
 export const $users = sqliteTable("$users", {
@@ -14,11 +17,15 @@ export const $users = sqliteTable("$users", {
   name: text("name"),
   email: text("email"),
   avatar: text("avatar"),
-  data: text("data", { mode: "json" }).$default(() => ({})),
-  createdAt: text("createdAt").notNull().$default(() => new Date().toISOString()),
-  updatedAt: text("updatedAt").notNull().$default(() => new Date().toISOString()).$onUpdate(() =>
-    new Date().toISOString()
-  ),
+  data: text("data", { mode: "json" }).$default(() => ({
+    roles: [],
+    status: "active",
+  })).$type<{
+    roles: ("owner" | "admin" | "developer" | "user" | string)[];
+    status: "active" | "inactive";
+  }>(),
+  createdAt: text("createdAt").notNull().$default(datetime),
+  updatedAt: text("updatedAt").notNull().$default(datetime).$onUpdate(datetime),
   deletedAt: text("deletedAt"),
 });
 
@@ -30,7 +37,7 @@ export type $UserData = typeof $users.$inferInsert;
 export const $sessions = sqliteTable("$sessions", {
   id: text("id").primaryKey().$default(() => id()),
   $userId: text("$userId").notNull().references(() => $users.id, { onDelete: "cascade" }),
-  createdAt: text("createdAt").notNull().$default(() => new Date().toISOString()),
+  createdAt: text("createdAt").notNull().$default(datetime),
 });
 
 export type $Session = typeof $sessions.$inferSelect;
