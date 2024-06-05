@@ -117,12 +117,12 @@ export {
   DialogOverlay,
   DialogPortal,
   DialogTitle,
-  DialogTrigger,
+  DialogTrigger
 };
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// NOTE: DialogControlled and DialogContentControlled are controlled variants
+// NOTE: DialogContentControlled are controlled variants
 // of DialogContent to circumvent an open issue where using Select, Combobox, etc.
 // components will cause the Dialog to close on selection. To work around this,
 // this controlled variant expects an open (Signal<boolean>) variable and uses that

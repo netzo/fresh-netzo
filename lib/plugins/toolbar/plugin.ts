@@ -3,17 +3,11 @@ import type { NetzoState } from "../../mod.ts";
 import { createToolbarState } from "./middlewares/mod.ts";
 
 export type ToolbarConfig = {
-  /**
-   * The locale to use for the Toolbar plugin (defaults to "es")
-   */
+  /** The locale to use for the Toolbar plugin (defaults to "es") */
   locale?: "en" | "es";
-  /**
-   * The parsed `deno.json(c)` configuration file (MUST be set to `JSON.parse(await Deno.readTextFile(configURL))`)
-   */
+  /** The parsed `deno.json(c)` configuration file (MUST be set to `JSON.parse(await Deno.readTextFile(configURL))`) */
   denoJson: DenoConfigurationFile;
-  /**
-   * The project ID to use for the Toolbar plugin
-   */
+  /** The project ID to use for the Toolbar plugin */
   links: React.HTMLAttributes<HTMLImageElement> & {
     href: string;
     target?: string;

@@ -1,4 +1,5 @@
 import type { PluginRoute } from "$fresh/server.ts";
+import { locales } from "../i18n.ts";
 import type { AuthConfig } from "../plugin.ts";
 import {
   getAuthConfig,
@@ -11,8 +12,11 @@ export const getRoutesByProvider = (
   provider: AuthProvider,
   options: AuthConfig,
 ): PluginRoute[] => {
-  const _providerOptions = options.providers?.[provider] ?? {};
+  const { locale = "es" } = options;
+  const { allowNewUserRegistration = true } = options.providers?.[provider] ?? {};
   const [signIn, handleCallback, signOut] = getFunctionsByProvider(provider);
+
+  const i18n = locales[locale];
 
   const routes: PluginRoute[] = [
     {
@@ -60,9 +64,18 @@ export const getRoutesByProvider = (
           if (user[key] === undefined) delete user[key];
         });
 
+        console.log({ userCurrent, allowNewUserRegistration });
+
         if (!userCurrent) {
-          await ctx.state.auth.createUser(user);
-          await ctx.state.auth.createUserSession(user, sessionId);
+          if (allowNewUserRegistration === true) {
+            await ctx.state.auth.createUser(user);
+            await ctx.state.auth.createUserSession(user, sessionId);
+          } else {
+            return new Response("", {
+              status: 307,
+              headers: { Location: `/auth?error=${i18n.newUserRegistrationNotAllowed}` },
+            }); // redirect to relative path
+          }
         } else {
           await ctx.state.auth.updateUser(user);
           await ctx.state.auth.updateUserSession(user, sessionId);

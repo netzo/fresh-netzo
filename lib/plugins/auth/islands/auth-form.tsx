@@ -4,6 +4,7 @@ import { Button, buttonVariants } from "../../../components/button.tsx";
 import { Input } from "../../../components/input.tsx";
 import { Label } from "../../../components/label.tsx";
 import { cn } from "../../../components/utils.ts";
+import { locales } from "../i18n.ts";
 import type { AuthConfig } from "../plugin.ts";
 
 export type AuthFormProps = JSX.HTMLAttributes<HTMLDivElement> & {
@@ -23,18 +24,7 @@ export function AuthForm(props: AuthFormProps) {
   );
   const showDivider = hasEmail && hasOAuth2;
 
-  const i18n = ({
-    en: {
-      emailButton: "Sign In with Email",
-      text: "Sign In with",
-      divider: "Or continue with",
-    },
-    es: {
-      emailButton: "Inicia sesión con Email",
-      text: "Inicia sesión con",
-      divider: "O continua con",
-    },
-  })?.[props.config.locale ?? "es"]!;
+  const i18n = locales?.[props.config.locale ?? "es"]!;
 
   return (
     <>
@@ -66,7 +56,7 @@ export function AuthForm(props: AuthFormProps) {
       <div className="grid gap-6">
         {!!providers?.email && (
           <form method="POST" action="/auth/email">
-            <ButtonEmail text={i18n.emailButton} />
+            <ButtonEmail text={i18n.authForm.emailButton} />
           </form>
         )}
 
@@ -77,20 +67,20 @@ export function AuthForm(props: AuthFormProps) {
             </div>
             <div className="relative flex justify-center text-xs uppercase">
               <span className="px-2 bg-background">
-                {i18n.divider}
+                {i18n.authForm.divider}
               </span>
             </div>
           </div>
         )}
 
         {!!providers?.netzo && (
-          <ButtonNetzo text={`${i18n.text} Netzo`} href="/auth/netzo/signin">
+          <ButtonNetzo text={`${i18n.authForm.text} Netzo`} href="/auth/netzo/signin">
             <div className="mr-4 w-22px h-22px i-netzo-symbol" />
           </ButtonNetzo>
         )}
 
         {!!providers?.google && (
-          <ButtonOAuth2 text={`${i18n.text} Google`} href="/auth/google/signin">
+          <ButtonOAuth2 text={`${i18n.authForm.text} Google`} href="/auth/google/signin">
             {/* NOTE: use inline SVG instead of logos-google-icon to avoid having to load logos collection (7MB) */}
             <svg
               className="mr-4 w-20px h-20px"
@@ -118,19 +108,19 @@ export function AuthForm(props: AuthFormProps) {
         )}
 
         {!!providers?.github && (
-          <ButtonOAuth2 text={`${i18n.text} GitHub`} href="/auth/github/signin">
+          <ButtonOAuth2 text={`${i18n.authForm.text} GitHub`} href="/auth/github/signin">
             <div className="mr-4 w-20px h-20px mdi-github" />
           </ButtonOAuth2>
         )}
 
         {!!providers?.gitlab && (
-          <ButtonOAuth2 text={`${i18n.text} GitLab`} href="/auth/gitlab/signin">
+          <ButtonOAuth2 text={`${i18n.authForm.text} GitLab`} href="/auth/gitlab/signin">
             <div className="mr-4 w-20px h-20px mdi-gitlab" />
           </ButtonOAuth2>
         )}
 
         {!!providers?.slack && (
-          <ButtonOAuth2 text={`${i18n.text} Slack`} href="/auth/slack/signin">
+          <ButtonOAuth2 text={`${i18n.authForm.text} Slack`} href="/auth/slack/signin">
             {/* NOTE: use inline SVG instead of logos-slack-icon to avoid having to load logos collection (7MB) */}
             <svg
               className="mr-4 w-20px h-20px"
@@ -158,7 +148,7 @@ export function AuthForm(props: AuthFormProps) {
         )}
 
         {!!providers?.auth0 && (
-          <ButtonOAuth2 text={`${i18n.text} Auth0`} href="/auth/auth0/signin">
+          <ButtonOAuth2 text={`${i18n.authForm.text} Auth0`} href="/auth/auth0/signin">
             {/* NOTE: use inline SVG instead of simple-icons-auth0 to avoid having to load simple-icons collection (4.4MB) */}
             <svg
               className="mr-4 w-20px h-20px"
@@ -174,7 +164,7 @@ export function AuthForm(props: AuthFormProps) {
         )}
 
         {!!providers?.okta && (
-          <ButtonOAuth2 text={`${i18n.text} Okta`} href="/auth/okta/signin">
+          <ButtonOAuth2 text={`${i18n.authForm.text} Okta`} href="/auth/okta/signin">
             {/* NOTE: use inline SVG instead of simple-icons-okta to avoid having to load simple-icons collection (4.4MB) */}
             <svg
               className="mr-4 w-20px h-20px"
@@ -191,7 +181,7 @@ export function AuthForm(props: AuthFormProps) {
 
         {
           /* {!!providers?.oauth2 && (
-          <ButtonOAuth2 text={`${i18n.text} Custom`} href="/auth/oauth2/signin">
+          <ButtonOAuth2 text={`${i18n.authForm.text} Custom`} href="/auth/oauth2/signin">
             <div className="mr-4 w-20px h-20px mdi-code-json" />
           </ButtonOAuth2>
         )} */

@@ -24,6 +24,7 @@ import { Form, useForm } from "../../../components/form.tsx";
 import { cn } from "../../../components/utils.ts";
 import { useLocalStorage } from "../../../deps/usehooks-ts.ts";
 import { NetzoState } from "../../../mod.ts";
+import { locales } from "../i18n.ts";
 
 // created using v0 by Vercel see https://v0.dev/t/aLUPWlh
 
@@ -32,7 +33,9 @@ export type NetzoToolbarProps = JSX.IntrinsicElements["menu"] & {
 };
 
 export function NetzoToolbar({ state, className }: NetzoToolbarProps) {
-  const { links = [] } = state?.toolbar ?? {};
+  const { locale = "es", links = [] } = state?.toolbar ?? {};
+
+  const i18n = locales[locale]
 
   const [
     expanded,
@@ -42,14 +45,6 @@ export function NetzoToolbar({ state, className }: NetzoToolbarProps) {
 
   const styles = {
     toolbarButton: "text-zinc-100 rounded-full hover:bg-gray-600 hover:text-zinc-100",
-  };
-
-  const onClickShare = () => {
-    globalThis.navigator.share({
-      title: globalThis.document.title,
-      text: "Open in Netzo",
-      url: globalThis.location.href,
-    });
   };
 
   return (
@@ -70,40 +65,45 @@ export function NetzoToolbar({ state, className }: NetzoToolbarProps) {
             <ButtonDarkMode
               size="icon"
               variant="ghost"
-              title="Toggle dark mode"
+              title={i18n.buttons.toggleDarkMode}
               className={cn(styles.toolbarButton)}
             /> */
             }
             <Button
               size="icon"
               variant="ghost"
-              title="Share"
+              title={i18n.buttons.share}
               className={cn(styles.toolbarButton)}
-              onClick={onClickShare}
+              onClick={() => {
+                globalThis.navigator.share({
+                  title: globalThis.document.title,
+                  url: globalThis.location.href,
+                });
+              }}
             >
               <i className="mdi-share-variant h-6 w-6" />
-              <span className="sr-only">Share</span>
+              <span className="sr-only">{i18n.buttons.share}</span>
             </Button>
             <DialogFeedbackNetzolabs state={state}>
               <Button
                 size="icon"
                 variant="ghost"
-                title="Feedback"
+                title={i18n.buttons.feedback}
                 className={cn(styles.toolbarButton)}
               >
                 <i className="mdi-comment-question h-6 w-6" />
-                <span className="sr-only">Feedback</span>
+                <span className="sr-only">{i18n.buttons.feedback}</span>
               </Button>
             </DialogFeedbackNetzolabs>
             <DialogInfo state={state}>
               <Button
                 size="icon"
                 variant="ghost"
-                title="Info"
+                title={i18n.buttons.info}
                 className={cn(styles.toolbarButton)}
               >
                 <i className="mdi-information h-6 w-6" />
-                <span className="sr-only">Information</span>
+                <span className="sr-only">{i18n.buttons.info}</span>
               </Button>
             </DialogInfo>
           </div>
@@ -138,12 +138,14 @@ export function NetzoToolbar({ state, className }: NetzoToolbarProps) {
         <Button
           size="icon"
           variant="ghost"
-          title={expanded ? "Collapse toolbar" : "Expand toolbar"}
+          title={expanded ? i18n.buttons.collapse : i18n.buttons.expand}
           className={cn(styles.toolbarButton)}
           onClick={() => setExpanded(!expanded)}
         >
           <i className="mdi-menu h-6 w-6" />
-          <span className="sr-only">Expand</span>
+          <span className="sr-only">
+            {expanded ? i18n.buttons.collapse : i18n.buttons.expand}
+          </span>
         </Button>
       </div>
     </menu>
@@ -175,6 +177,8 @@ export function DialogFeedbackNetzolabs(props: { state: NetzoState; children: Co
 
   const { locale = "es" } = props.state?.toolbar ?? {};
 
+  const i18n = locales?.[locale];
+
   const id = "nav-item-feedback-form";
 
   const form = useForm<Issue>({
@@ -201,47 +205,6 @@ export function DialogFeedbackNetzolabs(props: { state: NetzoState; children: Co
     open.value = false;
   };
 
-  const t = ({
-    en: {
-      title: "Report an Issue",
-      description: "Please provide details about the issue encountered.",
-      form: {
-        type: {
-          label: "Type",
-          options: [
-            { value: "bug", label: "Bug Report" },
-            { value: "enhancement", label: "Enhancement Request" },
-            { value: "feature", label: "Feature Request" },
-            { value: "feedback", label: "General Feedback" },
-            { value: "question", label: "Question" },
-          ],
-        },
-        title: { label: "Title" },
-        description: { label: "Description" },
-        submit: "Submit",
-      },
-    },
-    es: {
-      title: "Reportar incidencia",
-      description: "Proporcione detalles sobre la incidencia encontrada.",
-      form: {
-        type: {
-          label: "Tipo",
-          options: [
-            { value: "bug", label: "Reporte de error" },
-            { value: "enhancement", label: "Solicitud de mejora" },
-            { value: "feature", label: "Solicitud de nueva funcionalidad" },
-            { value: "feedback", label: "Comentarios generales" },
-            { value: "question", label: "Pregunta" },
-          ],
-        },
-        title: { label: "Título" },
-        description: { label: "Descripción" },
-        submit: "Enviar",
-      },
-    },
-  })?.[locale];
-
   // NOTE: must manually invoke submit because submit button isteleported
   // by dialog out of form (see https://github.com/shadcn-ui/ui/issues/709)
   // IMPORTANT: When utilizing <Input type="file" /> alongside React Hook Form,
@@ -254,9 +217,9 @@ export function DialogFeedbackNetzolabs(props: { state: NetzoState; children: Co
       </DialogTrigger>
       <DialogContentControlled className="sm:max-w-[425px]" onClick={() => open.value = false}>
         <DialogHeader>
-          <DialogTitle>{t.title}</DialogTitle>
+          <DialogTitle>{i18n.dialogFeedbackNetzolabs.title}</DialogTitle>
           <DialogDescription>
-            {t.description}
+            {i18n.dialogFeedbackNetzolabs.description}
           </DialogDescription>
         </DialogHeader>
 
@@ -268,21 +231,22 @@ export function DialogFeedbackNetzolabs(props: { state: NetzoState; children: Co
           >
             <FormFieldCombobox
               name="type"
-              label={t.form.type.label}
-              options={t.form.type.options}
+              label={i18n.dialogFeedbackNetzolabs.form.type.label}
+              options={i18n.dialogFeedbackNetzolabs.form.type.options}
               required={true}
               form={form}
+              onClick={(e) => e.preventDefault()}
             />
             <FormFieldInput
               name="title"
-              label={t.form.title.label}
+              label={i18n.dialogFeedbackNetzolabs.form.title.label}
               type="text"
               required={true}
               form={form}
             />
             <FormFieldTextarea
               name="description"
-              label={t.form.description.label}
+              label={i18n.dialogFeedbackNetzolabs.form.description.label}
               required={true}
               rows={6}
               form={form}
@@ -292,7 +256,7 @@ export function DialogFeedbackNetzolabs(props: { state: NetzoState; children: Co
 
         <DialogFooter>
           <Button form={id} type="submit">
-            {t.form.submit}
+            {i18n.dialogFeedbackNetzolabs.form.submit}
           </Button>
         </DialogFooter>
       </DialogContentControlled>
@@ -303,24 +267,7 @@ export function DialogFeedbackNetzolabs(props: { state: NetzoState; children: Co
 export function DialogInfo(props: { state: NetzoState; children: ComponentChildren }) {
   const { locale = "es", denoJson } = props.state?.toolbar ?? {};
 
-  const t = ({
-    en: {
-      title: "Appllication Information",
-      content: {
-        name: "Name",
-        description: "Description",
-        version: "Version",
-      },
-    },
-    es: {
-      title: "Información de la aplicación",
-      content: {
-        name: "Nombre",
-        description: "Descripción",
-        version: "Versión",
-      },
-    },
-  })?.[locale];
+  const i18n = locales?.[locale];
 
   const TH = "text-left font-bold text-sm text-gray-500 dark:text-gray-400";
   const TD = "text-right text-sm text-gray-500 dark:text-gray-400";
@@ -332,19 +279,15 @@ export function DialogInfo(props: { state: NetzoState; children: ComponentChildr
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>{t.title}</DialogTitle>
+          <DialogTitle>{i18n.dialogInfo.title}</DialogTitle>
         </DialogHeader>
         <table className="w-full space-y-2 mt-3">
           <tr>
-            <th className={TH}>{t.content.name}</th>
+            <th className={TH}>{i18n.dialogInfo.content.name}</th>
             <td className={TD}>{denoJson?.name}</td>
           </tr>
           <tr>
-            <th className={TH}>{t.content.description}</th>
-            <td className={TD}>{denoJson?.description}</td>
-          </tr>
-          <tr>
-            <th className={TH}>{t.content.version}</th>
+            <th className={TH}>{i18n.dialogInfo.content.version}</th>
             <td className={TD}>{denoJson?.version}</td>
           </tr>
         </table>

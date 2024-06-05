@@ -13,7 +13,7 @@ export const datetime = () => new Date().toISOString();
 export const $users = sqliteTable("$users", {
   id: text("id").primaryKey().$default(() => id()),
   provider: text("provider").notNull(),
-  authId: text("authId").notNull(),
+  authId: text("authId"),
   name: text("name"),
   email: text("email"),
   avatar: text("avatar"),

@@ -12,14 +12,19 @@ import {
 } from "./middlewares/mod.ts";
 import createAuth from "./routes/auth.tsx";
 import { getRoutesByProvider } from "./routes/mod.ts";
-import type { EmailAuthConfig } from "./utils/providers/email.ts";
-import type { NetzoAuthConfig } from "./utils/providers/netzo.ts";
+import { EmailAuthConfig } from "./utils/providers/email.ts";
+import { NetzoAuthConfig } from "./utils/providers/netzo.ts";
 import type { Auth, AuthProvider, AuthUser } from "./utils/types.ts";
 
 export * from "../../deps/deno_kv_oauth/mod.ts";
 
 export * from "./utils/adapters/database.ts";
 export * from "./utils/adapters/datastore.ts";
+
+type AuthConfigProvider = {
+  /** Whether to allow signups for new users (defaults to true). */
+  allowNewUserRegistration?: boolean;
+};
 
 export type AuthConfig = {
   /** An image URL for the logo to appear above the login form at /auth. */
@@ -32,32 +37,34 @@ export type AuthConfig = {
   caption?: string;
   /** An image URL to display to the right side of the login form at /auth. */
   image?: HTMLAttributes<HTMLImageElement>;
+  /** The locale to use for the Toolbar plugin (defaults to "es"). */
   locale?: "en" | "es";
+  /** The OAuth2 providers to enable for authentication. */
   providers: {
-    netzo?: NetzoAuthConfig;
-    email?: EmailAuthConfig;
-    google?: {
+    netzo?: AuthConfigProvider & NetzoAuthConfig;
+    email?: AuthConfigProvider & EmailAuthConfig;
+    google?: AuthConfigProvider & {
       clientId?: string;
       clientSecret?: string;
     };
-    github?: {
+    github?: AuthConfigProvider & {
       clientId?: string;
       clientSecret?: string;
     };
-    gitlab?: {
+    gitlab?: AuthConfigProvider & {
       clientId?: string;
       clientSecret?: string;
     };
-    slack?: {
+    slack?: AuthConfigProvider & {
       clientId?: string;
       clientSecret?: string;
     };
-    auth0?: {
+    auth0?: AuthConfigProvider & {
       clientId?: string;
       clientSecret?: string;
       auth0Domain?: string; // must set AUTH0_DOMAIN environment variable
     };
-    okta?: {
+    okta?: AuthConfigProvider & {
       clientId?: string;
       clientSecret?: string;
       oktaDomain?: string; // must set OKTA_DOMAIN environment variable
@@ -130,6 +137,7 @@ export const auth = (config: AuthConfig): Plugin<NetzoState> => {
   config.title ??= "Sign In";
   config.description ??= "Sign in to access the app";
   config.caption ??= ""; // e.g. 'By signing in you agree to the <a href="/" target="_blank">Terms of Service</a>';
+  config.locale ??= "es";
   config.providers ??= {};
   config.assertAuthorization ??= () => true;
   config.resolveUserData ??= (user) => user?.data ?? {};
