@@ -8,6 +8,7 @@ import { Button } from "../../../components/button.tsx";
 import {
   Dialog,
   DialogContent,
+  DialogContentControlled,
   DialogDescription,
   DialogFooter,
   DialogHeader,
@@ -251,7 +252,7 @@ export function DialogFeedbackNetzolabs(props: { state: NetzoState; children: Co
       <DialogTrigger asChild>
         {props.children}
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContentControlled className="sm:max-w-[425px]" onClick={() => open.value = false}>
         <DialogHeader>
           <DialogTitle>{t.title}</DialogTitle>
           <DialogDescription>
@@ -294,7 +295,7 @@ export function DialogFeedbackNetzolabs(props: { state: NetzoState; children: Co
             {t.form.submit}
           </Button>
         </DialogFooter>
-      </DialogContent>
+      </DialogContentControlled>
     </Dialog>
   );
 }
