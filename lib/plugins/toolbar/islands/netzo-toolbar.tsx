@@ -35,7 +35,7 @@ export type NetzoToolbarProps = JSX.IntrinsicElements["menu"] & {
 export function NetzoToolbar({ state, className }: NetzoToolbarProps) {
   const { locale = "es", links = [] } = state?.toolbar ?? {};
 
-  const i18n = locales[locale]
+  const i18n = locales[locale];
 
   const [
     expanded,
