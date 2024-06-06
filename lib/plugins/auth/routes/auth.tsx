@@ -14,14 +14,24 @@ export const config: RouteConfig = {
 
 export default (config: AuthConfig) => {
   return defineRoute((req, ctx) => {
-    const authFormWrapper = "grid gap-6 w-full xs:w-[350px] max-w-[350px] pb-16";
+    const AuthFormWithCaption = () => (
+      <div className="grid gap-6 w-full xs:w-[350px] max-w-[350px] pb-16">
+        <AuthForm config={config} request={req} />
+
+        {config?.caption && (
+          <p
+            className="px-8 text-sm text-center text-muted-foreground"
+            dangerouslySetInnerHTML={{ __html: config.caption }}
+          />
+        )}
+      </div>
+    );
+
     if (config.image) {
       return (
         <div className="w-full h-full lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px]">
           <div className="h-full flex items-center justify-center py-12">
-            <div className={authFormWrapper}>
-              <AuthForm config={config} request={req} />
-            </div>
+            <AuthFormWithCaption />
           </div>
           <div className="hidden bg-muted lg:block">
             <img
@@ -44,16 +54,7 @@ export default (config: AuthConfig) => {
       <div
         className={`w-full h-full grid place-items-center p-4 bg-background`}
       >
-        <div className={authFormWrapper}>
-          <AuthForm config={config} request={req} />
-
-          {config?.caption && (
-            <p
-              className="px-8 text-sm text-center text-muted-foreground"
-              dangerouslySetInnerHTML={{ __html: config.caption }}
-            />
-          )}
-        </div>
+        <AuthFormWithCaption />
       </div>
     );
   });

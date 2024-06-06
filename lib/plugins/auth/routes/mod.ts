@@ -52,7 +52,9 @@ export const getRoutesByProvider = (
           name: userProvider?.name,
           email: userProvider?.email,
           avatar: userProvider?.avatar,
-          data: options?.resolveUserData?.(userCurrent ?? {}, req, ctx) ?? {},
+          data: options?.resolveUserData
+            ? options?.resolveUserData?.(userCurrent ?? {}, req, ctx) ?? {}
+            : userCurrent?.data ?? {}, // else keep existing data
           createdAt: userCurrent?.createdAt,
           updatedAt: userCurrent?.updatedAt,
           deletedAt: userCurrent?.deletedAt,
