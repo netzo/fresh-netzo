@@ -215,7 +215,7 @@ export function DialogFeedbackNetzolabs(props: { state: NetzoState; children: Co
       <DialogTrigger asChild>
         {props.children}
       </DialogTrigger>
-      <DialogContentControlled className="sm:max-w-[425px]" onClick={() => open.value = false}>
+      <DialogContentControlled className="sm:max-w-[425px]" onClickClose={() => open.value = false}>
         <DialogHeader>
           <DialogTitle>{i18n.dialogFeedbackNetzolabs.title}</DialogTitle>
           <DialogDescription>
