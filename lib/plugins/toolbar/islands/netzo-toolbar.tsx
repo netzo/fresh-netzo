@@ -47,6 +47,8 @@ export function NetzoToolbar({ state, className }: NetzoToolbarProps) {
     toolbarButton: "text-zinc-100 rounded-full hover:bg-gray-600 hover:text-zinc-100",
   };
 
+  const projectsMoreEmail = `mailto:hello@netzo.io?subject=${i18n.projects.subject}&body=${i18n.projects.body}`;
+
   return (
     <menu
       className={cn(
@@ -118,19 +120,18 @@ export function NetzoToolbar({ state, className }: NetzoToolbarProps) {
                 />
               </a>
             ))}
-            {
-              /* <div className="relative">
-              <img
-                alt="Avatar 3"
-                className="rounded-full border-2 border-[#666666] bg-gray-700 opacity-50"
-                src="https://v0.dev/placeholder.svg"
-                style={{ height: "32px", width: "32px", aspectRatio: "32/32", objectFit: "cover" }}
-              />
-              <span className="absolute top-0 left-0 flex items-center justify-center w-full h-full text-white text-xs font-bold">
-                9+
-              </span>
-            </div> */
-            }
+            <a
+              href={projectsMoreEmail}
+              target="_blank"
+              >
+              <div
+                title={i18n.projects.more}
+                className="rounded-full bg-white border-2"
+                style={{ height: "32px", width: "32px", aspectRatio: "32/32", display: "grid", placeItems: "center" }}
+              >
+                <i className="mdi-dots-horizontal text-white h-6 w-6" />
+              </div>
+            </a>
           </div>
         </>
       )}

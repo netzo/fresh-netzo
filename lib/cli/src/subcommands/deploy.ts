@@ -18,8 +18,8 @@ import { parseEntrypoint } from "../utils/entrypoint.ts";
 import {
   buildAssetsFromManifest,
   createClient,
-  type Manifest,
   readDecodeAndAddFileContentToAssets,
+  type Manifest,
 } from "../utils/netzo.ts";
 import { walk } from "../utils/walk.ts";
 
@@ -331,6 +331,7 @@ async function deploy(
       jsxImportSource: "preact",
     },
     assets,
+    domains: undefined, // set by netzo on deployment (for wildcard subdomains using variables)
     envVars: {}, // set by netzo on deployment (project.envVars[env] empty for security)
     databases: undefined, // set by netzo on deployment (from workspace.databaseId)
     description: opts.description,

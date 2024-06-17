@@ -35,6 +35,11 @@ export const locales = {
         version: "Version",
       },
     },
+    projects: {
+      more: "Request information for new projects",
+      subject: "Netzo%20Project%20Inquiry",
+      body: "Hello%2C%0A%0AI%20am%20interested%20in%20learning%20more%20about%20Netzo%20projects%20and%20how%20I%20can%20contribute.%0A%0ARegards%2C%0A%0A%5BYour%20Name%5D",
+    }
   },
   es: {
     buttons: {
@@ -72,5 +77,10 @@ export const locales = {
         version: "Versión",
       },
     },
+    projects: {
+      more: "Solicitar información para nuevos proyectos",
+      subject: "Consulta%20de%20Nuevo%20Proyecto%20Netzo",
+      body: "Hola%2C%0A%0AEstoy%20interesado%20en%20saber%20más%20sobre%20los%20proyectos%20de%20Netzo%20y%20cómo%20puedo%20contribuir.%0A%0ASaludos%2C%0A%0A%5BTu%20Nombre%5D",
+    }
   },
 } as const;
