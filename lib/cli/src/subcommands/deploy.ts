@@ -317,8 +317,6 @@ async function deploy(
   );
 
   const data: DeploymentData = {
-    production: opts.production,
-    // deno:
     entryPointUrl: entryPointUrl.href, // e.g. main.ts
     importMapUrl: importMapUrl?.href || null,
     lockFileUrl: lockFileUrl?.href || null,
@@ -331,7 +329,12 @@ async function deploy(
       jsxImportSource: "preact",
     },
     assets,
-    domains: undefined, // set by netzo on deployment (for wildcard subdomains using variables)
+    domains: opts.production ? [
+      "{project.name}.netzo.dev",
+      "{project.name}-{deployment.id}.netzo.dev",
+    ] : [
+      "{project.name}-{deployment.id}.netzo.dev",
+    ],
     envVars: {}, // set by netzo on deployment (project.envVars[env] empty for security)
     databases: undefined, // set by netzo on deployment (from workspace.databaseId)
     description: opts.description,
