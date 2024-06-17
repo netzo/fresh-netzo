@@ -1,4 +1,6 @@
+import { IS_BROWSER } from "fresh/runtime.ts";
 import { blue, bold, green, red, white, yellow } from "https://deno.land/std@0.208.0/fmt/colors.ts";
+import { useState } from "preact/compat";
 import type { Project } from "./types.ts";
 
 /**
@@ -122,4 +124,28 @@ export async function parseRequestBody<T = any>(req: Request) {
       }
     }
   }
+}
+
+// hooks:
+
+// use custom useLocalStorage hook (instead of that of e.g. usehooks-ts) to
+// avoid using the window object on the server-side which might throw errors
+export function useLocalStorage(key: string, initialValue: string) {
+  if (!IS_BROWSER) return [initialValue, () => {}, () => {}];
+
+  const storedValue = localStorage.getItem(key);
+  const initial = storedValue ? JSON.parse(storedValue) : initialValue;
+  const [value, setValue] = useState(initial);
+
+  const updateValue = (newValue: string) => {
+    setValue(newValue);
+    localStorage.setItem(key, JSON.stringify(newValue));
+  };
+
+  const removeValue = () => {
+    setValue(initialValue);
+    localStorage.removeItem(key);
+  };
+
+  return [value, updateValue, removeValue];
 }

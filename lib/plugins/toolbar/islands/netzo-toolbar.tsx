@@ -22,8 +22,8 @@ import {
 } from "../../../components/form-fields.tsx";
 import { Form, useForm } from "../../../components/form.tsx";
 import { cn } from "../../../components/utils.ts";
-import { useLocalStorage } from "../../../deps/usehooks-ts.ts";
 import { NetzoState } from "../../../mod.ts";
+import { useLocalStorage } from "../../utils.ts";
 import { locales } from "../i18n.ts";
 
 // created using v0 by Vercel see https://v0.dev/t/aLUPWlh
@@ -41,13 +41,14 @@ export function NetzoToolbar({ state, className }: NetzoToolbarProps) {
     expanded,
     setExpanded,
     // removeExpanded
-  ] = useLocalStorage<boolean>("netzo:toolbar", globalThis?.innerWidth >= 768);
+  ] = useLocalStorage("netzo:toolbar", globalThis?.innerWidth >= 768 ? "true" : "false");
 
   const styles = {
     toolbarButton: "text-zinc-100 rounded-full hover:bg-gray-600 hover:text-zinc-100",
   };
 
-  const projectsMoreEmail = `mailto:hello@netzo.io?subject=${i18n.projects.subject}&body=${i18n.projects.body}`;
+  const projectsMoreEmail =
+    `mailto:hello@netzo.io?subject=${i18n.projects.subject}&body=${i18n.projects.body}`;
 
   return (
     <menu
@@ -58,7 +59,7 @@ export function NetzoToolbar({ state, className }: NetzoToolbarProps) {
         className,
       )}
     >
-      {expanded && (
+      {expanded === "true" && (
         <>
           <div className="flex space-x-1 pr-2 border-r border-zinc-600">
             {
@@ -123,11 +124,17 @@ export function NetzoToolbar({ state, className }: NetzoToolbarProps) {
             <a
               href={projectsMoreEmail}
               target="_blank"
-              >
+            >
               <div
                 title={i18n.projects.more}
                 className="rounded-full bg-white border-2"
-                style={{ height: "32px", width: "32px", aspectRatio: "32/32", display: "grid", placeItems: "center" }}
+                style={{
+                  height: "32px",
+                  width: "32px",
+                  aspectRatio: "32/32",
+                  display: "grid",
+                  placeItems: "center",
+                }}
               >
                 <i className="mdi-dots-horizontal text-white h-6 w-6" />
               </div>
@@ -135,17 +142,17 @@ export function NetzoToolbar({ state, className }: NetzoToolbarProps) {
           </div>
         </>
       )}
-      <div className={cn("flex", expanded ? "pl-2" : "")}>
+      <div className={cn("flex", expanded === "true" ? "pl-2" : "")}>
         <Button
           size="icon"
           variant="ghost"
-          title={expanded ? i18n.buttons.collapse : i18n.buttons.expand}
+          title={expanded === "true" ? i18n.buttons.collapse : i18n.buttons.expand}
           className={cn(styles.toolbarButton)}
-          onClick={() => setExpanded(!expanded)}
+          onClick={() => setExpanded(expanded === "true" ? "false" : "true")}
         >
           <i className="mdi-menu h-6 w-6" />
           <span className="sr-only">
-            {expanded ? i18n.buttons.collapse : i18n.buttons.expand}
+            {expanded === "true" ? i18n.buttons.collapse : i18n.buttons.expand}
           </span>
         </Button>
       </div>
