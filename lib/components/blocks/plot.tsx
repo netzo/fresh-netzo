@@ -1,13 +1,17 @@
+// adapted from https://github.com/oaarnikoivu/shadcn-virtualized-combobox
+// @deno-types="npm:@types/react@18.2.60"
+import * as React from "react";
+
 import { type Signal } from "@preact/signals-core";
 import { createElement as h } from "preact";
-import { useEffect, useRef } from "preact/compat";
 import * as Plot from "../../deps/@observablehq/plot.ts";
+import { useResizeObserver } from "../../deps/usehooks-ts.ts";
 
 export * from "../../deps/@observablehq/plot.ts";
 
 /**
- * Isomorphic Plot component for rendering charts on the server and
- * hydrating them on the client for client-side interactivity. The
+ * Isomorphic, responsive Plot component for rendering charts on the server
+ * and hydrating them on the client for client-side interactivity. The
  * plot will be re-rendered on the client when the options change
  * via setOptions of `const [options, setOptions] = useState({...})`
  *
@@ -18,19 +22,23 @@ export * from "../../deps/@observablehq/plot.ts";
  * @returns {JSX.Element} the plot figure
  */
 export function Figure({ options }: { options: Plot.PlotOptions }) {
-  const containerRef = useRef();
+  const containerRef = React.useRef<HTMLElement>();
+  const ref = React.useRef<HTMLElement>();
+  // IMPORTANT: leave default of width, height undefined for the initial SSR render
+  // and let the useResizeObserver hook take over on the client on resize events
+  const { width, height } = useResizeObserver({ ref, box: "border-box" });
 
   // client-side: uses a real DOM container and the usePlot() hook for mounting
-  useEffect(() => {
+  React.useEffect(() => {
     // replace server-side rendered plot with client-side (hydrated) plot entirely
     const plot = Plot.plot(options);
-    containerRef.current = plot;
+    ref.current = plot;
   }, [options]);
 
   // server-side: uses a virtual Document implementation to generate HTML
   return (
-    <figure ref={containerRef}>
-      <PlotSSR options={options} />
+    <figure ref={containerRef} style={{ width: "100%", height: "100%" }}>
+      <PlotSSR ref={ref} options={{ ...options, width, height }} />
     </figure>
   );
 }

@@ -23,7 +23,7 @@ import {
 import { Form, useForm } from "../../../components/form.tsx";
 import { cn } from "../../../components/utils.ts";
 import { NetzoState } from "../../../mod.ts";
-import { useLocalStorage } from "../../utils.ts";
+import { useLocalStorage } from "../../hooks.ts";
 import { locales } from "../i18n.ts";
 
 // created using v0 by Vercel see https://v0.dev/t/aLUPWlh
