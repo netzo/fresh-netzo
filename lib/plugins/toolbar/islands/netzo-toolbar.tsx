@@ -33,7 +33,7 @@ export type NetzoToolbarProps = JSX.IntrinsicElements["menu"] & {
 };
 
 export function NetzoToolbar({ state, className }: NetzoToolbarProps) {
-  const { locale = "es", links = [] } = state?.toolbar ?? {};
+  const { locale = "es" } = state?.toolbar ?? {};
 
   const i18n = locales[locale];
 
@@ -46,9 +46,6 @@ export function NetzoToolbar({ state, className }: NetzoToolbarProps) {
   const styles = {
     toolbarButton: "text-zinc-100 rounded-full hover:bg-gray-600 hover:text-zinc-100",
   };
-
-  const projectsMoreEmail =
-    `mailto:hello@netzo.io?subject=${i18n.projects.subject}&body=${i18n.projects.body}`;
 
   return (
     <menu
@@ -112,33 +109,17 @@ export function NetzoToolbar({ state, className }: NetzoToolbarProps) {
           </div>
 
           <div className="flex space-x-1 px-2 border-r border-zinc-600">
-            {links.slice(0, 3).map((link) => (
-              <a key={link.href} href={link.href} target={link.target}>
-                <img
-                  {...link}
-                  className={cn("rounded-full bg-white border-2", link.className)}
-                  style={{ height: "32px", width: "32px", aspectRatio: "32/32" }}
-                />
-              </a>
-            ))}
-            <a
-              href={projectsMoreEmail}
-              target="_blank"
-            >
-              <div
-                title={i18n.projects.more}
-                className="rounded-full bg-white border-2"
-                style={{
-                  height: "32px",
-                  width: "32px",
-                  aspectRatio: "32/32",
-                  display: "grid",
-                  placeItems: "center",
-                }}
+            <DialogApps state={state}>
+              <Button
+                size="icon"
+                variant="ghost"
+                title={i18n.buttons.apps.title}
+                className={cn(styles.toolbarButton)}
               >
-                <i className="mdi-dots-horizontal text-white h-6 w-6" />
-              </div>
-            </a>
+                <i className="mdi-apps h-6 w-6" />
+                <span className="sr-only">{i18n.buttons.apps.title}</span>
+              </Button>
+            </DialogApps>
           </div>
         </>
       )}
@@ -299,6 +280,60 @@ export function DialogInfo(props: { state: NetzoState; children: ComponentChildr
             <td className={TD}>{denoJson?.version}</td>
           </tr>
         </table>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+export function DialogApps(props: { state: NetzoState; children: ComponentChildren }) {
+  const { locale = "es", links = [] } = props.state?.toolbar ?? {};
+
+  const i18n = locales?.[locale];
+
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        {props.children}
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[425px] px-0">
+        <DialogHeader>
+          <DialogTitle>{i18n.buttons.apps.title}</DialogTitle>
+        </DialogHeader>
+        <div className="h-[300px] overflow-y-auto -mx-[24px] px-4">
+          {[...links, ...links, ...links, ...links, ...links, ...links, ...links, ...links].map((
+            link,
+          ) => (
+            <a
+              key={link.href}
+              href={link.href}
+              target={link.target}
+              className="group flex items-center justify-between rounded-md px-3 py-2"
+            >
+              <div title={link.description} className="flex items-center gap-3">
+                <img
+                  src={link.src}
+                  alt={link.alt}
+                  style={{
+                    marginRight: "6px",
+                    height: "32px",
+                    width: "32px",
+                    aspectRatio: "32/32",
+                  }}
+                />
+                <span className="text-sm font-medium text-gray-900 dark:text-gray-50">
+                  {link.title}
+                </span>
+                {link.description && (
+                  <i
+                    className="mdi-information w-4 h-4 ml-2 text-gray-500 dark:text-gray-400"
+                    title={link.description}
+                  />
+                )}
+              </div>
+              <i className="mdi-chevron-right h-5 w-5 text-gray-500 opacity-50 transition-opacity group-hover:opacity-100 dark:text-gray-400" />
+            </a>
+          ))}
+        </div>
       </DialogContent>
     </Dialog>
   );
