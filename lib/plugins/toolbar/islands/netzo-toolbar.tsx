@@ -300,9 +300,7 @@ export function DialogApps(props: { state: NetzoState; children: ComponentChildr
           <DialogTitle>{i18n.buttons.apps.title}</DialogTitle>
         </DialogHeader>
         <div className="h-[300px] overflow-y-auto -mx-[24px] px-4">
-          {[...links, ...links, ...links, ...links, ...links, ...links, ...links, ...links].map((
-            link,
-          ) => (
+          {links.map((link) => (
             <a
               key={link.href}
               href={link.href}
