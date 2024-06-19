@@ -81,7 +81,7 @@ const ToastClose = React.forwardRef<
     toast-close=""
     {...props}
   >
-    <i className="mdi-close h-4 w-4" />
+    <i className="i-mdi-close h-4 w-4" />
   </ToastPrimitives.Close>
 ));
 ToastClose.displayName = ToastPrimitives.Close.displayName;
@@ -116,12 +116,9 @@ type ToastActionElement = React.ReactElement<typeof ToastAction>;
 
 export {
   Toast,
-  ToastAction,
-  type ToastActionElement,
-  ToastClose,
-  ToastDescription,
-  type ToastProps,
-  ToastProvider,
+  ToastAction, ToastClose,
+  ToastDescription, ToastProvider,
   ToastTitle,
-  ToastViewport,
+  ToastViewport, type ToastActionElement, type ToastProps
 };
+

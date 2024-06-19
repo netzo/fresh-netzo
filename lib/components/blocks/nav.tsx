@@ -60,7 +60,7 @@ export function NavRoot({ className, ...props }: NavRootProps) {
             )}
             onClick={() => open.value = !open.value}
           >
-            <i className="mdi-menu-open rotate-180  h-[1.2rem] w-[1.2rem]" />
+            <i className="i-mdi-menu-open rotate-180  h-[1.2rem] w-[1.2rem]" />
             <span className="sr-only">Toggle navigation</span>
           </div>
         </SheetTrigger>
@@ -224,7 +224,7 @@ export function NavItemUser(
             )
             : (
               <>
-                <i className="mdi-account-circle h-7 w-7 ml-0.5 mr-1.5" />
+                <i className="i-mdi-account-circle h-7 w-7 ml-0.5 mr-1.5" />
                 <div className="flex flex-col space-y-1">
                   <p className="text-sm font-medium leading-none">
                     User Settings
@@ -232,7 +232,7 @@ export function NavItemUser(
                 </div>
               </>
             )}
-          <i className="mdi-unfold-more-horizontal h-6 w-6 ml-auto" />
+          <i className="i-mdi-unfold-more-horizontal h-6 w-6 ml-auto" />
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent side="right" align="end" forceMount>

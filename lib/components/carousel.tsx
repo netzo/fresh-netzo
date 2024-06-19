@@ -212,7 +212,7 @@ const CarouselPrevious = React.forwardRef<
       onClick={scrollPrev}
       {...props}
     >
-      <i className="mdi-arrow-left h-4 w-4" />
+      <i className="i-mdi-arrow-left h-4 w-4" />
       <span className="sr-only">Previous slide</span>
     </Button>
   );
@@ -241,7 +241,7 @@ const CarouselNext = React.forwardRef<
       onClick={scrollNext}
       {...props}
     >
-      <i className="mdi-arrow-right h-4 w-4" />
+      <i className="i-mdi-arrow-right h-4 w-4" />
       <span className="sr-only">Next slide</span>
     </Button>
   );
@@ -249,10 +249,9 @@ const CarouselNext = React.forwardRef<
 CarouselNext.displayName = "CarouselNext";
 
 export {
-  Carousel,
-  type CarouselApi,
-  CarouselContent,
+  Carousel, CarouselContent,
   CarouselItem,
   CarouselNext,
-  CarouselPrevious,
+  CarouselPrevious, type CarouselApi
 };
+

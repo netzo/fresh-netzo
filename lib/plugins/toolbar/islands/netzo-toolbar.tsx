@@ -81,7 +81,7 @@ export function NetzoToolbar({ state, className }: NetzoToolbarProps) {
                 });
               }}
             >
-              <i className="mdi-share-variant h-6 w-6" />
+              <i className="i-mdi-share-variant h-6 w-6" />
               <span className="sr-only">{i18n.buttons.share}</span>
             </Button>
             <DialogFeedbackNetzolabs state={state}>
@@ -91,7 +91,7 @@ export function NetzoToolbar({ state, className }: NetzoToolbarProps) {
                 title={i18n.buttons.feedback}
                 className={cn(styles.toolbarButton)}
               >
-                <i className="mdi-comment-question h-6 w-6" />
+                <i className="i-mdi-comment-question h-6 w-6" />
                 <span className="sr-only">{i18n.buttons.feedback}</span>
               </Button>
             </DialogFeedbackNetzolabs>
@@ -102,7 +102,7 @@ export function NetzoToolbar({ state, className }: NetzoToolbarProps) {
                 title={i18n.buttons.info}
                 className={cn(styles.toolbarButton)}
               >
-                <i className="mdi-information h-6 w-6" />
+                <i className="i-mdi-information h-6 w-6" />
                 <span className="sr-only">{i18n.buttons.info}</span>
               </Button>
             </DialogInfo>
@@ -116,7 +116,7 @@ export function NetzoToolbar({ state, className }: NetzoToolbarProps) {
                 title={i18n.buttons.apps.title}
                 className={cn(styles.toolbarButton)}
               >
-                <i className="mdi-apps h-6 w-6" />
+                <i className="i-mdi-apps h-6 w-6" />
                 <span className="sr-only">{i18n.buttons.apps.title}</span>
               </Button>
             </DialogApps>
@@ -131,7 +131,7 @@ export function NetzoToolbar({ state, className }: NetzoToolbarProps) {
           className={cn(styles.toolbarButton)}
           onClick={() => setExpanded(expanded === "true" ? "false" : "true")}
         >
-          <i className="mdi-menu h-6 w-6" />
+          <i className="i-mdi-menu h-6 w-6" />
           <span className="sr-only">
             {expanded === "true" ? i18n.buttons.collapse : i18n.buttons.expand}
           </span>
@@ -323,12 +323,12 @@ export function DialogApps(props: { state: NetzoState; children: ComponentChildr
                 </span>
                 {link.description && (
                   <i
-                    className="mdi-information w-4 h-4 ml-2 text-gray-500 dark:text-gray-400"
+                    className="i-mdi-information w-4 h-4 ml-2 text-gray-500 dark:text-gray-400"
                     title={link.description}
                   />
                 )}
               </div>
-              <i className="mdi-chevron-right h-5 w-5 text-gray-500 opacity-50 transition-opacity group-hover:opacity-100 dark:text-gray-400" />
+              <i className="i-mdi-chevron-right h-5 w-5 text-gray-500 opacity-50 transition-opacity group-hover:opacity-100 dark:text-gray-400" />
             </a>
           ))}
         </div>

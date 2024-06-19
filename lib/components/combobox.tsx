@@ -96,7 +96,7 @@ export const Combobox = React.forwardRef(
               {(!props.value || (props.multiple && props.value.length === 0)) &&
                 (props.selectPlaceholder ?? "")}
             </span>
-            <i className="mdi-unfold-more-horizontal h-4 w-4 shrink-0 opacity-50" />
+            <i className="i-mdi-unfold-more-horizontal h-4 w-4 shrink-0 opacity-50" />
           </Button>
         </PopoverTrigger>
         <PopoverContent align="start" className="p-0">
@@ -132,7 +132,7 @@ export const Combobox = React.forwardRef(
                     >
                       <i
                         className={cn(
-                          "mdi-check mr-2 h-4 w-4 opacity-0",
+                          "i-mdi-check mr-2 h-4 w-4 opacity-0",
                           !props.multiple && props.value === option.value &&
                             "opacity-100",
                           props.multiple &&

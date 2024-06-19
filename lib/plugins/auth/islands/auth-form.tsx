@@ -109,13 +109,13 @@ export function AuthForm(props: AuthFormProps) {
 
         {!!providers?.github && (
           <ButtonOAuth2 text={`${i18n.authForm.text} GitHub`} href="/auth/github/signin">
-            <div className="mr-4 w-20px h-20px mdi-github" />
+            <div className="mr-4 w-20px h-20px i-mdi-github" />
           </ButtonOAuth2>
         )}
 
         {!!providers?.gitlab && (
           <ButtonOAuth2 text={`${i18n.authForm.text} GitLab`} href="/auth/gitlab/signin">
-            <div className="mr-4 w-20px h-20px mdi-gitlab" />
+            <div className="mr-4 w-20px h-20px i-mdi-gitlab" />
           </ButtonOAuth2>
         )}
 
@@ -182,7 +182,7 @@ export function AuthForm(props: AuthFormProps) {
         {
           /* {!!providers?.oauth2 && (
           <ButtonOAuth2 text={`${i18n.authForm.text} Custom`} href="/auth/oauth2/signin">
-            <div className="mr-4 w-20px h-20px mdi-code-json" />
+            <div className="mr-4 w-20px h-20px i-mdi-code-json" />
           </ButtonOAuth2>
         )} */
         }

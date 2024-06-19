@@ -20,7 +20,7 @@ export function TableViewOptions<TData>({
           size="sm"
           className="ml-3 hidden lg:flex"
         >
-          <i className={cn("mdi-tune-variant h-4 w-4", className)} />
+          <i className={cn("i-mdi-tune-variant h-4 w-4", className)} />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="max-h-[50vh] overflow-y-auto">

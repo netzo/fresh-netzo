@@ -12,7 +12,7 @@ export function TableRowActions<TData>(props: { children?: React.ReactNode }) {
           variant="ghost"
           className="flex h-8 w-8 mx-auto p-0 data-[state=open]:bg-muted"
         >
-          <i className="mdi-dots-horizontal h-4 w-4" />
+          <i className="i-mdi-dots-horizontal h-4 w-4" />
           <span className="sr-only">Open menu</span>
         </Button>
       </DropdownMenuTrigger>

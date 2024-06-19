@@ -124,7 +124,7 @@ export function TablePaginationButtons<TData>({
         disabled={!table.getCanPreviousPage()}
       >
         <span className="sr-only">{textFirst}</span>
-        <i className="mdi-chevron-double-left w-4 h-4" />
+        <i className="i-mdi-chevron-double-left w-4 h-4" />
       </Button>
       <Button
         variant="outline"
@@ -133,7 +133,7 @@ export function TablePaginationButtons<TData>({
         disabled={!table.getCanPreviousPage()}
       >
         <span className="sr-only">{textPrevious}e</span>
-        <i className="mdi-chevron-left w-4 h-4" />
+        <i className="i-mdi-chevron-left w-4 h-4" />
       </Button>
       <Button
         variant="outline"
@@ -142,7 +142,7 @@ export function TablePaginationButtons<TData>({
         disabled={!table.getCanNextPage()}
       >
         <span className="sr-only">{textNext}</span>
-        <i className="mdi-chevron-right w-4 h-4" />
+        <i className="i-mdi-chevron-right w-4 h-4" />
       </Button>
       <Button
         variant="outline"
@@ -151,7 +151,7 @@ export function TablePaginationButtons<TData>({
         disabled={!table.getCanNextPage()}
       >
         <span className="sr-only">{textLast}</span>
-        <i className="mdi-chevron-double-right w-4 h-4" />
+        <i className="i-mdi-chevron-double-right w-4 h-4" />
       </Button>
     </div>
   );

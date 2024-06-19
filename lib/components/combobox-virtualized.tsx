@@ -94,7 +94,7 @@ const VirtualizedCommand = ({
             >
               <i
                 className={cn(
-                  "mdi-check mr-2 h-4 w-4",
+                  "i-mdi-check mr-2 h-4 w-4",
                   selectedOption === filteredOptions[virtualOption.index].value
                     ? "opacity-100"
                     : "opacity-0",
@@ -147,7 +147,7 @@ export function ComboboxVirtualized({
           <span className="line-clamp-1 text-left font-normal">
             {selectedOption ? selectedOptionLabel : searchPlaceholder}
           </span>
-          <i className="mdi-unfold-more-horizontal h-4 w-4 shrink-0 opacity-50" />
+          <i className="i-mdi-unfold-more-horizontal h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="p-0" style={{ width: `${width}px` }}>

@@ -40,19 +40,19 @@ export function TableColumnHeader<TData, TValue>({
           >
             <span>{title ?? column?.columnDef?.title}</span>
             {column.getIsSorted() === "desc"
-              ? <i className="mdi-arrow-down w-4 h-4 ml-2" />
+              ? <i className="i-mdi-arrow-down w-4 h-4 ml-2" />
               : column.getIsSorted() === "asc"
-              ? <i className="mdi-arrow-up w-4 h-4 ml-2" />
-              : <i className="mdi-unfold-more-horizontal w-4 h-4 ml-2" />}
+              ? <i className="i-mdi-arrow-up w-4 h-4 ml-2" />
+              : <i className="i-mdi-unfold-more-horizontal w-4 h-4 ml-2" />}
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="start">
           <DropdownMenuItem onClick={() => column.toggleSorting(false)}>
-            <i className="mdi-arrow-up mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
+            <i className="i-mdi-arrow-up mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
             Asc
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => column.toggleSorting(true)}>
-            <i className="mdi-arrow-down mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
+            <i className="i-mdi-arrow-down mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
             Desc
           </DropdownMenuItem>
         </DropdownMenuContent>

@@ -67,12 +67,12 @@ function SelectMultiple(
                   }}
                   onClick={() => handleUnselect(item)}
                 >
-                  <i className="mdi-close h-3 w-3 text-muted-foreground hover:text-foreground" />
+                  <i className="i-mdi-close h-3 w-3 text-muted-foreground hover:text-foreground" />
                 </button>
               </Badge>
             ))}
           </div>
-          <i className="mdi-unfold-more-horizontal h-4 w-4 shrink-0 opacity-50" />
+          <i className="i-mdi-unfold-more-horizontal h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-full p-0">
@@ -94,7 +94,7 @@ function SelectMultiple(
               >
                 <i
                   className={cn(
-                    "mdi-check mr-2 h-4 w-4",
+                    "i-mdi-check mr-2 h-4 w-4",
                     value.includes(option.value) ? "opacity-100" : "opacity-0",
                   )}
                 />

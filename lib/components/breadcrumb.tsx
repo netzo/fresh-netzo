@@ -83,7 +83,7 @@ const BreadcrumbSeparator = ({
     className={cn("[&>svg]:size-3.5", className)}
     {...props}
   >
-    {children || <i className="mdi-chevron-right" />}
+    {children || <i className="i-mdi-chevron-right" />}
   </li>
 );
 BreadcrumbSeparator.displayName = "BreadcrumbSeparator";
@@ -98,7 +98,7 @@ const BreadcrumbEllipsis = ({
     className={cn("flex h-9 w-9 items-center justify-center", className)}
     {...props}
   >
-    <i className="mdi-dots-horizontal h-4 w-4" />
+    <i className="i-mdi-dots-horizontal h-4 w-4" />
     <span className="sr-only">More</span>
   </span>
 );
@@ -111,5 +111,6 @@ export {
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
-  BreadcrumbSeparator,
+  BreadcrumbSeparator
 };
+

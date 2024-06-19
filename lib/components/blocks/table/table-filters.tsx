@@ -60,7 +60,7 @@ export function TableFilters<TData>({
           className="h-8 px-2 lg:px-3"
         >
           Reset
-          <i className="mdi-close w-4 h-4 ml-2" />
+          <i className="i-mdi-close w-4 h-4 ml-2" />
         </Button>
       )}
     </div>
@@ -79,7 +79,7 @@ export function TableFilter<TData, TValue>({
     <Popover>
       <PopoverTrigger asChild>
         <Button variant="outline" size="sm" className="h-8 border-dashed">
-          <i className="mdi-plus-circle mr-2 h-4 w-4" />
+          <i className="i-mdi-plus-circle mr-2 h-4 w-4" />
           {title}
           {selectedValues?.size > 0 && (
             <>
@@ -145,8 +145,8 @@ export function TableFilter<TData, TValue>({
                       className={cn(
                         "mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-primary",
                         isSelected
-                          ? "bg-primary text-primary-foreground mdi-checkbox-marked"
-                          : "opacity-50 mdi-checkbox-blank-outline",
+                          ? "bg-primary text-primary-foreground i-mdi-checkbox-marked"
+                          : "opacity-50 i-mdi-checkbox-blank-outline",
                       )}
                     />
                     {option.icon && <option.icon className="mr-2 h-4 w-4 text-muted-foreground" />}
