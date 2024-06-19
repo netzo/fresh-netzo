@@ -1,6 +1,5 @@
 import { type PluginRoute } from "fresh/server.ts";
 import { compile } from "npm:@mdx-js/mdx";
-import { ImportDeclaration } from "npm:@types/estree-jsx@1.0.5";
 import { Root } from "npm:@types/hast@3.0.3";
 import { type MdxjsEsm } from "npm:mdast-util-mdxjs-esm@2.0.1";
 import { default as remarkFrontmatter } from "npm:remark-frontmatter@5.0.0";
@@ -72,7 +71,7 @@ function remarkAbsoluteImportPaths(
         const newSpecifier = toFileUrl(updatedPath).href;
 
         if (node.data?.estree) {
-          const estreeBody = node.data.estree.body as ImportDeclaration[];
+          const estreeBody = node.data.estree.body;
           const importNode = estreeBody.find((n) =>
             n.type === "ImportDeclaration" &&
             n.source.type === "Literal" &&

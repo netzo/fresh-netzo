@@ -1,1 +1,1 @@
-export * from "npm:@observablehq/plot@0.6.13";
+export * from "npm:@observablehq/plot@0.6.15";
