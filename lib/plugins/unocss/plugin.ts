@@ -1,6 +1,6 @@
 import type { Plugin } from "fresh/server.ts";
 import { dirname, fromFileUrl, join, walk } from "fresh/src/server/deps.ts";
-import { JSX, options as preactOptions, VNode } from "preact";
+import { JSX, VNode, options as preactOptions } from "preact";
 import { UnoGenerator, type UserConfig } from "../../deps/@unocss/core.ts";
 import type { Theme } from "../../deps/@unocss/preset-uno.ts";
 import { existsSync } from "../../deps/std/fs/exists.ts";
@@ -179,9 +179,9 @@ export const unocss = ({
     // Optional client runtime
     entrypoints: csr
       ? {
-        // IMPORTANT: removes the uno-preset to avoid ~30s slow-down in hydration for CSR
+        // IMPORTANT: removes specific presets to avoid ~30s slow-down in hydration for CSR
         // (it's not the base64 encoded config which slows the initUnocssRuntime() function down,
-        // but rather the use of presetUno() (registered internally by the presetNetzo()))
+        // but rather the preset usage e.g. presetUno() (registered internally by the presetNetzo()))
         "main": `
         data:application/javascript,
         import config from "data:application/javascript;base64,${
@@ -189,7 +189,7 @@ export const unocss = ({
         }";
         import initUnocssRuntime from "https://esm.sh/@unocss/runtime@0.59.0";
 
-        const SKIP = ["@unocss/preset-uno"];
+        const SKIP = ["@unocss/preset-uno", "@unocss/preset-icons"];
         config.presets?.forEach((p, i) => {
           if (SKIP.includes(p.name)) delete config.presets[i];
           config.presets?.[i]?.presets?.forEach((p, j) => {
