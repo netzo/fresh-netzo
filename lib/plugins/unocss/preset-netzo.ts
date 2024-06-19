@@ -4,6 +4,11 @@ import { presetTypography } from "../../deps/@unocss/preset-typography.ts";
 import { presetUno, type PresetUnoOptions, type Theme } from "../../deps/@unocss/preset-uno.ts";
 import { presetShadcn } from "./preset-shadcn/mod.ts";
 import type { PresetShadcnOptions } from "./preset-shadcn/types.ts";
+// IMPORTANT: rather than importing dynamically at runtime using via
+// async import(https://esm.sh/@iconify-json/mdi@1.1.66/icons.json),
+// we vendor the MDI collection isntead to avoid network request and we
+// also add ALL icons to the safelist to avoid having to have CSR mode enabled
+import mdi from "./preset-icons/collections/mdi.json" with { type: "json" };
 
 // @unocss-include
 
@@ -41,10 +46,7 @@ export function presetNetzo(
         // NOTE: each added collection bloats bundle size (e.g. logos collection weights ~7MB)
         // see https://esbuild.github.io/analyze/ to analyze bundle size of _fresh/metafile.json
         collections: {
-          mdi: () =>
-            import("https://esm.sh/@iconify-json/mdi@1.1.64/icons.json", {
-              with: { type: "json" },
-            }).then((i) => i.default),
+          mdi: () => mdi, // vendored MDI collection to avoid extra network request
           netzo: {
             symbol:
               '<svg xmlns="http://www.w3.org/2000/svg" width="172" height="171" viewBox="0 0 172 171" fill="none"> <path fill-rule="evenodd" clip-rule="evenodd" d="M85.6636 170.884C105.14 170.884 123.094 164.366 137.462 153.391L124.712 140.641C113.709 148.394 100.289 152.948 85.806 152.948C71.2195 152.948 57.7117 148.329 46.6654 140.475L33.7996 153.34C48.1788 164.346 66.1576 170.884 85.6636 170.884ZM17.6955 137.205L30.5656 124.335C22.7694 113.314 18.1884 99.8572 18.1884 85.3304C18.1884 70.8469 22.7421 57.4271 30.4958 46.4243L17.7457 33.6743C6.77083 48.0426 0.251953 65.9964 0.251953 85.4727C0.251953 104.919 6.75096 122.848 17.6955 137.205ZM171.075 85.4727C171.075 104.949 164.556 122.903 153.582 137.271L140.88 124.569C148.777 113.505 153.424 99.9603 153.424 85.3304C153.424 70.7439 148.805 57.2361 140.95 46.1898L153.531 33.6086C164.537 47.9879 171.075 65.9667 171.075 85.4727ZM137.396 17.5046C123.039 6.56004 105.11 0.0610352 85.6636 0.0610352C66.1873 0.0610352 48.2336 6.5799 33.8653 17.5547L46.5669 30.2563C57.6314 22.359 71.1761 17.7128 85.806 17.7128C100.333 17.7128 113.79 22.2938 124.811 30.0899L137.396 17.5046Z" fill="#0080FF"/> <path d="M107.016 85.4728C107.016 97.2657 97.4564 106.826 85.6635 106.826C73.8706 106.826 64.3105 97.2657 64.3105 85.4728C64.3105 73.6799 73.8706 64.1199 85.6635 64.1199C97.4564 64.1199 107.016 73.6799 107.016 85.4728Z" fill="#0080FF"/> <path fill-rule="evenodd" clip-rule="evenodd" d="M78.3418 32.5173C54.6677 35.7365 35.928 54.4762 32.709 78.1503H50.6419C53.5633 64.3412 64.4923 53.4875 78.3418 50.6763V32.5173ZM120.277 78.1503C117.375 64.4361 106.576 53.6368 92.8617 50.7354V32.5173C116.536 35.7364 135.276 54.4761 138.495 78.1503H120.277ZM92.8617 120.37C106.671 117.448 117.524 106.52 120.336 92.6703H138.495C135.275 116.344 116.536 135.084 92.8617 138.303V120.37ZM50.5829 92.6703C53.4135 106.615 64.3973 117.599 78.3418 120.429V138.303C54.6678 135.084 35.9282 116.344 32.709 92.6703H50.5829Z" fill="#0080FF"/> </svg>',
@@ -65,6 +67,8 @@ export function presetNetzo(
     // for netzo/components which dynamically mount/unmount with additional classes.
     safelist: [
       ...new Set([
+        // icons/@iconify-json/mdi:
+        ...Object.keys(mdi.icons).flatMap((icon) => [`i-mdi-${icon}`, `mdi-${icon}`, `i-mdi:${icon}`, `mdi:${icon}`]),
         // table-filters:
         "flex",
         "space-x-2",
@@ -105,6 +109,18 @@ export function presetNetzo(
         "text-xs",
         "justify-center",
         "text-center",
+        // components/table-view-options:
+        ...[
+          "ml3",
+          "hidden",
+          "lg:flex",
+          "mdi-tune-variant",
+          "h-4",
+          "w-4",
+          "max-h-[50vh]",
+          "overflow-y-auto",
+          "capitalize"
+        ],
         // components/netzo-toolbar:
         ...[
           "mdi-white-balance-sunny",
@@ -178,6 +194,91 @@ export function presetNetzo(
           "dark:rotate-0",
           "dark:scale-100",
           "sr-only",
+        ],
+        // components/nav:
+        ...[
+          "!md:hidden",
+          "w-[250px]",
+          "w-[28px]",
+          "h-full",
+          "fixed",
+          "top-0",
+          "left-0",
+          "z-1000",
+          "hover:bg-background",
+          "hover:bg-opacity-80",
+          "hover:cursor-pointer",
+          "flex",
+          "items-center",
+          "justify-center",
+          "!hidden",
+          "mdi-menu-open",
+          "rotate-180",
+          "h-[1.2rem]",
+          "w-[1.2rem]",
+          "sr-only",
+          "p-0",
+          "h-screen",
+          "overflow-y-auto",
+          "group",
+          "flex-col",
+          "bg-primary-foreground",
+          "w-full",
+          "p-3",
+          "b-t-1",
+          "mx-auto",
+          "h-[32px]",
+          "!hidden",
+          "!md:flex",
+          "md:b-r-1",
+          "flex-1",
+          "mt-3",
+          "mb-1",
+          "mx-4",
+          "text-xs",
+          "font-medium",
+          "text-muted-foreground",
+          "rounded-none",
+          "flex",
+          "w-full",
+          "justify-start",
+          "h-[40px]",
+          "hover:cursor-pointer",
+          "hover:bg-muted",
+          "aria-[current='true']:bg-border",
+          "aria-[current='page']:bg-border",
+          "w-4",
+          "h-4",
+          "mr-3",
+          "py-3",
+          "px-2",
+          "text-xl",
+          "font-bold",
+          "w-auto",
+          "h-9",
+          "my-auto",
+          "mr-2",
+          "h-9",
+          "w-9",
+          "mr-2",
+          "text-sm",
+          "leading-none",
+          "text-xs",
+          "text-muted-foreground",
+          "mdi-account-circle",
+          "ml-0.5",
+          "mr-1.5",
+          "flex-col",
+          "space-y-1",
+          "mdi-unfold-more-horizontal",
+          "h-6",
+          "ml-auto",
+          "font-normal",
+          "gap-4",
+          "w-full",
+          "pl-2",
+          "pr-3",
+          "h-[56px]",
         ],
       ]),
     ],
