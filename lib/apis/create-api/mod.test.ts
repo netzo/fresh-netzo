@@ -1,5 +1,5 @@
 // TODO: implement tests from https://github.com/johannschopplich/unrested/blob/main/test/index.test.ts
-import { assertEquals, assertExists } from "../../deps/std/assert/mod.ts";
+import { assertEquals, assertExists } from "../../deps/std/assert.ts";
 import { auth } from "./auth/mod.ts";
 import { createApi } from "./mod.ts";
 

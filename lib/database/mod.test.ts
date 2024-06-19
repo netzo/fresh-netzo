@@ -1,4 +1,4 @@
-import { assertExists } from "../deps/std/assert/mod.ts";
+import { assertExists } from "../deps/std/assert.ts";
 import { database } from "./mod.ts";
 
 const db = database({ url: "http://localhost:8080" });

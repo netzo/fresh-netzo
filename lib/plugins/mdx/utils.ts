@@ -7,8 +7,8 @@ import { default as remarkFrontmatter } from "npm:remark-frontmatter@5.0.0";
 import { default as remarkGfm } from "npm:remark-gfm@4.0.0";
 import { Project } from "npm:ts-morph@21.0.1";
 import { visit } from "npm:unist-util-visit@4.1.2";
-import { walk } from "../../deps/std/fs/walk.ts";
-import { join, toFileUrl } from "../../deps/std/path/mod.ts";
+import { walk } from "../../deps/std/fs.ts";
+import { join, toFileUrl } from "../../deps/std/path.ts";
 
 export async function scanForMDXFiles(directory: string): Promise<string[]> {
   const files: string[] = [];

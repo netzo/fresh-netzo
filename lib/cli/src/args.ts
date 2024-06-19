@@ -1,4 +1,4 @@
-import { parse } from "../../deps/std/flags/mod.ts";
+import { parse } from "../../deps/std/flags.ts";
 
 export function parseArgs(args: string[]) {
   const parsed = parse(args, {

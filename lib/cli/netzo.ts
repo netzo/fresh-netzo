@@ -1,6 +1,7 @@
 #!/usr/bin/env -S deno run --allow-read --allow-write --allow-env --allow-net --allow-run
 
 import { parse, semverGreaterThanOrEquals } from "../deps/semver/mod.ts";
+import { load } from "../deps/std/dotenv.ts";
 import { error } from "../plugins/utils.ts";
 import { parseArgs } from "./src/args.ts";
 import deploySubcommand from "./src/subcommands/deploy.ts";
@@ -8,7 +9,7 @@ import upgradeSubcommand from "./src/subcommands/upgrade.ts";
 import { fetchReleases, getConfigPaths } from "./src/utils/info.ts";
 import { MINIMUM_DENO_VERSION, VERSION } from "./src/version.ts";
 
-import "../deps/std/dotenv/load.ts"; // ensure .env is loaded (even if not using --env)
+await load({ export: true }); // ensure .env is loaded (even if not using --env)
 
 const help = `netzo ${VERSION}: command line interface (CLI) for Netzo.
 

@@ -1,4 +1,4 @@
-import { assertExists } from "../deps/std/assert/mod.ts";
+import { assertExists } from "../deps/std/assert.ts";
 import { datastore } from "./mod.ts";
 
 const ds = datastore({ kv: await Deno.openKv(":memory:") });
