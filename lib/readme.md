@@ -60,7 +60,7 @@ enabling them to build apps 10x faster.
 2. [Install Netzo CLI](https://netzo.io/docs/get-started/installation)
 
 ```bash
-deno install -Arf https://deno.land/x/netzo/cli/netzo.ts
+deno install -Arfg https://deno.land/x/netzo/cli/netzo.ts
 ```
 
 3. [Initialize project](https://netzo.io/docs/get-started/initialize-project)
