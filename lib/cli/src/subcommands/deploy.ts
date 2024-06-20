@@ -18,8 +18,8 @@ import { parseEntrypoint } from "../utils/entrypoint.ts";
 import {
   buildAssetsFromManifest,
   createClient,
-  type Manifest,
   readDecodeAndAddFileContentToAssets,
+  type Manifest,
 } from "../utils/netzo.ts";
 import { walk } from "../utils/walk.ts";
 
@@ -322,12 +322,7 @@ async function deploy(
     lockFileUrl: lockFileUrl?.href || null,
     // configures automatic JSX runtime for preact by default
     // see https://deno.com/manual@v1.34.3/advanced/jsx_dom/jsx#using-jsx-import-source-in-a-configuration-file
-    compilerOptions: {
-      jsx: "react-jsx",
-      jsxFactory: "h",
-      jsxFragmentFactory: "Fragment",
-      jsxImportSource: "preact",
-    },
+    compilerOptions: null,
     assets,
     domains: opts.production
       ? [
