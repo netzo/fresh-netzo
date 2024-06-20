@@ -1,4 +1,4 @@
-export { default as StarterKit } from "https://esm.sh/@tiptap/starter-kit@2.2.3?external=react,react-dom&target=es2022";
+export { default as StarterKit } from "https://esm.sh/@tiptap/starter-kit@2.2.3?external=react,react-dom,react/jsx-runtime&target=es2022";
 
 export { default as Highlight } from "npm:@tiptap/extension-highlight@2.2.3";
 export { default as Image } from "npm:@tiptap/extension-image@2.2.3";
