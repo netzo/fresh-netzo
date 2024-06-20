@@ -1,6 +1,5 @@
 import { netzo } from "../../../apis/netzo.ts";
 import type {
-  DenoProjectDeploymentBuildLog,
   Deployment,
   DeploymentData,
   Paginated,
@@ -18,8 +17,8 @@ import { parseEntrypoint } from "../utils/entrypoint.ts";
 import {
   buildAssetsFromManifest,
   createClient,
-  readDecodeAndAddFileContentToAssets,
   type Manifest,
+  readDecodeAndAddFileContentToAssets,
 } from "../utils/netzo.ts";
 import { walk } from "../utils/walk.ts";
 
@@ -347,9 +346,14 @@ async function deploy(
 
     app.service("deployments").on(
       "progress",
-      ({ level, message }: DenoProjectDeploymentBuildLog) => {
+      (
+        { level, message }: {
+          level: "info" | "error" | "download" | "done" | "success";
+          message: string;
+        },
+      ) => {
         deploySpinner ??= wait("Deploying...").start();
-        let type: "info" | "error" | "download" | "done" | "success" = level;
+        let type = level;
         if (["info"].includes(type)) {
           // TODO: if (SOME CONDITION) type = "upload"
           if (message.startsWith("Downloaded")) type = "download";
