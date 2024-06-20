@@ -322,7 +322,7 @@ async function deploy(
     lockFileUrl: lockFileUrl?.href || null,
     // configures automatic JSX runtime for preact by default
     // see https://deno.com/manual@v1.34.3/advanced/jsx_dom/jsx#using-jsx-import-source-in-a-configuration-file
-    compilerOptions: null,
+    compilerOptions: null, // auto-discovered from deno.json(c) if set to null
     assets,
     domains: opts.production
       ? [
@@ -397,7 +397,7 @@ async function deploy(
     const denoDeployment = await api.deployments.post<Deployment | { message: string }>(data, {
       projectId: project._id,
     });
-    if ("message" in denoDeployment) error(LOGS.deploymentError(denoDeployment.message));
+    if ("message" in denoDeployment) error(LOGS.deploymentError(JSON.stringify(denoDeployment)));
   } catch (err: unknown) {
     if (err instanceof APIError) {
       if (deploySpinner) {
