@@ -1,4 +1,4 @@
-import type { PluginRoute } from "$fresh/server.ts";
+import type { PluginRoute } from "fresh/server.ts";
 import { locales } from "../i18n.ts";
 import type { AuthConfig } from "../plugin.ts";
 import {
