@@ -34,7 +34,7 @@ export function NavRoot({ className, ...props }: NavRootProps) {
   const NavFooter = () => (
     <footer className="w-full flex items-center justify-between p-3 b-t-1">
       <a href="https://netzo.io/" target="_blank" className="mx-auto">
-        <img src={logoSrc} alt="Built with Netzo" title="Built with Netzo" className="h-[32px]" />
+        <img src={logoSrc} alt="Built with Netzo" title="Built with Netzo" className="h-[28px]" />
       </a>
     </footer>
   );
@@ -105,10 +105,10 @@ export function NavHeader({ className, ...props }: NavHeaderProps) {
       {props?.image && (
         <img
           src={props?.image}
-          className="w-auto h-9 my-auto mr-2"
+          className="w-auto h-[28px] my-auto mr-3"
         />
       )}
-      {props?.title && <h2 className="text-xl font-bold">{props?.title}</h2>}
+      {props?.title && <h2 className="text-lg font-bold">{props?.title}</h2>}
     </header>
   );
 }

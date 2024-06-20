@@ -12,12 +12,14 @@ export function TablePagination<TData>({
 }: JSX.IntrinsicElements["button"] & Props<TData>) {
   const { pageIndex, pageSize, from, to, total } = useTablePagination(table);
   return (
-    <div className="flex flex-wrap w-full gap-y-2 gap-x-8 items-center justify-between">
-      <TablePaginationPageRange
+    <div className="flex flex-wrap w-full gap-y-2 gap-x-8 items-center justify-end">
+      {
+        /* <TablePaginationPageRange
         table={table}
         locale={locale}
         className="flex-1"
-      />
+      /> */
+      }
       <TablePaginationPageSize table={table} locale={locale} />
       <TablePaginationPageCurrent table={table} locale={locale} />
       <TablePaginationButtons table={table} locale={locale} />

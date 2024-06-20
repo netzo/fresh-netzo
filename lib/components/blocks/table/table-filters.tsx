@@ -42,7 +42,7 @@ export function TableFilters<TData>({
   const isFiltered = table.getState().columnFilters.length > 0;
 
   return (
-    <div className={cn("flex space-x-2", className)}>
+    <div className={cn("flex space-x-2 overflow-x-auto", className)}>
       {filters?.map(({ column, title, options }) =>
         table.getColumn(column) && (
           <TableFilter
@@ -79,7 +79,7 @@ export function TableFilter<TData, TValue>({
     <Popover>
       <PopoverTrigger asChild>
         <Button variant="outline" size="sm" className="h-8 border-dashed">
-          <i className="i-mdi-plus-circle mr-2 h-4 w-4" />
+          {/* <i className="i-mdi-plus-circle mr-2 h-4 w-4" /> */}
           {title}
           {selectedValues?.size > 0 && (
             <>
