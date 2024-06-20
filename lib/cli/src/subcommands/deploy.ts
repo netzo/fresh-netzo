@@ -9,6 +9,7 @@ import { exists } from "../../../deps/std/fs.ts";
 import { fromFileUrl, globToRegExp, isGlob, normalize } from "../../../deps/std/path.ts";
 import { Spinner, wait } from "../../../deps/wait/mod.ts";
 // vendored x/question@0.0.2 to silence deprecated API warnings (Deno>=1.4)
+import { undefined } from "netzo/deps/zod/mod.ts";
 import { netzo } from "../../../apis/netzo.ts";
 import { question } from "../../../deps/question/mod.ts";
 import { error, LOGS } from "../../../plugins/utils.ts";
@@ -322,7 +323,7 @@ async function deploy(
     lockFileUrl: lockFileUrl?.href || null,
     // configures automatic JSX runtime for preact by default
     // see https://deno.com/manual@v1.34.3/advanced/jsx_dom/jsx#using-jsx-import-source-in-a-configuration-file
-    compilerOptions: null, // auto-discovered from deno.json(c) if set to null
+    compilerOptions: undefined, // auto-discovered from deno.json(c) if left blank
     assets,
     domains: opts.production
       ? [
