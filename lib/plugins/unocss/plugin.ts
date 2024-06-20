@@ -1,10 +1,12 @@
 import type { Plugin } from "fresh/server.ts";
 import { dirname, fromFileUrl, join, walk } from "fresh/src/server/deps.ts";
-import { JSX, options as preactOptions, VNode } from "preact";
+import { JSX, VNode, options as preactOptions } from "preact";
 import { UnoGenerator, type UserConfig } from "../../deps/@unocss/core.ts";
 import type { Theme } from "../../deps/@unocss/preset-uno.ts";
-import { existsSync } from "../../deps/std/fs.ts";
+// IMPORTANT: import from @std/fs/exists directly to avoid Deno leaking to client
+import { existsSync } from "../../deps/std/fs/exists.ts";
 import type { NetzoState } from "../../mod.ts";
+import { logInfo } from "../utils.ts";
 
 type PreactOptions = typeof preactOptions & { __b?: (vnode: VNode) => void };
 
@@ -33,7 +35,7 @@ export type UnocssConfig<T extends object = Theme> = UserConfig<T> & {
   aot?: boolean;
   /**
    * Enable SSR mode - run UnoCSS live to extract styles during server renders.
-   * Enabled by default.
+   * Disabled by default.
    */
   ssr?: boolean;
   /**
@@ -41,7 +43,7 @@ export type UnocssConfig<T extends object = Theme> = UserConfig<T> & {
    * It will generate styles live in response to DOM events.
    * Note that this might signiticantly slow-down hydration, one
    * can always use "safelist" in unocss.config as a workaround.
-   * Enabled by default.
+   * Disabled by default.
    */
   csr?: boolean;
 };
@@ -73,10 +75,10 @@ export function installPreactHook(classes: Set<string>) {
   ) => {
     if (typeof vnode.type === "string" && typeof vnode.props === "object") {
       const { props } = vnode;
-      if (props.class) {
+      if (props.class && typeof props.class === "string") {
         props.class.split(" ").forEach((cls) => classes.add(cls));
       }
-      if (props.className) {
+      if (props.className && typeof props.className === "string") {
         props.className.split(" ").forEach((cls) => classes.add(cls));
       }
     }
@@ -111,8 +113,11 @@ async function runOverSource(uno: UnoGenerator): Promise<string> {
   // Extract UnoCSS classes from the source code and generate CSS
   const { css } = await uno.generate(sourceCode);
 
+  // Minify the generated CSS
+  const { css: cssMinified } = minify(css);
+
   // Include the inline reset CSS
-  return unoResetCSS + css;
+  return unoResetCSS + cssMinified;
 }
 
 /**
@@ -123,19 +128,19 @@ async function runOverSource(uno: UnoGenerator): Promise<string> {
  * @param config (UserConfig<Theme>) - inline UnoCSS config object extended with UnoCSS plugin options.
  * @param config.url (string) - file URL to the UnoCSS config file (MUST be set to `import.meta.url`)
  * @param config.aot (boolean) - enables ahead-of-time (AOT) mode to run UnoCSS to extract styles during the build task (default: true)
- * @param config.ssr (boolean) - enables server-side rendering (SSR) mode to run UnoCSS live to extract styles during server renders (default: true)
- * @param config.csr (boolean) - enables client-side rendering (CSR) mode to run the UnoCSS runtime on the client to generate styles live in response to DOM events (default: true)
+ * @param config.ssr (boolean) - enables server-side rendering (SSR) mode to run UnoCSS live to extract styles during server renders (default: false)
+ * @param config.csr (boolean) - enables client-side rendering (CSR) mode to run the UnoCSS runtime on the client to generate styles live in response to DOM events (default: false)
  */
 export const unocss = ({
   url,
   aot = true,
-  ssr = true,
-  // IMPORTANT: csr mode is enabled by default despite it significantly slows down hydration
+  ssr = false, // DISABLED: disabled for performance (see https://discord.com/channels/684898665143206084/991511118524715139/1253012518650122351)
+  // IMPORTANT: csr mode is disabled by default since it significantly slows down hydration
   // due primarily to the presetUno() being used by presetNetzo(), which slows down the initUnocssRuntime()
   // function from ~500ms to ~30s. To work around this, the presetShadcn() already safe-lists all dynamically
   // injected classes (e.g. those from dialogs which are mounted dynamically), and additional ones can be
   // specified in "safelist" of uno.config. (see https://github.com/netzo/netzo/issues/172)
-  csr = true,
+  csr = false,
   ...config
 }: UnocssConfig): Plugin<NetzoState> => {
   // NOTE: Subhosting somehow fails when operating with and/or importing from
@@ -144,8 +149,8 @@ export const unocss = ({
 
   // Serialize UnoCSS config contents to base64 ES import since default fresh serialization
   // (via esbuild) looses functions when bundling the client runtime script for CSR mode.
-  const exists = existsSync(configURL, { isFile: true, isReadable: true });
-  if (csr && !exists) {
+  const configFileExists = existsSync(configURL, { isFile: true, isReadable: true });
+  if (csr && !configFileExists) {
     throw new Error(
       `Missing UnoCSS configuration file in the project directory.`,
     );
@@ -214,10 +219,7 @@ export const unocss = ({
         installPreactHook(ssrClasses);
       } else if (aot && freshConfig.dev) {
         // Extract classes from source code now, and generate CSS
-        console.log(
-          "%cGenerating UnoCSS stylesheet...",
-          "color: blue; font-weight: bold",
-        );
+        logInfo("Generating UnoCSS stylesheet...");
         const css = await runOverSource(uno);
 
         // Craft a response for requests for the generated CSS file
