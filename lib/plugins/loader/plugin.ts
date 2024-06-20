@@ -1,6 +1,6 @@
 // see https://github.com/nesterow/tailored#preloader-plugin
 import { Plugin } from "fresh/server.ts";
-import type { NetzoState } from "netzo/config/mod.ts";
+import type { NetzoState } from "../../mod.ts";
 
 export type LoaderOptions = {
   color?: string;
