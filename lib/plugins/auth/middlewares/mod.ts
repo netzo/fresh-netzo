@@ -8,8 +8,11 @@ export type NetzoStateWithAuth = NetzoState & {
   auth: AuthState;
 };
 
+const SKIP = ["/uno.css"]; // NOTE: somehow ctx.destination is "route" and not "static" for uno.css
+
 const skip = (_req: Request, ctx: FreshContext<NetzoStateWithAuth>) => {
   if (!["route"].includes(ctx.destination)) return true;
+  if (SKIP.includes(ctx.url.pathname)) return true;
   if (ctx.url.pathname.startsWith("/api")) return true; // skip api routes by  (custom endpoints)
   if (ctx.url.pathname.startsWith("/auth/")) return true; // skip auth routes (signin, callback, signout)
   if (ctx.url.pathname.startsWith("/database")) return true; // skip database routes
