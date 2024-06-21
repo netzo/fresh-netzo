@@ -9,4 +9,3 @@ export { default as Table } from "npm:@tiptap/extension-table@2.2.3";
 export { default as TaskItem } from "npm:@tiptap/extension-task-item@2.2.3";
 export { default as TaskList } from "npm:@tiptap/extension-task-list@2.2.3";
 export { default as Youtube } from "npm:@tiptap/extension-youtube@2.2.3";
-
