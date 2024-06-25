@@ -1,7 +1,7 @@
 // @deno-types="npm:@types/react@18.2.60"
 import * as React from "react";
 
-import { Head as _Head } from "$fresh/runtime.ts";
+import { Head as _Head } from "fresh/runtime.ts";
 import type { ComponentChildren } from "preact";
 
 export type HeadProps = {
