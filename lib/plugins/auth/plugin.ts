@@ -2,11 +2,11 @@ import type { FreshContext, Plugin, PluginRoute } from "fresh/server.ts";
 import { HTMLAttributes } from "preact/compat";
 import type { NetzoState } from "../../mod.ts";
 import {
+  NetzoStateWithAuth,
   assertUserIsMemberOfWorkspaceOfApiKeyIfProviderIsNetzo,
   createAssertUserIsAuthorized,
   createAuthState,
   ensureSignedIn,
-  NetzoStateWithAuth,
   setRequestState,
   setSessionState,
 } from "./middlewares/mod.ts";
@@ -18,8 +18,8 @@ import type { Auth, AuthProvider, AuthUser } from "./utils/types.ts";
 
 export * from "../../deps/deno_kv_oauth/mod.ts";
 
-export * from "./utils/adapters/database.ts";
-export * from "./utils/adapters/datastore.ts";
+export * from "./utils/adapter.ts";
+export * from "./utils/schema.ts";
 
 type AuthConfigProvider = {
   /** Whether to allow signups for new users (defaults to true). */

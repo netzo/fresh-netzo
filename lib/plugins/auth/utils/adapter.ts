@@ -1,8 +1,6 @@
 import { eq } from "drizzle-orm";
-import { database, id } from "../../../../database/mod.ts";
-import type { Auth, AuthUser } from "../types.ts";
-
-export * from "./database.schema.ts";
+import { database, id } from "../../../database/mod.ts";
+import type { Auth, AuthUser } from "./types.ts";
 
 export const createDatabaseAuth = (db: ReturnType<typeof database>): Auth => {
   const { $users, $sessions } = db?._?.fullSchema! ?? {}; // use fullSchema, not schema
