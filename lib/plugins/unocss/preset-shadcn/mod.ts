@@ -735,7 +735,7 @@ export function presetShadcn(options: PresetShadcnOptions = {}): Preset<Theme> {
           "relative",
           "flex-1",
           "rounded-full",
-          "bg-border"
+          "bg-border",
         ],
         // select:
         ...[

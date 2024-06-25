@@ -1,4 +1,5 @@
 import { type Signal } from "@preact/signals-core";
+import { IS_BROWSER } from "fresh/runtime.ts";
 import { createElement as h } from "preact";
 import { useEffect, useRef } from "preact/compat";
 import * as Plot from "../../deps/@observablehq/plot.ts";
@@ -19,13 +20,19 @@ export * from "../../deps/@observablehq/plot.ts";
  */
 export function Figure({ options }: { options: Plot.PlotOptions }) {
   const containerRef = useRef();
+  // replace client-side rendered plot with client-side (hydrated) plot entirely
 
-  // client-side: uses a real DOM container and the usePlot() hook for mounting
-  useEffect(() => {
-    // replace server-side rendered plot with client-side (hydrated) plot entirely
-    const plot = Plot.plot(options);
-    containerRef.current = plot;
-  }, [options]);
+  if (IS_BROWSER) {
+    useEffect(() => {
+      // FIXME: use something like .replaceWith() instead of .append()/.remove() to avoid
+      // flickering on first client-side render without breaking hydration (e.g. tooltips)
+      const plot = Plot.plot(options);
+      containerRef.current.append(plot);
+      return () => plot.remove();
+    }, [options]);
+
+    return <figure ref={containerRef} />;
+  }
 
   // server-side: uses a virtual Document implementation to generate HTML
   return (
