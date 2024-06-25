@@ -23,21 +23,6 @@ export const Head = (props: HeadProps) => {
   return (
     <_Head>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <Meta
-        title={props.title}
-        description={props.description}
-        favicon={props.favicon}
-        image={props.image}
-        href={props.href}
-      />
-      {props.children}
-    </_Head>
-  );
-};
-
-export const Meta = (props: HeadProps) => {
-  return (
-    <>
       {/* HTML Meta Tags */}
       <title>{props.title} | Netzo</title>
       <meta name="description" content={props.description} />
@@ -63,6 +48,7 @@ export const Meta = (props: HeadProps) => {
       <meta name="twitter:title" content={props.title} />
       <meta name="twitter:description" content={props.description} />
       <meta name="twitter:image" content={props.image} />
-    </>
+      {props.children}
+    </_Head>
   );
 };
