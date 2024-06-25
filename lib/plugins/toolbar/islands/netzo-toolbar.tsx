@@ -295,17 +295,17 @@ export function DialogApps(props: { state: NetzoState; children: ComponentChildr
       <DialogTrigger asChild>
         {props.children}
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px] px-0">
+      <DialogContent>
         <DialogHeader>
           <DialogTitle>{i18n.buttons.apps.title}</DialogTitle>
         </DialogHeader>
-        <div className="h-[300px] overflow-y-auto -mx-[24px] px-4">
+        <div className="h-[300px] overflow-y-auto">
           {links.map((link) => (
             <a
               key={link.href}
               href={link.href}
               target={link.target}
-              className="group flex items-center justify-between rounded-md px-3 py-2"
+              className="group flex items-center justify-between rounded-md py-2"
             >
               <div title={link.description} className="flex items-center gap-3">
                 <img
