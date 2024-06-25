@@ -1,7 +1,6 @@
 // @deno-types="npm:@types/react@18.2.60"
 import * as React from "react";
 
-import { Head as _Head } from "fresh/runtime.ts";
 import type { ComponentChildren } from "preact";
 
 export type HeadProps = {
@@ -21,7 +20,7 @@ export type HeadProps = {
 
 export const Head = (props: HeadProps) => {
   return (
-    <_Head>
+    <>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <Meta
         title={props.title}
@@ -31,7 +30,7 @@ export const Head = (props: HeadProps) => {
         href={props.href}
       />
       {props.children}
-    </_Head>
+    </>
   );
 };
 
