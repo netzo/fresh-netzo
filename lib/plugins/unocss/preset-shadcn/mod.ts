@@ -713,6 +713,30 @@ export function presetShadcn(options: PresetShadcnOptions = {}): Preset<Theme> {
           "data-[side=right]:slide-in-from-left-2",
           "data-[side=top]:slide-in-from-bottom-2",
         ],
+        // scroll-area:
+        ...[
+          "relative",
+          "overflow-hidden",
+          "h-full",
+          "w-full",
+          "rounded-[inherit]",
+          "flex",
+          "touch-none",
+          "select-none",
+          "transition-colors",
+          "w-2.5",
+          "border-l",
+          "border-l-transparent",
+          "p-[1px]",
+          "flex-col",
+          "h-2.5",
+          "border-t",
+          "border-t-transparent",
+          "relative",
+          "flex-1",
+          "rounded-full",
+          "bg-border"
+        ],
         // select:
         ...[
           "flex",
