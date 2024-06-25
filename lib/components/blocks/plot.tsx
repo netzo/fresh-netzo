@@ -19,15 +19,15 @@ export * from "../../deps/@observablehq/plot.ts";
  * @returns {JSX.Element} the plot figure
  */
 export function Figure({ options }: { options: Plot.PlotOptions }) {
-  const containerRef = useRef();
+  const containerRef = useRef<HTMLElement>();
   // replace client-side rendered plot with client-side (hydrated) plot entirely
 
   if (IS_BROWSER) {
     useEffect(() => {
-      // FIXME: use something like .replaceWith() instead of .append()/.remove() to avoid
+      // FIXME: figure out how to use .replaceWith() instead of .append()/.remove() to avoid
       // flickering on first client-side render without breaking hydration (e.g. tooltips)
       const plot = Plot.plot(options);
-      containerRef.current.append(plot);
+      containerRef.current!.append(plot);
       return () => plot.remove();
     }, [options]);
 
