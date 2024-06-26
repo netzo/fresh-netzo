@@ -1,14 +1,13 @@
 // @deno-types="npm:@types/react@18.2.60"
 import * as React from "react";
 
-import { forwardRef } from "preact/compat";
 import { format } from "../deps/date-fns.ts";
 import { Button } from "./button.tsx";
 import { Calendar } from "./calendar.tsx";
 import { Popover, PopoverContent, PopoverTrigger } from "./popover.tsx";
 import { cn } from "./utils.ts";
 
-export const DatePicker = forwardRef<
+export const DatePicker = React.forwardRef<
   HTMLDivElement,
   {
     date?: Date;

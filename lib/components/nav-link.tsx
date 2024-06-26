@@ -3,7 +3,6 @@ import * as React from "react";
 
 // adapted from https://github.com/shadcn-ui/ui/issues/414#issuecomment-1772421366
 import type { JSX } from "preact";
-import { forwardRef } from "preact/compat";
 import { Slot } from "../deps/@radix-ui/react-slot.ts";
 import { type VariantProps } from "../deps/class-variance-authority.ts";
 import { buttonVariants } from "./button.tsx"; // Assuming Button.tsx is in the same directory
@@ -14,7 +13,7 @@ export interface NavLinkProps
   asChild?: boolean;
 }
 
-const NavLink = forwardRef<HTMLAnchorElement, NavLinkProps>(({
+const NavLink = React.forwardRef<HTMLAnchorElement, NavLinkProps>(({
   className,
   variant,
   asChild = false,

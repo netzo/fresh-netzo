@@ -1,5 +1,7 @@
+// @deno-types="npm:@types/react@18.2.60"
+import * as React from "react";
+
 import type { VNode } from "preact";
-import { useEffect, useState } from "preact/compat";
 import type { ToastActionElement, ToastProps } from "./toast.tsx";
 
 const TOAST_LIMIT = 1;
@@ -164,9 +166,9 @@ function toast({ ...props }: Toast) {
 }
 
 function useToast() {
-  const [state, setState] = useState<State>(memoryState);
+  const [state, setState] = React.useState<State>(memoryState);
 
-  useEffect(() => {
+  React.useEffect(() => {
     listeners.push(setState);
     return () => {
       const index = listeners.indexOf(setState);

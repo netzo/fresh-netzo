@@ -1,12 +1,14 @@
+// @deno-types="npm:@types/react@18.2.60"
+import * as React from "react";
+
 import type { FreshContext, Plugin, PluginRoute } from "fresh/server.ts";
-import { HTMLAttributes } from "preact/compat";
 import type { NetzoState } from "../../mod.ts";
 import {
+  NetzoStateWithAuth,
   assertUserIsMemberOfWorkspaceOfApiKeyIfProviderIsNetzo,
   createAssertUserIsAuthorized,
   createAuthState,
   ensureSignedIn,
-  NetzoStateWithAuth,
   setRequestState,
   setSessionState,
 } from "./middlewares/mod.ts";
@@ -36,7 +38,7 @@ export type AuthConfig = {
   /** HTML content rendered below auth form e.g. to display a link to the terms of service via an a tag. */
   caption?: string;
   /** An image URL to display to the right side of the login form at /auth. */
-  image?: HTMLAttributes<HTMLImageElement>;
+  image?: React.HTMLAttributes<HTMLImageElement>;
   /** The locale to use for the Toolbar plugin (defaults to "es"). */
   locale?: "en" | "es";
   /** The OAuth2 providers to enable for authentication. */

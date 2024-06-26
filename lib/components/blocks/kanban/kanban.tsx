@@ -1,3 +1,6 @@
+// @deno-types="npm:@types/react@18.2.60"
+import * as React from "react";
+
 // adapted from https://github.com/Georgegriff/react-dnd-kit-tailwind-shadcn-ui/blob/main/src/components/kanban.tsx
 // see "Calling children as a function" from https://stackoverflow.com/a/32371612
 import { useComputed, useSignal } from "@preact/signals";
@@ -7,24 +10,23 @@ import { useSortable } from "netzo/deps/@dnd-kit/sortable.ts";
 import { CSS } from "netzo/deps/@dnd-kit/utilities.ts";
 import { cva } from "netzo/deps/class-variance-authority.ts";
 import type { ComponentChildren } from "preact";
-import { createPortal } from "preact/compat";
 import type { StateUpdater } from "preact/hooks";
 import {
   Announcements,
   DndContext,
-  type DragEndEvent,
-  type DragOverEvent,
   DragOverlay,
-  type DragStartEvent,
   KeyboardSensor,
   MouseSensor,
   TouchSensor,
-  type UniqueIdentifier,
   useDndContext,
   useSensor,
   useSensors,
+  type DragEndEvent,
+  type DragOverEvent,
+  type DragStartEvent,
+  type UniqueIdentifier,
 } from "../../../deps/@dnd-kit/core.ts";
-import { arrayMove, SortableContext } from "../../../deps/@dnd-kit/sortable.ts";
+import { SortableContext, arrayMove } from "../../../deps/@dnd-kit/sortable.ts";
 import { ScrollArea, ScrollBar } from "../../scroll-area.tsx";
 import type { Table } from "../table/table.tsx";
 import { coordinateGetter } from "./multiple-containers-keyboard-preset.ts";
@@ -245,7 +247,7 @@ export function KanbanView<TData>({
       </KanbanContainer>
 
       {"document" in globalThis &&
-        createPortal(
+        React.createPortal(
           <DragOverlay>
             {activeItem.value &&
               renderCard({

@@ -1,7 +1,9 @@
+// @deno-types="npm:@types/react@18.2.60"
+import * as React from "react";
+
 import { type Signal } from "@preact/signals-core";
 import { IS_BROWSER } from "fresh/runtime.ts";
 import { createElement as h } from "preact";
-import { useEffect, useRef } from "preact/compat";
 import * as Plot from "../../deps/@observablehq/plot.ts";
 
 export * from "../../deps/@observablehq/plot.ts";
@@ -19,11 +21,11 @@ export * from "../../deps/@observablehq/plot.ts";
  * @returns {JSX.Element} the plot figure
  */
 export function Figure({ options }: { options: Plot.PlotOptions }) {
-  const containerRef = useRef<HTMLElement>();
+  const containerRef = React.useRef<HTMLElement>();
   // replace client-side rendered plot with client-side (hydrated) plot entirely
 
   if (IS_BROWSER) {
-    useEffect(() => {
+    React.useEffect(() => {
       // FIXME: figure out how to use .replaceWith() instead of .append()/.remove() to avoid
       // flickering on first client-side render without breaking hydration (e.g. tooltips)
       const plot = Plot.plot(options);
