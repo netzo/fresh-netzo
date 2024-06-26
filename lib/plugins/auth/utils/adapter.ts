@@ -1,5 +1,5 @@
-import { eq } from "drizzle-orm";
 import { database, id } from "../../../database/mod.ts";
+import { eq } from "../../../deps/drizzle-orm/mod.ts";
 import type { Auth, AuthUser } from "./types.ts";
 
 export const createDatabaseAuth = (db: ReturnType<typeof database>): Auth => {

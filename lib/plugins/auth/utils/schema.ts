@@ -1,7 +1,7 @@
 // NOTE: the $users and $sessions tables and their relations can be used as
 // a reference when vendoring them within projects that use the auth plugin.
-import { sqliteTable, text } from "drizzle-orm/sqlite-core";
-import { customAlphabet } from "nanoid";
+import { sqliteTable, text } from "../../../deps/drizzle-orm/sqlite-core.ts";
+import { customAlphabet } from "../../../deps/nanoid.ts";
 
 export const id = customAlphabet("0123456789abcdefghijklmnopqrstuvwxyz", 12);
 

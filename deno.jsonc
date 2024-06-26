@@ -52,8 +52,6 @@
     "react-dom": "npm:preact@10.22.0/compat",
     "@preact/signals": "npm:@preact/signals@1.2.3",
     "@preact/signals-core": "npm:@preact/signals-core@1.6.1",
-    "std/": "https://deno.land/std@0.208.0/",
-    "drizzle-orm": "npm:drizzle-orm@0.30.10",
-    "deno_kv_oauth/": "https://deno.land/x/deno_kv_oauth@v0.9.1/"
+    "std/": "https://deno.land/std@0.208.0/"
   }
 }

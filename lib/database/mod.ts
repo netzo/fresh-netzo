@@ -2,9 +2,9 @@
 // see https://github.com/tursodatabase/libsql-client-ts/issues/138#issuecomment-1921954374
 import { IS_BROWSER } from "fresh/runtime.ts";
 import { createClient } from "npm:/@libsql/client@0.6.0";
-import { drizzle } from "npm:/drizzle-orm@0.30.10/libsql";
-import { drizzle as drizzleSqliteProxy } from "npm:/drizzle-orm@0.30.10/sqlite-proxy";
-import type { DrizzleConfig } from "npm:drizzle-orm@0.30.10/utils";
+import { drizzle } from "../deps/drizzle-orm/libsql.ts";
+import { drizzle as drizzleSqliteProxy } from "../deps/drizzle-orm/sqlite-proxy.ts";
+import type { DrizzleConfig } from "../deps/drizzle-orm/utils.ts";
 
 export { nanoid as id } from "./mod.utils.ts";
 
