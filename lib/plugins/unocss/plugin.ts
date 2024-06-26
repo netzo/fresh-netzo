@@ -4,8 +4,8 @@ import { JSX, options as preactOptions, VNode } from "preact";
 import { UnoGenerator, type UserConfig } from "../../deps/@unocss/core.ts";
 import type { Theme } from "../../deps/@unocss/preset-uno.ts";
 // IMPORTANT: import from @std/fs/exists directly to avoid Deno leaking to client
+import { existsSync } from "../../deps/@std/fs/exists.ts";
 import { minify } from "../../deps/csso.ts";
-import { existsSync } from "../../deps/std/fs/exists.ts";
 import type { NetzoState } from "../../mod.ts";
 import { logInfo } from "../utils.ts";
 

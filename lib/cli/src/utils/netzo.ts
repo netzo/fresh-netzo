@@ -1,9 +1,9 @@
-import { isBinary } from "npm:istextorbinary@9.4.0";
 import { feathers } from "../../../deps/@feathersjs/feathers.ts";
 import { socketio } from "../../../deps/@feathersjs/socketio-client.ts";
 import { Project, ProjectAssetsFile } from "../../../deps/@netzo/api/mod.ts";
+import { encodeBase64 } from "../../../deps/@std/encoding.ts";
+import { isBinary } from "../../../deps/istextorbinary.ts";
 import { io } from "../../../deps/socket.io-client.ts";
-import { encodeBase64 } from "../../../deps/std/encoding.ts";
 
 export const createClient = async ({
   apiKey = Deno.env.get("NETZO_API_KEY")!,

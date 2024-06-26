@@ -1,5 +1,5 @@
-import presetUno from "https://esm.sh/@unocss/preset-uno@0.55.1";
 import { defineUnocssConfig } from "netzo/plugins/unocss/plugin.ts";
+import { presetUno } from "../../lib/deps/@unocss/preset-uno.ts";
 
 export default defineUnocssConfig({
   url: import.meta.url,

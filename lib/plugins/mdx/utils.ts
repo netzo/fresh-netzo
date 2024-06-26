@@ -1,13 +1,13 @@
 import { type PluginRoute } from "fresh/server.ts";
-import { compile } from "npm:@mdx-js/mdx";
-import { Root } from "npm:@types/hast@3.0.3";
-import { type MdxjsEsm } from "npm:mdast-util-mdxjs-esm@2.0.1";
-import { default as remarkFrontmatter } from "npm:remark-frontmatter@5.0.0";
-import { default as remarkGfm } from "npm:remark-gfm@4.0.0";
-import { Project } from "npm:ts-morph@21.0.1";
-import { visit } from "npm:unist-util-visit@4.1.2";
-import { walk } from "../../deps/std/fs.ts";
-import { join, toFileUrl } from "../../deps/std/path.ts";
+import { compile } from "../../deps/@mdx-js/mdx.ts";
+import { walk } from "../../deps/@std/fs.ts";
+import { join, toFileUrl } from "../../deps/@std/path.ts";
+import { Root } from "../../deps/@types/hast.ts";
+import { type MdxjsEsm } from "../../deps/mdast-util-mdxjs-esm.ts";
+import { remarkFrontmatter } from "../../deps/remark-frontmatter.ts";
+import { remarkGfm } from "../../deps/remark-gfm.ts";
+import { Project } from "../../deps/ts-morph.ts";
+import { visit } from "../../deps/unist-util-visit.ts";
 
 export async function scanForMDXFiles(directory: string): Promise<string[]> {
   const files: string[] = [];

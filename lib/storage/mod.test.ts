@@ -1,4 +1,4 @@
-import { assertExists } from "../deps/std/assert.ts";
+import { assertExists } from "../deps/@std/assert.ts";
 import { storage } from "./mod.ts";
 
 const db = storage();

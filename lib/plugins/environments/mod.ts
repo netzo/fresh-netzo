@@ -1,6 +1,6 @@
 // deno-lint-ignore-file no-explicit-any
-import { load } from "jsr:@std/dotenv";
 import { netzo } from "../../apis/netzo.ts";
+import { load } from "../../deps/@std/dotenv.ts";
 import type { Project } from "../types.ts";
 import { logInfo, LOGS } from "../utils.ts";
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env -S deno run --allow-read --allow-write --allow-env --allow-net --allow-run
 
+import { load } from "../deps/@std/dotenv.ts";
 import { parse, semverGreaterThanOrEquals } from "../deps/semver/mod.ts";
-import { load } from "../deps/std/dotenv.ts";
 import { error } from "../plugins/utils.ts";
 import { parseArgs } from "./src/args.ts";
 import deploySubcommand from "./src/subcommands/deploy.ts";

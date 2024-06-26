@@ -1,7 +1,7 @@
 // adapted from https://github.com/oaarnikoivu/shadcn-virtualized-combobox
 // @deno-types="npm:@types/react@18.2.60"
 
-import { blue, bold, green, red, white, yellow } from "https://deno.land/std@0.208.0/fmt/colors.ts";
+import { blue, bold, green, red, white, yellow } from "../deps/@std/fmt/colors.ts";
 import type { Project } from "./types.ts";
 
 /**

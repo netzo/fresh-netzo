@@ -1,8 +1,5 @@
 {
-  "exclude": [
-    "_fresh/",
-    "**/_fresh/*"
-  ],
+  "exclude": ["**/_fresh/*"],
   "lock": false,
   "tasks": {
     "cache:deps": "deno cache **/deps/**/*.ts",
@@ -14,34 +11,30 @@
     "release": "deno run --allow-run --allow-read tasks/release.ts",
     "cov": "deno coverage ./cov/ --lcov --exclude='test.ts|testdata' > cov.lcov"
   },
-  "unstable": [
-    "cron",
-    "kv"
-  ],
+  "unstable": ["cron", "kv", "temporal"],
   "lint": {
-    "exclude": [
-      "./lib/deps/"
-    ],
-    "rules": {
-      "tags": [
-        "fresh",
-        "recommended"
-      ]
-    }
+    "exclude": ["./lib/deps/"],
+    "rules": { "tags": ["fresh", "recommended"] }
   },
-  "test": {
-    "exclude": [
-      "./templates"
-    ]
-  },
+  "test": { "exclude": ["./templates"] },
   "fmt": { "lineWidth": 100 },
   "compilerOptions": {
-    "jsx": "react-jsx",
-    // NOTE: alias "preact" is not being resolved for deno.json(c) of monorepo
-    // therefore we use react here (this is not needed withing the individual
-    // projects e.g. under templates/crm/deno.json, since "preact" resolves properly)
-    // see https://github.com/denoland/deno/issues/20582#issuecomment-1751454928
-    "jsxImportSource": "https://esm.sh/react@18.2.0"
+    "lib": ["dom", "dom.asynciterable", "deno.ns"],
+    "jsx": "precompile",
+    "jsxImportSource": "preact",
+    "jsxImportSourceTypes": "preact/compat",
+    "jsxPrecompileSkipElements": [
+      "a",
+      "img",
+      "source",
+      "body",
+      "html",
+      "head",
+      "title",
+      "link",
+      "style",
+      "meta"
+    ]
   },
   "imports": {
     "@/": "./",
@@ -51,7 +44,6 @@
     "react": "npm:preact@10.22.0/compat",
     "react-dom": "npm:preact@10.22.0/compat",
     "@preact/signals": "npm:@preact/signals@1.2.3",
-    "@preact/signals-core": "npm:@preact/signals-core@1.6.1",
-    "std/": "https://deno.land/std@0.208.0/"
+    "@preact/signals-core": "npm:@preact/signals-core@1.6.1"
   }
 }

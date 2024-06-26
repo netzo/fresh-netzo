@@ -1,4 +1,4 @@
-import { join, normalize } from "../../../deps/std/path.ts";
+import { join, normalize } from "../../../deps/@std/path.ts";
 import type { ManifestEntry, ManifestEntryDirectory } from "./netzo.ts";
 
 /** Calculate git object hash, like `git hash-object` does. */

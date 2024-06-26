@@ -1,7 +1,7 @@
 // IMPORTANT: requires importing createClient from /web and not from root nor /node
 // see https://github.com/tursodatabase/libsql-client-ts/issues/138#issuecomment-1921954374
 import { IS_BROWSER } from "fresh/runtime.ts";
-import { createClient } from "npm:/@libsql/client@0.6.0";
+import { createClient } from "../deps/@libsql/client.ts";
 import { drizzle } from "../deps/drizzle-orm/libsql.ts";
 import { drizzle as drizzleSqliteProxy } from "../deps/drizzle-orm/sqlite-proxy.ts";
 import type { DrizzleConfig } from "../deps/drizzle-orm/utils.ts";
