@@ -293,7 +293,7 @@ export function presetShadcn(options: PresetShadcnOptions = {}): Preset<Theme> {
           "w-4",
           "i-mdi-chevron-right",
           "h-4",
-          "w-4"
+          "w-4",
         ],
         // carousel:
         ...[
@@ -506,7 +506,7 @@ export function presetShadcn(options: PresetShadcnOptions = {}): Preset<Theme> {
           "w-4",
           "w-auto",
           "p-0",
-          "hover:bg-primary"
+          "hover:bg-primary",
         ],
         // dialog:
         ...[
