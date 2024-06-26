@@ -11,7 +11,7 @@
     "lib": ["dom", "dom.asynciterable", "deno.ns"],
     "jsx": "precompile",
     "jsxImportSource": "preact",
-    "jsxImportSourceTypes": "preact/compat",
+    "jsxImportSourceTypes": "npm:@types/react@18.2.60",
     "jsxPrecompileSkipElements": [
       "a",
       "img",
