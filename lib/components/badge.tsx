@@ -1,4 +1,4 @@
-// @deno-types="npm:@types/react@18.2.60"
+
 import * as React from "react";
 
 import { cva, type VariantProps } from "../deps/class-variance-authority.ts";
