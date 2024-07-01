@@ -186,6 +186,12 @@ export function AuthForm(props: AuthFormProps) {
           </ButtonOAuth2>
         )} */
         }
+
+        {!!providers?.netzolabs && (
+          <ButtonNetzo text={`${i18n.authForm.text} NetzoLabs`} href="/auth/netzolabs/signin">
+            <div className="mr-4 w-22px h-22px i-netzo-symbol" />
+          </ButtonNetzo>
+        )}
       </div>
     </>
   );

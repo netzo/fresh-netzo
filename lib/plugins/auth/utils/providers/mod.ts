@@ -17,6 +17,7 @@ import { getUserGithub } from "./github.ts";
 import { getUserGitlab } from "./gitlab.ts";
 import { getUserGoogle } from "./google.ts";
 import { getUserNetzo, handleCallbackNetzo, signInNetzo } from "./netzo.ts";
+import { getUserNetzolabs } from "./netzolabs.ts";
 import { getUserOkta } from "./okta.ts";
 import { getUserSlack } from "./slack.ts";
 
@@ -36,7 +37,10 @@ export const getAuthConfig = (provider: AuthProvider, ctx: FreshContext) => {
     case "google": {
       return createGoogleOAuthConfig({
         redirectUri,
-        scope: "https://www.googleapis.com/auth/userinfo.profile",
+        scope: [
+          "https://www.googleapis.com/auth/userinfo.profile",
+          "https://www.googleapis.com/auth/userinfo.email",
+        ],
       });
     }
     case "github": {
@@ -70,6 +74,21 @@ export const getAuthConfig = (provider: AuthProvider, ctx: FreshContext) => {
     // case "discord":
     // case "dropbox":
     // case "facebook":
+    case "netzolabs": {
+      return {
+        clientId: Deno.env.get("NETZOLABS_CLIENT_ID")!,
+        clientSecret: Deno.env.get("NETZOLABS_CLIENT_SECRET")!,
+        authorizationEndpointUri: "https://accounts.google.com/o/oauth2/v2/auth",
+        tokenUri: "https://oauth2.googleapis.com/token",
+        redirectUri,
+        defaults: {
+          scope: [
+            "https://www.googleapis.com/auth/userinfo.profile",
+            "https://www.googleapis.com/auth/userinfo.email",
+          ],
+        },
+      }; // MUST be set if using Netzo Auth Provider
+    }
     default:
       throw new Error(`Provider ${provider} not supported`);
   }
@@ -107,6 +126,8 @@ export const getUserByProvider = async (
       return await getUserAuth0(accessToken);
     case "okta":
       return await getUserOkta(accessToken);
+    case "netzolabs":
+      return await getUserNetzolabs(accessToken);
     default:
       throw new Error(`Provider ${provider} not supported`);
   }

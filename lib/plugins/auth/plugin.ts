@@ -71,6 +71,10 @@ export type AuthConfig = {
       clientSecret?: string;
       oktaDomain?: string; // must set OKTA_DOMAIN environment variable
     };
+    netzolabs?: AuthConfigProvider & {
+      clientId?: string;
+      clientSecret?: string;
+    };
   };
   /** A function to check if a user is authorized to sign in. The function should
    * throw an Error with an optional error message if not authorized.
@@ -132,6 +136,7 @@ export const auth = (config: AuthConfig): Plugin<NetzoState> => {
     "gitlab",
     "auth0",
     "okta",
+    "netzolabs",
   ].some((key) => !!config?.providers?.[key as AuthProvider]);
   if (!authEnabled) return { name: "netzo.auth" }; // skip if auth but no providers are set
 
