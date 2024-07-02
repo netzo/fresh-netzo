@@ -4,7 +4,8 @@ import * as React from "react";
 import { useSignal } from "@preact/signals";
 import type { ComponentChildren } from "preact";
 // import { ButtonDarkMode } from "../../components/button-dark-mode.tsx";
-import { Button } from "../../../components/button.tsx";
+import { FreshContext } from "fresh/server.ts";
+import { Button, buttonVariants } from "../../../components/button.tsx";
 import {
   Dialog,
   DialogContent,
@@ -29,11 +30,11 @@ import { locales } from "../i18n.ts";
 // created using v0 by Vercel see https://v0.dev/t/aLUPWlh
 
 export type NetzoToolbarProps = JSX.IntrinsicElements["menu"] & {
-  state: NetzoState;
+  ctx: FreshContext<NetzoState>;
 };
 
-export function NetzoToolbar({ state, className }: NetzoToolbarProps) {
-  const { locale = "es" } = state?.toolbar ?? {};
+export function NetzoToolbar(props: NetzoToolbarProps) {
+  const { locale = "es" } = props.ctx.state?.toolbar ?? {};
 
   const i18n = locales[locale];
 
@@ -53,7 +54,7 @@ export function NetzoToolbar({ state, className }: NetzoToolbarProps) {
         "flex items-center justify-center",
         "rounded-full bg-zinc-800 p-2 max-w-max",
         "fixed bottom-20px -translate-x-2/4 translate-y-0 left-2/4",
-        className,
+        props.className,
       )}
     >
       {expanded === "true" && (
@@ -84,7 +85,7 @@ export function NetzoToolbar({ state, className }: NetzoToolbarProps) {
               <i className="i-mdi-share-variant h-6 w-6" />
               <span className="sr-only">{i18n.buttons.share}</span>
             </Button>
-            <DialogFeedbackNetzolabs state={state}>
+            <DialogFeedbackNetzolabs ctx={props.ctx}>
               <Button
                 size="icon"
                 variant="ghost"
@@ -95,7 +96,7 @@ export function NetzoToolbar({ state, className }: NetzoToolbarProps) {
                 <span className="sr-only">{i18n.buttons.feedback}</span>
               </Button>
             </DialogFeedbackNetzolabs>
-            <DialogInfo state={state}>
+            <DialogInfo ctx={props.ctx}>
               <Button
                 size="icon"
                 variant="ghost"
@@ -109,7 +110,54 @@ export function NetzoToolbar({ state, className }: NetzoToolbarProps) {
           </div>
 
           <div className="flex space-x-1 px-2 border-r border-zinc-600">
-            <DialogApps state={state}>
+            <a
+              href="/admin/users"
+              title={i18n.buttons.admin.users}
+              className={cn(
+                buttonVariants({ variant: "ghost", size: "icon" }),
+                styles.toolbarButton,
+              )}
+            >
+              <i className="i-mdi-account-multiple h-6 w-6" />
+              <span className="sr-only">{i18n.buttons.admin.users}</span>
+            </a>
+            <a
+              href="/admin/database"
+              title={i18n.buttons.admin.database}
+              className={cn(
+                buttonVariants({ variant: "ghost", size: "icon" }),
+                styles.toolbarButton,
+              )}
+            >
+              <i className="i-mdi-database h-6 w-6" />
+              <span className="sr-only">{i18n.buttons.admin.database}</span>
+            </a>
+            <a
+              href="/admin/datastore"
+              title={i18n.buttons.admin.datastore}
+              className={cn(
+                buttonVariants({ variant: "ghost", size: "icon" }),
+                styles.toolbarButton,
+              )}
+            >
+              <i className="i-mdi-file-tree h-6 w-6" />
+              <span className="sr-only">{i18n.buttons.admin.datastore}</span>
+            </a>
+            <a
+              href="/admin/storage"
+              title={i18n.buttons.admin.storage}
+              className={cn(
+                buttonVariants({ variant: "ghost", size: "icon" }),
+                styles.toolbarButton,
+              )}
+            >
+              <i className="i-mdi-layers-triple h-6 w-6" />
+              <span className="sr-only">{i18n.buttons.admin.storage}</span>
+            </a>
+          </div>
+
+          <div className="flex space-x-1 px-2 border-r border-zinc-600">
+            <DialogApps ctx={props.ctx}>
               <Button
                 size="icon"
                 variant="ghost"
@@ -161,10 +209,12 @@ export type Issue = {
   deletedAt: null | string;
 };
 
-export function DialogFeedbackNetzolabs(props: { state: NetzoState; children: ComponentChildren }) {
+export function DialogFeedbackNetzolabs(
+  props: { ctx: FreshContext<NetzoState>; children: ComponentChildren },
+) {
   const open = useSignal(false);
 
-  const { locale = "es" } = props.state?.toolbar ?? {};
+  const { locale = "es" } = props.ctx.state?.toolbar ?? {};
 
   const i18n = locales?.[locale];
 
@@ -172,9 +222,9 @@ export function DialogFeedbackNetzolabs(props: { state: NetzoState; children: Co
 
   const form = useForm<Issue>({
     defaultValues: {
-      projectId: props.state?.toolbar?.projectId,
-      userId: props.state?.auth?.sessionUser?.id,
-      userEmail: props.state?.auth?.sessionUser?.email,
+      projectId: props.ctx.state?.toolbar?.projectId,
+      userId: props.ctx.state?.auth?.sessionUser?.id,
+      userEmail: props.ctx.state?.auth?.sessionUser?.email,
       type: "feedback",
       title: "",
       description: "",
@@ -253,8 +303,8 @@ export function DialogFeedbackNetzolabs(props: { state: NetzoState; children: Co
   );
 }
 
-export function DialogInfo(props: { state: NetzoState; children: ComponentChildren }) {
-  const { locale = "es", denoJson } = props.state?.toolbar ?? {};
+export function DialogInfo(props: { ctx: FreshContext<NetzoState>; children: ComponentChildren }) {
+  const { locale = "es", denoJson } = props.ctx.state?.toolbar ?? {};
 
   const i18n = locales?.[locale];
 
@@ -285,8 +335,8 @@ export function DialogInfo(props: { state: NetzoState; children: ComponentChildr
   );
 }
 
-export function DialogApps(props: { state: NetzoState; children: ComponentChildren }) {
-  const { locale = "es", links = [] } = props.state?.toolbar ?? {};
+export function DialogApps(props: { ctx: FreshContext<NetzoState>; children: ComponentChildren }) {
+  const { locale = "es", links = [] } = props.ctx.state?.toolbar ?? {};
 
   const i18n = locales?.[locale];
 

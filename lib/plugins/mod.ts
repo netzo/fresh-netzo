@@ -1,3 +1,4 @@
+export * from "./admin/plugin.ts";
 export * from "./auth/plugin.ts";
 export * from "./cron/plugin.ts";
 export * from "./database/plugin.ts";

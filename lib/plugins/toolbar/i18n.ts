@@ -13,6 +13,16 @@ export const locales = {
         newRequest:
           "Contact us at hello@netzo.io to submit new application requests. We will be happy to help you!",
       },
+      admin: {
+        title: "Admin",
+        users: "Users",
+        roles: "Roles",
+        notifications: "Notifications",
+        database: "Database",
+        datastore: "Datastore",
+        storage: "Storage",
+        crons: "Crons",
+      },
     },
     dialogFeedbackNetzolabs: {
       title: "Report an Issue",
@@ -55,6 +65,16 @@ export const locales = {
         description: "Navegar todas las aplicaciones compartidas conmigo",
         newRequest:
           "Contáctenos en hello@netzo.io para enviar nuevas solicitudes de aplicación. ¡Estaremos encantados de ayudarte!",
+      },
+      admin: {
+        title: "Admin",
+        users: "Usuarios",
+        roles: "Roles",
+        notifications: "Notificaciones",
+        database: "Base de datos",
+        datastore: "Datastore",
+        storage: "Almacenamiento",
+        crons: "Crons",
       },
     },
     dialogFeedbackNetzolabs: {
