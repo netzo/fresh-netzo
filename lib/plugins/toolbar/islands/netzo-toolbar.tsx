@@ -185,7 +185,8 @@ export function DialogFeedbackNetzolabs(props: { state: NetzoState; children: Co
   });
 
   const onSubmit = async ({ ...data }: Issue) => {
-    await fetch(`https://netzolabs-oms.netzo.dev/api/issues`, {
+    // TODO: update to https://netzolabs.netzo.dev once this is live
+    await fetch(`https://netzolabs-oms-gjydyhgkth7t.netzo.dev/api/issues`, {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(data),
