@@ -12,7 +12,7 @@ import {
   setRequestState,
   setSessionState,
 } from "./middlewares/mod.ts";
-import createAuth from "./routes/auth.tsx";
+import createRouteIndex from "./routes/auth.tsx";
 import { getRoutesByProvider } from "./routes/mod.ts";
 import { EmailAuthConfig } from "./utils/providers/email.ts";
 import { NetzoAuthConfig } from "./utils/providers/netzo.ts";
@@ -150,7 +150,7 @@ export const auth = (config: AuthConfig): Plugin<NetzoState> => {
   config.resolveUserData ??= (user) => user?.data ?? {};
 
   const authRoutes: PluginRoute[] = [
-    { path: "/auth", component: createAuth(config) },
+    { path: "/auth", component: createRouteIndex(config) },
     ...Object.keys(config.providers)
       .filter((provider) => !!config?.providers?.[provider as AuthProvider])
       .flatMap((provider) => getRoutesByProvider(provider as AuthProvider, config)),

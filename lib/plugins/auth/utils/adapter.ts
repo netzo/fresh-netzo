@@ -5,9 +5,7 @@ import type { Auth, AuthUser } from "./types.ts";
 export const createDatabaseAuth = (db: ReturnType<typeof database>): Auth => {
   const { $users, $sessions } = db?._?.fullSchema! ?? {}; // use fullSchema, not schema
   if (!$users) throw new Error(`Missing "$users" table in database schema`);
-  if (!$sessions) {
-    throw new Error(`Missing "$sessions" table in database schema`);
-  }
+  if (!$sessions) throw new Error(`Missing "$sessions" table in database schema`);
 
   return {
     createUser: async (user: AuthUser) => {
