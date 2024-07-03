@@ -1,4 +1,4 @@
-import { MiddlewareHandler } from "fresh/server.ts";
+import { MiddlewareHandler } from "fresh";
 import { RESPONSES } from "./utils.ts";
 
 const enableCors = (req: Request, res: Response) => {

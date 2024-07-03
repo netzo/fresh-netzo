@@ -1,5 +1,5 @@
 import { effect, signal } from "@preact/signals";
-import { IS_BROWSER } from "fresh/runtime.ts";
+import { IS_BROWSER } from "fresh/runtime";
 
 // NOTE: initializes to false instead of getDarkMode() as default
 export const darkMode = signal<boolean>(false);

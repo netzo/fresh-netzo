@@ -2,7 +2,7 @@
 // @deno-types="npm:@types/react@18.2.60"
 import * as React from "react";
 
-import { IS_BROWSER } from "fresh/runtime.ts";
+import { IS_BROWSER } from "fresh/runtime";
 
 // use custom useLocalStorage hook (instead of that of e.g. usehooks-ts) to
 // avoid using the window object on the server-side which might throw errors

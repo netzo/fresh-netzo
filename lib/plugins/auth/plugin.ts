@@ -1,14 +1,14 @@
 // @deno-types="npm:@types/react@18.2.60"
 import * as React from "react";
 
-import type { FreshContext, Plugin, PluginRoute } from "fresh/server.ts";
+import type { FreshContext, Plugin, PluginRoute } from "fresh";
 import type { NetzoState } from "../../mod.ts";
 import {
+  NetzoStateWithAuth,
   assertUserIsMemberOfWorkspaceOfApiKeyIfProviderIsNetzo,
   createAssertUserIsAuthorized,
   createAuthState,
   ensureSignedIn,
-  NetzoStateWithAuth,
   setRequestState,
   setSessionState,
 } from "./middlewares/mod.ts";
@@ -82,7 +82,6 @@ export type AuthConfig = {
    */
   assertAuthorization?: (
     user: AuthUser,
-    req: Request,
     ctx: FreshContext<NetzoStateWithAuth>,
   ) => Error | unknown;
   /** A function to resolve the user data from the user object. The function should
@@ -91,7 +90,6 @@ export type AuthConfig = {
    * @example return { ...user.data, roles: user.email.endsWith("@example.com") ? ["admin"] : ["user"] }; */
   resolveUserData?: (
     user: AuthUser,
-    req: Request,
     ctx: FreshContext<NetzoStateWithAuth>,
   ) => AuthUser["data"];
   /* The Drizzle schema declaring the users and sessions tables.

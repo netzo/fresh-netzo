@@ -1,4 +1,4 @@
-import { IS_BROWSER } from "fresh/runtime.ts";
+import { IS_BROWSER } from "fresh/runtime";
 import type { ComponentChildren } from "preact";
 
 export const ClientOnly = ({ children }: { children: ComponentChildren }) => {

@@ -1,4 +1,4 @@
-import type { FreshContext } from "fresh/server.ts";
+import type { FreshContext } from "fresh";
 import { getSessionId } from "../../../deps/deno_kv_oauth/mod.ts";
 import type { NetzoState } from "../../../mod.ts";
 import { AuthConfig, AuthState } from "../plugin.ts";
@@ -103,7 +103,7 @@ export function createAssertUserIsAuthorized(config: AuthConfig) {
 
     if (sessionUser) {
       try {
-        await config?.assertAuthorization?.(sessionUser, req, ctx);
+        await config?.assertAuthorization?.(sessionUser, ctx);
         ctx.url.searchParams.delete("error");
       } catch (e: Error | unknown) {
         const [_, __, signOut] = getFunctionsByProvider(sessionUser.provider);

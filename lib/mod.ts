@@ -1,4 +1,4 @@
-import type { FreshConfig } from "fresh/server.ts";
+import type { FreshConfig } from "fresh";
 import type { LoaderState } from "netzo/plugins/loader/plugin.ts";
 import type { MdxState } from "netzo/plugins/mdx/plugin.ts";
 import type { AuthState } from "./plugins/auth/plugin.ts";

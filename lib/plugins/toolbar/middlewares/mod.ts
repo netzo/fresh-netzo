@@ -1,4 +1,4 @@
-import type { FreshContext } from "fresh/server.ts";
+import type { FreshContext } from "fresh";
 import { NetzoState } from "../../../mod.ts";
 import type { ToolbarConfig, ToolbarState } from "../plugin.ts";
 
