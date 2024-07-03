@@ -1,4 +1,4 @@
-import type { PluginRoute } from "fresh/server.ts";
+import type { PluginRoute } from "fresh";
 import { locales } from "../i18n.ts";
 import type { AuthConfig } from "../plugin.ts";
 import {
@@ -53,7 +53,7 @@ export const getRoutesByProvider = (
           email: userProvider?.email,
           avatar: userProvider?.avatar,
           data: options?.resolveUserData
-            ? options?.resolveUserData?.(userCurrent ?? {}, req, ctx) ?? {}
+            ? options?.resolveUserData?.(userCurrent ?? {}, ctx) ?? {}
             : userCurrent?.data ?? {}, // else keep existing data
           createdAt: userCurrent?.createdAt,
           updatedAt: userCurrent?.updatedAt,

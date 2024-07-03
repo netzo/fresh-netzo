@@ -1,13 +1,12 @@
-import type { Plugin } from "fresh/server.ts";
-import { dirname, fromFileUrl, join, walk } from "fresh/src/server/deps.ts";
-import { JSX, options as preactOptions, VNode } from "preact";
+import type { Plugin } from "fresh";
+import { JSX, VNode, options as preactOptions } from "preact";
 import { UnoGenerator, type UserConfig } from "../../deps/@unocss/core.ts";
 import type { Theme } from "../../deps/@unocss/preset-uno.ts";
-// IMPORTANT: import from @std/fs/exists directly to avoid Deno leaking to client
+// IMPORTANT: import from directly from vendored @std/ to avoid Deno leaking to client
 import { existsSync } from "../../deps/@std/fs/exists.ts";
-import { minify } from "../../deps/csso.ts";
+import { walk } from "../../deps/@std/fs/walk.ts";
+import { dirname, fromFileUrl, join } from "../../deps/@std/path.ts";
 import type { NetzoState } from "../../mod.ts";
-import { logInfo } from "../utils.ts";
 
 type PreactOptions = typeof preactOptions & { __b?: (vnode: VNode) => void };
 

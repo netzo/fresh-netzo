@@ -1,4 +1,4 @@
-import { type PluginRoute } from "fresh/server.ts";
+import { type PluginRoute } from "fresh";
 import { compile } from "../../deps/@mdx-js/mdx.ts";
 import { walk } from "../../deps/@std/fs.ts";
 import { join, toFileUrl } from "../../deps/@std/path.ts";
