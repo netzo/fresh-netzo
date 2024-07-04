@@ -1,4 +1,4 @@
-import type { Plugin, PluginRoute } from "fresh";
+import type { App } from "fresh";
 import type { NetzoState } from "../../mod.ts";
 import { mdxPathsToRoutes, scanForMDXFiles } from "./utils.ts";
 
@@ -15,13 +15,14 @@ export type MdxState = {};
  * @param {MdxConfig} - configuration options for the plugin
  * @returns {Plugin} - a Plugin for Deno Fresh
  */
-export const mdx = async (config: MdxConfig): Promise<Plugin<NetzoState>> => {
+export const mdx = async (app: App<NetzoState>, config: MdxConfig) => {
   const routesDir = new URL("./routes", config.configURL).pathname;
   const mdxFiles = await scanForMDXFiles(routesDir);
-  const routes: PluginRoute[] = await mdxPathsToRoutes(mdxFiles, routesDir);
+  const routes = await mdxPathsToRoutes(mdxFiles, routesDir);
 
-  return {
-    name: "mdx",
-    routes,
-  };
+  // routes:
+
+  routes.forEach((route) => {
+    app.get(route.path, (ctx) => ctx.render(route.component));
+  });
 };

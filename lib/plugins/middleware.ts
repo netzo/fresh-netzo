@@ -1,4 +1,5 @@
-import { MiddlewareHandler } from "fresh";
+import { MiddlewareFn } from "fresh";
+import { NetzoState } from "../mod.ts";
 import { RESPONSES } from "./utils.ts";
 
 const enableCors = (req: Request, res: Response) => {
@@ -9,27 +10,27 @@ const enableCors = (req: Request, res: Response) => {
   res.headers.set("Access-Control-Allow-Methods", "*");
 };
 
-export function cors(): MiddlewareHandler {
-  return async (req, ctx) => {
-    if (req.method == "OPTIONS") {
+export function cors(): MiddlewareFn<NetzoState> {
+  return async (ctx) => {
+    if (ctx.req.method == "OPTIONS") {
       const res = new Response(null, { status: 204 });
-      enableCors(req, res);
+      enableCors(ctx.req, res);
       return res;
     }
     const res = await ctx.next();
-    enableCors(req, res);
+    enableCors(ctx.req, res);
     return res;
   };
 }
 
-export function apiKeyAuthentication({ apiKey }: { apiKey: string }): MiddlewareHandler {
-  return async (req, ctx) => {
+export function apiKeyAuthentication({ apiKey }: { apiKey: string }): MiddlewareFn<NetzoState> {
+  return async (ctx) => {
     try {
-      if (!["route"].includes(ctx.destination)) return await ctx.next();
+      // if (!["route"].includes(ctx.destination)) return await ctx.next();
       if (!apiKey) return await ctx.next();
 
-      const origin = req.headers.get("origin")!; // e.g. https://my-project-906698.netzo.io
-      const referer = req.headers.get("referer")!; // SOMETIMES SET e.g. https://app.netzo.io/some-path
+      const origin = ctx.req.headers.get("origin")!; // e.g. https://my-project-906698.netzo.io
+      const referer = ctx.req.headers.get("referer")!; // SOMETIMES SET e.g. https://app.netzo.io/some-path
 
       // skip if request is from same origin or referer (to allow fetch within app)
       const sameOrigin = origin && ctx.url.origin === origin;
@@ -37,7 +38,7 @@ export function apiKeyAuthentication({ apiKey }: { apiKey: string }): Middleware
       if (sameOrigin || sameReferer) return await ctx.next();
 
       // API key authentication
-      const apiKeyHeader = req.headers.get("x-api-key");
+      const apiKeyHeader = ctx.req.headers.get("x-api-key");
       const apiKeySearchParams = ctx.url.searchParams.get("apiKey");
       const apiKeyValue = apiKeyHeader || apiKeySearchParams;
       if (!apiKeyValue) return RESPONSES.missingApiKey();

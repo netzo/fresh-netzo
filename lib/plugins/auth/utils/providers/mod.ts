@@ -1,22 +1,22 @@
 import { FreshContext } from "fresh";
 import {
-    createAuth0OAuthConfig,
-    createGitHubOAuthConfig,
-    createGitLabOAuthConfig,
-    createGoogleOAuthConfig,
-    createOktaOAuthConfig,
-    createSlackOAuthConfig,
-    handleCallback,
-    signIn,
-    signOut,
+  createAuth0OAuthConfig,
+  createGitHubOAuthConfig,
+  createGitLabOAuthConfig,
+  createGoogleOAuthConfig,
+  createOktaOAuthConfig,
+  createSlackOAuthConfig,
+  handleCallback,
+  signIn,
+  signOut,
 } from "../../../../deps/deno_kv_oauth/mod.ts";
 import type { AuthProvider, AuthUserFromProvider } from "../types.ts";
 import { getUserAuth0 } from "./auth0.ts";
-import { getUserEmail, handleCallbackEmail, signInEmail } from "./email.ts";
+import { EmailAuthConfig, getUserEmail, handleCallbackEmail, signInEmail } from "./email.ts";
 import { getUserGithub } from "./github.ts";
 import { getUserGitlab } from "./gitlab.ts";
 import { getUserGoogle } from "./google.ts";
-import { getUserNetzo, handleCallbackNetzo, signInNetzo } from "./netzo.ts";
+import { getUserNetzo, handleCallbackNetzo, NetzoAuthConfig, signInNetzo } from "./netzo.ts";
 import { getUserNetzolabs } from "./netzolabs.ts";
 import { getUserOkta } from "./okta.ts";
 import { getUserSlack } from "./slack.ts";
@@ -29,10 +29,10 @@ export const getAuthConfig = (provider: AuthProvider, ctx: FreshContext) => {
       return {
         projectId: Deno.env.get("NETZO_PROJECT_ID")!,
         apiKey: Deno.env.get("NETZO_API_KEY")!,
-      }; // MUST be set if using Netzo Auth Provider
+      } satisfies NetzoAuthConfig; // MUST be set if using Netzo Auth Provider
     }
     case "email": {
-      return {};
+      return {} satisfies EmailAuthConfig;
     }
     case "google": {
       return createGoogleOAuthConfig({

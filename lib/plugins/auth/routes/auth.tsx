@@ -1,4 +1,5 @@
-import { defineRoute, type RouteConfig } from "fresh";
+import { FreshContext, type RouteConfig } from "fresh";
+import { NetzoState } from "netzo/mod.ts";
 import { cn } from "../../../components/utils.ts";
 import { AuthForm } from "../islands/auth-form.tsx";
 import { type AuthConfig } from "../plugin.ts";
@@ -13,10 +14,10 @@ export const config: RouteConfig = {
 };
 
 export default (config: AuthConfig) => {
-  return defineRoute((req, ctx) => {
+  return (ctx: FreshContext<NetzoState>) => {
     const AuthFormWithCaption = () => (
       <div className="grid gap-6 w-full xs:w-[350px] max-w-[350px] pb-16">
-        <AuthForm config={config} request={req} />
+        <AuthForm config={config} request={ctx.req} />
 
         {config?.caption && (
           <p
@@ -57,5 +58,5 @@ export default (config: AuthConfig) => {
         <AuthFormWithCaption />
       </div>
     );
-  });
+  };
 };
