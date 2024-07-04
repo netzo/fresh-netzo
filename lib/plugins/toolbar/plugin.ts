@@ -1,4 +1,4 @@
-import type { Plugin } from "fresh";
+import type { App } from "fresh";
 import type { NetzoState } from "../../mod.ts";
 import { createToolbarState } from "./middlewares/mod.ts";
 
@@ -32,19 +32,9 @@ export type ToolbarState = {
 
 /**
  * Plugin to register Netzo Toolbar functionality.
- *
- * @returns {Plugin} - a Plugin for Deno Fresh
  */
-export const toolbar = (config: ToolbarConfig): Plugin<NetzoState> => {
-  return {
-    name: "netzo.toolbar",
-    middlewares: [
-      {
-        path: "/",
-        middleware: { handler: createToolbarState(config) },
-      },
-    ],
-  };
+export const toolbar = (app: App<NetzoState>, config: ToolbarConfig) => {
+  app.use(createToolbarState(config));
 };
 
 /**

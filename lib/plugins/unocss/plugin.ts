@@ -1,5 +1,5 @@
-import type { Plugin } from "fresh";
-import { JSX, VNode, options as preactOptions } from "preact";
+import type { App } from "fresh";
+import { JSX, options as preactOptions, VNode } from "preact";
 import { UnoGenerator, type UserConfig } from "../../deps/@unocss/core.ts";
 import type { Theme } from "../../deps/@unocss/preset-uno.ts";
 // IMPORTANT: import from directly from vendored @std/ to avoid Deno leaking to client
@@ -51,15 +51,6 @@ export type UnocssConfig<T extends object = Theme> = UserConfig<T> & {
 export const defineUnocssConfig = <T extends object = Theme>(
   config: UnocssConfig<T>,
 ): UnocssConfig<T> => config;
-
-declare module "preact" {
-  namespace JSX {
-    interface DOMAttributes<Target extends EventTarget> {
-      class?: string;
-      className?: string;
-    }
-  }
-}
 
 /**
  * Installs a hook in Preact to extract classes during server-side renders
@@ -131,7 +122,7 @@ async function runOverSource(uno: UnoGenerator): Promise<string> {
  * @param config.ssr (boolean) - enables server-side rendering (SSR) mode to run UnoCSS live to extract styles during server renders (default: false)
  * @param config.csr (boolean) - enables client-side rendering (CSR) mode to run the UnoCSS runtime on the client to generate styles live in response to DOM events (default: false)
  */
-export const unocss = ({
+export const unocss = (_app: App<NetzoState>, {
   url,
   aot = true,
   ssr = false, // DISABLED: disabled for performance (see https://discord.com/channels/684898665143206084/991511118524715139/1253012518650122351)
@@ -142,7 +133,7 @@ export const unocss = ({
   // specified in "safelist" of uno.config. (see https://github.com/netzo/netzo/issues/172)
   csr = false,
   ...config
-}: UnocssConfig): Plugin<NetzoState> => {
+}: UnocssConfig) => {
   // NOTE: Subhosting somehow fails when operating with and/or importing from
   // file:// URLs, so we remove the file:// prefix to avoid build/deployment errors
   const configURL = url.replace("file://", "");

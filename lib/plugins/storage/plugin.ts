@@ -1,4 +1,5 @@
-import type { Plugin, PluginRoute } from "fresh";
+import type { App } from "fresh";
+import { NetzoState } from "netzo/mod.ts";
 import { apiKeyAuthentication, cors } from "../middleware.ts";
 
 export type StorageConfig = {
@@ -23,55 +24,38 @@ export type StorageState = {};
  * - `PATCH /storage/objects/:id` patch an object by key
  * - `DELETE /storage/objects/:id` remove an object by key
  */
-export const storage = (config?: StorageConfig): Plugin => {
-  if (!config) return { name: "netzo.storage" };
+export const storage = (app: App<NetzoState>, config?: StorageConfig) => {
+  if (!config) return;
 
   if (!("apiKey" in config)) config.apiKey = Deno.env.get("NETZO_API_KEY");
 
-  return {
-    name: "netzo.storage",
-    middlewares: [
-      {
-        path: "/storage",
-        middleware: {
-          handler: cors(),
-        },
-      },
-      {
-        path: "/storage",
-        middleware: {
-          handler: apiKeyAuthentication({ apiKey: config.apiKey! }),
-        },
-      },
-    ],
-    routes: [
-      {
-        path: "/storage/objects",
-        handler: {
-          GET: async (req, _ctx) => {
-            const response = await proxyStorage(req);
-            return response;
-          },
-          POST: async (req, _ctx) => {
-            const response = await proxyStorage(req);
-            return response;
-          },
-          PUT: async (req, _ctx) => {
-            const response = await proxyStorage(req);
-            return response;
-          },
-          PATCH: async (req, _ctx) => {
-            const response = await proxyStorage(req);
-            return response;
-          },
-          DELETE: async (req, _ctx) => {
-            const response = await proxyStorage(req);
-            return response;
-          },
-        },
-      } satisfies PluginRoute,
-    ],
-  };
+  // middlewares:
+
+  app.all("/storage/:path*", cors());
+  app.all("/storage/:path*", apiKeyAuthentication({ apiKey: config.apiKey! }));
+
+  // routes:
+
+  app.get("/storage/objects", async (ctx) => {
+    const response = await proxyStorage(ctx.req);
+    return response;
+  });
+  app.post("/storage/objects", async (ctx) => {
+    const response = await proxyStorage(ctx.req);
+    return response;
+  });
+  app.put("/storage/objects", async (ctx) => {
+    const response = await proxyStorage(ctx.req);
+    return response;
+  });
+  app.patch("/storage/objects", async (ctx) => {
+    const response = await proxyStorage(ctx.req);
+    return response;
+  });
+  app.delete("/storage/objects", async (ctx) => {
+    const response = await proxyStorage(ctx.req);
+    return response;
+  });
 };
 
 /**

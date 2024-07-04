@@ -1,9 +1,10 @@
-import type { Plugin, PluginRoute } from "fresh";
+import type { App } from "fresh";
+import { NetzoState } from "netzo/mod.ts";
 import { datastore as createDatastore } from "../../datastore/mod.ts";
 import { deepParseJson } from "../../deps/deep-parse-json.ts";
 import { unflatten } from "../../deps/flat.ts";
 import { apiKeyAuthentication, cors } from "../middleware.ts";
-import { RESPONSES, parseRequestBody } from "../utils.ts";
+import { parseRequestBody, RESPONSES } from "../utils.ts";
 
 export type DatastoreConfig = {
   /** Wether to require authentication using the provided API key in the
@@ -27,152 +28,125 @@ export type DatastoreState = {};
  * - `PATCH /datastore/:prefix/:id` patch an entry by key
  * - `DELETE /datastore/:prefix/:id` remove an entry by key
  */
-export const datastore = (config?: DatastoreConfig): Plugin => {
-  if (!config) return { name: "netzo.datastore" };
+export const datastore = (app: App<NetzoState>, config?: DatastoreConfig) => {
+  if (!config) return;
 
   if (!("apiKey" in config)) config.apiKey = Deno.env.get("NETZO_API_KEY");
 
   const ds = createDatastore();
 
-  return {
-    name: "netzo.datastore",
-    middlewares: [
-      {
-        path: "/datastore",
-        middleware: {
-          handler: cors(),
-        },
-      },
-      {
-        path: "/datastore",
-        middleware: {
-          handler: apiKeyAuthentication({ apiKey: config.apiKey! }),
-        },
-      },
-    ],
-    routes: [
-      {
-        path: "/datastore",
-        handler: {
-          // see @netzo/api/services/custom/kv/kv.class.ts
-          POST: async (req, _ctx) => {
-            type KvData = {
-              operation: "get" | "set" | "delete" | "list"; // | "sum" | "min" | "max";
-              key: Deno.KvKey;
-              value?: unknown;
-              prefix?: Deno.KvKey;
-              start?: Deno.KvKey;
-              end?: Deno.KvKey;
-              options?: {
-                limit?: number;
-                cursor?: string;
-                reverse?: boolean;
-                consistency?: "strong" | "eventual";
-                batchSize?: number;
-              };
-            };
-            const data = await parseRequestBody<KvData>(req);
-            const { operation, value } = data ?? {};
-            const key = data?.key as unknown as Deno.KvKey;
+  // middlewares:
 
-            switch (operation) {
-              case "get": {
-                const result = await ds.kv.get(key);
-                return Response.json(result);
-              }
-              case "set": {
-                const result = await ds.kv.set(key, value);
-                return Response.json(result);
-              }
-              case "delete": {
-                const result = await ds.kv.delete(key);
-                return Response.json(result);
-              }
-              case "list": {
-                const { prefix, start, end, options } = data ?? {};
-                let iterator;
-                if (start && end) {
-                  iterator = ds.kv.list({ start, end }, options);
-                } else if (prefix && start) {
-                  iterator = ds.kv.list({ prefix, start }, options);
-                } else if (prefix && end) {
-                  iterator = ds.kv.list({ prefix, end }, options);
-                } else if (prefix) {
-                  iterator = ds.kv.list({ prefix }, options);
-                } else {
-                  return RESPONSES.badRequest(
-                    'Missing "prefix", "start" and/or "end" properties in request body',
-                  );
-                }
+  app.all("/datastore/:path*", cors());
+  app.all("/datastore/:path*", apiKeyAuthentication({ apiKey: config.apiKey! }));
 
-                const result = [];
-                for await (const res of iterator) result.push(res);
-                return Response.json(result);
-              }
-                // TODO: case 'sum': { }
-                // TODO: case 'max': { }
-                // TODO: case 'min': { }
-            }
+  // routes:
 
-            return RESPONSES.badRequest(
-              operation
-                ? `Operation "${operation}" is not supported`
-                : 'Missing "operation" property in request body',
-            );
-          },
-        },
-      } satisfies PluginRoute,
-      {
-        path: "/datastore/[prefix]",
-        handler: {
-          GET: async (_req, ctx) => {
-            const { prefix } = ctx.params;
-            // supports MongoDB-like URL queries via dot-notation (powered by mingo)
-            // e.g. GET /datastore/deals?contactIds.$in=["01HS1HVHBT0XKD8X6BYJ956NR6"]
-            // flatQuery: { "contactIds.$in": '["01HS1HVHBT0XKD8X6BYJ956NR6"]' }
-            // nestedQuery: { "contactIds.$in": '["01HS1HVHBT0XKD8X6BYJ956NR6"]' }
-            // query: { contactIds: { "$in": [ "01HS1HVHBT0XKD8X6BYJ956NR6" ] } }
-            const flatQuery = Object.fromEntries(ctx.url.searchParams);
-            const nestedQuery = unflatten(flatQuery) as Record<string, unknown>;
-            const query = deepParseJson(nestedQuery) as Record<string, unknown>;
-            const result = await ds.find(prefix, query);
-            return Response.json(result);
-          },
-          POST: async (req, ctx) => {
-            const { prefix } = ctx.params;
-            const data = await parseRequestBody(req);
-            const result = await ds.create(prefix, data);
-            return Response.json(result);
-          },
-        },
-      } satisfies PluginRoute,
-      {
-        path: "/datastore/[prefix]/[id]",
-        handler: {
-          GET: async (_req, ctx) => {
-            const { prefix, id } = ctx.params;
-            const result = await ds.get(prefix, id);
-            return Response.json(result);
-          },
-          PUT: async (req, ctx) => {
-            const { prefix, id } = ctx.params;
-            const data = await parseRequestBody(req);
-            const result = await ds.update(prefix, id, data);
-            return Response.json(result);
-          },
-          PATCH: async (req, ctx) => {
-            const { prefix, id } = ctx.params;
-            const data = await parseRequestBody(req);
-            const result = await ds.patch(prefix, id, data);
-            return Response.json(result);
-          },
-          DELETE: async (_req, ctx) => {
-            const { prefix, id } = ctx.params;
-            const result = await ds.remove(prefix, id);
-            return Response.json(result);
-          },
-        },
-      } satisfies PluginRoute,
-    ],
-  };
+  // see @netzo/api/services/custom/kv/kv.class.ts
+  app.post("/datastore", async (ctx) => {
+    type KvData = {
+      operation: "get" | "set" | "delete" | "list"; // | "sum" | "min" | "max";
+      key: Deno.KvKey;
+      value?: unknown;
+      prefix?: Deno.KvKey;
+      start?: Deno.KvKey;
+      end?: Deno.KvKey;
+      options?: {
+        limit?: number;
+        cursor?: string;
+        reverse?: boolean;
+        consistency?: "strong" | "eventual";
+        batchSize?: number;
+      };
+    };
+    const data = await parseRequestBody<KvData>(ctx.req);
+    const { operation, value } = data ?? {};
+    const key = data?.key as unknown as Deno.KvKey;
+
+    switch (operation) {
+      case "get": {
+        const result = await ds.kv.get(key);
+        return Response.json(result);
+      }
+      case "set": {
+        const result = await ds.kv.set(key, value);
+        return Response.json(result);
+      }
+      case "delete": {
+        const result = await ds.kv.delete(key);
+        return Response.json(result);
+      }
+      case "list": {
+        const { prefix, start, end, options } = data ?? {};
+        let iterator;
+        if (start && end) {
+          iterator = ds.kv.list({ start, end }, options);
+        } else if (prefix && start) {
+          iterator = ds.kv.list({ prefix, start }, options);
+        } else if (prefix && end) {
+          iterator = ds.kv.list({ prefix, end }, options);
+        } else if (prefix) {
+          iterator = ds.kv.list({ prefix }, options);
+        } else {
+          return RESPONSES.badRequest(
+            'Missing "prefix", "start" and/or "end" properties in request body',
+          );
+        }
+
+        const result = [];
+        for await (const res of iterator) result.push(res);
+        return Response.json(result);
+      }
+        // TODO: case 'sum': { }
+        // TODO: case 'max': { }
+        // TODO: case 'min': { }
+    }
+
+    return RESPONSES.badRequest(
+      operation
+        ? `Operation "${operation}" is not supported`
+        : 'Missing "operation" property in request body',
+    );
+  });
+  app.get("/datastore/[prefix]", async (ctx) => {
+    const { prefix } = ctx.params;
+    // supports MongoDB-like URL queries via dot-notation (powered by mingo)
+    // e.g. GET /datastore/deals?contactIds.$in=["01HS1HVHBT0XKD8X6BYJ956NR6"]
+    // flatQuery: { "contactIds.$in": '["01HS1HVHBT0XKD8X6BYJ956NR6"]' }
+    // nestedQuery: { "contactIds.$in": '["01HS1HVHBT0XKD8X6BYJ956NR6"]' }
+    // query: { contactIds: { "$in": [ "01HS1HVHBT0XKD8X6BYJ956NR6" ] } }
+    const flatQuery = Object.fromEntries(ctx.url.searchParams);
+    const nestedQuery = unflatten(flatQuery) as Record<string, unknown>;
+    const query = deepParseJson(nestedQuery) as Record<string, unknown>;
+    const result = await ds.find(prefix, query);
+    return Response.json(result);
+  });
+  app.post("/datastore/[prefix]", async (ctx) => {
+    const { prefix } = ctx.params;
+    const data = await parseRequestBody(ctx.req);
+    const result = await ds.create(prefix, data);
+    return Response.json(result);
+  });
+  app.get("/datastore/[prefix]/[id]", async (ctx) => {
+    const { prefix, id } = ctx.params;
+    const result = await ds.get(prefix, id);
+    return Response.json(result);
+  });
+  app.put("/datastore/[prefix]/[id]", async (ctx) => {
+    const { prefix, id } = ctx.params;
+    const data = await parseRequestBody(ctx.req);
+    const result = await ds.update(prefix, id, data);
+    return Response.json(result);
+  });
+  app.patch("/datastore/[prefix]/[id]", async (ctx) => {
+    const { prefix, id } = ctx.params;
+    const data = await parseRequestBody(ctx.req);
+    const result = await ds.patch(prefix, id, data);
+    return Response.json(result);
+  });
+  app.delete("/datastore/[prefix]/[id]", async (ctx) => {
+    const { prefix, id } = ctx.params;
+    const result = await ds.remove(prefix, id);
+    return Response.json(result);
+  });
 };
