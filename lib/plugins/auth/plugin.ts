@@ -4,10 +4,10 @@ import * as React from "react";
 import type { App, FreshContext } from "fresh";
 import type { NetzoState } from "../../mod.ts";
 import {
+  NetzoStateWithAuth,
   assertUserIsAuthorized,
   assertUserIsMemberOfWorkspaceOfApiKeyIfProviderIsNetzo,
   ensureSignedIn,
-  NetzoStateWithAuth,
   setRequestState,
   setSessionState,
   setState,
@@ -38,7 +38,7 @@ export type AuthConfig = {
   /** HTML content rendered below auth form e.g. to display a link to the terms of service via an a tag. */
   caption?: string;
   /** An image URL to display to the right side of the login form at /auth. */
-  image?: React.HTMLAttributes<HTMLImageElement>;
+  image?: React.ImgHTMLAttributes<HTMLImageElement> & { src: string; };
   /** The locale to use for the Toolbar plugin (defaults to "es"). */
   locale?: "en" | "es";
   /** The OAuth2 providers to enable for authentication. */

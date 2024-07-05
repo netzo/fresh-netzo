@@ -1,7 +1,7 @@
 // @deno-types="npm:@types/react@18.2.60"
 import * as React from "react";
 
-import { type Signal } from "@preact/signals";
+import type { Signal } from "@preact/signals";
 import { IS_BROWSER } from "fresh/runtime";
 import { createElement as h } from "preact";
 import * as Plot from "../../deps/@observablehq/plot.ts";
