@@ -62,6 +62,35 @@ export const Meta = (props: HeadProps) => {
       <meta name="twitter:title" content={props.title} />
       <meta name="twitter:description" content={props.description} />
       <meta name="twitter:image" content={props.image} />
+
+      {/* generated with https://realfavicongenerator.net/ (see https://web.dev/articles/add-manifest)  */}
+      <link rel="manifest" href="/manifest.json" />
+      <link
+        rel="apple-touch-icon"
+        sizes="180x180"
+        href="/images/apple-touch-icon.png"
+      />
+      <link
+        rel="icon"
+        type="image/png"
+        sizes="32x32"
+        href="/images/favicon-32x32.png"
+      />
+      <link
+        rel="icon"
+        type="image/png"
+        sizes="16x16"
+        href="/images/favicon-16x16.png"
+      />
+      <link
+        rel="mask-icon"
+        href="/images/safari-pinned-tab.svg"
+        color="#0000ff"
+      />
+      <link rel="shortcut icon" href="/images/favicon.ico" />
+      <meta name="msapplication-TileColor" content="#ffffff" />
+      <meta name="msapplication-config" content="/images/browserconfig.xml" />
+      <meta name="theme-color" content="#ffffff" />
     </>
   );
 };

@@ -8,7 +8,7 @@ export type ToolbarConfig = {
   /** The parsed `deno.json(c)` configuration file (MUST be set to `JSON.parse(await Deno.readTextFile(configURL))`) */
   denoJson: DenoConfigurationFile;
   /** The project ID to use for the Toolbar plugin */
-  links: React.HTMLAttributes<HTMLImageElement> & {
+  links: React.ImgHTMLAttributes<HTMLImageElement> & {
     href: string;
     target?: string;
     src: string;
@@ -21,7 +21,7 @@ export type ToolbarState = {
   projectId: string;
   locale?: "en" | "es";
   denoJson: DenoConfigurationFile;
-  links: React.HTMLAttributes<HTMLImageElement> & {
+  links: React.ImgHTMLAttributes<HTMLImageElement> & {
     href: string;
     target?: string;
     src: string;
