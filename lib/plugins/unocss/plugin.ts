@@ -1,14 +1,13 @@
 import type { App } from "fresh";
-import { JSX, options as preactOptions, VNode } from "preact";
 import { UnoGenerator, type UserConfig } from "../../deps/@unocss/core.ts";
 import type { Theme } from "../../deps/@unocss/preset-uno.ts";
 // IMPORTANT: import from directly from vendored @std/ to avoid Deno leaking to client
 import { existsSync } from "../../deps/@std/fs/exists.ts";
 import { walk } from "../../deps/@std/fs/walk.ts";
 import { dirname, fromFileUrl, join } from "../../deps/@std/path.ts";
+import { minify } from "../../deps/csso.ts";
 import type { NetzoState } from "../../mod.ts";
-
-type PreactOptions = typeof preactOptions & { __b?: (vnode: VNode) => void };
+import { logInfo } from "../utils.ts";
 
 // Regular expression to support @unocss-skip-start/end comments in source code
 const SKIP_START_COMMENT = "@unocss-skip-start";
@@ -34,11 +33,6 @@ export type UnocssConfig<T extends object = Theme> = UserConfig<T> & {
    */
   aot?: boolean;
   /**
-   * Enable SSR mode - run UnoCSS live to extract styles during server renders.
-   * Disabled by default.
-   */
-  ssr?: boolean;
-  /**
    * Enable CSR mode - run the UnoCSS runtime on the client.
    * It will generate styles live in response to DOM events.
    * Note that this might signiticantly slow-down hydration, one
@@ -51,32 +45,6 @@ export type UnocssConfig<T extends object = Theme> = UserConfig<T> & {
 export const defineUnocssConfig = <T extends object = Theme>(
   config: UnocssConfig<T>,
 ): UnocssConfig<T> => config;
-
-/**
- * Installs a hook in Preact to extract classes during server-side renders
- * @param classes - Set of class strings, which will be mutated by this function.
- */
-export function installPreactHook(classes: Set<string>) {
-  // Hook into options._b which is called whenever a new comparison
-  // starts in Preact.
-  const originalHook = (preactOptions as PreactOptions).__b;
-  (preactOptions as PreactOptions).__b = (
-    // deno-lint-ignore no-explicit-any
-    vnode: VNode<JSX.DOMAttributes<any>>,
-  ) => {
-    if (typeof vnode.type === "string" && typeof vnode.props === "object") {
-      const { props } = vnode;
-      if (props.class && typeof props.class === "string") {
-        props.class.split(" ").forEach((cls) => classes.add(cls));
-      }
-      if (props.className && typeof props.className === "string") {
-        props.className.split(" ").forEach((cls) => classes.add(cls));
-      }
-    }
-
-    if (vnode) originalHook?.(vnode);
-  };
-}
 
 /**
  * Runs UnoCSS over the source code of the project
@@ -119,14 +87,12 @@ async function runOverSource(uno: UnoGenerator): Promise<string> {
  * @param config (UserConfig<Theme>) - inline UnoCSS config object extended with UnoCSS plugin options.
  * @param config.url (string) - file URL to the UnoCSS config file (MUST be set to `import.meta.url`)
  * @param config.aot (boolean) - enables ahead-of-time (AOT) mode to run UnoCSS to extract styles during the build task (default: true)
- * @param config.ssr (boolean) - enables server-side rendering (SSR) mode to run UnoCSS live to extract styles during server renders (default: false)
  * @param config.csr (boolean) - enables client-side rendering (CSR) mode to run the UnoCSS runtime on the client to generate styles live in response to DOM events (default: false)
  */
 export const unocss = (_app: App<NetzoState>, {
   url,
   aot = true,
-  ssr = false, // DISABLED: disabled for performance (see https://discord.com/channels/684898665143206084/991511118524715139/1253012518650122351)
-  // IMPORTANT: csr mode is disabled by default since it significantly slows down hydration
+    // IMPORTANT: csr mode is disabled by default since it significantly slows down hydration
   // due primarily to the presetUno() being used by presetNetzo(), which slows down the initUnocssRuntime()
   // function from ~500ms to ~30s. To work around this, the presetShadcn() already safe-lists all dynamically
   // injected classes (e.g. those from dialogs which are mounted dynamically), and additional ones can be
@@ -146,10 +112,8 @@ export const unocss = (_app: App<NetzoState>, {
       `Missing UnoCSS configuration file in the project directory.`,
     );
   }
-  if ((aot || ssr) && !config) {
-    throw new Error(
-      `Missing UnoCSS configuration file in the project directory.`,
-    );
+  if (aot && !config) {
+    throw new Error(`Missing UnoCSS configuration file in the project directory.`);
   }
 
   // Link to CSS file, if AOT mode is enabled
@@ -159,15 +123,12 @@ export const unocss = (_app: App<NetzoState>, {
   const scripts = csr ? [{ entrypoint: "main", state: {} }] : [];
 
   // In CSR-only mode, include the style resets using an inline style tag
-  const styles = csr && !aot && !ssr ? [{ cssText: unoResetCSS }] : [];
+  const styles = csr && !aot ? [{ cssText: unoResetCSS }] : [];
 
   const middlewares: Plugin["middlewares"] = [];
 
   //  Created in configResolved()
   let uno: UnoGenerator;
-
-  // Create a set that may be used to hold class names encountered during SSR
-  const ssrClasses = new Set<string>();
 
   return {
     name: "unocss",
@@ -205,10 +166,7 @@ export const unocss = (_app: App<NetzoState>, {
       // Create the generator object
       uno = new UnoGenerator(config);
 
-      if (ssr) {
-        // Hook into Preact to add to the set of classes during the render
-        installPreactHook(ssrClasses);
-      } else if (aot && freshConfig.dev) {
+      if (aot && freshConfig.dev) {
         // Extract classes from source code now, and generate CSS
         logInfo("Generating UnoCSS stylesheet...");
         const css = await runOverSource(uno);
@@ -231,24 +189,9 @@ export const unocss = (_app: App<NetzoState>, {
       }
     },
     async renderAsync(ctx) {
-      // Generate inline styles, if SSR mode is enabled
-      if (ssr) {
-        // Clear any classes extracted during previous renders
-        ssrClasses.clear();
-
-        // Render. Preact will populate the list of classes.
-        await ctx.renderAsync();
-
-        // Run UnoCSS over the classes to generate CSS
-        const { css } = await uno.generate(ssrClasses);
-
-        // Include SSR CSS, and possibly CSR script
-        return { scripts, styles: [{ cssText: `${unoResetCSS}\n${css}` }] };
-      } else {
-        // Include link to AOT-generated CSS file and/or CSR script
-        await ctx.renderAsync();
-        return { scripts, links, styles };
-      }
+      // Include link to AOT-generated CSS file and/or CSR script
+      await ctx.renderAsync();
+      return { scripts, links, styles };
     },
     async buildStart({ build: { outDir } }) {
       // Generate a static CSS file, if AOT mode is enabled
