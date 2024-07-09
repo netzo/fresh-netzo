@@ -45,6 +45,12 @@ export type Auth = {
    */
   getUser: (authId: string) => Promise<AuthUser | null>;
   /**
+   * Gets the user with the given email from the database. This is used when
+   * the user is invited manually by explicitly setting "$users.authId" to his
+   * email addres in the database. This authId will be overwritten on first login.
+   */
+  getInvitedUser: (email: string) => Promise<AuthUser | null>;
+  /**
    * Gets the user with the given session ID from the database. The first attempt
    * is done with eventual consistency. If that returns `null`, the second
    * attempt is done with strong consistency. This is done for performance

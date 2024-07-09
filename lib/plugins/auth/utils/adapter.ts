@@ -31,14 +31,13 @@ export const createDatabaseAuth = (db: ReturnType<typeof database>): Auth => {
       const user = await db.query.$users.findFirst({
         where: eq($users.authId, authId),
       }) as AuthUser;
-      if (user) return user;
-      // IMPORTANT: authId can be provisionally hard-coded to the unique email of the user
-      // when first being invited or when manually creating users in the database therefore
-      // we also attempt to find the user by email if the above query by authId fails
-      const userTemporary = await db.query.$users.findFirst({
-        where: eq($users.email, authId),
+      return user ?? null;
+    },
+    getInvitedUser: async (email: string) => {
+      const user = await db.query.$users.findFirst({
+        where: eq($users.authId, email),
       }) as AuthUser;
-      return userTemporary ?? null;
+      return user ?? null;
     },
     getUserBySession: async (sessionId: string) => {
       const session = await db.query.$sessions.findFirst({
