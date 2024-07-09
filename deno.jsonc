@@ -42,7 +42,6 @@
     "preact": "npm:preact@10.22.0",
     "react": "npm:preact@10.22.0/compat",
     "react-dom": "npm:preact@10.22.0/compat",
-    "@preact/signals": "npm:@preact/signals@1.2.3",
-    "@preact/signals-core": "npm:@preact/signals-core@1.6.1"
+    "@preact/signals": "npm:@preact/signals@1.2.3"
   }
 }
