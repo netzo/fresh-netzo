@@ -72,8 +72,6 @@ export const getRoutesByProvider = (
           if (user[key] === undefined) delete user[key];
         });
 
-        console.log({ userProvider, userCurrent, user });
-
         if (!userCurrent) {
           if (allowNewUserRegistration === true) {
             await ctx.state.auth.createUser(user);
