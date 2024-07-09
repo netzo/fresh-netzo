@@ -43,7 +43,6 @@ export type AuthConfig = {
   locale?: "en" | "es";
   /** The OAuth2 providers to enable for authentication. */
   providers: {
-    netzo?: AuthConfigProvider & NetzoAuthConfig;
     email?: AuthConfigProvider & EmailAuthConfig;
     google?: AuthConfigProvider & {
       clientId?: string;
@@ -71,6 +70,7 @@ export type AuthConfig = {
       clientSecret?: string;
       oktaDomain?: string; // must set OKTA_DOMAIN environment variable
     };
+    netzo?: AuthConfigProvider & NetzoAuthConfig;
     netzolabs?: AuthConfigProvider & {
       clientId?: string;
       clientSecret?: string;
@@ -129,13 +129,13 @@ export type AuthState = Auth & {
  */
 export const auth = (config: AuthConfig): Plugin<NetzoState> => {
   const authEnabled = [
-    "netzo",
     "email",
     "google",
     "github",
     "gitlab",
     "auth0",
     "okta",
+    "netzo",
     "netzolabs",
   ].some((key) => !!config?.providers?.[key as AuthProvider]);
   if (!authEnabled) return { name: "netzo.auth" }; // skip if auth but no providers are set

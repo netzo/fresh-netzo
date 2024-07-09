@@ -73,12 +73,6 @@ export function AuthForm(props: AuthFormProps) {
           </div>
         )}
 
-        {!!providers?.netzo && (
-          <ButtonNetzo text={`${i18n.authForm.text} Netzo`} href="/auth/netzo/signin">
-            <div className="mr-4 w-22px h-22px i-netzo-symbol" />
-          </ButtonNetzo>
-        )}
-
         {!!providers?.google && (
           <ButtonOAuth2 text={`${i18n.authForm.text} Google`} href="/auth/google/signin">
             {/* NOTE: use inline SVG instead of logos-google-icon to avoid having to load logos collection (7MB) */}
@@ -186,6 +180,12 @@ export function AuthForm(props: AuthFormProps) {
           </ButtonOAuth2>
         )} */
         }
+
+        {!!providers?.netzo && (
+          <ButtonNetzo text={`${i18n.authForm.text} Netzo`} href="/auth/netzo/signin">
+            <div className="mr-4 w-22px h-22px i-netzo-symbol" />
+          </ButtonNetzo>
+        )}
 
         {!!providers?.netzolabs && (
           <ButtonNetzo text={`${i18n.authForm.text} NetzoLabs`} href="/auth/netzolabs/signin">
