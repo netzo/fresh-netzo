@@ -1,1 +1,1 @@
-export * from "npm:drizzle-orm@0.30.10/utils";
+export * from "npm:drizzle-orm@0.31.4/utils";
