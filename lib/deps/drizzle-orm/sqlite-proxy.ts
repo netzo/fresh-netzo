@@ -1,1 +1,1 @@
-export * from "npm:drizzle-orm@0.30.10/sqlite-proxy";
+export * from "npm:drizzle-orm@0.31.4/sqlite-proxy";

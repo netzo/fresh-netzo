@@ -28,9 +28,9 @@
   "imports": {
     "@/": "./",
     "netzo/": "../../lib/",
-    "fresh": "jsr:@fresh/core@^2.0.0-alpha.19",
-    "preact": "npm:preact@^10.22.1",
-    "@preact/signals": "npm:@preact/signals@^1.2.3",
+    "fresh": "jsr:@fresh/core@2.0.0-alpha.19",
+    "preact": "npm:preact@10.22.0",
+    "@preact/signals": "npm:@preact/signals@1.2.3",
     "react": "npm:preact@10.22.0/compat",
     "react-dom": "npm:preact@10.22.0/compat",
     "@std/dotenv": "jsr:@std/dotenv@0.224.1"

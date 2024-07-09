@@ -1,4 +1,4 @@
-import type { App, ResolvedFreshConfig } from "fresh";
+import type { App } from "fresh";
 import type { Builder } from "fresh/dev";
 import { UnoGenerator } from "../../deps/@unocss/core.ts";
 // IMPORTANT: import from directly from vendored @std/ to avoid Deno leaking to client
@@ -7,7 +7,6 @@ import { walk } from "../../deps/@std/fs/walk.ts";
 import { dirname, fromFileUrl, join } from "../../deps/@std/path.ts";
 import { minify } from "../../deps/csso.ts";
 import type { NetzoState } from "../../mod.ts";
-import { logInfo } from "../utils.ts";
 import type { UnocssConfig } from "./types.ts";
 
 export * from "./types.ts";
@@ -86,6 +85,7 @@ export const unocss = async (
   csr = false,
   ...config
 }: UnocssConfig) => {
+  console.log({ app });
   // NOTE: Subhosting somehow fails when operating with and/or importing from
   // file:// URLs, so we remove the file:// prefix to avoid build/deployment errors
   const configURL = url.replace("file://", "");
@@ -102,10 +102,8 @@ export const unocss = async (
     throw new Error(`Missing UnoCSS configuration file in the project directory.`);
   }
 
-  // IMPORTANT: removes specific presets to avoid ~30s slow-down in hydration for CSR
-  // (it's not the base64 encoded config which slows the initUnocssRuntime() function down,
-  // but rather the preset usage e.g. presetUno() (registered internally by the presetNetzo()))
-  const main = `/* unocss runtime */
+  app.get("/unocss/runtime.js", (_ctx) => {
+    const main = `/* unocss runtime */
 import config from "data:application/javascript;base64,${btoa(Deno.readTextFileSync(configURL))}";
 import initUnocssRuntime from "https://esm.sh/@unocss/runtime@0.59.0";
 
@@ -124,22 +122,31 @@ export default function() {
   console.timeEnd("[unocss] initUnocssRuntime");
 }
 `;
-
-  app.get("/unocss/runtime.js", (_ctx) => new Response(main, {
+    return new Response(main, {
     headers: {
       "content-type": "application/javascript",
       "cache-control": "no-cache, no-store, max-age=0, must-revalidate",
     },
-  }));
+  })
+  });
 
   // Create the generator object
   const uno = new UnoGenerator(config);
 
-  if (aot && app.config.mode === "development") {
-    // Extract classes from source code now, and generate CSS
-    logInfo("Generating UnoCSS stylesheet...");
-    const css = await runOverSource(uno);
+  // Extract classes from source code and generate CSS
+  const css = await runOverSource(uno);
 
+  const unoComponents = new UnoGenerator({
+    url: new URL("../../components", import.meta.url).href,
+    aot: true,
+    csr: false,
+  });
+
+  const cssComponents = await runOverSource(unoComponents);
+
+  console.log({ css: css.length, cssComponents: cssComponents.length })
+
+  if (aot && app.config.mode === "development") {
     // Add a middleware to handle requests for the generated CSS file with no-cache headers
     app.all("/uno.css", (_ctx) => new Response(css, {
       headers: {
@@ -149,13 +156,9 @@ export default function() {
     }));
   }
 
-  // Generate a static CSS file, if AOT mode is enabled AND building
   if (aot && Deno.args.includes("build")) {
-    // Extract classes from source code and generate CSS
-    const css = await runOverSource(uno);
-
     // Write the generated CSS to a static file
-    const { outDir } = (app as unknown as ResolvedFreshConfig).build;
+    const { outDir } = app?.config?.build ?? {};
     await Deno.writeTextFile(join(outDir, "static", "uno.css"), css);
   }
 };

@@ -177,7 +177,13 @@ export const auth = (app: App<NetzoState>, config: AuthConfig) => {
       const { response, tokens, sessionId } = await handleCallback(ctx.req, authConfig);
 
       const userProvider = await getUserByProvider(provider, tokens.accessToken);
-      const userCurrent = await ctx.state.auth.getUser(userProvider.authId);
+      let userCurrent = await ctx.state.auth.getUser(userProvider.authId);
+      if (!userCurrent) {
+          // IMPORTANT: authId can be provisionally hard-coded to the unique email of the user
+          // when first being invited or when manually creating users in the database therefore
+          // we also attempt to find the user by email if the above query by authId fails
+          userCurrent = await ctx.state.auth.getInvitedUser(userProvider.authId);
+        }
 
       // IMPORTANT: must explicitly set all properties to prevent "undefined" values
       const user = {
