@@ -1,6 +1,6 @@
-import type { App } from "fresh";
-import { UnoGenerator, type UserConfig } from "../../deps/@unocss/core.ts";
-import type { Theme } from "../../deps/@unocss/preset-uno.ts";
+import type { App, ResolvedFreshConfig } from "fresh";
+import type { Builder } from "fresh/dev";
+import { UnoGenerator } from "../../deps/@unocss/core.ts";
 // IMPORTANT: import from directly from vendored @std/ to avoid Deno leaking to client
 import { existsSync } from "../../deps/@std/fs/exists.ts";
 import { walk } from "../../deps/@std/fs/walk.ts";
@@ -8,6 +8,9 @@ import { dirname, fromFileUrl, join } from "../../deps/@std/path.ts";
 import { minify } from "../../deps/csso.ts";
 import type { NetzoState } from "../../mod.ts";
 import { logInfo } from "../utils.ts";
+import type { UnocssConfig } from "./types.ts";
+
+export * from "./types.ts";
 
 // Regular expression to support @unocss-skip-start/end comments in source code
 const SKIP_START_COMMENT = "@unocss-skip-start";
@@ -21,30 +24,6 @@ const SKIP_COMMENT_RE = new RegExp(
 const unoResetCSS = `/* reset */
 a,hr{color:inherit}progress,sub,sup{vertical-align:baseline}blockquote,body,dd,dl,fieldset,figure,h1,h2,h3,h4,h5,h6,hr,menu,ol,p,pre,ul{margin:0}fieldset,legend,menu,ol,ul{padding:0}*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:var(--un-default-border-color,#e5e7eb)}html{line-height:1.5;-webkit-text-size-adjust:100%;text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"}body{line-height:inherit}hr{height:0;border-top-width:1px}abbr:where([title]){text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}menu,ol,ul{list-style:none}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]{display:none}
 `;
-
-export type UnocssConfig<T extends object = Theme> = UserConfig<T> & {
-  /**
-   * File URL to the UnoCSS config file (MUST be set to `import.meta.url`)
-   */
-  url: string;
-  /**
-   * Enable AOT mode - run UnoCSS to extract styles during the build task.
-   * Enabled by default.
-   */
-  aot?: boolean;
-  /**
-   * Enable CSR mode - run the UnoCSS runtime on the client.
-   * It will generate styles live in response to DOM events.
-   * Note that this might signiticantly slow-down hydration, one
-   * can always use "safelist" in unocss.config as a workaround.
-   * Disabled by default.
-   */
-  csr?: boolean;
-};
-
-export const defineUnocssConfig = <T extends object = Theme>(
-  config: UnocssConfig<T>,
-): UnocssConfig<T> => config;
 
 /**
  * Runs UnoCSS over the source code of the project
@@ -84,12 +63,19 @@ async function runOverSource(uno: UnoGenerator): Promise<string> {
  *
  * IMPORTANT: must declare a valid UnoCSS configuration file and pass it as the "config" option.
  *
+ * @exampe Add the following scripts and styles to the _app.tsx file:
+ * <link rel="stylesheet" href="https://esm.sh/@unocss/reset@0.56.5/tailwind-compat.css" />
+ * <script type="module" src="https://deno.land/x/netzo/plugins/unocss/runtime.js" />
+ * <link rel="stylesheet" href="/uno.css" />
+ *
  * @param config (UserConfig<Theme>) - inline UnoCSS config object extended with UnoCSS plugin options.
  * @param config.url (string) - file URL to the UnoCSS config file (MUST be set to `import.meta.url`)
  * @param config.aot (boolean) - enables ahead-of-time (AOT) mode to run UnoCSS to extract styles during the build task (default: true)
  * @param config.csr (boolean) - enables client-side rendering (CSR) mode to run the UnoCSS runtime on the client to generate styles live in response to DOM events (default: false)
  */
-export const unocss = (_app: App<NetzoState>, {
+export const unocss = async (
+  _builder: Builder,
+  app: App<NetzoState>, {
   url,
   aot = true,
     // IMPORTANT: csr mode is disabled by default since it significantly slows down hydration
@@ -116,92 +102,60 @@ export const unocss = (_app: App<NetzoState>, {
     throw new Error(`Missing UnoCSS configuration file in the project directory.`);
   }
 
-  // Link to CSS file, if AOT mode is enabled
-  const links = aot ? [{ rel: "stylesheet", href: "/uno.css" }] : [];
+  // IMPORTANT: removes specific presets to avoid ~30s slow-down in hydration for CSR
+  // (it's not the base64 encoded config which slows the initUnocssRuntime() function down,
+  // but rather the preset usage e.g. presetUno() (registered internally by the presetNetzo()))
+  const main = `/* unocss runtime */
+import config from "data:application/javascript;base64,${btoa(Deno.readTextFileSync(configURL))}";
+import initUnocssRuntime from "https://esm.sh/@unocss/runtime@0.59.0";
 
-  // Add entrypoint, if CSR mode is enabled
-  const scripts = csr ? [{ entrypoint: "main", state: {} }] : [];
+const SKIP = ["@unocss/preset-uno", "@unocss/preset-icons"];
+config.presets?.forEach((p, i) => {
+  if (SKIP.includes(p.name)) delete config.presets[i];
+  config.presets?.[i]?.presets?.forEach((p, j) => {
+    if (SKIP.includes(p.name)) delete config.presets[i].presets[j];
+  });
+});
 
-  // In CSR-only mode, include the style resets using an inline style tag
-  const styles = csr && !aot ? [{ cssText: unoResetCSS }] : [];
+export default function() {
+  globalThis.__unocss = config;
+  console.time("[unocss] initUnocssRuntime");
+  setTimeout(() => initUnocssRuntime(), 0);
+  console.timeEnd("[unocss] initUnocssRuntime");
+}
+`;
 
-  const middlewares: Plugin["middlewares"] = [];
-
-  //  Created in configResolved()
-  let uno: UnoGenerator;
-
-  return {
-    name: "unocss",
-    middlewares,
-    // Optional client runtime
-    entrypoints: csr
-      ? {
-        // IMPORTANT: removes specific presets to avoid ~30s slow-down in hydration for CSR
-        // (it's not the base64 encoded config which slows the initUnocssRuntime() function down,
-        // but rather the preset usage e.g. presetUno() (registered internally by the presetNetzo()))
-        "main": `
-        data:application/javascript,
-        import config from "data:application/javascript;base64,${
-          btoa(Deno.readTextFileSync(configURL))
-        }";
-        import initUnocssRuntime from "https://esm.sh/@unocss/runtime@0.59.0";
-
-        const SKIP = ["@unocss/preset-uno", "@unocss/preset-icons"];
-        config.presets?.forEach((p, i) => {
-          if (SKIP.includes(p.name)) delete config.presets[i];
-          config.presets?.[i]?.presets?.forEach((p, j) => {
-            if (SKIP.includes(p.name)) delete config.presets[i].presets[j];
-          });
-        });
-
-        export default function() {
-          globalThis.__unocss = config;
-          console.time("[unocss] initUnocssRuntime");
-          setTimeout(() => initUnocssRuntime(), 0);
-          console.timeEnd("[unocss] initUnocssRuntime");
-        }`,
-      }
-      : {},
-    async configResolved(freshConfig) {
-      // Create the generator object
-      uno = new UnoGenerator(config);
-
-      if (aot && freshConfig.dev) {
-        // Extract classes from source code now, and generate CSS
-        logInfo("Generating UnoCSS stylesheet...");
-        const css = await runOverSource(uno);
-
-        // Craft a response for requests for the generated CSS file
-        const resp = new Response(css, {
-          headers: {
-            "content-type": "text/css",
-            "cache-control": "no-cache, no-store, max-age=0, must-revalidate",
-          },
-        });
-
-        // Add a middleware to handle requests for the generated CSS file
-        middlewares.push({
-          path: "/",
-          middleware: {
-            handler: (_req, ctx) => ctx.url.pathname === "/uno.css" ? resp : ctx.next(),
-          },
-        });
-      }
+  app.get("/unocss/runtime.js", (_ctx) => new Response(main, {
+    headers: {
+      "content-type": "application/javascript",
+      "cache-control": "no-cache, no-store, max-age=0, must-revalidate",
     },
-    async renderAsync(ctx) {
-      // Include link to AOT-generated CSS file and/or CSR script
-      await ctx.renderAsync();
-      return { scripts, links, styles };
-    },
-    async buildStart({ build: { outDir } }) {
-      // Generate a static CSS file, if AOT mode is enabled
-      if (aot) {
-        // Extract classes from source code and generate CSS
-        const css = await runOverSource(uno);
+  }));
 
-        // Write the generated CSS to a static file
-        await Deno.writeTextFile(join(outDir, "static", "uno.css"), css);
-      }
-    },
-  };
+  // Create the generator object
+  const uno = new UnoGenerator(config);
+
+  if (aot && app.config.mode === "development") {
+    // Extract classes from source code now, and generate CSS
+    logInfo("Generating UnoCSS stylesheet...");
+    const css = await runOverSource(uno);
+
+    // Add a middleware to handle requests for the generated CSS file with no-cache headers
+    app.all("/uno.css", (_ctx) => new Response(css, {
+      headers: {
+        "content-type": "text/css",
+        "cache-control": "no-cache, no-store, max-age=0, must-revalidate",
+      },
+    }));
+  }
+
+  // Generate a static CSS file, if AOT mode is enabled AND building
+  if (aot && Deno.args.includes("build")) {
+    // Extract classes from source code and generate CSS
+    const css = await runOverSource(uno);
+
+    // Write the generated CSS to a static file
+    const { outDir } = (app as unknown as ResolvedFreshConfig).build;
+    await Deno.writeTextFile(join(outDir, "static", "uno.css"), css);
+  }
 };
