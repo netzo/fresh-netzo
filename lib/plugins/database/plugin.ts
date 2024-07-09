@@ -25,6 +25,16 @@ export type DatabaseConfig = DrizzleConfig & {
 // deno-lint-ignore ban-types
 export type DatabaseState = {};
 
+// WORKAROUND: drizzle-kit has a bug and .$onUpdated(() => new Date().toISOString())
+// is somehow currently not updating the updatedAt field. So we do it manually
+// until this is resolved upstream in drizzle-orm for the SQLite adapter.
+// see https://github.com/drizzle-team/drizzle-orm/issues/2212
+// see https://github.com/t3-oss/create-t3-turbo/issues/1082
+const resolveData = (data: Record<string, unknown>) => ({
+  ...data,
+  updatedAt: new Date().toISOString(),
+})
+
 /**
  * A fresh plugin that registers middleware and handlers to
  * to mount RESTful API routes on the `/database` route path.
@@ -137,10 +147,11 @@ export const database = (config?: DatabaseConfig): Plugin => {
           PUT: async (req, ctx) => {
             const { tableName, id } = ctx.params;
             const table = config.schema![tableName] as any;
-            const data = await parseRequestBody(req);
-            const result = await db.update(table).set(data).where(
-              eq(table.id, id),
-            ).returning();
+            // WORKAROUND: resolveData until drizzle fixes .$onUpdated(() => new Date().toISOString())
+            const data = Object.keys(table).includes("updatedAt")
+              ? resolveData(await parseRequestBody(req))
+              : await parseRequestBody(req);
+            const result = await db.update(table).set(data).where(eq(table.id, id)).returning();
             return Response.json(
               Array.isArray(result) ? result[0] : result.rows,
             );
@@ -148,10 +159,12 @@ export const database = (config?: DatabaseConfig): Plugin => {
           PATCH: async (req, ctx) => {
             const { tableName, id } = ctx.params;
             const table = config.schema![tableName] as any;
-            const data = await parseRequestBody(req);
-            const result = await db.update(table).set(data).where(
-              eq(table.id, id),
-            ).returning();
+            console.log(Object.keys(table))
+            // WORKAROUND: resolveData until drizzle fixes .$onUpdated(() => new Date().toISOString())
+            const data = Object.keys(table).includes("updatedAt")
+              ? resolveData(await parseRequestBody(req))
+              : await parseRequestBody(req);
+            const result = await db.update(table).set(data).where(eq(table.id, id)).returning();
             return Response.json(
               Array.isArray(result) ? result[0] : result.rows,
             );
