@@ -1,7 +1,6 @@
 // @deno-types="npm:@types/react@18.2.60"
 import * as React from "react";
 
-import { useSignal } from "@preact/signals";
 import type { ComponentChildren } from "preact";
 // import { ButtonDarkMode } from "../../components/button-dark-mode.tsx";
 import { Button } from "../../../components/button.tsx";
@@ -162,7 +161,7 @@ export type Issue = {
 };
 
 export function DialogFeedbackNetzolabs(props: { state: NetzoState; children: ComponentChildren }) {
-  const open = useSignal(false);
+  const [open, setOpen] = React.useState(false);
 
   const { locale = "es" } = props.state?.toolbar ?? {};
 
@@ -192,7 +191,7 @@ export function DialogFeedbackNetzolabs(props: { state: NetzoState; children: Co
       body: JSON.stringify(data),
     });
     form.reset();
-    open.value = false;
+    setOpen(false);
   };
 
   // NOTE: must manually invoke submit because submit button isteleported
@@ -201,11 +200,11 @@ export function DialogFeedbackNetzolabs(props: { state: NetzoState; children: Co
   // it is important to have an uncontrolled input (i.e. without value prop).
   // see https://github.com/shadcn-ui/ui/discussions/2137#discussioncomment-7907793
   return (
-    <Dialog open={open.value} onOpenChange={(value) => !open.value && (open.value = value)}>
+    <Dialog open={open} onOpenChange={(value) => !open && setOpen(value)}>
       <DialogTrigger asChild>
         {props.children}
       </DialogTrigger>
-      <DialogContentControlled className="sm:max-w-[425px]" onClickClose={() => open.value = false}>
+      <DialogContentControlled className="sm:max-w-[425px]" onClickClose={() => setOpen(false)}>
         <DialogHeader>
           <DialogTitle>{i18n.dialogFeedbackNetzolabs.title}</DialogTitle>
           <DialogDescription>

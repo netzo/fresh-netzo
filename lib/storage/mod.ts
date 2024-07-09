@@ -17,7 +17,7 @@ export type StorageOptions = {
  */
 export const storage = ({
   apiKey = Deno.env.get("NETZO_API_KEY")!,
-  baseURL = IS_BROWSER ? window.location.origin : "https://api.netzo.io",
+  baseURL = IS_BROWSER ? globalThis.location.origin : "https://api.netzo.io",
 }: StorageOptions = {}) => {
   const api = netzo({ apiKey, baseURL });
 

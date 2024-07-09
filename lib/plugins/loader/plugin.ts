@@ -22,18 +22,18 @@ export const loader = ({
   export default function(_) {
     const loader = document.getElementById("__loader");
     const rules = loader.sheet.rules[0];
-    window.showLoader = () => {
+    globalThis.showLoader = () => {
       rules.style.display = "block";
       rules.style.animation = "${ANIMATION}";
     };
-    window.hideLoader = () => {
+    globalThis.hideLoader = () => {
       rules.style.animationDuration = ".3s";
       setTimeout(() => {
         rules.style.display = "none";
         rules.style.animation = "none";
       }, 300);
     };
-    window.addEventListener('load', hideLoader);
+    globalThis.addEventListener('load', hideLoader);
   }
   `;
   return {
