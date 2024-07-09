@@ -4,10 +4,10 @@ import * as React from "react";
 import type { App, FreshContext } from "fresh";
 import type { NetzoState } from "../../mod.ts";
 import {
-  NetzoStateWithAuth,
   assertUserIsAuthorized,
   assertUserIsMemberOfWorkspaceOfApiKeyIfProviderIsNetzo,
   ensureSignedIn,
+  NetzoStateWithAuth,
   setRequestState,
   setSessionState,
   setState,
@@ -38,7 +38,7 @@ export type AuthConfig = {
   /** HTML content rendered below auth form e.g. to display a link to the terms of service via an a tag. */
   caption?: string;
   /** An image URL to display to the right side of the login form at /auth. */
-  image?: React.ImgHTMLAttributes<HTMLImageElement> & { src: string; };
+  image?: React.ImgHTMLAttributes<HTMLImageElement> & { src: string };
   /** The locale to use for the Toolbar plugin (defaults to "es"). */
   locale?: "en" | "es";
   /** The OAuth2 providers to enable for authentication. */
@@ -179,11 +179,11 @@ export const auth = (app: App<NetzoState>, config: AuthConfig) => {
       const userProvider = await getUserByProvider(provider, tokens.accessToken);
       let userCurrent = await ctx.state.auth.getUser(userProvider.authId);
       if (!userCurrent) {
-          // IMPORTANT: authId can be provisionally hard-coded to the unique email of the user
-          // when first being invited or when manually creating users in the database therefore
-          // we also attempt to find the user by email if the above query by authId fails
-          userCurrent = await ctx.state.auth.getInvitedUser(userProvider.authId);
-        }
+        // IMPORTANT: authId can be provisionally hard-coded to the unique email of the user
+        // when first being invited or when manually creating users in the database therefore
+        // we also attempt to find the user by email if the above query by authId fails
+        userCurrent = await ctx.state.auth.getInvitedUser(userProvider.authId);
+      }
 
       // IMPORTANT: must explicitly set all properties to prevent "undefined" values
       const user = {

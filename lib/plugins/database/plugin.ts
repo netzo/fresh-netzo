@@ -34,7 +34,7 @@ export type DatabaseState = {};
 const resolveData = (data: Record<string, unknown>) => ({
   ...data,
   updatedAt: new Date().toISOString(),
-})
+});
 
 /**
  * A fresh plugin that registers middleware and handlers to

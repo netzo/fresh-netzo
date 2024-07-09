@@ -145,7 +145,7 @@ export function presetNetzo(
           "[&>[role=checkbox]]:translate-y-[2px]",
           "mt-4",
           "text-sm",
-          "text-muted-foreground"
+          "text-muted-foreground",
         ],
         // components/table-view-options:
         ...[
