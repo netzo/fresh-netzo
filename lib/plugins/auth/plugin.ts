@@ -121,8 +121,6 @@ export type AuthState = Auth & {
  * - `GET /auth/{provider}/signin` for the sign-in page
  * - `GET /auth/{provider}/callback` for the callback page
  * - `GET /auth/signout` for the sign-out page
- *
- * @param {AuthConfig} - configuration options for the plugin
  */
 export const auth = (app: App<NetzoState>, config: AuthConfig) => {
   const authEnabled = [

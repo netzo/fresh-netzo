@@ -11,9 +11,6 @@ export type MdxState = {};
 
 /**
  * Plugin to register monitoring for Deno.mdx jobs.
- *
- * @param {MdxConfig} - configuration options for the plugin
- * @returns {Plugin} - a Plugin for Deno Fresh
  */
 export const mdx = async (app: App<NetzoState>, config: MdxConfig) => {
   const routesDir = new URL("./routes", config.configURL).pathname;
